@@ -155,98 +155,60 @@ Classes used by multiple components are in the `seedu.connectus.commons` package
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Optional address, email, phone fields
+### Add Command
+The `add` command is used to create a new contact in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday`, `Modules`, and `Tags` fields.
 
-### Birthday field
+The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#adding-a-person-add).
 
-### Social media field
+The sequence of the `add` command is as follows:
 
-### Module tag field
+1. The command `add INPUT` is entered by the user (e.g. `add n/Jason`).
+2. `Logic Manger` calls the `ConnectUsParser#parseCommand` with the `INPUT`.
+3. `ConnectUsParser` parses the command word, creating an instance of `AddCommandParser` to `parse` the `informationFields` via the respective `ParserUtil` functions.
+4. `AddCommandParser` creates the corresponding `Person` object. This `Person` object is taken as the input of a new `AddCommand` object created by `AddCommandParser`.
+5. `Logic Manager` executes `AddCommand#execute`, adding the `Person` to the model through `AddCommand` calling `Model#addPerson`.
+6. A `Command Result` is returned with the result of the execution.
 
-### \[Proposed\] Undo/redo feature
+If duplicate parameters are entered (e.g. `add n/Jason p/91234567 p/12345678`, where the phone parameter is entered twice), only the last instance, `p/12345678` will be taken.
 
-#### Proposed Implementation
+The `AddCommandParser` creates the corresponding `Person` object, which is then taken as an input by the `AddCommand` object that it creates and returns. `Logic Manager` then runs `AddCommand`, which then adds the `Person` to the model.
 
-The proposed undo/redo mechanism is facilitated by `VersionedConnectUS`. It extends `ConnectUS` with an undo/redo history, stored internally as an `connectUsStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The following sequence diagram shows how `add` works:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The following sequence diagram shows how the `informationFields` are parsed by `ParserUtil`:
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+![AddCommandParseInformationFieldsSequenceDiagram](images/AddCommandParseInformationFieldsDiagram.png)
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+### Edit Command
+The `edit` command is used to change the information of an existing contact in ConnectUS with the information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday`, `Modules`, and `Tags` fields.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+The format for the `edit` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#editing-a-person--edit).
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+The sequence of the `edit` command is as follows:
 
-![UndoRedoState1](images/UndoRedoState1.png)
+1. The command `edit INPUT` is entered by the user, where the `INPUT` is an integer index followed by fields to edit (e.g. `edit 1 n/John Doe`).
+2. `Logic Manager` calls the `ConnectUsParser#parseCommand` with the given `INPUT`
+3. `ConnectUsParser` parses the command word. creating an instance of `EditCommandParser` to `parse` the `informationFields` via the respective `ParserUtil` functions.
+4. `EditCommandParser` creates the corresponding `EditPersonDescriptor` object. This `EditPersonDescriptor` object is taken as the input of a new `EditCommand` object created by `EditCommandParser`.
+5. `Logic Manager` executes `EditPerson#execute`, creating a `Person` from the aforementioned`EditPersonDescriptor` object and adding this `Person` to the model through `Model#setPerson`.
+6. `Model#updateFilteredPersonList` is called to update the list of `Person` objects.
+7. A `Command Result` is returned with the result of the execution.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+The following sequence diagram shows how `edit` works:
+![EditCommandSequenceDiagram](images/EditCommandSequenceDiagram.png)
 
-![UndoRedoState2](images/UndoRedoState2.png)
+The following sequence diagram shows how the `informationFields` are parsed by `ParserUtil`:
+![EditCommandParseInformationFieldsSequenceDiagram](images/EditCommandParseInformationFieldsDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+### [To Add] Delete Command
 
-</div>
+### [To Add] Help Command
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+### [To Add] Adding Additional Tags
 
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial ConnectUS state, then there are no previous ConnectUS states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+### [To Add] Deleting Individual Tags
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -318,8 +280,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with friends from other schools         | add school tags to a person                                             | remember which school they are from                                                       |
 | `*`      | user with friends from companies             | add company tags to a person                                            | remember which company they are from                                                      |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is `ConnectUS` and the **Actor** is the `user`, unless specified otherwise)
@@ -346,7 +306,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 4a1. ConnectUS adds the given information to the contact.
   * 4a2. ConnectUS displays confirmation message
   * 4a3. Updated contact is visible in the contacts list
-  
+
   Use case ends.
 
 
@@ -411,12 +371,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. No keywords are provided
     * 1a1. ConnectUS displays error message
     Use case ends
-    
+
 * 1b. User requests to find a contact by tag
   * 1b1. ConnectUS displays confirmation message
   * 1b2. ConnectUS displays all contacts with given tag
   Use case ends
-  
+
 * 1c. User requests to find a contact by contact information
   * 1c1. ConnectUS displays confirmation message
   * 1c2. ConnectUS displays all contacts with given confirmation message
@@ -428,7 +388,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list all contacts
 2. ConnectUS displays confirmation message
-3. ConnectUS displays all contacts 
+3. ConnectUS displays all contacts
 
    Use case ends
 
@@ -498,7 +458,7 @@ testers are expected to do more *exploratory* testing.
 1. Adding a contact with just name and email
     1. Prerequisites: None
    2. Test case: `add n/JohnDoe e/email@example.com`<br>
-   Expected: a new contact named JohnDoe with given email is  created. Details of the new contact shown in the status message. Contact is visible in contact list. 
+   Expected: a new contact named JohnDoe with given email is  created. Details of the new contact shown in the status message. Contact is visible in contact list.
    3. Test case: `add n/ e/email@example.com`<br>
    Expected: No contact is created. Error details shown in status message.
    4. _{ more test cases …​ }_

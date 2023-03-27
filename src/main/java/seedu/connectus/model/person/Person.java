@@ -1,5 +1,6 @@
 package seedu.connectus.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -48,6 +49,21 @@ public class Person {
         this.modules.addAll(modules);
     }
 
+    /**
+     * Copy constructor allowing modifications to tag list.
+     */
+    public Person(Person toCopy, Set<Tag> tags, Set<Module> modules) {
+        requireNonNull(toCopy);
+        this.name = toCopy.name;
+        this.phone = toCopy.phone;
+        this.email = toCopy.email;
+        this.address = toCopy.address;
+        this.socialMedia = toCopy.socialMedia;
+        this.tags.addAll(tags);
+        this.birthday = toCopy.birthday;
+        this.modules.addAll(modules);
+    }
+
     public void setPhone(Phone phone) {
         this.phone = Optional.ofNullable(phone);
     }
@@ -90,6 +106,11 @@ public class Person {
 
     public Optional<SocialMedia> getSocialMedia() {
         return socialMedia;
+    }
+
+    public String getAllFieldsAsString() {
+        return String.format("%s %s %s %s %s %s %s %s",
+                name, phone, email, address, birthday, socialMedia, tags, modules);
     }
 
     /**

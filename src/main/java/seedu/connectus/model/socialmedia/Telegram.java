@@ -10,11 +10,12 @@ import static seedu.connectus.commons.util.AppUtil.checkArgument;
 public class Telegram {
 
     private static final String SPECIAL_CHARACTERS = "_";
-    public static final String MESSAGE_CONSTRAINTS = "Telegram username should of the format johndoe "
+    public static final String MESSAGE_CONSTRAINTS = "Telegram usernames should be of the format johndoe "
             + "and adhere to the following constraints:\n"
             + "1. The username should only contain alphanumeric characters and the special character, excluding "
             + "the parentheses, (" + SPECIAL_CHARACTERS + ").\n"
             + "2. The username should contain at least 5 characters.";
+
     // alphanumeric and special characters, beginning with 0 or 1 "@"
     private static final String USERNAME_REGEX = "\\w{5,}+";
 
