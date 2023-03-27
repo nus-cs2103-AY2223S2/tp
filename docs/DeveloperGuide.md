@@ -367,6 +367,49 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a book
+
+1. Adding a book while all books are being shown
+
+    1. Test case: `addBook t/Diary of a Wimpy kid a/Jeff Kinney i/9780810993136`<br>
+       Expected: A book and its details is added into the book list.
+
+    1. Test case: `addBook 0`<br>
+       Expected: No book is added. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `addBook`, `addBook 5`, `...`<br>
+       Expected: Similar to previous.
+
+### Deleting a book
+
+1. Deleting a book while all books are being shown
+
+    1. Prerequisites: List all books using the `list` command. Multiple books in the list.
+
+    1. Test case: `deleteBook 1`<br>
+       Expected: First book is deleted from the list. Details of the deleted book shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `deleteBook 0`<br>
+       Expected: No book is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `deleteBook`, `deleteBook x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Editing a book
+
+1. Editing a book while all books are being shown
+
+    1. Prerequisites: List all books using the `list` command. Multiple books in the list.
+
+    1. Test case: `editBook 1 t/Diary of a Wimpy kid a/Jeff Kinney i/9780810993136`<br>
+       Expected: First book is edited. Details of the book are changed according to the input.
+
+    1. Test case: `editBook 0`<br>
+       Expected: No book is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `editBook`, `editBook 3`, `...`<br>
+       Expected: Similar to previous.
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
