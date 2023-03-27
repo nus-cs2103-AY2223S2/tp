@@ -21,11 +21,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import seedu.recipe.commons.core.LogsCenter;
-import seedu.recipe.logic.commands.CommandResult;
-import seedu.recipe.logic.commands.exceptions.CommandException;
-import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Recipe;
-import seedu.recipe.ui.CommandBox.CommandExecutor;
 
 /**
  * Represents the form element for users to add {@code Recipe}s
@@ -61,12 +57,9 @@ public class AddRecipeForm extends UiPart<Region> {
     private Button cancelButton;
 
     //Data fields
-    private int displayedIndex;
     private Map<String, String> initialValues;
-    private Recipe recipe;
 
     //Logic executors and system logging
-    private final CommandExecutor commandExecutor;
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     @FunctionalInterface
@@ -80,61 +73,17 @@ public class AddRecipeForm extends UiPart<Region> {
      * @param recipe         The recipe to add.
      * @param displayedIndex The index of the recipe in the displayed list.
      */
-    public AddRecipeForm(Recipe recipe, CommandExecutor commandExecutor) {
+    public AddRecipeForm() {
         super(FXML);
-        this.recipe = recipe;
-        this.commandExecutor = commandExecutor;
-        if (recipe != null) {
-            populateFields();
-        } else {
-            TextField emptyIngredientField = createDynamicTextField("");
-            ingredientsBox.getChildren().add(emptyIngredientField);
-            TextField emptyStepField = createDynamicTextField("");
-            stepsBox.getChildren().add(emptyStepField);
-        }
+        
+        TextField emptyIngredientField = createDynamicTextField("");
+        ingredientsBox.getChildren().add(emptyIngredientField);
+        TextField emptyStepField = createDynamicTextField("");
+        stepsBox.getChildren().add(emptyStepField);
+    
         assert saveButton != null;
         saveButton.setOnAction(event -> saveRecipe());
         cancelButton.setOnAction(event -> closeForm());
-    }
-
-    /**
-     * Populates the form fields with the data from the existing recipe.
-     * Stores all prepopulated data into a hashmap for comparison later when saving.
-     */
-    private void populateFields() {
-        nameField.setText("Name is not added.");
-        //Duration
-        durationField.setText("Duration is not added.");
-        //Portion
-        portionField.setText("Portion is not added.");
-
-        TextField ingredientField = createDynamicTextField("Field is not added.");
-        ingredientsBox.getChildren().add(ingredientField);
-
-        TextField stepField = createDynamicTextField("Field is not added.");
-        stepsBox.getChildren().add(stepField);
-    
-        tagsField.setText("Field is not added.");
-    }
-
-    /**
-     * Executes the command based on the given {@code commandText} and returns the result.
-     * Updates the UI components based on the command result.
-     *
-     * @param commandText the command text to execute.
-     * @return the resulting {@code CommandResult} after executing the command.
-     * @throws CommandException if the command execution fails.
-     * @throws ParseException if the command text cannot be parsed.
-     */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-        try {
-            CommandResult commandResult = commandExecutor.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            return commandResult;
-        } catch (CommandException | ParseException e) {
-            logger.info("Invalid command: " + commandText);
-            throw e;
-        }
     }
     
     /**
@@ -142,7 +91,7 @@ public class AddRecipeForm extends UiPart<Region> {
      * If any fields have been modified, the new values are stored
      * in a map of changed values.
      */
-    private void saveRecipe() {
+    private String saveRecipe() {
         // Check which fields have been changed
         Map<String, String> inputValues = new HashMap<>();
         for (Map.Entry<String, String> entry : initialValues.entrySet()) {
@@ -182,67 +131,59 @@ public class AddRecipeForm extends UiPart<Region> {
                 inputValues.put(key, currentValue);
             }
         }
-            handleAddRecipeEvent(displayedIndex, inputValues);
+            String output = handleAddRecipeEvent(inputValues);
             closeForm();
+            return output;
     }
 
     /**
      * Handles the add recipe event by updating the recipe with the changed values.
      *
-     * @param index        The index of the recipe to be added.
      * @param inputValues A map of the changed recipe fields with keys as field names and values as the new data.
      */
-    private void handleAddRecipeEvent(int index, Map<String, String> inputValues ) {
-        try {
-            StringBuilder commands = new StringBuilder();
+    private String handleAddRecipeEvent(Map<String, String> inputValues) {
+        StringBuilder commands = new StringBuilder();
 
-            // Add the index of the item to add.
-            commands.append(index);
-
-            // Check if the name has been changed and append the name prefix and value.
-            if (inputValues.containsKey("name")) {
-                commands.append(" n/");
-                commands.append(inputValues.get("name"));
-            }
-
-            // Check if the duration has been changed and append the duration prefix and value.
-            if (inputValues.containsKey("duration")) {
-                commands.append(" d/");
-                commands.append(inputValues.get("duration"));
-            }
-            
-            // Check if the ingredients have been changed and append the ingredients prefix and value.
-            if (inputValues.containsKey("ingredients")) {
-                String[] ingredients = inputValues.get("ingredients").split(", ");
-                for (String ingredient : ingredients) {
-                    commands.append(" i/");
-                    commands.append(ingredient);
-                }
-            }
-
-            // Check if the steps have been changed and append the steps prefix and value.
-            if (inputValues.containsKey("steps")) {
-                String[] steps = inputValues.get("steps").split(", ");
-                for (String step : steps) {
-                    commands.append(" s/");
-                    commands.append(step);
-                }
-            }
-
-            // Check if the tags have been changed and append the tags prefix and value.
-            if (inputValues.containsKey("tags")) {
-                String[] tags = inputValues.get("tags").split(", ");
-                for (String tag : tags) {
-                    commands.append(" t/");
-                    commands.append(tag);
-                }
-            }
-            //I'll add in more fields, but I need to make sure this works first.
-            String commandText = "add " + commands.toString(); // 1-indexed
-            executeCommand(commandText);
-        } catch (CommandException | ParseException e) {
-            logger.info("Failed to add recipe: " + index);
+        // Check if the name has been changed and append the name prefix and value.
+        if (inputValues.containsKey("name")) {
+            commands.append(" n/");
+            commands.append(inputValues.get("name"));
         }
+
+        // Check if the duration has been changed and append the duration prefix and value.
+        if (inputValues.containsKey("duration")) {
+            commands.append(" d/");
+            commands.append(inputValues.get("duration"));
+        }
+        
+        // Check if the ingredients have been changed and append the ingredients prefix and value.
+        if (inputValues.containsKey("ingredients")) {
+            String[] ingredients = inputValues.get("ingredients").split(", ");
+            for (String ingredient : ingredients) {
+                commands.append(" i/");
+                commands.append(ingredient);
+            }
+        }
+
+        // Check if the steps have been changed and append the steps prefix and value.
+        if (inputValues.containsKey("steps")) {
+            String[] steps = inputValues.get("steps").split(", ");
+            for (String step : steps) {
+                commands.append(" s/");
+                commands.append(step);
+            }
+        }
+
+        // Check if the tags have been changed and append the tags prefix and value.
+        if (inputValues.containsKey("tags")) {
+            String[] tags = inputValues.get("tags").split(", ");
+            for (String tag : tags) {
+                commands.append(" t/");
+                commands.append(tag);
+            }
+        }
+        String commandText = "add " + commands.toString(); 
+        return commandText;
     }
 
     /**
@@ -357,7 +298,7 @@ public class AddRecipeForm extends UiPart<Region> {
         Stage window = new Stage();
         // Ensures users do not exit the view by clicking outside
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle(recipe == null ? "Add Recipe" : "Edit Recipe");
+        window.setTitle("Add Recipe");
         window.setMinWidth(500);
         window.setMinHeight(700);
         VBox vbox = new VBox(getRoot());
