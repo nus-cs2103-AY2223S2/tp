@@ -28,17 +28,17 @@ making it a great asset in managing your internship applications.
 
 ## **2. Quick start**
 
-1. Ensure you have Java `11` or above installed in your Computer.
+2.1 Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `sprint.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-3/tp/releases/tag/v1.2).
+2.2 Download the latest `sprint.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-3/tp/releases/tag/v1.2).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your sprINT application.
+2.3 Copy the file to the folder you want to use as the _home folder_ for your sprINT application.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar sprINT.jar` command to run the application.<br>
+2.4 Open a command terminal, enter `cd` to the folder you put the jar file in, and use the `java -jar sprINT.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data already.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+2.5 Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all application entries.
@@ -53,20 +53,20 @@ making it a great asset in managing your internship applications.
 
     * `exit` : Exits the app.
 
-Refer to the [Command summary](#Command summary) section below for a list of all the commands you can try.
+Refer to the [Command summary](#5-command-summary) section for a complete list of commands.
 
-6. Refer to the [Features](#features) section below for details of each command.
+2.6 Refer to the [Features](#3-features) section for more details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## **3. Features**
 
-Before you begin reading, here are some special notations to help you along the way.
+Before you begin reading, here are some useful notations that you should know.
 
 **Tips**
 
-Tips are useful suggestions that will help you have a better experience with Class-ify.
+Tips are useful suggestions that will help you become a seasoned sprINT user more quickly.
 
 <div markdown="span" class="alert alert-primary">:bulb:
 **Tip:** Tips are useful.
@@ -74,7 +74,7 @@ Tips are useful suggestions that will help you have a better experience with Cla
 
 **Notes**
 
-Notes are important information that you should pay attention to when using Class-ify.
+Notes are important information that you should pay attention to when using sprINT.
 
 <div markdown="span" class="alert alert-info">:information_source:
 **Note:** Take notes when you see this icon.
@@ -82,15 +82,13 @@ Notes are important information that you should pay attention to when using Clas
 
 **Caution**
 
-Cautions are around to warn you of potential pitfalls that new users may encounter. For example, commands like `clear`
-will delete all data stored locally and this action is irreversible. You will lose your data permanently.
+Cautions are in place to warn you of potential pitfalls new users may encounter.
 
 <div markdown="span" class="alert alert-warning">:exclamation:
 **Caution:** Stop and read carefully when you see this!
 </div>
 
-<div style="page-break-after: always;" />
-
+<div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -99,7 +97,10 @@ will delete all data stored locally and this action is irreversible. You will lo
   e.g. in `add c/COMAPNY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add c/John Doe's Company`.
 
 * Items in square brackets are optional.<br>
-  e.g `c/COMPANY_NAME [t/TAG]` can be used as `c/John Doe's Company t/highsalary` or as `c/John Doe's Company` only.
+  e.g. `c/COMPANY_NAME [t/TAG]` can be used as `c/John Doe's Company t/highsalary` or as `c/John Doe's Company` only.
+
+* Items that come with `(s)` means multiple parameters for the same prefix can be added, separated by space.<br>
+  e.g. `[t/TAG(s)]` can be used as `t/credit-bearing high-salary` or as `t/credit-bearing` only.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/highsalary`, `t/highsalary t/creditbearing` etc.
@@ -129,14 +130,14 @@ An application can have any number of tags (including 0).
 </div>
 
 Examples:
-* `add-app r/SWE Intern c/Goggle e/goggle_careers@gmail.com s/interested`
+* `add-app r/SWE Intern c/Goggle e/goggle_careers@gmail.com s/interested t/credit-bearing`
 * `add-app r/Data Analyst Intern c/Bloomberg e/bloomberg_hires@bloomberg.com`
 
 #### 3.1.2 Editing an application : `edit-app`
 
 Edits an existing internship application to be tracked.
 
-Format: `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS]​`
+Format: `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS] [t/TAG(s)]​`
 
 * Edits the internship application at the specified `INDEX`. The index refers to the index number shown in the displayed application list. The index **must be a positive integer** 1, 2, 3, …​
 <!--* At least one of the optional fields must be provided.-->
@@ -228,7 +229,7 @@ Example:
 
 Finds internship applications with information containing any of the given keywords.
 
-Format: `find keyword(s)` or `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`
+Format: `find keywords(s)` or `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`
 
 * The search is case-insensitive. e.g. `goggle` will match `Goggle`.
 * In `find keyword(s)`, when none of the prefixes is specified, the keyword(s) will be searched globally in all prefixes.
@@ -263,10 +264,10 @@ Format: `help`
 
 #### 3.4.2 Undoing a command : `undo`
 
-Undos the previous command that you have typed in.
+Undo the previous command that you have typed in.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can use this command if you have accidentally deleted an applicatione entry and want to save the hassle of entering it again.
+You can use this command if you have accidentally deleted an application entry or the entire internship book, and you wish to retrieve them back.
 </div>
 
 Format: `undo`
@@ -313,24 +314,23 @@ _Details coming soon ..._
 
 <div style="page-break-after: always;"></div>
 
-## **5.Command Summary**
+## **5. Command Summary**
 
-| Action                       | Format, Examples                                                                                                                               |
-|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add** <br/> Application    | `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS​` <br> e.g., `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered` |
-| **Add** <br/> Task           | `add-task d/DESCRIPTION by/DEADLINE` <br> e.g., `add-task d/Technical Interview by/01-05-2023`                                                 |
-| **Clear**                    | `clear`                                                                                                                                        |
-| **Delete** <br/> Application | `delete-app INDEX`<br> e.g., `delete-app 3`                                                                                                    |
-| **Delete** <br/> Task        | `delete-task INDEX`<br> e.g., `delete-task 3`                                                                                                  |
-| **Edit** <br/> Application   | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS]​`<br> e.g., `edit-app 1 r/Research Intern e/example@bstar.com.sg`       |
-| **Edit** <br/> Task          | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br> e.g., `edit-task 1 d/Accept offer by/07-05-2023`                                          |
-| **Exit**                     | `exit`                                                                                                                                         |
-| **Find**                     | `find [search term]` e.g. `find Mata` <br/>`find [r/search term] [c/search term] [s/search term]` e.g. `find r/SWE Intern c/Mata s/Offered`    |
-| **List**                     | `list`                                                                                                                                         |
-| **Help**                     | `help`                                                                                                                                         |
-| **Sort**                     | `sort ORDER` i.e., `sort alphabetical` or `sort deadline`                                                                                      |
-| **Undo**                     | `undo`                                                                                                                                         |
-
+| Action                       | Format, Examples                                                                                                                                                   |
+|------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add** <br/> Application    | `add-app r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [t/TAG(s)]​` <br> e.g., `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered t/credit-bearing` |
+| **Edit**<br/> Application    | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS] [t/TAG(s)]`<br/> e.g. `edit-app 1 r/Cloud Engineer e/goggleHR@example.com`                  |
+| **Delete**<br/> Application  | `delete-app INDEX`<br/>                                                                                                                                            |
+| **Add** <br/> Task           | `add-task d/DESCRIPTION by/DEADLINE` <br> e.g., `add-task d/Technical Interview by/01-05-2023`                                                                     |
+| **Edit** <br/> Task          | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                              |
+| **Delete** <br/> Task        | `delete-task INDEX`                                                                                                                                                |
+| **List**                     | `list`                                                                                                                                                             |
+| **Find**                     | `find [search term]` <br/> e.g. `find Mata` <br/>`find [r/search term] [c/search term] [s/search term]` <br/> e.g. `find r/SWE Intern c/Mata s/Offered`            |
+| **Sort**                     | `sort ORDER` <br/>e.g., `sort alphabetical` or `sort deadline`                                                                                                     |
+| **Help**                     | `help`                                                                                                                                                             |
+| **Undo**                     | `undo`                                                                                                                                                             |
+| **Clear**                    | `clear`                                                                                                                                                            |
+| **Exit**                     | `exit`                                                                                                                                                             |
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
