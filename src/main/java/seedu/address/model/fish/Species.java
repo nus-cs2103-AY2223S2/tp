@@ -42,24 +42,30 @@ public class Species {
     public String getFishImageBySpecies() {
         String processedString = this.species.toLowerCase().replaceAll("\\s", "");
         switch (processedString) {
-            case ("guppies") :
-            case ("guppy") :
-                return "@/images/species/guppy.png";
-            case ("goldfish"):
-                return "@/images/species/goldfish.png";
-            case ("angelfish"):
-                return "@/images/species/angelfish.png";
-            case ("catfish"):
-                return "@/images/species/catfish.png";
-            case ("tetras"):
-            case ("tetra"):
-            case ("tetrafish"):
-                return "@/images/species/tetra.png";
-            case ("bettafish"):
-            case ("betta"):
-                return "@/images/species/betta.png";
-            default:
-                return "@/images/species/default.png";
+        case ("guppies"):
+        case ("guppy"):
+            return "/images/species/guppy.png";
+        case ("goldfish"):
+            return "/images/species/goldfish.png";
+        case ("angelfish"):
+            return "/images/species/angelfish.png";
+        case ("catfish"):
+            return "/images/species/catfish.png";
+        case ("tetras"):
+        case ("tetra"):
+        case ("tetrafish"):
+            return "/images/species/tetra.png";
+        case ("bettafish"):
+        case ("betta"):
+            return "/images/species/betta.png";
+        case ("flowerhornfish"):
+        case ("flowerhorn"):
+            return "/images/species/flowerhorn.png";
+        case ("arowanafish"):
+        case ("arowana"):
+            return "/images/species/arowana.png";
+        default:
+            return "/images/species/default.png";
         }
     }
 

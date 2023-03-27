@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -47,6 +49,10 @@ public class FishCard extends UiPart<Region> {
     private Label tank;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ImageView fishImage;
+    @FXML
+    private Label test;
 
     /**
      * Creates a {@code FishCode} with the given {@code Fish} and index to display.
@@ -68,7 +74,9 @@ public class FishCard extends UiPart<Region> {
         fish.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-//        image.setPath(fish.getFishImage());
+        Image image = new Image(getClass().getResourceAsStream(fish.getFishImage()));
+        fishImage.setImage(image);
+
     }
 
     @Override
