@@ -16,12 +16,12 @@ import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.recommender.timing.exceptions.CommitmentClashException;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.HourBlock;
 import seedu.address.model.time.TimeBlock;
 import seedu.address.model.time.TimePeriod;
 import seedu.address.model.time.exceptions.WrongTimeException;
-import seedu.address.model.timingrecommender.exceptions.CommitmentClashException;
 
 class HourBlockTest {
 
