@@ -55,16 +55,18 @@ class JsonAdaptedClient {
      * Constructs a {@code JsonAdaptedClient} with the given client details.
      */
     @JsonCreator
-    public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
-                             @JsonProperty("weight") String weight,
-                             @JsonProperty("weightHistory") List<JsonAdaptedWeightHistory> weightHistory,
-                             @JsonProperty("weightDateTime") List<JsonAdaptedWeightDate> weightDateTime,
-                             @JsonProperty("gender") String gender, @JsonProperty("goal") String goal,
-                             @JsonProperty("calorie") String calorie, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("routines_names") List<JsonAdaptedRoutineName> routinesRoutineName,
-                             @JsonProperty("exercises") List<JsonAdaptedExerciseClient> exercises) throws IllegalValueException {
+    public JsonAdaptedClient(
+            @JsonProperty("name") String name, @JsonProperty("phone") String phone,
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
+            @JsonProperty("weight") String weight,
+            @JsonProperty("weightHistory") List<JsonAdaptedWeightHistory> weightHistory,
+            @JsonProperty("weightDateTime") List<JsonAdaptedWeightDate> weightDateTime,
+            @JsonProperty("gender") String gender, @JsonProperty("goal") String goal,
+            @JsonProperty("calorie") String calorie, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("routines_names") List<JsonAdaptedRoutineName> routinesRoutineName,
+            @JsonProperty("exercises") List<JsonAdaptedExerciseClient> exercises) throws IllegalValueException {
+
         this.name = name;
         this.phone = phone;
         this.email = email;

@@ -1,6 +1,8 @@
 package seedu.fitbook.logic.parser;
 
-import static seedu.fitbook.commons.core.Messages.*;
+import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
+import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_DATE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
@@ -52,6 +54,9 @@ public class AddWeightCommandParser implements Parser<AddWeightCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Checks the {@code date} values if it is before the current date and time.
+     */
     public void checkDate(Date date) throws ParseException {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime dateToCheck = date.localDateTime;

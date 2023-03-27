@@ -2,7 +2,11 @@ package seedu.fitbook.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.commons.util.StringUtil;
@@ -265,7 +269,6 @@ public class ParserUtil {
     }
 
     /**
-<<<<<<< HEAD
      * Parses a {@code String Weight} into an {@code Weight}.
      * Leading and trailing whitespaces will be trimmed.
      *

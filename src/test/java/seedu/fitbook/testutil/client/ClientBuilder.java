@@ -155,6 +155,7 @@ public class ClientBuilder {
         this.goal = new Goal(goal);
         return this;
     }
+
     /**
      * Sets the {@code Calorie} of the {@code Client} that we are building.
      */
@@ -163,11 +164,17 @@ public class ClientBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code WeightHistory} of the {@code Client} that we are building.
+     */
     public ClientBuilder withWeightHistory(String weight) {
         this.weightHistory = new WeightHistory(new Weight(weight));
         return this;
     }
 
+    /**
+     * Sets the {@code Date} of the input weight of the {@code Client} that we are building.
+     */
     public ClientBuilder withWeightDate(String date) {
         this.weightDate = new Date(date);
         return this;

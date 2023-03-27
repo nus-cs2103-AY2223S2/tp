@@ -2,6 +2,9 @@ package seedu.fitbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.fitbook.commons.core.Messages;
 import seedu.fitbook.commons.core.index.Index;
@@ -10,9 +13,6 @@ import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.client.Date;
 import seedu.fitbook.model.client.WeightHistory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Adds a client to the FitBook.
@@ -31,7 +31,7 @@ public class GraphCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates an AddWeightCommand to add the specified {@code Weight} to the client at the specified index.
+     * Creates a GraphCommand using the {@code targetIndex} of the client.
      */
     public GraphCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -76,6 +76,9 @@ public class GraphCommand extends Command {
         return targetIndex;
     }
 
+    /**
+     * Refines the {@code weightHistory} of the client.
+     */
     public void refineGraphWeightHistory(WeightHistory weightHistory) {
         weightHistory.sortByDate();
         weightHistory.removeOldWeights();

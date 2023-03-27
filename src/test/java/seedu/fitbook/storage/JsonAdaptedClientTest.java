@@ -56,10 +56,12 @@ public class JsonAdaptedClientTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedWeightHistory> VALID_WEIGHT_HISTORY = BENSON.getWeightHistory().weights.stream()
+    private static final List<JsonAdaptedWeightHistory> VALID_WEIGHT_HISTORY = BENSON.getWeightHistory()
+            .weights.stream()
             .map(JsonAdaptedWeightHistory::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedWeightDate> VALID_WEIGHT_DATE = BENSON.getWeightHistory().getListDates().stream()
+    private static final List<JsonAdaptedWeightDate> VALID_WEIGHT_DATE = BENSON.getWeightHistory()
+            .getListDates().stream()
             .map(JsonAdaptedWeightDate::new)
             .collect(Collectors.toList());
     private static final String VALID_CALORIE = BENSON.getCalorie().toString();
