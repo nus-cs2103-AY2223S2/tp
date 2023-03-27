@@ -14,7 +14,7 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = "Find Syntax: KEYWORD [MORE_KEYWORDS]... (case-insensitive)";
+    public static final String MESSAGE_USAGE = "Find Syntax: find KEYWORD [MORE_KEYWORDS]... (case-insensitive)";
 
     public static final String FIND_EXAMPLE = "Example: " + COMMAND_WORD + " alice bob charlie";
 

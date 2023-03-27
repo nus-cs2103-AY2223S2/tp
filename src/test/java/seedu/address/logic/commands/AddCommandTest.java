@@ -259,6 +259,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateSortAllPersonList(String metric, boolean increasingOrder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasNote(Note note) {
             return false;
         }

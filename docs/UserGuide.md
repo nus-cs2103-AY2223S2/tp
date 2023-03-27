@@ -233,40 +233,41 @@ Examples:
 * `help consultation`
 
 
-### Sort students in recurring events: `sort student`
+### Sort students in recurring events: `sort-student`
 
 Sorts the students in recurring events available in the order specified by the TA. The sorting method can either be alphabetical, participation level or urgency level. With each sorting method, the TA can also choose top down or bottom up order as well. If the TA wishes to sort all students under his supervision (regardless of type), he can specify type to be “all”.
 
 The sorted list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
 
-Format: `sort student [type] [sorting method] [sorting order]`
+Format: `sort-student [group] [metric] [sorting order]`
+For the [group], it can be only lab, tutorial, consultation, or all. 
+For the [metric], it can be only name, address, email, performance or remark.
 
 Examples:
 
+* `sort-student lab name reverse`
+* `sort-student tutorial performance nonreverse`
+* `sort-student consultation email nonreverse`
+* `sort-student all remark nonreverse`
 
 
-* `sort student lab alphabetical reverse`
-* `sort student tutorial participation nonreverse`
-* `sort student consultation urgency nonreverse`
-* `sort student all urgency nonreverse`
-
-
-### Filter students in recurring events: `filter student`
+### Filter students in recurring events: `filter`
 
 Filters the students in recurring events depending on the metric specified by the TA. The metric can either be by a cut-off participation level (out of 100%) or minimum urgency level (out of 100). If the TA wishes to filter all students under his supervision (regardless of type), he can specify type to be “all”.
 
 The filtered list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
 
-Format: `filter student [type] [metric] [threshold]`
+Format: `filter [type] [metric] [threshold]`
+For the [group], it can be only lab, tutorial, consultation, or all.
+For the [metric], it can be only performance or urgency.
+The [threshold] value must be an integer between 0 to 100 (inclusive).
 
 Examples:
 
-
-
-* `filter student lab urgency 60 `
-* `filter student tutorial participation 50`
-* `filter student consultation urgency 20`
-* `filter student all participation 90`
+* `filter lab performance 60 `
+* `filter tutorial performance 50`
+* `filter consultation urgency 20`
+* `filter all urgency 90`
 
 
 ### Alert students in recurring events: `alert student`
@@ -278,8 +279,6 @@ The filtered list should be a secondary list and does not replace the existing, 
 Format: `alert student [type] [metric] `
 
 Examples:
-
-
 
 * `alert student lab urgency `
 * `alert student tutorial participation`

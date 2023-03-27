@@ -24,6 +24,7 @@ import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -38,11 +39,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class AddressBookParser {
 
+    public static final List<LocalDateTime[]> MASTER_TIME = new ArrayList<>();
     /**
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    public static final List<LocalDateTime[]> MASTER_TIME = new ArrayList<>();
 
     /**
      * Parses user input into command for execution.
@@ -90,6 +91,9 @@ public class AddressBookParser {
 
         case SortStudentCommand.COMMAND_WORD:
             return new SortStudentCommandParser().parse(arguments);
+
+        case FilterCommand.COMMAND_WORD:
+            return new FilterCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

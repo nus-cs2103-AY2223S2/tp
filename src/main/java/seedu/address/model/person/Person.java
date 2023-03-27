@@ -126,12 +126,12 @@ public class Person implements Comparable<Person> {
 
         //Nus email must be unique to each student
         if (otherPerson.getEmail().equals(getEmail())) {
-            return false;
+            return true;
         }
 
         //Telegram handle or phone number must be unique to each student
         if (otherPerson.getPhone().equals(getPhone())) {
-            return false;
+            return true;
         }
 
         return otherPerson.getName().equals(getName())

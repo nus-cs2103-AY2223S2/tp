@@ -72,12 +72,12 @@ public class PersonListPanel extends UiPart<Region> {
             TableCell<Person, Void> cell = new TableCell<>();
             cell.textProperty().bind(Bindings.createStringBinding(() -> {
                 if (cell.isEmpty()) {
-                    return null ;
+                    return null;
                 } else {
                     return Integer.toString(cell.getIndex() + 1);
                 }
             }, cell.emptyProperty(), cell.indexProperty()));
-            return cell ;
+            return cell;
         });
 
 
@@ -105,7 +105,7 @@ public class PersonListPanel extends UiPart<Region> {
         SortedList<Person> sorted = new SortedList<>(personList);
         table.setItems(sorted);
         sorted.comparatorProperty().bind(table.comparatorProperty());
-        int i =0;
+        int i = 0;
         table.setRowFactory(tableView -> {
             TableRow<Person> row = new TableRow<>();
             return row;

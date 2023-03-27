@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import java.time.LocalDateTimeTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,19 +25,19 @@ public class SerializableTestClass {
 
     private String name;
 
-    private List<LocalDateTimeTime> listOfLocalDateTimes;
+    private List<LocalDateTime> listOfLocalDateTimes;
     private HashMap<Integer, String> mapOfIntegerToString;
 
     public static String getNameTestValue() {
         return NAME_TEST_VALUE;
     }
 
-    public static List<LocalDateTimeTime> getListTestValues() {
-        List<LocalDateTimeTime> listOfLocalDateTimes = new ArrayList<>();
+    public static List<LocalDateTime> getListTestValues() {
+        List<LocalDateTime> listOfLocalDateTimes = new ArrayList<>();
 
-        listOfLocalDateTimes.add(LocalDateTimeTime.MIN);
-        listOfLocalDateTimes.add(LocalDateTimeTime.MAX);
-        listOfLocalDateTimes.add(LocalDateTimeTime.of(1, 1, 1, 1, 1));
+        listOfLocalDateTimes.add(LocalDateTime.MIN);
+        listOfLocalDateTimes.add(LocalDateTime.MAX);
+        listOfLocalDateTimes.add(LocalDateTime.of(1, 1, 1, 1, 1));
 
         return listOfLocalDateTimes;
     }
@@ -62,7 +62,7 @@ public class SerializableTestClass {
         return name;
     }
 
-    public List<LocalDateTimeTime> getlistOfLocalDateTimes() {
+    public List<LocalDateTime> getlistOfLocalDateTimes() {
         return listOfLocalDateTimes;
     }
 
