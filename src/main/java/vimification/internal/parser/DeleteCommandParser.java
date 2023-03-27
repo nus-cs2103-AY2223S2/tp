@@ -3,7 +3,7 @@ package vimification.internal.parser;
 import vimification.commons.core.Index;
 import vimification.internal.command.logic.DeleteCommand;
 
-public class DeleteCommandParser implements LogicCommandParser<DeleteCommand> {
+public class DeleteCommandParser implements CommandParser<DeleteCommand> {
 
     private static final ApplicativeParser<Index> INDEX_PARSER =
             ApplicativeParser.nonWhitespaces().flatMap(indexStr -> {
@@ -22,9 +22,7 @@ public class DeleteCommandParser implements LogicCommandParser<DeleteCommand> {
             .map(DeleteCommand::new);
 
     private static final ApplicativeParser<ApplicativeParser<DeleteCommand>> INTERNAL_PARSER =
-            ApplicativeParser
-                    .skipWhitespaces()
-                    .takeNext(ApplicativeParser.string("d"))
+            ApplicativeParser.string("d")
                     .takeNext(ApplicativeParser.skipWhitespaces1())
                     .constMap(COMMAND_PARSER);
 

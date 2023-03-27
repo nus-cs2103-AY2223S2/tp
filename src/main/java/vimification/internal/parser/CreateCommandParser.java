@@ -6,7 +6,7 @@ import vimification.internal.command.logic.CreateCommand;
 import vimification.model.task.Deadline;
 import vimification.model.task.Todo;
 
-public class CreateCommandParser implements LogicCommandParser<CreateCommand> {
+public class CreateCommandParser implements CommandParser<CreateCommand> {
 
     private static final ApplicativeParser<Todo> TODO_PARSER = ApplicativeParser
             .string("todo")
@@ -31,9 +31,7 @@ public class CreateCommandParser implements LogicCommandParser<CreateCommand> {
             .map(CreateCommand::new);
 
     private static final ApplicativeParser<ApplicativeParser<CreateCommand>> INTERNAL_PARSER =
-            ApplicativeParser
-                    .skipWhitespaces()
-                    .takeNext(ApplicativeParser.string("i"))
+            ApplicativeParser.string("i")
                     .takeNext(ApplicativeParser.skipWhitespaces1())
                     .constMap(COMMAND_PARSER);
 
