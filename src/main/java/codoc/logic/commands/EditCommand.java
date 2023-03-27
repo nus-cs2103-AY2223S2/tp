@@ -6,13 +6,9 @@ import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD_ADD;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD_DELETE;
-import static codoc.logic.parser.CliSyntax.PREFIX_MOD_NEW;
-import static codoc.logic.parser.CliSyntax.PREFIX_MOD_OLD;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_DELETE;
-import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_NEW;
-import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_OLD;
 import static codoc.logic.parser.CliSyntax.PREFIX_YEAR;
 import static codoc.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
@@ -54,15 +50,13 @@ public class EditCommand extends Command {
             + "[" + PREFIX_LINKEDIN + "LINKEDIN]\n"
             + "[" + PREFIX_SKILL_ADD + "SKILL] "
             + "[" + PREFIX_SKILL_DELETE + "SKILL] "
-            + "[" + PREFIX_SKILL_OLD + "SKILL " + PREFIX_SKILL_NEW + "SKILL]...\n"
             + "[" + PREFIX_MOD_ADD + "MOD] "
-            + "[" + PREFIX_MOD_DELETE + "MOD] "
-            + "[" + PREFIX_MOD_OLD + "MOD " + PREFIX_MOD_NEW + "MOD]...\n"
+            + "[" + PREFIX_MOD_DELETE + "MOD]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COURSE + "2 "
             + PREFIX_EMAIL + "johndoe@example.com "
-            + PREFIX_MOD_OLD + "AY2223S1 CS1101S "
-            + PREFIX_MOD_NEW + "AY2021S2 GEA1000";
+            + PREFIX_MOD_DELETE + "AY2223S1 CS1101S "
+            + PREFIX_SKILL_ADD + "python";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
 
@@ -73,14 +67,6 @@ public class EditCommand extends Command {
             "There is a skill you are trying to delete/update that does not exist";
     public static final String MESSAGE_MOD_DOES_NOT_EXIST =
             "There is a module you are trying to delete/update that does not exist";
-    public static final String MESSAGE_INCORRECT_OLD_NEW_SKILL_PREFIX =
-            "To update existing skills, the prefixes so/ and sn/ must be present";
-    public static final String MESSAGE_INCORRECT_OLD_NEW_MOD_PREFIX =
-            "To update existing modules, the prefixes mo/ and mn/ must be present";
-    public static final String MESSAGE_UNEQUAL_OLD_NEW_SKILLS =
-            "The number of old skills not equal to number of new skills";
-    public static final String MESSAGE_UNEQUAL_OLD_NEW_MODS =
-            "The number of old modules not equal to number of new modules";
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**

@@ -8,14 +8,10 @@ import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD_ADD;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD_DELETE;
-import static codoc.logic.parser.CliSyntax.PREFIX_MOD_NEW;
-import static codoc.logic.parser.CliSyntax.PREFIX_MOD_OLD;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_DELETE;
-import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_NEW;
-import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_OLD;
 import static codoc.logic.parser.CliSyntax.PREFIX_YEAR;
 import static java.util.Objects.requireNonNull;
 
@@ -39,8 +35,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_COURSE, PREFIX_YEAR,
                         PREFIX_LINKEDIN, PREFIX_EMAIL, PREFIX_GITHUB,
-                        PREFIX_SKILL_ADD, PREFIX_SKILL_DELETE, PREFIX_SKILL_OLD, PREFIX_SKILL_NEW, PREFIX_SKILL,
-                        PREFIX_MOD_ADD, PREFIX_MOD_DELETE, PREFIX_MOD_OLD, PREFIX_MOD_NEW, PREFIX_MOD);
+                        PREFIX_SKILL_ADD, PREFIX_SKILL_DELETE, PREFIX_SKILL,
+                        PREFIX_MOD_ADD, PREFIX_MOD_DELETE, PREFIX_MOD);
 
         if (args.isEmpty() || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
