@@ -22,6 +22,8 @@ import seedu.careflow.logic.CareFlowLogic;
 import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.logic.parser.exceptions.ParseException;
+import seedu.careflow.model.drug.Drug;
+import seedu.careflow.model.patient.Patient;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -62,6 +64,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem dark;
+
+    @FXML
+    private StackPane patientDrugListPanelPlaceholder;
 
     @FXML
     private StackPane drugListPanelPlaceholder;
@@ -123,6 +128,22 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
         setAccelerator(light, KeyCombination.valueOf("CTRL+SHIFT+L"));
         setAccelerator(dark, KeyCombination.valueOf("CTRL+SHIFT+D"));
+    }
+
+    /**
+     * Display details of patient in patientListPanel
+     * @param selectedPatient the patient input by user
+     */
+    void showSelectedPatient(Patient selectedPatient) {
+        patientListPanel.updateDisplay(selectedPatient);
+    }
+
+    /**
+     * Display details of patient in patientListPanel
+     * @param selectedDrug the patient input by user
+     */
+    void showSelectedDrug(Drug selectedDrug) {
+        drugListPanel.updateDisplay(selectedDrug);
     }
 
     /**
@@ -292,8 +313,20 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            if (!commandResult.isDisplayPatient()) {
+                logger.info("Result: " + commandResult.getFeedbackToUser());
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            } else if (!commandResult.isDisplayDrug()) {
+                logger.info("Result: " + commandResult.getFeedbackToUser());
+                Patient selectedPatient = commandResult.getSelectedPatient();
+                patientListPanel.updateDisplay(selectedPatient);
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            } else {
+                logger.info("Result: " + commandResult.getFeedbackToUser());
+                Drug selectedDrug = commandResult.getSelectedDrug();
+                drugListPanel.updateDisplay(selectedDrug);
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

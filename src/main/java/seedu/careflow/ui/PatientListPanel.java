@@ -1,4 +1,5 @@
 package seedu.careflow.ui;
+
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -107,11 +108,11 @@ public class PatientListPanel extends UiPart<Region> {
      * Update the display inside {@code patientDetailDisplay} in response to changes inside the ObservableList or click
      * @param selectedPatient the patient to be displayed
      */
-    private void updateDisplay(Patient selectedPatient) {
+    public void updateDisplay(Patient selectedPatient) {
         Label[] fields = new Label[]{phoneField, addressField, emailField, birthDateField, genderField, icField,
-                drugAllergyField, emergencyContactField};
+            drugAllergyField, emergencyContactField};
         Label[] details = new Label[]{selectedName, selectedPhone, selectedEmail, selectedBirthDate, selectedGender,
-                selectedIc, selectedDrugAllergy, selectedEmergencyContact};
+            selectedIc, selectedDrugAllergy, selectedEmergencyContact};
         setupStyle();
         setPatientFieldDisplay(fields);
         updateDisplayedPatientDetail(selectedPatient, details);
@@ -130,10 +131,10 @@ public class PatientListPanel extends UiPart<Region> {
         icField.setText("IC");
         drugAllergyField.setText("Drug Allergy");
         emergencyContactField.setText("Emergency Contact");
-        for(Label field: fields) {
+        for (Label field: fields) {
             field.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(4),
                     new Insets(-3, -10, -3, -10))));
-            VBox parent = (VBox)field.getParent();
+            VBox parent = (VBox) field.getParent();
             parent.setMargin(field, new Insets(0, 0, 10, 0));
         }
     }
@@ -153,9 +154,9 @@ public class PatientListPanel extends UiPart<Region> {
         selectedGender.setText(selectedPatient.getGender().value);
         selectedIc.setText(selectedPatient.getIc().value);
         DrugAllergy drugAllergy = selectedPatient.getDrugAllergy();
-        selectedDrugAllergy.setText(drugAllergy == null?"N.A.": drugAllergy.value);
+        selectedDrugAllergy.setText(drugAllergy == null ? "N.A." : drugAllergy.value);
         Phone emergenctContact = selectedPatient.getEmergencyContact();
-        selectedEmergencyContact.setText(emergenctContact == null? "N.A.": emergenctContact.value);
+        selectedEmergencyContact.setText(emergenctContact == null ? "N.A." : emergenctContact.value);
         for (Label detail : details) {
             detail.setWrapText(true);
             detail.setMinWidth(0);

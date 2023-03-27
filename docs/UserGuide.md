@@ -1,8 +1,8 @@
 ---
 layout: page
 title: CareFlow User Guide
-<a id="top"></a>
 ---
+<a id="top"></a>
 CareFlow is a **desktop application for patient and drug inventory management, optimised for use via a Command Line Interface** (CLI) while benefiting from a Graphical User Interface (GUI).
 
 If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline you with daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being!
@@ -51,7 +51,7 @@ If you are a receptionist at a GP clinic and are comfortable typing, CareFlow ca
      * For macOS: <a href="https://www.youtube.com/watch?v=VJZ9mk6D6pw">Change Directories in MacOS Terminal (cd command)</a>
      * For Windows: <a href="https://www.youtube.com/watch?v=Q3XQpnQTy6Y">How to Use CD Command in CMD</a>
 6. Type the `java -jar careflow.jar` command into your `command terminal` and hit `enter` to run the application. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
-   * ![](images/UGscreenshots/careflow_home.png) 
+   * ![](images/UGscreenshots/careflow_home.png)
 7. Type some command in the command box at the bottom and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
    * `p list` : Lists all patients.
@@ -129,8 +129,17 @@ Format: `p delete -ic PATIENT_NRIC`
 Examples:
 * `p delete -ic T3871918C`
 
+Command Input:
 ![](images/UIscreenshots/patientSS/pdeleteic.png)
+
+Patient to be Deleted:
+
 ![](images/UIscreenshots/patientSS/pIC.png)
+
+
+
+
+Command Result:
 ![](images/UIscreenshots/patientSS/pdeleteICres.png)
 
 [Back to top](#top)
@@ -146,8 +155,14 @@ Example:
 * list followed by p delete 2 will delete the 2nd person in the patient list.
 * `p delete -i 8`
 
+Command Input:
 ![](images/UIscreenshots/patientSS/pdelete.png)
+
+Patient to be Deleted:
+
 ![](images/UIscreenshots/patientSS/8p.png)
+
+Command Result:
 ![](images/UIscreenshots/patientSS/pdeleteres.png)
 
 [Back to top](#top)
@@ -164,8 +179,18 @@ Example:
 * `p update Bety -n Betsy Crower -da Aspirin`
 * Edits the name and drug allergy of Bety to be Betsy Crowers and Aspirin respectively.
 
+Command Input:
+
 ![](images/UIscreenshots/patientSS/pupdate.png)
+
+Patient to be Updated:
+
 ![](images/UIscreenshots/patientSS/pIC.png)
+
+
+
+
+Command Result:
 ![](images/UIscreenshots/patientSS/pupdateres.png)
 
 [Back to top](#top)
@@ -206,6 +231,22 @@ Format: `p list`
 
 [Back to top](#top)
 
+### View a patient by index: `p view`
+
+The index refers to the index number shown in the displayed patient list.
+View detailed information of a patient in the careflow. The full detail of the selected patient will be shown on the left side of the User Interface under the patient tab.
+
+Format: `p view -i PATIENT_INDEX`
+
+Example:
+* `p view -i 1`
+*  view details/all information of the patient at index 1.
+
+![](images/UIscreenshots/patientSS/pview.png)
+
+[Back to top](#top)
+
+
 ## Drug Operations
 
 ### Add a Drug entry: `d add`
@@ -228,8 +269,11 @@ Format: `d delete -tn TRADE_NAME`
 Examples:
 * `d delete -tn Panadol`
 
+Input Command:
 ![](images/UIscreenshots/drugSS/ddeletetn.png)
+Drug to be Deleted:
 ![](images/UIscreenshots/drugSS/dpanadol.png)
+Command Result:
 ![](images/UIscreenshots/drugSS/ddeletetnres.png)
 
 [Back to top](#top)
@@ -243,8 +287,13 @@ Examples:
 * `d delete -i 4`
 * This deletes the 4th drug entry in the most recently shown list
 
+Drug to be Deleted:
 ![](images/UIscreenshots/drugSS/d4.png)
+
+Command Input:
 ![](images/UIscreenshots/drugSS/ddeleteindex.png)
+
+Command Result:
 ![](images/UIscreenshots/drugSS/ddeletetnres.png)
 
 [Back to top](#top)
@@ -263,10 +312,12 @@ Examples:
 * `d update Tylenol PM -by +50`
     * This **increases** storage count of the drug entry with trade name matching "Tylenol PM" by **50**
 
+Drug to be Updated:
 ![](images/UIscreenshots/drugSS/drugPrevCount.png)
+Command Input:
 ![](images/UIscreenshots/drugSS/dUpdate.png)
+Command Result:
 ![](images/UIscreenshots/drugSS/drugCurrentCount.png)
-
 [Back to top](#top)
 
 ### Retrieve a Drug entry by TRADE_NAME: `d find`
@@ -302,6 +353,21 @@ Format: `d list`
 
 [Back to top](#top)
 
+### View a drug by index: `d view`
+
+The index refers to the index number shown in the displayed drug list.
+View detailed information of a drug in the careflow. The full details of the selected drug will be shown on the left side of the User Interface under the drug tab.
+
+Format: `d view -i DRUG_INDEX`
+
+Example:
+* `d view -i 1`
+* view details/all information of the drug at index 1.
+
+![](images/UIscreenshots/drugSS/dview.png)
+
+
+[Back to top](#top)
 
 ### Saving the data
 
@@ -347,6 +413,7 @@ _Details coming soon ..._
 | **Find patient by name**      | `p find PATIENT_NAME` <br> e.g., `p find John` returns `john` and `John Doe`                                                                                                                                                                                                                    |
 | **Clear all patient**         | `p clear`                                                                                                                                                                                                                                                                                       |
 | **List patient**              | `p list`                                                                                                                                                                                                                                                                                        |
+| **View patient by index**     | `p view -i PATIENT_INDEX`                                                                                                                                                                                                                                                                       |                                                                                                                                                                                                                                                                                        
 | **Add a drug**                | `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT` <br> e.g., `d add -tn Panadol -ai paracetamol, sodium -dir Adults, 1-2 capsules -pur treat fever, headache -se dizziness -sc 500`                                                  |
 | **Delete drug by trade name** | `d delete -tn TRADE_NAME`<br> e.g., `d delete -tn Panadol Flu Max`                                                                                                                                                                                                                              |
 | **Delete drug by index**      | `d delete -i INDEX`<br> e.g.,`d delete -i 7`                                                                                                                                                                                                                                                    |
@@ -354,5 +421,6 @@ _Details coming soon ..._
 | **Find drug by trade name**   | `d find TRADE_NAME` <br> e.g., `d find Panadol`                                                                                                                                                                                                                                                 |
 | **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                                                                       |
 | **List drug**                 | `d list`                                                                                                                                                                                                                                                                                        |
+| **View drug by index**        | `d view -i DRUG_INDEX`                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                        
 
 [Back to top](#top)

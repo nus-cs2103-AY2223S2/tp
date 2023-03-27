@@ -25,6 +25,17 @@ class AddCommandParserTest {
     }
 
     @Test
+    void parse_allRequiredFieldsPresent_success() {
+        Patient expectedPatient = new PatientBuilder().withDrugAllergy(null).withEmergencyContact(null).build();
+        AddCommand addPatientCommand = new AddCommand(expectedPatient);
+        assertParseSuccess(addCommandParser,
+                " -n Amy Bee -ph 85355255 -em amy@gmail.com "
+                        + "-ad 123, Jurong West Ave 6, #08-111 -dob 01-01-1990 "
+                        + "-g female -ic A7654321B",
+                addPatientCommand);
+    }
+
+    @Test
     void parse_invalidPhone_failure() {
         assertParseFailure(addCommandParser,
                 " -n Amy Bee -ph abc123 -em amy@gmail.com "
@@ -63,12 +74,12 @@ class AddCommandParserTest {
                         + "-ad 123, Jurong West Ave 6, #08-111 "
                         + "-g female -ic A7654321B -da penicillin -ec 88888888",
                 "Invalid command format! \n"
-                        + "add: Adds a patient to patient records.\n"
+                        + "p add: Adds a patient to patient records.\n"
                         + "Parameters: -n NAME -ph PHONE -em EMAIL "
                         + "-ad ADDRESS -dob DOB -g GENDER -ic IC -da DRUG_ALLERGY "
                         + "-ec EMERGENCY_CONTACT_NUMBER\n"
-                        + "Example: add -n Tom Smith -ph 84356788 -em tsmith@gmail.com "
-                        + "-ad 969 Lock Street #04-32 -dob 2001-05-28 -g MALE -ic T0278234M "
+                        + "Example: p add -n Tom Smith -ph 84356788 -em tsmith@gmail.com "
+                        + "-ad 969 Lock Street #04-32 -dob 28-05-2001 -g MALE -ic T0278234M "
                         + "-da Aspirin -ec 93746552");
     }
 
@@ -79,46 +90,12 @@ class AddCommandParserTest {
                         + "-ad 123, Jurong West Ave 6, #08-111 -dob 01-01-1990 "
                         + " -ic A7654321B -da penicillin -ec 88888888",
                 "Invalid command format! \n"
-                        + "add: Adds a patient to patient records.\n"
+                        + "p add: Adds a patient to patient records.\n"
                         + "Parameters: -n NAME -ph PHONE -em EMAIL "
                         + "-ad ADDRESS -dob DOB -g GENDER -ic IC -da DRUG_ALLERGY "
                         + "-ec EMERGENCY_CONTACT_NUMBER\n"
-                        + "Example: add -n Tom Smith -ph 84356788 -em tsmith@gmail.com "
-                        + "-ad 969 Lock Street #04-32 -dob 2001-05-28 -g MALE -ic T0278234M "
-                        + "-da Aspirin -ec 93746552"
-        );
-    }
-
-    @Test
-    void parse_missingDrugAllergy_failure() {
-        assertParseFailure(addCommandParser,
-                " -n Amy Bee -ph 85355255 -em amy@gmail.com "
-                        + "-ad 123, Jurong West Ave 6, #08-111 -dob 01-01-1990 "
-                        + "-g female -ic A7654321B -ec 88888888",
-                "Invalid command format! \n"
-                        + "add: Adds a patient to patient records.\n"
-                        + "Parameters: -n NAME -ph PHONE -em EMAIL "
-                        + "-ad ADDRESS -dob DOB -g GENDER -ic IC -da DRUG_ALLERGY "
-                        + "-ec EMERGENCY_CONTACT_NUMBER\n"
-                        + "Example: add -n Tom Smith -ph 84356788 -em tsmith@gmail.com "
-                        + "-ad 969 Lock Street #04-32 -dob 2001-05-28 -g MALE -ic T0278234M "
-                        + "-da Aspirin -ec 93746552"
-        );
-    }
-
-    @Test
-    void parse_missingEmergencyContact_failure() {
-        assertParseFailure(addCommandParser,
-                " -n Amy Bee -ph 85355255 -em amy@gmail.com "
-                        + "-ad 123, Jurong West Ave 6, #08-111 -dob 01-01-1990 "
-                        + "-g female -ic A7654321B -da penicillin",
-                "Invalid command format! \n"
-                        + "add: Adds a patient to patient records.\n"
-                        + "Parameters: -n NAME -ph PHONE -em EMAIL "
-                        + "-ad ADDRESS -dob DOB -g GENDER -ic IC -da DRUG_ALLERGY "
-                        + "-ec EMERGENCY_CONTACT_NUMBER\n"
-                        + "Example: add -n Tom Smith -ph 84356788 -em tsmith@gmail.com "
-                        + "-ad 969 Lock Street #04-32 -dob 2001-05-28 -g MALE -ic T0278234M "
+                        + "Example: p add -n Tom Smith -ph 84356788 -em tsmith@gmail.com "
+                        + "-ad 969 Lock Street #04-32 -dob 28-05-2001 -g MALE -ic T0278234M "
                         + "-da Aspirin -ec 93746552"
         );
     }

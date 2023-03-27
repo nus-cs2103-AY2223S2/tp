@@ -99,11 +99,13 @@ public class DrugListPanel extends UiPart<Region> {
      * Update the display inside {@code drugDetailDisplay} in response to changes inside the ObservableList or click
      * @param selectedDrug the drug to be displayed
      */
-    private void updateDisplay(Drug selectedDrug) {
-        Label[] fields = new Label[]{activeIngredientField, directionField, purposesField,
-            sideEffectsField,storageCountField};
-        Label[] details = new Label[]{selectedTradeName, selectedActiveIngredient, selectedDirection,
-                selectedPurposes, selectedSideEffects, selectedStorageCount};
+    public void updateDisplay(Drug selectedDrug) {
+        Label[] fields = new Label[]{
+            activeIngredientField, directionField, purposesField,
+            sideEffectsField, storageCountField};
+        Label[] details = new Label[]{selectedTradeName, selectedActiveIngredient,
+            selectedDirection, selectedPurposes,
+            selectedSideEffects, selectedStorageCount};
         setupStyle();
         setDrugFieldsDisplay(fields);
         updateDisplayedDrugDetail(selectedDrug, details);
@@ -122,7 +124,7 @@ public class DrugListPanel extends UiPart<Region> {
         for (Label field : fields) {
             field.setBackground(new Background(new BackgroundFill(Color.BLACK, new CornerRadii(4),
                     new Insets(-3, -10, -3, -10))));
-            VBox parent = (VBox)field.getParent();
+            VBox parent = (VBox) field.getParent();
             parent.setMargin(field, new Insets(0, 0, 10, 0));
         }
     }
