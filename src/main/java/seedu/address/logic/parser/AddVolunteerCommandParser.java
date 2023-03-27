@@ -60,10 +60,10 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
         BirthDate birthDate = ParserUtil.parseBirthDate(argMultimap.getValue(PREFIX_BIRTH_DATE).get());
         Set<AvailableDate> availableDates = ParserUtil.parseDateRanges(argMultimap.getAllValues(PREFIX_AVAILABILITY));
         Region region = ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).get());
