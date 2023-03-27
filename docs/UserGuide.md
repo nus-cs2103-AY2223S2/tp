@@ -97,7 +97,6 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-:warning: A field cannot contain `/`.
 </div>
 
 ### 2.1 Viewing help : `help`
@@ -145,6 +144,10 @@ You can add multiple tasks with the same parameters except for name with this co
 :warning: Adding multiple tags of the same tag name will only result in one tag! 
 
 e.g. `add n/SampleTask t/CS2102 t/CS2102` will only register t/CS2102 once!
+
+:warning: There are reserved CLI syntax like `n/`, `d/`, `t/`, `D/`, `F/`, `T/`, `all/`, `E/`, `I/`, `D/`. Input fields will have unexpected behaviour when it contains these characters.
+
+e.g. `add n/Sample d/Why can't I add n/?`
 
 
 ### 2.3 Listing all tasks : `list`
