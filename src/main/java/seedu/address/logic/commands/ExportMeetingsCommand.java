@@ -31,9 +31,10 @@ public class ExportMeetingsCommand extends Command {
 
     /**
      * Creates a new export meetings command
+     *
      * @param indexList list of indexes to export
-     * @param start minimum date of meetings
-     * @param end maximum date of meetings
+     * @param start     minimum date of meetings
+     * @param end       maximum date of meetings
      */
     public ExportMeetingsCommand(List<Index> indexList, DateTime start, DateTime end) {
         this.indexList = indexList;
@@ -56,5 +57,12 @@ public class ExportMeetingsCommand extends Command {
         } catch (JsonProcessingException e) {
             throw new CommandException("Error turning to json");
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ExportMeetingsCommand
+                && indexList.equals(((ExportMeetingsCommand) other).indexList));
     }
 }

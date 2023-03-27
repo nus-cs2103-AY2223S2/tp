@@ -545,6 +545,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case continues at step 1.
 
+
 **Use case: Sort by meeting attribute**
 
 **MSS**
@@ -553,14 +554,107 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  QuickContacts sorts the original list by order requested by user
 3.  QuickContacts shows the sorted list
 
+**Use case: Export Contacts**
+
+**MSS**
+
+1.  User requests to export contacts
+2.  QuickContacts shows the exported contacts
+
     Use case ends.
 
 **Extensions**
+
 
 * 1a. String in a field illegal.
     * 1a1. Show error message
 
   Use case resumes at step 1.
+
+* 1a. Person index not given.
+    * 1a1. Show error message
+
+* 1b. Person index cannot be found.
+    * 1b1. Show error message
+
+  Use case continues at step 1.
+
+**Use case: Import Contacts**
+
+**MSS**
+
+1.  User requests to import contacts.
+2.  QuickContacts imports the meetings and updates the view.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Contacts format malformed.
+    * 1a1. Show error message.
+
+    Use case continues at step 1.
+
+* 1b. Contacts not provided.
+    * 1b1. Show error message.
+
+     Use case continues at step 1.
+
+* 1c. Duplicate contact without user indicating force import
+    * 1c1. Show error message
+
+    Use case continues at step 1.
+
+* 1d. User indicates force import
+    * All contacts imported.
+
+**Use case: Export Meetings**
+
+**MSS**
+
+1.  User requests to export meetings
+2.  QuickContacts shows the exported meetings
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Meeting index not given.
+    * 1a1. Show error message
+
+* 1b. Meeting index cannot be found.
+    * 1b1. Show error message
+
+  Use case continues at step 1.
+
+**Use case: Import Meetings**
+
+**MSS**
+
+1.  User requests to import meetings.
+2.  QuickContacts imports the meetings and updates the view.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Meetings format malformed.
+    * 1a1. Show error message.
+
+  Use case continues at step 1.
+
+* 1b. Meetings not provided.
+    * 1b1. Show error message.
+
+  Use case continues at step 1.
+
+* 1c. Duplicate meeting without user indicating force import
+    * 1c1. Show error message
+
+  Use case continues at step 1.
+
+* 1d. User indicates force import
+    * All meetings imported.
 
 
 ### Non-Functional Requirements

@@ -282,9 +282,9 @@ Example:
   }
 ]
 ```
-Optional Parameter `f/ true` that forces imports regardless of duplicate values.
+Optional Parameter `f/` that forces imports regardless of duplicate values.
 
-Format: `import JSON f/ true`
+Format: `import JSON f/`
 
 ### Export meetings: `exportm`
 * Exports the meetings at the specified `INDEX`es, between `start` and `end` dates.
@@ -365,9 +365,9 @@ Example:
 
 ```
 
-Optional Parameter `f/ true` that forces imports regardless of duplicate values.
+Optional Parameter `f/` that forces imports regardless of duplicate values.
 
-Format: `import JSON f/ true`
+Format: `import JSON f/`
 
 ### Create meetings `[Coming Soon]`
 _Details coming soon ..._

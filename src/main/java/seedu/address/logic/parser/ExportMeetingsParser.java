@@ -49,6 +49,10 @@ public class ExportMeetingsParser implements Parser<ExportMeetingsCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ExportMeetingsCommand.MESSAGE_USAGE));
         }
+        if (start == null && end == null && indexes.size() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ExportMeetingsCommand.MESSAGE_USAGE));
+        }
         return new ExportMeetingsCommand(indexes, start, end);
     }
 
