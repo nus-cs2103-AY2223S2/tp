@@ -7,6 +7,21 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction to HMHero**
+
+HMHero is an Applicant Managing System designed to be used by human resource professionals, hiring managers, 
+and recruiters who want to streamline the recruitment process and make it more efficient, 
+helping their organizations manage job applications and hiring processes more effectively.
+
+This Developer Guide is a detailed documentation on HMHero's design and implementation, describing the architecture, 
+an outline of all parts of HMHero and how they work together, and specifications on
+feature implementation and considerations.
+
+This guide is intended to assist developers in maintaining, upgrading or evolving HMHero.
+
+--------------------------------------------------------------------------------------------------------------------
+
+
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
@@ -160,6 +175,13 @@ This section describes some noteworthy details on how certain features are imple
 
 The `add` command creates a new `Person`, which represents an Applicant in HMHero's Applicant Managing System.
 
+<div markdown="span" class="alert alert-info" role="alert">
+
+:information_source: <strong>Command Format:<strong> 
+`add n/NAME p/PHONE e/EMAIL a/ADDRESS [applied/APPLIEDDATETIME] [note/NOTE]...` <br>
+Refer to [Glossary](#glossary) for more information on Command format.
+</div>
+
 The activity diagram is as such:
 
 ![AddCommand activity diagram](diagrams/AddApplicantActivityDiagram.puml)
@@ -195,6 +217,12 @@ could introduce confusion to how `add` command is used.
 
 The `advance` command advances an `Person` in HMHero, which advances the `status` of an `Person`.
 
+<div markdown="span" class="alert alert-info" role="alert">
+
+:information_source: <strong>Command Format:<strong>
+`advance n/NAME p/PHONE [d/INTERVIEWDATETIME]` <br>
+Refer to [Glossary](#glossary) for more information on Command format and applicant status.
+</div>
 
 The activity diagram is as such:
 
@@ -236,6 +264,12 @@ a default behaviour when advancing an applicant's status.
 
 The `reject` command rejects an `Person` in HMHero, which rejects the `status` of an `Person`.
 
+<div markdown="span" class="alert alert-info" role="alert">
+
+:information_source: <strong>Command Format:<strong>
+`reject n/NAME p/PHONE` <br>
+Refer to [Glossary](#glossary) for more information on Command format.
+</div>
 
 The activity diagram is as such:
 [Add in later]()
