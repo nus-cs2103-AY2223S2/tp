@@ -167,7 +167,7 @@ public class StudentCard extends UiPart<Region> {
             }
         }
         String path = "images/student/" + student.getName()
-                + student.getStudentClass().getClassName() + ".png";
+                + student.getStudentClass().getClassName() + student.getIndexNumber().toString() + ".png";
         File file = new File(path);
         if (!file.exists()) {
             Image defaultImage = new Image("images/defaultStudent.png");

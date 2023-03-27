@@ -25,6 +25,10 @@ public class Sex {
     public Sex(String sex) {
         requireNonNull(sex);
         checkArgument(isValidSex(sex), MESSAGE_CONSTRAINTS);
+        if (isDefaultSex(sex)) {
+            value = "Insert student sex Here!";
+            return;
+        }
         value = sex;
     }
 
@@ -32,7 +36,6 @@ public class Sex {
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidSex(String test) {
-        System.out.println(test);
         if (isDefaultSex(test)) {
             return true;
         }

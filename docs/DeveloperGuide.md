@@ -156,7 +156,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StoragePowerConnect.png" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -276,13 +276,13 @@ Step 2. The user creates a student using the Add command. The `Test` and `Homewo
 [//]: # (![Student Add Command]&#40;images/StudentAddCommand.png&#41;)
 Step 3. The user wants to add a test to a student. The user executes the `grade` command with the index of the student and test/TEST_NAME. The `test` of the student will be updated to the name.
 
-![Grade Command](images/Grade.jpg)
+![Grade Command](images/Grade.png)
 
 Step 4. The test/homework is saved to the storage file automatically after each command. 
 
 Full implementation sequence diagram
 
-![Sequence Diagram](images/GradeSequentialDiagram.jpg)
+![Sequence Diagram](images/GradeSequentialDiagram.png)
 
 ### Design considerations
 We want to make it easy for the user to set tests without inputting all the details at one go, with the test/homework name being the only field compulsory.
