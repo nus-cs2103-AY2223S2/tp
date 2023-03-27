@@ -3,16 +3,69 @@ layout: page
 title: CareFlow User Guide
 ---
 <a id="top"></a>
-CareFlow is a **desktop application for patient and drug inventory management, optimised for use via a Command Line Interface** (CLI) while benefiting from a Graphical User Interface (GUI).
-
-If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being!
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Quick start
+# 1. Introduction
+
+Welcome to CareFlow, your all-in-one solution for managing patient information and drug inventory in the General Practitioner clinic. Do you find yourself struggling to keep track of patient details? Are you tired of manually managing your drug inventory? CareFlow is here to help! Our easy-to-use desktop application is specifically designed for receptionists who want to improve their workflow and provide better patient care.
+
+CareFlow is a **desktop application for patient and drug inventory management, optimised for use via a Command Line Interface** (CLI) while benefiting from a Graphical User Interface (GUI). With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [3. Quick Start](#3-quick-start) to get started. Enjoy!
+
+![Screenshot of Graphical User Interface (GUI) of CareFlow](TODO: update link!!!)
+
+*Figure 1. Graphical User Interface (GUI) of CareFlow*
+
+--------------------------------------------------------------------------------------------------------------------
+
+# 2. About
+
+Welcome to the CareFlow user guide! This guide is designed to help you make the most of the software by providing detailed instructions on its features and functionalities.
+
+## 2.1 How to navigate this user guide
+
+To help you navigate the guide, we've divided it into several sections, each covering a different aspect of CareFlow. Here's a brief overview of what you'll find in each section:
+
+1. Section [1. Introduction](#1-introduction)
+   - If you want to know what CareFlow is all about, head over to section 1, "Introduction". In this section, you'll learn about CareFlow's goals and purpose, as well as get an overview of what the system can do for you.
+
+2. Section [2. About](#2-about)
+   - if you want to learn more about the guide itself and how to use it, refer to section 2, "About". Here, you'll find useful information on the symbols used in this user guide and how to navigate it easily.
+
+3. Section [3. Quick Start](#3-quick-start)
+   - If you're new to CareFlow and need help getting started, head to Section 3, "Quick Start", where you'll find step-by-step instructions to set up and begin using the application.
+
+4. Section [4. Features](#4-features)
+   - If you're looking for information on specific features, check out Section 4, "Features". Here you'll find a detailed explanation of each feature and how to use it.
+
+5. Section [5. FAQ](#5-faq)
+   - If you have any questions about using CareFlow or running into any issues, take a look at Section 5, "FAQ". We've included answers to common questions and troubleshooting tips to help you out.
+
+6. Section [6. Command Summary](#6-command-summary)
+   - If you want a quick reference for all the commands available in CareFlow, head to Section 6, "Command Summary". This section provides a list of all the commands and their functions, making it easy to find what you need.
+
+To make the most of this user guide, we recommend reading through it in order, starting with the Introduction and working your way through each section. You can also use the table of contents to jump to specific sections as needed.
+
+## 2.2 Note on symbols and formatting used
+
+Throughout this user guide, you may come across different formatting styles and symbols. These are used to make the guide more readable and easier to understand. Here are some of the formatting styles and symbols you may encounter:
+
+Table 1. Symbols and formats used in this User Guide.
+
+| <p>**Symbol/**<p>**Format** | **Meaning** |
+| --- | --- |
+| :exclamation: | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.|
+| UPPER_CASE | Words in UPPER CASE are the parameters that you need to supply to the system.<p>E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add.<p> For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`.|
+| [brackets] | Items in square brackets are optional.<p>E.g. update -n NAME [-ph PHONE] can be used as<p>`update -n Alice` or `update -n Alice -ph 12345678`|
+| `command` | The grey highlighting indicates that the word is a command to be entered by the user.|
+|[2. About](#2-about)| Text that are in blue and clickable link. These links will take you to specific sections of this User Guide or external website.|
+
+--------------------------------------------------------------------------------------------------------------------
+
+# 3. Quick start
 
 1. Ensure you have Java 11 installed in your Computer.
    * Installing Java 11 on Windows
@@ -76,7 +129,7 @@ e.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the p
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Features
+# 4. Features
 
 ## General Operations
 ### View help : `g help`
@@ -354,7 +407,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-# FAQ
+# 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: You can install the app in the other computer and **replace** the empty data file it creates with the file that contains the data of your previous CareFlow home folder.
@@ -363,7 +416,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Command Summary
+# 6. Command Summary
 
 | Action                        | Format, Examples                                                                                                                                                                                                                                                                                |
 | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
