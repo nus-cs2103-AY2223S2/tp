@@ -26,21 +26,22 @@ public class Recommendation implements Comparable<Recommendation> {
     }
 
     /**
-     * Overloaded constructor for a {@code Recommendation} object.
+     * Overloaded constructor for a {@code Recommendation} object without save status.
      */
     public Recommendation(Location location, TimePeriod timePeriod, ContactIndex contactIndex) {
         this(location, timePeriod, contactIndex, false);
     }
 
     /**
-     * Overloaded constructor for a {@code Recommendation} object.
+     * Overloaded constructor for a {@code Recommendation} object without contact index.
      */
     public Recommendation(Location location, TimePeriod timePeriod, boolean isSaved) {
         this(location, timePeriod, new ContactIndex(0), isSaved);
     }
 
     /**
-     * Overloaded constructor for a {@code Recommendation} object without.
+     * Overloaded constructor for a {@code Recommendation} object without
+     * time contact index and save status.
      */
     public Recommendation(Location location, TimePeriod timePeriod) {
         this(location, timePeriod, false);
@@ -61,7 +62,7 @@ public class Recommendation implements Comparable<Recommendation> {
     }
 
     /**
-     * Gets whether the Recommendation has been saved into Edumate.
+     * Checks whether the Recommendation has been saved into Edumate.
      */
     public boolean getIsSaved() {
         return isSaved;
@@ -76,7 +77,7 @@ public class Recommendation implements Comparable<Recommendation> {
     }
 
     /**
-     * Compares two recommendation to check whether the time and location are the same.
+     * Compares two recommendations to check whether the time and location are the same.
      * This is a parallel to the code in {@code Person}.
      */
     public boolean isSameRecommendation(Recommendation other) {
@@ -105,7 +106,7 @@ public class Recommendation implements Comparable<Recommendation> {
     }
 
     /**
-     * Creates a new person and sets the contact index.
+     * Creates a new recommendation and sets the contact index.
      */
     public Recommendation setContactIndex(ContactIndex contactIndex) {
         return new Recommendation(location, timePeriod, contactIndex);
