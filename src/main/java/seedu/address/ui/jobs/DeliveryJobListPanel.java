@@ -27,6 +27,7 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(DeliveryJobListPanel.class);
 
     private BiConsumer<Integer, DeliveryJob> onSelectHandler;
+    private Consumer<DeliveryJob> onCheckHandler;
 
     @FXML
     private ListView<DeliveryJob> deliveryJobListView;
@@ -36,6 +37,7 @@ public class DeliveryJobListPanel extends UiPart<Region> {
      */
     public DeliveryJobListPanel(ObservableList<DeliveryJob> jobList,
             BiConsumer<Integer, DeliveryJob> selectHandler,
+            Consumer<DeliveryJob> checkHandler,
             Consumer<DeliveryJob> deleteHandler) {
         super(FXML);
         deliveryJobListView.setItems(jobList);
@@ -70,6 +72,8 @@ public class DeliveryJobListPanel extends UiPart<Region> {
             }
 
         });
+
+        onCheckHandler = checkHandler;
     }
 
     /**
@@ -77,7 +81,7 @@ public class DeliveryJobListPanel extends UiPart<Region> {
      * without any event handler.
      */
     public DeliveryJobListPanel(ObservableList<DeliveryJob> jobList) {
-        this(jobList, (job, idx) -> {}, (job) -> {});
+        this(jobList, (job, idx) -> {}, (job) -> {}, (job) -> {});
     }
 
     /**
@@ -96,6 +100,13 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     }
 
     /**
+     * selectPrevious.
+     */
+    public void selectPrevious() {
+        deliveryJobListView.getSelectionModel().selectPrevious();
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code job} using a
      * {@code PersonCard}.
      */
@@ -108,7 +119,9 @@ public class DeliveryJobListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new DeliveryJobCard(job, getIndex() + 1).getRoot());
+                setGraphic(new DeliveryJobCard(job, getIndex() + 1, check -> {
+                    onCheckHandler.accept(check);
+                }).getRoot());
             }
         }
     }

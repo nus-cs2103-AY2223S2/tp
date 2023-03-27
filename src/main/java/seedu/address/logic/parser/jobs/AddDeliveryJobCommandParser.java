@@ -54,7 +54,7 @@ public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand
         String des = argMultimap.getValue(PREFIX_DELIVERY_SLOT).get();
         String ear = argMultimap.getValue(PREFIX_EARNING).get();
 
-        DeliveryJob job = new DeliveryJob(rid, sid, ded, des, ear);
+        DeliveryJob job = new DeliveryJob(rid, sid, ded, des, ear, "");
         return new AddDeliveryJobCommand(job);
     }
 
