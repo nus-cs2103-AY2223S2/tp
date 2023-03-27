@@ -33,7 +33,7 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Quick Start
 Currently, our contact list is empty. Let's try adding a fictitious contact into our list to familiarise ourselves with CoDoc. Don't worry, we will remove this fictitious contact at the end.
-1. **add** a new person -> [add command](#add)
+1. **add** a new person -> [add command](#41-add)
    <br>`add n/Bob y/2 c/1 e/e0823741@nus.edu`<br>
 
    | Parameters         | Description                                             |
@@ -42,7 +42,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
    | y/2                | year of study is 2                                      |
    | c/1                | course enrolled is Accounting—index 1 on the left panel |
    | e/e0823741@nus.edu | email is e0823741@nus.edu                               |
-2. **find** Bob in list of persons -> [find command](#find)
+2. **find** Bob in list of persons -> [find command](#42-find)
    <br>`find n/Bob y/2 c/Accounting`<br>
 
    | Parameters         | Description                                 | 
@@ -52,7 +52,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
    | c/1                | course enrolled is Accounting AND...        |
 3. **view** person at index 1 (should be Bob if you started from an empty list)
    <br>`view 1`<br><br>
-4. **view** current person information -> [view command](#view)
+4. **view** current person information -> [view command](#43-view)
    <br>`view m`
    <br>`view s`
    <br>`view c`<br>
@@ -62,7 +62,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
    | view m             | view person's list of modules     |
    | view s             | view person's list of skills      |
    | view c             | view person's contact information |
-5. **edit** current contact -> [edit command](#edit)
+5. **edit** current contact -> [edit command](#44-edit)
     <br>`edit n/Bob Sim m+/AY2223S2 CS2109S s+/PYTHON`<br>
 
    | Parameters           | Description                                      |
@@ -70,7 +70,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
    | n/Bob Sim            | change name to Bob Sim                           |
    | m+/AY2223S2 CS2109S  | add AY2223S2 CS2109S to Bob Sim's set of modules |
    | s+/python            | add PYTHON to Bob Sim's set of skills            |
-6. **find** Bob in list of persons -> [find command](#find)
+6. **find** Bob in list of persons -> [find command](#42-find)
     <br>`find n/Bob Sim y/2 c/Accounting m/AY2223S2 CS2109S s/PYTHON`<br>
 
    | Parameters         | Description                                 |
@@ -80,11 +80,11 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
    | c/1                | course enrolled is Accounting AND...        |
    | m/AY2223S2 CS2109S | AY2223S2 CS2109S in their set of modules    |
    | s/PYTHON           | PYTHON in their set of skills               |
-7. **delete** person at index 1 (should be Bob if you started from an empty list) -> [delete command](#delete)
+7. **delete** person at index 1 (should be Bob if you started from an empty list) -> [delete command](#46-delete)
     <br>`delete 1`<br><br>
-8. **list** all person -> [list command](#list)
+8. **list** all person -> [list command](#45-list)
     <br>`list`<br><br>
-9. **exit** CoDoc -> [exit command](#exit)
+9. **exit** CoDoc -> [exit command](#49-exit)
     <br>`exit`<br><br>
    
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
