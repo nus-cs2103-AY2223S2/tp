@@ -20,7 +20,7 @@ import mycelium.mycelium.model.util.NonEmptyString;
 /**
  * A command to update an existing project.
  */
-public class UpdateProjectParser implements Parser<UpdateProjectCommand> {
+public class UpdateProjectCommandParser implements Parser<UpdateProjectCommand> {
     @Override
     public UpdateProjectCommand parse(String args) throws ParseException {
         requireNonNull(args);

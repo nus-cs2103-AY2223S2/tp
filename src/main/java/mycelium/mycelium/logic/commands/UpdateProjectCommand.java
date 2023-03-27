@@ -2,6 +2,14 @@ package mycelium.mycelium.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
+import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_ACCEPTED_DATE;
+import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_CLIENT_EMAIL;
+import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
+import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_NEW_PROJECT_NAME;
+import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
+import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_PROJECT_STATUS;
+import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -20,11 +28,26 @@ import mycelium.mycelium.model.util.NonEmptyString;
  * Updates a project.
  */
 public class UpdateProjectCommand extends Command {
-    public static final String COMMAND_WORD = "up";
-    public static final String
-        MESSAGE_USAGE =
-        COMMAND_WORD + ": Updates the selected project.\n";
-    // TODO add more description
+    public static final String COMMAND_ACRONYM = "up";
+    public static final String MESSAGE_USAGE =
+        COMMAND_ACRONYM + ": Updates the selected project.\n"
+
+        + "Compulsory Arguments: "
+        + PREFIX_PROJECT_NAME + "PROJECT NAME\n"
+        + "Optional Arguments: "
+        + PREFIX_NEW_PROJECT_NAME + "NEW PROJECT NAME "
+        + PREFIX_PROJECT_STATUS + "PROJECT STATUS "
+        + PREFIX_CLIENT_EMAIL + "CLIENT EMAIL "
+        + PREFIX_SOURCE + "SOURCE "
+        + PREFIX_PROJECT_DESCRIPTION + "DESCRIPTION "
+        + PREFIX_ACCEPTED_DATE + "ACCEPTED DATE "
+        + PREFIX_DEADLINE_DATE + "DEADLINE\n"
+
+        + "Example: " + COMMAND_ACRONYM + " "
+        + PREFIX_PROJECT_NAME + "Mycelium "
+        + PREFIX_NEW_PROJECT_NAME + "Mycelium 2.0 "
+        + PREFIX_PROJECT_STATUS + "in_progress";
+
     public static final String MESSAGE_UPDATE_PROJECT_SUCCESS = "Updated project: %1$s";
     public static final String MESSAGE_NOT_UPDATED = "Project not updated";
     public static final String MESSAGE_DUPLICATE_PROJECT = "A project with the requested name already exists!";
@@ -95,6 +118,13 @@ public class UpdateProjectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROJECT,
                 new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
         }
+
+        // NOTE: we perform this check after checking if the project is found, simply because it seems to make more
+        // sense
+        if (!desc.isAnyFieldUpdated()) {
+            throw new CommandException(MESSAGE_NOT_UPDATED, new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
+        }
+
         Project updatedProject = createUpdatedProject(target.get(), desc);
         model.setProject(target.get(), updatedProject);
         return new CommandResult(String.format(MESSAGE_UPDATE_PROJECT_SUCCESS, updatedProject),
