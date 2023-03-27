@@ -5,13 +5,13 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+<!-- -------------------------------------------------------------------------------------------------------------------- -->
 
-## **Acknowledgements**
+<!--## **Acknowledgements** 
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well} -->
 
---------------------------------------------------------------------------------------------------------------------
+<!-- -------------------------------------------------------------------------------------------------------------------- -->
 
 ## **Setting up, getting started**
 
@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Module` object residing in the `Model`.
 
 ### Logic component
 
@@ -121,12 +121,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Module` objects (which are contained in a `UniqueModuleList` object).
+* stores the currently 'selected' `Module` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Module` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Module` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -177,7 +177,7 @@ Step 3. Now, the command is executed through the execute method which will updat
 
 Step 4. The method set the predicate to the filtered list which will run the `NameContainsKeywordsPredicate#test()` to find the items based on name or type
 
-### \[Proposed\] Undo/redo feature
+<!-- ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
@@ -240,7 +240,7 @@ Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Sinc
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<img src="images/CommitActivityDiagram.png" width="250" /> -->
 
 #### Design considerations:
 
@@ -295,33 +295,33 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                  | So that I can…​                      |
-| -------- | ------------------------------------------ |-----------------------------------------------|--------------------------------------|
-| `* * *`  | computing student                          | see some sample data                          | know how to use the program          |
-| `* * *`  | computing student                          | add lectures, deadlines, and tutorials        |                                      |
-| `* * *`  | computing student                          | delete an item                                | remove entries that I no longer need |             
-| `* * *`  | computing student                          | edit an item                                  |                                      |
-| `* * *`  | computing student                          | see all my lectures, deadlines, and tutorials |                                      |
-| `* *`    | computing student                          | sort my lectures, deadlines, and tutorials    | prioritise certain modules           |
-| `* *`    | computing student                          | sort my exams by time                         | view my exam schedule                |
-| `* *`    | diligent student                           | add notes and remarks to my sc                |                                      |
-| `* *`    | unorganised user                           | search for my modules by name or type         | find specific information quickly    |
+| Priority | As a …​           | I want to …​                                  | So that I can…​                      |
+|----------|-------------------|-----------------------------------------------|--------------------------------------|
+| `* * *`  | computing student | see some sample data                          | know how to use the program          |
+| `* * *`  | computing student | add lectures, deadlines, and tutorials        |                                      |
+| `* * *`  | computing student | delete an item                                | remove entries that I no longer need |             
+| `* * *`  | computing student | edit an item                                  |                                      |
+| `* * *`  | computing student | see all my lectures, deadlines, and tutorials |                                      |
+| `* *`    | computing student | sort my lectures, deadlines, and tutorials    | prioritise certain modules           |
+| `* *`    | computing student | sort my exams by time                         | view my exam schedule                |
+| `* *`    | diligent student  | add notes and remarks to my sc                |                                      |
+| `* *`    | unorganised user  | search for my modules by name or type         | find specific information quickly    |
 
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Contact nUS` and the **Actor** is an `NUS computing student`, unless specified otherwise)
 
 **Use case 1: Delete a module**
 
 **MSS**
 
-1.  User requests to list items
-2.  Contact nUS shows a list of items such as lectures
-3.  User requests to delete a specific lecture in the list
-4.  Contact nUS deletes the module
+1.  User requests to list items.
+2.  Contact nUS shows a list of items such as lectures.
+3.  User requests to delete a specific lecture in the list.
+4.  Contact nUS deletes the module.
 
     Use case ends.
 
@@ -341,10 +341,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list items
-2.  Contact nUS shows a list of items such as lectures
-3.  User requests to edit a specific attribute module in the list
-4.  Contact nUS edits the specific attribute of the module
+1.  User requests to list items.
+2.  Contact nUS shows a list of items such as lectures.
+3.  User requests to edit a specific attribute module in the list.
+4.  Contact nUS edits the specific attribute of the module.
 
     Use case ends.
 
@@ -354,22 +354,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. Contact nUS detects an incorrect format of an attribute(s)
 
     * 3a1. Contact nUS shows an error message.
 
-      Use case resumes at step 2.
-  
-* 3b. The given prefix is invalid.
+    * 3a2. User enters the information again.
+
+    * 3a3. Repeat steps 3a1 and 3a2 until the details provided are acceptable. <br>
+
+      Use case resumes at step 4.
+
+* 3b. Contact nUS detects missing information in the command.
 
     * 3b1. Contact nUS shows an error message.
 
+    * 3b2. User enters the information again.
+
+    * 3b3. Repeat steps 3b1 and 3b2 until there are no more missing information. <br>
+
+      Use case resumes at step 4.
+  
+**Use case 3: Adding a module**
+
+**MSS**
+
+1.  User adds a new module detail by entering the command.
+2.  Contact nUS adds and displays a newly added module detail to the user. <br>
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Contact nUS detects an incorrect format of an attribute(s)
+
+    * 1a1. Contact nUS shows an error message.
+  
+    * 1a2. User enters the information again.
+  
+    * 1a3. Repeat steps 1a1 and 1a2 until the details provided are acceptable. <br>
+  
       Use case resumes at step 2.
 
-* 3c. The type of the attribute is invalid.
+* 1b. Contact nUS detects missing information in the command.
 
-    * 3c1. Contact nUS shows an error message.
+    * 1b1. Contact nUS shows an error message.
   
+    * 1b2. User enters the information again.
+  
+    * 1b3. Repeat steps 1b1 and 1b2 until there are no more missing information. <br>
+
       Use case resumes at step 2.
 
     
@@ -464,13 +497,13 @@ testers are expected to do more *exploratory* testing.
 ### Editing a module
 1 Editing a module 
   1.  Test case: `edit 1 n/CS1101S` <br>
-      Expected: The name of the first module in the list is edited, and is now CS1101S. Details of the updated module is shown in the status message. 
+      Expected: The name of the first module in the list is edited, and is now `CS1101S`. Details of the updated module is shown in the status message. 
       
-  2. Test case: `edit 2 e/12pm - 2pm` <br>
-     Expected: The time slot of the first module in the list is edited, and is now 12pm - 2pm. Details of the updated module is shown in the status message. 
+  2. Test case: `edit 2 e/310323 14:00` <br>
+     Expected: The time slot of the first module in the list is edited, and is now `Friday 02:00PM`. Details of the updated module is shown in the status message. 
   
-  3. Test case: `edit 1 p/Lecture` <br>
-     Expected: The type of the first module in the list is edited, and is now Lecture. Details of the updated module is shown in the status message. 
+  3. Test case: `edit 1 t/Lecture` <br>
+     Expected: The type of the first module in the list is edited, and is now `Lecture`. Details of the updated module is shown in the status message. 
 
 ### Finding a module/type
 1. Finding a module
