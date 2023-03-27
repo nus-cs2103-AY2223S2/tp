@@ -505,9 +505,9 @@ The `edit` command allows the user to edit an existing contact in EduMate.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Command Formats:**
-* `edit z/FIELD`: Edits the user details.
-* `edit INDEX z/FIELD`: Edits the details of the contact at the specified `INDEX`.
+:information_source: **Command Formats:** <br>
+* `edit z/FIELD`: Edits the user details. <br>
+* `edit INDEX z/FIELD`: Edits the details of the contact at the specified `INDEX`. <br>
 
 </div>
 
@@ -515,7 +515,8 @@ The `edit` command allows the user to edit an existing contact in EduMate.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** Similar to [`AddCommand`](#add-command), the arguments for `EditCommand` are unordered.
+:bulb: **Tip:** <br>
+Similar to [`AddCommand`](#add-command), the arguments for `EditCommand` are unordered.
 
 </div>
 
@@ -538,7 +539,8 @@ From these two sources of information, we can create a `descriptor` that keeps t
 
 <div markdown="span" class="alert alert-warning">
 
-:warning: **Warning**: If no fields have been changed, an exception is thrown. This is handled in the `EditCommandParser`.
+:warning: **Warning**: <br>
+If no fields have been changed, an exception is thrown. This is handled in the `EditCommandParser`.
 
 </div>
 
@@ -573,7 +575,7 @@ The `tag` command allows user to tag a ModuleTag and Lessons to an existing cont
 
 **Parsing the inputs** - When the user types in an input, the parser will extract out the relevant arguments.
 
-:information_source: **Command Formats**:
+:information_source: **Command Formats**: <br>
 
 * `tag m/MODULE`: Tags a module to user.
 * `tag INDEX m/MODULE`: Tags a module to the contact at specified index.
@@ -592,7 +594,7 @@ a contact's information appending their assigned `ContactIndex` or by adding `n/
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **For Your Information**
+:information_source: **For Your Information** <br>
 The last viewed profile will remain displayed on the profile panel should there be any exceptions thrown during the parsing process.
 
 </div>
@@ -600,9 +602,9 @@ The last viewed profile will remain displayed on the profile panel should there 
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Command Formats** <br>
-- `view` : Displays user's profile on the display panel. <br>
-- `view n/XYZ` : Display XYZ's profile on the display panel. <br>
-- `view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
+*`view` : Displays user's profile on the display panel. <br>
+*`view n/XYZ` : Display XYZ's profile on the display panel. <br>
+*`view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
 </div>
 
 **Parsing the inputs** - When the user enters the input, the `ViewCommandParser` will first check if the arguments are empty.
@@ -636,14 +638,15 @@ For example, if the user wants to search for a person but does not know the full
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Command Formats:**
+:information_source: **Command Formats:** <br>
 * `find [z/FIELD MORE_FIELD]`: Finds the contacts matching the field found in the 'z' field.
 
 </div>
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** This command can be used before the other commands to return a list of contacts the user wants to work with. 
+:bulb: **Tip:** <br>
+This command can be used before the other commands to return a list of contacts the user wants to work with. 
 
 </div>
 
@@ -669,11 +672,11 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Command Formats:**
-* `sort`: Sorts the contacts by their index.
-* `sort [z/a]…ZWSP`: Sorts the contacts by the `z` field in **ascending** order.
-* `sort [z/d]…ZWSP`: Sorts the contacts by the `z` field in **descending** order.
-* `sort [z/]…ZWSP`: Sorts the contacts by the `z` field in their **default** order.
+:information_source: **Command Formats:** <br>
+* `sort`: Sorts the contacts by their index. <br>
+* `sort [z/a]…ZWSP`: Sorts the contacts by the `z` field in **ascending** order.<br>
+* `sort [z/d]…ZWSP`: Sorts the contacts by the `z` field in **descending** order.<br>
+* `sort [z/]…ZWSP`: Sorts the contacts by the `z` field in their **default** order.<br>
 
 </div>
 
