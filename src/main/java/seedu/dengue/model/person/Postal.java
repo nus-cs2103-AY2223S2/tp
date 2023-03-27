@@ -11,7 +11,8 @@ public class Postal {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Postal codes should only contain numbers or start with S, and it must be 6 digits long";
+            "Postal codes should only contain numbers or start with S, and it must be 6 digits long," +
+                    " beginning with a valid two-digit postal sector.";
     public static final String VALIDATION_REGEX = "[Ss]?\\d{6}";
     public final String value;
 
@@ -44,7 +45,17 @@ public class Postal {
      * Returns true if a given string is a valid postal code.
      */
     public static boolean isValidPostal(String test) {
+        String postalSector = extractPostalSector(test);
+        try { // check valid postal sector
+            PostalSector.valueOf("SECTOR" + postalSector);
+        } catch (IllegalArgumentException ex) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
+    }
+
+    private static String extractPostalSector(String postal) {
+        return postal.toUpperCase().startsWith("S") ? postal.substring(1, 3) : postal.substring(0, 2);
     }
 
     @Override
