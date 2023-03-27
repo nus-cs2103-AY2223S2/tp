@@ -1,6 +1,7 @@
 package seedu.recipe.model.recipe;
 
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.recipe.commons.util.StringUtil;
@@ -17,7 +18,7 @@ public class TitleContainsKeywordsPredicate implements Predicate<Recipe> {
 
     @Override
     public boolean test(Recipe recipe) {
-        return keywords.stream()
+       return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(recipe.getTitle().title, keyword));
     }
 

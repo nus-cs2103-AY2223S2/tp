@@ -24,7 +24,7 @@ import seedu.recipe.logic.commands.HelpCommand;
 import seedu.recipe.logic.commands.ListCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Recipe;
-import seedu.recipe.model.recipe.TitleContainsKeywordsPredicate;
+import seedu.recipe.model.recipe.AnythingContainsKeywordsPredicate;
 import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 import seedu.recipe.testutil.RecipeBuilder;
 import seedu.recipe.testutil.RecipeUtil;
@@ -73,7 +73,7 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new TitleContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new AnythingContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

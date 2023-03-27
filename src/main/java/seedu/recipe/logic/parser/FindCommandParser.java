@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.recipe.logic.commands.FindCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
-import seedu.recipe.model.recipe.TitleContainsKeywordsPredicate;
+import seedu.recipe.model.recipe.AnythingContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -27,7 +27,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] recipeKeywords = trimmedArgs.split("\\s+");
 
-        return new FindCommand(new TitleContainsKeywordsPredicate(Arrays.asList(recipeKeywords)));
+        return new FindCommand(new AnythingContainsKeywordsPredicate(Arrays.asList(recipeKeywords)));
     }
 
 }
