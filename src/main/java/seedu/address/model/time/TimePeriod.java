@@ -7,6 +7,7 @@ import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
 import seedu.address.model.time.exceptions.WrongTimeException;
+import seedu.address.model.time.util.TimeUtil;
 
 /**
  * Represents a period in time.
@@ -105,6 +106,14 @@ public abstract class TimePeriod {
             hourBlocks.add(new HourBlock(new LocalTime(hour, 0), schoolDay));
         }
         return hourBlocks;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[%s] %s - %s",
+            getSchoolDay(),
+            TimeUtil.formatLocalTime(getStartTime()),
+            TimeUtil.formatLocalTime(getEndTime()));
     }
 
     @Override
