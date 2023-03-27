@@ -1,9 +1,11 @@
 package seedu.address.model.documents;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
@@ -15,6 +17,11 @@ public class CoverLetterLink {
 
     public static final String MESSAGE_CONSTRAINTS = "Link to cover letter should be in the form http://domain/path "
             + "or https://domain/path";
+    private static final String ALPHANUMERIC_NO_UNDERSCORE = "[^\\W_]+"; // alphanumeric characters except underscore
+    private static final String DOMAIN_PART_REGEX = ALPHANUMERIC_NO_UNDERSCORE
+            + "(-" + ALPHANUMERIC_NO_UNDERSCORE + ")*";
+    private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
+    private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
 
     public final String value;
 
@@ -33,9 +40,14 @@ public class CoverLetterLink {
      * Returns if a given string is a valid link to a cover letter.
      */
     public static boolean isValidCoverLetterLink(String test) {
+        requireNonNull(test);
         try {
-            new URL(test).toURI();
-            return true;
+            URI uri = new URL(test).toURI();
+            String domain = uri.getHost();
+            if (isNull(domain)) {
+                return false;
+            }
+            return test.matches("^(https?)://.*$") && domain.matches(DOMAIN_REGEX);
         } catch (URISyntaxException | MalformedURLException exception) {
             return false;
         }
