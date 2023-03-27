@@ -1,4 +1,4 @@
-package seedu.address.logic.recommender.timingrecommender;
+package seedu.address.logic.recommender.timing;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,7 +20,7 @@ import seedu.address.model.time.util.TimeUtil;
 import seedu.address.model.timetable.Timetable;
 
 /**
- * Represents an automatic timingrecommender.
+ * Represents an automatic timing.
  */
 
 public class TimingRecommender {
@@ -31,7 +31,7 @@ public class TimingRecommender {
     private List<Person> participants;
 
     /**
-     * Constructs a timingrecommender.
+     * Constructs a timing.
      * @param model
      */
     public TimingRecommender(Model model) {
@@ -41,7 +41,7 @@ public class TimingRecommender {
     }
 
     /**
-     * Initialises the timingrecommender with all the participants.
+     * Initialises the timing with all the participants.
      * @param participantIndices
      */
     public TimingRecommender initialise(Collection<ContactIndex> participantIndices) {
