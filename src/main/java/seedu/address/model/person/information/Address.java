@@ -38,7 +38,7 @@ public class Address {
      * @return True if {@code test} is a valid address and false otherwise.
      */
     public static boolean isValidAddress(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.equals("") || test.matches(VALIDATION_REGEX);
     }
 
     @Override

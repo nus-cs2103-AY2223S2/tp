@@ -15,7 +15,6 @@ import java.time.format.DateTimeParseException;
 public class BirthDate {
     public static final String MESSAGE_CONSTRAINTS =
             "Please ensure the specified birth date follow this format: YYYY-MM-DD";
-    public static final String INVALID_BIRTHDATE = "Invalid birth date specified";
     public static final String VALIDATION_REGEX =
             "^(?<year>\\d{4})-(?<month>0[0-9]|1[0-2])-(?<day>0[0-9]|1[0-9]|2[0-9]|3[0-1])$";
 
