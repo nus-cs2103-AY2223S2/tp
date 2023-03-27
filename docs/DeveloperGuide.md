@@ -50,6 +50,7 @@ Step 3. The doctor is added to the model’s list of doctors if valid.
 The following sequence diagram illustrates how the add doctor operation works:
 
 ![](images/AddDoctorSequenceDiagram.png)
+*args: Refers to a valid sequence of arguments provided by the user. Example: "n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon"
 
 ### Add Patient Feature
 
@@ -74,6 +75,7 @@ Step 3. The patient is added to the model’s list of patients if valid.
 The following sequence diagram illustrates how the add doctor operation works:
 
 ![](images/AddPatientSequenceDiagram.png)
+*args: Refers to a sequence of valid arguments provided by the user. Example: "n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends"
 
 ### Edit Doctor Feature
 

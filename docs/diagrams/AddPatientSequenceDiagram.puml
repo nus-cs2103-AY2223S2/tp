@@ -7,16 +7,18 @@ participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AddPatientCommandParser" as AddPatientCommandParser LOGIC_COLOR
 participant "a:AddPatientCommand" as AddPatientCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":Patient" as Patient USER_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends")
+
+[-> LogicManager : execute("add-ptn args")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends")
+LogicManager -> AddressBookParser : parseCommand("add-ptn args")
 activate AddressBookParser
 
 create AddPatientCommandParser
@@ -26,7 +28,7 @@ activate AddPatientCommandParser
 AddPatientCommandParser --> AddressBookParser
 deactivate AddPatientCommandParser
 
-AddressBookParser -> AddPatientCommandParser : parse("n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends")
+AddressBookParser -> AddPatientCommandParser : parse("args")
 activate AddPatientCommandParser
 
 create AddPatientCommand
@@ -47,6 +49,13 @@ deactivate AddressBookParser
 
 LogicManager -> AddPatientCommand : execute()
 activate AddPatientCommand
+
+create Patient
+AddPatientCommand -> Patient : new
+activate Patient
+
+Patient --> AddPatientCommand : patient
+deactivate Patient
 
 AddPatientCommand -> Model : addPatient(patient)
 activate Model
