@@ -24,14 +24,14 @@ public class LinkFlightToLocationCommand implements Command {
             "Linked %s to flight %s.";
 
     /**
-     * The id of the location
-     */
-    private final Map<FlightLocationType, Location> locations;
-
-    /**
-     * The id of the flight
+     * The flight to be linked.
      */
     private final Flight flight;
+
+    /**
+     * The locations to be linked to.
+     */
+    private final Map<FlightLocationType, Location> locations;
 
     /**
      * Creates a new link command.
@@ -39,9 +39,9 @@ public class LinkFlightToLocationCommand implements Command {
      * @param locations the id of the locations.
      * @param flight the id of the flight.
      */
-    public LinkFlightToLocationCommand(Map<FlightLocationType, Location> locations, Flight flight) {
-        this.locations = locations;
+    public LinkFlightToLocationCommand(Flight flight, Map<FlightLocationType, Location> locations) {
         this.flight = flight;
+        this.locations = locations;
     }
 
     @Override
