@@ -85,15 +85,9 @@ Examples:
 * `add_pc 1 pc/shopee234` Adds parcel shopee234 to 1st delivery.
 * `add_pc 2 pc/lazada456` Adds parcel lazada456 to 2nd delivery.
 
-### Listing all deliveries : `list`
-
-Show all deliveries and their respective details.
-
-Format: `list`
-
 ### Mark delivery : `mark`
 
-Mark a delivery with a status.
+Marks a delivery with a status.
 
 Format: `mark INDEX s/STATUS`
 
@@ -110,7 +104,7 @@ Examples:
 
 ### Mark parcel: `mark_pc`
 
-Mark a parcel from a delivery with a status.
+Marks a parcel from a delivery with a status.
 
 Format: `mark_pc INDEX_OF_DELIVERY pc/INDEX_OF_PARCEL s/STATUS`
 
@@ -146,13 +140,27 @@ Examples:
 * `view 1` View more details about the 1st delivery in the list.
 * `view 2` View more details about the 2nd delivery in the list.
 
-### Editing a person : `edit`
+### Listing all deliveries : `list`
 
-Edits an existing person in the address book.
+Shows all deliveries and their respective details.
+
+Format: `list`
+
+### Sorting all deliveries : `sort`
+
+Sorts all deliveries by their delivery status in ascending order.
+
+Ordering: `PENDING` < `OTW` < `DONE` < `FAILED`
+
+Format: `sort`
+
+### Editing a delivery : `edit`
+
+Edits an existing delivery.
 
 Format: `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [pc/PARCEL]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the delivery at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing parcels, the existing parcels of the person will be removed i.e adding of parcels is not cumulative.
@@ -163,23 +171,22 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower pc/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing parcels.
 
-### Locating persons by name: `find`
+### Finding delivery by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds deliveries which contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* Only the name of the delivery is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Delivery matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a delivery : `delete`
 
@@ -196,13 +203,13 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the Bookopedia.
 
 Format: `clear`
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits Bookopedia.
 
 Format: `exit`
 
@@ -232,13 +239,16 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 Action | Format, Examples
 --------|------------------
+**Help** | `help`
 **Add** | `add n/DELIVERY a/ADDRESS [p/PHONE_NUMBER] [e/EMAIL] [pc/PARCEL]…​` <br> e.g., `add n/Shopee a/Yusof Ishak House, #04-420 pc/lazada123`
 **Add Parcel** | `add_pc INDEX pc/PARCEL` <br> e.g., `add_pc 1 pc/alibaba420`
 **Mark** | `mark INDEX s/STATUS` <br> e.g., `mark 1 s/otw`
+**Mark Parcel** | `mark_PC INDEX_OF_DELIVERY pc/INDEX_OF_PARCEL s/STATUS` <br> e.g., `mark_pc 1 pc/1 s/fragile`
 **View** | `view INDEX` <br> e.g., `view 1`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
-**Help** | `help`
+**Sort** | `sort`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [pc/PARCEL]…​`<br> e.g.,`edit 2 n/James e/james@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Clear** | `clear`
+**Exit** | `exit`

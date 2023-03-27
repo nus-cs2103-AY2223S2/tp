@@ -2,6 +2,7 @@ package bookopedia.logic.commands;
 
 import static bookopedia.commons.core.Messages.MESSAGE_INVALID_PARCEL_DISPLAYED_INDEX;
 import static bookopedia.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static bookopedia.commons.core.Messages.MESSAGE_NO_PARCELS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
@@ -60,6 +61,13 @@ public class MarkParcelCommand extends Command {
         }
         Person targetPerson = lastShownList.get(targetIndex.getZeroBased());
 
+        // No parcels
+        if (targetPerson.getParcels().size() == 0) {
+            throw new CommandException(String.format(MESSAGE_NO_PARCELS,
+                    targetPerson.getName()));
+        }
+
+        // Parcel index given by user exceed list size
         if (parcelIndex.getZeroBased() >= targetPerson.getParcels().size()) {
             throw new CommandException(String.format(MESSAGE_INVALID_PARCEL_DISPLAYED_INDEX,
                     targetPerson.getParcels().size()));
