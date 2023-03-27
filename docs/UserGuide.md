@@ -30,7 +30,7 @@ making it a great asset in managing your internship applications.
 
 2.1 Ensure you have Java `11` or above installed in your Computer.
 
-2.2 Download the latest `sprint.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-3/tp/releases/tag/v1.2).
+2.2 Download the latest `sprint.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-3/tp/releases/tag/v1.3).
 
 2.3 Copy the file to the folder you want to use as the _home folder_ for your sprINT application.
 
@@ -260,16 +260,16 @@ Sorts internship applications in the order you want.
 Format: `sort ORDER`: `sort alphabetical` or `sort deadline`
 
 Currently, there are two orders you can choose:
-1. `sort alphabetical` sorts applications by their company names in alphabetical order. Should
+1. `sort alphabetical` sorts applications by their company names in alphabetical order (from A to Z). Should
    there be multiple applications to the same company, they will be ranked alphabetically by their roles.
-2. `sort deadline` sorts applications by the deadline of their upcoming task. Earlier deadlines will be higher
-   up in the list.
+2. `sort deadline` shows applications with tasks (and therefore, deadlines) and sorts them by their task's deadline. 
+Those with earlier deadlines will be higher up in the list.
 
 ### 3.4 Miscellaneous
 
 #### 3.4.1 Viewing help : `help`
 
-Displays a pop-up window of summary of commands and their formats.
+Displays a pop-up window with a summary of all the commands and their formats.
 
 Format: `help`
 
