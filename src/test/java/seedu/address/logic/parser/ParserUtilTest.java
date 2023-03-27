@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -54,6 +55,48 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseFirstIndex_invalidInput_throwsParseException() {
+        // More than 2 indexes
+        assertThrows(ParseException.class, () -> ParserUtil.parseFirstIndex("10 2 3"));
+
+        // Not integer
+        assertThrows(ParseException.class, () -> ParserUtil.parseFirstIndex("b 2"));
+    }
+
+    @Test
+    public void parseFirstIndex_validInput_success() throws Exception {
+        // No whitespaces
+        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseFirstIndex("1 2"));
+
+        // Leading and trailing whitespaces
+        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseFirstIndex("  1  2    "));
+
+        // Valid first index only
+        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseFirstIndex("1  a"));
+    }
+
+    @Test
+    public void parseSecondIndex_invalidInput_throwsParseException() {
+        // More than 2 indexes
+        assertThrows(ParseException.class, () -> ParserUtil.parseSecondIndex("10 2 3"));
+
+        // Not integer
+        assertThrows(ParseException.class, () -> ParserUtil.parseSecondIndex("1 b"));
+    }
+
+    @Test
+    public void parseSecondIndex_validInput_success() throws Exception {
+        // No whitespaces
+        assertEquals(INDEX_SECOND_TASK, ParserUtil.parseSecondIndex("1 2"));
+
+        // Leading and trailing whitespaces
+        assertEquals(INDEX_SECOND_TASK, ParserUtil.parseSecondIndex("  1  2    "));
+
+        // Valid first index only
+        assertEquals(INDEX_SECOND_TASK, ParserUtil.parseSecondIndex("a  2"));
     }
 
     @Test

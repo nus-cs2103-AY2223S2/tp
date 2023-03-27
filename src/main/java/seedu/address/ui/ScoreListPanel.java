@@ -1,7 +1,9 @@
 package seedu.address.ui;
 
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -13,6 +15,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -41,11 +45,20 @@ public class ScoreListPanel extends UiPart<Region> {
     private Axis xAxis;
     @FXML
     private Axis yAxis;
+    @FXML
+    private TabPane fullTabs;
+    @FXML
+    private Tab tab1;
+    @FXML
+    private Tab tab2;
 
     /**
      * Creates a {@code ScoreListPanel} with the given {@code ObservableList}.
+     *
+     * @param person Selected student's scores.
+     * @param tabNumber Which tab is being selected.
      */
-    public ScoreListPanel(Person person) {
+    public ScoreListPanel(Person person, int tabNumber, Consumer<Integer> callBack) {
         super(FXML);
 
         name.setText("No student being checked now");
@@ -62,8 +75,33 @@ public class ScoreListPanel extends UiPart<Region> {
                 nameChart.setText("No score chart for " + person.getName().fullName);
             }
         }
+
+        fullTabs.getSelectionModel().select(tabNumber);
+
+        tab1.setOnSelectionChanged(new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+                if (tab1.isSelected()) {
+                    callBack.accept(0);
+                }
+            }
+        });
+
+        tab2.setOnSelectionChanged(new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+                if (tab2.isSelected()) {
+                    callBack.accept(1);
+                }
+            }
+        });
     }
 
+    /**
+     * Generates chart for a specific student.
+     *
+     * @param person Selected student.
+     */
     private void newChart(Person person) {
         name.setText("Score history for " + person.getName().fullName);
         nameChart.setText("Recent 5 scores for " + person.getName().fullName);
@@ -93,6 +131,9 @@ public class ScoreListPanel extends UiPart<Region> {
         scoreChart.getData().add(series);
     }
 
+    /**
+     * Displays "tooltip" when hover over a specific node.
+     */
     private class HoveredThresholdNode extends StackPane {
         HoveredThresholdNode(Double scoreValue, String examLabel) {
             final Label label = createDataThresholdLabel(scoreValue, examLabel);
