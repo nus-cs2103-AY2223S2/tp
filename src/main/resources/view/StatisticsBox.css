@@ -9,7 +9,7 @@
 }
 
 .chart-legend {
-   -fx-background-color:  #4682b4;
+   -fx-background-color:  #007390;
    -fx-stroke: #FFFFFF;
 }
 
@@ -23,15 +23,15 @@
 }
 
 .data0.chart-pie {
-    -fx-pie-color: #3BD16F;
+    -fx-pie-color: #2C2A4A;
 }
 
 .data1.chart-pie {
-    -fx-pie-color: #B00020;
+    -fx-pie-color: #DABFFF;
 }
 
 .data2.chart-pie {
-    -fx-pie-color: #E5BF00;
+    -fx-pie-color: #907AD6;
 }
 
 .no-due-project {
@@ -42,3 +42,4 @@
 .message-box-bg {
    -fx-background-color:  #dddddd;
 }
+

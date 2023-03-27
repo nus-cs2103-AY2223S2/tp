@@ -14,35 +14,26 @@ import mycelium.mycelium.commons.core.LogsCenter;
 import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.ui.UiPart;
-import mycelium.mycelium.ui.entitypanel.EntityList;
+
 
 /**
  * An UI component that displays {@code Project} statistics.
  */
 public class StatisticsBox extends UiPart<Region> {
     private static final String FXML = "StatisticsBox.fxml";
-    private EntityList<Project> dueProjectPanel;
-    private EntityList<Project> overdueProjectPanel;
+    private StatisticsPanel statisticsPanel;
+
     private ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
     private Logger logger = LogsCenter.getLogger(getClass());
 
     @FXML
-    private StackPane pies;
-    @FXML
-    private StackPane listView;
-
-    @FXML
-    private StackPane overdueListView;
+    private StackPane statisticsPanelPlaceholder;
     @FXML
     private PieChart progressOverview;
     @FXML
-    private StackPane messageBox;
+    private Label noDueProjectLabel = new Label("No projects due soon");
     @FXML
-    private StackPane overdueMessageBox;
-    @FXML
-    private Label noDueProjectLabel = new Label("No due projects");
-    @FXML
-    private Label noOverdueProjectLabel = new Label("No overdue projects");
+    private Label noOverdueProjectLabel = new Label("No overdue projects!");
 
 
     /**
@@ -51,18 +42,19 @@ public class StatisticsBox extends UiPart<Region> {
     public StatisticsBox(Logic logic) {
         super(FXML);
         loadDataOnBox(logic);
+
         assert pieChartData.isEmpty() == false;
         logger.fine("Finished initialising Statistics Box");
     }
 
 
     private void loadDataOnBox(Logic logic) {
-        // To do: change variable name
         ObservableList<Project> filteredProjectList = logic.getFilteredProjectList();
 
         filteredProjectList.addListener(new ListChangeListener<Project>() {
             @Override
             public void onChanged(Change<? extends Project> c) {
+                updateVisibility(logic);
                 addPieChartData(logic);
             }
         });
@@ -70,31 +62,18 @@ public class StatisticsBox extends UiPart<Region> {
         addPieChartData(logic);
         progressOverview.setData(pieChartData);
 
-        addProjectData(logic.getDueProjectList(), messageBox, noDueProjectLabel, listView,
-                dueProjectPanel, false);
-
-        addProjectData(logic.getOverdueProjectList(), overdueMessageBox, noOverdueProjectLabel, overdueListView,
-                overdueProjectPanel, false);
+        addProjectData(logic);
     }
 
-    private void addProjectData(ObservableList<Project> projects, StackPane displayBox, Label message,
-                                StackPane view, EntityList<Project> panel, boolean wasLoaded) {
-        if (!wasLoaded) {
-            displayBox.getChildren().add(message);
+    private void addProjectData(Logic logic) {
+        statisticsPanel = new StatisticsPanel(logic.getDueProjectList(), noDueProjectLabel, logic.getOverdueProjectList(), noOverdueProjectLabel);
+        statisticsPanelPlaceholder.getChildren().add(statisticsPanel.getRoot());
+        updateVisibility(logic);
+    }
 
-            panel = new EntityList<Project>(projects, SpecialProjectEntity::new);
-            view.getChildren().addAll(panel.getRoot());
-            logger.fine("Initialised list view panel with " + projects.size() + " items");
-        } else {
-            panel.setItems(projects);
-            logger.fine("Modified list view panel with " + projects.size() + " items");
-        }
-
-        if (projects.size() == 0) {
-            message.setVisible(true);
-        } else {
-            message.setVisible(false);
-        }
+    private void updateVisibility(Logic logic) {
+        setLabelVisibility(logic.getDueProjectList(), noDueProjectLabel);
+        setLabelVisibility(logic.getOverdueProjectList(), noOverdueProjectLabel);
     }
 
     private void addPieChartData(Logic logic) {
@@ -102,9 +81,18 @@ public class StatisticsBox extends UiPart<Region> {
 
         if (logic.getFilteredProjectList().size() != 0) {
             logic.getProjectStatistics().forEach((k, v) -> {
-                pieChartData.add(new PieChart.Data(k, v));
+                if (v != 0) {
+                    pieChartData.add(new PieChart.Data(k, v));
+                }
             });
         }
     }
 
+    private void setLabelVisibility(ObservableList<Project> projects, Label label) {
+        if (projects.size() != 0) {
+            label.setVisible(false);
+        } else {
+            label.setVisible(true);
+        }
+    }
 }

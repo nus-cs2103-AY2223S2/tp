@@ -120,7 +120,7 @@ public class EntityPanel extends UiPart<TabPane> {
     /**
      * Returns the selected entity identifier.
      * If there is no selected entity, it will return an empty optional.
-     * The identifier for projects witll be the project name.
+     * The identifier for projects will be the project name.
      * The identifier for clients will be the client email.
      *
      * @return the selected entity identifier.

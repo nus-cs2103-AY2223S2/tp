@@ -10,10 +10,10 @@ import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.ui.UiPart;
 
 /**
- * An UI component that displays information of a {@code Due Project}.
+ * An UI component that displays information of a {@code Due Project} or {@code Overdue Project}.
  */
 public class SpecialProjectEntity extends UiPart<Region> {
-    private static final String FXML = "DueProjectEntity.fxml";
+    private static final String FXML = "SpecialProjectEntity.fxml";
     public final Project project;
 
     private Logger logger = LogsCenter.getLogger(getClass());
