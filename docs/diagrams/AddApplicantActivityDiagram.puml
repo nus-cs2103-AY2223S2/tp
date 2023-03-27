@@ -1,0 +1,25 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters add command;
+if () then ([else])
+  :Error: Invalid command format;
+  stop
+( [Compulsory fields are provided]) elseif () then ([else])
+  :Error: Invalid arguments;
+  stop
+else ( [Arguments are valid])
+endif
+if () is ([Application date time provided]) then
+  :Use given date time;
+else ([else])
+  :Use current time as application date time;
+endif
+if () is ([Applicant not duplicate]) then
+  :Add command successfully executes;
+else ([else])
+  :Error: Duplicate applicant;
+  stop
+endif
+stop
+@enduml
