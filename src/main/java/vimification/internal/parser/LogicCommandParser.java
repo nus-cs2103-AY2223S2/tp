@@ -14,6 +14,10 @@ import vimification.internal.command.logic.LogicCommand;
 @FunctionalInterface
 public interface LogicCommandParser<T extends LogicCommand> {
 
+    public static <T extends LogicCommand> LogicCommandParser<T> fail() {
+        return ApplicativeParser::fail;
+    }
+
     ApplicativeParser<ApplicativeParser<T>> getInternalParser();
 
     default T parse(String input) {
@@ -31,15 +35,4 @@ public interface LogicCommandParser<T extends LogicCommand> {
     default <U extends LogicCommand> LogicCommandParser<U> cast() {
         return (LogicCommandParser<U>) this;
     }
-
-    default LogicCommandParser<T> updateInternalParser(
-            Function<ApplicativeParser<ApplicativeParser<T>>, ApplicativeParser<ApplicativeParser<T>>> mapper) {
-        ApplicativeParser<ApplicativeParser<T>> newInternal = mapper.apply(getInternalParser());
-        return () -> newInternal;
-    }
-
-    public static <T extends LogicCommand> LogicCommandParser<T> fail() {
-        return ApplicativeParser::fail;
-    }
-
 }
