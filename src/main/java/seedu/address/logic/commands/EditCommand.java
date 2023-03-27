@@ -142,6 +142,7 @@ public class EditCommand extends Command {
         private Optional<Email> email;
         private Optional<Address> address;
         private Optional<Education> education;
+        private Optional<Remark> remark;
         private Set<Subject> subjects;
         private Set<Tag> tags;
 
@@ -158,6 +159,7 @@ public class EditCommand extends Command {
             setEducation(toCopy.education);
             setAddress(toCopy.address);
             setSubjects(toCopy.subjects);
+            setRemark(toCopy.remark);
             setTags(toCopy.tags);
         }
 
@@ -222,6 +224,18 @@ public class EditCommand extends Command {
 
         public Optional<Optional<Education>> getEducation() {
             return Optional.ofNullable(education);
+        }
+
+        public void setRemark(Remark remark) {
+            this.remark = Optional.ofNullable(remark);
+        }
+
+        public void setRemark(Optional<Remark> remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Optional<Remark>> getRemark() {
+            return Optional.ofNullable(remark);
         }
 
         /**

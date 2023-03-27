@@ -65,6 +65,8 @@ public class PersonUtil {
                 .ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().orElseGet(Optional::empty)
                 .ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getRemark().orElseGet(Optional::empty)
+                .ifPresent(remark -> sb.append(PREFIX_REMARK).append(remark.value).append("  "));
         if (descriptor.getSubjects().isPresent()) {
             Set<Subject> subjects = descriptor.getSubjects().get();
             if (subjects.isEmpty()) {
