@@ -216,6 +216,8 @@ Example:
 * `p view -i 1`
 *  view details/all information of the patient at index 1.
 
+![](images/UIscreenshots/patientSS/pview.png)
+
 [Back to top](#top)
 
 
@@ -325,6 +327,9 @@ Format: `d view -i DRUG_INDEX`
 Example:
 * `d view -i 1`
 * view details/all information of the drug at index 1.
+
+![](images/UIscreenshots/drugSS/dview.png)
+
 
 [Back to top](#top)
 
