@@ -55,7 +55,8 @@ public class IncreaseCommand extends Command {
 
         model.setFood(foodToIncrease, increasedFood);
         model.updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
-        String feedbackToUser = String.format(MESSAGE_INCREASE_FOOD_SUCCESS, increasedFood) + " by " + increaseFoodDescriptor.getQuantity();
+        String feedbackToUser = String.format(MESSAGE_INCREASE_FOOD_SUCCESS, increasedFood)
+                + " by " + increaseFoodDescriptor.getQuantity();
         return new CommandResult(feedbackToUser);
 
     }
