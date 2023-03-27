@@ -44,6 +44,9 @@ public class Postal {
      * Returns true if a given string is a valid postal code.
      */
     public static boolean isValidPostal(String test) {
+        if (test.length() < 6) {
+            return false;
+        }
         String postalSector = extractPostalSector(test);
         try { // check valid postal sector
             PostalSector.valueOf("SECTOR" + postalSector);
