@@ -16,6 +16,9 @@ import java.util.stream.Collectors;
 
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.Messages;
+import seedu.vms.commons.core.Retriever;
+import seedu.vms.commons.core.index.Index;
+import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.exceptions.CommandException;
@@ -58,14 +61,20 @@ public class AddCommand extends Command {
     public static final String MESSAGE_EXIST_VAX_REQ = "The Patient already has an appointment for this vaccine dose";
     public static final String MESSAGE_EXISTING_APPOINTMENT = "This patient already has an upcoming appointment";
 
-    private final Appointment toAdd;
+    private final Index patientId;
+    private final Retriever<String, VaxType> vaxTypeRetriever;
+    private final LocalDateTime startTime;
+    private final LocalDateTime endTime;
 
     /**
      * Creates an AddCommand to add the specified {@code Appointment}
      */
-    public AddCommand(Appointment appointment) {
-        requireNonNull(appointment);
-        toAdd = appointment;
+    public AddCommand(Index patientId, Retriever<String, VaxType> vaxTypeRetriever,
+            LocalDateTime startTime, LocalDateTime endTime) {
+        this.patientId = requireNonNull(patientId);
+        this.vaxTypeRetriever = requireNonNull(vaxTypeRetriever);
+        this.startTime = requireNonNull(startTime);
+        this.endTime = requireNonNull(endTime);
     }
 
     @Override
@@ -74,30 +83,31 @@ public class AddCommand extends Command {
 
         // Checks if patient manager contains the given index
         Map<Integer, IdData<Patient>> patientList = model.getPatientManager().getMapView();
-        if (!patientList.containsKey(toAdd.getPatient().getZeroBased())) {
+        if (!patientList.containsKey(patientId.getZeroBased())) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
-        }
-
-        // Checks if vaxType manager contains the vaccine to be used in the appointment
-        ObservableMap<String, VaxType> vaccinationList = model.getVaxTypeManager().asUnmodifiableObservableMap();
-        if (!vaccinationList.containsKey(toAdd.getVaccination().getName())) {
-            throw new CommandException(MESSAGE_MISSING_VAX_TYPE);
         }
 
         // Checks for no existing next appointment
         for (Map.Entry<Integer, IdData<Appointment>> entry : model.getAppointmentManager().getMapView().entrySet()) {
             Appointment appointment = entry.getValue().getValue();
-            if (appointment.getPatient().equals(toAdd.getPatient())
+            if (appointment.getPatient().equals(patientId)
                     && appointment.getAppointmentEndTime().isAfter(LocalDateTime.now())
                     && !appointment.getStatus()) {
                 throw new CommandException(MESSAGE_EXISTING_APPOINTMENT);
             }
         }
+        Patient patient = patientList.get(patientId.getZeroBased()).getValue();
 
         // Checks if the given patient can take the vaccination
-        Patient patient = patientList.get(toAdd.getPatient().getZeroBased()).getValue();
-        VaxType toTake = vaccinationList.get(toAdd.getVaccination().getName());
+        VaxType toTake;
+        try {
+            toTake = model.getVaccination(vaxTypeRetriever);
+        } catch (IllegalValueException ive) {
+            throw new CommandException(ive.getMessage());
+        }
 
+
+        ObservableMap<String, VaxType> vaccinationList = model.getVaxTypeManager().asUnmodifiableObservableMap();
         List<VaxType> patientHistory = patient.getVaccine()
                 .stream()
                 .map(vaxName -> vaccinationList.get(vaxName.getName()))
@@ -120,14 +130,9 @@ public class AddCommand extends Command {
             throw new CommandException("Patient cannot take the vaccination");
         }
 
+        Appointment toAdd = new Appointment(patientId, startTime, endTime, toTake.getGroupName());
+
         model.addAppointment(toAdd);
         return new CommandMessage(String.format(MESSAGE_SUCCESS, toAdd));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
     }
 }

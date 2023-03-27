@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.model.IdData;
@@ -68,6 +69,8 @@ public interface Logic {
 
     ObjectProperty<VaxType> detailedVaxTypeProperty();
 
+
+    void bindVaccinationDisplayList(ObservableList<VaxType> displayList);
 
     void setCloseAction(Runnable closeAction);
 

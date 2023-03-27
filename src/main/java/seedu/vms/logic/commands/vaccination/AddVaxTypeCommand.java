@@ -7,6 +7,7 @@ import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.exceptions.CommandException;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.Model;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeBuilder;
@@ -18,10 +19,15 @@ import seedu.vms.model.vaccination.VaxTypeBuilder;
 public class AddVaxTypeCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Vaccination: %s";
 
+    private final GroupName name;
     private final VaxTypeBuilder builder;
 
 
-    public AddVaxTypeCommand(VaxTypeBuilder builder) {
+    /**
+     * Constructs an {@code AddVaxTypeCommand}.
+     */
+    public AddVaxTypeCommand(GroupName name, VaxTypeBuilder builder) {
+        this.name = name;
         this.builder = Objects.requireNonNull(builder);
     }
 
@@ -31,7 +37,8 @@ public class AddVaxTypeCommand extends Command {
         Objects.requireNonNull(model);
 
         try {
-            ValueChange<VaxType> change = model.addVaccination(builder);
+            VaxType vaxType = builder.create(name);
+            ValueChange<VaxType> change = model.addVaccination(vaxType);
             return new CommandMessage(String.format(MESSAGE_SUCCESS, change.toString()));
         } catch (IllegalValueException ive) {
             throw new CommandException(ive.getMessage(), ive);

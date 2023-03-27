@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
-import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.parser.ArgumentMultimap;
 import seedu.vms.logic.parser.CliSyntax;
 import seedu.vms.logic.parser.CommandParser;
@@ -19,12 +18,9 @@ import seedu.vms.model.vaccination.VaxTypeBuilder;
 
 
 /**
- * A parser for commands that utilizes {@link VaxTypeBuilder}.
+ * A command parser to parse commands that require {@link VaxTypeBuilder}.
  */
-public abstract class VaxTypeValueParser implements CommandParser {
-    public static final String COMMAND_WORD = "add";
-
-    // these names are meant to be they align so well
+public abstract class VaxTypeBuilderParser implements CommandParser {
     private static final String FIELD_NAME_VAX_NAME = "Vaccination name";
     private static final String FIELD_NAME_GRP_SET = "Group set";
     private static final String FIELD_NAME_MIN_AGE = "Min age";
@@ -32,32 +28,19 @@ public abstract class VaxTypeValueParser implements CommandParser {
     private static final String FIELD_NAME_INGREDIENTS = "Ingredients";
     private static final String FIELD_NAME_HISTORY = "History requirements";
 
-    private final boolean isRenameAllowed;
-
 
     /**
-     * Constructs an {@code VaxTypeValueParser}.
+     * Parses a {@link VaxTypeBuilder} from the given argument map. However,
+     * unlike {@link #parseBuilder(ArgumentMultimap)}, the rename parameters
+     * are ignored.
      *
-     * @param isRenameAllowed - if renaming is allowed.
+     * @param argsMap - the argument map to parse.
+     * @return the parsed builder.
+     * @throws ParseException if the builder cannot be parsed.
      */
-    public VaxTypeValueParser(boolean isRenameAllowed) {
-        this.isRenameAllowed = isRenameAllowed;
-    }
+    protected VaxTypeBuilder parseBuilderNoRename(ArgumentMultimap argsMap) throws ParseException {
+        VaxTypeBuilder builder = VaxTypeBuilder.of();
 
-
-    /**
-     * Creates the command for the specified builder.
-     */
-    protected abstract Command getCommand(VaxTypeBuilder builder);
-
-
-    @Override
-    public Command parse(ArgumentMultimap argsMap) throws ParseException {
-        VaxTypeBuilder builder = VaxTypeBuilder.of(mapName(argsMap.getPreamble()));
-
-        builder = mapRenamedName(argsMap.getValue(CliSyntax.PREFIX_NAME))
-                .map(builder::setName)
-                .orElse(builder);
         builder = mapGroupSet(argsMap.getAllValues(CliSyntax.PREFIX_VAX_GROUPS), FIELD_NAME_GRP_SET)
                 .map(builder::setGroups)
                 .orElse(builder);
@@ -74,7 +57,25 @@ public abstract class VaxTypeValueParser implements CommandParser {
                 .map(builder::setHistoryReqs)
                 .orElse(builder);
 
-        return getCommand(builder);
+        return builder;
+    }
+
+
+    /**
+     * Parses a {@link VaxTypeBuilder} from the given argument map.
+     *
+     * @param argsMap - the argument map to parse.
+     * @return the parsed builder.
+     * @throws ParseException if the builder cannot be parsed.
+     */
+    protected VaxTypeBuilder parseBuilder(ArgumentMultimap argsMap) throws ParseException {
+        VaxTypeBuilder builder = parseBuilderNoRename(argsMap);
+
+        builder = mapRenamedName(argsMap.getValue(CliSyntax.PREFIX_NAME))
+                .map(builder::setName)
+                .orElse(builder);
+
+        return builder;
     }
 
 
@@ -88,7 +89,7 @@ public abstract class VaxTypeValueParser implements CommandParser {
 
 
     private Optional<GroupName> mapRenamedName(Optional<String> newName) throws ParseException {
-        if (!isRenameAllowed || !newName.isPresent()) {
+        if (!newName.isPresent()) {
             return Optional.empty();
         }
         return Optional.ofNullable(mapName(newName.get()));

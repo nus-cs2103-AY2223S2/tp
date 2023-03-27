@@ -147,6 +147,7 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
                 logic.detailedVaxTypeProperty(),
                 vaxType -> new VaxTypeCard(vaxType).getRoot());
         detailedVaxTypePanel.getChildren().add(detailedVaxTypeView);
+        logic.bindVaccinationDisplayList(vaxTypeListPanel.getDisplayList());
 
         appointmentListPanel = new ListViewPanel<>(
                 logic.getFilteredAppointmentMap(),

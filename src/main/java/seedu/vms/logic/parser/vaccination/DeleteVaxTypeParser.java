@@ -1,11 +1,12 @@
 package seedu.vms.logic.parser.vaccination;
 
+import seedu.vms.commons.core.Retriever;
 import seedu.vms.logic.commands.vaccination.DeleteVaxTypeCommand;
 import seedu.vms.logic.parser.ArgumentMultimap;
 import seedu.vms.logic.parser.CommandParser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
-import seedu.vms.model.GroupName;
+import seedu.vms.model.vaccination.VaxType;
 
 
 /**
@@ -19,12 +20,12 @@ public class DeleteVaxTypeParser implements CommandParser {
 
     @Override
     public DeleteVaxTypeCommand parse(ArgumentMultimap argsMap) throws ParseException {
-        GroupName vaxName;
+        Retriever<String, VaxType> retriever;
         try {
-            vaxName = ParserUtil.parseGroupName(argsMap.getPreamble());
+            retriever = ParserUtil.parseVaxRetriever(argsMap.getPreamble());
         } catch (ParseException parseEx) {
             throw new ParseException(String.format("%s: %s", FIELD_NAME_VAX_NAME, parseEx.getMessage()));
         }
-        return new DeleteVaxTypeCommand(vaxName);
+        return new DeleteVaxTypeCommand(retriever);
     }
 }

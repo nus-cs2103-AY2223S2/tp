@@ -68,7 +68,7 @@ public class EditCommandParser implements CommandParser {
         }
         if (argsMap.getValue(PREFIX_VACCINATION).isPresent()) {
             editAppointmentDescriptor.setVaccine(ParserUtil
-                    .parseGroupName(argsMap.getValue(PREFIX_VACCINATION).get()));
+                    .parseVaxRetriever(argsMap.getValue(PREFIX_VACCINATION).get()));
         }
 
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {

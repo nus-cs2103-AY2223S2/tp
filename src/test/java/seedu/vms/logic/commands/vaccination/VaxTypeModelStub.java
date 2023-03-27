@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
+import seedu.vms.commons.core.Retriever;
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.parser.ParseResult;
@@ -23,7 +25,6 @@ import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
@@ -253,17 +254,6 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public ValueChange<VaxType> addVaccination(VaxTypeBuilder builder) throws IllegalValueException {
-        return builder.create(manager);
-    }
-
-
-    @Override
-    public ValueChange<VaxType> editVaccination(VaxTypeBuilder builder) throws IllegalValueException {
-        return builder.update(manager);
-    }
-
-    @Override
     public ObjectProperty<IdData<Patient>> detailedPatientProperty() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'detailedPatientProperty'");
@@ -273,6 +263,30 @@ public class VaxTypeModelStub implements Model {
     public void setDetailedPatient(IdData<Patient> patient) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setDetailedPatient'");
+    }
+
+    @Override
+    public void bindVaccinationDisplayList(ObservableList<VaxType> displayList) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'bindDisplayList'");
+    }
+
+    @Override
+    public VaxType getVaccination(Retriever<String, VaxType> retriever) throws IllegalValueException {
+        return retriever.retrieve(manager.asUnmodifiableObservableMap(), null);
+    }
+
+    @Override
+    public ValueChange<VaxType> addVaccination(VaxType vaxType) throws IllegalValueException {
+        manager.add(vaxType);
+        ValueChange<VaxType> change = new ValueChange<>(null, vaxType);
+        return change;
+    }
+
+    @Override
+    public ValueChange<VaxType> editVaccination(String name, VaxType newValue) throws IllegalValueException {
+        ValueChange<VaxType> change = manager.set(name, newValue);
+        return change;
     }
 
 }

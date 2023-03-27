@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
+import seedu.vms.commons.core.Retriever;
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.parser.ParseResult;
@@ -18,7 +20,6 @@ import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
@@ -172,9 +173,9 @@ public interface Model {
     /** Returns the {@code VaxTypeManager} the model is using. */
     VaxTypeManager getVaxTypeManager();
 
-    ValueChange<VaxType> addVaccination(VaxTypeBuilder builder) throws IllegalValueException;
+    ValueChange<VaxType> addVaccination(VaxType vaxType) throws IllegalValueException;
 
-    ValueChange<VaxType> editVaccination(VaxTypeBuilder builder) throws IllegalValueException;
+    ValueChange<VaxType> editVaccination(String name, VaxType newValue) throws IllegalValueException;
 
     ValueChange<VaxType> deleteVaccination(GroupName vaxName) throws IllegalValueException;
 
@@ -189,6 +190,12 @@ public interface Model {
 
 
     void setDetailedVaxType(VaxType vaxType);
+
+
+    VaxType getVaccination(Retriever<String, VaxType> retriever) throws IllegalValueException;
+
+
+    void bindVaccinationDisplayList(ObservableList<VaxType> displayList);
 
 
     /*

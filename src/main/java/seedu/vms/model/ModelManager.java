@@ -10,9 +10,11 @@ import java.util.logging.Logger;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
+import seedu.vms.commons.core.Retriever;
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.parser.ParseResult;
@@ -26,7 +28,6 @@ import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
@@ -45,12 +46,13 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
 
     private final FilteredIdDataMap<Patient> filteredPatientMap;
+    private final FilteredMapView<String, VaxType> filteredVaxTypeMap;
     private final FilteredIdDataMap<Appointment> filteredAppointmentMap;
     private final FilteredIdDataMap<Keyword> filteredKeywordMap;
 
     private final VmsParser vmsParser;
 
-    private final FilteredMapView<String, VaxType> filteredVaxTypeMap;
+    private ObservableList<VaxType> displayList = null;
 
     /**
      * Initializes a ModelManager with the given patientManager and userPrefs.
@@ -256,16 +258,17 @@ public class ModelManager implements Model {
     // =========== VaxTypeManager ==============================================================================
 
     @Override
-    public ValueChange<VaxType> addVaccination(VaxTypeBuilder builder) throws IllegalValueException {
-        ValueChange<VaxType> change = builder.create(vaxTypeManager);
+    public ValueChange<VaxType> addVaccination(VaxType vaxType) throws IllegalValueException {
+        vaxTypeManager.add(vaxType);
+        ValueChange<VaxType> change = new ValueChange<>(null, vaxType);
         handleVaccinationChange(change);
         return change;
     }
 
 
     @Override
-    public ValueChange<VaxType> editVaccination(VaxTypeBuilder builder) throws IllegalValueException {
-        ValueChange<VaxType> change = builder.update(vaxTypeManager);
+    public ValueChange<VaxType> editVaccination(String name, VaxType newValue) throws IllegalValueException {
+        ValueChange<VaxType> change = vaxTypeManager.set(name, newValue);
         handleVaccinationChange(change);
         return change;
     }
@@ -296,6 +299,18 @@ public class ModelManager implements Model {
     @Override
     public void setDetailedVaxType(VaxType vaxType) {
         detailedVaxTypeProperty.set(vaxType);
+    }
+
+
+    @Override
+    public void bindVaccinationDisplayList(ObservableList<VaxType> displayList) {
+        this.displayList = displayList;
+    }
+
+
+    @Override
+    public VaxType getVaccination(Retriever<String, VaxType> retriever) throws IllegalValueException {
+        return retriever.retrieve(vaxTypeManager.asUnmodifiableObservableMap(), displayList);
     }
 
     // =========== KeywordManager ==============================================================================

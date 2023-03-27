@@ -9,6 +9,7 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
+import seedu.vms.commons.core.Retriever;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.commands.appointment.AddCommand;
 import seedu.vms.logic.parser.ArgumentMultimap;
@@ -16,8 +17,8 @@ import seedu.vms.logic.parser.CommandParser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.Prefix;
 import seedu.vms.logic.parser.exceptions.ParseException;
-import seedu.vms.model.GroupName;
 import seedu.vms.model.appointment.Appointment;
+import seedu.vms.model.vaccination.VaxType;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -39,7 +40,8 @@ public class AddCommandParser implements CommandParser {
         Index patientId = ParserUtil.parseIndex(argsMap.getValue(PREFIX_PATIENT).get());
         LocalDateTime startTime = ParserUtil.parseDate(argsMap.getValue(PREFIX_STARTTIME).get());
         LocalDateTime endTime = ParserUtil.parseDate(argsMap.getValue(PREFIX_ENDTIME).get());
-        GroupName vaccine = ParserUtil.parseGroupName(argsMap.getValue(PREFIX_VACCINATION).get());
+        Retriever<String, VaxType> vaxTypeRetriever = ParserUtil
+                .parseVaxRetriever(argsMap.getValue(PREFIX_VACCINATION).get());
 
         if (Appointment.isInvalidAppointmentTime(startTime)) {
             throw new ParseException(Appointment.MESSAGE_START_TIME_CONSTRAINTS);
@@ -48,9 +50,7 @@ public class AddCommandParser implements CommandParser {
         if (!Appointment.isValidDuration(startTime, endTime)) {
             throw new ParseException(Appointment.MESSAGE_DURATION_CONSTRAINTS);
         }
-
-        Appointment appointment = new Appointment(patientId, startTime, endTime, vaccine);
-        return new AddCommand(appointment);
+        return new AddCommand(patientId, vaxTypeRetriever, startTime, endTime);
     }
 
     /**

@@ -15,8 +15,10 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
+import seedu.vms.commons.core.Retriever;
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.CommandMessage;
@@ -34,7 +36,6 @@ import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
 import seedu.vms.testutil.PatientBuilder;
 
@@ -302,18 +303,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public ValueChange<VaxType> addVaccination(VaxTypeBuilder builder) throws IllegalValueException {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addVaccination'");
-        }
-
-        @Override
-        public ValueChange<VaxType> editVaccination(VaxTypeBuilder builder) throws IllegalValueException {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'editVaccination'");
-        }
-
-        @Override
         public ObjectProperty<IdData<Patient>> detailedPatientProperty() {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'detailedPatientProperty'");
@@ -323,6 +312,30 @@ public class AddCommandTest {
         public void setDetailedPatient(IdData<Patient> patient) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setDetailedPatient'");
+        }
+
+        @Override
+        public void bindVaccinationDisplayList(ObservableList<VaxType> displayList) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'bindDisplayList'");
+        }
+
+        @Override
+        public VaxType getVaccination(Retriever<String, VaxType> retriever) throws IllegalValueException {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getVaccination'");
+        }
+
+        @Override
+        public ValueChange<VaxType> addVaccination(VaxType vaxType) throws IllegalValueException {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'addVaccination'");
+        }
+
+        @Override
+        public ValueChange<VaxType> editVaccination(String name, VaxType newValue) throws IllegalValueException {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'editVaccination'");
         }
     }
 

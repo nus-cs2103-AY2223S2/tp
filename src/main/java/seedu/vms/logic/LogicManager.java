@@ -9,6 +9,7 @@ import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
@@ -330,6 +331,12 @@ public class LogicManager implements Logic {
     @Override
     public ObjectProperty<VaxType> detailedVaxTypeProperty() {
         return model.detailedVaxTypeProperty();
+    }
+
+
+    @Override
+    public void bindVaccinationDisplayList(ObservableList<VaxType> displayList) {
+        model.bindVaccinationDisplayList(displayList);
     }
 
 
