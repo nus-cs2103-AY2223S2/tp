@@ -6,6 +6,7 @@ import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
 
 import java.time.LocalDate;
+import java.util.function.Predicate;
 
 import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.CommandResult;
@@ -13,6 +14,7 @@ import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.LeaveDate;
 
@@ -68,11 +70,16 @@ public class ListDepartmentHeadcountCommand extends Command {
 
         Leave leaveOnGivenDate = model.getLeave(new LeaveDate(date));
 
-        model.updateFilteredEmployeeList(e -> !leaveOnGivenDate.hasEmployee(e));
+        Predicate<Employee> predicateEmployeeInDepartment = e -> department.hasEmployee(e);
+
+        Predicate<Employee> predicateEmployeePresent = leaveOnGivenDate == null
+                ? e -> true
+                : e -> !leaveOnGivenDate.hasEmployee(e);
+
+        model.updateFilteredEmployeeList(predicateEmployeeInDepartment.and(predicateEmployeePresent));
 
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, model.getFilteredEmployeeList().size(), departmentName));
-
     }
 
     private boolean isValidDate(LocalDate date, LocalDate currentDate) {
