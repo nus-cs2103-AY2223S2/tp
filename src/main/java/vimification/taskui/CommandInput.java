@@ -80,6 +80,11 @@ public class CommandInput extends UiPart<TextField> {
         try {
             CommandResult result = logic.execute(commandString);
             parent.initializeTaskListPanel();
+
+            // TODO: Should only clear if the task has been deleted.
+            if (result.getFeedbackToUser().contains("Deleted Task:")) {
+                parent.clearRightComponent();
+            }
             System.out.println(result.getFeedbackToUser());
         } catch (CommandException e) {
             System.out.println("[Your command] " + input + " is invalid");

@@ -3,37 +3,50 @@ layout: page
 title: User Guide
 ---
 
-Vimification Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Vimification is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can get your task management tasks done faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, we also provide a Graphical User interface (GUI) to assist you.
 
-- Table of Contents
-  {:toc}
+## Table of Contents
+
+- [Quick Start](#quick-start)
+- [Features](#features)
+  - [Viewing help](#viewing-help)
+  - [Adding a todo task](#adding-a-todo-task)
+  - [Adding a task with deadline](#adding-a-task-with-deadline)
+  - [Deleting a task](#deleting-a-task)
+  - [Exiting the program](#exiting-the-program)
+  - [Saving the data](#saving-the-data)
 
 ---
+
+## Introduction
+
+Welcome to Vimification
+
+Vimificiation is a desktop app that helps Students manage tasks. It is specifically catered towards NUS SoC students, with features such as vim-like commands to increase efficiency. Students can also add priority and tags to tasks to future customize and categorize them.
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `vimification.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your Vimification.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar vimification.jar` command to run the application.<br>
+
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - `list` : Lists all contacts.
+   - `:i todo CS2130T UG` : Adds a todo task with description `CS2130T UG` to Vimification.
 
-   - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   - `:i deadline CS2130T tp /2023-04-01` : Adds a todo task with description `CS2130T tp` and deadline '2023-04-01' to Vimification.
 
-   - `delete 3` : Deletes the 3rd contact shown in the current list.
+   - `delete 2` : Deletes the 2nd task shown in the current list.
 
-   - `clear` : Deletes all contacts.
-
-   - `exit` : Exits the app.
+   - `:wq` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -45,27 +58,24 @@ Vimification Level 3 (AB3) is a **desktop app for managing contacts, optimized f
 
 **:information_source: Notes about the command format:**<br>
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+- Words in UPPER_CASE are the parameters to be supprised by the users.<br>
+  e.g. `:i todo DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `:i todo quiz`.
 
-- Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+- Words in square brackets are compulsory parameters to be supplied by the user.<br>
+  e.g. in `:i todo [DESCRIPTION]`, `DESCRIPTION` is a parameter must be provided.
 
 - Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[-t TAG]…​` can be used as ` ` (i.e. 0 times), `-t cs2103t`, `-t cs2103t -t groupwork` etc.
 
 - Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if the command specifies `-p PRIORITY -t TAG`, `-t TAG -p PRIORITY` is also acceptable.
 
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Viewing help : `help`
+### Viewing help
 
 Shows a message explaning how to access the help page.
 
@@ -73,11 +83,11 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a to-do task
+### Adding a todo task
 
 Adds a to-do to Vimification.
 
-Format: `:i todo <description>`
+Format: `:i todo [DESCRIPTION]`
 | parameter | description | examples |
 | ------------- | ----------------------------------------------- | ------------ |
 | `description` | description of the task. | `CS2103T UG` |
@@ -85,20 +95,15 @@ Format: `:i todo <description>`
 Examples:
 
 `:i todo CS2130T UG`
-**Before**
 
 **After**
-
-`:i todo CS2103T DG`
-**Before**
-
-**After**
+![](images/ug-images/AddTaskCommandDemo.png)
 
 ### Adding a task with deadline
 
 Adds a task with `deadline` to Vimification.
 
-Format: `:i deadline [description] /[deadline]`
+Format: `:i deadline [DESCRIPTION] /[DEADLINE]`
 
 | parameter     | description                                     | examples     |
 | ------------- | ----------------------------------------------- | ------------ |
@@ -108,15 +113,15 @@ Format: `:i deadline [description] /[deadline]`
 Examples:
 
 `:i deadline CS2130T v1.3 /2022-03-31`
-**Before**
 
 **After**
+![](images/ug-images/AddDeadlineCommandDemo.png)
 
-### Deleting a task `:d`
+### Deleting a task
 
 Deletes the specified person from the address book.
 
-Format: `:d [task_index]`
+Format: `:d [TASK_INDEX]`
 
 - Deletes the task at the specified `task_index`.
 - The index refers to the index number shown in the displayed `TaskList`.
