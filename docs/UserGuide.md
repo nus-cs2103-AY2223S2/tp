@@ -14,25 +14,26 @@ title: User Guide
   - [Navigation](#navigation)
   - [Tutorial](#tutorial)
     - [Adding a person](#1-adding-a-person)
-    - [Viewing a person]
-    - [Editing a person]
+    - [Viewing a person's modules](#2-viewing-a-persons-modules)
+    - [Editing a person's modules](#3-editing-a-persons-modules)
+    - [Finding a person by their modules](#4-finding-a-person-by-their-modules)
 - [Commands](#commands)
-  - [Adding a person: `add`](#add)
-  - [find](#42-find)
-  - [view](#43-view)
-  - [edit](#44-edit)
-  - [list](#45-list)
-  - [delete](#46-delete)
-  - [clear](#47-clear)
-  - [help](#48-help)
-  - [exit](#49-exit)
-- [Data Management](#5-data-management)
-- [FAQ](#6-faq)
-- [Upcoming Features](#7-upcoming-features)
-- [Command Summary](#8-command-summary)
-- [Additional Resources](#9-additional-resources)
-   1. [How To Check Java Version](#91-how-to-check-java-version)
-   2. [How to Open CoDoc](#92-how-to-open-codoc)
+  - [Viewing help: `help`](#help)
+  - [Adding a person: `add`](#adding-a-person--add)
+  - [Viewing a person/Changing tabs: `view`](#viewing-a-personchanging-tabs--view)
+  - [Editing a person: `edit`](#editing-a-person--edit)
+  - [Finding a person: `find`](#finding-a-person--find)
+  - [Lising all persons/Resetting filters: `list`](#listing-all-personsresetting-filters--list)
+  - [delete](#delete)
+  - [clear](#clear)
+  - [exit](#exit-)
+- [Data Management](#data-management)
+- [FAQ](#faq)
+- [Upcoming Features](#upcoming-features)
+- [Command Summary](#command-summary)
+- [Additional Resources](#additional-resources)
+  - [How To Check Java Version](#how-to-check-java-version)
+  - [How to Open CoDoc](#how-to-open-codoc)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -147,7 +148,7 @@ Congrats! You have completed the tutorial 🎉
 
 The pre-existing contacts are just some examples that you can play around with, but if you want to start with a fresh contact list, enter `clear` to clear all contacts. Also, if you need more info on the usage of each command, you can refer to the relevant sections below. 
 
-[Scroll back up to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Tables of Contents*](#table-of-contents)
 
 ## Commands
 
@@ -232,7 +233,7 @@ The pre-existing contacts are just some examples that you can play around with, 
 > * Exits the program. <br>
 > * Equivalent to clicking the close button via the GUI. <br>
 
-[ ^Scroll back up to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Tables of Contents*](#table-of-contents)
 
 ## Data Management
 **Q**: How do I save my person list?<br>
@@ -246,13 +247,13 @@ The pre-existing contacts are just some examples that you can play around with, 
 
 :warning: If your changes to the data file makes its format invalid, CoDoc will discard all data and start with an empty data file at the next run.
 
-[ ^Scroll back up to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Tables of Contents*](#table-of-contents)
 
-## 6. FAQ
+## FAQ
 
-[ ^Scroll back up to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Tables of Contents*](#table-of-contents)
 
-## 7. Upcoming Features
+## Upcoming Features
 
 ### Automated bulk edits `[coming in v2.0]`
 _Details coming soon ..._
@@ -262,10 +263,11 @@ _Details coming soon ..._
 _Details coming soon ..._
 
 <br>
-[ ^Scroll back up to *Tables of Contents*](#table-of-contents)
+
+[Scroll back to *Tables of Contents*](#table-of-contents)
 
 
-## 8. Command Summary 
+## Command Summary 
 
 | Actions                          | Description                                                                                                                                 |
 |----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
@@ -279,15 +281,15 @@ _Details coming soon ..._
 | View tab                         | view c, view m, view s                                                                                                                      |
 | View user guide and command list | help                                                                                                                                        |
 
-[ ^Scroll back up to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Tables of Contents*](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 9. Additional Resources
-### 9.1 How To Check Java Version
-[ ^Scroll back up to *Downloading CoDoc*](#downloading-codoc)
-### 9.2 How to Open CoDoc
-[ ^Scroll back up to *Downloading CoDoc*](#downloading-codoc)
+## Additional Resources
+### How To Check Java Version
+[Scroll back to *Downloading CoDoc*](#downloading-codoc)
+### How to Open CoDoc
+[Scroll back to *Downloading CoDoc*](#downloading-codoc)
 
 --------------------------------------------------------------------------------------------------------------------
-[ ^Scroll back up to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Tables of Contents*](#table-of-contents)
