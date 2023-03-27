@@ -42,19 +42,19 @@ public class SortCommand extends Command {
         /**
          * Semyear sort.
          */
-        SEMYEAR,
-        /**
-         * Grade sort.
-         */
-        GRADE,
-        /**
-         * Credit sort.
-         */
-        CREDIT,
+        YEAR,
         /**
          * Code sort.
          */
         CODE,
+        /**
+         * Credit sort.
+         */
+        CREDITS,
+        /**
+         * Grade sort.
+         */
+        GRADE,
         /**
          * Tag sort.
          */
@@ -62,7 +62,7 @@ public class SortCommand extends Command {
     /**
      * The constant DEFAULT_SORT.
      */
-    public static final Sort DEFAULT_SORT = Sort.SEMYEAR;
+    public static final Sort DEFAULT_SORT = Sort.YEAR;
 
     private String sortOrder;
 

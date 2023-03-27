@@ -12,6 +12,8 @@ import seedu.modtrek.ui.UiPart;
 public class ModuleSection extends UiPart<Region> {
     private static final String FXML = "modulesection/ModuleSection.fxml";
 
+    protected ModuleList moduleList;
+
     @FXML
     protected HBox moduleSectionNav;
 

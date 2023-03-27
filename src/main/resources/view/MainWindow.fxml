@@ -10,7 +10,10 @@
 <?import javafx.scene.layout.HBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         minWidth="1000" minHeight="700">
+         title="MODTrek" minWidth="1000" minHeight="700">
+  <icons>
+    <Image url="@/images/logo_graph.png" />
+  </icons>
   <scene>
     <Scene>
       <stylesheets>
@@ -27,9 +30,6 @@
               </image>
             </ImageView>
           </left>
-          <right>
-            <!--                        menu-buttons here-->
-          </right>
         </BorderPane>
 
         <HBox VBox.vgrow="ALWAYS" id="body">

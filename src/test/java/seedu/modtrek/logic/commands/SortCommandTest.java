@@ -16,7 +16,7 @@ public class SortCommandTest {
 
     @Test
     public void sortSuccess() {
-        assertTrue(model.getSort().equals("SEMYEAR"));
+        assertTrue(model.getSort().equals("YEAR"));
         try {
             new SortCommand("grade").execute(model);
             assertTrue(model.getSort().equals("GRADE"));
@@ -24,14 +24,14 @@ public class SortCommandTest {
             assertFalse(true);
         }
         try {
-            new SortCommand("credit").execute(model);
-            assertTrue(model.getSort().equals("CREDIT"));
+            new SortCommand("credits").execute(model);
+            assertTrue(model.getSort().equals("CREDITS"));
         } catch (Exception e) {
             assertFalse(true);
         }
         try {
-            new SortCommand("semyear").execute(model);
-            assertTrue(model.getSort().equals("SEMYEAR"));
+            new SortCommand("year").execute(model);
+            assertTrue(model.getSort().equals("YEAR"));
         } catch (Exception e) {
             assertFalse(true);
         }
@@ -40,7 +40,7 @@ public class SortCommandTest {
     @Test
     public void equals() {
         SortCommand sortFirstCommand = new SortCommand("grade");
-        SortCommand sortSecondCommand = new SortCommand("credit");
+        SortCommand sortSecondCommand = new SortCommand("credits");
 
         // same object -> returns true
         assertTrue(sortFirstCommand.equals(sortFirstCommand));

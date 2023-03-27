@@ -23,6 +23,11 @@
     -fx-text-fill: -white;
 }
 
+.module-section-find-nav-label-placeholder {
+    -fx-font-family: 'Lexend Deca Semibold', sans-serif;
+    -fx-text-fill: -white;
+}
+
 .module-section-find-nav-filter-label {
     -fx-padding: 7 10;
 
@@ -58,6 +63,9 @@
     -fx-padding: 3;
     -fx-background-color: -dark-grey;
     -fx-background: -dark-grey;
+}
+.combo-box-base:hover {
+    -fx-opacity: 0.8;
 }
 .combo-box-popup .list-view {
     -fx-background-insets: 0;

@@ -96,7 +96,7 @@ public class UniqueModuleList implements Iterable<Module> {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
         moduleGroups = sortBySemYear();
-        sort = SortCommand.Sort.SEMYEAR;
+        sort = SortCommand.Sort.YEAR;
     }
 
     /**
@@ -113,7 +113,7 @@ public class UniqueModuleList implements Iterable<Module> {
 
         internalList.setAll(modules);
         moduleGroups = sortBySemYear();
-        sort = SortCommand.Sort.SEMYEAR;
+        sort = SortCommand.Sort.YEAR;
     }
 
     /**
@@ -228,7 +228,7 @@ public class UniqueModuleList implements Iterable<Module> {
         case GRADE:
             moduleGroups = sortByGrade();
             return sortByGrade();
-        case CREDIT:
+        case CREDITS:
             moduleGroups = sortByCredit();
             return sortByCredit();
         default:
