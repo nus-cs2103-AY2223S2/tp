@@ -20,7 +20,7 @@ title: Developer Guide
 - [Implementation](#implementation)
   <details>
   <summary>Features</summary>
-
+      
    - [New Contact feature](#new-contact-feature)
    - [Mark feature](#mark-feature)
    - [Unmark feature](#unmark-feature)
