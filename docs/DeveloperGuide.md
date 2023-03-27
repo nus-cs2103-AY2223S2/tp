@@ -761,7 +761,38 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+### Finding a person
+
+1. Finding a person while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    2. Test case: `find i/S1234567A`<br>
+       Person with the exact matching NRIC will be shown. It is case-insensitive.
+   
+    3. Test case: `find n/JAMES`<br>
+       Persons with names containing the string 'james' will be shown. It is case-insensitive.
+   
+    4. Test case: `find t/diabetic`<br>
+       Persons with `diabetic` tags will be shown. It is case-insensitive. 
+   
+    5. Test case: `find m/panadol`<br>
+       Persons that have been prescribed `panadol` will be shown. It is case-insensitive.
+
+    6. Test case: `find n/`<br>
+       Expected: No particular string has been input after the given prefix. Error details shown in the status message. Status bar remains the same.
+   
+    7. Test case: `find n/ t/`<br>
+          Expected: Multiple attributes have been input. Error details shown in the status message. Status bar remains the same.
+
+    8. Other incorrect delete commands to try: `find`, `find x`(no prefix have been given),<br />
+   , `find n/ i/`,  `find n/ m/ i/` `...` <br>
+       Expected: Similar to previous wrong commands.
+
+2. Returning to the full list of persons
+   1. List all persons using the `list` command to return back to the full list of persons in the database.
 
 ### Saving data
 
