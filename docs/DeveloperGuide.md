@@ -5,40 +5,40 @@ title: Developer Guide
 ## Table of Contents
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
-  -    <details>
-       <summary>Design</summary>
+  <details>
+  <summary>Design</summary>
 
-       - [Architecture](#architecture)
-       - [UI component](#ui-component)
-       - [Logic component](#logic-component)
-       - [Model component](#model-component)
-       - [Event component](#event-component)
-       - [Contact component](#contact-component)
-       - [Storage component](#storage-component)
+   - [Architecture](#architecture)
+   - [UI component](#ui-component)
+   - [Logic component](#logic-component)
+   - [Model component](#model-component)
+   - [Event component](#event-component)
+   - [Contact component](#contact-component)
+   - [Storage component](#storage-component)
 
-       </details>
+  </details>
 - [Implementation](#implementation)
-   -   <details>
-       <summary>Features</summary>
+  <details>
+  <summary>Features</summary>
       
-       - [New Contact feature](#new-contact-feature)
-       - [Mark feature](#mark-feature)
-       - [Unmark feature](#unmark-feature)
-       - [Reminder feature](#reminder-feature)
-       - [Linkcontact feature](#linkcontact-feature)
+   - [New Contact feature](#new-contact-feature)
+   - [Mark feature](#mark-feature)
+   - [Unmark feature](#unmark-feature)
+   - [Reminder feature](#reminder-feature)
+   - [Linkcontact feature](#linkcontact-feature)
 
-       </details>
+  </details>
 - [Appendix: Requirements](#appendix-requirements)
-  -    <details>
-       <summary>more</summary>
+  <details>
+  <summary>more</summary>
 
-       * [Product scope](#product-scope)
-       * [User stories](#user-stories)
-       * [Use cases](#use-cases)
-       * [Non-Functional Requirements](#non-functional-requirements)
-       * [Glossary](#glossary)
+   * [Product scope](#product-scope)
+   * [User stories](#user-stories)
+   * [Use cases](#use-cases)
+   * [Non-Functional Requirements](#non-functional-requirements)
+   * [Glossary](#glossary)
 
-       </details>
+  </details>
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -284,6 +284,13 @@ The `mark` feature is implemented with the following considerations:
   * Pros: Results in less coupling and in turn lower possibility of unintended change cascades.
   * Cons: May have performance issues in terms of memory usage and runtime.
 
+Below shows the activity diagram of the `mark` command:
+
+<img src="images/MarkActivityDiagram.png" width="200" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.2</b> Activity diagram of 'Mark'
+</div>
+
 ### Unmark feature
 
 The `unmark` feature allows for unmarking of the 'Mark' attribute in events should there be an accidental marking of an event.
@@ -377,7 +384,12 @@ The `revenue` feature is implemented with the following considerations:
   * Pros: Will maintain a low runtime complexity.
   * Cons: Hard to implement in the case that events are unmarked or deleted.
 
+Below shows the activity diagram of the `revenue` command:
 
+<img src="images/RevenueActivityDiagram.png" width="200" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.6</b> Activity diagram of 'Revenue'
+</div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Requirements

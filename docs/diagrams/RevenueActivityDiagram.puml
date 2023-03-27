@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes command;
+:Filter events that are marked;
+if () then ([no events are marked])
+    :display 0.00;
+else ([else])
+    :calculate total revenue;
+    :display revenue;
+endif
+stop
+@enduml
