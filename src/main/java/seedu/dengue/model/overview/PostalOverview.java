@@ -67,4 +67,18 @@ public class PostalOverview extends Overview {
         String rowPrefix = "\n" + makeWhitespace(MAX_INDEX_LEN) + GAP;
         return String.join(rowPrefix, locationNames);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof PostalOverview)) {
+            return false;
+        }
+
+        PostalOverview other = (PostalOverview) obj;
+        return this.analyst.equals(other.analyst);
+    }
 }

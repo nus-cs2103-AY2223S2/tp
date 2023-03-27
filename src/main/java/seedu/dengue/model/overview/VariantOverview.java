@@ -56,4 +56,18 @@ public class VariantOverview extends Overview {
         return String.format("%s" + GAP + "%" + maxSizeLen + "d",
                 bin.getName(), bin.getSize());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof VariantOverview)) {
+            return false;
+        }
+
+        VariantOverview other = (VariantOverview) obj;
+        return this.analyst.equals(other.analyst);
+    }
 }
