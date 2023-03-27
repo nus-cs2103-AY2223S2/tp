@@ -215,6 +215,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
+            logger.info("Opened help window.");
         } else {
             helpWindow.focus();
         }
@@ -226,6 +227,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleTimetable() {
         if (!timetableWindow.isShowing()) {
+            logger.info("Opened timetable window of current week.");
             timetableWindow.show();
             timetableWindow.fillInnerParts();
         } else {
@@ -241,6 +243,7 @@ public class MainWindow extends UiPart<Stage> {
         if (!reminderListWindow.isShowing()) {
             reminderListWindow.show();
             reminderListWindow.fillInnerParts();
+            logger.info("Opened reminder window.");
         } else {
             reminderListWindow.focus();
         }
@@ -254,6 +257,7 @@ public class MainWindow extends UiPart<Stage> {
         if (!statsWindow.isShowing()) {
             statsWindow.show();
             statsWindow.fillInnerParts();
+            logger.info("Opened statistics window");
         } else {
             statsWindow.focus();
         }
@@ -267,6 +271,7 @@ public class MainWindow extends UiPart<Stage> {
         if (!addressBookWindow.isShowing()) {
             addressBookWindow.show();
             addressBookWindow.fillInnerParts();
+            logger.info("Opened address book window.");
         } else {
             addressBookWindow.focus();
         }

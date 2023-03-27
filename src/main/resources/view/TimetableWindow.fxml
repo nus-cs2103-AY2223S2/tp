@@ -7,181 +7,47 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Timetable" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="800.0" onCloseRequest="#handleExit" title="Timetable" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <icons>
       <Image url="@/images/clock.png" />
    </icons>
    <scene>
-      <Scene>
+      <Scene fx:id="scene">
          <stylesheets>
             <URL value="@Extensions.css" />
          </stylesheets>
 
-         <VBox fx:id="timetable" minHeight="600.0" minWidth="800.0">
-            <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+         <VBox fx:id="contentContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0">
+            <MenuBar fx:id="menuBar">
                <Menu mnemonicParsing="false" text="File">
                   <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
                </Menu>
             </MenuBar>
 
-            <StackPane fx:id="commandBoxPlaceholder" prefHeight="25.0" prefWidth="800.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                  <StackPane fx:id="commandBoxPlaceholder" prefHeight="25.0" prefWidth="800.0" styleClass="pane-with-border">
                <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
                </padding>
             </StackPane>
 
-            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="50.0" prefHeight="50.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                  <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="50.0" prefHeight="50.0" styleClass="pane-with-border">
                <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
                </padding>
             </StackPane>
-
-            <AnchorPane>
-               <children>
-                  <HBox layoutX="230.0" layoutY="14.0" minHeight="41.0" minWidth="340.0" prefHeight="41.0" prefWidth="340.0">
-                     <children>
-                        <Text fx:id="year" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="166.67340087890625">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="5.0" top="5.0" />
-                           </HBox.margin>
-                        </Text>
-                        <Text fx:id="month" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="148.2734375">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="15.0" top="5.0" />
-                           </HBox.margin>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="30.0" layoutY="59.0" minHeight="26.0" minWidth="739.0" prefHeight="26.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mon" textAlignment="CENTER" wrappingWidth="60.53668212890625">
-                           <HBox.margin>
-                              <Insets left="5.0" right="25.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tue" textAlignment="CENTER" wrappingWidth="60.59765815734863">
-                           <HBox.margin>
-                              <Insets left="23.0" right="30.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wed" textAlignment="CENTER" wrappingWidth="60.53680419921875">
-                           <HBox.margin>
-                              <Insets left="23.0" right="30.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Thurs" textAlignment="CENTER" wrappingWidth="60.5367431640625">
-                           <HBox.margin>
-                              <Insets left="15.0" right="30.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fri" textAlignment="CENTER" wrappingWidth="60.53674125671387">
-                           <HBox.margin>
-                              <Insets left="15.0" right="30.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sat" textAlignment="CENTER" wrappingWidth="60.53674125671387">
-                           <HBox.margin>
-                              <Insets left="23.0" right="30.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sun" textAlignment="CENTER" wrappingWidth="60.5367431640625">
-                           <HBox.margin>
-                              <Insets left="30.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="30.0" layoutY="86.0" minHeight="20.0" minWidth="733.0" prefHeight="20.0" prefWidth="739.0">
-                     <children>
-                        <Text fx:id="day1" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="60.59765815734863">
-                           <HBox.margin>
-                              <Insets left="5.0" right="25.0" />
-                           </HBox.margin>
-                        </Text>
-                        <Text fx:id="day2" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="60.59765815734863">
-                           <HBox.margin>
-                              <Insets left="23.0" right="30.0" />
-                           </HBox.margin>
-                        </Text>
-                        <Text fx:id="day3" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="60.59765815734863">
-                           <HBox.margin>
-                              <Insets left="23.0" right="30.0" />
-                           </HBox.margin>
-                        </Text>
-                        <Text fx:id="day4" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="60.59765815734863">
-                           <HBox.margin>
-                              <Insets left="15.0" right="30.0" />
-                           </HBox.margin>
-                        </Text>
-                        <Text fx:id="day5" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="60.59765815734863">
-                           <HBox.margin>
-                              <Insets left="15.0" right="30.0" />
-                           </HBox.margin>
-                        </Text>
-                        <Text fx:id="day6" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="60.59765815734863">
-                           <HBox.margin>
-                              <Insets left="23.0" right="30.0" />
-                           </HBox.margin>
-                        </Text>
-                        <Text fx:id="day7" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="60.59765815734863">
-                           <HBox.margin>
-                              <Insets left="30.0" />
-                           </HBox.margin>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <AnchorPane layoutX="-10.0" layoutY="106.0" prefHeight="306.0" prefWidth="766.0">
-                     <children>
-                        <StackPane fx:id="deliveryJobListPanelPlaceholder1" layoutX="14.0" maxHeight="1.7976931348623157E308" prefHeight="305.0" prefWidth="102.0" style="-fx-background-color: DARKCYAN;" />
-                        <StackPane fx:id="deliveryJobListPanelPlaceholder2" layoutX="126.0" maxHeight="1.7976931348623157E308" minHeight="305.0" minWidth="102.0" style="-fx-background-color: DARKCYAN;" />
-                        <StackPane fx:id="deliveryJobListPanelPlaceholder3" layoutX="236.0" maxHeight="1.7976931348623157E308" minHeight="305.0" minWidth="102.0" style="-fx-background-color: DARKCYAN;" />
-                        <StackPane fx:id="deliveryJobListPanelPlaceholder4" layoutX="348.0" maxHeight="1.7976931348623157E308" minHeight="305.0" minWidth="102.0" style="-fx-background-color: DARKCYAN;" />
-                        <StackPane fx:id="deliveryJobListPanelPlaceholder5" layoutX="463.0" maxHeight="1.7976931348623157E308" minHeight="305.0" minWidth="102.0" style="-fx-background-color: DARKCYAN;" />
-                        <StackPane fx:id="deliveryJobListPanelPlaceholder6" layoutX="573.0" maxHeight="1.7976931348623157E308" minHeight="305.0" minWidth="102.0" style="-fx-background-color: DARKCYAN;" />
-                        <StackPane fx:id="deliveryJobListPanelPlaceholder7" layoutX="687.0" maxHeight="1.7976931348623157E308" prefHeight="305.0" prefWidth="102.0" style="-fx-background-color: DARKCYAN;" />
-                     </children>
-                  </AnchorPane>
-               </children>
+            <StackPane fx:id="timetablePlaceholder" maxHeight="1.7976931348623157E308" minWidth="800.0" VBox.vgrow="ALWAYS">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="3.0" />
                </VBox.margin>
-            </AnchorPane>
-            <StackPane fx:id="statusbarPlaceholder" style="-fx-background-color: GREY;" VBox.vgrow="NEVER" />
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </StackPane>
+            <StackPane fx:id="statusbarPlaceholder" alignment="CENTER_LEFT" maxHeight="25.0" prefHeight="25.0" style="-fx-background-color: GREY;" VBox.vgrow="ALWAYS" />
 
          </VBox>
       </Scene>
