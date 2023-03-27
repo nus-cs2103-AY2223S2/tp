@@ -28,13 +28,13 @@ public class LinkPlaneToLocationCommandFactory implements CommandFactory<LinkPla
     private static final String PLANE_PREFIX = "/pl";
 
     private static final String NO_LOCATION_INPUT_MESSAGE =
-            "No location has been entered. "
+            "No location has been entered.\n"
                     + "Please enter /lo followed by the location ID.";
     private static final String NO_LOCATION_FOUND_MESSAGE =
-            "No location has been found in the list. "
+            "No location has been found in the list.\n"
                     + "Please enter /lo followed by the location ID.";
     private static final String NO_PLANE_MESSAGE =
-            "No plane has been entered. "
+            "No plane has been entered.\n"
                     + "Please enter /pl followed by the plane ID.";
 
     private final Lazy<ReadOnlyItemManager<Location>> locationManagerLazy;

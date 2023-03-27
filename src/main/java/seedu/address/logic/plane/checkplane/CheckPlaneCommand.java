@@ -4,8 +4,7 @@ import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.exception.IndexOutOfBoundException;
-
+import seedu.address.model.plane.Plane;
 
 /**
  * The command that checks a plane's availability in the Wingman app.
@@ -28,18 +27,27 @@ public class CheckPlaneCommand implements Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         int index = Integer.parseInt(id);
-        boolean isAvailable;
-        try {
-            isAvailable = model.checkPlaneByIndex(index);
-        } catch (IndexOutOfBoundException e) {
-            return new CommandResult(
-                    String.format("Error: %s", e.getMessage())
-            );
-        }
-        if (isAvailable) {
-            return new CommandResult("This plane is available.");
+        if (index >=  model.getPlaneManager().size() || index < 0) {
+            throw new CommandException(String.format(
+                    "Index %s is out of bounds."
+                            + "Please enter a valid index.",
+                    index
+            ));
         } else {
-            return new CommandResult("This plane is unavailable.");
+            boolean isAvailable = model.checkPlaneByIndex(index);
+            Plane plane = model.getPlaneManager().getItem(index);
+
+            if (isAvailable) {
+                return new CommandResult(String.format(
+                        "%s is available.",
+                        plane.toString()
+                ));
+            } else {
+                return new CommandResult(String.format(
+                        "%s is unavailable.",
+                        plane.toString()
+                ));
+            }
         }
     }
 }

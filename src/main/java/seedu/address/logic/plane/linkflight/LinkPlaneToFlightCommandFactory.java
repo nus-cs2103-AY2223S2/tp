@@ -26,9 +26,11 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
     private static final String PLANE_USING_PREFIX = "/pl";
 
     private static final String NO_FLIGHT_MESSAGE =
-            "No flight has been entered. Please enter /fl for the flight.";
+            "No flight has been entered.\n"
+                    + "Please enter /fl followed by the flight ID.";
     private static final String NO_PLANE_MESSAGE =
-            "No plane has been entered. Please enter /pu for the plane being used in this link.";
+            "No plane has been entered.\n"
+                    + "Please enter /pl followed by the plane ID.";
 
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
     private final Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy;
@@ -96,7 +98,6 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
         ));
     }
 
-
     private boolean addPlane(
             Optional<String> planeIdOptional,
             FlightPlaneType type,
@@ -131,7 +132,6 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
         }
         return flightOptional.get();
     }
-
 
     @Override
     public LinkPlaneToFlightCommand createCommand(CommandParam param) throws ParseException, IndexOutOfBoundException {
