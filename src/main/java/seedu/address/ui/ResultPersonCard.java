@@ -53,19 +53,20 @@ public class ResultPersonCard extends UiPart<Region> {
         email.setText(person.getOptionalEmail().map(Email::toString).orElse(null));
         remark.setText(person.getOptionalRemark().map(Remark::toString).orElse(null));
 
-        List<Label> labels = Arrays.asList(phone, address, email, remark);
-        resizeLabels(labels);
-
         person.getOptionalEducation()
                 .map(education -> new Label("Education: " + education.value))
                 .ifPresent(label -> tags.getChildren().add(label));
         person.getSubjects().stream()
                 .sorted(Comparator.comparing(subject -> subject.subjectName))
                 .forEach(subject -> tags.getChildren().add(new Label(subject.subjectName)));
-
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        List<Label> labels = Arrays.asList(phone, address, email, remark);
+        resizeLabels(labels);
+        resizeFlowPanes(tags);
+
     }
 
     public void resizeLabels(List<Label> labels) {
@@ -76,6 +77,14 @@ public class ResultPersonCard extends UiPart<Region> {
                 label.setVisible(false);
                 label.setManaged(false);
             }
+        }
+    }
+
+    public void resizeFlowPanes(FlowPane flowpane) {
+        if (flowpane.getChildren().isEmpty()) {
+            System.out.println("there is empty flowpane");
+            flowpane.setVisible(false);
+            flowpane.setManaged(false);
         }
     }
 
