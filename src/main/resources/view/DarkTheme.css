@@ -140,6 +140,8 @@
     -fx-graphic-text-gap: 0;
     -fx-text-fill: black;
     -fx-label-padding: 5;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
 }
 
 .list-cell:filled:even {
