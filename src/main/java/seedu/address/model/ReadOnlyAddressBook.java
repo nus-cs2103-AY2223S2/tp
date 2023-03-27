@@ -20,8 +20,13 @@ public interface ReadOnlyAddressBook {
     int size();
 
     /**
-     * Returns the sum of the potential earnings
+     * Returns the sum of the potential earnings.
      */
     int getPotentialEarnings();
+
+    /**
+     * Returns the a string containing all tags.
+     */
+    String getTags();
 
 }

@@ -162,7 +162,8 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the summary window or focuses on it if it's already opened.
      */
     @FXML
-    public void handleSummary() {
+    public void handleSummary() throws CommandException, ParseException {
+        logic.execute("summary");
         if (!summaryWindow.isShowing()) {
             summaryWindow.show();
         } else {

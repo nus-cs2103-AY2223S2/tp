@@ -9,11 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -115,6 +112,25 @@ public class AddressBookTest {
             return totalValue;
         }
 
+        @Override
+        public String getTags() {
+            Iterator<Person> personIterator = persons.iterator();
+            Set<Tag> tags = new HashSet<>();
+            String tagsInString = "";
+            while (personIterator.hasNext()) {
+                tags.addAll(personIterator.next().getTags());
+            }
+            Iterator<Tag> tagIterator = tags.iterator();
+            while (tagIterator.hasNext()) {
+                Tag temp = tagIterator.next();
+                if (tagIterator.hasNext()) {
+                    tagsInString += temp + ", ";
+                } else {
+                    tagsInString += temp;
+                }
+            }
+            return tagsInString;
+        }
     }
 
 }
