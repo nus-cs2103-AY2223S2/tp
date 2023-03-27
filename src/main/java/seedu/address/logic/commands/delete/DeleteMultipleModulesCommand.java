@@ -15,7 +15,7 @@ import seedu.address.model.module.ModuleCode;
  * Deletes multiple modules identified using their resepective module codes
  * If one or more of the modules do not exist, nothing is deleted.
  */
-public class DeleteMultipleModulesCommand extends DeleteCommand implements MultipleEventsParser {
+public class DeleteMultipleModulesCommand extends DeleteCommand {
 
     public static final String MESSAGE_SUCCESS = "%1$s Modules deleted ( %2$s )";
 
