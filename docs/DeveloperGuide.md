@@ -678,14 +678,13 @@ Extensions:
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Can support 1000 meetings with same amount of lag as 10 meeting
-5. Commands should be intuitive to not technical people
-6. Should be clear that meeting and people are 2 seperate things
+4. Can support 1000 meetings with same amount of lag as 10 meeting.
+5. Commands should be intuitive to not technical people.
+6. Should be clear that meeting and people are 2 separate things.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Meetings**: Important dates with a duration and a place
 * **Find**: Searches by name field, case-insensitive, match all matching words individually
 * **GUI**: Graphic User Interface
@@ -693,6 +692,8 @@ Extensions:
 * **OS**: Operating System
 * **Java**: Programming Language by SUN Oracle
 * **CLI**: Command Line Interface
+* **LinkedList**: Data structure that consists of nodes that contain data and a reference to the next node
+* **Time complexity**: Amount of time taken by an algorithm to run, as a function of the length of the input
 
 --------------------------------------------------------------------------------------------------------------------
 
