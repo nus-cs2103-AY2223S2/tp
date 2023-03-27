@@ -869,41 +869,6 @@ by a person that is created as a ListView, similar to the [PersonListPanel](#per
 
 <br>
 
-#### Design considerations
-
-The ListView for list of modules are implemented in a similar manner to the one for [PersonListPanel](#personlistpanel).
-One major difference lies in the `prefHeight` attribute of the ListView set by the controller.
-
-The list of modules may grow or shrink as the program executes. Users may scroll down this list if it is unable to
-display all of its contents. However, we wanted to minimize GUI interaction since our primary users prefer a CLI. One
-could set the `VBox.vgrow` attribute of the container to "ALWAYS" and expand the table, but without limiting the
-`maxHeight` or `prefHeight` attribute for the ListView, it would grow all the way to the bottom of the panel showing
-too much of empty space in the ListView, negatively affecting its visuals.
-
-To get around this and make the height grow just enough to display all items in the list, controller will calculate
-the optimal height based on the number of entries and set it as the `prefHeight` of the ListView, minimizing the empty
-space.
-
-To let the users intuitively know that there are rooms for more modules to be added, ListView's `minHeight` has been set
-to `340` to reveal small amount of empty space. If the program window is resized too short, the ListView becomes a
-scrollable one.
-
-| ListView with long list of modules                                    | ListView with short list of modules                                    | ListView with list extending beyond window                                                   |
-|-----------------------------------------------------------------------|:-----------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| ![ui-listview-longlist](images/ui-diagrams/ui-listview-longlist.PNG)  | ![ui-listview-shortlist](images/ui-diagrams/ui-listview-shortlist.PNG) | ![ui-listview-longlist-shortwindow](images/ui-diagrams/ui-listview-longlist-shortwindow.PNG) |
-
-
-Here is a code snippet in `DetailedModule.java` responsible for this calculation:
-
-```java
-moduleListView.setPrefHeight((52 * modules.size()) + 2);
-```
-Note that value 52 is used because each ModuleListCard has a height of 50, with top and bottom borders of thickness 1.
-The addition of 2 at the back is a buffer. As you can tell, the values are hard coded and should be changed to take
-reference off the ModuleListCard directly, which would be fixed in upcoming updates.
-
-<br>
-
 ### **DetailedSkill**
 
 Controller class for Info Panel which holds detailed skill information about a person. Shows a list of skills possessed

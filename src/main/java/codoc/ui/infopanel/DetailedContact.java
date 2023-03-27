@@ -1,9 +1,6 @@
 package codoc.ui.infopanel;
 
-import codoc.logic.commands.exceptions.CommandException;
-import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.person.Person;
-import codoc.ui.MainWindow;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -23,33 +20,18 @@ public class DetailedContact extends DetailedInfo {
     @FXML
     private Label linkedin;
 
-    private MainWindow mainWindow;
+    private Person protagonist;
 
     /**
      * Creates a {@code DetailedContact} tab with the given {@code protagonist}.
      */
-    public DetailedContact(MainWindow mainWindow) {
+    public DetailedContact(Person protagonist) {
         super(FXML);
-        this.mainWindow = mainWindow;
-        Person protagonist = mainWindow.getLogic().getProtagonist();
+        this.protagonist = protagonist;
+        github.setText(protagonist.getGithub().value);
         email.setText(protagonist.getEmail().value);
         github.setText(protagonist.getGithub().value == null ? "Not Added" : "@" + protagonist.getGithub().value);
         linkedin.setText(protagonist.getLinkedin().value == null ? "Not Added" : protagonist.getLinkedin().value);
-    }
-
-    @FXML
-    private void viewContactTab() throws CommandException, ParseException {
-        mainWindow.clickExecuteCommand("view c");
-    }
-
-    @FXML
-    private void viewModulesTab() throws CommandException, ParseException {
-        mainWindow.clickExecuteCommand("view m");
-    }
-
-    @FXML
-    private void viewSkillsTab() throws CommandException, ParseException {
-        mainWindow.clickExecuteCommand("view s");
     }
 
 }

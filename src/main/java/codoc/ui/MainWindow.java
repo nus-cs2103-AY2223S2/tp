@@ -37,8 +37,8 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private InfoTab infoTab;
-
     private CourseListPanel courseListPanel;
+    private ClickListener clickListener;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -70,6 +70,8 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.clickListener = new ClickListener();
+        clickListener.setListener(this);
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -123,6 +125,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(this);
+        personListPanel.setClickListener(clickListener);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -134,7 +137,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        infoTab = new InfoTab(this);
+        infoTab = new InfoTab(logic.getProtagonist(), logic.getCurrentTab());
+        infoTab.setClickListener(clickListener);
         infoTabPlaceholder.getChildren().add(infoTab.getRoot());
 
         courseListPanel = new CourseListPanel();
@@ -199,7 +203,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            infoTab = new InfoTab(this);
+            infoTab = new InfoTab(logic.getProtagonist(), logic.getCurrentTab());
+            infoTab.setClickListener(this.clickListener);
             infoTabPlaceholder.getChildren().set(0, infoTab.getRoot());
 
             if (commandResult.isShowHelp()) {
@@ -218,7 +223,42 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    public void clickExecuteCommand(String commandText) throws CommandException, ParseException {
-        executeCommand(commandText);
+    /**
+     * MainWindow's own listener class that listens to click events from Ui components.
+     */
+    public class ClickListener implements UiEventListener<MainWindow> {
+
+        private MainWindow listener;
+
+        @Override
+        public void setListener(MainWindow mainWindow) {
+            this.listener = mainWindow;
+        }
+
+        @Override
+        public MainWindow getListener() {
+            if (this.listener == null) {
+                throw new RuntimeException("Error: Listener not assigned!");
+            }
+            return listener;
+        }
+
+        public void viewContact() throws CommandException, ParseException {
+            executeCommand("view c");
+        }
+
+        public void viewModule() throws CommandException, ParseException {
+            executeCommand("view m");
+        }
+
+        public void viewSkill() throws CommandException, ParseException {
+            executeCommand("view s");
+        }
+
+        public void viewIndex(String index) throws CommandException, ParseException {
+            executeCommand("view " + index);
+        }
+
     }
+
 }
