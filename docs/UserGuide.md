@@ -44,7 +44,7 @@ Fast Army Internal Lookup System (FAILS) is a **desktop app for managing the per
 
     - `list` : Lists all contacts.
 
-    - `add n/Jaden Ng p/91297723 e/jadend@gmail.com a/Smith street, block 13, #07-04 r/3SG u/alpha c/SIR pl/4` adds a new person `Jaden Ng` to the FAILS with the following information:
+    - `add n/Jaden Ng p/91297723 e/jadend@gmail.com a/Smith street, block 13, #07-04 r/3SG u/alpha c/SIR pl/4` adds a new person `Jaden Ng` to FAILS with the following information:
 
       | Field        | Value                          |
       |--------------|--------------------------------|
@@ -103,7 +103,7 @@ Format: `help`
 
 ### Adding a person : `add`
 
-Adds a person to the FAILS.
+Adds a person to FAILS.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON]`
 
@@ -115,7 +115,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ r/RANK [u/UNI
 
 Examples:
 
-- `add n/Jaden Ng p/91297723 e/jadend@gmail.com a/Smith street, block 13, #07-04 r/3SG u/alpha c/SIR pl/4` adds a new person `Jaden Ng` to the FAILS with the following information:
+- `add n/Jaden Ng p/91297723 e/jadend@gmail.com a/Smith street, block 13, #07-04 r/3SG u/alpha c/SIR pl/4` adds a new person `Jaden Ng` to FAILS with the following information:
 
   | Field        | Value                          |
   |--------------|--------------------------------|
@@ -128,7 +128,7 @@ Examples:
   | company      | SIR                            |
   | platoon      | 4                              |
 
-- `add n/Lawrence Tay t/platoon-leader e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 r/3SG u/801 t/allergy-seafood` adds a new person `Lawrence Tay` to the FAILS with the following information:
+- `add n/Lawrence Tay t/platoon-leader e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 r/3SG u/801 t/allergy-seafood` adds a new person `Lawrence Tay` to FAILS with the following information:
 
   | Field        | Value                  |
   |--------------|------------------------|
@@ -143,13 +143,13 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the FAILS.
+Shows a list of all persons in FAILS.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the FAILS.
+Edits an existing person in FAILS.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -188,7 +188,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the FAILS.
+Deletes the specified person from FAILS.
 
 Format: `delete INDEX`
 
@@ -198,12 +198,12 @@ Format: `delete INDEX`
 
 Examples:
 
-- `list` followed by `delete 2` deletes the 2nd person in the FAILS.
+- `list` followed by `delete 2` deletes the 2nd person in FAILS.
 - `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the FAILS.
+Clears all entries from FAILS.
 
 Format: `clear`
 
@@ -213,7 +213,7 @@ Undoes the last modification done to FAILS.
 
 <div markdown="block" class="alert alert-warning">
 
-:exclamation: **Caution:** Once the FAILS is closed, the undo history will be lost.
+:exclamation: **Caution:** Once FAILS is closed, the undo history will be lost.
 
 </div>
 
