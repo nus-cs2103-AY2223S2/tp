@@ -106,21 +106,21 @@ Add food item - add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]...
 Example Usage: add n/Broccoli u/STALK q/2 e/03-03-2033 t/VEGETABLES t/HEALTHY
 ```
 
+## Food-related Commands
 
-### Adding a food item: `add`
+### Adding a food: `add`
 
-Add food items into your fridge.
+Add a new food into your fridge.
 
-Format: `add`
+Keyword: `add`
 
 Examples:
-* `add Spinach`
+* `add n/Meiji Milk u/carton q/2 e/13-11-2025`
 
-Example: <br/>
-`add Spinach` returns
-```shell
-  You have successfully added Spinach into your fridge.
-```
+Result: <br/>
+`add n/Meiji Milk u/carton q/2 e/13-11-2025` displays
+
+![AddFood](images/UG/AddFood.png)
 
 ### Listing all food items : `list`
 
@@ -135,19 +135,50 @@ Example:
   listed all food
 ```
 
-### Listing all food items by their tag(s) : `listbytag`
+### Updating a food item : `update`
 
-Shows a list of all food item in WIFE by specified tag(s).
+Update  food items in your fridge.
 
-Format: `listbytag n/TAG NAME...`
+Format: `update <Old Item> /to <New Item>`
+
+* `Old Item`must be an item currently in the fridge
+
+Example: <br/>
+`update Meiji Milk /to Meiji Chocolate Milk` returns
+```markdown
+You have successfully updated Meiji Milk to Meiji Chocolate Milk
+```
+
+### Deleting a food item : `delete`
+
+Deletes the specified food item from WIFE.
+
+Format: `delete INDEX`
+
+* Deletes the food item at the specified `INDEX`.
+* The index refers to the index number shown in the displayed food item list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Result:
+
+`delete 1` displays
+
+![DeleteFood](images/UG/DeleteFood.png)
+
+## Tag-related Commands
+
+### Create a new tag: `createtag`
+
+Creates a new pre-defined tag in WIFE.
+
+Format: `createtag n/<tag Name>`
+- Creates new `Tag` with `Tag Name`
 
 Example:
-
-`listbytag n/Vegetables n/Healthy` returns
-```shell
-Listed all food with the following tags:
-[Vegetables]
-[Healthy]
+`createtag n/dairy` displays
+```
+Tag(s) successfully created:
+Dairy
 ```
 
 ### Tagging a food item: `tag`
@@ -158,15 +189,14 @@ Pre-Defined Tags:
 - Status - `USED`, `UNUSED`
 - Categories - `MEAT`, `DAIRY`, `VEGETABLES`
 
-Format: `tag <Index> /with <Tag Name>`
+Format: `tag <Index> n/ <Tag Name>`
 - Tag the food item of index `Index` with `Tag Name`
 - Index refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
 
 Example: <br/>
-`tag 1 /with VEGETABLES` returns
-```markdown
-Spinach {VEGETABLES}
-```
+`tag 1 n/dairy` returns
+
+![TagFood](images/UG/TagFood.png)
 
 ### Untagging a food item: `untag`
 
@@ -178,9 +208,10 @@ Format: `untag <index> n/<tag name>`
 
 Example:
 `untag 1 n/vegetables` displays
-```
-Vegetables successfully untagged from Spinach
-```
+
+![UntagFood](images/UG/UntagFood.png)
+
+UntagFood
 
 ### Listing your tags: `listtag`
 
@@ -246,19 +277,19 @@ Usage is the same as `inc`, with the only difference is being to decrease the qu
   Deleted Food: Broccoli (expires on: 03-03-2033)
 ```
 
-Deletes the specified food item from WIFE.
+### Listing all food items by their tag(s) : `listbytag`
+Shows a list of all food item in WIFE by specified tag(s).
 
-Format: `delete INDEX`
+Format: `listbytag n/TAG NAME...`
 
-* Deletes the food item at the specified `INDEX`.
-* The index refers to the index number shown in the displayed food item list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Example:
 
-Examples:
+`listbytag n/Vegetables n/Healthy` returns
 
-`delete 1` returns
 ```shell
-  Deleted Food: Broccoli (expires on: 03-03-2033)
+Listed all food with the following tags:
+[Vegetables]
+[Healthy]
 ```
 
 ### Deleting a food item by their tag(s) : `delbytag`
@@ -276,7 +307,7 @@ Broccoli (expires on: 03-03-2033)
 Meiji Milk (expires on: 03-03-2033)
 ```
 
-### Deleting a food item by their tag(s) : `deltag`
+### Deleting tag(s) : `deltag`
 
 Deletes specified defined tags from WIFE. It also removes all the tags that are tagged on the food item, if any.
 
@@ -290,6 +321,8 @@ Tag successfully deleted:
 [Dairy]
 [Healthy]
 ```
+
+## General Commands
 
 ### Exiting the program : `exit`
 

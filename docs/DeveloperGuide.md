@@ -105,7 +105,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `WifeParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -122,7 +122,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `WifeParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `WifeParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -410,7 +410,6 @@ The following activity diagram shows the usage of the `view` command.
 
 **insert activity diagram
 
-
 #### \[Implemented\] List Food by tag.
 
 **Overview**
@@ -447,12 +446,54 @@ The second stage requires ListByTagCommand#execute() to be called.
 **Usage Scenario**
 
 1. The user specifies tags of the food item to be displayed.
-2. If the tag does not exist in `UniqueTagList`, an error response is returned and users will be prompted to key in the command with the valid tag name.
-3. If a valid tag is specified, the list indexed food item with the specified tags will be displayed.
-4. If the specific quantity is lesser than or equal to 0, an error response is returned and users will be prompted to
-   key in the command with a valid quantity.
+2. If no tag is specified, an error response is returned to prompt user to follow the command format.
+3. If the tag does not exist in `UniqueTagList`, an error response is returned and users will be prompted to key in the command with the valid tag name.
+4. If a valid tag is specified, the indexed food item with the specified tags will be displayed.
 
 The following activity diagram shows the usage of the `listbytag` command.
+
+**insert activity diagram
+
+#### \[Implemented\] Delete Food by tag.
+
+**Overview**
+The delete by tag feature is meant to be delete all the food by the specified tags.
+
+The following UML diagram shows `Tag` and its associated class.
+
+*** insert uml
+
+**Design considerations**
+
+* **Alternative 1:** The command parameter will be the tag name of the food to delete
+    * Pros:
+        * Easily implemented. The command parameter will delete the food with the specified tag name
+    * Cons:
+        * May not be convenient for the user, as the command allows only 1 tag name at a time.
+
+* **Alternative 2 (Current implementation):** The command parameter will be the tag name of the food to delete.
+    * Pros:
+        * Convenient for the user to key in multiple tag names to display.
+    * Cons:
+        * Parameter for multiple tag names must be checked that it is not empty
+        * Users will have to use separate commands by `n/` which maybe a hassle
+
+_{more aspects and alternatives to be added}_
+
+**Implementation**
+The first stage of the implementation is parsing the user input to `DeleteByTagCommand`. `DeleteByTagCommandParser` is used
+to parse and check whether the user input is valid. After which a `DeleteByTagCommand` object is created with the specified tag name.
+
+The second stage requires DeleteByTagCommand#execute() to be called.
+
+**Usage Scenario**
+
+1. The user specifies tags of the food item to be delete.
+2. If no tag is specified, an error response is returned to prompt user to follow the command format.
+3. If the tag does not exist in `UniqueTagList`, an error response is returned and users will be prompted to key in the command with the valid tag name.
+4. If a valid tag is specified, the food item with the specified tags will be deleted.
+
+The following activity diagram shows the usage of the `delbytag` command.
 
 **insert activity diagram
 
@@ -700,8 +741,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. WIFE is empty.
   * 1a1. WIFE displays a message that tells the User that there are no items and cannot delete specified item. <br/>
     Use case ends. 
-* 1b. User selects an item that does not exist.
-  * 1b1. WIFE displays a message that tells the User that specified item does not exist. <br/>
+* 1b. User selects an index that is more than the food items in WIFE.
+  * 1b1. WIFE displays a message that tells the User that the food item index provided is invalid. <br/>
     Use case ends.
 
 ### **Use case UC04: View help**
@@ -805,6 +846,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### **Use case UC09: Decrease the quantity of a food item**
 The same as Use Case UC08: Increment the quantity of a food item, except that it is to decrease the quantity of a food 
 item.
+
+### **Use case UC10: List food items by tags**
+
+**MSS**
+
+1. User requests to view food items with specified tags.
+2. WIFE displays all the food items with the specified tags.
+   Use case ends.
+
+**Extensions**
+
+* 1a. User requests an invalid tag.
+    * 1a1. WIFE displays a message that tells the User that there are no food item tagged with the specified tag.
+      Use case ends.
+
+* 1b. The user specify valid and invalid tags togther.
+    * 1b1. WIFE displays food items with valid tags. It also tells User which tag is valid or invalid.
+      Use case ends.
+
+### **Use case UC11: Delete food items by tags**
+
+**MSS**
+
+1. User requests to delete food items with specified tags.
+2. WIFE deletes and displays all the food items with the specified tags.
+   Use case ends.
+
+**Extensions**
+
+* 1a. User requests an invalid tag.
+    * 1a1. WIFE displays a message that tells the User that there are no food item tagged with the specified tag to be deleted.
+      Use case ends.
+
+* 1b. The user specify valid and invalid tags togther.
+    * 1b1. WIFE deletes and displays food items with valid tags.
+      Use case ends.
+
+### **Use case UC12: Delete tags**
+
+**MSS**
+
+1. User requests to delete pre-defined tags in WIFE.
+2. WIFE deletes pre-defined tags in WIFE and untag itself from the food items. It then tells the users the tags that are deleted
+   Use case ends.
+
+**Extensions**
+
+* 1a. User requests an invalid tag.
+    * 1a1. WIFE displays a message that tells the User that the tag specified is does not exit in WIFE
+      Use case ends.
+
+* 1b. The user specify valid and invalid tags togther.
+    * 1b1. WIFE ignores invalid tags.
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
