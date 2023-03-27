@@ -30,6 +30,7 @@ public class NameTest {
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
         assertFalse(Name.isValidName("peter  parker")); // consecutive whitespaces
         assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidName(" peter")); // leading space
         assertFalse(Name.isValidName("peter ")); // trailing space
 
         // valid name
