@@ -18,7 +18,7 @@
 <?import javafx.scene.chart.CategoryAxis?>
 
 
-<TabPane style="-fx-background-color: white; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane fx:id="fullTabs" style="-fx-background-color: white; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <Tab fx:id="tab1" closable="false" styleClass="list_tab" text="Text">
         <VBox>
         <Label fx:id="title" styleClass="title_label" text="Score List" />
