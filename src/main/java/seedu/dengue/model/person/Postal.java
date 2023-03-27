@@ -9,7 +9,6 @@ import static seedu.dengue.commons.util.AppUtil.checkArgument;
  */
 public class Postal {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Postal codes should only contain numbers or start with S, and it must be 6 digits long,\n" +
                     " beginning with a valid two-digit postal sector.";
