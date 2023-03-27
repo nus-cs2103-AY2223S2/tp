@@ -129,15 +129,17 @@ Refer to the [Features](#6-features) below for details of each command.
 
 ### 6.1 Viewing help : `help`
 
-Shows a message explaining how to access the help page, or shows the usage instructions of a specified command.
-
 If you are lost while using ConnectUS, simply use the `help` command!
 
 Using the `help` command alone will show a message explaining how to access this User Guide.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+If you want to know the usage instructions of a specific command, simply use `help [COMMAND]`, where `[COMMAND]` is the command that you need help with.
+
+Format: `help [COMMAND]`
+
+Examples: `help`, `help add`, `help list`
 
 [↑ Back to top](#2-table-of-contents)
 
