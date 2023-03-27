@@ -25,7 +25,7 @@ emails are sent during working hours, so that subordinates will not be disturbed
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1.2 Setting up, getting started
+### 1.2 Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -42,13 +42,13 @@ by [se-education.org](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+### 1.4 Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 2. Design
 
 <div markdown="span" class="alert alert-primary">
 
@@ -1062,7 +1062,7 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-3_{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
 ### 6.2 Deleting a person
 
