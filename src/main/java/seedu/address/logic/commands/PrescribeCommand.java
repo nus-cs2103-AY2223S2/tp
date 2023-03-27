@@ -8,11 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.PrescribeCommandParser;
 import seedu.address.model.Model;
-import seedu.address.model.prescription.Medication;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
@@ -28,18 +27,17 @@ public class PrescribeCommand extends Command {
     //@@author Jeffry Lum-reused
     //Reused from https://nus-cs2103-ay2223s2.github.io/tp/tutorials/AddRemark.html
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Changes current medication information of the person identified by their NRIC. "
-            + "Existing medication information will be overwritten by the input.\n"
-            + "You may clear the medication by leaving medication and cost fields empty\n"
+            + ": Attaches a medication (and its cost) to a person identifed by their NRIC"
             + "Parameters: " + PREFIX_NRIC + "NRIC "
-            + PREFIX_MEDICATION + "[MEDICATION] \n"
-            + PREFIX_COST + "[COST] \n"
+            + PREFIX_MEDICATION + "MEDICATION"
+            + PREFIX_COST + "COST\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "S1234567A "
-            + PREFIX_MEDICATION + "1 paracetamol "
-            + PREFIX_COST + "1";
+            + PREFIX_MEDICATION + "paracetamol "
+            + PREFIX_COST + "3.5";
 
-    public static final String MESSAGE_SUCCESS = "Medication of Person Changed!: %1$s";
+    public static final String MESSAGE_ADD_SUCCESS = "Prescription of Patient changed!: %1$s";
+    public static final String MESSAGE_EDIT_SUCCESS = "Prescription of Patient edited!: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "This patient does not exist.";
 
     public final Nric nric;
@@ -47,7 +45,7 @@ public class PrescribeCommand extends Command {
 
     /**
      * @param nric of the person in the filtered person list to edit
-     * @param prescription to be changed to
+     * @param prescription to add
      */
     public PrescribeCommand(Nric nric, Prescription prescription) {
         requireAllNonNull(nric, prescription);
@@ -82,23 +80,42 @@ public class PrescribeCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_PERSON);
         }
 
+        boolean isNewPrescription = true;
+        Set<Prescription> patientPrescriptions = patientToEdit.getPrescriptions();
+
+        // todo use streams
+        for (Prescription p : patientPrescriptions) {
+            if (p.getMedication().equals(prescription.getMedication())) {
+                isNewPrescription = false;
+                patientPrescriptions.remove(p);
+                break;
+            }
+        }
+
+
+        // todo check for duplicates
+        patientPrescriptions.add(prescription);
+
         Patient editedPerson = new Patient(
                 patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(), patientToEdit.getNric(),
-                patientToEdit.getAddress(), prescription, patientToEdit.getTags(),
+                patientToEdit.getAddress(), patientPrescriptions,
+                patientToEdit.getTags(),
                 patientToEdit.getPatientAppointments(),
                 patientToEdit.getRole());
 
         model.setPerson(patientToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        return new CommandResult(generateSuccessMessage(editedPerson, isNewPrescription));
     }
 
     /**
      * Generates a command execution success message when prescription is changed
      * {@code personToEdit}.
      */
-    private String generateSuccessMessage(Person personToEdit) {
-        return String.format(MESSAGE_SUCCESS, personToEdit);
+    private String generateSuccessMessage(Person personToEdit, boolean isNewPrescription) {
+        return isNewPrescription
+                ? String.format(MESSAGE_ADD_SUCCESS, personToEdit)
+                : String.format(MESSAGE_EDIT_SUCCESS, personToEdit);
     }
     //@@author Jeffry Lum
 

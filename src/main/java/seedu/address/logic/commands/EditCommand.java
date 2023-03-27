@@ -120,11 +120,11 @@ public class EditCommand extends Command {
 
         if (personToEdit.isPatient()) {
             Patient patientToEdit = (Patient) personToEdit;
-            Prescription updatedPrescription = editPersonDescriptor.getPrescription()
-                    .orElse(patientToEdit.getPrescription());
+            Set<Prescription> updatedPrescriptions = editPersonDescriptor.getPrescriptions()
+                    .orElse(patientToEdit.getPrescriptions());
             ArrayList<Appointment> patientAppointments = patientToEdit.getPatientAppointments();
 
-            return new Patient(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress, updatedPrescription,
+            return new Patient(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress, updatedPrescriptions,
                     updatedTags, patientAppointments, role);
         }
 
@@ -166,7 +166,7 @@ public class EditCommand extends Command {
         private Email email;
         private Nric nric;
         private Address address;
-        private Prescription prescription;
+        private Set<Prescription> prescriptions;
         private Set<Tag> tags;
         private ArrayList<Appointment> appointments;
         private Role role;
@@ -183,7 +183,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setNric(toCopy.nric);
             setAddress(toCopy.address);
-            setPrescription(toCopy.prescription);
+            setPrescription(toCopy.prescriptions);
             setTags(toCopy.tags);
             setAppointments(toCopy.appointments);
             setRole(toCopy.role);
@@ -228,12 +228,16 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setPrescription(Prescription prescription) {
-            this.prescription = prescription;
+        /**
+         * Sets {@code prescriptions} to this object's {@code prescriptions}.
+         * A defensive copy of {@code prescriptions} is used internally.
+         */
+        public void setPrescription(Set<Prescription> prescriptions) {
+            this.prescriptions = (prescriptions != null) ? new HashSet<>(prescriptions) : null;
         }
 
-        public Optional<Prescription> getPrescription() {
-            return Optional.ofNullable(prescription);
+        public Optional<Set<Prescription>> getPrescriptions() {
+            return (prescriptions != null) ? Optional.of(Collections.unmodifiableSet(prescriptions)) : Optional.empty();
         }
 
         public void setNric(Nric nric) {
@@ -304,7 +308,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getNric().equals(e.getNric())
                     && getAddress().equals(e.getAddress())
-                    && getPrescription().equals(e.getPrescription())
+                    && getPrescriptions().equals(e.getPrescriptions())
                     && getTags().equals(e.getTags());
         }
     }

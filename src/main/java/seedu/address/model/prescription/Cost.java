@@ -24,7 +24,6 @@ public class Cost {
         checkArgument(isValidCost(cost), MESSAGE_CONSTRAINTS);
         value = Float.parseFloat(cost);
     }
-    public static final Cost EMPTY_COST = new Cost("0");
 
     /**
      * Returns true if a given string is a valid cost

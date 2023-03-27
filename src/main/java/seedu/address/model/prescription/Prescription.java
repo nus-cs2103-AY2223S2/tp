@@ -21,20 +21,9 @@ public class Prescription {
         this.medication = medication;
         this.cost = cost;
     }
-
-    public static final Prescription EMPTY_PRESCRIPTION = new Prescription(Medication.EMPTY_MEDICATION,
-            Cost.EMPTY_COST);
-
-    /**
-     * @return true if its an empty prescription
-     */
-    public boolean isEmpty() {
-        return this.medication.isEmpty() && this.cost.isEmpty();
-    }
-
     @Override
     public String toString() {
-        return String.format("[$%s], %s", cost.toString(), medication.toString());
+        return String.format("%s[$%s]", medication.toString(), cost.toString());
     }
 
     @Override
@@ -52,4 +41,11 @@ public class Prescription {
                 && cost.equals(otherPrescription.cost);
     }
 
+    public Medication getMedication() {
+        return medication;
+    }
+
+    public Cost getCost() {
+        return cost;
+    }
 }

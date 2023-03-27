@@ -36,7 +36,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String nric;
     private final String address;
-    private final JsonAdaptedPrescription prescription;
+    private final List<JsonAdaptedPrescription> prescriptions = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final ArrayList<JsonAdaptedAppointment> patientAppointments = new ArrayList<>();
     private final String role;
@@ -48,7 +48,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("nric") String nric,
-            @JsonProperty("address") String address, @JsonProperty("prescription") JsonAdaptedPrescription prescription,
+            @JsonProperty("address") String address,
+            @JsonProperty("prescriptions") List<JsonAdaptedPrescription> prescriptions,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("patientAppointments") ArrayList<JsonAdaptedAppointment> patientAppointments,
             @JsonProperty("role") String role) {
@@ -57,7 +58,9 @@ class JsonAdaptedPerson {
         this.email = email;
         this.nric = nric;
         this.address = address;
-        this.prescription = prescription;
+        if (prescriptions != null) {
+            this.prescriptions.addAll(prescriptions);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -83,12 +86,12 @@ class JsonAdaptedPerson {
         if (source.isPatient()) {
             Patient sourcePatient = (Patient) source;
 
-            prescription = new JsonAdaptedPrescription(sourcePatient.getPrescription());
+            prescriptions.addAll(sourcePatient.getPrescriptions().stream()
+                    .map(JsonAdaptedPrescription::new)
+                    .collect(Collectors.toList()));
             patientAppointments.addAll(sourcePatient.getPatientAppointments().stream()
                     .map(JsonAdaptedAppointment::new)
                     .collect(Collectors.toList()));
-        } else {
-            prescription = new JsonAdaptedPrescription(Prescription.EMPTY_PRESCRIPTION);
         }
 
         role = source.getRole().role;
@@ -156,24 +159,23 @@ class JsonAdaptedPerson {
 
         // Return a new Patient object if Role field is "Patient". Otherwise, return new Doctor object.
         if (role.toString().equals("Patient")) {
+
+            final List<Prescription> personPrescriptions = new ArrayList<>();
+            for (JsonAdaptedPrescription prescription : prescriptions) {
+                personPrescriptions.add(prescription.toModelType());
+            }
+
+            final Set<Prescription> modelPrescriptions = new HashSet<>(personPrescriptions);
+
             final ArrayList<Appointment> appointments = new ArrayList<>();
             for (JsonAdaptedAppointment appointment : patientAppointments) {
                 appointments.add(appointment.toModelType());
             }
 
-
-
-            if (prescription == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                        Prescription.class.getSimpleName()));
-            }
-
-            final Prescription modelPrescription = prescription.toModelType();
-
             final ArrayList<Appointment> modelAppointments = new ArrayList<>(appointments);
 
-            return new Patient(modelName, modelPhone, modelEmail, modelNric, modelAddress, modelPrescription, modelTags,
-                    modelAppointments, modelRole);
+            return new Patient(modelName, modelPhone, modelEmail, modelNric, modelAddress, modelPrescriptions,
+                    modelTags, modelAppointments, modelRole);
         } else {
             final ArrayList<Appointment> modelAppointments = new ArrayList<>();
             return new Doctor(modelName, modelPhone, modelEmail, modelNric, modelAddress, modelTags, modelAppointments,

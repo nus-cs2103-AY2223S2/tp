@@ -4,28 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Patient's current medication
+ * Represents a Patient's medication
  * Guarantees: immutable; is valid as declared in {@link #isValidMedication(String)}
  */
 public class Medication {
 
-    private static final String DELIMITER = ";";
-    public static final String MESSAGE_CONSTRAINTS = "Medication should be of the format:\n"
-            + "qty medication\n"
-            + "If you would like to prescribe multiple medications, insert " + DELIMITER + " between each string.";
+    public static final String MESSAGE_CONSTRAINTS = "Medication must contain only alphanumeric characters and spaces.";
 
-    /*
-     * Accepts one of the following 2 cases:
-     * An empty string
-     * number medication[;number medication]*
-     */
-    // ^$|\\d+ [^+;+]+(;\\s*\\d+ [^;]+)*
-    public static final String VALIDATION_REGEX = "^$|\\d+ [^+" + DELIMITER + "+]+(" + DELIMITER
-            + "\\s*\\d+ [^" + DELIMITER + "]+)*";
+    public static final String VALIDATION_REGEX = "^[\\w][\\w ]+$";
 
     public final String value;
-
-    public static final Medication EMPTY_MEDICATION = new Medication("");
 
     /**
      * Constructs a {@code Medication}.
@@ -43,13 +31,6 @@ public class Medication {
      */
     public static boolean isValidMedication(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * @return true if its an empty medication
-     */
-    public boolean isEmpty() {
-        return value.length() == 0;
     }
 
     @Override
