@@ -14,7 +14,6 @@ import seedu.dengue.model.person.Person;
  */
 public class VariantOverview extends Overview {
     private static final String VARIANT_TITLE = "Overview by Variant";
-    private static final int MAX_VARIANT_NAME_LEN = 5; // length of "DENV1", since all the same
 
     private VariantAnalyst analyst;
 
@@ -54,7 +53,7 @@ public class VariantOverview extends Overview {
     @Override
     public String makeBinFormat(DataBin bin) {
         int maxSizeLen = String.valueOf(getAnalyst().getTotal()).length();
-        return String.format("%" + MAX_VARIANT_NAME_LEN + "s: %" + maxSizeLen + "d",
+        return String.format("%s" + GAP + "%" + maxSizeLen + "d",
                 bin.getName(), bin.getSize());
     }
 }

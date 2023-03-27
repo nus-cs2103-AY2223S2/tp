@@ -2,6 +2,7 @@ package seedu.dengue.model.overview;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import seedu.dengue.logic.analyst.Analyst;
 import seedu.dengue.logic.analyst.DataBin;
@@ -11,6 +12,9 @@ import seedu.dengue.model.person.Person;
  * The API of the Overview list.
  */
 public abstract class Overview {
+    protected static final int MAX_INDEX_LEN = 4; // _12.
+    protected static final String GAP = "     "; // whitespace of length 5
+
     /**
      * Returns the title {@code String} of the overview.
      *
@@ -52,6 +56,20 @@ public abstract class Overview {
      */
     public abstract String makeBinFormat(DataBin bin);
 
+    protected static String makeWhitespace(int length) {
+        if (length <= 0) {
+            return "";
+        }
+
+        return Stream.iterate(" ", x -> x).limit(length).collect(Collectors.joining());
+    }
+
+    private String makeBinPrefix(int x) {
+        String index = x + ".";
+        int paddingNeeded = MAX_INDEX_LEN - index.length();
+        return index + makeWhitespace(paddingNeeded);
+    }
+
     /**
      * Returns a {@code String} of all the bins recorded in the overview.
      * Meant for display to the user.
@@ -59,8 +77,9 @@ public abstract class Overview {
      * @return Multi-line string representation of all present bins.
      */
     public String getOverviewContent() {
-        return getAnalyst().getSortedBins().stream()
-                .map(this::makeBinFormat)
+        List<DataBin> sortedBins = getAnalyst().getSortedBins();
+        return Stream.iterate(1, i -> i + 1).limit(sortedBins.size())
+                .map(i -> makeBinPrefix(i) + GAP + makeBinFormat(sortedBins.get(i - 1)))
                 .collect(Collectors.joining("\n"));
     }
 }

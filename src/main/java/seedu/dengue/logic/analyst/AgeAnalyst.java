@@ -11,7 +11,6 @@ import seedu.dengue.model.person.Person;
  */
 public class AgeAnalyst extends Analyst {
     private static final int NUM_AGE_GROUPS = 20; // number of age groups, 0-9 to 190-199
-    private static final int MAX_AGE_LEN = 3; // length of "199", since all the same
 
     private final int total;
     private final ArrayList<DataBin> bins;
@@ -28,7 +27,7 @@ public class AgeAnalyst extends Analyst {
 
         IntStream.iterate(0, i -> i + 1).limit(NUM_AGE_GROUPS)
                         .forEach(i -> bins.add(new DataBin(
-                                String.format("%" + MAX_AGE_LEN + "d - %-" + MAX_AGE_LEN + "d",
+                                String.format("%d - %d",
                                         i * 10, i * 10 + 9))));
 
         persons.forEach(person -> {
