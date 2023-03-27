@@ -14,7 +14,7 @@ public class Phone {
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}|^\\s*";
     private static final Phone NO_PHONE = new Phone();
-    public final String value;
+    private final String value;
 
     /**
      * Constructs a {@code Phone}.

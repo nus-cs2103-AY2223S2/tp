@@ -55,13 +55,13 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         System.out.println(person.getPhone().isEmptyPhone());
         if (!person.getPhone().isEmptyPhone()) {
-            phone.setText(person.getPhone().value);
+            phone.setText(person.getPhone().toString());
         } else {
             phone.setVisible(false);
             phone.setManaged(false);
         }
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        address.setText(person.getAddress().toString());
+        email.setText(person.getEmail().toString());
         major.setText(person.getMajor().majorStudy);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
