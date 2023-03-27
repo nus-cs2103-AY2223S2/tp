@@ -28,7 +28,7 @@ public class ListLeavesByEmployeeCommand extends Command {
     private final Id employeeId;
 
     /**
-     * Creates a ListLeavesByEmployee to list all leaves by the
+     * Creates a ListLeavesByEmployeeCommand to list all leaves by the
      * specified {@code Employee}
      * @param employeeId
      */
