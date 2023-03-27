@@ -34,10 +34,11 @@ This user guide will help you get up to speed in no time!
     * [Link Contact to Event](#link-contact-to-event)
     * [Mark Event as Done](#mark-event)
     * [Unmark an Event](#unmark-event)
-    * [View Event List](#list-all-events)
+    * [List all Events](#list-all-events)
     * [View Rate](#view-rate)
     * [View Total Revenue](#view-total-revenue)
     * [View Upcoming Events](#view-upcoming-events)
+    * [Saving data](#saving-data)
     </details>
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
@@ -305,10 +306,7 @@ Assume the current date and time is 22-03-2023 11:00.
     * 24-03-2023 the whole day
   - Note that 24-03-2023 is within 2 days of 22-03-2023, so events on 24-03-2023 that start more than 48 hours from the current date and time are displayed.
 
-
---------------------------------------------------------------------------------------------------------------------
-
-### Saving the data
+### Saving data: `revenue` <a id = "saving-data"></a>
 
 Paidlancers data are saved in the hard disk automatically on command issue. There is no need to save manually.
 
@@ -344,10 +342,11 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 | [Link Contact to Event](#link-contact-to-event) |                          `linkcontact INDEX CONTACT`                          |                                               `linkcontact 2 91234567`                                                |
 |        [Mark Event as Done](#mark-event)        |                                 `mark INDEX`                                  |                                                       `mark 2`                                                        |
 |        [Unmark an Event](#unmark-event)         |                                `unmark INDEX`                                 |                                                      `unmark 2`                                                       |
-|       [View Event List](#list-all-events)       |                                    `list`                                     |                                                        `list`                                                         |
+|       [List all Events](#list-all-events)       |                                    `list`                                     |                                                        `list`                                                         |
 |             [View Rate](#view-rate)             |                                 `rate INDEX`                                  |                                                       `rate 2`                                                        |
 |    [View Total Revenue](#view-total-revenue)    |                                   `revenue`                                   |                                                       `revenue`                                                       |
 |  [View Upcoming Events](#view-upcoming-events)  |                                 `remind DAYS`                                 |                                                      `remind 2`                                                       |
+|           [Saving data](#saving-data)           |                                      NIL                                      |                                                          NIL                                                          |
 
 <div style="position: fixed; font-size: large; bottom: 25px; right: 50px; background-color: #d8d8d8">
   <a href="#top">Back to top</a>
