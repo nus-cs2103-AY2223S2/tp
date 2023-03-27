@@ -5,8 +5,6 @@ import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_STARTDATE;
 
-import java.util.Optional;
-
 import seedu.dengue.commons.core.index.Index;
 import seedu.dengue.logic.commands.DeleteCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
@@ -67,16 +65,24 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         }
     }
 
+    /**
+     * Returns true if at least one of the prefixes for STARTDATE, ENDDATE is used in conjunction with DATE
+     * in the given {@code ArgumentMultimap}.
+     */
     private static boolean hasMixedDates(ArgumentMultimap argumentMultimap) {
-        return argumentMultimap.getValue(PREFIX_DATE).isPresent() &
-                (argumentMultimap.getValue(PREFIX_STARTDATE).isPresent() |
-                        argumentMultimap.getValue(PREFIX_ENDDATE).isPresent());
+        return argumentMultimap.getValue(PREFIX_DATE).isPresent()
+                & (argumentMultimap.getValue(PREFIX_STARTDATE).isPresent()
+                | argumentMultimap.getValue(PREFIX_ENDDATE).isPresent());
     }
 
+    /**
+     * Returns true if none of the prefixes for STARTDATE, ENDDATE or DATE has a non-empty value
+     * in the given {@code ArgumentMultimap}.
+     */
     private static boolean noDateProvided(ArgumentMultimap argumentMultimap) {
-        return argumentMultimap.getValue(PREFIX_DATE).isEmpty() &
-                argumentMultimap.getValue(PREFIX_STARTDATE).isEmpty() &
-                argumentMultimap.getValue(PREFIX_ENDDATE).isEmpty();
+        return argumentMultimap.getValue(PREFIX_DATE).isEmpty()
+                & argumentMultimap.getValue(PREFIX_STARTDATE).isEmpty()
+                & argumentMultimap.getValue(PREFIX_ENDDATE).isEmpty();
     }
 
     private static boolean dateHasIndex(String date) {

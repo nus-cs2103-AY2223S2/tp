@@ -92,7 +92,7 @@ public class DeleteCommand extends Command {
         assert date.isPresent();
         List<Person> referenceCopy = new ArrayList<>(lastShownList);
         int numDeleted = 0;
-        PersonContainsDatePredicate predicate = new PersonContainsDatePredicate(date.get());
+        PersonContainsDatePredicate predicate = new PersonContainsDatePredicate(date);
         for (Person person : referenceCopy) {
             if (predicate.test(person)) {
                 model.deletePerson(person);

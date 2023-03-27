@@ -13,6 +13,7 @@ public class Postal {
     public static final String MESSAGE_CONSTRAINTS =
             "Postal codes should only contain numbers or start with S, and it must be 6 digits long";
     public static final String VALIDATION_REGEX = "[Ss]?\\d{6}";
+    public static final String VALIDATION_REGEX_FOR_SUB_POSTAL = "[Ss]?\\d{1,6}";
     public final String value;
 
     /**
@@ -45,6 +46,13 @@ public class Postal {
      */
     public static boolean isValidPostal(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid substring of a postal code.
+     */
+    public static boolean isValidSubPostal(String test) {
+        return test.matches(VALIDATION_REGEX_FOR_SUB_POSTAL);
     }
 
     @Override

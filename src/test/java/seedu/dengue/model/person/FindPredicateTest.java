@@ -9,27 +9,27 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.dengue.model.predicate.FilterPredicate;
+import seedu.dengue.model.predicate.FindPredicate;
 import seedu.dengue.testutil.PersonBuilder;
 
-public class FilterPredicateTest {
+public class FindPredicateTest {
 
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        FilterPredicate firstPredicate = new
-                FilterPredicate(firstPredicateKeywordList);
-        FilterPredicate secondPredicate = new
-                FilterPredicate(secondPredicateKeywordList);
+        FindPredicate firstPredicate = new
+                FindPredicate(firstPredicateKeywordList);
+        FindPredicate secondPredicate = new
+                FindPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        FilterPredicate firstPredicateCopy = new
-                FilterPredicate(firstPredicateKeywordList);
+        FindPredicate firstPredicateCopy = new
+                FindPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -45,35 +45,35 @@ public class FilterPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        FilterPredicate predicate = new FilterPredicate(
+        FindPredicate predicate = new FindPredicate(
                 Collections.singletonList("Alice"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
-        predicate = new FilterPredicate(Arrays.asList("Alice", "Bob"));
+        predicate = new FindPredicate(Arrays.asList("Alice", "Bob"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Only one matching keyword
-        predicate = new FilterPredicate(Arrays.asList("Bob", "Carol"));
+        predicate = new FindPredicate(Arrays.asList("Bob", "Carol"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
-        predicate = new FilterPredicate(Arrays.asList("aLIce", "bOB"));
+        predicate = new FindPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        FilterPredicate predicate = new FilterPredicate(Collections.emptyList());
+        FindPredicate predicate = new FindPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
 
         // Non-matching keyword
-        predicate = new FilterPredicate(Arrays.asList("Carol"));
+        predicate = new FindPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, date and address, but does not match name
-        predicate = new FilterPredicate(Arrays.asList("123456", "2022-11-01",
+        predicate = new FindPredicate(Arrays.asList("123456", "2022-11-01",
                 "15"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPostal("123567")
                 .withDate("2022-11-01").withAge("15").build()));
