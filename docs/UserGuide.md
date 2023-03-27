@@ -13,7 +13,7 @@ Fast Army Internal Lookup System (FAILS) is a **desktop app for managing the per
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a person: `add`](#adding-a-person-add)
   - [Listing all persons : `list`](#listing-all-persons--list)
-  - [Copy information of a person : `copy`](#copy-information-of-a-person--copy)
+  - [Copy information to clipboard : `copy`](#copy-information-to-clipboard--copy)
   - [Editing a person : `edit`](#editing-a-person--edit)
   - [Locating persons by name: `find`](#locating-persons-by-name-find)
   - [Deleting a person : `delete`](#deleting-a-person--delete)
@@ -147,7 +147,7 @@ Shows a list of all persons in the FAILS.
 
 Format: `list`
 
-### Copy information of a person : `copy`
+### Copy information to clipboard : `copy`
 
 Copies the information of a person to the user's clipboard.
 
