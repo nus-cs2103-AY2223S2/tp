@@ -1,13 +1,13 @@
 package seedu.address.logic.commands.reviewcommands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.tag.Tag.TagName.HARD;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.tag.Tag.TagName.HARD;
 
 /**
  * The TagHardCommand class is responsible for tagging the
