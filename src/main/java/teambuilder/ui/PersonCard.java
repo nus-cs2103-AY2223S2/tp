@@ -56,7 +56,7 @@ public class PersonCard extends UiPart<Region> {
         setPhone(person);
         setAddress(person);
         setEmail(person);
-        major.setText(person.getMajor().majorStudy);
+        setMajor(person);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -80,6 +80,15 @@ public class PersonCard extends UiPart<Region> {
             email.setManaged(false);
         } else {
             email.setText(person.getEmail().toString());
+        }
+    }
+
+    private void setMajor(Person person) {
+        if (person.getMajor().isEmptyMajor()) {
+            major.setVisible(false);
+            major.setManaged(false);
+        } else {
+            major.setText(person.getMajor().toString());
         }
     }
 
