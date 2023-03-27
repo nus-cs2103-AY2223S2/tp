@@ -287,7 +287,7 @@ The `edit` feature edits the attached attributes of a specified `Person`,which i
 one-indexed `personList` presented to the user.
 
 Here is the activity diagram showing the process of the `edit` command:
-![EditApplicantActivityDiagram]()
+[EditApplicantActivityDiagram]()
 
 
 ##### Feature Details
