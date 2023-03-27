@@ -70,7 +70,7 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 * First word is assumed to be a command word (add/delete/list/find).
 
 * A Task can be: 
-  * A simpleTask, which does not have a Date attached to it. ([What is a Date?]())
+  * A simpleTask, which does not have a Date attached to it. ([What is a Date?](#q2-what-is-a-valid-date))
   * A deadline, which has a Date known as `deadline`.
   * An event, which has 2 Dates known as a `from` and a `to`.
 
@@ -117,7 +117,7 @@ Format: `help`
 Adds a task to the address book. There are 3 types of tasks. `SimpleTask`, `Deadline` and `Event`.
 For `Deadline` and `Event` `longDate` field(s) are required.
 
-`longDates` should be in the format `YYYY-MM-DD HHMM`. ([What is a valid longDate?](#q2-what-is-a-valid-longdate))
+`longDates` should be in the format `YYYY-MM-DD HHMM`. ([What is a valid longDate?](#q2-what-is-a-valid-date))
 
 By default, effort level is 24. ([What is an effort level?](#q3-what-is-an-effort-level))
 
@@ -342,7 +342,7 @@ _Details coming soon ..._
 ### Q1 How do I transfer my data to another Computer?
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
-### Q2 What is a valid longDate?
+### Q2 What is a valid Date?
 **A**: A valid Date must be in the format of `YYYY-MM-DD HHMM` such as `2023-07-13 1800` (13 July 2023, 6PM). A valid Date must have a valid time. A minimum of 4 characters must be supplied and only a maximum of 4 character will be parsed
   e.g. `2023-07-13 180` is invalid and `2023-07-13 18000000000` is understood as `2023-07-13 1800`
 
@@ -351,10 +351,6 @@ _Details coming soon ..._
 
 ### Q4 What is a valid Description?
 **A**: A valid Description is a text input that has at least one character.
-
-### Q5 What is a Date?
-**A**: A Date has the format `YYYY-MM-DD HHMM`.
-
 
 
 --------------------------------------------------------------------------------------------------------------------
