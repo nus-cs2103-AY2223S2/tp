@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Vimification is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can get your task management tasks done faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, we also provide a Graphical User interface (GUI) to assist you.
+Vimification is a **vim-like desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI)while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can get your task management tasks done faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, we also provide a Graphical User interface (GUI) to assist you.
 
 ## Table of Contents
 
@@ -44,13 +44,23 @@ Vimificiation is a desktop app that helps Students manage tasks. It is specifica
 
    - `:i deadline CS2130T tp /2023-04-01` : Adds a todo task with description `CS2130T tp` and deadline '2023-04-01' to Vimification.
 
-   - `delete 2` : Deletes the 2nd task shown in the current list.
+   - `:d 2` : Deletes the 2nd task shown in the current list.
 
    - `:wq` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
 ---
+
+## Navigating Vimification
+
+Vimification is designed to mimic Vim as closely as possible. Navigate Vimification as you would in Vim by using `h`,`j,`,`k`,`l` to move to the left, down, up, right respectively.
+
+## Using commands
+
+Similar to Vim, you can bring up the command input by pressing the `:` key on your keyboard.
+e.g:
+![](images/ug-images/showCommand/commandExample.png)
 
 ## Features
 
@@ -81,7 +91,7 @@ Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Format: `:help`
 
 ### Adding a todo task
 
@@ -143,6 +153,7 @@ Similar to Vim, we can use the `q` command with write `w` to exit the program.
 Format: `:wq!`, `:q!`,,`:wq`,`:q`
 
 Examples:
+![](images/ug-images/quitCommand/quitExample1.png)
 
 ### Saving the data
 
@@ -177,4 +188,4 @@ _Details coming soon ..._
 | **Add Deadline** | `:i deadline [description] /[deadline]` <br> e.g., `i deadline CS2103T v1.3 /2022-03-31` |     |
 | **Delete**       | `:d [index]`<br> e.g., `:d 3`                                                            |
 | **Exit**         | `:wq!`, `:q!`,,`:wq`,`:q`                                                                |
-| **Help**         | `help`                                                                                   |
+| **Help**         | `:help`                                                                                  |
