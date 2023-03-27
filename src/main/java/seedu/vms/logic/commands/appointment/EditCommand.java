@@ -110,9 +110,10 @@ public class EditCommand extends Command {
         // Checks for no existing next appointment
         for (Map.Entry<Integer, IdData<Appointment>> entry : model.getAppointmentManager().getMapView().entrySet()) {
             Appointment appointment = entry.getValue().getValue();
-            if (entry.getKey() != index.getZeroBased()
-                    && appointment.getPatient().equals(editedAppointment.getPatient())
-                    && appointment.getAppointmentEndTime().isAfter(LocalDateTime.now())) {
+            if (appointment.getPatient().equals(editedAppointment.getPatient())
+                    && appointment.getAppointmentEndTime().isAfter(LocalDateTime.now())
+                    && !appointment.getStatus()
+                    && entry.getKey() != index.getZeroBased()) {
                 throw new CommandException(MESSAGE_EXISTING_APPOINTMENT);
             }
         }

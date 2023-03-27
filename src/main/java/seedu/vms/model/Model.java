@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.ValueChange;
@@ -17,7 +18,7 @@ import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeAction;
+import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
@@ -147,6 +148,16 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered patient list */
     ObservableMap<Integer, IdData<Patient>> getFilteredPatientList();
 
+    void setPatientFilters(Collection<Predicate<Patient>> filters);
+
+    /**
+     * Returns the detailed patient property.
+     */
+    ObjectProperty<IdData<Patient>> detailedPatientProperty();
+
+
+    void setDetailedPatient(IdData<Patient> patient);
+
 
     /*
      * ========================================================================
@@ -161,16 +172,23 @@ public interface Model {
     /** Returns the {@code VaxTypeManager} the model is using. */
     VaxTypeManager getVaxTypeManager();
 
-    /** Performs the specified action of the {@code VaxTypeManager} that the model is using. */
-    VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException;
+    ValueChange<VaxType> addVaccination(VaxTypeBuilder builder) throws IllegalValueException;
 
-    VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException;
+    ValueChange<VaxType> editVaccination(VaxTypeBuilder builder) throws IllegalValueException;
+
+    ValueChange<VaxType> deleteVaccination(GroupName vaxName) throws IllegalValueException;
 
 
     void setVaccinationFilters(Collection<Predicate<VaxType>> filters);
 
     /** Returns an unmodifiable view of the filtered vaccination type map. */
     ObservableMap<String, VaxType> getFilteredVaxTypeMap();
+
+
+    ObjectProperty<VaxType> detailedVaxTypeProperty();
+
+
+    void setDetailedVaxType(VaxType vaxType);
 
 
     /*
@@ -236,18 +254,15 @@ public interface Model {
      * @return a list of messages describing the deletion change that will
      *      occur if the specified change were to happen.
      */
-    List<String> validatePatientChange(ValueChange<Patient> change);
+    List<String> validatePatientChange(ValueChange<IdData<Patient>> change);
 
 
     /**
-     * Handles the specified change in state of a patient. Returns a list of
-     * messages describing the changes in appointment that has ocurred.
+     * Handles the specified change in state of a patient.
      *
      * @param change - the change to handle.
-     * @return a list of messages describing the changes in appointment that
-     *      has ocurred.
      */
-    List<String> handlePatientChange(ValueChange<Patient> change);
+    void handlePatientChange(ValueChange<IdData<Patient>> change);
 
 
     /**
@@ -264,12 +279,9 @@ public interface Model {
 
 
     /**
-     * Handles the specified change in state of a vaccination. Returns a list
-     * of messages describing the changes in appointment that has ocurred.
+     * Handles the specified change in state of a vaccination.
      *
      * @param change - the change to handle.
-     * @return a list of messages describing the changes in appointment that
-     *      has ocurred.
      */
-    List<String> handleVaccinationChange(ValueChange<VaxType> change);
+    void handleVaccinationChange(ValueChange<VaxType> change);
 }

@@ -1,10 +1,12 @@
-package seedu.vms.ui;
+package seedu.vms.ui.patient;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.vms.model.patient.Patient;
+import seedu.vms.ui.TagFlowView;
+import seedu.vms.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Patient}.

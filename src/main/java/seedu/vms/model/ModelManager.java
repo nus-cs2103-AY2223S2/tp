@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
@@ -24,7 +26,7 @@ import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
-import seedu.vms.model.vaccination.VaxTypeAction;
+import seedu.vms.model.vaccination.VaxTypeBuilder;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
@@ -32,6 +34,9 @@ import seedu.vms.model.vaccination.VaxTypeManager;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+
+    private final ObjectProperty<IdData<Patient>> detailedPatientProperty = new SimpleObjectProperty<>();
+    private final ObjectProperty<VaxType> detailedVaxTypeProperty = new SimpleObjectProperty<>();
 
     private final PatientManager patientManager;
     private final AppointmentManager appointmentManager;
@@ -142,20 +147,36 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePatient(int id) {
-        patientManager.remove(id);
+        IdData<Patient> oldValue = patientManager.remove(id);
+        ValueChange<IdData<Patient>> change = new ValueChange<>(oldValue, null);
+        handlePatientChange(change);
     }
 
     @Override
     public void addPatient(Patient patient) {
-        patientManager.add(patient);
+        IdData<Patient> newValue = patientManager.add(patient);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+        handlePatientChange(new ValueChange<>(null, newValue));
     }
 
     @Override
     public void setPatient(int id, Patient editedPatient) {
         requireAllNonNull(editedPatient);
 
-        patientManager.set(id, editedPatient);
+        ValueChange<IdData<Patient>> change = patientManager.set(id, editedPatient);
+        handlePatientChange(change);
+    }
+
+
+    @Override
+    public ObjectProperty<IdData<Patient>> detailedPatientProperty() {
+        return detailedPatientProperty;
+    }
+
+
+    @Override
+    public void setDetailedPatient(IdData<Patient> data) {
+        detailedPatientProperty.set(data);
     }
 
     // =========== AppointmentManager ==========================================================================
@@ -196,7 +217,7 @@ public class ModelManager implements Model {
 
 
     @Override
-    public List<String> validatePatientChange(ValueChange<Patient> change) {
+    public List<String> validatePatientChange(ValueChange<IdData<Patient>> change) {
         //TODO: Implement this
         // implementation should be in appointment manager instead of here
         // as LogicManager is just a facade class.
@@ -205,11 +226,11 @@ public class ModelManager implements Model {
 
 
     @Override
-    public List<String> handlePatientChange(ValueChange<Patient> change) {
+    public void handlePatientChange(ValueChange<IdData<Patient>> change) {
         //TODO: Implement this
         // implementation should be in appointment manager instead of here
         // as LogicManager is just a facade class.
-        return List.of();
+        updatePatientDetail(change);
     }
 
 
@@ -223,32 +244,56 @@ public class ModelManager implements Model {
 
 
     @Override
-    public List<String> handleVaccinationChange(ValueChange<VaxType> change) {
+    public void handleVaccinationChange(ValueChange<VaxType> change) {
         //TODO: Implement this
         // implementation should be in appointment manager instead of here
         // as LogicManager is just a facade class.
-        return List.of();
+        updateVaccinationDetail(change);
     }
 
     // =========== VaxTypeManager ==============================================================================
 
     @Override
-    public VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException {
-        return action.apply(vaxTypeManager);
+    public ValueChange<VaxType> addVaccination(VaxTypeBuilder builder) throws IllegalValueException {
+        ValueChange<VaxType> change = builder.create(vaxTypeManager);
+        handleVaccinationChange(change);
+        return change;
     }
 
 
     @Override
-    public VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException {
-        return vaxTypeManager.remove(vaxName.toString())
+    public ValueChange<VaxType> editVaccination(VaxTypeBuilder builder) throws IllegalValueException {
+        ValueChange<VaxType> change = builder.update(vaxTypeManager);
+        handleVaccinationChange(change);
+        return change;
+    }
+
+    @Override
+    public ValueChange<VaxType> deleteVaccination(GroupName vaxName) throws IllegalValueException {
+        VaxType oldValue = vaxTypeManager.remove(vaxName.toString())
                 .orElseThrow(() -> new IllegalValueException(String.format(
                         "Vaccination type does not exist: %s", vaxName.toString())));
+        ValueChange<VaxType> change = new ValueChange<>(oldValue, null);
+        handleVaccinationChange(change);
+        return change;
     }
 
 
     @Override
     public void setVaxTypeManager(VaxTypeManager manager) {
         vaxTypeManager.resetData(manager);
+    }
+
+
+    @Override
+    public ObjectProperty<VaxType> detailedVaxTypeProperty() {
+        return detailedVaxTypeProperty;
+    }
+
+
+    @Override
+    public void setDetailedVaxType(VaxType vaxType) {
+        detailedVaxTypeProperty.set(vaxType);
     }
 
     // =========== KeywordManager ==============================================================================
@@ -289,6 +334,11 @@ public class ModelManager implements Model {
     public void updateFilteredPatientList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
         filteredPatientMap.filter(predicate);
+    }
+
+    @Override
+    public void setPatientFilters(Collection<Predicate<Patient>> filters) {
+        filteredPatientMap.filter(filters);
     }
 
     // =========== Filtered VaxType Map Accessors ==============================================================
@@ -339,6 +389,27 @@ public class ModelManager implements Model {
     }
 
     // =========== Misc methods ================================================================================
+
+
+    private void updateVaccinationDetail(ValueChange<VaxType> change) {
+        boolean isUpdated = change.getOldValue()
+                .map(oldValue -> oldValue.equals(detailedVaxTypeProperty.get()))
+                .orElse(false);
+        if (isUpdated || change.getNewValue().isPresent()) {
+            detailedVaxTypeProperty.set(change.getNewValue().orElse(null));
+        }
+    }
+
+
+    private void updatePatientDetail(ValueChange<IdData<Patient>> change) {
+        boolean isUpdated = change.getOldValue()
+                .map(oldValue -> oldValue.equals(detailedPatientProperty.get()))
+                .orElse(false);
+        if (isUpdated || change.getNewValue().isPresent()) {
+            detailedPatientProperty.set(change.getNewValue().orElse(null));
+        }
+    }
+
 
     @Override
     public boolean equals(Object obj) {

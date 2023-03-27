@@ -145,8 +145,12 @@
 }
 
 .label.card-attribute-label {
-    -fx-font-size: 11;
-    -fx-text-fill: #707070;
+  -fx-font-size: 11;
+  -fx-text-fill: #707070;
+}
+
+.detailed-view-card {
+  -fx-background-color: -fx-color;
 }
 
 /* ===== Tag related styles ================================================ */

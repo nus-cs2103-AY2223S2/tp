@@ -42,6 +42,9 @@ public class PatientParser extends FeatureParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
+        case DetailPatientParser.COMMAND_WORD:
+            return new DetailPatientParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

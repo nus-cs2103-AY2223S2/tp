@@ -37,13 +37,13 @@ public class DeleteCommand extends Command {
     @Override
     public CommandMessage execute(Model model) throws CommandException {
         requireNonNull(model);
-        Map<Integer, IdData<Patient>> lastShownList = model.getFilteredPatientList();
+        Map<Integer, IdData<Patient>> patientList = model.getPatientManager().getMapView();
 
-        if (!lastShownList.containsKey(targetIndex.getZeroBased())) {
+        if (!patientList.containsKey(targetIndex.getZeroBased())) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
-        Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased()).getValue();
+        Patient patientToDelete = patientList.get(targetIndex.getZeroBased()).getValue();
         model.deletePatient(targetIndex.getZeroBased());
         return new CommandMessage(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete));
     }

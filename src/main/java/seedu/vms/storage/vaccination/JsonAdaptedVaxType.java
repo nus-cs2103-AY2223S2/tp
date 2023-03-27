@@ -101,7 +101,7 @@ public class JsonAdaptedVaxType {
             builder = builder.setHistoryReqs(toReqList(historyReqs));
         }
 
-        return builder.create(manager);
+        return builder.create(manager).getNewValue().get();
     }
 
 

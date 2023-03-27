@@ -13,8 +13,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.commons.core.GuiSettings;
-import seedu.vms.model.patient.NameContainsKeywordsPredicate;
 import seedu.vms.model.patient.PatientManager;
+import seedu.vms.model.patient.predicates.NameContainsKeywordsPredicate;
 import seedu.vms.testutil.PatientManagerBuilder;
 
 public class ModelManagerTest {
