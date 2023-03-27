@@ -14,6 +14,7 @@ import seedu.dengue.logic.parser.DengueHotspotTrackerParser;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
+import seedu.dengue.model.overview.Overview;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.storage.Storage;
 
@@ -77,5 +78,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public Overview getOverview() {
+        return model.getOverview();
     }
 }

@@ -25,7 +25,6 @@ public class Postal {
         value = formatPostal(postal);
     }
 
-
     /**
      * Formats a postal code to be in the form "^S\\d{6}$"
      * @param string Postal code to format.
@@ -58,6 +57,18 @@ public class Postal {
 
     private static String extractPostalSector(String postal) {
         return postal.toUpperCase().startsWith("S") ? postal.substring(1, 3) : postal.substring(0, 2);
+    }
+
+    /**
+     * Returns the {@code PostalSector} corresponding to the postal code.
+     *
+     * @return The corresponding {@code PostalSector}.
+     */
+    public PostalSector getPostalSector() {
+        assert isValidPostal(value);
+
+        String postalSector = extractPostalSector(value);
+        return PostalSector.valueOf("SECTOR" + postalSector);
     }
 
     @Override

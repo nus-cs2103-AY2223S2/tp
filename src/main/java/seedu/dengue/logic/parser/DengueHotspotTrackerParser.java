@@ -15,6 +15,7 @@ import seedu.dengue.logic.commands.ExitCommand;
 import seedu.dengue.logic.commands.FindCommand;
 import seedu.dengue.logic.commands.HelpCommand;
 import seedu.dengue.logic.commands.ListCommand;
+import seedu.dengue.logic.commands.OverviewCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 
 /**
@@ -67,6 +68,10 @@ public class DengueHotspotTrackerParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case OverviewCommand.COMMAND_WORD:
+            return new OverviewCommandParser().parse(arguments);
+
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

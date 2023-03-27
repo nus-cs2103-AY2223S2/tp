@@ -20,6 +20,7 @@ import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
 import seedu.dengue.model.ReadOnlyUserPrefs;
+import seedu.dengue.model.overview.Overview;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.testutil.PersonBuilder;
 
@@ -140,6 +141,16 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Overview getOverview() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setOverview(Overview overview) {
             throw new AssertionError("This method should not be called.");
         }
 

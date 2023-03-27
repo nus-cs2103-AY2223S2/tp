@@ -120,26 +120,19 @@
 .cell_big_label {
     -fx-font-family: "Verdana";
     -fx-font-weight: bold;
-    -fx-font-size: 16px;
-    -fx-text-fill: #3D4A5A;
-}
-
-.date_label {
-    -fx-font-family: "Lucida Sans Typewriter";
-    -fx-font-weight: bold;
-    -fx-font-size: 13px;
+    -fx-font-size: 14px;
     -fx-text-fill: #3D4A5A;
 }
 
 .cell_small_label {
     -fx-font-family: "Lucida Sans Typewriter";
-    -fx-font-size: 13px;
+    -fx-font-size: 12px;
     -fx-text-fill: #3D4A5A;
     -fx-padding: 5 0 0 0;
 }
 
 .small_label_gap {
-    -fx-font-size:5px;
+    -fx-font-size:3px;
 }
 
 .stack-pane {
@@ -361,4 +354,22 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+.overview-title {
+    -fx-font-family: "Lucida Sans Typewriter";
+    -fx-font-size: 16px;
+    -fx-text-fill: black;
+}
+
+.overview-subtitle {
+    -fx-font-family: "Lucida Sans Typewriter";
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+}
+
+.overview-content {
+    -fx-font-family: "Lucida Sans Typewriter";
+    -fx-font-size: 12px;
+    -fx-text-fill: black;
 }
