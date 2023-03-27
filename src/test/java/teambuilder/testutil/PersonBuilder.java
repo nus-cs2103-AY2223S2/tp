@@ -40,7 +40,7 @@ public class PersonBuilder {
         phone = Phone.of(DEFAULT_PHONE);
         email = Email.of(DEFAULT_EMAIL);
         address = Address.of(DEFAULT_ADDRESS);
-        major = new Major(DEFAULT_MAJOR);
+        major = Major.of(DEFAULT_MAJOR);
         tags = new HashSet<>();
         teams = new HashSet<>();
     }
@@ -94,7 +94,7 @@ public class PersonBuilder {
      * Sets the {@code Major} of the {@code Major} that we are building.
      */
     public PersonBuilder withMajor(String major) {
-        this.major = new Major(major);
+        this.major = Major.of(major);
         return this;
     }
 
