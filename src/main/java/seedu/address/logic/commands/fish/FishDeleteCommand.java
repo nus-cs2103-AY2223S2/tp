@@ -19,10 +19,10 @@ public class FishDeleteCommand extends FishCommand {
 
     public static final String FISH_COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + FISH_COMMAND_WORD
             + ": Deletes the fish identified by the index number used in the displayed fish list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " " + FISH_COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_FISH_SUCCESS = "Deleted Fish: %1$s";
 

@@ -17,7 +17,7 @@ public class TankAddCommand extends TankCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TANK_COMMAND_WORD
             + ": Adds a Tank to Fish Ahoy!. \n"
             + "Parameters: "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_DESCRIPTION + "DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " " + TANK_COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Saltwater Tank 1 ";
 
