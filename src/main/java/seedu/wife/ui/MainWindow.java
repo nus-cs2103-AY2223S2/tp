@@ -155,6 +155,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
+            helpWindow.getRoot().setAlwaysOnTop(true);
         } else {
             helpWindow.focus();
         }
