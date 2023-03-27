@@ -122,23 +122,35 @@ Examples:
 *  `edit 2 a/COM3-B110 s/Professor Franklin Stein r/Funny lecturer haha` Edits the venue, teacher and remark of the 2nd item to be `COM3-B110`, `Professor Franklin Stein` and `Funny lecturer haha` respectively.
 *  `edit 5 n/CS1231S d/Assignment 1: due 06/09/2023` Edits the module name and deadline of the 5th item to be `CS1231S` and `Assignment 1: due 06/09/2023` respectively.
 
-<!-- ### Locating modules by name: `find`
+### Finding a module or type : `find`
 
-Finds modules whose names contain any of the given keywords.
+finds the specified module or type from the module tracker.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
+* The KEYWORD refers to the module name or type name such as CS2103T or tutorial.
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only the module name and type are searched.
+* Only full words will be matched e.g. `CS2103` will not match `CS2103T`
+* Modules matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `CS2103T tutorial` will return the CS2103T module and tutorials in the module tracker
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png) -->
+* `list` followed by `find CS2103T` finds all instances where there is a module named CS2103T in the list.
+* `list` followed by `find tutorial` finds all instances of tutorials in the list
+* `list` followed by `CS2103T tutorial` will return modules named CS2103T and all tutorial type in the module tracker
+
+![image](https://user-images.githubusercontent.com/82088609/227960415-f3120f1c-6779-4d33-a41c-0eca0d85f285.png)
+
+
+### Reminder for items
+
+Shows all the deadlines and timeslots you have today
+
+* You don't have to type anything, whenever the application launches it will tell you this information
+* it will only look at time slots and deadlines
+
+![image](https://user-images.githubusercontent.com/82088609/227960147-f26fae28-c2e7-44bf-bea1-a3d68a3539b5.png)
 
 ### Deleting a module : `delete`
 
