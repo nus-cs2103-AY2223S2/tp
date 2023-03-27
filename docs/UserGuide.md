@@ -237,16 +237,35 @@ Examples:
 - `alert` followed by `48` will show the alert window with all tasks which end within 48 hours.
 - `alert` alone will show the alert window with all tasks which end within 24 hours.
 
-### 2.10 Plan your month : `plan EFFORT`
+### 2.10 Schedule of the day : `schedule D/SHORTDATE [E/EFFORT]`
 
-Automatically plans your month depending on your ideal `EFFORT` level per day. The planner will make an effort to
-keep as close to your effort level as possible, however, if it has to overload to complete tasks on time it will.
-Overloading will also be spread out as evenly as possible.
+#### 2.10.1 How it Works
+Entering `schedule D/SHORTDATE E/EFFORT` generates a new 30-day plan for users based on their intended `E/EFFORT`, and display a list of tasks to be done on `D/SHORTDATE`.
+Entering `schedule D/SHORTDATE` displays a list of tasks to be done on `D/SHORTDATE` based on the previously generated plan.
 
-In order of priority, the planner will prioritise `Events`, then `Deadlines`, then `SimpleTasks`
+#### 2.10.2 Generating a New Plan
+When the schedule command is ran with an `E/EFFORT` flag, an internal planning algorithm is run, and all tasks will be allocated to a 30-day plan starting from the day the command is run.
+As much as possible, tasks allocated to a day should not exceed the intended `E/EFFORT` level indicated by users.
+However, if the need arises (as specified below), the algorithm allows the effort required for a particular day to exceed the user preferred `E/EFFORT` level.
+
+The algorithm allocates tasks as such:
+1. Allocate all events to the day(s) it is supposed to be happening. Events will be allocated, even if the effort required exceeds the user preferred effort.
+
+2. Allocate all deadlines to the first free day before it is due (exclusive of due date), as we assume that it is better to complete a time-sensitive task as soon as possible. If it is not possible to find a free day, the algorithm will allocate task to a day before deadline with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
+
+3. Allocate all SimpleTasks in descending order of effort required. As we assume that SimpleTasks are not time-sensitive, the algorithm allocates each task to the most busy free day (greedy approach). If such a day is not available, the algorithm will allocate the task to a day with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
+
+#### 2.10.3 Displaying Daily Plan
+Daily Plans can be viewed by entering `schedule D/SHORTDATE` or `schedule D/SHORTDATE E/EFFORT`, with the former showing an old plan, and the latter showing a newly generated plan.
+As plans are only valid for 30 days from the last time it was generated, users are encouraged to regenerate a plan with an `E/EFFORT` flag if they do not remember when they last generated their plan.
+If no tasks are shown, it means that there are no tasks planned for that day. 
+An error message that prompts users to re-generate a plan will be shown if the entered date is out of range (either too far in the future, or a date before the start date of generated plan).
+
+:construction: Valid `D/SHORTDATE` are 30-days from the day plan was generated. Re-scheduling plans multiple times would not make an invalid date become valid.
 
 Examples:
-- `plan 5` will plan your month according to an ideal effort level of 5 per day.
+- Assuming today is 2023-03-26, `schedule D/2023-04-01 E/5` will plan a 30-day schedule starting from today (March 26, 2023) according to a desired effort level of 5, and display tasks planned for April 1.
+- `schedule D/2023-04-02` will show tasks which should be completed on April 2, 2023, based on a previously generated schedule (which should be generated between 3 Mar 2023, and 2 Apr 2023).
 
 ### Show your daily plans : `schedule DATE`
 
@@ -322,3 +341,21 @@ _Details coming soon ..._
 | **sort**   | `sort`                                                                                                             |
 | **alert**  | `alert ALERT_WINDOW`                                                                                               |
 | **plan**   | `plan EFFORT`                                                                                                      |
+=======
+| **Clear**  | `clear`                                                                                                             |
+| **Delete** | `delete INDEX(S)`<br> e.g., `delete 3`                                                                              |
+| **Edit**   | `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`<br> e.g.,`edit 2 n/study d/CS2103T`                  |
+| **Find**   | `find n/NAME` or `find d/DESCRIPTION`<br> e.g., `find n/read book`                                                  |
+| **List**   | `list`                                                                                                              |
+| **Help**   | `help`                                                                                                              |
+| **Stats**  | `stats`                                                                                                             |
+| **sort**   | `sort`                                                                                                              |
+| **alert**  | `alert ALERT_WINDOW`                                                                                                |
+| **plan**   | `plan EFFORT`                                                                                                       |
+
+--------------------------------------------------------------------------------------------------------------------
+## 6. Glossary
+1. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the user-preferred daily effort level.
+2. Free day: Allocating a task to this day will not result in overloading.
+3. Short date: YYYY-MM-DD
+4. Date: YYYY-MM-DD HHMM

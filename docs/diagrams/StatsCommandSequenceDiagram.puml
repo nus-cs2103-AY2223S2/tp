@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
+participant "s:StatsCommand" as StatsCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":TaskByTagTracker" as TaskByTagTracker MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+
+[-> LogicManager : execute("stats")
+activate LogicManager
+
+LogicManager -> TaskBookParser : parseCommand("stats")
+activate TaskBookParser
+
+create StatsCommand
+TaskBookParser -> StatsCommand : statsCommand()
+activate StatsCommand
+
+StatsCommand --> TaskBookParser : s
+deactivate StatsCommand
+
+TaskBookParser --> LogicManager : s
+deactivate TaskBookParser
+
+LogicManager -> StatsCommand : execute(model)
+activate StatsCommand
+
+StatsCommand -> TaskByTagTracker : sort(model)
+activate TaskByTagTracker
+
+TaskByTagTracker -> Model : getFilteredTaskList()
+activate Model
+
+Model --> TaskByTagTracker
+deactivate Model
+
+TaskByTagTracker --> StatsCommand
+deactivate TaskByTagTracker
+
+create CommandResult
+StatsCommand -> CommandResult : CommandResult(ordering)
+activate CommandResult
+
+CommandResult --> StatsCommand : result
+deactivate CommandResult
+
+StatsCommand --> LogicManager : result
+deactivate StatsCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
