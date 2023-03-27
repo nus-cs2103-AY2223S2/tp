@@ -1,4 +1,4 @@
-package seedu.address.model.timingrecommender;
+package seedu.address.logic.recommender.timingrecommender;
 
 import java.util.ArrayList;
 import java.util.Collection;
