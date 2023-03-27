@@ -344,22 +344,29 @@ This way, formats are easily extensible and maintainable. The parsing of `dateTi
 
 ## **Appendix: Requirements**
 
-### Product scope
+This sections describes the user requirements we intend to address with `QuickContacts`.
 
-**Target user profile**:
+### Target User Profile
 
-* Users who are on their computers most of their days
-* has a need to manage a significant number of contacts and meetings
+`QuickContacts` is designed for users with busy schedules of meeting people.
+
+* need to manage a large number of contacts and meetings
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts and meetings faster than a typical mouse/GUI driven app
+### Value proposition
+
+`QuickContacts` allows users to manage contacts and meetings faster than a typical mouse/GUI-driven application.
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+**Priority levels**:
+
+* High (must have) - `* * *`
+* Medium (nice to have) - `* *`
+* Low (unlikely to have) - `*`
 
 | Priority | As a …​                                      | I want to …​                                      | So that I can…​                                                        |
 |----------|----------------------------------------------|---------------------------------------------------|------------------------------------------------------------------------|
@@ -403,287 +410,268 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `QuickContacts` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the **system** is `QuickContacts` and the **Actor** is the `user`, unless specified otherwise.
 
-**Use case: Add a person**
+**Use case: UC1 - Add a contact**
 
-**MSS**
+MSS:
 
-1.  User requests to add a person
-2.  QuickContacts adds that person
-3.  QuickContacts shows new person in list
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. String in a field illegal.
-    * 1a1. Show error message
-
-  Use case resumes at step 1.
-
-**Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  QuickContacts shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  QuickContacts deletes the person
+1. User requests to add a contact.
+2. `QuickContacts` adds that contact.
+3. `QuickContacts` shows new contact in list.
 
     Use case ends.
 
-**Extensions**
+Extensions:
+
+* 1a. Input for a required field is illegal.
+  * 1a1. `QuickContacts` prompts user with an error message.
+  * Use case resumes at step 1.
+
+**Use case: UC2 - Delete a contact**
+
+MSS:
+
+1. User requests to list contacts.
+2. `QuickContacts` shows a list of contacts.
+3. User requests to delete a specific contact in the list.
+4. `QuickContacts` deletes the contact.
+
+    Use case ends.
+
+Extensions:
 
 * 2a. The list is empty.
+  * `QuickContacts` returns an empty list.
+  * Use case ends.
+* 3a. Index for the contact to be deleted is invalid.
+  * `QuickContacts` prompts user with an error message.
+  * Use case resumes from step 3.
 
-  Use case ends.
+**Use case: UC3 - Find a contact**
 
-* 3a. The given index is invalid.
+MSS:
 
-    * 3a1. QuickContacts shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Find a Person**
-
-**MSS**
-
-1.  User requests searches person by name
-2.  QuickContacts shows that person
+1. User requests searches contact by name.
+2. `QuickContacts` shows that person.
 
     Use case ends.
 
-**Extensions**
+Extensions:
+
+* 1a. Input for a required field is illegal.
+  * 1a1. Show error message.
+  * Use case continues at step 1.
+
+**Use case: UC4 - Edit an existing contact's details**
+
+MSS:
+
+1. User requests to edit a contact.
+2. `QuickContacts` shows the contact with the updated details.
+
+    Use case ends.
+
+Extensions:
+
+* 1a. Input for a field is illegal.
+  * 1a1. Show error message.
+  * Use case continues at step 1.
+
+* 1b. Contact cannot be found.
+  * 1b1. Show error message.
+  * Use case continues at step 1.
+
+**Use case: UC5 - User want to list all**
+
+MSS:
+
+1. User requests to list.
+2. `QuickContacts` shows all the person and meetings.
+
+    Use case ends.
+
+Extensions:
+
+* 1a. list is empty.
+  * Use case ends.
+
+**Use case: UC6 - User wants to clear everything**
+
+MSS:
+
+1. User requests to `clear`.
+2. `QuickContacts` deletes all contacts and meetings.
+
+    Use case ends.
+
+**Use case: UC7 - User wants to exit**
+
+MSS:
+
+1. User requests to exit.
+2. `QuickContacts` closes.
+
+    Use case ends.
+
+**Use case: UC8 - Add a meeting**
+
+MSS:
+
+1. User requests to add a meeting.
+2. `QuickContacts` adds that meeting.
+3. `QuickContacts` shows new meeting in list.
+
+    Use case ends.
+
+Extensions:
 
 * 1a. String in a field illegal.
-    * 1a1. Show error message
+  * 1a1. Show error message.
+  * Use case resumes at step 1.
 
-  Use case continues at step 1.
+**Use case: UC9 - Delete a meeting**
 
-**Use case: Edit an existing person's details**
+MSS:
 
-**MSS**
-
-1.  User requests to edit a person
-2.  QuickContacts shows the person with the updated details
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. String in a field illegal.
-    * 1a1. Show error message
-
-* 1b. Person cannot be found.
-    * 1b1. Show error message
-
-  Use case continues at step 1.
-
-**Use case: User want to list all**
-
-**MSS**
-
-1.  User request list
-2.  QuickContacts shows all the person and meetings
+1. User requests to list meetings.
+2. `QuickContacts` shows a list of meetings.
+3. User requests to delete a specific meeting in the list.
+4. `QuickContacts` deletes the meeting.
 
     Use case ends.
 
-**Extensions**
-
-* 1a. list is empty
-
-  Use case ends.
-
-
-**Use case: User wants to clear everything**
-
-**MSS**
-
-1.  User requests to clear
-2.  QuickContacts deletes everyone and all the meetings
-
-    Use case ends.
-
-**Use case: User wants to exit**
-
-**MSS**
-
-1.  User requests to exit
-2.  QuickContacts closes
-
-    Use case ends.
-
-**Use case: Add a meeting**
-
-**MSS**
-
-1.  User requests to add a meeting
-2.  QuickContacts adds that meeting
-3.  QuickContacts shows new meeting in list
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. String in a field illegal.
-    * 1a1. Show error message
-
-  Use case resumes at step 1.
-
-**Use case: Delete a meeting**
-
-**MSS**
-
-1.  User requests to list meetings
-2.  QuickContacts shows a list of meetings
-3.  User requests to delete a specific meeting in the list
-4.  QuickContacts deletes the meeting
-
-    Use case ends.
-
-**Extensions**
+Extensions:
 
 * 2a. The list is empty.
-
-  Use case ends.
+  * Use case ends.
 
 * 3a. The given index is invalid.
+  * 3a1. `QuickContacts` shows an error message.
+  * Use case resumes at step 2.
 
-    * 3a1. QuickContacts shows an error message.
+**Use case: UC10 - Edit a meeting**
 
-      Use case resumes at step 2.
+MSS:
 
-**Use case: Edit a meeting**
-
-**MSS**
-
-1.  User requests to edit a meeting
-2.  QuickContacts shows the meeting with the updated details
+1. User requests to edit a meeting.
+2. `QuickContacts` shows the meeting with the updated details.
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
 * 1a. String in a field illegal.
-    * 1a1. Show error message
+  * 1a1. Show error message.
+  * Use case continues at step 1.
 
 * 1b. Meeting cannot be found.
-    * 1b1. Show error message
+  * 1b1. Show error message.
+  * Use case continues at step 1.
 
-  Use case continues at step 1.
+**Use case: UC11 - Sort by meeting attribute**
 
+MSS:
 
-**Use case: Sort by meeting attribute**
+1. User wants to sort by a meeting attribute.
+2. `QuickContacts` sorts the original list by order requested by user.
+3. `QuickContacts` shows the sorted list.
 
-**MSS**
+**Use case: UC12 - Export Contacts**
 
-1.  User wants to sort by a meeting attribute
-2.  QuickContacts sorts the original list by order requested by user
-3.  QuickContacts shows the sorted list
+MSS:
 
-**Use case: Export Contacts**
-
-**MSS**
-
-1.  User requests to export contacts
-2.  QuickContacts shows the exported contacts
+1. User requests to export contacts.
+2. `QuickContacts` shows the exported contacts.
 
     Use case ends.
 
-**Extensions**
-
+Extensions:
 
 * 1a. String in a field illegal.
-    * 1a1. Show error message
-
-  Use case resumes at step 1.
+  * 1a1. Show error message.
+  * Use case resumes at step 1.
 
 * 1a. Person index not given.
-    * 1a1. Show error message
+  * 1a1. Show error message.
+  * Use case continues at step 1.
 
 * 1b. Person index cannot be found.
-    * 1b1. Show error message
+  * 1b1. Show error message.
+  * Use case continues at step 1.
 
-  Use case continues at step 1.
+**Use case: UC13 - Import Contacts**
 
-**Use case: Import Contacts**
+MSS:
 
-**MSS**
-
-1.  User requests to import contacts.
-2.  QuickContacts imports the meetings and updates the view.
+1. User requests to import contacts.
+2. `QuickContacts` imports the meetings and updates the view.
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
 * 1a. Contacts format malformed.
-    * 1a1. Show error message.
-
-    Use case continues at step 1.
+  * 1a1. Show error message.
+  * Use case continues at step 1.
 
 * 1b. Contacts not provided.
-    * 1b1. Show error message.
+  * 1b1. Show error message.
+  * Use case continues at step 1.
 
-     Use case continues at step 1.
+* 1c. Duplicate contact without user indicating force import.
+  * 1c1. Show error message.
+  * Use case continues at step 1.
 
-* 1c. Duplicate contact without user indicating force import
-    * 1c1. Show error message
+* 1d. User indicates force import.
+  * All contacts imported.
+  * Use case ends.
 
-    Use case continues at step 1.
+**Use case: UC14 - Export Meetings**
 
-* 1d. User indicates force import
-    * All contacts imported.
+MSS:
 
-**Use case: Export Meetings**
-
-**MSS**
-
-1.  User requests to export meetings
-2.  QuickContacts shows the exported meetings
+1. User requests to export meetings.
+2. QuickContacts shows the exported meetings.
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
 * 1a. Meeting index not given.
-    * 1a1. Show error message
+  * 1a1. Show error message.
+  * Use case continues at step 1.
 
 * 1b. Meeting index cannot be found.
-    * 1b1. Show error message
+  * 1b1. Show error message.
+  * Use case continues at step 1.
 
-  Use case continues at step 1.
+**Use case: UC15 - Import Meetings**
 
-**Use case: Import Meetings**
+MSS:
 
-**MSS**
-
-1.  User requests to import meetings.
-2.  QuickContacts imports the meetings and updates the view.
+1. User requests to import meetings.
+2. QuickContacts imports the meetings and updates the view.
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
 * 1a. Meetings format malformed.
-    * 1a1. Show error message.
-
-  Use case continues at step 1.
+  * 1a1. Show error message.
+  * Use case continues at step 1.
 
 * 1b. Meetings not provided.
-    * 1b1. Show error message.
+  * 1b1. Show error message.
+  * Use case continues at step 1.
 
-  Use case continues at step 1.
+* 1c. Duplicate meeting without user indicating force import.
+  * 1c1. Show error message.
+  * Use case continues at step 1.
 
-* 1c. Duplicate meeting without user indicating force import
-    * 1c1. Show error message
-
-  Use case continues at step 1.
-
-* 1d. User indicates force import
-    * All meetings imported.
-
+* 1d. User indicates force import.
+  * All meetings imported.
+  * Use case ends.
 
 ### Non-Functional Requirements
 
