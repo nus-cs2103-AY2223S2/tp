@@ -160,12 +160,10 @@ public class Student {
      *
      * @param homework homework to be added
      */
-    public void addHomework(Homework homework) {
+    public void addHomework(Homework homework) throws DuplicateEntryException {
         // check for duplicate homework
-        for (Homework hw : this.homeworkList) {
-            if (hw.equals(homework)) {
-                return;
-            }
+        if (homeworkList.contains(homework)) {
+            throw new DuplicateEntryException();
         }
 
         this.homeworkList.addHomework(homework);
