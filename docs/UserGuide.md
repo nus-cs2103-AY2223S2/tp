@@ -205,6 +205,20 @@ Format: `p list`
 
 [Back to top](#top)
 
+### View a patient by index: `p view`
+
+The index refers to the index number shown in the displayed patient list.
+View detailed information of a patient in the careflow. The full detail of the selected patient will be shown on the left side of the User Interface under the patient tab.
+
+Format: `p view -i PATIENT_INDEX`
+
+Example:
+* `p view -i 1`
+*  view details/all information of the patient at index 1.
+
+[Back to top](#top)
+
+
 ## Drug Operations
 
 ### Add a Drug entry: `d add`
@@ -301,6 +315,18 @@ Format: `d list`
 
 [Back to top](#top)
 
+### View a drug by index: `d view`
+
+The index refers to the index number shown in the displayed drug list.
+View detailed information of a drug in the careflow. The full details of the selected drug will be shown on the left side of the User Interface under the drug tab.
+
+Format: `d view -i DRUG_INDEX`
+
+Example:
+* `d view -i 1`
+* view details/all information of the drug at index 1.
+
+[Back to top](#top)
 
 ### Saving the data
 
@@ -346,6 +372,7 @@ _Details coming soon ..._
 | **Find patient by name**      | `p find PATIENT_NAME` <br> e.g., `p find John` returns `john` and `John Doe`                                                                                                                                                                                                                    |
 | **Clear all patient**         | `p clear`                                                                                                                                                                                                                                                                                       |
 | **List patient**              | `p list`                                                                                                                                                                                                                                                                                        |
+| **View patient by index**     | `p view -i PATIENT_INDEX`                                                                                                                                                                                                                                                                       |                                                                                                                                                                                                                                                                                        
 | **Add a drug**                | `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT` <br> e.g., `d add -tn Panadol -ai paracetamol, sodium -dir Adults, 1-2 capsules -pur treat fever, headache -se dizziness -sc 500`                                                  |
 | **Delete drug by trade name** | `d delete -tn TRADE_NAME`<br> e.g., `d delete -tn Panadol Flu Max`                                                                                                                                                                                                                              |
 | **Delete drug by index**      | `d delete -i INDEX`<br> e.g.,`d delete -i 7`                                                                                                                                                                                                                                                    |
@@ -353,5 +380,6 @@ _Details coming soon ..._
 | **Find drug by trade name**   | `d find TRADE_NAME` <br> e.g., `d find Panadol`                                                                                                                                                                                                                                                 |
 | **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                                                                       |
 | **List drug**                 | `d list`                                                                                                                                                                                                                                                                                        |
+| **View drug by index**        | `d view -i DRUG_INDEX`                                                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                                                                        
 
 [Back to top](#top)

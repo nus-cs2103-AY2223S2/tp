@@ -313,12 +313,10 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            System.out.println(commandResult.toString());
             if (!commandResult.isDisplayPatient()) {
                 logger.info("Result: " + commandResult.getFeedbackToUser());
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             } else if (commandResult.isDisplayPatient()) {
-                System.out.println(commandResult.getSelectedPatient().toString());
                 Patient selectedPatient = commandResult.getSelectedPatient();
                 patientListPanel.updateDisplay(selectedPatient);
             } else {
