@@ -17,7 +17,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.CardInDeckPredicate;
-import seedu.address.model.card.IsSameCardPredicate;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
 import seedu.address.model.tag.Tag;
@@ -260,15 +259,20 @@ public class ModelManager implements Model {
     public void reviewDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
         Deck deckToReview = filteredDecks.get(zeroBasesIdx);
-        List<Card> cardList = new FilteredList<>(
-                masterDeck.getCardList(), new CardInDeckPredicate(deckToReview)
-        );
-        if (numCardsPerReview > 0) {
-            currReview = new Review(deckToReview, cardList, numCardsPerReview);
-        } else {
-            currReview = new Review(deckToReview, cardList);
-        }
-        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+
+        List<Card> cardsToReview
+                = new FilteredList<>(masterDeck.getCardList(), new CardInDeckPredicate(deckToReview));
+
+        currReview = new Review(deckToReview, cardsToReview, numCardsPerReview);
+    }
+
+    /**
+     * Returns the card list in Review
+     */
+    @Override
+    public ObservableList<Card> getReviewCardList() {
+        assert currReview != null : "Must be in review mode";
+        return currReview.getReviewCardList();
     }
 
     @Override
@@ -277,26 +281,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void markCorrect() {
-        this.currReview.markCurrCardAsCorrect();
-    }
-
-    @Override
-    public void markWrong() {
-        this.currReview.markCurrCardAsWrong();
-    }
-
-    @Override
     public boolean goToPrevCard() {
         boolean isFirstCard = this.currReview.goToPrevCard();
-        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
         return isFirstCard;
     }
 
     @Override
     public boolean goToNextCard() {
         boolean isLastCard = this.currReview.goToNextCard();
-        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
         return isLastCard;
     }
 
@@ -307,7 +299,6 @@ public class ModelManager implements Model {
 
     @Override
     public void endReview() {
-        currReview.flipAllCards();
         currReview = null;
         if (selectedDeck != null) {
             updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
@@ -330,7 +321,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean isReviewCardFlipped() {
-        return currReview.isFlipped();
+        return currReview.isCurrCardFlipped();
     }
 
     @Override
