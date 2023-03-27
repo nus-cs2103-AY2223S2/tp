@@ -188,15 +188,28 @@ public class MainWindow extends UiPart<Stage> {
         try {
             if (commandText.contains("delete")) {
                 Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete?");
-                Optional<ButtonType> result = confirmationDialog.showAndWait();
+                Optional<ButtonType> deleteResult = confirmationDialog.showAndWait();
 
-                if (result.isPresent() && result.get() == ButtonType.CANCEL) {
+                if (deleteResult.isPresent() && deleteResult.get() == ButtonType.CANCEL) {
                     CommandResult commandResult = logic.execute("list");
                     logger.info("Delete aborted: " + commandResult.getFeedbackToUser());
                     resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
                     return commandResult;
                 }
             }
+
+            if (commandText.contains("clear")) {
+                Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to clear ALL patients?");
+                Optional<ButtonType> clearResult = confirmationDialog.showAndWait();
+
+                if (clearResult.isPresent() && clearResult.get() == ButtonType.CANCEL) {
+                    CommandResult commandResult = logic.execute("list");
+                    logger.info("Clear aborted: " + commandResult.getFeedbackToUser());
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                    return commandResult;
+                }
+            }
+
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
