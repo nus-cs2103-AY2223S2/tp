@@ -66,7 +66,7 @@ public class FishSortCommand extends FishCommand {
             model.updateFilteredFishList(SHOW_FISHES_IN_TANK.apply(tankToView));
         }
 
-        model.setGuiMode(GuiSettings.GuiMode.DISPLAY_SORTED_FISHES_TASKS);
+        model.setGuiMode(GuiSettings.GuiMode.DISPLAY_SORTED_FISHES);
         return new CommandResult(MESSAGE_VIEW_FISH_SUCCESS, false, false, true);
     }
 

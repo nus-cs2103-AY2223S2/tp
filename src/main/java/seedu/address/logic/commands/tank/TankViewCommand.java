@@ -49,7 +49,7 @@ public class TankViewCommand extends TankCommand {
 
         Tank tankToView = lastShownList.get(targetIndex.getZeroBased());
         model.updateFilteredFishList(SHOW_FISHES_IN_TANK.apply(tankToView));
-        model.setGuiMode(GuiMode.DISPLAY_FISHES_TASKS);
+        model.setGuiMode(GuiMode.DISPLAY_FISHES);
 
         return new CommandResult(String.format(MESSAGE_VIEW_TANK_SUCCESS, tankToView), false, false, true);
     }

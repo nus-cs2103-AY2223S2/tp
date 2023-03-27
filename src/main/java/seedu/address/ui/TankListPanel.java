@@ -29,6 +29,10 @@ public class TankListPanel extends UiPart<Region> {
         tankListView.setCellFactory(listView -> new TankListViewCell());
     }
 
+    public void refresh() {
+        tankListView.refresh();
+    }
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Tank} using a {@code TankCard}.
      */
@@ -45,5 +49,4 @@ public class TankListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

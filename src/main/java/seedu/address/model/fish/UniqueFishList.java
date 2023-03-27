@@ -143,4 +143,8 @@ public class UniqueFishList implements Iterable<Fish> {
         }
         return true;
     }
+
+    public int size() {
+        return internalList.size();
+    }
 }
