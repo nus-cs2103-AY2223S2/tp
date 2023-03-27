@@ -1,8 +1,28 @@
 package seedu.careflow.logic;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_DRUG_DISPLAYED_INDEX;
+import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
+import static seedu.careflow.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.DOB_DESC_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.DRUG_ALLERGY_DESC_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.EMERGENCY_CONTACT_DESC_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.GENDER_DESC_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.IC_DESC_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.careflow.testutil.Assert.assertThrows;
+import static seedu.careflow.testutil.TypicalPatients.AMY;
+
+import java.io.IOException;
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.logic.commands.generalcommand.HelpCommand;
@@ -20,15 +40,6 @@ import seedu.careflow.storage.JsonDrugInventoryStorage;
 import seedu.careflow.storage.JsonPatientRecordStorage;
 import seedu.careflow.storage.JsonUserPrefsStorage;
 import seedu.careflow.testutil.PatientBuilder;
-
-import java.io.IOException;
-import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.careflow.commons.core.Messages.*;
-import static seedu.careflow.logic.commands.CommandTestUtil.*;
-import static seedu.careflow.testutil.Assert.assertThrows;
-import static seedu.careflow.testutil.TypicalPatients.AMY;
 
 class CareFlowCareFlowLogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -83,7 +94,8 @@ class CareFlowCareFlowLogicManagerTest {
                 new JsonDrugInventoryIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionDrug.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        CareFlowStorageManager storage = new CareFlowStorageManager(patientRecordStorage, drugInventoryStorage, userPrefsStorage);
+        CareFlowStorageManager storage = new CareFlowStorageManager(patientRecordStorage,
+                drugInventoryStorage, userPrefsStorage);
         logic = new CareFlowLogicManager(model, storage);
 
         // Execute add command
