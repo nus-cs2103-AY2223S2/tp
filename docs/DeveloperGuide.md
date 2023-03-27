@@ -181,8 +181,23 @@ no person in the address book has a matching name). The name must match exactly 
 'CommandException' will be thrown.
 
 ##### Editing
+The `EditMeedingCommand`handles the editing of an existing meeting. It contains information such as the meeting's index, its new details to update, and methods to execute the command and create an edited meeting.
+
+The class extends the Command class and overrides its execute() method to update the specified meeting in the model with the edited details. If the meeting already exists in the address book or the provided index is invalid, an exception is thrown.
+
+The `EditMeetingsCommand` class also has an inner class`EditMeetingDescriptor`, which contains the new details for the meeting, such as its title, date and time, attendees, location, and description. It has a method `createEditedMeeting()` that creates a new meeting object with the edited details provided.
+
+There are also constant variables for this class that store messages to display when the command is executed or when there are errors. The `MESSAGE_USAGE` constant holds the command syntax and format, while the `MESSAGE_EDIT_MEETING_SUCCESS`, `MESSAGE_NOT_EDITED`, and `MESSAGE_DUPLICATE_MEETING` constants hold the success message, error message when no fields are provided, and error message when the edited meeting already exists in the address book, respectively.
+
+This class also overrides the equals() method to check if two `EditMeetingsCommnds` are equal
+
 
 ##### Deleting
+The `DeleteCommand` class is a command in a address book management system that deletes a person from the address book using its displayed index. The class extends the Command class and overrides its `execute()` method to delete the specified person in the model. It also contains a constant variable `MESSAGE_USAGE` that stores the syntax and format for the command, as well as `MESSAGE_DELETE_PERSON_SUCCESS` that holds the success message to display when the command is executed.
+
+The `DeleteCommand` class also has a constructor that takes in an index for the person to delete. It also overrides the `equals()` method to check if two DeleteCommand objects are equal by comparing their targetIndex fields.
+
+During execution, the `DeleteCommand` class gets the filtered person list from the model and checks if the specified index is within the range of the list. If it is not, an exception is thrown with an error message. Otherwise, it retrieves the person to delete using the index and calls the `deletePerson()` method from the model to remove the person. The `execute()` method then returns a `CommandResult` object with a success message that contains the deleted person's details.
 
 ##### Finding
 
@@ -242,9 +257,13 @@ Person does not already exist, and ignores those that do. This allows the previo
 The JSON is parsed using the Jackson library. If the Jackson library is unable to parse the json, an error message 
 is thrown.
 
-### \[Proposed\] Exporting and importing of Meetings
-#### Proposed implementation
-Similar to the exporting and importing of contacts.
+### Exporting and importing of Meetings
+#### Implementation
+Exporting and importing for meetings is similar to that of contacts, with the main difference being that meetings 
+has additional functionality of returning meetings between two dates. This is implemented through the use of a 
+`isBetween` function implemented in the `Meeting` class. The program will first gather all the meetings in the 
+corresponding indexes provided, then search for meetings between the start and end dates. If either date is empty, then 
+only the other date is considered.
 
 ### Autocompletion of Argument Prefixes
 
@@ -279,6 +298,10 @@ command to better the user experience.
 ### Traverse commands
 
 ### DateTime parsing
+
+### Sort Meeting commands
+`SortMeetingCommand` is a Java class that sorts the meeting objects stored in a Model object based on a specified attribute. This command allows the user to sort meetings by their title, date and time, location, or description. The user can also specify whether the sorting should be done in reverse order. The sorting is done by creating a Comparator for the specified attribute and passing it to the Model object's sortFilteredMeetingList method. The execute method of this class takes a `Model` object as an argument, applies the correct `Comparator` based on the prefix given by the user, and then returns a `CommandResult` object with a success message indicating the attribute that the meetings have been sorted by. If an invalid prefix is provided, a `CommandException` is thrown.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -522,6 +545,118 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Show error message
 
   Use case continues at step 1.
+
+
+**Use case: Sort by meeting attribute**
+
+**MSS**
+
+1.  User wants to sort by a meeting attribute
+2.  QuickContacts sorts the original list by order requested by user
+3.  QuickContacts shows the sorted list
+
+**Use case: Export Contacts**
+
+**MSS**
+
+1.  User requests to export contacts
+2.  QuickContacts shows the exported contacts
+
+    Use case ends.
+
+**Extensions**
+
+
+* 1a. String in a field illegal.
+    * 1a1. Show error message
+
+  Use case resumes at step 1.
+
+* 1a. Person index not given.
+    * 1a1. Show error message
+
+* 1b. Person index cannot be found.
+    * 1b1. Show error message
+
+  Use case continues at step 1.
+
+**Use case: Import Contacts**
+
+**MSS**
+
+1.  User requests to import contacts.
+2.  QuickContacts imports the meetings and updates the view.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Contacts format malformed.
+    * 1a1. Show error message.
+
+    Use case continues at step 1.
+
+* 1b. Contacts not provided.
+    * 1b1. Show error message.
+
+     Use case continues at step 1.
+
+* 1c. Duplicate contact without user indicating force import
+    * 1c1. Show error message
+
+    Use case continues at step 1.
+
+* 1d. User indicates force import
+    * All contacts imported.
+
+**Use case: Export Meetings**
+
+**MSS**
+
+1.  User requests to export meetings
+2.  QuickContacts shows the exported meetings
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Meeting index not given.
+    * 1a1. Show error message
+
+* 1b. Meeting index cannot be found.
+    * 1b1. Show error message
+
+  Use case continues at step 1.
+
+**Use case: Import Meetings**
+
+**MSS**
+
+1.  User requests to import meetings.
+2.  QuickContacts imports the meetings and updates the view.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Meetings format malformed.
+    * 1a1. Show error message.
+
+  Use case continues at step 1.
+
+* 1b. Meetings not provided.
+    * 1b1. Show error message.
+
+  Use case continues at step 1.
+
+* 1c. Duplicate meeting without user indicating force import
+    * 1c1. Show error message
+
+  Use case continues at step 1.
+
+* 1d. User indicates force import
+    * All meetings imported.
+
 
 ### Non-Functional Requirements
 
