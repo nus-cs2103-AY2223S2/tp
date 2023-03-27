@@ -223,7 +223,7 @@ public class ModelManager implements Model {
 
     @Override
     public void unselectDeck() {
-        assert this.selectedDeck != null : "Can only unselectDeck when inside Deck mode";
+        assert this.selectedDeck != null : "Can only unselectDeck when a deck is selected";
 
         setDeck(selectedDeck, selectedDeck.buildUnselectedDeck());
         this.selectedDeck = null;
@@ -362,9 +362,9 @@ public class ModelManager implements Model {
         }
 
         if (selectedDeck != null) {
-            return ModelState.DECK_MODE;
+            return ModelState.MAIN_SELECTED_MODE;
         }
 
-        return ModelState.MAIN_MODE;
+        return ModelState.MAIN_UNSELECTED_MODE;
     }
 }

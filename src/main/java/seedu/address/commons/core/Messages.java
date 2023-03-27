@@ -11,4 +11,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_DECK_DISPLAYED_INDEX = "The deck index provided is invalid";
     public static final String MESSAGE_CARDS_LISTED_OVERVIEW = "%1$d cards listed!";
     public static final String MESSAGE_DECKS_LISTED_OVERVIEW = "%1$d decks listed!";
+    public static final String MESSAGE_NO_DECK_SELECTED = "No deck currently selected "
+            + "- Select a deck to run %1$s command :)";
+    public static final String MESSAGE_DECK_SELECTED = "You've currently selected a deck"
+            + "- unselect the deck to run %1$s command :)";
 }

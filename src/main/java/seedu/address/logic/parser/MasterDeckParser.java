@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DECK_SELECTED;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_DECK_SELECTED;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
@@ -66,11 +68,12 @@ public class MasterDeckParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommandInMainMode(String userInput) throws ParseException {
+    public Command parseCommandInMainUnselectedMode(String userInput) throws ParseException {
         updateCommandWordAndArguments(userInput);
 
         switch (commandWord) {
 
+        // Deck-related Commands
         case AddDeckCommand.COMMAND_WORD:
             return new AddDeckCommandParser().parse(arguments);
 
@@ -83,23 +86,38 @@ public class MasterDeckParser {
         case SelectDeckCommand.COMMAND_WORD:
             return new SelectDeckCommandParser().parse(arguments);
 
+        case UnselectDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, UnselectDeckCommand.COMMAND_WORD));
+
+        // Card-related Commands
+        case AddCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, AddCommand.COMMAND_WORD));
+
+        case EditCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, EditCommand.COMMAND_WORD));
+
+        case DeleteCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, DeleteCommand.COMMAND_WORD));
+
+        // Review-related Commands
+        case ReviewCommand.COMMAND_WORD:
+            return new ReviewCommandParser().parse(arguments);
+
+        case SetNumCardsPerReviewCommand.COMMAND_WORD:
+            return new SetNumCardsPerReviewCommandParser().parse(arguments);
+
+        // Other commands
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case ReviewCommand.COMMAND_WORD:
-            return new ReviewCommandParser().parse(arguments);
-
-        case SetNumCardsPerReviewCommand.COMMAND_WORD:
-            return new SetNumCardsPerReviewCommandParser().parse(arguments);
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -116,11 +134,28 @@ public class MasterDeckParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommandInDeckMode(String userInput) throws ParseException {
+    public Command parseCommandInMainSelectedMode(String userInput) throws ParseException {
         updateCommandWordAndArguments(userInput);
 
         switch (commandWord) {
 
+        // Deck-related Commands
+        case AddDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_DECK_SELECTED, AddDeckCommand.COMMAND_WORD));
+
+        case DeleteDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_DECK_SELECTED, DeleteDeckCommand.COMMAND_WORD));
+
+        case EditDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_DECK_SELECTED, EditDeckCommand.COMMAND_WORD));
+
+        case SelectDeckCommand.COMMAND_WORD:
+            return new SelectDeckCommandParser().parse(arguments);
+
+        case UnselectDeckCommand.COMMAND_WORD:
+            return new UnselectDeckCommand();
+
+        // Card-related Commands
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
@@ -130,23 +165,28 @@ public class MasterDeckParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
+        // Review-related Commands
+        case ReviewCommand.COMMAND_WORD:
+            return new ReviewCommandParser().parse(arguments);
+
+        case SetNumCardsPerReviewCommand.COMMAND_WORD:
+            return new SetNumCardsPerReviewCommandParser().parse(arguments);
+
+        // Other Commands
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case UnselectDeckCommand.COMMAND_WORD:
-            return new UnselectDeckCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-        case ReviewCommand.COMMAND_WORD:
-            return new ReviewCommandParser().parse(arguments);
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
-        case SelectDeckCommand.COMMAND_WORD:
-            return new SelectDeckCommandParser().parse(arguments);
-
-        case SetNumCardsPerReviewCommand.COMMAND_WORD:
-            return new SetNumCardsPerReviewCommandParser().parse(arguments);
+        case ClearCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_DECK_SELECTED, ClearCommand.COMMAND_WORD));
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -165,17 +205,14 @@ public class MasterDeckParser {
 
         switch (commandWord) {
 
-        case EndReviewCommand.COMMAND_WORD:
-            return new EndReviewCommand();
+        case FlipCardCommand.COMMAND_WORD:
+            return new FlipCardCommand();
 
         case PreviousCardCommand.COMMAND_WORD:
             return new PreviousCardCommand();
 
         case NextCardCommand.COMMAND_WORD:
             return new NextCardCommand();
-
-        case FlipCardCommand.COMMAND_WORD:
-            return new FlipCardCommand();
 
         case MarkCorrectCommand.COMMAND_WORD:
             return new MarkCorrectCommand();
@@ -185,6 +222,9 @@ public class MasterDeckParser {
 
         case TagCardDuringReviewCommand.COMMAND_WORD:
             return new TagCardDuringReviewCommandParser().parse(arguments);
+
+        case EndReviewCommand.COMMAND_WORD:
+            return new EndReviewCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
