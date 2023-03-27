@@ -10,7 +10,7 @@ import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.customer.Customer;
 
 /**
- * Parses input arguments and creates a new FindCustomerCommand object
+ * Parses input arguments and creates a new ListCustomerCommand object
  */
 public class ListCustomerCommandParser implements Parser<ListCustomerCommand> {
 
@@ -22,10 +22,8 @@ public class ListCustomerCommandParser implements Parser<ListCustomerCommand> {
     public ListCustomerCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SORT);
 
-        Comparator<Customer> comparator;
-        if (!arePrefixesPresent(argMultimap, PREFIX_SORT)) {
-            comparator = Customer.SORT_NAME;
-        } else {
+        Comparator<Customer> comparator = Customer.SORT_NAME;
+        if (arePrefixesPresent(argMultimap, PREFIX_SORT)) {
             comparator = ParserUtil.parseSortOption(argMultimap.getValue(PREFIX_SORT).orElse(""));
         }
 
