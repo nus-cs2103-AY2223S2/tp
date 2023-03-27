@@ -37,7 +37,7 @@ class JsonAdaptedAppointment {
     public JsonAdaptedAppointment(@JsonProperty("id") String appointmentId,
                                   @JsonProperty("timeslot") String timeslot,
                                   @JsonProperty("description") String description,
-                                  @JsonProperty("patientId") String patientName,
+                                  @JsonProperty("name") String patientName,
                                   @JsonProperty("tags") List<JsonAdaptedTag> tagged) {
         this.appointmentId = appointmentId;
         this.timeslot = timeslot;

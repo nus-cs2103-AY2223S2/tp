@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -134,7 +136,37 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePatient(Patient target) {
+        // Save the patient and appointment list
+        AddressBook addressBookCopy = new AddressBook(addressBook);
+        AppointmentList appointmentListCopy = new AppointmentList(appointmentList);
+
         addressBook.removePatient(target);
+        // Remove all appointments of that patient
+        List<Appointment> appointmentsToRemove = new ArrayList<>();
+        for (Appointment appointment : appointmentList.getAppointmentList()) {
+            if (appointment.getPatientName().equals(target.getName())) {
+                appointmentsToRemove.add(appointment);
+            }
+        }
+        for (Appointment appointment : appointmentsToRemove) {
+            appointmentList.removeAppointment(appointment);
+        }
+
+        // Check that the patient and their corresponding appointments have been removed
+        // If not, reset both lists and throw an error
+        boolean didDeletePatientFail = addressBook.hasPatient(target);
+
+        boolean areAllAppointmentsDeleted = true;
+        for (Appointment appointment : appointmentsToRemove) {
+            if (appointmentList.hasAppointment(appointment)) {
+                areAllAppointmentsDeleted = false;
+            }
+        }
+
+        if (!areAllAppointmentsDeleted || didDeletePatientFail) {
+            this.addressBook.setPatients(addressBookCopy.getPatientList());
+            this.appointmentList.setAppointments(appointmentListCopy.getAppointmentList());
+        }
     }
 
     @Override
