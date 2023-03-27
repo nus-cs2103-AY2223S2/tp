@@ -2,6 +2,10 @@
 layout: page
 title: Developer Guide
 ---
+<p align="center">
+<img src="images/logo_DG.png" width="300">
+</p>
+
 ## About Fish Ahoy!
 
 Fish Ahoy! is a desktop CLI-focused application, designed to help users take better care of their 
