@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_DEADLINE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_DESCRIPTION;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_DESCRIPTION_INTERVIEW;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
 
@@ -14,10 +17,14 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddApplicationCommand;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearApplicationCommand;
 import seedu.address.logic.commands.DeleteApplicationCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditApplicationCommand;
 import seedu.address.logic.commands.EditApplicationCommand.EditApplicationDescriptor;
+import seedu.address.logic.commands.EditTaskCommand;
+import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.ExitSprintCommand;
 import seedu.address.logic.commands.FindApplicationCommand;
 import seedu.address.logic.commands.HelpApplicationCommand;
@@ -30,13 +37,15 @@ import seedu.address.model.application.NameContainsKeywordsPredicate;
 import seedu.address.testutil.ApplicationBuilder;
 import seedu.address.testutil.ApplicationUtil;
 import seedu.address.testutil.EditApplicationDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
+import seedu.address.testutil.TaskUtil;
 
 public class InternshipBookParserTest {
 
     private final InternshipBookParser parser = new InternshipBookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_addApp() throws Exception {
         Application application = new ApplicationBuilder().build();
         AddApplicationCommand command = (AddApplicationCommand) parser
                 .parseCommand(ApplicationUtil.getAddApplicationCommand(application));
@@ -44,28 +53,61 @@ public class InternshipBookParserTest {
     }
 
     @Test
-    public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearApplicationCommand.COMMAND_WORD) instanceof ClearApplicationCommand);
-        assertTrue(parser.parseCommand(ClearApplicationCommand.COMMAND_WORD + " 3") instanceof ClearApplicationCommand);
+    public void parseCommand_addTask() throws Exception {
+        EditApplicationDescriptor descriptor = new EditApplicationDescriptorBuilder()
+                .withTask(VALID_DEADLINE, VALID_DESCRIPTION)
+                .build();
+        AddTaskCommand command = (AddTaskCommand) parser
+                .parseCommand(AddTaskCommand.COMMAND_WORD
+                + " "
+                + INDEX_FIRST_APPLICATION.getOneBased() + " "
+                + ApplicationUtil.getEditApplicationDescriptorDetails(descriptor));
+        assertEquals(new AddTaskCommand(INDEX_FIRST_APPLICATION, descriptor), command);
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_clear() throws Exception {
+        assertTrue(parser.parseCommand(ClearApplicationCommand.COMMAND_WORD) instanceof ClearApplicationCommand);
+        assertTrue(parser.parseCommand(ClearApplicationCommand.COMMAND_WORD + " 3")
+                instanceof ClearApplicationCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteApp() throws Exception {
         DeleteApplicationCommand command = (DeleteApplicationCommand) parser.parseCommand(
                 DeleteApplicationCommand.COMMAND_WORD + " " + INDEX_FIRST_APPLICATION.getOneBased());
         assertEquals(new DeleteApplicationCommand(INDEX_FIRST_APPLICATION), command);
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseCommand_deleteTask() throws Exception {
+        DeleteTaskCommand command = (DeleteTaskCommand) parser
+                .parseCommand(DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_APPLICATION.getOneBased());
+        assertEquals(new DeleteTaskCommand(INDEX_FIRST_APPLICATION), command);
+    }
+
+    @Test
+    public void parseCommand_editApp() throws Exception {
         Application application = new ApplicationBuilder().build();
         EditApplicationDescriptor descriptor = new EditApplicationDescriptorBuilder(application).build();
         EditApplicationCommand command = (EditApplicationCommand) parser
-                .parseCommand(EditApplicationCommand.COMMAND_WORD
-                + " "
+                .parseCommand(EditApplicationCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_APPLICATION.getOneBased() + " "
                 + ApplicationUtil.getEditApplicationDescriptorDetails(descriptor));
         assertEquals(new EditApplicationCommand(INDEX_FIRST_APPLICATION, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editTask() throws Exception {
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+                .withDescription(VALID_DESCRIPTION_INTERVIEW)
+                .build();
+        EditTaskCommand command = (EditTaskCommand) parser
+                .parseCommand(EditTaskCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_APPLICATION.getOneBased() + " "
+                + TaskUtil.getEditTaskDescriptorDetails(descriptor)
+                );
+        assertEquals(new EditTaskCommand(INDEX_FIRST_APPLICATION, descriptor), command);
     }
 
     @Test
@@ -78,7 +120,8 @@ public class InternshipBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindApplicationCommand command = (FindApplicationCommand) parser.parseCommand(
-                FindApplicationCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindApplicationCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindApplicationCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
