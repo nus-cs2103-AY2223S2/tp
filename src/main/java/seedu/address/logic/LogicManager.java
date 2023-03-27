@@ -52,11 +52,11 @@ public class LogicManager implements Logic {
 
         ModelState currentState = model.getState();
         switch (currentState) {
-        case MAIN_MODE:
-            command = masterDeckParser.parseCommandInMainMode(commandText);
+        case MAIN_UNSELECTED_MODE:
+            command = masterDeckParser.parseCommandInMainUnselectedMode(commandText);
             break;
-        case DECK_MODE:
-            command = masterDeckParser.parseCommandInDeckMode(commandText);
+        case MAIN_SELECTED_MODE:
+            command = masterDeckParser.parseCommandInMainSelectedMode(commandText);
             break;
         case REVIEW_MODE:
             command = masterDeckParser.parseCommandInReviewMode(commandText);
