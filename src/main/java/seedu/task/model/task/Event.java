@@ -4,6 +4,7 @@ import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -24,6 +25,18 @@ public class Event extends Task {
      */
     public Event(Name name, Description description, Set<Tag> tags, Date from, Date to, Effort effort) {
         super(name, description, tags, effort);
+        requireAllNonNull(from, to);
+        this.from = from;
+        this.to = to;
+    }
+
+
+    /**
+     * Overload the constructor to take in a {@code subtasks} field
+     */
+    public Event(Name name, Description description, Set<Tag> tags, Date from, Date to,
+                 Effort effort, List<Subtask> subtask) {
+        super(name, description, tags, effort, subtask);
         requireAllNonNull(from, to);
         this.from = from;
         this.to = to;
