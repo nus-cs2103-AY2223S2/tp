@@ -277,16 +277,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void markCorrect() {
-        this.currReview.markCurrCardAsCorrect();
-    }
-
-    @Override
-    public void markWrong() {
-        this.currReview.markCurrCardAsWrong();
-    }
-
-    @Override
     public boolean goToPrevCard() {
         boolean isFirstCard = this.currReview.goToPrevCard();
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
@@ -337,6 +327,7 @@ public class ModelManager implements Model {
     public void tagCurrentCardInReview(Tag tag) {
         assert filteredCards.size() == 1 : "One and only one card can be reviewed at once.";
         masterDeck.tagCard(filteredCards.get(0), tag);
+        currReview.updateReviewStatsList();
     }
 
     @Override

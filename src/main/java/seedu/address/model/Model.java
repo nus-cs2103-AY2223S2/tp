@@ -146,10 +146,6 @@ public interface Model {
 
     void flipCard();
 
-    void markWrong();
-
-    void markCorrect();
-
     boolean goToPrevCard();
 
     boolean goToNextCard();
