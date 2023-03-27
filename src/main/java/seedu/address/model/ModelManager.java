@@ -112,12 +112,12 @@ public class ModelManager implements Model {
     public void addPatient(Patient patient) {
         addressBook.addPatient(patient);
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+        updateFilteredWardList(PREDICATE_SHOW_ALL_WARDS);
     }
 
     @Override
     public void setPatient(Patient target, Patient editedPatient) {
         requireAllNonNull(target, editedPatient);
-
         addressBook.setPatient(target, editedPatient);
     }
 
