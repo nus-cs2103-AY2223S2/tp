@@ -1,11 +1,16 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.parser.AddressBookParser.BASIC_COMMAND_FORMAT;
+
+import java.util.regex.Matcher;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.ListAllCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -75,16 +80,21 @@ public class CommandBox extends UiPart<Region> {
 
     private void onInputChange(String oldValue, String newValue) {
         // Your logic to handle input changes here
-        if (oldValue.contains(FindCommand.COMMAND_WORD) && !newValue.isEmpty()
-            && (!newValue.trim().equals(FindCommand.COMMAND_WORD))) {
+        String trimmedNewValue = newValue.trim();
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(trimmedNewValue);
+
+        if (matcher.matches() && matcher.group("commandWord").equals(FindCommand.COMMAND_WORD)) {
+            String commandToExecute = trimmedNewValue.equals(FindCommand.COMMAND_WORD)
+                ? ListAllCommand.COMMAND_WORD : newValue;
+
             try {
-                commandExecutor.execute(newValue);
+                commandExecutor.execute(commandToExecute);
             } catch (CommandException | ParseException e) {
                 setStyleToIndicateCommandFailure();
             }
-
         }
     }
+
 
     /**
      * Represents a function that can execute commands.
