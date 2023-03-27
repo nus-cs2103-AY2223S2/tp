@@ -44,4 +44,11 @@ public class ExportPersonsCommand extends Command {
             throw new CommandException("Error turning to json");
         }
     }
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ExportPersonsCommand
+                && indexList.equals(((ExportPersonsCommand) other).indexList));
+    }
+
 }
