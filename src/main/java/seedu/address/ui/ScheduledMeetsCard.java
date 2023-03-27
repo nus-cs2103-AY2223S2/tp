@@ -10,9 +10,12 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
+/**
+ * An UI component that displays information of a {@code Person}.
+ */
 public class ScheduledMeetsCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "ScheduledMeetsListCard.fxml";
     private static final String GROUP_TAG_STYLE = "-fx-text-fill: black; -fx-background-color: rgb(227, 211, 238); "
             + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;";
     private static final String MODULE_TAG_STYLE = "-fx-text-fill: #FFFFFF; -fx-background-color: rgb(150, 146, 223); "
