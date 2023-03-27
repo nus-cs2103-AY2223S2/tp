@@ -461,14 +461,16 @@ The `add` command allows users to create a new person and insert them into the a
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Command Formats:**
+:information_source: **Command Formats:** <br>
+
 * `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`
 
 </div>
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The arguments for `AddCommand` are unordered, so the user can type them in any order. They are all handled in [Argument Multimap](#argument-multimap).
+:bulb: **Tip:** <br>
+The arguments for `AddCommand` are unordered, so the user can type them in any order. They are all handled in [Argument Multimap](#argument-multimap).
 
 </div>
 
@@ -506,6 +508,7 @@ The `edit` command allows the user to edit an existing contact in EduMate.
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Command Formats:** <br>
+
 * `edit z/FIELD`: Edits the user details. <br>
 * `edit INDEX z/FIELD`: Edits the details of the contact at the specified `INDEX`. <br>
 
@@ -602,6 +605,7 @@ The last viewed profile will remain displayed on the profile panel should there 
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Command Formats** <br>
+
 *`view` : Displays user's profile on the display panel. <br>
 *`view n/XYZ` : Display XYZ's profile on the display panel. <br>
 *`view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
@@ -639,6 +643,7 @@ For example, if the user wants to search for a person but does not know the full
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Command Formats:** <br>
+
 * `find [z/FIELD MORE_FIELD]`: Finds the contacts matching the field found in the 'z' field.
 
 </div>
@@ -673,6 +678,7 @@ For example, if the user wants to sort by groups, and break ties with name, they
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Command Formats:** <br>
+
 * `sort`: Sorts the contacts by their index. <br>
 * `sort [z/a]…ZWSP`: Sorts the contacts by the `z` field in **ascending** order.<br>
 * `sort [z/d]…ZWSP`: Sorts the contacts by the `z` field in **descending** order.<br>
@@ -703,6 +709,7 @@ The `list` command will allow users to view all the contacts saved in `EduMate`.
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Command Formats:**
+
 * `list`: lists all contacts in the EduMate Application.
 
 </div>
@@ -716,6 +723,7 @@ The `exit` command allows users to exit the EduMate Application via the command 
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Command Formats:**
+
 * `exit`: Exits the EduMate Application.
 
 </div>
