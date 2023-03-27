@@ -329,6 +329,75 @@ up -pn Mycelium Desktop -pn2 Mycelium Mobile -s in_progress
   currently have the projects *foo* and *bar*. An attempt to update *foo*'s
   name to *bar* will result in an error, and the operation will be blocked.
 
+# Fuzzy Search
+
+Fuzzy search allows us to find projects or clients which match *closely* to
+some query, rather than *exactly*. This is useful if you are, for instance,
+trying to find a project whose name you only remember partial bits of, or how
+it sounds in your head.
+
+Mycelium supports fuzzy finding for both projects and clients. For projects,
+the query is matched against the project's name, while for clients, the query
+is matched against the client's email. Furthermore, the search is
+*interactive*. This means that the UI automatically updates as you type your
+query into the command box.
+
+Please take note of these details for fuzzy search:
+
+* Closer matches will be placed at the top;
+* Projects or clients which do not match at all will not be shown;
+* Fuzzy search is *not* case-sensitive.
+
+Note that by "do not match at all", we refer to the case where literally not a
+single character matches. As long as at least one character matches, the
+project or client will be listed (although possibly ranked very low).
+
+The following two sections will walk through performing fuzzy search on
+projects and clients.
+
+## Fuzzy searching projects
+
+Let us assume we have the following projects in Mycelium:
+
+**TODO: insert screenshot with some sample projects**
+
+<div markdown="span" class="alert alert-info">
+:information_source: Recall that Mycelium supports fuzzy search for projects by
+their *names* only!
+</div>
+
+First, press `Ctrl+F` to toggle to search mode (if you are not already in
+search mode). You should see the command box turn light blue; now we can begin
+searching. Suppose we wanted to search for *Clash of Clans*. With the power of
+fuzzy matching, just typing *coc* is enough, as shown below.
+
+**TODO: add screenshot**
+
+If we queried a term which matches nothing at all, then no results will be
+listed.
+
+**TODO: add screenshot**
+
+Once we are done, pressing `Ctrl+F` again switches us back to command mode.
+
+## Fuzzy searching clients
+
+This works exactly the same as as fuzzy searching projects, described above.
+The only difference to note is that the query is matched against the clients'
+emails, and not their names.
+
+## Gotchas
+
+In general, fuzzy search in Mycelium should feel familiar to most developers,
+since it is similar to, for example, finding files in IDEs, or the well known
+[fzf](https://github.com/junegunn/fzf) tool. However, here are a few things you
+might wish to note:
+
+* Each fuzzy query will be applied to both clients and project. That is, when
+  you query for something, say, "coc", this query is applied to both the client
+  and project tabs, regardless of which tab is currently being displayed.
+* **TODO: add more gotchas**
+
 --------------------------------------------------------------------------------------------------------------------
 
 # Command summary
