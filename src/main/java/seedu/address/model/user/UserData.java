@@ -80,7 +80,7 @@ public class UserData implements ReadOnlyUserData {
     }
 
     public boolean isPersonTaggedToEvent(Index index, Person p) {
-        return this.user.get().checkPersonTagToEvent(index, p);
+        return this.user.get().isPersonTaggedToEvent(index, p);
     }
     //// util methods
 
