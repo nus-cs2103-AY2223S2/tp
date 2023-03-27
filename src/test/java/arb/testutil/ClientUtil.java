@@ -45,10 +45,14 @@ public class ClientUtil {
     public static String getEditClientDescriptorDetails(EditClientDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE)
+        /* descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE)
                 .append(phone.toString()).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL)
-                .append(email.toString()).append(" "));
+                .append(email.toString()).append(" ")); */
+        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE
+                + phone.map(p -> p.toString()).orElse("") + " "));
+        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL
+                + email.map(e -> e.toString()).orElse("") + " "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
