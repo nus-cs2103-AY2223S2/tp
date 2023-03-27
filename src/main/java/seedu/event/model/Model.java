@@ -15,6 +15,7 @@ import seedu.event.model.event.Rate;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
+    Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -132,6 +133,8 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
+    void updateFilteredContactList(Predicate<Contact> predicate);
 
     void linkContact(Event event, Event linkedEvent);
 }

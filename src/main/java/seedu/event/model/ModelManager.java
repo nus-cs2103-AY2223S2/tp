@@ -168,6 +168,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredContactList(Predicate<Contact> predicate) {
+        requireNonNull(predicate);
+        filteredContacts.setPredicate(predicate);
+    }
+
+    @Override
     public ReadOnlyContactList getContactList() {
         return contactList;
     }
@@ -181,6 +187,7 @@ public class ModelManager implements Model {
     @Override
     public void addContact(Contact contact) {
         contactList.addContact(contact);
+        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
     }
 
     @Override
