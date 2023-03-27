@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.TreeMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.modtrek.commons.core.GuiSettings;
 import seedu.modtrek.commons.core.LogsCenter;
+import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.module.Module;
 
 /**
@@ -126,6 +128,21 @@ public class ModelManager implements Model {
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
+    }
+
+    @Override
+    public TreeMap<? extends Object, ObservableList<Module>> getModuleGroups() {
+        return degreeProgression.getModuleGroups();
+    }
+
+    @Override
+    public void sortModuleGroups(SortCommand.Sort sort) {
+        degreeProgression.sortModuleGroups(sort);
+    }
+
+    @Override
+    public String getSort() {
+        return degreeProgression.getSort();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package seedu.modtrek.ui.modulesection;
 
+import java.util.TreeMap;
+
 import javafx.collections.ObservableList;
 import javafx.scene.layout.Region;
 import seedu.modtrek.model.module.Module;
@@ -12,6 +14,7 @@ import seedu.modtrek.ui.UiPart;
 public class ModuleListSection extends ModuleSection {
     /**
      * Instantiates a ModuleListSection.
+     *
      * @param modules The modules to display in the section.
      */
     public ModuleListSection(ObservableList<Module> modules) {
@@ -25,12 +28,30 @@ public class ModuleListSection extends ModuleSection {
     }
 
     /**
+     * Instantiates a new Module list section.
+     *
+     * @param sortedLists the sorted lists
+     */
+    public ModuleListSection(TreeMap<? extends Object, ObservableList<Module>> sortedLists) {
+        super();
+
+        ModuleList moduleList = new ModuleList(sortedLists);
+        moduleListPlaceholder.getChildren().add(moduleList.getRoot());
+
+        ModuleSectionSortNav nav = new ModuleSectionSortNav();
+        moduleSectionNav.getChildren().add(nav.getRoot());
+    }
+
+    /**
      * The navigation bar of ModuleListSection enabling user to select the category to sort
      * the modules by.
      */
     private class ModuleSectionSortNav extends UiPart<Region> {
         private static final String FXML = "modulesection/ModuleSectionSortNav.fxml";
 
+        /**
+         * Instantiates a new Module section sort nav.
+         */
         public ModuleSectionSortNav() {
             super(FXML);
         }
