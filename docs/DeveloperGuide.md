@@ -380,7 +380,21 @@ Cons: More complicated to implement and unwieldy for users.
 
 ### 3.8 Stats Feature
 Statistics is a useful way for users to get an overview of all open tasks in the TaskBook. Currently, `stats` supports 1 view - categorise by tags. 
-The number of tasks that fall under each tag is counted, and displayed, for up to a maximum of 10 tags.
+The number of tasks that fall under each tag is counted, and displayed in descending order, for up to a maximum of 10 tags.
+
+Given below is an example usage scenario for the `stats` command.
+
+Step 1. User inputs `stats` and presses enter.
+
+Step 2. The application displays a list of tags and the corresponding number of times it appears in the application.
+
+The following sequence diagram provides an overview of how `stats` works:
+
+![StatsCommandSequenceDiagram](images/StatsCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![StatsCommandActivityDiagram](images/StatsCommandActivityDiagram.png)
 
 ### 3.9 Sort Feature
 
@@ -399,7 +413,6 @@ Step 3. The sequence diagram below shows how the sort operation works:
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
-
 
 #### 3.9.1 Design Consideration
 
