@@ -10,7 +10,7 @@ with Mycelium are through text commands, allowing for efficient manipulation of
 data while benefiting from the ease of viewing offered by the Graphical User
 Interface.
 
-# Using this Guide
+## Using this Guide
 
 If it is your first time here, the easiest way to get started is to head over
 to [Quick Start](#quick-start), which will guide you through the installation
@@ -22,10 +22,10 @@ commands for managing clients and projects, as well as the available hotkeys.
 
 **TODO: add internal links for the para above**
 
-# Table of Contents
+* Table of Contents
 {:toc}
 
-# Quick Start
+### Quick Start
 
 Mycelium runs on Java 11, so you should first head over to [Oracle's
 website](https://www.oracle.com/java/technologies/downloads/) to install Java
@@ -62,11 +62,11 @@ preferred use case.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Main View - Projects and Clients
+## Main View - Projects and Clients
 
 Mycelium has two main tabs. One tab lists all existing projects, and the other lists existing clients.
 
-## Projects Tab
+### Projects Tab
 
 The Projects tab lists all the projects you've created. Each project block contains the project’s
 
@@ -78,7 +78,7 @@ The Projects tab lists all the projects you've created. Each project block conta
 - Accepted date
 - Deadline
 
-## Clients Tab
+### Clients Tab
 
 The Clients tab lists all the clients you've created. Each client block contains the client’s
 
@@ -91,7 +91,7 @@ The Clients tab lists all the clients you've created. Each client block contains
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Command Layout
+## Command Layout
 
 Commands in Mycelium take the general form of `command_name [arguments...]`.
 Arguments may be compulsory or optional. If you do not provide the optional
@@ -116,7 +116,7 @@ You will also discover that all command names in Mycelium are at most two
 characters long. This terseness is *intentional* to allow for faster
 keystrokes.
 
-## A note on dates
+### A note on dates
 
 Some arguments are in the form of dates. For these, Mycelium only accepts input
 of the format dd/MM/yyyy. For example, "14/03/2023" is okay, but "14/3/2023",
@@ -124,9 +124,9 @@ or "14-03-2023" are not okay.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Managing Clients
+## Managing Clients
 
-## Creating a client contact: `c`
+### Creating a client contact: `c`
 
 Creates a new client contact.
 
@@ -157,7 +157,7 @@ The following command creates a new client with name *Alice Baker*, whose email 
 c -cn 'Alice Baker' -e alice_baker@bakers.com -y 2000
 ```
 
-## Deleting a client contact: `dc`
+### Deleting a client contact: `dc`
 
 Deletes an *existing* client contact.
 
@@ -171,9 +171,10 @@ Deletes an *existing* client contact.
 The command `dc -e alice_baker@bakers.com`  deletes the contact with the corresponding email.
 
 --------------------------------------------------------------------------------------------------------------------
-# Managing Projects
 
-## Creating a project: `p`
+## Managing Projects
+
+### Creating a project: `p`
 
 Creates a new project.
 
@@ -228,7 +229,7 @@ New project added: Mycelium Desktop from client spiderman@gmail.com
 * If you attempt to create a project with a name which already exists in
   Mycelium, an error will be displayed to block the operation.
 
-## Deleting a project: `dp`
+### Deleting a project: `dp`
 
 Deletes an existing project.
 
@@ -258,7 +259,7 @@ Deleted Project: Mycelium Desktop from client spiderman@gmail.com
   will be displayed and no changes will be made to your data.
 * Deletion is irreversible!
 
-## Updating a project: `up`
+### Updating a project: `up`
 
 Performs partial updates an existing project.
 
@@ -329,7 +330,7 @@ up -pn Mycelium Desktop -pn2 Mycelium Mobile -s in_progress
   currently have the projects *foo* and *bar*. An attempt to update *foo*'s
   name to *bar* will result in an error, and the operation will be blocked.
 
-# Fuzzy Search
+## Fuzzy Search
 
 Fuzzy search allows us to find projects or clients which match *closely* to
 some query, rather than *exactly*. This is useful if you are, for instance,
@@ -355,7 +356,7 @@ project or client will be listed (although possibly ranked very low).
 The following two sections will walk through performing fuzzy search on
 projects and clients.
 
-## Fuzzy searching projects
+### Fuzzy searching projects
 
 Let us assume we have the following projects in Mycelium:
 
@@ -380,13 +381,13 @@ listed.
 
 Once we are done, pressing `Ctrl+F` again switches us back to command mode.
 
-## Fuzzy searching clients
+### Fuzzy searching clients
 
 This works exactly the same as as fuzzy searching projects, described above.
 The only difference to note is that the query is matched against the clients'
 emails, and not their names.
 
-## Gotchas
+### Gotchas
 
 In general, fuzzy search in Mycelium should feel familiar to most developers,
 since it is similar to, for example, finding files in IDEs, or the well known
@@ -400,7 +401,7 @@ might wish to note:
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Command summary
+## Command summary
 
 Action | Format
 --------|------------------
