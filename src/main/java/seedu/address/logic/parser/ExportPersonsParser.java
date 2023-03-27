@@ -31,7 +31,9 @@ public class ExportPersonsParser implements Parser<ExportPersonsCommand> {
         List<Index> indexes = new ArrayList<>();
         for (String s : indexStrings) {
             try {
-                indexes.add(ParserUtil.parseIndex(s));
+                if (!indexes.contains(ParserUtil.parseIndex(s))) {
+                    indexes.add(ParserUtil.parseIndex(s));
+                }
             } catch (ParseException parseException) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         ExportPersonsCommand.MESSAGE_USAGE),

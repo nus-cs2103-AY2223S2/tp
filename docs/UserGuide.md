@@ -22,6 +22,8 @@ Equipped with both a Graphical User Interface (GUI) and Command Line Interface (
     - [`findm`](#finding-meetings-by-name--findm)
     - [`export`](#exporting-of-contact--export)
     - [`import`](#importing-of-contacts--import)
+    - [`exportm`](#export-meetings--exportm)
+    - [`importm`](#import-meetings--importm)
     - [Saving of data](#saving-the-data)
     - [Editing of data](#editing-the-data-file)
     - [Archiving of data](#archiving-data-files-coming-in-v20)
@@ -165,6 +167,32 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Sorting Meetings: `sortm`
+
+Sorts meetings in the address book by a specified attribute.
+
+Format: `sortm ATTRIBUTE [r]`
+
+* Sorts the meetings in the address book by the specified `ATTRIBUTE`, which can be one of the following: `m/` (meeting title), `dt/` (date/time), `l/` (location), or `des/` (description).
+* If the `r` option is included, the meetings will be sorted in reverse order.
+* Meetings with the same value for the specified attribute will be sorted by date/time in ascending order.
+* Example: `sortm m/` sorts meetings by title in ascending order.
+* Example: `sortm dt/r` sorts meetings by date/time in descending order.
+
+### Editing a meeting: `editm`
+
+Edits an existing meeting in the meeting book.
+
+Format: `editm INDEX [t/TITLE] [dt/DATE] [l/LOCATION] [des/DESCRIPTION]`
+
+* Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* The `DATE`, `START_TIME` and `END_TIME` must be provided in the format `YYYY-MM-DD`, `HH:MM` (24-hour) respectively.
+
+Examples:
+* `editm 1 t/Project Update dt/2023-04-01 10:00`  Edits the date first meeting to be on `2023-04-01`, and change its title to "Project Update".
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -254,9 +282,92 @@ Example:
   }
 ]
 ```
-Optional Parameter `f/ true` that forces imports regardless of duplicate values.
+Optional Parameter `f/` that forces imports regardless of duplicate values.
 
-Format: `import JSON f/ true`
+Format: `import JSON f/`
+
+### Export meetings: `exportm`
+* Exports the meetings at the specified `INDEX`es, between `start` and `end` dates.
+* The indexes refer to the index numbers shown in the displayed meetings list.
+* The indexes **must be positive integers** 1, 2, 3
+* The start and end dates must be valid dates in the DD/MM/YY format
+
+Format: `exportm p/ INDEX1 p/ INDEX2 start/ START_DATE end/ END_DATE`
+
+### Import meetings: `importm`
+* Imports the meetings in the provided JSON.
+* The JSON **must contain a valid array of meetings**
+
+Example:
+```json
+[
+  {
+    "title": "Dinner with Alice",
+    "dateTime": "01/02/2023 19:00",
+    "attendees": [
+      {
+        "name": "Alice Pauline",
+        "phone": "94351253",
+        "email": "alice@example.com",
+        "address": "123, Jurong West Ave 6, #08-111",
+        "tagged": [
+          "friends"
+        ]
+      }
+    ],
+    "location": "NUS",
+    "description": "Weekly catchup"
+  },
+  {
+    "title": "Study session with Benson and Carl",
+    "dateTime": "02/03/2023 15:00",
+    "attendees": [
+      {
+        "name": "Benson Meier",
+        "phone": "98765432",
+        "email": "johnd@example.com",
+        "address": "311, Clementi Ave 2, #02-25",
+        "tagged": [
+          "owesMoney",
+          "friends"
+        ]
+      },
+      {
+        "name": "Carl Kurz",
+        "phone": "95352563",
+        "email": "heinz@example.com",
+        "address": "wall street",
+        "tagged": []
+      }
+    ],
+    "location": "Central Library",
+    "description": "Study for finals"
+  },
+  {
+    "title": "Zoom meeting for agenda planning",
+    "dateTime": "13/03/2023 12:45",
+    "attendees": [
+      {
+        "name": "Alice Pauline",
+        "phone": "94351253",
+        "email": "alice@example.com",
+        "address": "123, Jurong West Ave 6, #08-111",
+        "tagged": [
+          "friends"
+        ]
+      }
+    ],
+    "location": "https://us02web.zoom.us/j/99999999999?pwd=ABCdEfGHiJkYkRuYW5WTLmNopQrSt12",
+    "description": "Plan for project work"
+  }
+]
+
+
+```
+
+Optional Parameter `f/` that forces imports regardless of duplicate values.
+
+Format: `import JSON f/`
 
 ### Create meetings `[Coming Soon]`
 _Details coming soon ..._
