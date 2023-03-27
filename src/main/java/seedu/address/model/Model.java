@@ -123,17 +123,6 @@ public interface Model {
     void updateFilteredGroupList(Predicate<Group> predicate);
 
     /**
-     * Add IsolatedEvent object to the person's isolated event list.
-     * @param person
-     * @param eventToAdd
-     */
-    void addIsolatedEvent(Person person, IsolatedEvent eventToAdd);
-
-    void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event);
-
-    void setIsolatedEvent(Person personToEdit, IsolatedEvent originalEvent, IsolatedEvent editedIsolatedEvent);
-
-    /**
      * Add Recurring Event object to the person's isolated event list
      * @param personToEdit
      * @param eventToAdd
