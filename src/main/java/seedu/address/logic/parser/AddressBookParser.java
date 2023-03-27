@@ -103,13 +103,13 @@ public class AddressBookParser {
 
         case SortMeetingCommand.COMMAND_WORD:
             return new SortMeetingParser().parse(arguments);
-            
+
         case ExportMeetingsCommand.COMMAND_WORD:
             return new ExportMeetingsParser().parse(arguments);
-            
+
         case ImportMeetingsCommand.COMMAND_WORD:
             return new ImportMeetingsParser().parse(arguments);
-            
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
