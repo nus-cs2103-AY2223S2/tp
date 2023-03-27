@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private UserProfilePanel userProfilePanel;
+    private MeetListPanel meetListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -48,6 +49,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane userProfilePlaceholder;
+
+    @FXML
+    private StackPane meetListPanelPlaceholder;
 
     @FXML
     private Label userName;
@@ -90,6 +94,9 @@ public class MainWindow extends UiPart<Stage> {
 
         userProfilePanel = new UserProfilePanel(logic);
         userProfilePlaceholder.getChildren().add(userProfilePanel.getRoot());
+
+        meetListPanel = new MeetListPanel(logic.getObservableRecommendationList());
+        meetListPanelPlaceholder.getChildren().add(meetListPanel.getRoot());
 
         setUserName(logic.getUser());
     }

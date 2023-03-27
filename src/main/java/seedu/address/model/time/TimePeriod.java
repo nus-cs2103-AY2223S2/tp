@@ -97,6 +97,13 @@ public abstract class TimePeriod {
         return schoolDay;
     }
 
+    public String getUiDisplay() {
+        return String.format("[%s] %s - %s",
+                getSchoolDay(),
+                TimeUtil.formatLocalTime(getStartTime()),
+                TimeUtil.formatLocalTime(getEndTime()));
+    }
+
     /**
      * Splits the time period into a bunch of smaller hour blocks.
      */

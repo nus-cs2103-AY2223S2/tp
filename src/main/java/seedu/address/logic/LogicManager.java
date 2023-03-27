@@ -16,6 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
+import seedu.address.model.recommendation.Recommendation;
 import seedu.address.storage.Storage;
 
 /**
@@ -70,6 +71,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getObservablePersonList() {
         return model.getObservablePersonList();
+    }
+
+    @Override
+    public ObservableList<Recommendation> getObservableRecommendationList() {
+        return model.getObservableRecommendationList();
     }
 
     @Override
