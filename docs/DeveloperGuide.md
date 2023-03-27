@@ -486,6 +486,13 @@ in our `Storage` as well as the courses displayed in the application.
 
 [Scroll back to top](#table-of-contents)
 
+## **Logic Implementation**
+
+This section describes implementation of features within `logic` package. Refer to [Logic component](#logic-component)
+for more information about this package.
+
+<br>
+
 ### **Edit Command**
 
 Editing a person's attributes is implemented such that the user can only edit the person in the right view panel.
@@ -530,13 +537,6 @@ update is more restrictive and maintains the integrity of the size of the hash t
 stored in.
 
 [Scroll back to top](#table-of-contents)
-
-## **Logic Implementation**
-
-This section describes implementation of features within `logic` package. Refer to [Logic component](#logic-component)
-for more information about this package.
-
-<br>
 
 ### Find Command
 
