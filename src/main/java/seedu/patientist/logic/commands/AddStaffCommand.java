@@ -7,6 +7,7 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_WARD;
 
 import seedu.patientist.logic.commands.exceptions.CommandException;
 import seedu.patientist.model.Model;
@@ -23,6 +24,7 @@ public class AddStaffCommand extends Command {
                                                             + "Parameters: "
                                                             + PREFIX_NAME + "NAME "
                                                             + PREFIX_ID + "ID "
+                                                            + PREFIX_WARD + "WARD "
                                                             + PREFIX_PHONE + "PHONE "
                                                             + PREFIX_EMAIL + "EMAIL "
                                                             + PREFIX_ADDRESS + "ADDRESS "
@@ -30,6 +32,7 @@ public class AddStaffCommand extends Command {
                                                             + "Example: " + COMMAND_WORD + " "
                                                             + PREFIX_NAME + "Mary Jane "
                                                             + PREFIX_ID + "A17625H "
+                                                            + PREFIX_WARD + "Block B Ward 2 "
                                                             + PREFIX_PHONE + "96421234 "
                                                             + PREFIX_EMAIL + "mj@example.com "
                                                             + PREFIX_ADDRESS + "789 Hospice St, #06-16 "
