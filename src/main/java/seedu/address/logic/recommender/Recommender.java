@@ -13,13 +13,12 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.recommender.location.LocationRecommender;
 import seedu.address.logic.recommender.location.LocationTracker;
+import seedu.address.logic.recommender.timing.TimingRecommender;
 import seedu.address.model.Model;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.recommendation.Recommendation;
-import seedu.address.model.time.HourBlock;
 import seedu.address.model.time.TimePeriod;
-import seedu.address.model.timingrecommender.TimingRecommender;
 
 /**
  * Recommends meetup times and locations.
@@ -47,32 +46,30 @@ public class Recommender {
      * Returns a list of recommendations.
      */
     public List<Recommendation> recommend(Collection<ContactIndex> contactIndices, Collection<Location> destinations) {
+        logger.info(String.format("Persons to meet: %s", contactIndices.toString()));
+
         initialise(contactIndices, destinations);
-        List<HourBlock> timingRecommendations =
-                timingRecommender.giveLongestTimingRecommendations(RECOMMENDATION_LIMIT)
-                        .stream().map(TimePeriod::fragmentIntoHourBlocks)
-                        .flatMap(List::stream)
-                        .collect(Collectors.toList());
+        List<TimePeriod> timingRecommendations =
+                timingRecommender.giveLongestTimingRecommendations(RECOMMENDATION_LIMIT);
 
         logger.info(String.format("%d timings recommended", timingRecommendations.size()));
 
         List<List<Location>> locationRecommendations = timingRecommendations.stream()
-                .map(this::getLocationsFromHourBlock)
+                .map(this::getLocationsFromTimePeriod)
                 .map(locationRecommender::recommend)
                 .collect(Collectors.toList());
 
         List<Recommendation> recommendations = CollectionUtil
                 .zip(locationRecommendations.stream(),
                         timingRecommendations.stream(),
-                        this::recommendFromLocationsHourBlock)
+                        this::recommendFromLocationsTimePeriod)
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
 
-        List<Recommendation> filteredRecommendations = filterRecommendations(recommendations);
+        List<Recommendation> sortedRecommendations = sortRecommendations(recommendations);
+        List<Recommendation> filteredRecommendations = filterRecommendations(sortedRecommendations);
 
-        return filteredRecommendations.stream()
-                .sorted().limit(RECOMMENDATION_LIMIT)
-                .collect(Collectors.toList());
+        return filteredRecommendations.stream().limit(RECOMMENDATION_LIMIT).collect(Collectors.toList());
     }
 
     /**
@@ -85,14 +82,18 @@ public class Recommender {
         locationTrackers = timingRecommender.getParticipants().stream()
                 .map(LocationTracker::new)
                 .collect(Collectors.toSet());
+
+        logger.info(String.format("Location Trackers: %s", locationTrackers.stream()
+                .map(LocationTracker::toString)
+                .collect(Collectors.joining("\n"))));
     }
 
     /**
      * Gets location from hour block.
      */
-    private Set<Location> getLocationsFromHourBlock(HourBlock hourBlock) {
+    private Set<Location> getLocationsFromTimePeriod(TimePeriod timePeriod) {
         return locationTrackers.stream()
-                .map(lt -> lt.getLocation(hourBlock))
+                .map(lt -> lt.getLocation(timePeriod))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .collect(Collectors.toSet());
@@ -101,9 +102,10 @@ public class Recommender {
     /**
      * Returns a list of recommendation based on a particular timing.
      */
-    private List<Recommendation> recommendFromLocationsHourBlock(List<Location> locations, HourBlock hourBlock) {
+    private List<Recommendation> recommendFromLocationsTimePeriod(
+            List<Location> locations, TimePeriod timePeriod) {
         return locations.stream()
-                .map(l -> new Recommendation(l, hourBlock))
+                .map(l -> new Recommendation(l, timePeriod))
                 .collect(Collectors.toList());
     }
 
@@ -130,5 +132,13 @@ public class Recommender {
         }
 
         return filteredRecommendations;
+    }
+
+    /**
+     * Returns a sorted recommendations list.
+     */
+    private List<Recommendation> sortRecommendations(List<Recommendation> recommendations) {
+        return recommendations.stream()
+                .sorted().collect(Collectors.toList());
     }
 }

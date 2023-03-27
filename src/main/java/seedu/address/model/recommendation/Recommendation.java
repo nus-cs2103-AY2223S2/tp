@@ -114,7 +114,7 @@ public class Recommendation implements Comparable<Recommendation> {
 
     @Override
     public String toString() {
-        return String.format("[%s, %s]", location, timePeriod);
+        return String.format("[%s, %s, %s]", contactIndex, location, timePeriod);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import seedu.address.logic.commands.results.ExitCommandResult;
 import seedu.address.model.Model;
 
 /**
@@ -12,8 +13,8 @@ public class ExitCommand extends Command {
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
 
     @Override
-    public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, false);
+    public ExitCommandResult execute(Model model) {
+        return new ExitCommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT);
     }
 
 }

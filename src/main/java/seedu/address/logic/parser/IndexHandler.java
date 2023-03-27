@@ -40,6 +40,10 @@ public class IndexHandler {
      * Gets the first person who satisfies the index, if any.
      */
     public Optional<Person> getPersonByIndex(ContactIndex index) {
+        if (index.getContactIndex() == 0) {
+            return Optional.of(model.getUser());
+        }
+
         List<Person> personList = model.getObservablePersonList();
         return personList.stream().filter(person -> person.getContactIndex().equals(index)).findFirst();
     }
@@ -49,11 +53,11 @@ public class IndexHandler {
      * @return new Contact Index for new Recommendation.
      */
     public ContactIndex assignRecommendationIndex() {
-        List<Recommendation> personList = model.getObservableRecommendationList();
-        if (personList.isEmpty()) {
+        List<Recommendation> recommendationList = model.getObservableRecommendationList();
+        if (recommendationList.isEmpty()) {
             return new ContactIndex(1);
         }
-        OptionalInt takenIndices = IntStream.iterate(1, integer -> personList.stream()
+        OptionalInt takenIndices = IntStream.iterate(1, integer -> recommendationList.stream()
                         .anyMatch(recommendation -> recommendation
                                 .getContactIndex().equals(new ContactIndex(integer))), x -> x + 1).max();
 

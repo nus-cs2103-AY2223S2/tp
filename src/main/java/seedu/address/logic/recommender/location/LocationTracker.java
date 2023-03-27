@@ -1,5 +1,7 @@
 package seedu.address.logic.recommender.location;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,6 +18,7 @@ import seedu.address.model.location.util.DistanceUtil;
 import seedu.address.model.person.Person;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.HourBlock;
+import seedu.address.model.time.TimePeriod;
 import seedu.address.model.timetable.Timetable;
 
 /**
@@ -102,11 +105,32 @@ public class LocationTracker {
     }
 
     /**
+     * Gets the average location of a person within a time period.
+     */
+    public Optional<Location> getLocation(TimePeriod timePeriod) {
+        requireNonNull(timePeriod);
+        List<Location> locations =
+                timePeriod.fragmentIntoHourBlocks()
+                        .stream().map(this::getLocation)
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .collect(Collectors.toList());
+
+        return Optional.of(DistanceUtil.getMidpoint(locations));
+    }
+
+    /**
      * Fills the unknown locations based on the last known and next known locations.
      */
     private void fillUnknown() {
+        Location homeAddress = person.getAddress().getValue();
+        Pair<Location, Integer> startPair = new Pair<>(homeAddress, -1);
+        Pair<Location, Integer> endPair = new Pair<>(homeAddress, NUMBER_OF_HOURS);
+
         for (List<Optional<Location>> dayLocations : locations.values()) {
             List<Pair<Location, Integer>> knownLocationIndices = findKnownLocationIndices(dayLocations);
+            knownLocationIndices.add(startPair);
+            knownLocationIndices.add(endPair);
             fillUnknownWithKnown(knownLocationIndices, dayLocations);
         }
     }
@@ -134,16 +158,12 @@ public class LocationTracker {
      */
     private void fillUnknownWithKnown(
             List<Pair<Location, Integer>> knownLocationIndices, List<Optional<Location>> dayLocations) {
-        Location homeAddress = person.getAddress().getValue();
-        Pair<Location, Integer> startPair = new Pair<>(homeAddress, -1);
-        Pair<Location, Integer> endPair = new Pair<>(homeAddress, NUMBER_OF_HOURS);
 
-        Pair<Location, Integer> currLocationIndex = startPair;
+        Pair<Location, Integer> currLocationIndex = knownLocationIndices.get(0);
         for (Pair<Location, Integer> locationIndex : knownLocationIndices) {
             fillUnknownWithStartEnd(currLocationIndex, locationIndex, dayLocations);
             currLocationIndex = locationIndex;
         }
-        fillUnknownWithStartEnd(currLocationIndex, endPair, dayLocations);
     }
 
     /**
