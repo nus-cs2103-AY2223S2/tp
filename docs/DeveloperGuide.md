@@ -332,25 +332,27 @@ _{More to be added}_
 
   - 2a1. the user is informed of this and show the correct format for the command
 
-Use case resume at step 2.
+Use case resumes at step 2.
 
 - 2b. If the entered NRIC is already present in another record in the system.
 
   - 2b1. the user is informed that the NRIC is already present in the system.
 
-  Use case resume at step 2.
+  Use case resumes at step 2.
 
 - 2c. If the input field is invalid.
 
   - 2c1. the user is informed of this, and correct format for the command is displayed.
+  
+  Use case resumes at step 2.
 
-  Use case resume at step 2.
 
 - 2d. If the entered ward is not present in the system.
-
+    
   - 2d1. the user is informed that the ward does not exist in the system.
+  
+  Use case resumes at step 2.
 
-  Use case resume at step 2.
 
 **Use case: UC02 - Delete a patient**
 
@@ -358,8 +360,9 @@ Use case resume at step 2.
 
 1.  User requests to list patients
 2.  MedInfo shows a list of patients
-3.  User requests to delete a specific patient in the list by NRIC
-4.  MedInfo deletes the patient
+3.  User requests to delete a specific patient in the list by index number
+4.  MedInfo shows confirmation window
+5.  MedInfo deletes the patient
 
     Use case ends.
 
@@ -369,15 +372,17 @@ Use case resume at step 2.
 
   Use case ends.
 
-- 3a. The requested patient's NRIC is invalid.
+- 3a. The requested patient's index number is invalid.
 
-  - 3a1. MedInfo shows an error message.
+    - 3a1. MedInfo shows an error message.
 
-    Use case resumes at step 2.
+      Use case resumes at step 2.
 
-- 3b. The requested patient's NRIC does not exist in the system.
+- 4a. The user cancels the deletion in the confirmation window
 
-  - 3b1. MedInfo shows an error message.
+    - 4a1. MedInfo shows the patient list
+
+  - 4b1. MedInfo shows an error message.
 
     Use case resumes at step 2.
 
@@ -422,6 +427,7 @@ Use case resume at step 2.
 
     Use case resumes at step 2.
 
+
 **Use case: UC04 - Find a patient**
 
 **MSS**
@@ -450,6 +456,92 @@ Use case resume at step 2.
   - 1c1. MedInfo does not list any patients.
 
     Use case ends.
+
+**Use case: UC05 - Clear all patients**
+
+**MSS**
+
+1. User requests to clear all the patient records in the system
+2. MedInfo shows confirmation window
+3. MedInfo deletes all patients in the system
+
+    Use case ends.
+
+- 3a. The user cancels the deletion in the confirmation window
+    - 3a1. MedInfo shows the patient list
+
+
+**Use case: UC06 - Add a new ward**
+
+**MSS**
+
+1. User requests to add a new ward to MedInfo.
+2. The user enters ward details.
+    1. The following are required information:
+        - Name
+    2. The following are non-required information:
+        - Capacity
+3. The system adds the ward into the MedInfo system.
+4. The system shows the new created ward in the ward list.
+
+   Use case ends.
+
+**Extensions**
+* 2a. If any of the required fields are not completed.
+
+    * 2a1. the user is informed of this and show the correct format for the command
+
+Use case resumes at step 2.
+
+* 2b. If the entered Name is already present in another record in the system.
+
+    * 2b1. the user is informed that the Name is already present in the system.
+
+  Use case resumes at step 2.
+
+* 2c. If the input field is invalid.
+
+    * 2c1. the user is informed of this, and correct format for the command is displayed.
+
+  Use case resumes at step 2.
+
+
+**Use case: UC07 - Delete a ward**
+
+**MSS**
+
+1.  User requests to list wards
+2.  MedInfo shows a list of wards
+3.  User requests to delete a specific ward in the list by index number
+4.  MedInfo shows confirmation window
+5.  MedInfo deletes the patient
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The ward list is empty.
+
+  Use case ends.
+
+- 3a. The requested ward's index number is invalid.
+
+    - 3a1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
+
+- 3b. The requested ward has patients inside
+
+   - 3b1. MedInfo shows an error message.
+
+    Use case resumes at step 2.
+
+- 4a. The user cancels the deletion in the confirmation window
+    - 4a1. MedInfo shows the patient list
+
+      Use case resumes at step 2
+
+
 
 _{More to be added}_
 
