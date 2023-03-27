@@ -209,6 +209,29 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 <h2 id="summary"></h2>
 
+## Entity classifications
+There are 3 different entity classifications in Reroll, each with their own set of fields to track.
+
+`Character` or `char` in short refers to characters whose actions are controlled by players instead of the game master.
+
+`Mob` refers to hostile non-playable characters which are controlled by the game master, 
+meant to be defeated by player characters.
+
+`Item` refers to equipment such as armour, and miscellaneous tools. These are mainly dropped by mobs and 
+can be used by the player characters.
+
+The definitive list of the different values each entity has:
+
+| Character    | Mob              | Item   |
+|--------------|------------------|--------|
+| Name         | Name             | Name   | 
+| Strength     | Strength         | Cost   |
+| Dexterity    | Dexterity        | Weight | 
+| Intelligence | Intelligence     | Tags   |
+| Level        | Challenge Rating |        |
+| XP           | Legendary        |        |
+| Tags         | Tags             |        |
+--------------------------------------------------------------------------------------------------------------------
 ## Command summary
 
 | Action                        | Format, Examples                                                  |
