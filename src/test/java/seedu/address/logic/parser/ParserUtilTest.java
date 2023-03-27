@@ -22,8 +22,8 @@ import seedu.address.model.internship.Status;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
-    private static final String INVALID_COMPANY_NAME = "A@pple";
-    private static final String INVALID_ROLE = "i@S Developer";
+    private static final String INVALID_COMPANY_NAME = "This Company name has more than fifty characters hmm";
+    private static final String INVALID_ROLE = "This role has more than fifty characters so it is wrong";
     private static final String INVALID_STATUS = "pending";
     private static final String INVALID_DATE = "23-02-01";
     private static final String INVALID_COMMENT = "";
