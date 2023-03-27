@@ -40,20 +40,30 @@ The Clients tab lists all the clients you've created. Each client block contains
 --------------------------------------------------------------------------------------------------------------------
 ## Command Layout
 
-Commands in Mycelium take the general form of `command_name [arguments]`. Arguments may be compulsory or optional. For optional arguments, Mycelium uses sensible defaults in their place.
+Commands in Mycelium take the general form of `command_name [arguments...]`.
+Arguments may be compulsory or optional. If you do not provide the optional
+arguments, Mycelium will use sensible defaults in their place.
 
-All arguments take the structure of `-arg arg_data`, and multiple arguments can be specified consecutively. Note that if `arg_data` consists of multiple white-space separated tokens, then it must be surrounded by single quotation marks.
+All arguments take the structure of `-arg arg_data`. Some commands may take
+multiple arguments, in which case you may specify them in any order.
+Furthermore, if duplicate argument flags are provided, then only the *last one*
+is used. Finally, note that `arg_data` can consist of multiple whitespace
+separated tokens.
 
-As an example, the command below creates a new project with the name *Mycelium Desktop*, for client *Spiderman*, and sourced from *fiverr.com*.
+As an example, the command below creates a new project with the name *Mycelium
+Desktop*, for client *Spiderman*, and sourced from *fiverr.com*. (Don't worry
+about what the arguments mean for now, this example is just meant to
+demonstrate the layout.) 
 
 ```bash
-p -pn 'Mycelium Desktop' -e spiderman@gmail.com -src fiverr.com
+p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com
 ```
 
 ### A note on dates
 
-For arguments which expect a date, Mycelium only accepts input of the format dd/MM/yyyy.
-For example, "14/03/2023" is okay, but "14/3/2023", or "14-03-2023" are not okay.
+Some arguments are in the form of dates. For these, Mycelium only accepts input
+of the format dd/MM/yyyy. For example, "14/03/2023" is okay, but "14/3/2023",
+or "14-03-2023" are not okay.
 
 --------------------------------------------------------------------------------------------------------------------
 
