@@ -27,6 +27,10 @@ import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_CS1101S
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_SEMYEAR_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_MA2002;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.modtrek.testutil.TypicalModules.CS1101S;
@@ -44,7 +48,7 @@ import seedu.modtrek.model.tag.Tag;
 import seedu.modtrek.testutil.ModuleBuilder;
 
 public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+    private final AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -92,24 +96,55 @@ public class AddCommandParserTest {
     }
 
     @Test
+    public void parse_noArguments_failure() {
+        assertParseFailure(parser, "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_preamblePresent_failure() {
+        assertParseFailure(parser, " module" + CODE_DESC_MA2002 + CREDIT_DESC_MA2002 + SEMYEAR_DESC_MA2002,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-        // missing name prefix
+        // missing code prefix
         assertParseFailure(parser, VALID_CODE_MA2002 + CREDIT_DESC_MA2002 + SEMYEAR_DESC_MA2002 + GRADE_DESC_MA2002,
-                expectedMessage);
+                AddCommand.MESSAGE_MISSING_PREFIXES);
 
-        // missing phone prefix
+        // missing credit prefix
         assertParseFailure(parser, CODE_DESC_MA2002 + VALID_CREDIT_MA2002 + SEMYEAR_DESC_MA2002 + GRADE_DESC_MA2002,
-                expectedMessage);
+                AddCommand.MESSAGE_MISSING_PREFIXES);
 
-        // missing email prefix
+        // missing sem-year prefix
         assertParseFailure(parser, CODE_DESC_MA2002 + CREDIT_DESC_MA2002 + VALID_SEMYEAR_MA2002 + GRADE_DESC_MA2002,
-                expectedMessage);
+                AddCommand.MESSAGE_MISSING_PREFIXES);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_CODE_MA2002 + VALID_CREDIT_MA2002 + VALID_SEMYEAR_MA2002 + VALID_GRADE_MA2002,
-                expectedMessage);
+                AddCommand.MESSAGE_MISSING_PREFIXES);
+    }
+
+    @Test
+    public void parse_detailMissing_failure() {
+
+        // missing code detail
+        assertParseFailure(parser, " " + PREFIX_CODE + CREDIT_DESC_MA2002 + SEMYEAR_DESC_MA2002
+                        + GRADE_DESC_MA2002, Code.MESSAGE_MISSING_DETAIL);
+
+        // missing credit detail
+        assertParseFailure(parser, CODE_DESC_MA2002 + " " + PREFIX_CREDIT + SEMYEAR_DESC_MA2002
+                        + GRADE_DESC_MA2002, Credit.MESSAGE_MISSING_DETAIL);
+
+        // missing sem-year detail
+        assertParseFailure(parser, CODE_DESC_MA2002 + CREDIT_DESC_MA2002 + " " + PREFIX_SEMYEAR
+                        + GRADE_DESC_MA2002, SemYear.MESSAGE_MISSING_DETAIL);
+
+        // missing tag detail
+        assertParseFailure(parser, CODE_DESC_MA2002 + CREDIT_DESC_MA2002 + SEMYEAR_DESC_MA2002
+                        + " " + PREFIX_TAG, Tag.MESSAGE_MISSING_DETAIL);
     }
 
     @Test

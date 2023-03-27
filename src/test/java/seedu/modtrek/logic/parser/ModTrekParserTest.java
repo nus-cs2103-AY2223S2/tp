@@ -7,6 +7,7 @@ import static seedu.modtrek.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.modtrek.testutil.Assert.assertThrows;
 import static seedu.modtrek.testutil.TypicalModules.CS1101S;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -74,7 +75,8 @@ public class ModTrekParserTest {
     public void parseCommand_find() throws Exception {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + "CS1101S");
-        assertEquals(new FindCommand(new ModuleCodePredicate("CS1101S", "", "", "", new HashSet<>())), command);
+        assertEquals(new FindCommand(new ModuleCodePredicate(
+                "CS1101S", "", "", "", new HashSet<>()), new ArrayList<>()), command);
     }
 
     @Test

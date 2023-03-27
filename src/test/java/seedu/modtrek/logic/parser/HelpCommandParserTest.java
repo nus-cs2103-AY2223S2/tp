@@ -12,11 +12,11 @@ import seedu.modtrek.logic.commands.EditCommand;
 import seedu.modtrek.logic.commands.ExitCommand;
 import seedu.modtrek.logic.commands.FindCommand;
 import seedu.modtrek.logic.commands.HelpCommand;
-import seedu.modtrek.logic.commands.ListCommand;
 import seedu.modtrek.logic.commands.TagCommand;
+import seedu.modtrek.logic.commands.ViewCommand;
 
 public class HelpCommandParserTest {
-    private HelpCommandParser parser = new HelpCommandParser();
+    private final HelpCommandParser parser = new HelpCommandParser();
 
     @Test
     public void parse_helpNoArgs_success() {
@@ -44,8 +44,8 @@ public class HelpCommandParserTest {
     }
 
     @Test
-    public void parse_helpList_success() {
-        assertParseSuccess(parser, "list", new HelpCommand(ListCommand.MESSAGE_USAGE));
+    public void parse_helpView_success() {
+        assertParseSuccess(parser, "view", new HelpCommand(ViewCommand.MESSAGE_USAGE));
     }
 
     @Test

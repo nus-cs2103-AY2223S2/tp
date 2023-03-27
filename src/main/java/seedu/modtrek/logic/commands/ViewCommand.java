@@ -17,9 +17,10 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_MODULES_SUCCESS = "Listed all modules";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Switches between different viewing screens.\n"
-            + "Parameters: progress / modules\n"
-            + "Example: view progress";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Switches between different viewing screens.\n\n"
+            + "Parameters: progress or modules\n\n"
+            + "Example 1: view progress\n"
+            + "Example 2: view modules";
 
     private final boolean isProgress;
 
