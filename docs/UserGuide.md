@@ -118,7 +118,7 @@ Examples:
 * `add n/Meiji Milk u/carton q/2 e/13-11-2025`
 
 Result: <br/>
-`add Spinach` displays
+`add n/Meiji Milk u/carton q/2 e/13-11-2025` displays
 
 ![AddFood](images/UG/AddFood.png)
 
