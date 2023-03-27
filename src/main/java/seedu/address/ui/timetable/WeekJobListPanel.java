@@ -54,7 +54,7 @@ public class WeekJobListPanel extends UiPart<Region> {
         deliveryJobListPanelPlaceholder7 = new StackPane();
 
         setAllPlaceholderBackgroundColor("DARKCYAN");
-        setAllPalceholderPrefWidth((primaryStage.getWidth() - 86.1) / 6);
+        setAllPalceholderPrefWidth((primaryStage.getWidth() - 74) / 7);
         addAllPlaceholderJobs();
 
 
@@ -62,7 +62,7 @@ public class WeekJobListPanel extends UiPart<Region> {
                 deliveryJobListPanelPlaceholder3, deliveryJobListPanelPlaceholder4,
                 deliveryJobListPanelPlaceholder5, deliveryJobListPanelPlaceholder6,
                 deliveryJobListPanelPlaceholder7);
-        jobListPanel.setSpacing(12.3);
+        jobListPanel.setSpacing(12);
         jobListPanel.setAlignment(Pos.CENTER);
     }
 
