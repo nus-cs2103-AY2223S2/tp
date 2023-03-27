@@ -1,7 +1,7 @@
 /* FONT FACES */
 @font-face {
-    font-family: 'IBM Plex Sans Black';
-    src: url("../fonts/IBMPlexSans-Black.ttf");
+    font-family: 'IBM Plex Sans Italic';
+    src: url("../fonts/IBMPlexSans-Italic.ttf");
 }
 
 @font-face {
@@ -10,8 +10,8 @@
 }
 
 @font-face {
-    font-family: 'IBM Plex Sans ExtraBold';
-    src: url("../fonts/IBMPlexSans-ExtraBold.ttf");
+    font-family: 'IBM Plex Sans ExtraLight';
+    src: url("../fonts/IBMPlexSans-ExtraLight.ttf");
 }
 
 @font-face {
@@ -25,6 +25,11 @@
 }
 
 @font-face {
+    font-family: 'IBM Plex Sans Light Italic';
+    src: url("../fonts/IBMPlexSans-LightItalic.ttf");
+}
+
+@font-face {
     font-family: 'IBM Plex Sans Medium';
     src: url("../fonts/IBMPlexSans-Medium.ttf");
 }
@@ -32,6 +37,11 @@
 @font-face {
     font-family: 'IBM Plex Sans Regular';
     src: url("../fonts/IBMPlexSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'IBM Plex Sans Italic';
+    src: url("../fonts/IBMPlexSans-Italic.ttf");
 }
 
 @font-face {
