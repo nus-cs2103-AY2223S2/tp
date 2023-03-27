@@ -21,7 +21,7 @@ This user guide will help you get up to speed in no time!
 ## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
-  - <details>
+  <details>
     <summary>more</summary>
     
     * [Add a Contact](#add-a-contact)
