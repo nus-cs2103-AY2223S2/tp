@@ -18,7 +18,7 @@ title: User Guide
     - [Editing a person's modules](#3-editing-a-persons-modules)
     - [Finding a person by their modules](#4-finding-a-person-by-their-modules)
 - [Commands](#commands)
-  - [Viewing help: `help`](#help)
+  - [Viewing help: `help`](#viewing-help--help)
   - [Adding a person: `add`](#adding-a-person--add)
   - [Viewing a person/Changing tabs: `view`](#viewing-a-personchanging-tabs--view)
   - [Editing a person: `edit`](#editing-a-person--edit)
@@ -107,7 +107,7 @@ If you followed the steps above correctly, you would see this screen:
 
 As shown above, the right info panel automatically updated to show Bob's contact after we added him. 
 
-Now let's take a look at his _modules_: enter `view m` in the command box. As you can see, his module list is currently empty.
+Now let's take a look at his _modules_: enter `view m` in the command box. As shown under his _modules_ tab, he does not have any modules currently.
 
 <img src="images/tutorial/viewing-bobs-modules.png"/>
 
@@ -125,7 +125,7 @@ Then enter `edit m/ay2223s2 cs2101 m/ay2223s2 cs2103t` in the command box.
 
 **Related docs:** [Viewing a person/Changing tabs: `view`](#viewing-a-personchanging-tabs--view), [Editing a person: `edit`](#editing-a-person--edit)
 
-Bob's updated module list (use `view m` to see) would look like this after you entered the `edit` command:
+Bob's updated module list (enter `view m` if you're not on the _modules_ tab) would look like this after you entered the `edit` command:
 
 <img src="images/tutorial/editing-bobs-modules.png"/>
 
