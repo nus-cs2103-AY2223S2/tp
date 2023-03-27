@@ -8,7 +8,7 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([has arguments])
-    :create 2 person descriptors;
+    :create person descriptor;
     if () then ([prefix n/ is present])
         :Update person's name;
     else ([else])
@@ -39,8 +39,7 @@ if () then ([has arguments])
     endif
     :editSkills;
     :editModules;
-    if () then ([originalPersonDescriptor not equals
-    editedPersonDescriptor])
+    if () then ([editedPersonDescriptor has field edited])
         :create edited person with the
         editedPersonDescriptor and
         update the existing person;

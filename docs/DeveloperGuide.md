@@ -291,7 +291,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`InfoTab`, `CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`InfoTab`, `CommandBox`, `ResultDisplay`, `PersonListPanel`, `CourseListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -445,9 +445,7 @@ Each module in CoDoc have a string representing its module.
 #### Regex and validation
 All module string should satisfy the following regex pattern,
 
-<code>
-^AY[0-9]{4}S[12] [A-Z]+[0-9]+[A-Z]*
-</code>
+`^AY[0-9]{4}S[12] [A-Z]+[0-9]+[A-Z]*`
 
 For example, a valid Module string is "AY2223S1 CS1101S"
 
@@ -462,7 +460,8 @@ The following are valid 4 digit sequence (last 2 digits are increments of first 
 The following are invalid (the last 2 digit number is not an increment of the first)
 - 2224
 - 1111
-- 
+- 2019
+
 [Scroll back to top](#table-of-contents)
 
 ### **Course and CourseList Class**
@@ -475,7 +474,8 @@ All `Course` hava a `String` representing the name of the course.
 #### Design Considerations
 
 The `Course` constructor accepts a `String` input that represents the index of the course name 
-residing in `COURSE_LIST` found in the `CourseList.java`. 
+residing in `COURSE_LIST` found in the `CourseList.java`. This `COURSE_LIST` is displayed in the left panel 
+of the GUI, along with the corresponding index of the course name.
 
 Instead of parsing the name of the course directly into
 the `Course` constructor, we wanted to standardize the names of courses without allowing users to
@@ -485,6 +485,13 @@ in our `Storage` as well as the courses displayed in the application.
 <div style="page-break-after: always;"></div>
 
 [Scroll back to top](#table-of-contents)
+
+## **Logic Implementation**
+
+This section describes implementation of features within `logic` package. Refer to [Logic component](#logic-component)
+for more information about this package.
+
+<br>
 
 ### **Edit Command**
 
@@ -500,14 +507,12 @@ For `Skills` and `Modules`, the command is capable of adding, deleting and updat
 * `c/` for course
 * `g/` for GitHub
 * `l/` for LinkedIn
+* `m/` for updating the current module list
 * `m+/` for adding a new module
 * `m-/` for deleting an existing module
-* `mo/` for updating the old module
-* `mn/` for the new module that the old module would be replaced with
+* `s/` for updating the current skill list
 * `s+/` for adding a new skill
 * `s-/` for deleting an existing skill
-* `so/` for updating the old skill
-* `sn/` for the new skill that the old skill would be replaced with
 
 #### Implementation Flow
 
@@ -524,19 +529,11 @@ Given below is an activity diagram to illustrate the behaviour of editing Person
 
 #### Design Considerations
 
-Updating the `Skills` and `Modules` using old and new prefixes ensures the user does not update the skillsets and
-modules unneccessarily. Even though the behaviour is similar to simply deleting and adding new modules and skills,
-update is more restrictive and maintains the integrity of the size of the hash tables that `Skills` and `Modules` are
-stored in.
+We initially created 2 additional prefixes to updating the `Skills` and `Modules` using old and new prefixes. 
+However, we realised the behaviour is similar to simply deleting and adding new modules and skills. 
+Hence, we removed the implementation of the old and new prefixes.
 
 [Scroll back to top](#table-of-contents)
-
-## **Logic Implementation**
-
-This section describes implementation of features within `logic` package. Refer to [Logic component](#logic-component)
-for more information about this package.
-
-<br>
 
 ### Find Command
 
@@ -1023,24 +1020,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 7a1. CoDoc shows an error message.
 
       Use case resumes at step 4.
+  
+* 7b. Valid `prefixes/ATTRIBUTES` include:
+  * `c/COURSE`
+  * `n/NAME`
+  * `e/EMAIL`
+  * `l/LINKEDIN`
+  * `g/GITHUB`
+  * `m/YEAR MODULECODE`
+  * `m+/YEAR MODULECODE`
+  * `m-/YEAR MODULECODE`
+  * `s/SKILLSETS`
+  * `s+/SKILLSETS`
+  * `s-/SKILLSETS`
 
-* 7b. The given prefix is `m/`, indicating an edit to the list of modules.
-    * 7b1. `a` is given, indicating that the following modules will be added to the list.
-    * 7b2. `d` is given, indicating that the following modules at the specified indices will be deleted from the list.
-    * 7b3. `u` is given, indicating that the module at the specified index will be updated to the new module.
+* 7c. The given prefix is `m+/`, indicating an addition to the list of modules.
 
-      Use case resumes at step 8.
+  Use case resumes at step 8.
+* 7d. The given prefix is `m-/`, indicating a deletion of a module from the list of modules.
 
-* 7c. The given prefix is `w/`, indicating an edit to the work experiences.
-    * No further prefix needed.
+  Use case resumes at step 8.
+* 7e. The given prefix is `m/`, indicating updating the list of modules.
 
-      Use case resumes at step 8.
+  Use case resumes at step 8.
+* 7f. The given prefix is `c/`, indicating an edit to the course.
 
-* 7d. The given prefix is `c/`, indicating an edit to the contact information.
-    * 7d1. `g` is given, indicating that the GitHub link will be edited.
-    * 7d2. `e` is given, indicating that the email will be edited.
+  Use case resumes at step 8.
+* 7g. Editing the skills follows the implementation of the modules.
 
-      Use case resumes at step 8.
+  Use case resumes at step 8.
+* 7h. Editing the name, year, email, github and linkedin follows the implementation of the course
+
+  Use case resumes at step 8.
 
 **Use case: Find a person by attribute**
 
@@ -1063,8 +1074,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * `c/COURSE`
     * `n/NAME`
     * `e/EMAIL`
+    * `l/LINKEDIN`
+    * `g/GITHUB`
     * `m/YEAR MODULECODE`
+    * `m+/YEAR MODULECODE`
+    * `m-/YEAR MODULECODE`
     * `s/SKILLSETS`
+    * `s+/SKILLSETS`
+    * `s-/SKILLSETS`
 
 * 3b. The given prefix is invalid.
 
@@ -1160,7 +1177,13 @@ testers are expected to do more *exploratory* testing.
     1.4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
+2. Deleting a person while no person being displayed.
+
+    2.1. Prerequisites: Clear all persons using the `clear` command. Multiple persons in the list.
+
+    2.2. Test case: `delete 1`<br>
+     Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
 
 [Scroll back to top](#table-of-contents)
 
