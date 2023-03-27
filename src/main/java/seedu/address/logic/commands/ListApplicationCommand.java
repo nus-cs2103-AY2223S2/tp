@@ -16,7 +16,7 @@ public class ListApplicationCommand extends ApplicationCommand {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all applications";
+    public static final String MESSAGE_SUCCESS = "Listed all applications in default order!";
     @Override
     public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);

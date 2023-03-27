@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.application.AlphabeticalComparator;
 import seedu.address.model.application.Application;
+import seedu.address.model.application.ApplicationHasTaskPredicate;
 import seedu.address.model.application.DeadlineComparator;
 import seedu.address.model.application.DefaultComparator;
 
@@ -36,7 +37,10 @@ public class SortApplicationCommand extends ApplicationCommand {
     public static final String MESSAGE_CONSTRAINTS = "You can only sort alphabetically or by deadline.\n"
             + "You also need to specify the order after the command word sort.";
 
-    public static final String MESSAGE_SORT_SUCCESS = "Sorted all applications by order!";
+    public static final String MESSAGE_SORT_ALPHABETICAL_SUCCESS = "Sorted all applications by alphabetical order!";
+
+    public static final String MESSAGE_SORT_DEADLINE_SUCCESS = "Listed all applications with task deadlines"
+            + " and sorted them in order!";
 
     private final SortingOrder sortingOrder;
 
@@ -77,9 +81,15 @@ public class SortApplicationCommand extends ApplicationCommand {
     @Override
     public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
+        if (this.sortingOrder == SortingOrder.DEADLINE) {
+            model.updateFilteredApplicationList(new ApplicationHasTaskPredicate());
+        }
         model.updateSortedApplicationList(comparator);
         model.commitInternshipBookChange();
         commandHistory.setLastCommandAsModify();
-        return new CommandResult(MESSAGE_SORT_SUCCESS);
+        if (this.sortingOrder == SortingOrder.DEADLINE) {
+            return new CommandResult(MESSAGE_SORT_DEADLINE_SUCCESS);
+        }
+        return new CommandResult(MESSAGE_SORT_ALPHABETICAL_SUCCESS);
     }
 }
