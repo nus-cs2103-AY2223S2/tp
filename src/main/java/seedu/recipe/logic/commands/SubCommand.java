@@ -8,6 +8,8 @@ import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
@@ -39,7 +41,7 @@ public class SubCommand extends Command {
         ReadOnlyRecipeBook recipeBook = model.getRecipeBook();
         ObservableList<Recipe> recipeObservableList = recipeBook.getRecipeList();
 
-        StringBuilder subList = new StringBuilder();
+        HashSet<Ingredient> subList = new HashSet<>();
 
         for (Recipe r : recipeObservableList) {
             HashMap<Ingredient, IngredientInformation> tokens = r.getIngredients();
@@ -48,17 +50,30 @@ public class SubCommand extends Command {
                 //inquire for subs
                 IngredientInformation rInfo = tokens.get(queryIngredient);
                 if (!rInfo.getSubstitutions().isEmpty()) {
-                    String subs = rInfo.getSubstitutions().toString();
-                    subList.append(subs.substring(1, subs.length() - 1) + "\n");
+                    // List of substitutions within that recipe
+                    List<Ingredient> subs = rInfo.getSubstitutions();
+                    for (Ingredient i : subs) {
+                        subList.add(i);
+                    }
                 }
             }
         }
 
-        if (subList.toString().isBlank()) {
+        if (subList.isEmpty()) {
             return new CommandResult((MESSAGE_NO_STORED_SUBS));
         }
+
+        String formattedSubList = subList.toString().substring(1, subList.toString().length() - 1);
+
         return new CommandResult(String.format(MESSAGE_DISPLAY_STORED_SUBS, queryIngredient,
-                subList));
+                formattedSubList));
     }
 
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindCommand) // instanceof handles nulls
+                && queryIngredient.equals(((SubCommand) other).queryIngredient); //state check
+    }
 }
