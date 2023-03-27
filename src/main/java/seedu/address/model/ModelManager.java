@@ -330,6 +330,18 @@ public class ModelManager implements Model {
         tankList.setTank(target, editedTank);
     }
 
+    /**
+     * Sets the lastFedDate field of all fishes in this {@code tankToFeed}
+     * with new LastFedDate object with {@code newDate}.
+     */
+    @Override
+    public void setLastFedDateFishes(Tank tankToFeed, String newDate) {
+        requireAllNonNull(tankToFeed, newDate);
+
+        tankToFeed.setLastFedDateFishes(newDate);
+        updateFilteredFishList(PREDICATE_SHOW_ALL_FISHES);
+    }
+
     //=========== Filtered TankList Accessors =============================================================
 
     /**

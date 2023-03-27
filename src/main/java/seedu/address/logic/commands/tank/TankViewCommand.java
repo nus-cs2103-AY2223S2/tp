@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.tank.Tank;
 
 /**
- * Deletes a {@code Tank} identified using it's displayed index from the {@code TankList}.
+ * Displays a {@code Tank} identified using it's displayed index from the {@code TankList}.
  */
 public class TankViewCommand extends TankCommand {
 

@@ -220,6 +220,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isChangeGui()) {
                 handleGuiChange();
             }
+            fishListPanel.refreshCard();
 
             return commandResult;
         } catch (CommandException | ParseException e) {

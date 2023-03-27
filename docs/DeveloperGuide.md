@@ -171,6 +171,38 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### TankFeedCommand feature
+
+#### Motivation
+As a FishTracker application, we provide a way for fishkeepers to track the `LastFedDates` of all their fishes,
+as having multiple tanks and fishes makes feeding difficult to keep track of without a tracking system.
+
+#### Implementation summary
+As such, every `Fish` contains a `LastFedDate` object, which contains a date field which records their `lastFedDate`.
+
+When the fishkeeper decides to feed a particular tank by invoking the command `tank feed <index>`, 
+the program will feed all fishes in that tank, changing `LastFedDate`  of all fishes in that tank.
+
+#### How `TankFeedCommand` is executed
+When a command `tank feed <index>` is invoked, it first passes through the main parser `AddressBookParser`,
+before being delegated to command-specific parsers, namely `TankParser` -> `TankFeedCommandParser`,
+which returns a `TankFeedCommand` to `LogicManager`.
+
+With this, `LogicManager` will invoke `execute` on `TankFeedCommand` with the following code `command.execute(model);`,
+where `model.setLastFedDateFishes(tankToFeed, formattedDate);` will be called. 
+
+The `setLastFedDateFishes(tankToFeed, formattedDate)` function will be called down the chain of classes 
+[`ModelManager` -> `Tank` -> `AddressBook` -> `UniqueFishList`].
+
+`UniqueFishList#setLastFedDateFishes(String newDate)` will then call
+`internalList.stream().forEach(fish -> fish.setLastFedDate(newDate));`,
+creating a new stream from `internalList` containing references to all Fish objects in `internalList`.
+
+Every `Fish` object will call `fish.setLastFedDate(newDate)`, where a new `LastFedDate` object with the updated date
+will be created and replace the `Fish`'s `lastFedDate` field.
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
