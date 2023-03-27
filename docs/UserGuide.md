@@ -336,27 +336,12 @@ Format: `sortpj [CATEGORY]`
 
 Format: `assign PERSON_INDEX PROJECT_INDEX`
 
-* If a field flag is specified, it cannot be blank.
-  * e.g `n/  ` is not allowed
-* Project Name should contain only alphanumeric & space.
-  * e.g `n/project 1`
-* Repository Host should:
-  * contain alphanumeric & hyphens only.
-  * not start or end with hyphen.
-  * not exceed 39 characters.
-  * e.g `h/project-1`
-* Repository Name should:
-  * contain alphanumeric, periods, hyphens, or underscores only.
-  * not exceed 100 characters.
-  * e.g `r/project_1`
-* Deadline & Meeting should be given in a date format (dd/MM/yy-HHmm).
-  * e.g `d/ 30/03/22-2045` would be *30th March 2022, 8:45 p.m.
-* A project is considered to be the same if it has the same project name.
-
+* `PERSON_INDEX` refers to the index number shown in the displayed person list.
+* `PROJECT_INDEX` refers to the index number shown in the displayed project list.
 
 Examples:
-* `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`<br>
-  ![result for 'addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045'](images/findAlexDavidResult.png)
+* `assign 1 1`<br>
+  ![result for 'assign 1 1'](images/findAlexDavidResult.png)
 
 #### Unassign a person from a project: `unassign`
 
