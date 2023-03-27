@@ -68,6 +68,8 @@ public class TimingRecommender {
         this.participants.stream()
                 .map(Person::getTimetable)
                 .forEach(this.schedules::add);
+
+        System.out.println(this.schedules.toString());
     }
 
     /**
