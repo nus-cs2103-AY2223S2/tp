@@ -32,7 +32,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
     public EditAppointmentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_TIMESLOT, PREFIX_DESCRIPTION, PREFIX_NAME, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TIMESLOT, PREFIX_DESCRIPTION, PREFIX_TAG);
 
         AppointmentId appointmentId;
 
@@ -40,22 +40,23 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             appointmentId = ParserUtil.parseAppointmentId(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE), pe);
         }
 
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editAppointmentDescriptor.setPatientName(
+                    ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
         if (argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
             editAppointmentDescriptor.setTimeslot(
-                ParserUtil.parseTimeslot(argMultimap.getValue(PREFIX_TIMESLOT).get()));
+                    ParserUtil.parseTimeslot(argMultimap.getValue(PREFIX_TIMESLOT).get()));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editAppointmentDescriptor.setDescription(
-                ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+                    ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editAppointmentDescriptor.setName(
-                ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-        }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editAppointmentDescriptor::setTags);
 
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {

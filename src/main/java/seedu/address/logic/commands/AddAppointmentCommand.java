@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 
@@ -18,12 +18,12 @@ public class AddAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment for a patient. "
             + "Parameters: "
-            + PREFIX_PATIENT_ID + "PATIENT ID "
+            + PREFIX_NAME + "NAME "
             + PREFIX_TIMESLOT + "TIMESLOT "
             + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PATIENT_ID + "1 "
+            + PREFIX_NAME + "John Doe "
             + PREFIX_TIMESLOT + "01012023 00:00,01012023 01:00 "
             + PREFIX_DESCRIPTION + "Regular checkup "
             + PREFIX_TAG + "routine "
@@ -48,7 +48,7 @@ public class AddAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasName(toAdd.getName())) {
+        if (!model.hasPatientName(toAdd.getPatientName())) {
             throw new CommandException(MESSAGE_PATIENT_NOT_EXIST);
         }
 

@@ -18,26 +18,31 @@ import seedu.address.model.tag.Tag;
  */
 public class Appointment {
     private final AppointmentId id;
+    private final Name patientName;
     private final Timeslot timeslot;
     private final Description description;
-    private final Name name;
+
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Appointment(AppointmentId id, Timeslot timeslot, Description description, Name name,
+    public Appointment(AppointmentId id, Name patientName, Timeslot timeslot, Description description,
                        Set<Tag> tags) {
-        requireAllNonNull(timeslot, description, name, tags);
+        requireAllNonNull(timeslot, description, patientName, tags);
         this.id = id;
+        this.patientName = patientName;
         this.timeslot = timeslot;
         this.description = description;
-        this.name = name;
         this.tags.addAll(tags);
     }
 
     public AppointmentId getAppointmentId() {
         return id;
+    }
+
+    public Name getPatientName() {
+        return patientName;
     }
 
     public Timeslot getTimeslot() {
@@ -56,10 +61,6 @@ public class Appointment {
 
     public Description getDescription() {
         return description;
-    }
-
-    public Name getName() {
-        return name;
     }
 
     /**
@@ -89,7 +90,7 @@ public class Appointment {
         }
 
         return otherAppointment != null
-            && otherAppointment.getTimeslot().equals(getTimeslot());
+                && otherAppointment.getTimeslot().equals(getTimeslot());
     }
 
     /**
@@ -107,28 +108,26 @@ public class Appointment {
         }
 
         Appointment otherAppointment = (Appointment) other;
-        return otherAppointment.getTimeslot().equals(getTimeslot())
-            && otherAppointment.getDescription().equals(getDescription())
-            && otherAppointment.getName().equals(getName())
-            && otherAppointment.getTags().equals(getTags());
+        return otherAppointment.getPatientName().equals(getPatientName())
+                && otherAppointment.getTimeslot().equals(getTimeslot())
+                && otherAppointment.getDescription().equals(getDescription())
+                && otherAppointment.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(timeslot, description, name, tags);
+        return Objects.hash(patientName, timeslot, description, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTimeslot())
-            .append("; Description: ")
-            .append(getDescription())
-            .append("; Patient name: ")
-            .append(getName())
-            .append("; Appointment ID: ")
-            .append(getAppointmentId());
+                .append("; Patient Name: ")
+                .append(getPatientName())
+                .append("; Description: ")
+                .append(getDescription());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

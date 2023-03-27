@@ -15,15 +15,15 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Appointment objects.
  */
 public class AppointmentBuilder {
+    public static final String DEFAULT_NAME = "Alex Yeoh";
     public static final String DEFAULT_TIMESLOT = "01012023 00:00,01012023 01:00";
     public static final String DEFAULT_DESCRIPTION = "Regular checkup";
-    public static final String DEFAULT_NAME = "Alex Yeoh";
     public static final String DEFAULT_APPOINTMENT_ID = "1";
 
     private AppointmentId appointmentId;
+    private Name patientName;
     private Timeslot timeslot;
     private Description description;
-    private Name name;
     private Set<Tag> tags;
 
     /**
@@ -33,7 +33,7 @@ public class AppointmentBuilder {
         appointmentId = new AppointmentId(DEFAULT_APPOINTMENT_ID);
         timeslot = new Timeslot(DEFAULT_TIMESLOT);
         description = new Description(DEFAULT_DESCRIPTION);
-        name = new Name(DEFAULT_NAME);
+        patientName = new Name(DEFAULT_NAME);
         tags = new HashSet<>();
     }
 
@@ -64,8 +64,8 @@ public class AppointmentBuilder {
     /**
      * Sets the {@code Name} of the {@code Appointment} that we are building.
      */
-    public AppointmentBuilder withName(String name) {
-        this.name = new Name(name);
+    public AppointmentBuilder withPatientName(String patientName) {
+        this.patientName = new Name(patientName);
         return this;
     }
 
@@ -78,6 +78,6 @@ public class AppointmentBuilder {
     }
 
     public Appointment build() {
-        return new Appointment(appointmentId, timeslot, description, name, tags);
+        return new Appointment(appointmentId, patientName, timeslot, description, tags);
     }
 }
