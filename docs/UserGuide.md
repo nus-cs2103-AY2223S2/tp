@@ -147,11 +147,12 @@ e.g. `add n/SampleTask t/CS2102 t/CS2102` will only register t/CS2102 once!
 
 
 ### 2.3 Listing all tasks : `list`
-:bulb: PRO TIP: Some commands (e.g. find) will trigger the UI to display a subset of tasks. Use `list` to return back to the original list.
 
 Shows a list of all tasks in the address book.
 
 Format: `list`
+
+:bulb: PRO TIP: Some commands (e.g. find) will trigger the UI to display a subset of tasks. Use `list` to return back to the original list.
 
 ### 2.4 Editing a task : `edit`
 
@@ -175,9 +176,6 @@ Examples:
 e.g. `edit 1 t/CS2102 t/CS2102` will only register t/CS2102 once!
 
 ### 2.5 Locating tasks by name: `find`
-:warning: When searching for a description `find d/Description`, Tasks without user's input description will not show up!
-
-e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/No Description` will return only a list with the latter task. 
 
 Find tasks whose attribute best match the user input string.
 
@@ -199,6 +197,10 @@ However, adding `all/` means that a task which contains all your tag inputs will
 
 Examples:
 * `find n/book` returns `read book` and `return books`
+
+:warning: When searching for a description `find d/Description`, Tasks without user's input description will not show up!
+
+e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/No Description` will return only a list with the latter task.
 
 ### 2.6 Deleting a task : `delete`
 
