@@ -465,7 +465,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list contact.
 2.  SOCket shows a list of contacts.
 3.  User requests to sort the list by a category.
-4.  SOCket sorts alphanumerically by that category and shows the sorted list of contacts.
+4.  SOCket sorts the contacts by that category and displays the sorted contact list.
 
     Use case ends.
 
@@ -480,14 +480,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. SOCket shows an error message. 
   
     Use case resumes from step 2.
-
-* 3b. No category is given.
-
-    * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
   
 * 3b. No category is given.
 
-  * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
+  * 3b1. SOCket sorts the list by name and displays the sorted list.
     
      Use case ends.
 
@@ -774,6 +770,32 @@ Use case ends.
 3. User wishes to view the first contact in the list.
 4. SOCket displays all the person's information at the detail display window.
 
+   Use case ends.
+
+**Use case: UC19 Sorting project list**
+
+Similar to **UC04 Sort Contacts**, except,
+* the list being sorted is the list of projects instead of contacts
+* the default sort when no category is provided is by the deadline of the project instead of the name.
+
+**Use case: UC20 Assigning a member from a project**
+
+**Use case: UC21 Unassigning a member from a project**
+1. User requests to remove a member from a project.
+2. SOCket removes the member from the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The chosen member is not assigned to the project.
+    * 2a1. SOCket shows an error message.
+
+      Use case ends.
+* 2b. The chosen project does not exist.
+    * 2b1. SOCket shows an error message.
+
+      Use case ends.
 *{More to be added}*
 
 ### Non-Functional Requirements
