@@ -17,21 +17,21 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-class DeleteTaskCommandTest {
+class MarkTaskLateCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void constructor_nullIndexes_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new DeleteTaskCommand(null, null));
+        assertThrows(NullPointerException.class, () -> new MarkTaskLateCommand(null, null));
     }
 
     @Test
     void execute_invalidStudentIndexUnfilteredList_failure() {
         Index outOfBoundPersonIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundPersonIndex, INDEX_FIRST_TASK);
+        MarkTaskLateCommand markTaskLateCommand = new MarkTaskLateCommand(outOfBoundPersonIndex, INDEX_FIRST_TASK);
 
-        assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(markTaskLateCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -39,30 +39,31 @@ class DeleteTaskCommandTest {
         Index outOfBoundTaskIndex = Index.fromOneBased(model.getFilteredPersonList().get(INDEX_FIRST_PERSON
                 .getZeroBased()).getTaskList().asUnmodifiableObservableList().size() + 1);
 
-        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_PERSON, outOfBoundTaskIndex);
+        MarkTaskLateCommand markTaskLateCommand = new MarkTaskLateCommand(INDEX_FIRST_PERSON, outOfBoundTaskIndex);
 
-        assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(markTaskLateCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteTaskCommand deleteFirstTaskCommand = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK);
-        DeleteTaskCommand deleteSecondTaskCommand = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_SECOND_TASK);
+        MarkTaskLateCommand markFirstTaskLateCommand = new MarkTaskLateCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK);
+        MarkTaskLateCommand markSecondTaskLateCommand = new MarkTaskLateCommand(INDEX_FIRST_PERSON, INDEX_SECOND_TASK);
 
         // same object -> returns true
-        assertTrue(deleteFirstTaskCommand.equals(deleteFirstTaskCommand));
+        assertTrue(markFirstTaskLateCommand.equals(markFirstTaskLateCommand));
 
         // same values -> returns true
-        DeleteTaskCommand deleteFirstTaskCommandCopy = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK);
-        assertTrue(deleteFirstTaskCommand.equals(deleteFirstTaskCommandCopy));
+        MarkTaskLateCommand markFirstTaskLateCommandCopy = new MarkTaskLateCommand(INDEX_FIRST_PERSON,
+                INDEX_FIRST_TASK);
+        assertTrue(markFirstTaskLateCommand.equals(markFirstTaskLateCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstTaskCommand.equals(1));
+        assertFalse(markFirstTaskLateCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstTaskCommand.equals(null));
+        assertFalse(markFirstTaskLateCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(deleteFirstTaskCommand.equals(deleteSecondTaskCommand));
+        assertFalse(markFirstTaskLateCommand.equals(markSecondTaskLateCommand));
     }
 }

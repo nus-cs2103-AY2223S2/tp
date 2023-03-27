@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -7,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskStatus;
 
 /**
  * An UI component that displays information of a {@code Task}.
@@ -34,7 +37,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private ImageView isDone;
+    private ImageView taskStatus;
 
 
     /**
@@ -42,16 +45,32 @@ public class TaskCard extends UiPart<Region> {
      */
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
+        requireAllNonNull(this.getClass().getResourceAsStream("/images/inProgress.png"),
+                this.getClass().getResourceAsStream("/images/late.png"),
+                this.getClass().getResourceAsStream("/images/complete.png"));
+
         this.task = task;
         id.setText(displayedIndex + ". ");
         taskName.setText(task.getName().fullName);
 
-        //Since the mark/unmark functions are not implemented, both condition will show as checked.
-        //Will need to update after the respective functions complete.
-        if (task.getDone()) {
-            isDone.setImage(new Image(this.getClass().getResourceAsStream("/images/check.png")));
-        } else {
-            isDone.setImage(new Image(this.getClass().getResourceAsStream("/images/check.png")));
+        TaskStatus statusOfTask = task.getStatus();
+
+        switch (statusOfTask) {
+
+        case INPROGRESS:
+            taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/inProgress.png")));
+            break;
+
+        case LATE:
+            taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/late.png")));
+            break;
+
+        case COMPLETE:
+            taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/complete.png")));
+            break;
+
+        default:
+            taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/inProgress.png")));
         }
     }
 
