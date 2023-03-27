@@ -15,7 +15,6 @@ public class PerformanceComparator implements Comparator<Person> {
      * Constructor for PerformanceComparator
      * @param isIncreasing a boolean depending on whether the sorting order is increasing (true) or decreasing (false)
      */
-
     public PerformanceComparator(boolean isIncreasing) {
         this.increasingOrder = (isIncreasing) ? 1 : -1;
     }

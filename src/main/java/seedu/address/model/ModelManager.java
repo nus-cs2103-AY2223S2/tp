@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -20,7 +19,6 @@ import seedu.address.logic.comparators.EmailComparator;
 import seedu.address.logic.comparators.NameComparator;
 import seedu.address.logic.comparators.PerformanceComparator;
 import seedu.address.logic.comparators.RemarkComparator;
-
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;

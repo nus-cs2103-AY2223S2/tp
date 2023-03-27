@@ -31,7 +31,7 @@ public class SortStudentCommand extends Command {
      * Constructor for SortStudentCommand
      * @param group The group of students to be sorted
      * @param metric The metric to be used for the sorting
-     * @param increasingOrder The desired order to sort the students
+     * @param isIncreasing The desired order to sort the students
      */
     public SortStudentCommand(String group, String metric, boolean isIncreasing) {
         this.group = group;
