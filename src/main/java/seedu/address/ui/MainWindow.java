@@ -198,18 +198,21 @@ public class MainWindow extends UiPart<Stage> {
                     return new CommandResult("Operation cancelled.");
                 }
             }
-
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            //@@author lxz333-reused
-            //Reused from https://github.com/AY2223S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui
-            // with minor modifications
-            detailDisplay.clearDetailDisplay();
-            detailDisplay.hideAppointmentButton();
-            detailDisplay.hideUploadButton();
-            detailDisplay.hideGenerateButton();
-            detailDisplay.hideViewDisplay();
+
+            //added to avoid clearing when doing view operations
+            if (!commandWord.contains("view")) {
+                //@@author lxz333-reused
+                //Reused from https://github.com/AY2223S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui
+                // with minor modifications
+                detailDisplay.clearDetailDisplay();
+                detailDisplay.hideAppointmentButton();
+                detailDisplay.hideUploadButton();
+                detailDisplay.hideGenerateButton();
+                detailDisplay.hideViewDisplay();
+            }
 
             if (commandResult.hasPersonToShow()) {
                 Person personToShow = commandResult.getPersonToShow();
