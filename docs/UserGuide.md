@@ -159,35 +159,35 @@ Running `dp -pn Mycelium` would delete the project with name *Mycelium*.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **HotKeys**
+## HotKeys
 
 HotKeys are keyboard short cuts supported by Mycelium to enable faster navigation and editing of commands with the keyboard. This allows for Mycelium to be fully keyboard driven. The following are the supported hotkeys:
 
-### **(F1) Help**
+### (F1) Help
 
 This shortcut allows you to quickly access the help page.
 
-### **(CTRL+Q) Quit**
+### (CTRL+Q) Quit
 
 This shortcut allows you to quickly quit Mycelium.
 
-### **(CTRL+W) Start of Line**
+### (CTRL+W) Start of Line
 
 This shortcut allows you to quickly navigate to the start of the line in the command box.
 
-### **(CTRL+E) End of Line**
+### (CTRL+E) End of Line
 
 This shortcut allows you to quickly navigate to the end of the line in the command box.
 
-### **(CTRL+D) Clear line**
+### (CTRL+D) Clear line
 
 This shortcut allows you to quickly clear the current line in the command box. The command also clears the command log found below the command box.
 
-### **(CTRL+L) Switch Tabs**
+### (CTRL+L) Switch Tabs
 
 This shortcut allows you to quickly switch between the projects and clients tabs. 
 
-### **(CTRL+J) Select next shortcut**
+### (CTRL+J) Select next
 
 This shortcut allows you to quickly select the next item on the currently selected list in the command box. 
 
@@ -195,7 +195,7 @@ If you are on the projects tab, then the next item in the projects list will be 
 
 If you are on the clients tab, then the next item in the client list will be selected. If there was no client originally selected, then the first client in the list will be selected.
 
-### **(CTRL+K) Select previous shortcut**
+### (CTRL+K) Select previous
 
 This shortcut allows you to quickly select the previous item on the currently selected list in the command box.
 
@@ -203,7 +203,7 @@ If you are on the projects tab, then the previous item in the projects list will
 
 If you are on the clients tab, then the previous item in the client list will be selected. If there was no client originally selected, then the last client in the list will be selected.
 
-### **(CTRL+F) Search**
+### (CTRL+F) Search
 
 This shortcut allows you toggle the command box between **search mode** and **command mode** (default).
 
