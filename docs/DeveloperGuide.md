@@ -225,6 +225,8 @@ When adding a student entry, these were the alternatives considered.
         * `add` becomes a lengthy command to execute as unnecessary additional time is needed to enter dummy values to meet the input requirements.
         * Reduces user convenience as "useful" entries that can be made are limited to students whose details are all known.
 
+[↑ Back to top](#table-of-contents)
+
 ### Delete feature
 
 #### Implementation Details
@@ -259,6 +261,8 @@ we believe that if a single invalid `INDEX` is given, the system should generate
     * Harder to implement as we have to keep track of the valid indexes to be deleted.
     * May cost the user a lot of time if an unintended `Student` entry is deleted due to the typo and additional time is 
     needed to re-enter the entry or `undo` the command.
+
+[↑ Back to top](#table-of-contents)
 
 ### Edit Feature
 
@@ -303,6 +307,7 @@ When editing a student entry, whether a new `Student` object should be created.
     * Cons:
         * In order to execute this, `Student` cannot be immutable, this reduces the defensiveness of the program, making it more susceptible to errors.
 
+[↑ Back to top](#table-of-contents)
 
 ### Find feature
 
@@ -365,6 +370,8 @@ Our implementation has some additions such as:
     * Users will not be able to search keywords for a particular attribute.
     * The resulting filtered list will span across multiple different fields, where all attributes in all fields containing the specified keyword will be displayed.
 
+[↑ Back to top](#table-of-contents)
+
 ### List feature
 
 #### Implementation Details
@@ -412,6 +419,9 @@ An example usage would be `sort ASC` to sort the list in ascending order, and `s
     * Adds complexity to the implementation as more error checking of the inputs is required.
   
 _{more aspects to be added}_
+
+
+[↑ Back to top](#table-of-contents)
 
 ### Remark feature
 
@@ -466,6 +476,8 @@ Additionally, the command line only provides a restricted view and input option 
     * Remarks are limited to the view of `PersonCard` and size of the window.
     * Remarks that are too long will be cut off and not visible.
 
+[↑ Back to top](#table-of-contents)
+
 #### Show feature
 
 #### Implementation Details
@@ -489,7 +501,9 @@ will not be visible. Hence, `show` allows users to view the full remark in the `
     * Allows users to view the student details and remarks all at once.
   * Cons:
     * Harder to implement
-  
+
+[↑ Back to top](#table-of-contents)
+
 #### \[Proposed\] Undo/redo feature
 
 ##### Proposed Implementation
@@ -570,6 +584,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+[↑ Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -630,7 +645,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user | receieve an appropriate and user-friendly error message when I enter the wrong inputs/parameters for a command | find out the correct input/parameter format and use the feature as intended |
 | `* * *`  | new user | be able to ask for help                                                                                        | learn how to use the app                                                    |
 
-
+[↑ Back to top](#table-of-contents)
 
 ### Use cases
 
@@ -738,6 +753,8 @@ Use case ends
 
 *{More to be added}*
 
+[↑ Back to top](#table-of-contents)
+
 ### Non-Functional Requirements
 
 1. A user that is completely new to the application should be able to be familiar with the functionalities within 1 hour.
@@ -751,12 +768,16 @@ Use case ends
 
 *{More to be added}*
 
+[↑ Back to top](#table-of-contents)
+
 ### Glossary
 
 * **Tutors**: (NUS) Teaching Assistants.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Save FIle**: The file containing all the data (ie. Entries of student information) inputted by the user saved locally on the user's own computer.
+
+[↑ Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -796,11 +817,13 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-   
+
+[↑ Back to top](#table-of-contents)   
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-   
+
+[↑ Back to top](#table-of-contents)
