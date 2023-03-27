@@ -462,8 +462,7 @@ The `add` command allows users to create a new person and insert them into the a
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Command Formats:** <br>
-
-* `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`
+- `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`
 
 </div>
 
@@ -508,11 +507,8 @@ The `edit` command allows the user to edit an existing contact in EduMate.
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Command Formats:** <br>
-
-<ol>
-    <li>`edit z/FIELD`: Edits the user details. </li>
-    <li>`edit INDEX z/FIELD`: Edits the details of the contact at the specified `INDEX`.</li>
-</ol>
+- `edit z/FIELD`: Edits the user details. <br>
+- `edit INDEX z/FIELD`: Edits the details of the contact at the specified `INDEX`.<br>
 </div>
 
 **Distinguishing between contact and user** - As specified in the command formats, if the user wants to edit their own details, they can just leave out the index. On our end, the `ArgumentMultimap` has been modified to accept null as a valid index, which will handle such a use case.
