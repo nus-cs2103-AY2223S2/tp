@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private final Stage primaryStage;
     private final Logic logic;
     private final HelpWindow helpWindow;
+
     // Independent Ui parts residing in this Ui container
     private RecipeListPanel recipeListPanel;
     private ResultDisplay resultDisplay;

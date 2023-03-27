@@ -18,6 +18,7 @@
     <scene>
         <Scene>
             <stylesheets>
+                <URL value="@Fonts.css"/>
                 <URL value="@DarkTheme.css"/>
                 <URL value="@Extensions.css"/>
             </stylesheets>
