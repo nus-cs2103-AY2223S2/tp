@@ -123,6 +123,12 @@ public class Person implements Comparable<Person> {
         }
 
         Person otherPerson = (Person) other;
+
+        //Nus email must be unique to each student
+        if (otherPerson.getEmail().equals(getEmail())) {
+            return false;
+        }
+
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
