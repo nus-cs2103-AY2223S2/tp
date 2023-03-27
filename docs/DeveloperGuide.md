@@ -18,6 +18,7 @@ It was adapted from a previous project called AddressBook Level-3, and it was de
 Engineering Module.
 
 Java dependencies:
+* [Jackson](https://github.com/FasterXML/jackson) for JSON-related operations
 * [JavaFX](https://openjfx.io/) for GUI
 * [JUnit 5](https://github.com/junit-team/junit5) for testing
 
