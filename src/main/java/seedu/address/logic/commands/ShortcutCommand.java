@@ -2,14 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -103,6 +95,9 @@ public class ShortcutCommand extends Command {
         } else if (command.equals(ShortcutCommandParser.CommandType.TAG)) {
             TagCommand.COMMAND_WORDS.add(this.shortForm);
             ShortcutCommandUtil.saveWords(ShortcutCommandUtil.TAG_PATH, AddCommand.COMMAND_WORDS);
+        } else if (command.equals(ShortcutCommandParser.CommandType.MASS_OP)) {
+            MassOpCommand.COMMAND_WORDS.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.MASS_OP_PATH, AddCommand.COMMAND_WORDS);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, command, shortForm), true, true);

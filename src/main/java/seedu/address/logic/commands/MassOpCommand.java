@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -15,7 +17,7 @@ import seedu.address.model.tag.Tag;
  */
 public class MassOpCommand extends Command {
 
-    public static final List<String> COMMAND_WORDS = List.of(new String[]{"mass", "Mass"});
+    public static List<String> COMMAND_WORDS = new ArrayList<String>(Arrays.asList("mass", "m", "Mass"));
 
     public static final String MESSAGE_USAGE = COMMAND_WORDS
             + ":Tag or delete Tags people who are filtered by the filter in the person list.\n"

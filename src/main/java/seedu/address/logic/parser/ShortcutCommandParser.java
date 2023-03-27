@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteTagCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -15,12 +14,12 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MassOpCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.ShortcutCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Person;
 
 /**
  * Parses input arguments and creates a new TagCommand object
@@ -30,7 +29,7 @@ public class ShortcutCommandParser implements Parser<ShortcutCommand> {
     private static final int SHORT_FORM_INDEX = 1;
 
     public enum CommandType {
-        ADD, CLEAR, DELETE, DELETE_TAG, EDIT, EXIT, EXPORT, FILTER, FIND, HELP, IMPORT, LIST, REDO, SHORTCUT,
+        ADD, CLEAR, DELETE, DELETE_TAG, EDIT, EXIT, EXPORT, FILTER, FIND, HELP, IMPORT, LIST, MASS_OP, REDO, SHORTCUT,
         TAG, UNDO
     }
 
@@ -80,6 +79,8 @@ public class ShortcutCommandParser implements Parser<ShortcutCommand> {
             commandToChange = CommandType.IMPORT;
         } else if (commandWord.equals(ListCommand.COMMAND_WORDS.get(0))) {
             commandToChange = CommandType.LIST;
+        } else if (commandWord.equals(MassOpCommand.COMMAND_WORDS.get(0))) {
+            commandToChange = CommandType.REDO;
         } else if (commandWord.equals(RedoCommand.COMMAND_WORDS.get(0))) {
             commandToChange = CommandType.REDO;
         } else if (commandWord.equals(ShortcutCommand.COMMAND_WORDS.get(0))) {

@@ -12,6 +12,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MassOpCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.ShortcutCommand;
 import seedu.address.logic.commands.TagCommand;
@@ -25,9 +26,7 @@ import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Filter;
 
 public class ShortcutCommandUtil {
     public static final Path ADD_PATH = Paths.get("data", "addCommand.txt");
@@ -42,6 +41,7 @@ public class ShortcutCommandUtil {
     public static final Path HELP_PATH = Paths.get("data", "helpCommand.txt");
     public static final Path IMPORT_PATH = Paths.get("data", "importCommand.txt");
     public static final Path LIST_PATH = Paths.get("data", "listCommand.txt");
+    public static final Path MASS_OP_PATH = Paths.get("data", "massOpCommand.txt");
     public static final Path REDO_PATH = Paths.get("data", "redoCommand.txt");
     public static final Path SHORTCUT_PATH = Paths.get("data", "listCommand.txt");
     public static final Path TAG_PATH = Paths.get("data", "tagCommand.txt");
@@ -60,6 +60,7 @@ public class ShortcutCommandUtil {
         HelpCommand.COMMAND_WORDS = loadWords(HELP_PATH, HelpCommand.COMMAND_WORDS);
         ImportCommand.COMMAND_WORDS = loadWords(IMPORT_PATH, ImportCommand.COMMAND_WORDS);
         ListCommand.COMMAND_WORDS = loadWords(LIST_PATH, ListCommand.COMMAND_WORDS);
+        MassOpCommand.COMMAND_WORDS = loadWords(MASS_OP_PATH, MassOpCommand.COMMAND_WORDS);
         RedoCommand.COMMAND_WORDS = loadWords(REDO_PATH, RedoCommand.COMMAND_WORDS);
         ShortcutCommand.COMMAND_WORDS = loadWords(SHORTCUT_PATH, ShortcutCommand.COMMAND_WORDS);
         TagCommand.COMMAND_WORDS = loadWords(TAG_PATH, TagCommand.COMMAND_WORDS);
