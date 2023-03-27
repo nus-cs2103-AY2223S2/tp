@@ -304,6 +304,22 @@ Fish Ahoy!. We then access the `Logic` component to access the `Model` component
 each `TaskFeedingReminder`, then execute these commands, updating the `Model` component before saving the states
 if the various lists. 
 
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. User opens app and the `Application`'s `init()` method is called. The sequence to create Reminders is started.
+
+Step 2. Ui component signals MainWindow to create Reminders. 
+
+Step 3. Logic component requests for the list of reminders, which is created by the model component after checking which tanks
+have hungry fishes.
+
+Step 4. MainWindow has acquired the list of feeding reminders to be created and requests
+the logic component to create and execute a `TaskFeedingReminderCommand` for each feeding reminder required.
+
+Step 5. Storage components are updated.
+
+Step 6. GUI changes are reflect.
+
 ![FeedingReminderSequenceDiagram](images/FeedingReminderSequenceDiagram.png)
 
 #### Design considerations:
@@ -311,6 +327,9 @@ if the various lists.
   * Pros: user can update Reminders without opening the app
   * Cons: will be redundant most of the times as Fish feeding intervals are not that short. Even if user calls this
 command, the reminders likely do not need to be updated.
+  
+* Entry point for automatic feeding reminder feature is the Ui component. Since this feature do not require user inputs,
+we manually start the feature in the Ui component.
 
 ### Fish Sort feature
 
