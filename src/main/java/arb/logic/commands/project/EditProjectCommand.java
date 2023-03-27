@@ -94,22 +94,31 @@ public class EditProjectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_PROJECT);
         }
 
-        if (editProjectDescriptor.getClient().isPresent()) {
+        Optional<Optional<String>> optionalUpdatedClient = editProjectDescriptor.getClient();
+        String updatedClientName = projectToEdit.getClientName();
+        if (optionalUpdatedClient.isPresent()) {
+            updatedClientName = optionalUpdatedClient.get().orElse(null);
+        }
+
+        if (updatedClientName == null) {
+            model.unlinkClientFromProject(projectToEdit);
+        } else {
             model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays
-                    .asList(editProjectDescriptor.getClient().get())));
+                    .asList(updatedClientName)));
             if (model.getFilteredClientList().size() == 0) {
                 throw new CommandException(String.format(MESSAGE_CANNOT_FIND_CLIENT,
                         editProjectDescriptor.getClient().get()));
             }
             model.setProjectToLink(editedProject);
         }
+
         model.setProject(projectToEdit, editedProject);
 
         String message = String.format(MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
         ListType toBeShown = ListType.PROJECT;
-        if (editProjectDescriptor.getClient().isPresent()) {
+        if (updatedClientName != null) {
             model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays
-                    .asList(editProjectDescriptor.getClient().get())));
+                    .asList(updatedClientName)));
             message = LinkProjectToClientCommand.MESSAGE_USAGE;
             toBeShown = ListType.CLIENT;
         } else {
@@ -117,7 +126,7 @@ public class EditProjectCommand extends Command {
             model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
         }
 
-        return new CommandResult(message, editProjectDescriptor.getClient().isPresent(), toBeShown);
+        return new CommandResult(message, updatedClientName != null, toBeShown);
     }
 
     /**
@@ -178,12 +187,11 @@ public class EditProjectCommand extends Command {
      */
     public static class EditProjectDescriptor {
         private Title title;
-        private Optional<Deadline> deadline = null;
-        private Optional<Price> price = null;
+        private Optional<Deadline> deadline;
+        private Optional<Price> price;
+        private Optional<String> clientName;
 
         private Set<Tag> tags;
-
-        private String clientName;
 
         public EditProjectDescriptor() {}
 
@@ -194,8 +202,8 @@ public class EditProjectCommand extends Command {
             setTitle(toCopy.title);
             this.deadline = toCopy.deadline;
             this.price = toCopy.price;
+            this.clientName = toCopy.clientName;
             setTags(toCopy.tags);
-            setClient(toCopy.clientName);
         }
 
         /**
@@ -218,7 +226,10 @@ public class EditProjectCommand extends Command {
         }
 
         public void setClient(String clientName) {
-            this.clientName = clientName;
+            if (clientName.isBlank()) {
+                clientName = null;
+            }
+            this.clientName = Optional.ofNullable(clientName);
         }
 
         public Optional<Title> getTitle() {
@@ -233,7 +244,7 @@ public class EditProjectCommand extends Command {
             return Optional.ofNullable(price);
         }
 
-        public Optional<String> getClient() {
+        public Optional<Optional<String>> getClient() {
             return Optional.ofNullable(clientName);
         }
 

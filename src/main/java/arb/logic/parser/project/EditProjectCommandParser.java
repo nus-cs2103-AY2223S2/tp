@@ -21,6 +21,7 @@ import arb.logic.parser.ArgumentTokenizer;
 import arb.logic.parser.Parser;
 import arb.logic.parser.ParserUtil;
 import arb.logic.parser.exceptions.ParseException;
+import arb.model.client.Name;
 import arb.model.tag.Tag;
 
 
@@ -62,10 +63,14 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
             editProjectDescriptor.setPrice(ParserUtil.parsePrice(argumentMultimap.getValue(PREFIX_PRICE)
                     .get()));
         }
+
         if (argumentMultimap.getValue(PREFIX_CLIENT).isPresent()) {
             // throw exception if not valid name
-            ParserUtil.parseName(argumentMultimap.getValue(PREFIX_CLIENT).get());
-            editProjectDescriptor.setClient(argumentMultimap.getValue(PREFIX_CLIENT).get());
+            String clientName = argumentMultimap.getValue(PREFIX_CLIENT).get();
+            if (!clientName.isBlank() && !Name.isValidName(clientName)) {
+                throw new ParseException("Provided client name is not valid");
+            }
+            editProjectDescriptor.setClient(clientName);
         }
 
         parseTagsForEdit(argumentMultimap.getAllValues(PREFIX_TAG)).ifPresent(editProjectDescriptor::setTags);

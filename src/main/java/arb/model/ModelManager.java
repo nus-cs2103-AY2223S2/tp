@@ -180,6 +180,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void unlinkClientFromProject(Project project) {
+        requireNonNull(project);
+        addressBook.unlinkClientFromProject(project);
+    }
+
+    @Override
     public void markProjectAsDone(Project project) {
         requireNonNull(project);
         addressBook.markProjectAsDone(project);

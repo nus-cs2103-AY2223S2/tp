@@ -239,6 +239,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Unlinks the client linked to {@code project}.
+     */
+    public void unlinkClientFromProject(Project project) {
+        clients.unlinkClientFromProject(project);
+        projects.unlinkProjectFromClient(project);
+    }
+
+    /**
      * Marks {@code project} as done.
      */
     public void markProjectAsDone(Project project) {

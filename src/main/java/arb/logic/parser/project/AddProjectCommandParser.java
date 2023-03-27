@@ -18,6 +18,7 @@ import arb.logic.parser.Parser;
 import arb.logic.parser.ParserUtil;
 import arb.logic.parser.Prefix;
 import arb.logic.parser.exceptions.ParseException;
+import arb.model.client.Name;
 import arb.model.project.Deadline;
 import arb.model.project.Price;
 import arb.model.project.Project;
@@ -61,9 +62,9 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Optional<String> clientName = argMultimap.getValue(PREFIX_CLIENT);
-        if (clientName.isPresent()) {
+        if (clientName.isPresent() && !Name.isValidName(clientName.get())) {
             // throw exception if provided client name is not valid
-            ParserUtil.parseName(clientName.get());
+            throw new ParseException("Provided client name is not valid.");
         }
 
         Project project = new Project(title, deadline, price, tagList);

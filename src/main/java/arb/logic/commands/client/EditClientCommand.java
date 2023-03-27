@@ -105,13 +105,13 @@ public class EditClientCommand extends Command {
         assert clientToEdit != null;
 
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
-        //Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
-        //Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
+
         Optional<Optional<Phone>> optionalUpdatedPhone = editClientDescriptor.getPhone();
         Phone updatedPhone = clientToEdit.getPhone();
         if (optionalUpdatedPhone.isPresent()) {
             updatedPhone = optionalUpdatedPhone.get().orElse(null);
         }
+
         Optional<Optional<Email>> optionalUpdatedEmail = editClientDescriptor.getEmail();
         Email updatedEmail = clientToEdit.getEmail();
         if (optionalUpdatedEmail.isPresent()) {
@@ -154,10 +154,8 @@ public class EditClientCommand extends Command {
      */
     public static class EditClientDescriptor {
         private Name name;
-        //private Phone phone;
-        //private Email email;
-        private Optional<Phone> phone = null;
-        private Optional<Email> email = null;
+        private Optional<Phone> phone;
+        private Optional<Email> email;
         private Set<Tag> tags;
 
         public EditClientDescriptor() {}
@@ -168,8 +166,6 @@ public class EditClientCommand extends Command {
          */
         public EditClientDescriptor(EditClientDescriptor toCopy) {
             setName(toCopy.name);
-            //setPhone(toCopy.phone);
-            //setEmail(toCopy.email);
             this.phone = toCopy.phone;
             this.email = toCopy.email;
             setTags(toCopy.tags);
@@ -191,7 +187,6 @@ public class EditClientCommand extends Command {
         }
 
         public void setPhone(Phone phone) {
-            //this.phone = phone;
             this.phone = Optional.ofNullable(phone);
         }
 
@@ -200,7 +195,6 @@ public class EditClientCommand extends Command {
         }
 
         public void setEmail(Email email) {
-            //this.email = email;
             this.email = Optional.ofNullable(email);
         }
 

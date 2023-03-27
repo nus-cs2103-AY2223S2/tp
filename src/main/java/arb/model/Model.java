@@ -164,6 +164,11 @@ public interface Model {
     void linkProjectToClient(Client client);
 
     /**
+     * Unlinks the client from {@code project}.
+     */
+    void unlinkClientFromProject(Project project);
+
+    /**
      * Marks {@code project} as done.
      */
     public void markProjectAsDone(Project project);
