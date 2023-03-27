@@ -1,51 +1,88 @@
 package seedu.address.model.commitment;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import org.joda.time.LocalTime;
 
+import seedu.address.model.location.Location;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.HourBlock;
+import seedu.address.model.time.TimePeriod;
 
 /**
- * Represents a commitment.
+ * A Commitment is somewhere that a person needs to be at a
+ * particular time.
  */
 public class Commitment {
-
-    private LocalTime startTime;
-    private LocalTime endTime;
-    private Day day;
+    protected final Location location;
+    protected final TimePeriod timePeriod;
 
     /**
-     * Constructs a Commitment object
+     * Constructor for a {@code Commitment} object.
      */
-    public Commitment(LocalTime startTime, LocalTime endTime, Day day) {
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.day = day;
+    public Commitment(Location location, TimePeriod timePeriod) {
+        this.location = location;
+        this.timePeriod = timePeriod;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public TimePeriod getTimePeriod() {
+        return timePeriod;
+    }
+
+    public Day getDay() {
+        return timePeriod.getSchoolDay();
+    }
+
+    public LocalTime getStartTime() {
+        return timePeriod.getStartTime();
+    }
+
+    public LocalTime getEndTime() {
+        return timePeriod.getEndTime();
     }
 
     /**
-     * Checks if there is a sequence of timeslots to fit a commitment.
+     * Checks whether the Commitment can fit into a list of slots.
      */
     public boolean canFitIntoDaySchedule(ArrayList<HourBlock> slots) {
         boolean canFit = true;
-        for (int i = startTime.getHourOfDay() - 8; i < endTime.getHourOfDay() - 8; i++) {
-            System.out.println(String.format("%s, %s", i, slots.get(i)));
+        for (int i = getStartTime().getHourOfDay() - 8; i < getEndTime().getHourOfDay() - 8; i++) {
             canFit &= slots.get(i).isFree();
         }
         return canFit;
     }
 
-    public LocalTime getStartTime() {
-        return startTime;
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+
+        if (!(other instanceof Commitment)) {
+            return false;
+        }
+
+        Commitment commitment = (Commitment) other;
+        return location.equals(commitment.location)
+                && timePeriod.equals(commitment.timePeriod);
     }
 
-    public LocalTime getEndTime() {
-        return endTime;
+    @Override
+    public String toString() {
+        return "Commitment{"
+                + getDay()
+                + ", " + getStartTime()
+                + " to " + getEndTime()
+                + " at " + location + '}';
     }
 
-    public Day getDay() {
-        return day;
+    @Override
+    public int hashCode() {
+        return Objects.hash(timePeriod, location);
     }
 }

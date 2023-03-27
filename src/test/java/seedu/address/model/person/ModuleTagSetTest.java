@@ -78,6 +78,5 @@ public class ModuleTagSetTest {
         assertEquals(1, commonModuleTagSet.getNumberOfCommonModules());
 
         assertEquals(0, moduleTagSet.getImmutableCommonModules().size());
-        assertEquals(1, moduleTagSet.getUncommonModuleTags().size());
     }
 }

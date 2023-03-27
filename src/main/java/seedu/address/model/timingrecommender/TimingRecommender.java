@@ -22,10 +22,10 @@ import seedu.address.model.timetable.Timetable;
 /**
  * Represents an automatic timingrecommender.
  */
+
 public class TimingRecommender {
 
     private static final Logger logger = LogsCenter.getLogger(TimingRecommender.class);
-
     private List<Timetable> schedules;
     private Model model;
     private List<Person> participants;
@@ -56,7 +56,6 @@ public class TimingRecommender {
 
     /**
      * Adds participants from the model by their ContactIndex.
-     * @param participantIndices
      */
     private void addParticipants(Collection<ContactIndex> participantIndices) {
         IndexHandler indexHandler = new IndexHandler(model);
@@ -65,11 +64,10 @@ public class TimingRecommender {
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .forEach(this.participants::add);
-        // Append timetables for each participant
-        // Wait for @kennycjy to handle his Module Tag + Lesson integration
-        // planned implementation:
-        // for each participant : (1) build (2) add their timetable
-        // to be handled in a separate method.
+
+        this.participants.stream()
+                .map(Person::getTimetable)
+                .forEach(this.schedules::add);
     }
 
     /**
@@ -109,6 +107,7 @@ public class TimingRecommender {
             List<HourBlock> availableHourBlocks = TimeUtil.getFreeCommonIntervals(day, schedules);
             periods.addAll(TimeUtil.mergeTimeSlots(availableHourBlocks));
         }
+        logger.info(String.format("%d possible timings", periods.size()));
         return periods;
     }
 
@@ -118,6 +117,18 @@ public class TimingRecommender {
     public List<TimePeriod> getAllTimings(Day schoolDay) {
         List<HourBlock> availableHourBlocks = TimeUtil.getFreeCommonIntervals(schoolDay, schedules);
         return new ArrayList<>(TimeUtil.mergeTimeSlots(availableHourBlocks));
+    }
+
+    /**
+     * Get all Hour Blocks that everyone is free.
+     */
+    public List<HourBlock> getAllHourBlocks() {
+        List<HourBlock> blocks = new ArrayList<>();
+        for (Day day : Day.values()) {
+            List<HourBlock> availableHourBlocks = TimeUtil.getFreeCommonIntervals(day, schedules);
+            blocks.addAll(availableHourBlocks);
+        }
+        return blocks;
     }
 
     public List<Timetable> getSchedules() {

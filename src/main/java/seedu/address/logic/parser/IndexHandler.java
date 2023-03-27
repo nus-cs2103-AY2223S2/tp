@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 import seedu.address.model.Model;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
+import seedu.address.model.recommendation.Recommendation;
 
 /**
  * Assigns a valid contact index for a newly-added contact to EduMate.
@@ -35,9 +36,41 @@ public class IndexHandler {
         return new ContactIndex(availableIndex);
     }
 
+    /**
+     * Gets the first person who satisfies the index, if any.
+     */
     public Optional<Person> getPersonByIndex(ContactIndex index) {
         List<Person> personList = model.getObservablePersonList();
         return personList.stream().filter(person -> person.getContactIndex().equals(index)).findFirst();
+    }
+
+    /**
+     * Assigns a contact index for a Recommendation.
+     * @return new Contact Index for new Recommendation.
+     */
+    public ContactIndex assignRecommendationIndex() {
+        List<Recommendation> personList = model.getObservableRecommendationList();
+        if (personList.isEmpty()) {
+            return new ContactIndex(1);
+        }
+        OptionalInt takenIndices = IntStream.iterate(1, integer -> personList.stream()
+                        .anyMatch(recommendation -> recommendation
+                                .getContactIndex().equals(new ContactIndex(integer))), x -> x + 1).max();
+
+        assert takenIndices.isPresent();
+
+        int availableIndex = takenIndices.getAsInt() + 1;
+        return new ContactIndex(availableIndex);
+    }
+
+    /**
+     * Returns the recommendation at the given index.
+     */
+    public Optional<Recommendation> getRecommendationByIndex(ContactIndex index) {
+        List<Recommendation> recommendationList = model.getObservableRecommendationList();
+        return recommendationList.stream()
+                .filter(recommendation -> recommendation.getContactIndex().equals(index))
+                .findFirst();
     }
 
 }

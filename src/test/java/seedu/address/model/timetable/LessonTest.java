@@ -57,7 +57,7 @@ class LessonTest {
 
     @Test
     public void equalityCheck_sameObjectDifferentReference_equals() {
-        Lesson anotherLesson = new Lesson(new Module("MA2104"),
+        Lesson anotherLesson = new Lesson("MA2104",
                 new LocalTime(8, 0),
                 new LocalTime(9, 0),
                 Day.FRIDAY,

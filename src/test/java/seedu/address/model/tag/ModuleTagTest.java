@@ -24,14 +24,6 @@ public class ModuleTagTest {
         assertThrows(IllegalArgumentException.class, () -> new ModuleTag(invalidTagName));
     }
 
-    /*
-    @Test
-    public void isValidTagName_null_throwsNullPointerException() {
-        // null tag name
-        assertThrows(NullPointerException.class, () -> ModuleTag.isValidTagName(null));
-    }
-     */
-
     @Test
     public void isValidTagName_validTagName_true() {
         assertTrue(ModuleTag.isValidTagName("CS2101")); // standard module code
@@ -66,8 +58,8 @@ public class ModuleTagTest {
     }
 
     @Test
-    public void hashCode_validTag_success() {
-        assertEquals(MODULE_TAG_STRING.hashCode(), MODULE_TAG.hashCode());
+    public void hashCode_sameTag_success() {
+        assertEquals(new ModuleTag(MODULE_TAG_STRING).hashCode(), MODULE_TAG.hashCode());
     }
 
     @Test

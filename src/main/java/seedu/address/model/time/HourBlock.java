@@ -85,6 +85,13 @@ public class HourBlock extends TimePeriod {
     }
 
     /**
+     * Removes the commitment from the HourBlock.
+     */
+    public void removeCommitment() {
+        commitment = Optional.empty();
+    }
+
+    /**
      * Verifies if the timeslot is suitable to input that lesson.
      */
     public boolean canFitCommitment(Commitment commitment) {

@@ -3,6 +3,7 @@ package seedu.address.model;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
+import seedu.address.model.recommendation.Recommendation;
 
 /**
  * Unmodifiable view of an address book
@@ -14,6 +15,12 @@ public interface ReadOnlyEduMate {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getPersonList();
+
+    /**
+     * Returns an unmodifiable view of the recommendations list.
+     * This list will not contain any duplicate recommendations.
+     */
+    ObservableList<Recommendation> getRecommendationList();
 
     /**
      * Returns a view of the user object.
