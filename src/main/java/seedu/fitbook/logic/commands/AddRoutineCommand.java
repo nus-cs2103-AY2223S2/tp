@@ -41,7 +41,6 @@ public class AddRoutineCommand extends Command {
     public CommandResult execute(FitBookModel model) throws CommandException {
         requireNonNull(model);
         if (model.hasRoutine(toAdd)) {
-
             throw new CommandException(MESSAGE_DUPLICATE_ROUTINE);
         }
 

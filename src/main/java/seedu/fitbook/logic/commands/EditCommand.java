@@ -9,10 +9,12 @@ import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GOAL;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_ROUTINE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static seedu.fitbook.model.FitBookModel.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -34,6 +36,8 @@ import seedu.fitbook.model.client.Goal;
 import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.client.Weight;
+import seedu.fitbook.model.routines.Routine;
+import seedu.fitbook.model.routines.RoutineName;
 import seedu.fitbook.model.tag.Tag;
 
 
@@ -57,6 +61,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_WEIGHT + "WEIGHT] "
             + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_GOAL + "GOAL] "
+            + "[" + PREFIX_ROUTINE + "ROUTINE]..."
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -65,6 +70,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This client already exists in the FitBook.";
+    public static final String MESSAGE_ROUTINE_NAME_INVALID =
+            "Invalid routine used for editing. Please use a valid routine from the routine list.";
 
     private final Index index;
     private final EditClientDescriptor editClientDescriptor;
@@ -91,7 +98,7 @@ public class EditCommand extends Command {
         }
 
         Client clientToEdit = lastShownList.get(index.getZeroBased());
-        Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
+        Client editedClient = createEditedClient(clientToEdit, editClientDescriptor, model);
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -106,7 +113,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Client} with the details of {@code clientToEdit}
      * edited with {@code editClientDescriptor}.
      */
-    private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor) {
+    private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor,
+        FitBookModel model) throws CommandException {
         assert clientToEdit != null;
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
@@ -119,8 +127,35 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
         Set<Appointment> updatedAppointment =
                 editClientDescriptor.getAppointments().orElse(clientToEdit.getAppointments());
+        Set<Routine> updatedRoutine =
+                getRoutines(clientToEdit, editClientDescriptor, model);
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAppointment, updatedWeight,
-                updatedGender, updatedCalorie, updatedGoal, updatedTags);
+                updatedGender, updatedCalorie, updatedGoal, updatedTags, updatedRoutine);
+    }
+
+    private static Set<Routine> getRoutines(Client clientToEdit, EditClientDescriptor editClientDescriptor,
+                                    FitBookModel model) throws CommandException {
+        Optional<Set<Routine>> optionalRoutines = editClientDescriptor.getRoutines();
+        List<Routine> routinesModel = model.getFitBookExerciseRoutine().getRoutineList();
+        Set<Routine> updatedRoutine = new HashSet<>();
+        if (optionalRoutines.isPresent()) {
+            Set<Routine> routines = optionalRoutines.get();
+            List<RoutineName> routineNamesToAdd = new ArrayList<>();
+            routines.forEach(routine -> routineNamesToAdd.add(routine.getRoutineName()));
+            Set<Routine> finalUpdatedRoutine = updatedRoutine;
+            routineNamesToAdd.forEach(routineName -> routinesModel.forEach( routine -> {
+                if (routineName.equals(routine.getRoutineName())) {
+                    finalUpdatedRoutine.add(routine);
+                }
+            }));
+            if (routineNamesToAdd.size() != updatedRoutine.size()) {
+                throw new CommandException(MESSAGE_ROUTINE_NAME_INVALID);
+            }
+            return finalUpdatedRoutine;
+        } else {
+            updatedRoutine = clientToEdit.getRoutines();
+            return updatedRoutine;
+        }
     }
 
     @Override
@@ -156,6 +191,7 @@ public class EditCommand extends Command {
         private Goal goal;
         private Set<Tag> tags;
         private Set<Appointment> appointments;
+        private Set<Routine> routines;
 
         public EditClientDescriptor() {}
 
@@ -174,14 +210,15 @@ public class EditCommand extends Command {
             setGoal(toCopy.goal);
             setAppointments(toCopy.appointments);
             setTags(toCopy.tags);
+            setRoutines(toCopy.routines);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, appointments, gender, weight,
-                    calorie, goal, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, appointments,
+                    gender, weight, calorie, goal, tags, routines);
         }
 
         public void setName(Name name) {
@@ -278,6 +315,23 @@ public class EditCommand extends Command {
             return Optional.ofNullable(calorie);
         }
 
+        /**
+         * Sets {@code routines} to this object's {@code routines}.
+         * A defensive copy of {@code routines} is used internally.
+         */
+        public void setRoutines(Set<Routine> routines) {
+            this.routines = (routines != null) ? new HashSet<>(routines) : null;
+        }
+
+        /**
+         * Returns an unmodifiable routine set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code routines} is null.
+         */
+        public Optional<Set<Routine>> getRoutines() {
+            return (routines != null) ? Optional.of(Collections.unmodifiableSet(routines)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -302,7 +356,8 @@ public class EditCommand extends Command {
                     && getGoal().equals(e.getGoal())
                     && getCalorie().equals(e.getCalorie())
                     && getAppointments().equals(e.getAppointments())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getRoutines().equals(e.getRoutines());
         }
     }
 }

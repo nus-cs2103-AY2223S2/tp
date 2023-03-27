@@ -15,6 +15,7 @@ import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.commons.util.CollectionUtil;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.model.FitBookModel;
+import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.routines.RoutineName;
@@ -70,7 +71,7 @@ public class EditRoutineCommand extends Command {
         }
 
         Routine routineToEdit = lastShownList.get(index.getZeroBased());
-        Routine editedRoutine = createEditedRoutine(routineToEdit, editRoutineDescriptor);
+        Routine editedRoutine = createEditedRoutine(routineToEdit, editRoutineDescriptor, model);
 
         if (!routineToEdit.isSameRoutine(editedRoutine) && model.hasRoutine(editedRoutine)) {
             throw new CommandException(MESSAGE_DUPLICATE_ROUTINE);
@@ -85,12 +86,13 @@ public class EditRoutineCommand extends Command {
      * Creates and returns a {@code Routine} with the details of {@code routineToEdit}
      * edited with {@code editRoutineDescriptor}.
      */
-    private static Routine createEditedRoutine(Routine routineToEdit, EditRoutineDescriptor editRoutineDescriptor)
+    private Routine createEditedRoutine(Routine routineToEdit, EditRoutineDescriptor editRoutineDescriptor,
+        FitBookModel model)
             throws CommandException {
         assert routineToEdit != null;
         List<Exercise> updatedExercise;
+        Routine updatedRoutine;
         RoutineName updatedRoutineName = editRoutineDescriptor.getRoutineName().orElse(routineToEdit.getRoutineName());
-
         if (editRoutineDescriptor.getExercise().isPresent() && editRoutineDescriptor.getExerciseIndex().isPresent()) {
             int changeIndex = editRoutineDescriptor.getExerciseIndex().get().getZeroBased();
             Exercise changeExercise = editRoutineDescriptor.getExercise().get();
@@ -104,7 +106,21 @@ public class EditRoutineCommand extends Command {
         }
 
         updatedExercise = new ArrayList<>(routineToEdit.getExercises());
-        return new Routine(updatedRoutineName, updatedExercise);
+        updatedRoutine = new Routine(updatedRoutineName, updatedExercise);
+        updateClientRoutine(routineToEdit, updatedRoutine, model);
+        return updatedRoutine;
+    }
+
+    /**
+     * Updates the {@code clients} with the updated {@code Routine} object.
+     */
+    private void updateClientRoutine(Routine routineToEdit, Routine updatedRoutine, FitBookModel model) {
+        List<Client> clientList = model.getFitBook().getClientList();
+        if (updatedRoutine.isSameRoutineName(routineToEdit)) {
+            clientList.forEach(client -> client.changeRoutineIfRoutineNameMatch(routineToEdit, updatedRoutine));
+        } else {
+            clientList.forEach(client -> client.changeExerciseIfRoutineNameMatch(updatedRoutine));
+        }
     }
 
     @Override
