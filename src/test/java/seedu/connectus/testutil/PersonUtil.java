@@ -54,10 +54,10 @@ public class PersonUtil {
                 s -> sb.append(PREFIX_MODULE + s.moduleName + " ")
         );
         person.getCcas().stream().forEach(
-                s -> sb.append(PREFIX_CCA + s.tagName + " ")
+                s -> sb.append(PREFIX_CCA + s.ccaName + " ")
         );
         person.getCcaPositions().stream().forEach(
-                s -> sb.append(PREFIX_CCA_POSITION + s.tagName + " ")
+                s -> sb.append(PREFIX_CCA_POSITION + s.ccaPositionName + " ")
         );
         return sb.toString();
     }
@@ -92,7 +92,7 @@ public class PersonUtil {
             if (ccas.isEmpty()) {
                 sb.append(PREFIX_CCA).append(" ");
             } else {
-                ccas.forEach(s -> sb.append(PREFIX_MODULE).append(s.tagName).append(" "));
+                ccas.forEach(s -> sb.append(PREFIX_MODULE).append(s.ccaName).append(" "));
             }
         }
         if (descriptor.getCcaPositions().isPresent()) {
@@ -100,7 +100,7 @@ public class PersonUtil {
             if (ccaPositions.isEmpty()) {
                 sb.append(PREFIX_CCA_POSITION).append(" ");
             } else {
-                ccaPositions.forEach(s -> sb.append(PREFIX_MODULE).append(s.tagName).append(" "));
+                ccaPositions.forEach(s -> sb.append(PREFIX_MODULE).append(s.ccaPositionName).append(" "));
             }
         }
         return sb.toString();
