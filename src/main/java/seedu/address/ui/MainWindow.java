@@ -10,8 +10,8 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
@@ -176,12 +176,13 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            // For view command
-            if (commandResult.isToShowNewPerson()) {
-                Person newPerson = commandResult.getDisplayPerson();
-                updateUserProfilePanel(newPerson);
-
+            if (commandResult.isToShowNewPerson() && commandResult.getDisplayPerson().isPresent()) {
+                Person newPerson = commandResult.getDisplayPerson().get();
+                userProfilePanel = new UserProfilePanel(newPerson);
+                userProfilePlaceholder.getChildren().clear();
+                userProfilePlaceholder.getChildren().add(userProfilePanel.getRoot());
             }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
