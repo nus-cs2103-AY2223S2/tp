@@ -93,7 +93,7 @@ public class TypicalDepartmentLeave {
      */
     public static SudoHr getTypicalSudoHr() {
         SudoHr sh = new SudoHr();
-        for (Employee employee : TypicalEmployees.getTypicalEmployees()) {
+        for (Employee employee : getTypicalEmployees()) {
             sh.addEmployee(new EmployeeBuilder(employee).build());
         }
 
@@ -119,4 +119,8 @@ public class TypicalDepartmentLeave {
                 LEAVE_ONE_SALES_ENGINEERING_TYPE_3,
                 LEAVE_NO_DEPARTMENT_TYPE_4));
     }
+    public static List<Employee> getTypicalEmployees() {
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HOON));
+    }
+
 }
