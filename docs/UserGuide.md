@@ -281,16 +281,20 @@ Examples:
 
 <a name = "deletestudent"/>
 
-### Deleting student particulars: `delete`
+### Deleting student: `delete`
 
-Deleting student/ student information from the database
+Deletes student corresponding to the INDEX_NUMBER in the CLASS  from the database
 
 Format: `delete in/<INDEX_NUMBER>`
 
 Examples:
-* `student 1A delete in/2`
+* `student 1A delete in/14`
+* `student 1B delete in/23`
 
-The whole student will be removed from the database
+**Expected outcome:**
+Deleted Student: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 14; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
+Deleted Student: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 23; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
+
 
 <a name = "parent" />
 
@@ -300,48 +304,52 @@ The whole student will be removed from the database
 
 * Note that it is possible to have multiple students with the same parent and parents are identified via their phone number and *HENCE* `student class` is not used for identification.
 
-
 <a name="addparent"/>
 
-### Adding a parent: `add`
+### Adding a parent/NOK: `add`
 
-Adds a parent to the database
+Adds a parent/NOK to the database
 
-Format: `add n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/<AGE> imgP/<ABSOLUTE_PATH_TO_IMAGE> e/<EMAIL_ADDRESS> a/<RESIDENTIAL_ADDRESS>] `
+Format: `add n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/[AGE] imgP/[ABSOLUTE_PATH_TO_IMAGE] e/[EMAIL_ADDRESS] a/[RESIDENTIAL_ADDRESS] ]`
 
-Examples:
+Examples of Full Command:
 * `parent add n/TanAhNiu pnP/91234567`
 * `parent add n/Tan Ah Niu pnP/91234567 ageP/30 imgP/C:// e/tanahcow@gmail.com a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456)` <br><br>
 
+**Expected outcome:**
+* `New parent added:`
 
 <a name = "listparent" />
 
-### Listing all parents : `list`
+### Listing all parents/NOKs : `list`
 
-Shows a list of all parent in the database
+Shows a list of all parents/NOKs in the database with their corresponding particulars
 
 Format: `list`
 
-Examples:
-* `parent list` <br>
+Examples of Full Command:
+* `list parent` <br>
   Sample output: <parent name> <parent phone number> <parent email>
 * `parent list` <br><br>
 
+**Expected Outcome:**
+![list message](images/listParent.png)
+
 <a name = "editparent" />
 
-### Edit Parent:  `edit`
+### Edit Parent: `edit`
 
-Edits personal details of students
+Edits personal details of parent/NOK with corresponding NAME and PARENT_PHONE_NUMBER
 
-Format: `edit n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [nn/<NEW_NAME> npnP/<NEW_PHONE_NUMBER> ageP/<NEW_AGE> imgP/<NEW_IMAGE> e/<NEW_EMAIL_ADDRESS> a/<NEW_RESIDENTIAL_ADDRESS>]   `
+Format: `Format: edit n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [nn/[NEW_NAME] npnP/[NEW_PHONE_NUMBER] ageP/[NEW_AGE] imgP/[NEW_IMAGE] e/[NEW_EMAIL_ADDRESS] a/[NEW_RESIDENTIAL_ADDRESS] ]`
 
-Examples:
+Examples of Full Command:
 * `parent edit n/Tan Ah Niu pnP/91234567 npnP/65656565`
 * `parent edit n/Tan Ah Niu pnP/91234567 nn/Tan Ah Seng npnP/91274444 ageP/31 imgP/C:// e/tanahcow@gmail.com a/Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245)`
 
 **Expected Outcome:**
-* `Edited Parent: Tan Ah Niu; Phone: 65656565`
-* `Edited Parent: Tan Ah Niu; Parent Age: 31; Address: Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245); Image Path: C://; Parent Email: tanahcow@gmail.com; Parent Phone: 91234567; Parent/NOK of: Tan Ah Cow; Student Class: ...` <br><br>
+* `Edited Parent: Tan Ah Niu; Phone: 65656565…`
+* `Edited Parent: Tan Ah Niu; Parent Age: 31; Address: Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245); Image Path: C://; Parent Email: tanahcow@gmail.com; Parent Phone: 91234567…` <br><br>
 
 <a name = "deleteparent" />
 
