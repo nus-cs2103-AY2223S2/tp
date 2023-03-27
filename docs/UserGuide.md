@@ -90,41 +90,58 @@ If you like our product and want to contribute to it, consider looking at the [D
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
-* First word is assumed to be a command word (add/delete/list/find).
 
-* A Task can be: 
-  * A simpleTask, which does not have a _long date_ attached to it. ([What is a Date?](#q2-what-is-a-valid-date))
-  * A deadline, which has a _long date_ known as `deadline`.
-  * An event, which has 2 _long dates_ known as a `from` and a `to`.
+### Conventions used in this document
 
-* A task can have the following additional **Optional** fields attached to it:
-  * Tags
-  * Description 
-  * Effort level
-  * Alert window
-  * Subsection
-  
-* Words in `ALL CAPS` are the parameters to be supplied by the user.<br>
+For easy reference and understanding, this guide utilizes some special formatting of text. The conventions used are as follow:
 
-* Any fields in square brackets are optional.<br>
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+| Convention | Meaning |
+| --- | --- |
+| `lowercaseword` | Valid Clock-Work command words. They may or may not be used with additional inputs. |
+| `UPPERCASEWORD` | Compulsory inputs which must be supplied in order for the command to work. |
+| `[UPPERCASEWORD]` | Optional inputs which user can supply for a command. | 
+
+### Inputs into Clock-Work
+
+Clock-Work provides some flexibility regarding the types of inputs it accepts. These are some information about inputting commands you may find useful.
+
+1. First word is assumed to be a command word (add/delete/list/find).
+ 
+2. Words in ≈ are the parameters to be supplied by the user.<br>
+
+3. Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/important`, `tag/important t/urgent` etc.
 
-* Parameters can be in any order.<br>
+4. Parameters can be in any order.<br>
   e.g. if the command specifies `t/Task A d/A's sample description`, `d/A's sample description t/Task A` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+5. If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `d/do it fast d/do it slow`, only `d/do it slow` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+6. Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+### Basic Infomation about Tasks
+* A Task can be:
+    * A <span style="color:#4285F4">simpleTask</span>, which does not have a _long date_ attached to it. ([What is a Date?](#q2-what-is-a-valid-date))
+    * A <span style="color:#34A853">deadline</span>, which has a _long date_ known as `deadline`.
+    * An <span style="color:#FBBC05">event</span>, which has 2 _long dates_ known as a `from` and a `to`.
+
+* A task can have the following additional **Optional** fields attached to it:
+    * Tags
+    * Description
+    * Effort level
+    * Alert window
+    * Subsection
 
 </div>
 
 ### 2.1 Adding a task: `add`
 
-Adds a task to the address book. There are 3 types of tasks. `SimpleTask`, `Deadline` and `Event`.
+:man_technologist: Congratulations on reaching this part of the user guide. You should have Clock-Work started and running at this point. You are now ready to add your first task! :tada:
+
+Adds a task to the address book. There are 3 types of tasks. `<span style="color:#4285F4">simpleTask</span>`, `Deadline` and `Event`.
 For `Deadline` and `Event` `Date` field(s) are required.
 
 `Date` should be in the format `YYYY-MM-DD HHMM`. ([What is a valid Date?](#q2-what-is-a-valid-date))
@@ -135,11 +152,11 @@ A Task must have a description.([What is a valid Description?](#q4-what-is-a-val
 
 Format:
 
-* SimpleTask: `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
+* <span style="color:#4285F4">SimpleTask</span>: `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
 
-* Deadline: `add n/TASKNAME D/DEADLINE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
+* <span style="color:#34A853">Deadline</span>: `add n/TASKNAME D/DEADLINE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
 
-* Event: `add n/TASKNAME F/FROMDATE T/TODATE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
+* <span style="color:#FBBC05">Event</span>: `add n/TASKNAME F/FROMDATE T/TODATE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
 
 Examples:
 * `add n/Read Book d/Make sure to take notes t/Leisure`
@@ -153,7 +170,7 @@ You can add multiple tasks with the same parameters except for name with this co
 
 :bulb: **PRO TIP**: A task can have any number of tags (including 0)
 
-:warning: You are unable to add any tasks (simpleTask, Deadline, Event) of the same name.
+:warning: You are unable to add any tasks (<span style="color:#4285F4">simpleTask</span>, Deadline, Event) of the same name.
 
 :warning: Adding multiple tags of the same tag name will only result in one tag!
 
@@ -165,6 +182,8 @@ e.g. `add n/Sample d/Why can't I add n/?`
 
 
 ### 2.2 Editing a task : `edit`
+
+:man_technologist: Hmm, have a task that you want to modify but find that it takes too much effort to create and delete a task? Try this command.
 
 Edits an existing task in the address book.
 
@@ -188,6 +207,8 @@ e.g. `edit 1 t/CS2102 t/CS2102` will only register t/CS2102 once!
 
 ### 2.3 Deleting a task : `delete`
 
+:man_technologist: Congratulations! You have completed a task. Now, you can remove it by using this command.
+
 Deletes the specified task from the address book.
 
 Format: `delete INDEX(S)`
@@ -205,6 +226,8 @@ Examples:
 
 ### 2.4 Listing all tasks : `list`
 
+:man_technologist: Want to have an overview of all your tasks? Try this!
+
 Shows a list of all tasks in the address book.
 
 Format: `list`
@@ -214,20 +237,22 @@ Format: `list`
 
 ### 2.5 Sorting tasks : `sort`
 
+:man_technologist: Is the displayed list too messy for your liking? Sort is here to help.
+
 Sorts the list using the following format:
 
-* SimpleTask is listed above Deadline and Event.
-* Deadline is  listed below SimpleTask and above Event.
-* Event is  listed below SimpleTask and Event.
+* <span style="color:#4285F4">SimpleTask</span> is listed above Deadline and Event.
+* <span style="color:#34A853">Deadline</span> is  listed below SimpleTask and above Event.
+* <span style="color:#FBBC05">Event</span> is  listed below SimpleTask and Event.
 * When comparing 2 tasks of the same class:
-    * SimpleTask
+    * <span style="color:#4285F4">SimpleTask</span>
         * The task with lesser tags is listed above the task with more tags.
         * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
-    * Deadline
+    * <span style="color:#34A853">Deadline</span>
         * The task with the earlier deadline is listed above the task with later deadline.
         * Else if both tasks have the same deadline, the task with lesser tags is listed above the task with more tags.
         * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
-    * Event
+    * <span style="color:#FBBC05">Event</span>
         * The task with the earlier `from` attribute is listed above the task with a later `from` attribute.
         * Else if both task have the same `from` attribute, the task with the earlier `to` attribute is listed above the task with later `to` attribute.
         * Else if both task have the same `to` attribute, the task with lesser tags is listed above the task with more tags.
@@ -238,6 +263,8 @@ Format: `sort`
 
 
 ### 2.6 Locating tasks by name: `find`
+
+:man_technologist: Oops! Are you unable to locate a task? Try find.
 
 Find tasks whose attribute best match the user input string.
 
@@ -251,9 +278,9 @@ Format: `find n/NAME` OR `find d/DESCRIPTION` OR `find t/TAG...`
   However, adding `all/` means that a task which contains all your tag inputs will be displayed.
     * e.g. `find t/very urgent t/important` will match with tags `t/very very urgent t/math t/hard` since it has `very urgent`.
     * e.g. `find all/ t/very urgent t/important` will match with tags `t/very urgent t/important` since it has both tags.
-* For deadlines, you can only use a valid date(without the time input) such as `2023-03-10` to search for deadlines on that day.
+* For <span style="color:#34A853">deadline</span>, you can only use a valid date(without the time input) such as `2023-03-10` to search for deadlines on that day.
     * e.g. `find D/2023-03-10` will give you all the deadlines on 2023-01-01.
-* For events, you may either use `F/` or `T/` prefix(without the time input as well) to search for event that starts or ends on a certain date.
+* For <span style="color:#FBBC05">event</span>, you may either use `F/` or `T/` prefix(without the time input as well) to search for event that starts or ends on a certain date.
     * e.g. `find F/2023-03-10` will give you all the events starting from 2023-03-10.
     * e.g. `find T/2023-03-10` will give you all the event ending on 2023-03-10.
 
@@ -267,12 +294,16 @@ e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/N
 
 ### 2.7 Getting statistics : `stats`
 
+:man_technologist: Some statistics will do no harm. Stats is here to help you visualise your tasks in numbers!
+
 Prints the top 10 tags (if applicable) and its corresponding number of occurrences in the tasks.
 
 Format: `stats`
 
 
 ### 2.8 Get alerts : `alert [ALERT WINDOW]`
+
+:man_technologist: Beep! Beep! Well, not really, but alert is here to warn you about tasks which are due soon!
 
 Displays in another window the tasks that fall within the window specified. If not supplied, assumed to be 24 hours.
 On opening of app, the alert window will open to show tasks which have deadlines within the latest window specified.
@@ -284,6 +315,8 @@ Examples:
 
 
 ### 2.9 Schedule of the day : `schedule D/SHORTDATE [E/EFFORT]`
+
+:man_technologist: Wouldn't it be great if you can have your life planned out for you? Schedule can help!
 
 #### 2.9.1 How it Works
 Entering `schedule D/SHORTDATE E/EFFORT` generates a new 30-day plan for users based on their intended `E/EFFORT`, and display a list of tasks to be done on `D/SHORTDATE`.
@@ -315,6 +348,8 @@ Examples:
 
 ## 2.10 Subsections
 
+:man_technologist: Have a task that is really long? Want to organise it in smaller sections? Why not use subsection?
+
 ### 2.10.1 Adding a Subsection to a Task : `subsection`
 
 Adds a subsection to a task in the task book. The subsection added will appear as in the corresponding task's task card.
@@ -333,6 +368,8 @@ Examples:
 
 ### 2.11 Viewing help : `help`
 
+:man_technologist: For the beginner user who is still unfamiliar with the commands. Welcome!
+
 Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
@@ -342,11 +379,15 @@ Format: `help`
 
 ### 2.12 Clearing all entries : `clear`
 
+:man_technologist: Think twice before using this. This action is not reversible.
+
 Clears all entries from the address book.
 
 Format: `clear`
 
 ### 2.13 Exiting the program : `exit`
+
+:man_technologist: We hope to see you again!
 
 Exits the program.
 
@@ -405,17 +446,6 @@ _Details coming soon ..._
 | **sort**   | `sort`                                                                                                             |
 | **alert**  | `alert ALERT_WINDOW`                                                                                               |
 | **plan**   | `plan EFFORT`                                                                                                      |
-=======
-| **Clear**  | `clear`                                                                                                             |
-| **Delete** | `delete INDEX(S)`<br> e.g., `delete 3`                                                                              |
-| **Edit**   | `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`<br> e.g.,`edit 2 n/study d/CS2103T`                  |
-| **Find**   | `find n/NAME` or `find d/DESCRIPTION`<br> e.g., `find n/read book`                                                  |
-| **List**   | `list`                                                                                                              |
-| **Help**   | `help`                                                                                                              |
-| **Stats**  | `stats`                                                                                                             |
-| **sort**   | `sort`                                                                                                              |
-| **alert**  | `alert ALERT_WINDOW`                                                                                                |
-| **plan**   | `plan EFFORT`                                                                                                       |
 
 --------------------------------------------------------------------------------------------------------------------
 ## 6. Glossary
