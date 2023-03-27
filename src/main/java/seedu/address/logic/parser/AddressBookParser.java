@@ -86,7 +86,7 @@ public class AddressBookParser {
             return new RedoCommand();
 
         case LoadCommand.COMMAND_WORD:
-            return new LoadCommand();
+            return new LoadCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
