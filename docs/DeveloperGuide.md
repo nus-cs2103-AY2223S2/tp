@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W09-3/tp/blob/master/src/main/java/seedu/careflow/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PaientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W09-3/tp/blob/master/src/main/java/seedu/careflow/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W09-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -107,16 +107,16 @@ The Sequence Diagram below illustrates the interactions within the `CareFlowLogi
 
 Here are the other classes in `CareFlowLogic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses.png"/>
 
 How the parsing works:
 * When called upon to parse a user command, the `CareFlowParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `CareFlowParser` returns as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/careflow/model/CareFlowModel.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W09-3/tp/blob/master/src/main/java/seedu/careflow/model/CareFlowModel.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" />
 
 The `Model` component,
 * stores a `UserPref` object that represents the user's preferences.
@@ -126,19 +126,22 @@ The `Model` component,
 * does not depend on any of the other three components (as the `CareFlowModel` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 
-<img src="images/PatientModelClassDiagram.png" width="450" />
+<img src="images/PatientModelClassDiagram.png" />
+
 The `PatientRecord` stores a list of `Patient` objects, which each:
 * stores details of a patient: `Name`, `Phone`, `Email`, `Address`, `DateOfBirth`, `Gender` and `Ic` .
 * `DrugAllergy` might left blank if the patient does not have drug allergy.
 * Each patient may have two associated phone numbers: a required phone number, which is the patient's own phone number, and an optional phone number, which is the phone number of the patient's emergency contact.
 
 
-<img src="images/DrugModelClassDiagram.png" width="450" />
+<img src="images/DrugModelClassDiagram.png" />
+
 The `DrugInventory` stores a list of `Patient` objects, which each:
 * stores details of a drug: `TradeName`, `ActiveIngredient`, `Direction`, `Purpose`, `SideEffect` and `StorageCount`.
 
 
-<img src="images/HospitalModelClassDiagram.png" width="450" />
+<img src="images/HospitalModelClassDiagram.png" />
+
 The `HospitalRecord` stores a list of `Hospital` objects, which each:
 * stores the Hospital information: `Name` and `Phone` which is the hotline of the hospital.
 <div markdown="span" class="alert alert-info">:information_source: **Note:**The hospital data is predefined and not editable by users, as it is hard-coded in our system<br>
@@ -147,7 +150,7 @@ The `HospitalRecord` stores a list of `Hospital` objects, which each:
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W09-3/tp/blob/master/src/main/java/seedu/careflow/storage/CareFlowStorage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
