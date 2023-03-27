@@ -1,6 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLIEDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -35,47 +39,30 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, ALLOWED_PREFIXES);
         Predicate<Person> findPredicate = x -> true; //always true predicate as default
-        boolean isPrefixInput = false;
+
+        if (args.isBlank()
+                || arePrefixesPresent(argMultimap, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_APPLIEDTIME, PREFIX_DATETIME)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
 
         if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
-            isPrefixInput = true;
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
             String[] nameKeywords = name.fullName.split("\\s+");
             findPredicate = findPredicate.and(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
-            isPrefixInput = true;
             Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
             String[] phoneKeywords = phone.value.split("\\s+");
             findPredicate = findPredicate.and(new PhoneContainsKeywordsPredicate(Arrays.asList(phoneKeywords)));
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_NOTE)) {
-            isPrefixInput = true;
             Set<Note> noteList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_NOTE));
-            for (Note n: noteList) {
+            for (Note n : noteList) {
                 findPredicate = findPredicate.and(new NoteContainsKeywordsPredicate(n.noteName));
             }
-        }
-
-        if (!isPrefixInput) { //if user did not input any prefix -> name or phone searching
-            String trimmedArgs = args.trim();
-            if (trimmedArgs.isEmpty()) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
-
-            String[] keywords = trimmedArgs.split("\\s+");
-
-            if (keywords.length == 1) {
-                String nameOrPhone = keywords[0];
-                char firstChar = nameOrPhone.charAt(0);
-                if (Character.isDigit(firstChar)) {
-                    return new FindCommand(new PhoneContainsKeywordsPredicate(Arrays.asList(keywords)));
-                }
-            }
-            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         }
 
         return new FindCommand(findPredicate);
