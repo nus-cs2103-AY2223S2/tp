@@ -3,7 +3,8 @@ package seedu.dengue.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_BOB;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_ALICE;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_ALICE;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV1_UPPERCASE;
 import static seedu.dengue.testutil.Assert.assertThrows;
 import static seedu.dengue.testutil.TypicalPersons.ALICE;
@@ -46,7 +47,10 @@ public class DengueHotspotTrackerTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAge(VALID_AGE_BOB).withVariants(VALID_VARIANT_DENV1_UPPERCASE)
+        Person editedAlice = new PersonBuilder(ALICE)
+                .withAge(VALID_AGE_ALICE)
+                .withPostal(VALID_POSTAL_ALICE)
+                .withVariants(VALID_VARIANT_DENV1_UPPERCASE)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         DengueHotspotTrackerStub newData = new DengueHotspotTrackerStub(newPersons);
@@ -73,7 +77,8 @@ public class DengueHotspotTrackerTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInDengueHotspotTracker_returnsTrue() {
         dengueHotspotTracker.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAge(VALID_AGE_BOB).withVariants(VALID_VARIANT_DENV1_UPPERCASE)
+        Person editedAlice = new PersonBuilder(ALICE).withAge(VALID_AGE_ALICE)
+                .withPostal(VALID_POSTAL_ALICE).withVariants(VALID_VARIANT_DENV1_UPPERCASE)
                 .build();
         assertTrue(dengueHotspotTracker.hasPerson(editedAlice));
     }
