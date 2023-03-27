@@ -475,7 +475,8 @@ All `Course` hava a `String` representing the name of the course.
 #### Design Considerations
 
 The `Course` constructor accepts a `String` input that represents the index of the course name 
-residing in `COURSE_LIST` found in the `CourseList.java`. 
+residing in `COURSE_LIST` found in the `CourseList.java`. This `COURSE_LIST` is displayed in the left panel 
+of the GUI, along with the corresponding index of the course name.
 
 Instead of parsing the name of the course directly into
 the `Course` constructor, we wanted to standardize the names of courses without allowing users to
