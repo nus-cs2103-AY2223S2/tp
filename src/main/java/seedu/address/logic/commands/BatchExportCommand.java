@@ -53,7 +53,7 @@ public class BatchExportCommand extends Command {
     private void exportToCsv(Model model, Path filePath) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath.toFile()));
              CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT
-                     .withHeader("Name", "Phone", "Email", "Address", "Tags"))) {
+                     .withHeader("Name", "Phone", "Email", "Address", "Department", "Tags"))) {
 
             List<Employee> employeeList = model.getExecutiveProDb().getEmployeeList();
 
@@ -63,6 +63,7 @@ public class BatchExportCommand extends Command {
                         employee.getPhone().value,
                         employee.getEmail().value,
                         employee.getAddress().value,
+                        employee.getDepartment().value,
                         employee.getTags().stream().map(tag -> tag.tagName).collect(Collectors.joining(", "))
                 );
             }
