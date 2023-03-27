@@ -5,10 +5,15 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import seedu.careflow.commons.core.LogsCenter;
 import seedu.careflow.logic.CareFlowLogic;
 import seedu.careflow.model.drug.Drug;
@@ -52,9 +57,20 @@ public class DrugPieChartPanel extends UiPart<Region> {
         // set the percentage label format
         DecimalFormat df = new DecimalFormat("#.##");
         drugPieChart.setData(pieChartData);
-        drugPieChart.getData().forEach(data -> {
+        drugPieChart.setLegendSide(Side.RIGHT);
+        drugPieChart.getData().forEach(data -> {    
             data.setName(data.getName() + " ("
                     + df.format((data.getPieValue() / getTotal(pieChartData)) * 100) + "%)");
+            data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<javafx.scene.input.MouseEvent>() {
+                @Override
+                public void handle(javafx.scene.input.MouseEvent event) {
+                    Tooltip tooltip = new Tooltip();
+                    tooltip.setShowDelay(Duration.seconds(0.1));
+                    String value = ((int)data.getPieValue())+ " currently in storage.";
+                    tooltip.setText(value);
+                    Tooltip.install(data.getNode(), tooltip);
+                }
+            });
         });
         // add drug names and percentage values to the pie chart
         for (PieChart.Data data : drugPieChart.getData()) {
