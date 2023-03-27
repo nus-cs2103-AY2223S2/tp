@@ -46,10 +46,6 @@ ul, ol, dl, figure,
   margin-bottom: $spacing-unit / 2;
 }
 
-p {
-  text-align: justify;
-}
-
 hr {
   margin-top: $spacing-unit;
   margin-bottom: $spacing-unit;
@@ -108,6 +104,13 @@ li {
  */
 h1, h2, h3, h4, h5, h6 {
   font-weight: $base-font-weight;
+}
+
+/**
+ * Normal text
+ */
+p {
+  text-align: justify;
 }
 
 
