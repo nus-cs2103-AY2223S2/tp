@@ -1,5 +1,7 @@
 package mycelium.mycelium.ui.statisticsbox;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -8,7 +10,6 @@ import javafx.scene.layout.StackPane;
 import mycelium.mycelium.commons.core.LogsCenter;
 import mycelium.mycelium.ui.UiPart;
 
-import java.util.logging.Logger;
 
 /**
  * The ui for the page of a given tab in Statistics Dashboard.

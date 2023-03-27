@@ -66,7 +66,8 @@ public class StatisticsBox extends UiPart<Region> {
     }
 
     private void addProjectData(Logic logic) {
-        statisticsPanel = new StatisticsPanel(logic.getDueProjectList(), noDueProjectLabel, logic.getOverdueProjectList(), noOverdueProjectLabel);
+        statisticsPanel = new StatisticsPanel(logic.getDueProjectList(), noDueProjectLabel,
+                logic.getOverdueProjectList(), noOverdueProjectLabel);
         statisticsPanelPlaceholder.getChildren().add(statisticsPanel.getRoot());
         updateVisibility(logic);
     }

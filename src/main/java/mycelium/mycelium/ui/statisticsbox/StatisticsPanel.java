@@ -1,5 +1,8 @@
 package mycelium.mycelium.ui.statisticsbox;
 
+import java.util.Optional;
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.control.SingleSelectionModel;
@@ -11,8 +14,6 @@ import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.ui.UiPart;
 import mycelium.mycelium.ui.entitypanel.EntityList;
 
-import java.util.Optional;
-import java.util.logging.Logger;
 
 /**
  * The ui for the holder of all the tabs in Statistics Dashboard.
@@ -31,7 +32,8 @@ public class StatisticsPanel extends UiPart<TabPane> {
     /**
      * Initialises a {@code StatisticsPanel} with given {@code Logic} and message {@code Label}.
      */
-    public StatisticsPanel(ObservableList<Project> dueSoonProjectList, Label noDueProjectLabel, ObservableList<Project> overdueProjectList, Label noOverdueProjectLabel) {
+    public StatisticsPanel(ObservableList<Project> dueSoonProjectList, Label noDueProjectLabel,
+                           ObservableList<Project> overdueProjectList, Label noOverdueProjectLabel) {
         super(FXML);
         dueSoonProjectListPanel = new EntityList<Project>(dueSoonProjectList, SpecialProjectEntity::new);
         overdueProjectListPanel = new EntityList<Project>(overdueProjectList, SpecialProjectEntity::new);
