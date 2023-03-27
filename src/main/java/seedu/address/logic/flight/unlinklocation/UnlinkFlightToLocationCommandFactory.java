@@ -21,7 +21,7 @@ import seedu.address.model.location.Location;
  * The factory that creates {@code UnlinkLocationCommand}.
  */
 public class UnlinkFlightToLocationCommandFactory implements CommandFactory<UnlinkFlightToLocationCommand> {
-    public static final String COMMAND_WORD = "unlink";
+    public static final String COMMAND_WORD = "unlinklocation";
     public static final String FLIGHT_PREFIX = "/fl";
     public static final String LOCATION_DEPARTURE_PREFIX = "/from";
     public static final String LOCATION_ARRIVAL_PREFIX = "/to";
