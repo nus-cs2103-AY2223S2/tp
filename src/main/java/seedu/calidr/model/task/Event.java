@@ -34,7 +34,7 @@ public class Event extends Task {
         StringBuilder sb = new StringBuilder("[E]");
         String mark = isDone() ? "X" : " ";
         sb.append("{")
-                .append(getPriority().toString().toLowerCase())
+                .append(getPriority().toString())
                 .append("}[").append(mark).append("] ")
                 .append(getTitle())
                 .append("(")

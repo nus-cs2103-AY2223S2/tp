@@ -84,7 +84,7 @@ public abstract class Task {
         StringBuilder sb = new StringBuilder();
         String mark = this.isDone ? "X" : " ";
         sb.append("{")
-                .append(this.priority.toString().toLowerCase())
+                .append(this.priority.toString())
                 .append("}[").append(mark)
                 .append("] ").append(this.title);
 
