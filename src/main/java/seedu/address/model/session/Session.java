@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.session;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
 import java.util.Objects;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -22,15 +23,22 @@ public class Session implements Comparable<Session> {
     private String command;
     private final String startDateTime;
     private final String endDateTime;
+    private final Name name;
+    private final int id;
+    private Location location;
+    private HashMap<Integer, Boolean> attendanceMap;
 
     /**
      * Every field must be present and not null.
      * @param startDateTime
      * @param endDateTime
      */
-    public Session(String startDateTime, String endDateTime) {
+    public Session(String startDateTime, String endDateTime, Name name, Location location) {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
+        this.name = name;
+        this.location = location;
+        this.id = name.hashCode();
         if (!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)) {
             throw new IllegalArgumentException("Date Time should be in the format dd-MM-yyyy HH:mm");
         }
@@ -39,28 +47,28 @@ public class Session implements Comparable<Session> {
         }
     }
 
-    /**
-     * Represents a session that a person can have.
-     * A session consists of a start date time and an end date time.
-     * @param sessionString
-     * @throws IllegalValueException
-     */
-    public Session(String sessionString) throws IllegalValueException {
-        String[] parts = sessionString.split(" to ");
-        if (parts.length != 2) {
-            throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
-        }
-
-        String startDateTime = parts[0];
-        String endDateTime = parts[1];
-
-        if (!Session.isValidDateTimeFormat(startDateTime) || !Session.isValidDateTimeFormat(endDateTime)) {
-            throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
-        }
-
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
-    }
+//    /**
+//     * Represents a session that a person can have.
+//     * A session consists of a start date time and an end date time.
+//     * @param sessionString
+//     * @throws IllegalValueException
+//     */
+//    public Session(String sessionString) throws IllegalValueException {
+//        String[] parts = sessionString.split(" to ");
+//        if (parts.length != 2) {
+//            throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
+//        }
+//
+//        String startDateTime = parts[0];
+//        String endDateTime = parts[1];
+//
+//        if (!Session.isValidDateTimeFormat(startDateTime) || !Session.isValidDateTimeFormat(endDateTime)) {
+//            throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
+//        }
+//
+//        this.startDateTime = startDateTime;
+//        this.endDateTime = endDateTime;
+//    }
 
 
     /**
@@ -164,7 +172,7 @@ public class Session implements Comparable<Session> {
      */
     public Duration getSessionDuration() {
         return Duration.between(LocalDateTime.parse(startDateTime,
-                DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")),
+                        DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")),
                 LocalDateTime.parse(endDateTime,
                         DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
     }
