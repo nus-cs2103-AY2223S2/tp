@@ -25,7 +25,7 @@
     -fx-text-fill: black;
 }
 
-.list-cell:hover .header-label {
+.list-cell:hover .cell_top_label {
     -fx-text-fill: #4F46E5;
 }
 
