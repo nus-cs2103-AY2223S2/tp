@@ -76,8 +76,6 @@ public class MainWindow extends UiPart<Stage> {
 
         getRoot().addEventFilter(DeleteRecipeEvent.DELETE_RECIPE_EVENT_TYPE, this::handleDeleteRecipeEvent);
 
-        getRoot().addEventFilter(EditRecipeEvent.EDIT_RECIPE_EVENT_TYPE, this::handleEditRecipeEvent);
-
         helpWindow = new HelpWindow();
     }
 
@@ -125,45 +123,6 @@ public class MainWindow extends UiPart<Stage> {
             executeCommand(commandText);
         } catch (CommandException | ParseException e) {
             logger.info("Failed to delete recipe: " + recipeIndex);
-        }
-    }
-
-    /**
-     * Handles the EditRecipeEvent by executing the appropriate edit command
-     * based on the provided event data. Updates the recipe with the changed values
-     * specified in the event.
-     *
-     * @param event the EditRecipeEvent containing the index of the recipe to be edited
-     *              and a map of the changed values.
-     */
-    private void handleEditRecipeEvent(EditRecipeEvent event) {
-        assert event != null : "EditRecipeEvent cannot be null";
-        int recipeIndex = event.getRecipeIndex();
-        Map<String, String> changedValues = event.getChangedValues();
-        try {
-            StringBuilder commands = new StringBuilder();
-
-            // Add the index of the item to edit.
-            commands.append(recipeIndex);
-
-            // Check if the name has been changed and append the name prefix and value.
-            if (changedValues.containsKey("name")) {
-                commands.append(" n/");
-                commands.append(changedValues.get("name"));
-            }
-
-            // Check if the duration has been changed and append the duration prefix and value.
-            if (changedValues.containsKey("duration")) {
-                commands.append(" d/");
-                commands.append(changedValues.get("duration"));
-            }
-
-            //I'll add in more fields, but I need to make sure this works first.
-            String commandText = "edit " + commands.toString(); // 1-indexed
-            System.out.println(commandText);
-            executeCommand(commandText);
-        } catch (CommandException | ParseException e) {
-            logger.info("Failed to edit recipe: " + recipeIndex);
         }
     }
 
