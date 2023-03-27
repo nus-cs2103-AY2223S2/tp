@@ -294,7 +294,7 @@ This command is ONLY available in the following modes: `crew`, `pilot` and `plan
 (Note that locations are unlinked from flights through the `flight` mode,
 using the `unlinklocation` command described [above](#2-unlinking-a-resource-from-a-location))
 
-This commands unlinks an entity of the current resource mode from a specified flight in Wingman's database. For example,
+This command unlinks an entity of the current resource mode from a specified flight in Wingman's database. For example,
 if you are currently in the `plane` mode, then this command will unlink a `plane`
 from a specified flight in the database. It shall be noted, however,
 that the parameters that are specified in different modes are different.
@@ -329,6 +329,20 @@ Wingman will also update the lists in your window, to remove the specified link.
 
 <img src="images/UnlinkSuccessful.jpg" width="2032" alt="Successful link of plane to location">
 
+#### 5. Checking a resource's availability
+
+Use this command when you wish to check a resource's availability (i.e. when deciding to use a resource for flight, you 
+can use this command to check whether the resource is already currently linked to another flight).
+```
+check /id resource_index
+```
+This command is ONLY available in the following modes: `crew`, `pilot` and `plane`.
+
+This command checks whether an entity of the current resource is currently linked to a flight in Wingman's database.
+For example, if you are currently in `plane` mode, then this command will check whether the specified `plane` is linked
+to any flights or not and indicate its availability.
+
+This command is the same across `crew`, `pilot`, and `plane`.
 
 <div style="page-break-after: always;"></div>
 
@@ -343,15 +357,16 @@ All your changes to your resources will be saved for you to get back to when you
 
 ## Command Summary
 
-| **Action**      | **Format**                                                          | **Examples**                   |
-|-----------------|---------------------------------------------------------------------|--------------------------------|
-| Add             | `add /prefix_A value_A /prefix_B value_B`                           | `add /n Bob /r 2`              |
-| Delete          | `delete resource_index`                                             | `delete 1`                     |
-| Link location   | `linklocation /lo location_index /resource_prefix resource_index`   | `linklocation /lo 0 /cr 1`     |
-| Unlink location | `unlinklocation /lo location_index /resource_prefix resource_index` | `unlinklocation /lo 0 /fl 1`   |
-| Link flight     | `linkflight /fl flight_index /resource_prefix resource_index `      | `linkflight /fl 0 /pf 1 /pm 2` |
-| Unlink flight   | `unlinkflight /fl flight_index /resource_prefix resource_index `    | `unlinkflight /fl 0 /pu 1`     |
-| Exit            | `exit`                                                              | `exit`                         |
+| **Action**       | **Format**                                                           | **Examples**                   |
+|------------------|----------------------------------------------------------------------|--------------------------------|
+| Add              | `add /prefix_A value_A /prefix_B value_B`                            | `add /n Bob /r 2`              |
+| Delete           | `delete resource_index`                                              | `delete 1`                     |
+| Link location    | `linklocation /lo location_index /resource_prefix resource_index`    | `linklocation /lo 0 /cr 1`     |
+| Unlink location  | `unlinklocation /lo location_index /resource_prefix resource_index`  | `unlinklocation /lo 0 /fl 1`   |
+| Link flight      | `linkflight /fl flight_index /resource_prefix resource_index `       | `linkflight /fl 0 /pf 1 /pm 2` |
+| Unlink flight    | `unlinkflight /fl flight_index /resource_prefix resource_index `     | `unlinkflight /fl 0 /pu 1`     |
+| Check            | `check /id resource_index`                                           | `check /id 0`                  |
+| Exit             | `exit`                                                               | `exit`                         |
 
 
 <div style="page-break-after: always;"></div>
