@@ -793,6 +793,60 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 The same as Use Case UC08: Increment the quantity of a food item, except that it is to decrease the quantity of a food 
 item.
 
+### **Use case UC10: List food items by tags**
+
+**MSS**
+
+1. User requests to view food items with specified tags.
+2. WIFE displays all the food items with the specified tags.
+   Use case ends.
+
+**Extensions**
+
+* 1a. User requests an invalid tag.
+    * 1a1. WIFE displays a message that tells the User that there are no food item tagged with the specified tag.
+      Use case ends.
+
+* 1b. The user specify valid and invalid tags togther.
+    * 1b1. WIFE displays food items with valid tags. It also tells User which tag is valid or invalid.
+      Use case ends.
+
+### **Use case UC11: Delete food items by tags**
+
+**MSS**
+
+1. User requests to delete food items with specified tags.
+2. WIFE deletes and displays all the food items with the specified tags.
+   Use case ends.
+
+**Extensions**
+
+* 1a. User requests an invalid tag.
+    * 1a1. WIFE displays a message that tells the User that there are no food item tagged with the specified tag to be deleted.
+      Use case ends.
+
+* 1b. The user specify valid and invalid tags togther.
+    * 1b1. WIFE deletes and displays food items with valid tags.
+      Use case ends.
+
+### **Use case UC12: Delete tags**
+
+**MSS**
+
+1. User requests to delete pre-defined tags in WIFE.
+2. WIFE deletes pre-defined tags in WIFE and untag itself from the food items. It then tells the users the tags that are deleted
+   Use case ends.
+
+**Extensions**
+
+* 1a. User requests an invalid tag.
+    * 1a1. WIFE displays a message that tells the User that the tag specified is does not exit in WIFE
+      Use case ends.
+
+* 1b. The user specify valid and invalid tags togther.
+    * 1b1. WIFE ignores invalid tags.
+      Use case resumes at step 2.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
