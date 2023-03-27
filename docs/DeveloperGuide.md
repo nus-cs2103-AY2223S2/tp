@@ -61,7 +61,7 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 - defines its _API_ in an `interface` with the same name as the Component.
-- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -130,11 +130,6 @@ The `Model` component,
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 ### Storage component
 
@@ -156,7 +151,101 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features are implemented in MedInfo.
+
+### Adding a patient
+In MedInfo, a user can add a patient using the `add` command.
+#### Implementation
+- The `add` command takes in 2 compulsory fields (name and NRIC) and 1 optional field (status)
+- It is supported by the `AddCommandParser` that extracts the relevant fields from the entered command.
+
+The following activity diagram summarizes what happens when a user enters an `add` command:
+
+![AddActivityDiagram](images/AddActivityDiagram.png)
+
+Details:
+- The user enters an `add` command with the name and NRIC specified.
+- If the user entered a `Status` (prefixed by `s/`), the patient created will have that status.
+- The created patient is added to the model.
+
+
+### Adding a ward
+In MedInfo, a user can add a patient using the `addward` command.
+#### Implementation
+- The `add` command takes in 1 compulsory field (ward name) and 1 optional field (capacity)
+- It is supported by the `AddWardCommandParser` that extracts the relevant fields from the entered command.
+
+The following activity diagram summarizes what happens when a user enters an `addward` command:
+
+![AddWardActivityDiagram](images/AddWardActivityDiagram.png)
+
+Details:
+- The user enters an `addward` command with the ward name specified.
+- If the user entered a `Capacity` (prefixed by `c/`), the ward created will have that capacity.
+- The created ward is added to the model.
+
+
+### Editing a patient
+In MedInfo, a user can edit a patient using the `edit` command.
+#### Implementation
+- The `edit` command takes in 1 compulsory argument (index) and up to 3 optional fields (status, ward and discharge date).
+- It is supported by the `EditCommandParser` that extracts the relevant fields from the entered command.
+
+The following activity diagram summarizes what happens when a user enters an `edit` command:
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
+Details:
+- The index is based on the last displayed list of patients. This design choice was made as:
+  - A user would most likely perform a `find` or `list` operation to confirm the patient to edit.
+  - Finding patient by NRIC would be too cumbersome for the user.
+- Name and NRIC are not editable as these are identifying fields of a patient.
+
+
+### Deleting a patient
+In MedInfo, a user can edit a patient using the `delete` command.
+#### Implementation
+- The `delete` command takes in 1 compulsory argument (index).
+- It is supported by the `DeleteCommandParser` that extracts the index from the entered command.
+
+The following activity diagram summarizes what happens when a user enters a `delete` command:
+
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+
+Details:
+- When a user executes this command, they are greeted with an alert window to confirm deletion.
+  - Clicking 'OK' at this point will let MedInfo proceed with the deletion.
+  - Clicking 'Cancel' or closing the window will abort the deletion and trigger a `list` operation.
+- Aborting a deletion leads to a `list` operation so that the user can view all patients.
+- The index is based on the last displayed list of patients. This design choice was made as:
+    - A user would most likely perform a `find` or `list` operation to confirm the patient to delete.
+    - Finding patient by NRIC would be too cumbersome for the user.
+
+
+### Finding patients
+In MedInfo, a user can find patients matching certain conditions using the `find` command.
+#### Implementation
+- The `find` command takes in 1 compulsory field (one of either name, NRIC or status).
+- It is supported by the `FindCommandParser` which extracts one of the possible fields:
+  - Name entered in the command (prefixed by `name/`)
+  - NRIC entered in the command (prefixed by `nric/`)
+  - Status entered in the command (prefixed by `s/`)
+- If the user enters multiple fields, MedInfo highlights the error to the user.
+
+The following activity diagram summarizes what happens when a user enters a `find` command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+
+### List all patients
+In MedInfo, a user can list all patients using the `list` command.
+#### Implementation
+- The `list` command does not take in any arguments.
+
+The following activity diagram summarizes what happens when a user enters a `find` command:
+
+![ListActivityDiagram](images/ListActivityDiagram.png)
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -278,7 +367,7 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​      | I want to …​                                       | So that I can…​                                                                             |
-| -------- | ------------ |----------------------------------------------------|---------------------------------------------------------------------------------------------|
+|----------|--------------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
 | `* * *`  | staff member | add a patient                                      | record more information later                                                               |
 | `* * *`  | staff member | add a ward                                         | assign patients to the ward later                                                           |
 | `* * *`  | staff member | add personal particulars to a patient              | record their name and NRIC                                                                  |
@@ -319,51 +408,54 @@ _{More to be added}_
 
 1. User requests to add a new patient to MedInfo.
 2. The user enters patient details.
-    1. The following are required information:
-        - Name
-        - NRIC
-    2. The following are non-required information:
-        - Status
-        - Ward
+   1. The following are required information:
+      - Name
+      - NRIC
+   2. The following are non-required information:
+      - Status
+      - Ward
 3. The system adds the user into the MedInfo system.
 4. The system shows the new created user in the patient list.
 
    Use case ends.
 
 **Extensions**
-* 2a. If any of the required fields are not completed.
 
-    * 2a1. the user is informed of this and show the correct format for the command
+- 2a. If any of the required fields are not completed.
 
-Use case resume at step 2.
+  - 2a1. the user is informed of this and show the correct format for the command
 
-* 2b. If the entered NRIC is already present in another record in the system.
+Use case resumes at step 2.
 
-    * 2b1. the user is informed that the NRIC is already present in the system.
+- 2b. If the entered NRIC is already present in another record in the system.
 
-  Use case resume at step 2.
+  - 2b1. the user is informed that the NRIC is already present in the system.
 
-* 2c. If the input field is invalid.
+  Use case resumes at step 2.
 
-    * 2c1. the user is informed of this, and correct format for the command is displayed.
+- 2c. If the input field is invalid.
 
-    Use case resume at step 2.
+  - 2c1. the user is informed of this, and correct format for the command is displayed.
+  
+  Use case resumes at step 2.
 
-* 2d. If the entered ward is not present in the system.
 
-    * 2d1. the user is informed that the ward does not exist in the system.
-
-    Use case resume at step 2.
+- 2d. If the entered ward is not present in the system.
+    
+  - 2d1. the user is informed that the ward does not exist in the system.
+  
+  Use case resumes at step 2.
 
 
 **Use case: UC02 - Delete a patient**
 
 **MSS**
 
-1.  User requests to list patients
-2.  MedInfo shows a list of patients
-3.  User requests to delete a specific patient in the list by NRIC
-4.  MedInfo deletes the patient
+1.  User requests to list filtered patients
+2.  MedInfo shows a list of filtered patients
+3.  User requests to delete a specific patient in the list by index number
+4.  MedInfo shows confirmation window
+5.  MedInfo deletes the patient
 
     Use case ends.
 
@@ -373,28 +465,31 @@ Use case resume at step 2.
 
   Use case ends.
 
-- 3a. The requested patient's NRIC is invalid.
+- 3a. The requested patient's index number is invalid.
 
-  - 3a1. MedInfo shows an error message.
-
-    Use case resumes at step 2.
-
-- 3b. The requested patient's NRIC does not exist in the system.
-
-    - 3b1. MedInfo shows an error message.
+    - 3a1. MedInfo shows an error message.
 
       Use case resumes at step 2.
+
+- 4a. The user cancels the deletion in the confirmation window
+
+    - 4a1. MedInfo shows the patient list
+
+  - 4b1. MedInfo shows an error message.
+
+    Use case resumes at step 2.
 
 **Use case: UC03 - Edit a patient**
 
 **MSS**
 
-1.  User requests to list patients
-2.  MedInfo shows a list of patients
-3.  User requests to edit a specific patient in the list by NRIC
+1.  User requests to list filtered patients
+2.  MedInfo shows a list of filtered patients
+3.  User requests to edit a specific patient in the list by index number 
     1. The following can be edited:
        - Status
        - Ward
+       - Discharge Date
     2. The following cannot be edited:
        - Name
        - NRIC
@@ -407,29 +502,49 @@ Use case resume at step 2.
 - 2a. The list is empty.
 
   Use case ends.
-- 3a. The requested patient's NRIC is invalid.
 
-    - 3a1. MedInfo shows an error message.
+- 3a. The requested patient's index number is invalid.
 
-      Use case resumes at step 2.
+  - 3a1. MedInfo shows an error message.
 
-- 3b. The requested patient's NRIC does not exist in the system.
+    Use case resumes at step 2.
+
+- 3b. The prefixes entered are invalid.
 
     - 3b1. MedInfo shows an error message.
 
       Use case resumes at step 2.
 
-- 3c. User tries to edit a non-editable field (Name/NRIC).
+- 3b. The Status entered is invalid.
 
-    - 3c1. MedInfo shows an error message.
+    - 3b1. MedInfo shows an error message.
 
       Use case resumes at step 2.
+  
+- 3b. The Ward entered is invalid.
+
+    - 3b1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
+  
+- 3b. The Discharge Date entered is invalid.
+
+    - 3b1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
+
+- 3d. User tries to edit a non-editable field (Name/NRIC).
+
+  - 3d1. MedInfo shows an error message.
+
+    Use case resumes at step 2.
+
 
 **Use case: UC04 - Find a patient**
 
 **MSS**
 
-1.  User requests to find specific patients by either NRIC or Name or Status
+1.  User requests to find specific patients by either NRIC or Name or Status or Ward
 2.  MedInfo shows a list of patients
 
     Use case ends.
@@ -438,21 +553,112 @@ Use case resume at step 2.
 
 - 1a. The requested patient's NRIC does not exist in the system.
 
-    - 1a1. MedInfo does not list any patients.
+  - 1a1. MedInfo does not list any patients.
 
-      Use case ends.
+    Use case ends.
 
 - 1b. The requested patient's Name does not exist in the system.
 
-    - 1b1. MedInfo does not list any patients.
+  - 1b1. MedInfo does not list any patients.
 
-      Use case ends.
+    Use case ends.
 
 - 1c. The requested patient's Status does not exist in the system.
 
-    - 1c1. MedInfo does not list any patients.
+  - 1c1. MedInfo does not list any patients.
 
-      Use case ends.
+    Use case ends.
+  
+- 1d. The requested patient's Ward does not exist in the system.
+
+- 1d1. MedInfo does not list any patients.
+
+  Use case ends.
+
+**Use case: UC05 - Clear all patients**
+
+**MSS**
+
+1. User requests to clear all the patient records in the system
+2. MedInfo shows confirmation window
+3. MedInfo deletes all patients in the system
+
+    Use case ends.
+
+- 3a. The user cancels the deletion in the confirmation window
+    - 3a1. MedInfo shows the patient list
+
+
+**Use case: UC06 - Add a new ward**
+
+**MSS**
+
+1. User requests to add a new ward to MedInfo.
+2. The user enters ward details.
+    1. The following are required information:
+        - Name
+    2. The following are non-required information:
+        - Capacity
+3. The system adds the ward into the MedInfo system.
+4. The system shows the new created ward in the ward list.
+
+   Use case ends.
+
+**Extensions**
+* 2a. If any of the required fields are not completed.
+
+    * 2a1. the user is informed of this and show the correct format for the command
+
+Use case resumes at step 2.
+
+* 2b. If the entered Name is already present in another record in the system.
+
+    * 2b1. the user is informed that the Name is already present in the system.
+
+  Use case resumes at step 2.
+
+* 2c. If the input field is invalid.
+
+    * 2c1. the user is informed of this, and correct format for the command is displayed.
+
+  Use case resumes at step 2.
+
+
+**Use case: UC07 - Delete a ward**
+
+**MSS**
+
+1.  User requests to list wards
+2.  MedInfo shows a list of wards
+3.  User requests to delete a specific ward in the list by index number
+4.  MedInfo shows confirmation window
+5.  MedInfo deletes the patient
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The ward list is empty.
+
+  Use case ends.
+
+- 3a. The requested ward's index number is invalid.
+
+    - 3a1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
+
+- 3b. The requested ward has patients inside
+
+   - 3b1. MedInfo shows an error message.
+
+    Use case resumes at step 2.
+
+- 4a. The user cancels the deletion in the confirmation window
+    - 4a1. MedInfo shows the patient list
+
+      Use case resumes at step 2
+
 
 
 _{More to be added}_

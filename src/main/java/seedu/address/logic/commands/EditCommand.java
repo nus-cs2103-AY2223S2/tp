@@ -19,6 +19,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Status;
+import seedu.address.model.ward.WardName;
 
 /**
  * Edits the details of an existing patient in the address book.
@@ -87,7 +88,7 @@ public class EditCommand extends Command {
         Name updatedName = editPatientDescriptor.getName().orElse((Name) patientToEdit.getName());
         Nric updatedNric = editPatientDescriptor.getNric().orElse((Nric) patientToEdit.getNric());
         Status updatedStatus = editPatientDescriptor.getStatus().orElse((Status) patientToEdit.getStatus());
-        String updatedWard = editPatientDescriptor.getWard().orElse(patientToEdit.getWard());
+        WardName updatedWard = editPatientDescriptor.getWard().orElse(patientToEdit.getWardName());
         Discharge updatedDischarge = editPatientDescriptor.getDischarge()
                 .orElse((Discharge) patientToEdit.getDischarge());
 
@@ -121,7 +122,7 @@ public class EditCommand extends Command {
         private Name name;
         private Nric nric;
         private Status status;
-        private String ward;
+        private WardName ward;
         private Discharge discharge;
 
         public EditPatientDescriptor() {
@@ -159,7 +160,7 @@ public class EditCommand extends Command {
             this.status = status;
         }
 
-        public void setWard(String ward) {
+        public void setWard(WardName ward) {
             this.ward = ward;
         }
         public void setDischarge(Discharge discharge) {
@@ -178,7 +179,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(status);
         }
 
-        public Optional<String> getWard() {
+        public Optional<WardName> getWard() {
             return Optional.ofNullable(ward);
         }
         public Optional<Discharge> getDischarge() {

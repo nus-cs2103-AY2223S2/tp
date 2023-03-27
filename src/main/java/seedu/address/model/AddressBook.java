@@ -1,7 +1,9 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -9,6 +11,7 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
 import seedu.address.model.ward.UniqueWardList;
 import seedu.address.model.ward.Ward;
+import seedu.address.model.ward.exceptions.WardNotFoundException;
 
 /**
  * Wraps all data at the address-book level
@@ -48,14 +51,23 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the patient list with {@code patients}.
+     * FOR TESTING
+     * Replaces the contents of the patient list with a COPY of {@code patients}.
      * {@code patients} must not contain duplicate patients.
      */
     public void setPatients(List<Patient> patients) {
-        this.patients.setPatients(patients);
+        List<Patient> patientsCopy = new ArrayList<>();
+        for (Patient patient:patients) {
+            Patient toCopy = new Patient(patient.getNric(), patient.getName(), patient.getStatus(),
+                    patient.getWardName(),
+                patient.getDischarge());
+            patientsCopy.add(toCopy);
+        }
+        this.patients.setPatients(patientsCopy);
     }
 
     /**
+     * FOR TESTING
      * Replaces the contents of the ward list with {@code wards}.
      * {@code wards} must not contain duplicate wards.
      */
@@ -70,36 +82,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
         setPatients(newData.getPatientList());
         setWards(newData.getWardList());
-        fixData();
-    }
-
-    /**
-     * Helper function for resetData().
-     * Fixes any discrepancies and inconsistencies in patient-ward relationships
-     * when reading from data.
-     */
-    private void fixData() {
-        for (Patient patient:patients) {
-            Boolean wardExists = false;
-            String wardName = patient.getWard();
-            for (Ward ward:wards) {
-                if (wardName == ward.value) {
-                    wardExists = true;
-                    if (!ward.hasPatient(patient)) {
-                        ward.addPatient(patient);
-                    }
-                    break;
-                } else if (ward.hasPatient(patient)) {
-                    ward.removePatient(patient);
-                    break;
-                }
-            }
-            if (!wardExists) {
-                Ward newWard = new Ward(wardName);
-                newWard.addPatient(patient);
-                addWard(newWard);
-            }
-        }
     }
 
     //// patient-level operations
@@ -127,7 +109,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The patient must not already exist in the address book.
      */
     public void addPatient(Patient p) {
+        if (!wards.contains(p.getWardNameString())) { //If wardlist does not contain patient's ward, don't add it in.
+            throw new WardNotFoundException();
+        }
         patients.add(p);
+        wards.addPatient(p);
     }
 
     /**
@@ -138,8 +124,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * existing patient in the address book.
      */
     public void setPatient(Patient target, Patient editedPatient) {
-        requireNonNull(editedPatient);
+        requireAllNonNull(target, editedPatient);
         patients.setPatient(target, editedPatient);
+        wards.setPatient(target, editedPatient);
     }
 
     /**
@@ -147,7 +134,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePatient(Patient key) {
+        requireNonNull(key);
         patients.remove(key);
+        wards.remove(key);
     }
 
     //// ward-level operations
@@ -166,9 +155,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The ward must not already exist in the address book.
      */
     public void addWard(Ward ward) {
-        if (!hasWard(ward)) {
-            wards.add(ward);
-        }
+        wards.add(ward);
     }
 
     /**
@@ -180,7 +167,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setWard(Ward target, Ward editedWard) {
         requireNonNull(editedWard);
-
         wards.setWard(target, editedWard);
     }
 
@@ -198,7 +184,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return patients.asUnmodifiableObservableList().size() + " patients";
-        // TODO: refine later
     }
 
     @Override

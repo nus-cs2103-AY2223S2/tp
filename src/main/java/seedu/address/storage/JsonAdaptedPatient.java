@@ -10,6 +10,7 @@ import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Status;
 import seedu.address.model.ward.Ward;
+import seedu.address.model.ward.WardName;
 
 
 /**
@@ -47,7 +48,7 @@ class JsonAdaptedPatient {
         name = source.getName().fullName;
         nric = source.getNric().value;
         status = source.getStatus().value;
-        ward = source.getWard();
+        ward = source.getWardNameString();
         discharge = source.getDischarge().value;
 
     }
@@ -91,7 +92,7 @@ class JsonAdaptedPatient {
         if (!Ward.isValidWard(ward)) {
             throw new IllegalValueException(Ward.MESSAGE_CONSTRAINTS);
         }
-        final String modelWard = ward;
+        final WardName modelWard = new WardName(ward);
 
         if (discharge == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

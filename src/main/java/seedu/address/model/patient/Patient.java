@@ -1,8 +1,12 @@
 package seedu.address.model.patient;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.util.Objects;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.ward.Ward.wardWithName;
+
+import seedu.address.model.ward.Ward;
+import seedu.address.model.ward.WardName;
 
 /**
  * Represents a Patient in the address book.
@@ -17,7 +21,7 @@ public class Patient {
 
     // Data fields
     private Status status = new Status("GRAY");
-    private String ward = "Waiting Room";
+    private WardName ward = new WardName("Waiting Room");
     private Discharge discharge = new Discharge("To Be Confirmed");
 
     /**
@@ -56,7 +60,7 @@ public class Patient {
      * @param ward Patient ward
      *             Every field must be present and not null.
      */
-    public Patient(Nric nric, Name name, String ward) {
+    public Patient(Nric nric, Name name, WardName ward) {
         requireAllNonNull(nric, name, ward);
         this.nric = nric;
         this.name = name;
@@ -72,7 +76,7 @@ public class Patient {
      * @param ward   Patient ward
      *               Every field must be present and not null.
      */
-    public Patient(Nric nric, Name name, Status status, String ward) {
+    public Patient(Nric nric, Name name, Status status, WardName ward) {
         requireAllNonNull(nric, name, status, ward);
         this.nric = nric;
         this.name = name;
@@ -90,7 +94,7 @@ public class Patient {
      * @param discharge   Patient discharge
      *               Every field must be present and not null.
      */
-    public Patient(Nric nric, Name name, Status status, String ward, Discharge discharge) {
+    public Patient(Nric nric, Name name, Status status, WardName ward, Discharge discharge) {
         requireAllNonNull(nric, name, status, ward, discharge);
         this.nric = nric;
         this.name = name;
@@ -114,8 +118,14 @@ public class Patient {
         return status.getDesc();
     }
 
-    public String getWard() {
+    public Ward getWard() {
+        return wardWithName(ward.wardName);
+    }
+    public WardName getWardName() {
         return ward;
+    }
+    public String getWardNameString() {
+        return wardWithName(ward.wardName).getNameString();
     }
     public Discharge getDischarge() {
         return discharge;
@@ -126,7 +136,7 @@ public class Patient {
         status = newStatus;
     }
 
-    public void setWard(String newWard) {
+    public void setWard(WardName newWard) {
         requireAllNonNull(newWard);
         ward = newWard;
     }
@@ -141,13 +151,7 @@ public class Patient {
      * This defines a weaker notion of equality between two patients.
      */
     public boolean isSamePatient(Patient otherPatient) {
-        if (otherPatient == this) {
-            return true;
-        }
-
-        return otherPatient != null
-            && otherPatient.getNric().equals(this.getNric())
-            && otherPatient.getName().equals(this.getName());
+        return this.equals(otherPatient);
     }
 
     /**
@@ -180,9 +184,7 @@ public class Patient {
 
         Patient otherPatient = (Patient) other;
         return otherPatient.getNric().equals(getNric())
-            && otherPatient.getName().equals(getName())
-            && otherPatient.getStatus().equals(getStatus())
-            && otherPatient.getWard().equals(getWard());
+            && otherPatient.getName().equals(getName());
     }
 
     @Override
