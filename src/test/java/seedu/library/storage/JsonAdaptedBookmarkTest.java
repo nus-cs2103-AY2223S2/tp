@@ -29,6 +29,7 @@ public class JsonAdaptedBookmarkTest {
     private static final String VALID_GENRE = BENSON.getGenre().toString();
     private static final String VALID_AUTHOR = BENSON.getAuthor().toString();
     private static final String VALID_URL = BENSON.getUrl().toString();
+//    private static final String VALID_RATING =
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());

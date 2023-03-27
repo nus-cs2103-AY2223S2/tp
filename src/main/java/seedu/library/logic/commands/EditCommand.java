@@ -168,7 +168,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, progress, genre, author, url, tags);
+            return CollectionUtil.isAnyNonNull(title, progress, genre, author, rating, url, tags);
         }
 
         public void setTitle(Title title) {
