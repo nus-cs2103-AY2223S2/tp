@@ -745,6 +745,27 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a person
+
+1. Adding a person to HospiSearch
+    1. Prerequisites: Current person (identified by `Nric`) does not exist in the database
+    2. Test case: `add i/S1234567A n/John Doe p/98765432 e/johnd@example.com a/311, 
+             Clementi Ave 2, #02-25 g/Male d/NKDA` <br>
+       Expected: person above is added to HospiSearch, provided another entry does not have the same `nric`. Timestamp
+        in the status bar is updated.
+    3. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311,
+       Clementi Ave 2, #02-25 g/Male d/NKDA` <br>
+       Expected: No person is added. Error details shown in the status message. Status bar remains the same.
+    4. Test case: `add i/S1234567A p/98765432 e/johnd@example.com a/311,
+       Clementi Ave 2, #02-25 g/Male d/NKDA` <br>
+       Expected: No person is added. Error details shown in the status message. Status bar remains the same.
+    5. Test case: `add S1234567A 98765432 johnd@example.com 311,
+       Clementi Ave 2, #02-25 Male NKDA` <br>
+       Expected: No person is added. Error details shown in the status message. Status bar remains the same.
+    6. Other incorrect add commands to try: `add`, `add x/...`, `...` (where x is some invalid tag)
+
+2. _{ more test cases …​ }_
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
