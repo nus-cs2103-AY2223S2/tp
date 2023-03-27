@@ -56,6 +56,10 @@ public class ModuleList extends UiPart<Region> {
         moduleList.getChildren().add(moduleGroup.getRoot());
     }
 
+    /**
+     * Updates the sorted module groups.
+     * @param moduleGroups The sorted module groups.
+     */
     public void updateSortedModules(TreeMap<? extends Object, ObservableList<Module>> moduleGroups) {
         moduleList.getChildren().clear();
 

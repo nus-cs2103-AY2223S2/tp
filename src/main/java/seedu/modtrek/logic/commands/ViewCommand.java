@@ -2,7 +2,6 @@ package seedu.modtrek.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.model.Model;
 
 /**

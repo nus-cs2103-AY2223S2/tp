@@ -31,6 +31,11 @@ public class ModuleSearchSection extends ModuleSection {
         moduleListPlaceholder.getChildren().add(moduleList.getRoot());
     }
 
+    /**
+     * Updates the filtered modules.
+     * @param filteredModules The filtered modules.
+     * @param filters The list of filters applied.
+     */
     public void update(ObservableList<Module> filteredModules, List<String> filters) {
         moduleList.updateFilteredModules(filteredModules);
         findNav.updateFilters(filters);

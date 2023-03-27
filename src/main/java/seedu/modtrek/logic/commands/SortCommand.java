@@ -43,7 +43,7 @@ public class SortCommand extends Command {
          * Semyear sort.
          */
         YEAR,
-        /**g
+        /**
          * Code sort.
          */
         CODE,

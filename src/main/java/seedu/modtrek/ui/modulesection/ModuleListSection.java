@@ -35,6 +35,11 @@ public class ModuleListSection extends ModuleSection {
         moduleListPlaceholder.getChildren().add(moduleList.getRoot());
     }
 
+    /**
+     * Updates the sorted modules.
+     * @param sortedModules The sorted modules.
+     * @param sort The sort criteria.
+     */
     public void update(TreeMap<? extends Object, ObservableList<Module>> sortedModules, String sort) {
         moduleList.updateSortedModules(sortedModules);
         sortNav.updateSortLabel(sort);
