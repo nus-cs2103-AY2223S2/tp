@@ -12,18 +12,20 @@ title: User Guide
   * [Features](#features)
     * [Help](#viewing-help--help)
     * [Tanks](#tanks)
-      * [Adding a tank `tank add`](#adding-a-tank-add)
-      * [Deleting a tank `tank delete`](#deleting-a-tank-delete-tank)
+      * [Adding a tank `tank add`](#adding-a-tank-tank-add)
+      * [Deleting a tank `tank delete`](#deleting-a-tank-tank-delete)
       * [Listing tanks `list tanks`](#listing-tanks-list-tanks)
+      * [Listing tanks `list tanks`](#listing-tanks-list-tanks)
+      * [Feeding a tank `tank feed`](#feeding-a-tank-tank-feed)
     * [Fishes](#fishes)
-      * [Adding a fish `fish add`](#adding-a-fish-add)
-      * [Deleting a fish `fish delete`](#deleting-a-fish-delete-fish)
+      * [Adding a fish `fish add`](#adding-a-fish-fish-add)
+      * [Deleting a fish `fish delete`](#deleting-a-fish-fish-delete)
       * [Listing fishes `list fishes`](#listing-fishes-list-fishes)
       * [Listing fishes in a tank `list fish /tank`](#listing-fishes-in-a-tank-list-fish-tank)
       * [Sorting fishes `fish sort`](#sorting-fishes-fish-sort)
     * [Tasks](#tasks)
-      * [Adding a task `task add`](#adding-a-task-add)
-      * [Deleting a task `task delete`](#deleting-a-task-delete-task)
+      * [Adding a task `task add`](#adding-a-task-task-add)
+      * [Deleting a task `task delete`](#deleting-a-task-task-delete)
       * [Listing tasks `list task`](#listing-tasks-list-task)
   * [FAQ](#faq)
   * [Summary](#command-summary)
@@ -93,12 +95,12 @@ first requirement of fish keeping. (Can't have a fish without a tank!) Similarly
 a tank first, before allowing you to add in any fishes. These tanks directly represent your tanks in real life, so 
 customize them with their own names and add in their respective fishes! <br>
 
-Currently, there are three operations around tanks:
-* [Adding a tank `tank add`](#adding-a-tank-add)
-* [Deleting a tank `tank delete`](#deleting-a-tank-delete-tank)
-* [Viewing a tank `tank view`](#viewing-a-tank-view-tank)
+Currently, there are five operations around tanks:
+* [Adding a tank `tank add`](#adding-a-tank-tank-add)
+* [Deleting a tank `tank delete`](#deleting-a-tank-tank-delete)
+* [Viewing a tank `tank view`](#viewing-a-tank-tank-view)
 * [Listing tanks `list tanks`](#listing-tanks-list-tanks)
-* [Feeding a tank `tank feed`](#feeding-a-tank-feed-tank)
+* [Feeding a tank `tank feed`](#feeding-a-tank-tank-feed)
 
 ### Adding a tank: `tank add`
 
@@ -132,7 +134,7 @@ Format: `tank feed <TANK_INDEX>`
 
 ## Fishes
 
-### Adding a fish: `add`
+### Adding a fish: `fish add`
 
 Adds a fish to the app.
 
@@ -142,7 +144,7 @@ Format: `add fish n/<FISH_NAME> lfd/<LAST_FED_DATE> s/<SPECIES> fi/<FEEDING_INTE
 A fish can belong to a tank
 </div>
 
-### Deleting a fish: `delete fish`
+### Deleting a fish: `fish delete`
 
 Deletes a fish entry from the app.
 
@@ -187,7 +189,7 @@ Optional Prefixes:
 
 ## Tasks
 
-### Adding a task: `add`
+### Adding a task: `task add`
 
 Adds a task to the app.
 
@@ -195,19 +197,20 @@ Format: `task add d/<TASK_NAME>`
 
 To specify tank specific task: `task add d/<TASK_NAME> tk/<TANK_INDEX>`
 
+### Deleting a task: `task delete`
+
+Delete a task entry from the app.
+
+Format: `task delete <TASK_INDEX>`
+
 ### Listing tasks: `list task`
 
 Lists all tasks created.
 
 Format: `list task`
 
-### Deleting a task: `delete task`
 
-Delete a task entry from the app.
-
-Format: `task delete <TASK_INDEX>`
-
-### Priorites: `/p`
+### Setting Priorites: `/p`
 
 Use the format specifier /p to specify priorities
 
@@ -215,6 +218,8 @@ Format: `task add d/<TASK_NAME> p/<PRIORITY_LEVEL>`
 
 *Note: PRIORITY_LEVEL is only accepted as low / medium / high* 
 
+
+## Storage
 ### Saving the data
 
 App data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
