@@ -104,6 +104,7 @@ Deletes an *existing* client contact.
 The command `dc -e alice_baker@bakers.com`  deletes the contact with the corresponding email.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Managing Projects
 
 ### Creating a project: `p`
@@ -112,50 +113,155 @@ Creates a new project.
 
 **Compulsory Arguments**
 
-- **`-pn project_name`**
-    - The project’s name, which must be *unique.*
-    - If another project with the same name already exists, then the command *overrides* the existing project with the new details.
-- **`-e client_email`**
-    - The email of the client who submitted this project. Note that this client must have already been created in Mycelium.
+* `-pn project_name`
+    * The project’s name, which must be *unique*. Case sensitive.
+* `-e client_email`
+    * The email of the client who submitted this project. Note that this client
+      does not need to exist in Mycelium.
 
 **Optional Arguments**
 
-- **`-s status`**
-    - The `status` should be set to either **`not_started` , `in_progress` , or `done` .**
-    - **Default:** **`not_started`**
-- **`-src source`**
-    - The platform the project is sourced from, such as Fiverr. This can be any arbitrary string.
+- `-s status`
+    - Here `status` should be set, verbatim, to one of `not_started`,
+      `in_progress`, or `done`.
+    - **Default:** `not_started`
+- `-src source`
+    - The platform the project is sourced from, such as Fiverr. This can be any
+      arbitrary non-empty string.
     - **Default:** *null*
-- **`-d description`**
+- `-d description`
     - A short description of the project.
     - **Default:** *null*
-- **`-ad accepted_date`**
+- `-ad accepted_date`
     - The date that the project was accepted.
     - **Default**: the current date
-- **`-dd deadline_date`**
-    - The due date of the project.
+- `-dd deadline_date`
+    - The deadline of the project.
     - **Default:** *null*
 
 **Examples**
 
-The following command creates a new project whose name is *Mycelium Desktop*, submitted from the client *Spiderman* from *fiverr.com*, with a deadline on *30 February, 2075*.
+The following command creates a new project whose name is *Mycelium Desktop*,
+submitted from the client *spiderman@gmail.com* from *fiverr.com*, with a
+deadline on *30 February, 2075*.
 
-```bash
-p -pn 'Mycelium Desktop' -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075
 ```
+p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075
+```
+
+If the project is added successfully, you should see the following message in the output box:
+
+```
+New project added: Mycelium Desktop from client spiderman@gmail.com
+```
+
+**Notes**
+
+* The client specified by the `-e` argument does not need to exist in Mycelium.
+  You can add them later if you wish.
+* If you attempt to create a project with a name which already exists in
+  Mycelium, an error will be displayed to block the operation.
 
 ### Deleting a project: `dp`
 
-Deletes an *existing* project.
+Deletes an existing project.
 
 **Compulsory Arguments**
 
 - `-pn project_name`
-    - Name of the project to delete.
+    - Name of the project to delete. Case sensitive.
 
 **Examples**
 
-Running `dp -pn Mycelium` would delete the project with name *Mycelium*.
+The following command deletes a project with name *Mycelium Desktop*.
+
+```
+dp -pn Mycelium Desktop
+```
+
+If successful, you should see the following message in the output box. (In this
+example, the project's client is *spiderman@gmail.com*).
+
+```
+Deleted Project: Mycelium Desktop from client spiderman@gmail.com
+```
+
+**Notes**
+
+* If you attempt to delete a project which does not exist in Mycelium, an error
+  will be displayed and no changes will be made to your data.
+* Deletion is irreversible!
+
+### Updating a project: `up`
+
+Performs partial updates an existing project.
+
+**Compulsory Arguments**
+
+* `-pn project_name`
+    * Name of the project to update. Case sensitive.
+
+**Optional Arguments**
+
+* `-pn2 new_project_name`
+    * A new project name.
+    * **Default:** *null*
+* `-e client_email`
+    * A new client email.
+    * **Default:** *null*
+* `-s status`
+    * A new project status. Should be set, verbatim, to one of `not_started`,
+      `in_progress`, or `done`.
+    * **Default:** *null*
+* `-src source`
+    * A new source for the project. Can be any arbitrary non-empty string.
+    * **Default:** *null*
+* `-d description`
+    * A new description for the project.
+    * **Default:** *null*
+* `-ad accepted_date`
+    * A new accepted-on date for the project.
+    * **Default:** *null*
+* `-dd deadline_date`
+    * A new deadline for the project.
+    * **Default:** *null*
+
+Each of these arguments, if specified, will be used to (paritially) update the
+target project.
+
+<div markdown="span" class="alert alert-info">
+:information_source: Notice that the arguments here are similar to that of
+creating a project. You may refer to the section above on [creating a
+project](#creating-a-project:-p) for further details on what each argument
+means.
+</div>
+
+**Examples**
+
+Suppose we have a project named *Mycelium Desktop*, and wish to update
+
+1. its name to *Mycelium Mobile*; and
+1. its status to `in_progress`.
+
+The following command will do the trick.
+
+```
+up -pn Mycelium Desktop -pn2 Mycelium Mobile -s in_progress
+```
+
+**TODO: add output**
+
+**Notes**
+
+* It is not possible to "unset" an optional field. For example, Mycelium allows
+  projects to have deadlines. Suppose that you have project, *X*, which
+  currently has a deadline. Then it is not possible to use the `up` command to
+  unset the deadline.
+* The target project should already exist in Mycelium. Otherwise, an error will
+  be displayed and no changes are made to the data.
+* If the project's name is updated, then it must be a unique name. Suppose we
+  currently have the projects *foo* and *bar*. An attempt to update *foo*'s
+  name to *bar* will result in an error, and the operation will be blocked.
 
 --------------------------------------------------------------------------------------------------------------------
 
