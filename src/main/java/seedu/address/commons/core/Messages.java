@@ -13,10 +13,10 @@ public class Messages {
     public static final String MESSAGE_DECKS_LISTED_OVERVIEW = "%1$d decks listed!";
     public static final String MESSAGE_NO_DECK_SELECTED = "No deck currently selected "
             + "- Select a deck to run '%1$s' command :)";
-    public static final String MESSAGE_DECK_SELECTED = "You've currently selected a deck"
+    public static final String MESSAGE_DECK_SELECTED = "You've currently selected a deck "
             + "- Unselect the deck to run '%1$s' command :)";
-    public static final String MESSAGE_NOT_IN_REVIEW = "You're currently not in a review"
+    public static final String MESSAGE_NOT_IN_REVIEW = "You're currently not in a review "
             + "- Start a review to run '%1$s' command :)";
-    public static final String MESSAGE_IN_REVIEW = "You're currently in a review"
+    public static final String MESSAGE_IN_REVIEW = "You're currently in a review "
             + "- End the review to run '%1$s' command :)";
 }

@@ -122,10 +122,10 @@ public class MasterDeckParser {
             throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, MarkWrongCommand.COMMAND_WORD));
 
         case TagCardDuringReviewCommand.COMMAND_WORD:
-            return new TagCardDuringReviewCommandParser().parse(arguments);
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagCardDuringReviewCommand.COMMAND_WORD));
 
         case EndReviewCommand.COMMAND_WORD:
-            return new EndReviewCommand();
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, EndReviewCommand.COMMAND_WORD));
 
         // Other commands
         case HelpCommand.COMMAND_WORD:
@@ -186,6 +186,27 @@ public class MasterDeckParser {
 
         case SetNumCardsPerReviewCommand.COMMAND_WORD:
             return new SetNumCardsPerReviewCommandParser().parse(arguments);
+
+        case FlipCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, FlipCardCommand.COMMAND_WORD));
+
+        case PreviousCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, PreviousCardCommand.COMMAND_WORD));
+
+        case NextCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, NextCardCommand.COMMAND_WORD));
+
+        case MarkCorrectCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, MarkCorrectCommand.COMMAND_WORD));
+
+        case MarkWrongCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, MarkWrongCommand.COMMAND_WORD));
+
+        case TagCardDuringReviewCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagCardDuringReviewCommand.COMMAND_WORD));
+
+        case EndReviewCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, EndReviewCommand.COMMAND_WORD));
 
         // Other Commands
         case HelpCommand.COMMAND_WORD:
@@ -270,10 +291,10 @@ public class MasterDeckParser {
 
         // Other commands
         case HelpCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_IN_REVIEW, HelpCommand.COMMAND_WORD));
+            return new HelpCommand();
 
         case ExitCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_IN_REVIEW, ExitCommand.COMMAND_WORD));
+            return new ExitCommand();
 
         case ClearCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_IN_REVIEW, ClearCommand.COMMAND_WORD));
