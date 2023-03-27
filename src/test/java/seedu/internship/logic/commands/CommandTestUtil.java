@@ -56,9 +56,9 @@ public class CommandTestUtil {
     public static final String INVALID_COMPANY_NAME = "This Company name has more than fifty characters hmm";
     public static final String INVALID_ROLE = "This role has more than fifty characters so it is wrong";
 
-    // '&' not allowed in company names
+    // Company names cannot be blank
     public static final String INVALID_COMPANY_NAME_DESC = " " + PREFIX_COMPANY_NAME + INVALID_COMPANY_NAME;
-    // '@' not allowed in roles
+    // Roles cannot be blank
     public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + INVALID_ROLE;
     // pending is not a possible value for status
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "pending";

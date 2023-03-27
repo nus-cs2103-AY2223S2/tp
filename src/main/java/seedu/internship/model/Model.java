@@ -26,9 +26,9 @@ public interface Model {
         LocalDate nextWeek = now.plusWeeks(1);
         LocalDate deadline = LocalDate.parse(internship.getDate().toString(), formatter);
         String status = internship.getStatus().toString();
-        List<String> accepted_statuses = new ArrayList<>(Arrays.asList(
+        List<String> acceptedStatuses = new ArrayList<>(Arrays.asList(
                 "new", "offered", "assessment", "interview"));
-        return !deadline.isBefore(now) && deadline.isBefore(nextWeek) && accepted_statuses.contains(status);
+        return !deadline.isBefore(now) && deadline.isBefore(nextWeek) && acceptedStatuses.contains(status);
     };
 
     /**

@@ -20,7 +20,7 @@ import seedu.internship.model.internship.Status;
 
 public class JsonAdaptedInternshipTest {
     private static final String INVALID_COMPANY_NAME = "This company name has more than fifty characters hmm";
-    private static final String INVALID_ROLE = "This company name has more than fifty characters hmm";
+    private static final String INVALID_ROLE = "This role has more than fifty characters so it is wrong";
     private static final String INVALID_STATUS = " ";
     private static final String INVALID_DATE = "1st March 2023";
     private static final String INVALID_COMMENT = "";
