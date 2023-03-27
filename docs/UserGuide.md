@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+
 ## Introduction
 
 Welcome to Vimification, the ultimate task tracker for Vim enthusiasts! If you are a student at NUS, you know how hectic it can get to manage different deadlines and schedules for different classes and modules. With VimPlanner, you can now manage your tasks and deadlines with ease, using the powerful and efficient Vim-like commands that you already know and love.
@@ -22,21 +23,17 @@ Additionally, it will offer troubleshooting tips and solutions to common issues 
 
 Overall, we hope to empower you to streamline your daily workflows and increase your productivity. So, let's get started!
 
-
 ---
 
-
-## Installation 
+## Installation
 
 1. Download the latest `Vimification.jar` from [here](https://github.com/AY2122S2-CS2103T-W11-4/tp/releases).
 
-
-2. Save the file in your intended folder.
-=======
-Vimification is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can get your task management tasks done faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, we also provide a Graphical User interface (GUI) to assist you. 
-
+2. # Save the file in your intended folder.
+   Vimification is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can get your task management tasks done faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, we also provide a Graphical User interface (GUI) to assist you.
 
 ## Table of Contents
+
 - [Quick Start](#quick-start)
 - [Features](#features)
   - [Viewing help](#viewing-help)
@@ -47,23 +44,20 @@ Vimification is a **desktop app for managing tasks, optimized for use via a Comm
   - [Saving the data](#saving-the-data)
 
 ---
+
 ## Quick Start
 
-### For Windows 
+### For Windows
 
 1. Ensure that you have Java `11` or above installed in your Computer.
 
-
 2. Double-click the file to start the app.
 
-
 3. The application should launch, and a GUI similar to the below should appear in a few seconds. <br>
-
 
 ### For Mac (M1 Chip)
 
 1. Ensure that you have Java `11` Zulu SDK installed in your Computer.
-
 
 2. Open your Mac Terminal, and `cd` into the folder you put the jar file in.
 
@@ -72,11 +66,9 @@ Vimification is a **desktop app for managing tasks, optimized for use via a Comm
 4. The application should launch, and a GUI similar to the below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
 
-
-
 ## Using the Command-Line Interface (CLI)
-=======
 
+=======
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -85,13 +77,23 @@ Vimification is a **desktop app for managing tasks, optimized for use via a Comm
 
    - `:i deadline CS2130T tp /2023-04-01` : Adds a todo task with description `CS2130T tp` and deadline '2023-04-01' to Vimification.
 
-   - `delete 2` : Deletes the 2nd task shown in the current list.
+   - `:d 2` : Deletes the 2nd task shown in the current list.
 
    - `:wq` : Exits the app.
 
 2. Refer to the [Features](#features) below for details of each command.
-   
+
 ---
+
+## Navigating Vimification
+
+Vimification is designed to mimic Vim as closely as possible. Navigate Vimification as you would in Vim by using `h`,`j,`,`k`,`l` to move to the left, down, up, right respectively.
+
+## Using commands
+
+Similar to Vim, you can bring up the command input by pressing the `:` key on your keyboard.
+e.g:
+![](images/ug-images/showCommand/commandExample.png)
 
 ## Features
 
@@ -101,7 +103,7 @@ Vimification is a **desktop app for managing tasks, optimized for use via a Comm
 
 - Words in UPPER_CASE are the parameters to be supprised by the users.<br>
   e.g. `:i todo DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `:i todo quiz`.
-  
+
 - Words in square brackets are compulsory parameters to be supplied by the user.<br>
   e.g. in `:i todo [DESCRIPTION]`, `DESCRIPTION` is a parameter must be provided.
 
@@ -122,7 +124,7 @@ Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Format: `:help`
 
 ### Adding a todo task
 
@@ -158,8 +160,7 @@ Examples:
 **After**
 ![](images/ug-images/AddDeadlineCommandDemo.png)
 
-
-### Deleting a task 
+### Deleting a task
 
 Deletes the specified person from the address book.
 
@@ -185,6 +186,7 @@ Similar to Vim, we can use the `q` command with write `w` to exit the program.
 Format: `:wq!`, `:q!`,,`:wq`,`:q`
 
 Examples:
+![](images/ug-images/quitCommand/quitExample1.png)
 
 ### Saving the data
 
@@ -213,13 +215,10 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                        |
-| ---------------- | ---------------------------------------------------------------------------------------- |
-| **Add To-do**    | `:i todo [DESCRIPTION]` <br> e.g., `i todo CS2103T UG`                                   |
-| **Add Deadline** | `:i deadline [DESCRIPTION] /[DEADLINE]` <br> e.g., `i deadline CS2103T v1.3 /2022-03-31` |     |
-| **Delete**       | `:d [INDEX]`<br> e.g., `:d 3`                                                            |
+| Action           | Format, Examples                                                                         |
+| ---------------- | ---------------------------------------------------------------------------------------- | --- |
+| **Add To-do**    | `:i todo [description]` <br> e.g., `i todo CS2103T UG`                                   |
+| **Add Deadline** | `:i deadline [description] /[deadline]` <br> e.g., `i deadline CS2103T v1.3 /2022-03-31` |     |
+| **Delete**       | `:d [index]`<br> e.g., `:d 3`                                                            |
 | **Exit**         | `:wq!`, `:q!`,,`:wq`,`:q`                                                                |
-| **Help**         | `help`                                                                                   |
-
-
-
+| **Help**         | `:help`                                                                                  |
