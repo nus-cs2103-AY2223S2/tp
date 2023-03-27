@@ -2,9 +2,16 @@ package seedu.address.model.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+import seedu.address.model.commitment.Lesson;
 
 /**
  * Represents a ModuleTag in the address book.
@@ -16,9 +23,7 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
             "NUS Modules should have 2 - 3 letter prefix, followed by 4 digits and optional 1 - 3 alphabets";
     public static final String VALIDATION_REGEX = "[A-Z]{2,4}[0-9]{4}[A-Z]{0,3}";
 
-    private final String day;
-    private final String startTime;
-    private final String endTime;
+    private final Set<Lesson> lessons;
 
     /**
      * Constructs a {@code ModuleTag}.
@@ -29,29 +34,99 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
         super(tagName);
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.day = null;
-        this.startTime = null;
-        this.endTime = null;
+        this.lessons = new HashSet<>();
     }
 
     /**
      * Overloaded constructor for a {@code ModuleTag}
-     *
-     * @param tagNames ArrayList of valid Tag command arguments.
      */
-    public ModuleTag(ArrayList<String> tagNames) {
-        super(tagNames.get(0));
-        requireNonNull(tagNames);
-        if (tagNames.size() == 4) {
-            this.day = tagNames.get(1);
-            this.startTime = tagNames.get(2);
-            this.endTime = tagNames.get(3);
-            return;
-        }
-        this.day = null;
-        this.startTime = null;
-        this.endTime = null;
+    public ModuleTag(String moduleCode, Lesson... lessons) {
+        super(moduleCode);
+        requireAllNonNull(moduleCode, lessons);
+        this.lessons = Set.of(lessons);
     }
+
+    /**
+     * Overloaded constructor for a {@code ModuleTag}
+     */
+    public ModuleTag(String moduleCode, Collection<Lesson> lessons) {
+        super(moduleCode);
+        requireAllNonNull(moduleCode, lessons);
+        this.lessons = new HashSet<>(lessons);
+    }
+
+    /**
+     * Combines the lesson set of two module tags.
+     */
+    public ModuleTag mergeWith(ModuleTag otherModuleTag) {
+        assert tagName.equals(otherModuleTag.tagName);
+        Set<Lesson> newLessons = new HashSet<>(lessons);
+        newLessons.addAll(otherModuleTag.lessons);
+        return new ModuleTag(tagName, newLessons);
+    }
+
+    /**
+     * Gets an immutable copy of lessons.
+     */
+    public Set<Lesson> getImmutableLessons() {
+        return Set.copyOf(lessons);
+    }
+
+    /**
+     * Formats the lessons into a string.
+     */
+    public String getLessonsAsStr() {
+        return lessons.stream()
+                .map(Lesson::toString)
+                .collect(Collectors.joining(", "));
+    }
+
+    /**
+     * Checks whether the module tag contains all of the lessons provided.
+     */
+    public boolean containsLessons(Collection<? extends Lesson> lessons) {
+        return this.lessons.containsAll(lessons);
+    }
+
+    /**
+     * Adds a lesson to the module tag.
+     */
+    public void addLesson(Lesson lesson) {
+        lessons.add(lesson);
+    }
+
+    /**
+     * Adds multiple lessons to the module tag.
+     */
+    public void addLessons(Collection<Lesson> lessons) {
+        for (Lesson lesson : lessons) {
+            addLesson(lesson);
+        }
+    }
+
+    /**
+     * Removes a lessons from the module tag.
+     */
+    public void removeLesson(Lesson lesson) {
+        lessons.remove(lesson);
+    }
+
+    /**
+     * Removes multiple lessons from the module tag.
+     */
+    public void removeLessons(Collection<Lesson> lessons) {
+        for (Lesson lesson : lessons) {
+            removeLesson(lesson);
+        }
+    }
+
+    /**
+     * Copies the information of the module tag to preserve immutability.
+     */
+    public ModuleTag copy() {
+        return new ModuleTag(tagName, new HashSet<>(lessons));
+    }
+
     @Override
     boolean isValidTagName(String test, String regex) {
         return Pattern.matches(VALIDATION_REGEX, test);
@@ -68,12 +143,13 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ModuleTag // instanceof handles nulls
-                && tagName.equals(((ModuleTag) other).tagName)); // state check
+                && tagName.equals(((ModuleTag) other).tagName)
+                && lessons.equals(((ModuleTag) other).lessons)); // state check
     }
 
     @Override
     public int hashCode() {
-        return tagName.hashCode();
+        return Objects.hash(tagName, lessons);
     }
 
     /**
@@ -88,23 +164,11 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
         return tagName.compareTo(otherModuleTag.tagName);
     }
 
-    public String getDayAsStr() {
-        return day;
-    }
-
-    public String getStartTimeAsStr() {
-        return startTime;
-    }
-
-    public String getEndTimeAsStr() {
-        return endTime;
-    }
-
     /**
      * Flags if this moduleTag is a tag for the basic functionality, with no lesson parameters tied to it.
      * @return boolean if moduleTag is a generated from a simple input with no extra parameters.
      */
     public boolean isBasicTag() {
-        return this.day == null && this.startTime == null && this.endTime == null;
+        return lessons.isEmpty();
     }
 }

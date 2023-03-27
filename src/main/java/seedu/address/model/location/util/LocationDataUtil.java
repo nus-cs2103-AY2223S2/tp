@@ -1,4 +1,4 @@
-package seedu.address.model.location;
+package seedu.address.model.location.util;
 
 import java.io.InputStreamReader;
 import java.util.HashSet;
@@ -12,12 +12,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.location.Location;
 
 /**
  * Processes the location data stored in the txt files.
  * Different from {@code DistanceUtil} which handles computations instead.
  */
-public class LocationUtil {
+public class LocationDataUtil {
     /**
      * Keeping the locations as sets makes it easier to pass around.
      */
@@ -34,7 +35,7 @@ public class LocationUtil {
      */
     public static final Map<String, Location> ADDRESSES_HASH_MAP = getLocationHashMap(ADDRESSES);
 
-    private static final Logger logger = LogsCenter.getLogger(LocationUtil.class);
+    private static final Logger logger = LogsCenter.getLogger(LocationDataUtil.class);
 
     /**
      * Reads and parses the location data from a txt file.
@@ -46,7 +47,7 @@ public class LocationUtil {
         String fullFileName = String.format("data/%s.txt", fileName);
         InputStreamReader file =
                 new InputStreamReader(
-                        LocationUtil.class.getClassLoader().getResourceAsStream(fullFileName));
+                        LocationDataUtil.class.getClassLoader().getResourceAsStream(fullFileName));
 
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
