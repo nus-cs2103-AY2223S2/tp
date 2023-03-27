@@ -74,7 +74,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Recipe` object residing in the `Model`.
 
-### Logic
+### Logic component
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/recipe/logic/Logic)
 
 Here's a (partial) class diagram of the `Logic` component:
@@ -150,7 +150,7 @@ extension feature to this project.<br/><br/>
 
 </div>
 
-### Storage Component
+### Storage component
 
 The **API** of this component is specified
 in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/Storage.java)
@@ -187,8 +187,8 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The `RecipeForm` class extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields` and `Buttons`,
-that are used for displaying and editing recipe details. The class has a constructor that takes a `Recipe` object and an `int` representing the displayed index.
+The `RecipeForm` class extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields` and `Buttons`, 
+that are used for displaying and editing recipe details. The class has a constructor that takes a `Recipe` object and an `int` representing the displayed index. 
 The fields of the form are pre-populated with the existing recipe's data if a non-null recipe is provided.
 
 In addition, it implements the following operations:
