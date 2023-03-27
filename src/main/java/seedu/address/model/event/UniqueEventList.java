@@ -155,7 +155,7 @@ public class UniqueEventList implements Iterable<Event> {
     /**
      * Checks if a person is tagged to an event.
      */
-    public boolean checkPersonTagToEvent(Index index, Person p) {
+    public boolean isPersonTaggedToEvent(Index index, Person p) {
         requireAllNonNull(index, p);
 
         int zeroBasedIndex = index.getZeroBased();
