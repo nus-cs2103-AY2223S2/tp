@@ -28,7 +28,6 @@ import seedu.event.logic.commands.LinkContactCommand;
 import seedu.event.logic.commands.ListCommand;
 import seedu.event.logic.commands.MarkCommand;
 import seedu.event.logic.commands.NewContactCommand;
-import seedu.event.logic.commands.RateCommand;
 import seedu.event.logic.commands.RemindCommand;
 import seedu.event.logic.commands.RevenueCommand;
 import seedu.event.logic.parser.exceptions.ParseException;
@@ -106,13 +105,6 @@ public class EventBookParserTest {
         Contact contact = new ContactBuilder().build();
         NewContactCommand command = (NewContactCommand) parser.parseCommand(ContactUtil.getNewContactCommand(contact));
         assertEquals(new NewContactCommand(contact), command);
-    }
-
-    @Test
-    public void parseCommand_rate() throws Exception {
-        RateCommand command = (RateCommand) parser.parseCommand(
-            RateCommand.COMMAND_WORD + " " + INDEX_FIRST_EVENT.getOneBased());
-        assertEquals(new RateCommand(INDEX_FIRST_EVENT), command);
     }
 
     @Test
