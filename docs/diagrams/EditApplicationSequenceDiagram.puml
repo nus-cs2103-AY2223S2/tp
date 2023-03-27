@@ -80,4 +80,5 @@ deactivate EditApplicationCommand
 
 [<--ApplicationLogicManager
 deactivate ApplicationLogicManager
+
 @enduml

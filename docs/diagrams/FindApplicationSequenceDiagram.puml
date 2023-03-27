@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box ApplicationLogic LOGIC_COLOR_T1
+participant ":ApplicationLogicManager" as ApplicationLogicManager LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
+participant ":FindApplicationCommandParser" as FindApplicationCommandParser LOGIC_COLOR
+participant ":FindApplicationCommand" as FindApplicationCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box ApplicationModel MODEL_COLOR_T1
+participant ":ApplicationModel" as ApplicationModel MODEL_COLOR
+participant ":NameContainsKeywordsPredicate" as NameContainsKeywordsPredicate MODEL_COLOR
+end box
+
+note left of ApplicationLogicManager #aqua
+Let user input be: find <str>
+str = "r/SWE c/Google s/applied"
+end note
+
+[-> ApplicationLogicManager : execute("find {str}")
+activate ApplicationLogicManager
+
+ApplicationLogicManager -> InternshipBookParser : parseCommand("find {str}")
+activate InternshipBookParser
+
+create FindApplicationCommandParser
+InternshipBookParser -> FindApplicationCommandParser
+activate FindApplicationCommandParser
+
+FindApplicationCommandParser --> InternshipBookParser
+deactivate FindApplicationCommandParser
+
+InternshipBookParser -> FindApplicationCommandParser : parse("{str}")
+activate FindApplicationCommandParser
+
+create FindApplicationCommand
+FindApplicationCommandParser -> FindApplicationCommand : new FindApplicationCommand(app)
+activate FindApplicationCommand
+
+create NameContainsKeywordsPredicate
+FindApplicationCommand -> NameContainsKeywordsPredicate: new NameContainsKeywordsPredicate(keywords)
+activate NameContainsKeywordsPredicate
+
+NameContainsKeywordsPredicate --> FindApplicationCommand : predicate
+deactivate NameContainsKeywordsPredicate
+
+FindApplicationCommand --> FindApplicationCommandParser : FindCommand
+deactivate FindApplicationCommand
+
+FindApplicationCommandParser --> InternshipBookParser : FindCommand
+deactivate FindApplicationCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindApplicationCommandParser -[hidden]-> InternshipBookParser
+destroy FindApplicationCommandParser
+
+InternshipBookParser --> ApplicationLogicManager : FindCommand
+deactivate InternshipBookParser
+
+ApplicationLogicManager -> FindApplicationCommand : execute()
+activate FindApplicationCommand
+
+FindApplicationCommand -> ApplicationModel : FindApplication(app)
+activate ApplicationModel
+
+ApplicationModel --> FindApplicationCommand
+deactivate ApplicationModel
+
+create CommandResult
+FindApplicationCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindApplicationCommand
+deactivate CommandResult
+
+FindApplicationCommand --> ApplicationLogicManager : result
+deactivate FindApplicationCommand
+
+[<--ApplicationLogicManager
+deactivate ApplicationLogicManager
+@enduml
