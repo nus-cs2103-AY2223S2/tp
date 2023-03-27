@@ -72,6 +72,7 @@ public class ScoreListPanel extends UiPart<Region> {
 
         name.setText("No student being checked now");
         nameChart.setText("No student being checked now");
+        scoreStatistic.setVisible(false);
 
         scoreListView.setCellFactory(listView -> new ScoreListPanel.ScoreListViewCell());
 
@@ -90,6 +91,7 @@ public class ScoreListPanel extends UiPart<Region> {
     }
 
     private void statisticTable(Person person) {
+
         scoreStatistic.setVisible(true);
 
         maxScore.setCellValueFactory(new PropertyValueFactory<>("maxScore"));
