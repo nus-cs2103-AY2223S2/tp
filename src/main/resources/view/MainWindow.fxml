@@ -130,13 +130,11 @@
                               styleClass="right-pane" HBox.hgrow="ALWAYS">
                             <VBox fx:id="meetPlaceholder" minHeight="0.0" minWidth="-Infinity" prefHeight="245.0"
                                   prefWidth="519.0" styleClass="meet-placeholder" VBox.vgrow="NEVER">
-                                <HBox alignment="CENTER" prefHeight="246.0" prefWidth="530.0" VBox.vgrow="NEVER">
-                                    <children>
-                                        <ScrollPane fitToWidth="true" fitToHeight="true" vbarPolicy="NEVER">
-                                            <StackPane fx:id="meetListPanelPlaceholder" alignment="TOP_LEFT" prefWidth="530.0" styleClass="user-profile-placeholder" VBox.vgrow="ALWAYS"/>
-                                        </ScrollPane>
-                                    </children>
-                                </HBox>
+                                <children>
+                                    <ScrollPane fitToWidth="true" fitToHeight="true" vbarPolicy="NEVER">
+                                        <StackPane fx:id="meetListPanelPlaceholder" alignment="TOP_LEFT" prefWidth="530.0" styleClass="user-profile-placeholder" VBox.vgrow="ALWAYS"/>
+                                    </ScrollPane>
+                                </children>
                                 <VBox.margin>
                                     <Insets bottom="15.0" left="10.0" right="10.0" top="10.0"/>
                                 </VBox.margin>
