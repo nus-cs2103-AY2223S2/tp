@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import vimification.Gui;
 import vimification.commons.core.LogsCenter;
 import vimification.commons.util.StringUtil;
-import vimification.logic.Logic;
+import vimification.internal.Logic;
 
 /**
  * The manager of the UI component.
@@ -18,7 +18,7 @@ public class UiManager implements Ui {
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String ICON_APPLICATION = "/images/vimification.png";
 
     private Logic logic;
 

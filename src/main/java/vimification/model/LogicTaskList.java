@@ -124,11 +124,17 @@ public class LogicTaskList {
         return new LogicTaskList(tasks.subList(start, end));
     }
 
-    public LogicTaskList filter(Predicate<Task> pred) {
+    /**
+     * Filter {@code LogicTaskList} based on predicate.
+     *
+     * @param pred
+     * @return
+     */
+    public List<Task> filter(Predicate<Task> pred) {
         List<Task> filteredTasks = stream()
                 .filter(pred)
                 .collect(Collectors.toCollection(ArrayList::new));
-        return new LogicTaskList(filteredTasks);
+        return filteredTasks;
     }
 
     @Override

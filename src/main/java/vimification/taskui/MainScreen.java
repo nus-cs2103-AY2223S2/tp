@@ -10,7 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import vimification.logic.Logic;
+import vimification.internal.Logic;
 import vimification.model.task.Task;
 
 /**
@@ -125,6 +125,10 @@ public class MainScreen extends UiPart<VBox> {
     public void loadDetailedTaskComponent(Task task) {
         TaskDetailPanel detailTask = new TaskDetailPanel(task);
         loadRightComponent(detailTask);
+    }
+
+    public void clearRightComponent() {
+        rightComponent.getChildren().clear();
     }
 
     private <T extends Pane> void loadLeftComponent(UiPart<T> component) {

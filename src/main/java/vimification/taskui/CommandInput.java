@@ -1,15 +1,16 @@
 package vimification.taskui;
 
+import java.util.List;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import vimification.logic.Logic;
-import vimification.logic.commands.CommandException;
-import vimification.logic.commands.CommandResult;
-import vimification.logic.parser.ParserException;
+import vimification.internal.Logic;
+import vimification.internal.command.CommandException;
+import vimification.internal.command.CommandResult;
+import vimification.internal.parser.ParserException;
 
 /**
  *
@@ -37,9 +38,8 @@ public class CommandInput extends UiPart<TextField> {
         boolean isEnterEvent = event.getCode().equals(KeyCode.ENTER);
         boolean isEscEvent = event.getCode().equals(KeyCode.ESCAPE);
 
-        if (isEscEvent) {
+        if (isEscEvent || isTextFieldEmpty()) {
             returnFocusToParent();
-            System.out.println("You escaped");
         }
 
         if (isEnterEvent) {
@@ -80,6 +80,11 @@ public class CommandInput extends UiPart<TextField> {
         try {
             CommandResult result = logic.execute(commandString);
             parent.initializeTaskListPanel();
+
+            // TODO: Should only clear if the task has been deleted.
+            if (result.getFeedbackToUser().contains("Deleted Task:")) {
+                parent.clearRightComponent();
+            }
             System.out.println(result.getFeedbackToUser());
         } catch (CommandException e) {
             System.out.println("[Your command] " + input + " is invalid");
@@ -98,11 +103,10 @@ public class CommandInput extends UiPart<TextField> {
         }
     }
 
-    private void checkIsExitCommand(String result) {
-        boolean isExit =
-                result.equals("wq!") || result.equals("wq") || result.equals("q!") || result
-                        .equals("q");
-        if (isExit) {
+    private void checkIsExitCommand(String commandString) {
+        List<String> exitCommands = List.of("wq!", "wq", "q!", "q");
+        boolean isExitCommand = exitCommands.contains(commandString);
+        if (isExitCommand) {
             Platform.exit();
         }
     }
@@ -112,11 +116,14 @@ public class CommandInput extends UiPart<TextField> {
         this.getRoot().setVisible(false);
     }
 
-
     @FXML
-    public void initialize() {
+    private void initialize() {
         this.getRoot().setFocusTraversable(true); // Important
         this.getRoot().setVisible(false);
+    }
+
+    private boolean isTextFieldEmpty() {
+        return getRoot().getText().equals("");
     }
 
 }

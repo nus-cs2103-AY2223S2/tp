@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import vimification.logic.commands.LogicCommand;
+import vimification.internal.command.logic.LogicCommand;
+import vimification.internal.parser.ParserException;
+import vimification.internal.parser.VimificationParser;
 
 public class VimificationParserTest {
 
@@ -19,6 +21,11 @@ public class VimificationParserTest {
                 EXPECTED_EXCEPTION_CLASS,
                 () -> VimificationParser.getInstance().parse(input));
         assertEquals("Unknown command", ex.getMessage());
+        String input1 = "i hello world";
+        ex = assertThrows(
+                EXPECTED_EXCEPTION_CLASS,
+                () -> VimificationParser.getInstance().parse(input1));
+        assertEquals("Unable to parse input: " + input1, ex.getMessage());
     }
 
     @Test

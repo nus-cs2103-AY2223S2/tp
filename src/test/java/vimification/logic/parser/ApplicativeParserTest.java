@@ -7,6 +7,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import vimification.internal.parser.ApplicativeParser;
+import vimification.internal.parser.Pair;
+import vimification.internal.parser.ParserException;
+
 public class ApplicativeParserTest {
 
     private static final Class<ParserException> EXPECTED_EXCEPTION_CLASS = ParserException.class;
@@ -99,7 +103,7 @@ public class ApplicativeParserTest {
     }
 
     @Test
-    public void oneOrMore_validInput_shouldStopAtCorrectPosition() {
+    public void many1_validInput_shouldStopAtCorrectPosition() {
         String input = "Shoot the Bullet";
         ApplicativeParser<List<String>> parser = ApplicativeParser
                 .nonWhitespaces()

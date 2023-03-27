@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import vimification.logic.commands.CreateCommand;
+import vimification.internal.command.logic.CreateCommand;
+import vimification.internal.parser.CreateCommandParser;
+import vimification.internal.parser.ParserException;
 
 public class CreateCommandParserTest {
 

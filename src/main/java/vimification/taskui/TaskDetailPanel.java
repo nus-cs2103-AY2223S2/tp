@@ -1,11 +1,12 @@
 package vimification.taskui;
 
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.fxml.FXML;
 import vimification.model.task.Task;
 import vimification.model.task.Todo;
-import javafx.fxml.FXML;
+
 
 /**
  * Panel containing task details, such as description, the type of the task, etc.
@@ -16,11 +17,17 @@ public class TaskDetailPanel extends UiPart<VBox> {
     private Task task;
 
     @FXML
-    private ListView<Task> taskListView;
+    private Label typeField;
     @FXML
     private Label descriptionText;
+
     @FXML
-    private Label typeText;
+    private Label statusField;
+    @FXML
+    private Label priorityField;
+
+    @FXML
+    private HBox durationComponent;
 
     /**
      * Creates a {@code TaskDetailPanel}.
@@ -33,9 +40,21 @@ public class TaskDetailPanel extends UiPart<VBox> {
 
     public void setup() {
         descriptionText.setText(task.getDescription());
+        priorityField.setText("High");
+        statusField.setText("Not completed");
 
         String taskType = getTaskType(task);
-        typeText.setText(taskType);
+        System.out.println("taskType:" + taskType);
+        typeField.setText(taskType);
+
+        // TODO: Refactor this
+        switch (taskType) {
+        case "Todo":
+            durationComponent.setVisible(false);
+            break;
+        default:
+            break;
+        }
     }
 
     public String getTaskType(Task task) {
