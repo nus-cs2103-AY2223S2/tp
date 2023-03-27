@@ -22,7 +22,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Description;
 import seedu.address.model.appointment.Timeslot;
 import seedu.address.model.id.AppointmentId;
-import seedu.address.model.id.PatientId;
+import seedu.address.model.patient.Name;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -101,10 +101,10 @@ public class EditAppointmentCommand extends Command {
         Timeslot updatedTimeslot = editAppointmentDescriptor.getTimeslot().orElse(appointmentToEdit.getTimeslot());
         Description updatedDescription =
             editAppointmentDescriptor.getDescription().orElse(appointmentToEdit.getDescription());
-        PatientId updatedPatientId = editAppointmentDescriptor.getPatientId().orElse(appointmentToEdit.getPatientId());
+        Name updatedName = editAppointmentDescriptor.getName().orElse(appointmentToEdit.getName());
         Set<Tag> updatedTags = editAppointmentDescriptor.getTags().orElse(appointmentToEdit.getTags());
 
-        return new Appointment(updatedAppointmentId, updatedTimeslot, updatedDescription, updatedPatientId,
+        return new Appointment(updatedAppointmentId, updatedTimeslot, updatedDescription, updatedName,
             updatedTags);
     }
 
@@ -134,11 +134,10 @@ public class EditAppointmentCommand extends Command {
         private AppointmentId appointmentId;
         private Timeslot timeslot;
         private Description description;
-        private PatientId patientId;
+        private Name name;
         private Set<Tag> tags;
 
-        public EditAppointmentDescriptor() {
-        }
+        public EditAppointmentDescriptor() {}
 
         /**
          * Copy constructor.
@@ -148,7 +147,7 @@ public class EditAppointmentCommand extends Command {
             setAppointmentId(toCopy.appointmentId);
             setTimeslot(toCopy.timeslot);
             setDescription(toCopy.description);
-            setPatientId(toCopy.patientId);
+            setName(toCopy.name);
             setTags(toCopy.tags);
         }
 
@@ -156,7 +155,7 @@ public class EditAppointmentCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(timeslot, description, patientId, tags);
+            return CollectionUtil.isAnyNonNull(timeslot, description, name, tags);
         }
 
         public void setAppointmentId(AppointmentId appointmentId) {
@@ -183,12 +182,12 @@ public class EditAppointmentCommand extends Command {
             return Optional.ofNullable(description);
         }
 
-        public void setPatientId(PatientId patientId) {
-            this.patientId = patientId;
+        public void setName(Name name) {
+            this.name = name;
         }
 
-        public Optional<PatientId> getPatientId() {
-            return Optional.ofNullable(patientId);
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
         }
 
         /**
@@ -225,7 +224,7 @@ public class EditAppointmentCommand extends Command {
 
             return getTimeslot().equals(e.getTimeslot())
                 && getDescription().equals(e.getDescription())
-                && getPatientId().equals(e.getPatientId())
+                && getName().equals(e.getName())
                 && getTags().equals(e.getTags());
         }
     }

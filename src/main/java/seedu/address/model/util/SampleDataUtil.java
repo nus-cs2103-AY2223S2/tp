@@ -66,10 +66,10 @@ public class SampleDataUtil {
     public static Appointment[] getSampleAppointments() {
         return new Appointment[] {
             new Appointment(new AppointmentId("001"), new Timeslot("19032023 08:00,19032023 09:00"),
-                new Description("First appointment"), new PatientId("001"),
+                new Description("First appointment"), new Name("Alex Yeoh"),
                 getTagSet("first")),
             new Appointment(new AppointmentId("002"), new Timeslot("26032023 11:00,26032023 13:00"),
-                new Description("Important"), new PatientId("002"),
+                new Description("Important"), new Name("Bernice Yu"),
                 getTagSet("important")),
         };
     }

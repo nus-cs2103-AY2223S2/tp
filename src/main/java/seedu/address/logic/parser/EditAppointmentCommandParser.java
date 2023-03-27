@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 
@@ -32,7 +32,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
     public EditAppointmentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_TIMESLOT, PREFIX_DESCRIPTION, PREFIX_PATIENT_ID, PREFIX_TAG);
+            ArgumentTokenizer.tokenize(args, PREFIX_TIMESLOT, PREFIX_DESCRIPTION, PREFIX_NAME, PREFIX_TAG);
 
         AppointmentId appointmentId;
 
@@ -52,9 +52,9 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             editAppointmentDescriptor.setDescription(
                 ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
-        if (argMultimap.getValue(PREFIX_PATIENT_ID).isPresent()) {
-            editAppointmentDescriptor.setPatientId(
-                ParserUtil.parsePatientId(argMultimap.getValue(PREFIX_PATIENT_ID).get()));
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editAppointmentDescriptor.setName(
+                ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editAppointmentDescriptor::setTags);
 

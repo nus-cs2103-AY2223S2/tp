@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.id.PatientId;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -127,6 +130,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasName(Name name) {
+        requireNonNull(name);
+        return addressBook.getPatientList().stream().anyMatch(patient -> patient.getName().equals(name));
+    }
+
+    @Override
     public boolean hasPatientId(PatientId patientId) {
         requireNonNull(patientId);
         return addressBook.getPatientList().stream().anyMatch(patient -> patient.getId().equals(patientId));
@@ -134,7 +143,37 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePatient(Patient target) {
+        // Save the patient and appointment list
+        AddressBook addressBookCopy = new AddressBook(addressBook);
+        AppointmentList appointmentListCopy = new AppointmentList(appointmentList);
+
         addressBook.removePatient(target);
+        // Remove all appointments of that patient
+        List<Appointment> appointmentsToRemove = new ArrayList<>();
+        for (Appointment appointment : appointmentList.getAppointmentList()) {
+            if (appointment.getName().equals(target.getName())) {
+                appointmentsToRemove.add(appointment);
+            }
+        }
+        for (Appointment appointment : appointmentsToRemove) {
+            appointmentList.removeAppointment(appointment);
+        }
+
+        // Check that the patient and their corresponding appointments have been removed
+        // If not, reset both lists and throw an error
+        boolean didDeletePatientFail = addressBook.hasPatient(target);
+
+        boolean areAllAppointmentsDeleted = true;
+        for (Appointment appointment : appointmentsToRemove) {
+            if (appointmentList.hasAppointment(appointment)) {
+                areAllAppointmentsDeleted = false;
+            }
+        }
+
+        if (!areAllAppointmentsDeleted || didDeletePatientFail) {
+            this.addressBook.setPatients(addressBookCopy.getPatientList());
+            this.appointmentList.setAppointments(appointmentListCopy.getAppointmentList());
+        }
     }
 
     @Override

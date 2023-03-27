@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
@@ -17,6 +18,7 @@ import seedu.address.model.appointment.Timeslot;
 import seedu.address.model.id.AppointmentId;
 import seedu.address.model.id.Id;
 import seedu.address.model.id.PatientId;
+import seedu.address.model.patient.Name;
 import seedu.address.model.tag.Tag;
 
 
@@ -42,11 +44,11 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
 
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Timeslot timeslot = ParserUtil.parseTimeslot(argMultimap.getValue(PREFIX_TIMESLOT).get());
-        PatientId patientId = ParserUtil.parsePatientId(argMultimap.getValue(PREFIX_PATIENT_ID).get());
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         AppointmentId appointmentId = new AppointmentId(Id.generateUniqueId());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Appointment appointment = new Appointment(appointmentId, timeslot, description, patientId, tagList);
+        Appointment appointment = new Appointment(appointmentId, timeslot, description, name, tagList);
 
         return new AddAppointmentCommand(appointment);
     }

@@ -48,7 +48,7 @@ public class AddAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasPatientId(toAdd.getPatientId())) {
+        if (!model.hasName(toAdd.getName())) {
             throw new CommandException(MESSAGE_PATIENT_NOT_EXIST);
         }
 

@@ -14,7 +14,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Description;
 import seedu.address.model.appointment.Timeslot;
 import seedu.address.model.id.AppointmentId;
-import seedu.address.model.id.PatientId;
+import seedu.address.model.patient.Name;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,7 +27,7 @@ class JsonAdaptedAppointment {
     private final String appointmentId;
     private final String timeslot;
     private final String description;
-    private final String patientId;
+    private final String name;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -37,12 +37,12 @@ class JsonAdaptedAppointment {
     public JsonAdaptedAppointment(@JsonProperty("id") String appointmentId,
                                   @JsonProperty("timeslot") String timeslot,
                                   @JsonProperty("description") String description,
-                                  @JsonProperty("patientId") String patientId,
+                                  @JsonProperty("name") String name,
                                   @JsonProperty("tags") List<JsonAdaptedTag> tagged) {
         this.appointmentId = appointmentId;
         this.timeslot = timeslot;
         this.description = description;
-        this.patientId = patientId;
+        this.name = name;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -55,7 +55,7 @@ class JsonAdaptedAppointment {
         appointmentId = source.getAppointmentId().getId();
         timeslot = source.getTimeslot().timeslotString;
         description = source.getDescription().description;
-        patientId = source.getPatientId().getId();
+        name = source.getName().fullName;
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
@@ -90,19 +90,19 @@ class JsonAdaptedAppointment {
         }
         final Description modelDescription = new Description(description);
 
-        if (patientId == null) {
+        if (name == null) {
             throw new IllegalValueException(
-                String.format(MISSING_FIELD_MESSAGE_FORMAT, PatientId.class.getSimpleName()));
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!PatientId.isValidPatientId(patientId)) {
-            throw new IllegalValueException(PatientId.MESSAGE_CONSTRAINTS);
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final PatientId modelPatientId = new PatientId(patientId);
+        final Name modelName = new Name(name);
 
         final Set<Tag> modelTags = new HashSet<>(appointmentTags);
 
         final AppointmentId modelId = new AppointmentId(appointmentId);
-        return new Appointment(modelId, modelTimeslot, modelDescription, modelPatientId, modelTags);
+        return new Appointment(modelId, modelTimeslot, modelDescription, modelName, modelTags);
     }
 
 }

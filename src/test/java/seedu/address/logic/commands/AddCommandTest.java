@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyPatientList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.id.PatientId;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
 
@@ -138,6 +139,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPatient(Patient patient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasName(Name name) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.id.PatientId;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -62,6 +63,11 @@ public interface Model {
      * Returns true if a patient with the same identity as {@code patient} exists in the address book.
      */
     boolean hasPatient(Patient patient);
+
+    /**
+     * Returns true if a patient with the name {@code name} exists in the address book.
+     */
+    boolean hasName(Name name);
 
     boolean hasPatientId(PatientId patientId);
 
