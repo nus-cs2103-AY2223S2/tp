@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,13 +46,7 @@ public class ArgumentMultimap {
      */
     public List<String> getAllValues(Prefix prefix) {
         if (!argMultimap.containsKey(prefix)) {
-            if (prefix == PREFIX_TAG) {
-                return new ArrayList<>();
-            } else {
-                ArrayList<String> returnedList = new ArrayList<>();
-                returnedList.add("");
-                return returnedList;
-            }
+            return new ArrayList<>();
         }
         return new ArrayList<>(argMultimap.get(prefix));
     }
