@@ -15,7 +15,7 @@ import seedu.vms.model.GroupName;
 public class VaxType implements Comparable<VaxType> {
     public static final int LIMIT_GROUPS = 10;
     public static final int LIMIT_INGREDIENTS = 30;
-    public static final int LIMIT_HISTORY_REQ = 300;
+    public static final int LIMIT_HISTORY_REQ = 10;
 
     public static final String MESSAGE_GROUPS_CONSTRAINTS =
             String.format("Only a maximum of %d groups are allowed", LIMIT_GROUPS);
