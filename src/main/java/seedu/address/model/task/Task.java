@@ -2,10 +2,12 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
 import seedu.address.model.Relationship;
+import seedu.address.model.shared.Datetime;
 import seedu.address.model.person.Person;
 import seedu.address.model.shared.Id;
 
@@ -25,6 +27,9 @@ public class Task implements Relationship<Task> {
 
     private List<Person> peoples;
 
+    private final Datetime createDateTime;
+    private final Datetime deadline;
+
     /**
      * Every field must be present and not null.
      */
@@ -34,19 +39,37 @@ public class Task implements Relationship<Task> {
         this.content = content;
         this.status = status;
         this.id = new Id();
+        this.deadline = new Datetime();
+        this.createDateTime = new Datetime(LocalDateTime.now().toString());
 
     }
 
     /**
-     * Every field must be present and not null.
      * ID must be specific when loading from local storage
      */
-    public Task(Title title, Content content, Status status, Id id) {
+    public Task(Title title, Content content, Status status, Datetime deadline, Id id) {
         requireAllNonNull(title, content, status);
         this.title = title;
         this.content = content;
         this.status = status;
         this.id = id;
+        this.deadline = deadline;
+        this.createDateTime = new Datetime(LocalDateTime.now().toString());
+
+
+    }
+
+    /**
+     * ID must be specific when loading from local storage
+     */
+    public Task(Title title, Content content, Status status, Datetime createDateTime, Datetime deadline, Id id) {
+        requireAllNonNull(title, content, status);
+        this.title = title;
+        this.content = content;
+        this.status = status;
+        this.id = id;
+        this.createDateTime = createDateTime;
+        this.deadline = deadline;
 
     }
 
@@ -77,6 +100,14 @@ public class Task implements Relationship<Task> {
     public List<Person> getPeoples() {
         return peoples;
     }
+    public Datetime getCreateDateTime() {
+        return createDateTime;
+    }
+
+    public Datetime getDeadline() {
+        return deadline;
+    }
+
 
     /**
      * Returns true if both tasks have the same title.
