@@ -13,6 +13,16 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+This Developer Guide serves as documentation of the **[architecture](#architecture)** and **[design](#design)** of the **SOCket** application, with some key **[implementation](#implementation)** details of SOCKet's features. The current version of SOCket is `v1.3`.
+
+The Developer Guide is written to aid present and future developers of SOCket with understanding the architecture, design and non-trivial implementations of SOCket's features. In doing so, this guide imparts the knowledge required for developers to further modify and extend the features and functionality of SOCket beyond its current state.
+
+The code for SOCket is hosted on GitHub **[here](https://github.com/AY2223S2-CS2103T-T12-4/tp)**. Refer to the following section for how to **[set up and get started](#setting-up-getting-started)** with SOCket.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
