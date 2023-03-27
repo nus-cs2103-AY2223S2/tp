@@ -39,11 +39,10 @@ public class IncreaseCommandTest {
 
         IncreaseFoodDescriptor descriptor = new IncreaseFoodDescriptorBuilder().withQuantity(VALID_QUANTITY_INCREASE)
                 .build();
-
         IncreaseCommand increaseCommand = new IncreaseCommand(indexLastFood, descriptor);
 
-        String expectedMessage = String.format(IncreaseCommand.MESSAGE_INCREASE_FOOD_SUCCESS, increasedFood);
-
+        String expectedMessage = String.format(IncreaseCommand.MESSAGE_INCREASE_FOOD_SUCCESS, increasedFood) + " by "
+                + descriptor.getQuantity();
         Model expectedModel = new ModelManager(new Wife(model.getWife()), new UserPrefs());
         expectedModel.setFood(lastFood, increasedFood);
 
@@ -61,13 +60,16 @@ public class IncreaseCommandTest {
         String newQuantityString = newQuantity.toString();
         Food increasedFood = foodInList.withQuantity(newQuantityString).build();
 
-        String expectedMessage = String.format(IncreaseCommand.MESSAGE_INCREASE_FOOD_SUCCESS, increasedFood);
         Model expectedModel = new ModelManager(new Wife(model.getWife()), new UserPrefs());
         expectedModel.setFood(lastFood, increasedFood);
         IncreaseCommandParser increaseCommandParser = new IncreaseCommandParser();
 
         try {
             IncreaseCommand increaseCommand = increaseCommandParser.parse(" 2");
+            IncreaseFoodDescriptor descriptor = increaseCommand.increaseFoodDescriptor;
+            String expectedMessage = String.format(IncreaseCommand.MESSAGE_INCREASE_FOOD_SUCCESS, increasedFood)
+                    + " by "
+                    + descriptor.getQuantity();
             assertCommandSuccess(increaseCommand, model, expectedMessage, expectedModel);
         } catch (ParseException ignored) {
             assert false;

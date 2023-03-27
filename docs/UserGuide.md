@@ -1,8 +1,6 @@
 ---
-layout: page
-title: User Guide
+USER GUIDE FOR WIFE
 ---
-
 WIFE is always right. Our product Well Informed Fridge Environment &lt;WIFE/&gt; helps users to manage 
 their food items in the fridge, and never question her. With this, one never have to worry about
 optimizing storage and organization of food items in a refrigerator, thereby reducing waste and 
@@ -17,7 +15,7 @@ improving the efficiency of grocery shopping.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `wife.jar` from [here]().
+2. Download the latest `wife.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-1/tp/releases/tag/v1.3(trial)).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your WIFE.
 
@@ -72,6 +70,8 @@ Format: `help [COMMAND_NAME]` where `COMMAND_NAME` may be omitted to view genera
   * delete
   * delbytag
   * edit
+  * inc
+  * dec
   * find
   * inc
   * list
@@ -197,9 +197,9 @@ Meat
 Vegetables
 ```
 
-### Updating a food item : `update`
+### Updating a food item : `edit`
 
-Update  food items in your fridge.
+Edit  food items in your fridge.
 
 Format: `update <Old Item> /to <New Item>`
 
@@ -211,7 +211,40 @@ Example: <br/>
 You have successfully updated Meiji Milk to Meiji Chocolate Milk
 ```
 
+### Increasing a quantity of a food item : `inc`
+
+Increases the quantity of a Food item in WIFE.
+
+Format: `inc INDEX <q/quantity>`
+
+* Increases the quantity of the food item at the specified `INDEX`.
+* The index refers to the index number shown in the displayed food item list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* If no quantity is specified, the default quantity to increase is 1.
+* If a quantity is specified, it **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+`inc 1` returns
+```shell
+  Increased Food: Broccoli (expires on: 03-03-2033) by 1
+```
+`inc 1 q/100` returns
+
+```shell
+  Increased Food: Broccoli (expires on: 03-03-2033) by 100
+```
+
+### Decreasing the quantity of a food item : `dec`
+Decreases the quantity of a Food item in WIFE.
+Format: `dec INDEX <q/quantity>`
+
+Usage is the same as `inc`, with the only difference is being to decrease the quantity of the Food item.
+
 ### Deleting a food item : `delete`
+```shell
+  Deleted Food: Broccoli (expires on: 03-03-2033)
+```
 
 Deletes the specified food item from WIFE.
 
@@ -284,11 +317,19 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: *placeholder* <br/>
-**A**: *placeholder*
+**Q**: Can I use this application with other people? <br/>
+**A**: As of now, WIFE does not support concurrent users. If you would like to share your WIFE food list with another
+user, install WIFE on their computer and overwrite their data file with the data file created by WIFE in your computer.
+
+**Q**: Can I use WIFE on mobile devices? <br/>
+**A**: As of now, WIFE is designed to only run on computers and laptops due to the usage of the Command Line Interface.
+There is no support for mobile devices yet.
+
+**Q**: Do I need to connect to wifi to use WIFE? <br/>
+**A**: No, you can use WIFE without a wifi connection.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-*coming soon...*
+*coming soon...(table of commands summary)*
