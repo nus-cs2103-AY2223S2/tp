@@ -33,39 +33,62 @@ Contact nUS is a **desktop app for managing NUS student's schedule, optimized fo
 
    * `edit 1 n/CS2101 t/Tutorial` : Edits the module name and item type of the 1st item to be `CS2101` and `Tutorial` respectively.
 
-<!--    * `clear` : Deletes all items.
+   * `exit` : Exits the app.
 
-   * `exit` : Exits the app. -->
+<!--    * `clear` : Deletes all items. -->
+
+
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Features [Coming soon]
+## Definition
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/MODULE_NAME`, `MODULE_NAME` is a parameter which can be used as `add n/CS1231S`.
+    * e.g. in `add n/MODULE_NAME`, `MODULE_NAME` is a parameter which can be used as `add n/CS1231S`.
+
+* Words in `UPPER_CASE` are usually in *string* format, except for `TIMESLOT` and `DEADLINE`, which are both in DateTime format, **ddMMyyyy HH:mm**.
 
 * Items in square brackets are optional.<br>
-  e.g `n/MODULE_NAME [t/TAG]` can be used as `n/CS1010S t/Can attend online :)` or as `n/CS1010S`.
+    * e.g `n/MODULE_NAME [t/TAG]` can be used as `n/CS1010S t/Can attend online :)` or as `n/CS1010S`.
 
-<!-- * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Lecture`, `t/Lecture t/Lab` etc. -->
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  * e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Lecture`, `t/Lecture t/Lab` etc.
 
-<!-- * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/MODULE_NAME t/TYPE`, `t/TYPE n/MODULE_NAME` is also acceptable. -->
+* Parameters can be in any order.<br>
+* e.g. if the command specifies `n/MODULE_NAME t/TAG`, `t/TAG n/MODULE_NAME` is also acceptable.
 
-<!-- * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `e/Monday 10am-12pm e/Tuesday 2-4pm`, only `e/Tuesday 2-4pm` will be taken. -->
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  * e.g. if you specify `e/280323 10:00 e/290323 12:00`, only `e/290323 12:00` will be taken.
 
 <!-- * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`. -->
+  * e.g. if the command specifies `help 123`, it will be interpreted as `help`. -->
 
-</div>
+* **MODULE_NAME** is the name of the module to be added into the module tracker.
+
+* **TAG** is either one of the three, Lecture, Tutorial, or Lab.
+
+* **TIMESLOT** represents when the event takes place.
+
+* **VENUE** is the location of the classroom or auditorium the class is held.
+
+* **TEACHER** is the name of the lecturer or TA conducting the class.
+    * s stands for *sensei*, which means teacher in Japanese!
+
+* **DEADLINES** contain the details of a task with deadline.
+
+* **REMARKS** are additional details about the class you want to add.
+
+* **RESOURCE** can be the module website on Canvas, or any other external links.
+    * As you may have guessed, as an NUS student, c stands for *Canvas*, our favourite website.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Features
 
 ### Viewing help : `help`
 
@@ -80,24 +103,16 @@ Format: `help`
 
 Adds an item to the module tracker.
 
-Format: `add n/MODULE_NAME t/TYPE e/TIMESLOT a/VENUE [s/TEACHER] [d/DEADLINES] [r/REMARKS]`
-
-* MODULE_NAME is the name of the module to be added into the module tracker.
-* TYPE is either one of the three, Lecture, Tutorial, or Lab.
-* TIMESLOT represents when the event takes place.
-* VENUE is the location of the classroom or auditorium the class is held.
-* TEACHER is the name of the lecturer or TA conducting the class.
-* DEADLINES contain the details of a task with deadline.
-* REMARKS are additional details about the class you want to add.
+Format: `add n/MODULE_NAME t/TAG [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS] [c/RESOURCE]`
 
 <!-- <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A module can have any number of tags (including 0)
 </div> -->
 
 Examples:
-* `add n/CS2103T t/Lecture e/Friday 2-4pm a/i3-AUD`
-* `add n/CS1101S t/Tutorial e/Monday 10am-12pm a/COM1-0217 s/Sam Wan`
-* `add n/CS2030S t/Lab e/Thursday 12-2pm a/COM1-B112 d/LAB DUE TUESDAY 23:59 r/Attendance not compulsory :)`
+* `add n/CS2103T t/Lecture`
+* `add n/CS1101S t/Tutorial e/03042023 10:00 a/COM1-0217 s/Sam Wan`
+* `add n/CS2030S t/Lab a/COM1-B112 d/04042023 23:59 r/Attendance not compulsory :)`
 
 ### Listing all modules : `list`
 
@@ -109,7 +124,7 @@ Format: `list`
 
 Edits an existing item in the module tracker.
 
-Format: `edit INDEX [n/MODULE_NAME] [t/TYPE] [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS]`
+Format: `edit INDEX [n/MODULE_NAME] [t/TAG] [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS] [c/RESOURCE]`
 
 * Edits the items at the specified INDEX. The index refers to the index number shown in the displayed module list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -120,7 +135,7 @@ Format: `edit INDEX [n/MODULE_NAME] [t/TYPE] [e/TIMESLOT] [a/VENUE] [s/TEACHER] 
 Examples:
 *  `edit 1 n/CS2101 t/Tutorial` Edits the module name, item type and date of the 1st item to be `CS2101` and `Tutorial` respectively.
 *  `edit 2 a/COM3-B110 s/Professor Franklin Stein r/Funny lecturer haha` Edits the venue, teacher and remark of the 2nd item to be `COM3-B110`, `Professor Franklin Stein` and `Funny lecturer haha` respectively.
-*  `edit 5 n/CS1231S d/Assignment 1: due 06/09/2023` Edits the module name and deadline of the 5th item to be `CS1231S` and `Assignment 1: due 06/09/2023` respectively.
+*  `edit 5 n/CS1231S d/02042023 23:59` Edits the module name and deadline of the 5th item to be `CS1231S` and `02042023 23:59` respectively.
 
 ### Finding a module or type : `find`
 
@@ -167,9 +182,9 @@ Examples:
 
 <!-- ### Clearing all entries : `clear`
 
-Clears all entries from the module tracker. -->
+Clears all entries from the module tracker.
 
-Format: `clear`
+Format: `clear` -->
 
 ### Exiting the program : `exit`
 
@@ -186,32 +201,34 @@ Contact nUS data are saved in the hard disk automatically after any command that
 AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Contact nUS will discard all data and start with an empty data file at the next run.
 </div> 
 
 <!-- ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._ -->
 
-<!-- --------------------------------------------------------------------------------------------------------------------
+ --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I transfer my data to another Computer? <br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ContactnUS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
- -->
+ 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `n/MODULE_NAME t/TYPE e/TIMESLOT a/VENUE [s/TEACHER] [d/DEADLINES] [r/REMARKS]…​` <br> e.g., `add n/CS2103T t/Lecture e/Friday 2-4pm a/i3-AUD s/Professor Damith d/Weekly Quiz due Friday 13:59 r/Can attend online!` |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/MODULE_NAME] [t/TYPE] [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS]​`<br> e.g.,`edit 2 s/Low Mai Khye r/Funny TA`                                                                       |
-| **List**   | `list`                                                                                                                                                                                                                |
-| **Exit**   | `exit`                                                                                                                                                                                                                |
+| Action     | Format, Examples                                                                                                                                                                                                                                                         |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **add**    | `n/MODULE_NAME t/TAG [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS] [c/RESOURCE]…​` <br> e.g., `add n/CS2103T t/Lecture e/310323 14:00 a/i3-AUD s/Professor Damith d/07042023 13:59 r/Can attend online! c/https://nus-cs2103-ay2223s2.github.io/website/` |
+| **delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                      |
+| **edit**   | `edit INDEX [n/MODULE_NAME] [t/TAG] [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS] [c/RESOURCE] ​`<br> e.g.,`edit 2 s/Low Mai Khye r/Funny TA`                                                                                                             |
+| **list**   | `list`                                                                                                                                                                                                                                                                   |
+| **exit**   | `exit`                                                                                                                                                                                                                                                                   |
 
 <!-- **Clear** | `clear` -->
 <!-- **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` -->
 <!-- **Help** | `help` -->
+
+</div>
