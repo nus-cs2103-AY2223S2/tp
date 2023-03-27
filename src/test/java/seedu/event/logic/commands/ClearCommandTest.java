@@ -6,7 +6,11 @@ import static seedu.event.testutil.TypicalEvents.getTypicalEventBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.event.model.*;
+import seedu.event.model.ContactList;
+import seedu.event.model.EventBook;
+import seedu.event.model.Model;
+import seedu.event.model.ModelManager;
+import seedu.event.model.UserPrefs;
 
 public class ClearCommandTest {
 
