@@ -524,7 +524,8 @@ Similar to [`AddCommand`](#add-command), the arguments for `EditCommand` are uno
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Info**: When editing a contact, we only need to update the common modules for **that person**. However, when editing the user, we need to update common modules for **every person** in EduMate.
+:information_source: **Info**: <br>
+When editing a contact, we only need to update the common modules for **that person**. However, when editing the user, we need to update common modules for **every person** in EduMate.
 
 </div>
 
@@ -563,7 +564,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+:information_source: **Note:** <br>
+The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -575,11 +577,15 @@ The `tag` command allows user to tag a ModuleTag and Lessons to an existing cont
 
 **Parsing the inputs** - When the user types in an input, the parser will extract out the relevant arguments.
 
+<div markdown="span" class="alert alert-info">
+
 :information_source: **Command Formats**: <br>
 
-* `tag m/MODULE`: Tags a module to user.
-* `tag INDEX m/MODULE`: Tags a module to the contact at specified index.
-* `tag m/MODULE DAY START END`: Tags a lesson to the user with the specified parameters, and tags the module if not already done so.
+- `tag m/MODULE`: Tags a module to user.
+- `tag INDEX m/MODULE`: Tags a module to the contact at specified index.
+- `tag m/MODULE DAY START END`: Tags a lesson to the user with the specified parameters, and tags the module if not already done so.
+
+</div>
 
 **Distinguishing between contact and user** - As specified in the command formats, if the user wants to edit their own details, they can just leave out the index. On our end, the `ArgumentMultimap` has been modified to accept null as a valid index, which will handle such a use case.
 
@@ -603,9 +609,9 @@ The last viewed profile will remain displayed on the profile panel should there 
 
 :information_source: **Command Formats** <br>
 
-*`view` : Displays user's profile on the display panel. <br>
-*`view n/XYZ` : Display XYZ's profile on the display panel. <br>
-*`view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
+- `view` : Displays user's profile on the display panel. <br>
+- `view n/XYZ` : Display XYZ's profile on the display panel. <br>
+- `view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
 </div>
 
 **Parsing the inputs** - When the user enters the input, the `ViewCommandParser` will first check if the arguments are empty.
@@ -641,7 +647,7 @@ For example, if the user wants to search for a person but does not know the full
 
 :information_source: **Command Formats:** <br>
 
-* `find [z/FIELD MORE_FIELD]`: Finds the contacts matching the field found in the 'z' field.
+- `find [z/FIELD MORE_FIELD]`: Finds the contacts matching the field found in the 'z' field.
 
 </div>
 
@@ -676,16 +682,17 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 :information_source: **Command Formats:** <br>
 
-* `sort`: Sorts the contacts by their index. <br>
-* `sort [z/a]…ZWSP`: Sorts the contacts by the `z` field in **ascending** order.<br>
-* `sort [z/d]…ZWSP`: Sorts the contacts by the `z` field in **descending** order.<br>
-* `sort [z/]…ZWSP`: Sorts the contacts by the `z` field in their **default** order.<br>
+-`sort`: Sorts the contacts by their index. <br>
+-`sort [z/a]…ZWSP`: Sorts the contacts by the `z` field in **ascending** order.<br>
+-`sort [z/d]…ZWSP`: Sorts the contacts by the `z` field in **descending** order.<br>
+-`sort [z/]…ZWSP`: Sorts the contacts by the `z` field in their **default** order.<br>
 
 </div>
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** Unlike the other commands, the ordering of the arguments **does matter**. For example, `sort g/d n/a` is different from `sort n/a g/d`.
+:bulb: **Tip:** <br>
+Unlike the other commands, the ordering of the arguments **does matter**. For example, `sort g/d n/a` is different from `sort n/a g/d`.
 
 </div>
 
@@ -693,7 +700,8 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tips**: JavaFX works with `ObservableList` to populate the UI components. However, we can wrap this `ObservableList` inside a `SortedList` which accepts a `Comparator` as an argument. In this way, we only need to set this argument if we want to sort something in the UI.
+:bulb: **Tips**: <br>
+JavaFX works with `ObservableList` to populate the UI components. However, we can wrap this `ObservableList` inside a `SortedList` which accepts a `Comparator` as an argument. In this way, we only need to set this argument if we want to sort something in the UI.
 
 </div>
 
@@ -705,9 +713,9 @@ The `list` command will allow users to view all the contacts saved in `EduMate`.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Command Formats:**
+:information_source: **Command Formats:** <br>
 
-* `list`: lists all contacts in the EduMate Application.
+-`list`: lists all contacts in the EduMate Application.
 
 </div>
 
@@ -719,15 +727,16 @@ The `exit` command allows users to exit the EduMate Application via the command 
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Command Formats:**
+:information_source: **Command Formats:** <br>
 
-* * `exit`: Exits the EduMate Application.
+- `exit`: Exits the EduMate Application.
 
 </div>
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Info**: Sets the `isExit` boolean in the `CommandResult` class to `true` which is passed through multiple classes to the `MainWindow` class to handle the exit.
+:information_source: **Info**: <br>
+Sets the `isExit` boolean in the `CommandResult` class to `true` which is passed through multiple classes to the `MainWindow` class to handle the exit.
 
 </div>
 
@@ -927,7 +936,8 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** <br>
+The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -1178,7 +1188,9 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** <br>
+These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
