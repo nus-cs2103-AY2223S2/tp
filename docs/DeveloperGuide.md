@@ -9,6 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
+@junyi
+
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 ## How to use this guide
@@ -16,6 +18,8 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
+
+@junyi
 
 {TODO put the page here instead}
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -25,6 +29,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ## **Design**
 
 ### Architecture
+
+@doug (all the misc todos here)
 
 {TODO drawio}
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -48,7 +54,6 @@ The rest of the App consists of four components.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
 
 **How the architecture components interact with each other**
 
@@ -161,6 +166,7 @@ Classes used by multiple components are in the `mycelium.mycelium.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
+@junyi
 {TODO add a brief interlude here about categorization of implementation details}
 
 ## User Interface
@@ -384,11 +390,19 @@ address book, which automatically reverts it to its pre-fuzzy state.
 
 ## Testing
 
+@ruby
+
 ## DevOps
+
+@junyi
 
 ## Logging
 
+@junyi
+
 ## Documentation
+
+@junyi
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -543,6 +557,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
                                text commands
 * **Project**: A freelance software development job
 * **Client**: An individual associated with a particular project
+
+@junyi
 
 --------------------------------------------------------------------------------------------------------------------
 
