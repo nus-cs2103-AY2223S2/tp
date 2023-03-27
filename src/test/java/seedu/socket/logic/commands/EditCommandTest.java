@@ -12,6 +12,7 @@ import static seedu.socket.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.socket.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.socket.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.socket.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.socket.testutil.Assert.assertThrows;
 import static seedu.socket.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.socket.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.socket.testutil.TypicalPersons.getTypicalSocket;
@@ -21,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import seedu.socket.commons.core.Messages;
 import seedu.socket.commons.core.index.Index;
 import seedu.socket.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.socket.logic.commands.exceptions.CommandException;
 import seedu.socket.model.Model;
 import seedu.socket.model.ModelManager;
 import seedu.socket.model.Socket;
@@ -204,6 +206,18 @@ public class EditCommandTest {
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_exceedsTagsRestriction_throwsCommandException() {
+        Person editedPerson = new PersonBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson)
+                .withTags("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11").build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+
+        assertThrows(CommandException.class,
+                String.format(EditCommand.MESSAGE_EXCEED_TAG,
+                        descriptor.getTags().get().size()), () ->editCommand.execute(model));
     }
 
     @Test

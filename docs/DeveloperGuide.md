@@ -58,7 +58,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its *API* in an `interface` with the same name as the component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
@@ -116,17 +116,19 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/socket/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="800" />
 
 
 The `Model` component,
 
-* stores the `Socket` data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the `Socket` data, i.e., all `Person` objects (contained in a `UniquePersonList` object) and all `Project` objects (contained in a `UniqueProjectList` object).
+* stores the `VersionedSocket` data, i.e., `Socket` states to restore, either to `undo` or `redo` changes
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the `Project` objects as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Project>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Socket`, which `Person` references. This allows `Socket` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has `Language` and `Tag` lists in `Socket`, which `Person` references. This allows `Socket` to only require one `Language`/`Tag` object per unique language/tag, instead of each `Person` needing their own `Language`/`Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -140,9 +142,10 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both 'Socket' data and user preference data in json format, and read them back into corresponding objects.
+* can save both `Socket` data and user preference data in json format, and read them back into corresponding objects.
+* can save data on `Person` members of a `Project` and restore references to same `Person` objects in `UniquePersonList` upon reading `Socket` data back into corresponding objects.
 * inherits from both `SocketStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -156,7 +159,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Undo/redo feature
 
-This feature was implemented as proposed in [AddressBook-Level3](https://se-education.org/addressbook-level3/DeveloperGuide.html#proposed-undoredo-feature) 
+_This feature was implemented as proposed in [AddressBook-Level3](https://se-education.org/addressbook-level3/DeveloperGuide.html#proposed-undoredo-feature)_
 
 The proposed undo/redo mechanism is facilitated by `VersionedSocket`. It extends `Socket` with an undo/redo history, stored internally as an `socketStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -231,6 +234,29 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+ 
+### List Feature 
+The `list` feature allows user to display a list of persons. The user can filter the list by tag or language. `list` filters the list by **AND** search. If no argument is given, then list by default displays all persons in SOCket. 
+The feature is mainly facilitated by the `ListCommand` class and with the help of Predicate classes. 
+`ListCommand` extends `Command` and implements the following operation: 
+* `ListCommand#execute()` - Displays the list of persons in SOCket that contains the given keyword of each respective fields. 
+
+The `ListCommandParser` class is used to parse and verify the user input to create the list command. 
+Once the input is parsed by `ListCommandParser`, a list of keywords for each respective field is then used to create the respective Predicate class to check if any keyword matches the given field of a Person. 
+
+The Predicates relevant to `ListCommand` differ from `FindCommand` in the way that it looks for full keyword matches in Person(s). If no fields are given, list of persons will be update by `PREDICATE_SHOW_ALL_PERSONS`/ a true predicate. 
+Otherwise, this list of Predicate classes include: 
+* `ListCommandLanguagePredicate`
+* `ListCommandTagPredicate`
+
+This Predicate class will return True as long as any of the Predicate classes inside it returns True.
+The Predicate classes works using an AND search, persons will be shown in the resulting list only if all the keywords given should match to the Person. 
+
+### Design considerations:
+**Filtering by other fields** 
+* Initially considered list to not have additional arguments but as decided to filter through Language and Tag due to:
+  * Find currently does a partial keyword match, thus list allows user to have the option to do full keyword matches 
+  * As language(s) and tag(s) are the only fields which can belong to more than one person, it makes sense to use list to do full keyword matches on these fields.
 
 ### Sort Feature
 The sort feature allows users to sort the list of persons and projects in the application. 
@@ -250,7 +276,7 @@ The `sort` makes use of a comparator that sorts the persons or projects by the c
 The find feature allows users to display a list of persons that contains the given keyword of each respective fields.
 The feature is facilitated by the `FindCommand` class mainly but Predicate classes are also used.
 `FindCommand` extends `Command` and implements the following operation:
-* `FindCommand#execute()` — Finds and displats the list of persons in the application that contains the given keyword of each respective fields.
+* `FindCommand#execute()` — Finds and displays the list of persons in the application that contains the given keyword of each respective fields.
 
 The `FindCommandParser` class is used to parse & verify the user input to create the find command.
 Once the input is parsed by `FindCommandParser`, a list of keywords for each respective field is then used to create a Predicate class that checks if any keyword matches the given field of a Person.
@@ -439,7 +465,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list contact.
 2.  SOCket shows a list of contacts.
 3.  User requests to sort the list by a category.
-4.  SOCket sorts alphanumerically by that category and shows the sorted list of contacts.
+4.  SOCket sorts the contacts by that category and displays the sorted contact list.
 
     Use case ends.
 
@@ -454,14 +480,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. SOCket shows an error message. 
   
     Use case resumes from step 2.
-
-* 3b. No category is given.
-
-    * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
   
 * 3b. No category is given.
 
-  * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
+  * 3b1. SOCket sorts the list by name and displays the sorted list.
     
      Use case ends.
 
@@ -748,6 +770,32 @@ Use case ends.
 3. User wishes to view the first contact in the list.
 4. SOCket displays all the person's information at the detail display window.
 
+   Use case ends.
+
+**Use case: UC19 Sorting project list**
+
+Similar to **UC04 Sort Contacts**, except,
+* the list being sorted is the list of projects instead of contacts
+* the default sort when no category is provided is by the deadline of the project instead of the name.
+
+**Use case: UC20 Assigning a member from a project**
+
+**Use case: UC21 Unassigning a member from a project**
+1. User requests to remove a member from a project.
+2. SOCket removes the member from the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The chosen member is not assigned to the project.
+    * 2a1. SOCket shows an error message.
+
+      Use case ends.
+* 2b. The chosen project does not exist.
+    * 2b1. SOCket shows an error message.
+
+      Use case ends.
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -763,7 +811,8 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **GitHub profiles/repositories**: GitHub username e.g. `chia-yh` or repository path e.g. `AY2223S2-CS2103T-T12-4/tp`
+* **GitHub profiles**: GitHub username e.g. `chia-yh`
+* **GitHub repository**: repository path e.g. `AY2223S2-CS2103T-T12-4/tp`
 
 --------------------------------------------------------------------------------------------------------------------
 

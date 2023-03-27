@@ -42,14 +42,14 @@ public class EditProjectCommand extends Command {
             + "[" + PREFIX_REPO_HOST + "REPO HOST] "
             + "[" + PREFIX_REPO_NAME + "REPO NAME] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_MEETING + "MEETING]...\n "
+            + "[" + PREFIX_MEETING + "MEETING]\n "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Socket2.0 "
             + PREFIX_DEADLINE + "02/01/2023-2359";
 
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PROJECT = "This person already exists in SOCket.";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in SOCket.";
 
     private final Index index;
     private final EditProjectDescriptor editProjectDescriptor;
@@ -138,7 +138,6 @@ public class EditProjectCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code languages} and {@code tags} is used internally.
          */
         public EditProjectDescriptor(EditProjectDescriptor toCopy) {
             setName(toCopy.name);
