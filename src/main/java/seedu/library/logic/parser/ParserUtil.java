@@ -12,6 +12,7 @@ import seedu.library.logic.parser.exceptions.ParseException;
 import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
+import seedu.library.model.bookmark.Rating;
 import seedu.library.model.bookmark.Title;
 import seedu.library.model.bookmark.Url;
 import seedu.library.model.tag.Tag;
@@ -109,6 +110,21 @@ public class ParserUtil {
             throw new ParseException(Url.MESSAGE_CONSTRAINTS);
         }
         return new Url(trimmedUrl);
+    }
+
+    /**
+     * Parses a {@code String rating} into an {@code Rating}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code rating} is invalid.
+     */
+    public static Rating parseRating(String rating) throws ParseException {
+        requireNonNull(rating);
+        String trimmedRating = rating.trim();
+        if (!Rating.isValidRating(trimmedRating)) {
+            throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        return new Rating(trimmedRating);
     }
 
     /**

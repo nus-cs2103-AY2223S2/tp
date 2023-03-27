@@ -22,18 +22,20 @@ public class Bookmark {
 
     // Data fields
     private final Author author;
+    private final Rating rating;
     private final Url url;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Bookmark(Title title, Progress progress, Genre genre, Author author, Url url, Set<Tag> tags) {
+    public Bookmark(Title title, Progress progress, Genre genre, Author author, Rating rating, Url url, Set<Tag> tags) {
         requireAllNonNull(title, progress, genre, author, tags);
         this.title = title;
         this.progress = progress;
         this.genre = genre;
         this.author = author;
+        this.rating = rating;
         this.url = url;
         this.tags.addAll(tags);
     }
@@ -53,6 +55,11 @@ public class Bookmark {
     public Author getAuthor() {
         return author;
     }
+
+    public Rating getRating() {
+        return rating;
+    }
+
     public Url getUrl() {
         return url;
     }
@@ -97,6 +104,7 @@ public class Bookmark {
                 && otherBookmark.getProgress().equals(getProgress())
                 && otherBookmark.getGenre().equals(getGenre())
                 && otherBookmark.getAuthor().equals(getAuthor())
+                && otherBookmark.getRating().equals(getRating())
                 //&& otherBookmark.getUrl().equals(getUrl())
                 && otherBookmark.getTags().equals(getTags());
     }
@@ -117,6 +125,8 @@ public class Bookmark {
                 .append(getGenre())
                 .append("; Author: ")
                 .append(getAuthor())
+                .append(" Rating: ")
+                .append(getRating())
                 .append(" Url: ")
                 .append(getUrl());
 
