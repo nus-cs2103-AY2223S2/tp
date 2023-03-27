@@ -1,6 +1,5 @@
 ---
-layout: page
-title: User Guide
+USER GUIDE FOR WIFE
 ---
 
 WIFE is always right. Our product Well Informed Fridge Environment &lt;WIFE/&gt; helps users to manage 
@@ -72,6 +71,8 @@ Format: `help [COMMAND_NAME]` where `COMMAND_NAME` may be omitted to view genera
   * delete
   * delbytag
   * edit
+  * inc
+  * dec
   * find
   * inc
   * list
@@ -197,9 +198,9 @@ Meat
 Vegetables
 ```
 
-### Updating a food item : `update`
+### Updating a food item : `edit`
 
-Update  food items in your fridge.
+Edit  food items in your fridge.
 
 Format: `update <Old Item> /to <New Item>`
 
@@ -211,7 +212,40 @@ Example: <br/>
 You have successfully updated Meiji Milk to Meiji Chocolate Milk
 ```
 
+### Increasing a quantity of a food item : `inc`
+
+Increases the quantity of a Food item in WIFE.
+
+Format: `inc INDEX <q/quantity>`
+
+* Increases the quantity of the food item at the specified `INDEX`.
+* The index refers to the index number shown in the displayed food item list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* If no quantity is specified, the default quantity to increase is 1.
+* If a quantity is specified, it **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+`inc 1` returns
+```shell
+  Increased Food: Broccoli by 1 (expires on: 03-03-2033)
+```
+`inc 1 q/100` returns
+
+```shell
+  Increased Food: Broccoli by 100 (expires on: 03-03-2033)
+```
+
+### Decreasing the quantity of a food item : `dec`
+Decreases the quantity of a Food item in WIFE.
+Format: `dec INDEX <q/quantity>`
+
+Usage is the same as `inc`, with the only difference is being to decrease the quantity of the Food item.
+
 ### Deleting a food item : `delete`
+```shell
+  Deleted Food: Broccoli (expires on: 03-03-2033)
+```
 
 Deletes the specified food item from WIFE.
 
@@ -291,4 +325,4 @@ _Details coming soon ..._
 
 ## Command summary
 
-*coming soon...*
+*coming soon...(table of commands summary)*
