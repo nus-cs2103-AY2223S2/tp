@@ -114,11 +114,17 @@ public class EditTaskCommand extends Command {
             EditEventDescriptor editEventDescriptor = new EditEventDescriptor(editTaskDescriptor);
 
             Title updatedTitle = editEventDescriptor.getTitle().orElse(eventToEdit.getTitle());
+
             LocalDateTime updatedFromDateTime = editEventDescriptor.getFromDateTime()
                     .orElse(eventToEdit.getEventDateTimes().from);
             LocalDateTime updatedToDateTime = editEventDescriptor.getToDateTime()
                     .orElse(eventToEdit.getEventDateTimes().to);
+
+            if (!EventDateTimes.isValidEventDateTimes(updatedFromDateTime, updatedToDateTime)) {
+                throw new CommandException(EventDateTimes.MESSAGE_CONSTRAINTS);
+            }
             EventDateTimes updatedEventTimes = new EventDateTimes(updatedFromDateTime, updatedToDateTime);
+
             Description oldDescription = eventToEdit.getDescription().orElse(null);
             Description updatedDescription = editEventDescriptor.getDescription().orElse(oldDescription);
             Priority updatedPriority = editEventDescriptor.getPriority().orElse(eventToEdit.getPriority());
