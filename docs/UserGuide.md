@@ -18,15 +18,15 @@ title: User Guide
     - [Editing a person's modules](#3-editing-a-persons-modules)
     - [Finding a person by their modules](#4-finding-a-person-by-their-modules)
 - [Commands](#commands)
-  - [Viewing help: `help`](#viewing-help--help)
+  - [Viewing help : `help`](#viewing-help--help)
   - [Adding a person: `add`](#adding-a-person--add)
-  - [Viewing a person/Changing tabs: `view`](#viewing-a-personchanging-tabs--view)
-  - [Editing a person: `edit`](#editing-a-person--edit)
-  - [Finding a person: `find`](#finding-a-person--find)
-  - [Lising all persons/Resetting filters: `list`](#listing-all-personsresetting-filters--list)
-  - [Deleting a person: `delete`](#deleting-a-person--delete)
-  - [Clearing all entries: `clear`](#clearing-all-entries--clear)
-  - [Exiting the program: `exit`](#exiting-the-program--exit)
+  - [Viewing a person/Changing tabs : `view`](#viewing-a-personchanging-tabs--view)
+  - [Editing a person : `edit`](#editing-a-person--edit)
+  - [Finding a person : `find`](#finding-a-person--find)
+  - [Lising all persons/Resetting filters : `list`](#listing-all-personsresetting-filters--list)
+  - [Deleting a person : `delete`](#deleting-a-person--delete)
+  - [Clearing all entries : `clear`](#clearing-all-entries--clear)
+  - [Exiting the program : `exit`](#exiting-the-program--exit)
 - [Data Management](#data-management)
 - [FAQ](#faq)
 - [Upcoming Features](#upcoming-features)
@@ -58,7 +58,7 @@ Before you can use CoDoc, you need to download it. To do this, follow these step
       <img src="images/Ui-minimised.png"/>
       <br>
 
-[Scroll back to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Table of Contents*](#table-of-contents)
 
 ### Navigation
 
@@ -74,6 +74,8 @@ This way you can see more content as well.
 - **Person List Panel:** here are your contacts in CoDoc.
 - **Course List Panel:** you can refer to this list when adding a person.
 - **Info Panel:** displays information about a selected person, such as their contact details, modules, and skills, which are presented as tabs.
+
+[Scroll back to *Table of Contents*](#table-of-contents)
 
 ### Tutorial
 
@@ -149,11 +151,13 @@ Our `find` command is pretty powerful; it works for other attributes, like _year
 
 **Related docs:** [Finding a person: `find`](#finding-a-person--find), [Listing all persons/Resetting filters: `list`](#listing-all-personsresetting-filters--list)
 
-Congrats! You have completed the tutorial 🎉 
+**Congrats! You have completed the tutorial 🎉** 
 
-The pre-existing contacts are just some examples that you can play around with, but if you want to start with a fresh contact list, enter `clear` to clear all contacts. Also, if you need more info on the usage of each command, you can refer to the relevant sections below. 
+The pre-existing contacts are just some examples that you can play around with, but if you want to start with a fresh contact list, enter `clear` to clear all contacts. 
 
-[Scroll back to *Tables of Contents*](#table-of-contents)
+Lastly, if you need more info on the usage of each command, you can refer to the relevant sections below. 
+
+[Scroll back to *Table of Contents*](#table-of-contents)
 
 ## Commands
 
@@ -163,6 +167,8 @@ The pre-existing contacts are just some examples that you can play around with, 
 > <img src="images/UiHelpMenu.png"/>
 > * Opens help menu <br>
 > * Equivalent to clicking Help > Help F1 via the GUI <br>
+
+[Scroll back to *Table of Contents*](#table-of-contents)
 
 ### Adding a person: `add`
 
@@ -187,8 +193,12 @@ The pre-existing contacts are just some examples that you can play around with, 
 > - `add` n/John Doe e/johnd@example.com y/2 c/3
     > ![Add Example](images/UiAddContact.jpg)
 
+[Scroll back to *Table of Contents*](#table-of-contents)
+
 ### Viewing a person/Changing tabs: `view`
 `view <PARAMETERS>`<br>
+
+[Scroll back to *Table of Contents*](#table-of-contents)
 
 ### Editing a person: `edit`
 `edit [OPTIONAL/PARAMETER]...`<br>
@@ -201,6 +211,8 @@ The pre-existing contacts are just some examples that you can play around with, 
 > **Examples:**
 > - edit g/91234567 e/johndoe@example.com will edit the github username and email address of the person to be 91234567 and johndoe@example.com respectively.
 > - edit n/Betsy Crower s/ Edits the name of the person to be Betsy Crower and clears all existing skills.
+
+[Scroll back to *Table of Contents*](#table-of-contents)
 
 ### Finding a person: `find`
 `find [OPTIONAL/PARAMETER]...`<br>
@@ -217,9 +229,13 @@ The pre-existing contacts are just some examples that you can play around with, 
 > - `find alex david` returns `Alex Yeoh`, `David Li`<br>
     ![result for 'find alex david'](images/findAlexDavidResult.jpg)
 
+[Scroll back to *Table of Contents*](#table-of-contents)
+
 ### Listing all persons/Resetting filters: `list`
 `list`<br>
 > * Shows all persons stored.<br>
+
+[Scroll back to *Table of Contents*](#table-of-contents)
 
 ### Deleting a person: `delete`
 `delete <INDEX>`<br>
@@ -228,17 +244,20 @@ The pre-existing contacts are just some examples that you can play around with, 
 > * INDEX must be a positive integer 1, 2, 3, ...<br>
 > * E.g. `delete 1` will delete the current person at index 1 as shown in the list panel.<br>
 
+[Scroll back to *Table of Contents*](#table-of-contents)
+
 ### Clearing all entries: `clear`
 `clear`<br>
 > * :warning: Clears **all** entries from CoDoc.<br>
 
+[Scroll back to *Table of Contents*](#table-of-contents)
 
 ### Exiting the program: `exit`
 `exit`<br>
 > * Exits the program. <br>
 > * Equivalent to clicking the close button via the GUI. <br>
 
-[Scroll back to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Table of Contents*](#table-of-contents)
 
 ## Data Management
 **Q**: How do I save my person list?<br>
@@ -252,11 +271,11 @@ The pre-existing contacts are just some examples that you can play around with, 
 
 :warning: If your changes to the data file makes its format invalid, CoDoc will discard all data and start with an empty data file at the next run.
 
-[Scroll back to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Table of Contents*](#table-of-contents)
 
 ## FAQ
 
-[Scroll back to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Table of Contents*](#table-of-contents)
 
 ## Upcoming Features
 
@@ -269,8 +288,7 @@ _Details coming soon ..._
 
 <br>
 
-[Scroll back to *Tables of Contents*](#table-of-contents)
-
+[Scroll back to *Table of Contents*](#table-of-contents)
 
 ## Command Summary 
 
@@ -286,7 +304,7 @@ _Details coming soon ..._
 | View tab                         | view c, view m, view s                                                                                                                      |
 | View user guide and command list | help                                                                                                                                        |
 
-[Scroll back to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Table of Contents*](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -297,4 +315,4 @@ _Details coming soon ..._
 [Scroll back to *Downloading CoDoc*](#downloading-codoc)
 
 --------------------------------------------------------------------------------------------------------------------
-[Scroll back to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Table of Contents*](#table-of-contents)
