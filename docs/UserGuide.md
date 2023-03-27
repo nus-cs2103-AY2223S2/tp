@@ -153,13 +153,38 @@ Copies the information of a person to the user's clipboard.
 
 Format: `copy INDEX`
 
-- Copies the information of the person at the specified `INDEX`.
+- Copies the information of the person at the specified `INDEX` to the user's clipboard.
 - The index refers to the index number shown in the displayed person list.
 - The index **must be a positive integer** 1, 2, 3, …​
 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If FAILS fails to access your clipboard, the information will be displayed in the result display box instead. You can then highlight the text using your mouse and copy it to your clipboard by using `Ctrl + C` on Windows/Linux or `Command + C` on Mac.
+
+</div>
+
 Examples:
 
-- `copy 3`
+- Suppose you want to copy the second person, `Bernice Yu`, entering the command `copy 2` will copy all information into your clipboard.
+![result for 'copy 2'](images/copy2Result.png)
+
+After running the command, the following text is copied into your clipboard.
+```
+  Name: Bernice Yu
+  Phone: 99272758
+  Email: berniceyu@example.com
+  Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
+  Rank: CPL
+  Unit: Bravo
+  Company: Charlie
+  Platoon: Tiger 123
+ ```
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** You can use `find`/`filter` to find a person first before using `copy`!
+
+</div>
 
 ### Editing a person : `edit`
 
