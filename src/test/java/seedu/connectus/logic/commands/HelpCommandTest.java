@@ -1,7 +1,7 @@
 package seedu.connectus.logic.commands;
 
 import static seedu.connectus.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.connectus.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
+import static seedu.connectus.logic.commands.HelpCommand.SHOWING_HELP_WINDOW;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,9 @@ public class HelpCommandTest {
 
     @Test
     public void execute_help_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_WINDOW, true, false);
         assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
     }
+
+    
 }

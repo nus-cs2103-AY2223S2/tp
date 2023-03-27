@@ -10,19 +10,32 @@ public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
-            + "Entering '" + COMMAND_WORD + "' alone returns a separate window with the link to the User Guide.\n"
-            + "Entering '" + COMMAND_WORD + " [COMMAND]' will return the usage instructions for the specified command.\n"
-            + "Example: '" + COMMAND_WORD + " add";
+            + "Entering '" + COMMAND_WORD
+            + "' alone returns a separate window with the link to the User Guide.\n"
+            + "Entering '" + COMMAND_WORD
+            + " [COMMAND]' will return the usage instructions for the specified command.\n"
+            + "Example: '" + COMMAND_WORD + " add' will return usage instructions for add.";
 
+    public static final String SHOWING_HELP_WINDOW = "Opened help window.";
     private final boolean isHelpWindowShown;
     private final String helpMessage;
-    public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
+    /**
+     * Creates a HelpCommand to show URL to User Guide.
+     * This is returned when the user
+     * does not input a command argument.
+     */
     public HelpCommand() {
         this.isHelpWindowShown = true;
-        this.helpMessage = SHOWING_HELP_MESSAGE;
+        this.helpMessage = SHOWING_HELP_WINDOW;
     }
 
+    /**
+     * Creates a HelpCommand to show
+     * a specific command's usage instructions.
+     *
+     * @param command The command input from the user.
+     */
     public HelpCommand(String command) {
         this.isHelpWindowShown = false;
         this.helpMessage = command;
