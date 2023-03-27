@@ -18,8 +18,12 @@ Equipped with both a Graphical User Interface (GUI) and Command Line Interface (
     - [`delete`](#deleting-a-person--delete)
     - [`clear`](#clearing-all-entries--clear)
     - [`exit`](#exiting-the-program--exit)
+    - [`addm`](#adding-a-meeting--addm)
+    - [`findm`](#finding-meetings-by-name--findm)
     - [`export`](#exporting-of-contact--export)
     - [`import`](#importing-of-contacts--import)
+    - [`exportm`](#export-meetings--exportm)
+    - [`importm`](#import-meetings--importm)
     - [Saving of data](#saving-the-data)
     - [Editing of data](#editing-the-data-file)
     - [Archiving of data](#archiving-data-files-coming-in-v20)
@@ -175,6 +179,32 @@ Exits the program.
 
 Format: `exit`
 
+### Adding a Meeting: `addm`
+
+Adds a meeting to the address book.
+
+Format: `addm m/TITLE [p/PERSON]... dt/DATE_TIME l/LOCATION des/DESCRIPTION`
+
+Examples:
+* `addm m/CS2103T Tutorial p/John Doe p/Jane Doe dt/2022-02-22 10:00 l/COM1-B103 des/CS2103T Tutorial`
+* `addm m/CS2103T Tutorial p/John Doe p/Mary Jane dt/2022-02-22 22:22 l/COM1-B103 des/CS2101 Tutorial`
+
+### Finding Meetings by name: `findm`
+
+Find meetings whose names contain any of the given keywords.
+
+Format: `findm KEYWORD [MORE_KEYWORDS]`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
+* Space is delimiter, so if you search `John Doe` it will list all people with either `John` or `Doe` in their name.
+* Only the name of attendees in meeting are searched
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Meetings matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `John Doe` will return Meetings that contain either `John Doe`, or `Doe John`
+
+Examples:
+* `findm John` returns `Meeting` that contains `attendees` whose Name contains `John`
+* `findm John Mary` returns `Meeting` that contains `attendees` whose Name contains `John` or `Mary`
+
 ### Saving the data
 
 QuickContacts data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -226,6 +256,89 @@ Example:
   }
 ]
 ```
+Optional Parameter `f/ true` that forces imports regardless of duplicate values.
+
+Format: `import JSON f/ true`
+
+### Export meetings: `exportm`
+* Exports the meetings at the specified `INDEX`es, between `start` and `end` dates.
+* The indexes refer to the index numbers shown in the displayed meetings list.
+* The indexes **must be positive integers** 1, 2, 3
+* The start and end dates must be valid dates in the DD/MM/YY format
+
+Format: `exportm p/ INDEX1 p/ INDEX2 start/ START_DATE end/ END_DATE`
+
+### Import meetings: `importm`
+* Imports the meetings in the provided JSON.
+* The JSON **must contain a valid array of meetings**
+
+Example:
+```json
+[
+  {
+    "title": "Dinner with Alice",
+    "dateTime": "01/02/2023 19:00",
+    "attendees": [
+      {
+        "name": "Alice Pauline",
+        "phone": "94351253",
+        "email": "alice@example.com",
+        "address": "123, Jurong West Ave 6, #08-111",
+        "tagged": [
+          "friends"
+        ]
+      }
+    ],
+    "location": "NUS",
+    "description": "Weekly catchup"
+  },
+  {
+    "title": "Study session with Benson and Carl",
+    "dateTime": "02/03/2023 15:00",
+    "attendees": [
+      {
+        "name": "Benson Meier",
+        "phone": "98765432",
+        "email": "johnd@example.com",
+        "address": "311, Clementi Ave 2, #02-25",
+        "tagged": [
+          "owesMoney",
+          "friends"
+        ]
+      },
+      {
+        "name": "Carl Kurz",
+        "phone": "95352563",
+        "email": "heinz@example.com",
+        "address": "wall street",
+        "tagged": []
+      }
+    ],
+    "location": "Central Library",
+    "description": "Study for finals"
+  },
+  {
+    "title": "Zoom meeting for agenda planning",
+    "dateTime": "13/03/2023 12:45",
+    "attendees": [
+      {
+        "name": "Alice Pauline",
+        "phone": "94351253",
+        "email": "alice@example.com",
+        "address": "123, Jurong West Ave 6, #08-111",
+        "tagged": [
+          "friends"
+        ]
+      }
+    ],
+    "location": "https://us02web.zoom.us/j/99999999999?pwd=ABCdEfGHiJkYkRuYW5WTLmNopQrSt12",
+    "description": "Plan for project work"
+  }
+]
+
+
+```
+
 Optional Parameter `f/ true` that forces imports regardless of duplicate values.
 
 Format: `import JSON f/ true`

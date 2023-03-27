@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -22,6 +23,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -143,6 +145,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public List<Meeting> getMeetingsByIndexesAndStartEnd(List<Index> indexList, DateTime start, DateTime end) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -162,6 +169,12 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void sortFilteredMeetingList(Comparator comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         @Override
         public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
@@ -187,6 +200,7 @@ public class AddCommandTest {
         public ObservableList<Meeting> getMeetingsList() {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public ObservableList<Meeting> getFilteredMeetingList() {
             throw new AssertionError("This method should not be called.");
