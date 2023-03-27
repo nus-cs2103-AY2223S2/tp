@@ -38,23 +38,35 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_validArgs_returnsDeleteLectureCommand() {
         assertParseSuccess(parser, "Topic 1 /mod ST2334",
-                new DeleteLectureCommand(TypicalLectures.getSt2334Topic1().getName(),
-                        TypicalModules.getSt2334().getCode()));
+                new DeleteLectureCommand(
+                    TypicalModules.getSt2334().getCode(),
+                    TypicalLectures.getSt2334Topic1().getName()
+                )
+        );
         assertParseSuccess(parser, "Week 7 /mod CS2040S",
-                new DeleteLectureCommand(TypicalLectures.getCs2040sWeek7().getName(),
-                        TypicalModules.getCs2040s().getCode()));
+                new DeleteLectureCommand(
+                    TypicalModules.getCs2040s().getCode(),
+                    TypicalLectures.getCs2040sWeek7().getName()
+                )
+        );
     }
 
     @Test
     public void parse_validArgs_returnsDeleteVideoCommand() {
         assertParseSuccess(parser, "Vid 3 /mod ST2334 /lec Topic 1",
-                new DeleteVideoCommand(INTRO_VIDEO.getName(),
-                        TypicalModules.getSt2334().getCode(),
-                        TypicalLectures.getSt2334Topic1().getName()));
+                new DeleteVideoCommand(
+                    TypicalModules.getSt2334().getCode(),
+                    TypicalLectures.getSt2334Topic1().getName(),
+                    INTRO_VIDEO.getName()
+                )
+        );
         assertParseSuccess(parser, "Vid 2 /lec Week 3 /mod CS2040S",
-                new DeleteVideoCommand(ANALYSIS_VIDEO.getName(),
-                        TypicalModules.getCs2040s().getCode(),
-                        TypicalLectures.getCs2040sWeek3().getName()));
+                new DeleteVideoCommand(
+                    TypicalModules.getCs2040s().getCode(),
+                    TypicalLectures.getCs2040sWeek3().getName(),
+                    ANALYSIS_VIDEO.getName()
+                )
+        );
     }
 
     @Test

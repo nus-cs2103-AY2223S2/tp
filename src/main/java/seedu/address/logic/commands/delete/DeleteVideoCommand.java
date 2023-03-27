@@ -38,7 +38,7 @@ public class DeleteVideoCommand extends DeleteCommand {
      * @param moduleCode Module Code of module that contains lecture that video is within
      * @param lectureName Name of Lecture that video is within
      */
-    public DeleteVideoCommand(ModuleCode moduleCode, LectureName lectureName, VideoName  targetVideoName) {
+    public DeleteVideoCommand(ModuleCode moduleCode, LectureName lectureName, VideoName targetVideoName) {
         this.moduleCode = moduleCode;
         this.lectureName = lectureName;
         this.targetVideoName = targetVideoName;

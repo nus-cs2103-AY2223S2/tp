@@ -13,16 +13,17 @@ import seedu.address.model.module.ModuleCode;
 
 /**
  * Deletes multiple modules identified using their resepective module codes
- * If one or more of the modules do not exist, nothing happens.
+ * If one or more of the modules do not exist, nothing is deleted.
  */
 public class DeleteMultipleModulesCommand extends DeleteCommand implements MultipleEventsParser {
 
     public static final String MESSAGE_SUCCESS = "%1$s Modules deleted ( %2$s )";
+
     private final ArrayList<ModuleCode> targetModuleCodes;
 
     /**
      * Creates an executable Command that deletes multiple modules of {@code moduleCodes}
-     * @param moduleCode
+     * @param moduleCodes any number of module codes to identify modules to delete
      */
     public DeleteMultipleModulesCommand(ModuleCode ... moduleCodes) {
         ArrayList<ModuleCode> moduleCodesArr = new ArrayList<ModuleCode>();
@@ -51,13 +52,14 @@ public class DeleteMultipleModulesCommand extends DeleteCommand implements Multi
             }
 
             return new CommandResult(String.format(MESSAGE_SUCCESS,
-                    targetModuleCodes.size(),
-                    MultipleEventsParser.convertArrayListToString(targetModuleCodes)));
+                    this.targetModuleCodes.size(),
+                    MultipleEventsParser.convertArrayListToString(this.targetModuleCodes)));
         } else {
-            throw new CommandException(String.format(
-                    (invalidModuleCodes.size() == 1
-                            ? Messages.MESSAGE_MODULE_DOES_NOT_EXIST
-                            : Messages.MESSAGE_MODULES_DONT_EXIST),
+            throw new CommandException(String.format((
+                        invalidModuleCodes.size() == 1
+                        ? Messages.MESSAGE_MODULE_DOES_NOT_EXIST
+                        : Messages.MESSAGE_MODULES_DONT_EXIST
+                    ),
                     MultipleEventsParser.convertArrayListToString(invalidModuleCodes)));
         }
     }

@@ -57,7 +57,7 @@ public class DeleteLectureCommand extends DeleteCommand {
 
         model.deleteLecture(module, lectureToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_LECTURE_SUCCESS, lectureToDelete, moduleCode));
+        return new CommandResult(String.format(MESSAGE_DELETE_LECTURE_SUCCESS, targetLectureName, moduleCode));
 
     }
 

@@ -50,13 +50,13 @@ public class DeleteLectureCommandTest {
     public void execute_toDeleteDoesNotExist_throwsCommandException() {
         // module does not exist
         assertThrows(CommandException.class, () -> new DeleteLectureCommand(
-                TypicalLectures.getCs2107Lecture1().getName(),
-                TypicalModules.getCs2107().getCode()
+                TypicalModules.getCs2107().getCode(),
+                TypicalLectures.getCs2107Lecture1().getName()
                                             ).execute(new ModelStubNoModule()));
         // lecture does not exist in module
         assertThrows(CommandException.class, () -> new DeleteLectureCommand(
-                TypicalLectures.getCs2040sWeek7().getName(),
-                TypicalModules.getCs2040s().getCode()
+            TypicalModules.getCs2040s().getCode(),
+            TypicalLectures.getCs2040sWeek7().getName()
                                             ).execute(new ModelStubNoLecture()));
     }
 
