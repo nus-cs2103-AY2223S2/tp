@@ -39,6 +39,7 @@ public class CommandTestUtil {
     public static final String VALID_EXPIRY_DATE_CHOCOLATE = "14-11-2024";
     public static final String VALID_TAG_CHOCOLATE = "CHOCOLATE";
     public static final String VALID_QUANTITY_INCREASE = "10";
+    public static final String VALID_QUANTITY_DECREASE = "1";
     public static final String NAME_DESC_MEIJI = " " + PREFIX_NAME + VALID_NAME_MEIJI;
     public static final String UNIT_DESC_MEIJI = " " + PREFIX_UNIT + VALID_UNIT_MEIJI;
     public static final String QUANTITY_DESC_MEIJI = " " + PREFIX_QUANTITY + VALID_QUANTITY_MEIJI;
