@@ -414,7 +414,7 @@ objects which is then used elsewhere in the codebase.
 #### **Day**
 
 `Day` is an enumeration class in Java and it only contains the 5 weekdays: `MONDAY`,
-` TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`
+`TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`.
 
 #### **HourBlock**
 

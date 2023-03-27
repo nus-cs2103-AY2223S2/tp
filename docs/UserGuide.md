@@ -276,7 +276,7 @@ Example: `m/CS2107`
 
 Adds a contact to the EduMate.
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`: {fill in}
 
 What you should see:<br>
@@ -305,7 +305,7 @@ You can use the view command to look up your details, or a contact's details on 
 
 </div>
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `view`: Views your profile.
 * `view INDEX`: Views the contact at index `INDEX`.
 * `view n/NAME`: Views the contact with name `NAME`.
@@ -322,7 +322,7 @@ Examples:
 
 Edits the profile of a contact. You can choose to edit as many fields as you'd like.
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `edit INDEX [z/FIELD]…​`: Edits the fields for the contact at index `INDEX`.
 * `edit [z/FIELD]…​`: Edits your user profile.
 
@@ -339,7 +339,7 @@ Examples:
 
 Removes a contact from EduMate.
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `delete INDEX`: Deletes the contact at index `INDEX`.
 
 What you should see:<br>
@@ -353,7 +353,7 @@ Examples:
 
 Adds module tag(s) to an existing contact.
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `tag CONTACT_INDEX m/MODULE_TAG`
 * `tag m/MODULE_TAG`
 
@@ -394,7 +394,7 @@ CS2103T is added to John Doe's, the user, list of modules.
 
 Removes a module tag from an existing contact.
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `untag CONTACT_INDEX m/MODULE_TAG`
 * `untag m/MODULE_TAG`
 
@@ -451,7 +451,7 @@ Finds persons whose specified fields contain any of the given keywords limited t
 
 </div>
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `find z/KEYWORD [MORE_KEYWORDS]…​`
 
 What you should see:<br>
@@ -486,7 +486,7 @@ Sorts persons based on certain criteria. For example, you can sort the contacts 
 
 </div>
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `sort`: Sorts the contacts by their indices.
 * `sort z/a`: Sorts the contacts by their `z` attribute **in ascending order**
 * `sort z/d`: Sorts the contacts by their `z` attribute **in descending order**
@@ -532,7 +532,7 @@ The storage commands allow you to save and load your EduMate data into a file.
 
 Saves the EduMate into a file with a name of your choice.
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `save FILENAME`: Saves the EduMate into a file at `FILENAME.json`.
 
 What you should see:<br>
@@ -546,7 +546,7 @@ Examples:
 
 Loads the save data of an EduMate from a file.
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `load FILENAME`: Loads the EduMate from a file at `FILENAME.json`.
 
 What you should see:<br>
@@ -572,7 +572,7 @@ meet and you require a recommendation.
 
 </div>
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `meet 12 32 8 4` : Recommends a meeting time and location for a potential meetup with friends with the following indices `12, 32, 4, 8`.
 * `eat 5 2 8 1 3` : Recommends a meeting time and eating spot for friends with the following indices `5, 2, 8, 1, 3`
 * `study 6 2` : Recommends a meeting time and study spot for friends with the following indices `6 and 2`.
@@ -604,7 +604,7 @@ If you want to end the application, simply type `exit`, or click on the `Exit` b
 
 ### Command Summary
 
-| Action               | Format                                               | Examples                                     |
+| Action               | Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format))                                              | Examples                                     |
 |----------------------|------------------------------------------------------|----------------------------------------------|
 | **Add a contact**    | `add n/NAME p/PHONE...`                              | `add n/Wen Li...`                            |
 | **View a profile**   | `view`, `view INDEX`, `view n/NAME`                  | `view 5`, `view n/Wen Li`                    |
