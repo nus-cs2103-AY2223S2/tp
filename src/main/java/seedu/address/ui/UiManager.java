@@ -22,8 +22,8 @@ public class UiManager implements Ui {
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
     private static final String INITIAL_MESSAGE =
-            "Welcome to HMHero!\n\nType help to obtain the link to our User Guide " +
-            "where you can see all the commands available!";
+            "Welcome to HMHero!\n\nType help to obtain the link to our User Guide "
+            + "where you can see all the commands available!";
 
     private Logic logic;
     private MainWindow mainWindow;
