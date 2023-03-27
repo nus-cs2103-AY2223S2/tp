@@ -537,7 +537,7 @@ Given below is an updated `Model` component diagram.
     * Pros: Will ensure no tampering of identifier for a `Person` object.
     * Cons: If `Nric` is wrongly entered, user will have to re-type the entire `add` command.
         * This can have heavier consequences if much more data is added before the mistake is noticed.
-          
+
 <sub>[return to table of contents](#table-of-contents-)</sub>
 
 ### Adding Health Conditions

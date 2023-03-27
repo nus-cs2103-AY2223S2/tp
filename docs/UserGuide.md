@@ -91,7 +91,7 @@ Examples:
 ### Find persons by nric, name, address or tags: `find`
 
 
-Find persons according to a particular attribute stated followed by the change. 
+Find persons according to a particular attribute stated followed by the change.
 
 Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`)
 
