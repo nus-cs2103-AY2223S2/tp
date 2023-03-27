@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.AddressContainsKeywordsPredicate;
+import seedu.address.model.person.MedicineContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NricContainsKeywordsPredicate;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
@@ -30,13 +30,13 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         String[] nrics;
         String[] names;
-        String[] addresses;
+        String[] medicines;
         String[] tags;
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_NAME, PREFIX_MEDICINE, PREFIX_TAG);
 
-        if (allPrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG)) {
+        if (moreThanOnePrefixPresent(argMultimap, PREFIX_NRIC, PREFIX_NAME, PREFIX_MEDICINE, PREFIX_TAG)) {
             throw new ParseException(String.format(
                     MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
@@ -53,11 +53,11 @@ public class FindCommandParser implements Parser<FindCommand> {
 
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(names)));
 
-        } else if (isPrefixesPresent(argMultimap, PREFIX_ADDRESS)
+        } else if (isPrefixesPresent(argMultimap, PREFIX_MEDICINE)
                 && argMultimap.getPreamble().isEmpty()) {
-            addresses = getKeywords(argMultimap.getValue(PREFIX_ADDRESS).get());
-
-            return new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList(addresses)));
+            medicines = getKeywords(argMultimap.getValue(PREFIX_MEDICINE).get());
+            System.out.println(medicines);
+            return new FindCommand(new MedicineContainsKeywordsPredicate(Arrays.asList(medicines)));
 
         } else if (isPrefixesPresent(argMultimap, PREFIX_TAG)
                 && argMultimap.getPreamble().isEmpty()) {
@@ -80,10 +80,10 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     /**
-     * Returns true if the all the given prefixes does not contain empty
+     * Returns true if more than one prefix is given
      *  {@code Optional} values in the given {@code ArgumentMultimap}.
      */
-    private static boolean allPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static boolean moreThanOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         Stream<Prefix> prefixStream = Stream.of(prefixes).filter(
                                         prefix -> argumentMultimap.getValue(prefix).isPresent());
         int value = (int) prefixStream.count();

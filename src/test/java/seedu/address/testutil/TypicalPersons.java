@@ -65,7 +65,9 @@ public class TypicalPersons {
         .withEmail("lydia@example.com").withAddress("little tokyo")
         .withGender("female")
         .withTags("Diabetic")
-        .withDrugAllergy("Aspirin Panadol").build();
+        .withDrugAllergy("Aspirin Panadol")
+        .withMedicines("Aspirin")
+        .build();
     public static final Person GEORGE = new PersonBuilder().withNric("S2222222G")
         .withName("George Best").withPhone("9482442")
         .withEmail("anna@example.com").withAddress("4th street")

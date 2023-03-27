@@ -30,10 +30,10 @@ public class FindCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_NRIC + "NRIC] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " n/" + "alice bob charlie" + "\n"
+            + "Example: " + COMMAND_WORD + " n/" + "alice" + "\n"
             + "Example: " + COMMAND_WORD + " a/" + "30 Serangoon" + "\n"
             + "Example: " + COMMAND_WORD + " i/" + "S0067812L" + "\n"
-            + "Example: " + COMMAND_WORD + " n/" + "alice" + "\n"
+            + "Example: " + COMMAND_WORD + " n/" + "alice bob charlie" + "\n"
             + "Example: " + COMMAND_WORD + " t/" + "Diabetic" + "\n";
 
     private final Predicate<Person> predicate;

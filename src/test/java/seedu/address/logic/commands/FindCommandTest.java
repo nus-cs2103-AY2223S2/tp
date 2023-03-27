@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.AddressContainsKeywordsPredicate;
+import seedu.address.model.person.MedicineContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NricContainsKeywordsPredicate;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
@@ -101,7 +101,7 @@ public class FindCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
 
 
-        AddressContainsKeywordsPredicate predicate2 = prepareAddressPredicate(" ");
+        MedicineContainsKeywordsPredicate predicate2 = prepareAddressPredicate(" ");
         FindCommand command2 = new FindCommand(predicate2);
         expectedModel.updateFilteredPersonList(predicate2);
         assertCommandSuccess(command2, model, expectedMessage, expectedModel);
@@ -130,7 +130,7 @@ public class FindCommandTest {
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
 
         String expectedMessage2 = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-        AddressContainsKeywordsPredicate predicate2 = prepareAddressPredicate("tokyo");
+        MedicineContainsKeywordsPredicate predicate2 = prepareAddressPredicate("Aspirin");
         FindCommand command2 = new FindCommand(predicate2);
         expectedModel.updateFilteredPersonList(predicate2);
         assertCommandSuccess(command2, model, expectedMessage2, expectedModel);
@@ -162,8 +162,8 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code AddressContainsKeywordsPredicate}.
      */
-    private AddressContainsKeywordsPredicate prepareAddressPredicate(String userInput) {
-        return new AddressContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private MedicineContainsKeywordsPredicate prepareAddressPredicate(String userInput) {
+        return new MedicineContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 
     /**
