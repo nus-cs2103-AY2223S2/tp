@@ -10,9 +10,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalTasks.VALID_TASK_1;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -21,6 +23,43 @@ public class PersonTest {
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Person person = new PersonBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+    }
+
+    @Test
+    public void hasTask_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ALICE.hasTask(null));
+    }
+
+    @Test
+    public void hasTask_taskPresent_success() {
+        Person person = new PersonBuilder(ALICE).build();
+        person.addTask(VALID_TASK_1);
+        assertTrue(person.hasTask(VALID_TASK_1));
+    }
+
+    @Test
+    public void addTask_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ALICE.addTask(null));
+    }
+
+    @Test
+    public void setTask_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ALICE.setTask(null, null));
+    }
+
+    @Test
+    public void setTask_targetTaskNotInList_throwsTaskNotFoundException() {
+        assertThrows(TaskNotFoundException.class, () -> ALICE.setTask(VALID_TASK_1, VALID_TASK_1));
+    }
+
+    @Test
+    public void removeTask_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ALICE.removeTask(null));
+    }
+
+    @Test
+    public void removeTask_taskDoesNotExist_throwsTaskNotFoundException() {
+        assertThrows(TaskNotFoundException.class, () -> ALICE.removeTask(VALID_TASK_1));
     }
 
     @Test
