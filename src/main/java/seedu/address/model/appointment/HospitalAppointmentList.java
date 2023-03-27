@@ -49,6 +49,19 @@ public class HospitalAppointmentList implements Iterable<Appointment> {
         internalList.add(appointment);
     }
 
+    /**
+     * Deletes an appointment to the HospitalAppointmentList.
+     * @param appointment
+     */
+    public void deleteAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        boolean isSuccessfulDeletion = internalList.remove(appointment);
+        if (!isSuccessfulDeletion) {
+            throw new AppointmentNotFoundException();
+        }
+    }
+
+
     @Override
     public Iterator<Appointment> iterator() {
         return internalList.iterator();

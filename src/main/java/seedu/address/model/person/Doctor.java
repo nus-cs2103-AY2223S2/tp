@@ -98,5 +98,13 @@ public class Doctor extends Person {
         return otherNric != null
                 && otherNric.equals(this.getNric());
     }
+
+    /**
+     * Deletes an appointment for the Doctor.
+     */
+    public void deletePatientAppointment(Appointment appointment) {
+        patientAppointments.remove(appointment);
+    }
+
 }
 
