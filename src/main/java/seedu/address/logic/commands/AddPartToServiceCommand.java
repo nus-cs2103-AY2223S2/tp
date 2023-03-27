@@ -11,7 +11,7 @@ import seedu.address.model.Model;
  * Manages adding of parts to services
  */
 public class AddPartToServiceCommand extends Command {
-    public static final String COMMAND_WORD = "addpartservice";
+    public static final String COMMAND_WORD = "addservicepart";
     public static final String MESSAGE_SUCCESS = "Enough parts in system, part added to service";
     public static final String MESSAGE_SERVICE_NOT_FOUND = "Service does not exist";
     public static final String MESSAGE_PART_NOT_FOUND = "Part not in system";
