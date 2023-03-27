@@ -152,6 +152,11 @@ public class AddCommandTest {
         public boolean hasDuplicateName(String name) {
             throw new AssertionError("this method should not be called.");
         }
+
+        @Override
+        public boolean noSuchStudent(String name) {
+            throw new AssertionError("this method should not be called.");
+        }
     }
 
     /**

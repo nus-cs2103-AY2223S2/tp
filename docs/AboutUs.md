@@ -21,8 +21,8 @@ You can reach us at these emails :
 [[github](https://github.com/Yufannnn)]
 [[portfolio](team/yufannnn.md)]
 
-* Role: Coder
-* Responsibilities: code
+* Role: UI Design, Task Manager
+* Responsibilities: manage and distribute tasks, design UI,  implementation, Developer Guide, UML Diagrams
 
 ### Niu Boqian
 
