@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" height="517px" preserveAspectRatio="none"
+     style="width:571px;height:517px;background:#FFFFFF;" version="1.1" viewBox="0 0 571 517" width="571px"
+     zoomAndPan="magnify">
+    <defs/>
+    <g><!--class Item-->
+        <g id="elem_Item">
+            <rect codeLine="7" fill="#9D0012" height="41.2813" id="Item" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="228.5" y="182"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="61" x="231.5" y="199.6738">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="27" x="248.5" y="215.3145">Item
+            </text>
+        </g><!--class Person-->
+        <g id="elem_Person">
+            <rect codeLine="8" fill="#9D0012" height="41.2813" id="Person" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="228.5" y="283"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="61" x="231.5" y="300.6738">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="45" x="239.5" y="316.3145">Person
+            </text>
+        </g><!--class Supplier-->
+        <g id="elem_Supplier">
+            <rect codeLine="9" fill="#9D0012" height="25.6406" id="Supplier" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="58" x="362" y="189.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="52" x="365"
+                  y="207.1738">Supplier
+            </text>
+        </g><!--class Customer-->
+        <g id="elem_Customer">
+            <rect codeLine="10" fill="#9D0012" height="25.6406" id="Customer" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="95.5" y="189.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="98.5"
+                  y="207.1738">Customer
+            </text>
+        </g><!--class Name-->
+        <g id="elem_Name">
+            <rect codeLine="11" fill="#9D0012" height="41.2813" id="Name" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="487.5" y="470"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="61" x="490.5" y="487.6738">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="37" x="502.5" y="503.3145">Name
+            </text>
+        </g><!--class PersonName-->
+        <g id="elem_PersonName">
+            <rect codeLine="14" fill="#9D0012" height="25.6406" id="PersonName" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="87" x="477.5" y="384"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="81" x="480.5"
+                  y="401.6738">PersonName
+            </text>
+        </g><!--class PersonAddress-->
+        <g id="elem_PersonAddress">
+            <rect codeLine="15" fill="#9D0012" height="25.6406" id="PersonAddress" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="103" x="339.5" y="384"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="97" x="342.5"
+                  y="401.6738">PersonAddress
+            </text>
+        </g><!--class PersonEmail-->
+        <g id="elem_PersonEmail">
+            <rect codeLine="16" fill="#9D0012" height="25.6406" id="PersonEmail" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="85" x="219.5" y="384"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="79" x="222.5"
+                  y="401.6738">PersonEmail
+            </text>
+        </g><!--class PersonPhone-->
+        <g id="elem_PersonPhone">
+            <rect codeLine="17" fill="#9D0012" height="25.6406" id="PersonPhone" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="92" x="92" y="384"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="86" x="95"
+                  y="401.6738">PersonPhone
+            </text>
+        </g><!--class Tag-->
+        <g id="elem_Tag">
+            <rect codeLine="18" fill="#9D0012" height="25.6406" id="Tag" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="50" x="7" y="384"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="25" x="19.5"
+                  y="401.6738">Tag
+            </text>
+        </g><!--class ItemList-->
+        <g id="elem_ItemList">
+            <rect codeLine="21" fill="#9D0012" height="25.6406" id="ItemList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="139" x="192.5" y="10"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="48" x="195.5"
+                  y="27.6738">ItemList
+            </text>
+            <rect fill="#FFFFFF" height="17.9609" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="83" x="251.5" y="7"/>
+            <text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="81" x="252.5" y="20.9492">T extends Item
+            </text>
+        </g><!--class UniqueItemList-->
+        <g id="elem_UniqueItemList">
+            <rect codeLine="22" fill="#9D0012" height="25.6406" id="UniqueItemList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="127" x="198.5" y="96"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="117" x="201.5"
+                  y="113.6738">UniqueItemList&lt;T&gt;
+            </text>
+        </g><!--class SupplierList-->
+        <g id="elem_SupplierList">
+            <rect fill="#9D0012" height="25.6406" id="SupplierList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="80" x="375" y="10"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="74" x="378"
+                  y="27.6738">SupplierList
+            </text>
+        </g><!--class UniqueSupplierList-->
+        <g id="elem_UniqueSupplierList">
+            <rect fill="#9D0012" height="25.6406" id="UniqueSupplierList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="124" x="361" y="96"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="118" x="364"
+                  y="113.6738">UniqueSupplierList
+            </text>
+        </g><!--class CustomerList-->
+        <g id="elem_CustomerList">
+            <rect fill="#9D0012" height="25.6406" id="CustomerList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="89" x="60.5" y="10"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="83" x="63.5"
+                  y="27.6738">CustomerList
+            </text>
+        </g><!--class UniqueCustomerList-->
+        <g id="elem_UniqueCustomerList">
+            <rect fill="#9D0012" height="25.6406" id="UniqueCustomerList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="133" x="30.5" y="96"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="127" x="33.5"
+                  y="113.6738">UniqueCustomerList
+            </text>
+        </g><!--link ItemList to UniqueItemList-->
+        <g id="link_ItemList_UniqueItemList">
+            <path codeLine="24" d="M262,50.58 C262,60.34 262,71.39 262,81.17 " fill="none" id="ItemList-UniqueItemList"
+                  style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="262,37.91,258,43.91,262,49.91,266,43.91,262,37.91"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="262,94.04,266,85.04,262,89.04,258,85.04,262,94.04"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="262" x2="262" y1="89.04" y2="81.04"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="253.7094" y="84.6042">1
+            </text>
+        </g><!--link UniqueItemList to Item-->
+        <g id="link_UniqueItemList_Item">
+            <path codeLine="25" d="M262,122.34 C262,135.89 262,158.05 262,175.48 " fill="none"
+                  id="UniqueItemList-to-Item" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="262,180.15,266,171.15,262,175.15,258,171.15,262,180.15"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="256.3281" y="170.8172">*
+            </text>
+        </g><!--link SupplierList to UniqueSupplierList-->
+        <g id="link_SupplierList_UniqueSupplierList">
+            <path codeLine="27" d="M417.53,50.58 C418.46,60.34 419.51,71.39 420.44,81.17 " fill="none"
+                  id="SupplierList-UniqueSupplierList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="416.32,37.9,412.9049,44.2511,417.454,49.8463,420.8691,43.4952,416.32,37.9"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="421.67,94.05,424.8016,84.7123,421.1975,89.0724,416.8374,85.4683,421.67,94.05"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="421.1975" x2="420.44" y1="89.0724" y2="81.11"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="413.0806" y="84.6042">1
+            </text>
+        </g><!--link UniqueSupplierList to Supplier-->
+        <g id="link_UniqueSupplierList_Supplier">
+            <path codeLine="28" d="M418.68,122.34 C413.2,138.03 403.68,165.25 397.36,183.32 " fill="none"
+                  id="UniqueSupplierList-to-Supplier" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="395.85,187.63,402.5889,180.4476,397.4954,182.9085,395.0345,177.815,395.85,187.63"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="391.0322" y="178.1179">*
+            </text>
+        </g><!--reverse link ItemList to SupplierList-->
+        <g id="link_ItemList_SupplierList">
+            <path codeLine="29" d="M353.34,23 C360.48,23 367.62,23 374.76,23 " fill="none"
+                  id="ItemList-backto-SupplierList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="353.44,30,333.44,23,353.44,16,353.44,30"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--reverse link UniqueItemList to UniqueSupplierList-->
+        <g id="link_UniqueItemList_UniqueSupplierList">
+            <path codeLine="30" d="M347.11,109 C351.66,109 356.21,109 360.75,109 " fill="none"
+                  id="UniqueItemList-backto-UniqueSupplierList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="347.35,116,327.35,109,347.35,102,347.35,116"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link CustomerList to UniqueCustomerList-->
+        <g id="link_CustomerList_UniqueCustomerList">
+            <path codeLine="31" d="M102.47,50.58 C101.54,60.34 100.49,71.39 99.56,81.17 " fill="none"
+                  id="CustomerList-UniqueCustomerList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="103.68,37.9,99.1309,43.4952,102.546,49.8463,107.0951,44.2511,103.68,37.9"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="98.33,94.05,103.1626,85.4683,98.8025,89.0724,95.1984,84.7123,98.33,94.05"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="98.8025" x2="99.56" y1="89.0724" y2="81.11"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="90.3382" y="84.6042">1
+            </text>
+        </g><!--link UniqueCustomerList to Customer-->
+        <g id="link_UniqueCustomerList_Customer">
+            <path codeLine="32" d="M101.32,122.34 C106.8,138.03 116.32,165.25 122.64,183.32 " fill="none"
+                  id="UniqueCustomerList-to-Customer" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="124.15,187.63,124.9655,177.815,122.5046,182.9085,117.4111,180.4476,124.15,187.63"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="107.5366" y="178.1179">*
+            </text>
+        </g><!--link CustomerList to ItemList-->
+        <g id="link_CustomerList_ItemList">
+            <path codeLine="33" d="M149.77,23 C156.86,23 163.94,23 171.03,23 " fill="none" id="CustomerList-to-ItemList"
+                  style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="170.78,16,190.78,23,170.78,30,170.78,16"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link UniqueCustomerList to UniqueItemList-->
+        <g id="link_UniqueCustomerList_UniqueItemList">
+            <path codeLine="34" d="M163.71,109 C168.12,109 172.53,109 176.94,109 " fill="none"
+                  id="UniqueCustomerList-to-UniqueItemList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="176.75,102,196.75,109,176.75,116,176.75,102"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link Person to PersonName-->
+        <g id="link_Person_PersonName">
+            <path codeLine="36" d="M309.42,321.25 C355.62,337.58 425.54,362.28 472.21,378.76 " fill="none"
+                  id="Person-PersonName" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="297.29,316.97,301.6156,322.7397,308.6052,320.9659,304.2795,315.1962,297.29,316.97"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="484.46,383.09,477.3056,376.3213,479.7454,381.425,474.6417,383.8648,484.46,383.09"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="479.7454" x2="472.205" y1="381.425" y2="378.76"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="464.6526" y="372.6726">1
+            </text>
+        </g><!--link Person to PersonPhone-->
+        <g id="link_Person_PersonPhone">
+            <path codeLine="37" d="M223.55,332.88 C204.93,346.62 182.98,362.81 165.97,375.36 " fill="none"
+                  id="Person-PersonPhone" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="233.88,325.25,226.6774,325.5994,224.2296,332.3823,231.4322,332.033,233.88,325.25"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="155.8,382.86,165.4152,380.7276,159.821,379.8882,160.6604,374.294,155.8,382.86"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="159.821" x2="166.265" y1="379.8882" y2="375.14"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="152.5806" y="372.6239">1
+            </text>
+        </g><!--link Person to PersonEmail-->
+        <g id="link_Person_PersonEmail">
+            <path codeLine="38" d="M262,338.64 C262,348.77 262,359.71 262,369.29 " fill="none" id="Person-PersonEmail"
+                  style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="262,325.87,258,331.87,262,337.87,266,331.87,262,325.87"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="262,382.25,266,373.25,262,377.25,258,373.25,262,382.25"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="262" x2="262" y1="377.25" y2="369.25"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="253.6656" y="372.6239">1
+            </text>
+        </g><!--link Person to PersonAddress-->
+        <g id="link_Person_PersonAddress">
+            <path codeLine="39" d="M301.67,332.64 C321.19,346.48 344.28,362.86 362.1,375.5 " fill="none"
+                  id="Person-PersonAddress" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="291.23,325.23,293.8116,331.9632,301.0197,332.1699,298.4381,325.4367,291.23,325.23"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="372.51,382.89,367.4832,374.4206,368.4317,379.9973,362.8549,380.9458,372.51,382.89"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="368.4317" x2="361.905" y1="379.9973" y2="375.365"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="358.8253" y="372.6239">1
+            </text>
+        </g><!--link Person to Tag-->
+        <g id="link_Person_Tag">
+            <path codeLine="40"
+                  d="M214.82,321.5 C176.78,335.45 122.08,356.08 75,376 C73.47,376.65 71.91,377.32 70.34,378 "
+                  fill="none" id="Person-Tag" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="226.85,317.1,219.8423,315.3992,215.5771,321.2136,222.5848,322.9144,226.85,317.1"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="58.71,383.24,68.5587,383.1895,63.2686,381.1859,65.2722,375.8957,58.71,383.24"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="63.2686" x2="70.57" y1="381.1859" y2="377.9"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="61.0339" y="372.7621">*
+            </text>
+        </g><!--reverse link Item to Person-->
+        <g id="link_Item_Person">
+            <path codeLine="41" d="M262,244.43 C262,257.63 262,271.67 262,282.64 " fill="none" id="Item-backto-Person"
+                  style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="255,244.57,262,224.57,269,244.57,255,244.57"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link Supplier to Person-->
+        <g id="link_Supplier_Person">
+            <path codeLine="43" d="M374.92,215.84 C357.4,229.29 328.64,251.36 304.53,269.86 " fill="none"
+                  id="Supplier-to-Person" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="308.97,275.28,288.84,281.9,300.45,264.17,308.97,275.28"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link Customer to Person-->
+        <g id="link_Customer_Person">
+            <path codeLine="44" d="M145.58,215.84 C163.73,229.35 193.59,251.57 218.52,270.13 " fill="none"
+                  id="Customer-to-Person" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="222.48,264.36,234.35,281.92,214.12,275.59,222.48,264.36"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link PersonName to Name-->
+        <g id="link_PersonName_Name">
+            <path codeLine="46" d="M521,410.34 C521,420.15 521,434.46 521,448.23 " fill="none" id="PersonName-to-Name"
+                  style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="528,448.15,521,468.15,514,448.15,528,448.15"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--SRC=[VLFBQiCm4BphAxO-1XpmlGHIDuT0seGslHMAQej4H9PSFMXBcd-lRCcnB9laj3ip6MPNwplA2sPA0ah_CZAlJSMGEb5UOuahm5AAx_sH5YTEb89idiLaBfYGyBHzN6q-ykrc-n882eQLUi35wI25uUKjQQEer_n89DMO5mGoX9QVIajSQCWR7qZEs0ENTxxMf4e0AsYAcyeTaKhmLkjAv4IlfguP9TAtkL5QLBQzvVMCAz8wDGL2MXo8jf7FtiFvjrm8BCjIskqDi5M5AHiWkwFWtV_s-80ko3VDX1kgzFqUo8ycl7JGmjF96wTVXlIg1RGHXp12NGMpDBMIB8aLmnPQrInn2qRTjgOSGWwDeQlJTUCHo_uM4AMOK4Hfk_Vg0fLXef14OmYS7CAVpNSzWKWhn_ac5F6-tQlskmgEOvfo1p3DkNEPvhhp6h1sdEQ8F9Qcni_GlwG5BTPz4dwU0OZwo0vlm_y3]-->
+    </g>
+</svg>

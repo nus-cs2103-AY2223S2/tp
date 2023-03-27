@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
-package UI <<Rectangle>>{
+package UI <<Rectangle>> UI_COLOR_T1 {
 Class "<<interface>>\nUi" as Ui
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
@@ -12,26 +12,20 @@ Class MainWindow
 Class HelpWindow
 Class ResultDisplay
 Class TabPanel
+Class XYZListPanel
+Class XYZCard
 Class HomeView
 Class FinanceCard
-Class OrdersListView
-Class OrderCard
-Class TaskListView
-Class TaskCard
-Class ContactListView
-Class PersonCard
-Class MenuListView
-Class MenuCard
 Class StatusBarFooter
 Class CommandBox
 }
 
-package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
+package Model <<Rectangle>> MODEL_COLOR_T1 {
+Class "                                " as HiddenModel MODEL_COLOR_T1
 }
 
-package Logic <<Rectangle>> {
-Class HiddenLogic #FFFFFF
+package Logic <<Rectangle>> LOGIC_COLOR_T1 {
+Class "                                " as HiddenLogic LOGIC_COLOR_T1
 }
 
 Class HiddenOutside #FFFFFF
@@ -46,48 +40,36 @@ MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 TabPanel -down-> "1" HomeView
-TabPanel -down-> "1" OrdersListView
-TabPanel -down-> "1" TaskListView
-TabPanel -down-> "1" ContactListView
-TabPanel -down-> "1" MenuListView
+TabPanel -down-> "*" XYZListPanel
 
-OrdersListView -down-> "*" OrderCard
-ContactListView -down-> "*" PersonCard
-TaskListView -down-> "*" TaskCard
-MenuListView -down-> "*" MenuCard
+XYZListPanel -down-> "*" XYZCard
 
-HomeView -down-> "*" TaskCard
-HomeView -down-> "*" OrderCard
+HomeView -down-> "*" XYZListPanel
 HomeView -down-> "1" FinanceCard
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
-OrderCard --|> UiPart
-PersonCard --|>UiPart
-TaskCard --|> UiPart
-MenuCard --|> UiPart
+XYZCard --|> UiPart
 FinanceCard --|> UiPart
 MainWindow -left-|> UiPart
 
-PersonCard ..> Model
-OrderCard ..> Model
-MenuCard ..> Model
-TaskCard ..> Model
+XYZCard ..> Model
+FinanceCard ..> Model
 
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-MenuListView -[hidden]left- ContactListView
-ContactListView -[hidden]left- TaskListView
-TaskListView -[hidden]left- OrdersListView
-OrdersListView -[hidden]left- HomeView
+HomeView -[hidden]right- XYZListPanel
 
-TabPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
+note right of XYZListPanel: XYZListPanel = TaskListView, \n OrderListView, MenuItemListView etc.
+note right of XYZCard: XYZCard = TaskCard, OrderCard, \n MenuItemCard etc.
+
+TabPanel -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+StatusBarFooter -[hidden]left- HelpWindow
 
 MainWindow -[hidden]-|> UiPart
 @enduml
