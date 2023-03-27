@@ -230,6 +230,7 @@ public class ModelManager implements Model {
         //TODO: Implement this
         // implementation should be in appointment manager instead of here
         // as LogicManager is just a facade class.
+        appointmentManager.handlePatientChange(change);
         updatePatientDetail(change);
     }
 
@@ -248,6 +249,7 @@ public class ModelManager implements Model {
         //TODO: Implement this
         // implementation should be in appointment manager instead of here
         // as LogicManager is just a facade class.
+        appointmentManager.handleVaccinationChange(change);
         updateVaccinationDetail(change);
     }
 

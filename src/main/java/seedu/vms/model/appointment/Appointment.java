@@ -64,6 +64,10 @@ public class Appointment implements Comparable<Appointment> {
         return vaccine;
     }
 
+    public Appointment setVaccination(GroupName vaccine) {
+        return new Appointment(patientId, startTime, endTime, vaccine, isCompleted);
+    }
+
     public Index getPatient() {
         return patientId;
     }
