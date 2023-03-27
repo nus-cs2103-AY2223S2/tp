@@ -214,6 +214,15 @@ public class Service {
     }
 
     /**
+     * Assigns technician ID to this service
+     *
+     * @param technicianId ID of technician
+     */
+    public void assignTechnician(int technicianId) {
+        this.assignedToIds.add(technicianId);
+    }
+
+    /**
      * This method removes a technician from this service.
      *
      * @param technician The technician to be removed from this service.

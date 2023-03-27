@@ -322,6 +322,14 @@ public class ModelManager implements Model {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addTechnicianToService(int serviceId, int techId) throws NoSuchElementException {
+        this.shop.addTechnicianToService(serviceId, techId);
+    }
+
+    /**
      * Checks if part already exists
      *
      * @param partName Name of part to check
