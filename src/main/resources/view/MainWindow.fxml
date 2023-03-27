@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root alwaysOnTop="true" maxHeight="900.0" maxWidth="1200.0" minHeight="650.0" minWidth="700.0" onCloseRequest="#handleExit" title="WIFE" type="javafx.stage.Stage" width="680.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root alwaysOnTop="true" maxHeight="900.0" maxWidth="1200.0" minHeight="650.0" minWidth="730.0" onCloseRequest="#handleExit" title="WIFE" type="javafx.stage.Stage" width="680.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -24,7 +24,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox alignment="TOP_CENTER" minWidth="680.0" stylesheets="@DarkTheme.css">
+      <VBox alignment="TOP_CENTER" minWidth="680.0" styleClass="background" stylesheets="@DarkTheme.css">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
