@@ -43,6 +43,9 @@
                <VBox.margin>
                   <Insets bottom="3.0" />
                </VBox.margin>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
             </StackPane>
             <StackPane fx:id="statusbarPlaceholder" alignment="CENTER_LEFT" maxHeight="25.0" prefHeight="25.0" style="-fx-background-color: GREY;" VBox.vgrow="ALWAYS" />
 
