@@ -15,6 +15,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 //import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
+import seedu.address.model.session.Session;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,6 +28,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Tag> filteredTags;
+
+    private final FilteredList<Session> filteredSessions;;
     //private final ObservableList<CalendarEvent> calendarEventList;
 
 
@@ -43,6 +46,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTags = new FilteredList<>(this.addressBook.getTagList());
+        filteredSessions = new FilteredList<>(this.addressBook.getSessionList());
         //this.calendarEventList = FXCollections.observableArrayList();
     }
 
