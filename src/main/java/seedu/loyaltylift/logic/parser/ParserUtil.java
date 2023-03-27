@@ -10,6 +10,7 @@ import java.util.Set;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.commons.util.StringUtil;
 import seedu.loyaltylift.logic.commands.ListCustomerCommand;
+import seedu.loyaltylift.logic.commands.ListOrderCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
@@ -19,6 +20,7 @@ import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
+import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
 import seedu.loyaltylift.model.tag.Tag;
 
@@ -212,10 +214,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String sortOption} into a {@code Comparator<T>}.
+     * Parses a {@code String sortOption} into a {@code Comparator<Customer>}.
      * @throws ParseException if the given {@code attribute} is invalid.
      */
-    public static Comparator<Customer> parseSortOption(String sortOption) throws ParseException {
+    public static Comparator<Customer> parseCustomerSortOption(String sortOption) throws ParseException {
         requireNonNull(sortOption);
         String trimmedAttribute = sortOption.trim();
         switch (trimmedAttribute) {
@@ -225,6 +227,25 @@ public class ParserUtil {
             return Customer.SORT_POINTS;
         default:
             throw new ParseException(ListCustomerCommand.MESSAGE_INVALID_SORT);
+        }
+    }
+
+    /**
+     * Parses a {@code String sortOption} into a {@code Comparator<Order>}.
+     * @throws ParseException if the given {@code attribute} is invalid.
+     */
+    public static Comparator<Order> parseOrderSortOption(String sortOption) throws ParseException {
+        requireNonNull(sortOption);
+        String trimmedAttribute = sortOption.trim();
+        switch (trimmedAttribute) {
+        case "created":
+            return Order.SORT_CREATED_DATE;
+        case "name":
+            return Order.SORT_NAME;
+        case "status":
+            return Order.SORT_STATUS;
+        default:
+            throw new ParseException(ListOrderCommand.MESSAGE_INVALID_SORT);
         }
     }
 }

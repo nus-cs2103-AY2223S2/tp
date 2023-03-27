@@ -12,12 +12,14 @@ import static seedu.loyaltylift.testutil.TypicalOrders.ORDER_D;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ModelManager;
 import seedu.loyaltylift.model.UserPrefs;
+import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.OrderNameContainsKeywordsPredicate;
 
 /**
@@ -71,7 +73,9 @@ public class FindOrderCommandTest {
         FindOrderCommand command = new FindOrderCommand(predicate);
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ORDER_A, ORDER_C, ORDER_D), model.getFilteredOrderList());
+        List<Order> expectedList = Arrays.asList(ORDER_A, ORDER_C, ORDER_D);
+        expectedList.sort(Order.SORT_NAME);
+        assertEquals(expectedList, model.getFilteredOrderList());
     }
 
     /**
