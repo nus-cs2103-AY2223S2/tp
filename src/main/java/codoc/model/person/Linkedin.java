@@ -50,6 +50,7 @@ public class Linkedin {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Linkedin // instanceof handles nulls
+                && value != null
                 && value.equals(((Linkedin) other).value)); // state check
     }
 

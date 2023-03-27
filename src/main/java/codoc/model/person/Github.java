@@ -48,6 +48,7 @@ public class Github {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Github // instanceof handles nulls
+                && value != null
                 && value.equals(((Github) other).value)); // state check
     }
 

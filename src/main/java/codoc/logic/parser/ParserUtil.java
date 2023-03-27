@@ -62,6 +62,9 @@ public class ParserUtil {
      */
     public static Github parseGithub(String github) throws ParseException {
         if (github != null) {
+            if (github.equals("")) {
+                return new Github(null);
+            }
             String trimmedGithub = github.trim();
             if (!Github.isValidGithub(trimmedGithub)) {
                 throw new ParseException(Github.MESSAGE_CONSTRAINTS);
@@ -79,6 +82,9 @@ public class ParserUtil {
      */
     public static Linkedin parseLinkedin(String linkedin) throws ParseException {
         if (linkedin != null) {
+            if (linkedin.equals("")) {
+                return new Linkedin(null);
+            }
             String trimmedLinkedin = linkedin.trim();
             if (!Linkedin.isValidLinkedin(trimmedLinkedin)) {
                 throw new ParseException(Linkedin.MESSAGE_CONSTRAINTS);
