@@ -1,14 +1,6 @@
 package seedu.address.logic.commands;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,10 +18,11 @@ import seedu.address.storage.CsvAddressBookStorage;
  * Exports to a csv file at a location specified by the user.
  */
 public class ExportCommand extends Command {
+    //CHECKSTYLE.OFF: VisibilityModifier
+    public static List<String> commandWords = new ArrayList<String>(Arrays.asList("export", "exp"));
+    //CHECKSTYLE.ON: VisibilityModifier
 
-    public static List<String> COMMAND_WORDS = new ArrayList<String>(Arrays.asList("export", "exp"));
-
-    public static final String MESSAGE_USAGE = COMMAND_WORDS + ": Exports data into a csv file at "
+    public static final String MESSAGE_USAGE = commandWords + ": Exports data into a csv file at "
             + "a location of your choice.";
 
     public static final String FILE_DESCRIPTION = "CSV Files";

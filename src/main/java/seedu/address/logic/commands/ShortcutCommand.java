@@ -17,9 +17,11 @@ import seedu.address.storage.ShortcutCommandUtil;
  */
 public class ShortcutCommand extends Command {
 
-    public static List<String> COMMAND_WORDS = new ArrayList<String>(Arrays.asList("shortcut", "s"));
+    //CHECKSTYLE.OFF: VisibilityModifier
+    public static List<String> commandWords = new ArrayList<String>(Arrays.asList("shortcut", "s"));
+    //CHECKSTYLE.ON: VisibilityModifier
 
-    public static final String MESSAGE_USAGE = COMMAND_WORDS
+    public static final String MESSAGE_USAGE = commandWords
             + ": Adds a shortcut to a command.\n"
             + "Parameters: COMMAND SHORT_FORM \n"
             + "Example: " + "shortcut edit e";
@@ -48,56 +50,56 @@ public class ShortcutCommand extends Command {
         // replace with calling a function inherited by all subclasses
         // on top of adding, do serialization and saving
         if (command.equals(ShortcutCommandParser.CommandType.ADD)) {
-            AddCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.ADD_PATH, AddCommand.COMMAND_WORDS);
+            AddCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.ADD_PATH, AddCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.CLEAR)) {
-            ClearCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.CLEAR_PATH, AddCommand.COMMAND_WORDS);
+            ClearCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.CLEAR_PATH, ClearCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.DELETE)) {
-            DeleteCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.DELETE_PATH, AddCommand.COMMAND_WORDS);
+            DeleteCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.DELETE_PATH, DeleteCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.DELETE_TAG)) {
-            DeleteTagCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.DELETE_TAG_PATH, AddCommand.COMMAND_WORDS);
+            DeleteTagCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.DELETE_TAG_PATH, DeleteTagCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.EDIT)) {
-            EditCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.EDIT_PATH, AddCommand.COMMAND_WORDS);
+            EditCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.EDIT_PATH, EditCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.EXIT)) {
-            ExitCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.EXIT_PATH, AddCommand.COMMAND_WORDS);
+            ExitCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.EXIT_PATH, ExitCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.EXPORT)) {
-            ExportCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.EXPORT_PATH, AddCommand.COMMAND_WORDS);
+            ExportCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.EXPORT_PATH, ExportCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.FILTER)) {
-            FilterCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.FILTER_PATH, AddCommand.COMMAND_WORDS);
+            FilterCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.FILTER_PATH, FilterCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.FIND)) {
-            FindCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.FIND_PATH, AddCommand.COMMAND_WORDS);
+            FindCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.FIND_PATH, FindCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.HELP)) {
-            HelpCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.HELP_PATH, AddCommand.COMMAND_WORDS);
+            HelpCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.HELP_PATH, HelpCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.IMPORT)) {
-            ImportCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.IMPORT_PATH, AddCommand.COMMAND_WORDS);
+            ImportCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.IMPORT_PATH, ImportCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.REDO)) {
-            RedoCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.REDO_PATH, AddCommand.COMMAND_WORDS);
+            RedoCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.REDO_PATH, RedoCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.UNDO)) {
-            UndoCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.UNDO_PATH, AddCommand.COMMAND_WORDS);
+            UndoCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.UNDO_PATH, UndoCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.LIST)) {
-            ListCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.LIST_PATH, AddCommand.COMMAND_WORDS);
+            ListCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.LIST_PATH, ListCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.SHORTCUT)) {
-            ShortcutCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.SHORTCUT_PATH, AddCommand.COMMAND_WORDS);
+            ShortcutCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.SHORTCUT_PATH, ShortcutCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.TAG)) {
-            TagCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.TAG_PATH, AddCommand.COMMAND_WORDS);
+            TagCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.TAG_PATH, TagCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.MASS_OP)) {
-            MassOpCommand.COMMAND_WORDS.add(this.shortForm);
-            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.MASS_OP_PATH, AddCommand.COMMAND_WORDS);
+            MassOpCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.MASS_OP_PATH, MassOpCommand.commandWords);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, command, shortForm), true, true);

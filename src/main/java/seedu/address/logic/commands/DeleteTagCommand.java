@@ -2,14 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,13 +17,13 @@ import seedu.address.model.tag.Tag;
  * The command from user specifying a tag need to delete from storage.
  */
 public class DeleteTagCommand extends Command {
-
-    public static List<String> COMMAND_WORDS = new ArrayList<String>(Arrays.asList("delete_tag", "dt"));
-
-    public static final String MESSAGE_USAGE = COMMAND_WORDS
+    //CHECKSTYLE.OFF: VisibilityModifier
+    public static List<String> commandWords = new ArrayList<String>(Arrays.asList("delete_tag", "dt"));
+    //CHECKSTYLE.ON: VisibilityModifier
+    public static final String MESSAGE_USAGE = commandWords
             + ": Delete tag from the person identified by the index used in the displayed person list.\n"
             + "Parameters: Index (must be positive number), Tag Name\n"
-            + "Example: " + COMMAND_WORDS + " 1 teacher";
+            + "Example: " + commandWords + " 1 teacher";
 
     public static final String MESSAGE_SUCCESS = "Tag deleted: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "Person does not exist.";

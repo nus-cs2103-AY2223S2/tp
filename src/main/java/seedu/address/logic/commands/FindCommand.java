@@ -2,14 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,13 +15,14 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
+    //CHECKSTYLE.OFF: VisibilityModifier
+    public static List<String> commandWords = new ArrayList<String>(Arrays.asList("find", "f"));
+    //CHECKSTYLE.ON: VisibilityModifier
 
-    public static List<String> COMMAND_WORDS = new ArrayList<String>(Arrays.asList("find", "f"));
-
-    public static final String MESSAGE_USAGE = COMMAND_WORDS + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = commandWords + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORDS + " alice bob charlie";
+            + "Example: " + commandWords + " alice bob charlie";
 
     private final NameContainsKeywordsPredicate predicate;
 

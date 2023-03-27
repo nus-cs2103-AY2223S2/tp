@@ -2,14 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,14 +16,14 @@ import seedu.address.model.person.Person;
  * Deletes a person identified using it's displayed index from the address book.
  */
 public class DeleteCommand extends Command {
+    //CHECKSTYLE.OFF: VisibilityModifier
+    public static List<String> commandWords = new ArrayList<String>(Arrays.asList("delete", "d"));
+    //CHECKSTYLE.ON: VisibilityModifier
 
-    public static List<String> COMMAND_WORDS = new ArrayList<String>(Arrays.asList("delete", "d"));
-
-
-    public static final String MESSAGE_USAGE = COMMAND_WORDS
+    public static final String MESSAGE_USAGE = commandWords
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORDS + " 1";
+            + "Example: " + commandWords + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 

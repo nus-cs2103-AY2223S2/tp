@@ -1,5 +1,15 @@
 package seedu.address.storage;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -18,16 +28,9 @@ import seedu.address.logic.commands.ShortcutCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UndoCommand;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
-
+/**
+ * Utility class providing helper functions to load and save the user's commands from files.
+ */
 public class ShortcutCommandUtil {
     public static final Path ADD_PATH = Paths.get("data", "addCommand.txt");
     public static final Path CLEAR_PATH = Paths.get("data", "clearCommand.txt");
@@ -47,54 +50,78 @@ public class ShortcutCommandUtil {
     public static final Path TAG_PATH = Paths.get("data", "tagCommand.txt");
     public static final Path UNDO_PATH = Paths.get("data", "undoCommand.txt");
 
+    /**
+     * Loads user-defined shortcuts from files.
+     */
     public static void loadShortcuts() {
-        AddCommand.COMMAND_WORDS = loadWords(ADD_PATH, AddCommand.COMMAND_WORDS);
-        ClearCommand.COMMAND_WORDS = loadWords(CLEAR_PATH, ClearCommand.COMMAND_WORDS);
-        DeleteCommand.COMMAND_WORDS = loadWords(DELETE_PATH, DeleteCommand.COMMAND_WORDS);
-        DeleteTagCommand.COMMAND_WORDS = loadWords(DELETE_TAG_PATH, DeleteTagCommand.COMMAND_WORDS);
-        EditCommand.COMMAND_WORDS = loadWords(EDIT_PATH, EditCommand.COMMAND_WORDS);
-        ExitCommand.COMMAND_WORDS = loadWords(EXIT_PATH, ExitCommand.COMMAND_WORDS);
-        ExportCommand.COMMAND_WORDS = loadWords(EXPORT_PATH, ExportCommand.COMMAND_WORDS);
-        FilterCommand.COMMAND_WORDS = loadWords(FILTER_PATH, FilterCommand.COMMAND_WORDS);
-        FindCommand.COMMAND_WORDS = loadWords(FIND_PATH, FindCommand.COMMAND_WORDS);
-        HelpCommand.COMMAND_WORDS = loadWords(HELP_PATH, HelpCommand.COMMAND_WORDS);
-        ImportCommand.COMMAND_WORDS = loadWords(IMPORT_PATH, ImportCommand.COMMAND_WORDS);
-        ListCommand.COMMAND_WORDS = loadWords(LIST_PATH, ListCommand.COMMAND_WORDS);
-        MassOpCommand.COMMAND_WORDS = loadWords(MASS_OP_PATH, MassOpCommand.COMMAND_WORDS);
-        RedoCommand.COMMAND_WORDS = loadWords(REDO_PATH, RedoCommand.COMMAND_WORDS);
-        ShortcutCommand.COMMAND_WORDS = loadWords(SHORTCUT_PATH, ShortcutCommand.COMMAND_WORDS);
-        TagCommand.COMMAND_WORDS = loadWords(TAG_PATH, TagCommand.COMMAND_WORDS);
-        UndoCommand.COMMAND_WORDS = loadWords(UNDO_PATH, UndoCommand.COMMAND_WORDS);
+        AddCommand.commandWords = loadWords(ADD_PATH, AddCommand.commandWords);
+        ClearCommand.commandWords = loadWords(CLEAR_PATH, ClearCommand.commandWords);
+        DeleteCommand.commandWords = loadWords(DELETE_PATH, DeleteCommand.commandWords);
+        DeleteTagCommand.commandWords = loadWords(DELETE_TAG_PATH, DeleteTagCommand.commandWords);
+        EditCommand.commandWords = loadWords(EDIT_PATH, EditCommand.commandWords);
+        ExitCommand.commandWords = loadWords(EXIT_PATH, ExitCommand.commandWords);
+        ExportCommand.commandWords = loadWords(EXPORT_PATH, ExportCommand.commandWords);
+        FilterCommand.commandWords = loadWords(FILTER_PATH, FilterCommand.commandWords);
+        FindCommand.commandWords = loadWords(FIND_PATH, FindCommand.commandWords);
+        HelpCommand.commandWords = loadWords(HELP_PATH, HelpCommand.commandWords);
+        ImportCommand.commandWords = loadWords(IMPORT_PATH, ImportCommand.commandWords);
+        ListCommand.commandWords = loadWords(LIST_PATH, ListCommand.commandWords);
+        MassOpCommand.commandWords = loadWords(MASS_OP_PATH, MassOpCommand.commandWords);
+        RedoCommand.commandWords = loadWords(REDO_PATH, RedoCommand.commandWords);
+        ShortcutCommand.commandWords = loadWords(SHORTCUT_PATH, ShortcutCommand.commandWords);
+        TagCommand.commandWords = loadWords(TAG_PATH, TagCommand.commandWords);
+        UndoCommand.commandWords = loadWords(UNDO_PATH, UndoCommand.commandWords);
     }
 
-    public static void saveWords(Path p, List<String> COMMAND_WORDS) {
+    /**
+     * Saves user-defined shortcuts to a file.
+     * @param p File path for the new word to be saved in.
+     * @param commandWords ArrayList to be saved into.
+     */
+    public static void saveWords(Path p, List<String> commandWords) {
         if (!Files.exists(p)) {
             try {
                 Files.createFile(p);
-            } catch (java.io.IOException ignored) {}
+            } catch (java.io.IOException ignored) {
+                // do nothing
+            }
         }
 
         try {
             FileOutputStream fos = new FileOutputStream(p.toFile());
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(COMMAND_WORDS);
+            oos.writeObject(commandWords);
             oos.close();
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+            // do nothing
+        }
     }
 
-    public static List<String> loadWords(Path p, List<String> COMMAND_WORDS) {
+    /**
+     * Loads a user-defined shortcut from a file.
+     * @param p File path of file
+     * @param commandWords ArrayList to be loaded into
+     * @return same array list
+     */
+    @SuppressWarnings("unchecked")
+    public static List<String> loadWords(Path p, List<String> commandWords) {
         if (!Files.exists(p)) {
             try {
                 Files.createFile(p);
-            } catch (java.io.IOException ignored) {}
+            } catch (java.io.IOException ignored) {
+                // do nothing
+            }
         }
         try {
             FileInputStream fis = new FileInputStream(p.toFile());
             ObjectInputStream ois = new ObjectInputStream(fis);
-            COMMAND_WORDS = (List<String>) ois.readObject();
+            // suppress the unchecked cast since the object is an ArrayList
+            commandWords = (List<String>) ois.readObject();
             ois.close();
 
-        } catch (IOException | ClassNotFoundException ignored) {}
-        return COMMAND_WORDS;
+        } catch (IOException | ClassNotFoundException ignored) {
+            // do nothing
+        }
+        return commandWords;
     }
 }

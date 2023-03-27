@@ -65,8 +65,8 @@ public class MassOpCommandParser implements Parser<MassOpCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MassOpCommand.MESSAGE_USAGE));
         }
 
-        for (int i = 0; i < TagCommand.COMMAND_WORDS.size(); i++) {
-            if (argMultimap.getPreamble().contains(TagCommand.COMMAND_WORDS.get(i))) {
+        for (int i = 0; i < TagCommand.commandWords.size(); i++) {
+            if (argMultimap.getPreamble().contains(TagCommand.commandWords.get(i))) {
                 isDelete = false;
             }
         }
