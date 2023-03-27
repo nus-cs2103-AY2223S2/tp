@@ -421,7 +421,7 @@ Sorts the list using the following format:
 
 Aspect: How are tasks sorted:
 
-###### Option 1(current choice):
+#### Option 1(current choice):
 
 * SimpleTask is listed above Deadline and Event.
 * Deadline is  listed below SimpleTask and above Event.
@@ -444,7 +444,7 @@ Aspect: How are tasks sorted:
 Pros: Neater and more intuitive
 Cons: Will have to scroll down to see the order for Events if there are too many SimpleTasks.
 
-###### Option 2:
+#### Option 2:
 
 Same as above, but:
 * Event is listed above SimpleTask and Deadline.
@@ -540,7 +540,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Edit a task**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  TaskBook shows a list of tasks
+3.  User requests to edit a specific task in the list
+4.  TaskBook edits the task based on the parameters supplied.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TaskBook shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 

@@ -61,11 +61,19 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 
 **:information_source: Notes about the command format:**<br>
 * First word is assumed to be a command word (add/delete/list/find).
-* Each task **must** have a corresponding description.
+* A Task can be: 
+  * A simpleTask, which does not have a date attached to it.
+  * A deadline, which has a `deadline`.
+  * An event, which has a `from` and a `to`.
+* A task can have the following fields attached to it:
+  * Tags
+  * Description
+  * Subsection 
+  * Effort
 * Words in `ALL CAPS` are the parameters to be supplied by the user.<br>
 
 * Items in square brackets are optional.<br>
-  e.g `n/TASK d/DESCRIPTION [tag/TAG]` can be used as `n/Read Book d/Intro to Competitive Programming tag/relax` or as `n/Read Book d/Intro to Competitive Programming t/relax`.
+  e.g `n/TASK [d/DESCRIPTION] [tag/TAG]` can be used as `n/Read Book d/Intro to Competitive Programming tag/relax` or as `n/Read Book d/Intro to Competitive Programming t/relax`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/important`, `tag/important t/urgent` etc.
@@ -78,11 +86,6 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* A valid Date (must be a legitimate date) must be in the format of `YYYY-MM-DD HHMM` such as `2023-07-13 1800` (13 July 2023, 6PM)
-
-* A valid Date must have a valid time. A minimum of 4 characters must be supplied and only a maximum of 4 character will be parsed
-  e.g. `2023-07-13 180` is invalid and `2023-07-13 18000000000` is understood as `2023-07-13 1800`
 
 </div>
 
@@ -97,13 +100,14 @@ Format: `help`
 
 ### 2.2 Adding a task: `add`
 
-:speech_balloon: PRO TIP: Parameters that comes after the command can be in any order!
+:bulb: PRO TIP: Parameters that comes after the command can be in any order!
+
 :warning: You are unable to add any tasks (simpleTask, Deadline, Event) of the same name.
 
 Adds a task to the address book. There are 3 types of tasks. `SimpleTask`, `Deadline` and `Event`.
-For `Deadline` and `Event` date(s) are required.
+For `Deadline` and `Event` `longDate` field(s) are required.
 
-Dates should be in the format `YYYY-MM-DD HHMM`. ([What is a valid Date?](#q2-what-is-a-valid-date))
+`longDates` should be in the format `YYYY-MM-DD HHMM`. ([What is a valid longDate?](#q2-what-is-a-valid-longdate))
 
 By default, effort level is 24. ([What is an effort level?](#q3-what-is-an-effort-level))
 
@@ -111,16 +115,16 @@ A Task must have a description.([What is a valid Description?](#q4-what-is-a-val
 
 Format:
 
-* SimpleTask: `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT]…​`
+* SimpleTask: `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]…​`
 
-* Deadline: `add n/TASKNAME d/DESCRIPTION D/DEADLINE [t/TAGS]…​ [E/EFFORT]…​`
+* Deadline: `add n/TASKNAME D/DEADLINE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]…​`
 
-* Event: `add n/TASKNAME d/DESCRIPTION F/FROMDATE T/TODATE [t/TAGS]…​ [E/EFFORT]…​`
+* Event: `add n/TASKNAME F/FROMDATE T/TODATE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]…​`
 
 You can add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION [t/TAGS]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can add multiple Events and Deadlines as well! However, they have to share the same timings.
+You can add multiple Events and Deadlines as well! However, they have to share the same timings. Use this to add tasks that occur at the same time!
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -132,7 +136,7 @@ Examples:
 * `add n/Return Book d/NUS library t/Urgent D/2023-01-01 1800`
 
 ### 2.3 Listing all tasks : `list`
-:speech_balloon: PRO TIP: Some commands (e.g. find) will trigger the UI to display a subset of tasks. Use `list` to return back to the original list.
+:bulb: PRO TIP: Some commands (e.g. find) will trigger the UI to display a subset of tasks. Use `list` to return back to the original list.
 
 Shows a list of all tasks in the address book.
 
@@ -158,13 +162,14 @@ Examples:
 *  `edit 2 n/CS2102 Finals t/` Edits the name of the 2nd task to be `CS2102 Finals` and clears all existing tags.
 
 ### 2.5 Locating tasks by name: `find`
+:warning: When searching for a description `find d/Description`, Tasks without user's input description will not show up!
+e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/No Description` will return only the latter task. 
 
 Find tasks whose attribute best match the user input string.
 
 Format: `find n/NAME` OR `find d/DESCRIPTION` OR `find t/TAG...`
 
 * The search is case-insensitive. e.g `book` will match `Book`
-* Use only 1 attribute at a time.
 * Substrings will be matched e.g. `book` will match `Books`
 * For names and descriptions, you may use the `all/` prefix to search for a task that contains all of your inputs
   * e.g. `find all/ n/do n/homework` will match a task with a name called "do math homework.
@@ -312,7 +317,7 @@ _Details coming soon ..._
 ### Q1 How do I transfer my data to another Computer?
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
-### Q2 What is a valid Date?
+### Q2 What is a valid longDate?
 **A**: A valid Date must be in the format of `YYYY-MM-DD HHMM` such as `2023-07-13 1800` (13 July 2023, 6PM). A valid Date must have a valid time. A minimum of 4 characters must be supplied and only a maximum of 4 character will be parsed
   e.g. `2023-07-13 180` is invalid and `2023-07-13 18000000000` is understood as `2023-07-13 1800`
 
