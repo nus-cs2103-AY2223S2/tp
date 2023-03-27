@@ -38,10 +38,7 @@ public class Github {
 
     @Override
     public String toString() {
-        if (value != null) {
-            return value;
-        }
-        return "<not added>";
+        return value;
     }
 
     @Override

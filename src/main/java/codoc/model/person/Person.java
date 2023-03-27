@@ -166,24 +166,41 @@ public class Person {
                 .append(getYear())
                 .append("; Course: ")
                 .append(getCourse())
-                .append("; Github: ")
-                .append(getGithub())
                 .append("; Email: ")
-                .append(getEmail())
-                .append("; Linkedin: ")
-                .append(getLinkedin())
-                .append("; Profile picture path: ")
-                .append(getProfilePicture());
+                .append(getEmail());
 
-        Set<Skill> skills = getSkills();
-        if (!skills.isEmpty()) {
-            builder.append("; Skills: ");
-            skills.forEach(builder::append);
+        builder.append("; GitHub: ");
+        Github github = getGithub();
+        if (github.value == null) {
+            builder.append("Not Added");
+        } else {
+            builder.append(github);
         }
-        if (!modules.isEmpty()) {
-            builder.append("; Modules: ");
+
+        builder.append("; LinkedIn: ");
+        Linkedin linkedin = getLinkedin();
+        if (linkedin.value == null) {
+            builder.append("Not Added");
+        } else {
+            builder.append(linkedin);
+        }
+
+        builder.append("; Modules: ");
+        Set<Module> modules = getModules();
+        if (modules.isEmpty()) {
+            builder.append("Not Added");
+        } else {
             modules.forEach(builder::append);
         }
+
+        builder.append("; Skills: ");
+        Set<Skill> skills = getSkills();
+        if (skills.isEmpty()) {
+            builder.append("Not Added");
+        } else {
+            skills.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 
