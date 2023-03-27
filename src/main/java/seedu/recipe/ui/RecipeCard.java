@@ -2,13 +2,16 @@ package seedu.recipe.ui;
 
 import static seedu.recipe.model.util.IngredientUtil.ingredientKeyValuePairToString;
 
+import java.awt.*;
 import java.util.Comparator;
 import java.util.Optional;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Orientation;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.recipe.model.recipe.Recipe;
@@ -59,10 +62,10 @@ public class RecipeCard extends UiPart<Region> {
     private FlowPane tags;
 
     @FXML
-    private FlowPane ingredients;
+    private GridPane ingredients;
 
     @FXML
-    private FlowPane steps;
+    private GridPane steps;
 
     private final CommandExecutor commandExecutor;
     /**
@@ -79,6 +82,9 @@ public class RecipeCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().recipeName);
 
+        // ingredients.setOrientation(Orientation.VERTICAL);
+        // steps.setOrientation(Orientation.VERTICAL);
+
         //Duration
         duration.setText("Duration: "
                 + Optional.ofNullable(recipe.getDurationNullable())
@@ -93,18 +99,23 @@ public class RecipeCard extends UiPart<Region> {
 
         //Ingredients
         ingredientsTitle.setText("Ingredients:");
+        GridManager ingredientManager = new GridManager();
         recipe.getIngredients()
             .forEach((ingredient, information) -> ingredients
-                .getChildren()
                 .add(
-                    new Label(ingredientKeyValuePairToString(ingredient, information))
-                )
+                    createUnorderedListItem(
+                        ingredientKeyValuePairToString(ingredient, information)
+                    ),
+                    0, ingredientManager.getCount())
             );
 
         //Steps
+        GridManager stepLabelManager = new GridManager(1);
+        GridManager stepGridManager = new GridManager();
         stepsTitle.setText("Steps:");
         recipe.getSteps()
-                .forEach(step -> steps.getChildren().add(new Label(step.toString())));
+            .forEach(step -> steps.add(
+                createOrderedListItem(stepLabelManager, step.toString()), 0, stepGridManager.getCount()));
 
         //Tags
         tagsTitle.setText("Steps:");
@@ -147,6 +158,20 @@ public class RecipeCard extends UiPart<Region> {
         });
     }
 
+    private Label createUnorderedListItem(String text) {
+        return createLabel("• " + text);
+    }
+
+    private Label createOrderedListItem(GridManager manager, String text) {
+        return createLabel(manager.getCount() + ". " + text);
+    }
+
+    private Label createLabel(String text) {
+        Label label = new Label(text);
+        label.setWrapText(true);
+        return label;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -163,5 +188,27 @@ public class RecipeCard extends UiPart<Region> {
         RecipeCard card = (RecipeCard) other;
         return id.getText().equals(card.id.getText())
                 && recipe.equals(card.recipe);
+    }
+
+    private static class GridManager {
+        private int count;
+
+        public GridManager() {
+            count = 0;
+        }
+
+        public GridManager(int startCount) {
+            assert startCount >= 0;
+            count = startCount;
+        }
+
+        public int getCount() {
+            int out = count;
+            count += 1;
+            return out;
+        }
+        public void reset() {
+            count = 0;
+        }
     }
 }
