@@ -4,19 +4,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Subject;
 import seedu.address.model.tag.Tag;
+
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Predicate that returns true if all keywords are contained in the Person's fields (Name, Address, Phone).
@@ -73,6 +69,15 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
             }
             hasMatching = tags.stream()
                     .anyMatch(tag -> person.getTags().contains(tag));
+        } else if (findCategory.equals(PREFIX_SUBJECT)) {
+            Set<Subject> subjects = new HashSet<>();
+            for (int i = 1; i < keywords.size(); i++) {
+                String currKeyword = keywords.get(i);
+                Subject curr = new Subject(currKeyword);
+                subjects.add(curr);
+            }
+            hasMatching = subjects.stream()
+                    .anyMatch(subject -> person.getSubjects().contains(subject));
         }
 
         return hasMatching;

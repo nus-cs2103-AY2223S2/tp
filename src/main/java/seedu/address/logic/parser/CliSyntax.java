@@ -15,7 +15,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_SUBJECT = new Prefix("s/");
     private static final Prefix[] prefixList = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_ADDRESS,
-            PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_TAG};
+            PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_TAG, PREFIX_SUBJECT};
 
     public static boolean isPrefix(Prefix prefix) {
         boolean isPrefix = false;
