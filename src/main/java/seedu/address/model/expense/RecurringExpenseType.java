@@ -27,7 +27,7 @@ enum RecurringExpenseType {
                 case YEARLY:
                 currentDate = currentDate.plusYears(1);
                 }
-            } 
+            }
         return currentDate;
     }
 }

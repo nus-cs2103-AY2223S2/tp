@@ -34,7 +34,7 @@ public class RecurringExpenseManagerTest {
 
     @Test
     public void getExpenseListTotal() {
-        assertEquals(recurringExpenseManager.getTotalAmount(), 
+        assertEquals(recurringExpenseManager.getTotalAmount(),
             expenseList.get(0).getAmount() * expenseList.size());
     }
 }

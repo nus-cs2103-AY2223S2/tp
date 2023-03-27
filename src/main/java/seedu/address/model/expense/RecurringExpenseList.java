@@ -53,7 +53,7 @@ public class RecurringExpenseList {
         }
         return totalAmount;
     }
-    
+
     public void clear() {
         recurringExpenseList.clear();
     }
