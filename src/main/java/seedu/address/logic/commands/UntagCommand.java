@@ -6,7 +6,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.logic.commands.results.ViewCommandResult;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
 import seedu.address.model.person.ContactIndex;
@@ -46,7 +46,7 @@ public class UntagCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public ViewCommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Person personToEdit = getPersonToEdit(model);
 
@@ -75,15 +75,16 @@ public class UntagCommand extends Command {
      * @param personToEdit {@code Person} which has been edited.
      * @return feedback message of the operation result for display.
      */
-    public CommandResult setPersonCommonModuleTags(Model model, Person personToEdit) {
+    public ViewCommandResult setPersonCommonModuleTags(Model model, Person personToEdit) {
         Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
 
         personToEdit.setCommonModules(userModuleTags);
 
-        return new CommandResult(String.format(MESSAGE_UNTAG_PERSON_SUCCESS
+        return new ViewCommandResult(String.format(MESSAGE_UNTAG_PERSON_SUCCESS
                 + "Name: " + personToEdit.getName().toString() + '\n'
                 + "Modules: " + personToEdit.getImmutableModuleTags().toString() + '\n'
-                + "Module(s) in common: " + personToEdit.getImmutableCommonModuleTags().toString()));
+                + "Module(s) in common: " + personToEdit.getImmutableCommonModuleTags().toString()),
+                personToEdit);
     }
 
     /**
@@ -92,13 +93,13 @@ public class UntagCommand extends Command {
      * @param editedUser {@code User} which has been edited.
      * @return feedback message of the operation result for display.
      */
-    public CommandResult setUserCommonModuleTags(Model model, User editedUser) {
+    public ViewCommandResult setUserCommonModuleTags(Model model, User editedUser) {
         model.getObservablePersonList().forEach(person ->
                 person.setCommonModules(editedUser.getImmutableModuleTags()));
 
-        return new CommandResult(String.format(MESSAGE_UNTAG_USER_SUCCESS
+        return new ViewCommandResult(String.format(MESSAGE_UNTAG_USER_SUCCESS
                 + "Name: " + editedUser.getName().toString() + '\n'
-                + "Modules: " + editedUser.getImmutableModuleTags().toString()));
+                + "Modules: " + editedUser.getImmutableModuleTags().toString()), editedUser);
     }
 
     public ContactIndex getIndex() {
