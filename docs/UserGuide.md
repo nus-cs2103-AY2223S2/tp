@@ -23,7 +23,7 @@ This user guide will help you get up to speed in no time!
 - [Features](#features)
   <details>
     <summary>Click to expand</summary>
-    
+
     * [Add a Contact](#add-a-contact)
     * [Clear all Events](#clear-all-events)
     * [Create New Event](#create-new-event)
@@ -81,7 +81,7 @@ The examples given in this guide are formatted with the following conventions:
 
 1. Download the latest `Paidlancers.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for Paidlancers.
+1. Copy the file to the folder you want to use as the _home folder_ for your EventBook.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Paidlancers.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -283,6 +283,8 @@ Displays the rate tagged to an event.
 Calculates and displays the total revenue based on all the completed events.
 
 **Format**: `revenue`
+
+- Displays the total revenue.
 
 ### View Upcoming Events: `remind` <a id = "view-upcoming-events"></a>
 
