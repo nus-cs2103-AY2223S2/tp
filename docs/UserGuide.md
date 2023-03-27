@@ -11,30 +11,31 @@ Teaching Assistant Assistant (TAA) is a **desktop app for managing teaching assi
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
-_Details coming soon ..._
 
-## Feature summary
-1. [Attendance](#attendance)
-   * mark
-   * unmark
-2. [Participation](#Participation)
-   * insert
-2. [Assignments](#assignments)
-   * add
-   * delete
-   * grade
-   * ungrade
-   * exit
-3. [Class List](#class-list)
-   * create
-   * rand_grp
-   * add
-   * delete
-   * list
-   * find
-4. [CSV Parser](#csv-parser)
-   * import
-   * export
+1. Ensure you have Java `11` or above installed in your Computer.
+
+1. Download the latest `addressbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-4/tp/releases).
+
+1. Copy the file to the folder you want to use as the _home folder_ for your TAA.
+
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar taa.jar` command to run the application.<br>
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](https://user-images.githubusercontent.com/59087730/222305199-8590f0f0-7e6d-4801-bcb9-cbb2a48fa28e.png)
+
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+
+   * `list` : Lists all students.
+
+   * `add_student n/John Doe cl/T01 cl/L02` : Adds a contact named `John Doe` to the Class Lists `T01` and `L02`.
+
+   * `delete 3` : Deletes the 3rd student shown in the current list.
+
+   * `clear` : Deletes all students.
+
+   * `exit` : Exits the app.
+
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -42,19 +43,19 @@ _Details coming soon ..._
 
 ## Attendance
 For attendance, you can make the following calls:
-* mark
-* unmark
+* markAtd
+* unmarkAtd
 
-### Mark attendance: `mark`
+### Mark attendance: `markAtd`
 Marks the attendance of a student for that week<br>
-Format: `mark {student_number} w/{week_number}`<br>
+Format: `markAtd {student_number} w/{week_number}`<br>
 Examples
 * `markAtd 1 w/1`
 * `markAtd 2 w/1`
 
-### Unmark attendance: `unmark`
+### Unmark attendance: `unmarkAtd`
 Unmarks the attendance of a student for that week<br>
-Format: `unmark {student_number} w/{week_number}`<br>
+Format: `unmarkAtd {student_number} w/{week_number}`<br>
 Examples
 * `unmarkAtd 1 w/1`
 * `unmarkAtd 2 w/1`
@@ -63,7 +64,7 @@ Examples
 For Participation, you can make the following calls:
 * insert
 
-### Insert participation points: `insert`
+### Insert participation points: `insertPP`
 Insert attendance of a student for that week<br>
 Format: `insertPP {student_number} w/{week_number} pp/{points}`
 Examples
@@ -126,7 +127,7 @@ In this system, you can call the following commands:
 - Listing all students: `list`
 - Find student: `find`
 
-### Create a class list: `create` [coming soon]
+### Create a class list: `create`
 Creates a class list to store the information about a group of students.
 
 Format: `create LIST_NAME [STUDENT_NAMES]`
@@ -189,21 +190,14 @@ Format: `delete_student STUDENT_INDEX`
 Examples:
 - `delete_student 3` removes the 3rd student in the currently active/displayed class list
 
-### Listing all students : `list` [coming soon]
-List the students in the class.
+### Listing all students : `list` 
+Lists all students tracked by TAA globally.
 
-Format: `list CLASS_NAME`
-- List the students in tutorial class indicated by the argument class name
-- There should only be one string following list and nothing else.​
-- The argument class name is not case-sensitive.
-
-
-Examples:
- - Li Chengyue A0123456K
+Format: `list`
 
 
 ### Find a particular student : `find` [coming soon]
-List the students in the class.
+List the students in the class by their student number/name.
 
 Format: `find FLAG STUDENT_NUMBER` or `find FLAG STUDENT_NAME`
 - Flag -id refers to find by student number
@@ -249,10 +243,6 @@ Format: `export [flag] [file path]`
 * If file exists, export is blocked unless -force flag is used. Otherwise, create file and export.
 * Flag -force overwrites existing file.
 * Nothing is changed if file access denied.
-
-
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 
