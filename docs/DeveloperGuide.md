@@ -155,7 +155,11 @@ extension feature to this project.<br/><br/>
 The **API** of this component is specified
 in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/Storage.java)
 
-Structure of the Storage Component: (tbc)
+**Structure:**
+
+<img src="images/StorageClassDiagram.png" width="500" />
+
+<img src="images/JsonAdaptersDiagram.png" width="500" />
 
 **The `Storage` component:**
 
@@ -174,16 +178,19 @@ To serialize a recipe, we must necessarily serialize its component fields too: i
 
 The default JSON representation for each component is to express the fields of each component as key-value pairs.
 However, this representation is too verbose and space-inefficient. Hence, we opted to write custom JSON adapters for
-each component clas, which can be found in the [`seedu.recipe.storage.jsonadapters`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/jsonadapters)
-package. The JSON adapters allow us to express how each class should be serialized.
+each component clas, which can be found in the [`seedu.recipe.storage.jsonadapters`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/jsonadapters) 
+package. These JSON adapters allow us to express how each class should be serialized.
+
+### Common classes
+Classes used by multiple components are in the `seedu.recipe.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **Feature Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Edit Form Feature
+### Feature: "Edit" Form UI
 
 #### Implementation
 
@@ -200,7 +207,7 @@ In addition, it implements the following operations:
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-### Example Usage Scenario
+#### Example Usage Scenario
 
 Step 1. The user selects a recipe and presses the F key on the keyboard, triggering the `RecipeForm` to appear with the selected recipe's details pre-populated in the form fields.
 
@@ -224,10 +231,34 @@ Notes
 If the user clicks the "Cancel" button or presses the ESC key, the form will be closed without saving any changes.
 The form's window title will be "Edit Recipe" when editing an existing recipe, and "Add Recipe" when adding a new recipe.
 
-### Common classes
-Classes used by multiple components are in the `seedu.recipe.commons` package.
+### Feature: Find-by-property
+
+The `find` command allows the user to filter recipes by their properties: 
+e.g. their name, tags, or ingredients.
+
+<img src="images/FindSequenceDiagram.png" width="1000" />
+
+#### Implementation
+As with all commands, the find command goes through the standard command execution pipeline.
+
+In `FindCommandParser`, we determine which is the target property. 
+Keyword validation and predicate creation is then done depending on the target property.
+
+To determine whether a recipe's target property matches the given keywords, 2 predicate types are used:
+* `PropertyNameContainsKeywordPredicate<T>`: checks whether some string representation of a property T 
+matches any of the keywords
+  * e.g. if the property is `Name`, and we have a recipe named "Cacio e Pepe" and we are 
+  finding recipes whose name match the keywords ["Pepe", "Cereal"], then this recipe would match
+* `PropertyCollectionContainsKeywordPredicate<T>`: checks whether a string representation of any property T 
+in a collection of property T matches any of the keywords
+  * e.g. if the property is `Tag`, and we have a recipe with tags ["Italian", "Breakfast"] and we are
+  finding recipes whose tags match the keywords ["Italian", "Indian"], then this recipe would match
+
+The use of generic types in the above predicates allows it to be implemented independent of the actual type
+of the property, as long as the relevant getters are supplied.
 
 --------------------------------------------------------------------------------------------------------------------
+
 
 ## **Appendix: Requirements**
 
