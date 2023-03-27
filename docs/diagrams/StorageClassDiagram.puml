@@ -20,6 +20,7 @@ Class JsonExpressLibraryStorage
 Class JsonSerializableExpressLibrary
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
+Class JsonAdaptedBook
 }
 
 }
@@ -39,5 +40,6 @@ JsonExpressLibraryStorage .up.|> ExpressLibraryStorage
 JsonExpressLibraryStorage ..> JsonSerializableExpressLibrary
 JsonSerializableExpressLibrary --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonSerializableExpressLibrary --> "*" JsonAdaptedBook
 
 @enduml
