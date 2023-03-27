@@ -12,7 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.id.PatientId;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -49,7 +49,7 @@ public class ModelManager implements Model {
         requireAllNonNull(addressBook, appointmentList, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook
-            + ", appointmentList: " + appointmentList + userPrefs);
+                + ", appointmentList: " + appointmentList + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.appointmentList = new AppointmentList(appointmentList);
@@ -127,9 +127,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPatientId(PatientId patientId) {
-        requireNonNull(patientId);
-        return addressBook.getPatientList().stream().anyMatch(patient -> patient.getId().equals(patientId));
+    public boolean hasPatientName(Name name) {
+        requireNonNull(name);
+        return addressBook.getPatientList().stream().anyMatch(patient -> patient.getName().equals(name));
     }
 
     @Override
@@ -182,8 +182,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-            && userPrefs.equals(other.userPrefs)
-            && filteredPatients.equals(other.filteredPatients);
+                && userPrefs.equals(other.userPrefs)
+                && filteredPatients.equals(other.filteredPatients);
         //      && filteredAppointments.equals(other.filteredAppointments);
         // not added to keep backward compatibility with tests until storage is fixed
     }

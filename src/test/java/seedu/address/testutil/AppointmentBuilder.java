@@ -7,7 +7,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Description;
 import seedu.address.model.appointment.Timeslot;
 import seedu.address.model.id.AppointmentId;
-import seedu.address.model.id.PatientId;
+import seedu.address.model.patient.Name;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -15,15 +15,15 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Appointment objects.
  */
 public class AppointmentBuilder {
+    public static final String DEFAULT_NAME = "Alex Yeoh";
     public static final String DEFAULT_TIMESLOT = "01012023 00:00,01012023 01:00";
     public static final String DEFAULT_DESCRIPTION = "Regular checkup";
-    public static final String DEFAULT_PATIENT_ID = "1";
     public static final String DEFAULT_APPOINTMENT_ID = "1";
 
     private AppointmentId appointmentId;
+    private Name patientName;
     private Timeslot timeslot;
     private Description description;
-    private PatientId patientId;
     private Set<Tag> tags;
 
     /**
@@ -33,7 +33,7 @@ public class AppointmentBuilder {
         appointmentId = new AppointmentId(DEFAULT_APPOINTMENT_ID);
         timeslot = new Timeslot(DEFAULT_TIMESLOT);
         description = new Description(DEFAULT_DESCRIPTION);
-        patientId = new PatientId(DEFAULT_PATIENT_ID);
+        patientName = new Name(DEFAULT_NAME);
         tags = new HashSet<>();
     }
 
@@ -62,10 +62,10 @@ public class AppointmentBuilder {
     }
 
     /**
-     * Sets the {@code PatientId} of the {@code Appointment} that we are building.
+     * Sets the {@code Name} of the {@code Appointment} that we are building.
      */
-    public AppointmentBuilder withPatientId(String patientId) {
-        this.patientId = new PatientId(patientId);
+    public AppointmentBuilder withPatientName(String patientName) {
+        this.patientName = new Name(patientName);
         return this;
     }
 
@@ -78,6 +78,6 @@ public class AppointmentBuilder {
     }
 
     public Appointment build() {
-        return new Appointment(appointmentId, timeslot, description, patientId, tags);
+        return new Appointment(appointmentId, patientName, timeslot, description, tags);
     }
 }
