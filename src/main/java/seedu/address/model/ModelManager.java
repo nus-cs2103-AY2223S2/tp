@@ -316,7 +316,7 @@ public class ModelManager implements Model {
     @Override
     public void flipCard() {
         assert currReview != null : "Flip command executed without a Review session.";
-        masterDeck.flipCard(filteredCards.get(0));
+        currReview.flipCurrCard();
     }
 
     @Override
@@ -325,7 +325,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void tagCurrentCardInReview(Tag tag) {
+    public void tagCurrentCardInReview(Tag tag) { // legacy code
         assert filteredCards.size() == 1 : "One and only one card can be reviewed at once.";
         masterDeck.tagCard(filteredCards.get(0), tag);
     }

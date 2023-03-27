@@ -89,20 +89,6 @@ public class UniqueCardList implements Iterable<Card> {
     }
 
     /**
-     * Replaces old card with new card that is flipped.
-     * @param target
-     */
-    public void flipCard(Card target) {
-        int index = internalList.indexOf(target);
-        if (target.isFlipped()) {
-            target.setAsUnflipped();
-        } else {
-            target.setAsFlipped();
-        }
-        internalList.set(index, target);
-    }
-
-    /**
      * Removes the equivalent card from the list.
      * The card must exist in the list.
      */

@@ -93,16 +93,11 @@ public class MasterDeck implements ReadOnlyMasterDeck {
      */
     public void setCard(Card target, Card editedCard) {
         requireNonNull(editedCard);
-
         cards.setCard(target, editedCard);
     }
 
     public void tagCard(Card target, Tag tag) {
         cards.tagCard(target, tag);
-    }
-
-    public void flipCard(Card target) {
-        cards.flipCard(target);
     }
 
     /**

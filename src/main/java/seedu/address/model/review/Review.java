@@ -94,6 +94,14 @@ public class Review {
         this.reviewCardList.setCard(card, card.buildFlippedCard());
     }
 
+    public void flipCurrCard() {
+        if (currCard.isFlipped()) {
+            unflipCard(currCard);
+        } else {
+            flipCard(currCard);
+        }
+    }
+
     /**
      * Move to the next card to be under review.
      * @return boolean indicating if card is the last card
