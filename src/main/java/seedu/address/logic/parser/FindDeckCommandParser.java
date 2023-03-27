@@ -19,6 +19,7 @@ public class FindDeckCommandParser implements Parser<FindDeckCommand> {
      */
     public FindDeckCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
+
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindDeckCommand.MESSAGE_USAGE));

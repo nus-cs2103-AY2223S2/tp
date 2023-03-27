@@ -17,9 +17,11 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.cardcommands.AddCommand;
 import seedu.address.logic.commands.cardcommands.DeleteCommand;
 import seedu.address.logic.commands.cardcommands.EditCommand;
+import seedu.address.logic.commands.cardcommands.FindCardCommand;
 import seedu.address.logic.commands.deckcommands.AddDeckCommand;
 import seedu.address.logic.commands.deckcommands.DeleteDeckCommand;
 import seedu.address.logic.commands.deckcommands.EditDeckCommand;
+import seedu.address.logic.commands.deckcommands.FindDeckCommand;
 import seedu.address.logic.commands.deckcommands.SelectDeckCommand;
 import seedu.address.logic.commands.deckcommands.UnselectDeckCommand;
 import seedu.address.logic.commands.reviewcommands.EndReviewCommand;
@@ -89,6 +91,9 @@ public class MasterDeckParser {
         case UnselectDeckCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, UnselectDeckCommand.COMMAND_WORD));
 
+        case FindDeckCommand.COMMAND_WORD:
+            return new FindDeckCommandParser().parse(arguments);
+
         // Card-related Commands
         case AddCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, AddCommand.COMMAND_WORD));
@@ -98,6 +103,9 @@ public class MasterDeckParser {
 
         case DeleteCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, DeleteCommand.COMMAND_WORD));
+
+        case FindCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, FindCardCommand.COMMAND_WORD));
 
         // Review-related Commands
         case ReviewCommand.COMMAND_WORD:
@@ -170,6 +178,9 @@ public class MasterDeckParser {
         case UnselectDeckCommand.COMMAND_WORD:
             return new UnselectDeckCommand();
 
+        case FindDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_DECK_SELECTED, FindDeckCommand.COMMAND_WORD));
+
         // Card-related Commands
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
@@ -179,6 +190,9 @@ public class MasterDeckParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case FindCardCommand.COMMAND_WORD:
+            return new FindCardCommandParser().parse(arguments);
 
         // Review-related Commands
         case ReviewCommand.COMMAND_WORD:
@@ -251,6 +265,9 @@ public class MasterDeckParser {
         case UnselectDeckCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_IN_REVIEW, UnselectDeckCommand.COMMAND_WORD));
 
+        case FindDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, FindDeckCommand.COMMAND_WORD));
+
         // Card-related Commands
         case AddCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_IN_REVIEW, AddCommand.COMMAND_WORD));
@@ -260,6 +277,9 @@ public class MasterDeckParser {
 
         case DeleteCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_IN_REVIEW, DeleteCommand.COMMAND_WORD));
+
+        case FindCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, FindCardCommand.COMMAND_WORD));
 
         // Review-related Commands
         case ReviewCommand.COMMAND_WORD:
