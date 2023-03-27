@@ -51,7 +51,7 @@ public class CommandParserUtil {
     public static ApplicativeParser<ArgumentMultimap> arguments(ArgumentFlag... flags) {
         ArgumentMultimap map = new ArgumentMultimap(flags);
         /**
-         * This parser parse a single flag.
+         * This parser parses a single flag.
          */
         ApplicativeParser<Void> flagParser = Arrays.stream(flags).map(flag -> {
             String shortForm = flag.getShortForm();
