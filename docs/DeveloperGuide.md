@@ -745,6 +745,27 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a person
+
+1. Adding a person to HospiSearch
+    1. Prerequisites: Current person (identified by `Nric`) does not exist in the database
+    2. Test case: `add i/S1234567A n/John Doe p/98765432 e/johnd@example.com a/311, 
+             Clementi Ave 2, #02-25 g/Male d/NKDA` <br>
+       Expected: person above is added to HospiSearch, provided another entry does not have the same `nric`. Timestamp
+        in the status bar is updated.
+    3. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311,
+       Clementi Ave 2, #02-25 g/Male d/NKDA` <br>
+       Expected: No person is added. Error details shown in the status message. Status bar remains the same.
+    4. Test case: `add i/S1234567A p/98765432 e/johnd@example.com a/311,
+       Clementi Ave 2, #02-25 g/Male d/NKDA` <br>
+       Expected: No person is added. Error details shown in the status message. Status bar remains the same.
+    5. Test case: `add S1234567A 98765432 johnd@example.com 311,
+       Clementi Ave 2, #02-25 Male NKDA` <br>
+       Expected: No person is added. Error details shown in the status message. Status bar remains the same.
+    6. Other incorrect add commands to try: `add`, `add x/...`, `...` (where x is some invalid tag)
+
+2. _{ more test cases …​ }_
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -752,16 +773,43 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
     1. Test case: `delete i/S1234567A`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
-
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: Patient record with the specified NRIC will be removed.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+### Finding a person
+
+1. Finding a person while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    2. Test case: `find i/S1234567A`<br>
+       Person with the exact matching NRIC will be shown. It is case-insensitive.
+   
+    3. Test case: `find n/JAMES`<br>
+       Persons with names containing the string 'james' will be shown. It is case-insensitive.
+   
+    4. Test case: `find t/diabetic`<br>
+       Persons with `diabetic` tags will be shown. It is case-insensitive. 
+   
+    5. Test case: `find m/panadol`<br>
+       Persons that have been prescribed `panadol` will be shown. It is case-insensitive.
+
+    6. Test case: `find n/`<br>
+       Expected: No particular string has been input after the given prefix. Error details shown in the status message. Status bar remains the same.
+   
+    7. Test case: `find n/ t/`<br>
+          Expected: Multiple attributes have been input. Error details shown in the status message. Status bar remains the same.
+
+    8. Other incorrect delete commands to try: `find`, `find x`(no prefix have been given),<br />
+   , `find n/ i/`,  `find n/ m/ i/` `...` <br>
+       Expected: Similar to previous wrong commands.
+
+2. Returning to the full list of persons
+   1. List all persons using the `list` command to return back to the full list of persons in the database.
 
 ### Saving data
 
