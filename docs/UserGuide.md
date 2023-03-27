@@ -179,6 +179,8 @@ Adds a task to the app.
 
 Format: `task add d/<TASK_NAME>`
 
+To specify tank specific task: `task add d/<TASK_NAME> tk/<TANK_INDEX>`
+
 ### Listing tasks: `list task`
 
 Lists all tasks created.
@@ -190,6 +192,14 @@ Format: `list task`
 Delete a task entry from the app.
 
 Format: `task delete <TASK_INDEX>`
+
+### Priorites: `/p`
+
+Use the format specifier /p to specify priorities
+
+Format: `task add d/<TASK_NAME> p/<PRIORITY_LEVEL>`
+
+*Note: PRIORITY_LEVEL is only accepted as low / medium / high* 
 
 ### Saving the data
 

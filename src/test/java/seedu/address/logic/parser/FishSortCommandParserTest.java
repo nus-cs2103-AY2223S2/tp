@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.SORT_LAST_FED_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.SORT_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.SORT_SPECIES;
 import static seedu.address.logic.commands.CommandTestUtil.SORT_TANK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_BY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -19,11 +20,16 @@ public class FishSortCommandParserTest {
     private final FishSortCommandParser parser = new FishSortCommandParser();
     @Test
     public void parse_allScenarios_success() {
-        assertParseSuccess(parser, SORT_NAME, new FishSortCommand(FishSortCommandParser.NAME_COMPARATOR));
-        assertParseSuccess(parser, SORT_LAST_FED_DATE, new FishSortCommand(FishSortCommandParser.LAST_FED_COMPARATOR));
-        assertParseSuccess(parser, SORT_SPECIES, new FishSortCommand(FishSortCommandParser.SPECIES_COMPARATOR));
-        assertParseSuccess(parser, SORT_FEEDING, new FishSortCommand(FishSortCommandParser.FEEDING_COMPARATOR));
-        assertParseSuccess(parser, SORT_TANK, new FishSortCommand(FishSortCommandParser.TANK_COMPARATOR));
+        assertParseSuccess(parser, SORT_NAME,
+                new FishSortCommand(FishSortCommandParser.NAME_COMPARATOR, null));
+        assertParseSuccess(parser, SORT_LAST_FED_DATE,
+                new FishSortCommand(FishSortCommandParser.LAST_FED_COMPARATOR, null));
+        assertParseSuccess(parser, SORT_SPECIES,
+                new FishSortCommand(FishSortCommandParser.SPECIES_COMPARATOR, null));
+        assertParseSuccess(parser, SORT_FEEDING,
+                new FishSortCommand(FishSortCommandParser.FEEDING_COMPARATOR, null));
+        assertParseSuccess(parser, SORT_TANK,
+                new FishSortCommand(FishSortCommandParser.TANK_COMPARATOR, null));
     }
 
     @Test
@@ -31,7 +37,7 @@ public class FishSortCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FishSortCommand.MESSAGE_USAGE);
 
         // missing input
-        assertParseFailure(parser, " ", expectedMessage);
+        assertParseFailure(parser, " " + PREFIX_SORT_BY + " ", expectedMessage);
     }
 
     @Test
@@ -39,15 +45,15 @@ public class FishSortCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FishSortCommand.MESSAGE_USAGE);
 
         // extra character
-        assertParseFailure(parser, "lfdd", expectedMessage);
+        assertParseFailure(parser, " " + PREFIX_SORT_BY + "lfdd", expectedMessage);
 
         // missing character
-        assertParseFailure(parser, "lf", expectedMessage);
+        assertParseFailure(parser, " " + PREFIX_SORT_BY + "lf", expectedMessage);
 
         // invalid character
-        assertParseFailure(parser, "@", expectedMessage);
+        assertParseFailure(parser, " " + PREFIX_SORT_BY + "@", expectedMessage);
 
         // integer character
-        assertParseFailure(parser, "-1", expectedMessage);
+        assertParseFailure(parser, " " + PREFIX_SORT_BY + "-1", expectedMessage);
     }
 }
