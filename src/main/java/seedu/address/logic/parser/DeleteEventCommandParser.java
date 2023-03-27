@@ -6,6 +6,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new DeleteEventCommand object
+ */
 public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
 
     /**
