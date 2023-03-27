@@ -199,11 +199,6 @@ Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] 
     * e.g. `find t/friend` will return persons who have either tag `friend` or `best friend` or both
 * If no field is specified, zero persons will be returned.
 
-Examples:
-* `find n/John` returns `john` and `John Doe`
-* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
 #### Deleting a person : `delete`
 
 Deletes the specified person from SOCket.
@@ -270,7 +265,7 @@ Commands that help you make changes to the project list.
 
 Adds a project to SOCket.
 
-Format: `addpj n/PROJECTNAME h/REPOHOST r/REPONAME d/DEADLINE [m/MEETING]`
+Format: `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`
 
 * If a field flag is specified, it cannot be blank.
     * e.g `n/  ` is not allowed
@@ -288,7 +283,6 @@ Format: `addpj n/PROJECTNAME h/REPOHOST r/REPONAME d/DEADLINE [m/MEETING]`
 * Deadline & Meeting should be given in a date format (dd/MM/yy-HHmm).
     * e.g `d/ 30/03/22-2045` would be *30th March 2022, 8:45 p.m.
 * A project is considered to be the same if it has the same project name.
-
 
 Examples:
 * `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`<br>
@@ -323,6 +317,30 @@ Format: `sortpj [CATEGORY]`
     * e.g. `sortpj reponame` will sort the projects by their Repository Names alphanumerically. Projects without Repository Names will be at the bottom.
 
 #### Assign a person to a project: `assign`
+
+Format: `assign PERSON_INDEX PROJECT_INDEX`
+
+* If a field flag is specified, it cannot be blank.
+  * e.g `n/  ` is not allowed
+* Project Name should contain only alphanumeric & space.
+  * e.g `n/project 1`
+* Repository Host should:
+  * contain alphanumeric & hyphens only.
+  * not start or end with hyphen.
+  * not exceed 39 characters.
+  * e.g `h/project-1`
+* Repository Name should:
+  * contain alphanumeric, periods, hyphens, or underscores only.
+  * not exceed 100 characters.
+  * e.g `r/project_1`
+* Deadline & Meeting should be given in a date format (dd/MM/yy-HHmm).
+  * e.g `d/ 30/03/22-2045` would be *30th March 2022, 8:45 p.m.
+* A project is considered to be the same if it has the same project name.
+
+
+Examples:
+* `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`<br>
+  ![result for 'addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045'](images/findAlexDavidResult.png)
 
 #### Unassign a person from a project: `unassign`
 
