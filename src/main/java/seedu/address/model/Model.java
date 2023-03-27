@@ -9,6 +9,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.backup.Backup;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
+import seedu.address.storage.BackupDataStorage;
+import seedu.address.storage.UserPrefsStorage;
 
 /**
  * The API of the Model component.
@@ -28,6 +30,11 @@ public interface Model {
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Returns the user prefs storage.
+     */
+    UserPrefsStorage getUserPrefsStorage();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -66,6 +73,8 @@ public interface Model {
     void removeBackupFromBackupData(String index) throws IndexOutOfBoundsException;
 
     BackupData getBackupData();
+
+    BackupDataStorage getBackupDataStorage();
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -113,19 +122,29 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /** Restores the address book to its previous state. */
+    /**
+     * Restores the address book to its previous state.
+     */
     void undoAddressBook();
 
-    /** Restores the address book to its previously undone state. */
+    /**
+     * Restores the address book to its previously undone state.
+     */
     void redoAddressBook();
 
-    /** Returns true if the model has previous address states to restore. */
+    /**
+     * Returns true if the model has previous address states to restore.
+     */
     boolean canUndoAddressBook();
 
-    /** Returns true if the model has undone address states to restore. */
+    /**
+     * Returns true if the model has undone address states to restore.
+     */
     boolean canRedoAddressBook();
 
-    /** Saves the current address book state for undo/redo. */
+    /**
+     * Saves the current address book state for undo/redo.
+     */
     void commitAddressBook();
 
     Person findPersonByNric(Nric nric);

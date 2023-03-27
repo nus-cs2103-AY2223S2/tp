@@ -14,8 +14,6 @@ import seedu.address.model.backup.Backup;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.BackupDataStorage;
 import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonBackupDataStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -36,13 +34,10 @@ public class BackupCommand extends Command {
         + " 3 "
         + PREFIX_DESC + "day 1";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
 
     public static final String MESSAGE_SUCCESS = "File saved to: index %1$d";
     public static final String SAVE_ERROR = "Error saving file!";
     private final Backup backup;
-    private final Path userPrefsPath = Path.of("preferences.json");
-    private final Path backupDataPath = Path.of("data/backup/backupData.json");
 
     /**
      * @param index of the backup file
@@ -55,10 +50,10 @@ public class BackupCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(userPrefsPath);
+        UserPrefsStorage userPrefsStorage = model.getUserPrefsStorage();
         AddressBookStorage backupStorage = new JsonAddressBookStorage(Path.of(backup.backupLocation));
         Storage storage = new StorageManager(backupStorage, userPrefsStorage);
-        BackupDataStorage backupDataStorage = new JsonBackupDataStorage(backupDataPath);
+        BackupDataStorage backupDataStorage = model.getBackupDataStorage();
         try {
             storage.saveAddressBook(model.getAddressBook());
             model.addBackupToBackupData(backup);

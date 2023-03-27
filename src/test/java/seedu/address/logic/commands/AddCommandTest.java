@@ -24,6 +24,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.backup.Backup;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
+import seedu.address.storage.BackupDataStorage;
+import seedu.address.storage.UserPrefsStorage;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -92,6 +94,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public UserPrefsStorage getUserPrefsStorage() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public GuiSettings getGuiSettings() {
             throw new AssertionError("This method should not be called.");
         }
@@ -128,6 +135,11 @@ public class AddCommandTest {
 
         @Override
         public BackupData getBackupData() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public BackupDataStorage getBackupDataStorage() {
             throw new AssertionError("This method should not be called.");
         }
 

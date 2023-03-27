@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -16,7 +18,11 @@ public class JsonBackupDataStorage implements BackupDataStorage {
 
     private Path filePath;
 
+    /**
+     * Creates a JsonBackupDataStorage object.
+     */
     public JsonBackupDataStorage(Path filePath) {
+        requireNonNull(filePath);
         this.filePath = filePath;
     }
 

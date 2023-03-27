@@ -19,7 +19,11 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.backup.Backup;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
+import seedu.address.storage.BackupDataStorage;
 import seedu.address.storage.JsonAdaptedBackup;
+import seedu.address.storage.JsonBackupDataStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.UserPrefsStorage;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,10 +31,15 @@ import seedu.address.storage.JsonAdaptedBackup;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final Path userPrefsPath = Path.of("preferences.json");
+    private final Path backupDataPath = Path.of("data/backup/backupData.json");
+
     private final VersionedAddressBook addressBook;
     private final UserPrefs userPrefs;
     private final BackupData backupData;
     private final FilteredList<Person> filteredPersons;
+    private final UserPrefsStorage userPrefsStorage;
+    private final BackupDataStorage backupDataStorage;
 
     /**
      * Initializes a ModelManager with the given addressBook userPrefs, and backupData
@@ -44,6 +53,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.backupData = new BackupData(backupData);
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.userPrefsStorage = new JsonUserPrefsStorage(userPrefsPath);
+        this.backupDataStorage = new JsonBackupDataStorage(backupDataPath);
     }
 
     /**
@@ -58,6 +69,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.backupData = new BackupData();
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.userPrefsStorage = new JsonUserPrefsStorage(userPrefsPath);
+        this.backupDataStorage = new JsonBackupDataStorage(backupDataPath);
     }
 
     public ModelManager() {
@@ -75,6 +88,11 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
         return userPrefs;
+    }
+
+    @Override
+    public UserPrefsStorage getUserPrefsStorage() {
+        return userPrefsStorage;
     }
 
     @Override
@@ -129,6 +147,11 @@ public class ModelManager implements Model {
         List<Backup> backups = backupData.getRawBackups();
         observableBackups.addAll(backups);
         return observableBackups;
+    }
+
+    @Override
+    public BackupDataStorage getBackupDataStorage() {
+        return backupDataStorage;
     }
 
     //=========== AddressBook ================================================================================
@@ -239,8 +262,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+            && userPrefs.equals(other.userPrefs)
+            && filteredPersons.equals(other.filteredPersons);
     }
 
     @Override

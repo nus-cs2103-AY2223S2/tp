@@ -11,8 +11,6 @@ import seedu.address.model.Model;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.BackupDataStorage;
 import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonBackupDataStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -25,10 +23,10 @@ public class DeleteBackupCommand extends Command {
     public static final String COMMAND_WORD = "deletebackup";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a backup from a specified slot\n "
-            + "Parameters: INDEX (backup must exist in that index)\n "
-            + "Example: " + COMMAND_WORD
-            + " 3";
+        + ": Deletes a backup from a specified slot\n "
+        + "Parameters: INDEX (backup must exist in that index)\n "
+        + "Example: " + COMMAND_WORD
+        + " 3";
 
     public static final String MESSAGE_SUCCESS = "Backup deleted from: index %1$d";
     public static final String DELETE_ERROR = "Error deleting file!";
@@ -44,15 +42,15 @@ public class DeleteBackupCommand extends Command {
         requireAllNonNull(index);
         this.index = index;
         this.backupLocation = Path.of("data/backup/addressbookBackup"
-                + index.getOneBased()
-                + ".json");
+            + index.getOneBased()
+            + ".json");
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(userPrefsPath);
+        UserPrefsStorage userPrefsStorage = model.getUserPrefsStorage();
         AddressBookStorage backupStorage = new JsonAddressBookStorage(backupLocation);
-        BackupDataStorage backupDataStorage = new JsonBackupDataStorage(backupDataPath);
+        BackupDataStorage backupDataStorage = model.getBackupDataStorage();
         Storage storage = new StorageManager(backupStorage, userPrefsStorage);
         try {
             model.removeBackupFromBackupData(String.valueOf(index.getOneBased()));
