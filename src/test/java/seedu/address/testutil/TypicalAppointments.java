@@ -12,11 +12,11 @@ import seedu.address.model.appointment.Appointment;
  */
 public class TypicalAppointments {
     public static final Appointment FIRST_APPOINTMENT = new AppointmentBuilder().withAppointmentId("001")
-        .withTimeslot("19032023 08:00,19032023 09:00").withDescription("First appointment").withName("001")
-        .withTags("first").build();
+            .withPatientName("Alex Yeoh").withTimeslot("19032023 08:00,19032023 09:00")
+            .withDescription("First appointment").withTags("first").build();
     public static final Appointment IMPORTANT_APPOINTMENT = new AppointmentBuilder().withAppointmentId("002")
-        .withTimeslot("26032023 11:00,26032023 13:00").withDescription("This is important!").withName("002")
-        .withTags("important").build();
+            .withPatientName("Bernice Yu").withTimeslot("26032023 11:00,26032023 13:00")
+            .withDescription("This is important!").withTags("important").build();
 
     // TODO: Manually added appointments
     // TODO: Manually added - Appointment's details found in {@code CommandTestUtil}

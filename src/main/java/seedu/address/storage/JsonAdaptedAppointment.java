@@ -25,9 +25,9 @@ class JsonAdaptedAppointment {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
 
     private final String appointmentId;
+    private final String patientName;
     private final String timeslot;
     private final String description;
-    private final String name;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -37,12 +37,12 @@ class JsonAdaptedAppointment {
     public JsonAdaptedAppointment(@JsonProperty("id") String appointmentId,
                                   @JsonProperty("timeslot") String timeslot,
                                   @JsonProperty("description") String description,
-                                  @JsonProperty("name") String name,
+                                  @JsonProperty("name") String patientName,
                                   @JsonProperty("tags") List<JsonAdaptedTag> tagged) {
         this.appointmentId = appointmentId;
         this.timeslot = timeslot;
         this.description = description;
-        this.name = name;
+        this.patientName = patientName;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -55,10 +55,10 @@ class JsonAdaptedAppointment {
         appointmentId = source.getAppointmentId().getId();
         timeslot = source.getTimeslot().timeslotString;
         description = source.getDescription().description;
-        name = source.getName().fullName;
+        patientName = source.getPatientName().fullName;
         tagged.addAll(source.getTags().stream()
-            .map(JsonAdaptedTag::new)
-            .collect(Collectors.toList()));
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -72,9 +72,18 @@ class JsonAdaptedAppointment {
             appointmentTags.add(tag.toModelType());
         }
 
+        if (patientName == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        if (!Name.isValidName(patientName)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final Name modelPatientName = new Name(patientName);
+
         if (timeslot == null) {
             throw new IllegalValueException(
-                String.format(MISSING_FIELD_MESSAGE_FORMAT, Timeslot.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Timeslot.class.getSimpleName()));
         }
         if (!Timeslot.isValidTimeslot(timeslot)) {
             throw new IllegalValueException(Timeslot.MESSAGE_CONSTRAINTS);
@@ -83,26 +92,17 @@ class JsonAdaptedAppointment {
 
         if (description == null) {
             throw new IllegalValueException(
-                String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
         final Description modelDescription = new Description(description);
 
-        if (name == null) {
-            throw new IllegalValueException(
-                String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
-
         final Set<Tag> modelTags = new HashSet<>(appointmentTags);
 
         final AppointmentId modelId = new AppointmentId(appointmentId);
-        return new Appointment(modelId, modelTimeslot, modelDescription, modelName, modelTags);
+        return new Appointment(modelId, modelPatientName, modelTimeslot, modelDescription, modelTags);
     }
 
 }
