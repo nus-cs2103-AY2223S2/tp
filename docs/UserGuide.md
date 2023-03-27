@@ -255,16 +255,12 @@ Format: `sort [CATEGORY]`
 * If a category is provided, the persons are sorted by that category alphanumerically
     * e.g. `sort address` will sort the persons by their addresses alphanumerically. Persons without addresses will be at the bottom.
 
-<figure>
-  <img src="images/SortByName.png" width="600" />
-  <figcaption>Sorted by Name.</figcaption>
-</figure>
-<br>
-<br>
-<figure>
-    <img src="images/SortByAddress.png" width="600" />
-    <figcaption>Sorted by Address.</figcaption>
-</figure>
+Examples: 
+* `sort` Sort the person list by **Name**
+![result for `sort`](images/SortByName.png)
+
+* `sort address` Sort the person list by **Address**
+![result for `sort address`](images/SortByAddress.png)
 
 #### Viewing a person's detailed infomation: `view`
 
@@ -314,16 +310,11 @@ Format: `sortpj [CATEGORY]`
 * If a category is provided, the projects are sorted by that category alphanumerically
   * e.g. `sortpj reponame` will sort the projects by their Repository Names alphanumerically. Projects without Repository Names will be at the bottom.
 
-<figure>
-  <img src="images/SortpjByDeadline.png" width="600" />
-  <figcaption>Sorted by Deadline.</figcaption>
-</figure>
-<br>
-<br>
-<figure>
-    <img src="images/SortpjByName.png" width="600" />
-    <figcaption>Sorted by Name.</figcaption>
-</figure>
+Examples:
+* `sortpj deadline` Sort the project list by **Deadline**
+  ![result for `sortpj deadline`](images/SortpjByDeadline.png)
+* `sortpj name` Sort the project list by **Project Name**
+  ![result for `sortpj deadline`](images/SortpjByName.png)
 
 #### Assign a person to a project: `assign`
 
@@ -338,16 +329,11 @@ Format: `unassign INDEX n/NAME`
 * `NAME` is case-insensitive.
 * `NAME` must match in full.
 
-<figure>
-  <img src="images/UnassignBefore.png" width="600" />
-  <figcaption>Before Unassign.</figcaption>
-</figure>
-<br>
-<br>
-<figure>
-    <img src="images/UnassignAfter.png" width="600" />
-    <figcaption>After Unassign.</figcaption>
-</figure>
+Examples:
+* Before Unassigned
+  ![result for before unassigned](images/UnassignBefore.png)
+* After Unassigned
+  ![result for after unassigned](images/UnassignAfter.png)
 
 ### Saving the data
 
