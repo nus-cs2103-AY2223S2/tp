@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Set;
@@ -8,8 +9,10 @@ import java.util.Set;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.UniqueSessionList;
+import seedu.address.model.session.exceptions.SessionNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -165,6 +168,37 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+    }
+
+    public void addStudentToSession(Person person, Session session) {
+        requireAllNonNull(person, session);
+        Session newSession = session;
+        int personId = person.getId();
+        if (!sessions.contains(session)) {
+            throw new SessionNotFoundException();
+        }
+
+        newSession.addStudentToSession(personId);
+        sessions.setSession(session, newSession);
+    }
+
+    public void removeStudentFromSession(Person person, Session session) {
+        requireAllNonNull(person, session);
+        int personId = person.getId();
+        if (!sessions.contains(session)) {
+            throw new SessionNotFoundException();
+        }
+        if (!session.contains(personId)) {
+            throw new PersonNotFoundException();
+        }
+
+        Session newSession = session;
+        newSession.addStudentToSession(personId);
+        sessions.setSession(session, newSession);
+    }
+
+    public void removeSession(Session session) {
+        sessions.remove(session);
     }
 
     /**
