@@ -3,16 +3,7 @@ package seedu.fitbook.testutil.client;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.fitbook.model.client.Address;
-import seedu.fitbook.model.client.Appointment;
-import seedu.fitbook.model.client.Calorie;
-import seedu.fitbook.model.client.Client;
-import seedu.fitbook.model.client.Email;
-import seedu.fitbook.model.client.Gender;
-import seedu.fitbook.model.client.Goal;
-import seedu.fitbook.model.client.Name;
-import seedu.fitbook.model.client.Phone;
-import seedu.fitbook.model.client.Weight;
+import seedu.fitbook.model.client.*;
 import seedu.fitbook.model.tag.Tag;
 import seedu.fitbook.model.util.SampleDataUtil;
 
@@ -29,6 +20,7 @@ public class ClientBuilder {
     public static final String DEFAULT_WEIGHT = "50.00";
     public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_GOAL = "lose weight";
+    public static final String DEFAULT_WEIGHT_DATE = "23-03-2023 18:00";
 
     private Name name;
     private Phone phone;
@@ -40,6 +32,8 @@ public class ClientBuilder {
     private Weight weight;
     private Gender gender;
     private Goal goal;
+    private WeightHistory weightHistory;
+    private Date weightDate;
 
     /**
      * Creates a {@code ClientBuilder} with the default details.
@@ -55,6 +49,8 @@ public class ClientBuilder {
         goal = new Goal(DEFAULT_GOAL);
         appointments = new HashSet<>();
         tags = new HashSet<>();
+        weightHistory = new WeightHistory(weight);
+        weightDate = new Date(DEFAULT_WEIGHT_DATE);
     }
 
     /**
@@ -69,6 +65,7 @@ public class ClientBuilder {
         weight = clientToCopy.getWeight();
         gender = clientToCopy.getGender();
         goal = clientToCopy.getGoal();
+        weightHistory = clientToCopy.getWeightHistory();
         appointments = new HashSet<>(clientToCopy.getAppointments());
         tags = new HashSet<>(clientToCopy.getTags());
     }
@@ -151,8 +148,17 @@ public class ClientBuilder {
         return this;
     }
 
+    public ClientBuilder withWeightHistory(String weight) {
+        this.weightHistory = new WeightHistory(new Weight(weight));
+        return this;
+    }
+
+    public ClientBuilder withWeightDate(String date) {
+        this.weightDate = new Date(date);
+        return this;
+    }
+
     public Client build() {
         return new Client(name, phone, email, address, appointments, weight, gender, calorie, goal, tags);
     }
-
 }

@@ -164,13 +164,7 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Calorie.MESSAGE_CONSTRAINTS);
         }
         final Calorie modelCalorie = new Calorie(calorie);
-        if (weight == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
-        }
-        if (!Weight.isValidWeight(weight)) {
-            throw new IllegalValueException(Weight.MESSAGE_CONSTRAINTS);
-        }
-        final Weight modelWeight = new Weight(weight);
+
         if (gender == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
         }
@@ -178,6 +172,7 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
         }
         final Gender modelGender = new Gender(gender);
+
         if (goal == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Goal.class.getSimpleName()));
         }
@@ -185,6 +180,15 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Goal.MESSAGE_CONSTRAINTS);
         }
         final Goal modelGoal = new Goal(goal);
+
+        if (weight == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
+        }
+        if (!Weight.isValidWeight(weight)) {
+            throw new IllegalValueException(Weight.MESSAGE_CONSTRAINTS);
+        }
+        final Weight modelWeight = new Weight(weight);
+
         final Set<Appointment> modelAppointment = new HashSet<>(clientAppointments);
         final Set<Tag> modelTags = new HashSet<>(clientTags);
         final List<Weight> modelWeightHistory = new ArrayList<>(clientWeightHistory);
