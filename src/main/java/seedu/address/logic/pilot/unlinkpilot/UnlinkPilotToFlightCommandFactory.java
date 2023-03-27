@@ -21,18 +21,18 @@ import seedu.address.model.pilot.Pilot;
  * The factory that creates {@code UnlinkPilotCommand}.
  */
 public class UnlinkPilotToFlightCommandFactory implements CommandFactory<UnlinkPilotToFlightCommand> {
-    private static final String COMMAND_WORD = "unlink";
+    private static final String COMMAND_WORD = "unlinkflight";
+    private static final String FLIGHT_PREFIX = "/fl";
     private static final String PILOT_FLYING_PREFIX = "/pf";
     private static final String PILOT_MONITORING_PREFIX = "/pm";
-    private static final String FLIGHT_PREFIX = "/fl";
+
+    private static final String NO_FLIGHT_MESSAGE =
+            "No flight has been entered. Please enter /fl for the flight.";
     private static final String NO_PILOT_MESSAGE =
             "No pilot has been entered. Please enter /pm for the pilot monitoring"
                     + " or /pf for the pilot flying.";
-    private static final String NO_FLIGHT_MESSAGE =
-            "No flight has been entered. Please enter /fl for the flight.";
 
     private final Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy;
-
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
 
     /**
@@ -49,8 +49,8 @@ public class UnlinkPilotToFlightCommandFactory implements CommandFactory<UnlinkP
      */
     public UnlinkPilotToFlightCommandFactory(Lazy<Model> modelLazy) {
         this(
-                modelLazy.map(Model::getPilotManager),
-                modelLazy.map(Model::getFlightManager)
+                modelLazy.map(Model::getFlightManager),
+                modelLazy.map(Model::getPilotManager)
         );
     }
 
@@ -58,29 +58,29 @@ public class UnlinkPilotToFlightCommandFactory implements CommandFactory<UnlinkP
      * Creates a new unlink pilot command factory with the given pilot manager
      * lazy and the flight manager lazy.
      *
-     * @param pilotManagerLazy  the lazy instance of the pilot manager.
      * @param flightManagerLazy the lazy instance of the flight manager.
+     * @param pilotManagerLazy  the lazy instance of the pilot manager.
      */
     public UnlinkPilotToFlightCommandFactory(
-            Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy,
-            Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy
+            Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy,
+            Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy
     ) {
-        this.pilotManagerLazy = pilotManagerLazy;
         this.flightManagerLazy = flightManagerLazy;
+        this.pilotManagerLazy = pilotManagerLazy;
     }
 
     /**
      * Creates a new unlink pilot command factory with the given pilot manager
      * and the flight manager.
      *
-     * @param pilotManager  the pilot manager.
      * @param flightManager the flight manager.
+     * @param pilotManager  the pilot manager.
      */
     public UnlinkPilotToFlightCommandFactory(
-            ReadOnlyItemManager<Pilot> pilotManager,
-            ReadOnlyItemManager<Flight> flightManager
+            ReadOnlyItemManager<Flight> flightManager,
+            ReadOnlyItemManager<Pilot> pilotManager
     ) {
-        this(Lazy.of(pilotManager), Lazy.of(flightManager));
+        this(Lazy.of(flightManager), Lazy.of(pilotManager));
     }
 
     @Override
@@ -91,8 +91,8 @@ public class UnlinkPilotToFlightCommandFactory implements CommandFactory<UnlinkP
     @Override
     public Optional<Set<String>> getPrefixes() {
         return Optional.of(Set.of(
-                PILOT_FLYING_PREFIX,
                 FLIGHT_PREFIX,
+                PILOT_FLYING_PREFIX,
                 PILOT_MONITORING_PREFIX
         ));
     }
@@ -139,6 +139,8 @@ public class UnlinkPilotToFlightCommandFactory implements CommandFactory<UnlinkP
                 param.getNamedValues(PILOT_FLYING_PREFIX);
         Optional<String> pilotMonitoringIdOptional =
                 param.getNamedValues(PILOT_MONITORING_PREFIX);
+
+        Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
         Map<FlightPilotType, Pilot> pilots = new HashMap<>();
 
         boolean hasFoundPilot = addPilot(
@@ -155,7 +157,6 @@ public class UnlinkPilotToFlightCommandFactory implements CommandFactory<UnlinkP
             throw new ParseException(NO_PILOT_MESSAGE);
         }
 
-        Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
-        return new UnlinkPilotToFlightCommand(pilots, flight);
+        return new UnlinkPilotToFlightCommand(flight, pilots);
     }
 }
