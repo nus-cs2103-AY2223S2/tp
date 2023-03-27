@@ -28,7 +28,10 @@ public class ProjectNameTest {
         assertFalse(ProjectName.isValidProjectName("")); // empty string
         assertFalse(ProjectName.isValidProjectName(" ")); // spaces only
         assertFalse(ProjectName.isValidProjectName("^")); // only non-alphanumeric characters
+        assertFalse(ProjectName.isValidProjectName("peter  parker")); // consecutive whitespaces
         assertFalse(ProjectName.isValidProjectName("peter*")); // contains non-alphanumeric characters
+        assertFalse(ProjectName.isValidProjectName(" peter")); // leading space
+        assertFalse(ProjectName.isValidProjectName("peter ")); // trailing space
 
         // valid name
         assertTrue(ProjectName.isValidProjectName("peter jack")); // alphabets only
@@ -36,5 +39,15 @@ public class ProjectNameTest {
         assertTrue(ProjectName.isValidProjectName("peter the 2nd")); // alphanumeric characters
         assertTrue(ProjectName.isValidProjectName("Capital Tan")); // with capital letters
         assertTrue(ProjectName.isValidProjectName("David Roger Jackson Ray Jr 2nd")); // long names
+    }
+
+    @Test
+    public void testEquals() {
+        ProjectName capitalisedName = new ProjectName("Alice");
+        ProjectName lowercaseName = new ProjectName("alice");
+        ProjectName differentName = new ProjectName("Bob");
+
+        assertTrue(capitalisedName.equals(lowercaseName));
+        assertFalse(capitalisedName.equals(differentName));
     }
 }

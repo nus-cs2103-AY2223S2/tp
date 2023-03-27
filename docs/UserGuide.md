@@ -82,6 +82,9 @@ You can use the links in the **[Table of Contents](#table-of-contents)** to quic
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
+* Words in `UPPER_CASE` supplied to remove commands `remove` and `removepj`, are optional.<br>
+  e.g. in `remove 1 p/PHONE`, `PHONE` can be left empty.
+
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
@@ -97,6 +100,7 @@ You can use the links in the **[Table of Contents](#table-of-contents)** to quic
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+
 </div>
 
 ### General Commands
@@ -105,7 +109,7 @@ General commands to improve your experience with SOCket.
 
 #### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Displays window showing the list of commands and a clickable URL to access help page.
 
 ![help message](images/helpMessage.png)
 
@@ -230,15 +234,21 @@ Examples:
 
 #### Removing a person's field : `remove`
 
-Removes the specific field value based on the given input
+Removes the specific field value based on the given person
 
 Format: `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] [l/[LANGUAGE]] [t/[TAG]]...`
 
 * Removes field value of person at the specific `INDEX`.
+* At least one of the optional fields must be provided.
 * Removes all the corresponding field value in respect of the `KEYWORD`.
-    * e.g. `l/Java` will remove `Java` in person’s **Language** field.
+    * e.g. `l/Java` will remove `Java` in person’s languages.
 * Removes the entire field value when that field has no keyword provided.
     * e.g. `t/` will remove all the tags associate to the person.
+
+Examples: 
+* `remove 1 p/ l/Java` Removes phone number and `Java` from languages from first person in the list.
+![remove.png](images%2Fremove.png)
+
 
 #### Clearing all persons or tags : `clear`
 
@@ -265,7 +275,18 @@ Format: `sort [CATEGORY]`
 * If a category is provided, the persons are sorted by that category alphanumerically
     * e.g. `sort address` will sort the persons by their addresses alphanumerically. Persons without addresses will be at the bottom.
 
-#### Viewing a person's detailed information: `view`
+<figure>
+  <img src="images/SortByName.png" width="600" />
+  <figcaption>Sorted by Name.</figcaption>
+</figure>
+<br>
+<br>
+<figure>
+    <img src="images/SortByAddress.png" width="600" />
+    <figcaption>Sorted by Address.</figcaption>
+</figure>
+
+#### Viewing a person's detailed infomation: `view`
 
 Views a person's details whose in the filtered list
 
@@ -306,6 +327,19 @@ Examples:
 
 #### Editing a project: `editpj`
 
+Edits an existing project in SOCket.
+
+Format: `editpj INDEX [n/NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/meeting]`
+
+* Edits the project at the specified `INDEX`.
+* The index refers to the index number shown in the displayed project list.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+* `editpj 1 n/Project Alpha d/02/01/23-2359`Edits the project name and deadline of the first project to be `Project Alpha` and `02/01/2023-2359` respectively.
+![editpj.png](images%2Feditpj.png)
+
 #### Deleting a project: `deletepj`
 
 Deletes the specified project from SOCket.
@@ -316,9 +350,26 @@ Format: `deletepj INDEX`
 * The index refers to the index number shown in the displayed project list.
 
 Examples:
-* `delete 2` deletes the 2nd project in SOCket.
+* `deletepj 2` deletes the 2nd project in SOCket.
 
 #### Removing a project's field: `removepj`
+
+Removes the specific field based on the given project in SOCket. 
+
+Format: `removepj INDEX [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]`
+
+* Removes field value of project at the specific `INDEX`.
+* At least one of the optional fields must be provided.
+* Removes all the corresponding field value in respect of the `KEYWORD`.
+    * e.g. `r/alex-yeoh` will remove project’s repository name.
+* Removes the entire field value when that field has no keyword provided.
+    * e.g. `m/` will remove project's meeting.
+
+Examples: 
+* `removepj 1 r/` Removes repository name from first project in the project list.
+  ![removepj2.png](images%2Fremovepj2.png)
+* `removepj 1 d/01/01/2023-2359 m/` Removes deadline `01/01/23-2359` and meeting from first project in the project list.
+
 
 #### Clearing all projects: `clearpj`
 
@@ -326,11 +377,23 @@ Examples:
 
 Sorts and displays the projects according to the provided category. Sorts the list of projects by deadline if no argument is provided.
 
+
 Format: `sortpj [CATEGORY]`
 
 * If no category is provided, the projects are sorted by their deadlines alphanumerically
 * If a category is provided, the projects are sorted by that category alphanumerically
     * e.g. `sortpj reponame` will sort the projects by their Repository Names alphanumerically. Projects without Repository Names will be at the bottom.
+
+<figure>
+  <img src="images/SortpjByDeadline.png" width="600" />
+  <figcaption>Sorted by Deadline.</figcaption>
+</figure>
+<br>
+<br>
+<figure>
+    <img src="images/SortpjByName.png" width="600" />
+    <figcaption>Sorted by Name.</figcaption>
+</figure>
 
 #### Assign a person to a project: `assign`
 
@@ -353,6 +416,17 @@ Format: `unassign INDEX n/NAME`
 * `INDEX` refers to the index number shown in the displayed project list.
 * `NAME` is case-insensitive.
 * `NAME` must match in full.
+
+<figure>
+  <img src="images/UnassignBefore.png" width="600" />
+  <figcaption>Before Unassign.</figcaption>
+</figure>
+<br>
+<br>
+<figure>
+    <img src="images/UnassignAfter.png" width="600" />
+    <figcaption>After Unassign.</figcaption>
+</figure>
 
 ### Saving the data
 
@@ -386,15 +460,15 @@ If your changes to the data file makes its format invalid, SOCket will discard a
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                   |
 | **Sort**        | `sort [CATEGORY]`<br> e.g. `sort address`                                                                                                                                                                    |
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]…​ [t/TAG]…​`<br> e.g., `find James Jake t/cs2103t`                                                                                                                             |
-| **List**        | `list [t/tag]`                                                                                                                                                                                               |
+| **List**        | `list [l/language] [t/tag]`<br> e.g. `list l/Java`                                                                                                                                                           |
 | **Add Project** |                                                                                                                                                                                                              |
 | **Clear Projects** |                                                                                                                                                                                                              |
 | **Delete Project** | `deletepj INDEX`                                                                                                                                                                                             |
-| **Remove Project** |                                                                                                                                                                                                              |    
-| **Edit Project** |                                                                                                                                                                                                              |
-| **Assign**      |                                                                                                                                                                                        |
+| **Remove Project** | `removepj INDEX [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]` <br> e.g.,`removepj 2 r/ d/ m/`                                                                                                        |    
+| **Edit Project** | `editpj INDEX [n/NAME] [h/REPO_HOST] [r/REPO_NAME] [d/DEADLINE] [m/MEETING]`<br> e.g.,`editpj 2 n/Project Bravo r/bravo-project`                                                                             |
+| **Assign**      |                                                                                                                                                                                                              |
 | **Unassign**    | `unassign INDEX n/NAME` <br> e.g., `unassign 1 n/John Doe`                                                                                                                                                   |
-| **Sort Projects** | `sortpj [CATEGORY]`<br> e.g. `sortpj reponame`                                                                                                                                                               |                                                                                                                                                                                                              |
+| **Sort Projects** | `sortpj [CATEGORY]`<br> e.g. `sortpj reponame`                                                                                                                                                               | 
 | **Help**        | `help`                                                                                                                                                                                                       |
 | **Undo**        | `undo`                                                                                                                                                                                                       |
 | **Redo**        | `redo`                                                                                                                                                                                                       |
