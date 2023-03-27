@@ -11,6 +11,10 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
+Class ProjectListPanel
+Class ProjectCard
+Class PersonDetailPanel
+Class PersonDetailCard
 Class PersonListPanel
 Class PersonCard
 Class StatusBarFooter
@@ -32,18 +36,26 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
+MainWindow *-down-> "1" PersonDetailPanel
+MainWindow *-down-> "1" ProjectListPanel
 MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
+PersonDetailPanel -down-> "0..1" PersonDetailCard
+ProjectListPanel -down-> "*" ProjectCard
 PersonListPanel -down-> "*" PersonCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
+PersonDetailPanel --|> UiPart
+PersonDetailCard --|> UiPart
 PersonListPanel --|> UiPart
 PersonCard --|> UiPart
+ProjectListPanel --|> UiPart
+ProjectCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
