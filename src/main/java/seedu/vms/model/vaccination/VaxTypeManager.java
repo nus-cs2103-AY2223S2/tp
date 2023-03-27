@@ -150,6 +150,17 @@ public class VaxTypeManager {
 
 
     /**
+     * Returns if the manager is empty.
+     *
+     * @return {@code true} if the manager contains zero {@code VaxType} and
+     *      {@code false} otherwise.
+     */
+    public boolean isEmpty() {
+        return typeMap.isEmpty();
+    }
+
+
+    /**
      * Returns an unmodifiable map view of this storage.
      *
      * @return an unmodifiable map view ot this storage.
