@@ -24,7 +24,6 @@ public class PersonDetailPanel extends UiPart<Region> {
      */
     public PersonDetailPanel(ObservableList<Person> personList) {
         super(FXML);
-        personDetailListView.setMouseTransparent(true);
         personDetailListView.setFocusTraversable(false);
         personDetailListView.setItems(personList);
         personDetailListView.setCellFactory(listView -> new PersonDetailListViewCell());
@@ -37,7 +36,7 @@ public class PersonDetailPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
-
+            setMouseTransparent(true);
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);

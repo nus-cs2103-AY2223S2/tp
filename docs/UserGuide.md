@@ -3,10 +3,26 @@ layout: page
 title: User Guide
 ---
 
-SOCket is a **desktop app for NUS Software Engineering Students to manage the contact information of their peers and professors, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SOCket can get your contact management tasks done faster than traditional GUI apps.
+## Table of Contents
 
 * Table of Contents
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Introduction
+
+SOCket is a **desktop app for NUS Software Engineering Students to manage the contact information of their peers and professors**. With SOCket, you can easily organize and access contact information. SOCket also allows you to efficiently manage information on projects you are involved in.
+
+SOCket is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SOCket can get your contact management tasks done faster than traditional GUI apps.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## About this User Guide
+
+The SOCket User Guide helps you quickly familiarise yourself with the features and command syntax of SOCket, imparting the knowledge necessary for you to utilise SOCket's functions. More experienced users can use the **[Command summary](#command-summary)** as a quick reference for the syntax of SOCket's commands.
+
+You can use the links in the **[Table of Contents](#table-of-contents)** to quickly navigate through this document. To help you get started, refer to the **[Quick start](#quick-start)** section of the SOCket User Guide.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -67,7 +83,11 @@ SOCket is a **desktop app for NUS Software Engineering Students to manage the co
 
 </div>
 
-### Viewing help : `help`
+### General Commands
+
+General commands to improve your experience with SOCket.
+
+#### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -75,8 +95,35 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+#### Undoing a change : `undo`
 
-### Adding a person: `add`
+Undoes the last change made to SOCket.
+
+Format: `undo`
+* A message is shown if no changes were made to SOCket
+
+#### Redoing an undone change : `redo`
+
+Restores a previously undone change made to SOCket
+
+Format: `redo`
+* A message is shown if no undone changes exist
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Changes made to SOCket are **not** saved upon exit.
+</div>
+
+#### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### Person Commands
+
+Commands that help you make changes to the contact list.
+
+#### Adding a person: `add`
 
 Adds a person to SOCket.
 
@@ -88,28 +135,29 @@ A person can have any number of languages/tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python`
+  ![result for `add n/John Doe ...`](images/addJohnDoeResult.png)
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+#### Listing all persons : `list`
 
 Lists all persons in SOCket or based on language and tag.
 
 Format: `list [l/LANGUAGE] [t/TAG]`
 
-* The search for language or tag is case sensitive. 
-* If no language or tag are given, all persons are displayed. 
-  * e.g. `list` will list out all persons 
+* The search for language or tag is case sensitive.
+* If no language or tag are given, all persons are displayed.
+    * e.g. `list` will list out all persons
 * There can be one or more keywords for each field (language/ tag).
-  * e.g. `list l/Python l/Java` will match out all persons whose language contains `Python` AND `Java`
-  * e.g. `list l/Python t/friend` will match out all persons whose language contains `Python` AND tag contains `friend`
+    * e.g. `list l/Python l/Java` will match out all persons whose language contains `Python` AND `Java`
+    * e.g. `list l/Python t/friend` will match out all persons whose language contains `Python` AND tag contains `friend`
 * Languages and tags given are specific.
-  *  e.g. `list t/school` will not match `list t/school friend`
-* Persons with field values matching all keyword for that respective field will be returned (i.e. `AND` search). 
-  * e.g. `list t/friend l/C++` will return Persons containing tag `friend` AND language `C++`
+    *  e.g. `list t/school` will not match `list t/school friend`
+* Persons with field values matching all keyword for that respective field will be returned (i.e. `AND` search).
+    * e.g. `list t/friend l/C++` will return Persons containing tag `friend` AND language `C++`
 * Each person is accompanied by an index number in the list
 * The list by default is sorted by time added  i.e most recently added person being last in the list
 
-### Editing a person : `edit`
+#### Editing a person : `edit`
 
 Edits an existing person in SOCket.
 
@@ -125,38 +173,39 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPRO
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+   ![result for `edit 1 ...`](images/edit1Result.png)
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by keyword(s): `find`
+#### Locating persons by keyword(s): `find`
 
 Finds persons stored in SOCket based on the given keyword(s) for the respective fields.
 
 Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]`
 
-* The search for keyword(s) is case-insensitive. 
-  * e.g `find n/hans` will match `find n/Hans`
-  * e.g `find t/cs2103t` will match `find t/CS2103T`
-* There can be one or more keyword(s) for each field. 
-  * e.g. `find n/Hans Bo` will match all persons whose name contains either `Hans` or `Bo`
+* The search for keyword(s) is case-insensitive.
+    * e.g `find n/hans` will match `find n/Hans`
+    * e.g `find t/cs2103t` will match `find t/CS2103T`
+* There can be one or more keyword(s) for each field.
+    * e.g. `find n/Hans Bo` will match all persons whose name contains either `Hans` or `Bo`
 * The order of the keyword(s) and field(s) does not matter.
-  * e.g. `find n/Hans Bo` will match `find n/Bo Hans`
-  * e.g. `find n/Hans Bo t/cs2103t` will match `find t/cs2103t n/Hans Bo`
+    * e.g. `find n/Hans Bo` will match `find n/Bo Hans`
+    * e.g. `find n/Hans Bo t/cs2103t` will match `find t/cs2103t n/Hans Bo`
 * Only full words will be matched.
-  * e.g. `Han` will not match `Hans`
-  * e.g. `t/2103t` will not match `t/cs2103t` 
-* Persons with field values matching at least one keyword for that respective field will be returned (i.e. `OR` search). 
-  * e.g. `find n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
-  * e.g. `find n/Hans l/Java` will return persons whose name contains `Hans` or language contains `Java` or both
-  * e.g. `find t/friend` will return persons who have either tag `friend` or `best friend` or both
+    * e.g. `Han` will not match `Hans`
+    * e.g. `t/2103t` will not match `t/cs2103t`
+* Persons with field values matching at least one keyword for that respective field will be returned (i.e. `OR` search).
+    * e.g. `find n/Hans Bo` will return `Hans Gruber`, `Bo Yang`
+    * e.g. `find n/Hans l/Java` will return persons whose name contains `Hans` or language contains `Java` or both
+    * e.g. `find t/friend` will return persons who have either tag `friend` or `best friend` or both
 * If no field is specified, zero persons will be returned.
 
 
-  Examples:
+Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+#### Deleting a person : `delete`
 
 Deletes the specified person from SOCket.
 
@@ -169,7 +218,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the SOCket.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Removing a person's field : `remove`
+#### Removing a person's field : `remove`
 
 Removes the specific field value based on the given input
 
@@ -177,11 +226,11 @@ Format: `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] 
 
 * Removes field value of person at the specific `INDEX`.
 * Removes all the corresponding field value in respect of the `KEYWORD`.
-  * e.g. `l/Java` will remove `Java` in person’s **Language** field.
+    * e.g. `l/Java` will remove `Java` in person’s **Language** field.
 * Removes the entire field value when that field has no keyword provided.
-  * e.g. `t/` will remove all the tags associate to the person.
+    * e.g. `t/` will remove all the tags associate to the person.
 
-### Clearing all persons or tags : `clear`
+#### Clearing all persons or tags : `clear`
 
 Clears all persons' entries from the SOCket based on the given tags; if tag is not included, clears all persons in SOCket.
 
@@ -189,14 +238,14 @@ Format: `clear [t/TAG]...`
 
 * Removes all the persons related to the specific tags.
 * Tag included is **case-insensitive**.
-  * e.g. `t/CS2103T` is equivalent to `t/cs2103t`.
+    * e.g. `t/CS2103T` is equivalent to `t/cs2103t`.
 * The tags **must be an existing tag** in SOCket.
 * If tags are provided, only remove existing tags.
-  * e.g. `clear t/cs2103t t/cs2103` will only remove the persons associated with `t/cs2103t` if there exists the `cs2103t` tag but not `cs2103` in SOCket.
+    * e.g. `clear t/cs2103t t/cs2103` will only remove the persons associated with `t/cs2103t` if there exists the `cs2103t` tag but not `cs2103` in SOCket.
 * If no tag is provided, remove all the persons in SOCket.
 * A confirmation prompt will be asked before removal of persons.
 
-### Sorting persons (by other fields) : `sort`
+#### Sorting persons (by other fields) : `sort`
 
 Sorts and displays the persons according to the provided category. Sorts the list of persons by name if no argument is provided.
 
@@ -204,13 +253,25 @@ Format: `sort [CATEGORY]`
 
 * If no category is provided, the persons are sorted by their names alphanumerically
 * If a category is provided, the persons are sorted by that category alphanumerically
-  * e.g. sort address will sort the persons by their addresses alphanumerically. Persons without addresses will be at the bottom.
+    * e.g. `sort address` will sort the persons by their addresses alphanumerically. Persons without addresses will be at the bottom.
 
-### Adding a project: `addpj`
+#### Viewing a person's detailed infomation: `view`
 
-### Editing a project: `editpj`
+Views a person's details whose in the filtered list
 
-### Deleting a project: `deletepj`
+Format: `view INDEX`
+* Views the person's detailed information at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+
+### Project Commands
+
+Commands that help you make changes to the project list.
+
+#### Adding a project: `addpj`
+
+#### Editing a project: `editpj`
+
+#### Deleting a project: `deletepj`
 
 Deletes the specified project from SOCket.
 
@@ -222,47 +283,32 @@ Format: `deletepj INDEX`
 Examples:
 * `delete 2` deletes the 2nd project in SOCket.
 
-### Removing a project's field: `removepj`
+#### Removing a project's field: `removepj`
 
-### Clearing all projects: `clearpj`
+#### Clearing all projects: `clearpj`
 
-### Sorting projects (by other fields): `sortpj`
+#### Sorting projects (by other fields): `sortpj`
 
-### Assign a person to a project: `assign`
+Sorts and displays the projects according to the provided category. Sorts the list of projects by deadline if no argument is provided.
 
-### Unassign a person from a project: `unassign`
+Format: `sortpj [CATEGORY]`
 
-### Undoing a change : `undo`
+* If no category is provided, the projects are sorted by their deadlines alphanumerically
+* If a category is provided, the projects are sorted by that category alphanumerically
+  * e.g. `sortpj reponame` will sort the projects by their Repository Names alphanumerically. Projects without Repository Names will be at the bottom.
 
-Undoes the last change made to SOCket.
+#### Assign a person to a project: `assign`
 
-Format: `undo`
-* A message is shown if no changes were made to SOCket
+#### Unassign a person from a project: `unassign`
 
-### Redoing an undone change : `redo`
+Removes the specified person from the specified project.
 
-Restores a previously undone change made to SOCket
+Format: `unassign INDEX n/NAME`
 
-Format: `redo`
-* A message is shown if no undone changes exist
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Changes made to SOCket are **not** saved upon exit.
-</div>
-
-### Viewing a person's detailed infomation: `view`
-
-Views a person's details whose in the filtered list
-
-Format: `view INDEX`
-* Views the person's detailed information at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
+* Removes the person with the specified `NAME` from the project with the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed project list.
+* `NAME` is case-insensitive.
+* `NAME` must match in full.
 
 ### Saving the data
 
@@ -275,10 +321,6 @@ SOCket data is saved as a JSON file `[JAR file location]/data/socket.json`. Adva
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, SOCket will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -306,7 +348,9 @@ _Details coming soon ..._
 | **Delete Project** | `deletepj INDEX`                                                                                                                                                                                             |
 | **Remove Project** |                                                                                                                                                                                                              |    
 | **Edit Project** |                                                                                                                                                                                                              |
-| **Sort Projects** |                                                                                                                                                                                                              |                                                                                                                                                                                                              |
+| **Assign**      |                                                                                                                                                                                        |
+| **Unassign**    | `unassign INDEX n/NAME` <br> e.g., `unassign 1 n/John Doe`                                                                                                                                                   |
+| **Sort Projects** | `sortpj [CATEGORY]`<br> e.g. `sortpj reponame`                                                                                                                                                               |                                                                                                                                                                                                              |
 | **Help**        | `help`                                                                                                                                                                                                       |
 | **Undo**        | `undo`                                                                                                                                                                                                       |
 | **Redo**        | `redo`                                                                                                                                                                                                       |

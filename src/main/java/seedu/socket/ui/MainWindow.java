@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private PersonDetailPanel personDetailPanel;
+    private ProjectListPanel projectListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -47,6 +48,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personDetailPanelPlaceholder;
+
+    @FXML
+    private StackPane projectListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -66,7 +70,6 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
         setAccelerators();
 
         helpWindow = new HelpWindow();
@@ -116,6 +119,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        projectListPanel = new ProjectListPanel(logic);
+        projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
 
         personDetailPanel = new PersonDetailPanel(logic.getViewedPerson());
         personDetailPanelPlaceholder.getChildren().add(personDetailPanel.getRoot());

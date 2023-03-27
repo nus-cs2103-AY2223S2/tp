@@ -97,4 +97,16 @@ public class ProjectTest {
         editedAlpha = new ProjectBuilder(ALPHA).withMembers(CARL, DANIEL).build();
         assertFalse(ALPHA.equals(editedAlpha));
     }
+
+    @Test
+    void hasMember() {
+        // null person
+        assertThrows(NullPointerException.class, () -> ALPHA.hasMember(null));
+
+        // person in project
+        assertTrue(ALPHA.hasMember(ALICE.getName()));
+
+        // person not in project
+        assertFalse(ALPHA.hasMember(BOB.getName()));
+    }
 }

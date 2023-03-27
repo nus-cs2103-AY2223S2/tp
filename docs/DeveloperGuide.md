@@ -234,6 +234,29 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+ 
+### List Feature 
+The `list` feature allows user to display a list of persons. The user can filter the list by tag or language. `list` filters the list by **AND** search. If no argument is given, then list by default displays all persons in SOCket. 
+The feature is mainly facilitated by the `ListCommand` class and with the help of Predicate classes. 
+`ListCommand` extends `Command` and implements the following operation: 
+* `ListCommand#execute()` - Displays the list of persons in SOCket that contains the given keyword of each respective fields. 
+
+The `ListCommandParser` class is used to parse and verify the user input to create the list command. 
+Once the input is parsed by `ListCommandParser`, a list of keywords for each respective field is then used to create the respective Predicate class to check if any keyword matches the given field of a Person. 
+
+The Predicates relevant to `ListCommand` differ from `FindCommand` in the way that it looks for full keyword matches in Person(s). If no fields are given, list of persons will be update by `PREDICATE_SHOW_ALL_PERSONS`/ a true predicate. 
+Otherwise, this list of Predicate classes include: 
+* `ListCommandLanguagePredicate`
+* `ListCommandTagPredicate`
+
+This Predicate class will return True as long as any of the Predicate classes inside it returns True.
+The Predicate classes works using an AND search, persons will be shown in the resulting list only if all the keywords given should match to the Person. 
+
+### Design considerations:
+**Filtering by other fields** 
+* Initially considered list to not have additional arguments but as decided to filter through Language and Tag due to:
+  * Find currently does a partial keyword match, thus list allows user to have the option to do full keyword matches 
+  * As language(s) and tag(s) are the only fields which can belong to more than one person, it makes sense to use list to do full keyword matches on these fields.
 
 ### Sort Feature
 The sort feature allows users to sort the list of persons and projects in the application. 
@@ -249,7 +272,40 @@ If no argument is provided, Persons will be sorted by name and Projects will be 
 The input is then passed to the `sort` function in `UniquePersonList` and `UniqueProjectList` respectively.
 The `sort` makes use of a comparator that sorts the persons or projects by the category specified by the user. If the person or project does not have that field, they are sorted at the back. If there are multiple persons or contacts where the field is empty, they are sorted by name.
 
+### Find Feature
+The find feature allows users to display a list of persons that contains the given keyword of each respective fields.
+The feature is facilitated by the `FindCommand` class mainly but Predicate classes are also used.
+`FindCommand` extends `Command` and implements the following operation:
+* `FindCommand#execute()` — Finds and displays the list of persons in the application that contains the given keyword of each respective fields.
 
+The `FindCommandParser` class is used to parse & verify the user input to create the find command.
+Once the input is parsed by `FindCommandParser`, a list of keywords for each respective field is then used to create a Predicate class that checks if any keyword matches the given field of a Person.
+
+This list of Predicate classes include:
+* `FindCommandAddressPredicate`
+* `FindCommandEmailPredicate`
+* `FindCommandLanguagePredicate`
+* `FindCommandNamePredicate`
+* `FindCommandPhonePredicate`
+* `FindCommandProfilePredicate`
+* `FindCommandTagPredicate`
+
+All the above Predicate classes will be enclosed inside a `FindCommandPersonPredicate` class.
+This Predicate class will return True as long as any of the Predicate classes inside it returns True.
+The Predicate classes works using an OR search, as long as a keyword matches any word in the respective field, that person will be shown in the resulting list from find command.
+
+If no argument is provided, an empty list will be shown.
+
+#### Design considerations:
+
+**AND search or OR search**
+* An AND search has been considered for find initially but ultimately dropped in favor of OR search due to the following reasons:
+  * List command already does an AND search. Though only on Tag & Language currently, it can be extended to include the other fields eventually, making find a duplicate command of list command should find use AND search as well.
+  * We intend for find command to be a more broad search, getting all persons that matches just a keyword. This is to help users narrow down their search should they forgot the exact name of a contact they are looking for.
+
+**Full keyword match or Partial keyword match**
+* We have also considered a partial match of the keyword (For example: `han` keyword will match field with the value `hans`). However we decide to implement a full match due to the following reason:
+  * Having partial match may bring out unintended matches as the possible range of results is broadened. We fear that doing a partial match may be too broad for find command to function as a way for users to narrow down their search.
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -409,7 +465,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list contact.
 2.  SOCket shows a list of contacts.
 3.  User requests to sort the list by a category.
-4.  SOCket sorts alphanumerically by that category and shows the sorted list of contacts.
+4.  SOCket sorts the contacts by that category and displays the sorted contact list.
 
     Use case ends.
 
@@ -424,14 +480,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. SOCket shows an error message. 
   
     Use case resumes from step 2.
-
-* 3b. No category is given.
-
-    * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
   
 * 3b. No category is given.
 
-  * 3b1. SOCket sorts the list by name and shows the sorted list of contacts.
+  * 3b1. SOCket sorts the list by name and displays the sorted list.
     
      Use case ends.
 
@@ -718,6 +770,32 @@ Use case ends.
 3. User wishes to view the first contact in the list.
 4. SOCket displays all the person's information at the detail display window.
 
+   Use case ends.
+
+**Use case: UC19 Sorting project list**
+
+Similar to **UC04 Sort Contacts**, except,
+* the list being sorted is the list of projects instead of contacts
+* the default sort when no category is provided is by the deadline of the project instead of the name.
+
+**Use case: UC20 Assigning a member from a project**
+
+**Use case: UC21 Unassigning a member from a project**
+1. User requests to remove a member from a project.
+2. SOCket removes the member from the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The chosen member is not assigned to the project.
+    * 2a1. SOCket shows an error message.
+
+      Use case ends.
+* 2b. The chosen project does not exist.
+    * 2b1. SOCket shows an error message.
+
+      Use case ends.
 *{More to be added}*
 
 ### Non-Functional Requirements

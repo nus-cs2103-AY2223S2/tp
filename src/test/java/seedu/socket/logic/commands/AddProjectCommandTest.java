@@ -23,70 +23,58 @@ import seedu.socket.model.ReadOnlyUserPrefs;
 import seedu.socket.model.Socket;
 import seedu.socket.model.person.Person;
 import seedu.socket.model.project.Project;
-import seedu.socket.testutil.PersonBuilder;
+import seedu.socket.testutil.ProjectBuilder;
 
-public class AddCommandTest {
+public class AddProjectCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullProject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddProjectCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_projectAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingProjectAdded modelStub = new ModelStubAcceptingProjectAdded();
+        Project validProject = new ProjectBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddProjectCommand(validProject).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddProjectCommand.MESSAGE_SUCCESS, validProject), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validProject), modelStub.projectsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
-    }
-
-    @Test
-    public void execute_exceedsTagsRestriction_throwsCommandException() {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder()
-                .withTags("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11").build();
-
-        AddCommand addCommand = new AddCommand(validPerson);
+        Project validProject = new ProjectBuilder().build();
+        AddProjectCommand addProjectCommand = new AddProjectCommand(validProject);
+        ModelStub modelStub = new ModelStubWithProject(validProject);
 
         assertThrows(CommandException.class,
-                String.format(AddCommand.MESSAGE_EXCEED_TAG,
-                        validPerson.getTags().size()), () -> addCommand.execute(modelStub));
+                AddProjectCommand.MESSAGE_DUPLICATE_PROJECT, () -> addProjectCommand.execute(modelStub));
     }
 
     @Test
     public void testEquals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Project project1 = new ProjectBuilder().withName("project1").build();
+        Project project2 = new ProjectBuilder().withName("project2").build();
+        AddProjectCommand addProject1Command = new AddProjectCommand(project1);
+        AddProjectCommand addProject2Command = new AddProjectCommand(project2);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addProject1Command.equals(addProject1Command));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddProjectCommand addProject1CommandCopy = new AddProjectCommand(project1);
+        assertTrue(addProject1Command.equals(addProject1CommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addProject1Command.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addProject1Command.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addProject1Command.equals(addProject2Command));
     }
 
     /**
@@ -261,39 +249,39 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single project.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithProject extends ModelStub {
+        private final Project project;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithProject(Project project) {
+            requireNonNull(project);
+            this.project = project;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasProject(Project project) {
+            requireNonNull(project);
+            return this.project.isSameProject(project);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the project being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingProjectAdded extends ModelStub {
+        final ArrayList<Project> projectsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasProject(Project project) {
+            requireNonNull(project);
+            return projectsAdded.stream().anyMatch(project::isSameProject);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addProject(Project project) {
+            requireNonNull(project);
+            projectsAdded.add(project);
         }
 
         @Override
@@ -301,10 +289,11 @@ public class AddCommandTest {
             return new Socket();
         }
 
-        // AddCommand#execute calls commitSocket()
+        // AddProjectCommand#execute calls commitSocket()
         @Override
         public void commitSocket() {
         }
     }
 
 }
+
