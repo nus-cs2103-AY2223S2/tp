@@ -232,7 +232,8 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void applyView() {
-        viewPane = new ViewPane(logic.getFilteredPersonList().get(0));
+        personListPanel = new PersonListPanel(logic.getAddressBook().getPersonList(), this);
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         viewPanePlaceHolder.getChildren().clear();
         viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
     }
