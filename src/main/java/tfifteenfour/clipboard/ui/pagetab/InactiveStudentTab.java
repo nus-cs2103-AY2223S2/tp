@@ -10,13 +10,17 @@ import tfifteenfour.clipboard.ui.UiPart;
  */
 public class InactiveStudentTab extends UiPart<Region> {
 
-    private static final String FXML = "InactiveStudentTab.fxml";
+    private static final String FXML = "InactiveTab.fxml";
 
     @FXML
     private Label name;
 
+    /**
+     * Creates an InactiveStudentTab
+     */
     public InactiveStudentTab() {
         super(FXML);
+        name.setText("Students");
     }
 
 }

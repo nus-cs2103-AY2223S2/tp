@@ -14,19 +14,19 @@ import tfifteenfour.clipboard.model.course.Group;
  * Panel containing the list of groups.
  */
 public class GroupListPanel extends UiPart<Region> {
-    private static final String FXML = "GroupListPanel.fxml";
+    private static final String FXML = "ListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(CourseListPanel.class);
 
     @FXML
-    private ListView<Group> groupListView;
+    private ListView<Group> listView;
 
     /**
      * Creates a {@code GroupListPanel} with the given {@code ObservableList}.
      */
     public GroupListPanel(ObservableList<Group> groupList) {
         super(FXML);
-        groupListView.setItems(groupList);
-        groupListView.setCellFactory(listView -> new GroupListViewCell());
+        listView.setItems(groupList);
+        listView.setCellFactory(listView -> new GroupListViewCell());
     }
 
     /**
@@ -47,7 +47,7 @@ public class GroupListPanel extends UiPart<Region> {
     }
 
     public void setGroupListView(ObservableList<Group> groupList) {
-        groupListView.setItems(groupList);
+        listView.setItems(groupList);
     }
 
 }

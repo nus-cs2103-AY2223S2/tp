@@ -33,10 +33,14 @@ import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.ui.pagetab.ActiveGroupTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveModuleTab;
+import tfifteenfour.clipboard.ui.pagetab.ActiveSessionTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveStudentTab;
+import tfifteenfour.clipboard.ui.pagetab.ActiveTaskTab;
 import tfifteenfour.clipboard.ui.pagetab.InactiveGroupTab;
 import tfifteenfour.clipboard.ui.pagetab.InactiveModuleTab;
+import tfifteenfour.clipboard.ui.pagetab.InactiveSessionTab;
 import tfifteenfour.clipboard.ui.pagetab.InactiveStudentTab;
+import tfifteenfour.clipboard.ui.pagetab.InactiveTaskTab;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -86,6 +90,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private VBox studentTabPlaceholder;
+
+    @FXML
+    private VBox sessionTabPlaceholder;
+
+    @FXML
+    private VBox taskTabPlaceholder;
 
     @FXML
     private HBox navigationBarPlaceholder;
@@ -162,9 +172,18 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        initializePageTabs();
+    }
+
+    /**
+     * Initializes page tabs.
+     */
+    private void initializePageTabs() {
         moduleTabPlaceholder.getChildren().add(new ActiveModuleTab().getRoot());
         groupTabPlaceholder.getChildren().add(new InactiveGroupTab().getRoot());
         studentTabPlaceholder.getChildren().add(new InactiveStudentTab().getRoot());
+        sessionTabPlaceholder.getChildren().add(new InactiveSessionTab().getRoot());
+        taskTabPlaceholder.getChildren().add(new InactiveTaskTab().getRoot());
     }
 
     /**
@@ -216,6 +235,7 @@ public class MainWindow extends UiPart<Stage> {
         closeViewPane();
         closeGroupTab();
         closeStudentTab();
+        closeSessionTab();
         closeNavigationBar();
         logic.getCurrentSelection().getSelectedGroup().unMarkAllSessions();
         logic.getCurrentSelection().navigateBackToCoursePage();
@@ -303,6 +323,16 @@ public class MainWindow extends UiPart<Stage> {
         studentTabPlaceholder.getChildren().add(new ActiveStudentTab().getRoot());
     }
 
+    private void showSessionTab() {
+        sessionTabPlaceholder.getChildren().clear();
+        sessionTabPlaceholder.getChildren().add(new ActiveSessionTab().getRoot());
+    }
+
+    private void showTaskTab() {
+        taskTabPlaceholder.getChildren().clear();
+        taskTabPlaceholder.getChildren().add(new ActiveTaskTab().getRoot());
+    }
+
     private void closeModuleTab() {
         moduleTabPlaceholder.getChildren().clear();
         moduleTabPlaceholder.getChildren().add(new InactiveModuleTab().getRoot());
@@ -316,6 +346,16 @@ public class MainWindow extends UiPart<Stage> {
     private void closeStudentTab() {
         studentTabPlaceholder.getChildren().clear();
         studentTabPlaceholder.getChildren().add(new InactiveStudentTab().getRoot());
+    }
+
+    private void closeSessionTab() {
+        sessionTabPlaceholder.getChildren().clear();
+        sessionTabPlaceholder.getChildren().add(new InactiveSessionTab().getRoot());
+    }
+
+    private void closeTaskTab() {
+        taskTabPlaceholder.getChildren().clear();
+        taskTabPlaceholder.getChildren().add(new InactiveTaskTab().getRoot());
     }
 
     /**
@@ -338,7 +378,6 @@ public class MainWindow extends UiPart<Stage> {
         } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
 
             showStudentPane(logic.getCurrentSelection().getSelectedGroup());
-            closeGroupTab();
             showStudentTab();
             refreshNavigationBar();
 
@@ -365,6 +404,7 @@ public class MainWindow extends UiPart<Stage> {
             showGroupTab();
             closeViewPane();
             closeStudentTab();
+            closeSessionTab();
             refreshNavigationBar();
         } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.SESSION_PAGE)) {
             logic.getCurrentSelection().getSelectedGroup().unMarkAllSessions();
@@ -376,6 +416,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void handleSessionCommand() {
         showSessionPane(logic.getCurrentSelection().getSelectedGroup());
+        showSessionTab();
         refreshNavigationBar();
     }
 

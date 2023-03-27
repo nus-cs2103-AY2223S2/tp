@@ -14,7 +14,7 @@ import tfifteenfour.clipboard.model.course.Session;
  */
 public class SessionListCard extends UiPart<Region> {
 
-    private static final String FXML = "SessionListCard.fxml";
+    private static final String FXML = "ListCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
@@ -30,7 +30,7 @@ public class SessionListCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label name;
+    private Label code;
 
     /**
      * Creates a {@code GroupListCard} with the given {@code Group} and index to display.
@@ -39,7 +39,7 @@ public class SessionListCard extends UiPart<Region> {
         super(FXML);
         this.session = session;
         id.setText(displayedIndex + ". ");
-        name.setText(session.getSessionName());
+        code.setText(session.getSessionName());
     }
 
     @Override
