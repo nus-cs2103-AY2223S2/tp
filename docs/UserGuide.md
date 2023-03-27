@@ -66,14 +66,14 @@ Before we begin, let's familiarize ourselves with the different parts of the CoD
 Maximise the screen to have a clearer view.
 This way you can see more content as well.
 
-(Insert pic of maximised UI with annotations of the different parts.)
+<img src="images/navigation.png"/>
 
-- **Menu bar:** if you ever feel stuck, you can always click on the `Help` button to see more details. 
-- **Command box:** this is where you can type in commands.
-- **Result display:** shows the result of a command that you have executed.
-- **Course list panel:** you can refer to this list when adding a person.
-- **Person list panel:** here are your contacts in CoDoc. 
-- **Info panel:** displays information about a selected person, such as their contact details, modules, and skills, which are presented as tabs.
+- **Menu Bar:** if you ever feel stuck, you can always click on the `Help` button here or enter `help` in the command box. 
+- **Command Box:** this is where you can type in commands.
+- **Result Display:** shows the result of a command that you have executed.
+- **Person List Panel:** here are your contacts in CoDoc.
+- **Course List Panel:** you can refer to this list when adding a person.
+- **Info Panel:** displays information about a selected person, such as their contact details, modules, and skills, which are presented as tabs.
 
 ### Tutorial
 
