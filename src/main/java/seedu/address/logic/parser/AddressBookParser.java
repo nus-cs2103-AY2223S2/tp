@@ -23,6 +23,7 @@ import seedu.address.logic.commands.LoadCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewBackupsCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
@@ -99,6 +100,9 @@ public class AddressBookParser {
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
+
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

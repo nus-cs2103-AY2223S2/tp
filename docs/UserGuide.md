@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-HospiSearch is a **desktop app for managing hospital patients' particulars, optimized for use via a Command Line Interface** 
+HospiSearch is a **desktop app for managing hospital patients' particulars, optimized for use via a Command Line Interface**
 (CLI) while still having the benefits of a **Graphical User Interface (GUI)**. If you can type fast, HospiSearch can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents: coming soon
@@ -30,7 +30,7 @@ HospiSearch is a **desktop app for managing hospital patients' particulars, opti
 ## Features
 
 ### Notes:
-- Words in `UPPER_CASE` are the parameters to be supplied by the user. 
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.
 e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 - Items in square brackets are optional.
@@ -44,9 +44,6 @@ e.g. [t/TAG]…​ can be used as   (i.e. 0 times), t/friend, t/friend t/family 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 
-
-
-  
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -65,8 +62,8 @@ Format: `add n/NAME i/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DIAGNOSIS] [t/TAG
 
 
 Examples:
-* `add n/John Doe i/T0012345A p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/cancer`
-* `add n/Betsy Crowe i/T0012345B e/betsycrowe@example.com a/Newgate Prison p/1234567 d/diabetes d/osteoporosis`
+* `add i/T0012345A n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/Diabetic`
+* `add i/T0012345B n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/Dyslexic d/Osteoporotic`
 
 
 
@@ -91,10 +88,13 @@ Format: `delete i/NRIC`
 Examples:
 * `delete i/T0012345A` delete the patient with NRIC T0012345A from patient records system
 
-### Find persons by name or address: `find`
+### Find persons by nric, name, address or tags: `find`
 
 
-Find persons according to a particular attribute stated followed by the change. Eg. name(n/), address(a/), nric(i/)
+Find persons according to a particular attribute stated followed by the change.
+
+Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`)
+
 Format: `find attribute/keyword [MORE_KEYWORDS]`
 
 
@@ -110,7 +110,8 @@ Examples:
 * `find a/serangoon` returns `Alice Tan` and `John Doe` who have an address located in `Serangoon`
 * `find i/S0078957G` returns `Alice Tan` who has an NRIC of `S0078957G`
 * `find a/ang mo kio serangoon` returns 'Alice Tan', 'John Doe', 'John Lim' who all stay either in `ang mo kio` or  `serangoon`
-  
+* `find t/Diabetic` returns all persons with the tag `Diabetic`
+* `find t/Diabetic Osteoporotic` returns all persons with the tag `Diabetic` or `Osteoporotic` or both.
 
 ### Clearing all data: `clear`
 Purges all data from the database
@@ -132,7 +133,7 @@ Loads the data from a specified slot represented by an index
 
 Format: `load INDEX_NO`
 
-Example: 
+Example:
 * `load 3` loads the data from the 3rd slot
 
 ### Help menu: `help`
@@ -181,7 +182,7 @@ Format: `redo`
 | **Clear all** | `clear`                                                                                                                                                                                         |
 | **Delete**    | `delete i/NRIC` <br/> e.g. delete i/T0012345A                                                                                                                                                   |
 | **Edit**      | `edit i/NRIC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DIAGNOSIS] [t/TAG]…​` <br/> e.g. edit i/T0012345A p/91234567 e/johndoe@example.com                                                     |
-| **Find**      | `find KEYWORD [MORE_KEYWORDS]` <br/> e.g. find panadol <br/> e.g. find diabetes                                                                                                                 |
+| **Find**      | `find attribute/KEYWORD [MORE_KEYWORDS]` <br/> e.g. find a/Alex  <br/> e.g. find t/diabetic                                                                                                     |
 | **Backup**    | `backup INDEX_NO` <br/> e.g. backup 3                                                                                                                                                           |
 | **Save**      | `save INDEX_NO` <br/> e.g. save 3                                                                                                                                                               |
 | **List**      | `list`                                                                                                                                                                                          |
