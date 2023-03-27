@@ -15,6 +15,7 @@ Given below are my contributions to the project.
 * Export and Import of meetings
 * Modified DateTime to use an Optional for time and added the comparison logic
 * Added UI for meetings
+* Improved UI with different color scheme and scaling panels
 
 ## Project management
 

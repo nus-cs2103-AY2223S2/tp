@@ -17,6 +17,7 @@ We would like to thank:
   * [JavaFX](https://openjfx.io/)
   * [Jackson](https://github.com/FasterXML/jackson)
   * [JUnit](https://junit.org/junit5/)
+* Colors from [Ayu](https://raw.githubusercontent.com/ayu-theme/ayu-colors/master/colors.svg)
 
 --------------------------------------------------------------------------------------------------------------------
 
