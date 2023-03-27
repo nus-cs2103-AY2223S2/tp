@@ -196,7 +196,7 @@ Given below are the steps that illustrate the interaction between the components
 application command from the user.
 
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
+2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via its `execute()` method.
 3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
 4. The `InternshipBookParser` in turn creates an `AddApplicationCommandParser` that is responsible for the specific purpose of 
 parsing user commands for adding applications.
@@ -260,7 +260,7 @@ Given below are the steps that illustrate the interaction between the components
 application command from the user.
 
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
+2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via its `execute()` method.
 3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
 4. The `InternshipBookParser` in turn creates an `EditApplicationCommandParser` that is responsible for the specific purpose of
    parsing user commands for editing applications.
@@ -318,39 +318,89 @@ Here's a breakdown of what each prefix means:
 #### Implementation
 The find application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
 
-Given below are the steps that illustrate the interaction between the components when it receives a valid add
+Given below are the steps that illustrate the interaction between the components when it receives a valid find
 application command from the user.
 
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
+2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via its `execute()` method.
 3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
-4. The `InternshipBookParser` in turn creates an `FindApplicationCommandParser` that is responsible for a specific purpose of
-   parsing user commands for adding applications.
+4. The `InternshipBookParser` in turn creates an `FindApplicationCommandParser` that is responsible for the specific purpose of
+   parsing user commands for finding applications.
 5. The `InternshipBookParser` then passes the string input to the `FindApplicationCommandParser` via the `parse()` method.
 6. The `FindApplicationCommandParser` then identifies the different prefixes (if any) in the string and creates a list of keywords.
 7. The `parse()` method will return a `FindApplicationCommand(new NameContainsKeywordsPredicate(keywords))`.
 8. This `FindApplicationCommand` is returned back to `ApplicationLogicManager`.
 9. The `ApplicationLogicManager` then calls the `execute()` method of the `FindApplicationCommand`. This initializes the execution
-   the logic behind adding the associated application instance to the existing `InternshipBook`.
+   logic behind finding the associated application instance in the existing `InternshipBook`.
 10. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
     the execution of the command.
 11. The Ui component displays the contents of the `CommandResult` to the User.
 
-For a more graphical illustration of how an add application command is processed, please refer to the following
+For a more graphical illustration of how a find application command is processed, please refer to the following
 sequence diagram:
 
 ![FindApplicationSequenceDiagram](images/FindApplicationSequenceDiagram.png)
 
-### \[In Progress\] Sort feature
+### Sort feature
 
 #### About
 sprINT offers the options to sort the applications list in two ways:
 - `sort deadline` will sort by the deadline of upcoming tasks
-- `sort alphabetical` will sort by the alphabetical order of the internship roles; if there are two internship roles
-that are the same, the tiebreaker will be the alphabetical order of the company name
+- `sort alphabetical` will sort by the alphabetical order of the company names; if there are two application entries to
+the same company, the tiebreaker will be the alphabetical order of role
 
 #### Implementation
-_to be added_
+The sort application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
+
+Given below are the steps that illustrate the interaction between the components when it receives a valid sort
+application command from the user.
+
+1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
+2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via its `execute()` method.
+3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+4. The `InternshipBookParser` in turn creates an `SortApplicationCommandParser` that is responsible for the specific purpose of
+   parsing user commands for sorting the application list.
+5. The `InternshipBookParser` then passes the string input to the `SortApplicationCommandParser` via the `parse()` method.
+6. The `SortApplicationCommandParser` then identifies the part of the string that describes the sorting order the user wants.
+7. The `parse()` method will return a `SortApplicationCommand(String sortingOrder)`.
+8. The `isValidSortingOrder` method in `SortApplicationCommand` will then check that the user-inputted sorting order is one
+of the accepted sorting order as dictated by the enum values in enum `Sorting Order`.
+9. If the sorting order is valid, the `SortApplicationCommand`'s comparator will be set to the corresponding comparator.
+10. This `SortApplicationCommand` is returned back to `ApplicationLogicManager`.
+11. The `ApplicationLogicManager` then calls the `execute()` method of the `SortApplicationCommand`. This initializes the execution
+    logic behind modifying the existing sorted list in `InternshipBook`, by calling the method `updateSortedApplicationList` in `ApplicationLogicManager`.
+12. `updateSortedApplicationList` will make use of the comparator from the `SortApplicationCommand` to sort the model's sorted list.
+13. The model's sorted list is then passed to the UI to be shown to the user on the GUI.
+14. An instance of `CommandResult` is also created which contains the information that will be displayed back to the User after
+    the execution of the command.
+15. The Ui component displays the contents of the `CommandResult` to the User.
+
+For a more graphical illustration of how a sort application command is processed, please refer to the following
+sequence diagram:
+
+![SortApplicationSequenceDiagram](images/SortApplicationSequenceDiagram.png)
+
+#### Future expansion of the `sort` command
+Should the need to implement other ways to sort the application list arise in the future, you can do so by following these 3 main steps:
+1. Create a new Comparator class not dissimilar to `AlphabeticalComparator` and `DeadlineComparator` that
+implements the `Comparator<Application` interface.
+2. Modify `SortApplicationCommandParser` to be able to accept a new sorting order.
+3. Modify `SortApplicationCommand`. Specifically, its enum class `SortingOrder` should be expanded to accept a new enum values for your new sorting order.
+Also, modify its constructor so that it can create a comparator of the newly created Comparator class for `SortApplicationCommand`.
+
+#### Relation with `list` command
+The implementation of the `sort` command shares some similarities with that of the `list` command.
+The `list` command lists all applications in the order of creation; i.e., application entries that are more recently created
+and added will be shown higher up in the list.
+The execution of these commands is essentially a two-step process of first **filtering** and then **storing**: 
+1. `ApplicationLogicManager` takes the internal list that keeps track of all the applications. It stores a **filtered** version of this
+list in `FilteredList`.
+2. `ApplicationLogicManager` takes the `FilteredList` and stores a **sorted** version of this list in `SortedList`.
+
+See the following activity diagram that illustrates this workflow with some example executions of the `sort`, `find`
+and `list` commands:
+
+![CommandExecutionWorkflow](images/CommandExecutionWorkflow.png)
 
 ### \[Proposed\] Undo/redo feature
 
