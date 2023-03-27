@@ -72,4 +72,11 @@ public class Character extends Entity {
                 new Pair<>("Tags", serializedTags.toString())
         );
     }
+
+    @Override
+    public boolean isSameEntity(Entity otherEntity) {
+        return otherEntity == this
+                || (otherEntity instanceof Character
+                && otherEntity.getName().equals(getName()));
+    }
 }
