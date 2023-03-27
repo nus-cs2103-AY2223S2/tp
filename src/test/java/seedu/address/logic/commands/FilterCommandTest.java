@@ -38,11 +38,13 @@ public class FilterCommandTest {
                         new ArrayList<>(),
                         Collections.singletonList("email"),
                         new ArrayList<>(),
+                        new ArrayList<>(),
                         Collections.singletonList("tag")
                 );
         FieldsMatchRegexPredicate secondPredicate =
                 new FieldsMatchRegexPredicate(new ArrayList<>(),
                         Collections.singletonList("phone"),
+                        new ArrayList<>(),
                         new ArrayList<>(),
                         new ArrayList<>(),
                         Arrays.asList("tag1", "tag2")
@@ -76,6 +78,7 @@ public class FilterCommandTest {
                     new ArrayList<>(),
                     new ArrayList<>(),
                     new ArrayList<>(),
+                    new ArrayList<>(),
                     new ArrayList<>());
         FilterCommand command = new FilterCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -89,6 +92,7 @@ public class FilterCommandTest {
         FieldsMatchRegexPredicate predicate =
                 new FieldsMatchRegexPredicate(Collections.singletonList(".*l.*"),
                     Arrays.asList("87.*", "94.*", "95.*"),
+                    new ArrayList<>(),
                     new ArrayList<>(),
                     new ArrayList<>(),
                     Collections.singletonList(".*ends?"));
