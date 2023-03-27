@@ -1,8 +1,8 @@
 package mycelium.mycelium.logic.commands;
 
 import static mycelium.mycelium.testutil.Assert.assertThrows;
-import static mycelium.mycelium.testutil.TypicalPersons.BARD;
-import static mycelium.mycelium.testutil.TypicalPersons.BING;
+import static mycelium.mycelium.testutil.TypicalEntities.BARD;
+import static mycelium.mycelium.testutil.TypicalEntities.BING;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
