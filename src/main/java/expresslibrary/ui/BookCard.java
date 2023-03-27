@@ -1,11 +1,14 @@
 package expresslibrary.ui;
 
+import java.time.LocalDate;
+
 import expresslibrary.commons.util.DateUtil;
 import expresslibrary.model.book.Book;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 
 /**
  * An UI component that displays information of a {@code Book}.
@@ -54,7 +57,14 @@ public class BookCard extends UiPart<Region> {
         if (book.getBorrower() != null) {
             borrowerName.setText(String.format("Borrowed by: %s", book.getBorrower().getName().fullName));
             borrowDate.setText(String.format("Borrowed date: %s", DateUtil.formatDate(book.getBorrowDate())));
+            
             dueDate.setText(String.format("Due date: %s", DateUtil.formatDate(book.getDueDate())));
+            if (book.getDueDate().isBefore(LocalDate.now())) {
+                dueDate.setStyle("-fx-text-fill: red;");
+            } else if (book.getDueDate().isBefore(LocalDate.now().plusDays(3))) {
+                dueDate.setStyle("-fx-text-fill: orange;");
+            }
+            
             borrowerName.setVisible(true);
             borrowDate.setVisible(true);
             dueDate.setVisible(true);
