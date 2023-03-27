@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
@@ -88,6 +89,11 @@ public class AddMeetingCommandTest {
 
         @Override
         public void updateFilteredMeetingList(Predicate<Meeting> meetingPredicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortFilteredMeetingList(Comparator comparator) {
             throw new AssertionError("This method should not be called.");
         }
 
