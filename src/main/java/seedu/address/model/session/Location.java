@@ -38,6 +38,9 @@ public class Location {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String get() {
+        return location;
+    }
 
     @Override
     public String toString() {

@@ -9,8 +9,6 @@ import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Objects;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-
 
 /**
  * Represents a Session in the address book.
@@ -23,7 +21,7 @@ public class Session implements Comparable<Session> {
     private String command;
     private final String startDateTime;
     private final String endDateTime;
-    private final Name name;
+    private final SessionName name;
     private final int id;
     private Location location;
     private HashMap<Integer, Boolean> attendanceMap;
@@ -33,12 +31,26 @@ public class Session implements Comparable<Session> {
      * @param startDateTime
      * @param endDateTime
      */
-    public Session(String startDateTime, String endDateTime, Name name, Location location) {
+    public Session(String startDateTime, String endDateTime, SessionName name, Location location) {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.name = name;
         this.location = location;
         this.id = name.hashCode();
+        if (!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)) {
+            throw new IllegalArgumentException("Date Time should be in the format dd-MM-yyyy HH:mm");
+        }
+        if (!this.isValidSession()) {
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    public Session(String startDateTime, String endDateTime, SessionName name, Location location, int id) {
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.name = name;
+        this.location = location;
+        this.id = id;
         if (!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)) {
             throw new IllegalArgumentException("Date Time should be in the format dd-MM-yyyy HH:mm");
         }
@@ -214,6 +226,14 @@ public class Session implements Comparable<Session> {
         return builder.toString();
     }
 
+    public String getName() {
+        return name.get();
+    }
+
+    public String getLocation() {
+        return location.get();
+    }
+
     public String getDate() {
         LocalDateTime dateTime = LocalDateTime.parse(startDateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
         return dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
@@ -244,5 +264,9 @@ public class Session implements Comparable<Session> {
         LocalDateTime otherStartDateTime = LocalDateTime.parse(other.startDateTime, DATE_TIME_FORMATTER);
 
         return thisStartDateTime.compareTo(otherStartDateTime);
+    }
+
+    public String getId() {
+        return String.valueOf(id);
     }
 }

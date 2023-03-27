@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -23,6 +22,7 @@ import seedu.address.model.tag.Tag;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final Predicate<Session> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
 
     private final VersionedAddressBook addressBook;
     private final UserPrefs userPrefs;
@@ -180,6 +180,12 @@ public class ModelManager implements Model {
         filteredTags.setPredicate(predicate);
     }
 
+    @Override
+    public void updateFilteredSessionList(Predicate<Session> predicate) {
+        requireNonNull(predicate);
+        filteredSessions.setPredicate(predicate);
+    }
+
     /*@Override
     public ObservableList<CalendarEvent> getFilteredCalendarEventList() {
         ObservableList<Person> lastShownList = this.filteredPersons;
@@ -195,6 +201,17 @@ public class ModelManager implements Model {
     @Override
     public void updateCalendarEventList() {
         //getCalendarEventList(filteredPersons);
+    }
+
+    @Override
+    public boolean hasSession(Session toAdd) {
+        return addressBook.hasSession(toAdd);
+    }
+
+    @Override
+    public void addSession(Session toAdd) {
+        addressBook.addSession(toAdd);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
     }
 
     @Override

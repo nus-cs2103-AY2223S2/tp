@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +16,9 @@ import seedu.address.model.person.Address; // create a new import group for Addr
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PayRate;
 import seedu.address.model.person.Phone;
+import seedu.address.model.session.Location;
+import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -49,6 +55,22 @@ public class ParserUtil {
         }
         return new Name(trimmedName);
     }
+
+    /**
+     * Parses a {@code String session name} into a {@code SessionName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code session name} is invalid.
+     */
+    public static SessionName parseSessionName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new SessionName(trimmedName);
+    }
+
 
     /**
      * Parses a {@code String phone} into a {@code Phone}.
@@ -120,5 +142,43 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String session} into an {@code Session}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code session} is invalid.
+     */
+    public static ArrayList<String> parseSession(String session) throws ParseException {
+        requireNonNull(session);
+        String trimmedSession = session.trim();
+        String[] dateTime = trimmedSession.split(" to ");
+        if (dateTime.length != 2) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+        }
+        String[] startDateAndTime = dateTime[0].split(" ");
+        String[] endDateAndTime = dateTime[1].split(" ");
+        if (startDateAndTime.length != 2 || endDateAndTime.length != 2
+                || !Session.isValidDateFormat(startDateAndTime[0].trim())
+                || !Session.isValidDateFormat(endDateAndTime[0].trim())
+                || !Session.isValidTimeFormat(startDateAndTime[1].trim())
+                || !Session.isValidTimeFormat(endDateAndTime[1].trim())) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+        }
+
+        String start_time = startDateAndTime[0].trim() + " " + startDateAndTime[1].trim();
+        String end_time = endDateAndTime[0].trim() + " " + endDateAndTime[1].trim();
+
+        return new ArrayList<String>(Arrays.asList(start_time, end_time));
+    }
+
+    public static Location parseLocation(String location) throws ParseException {
+        requireNonNull(location);
+        String trimmedLocation = location.trim();
+        if (!Location.isValidLocation(trimmedLocation)) {
+            throw new ParseException(Location.MESSAGE_CONSTRAINTS);
+        }
+        return new Location(trimmedLocation);
     }
 }
