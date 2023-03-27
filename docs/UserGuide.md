@@ -17,7 +17,7 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
 
 ## 2. Table of Contents
 
-Table of Contents
+* Table of Contents
   {:toc}
 
 ---
