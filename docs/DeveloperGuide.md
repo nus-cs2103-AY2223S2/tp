@@ -687,7 +687,7 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 <div markdown="span" class="alert alert-primary">
 
-:information_source: **Tips**: JavaFX works with `ObservableList` to populate the UI components. However, we can wrap this `ObservableList` inside a `SortedList` which accepts a `Comparator` as an argument. In this way, we only need to set this argument if we want to sort something in the UI.
+:bulb: **Tips**: JavaFX works with `ObservableList` to populate the UI components. However, we can wrap this `ObservableList` inside a `SortedList` which accepts a `Comparator` as an argument. In this way, we only need to set this argument if we want to sort something in the UI.
 
 </div>
 
@@ -745,7 +745,7 @@ This feature is utilises the [`Recommender`](#recommenders)
 
 ### **Organise Command**
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="span" class="alert alert-dark">
     :construction: Slated for release in v1.3b.
 </div>
 
