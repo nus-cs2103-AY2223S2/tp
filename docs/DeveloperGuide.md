@@ -1,9 +1,12 @@
 ---
 layout: page
 title: Developer Guide
+toc: true
 ---
 * Table of Contents
-  {:toc}
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Design
 
@@ -174,6 +177,8 @@ However, this representation is too verbose and space-inefficient. Hence, we opt
 each component clas, which can be found in the [`seedu.recipe.storage.jsonadapters`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/jsonadapters)
 package. The JSON adapters allow us to express how each class should be serialized.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -221,6 +226,8 @@ The form's window title will be "Edit Recipe" when editing an existing recipe, a
 
 ### Common classes
 Classes used by multiple components are in the `seedu.recipe.commons` package.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
 
@@ -399,6 +406,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Book**: Refers to the application or system that manages the storage and retrieval of recipe data.
 * **Storage file**: The file used by the application to store and retrieve recipe data.
 * **Index**: Refers to the position of a specific recipe within a list of recipes, represented by a numerical value.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
