@@ -284,6 +284,13 @@ The `mark` feature is implemented with the following considerations:
   * Pros: Results in less coupling and in turn lower possibility of unintended change cascades.
   * Cons: May have performance issues in terms of memory usage and runtime.
 
+Below shows the activity diagram of the `mark` command:
+
+<img src="images/MarkActivityDiagram.png" width="200" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.2</b> Activity diagram of 'Mark'
+</div>
+
 ### Unmark feature
 
 The `unmark` feature allows for unmarking of the 'Mark' attribute in events should there be an accidental marking of an event.
@@ -384,7 +391,12 @@ The `revenue` feature is implemented with the following considerations:
   * Pros: Will maintain a low runtime complexity.
   * Cons: Hard to implement in the case that events are unmarked or deleted.
 
+Below shows the activity diagram of the `revenue` command:
 
+<img src="images/RevenueActivityDiagram.png" width="200" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.6</b> Activity diagram of 'Revenue'
+</div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Requirements
