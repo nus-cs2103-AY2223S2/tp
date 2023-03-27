@@ -128,8 +128,12 @@ Format: `p delete -ic PATIENT_NRIC`
 Examples:
 * `p delete -ic T3871918C`
 
+Command Input:
 ![](images/UIscreenshots/patientSS/pdeleteic.png)
+Patient to be Deleted:
+
 ![](images/UIscreenshots/patientSS/pIC.png)
+Command Result:
 ![](images/UIscreenshots/patientSS/pdeleteICres.png)
 
 [Back to top](#top)
@@ -145,8 +149,12 @@ Example:
 * list followed by p delete 2 will delete the 2nd person in the patient list.
 * `p delete -i 8`
 
+Command Input:
 ![](images/UIscreenshots/patientSS/pdelete.png)
+Patient to be Deleted:
+
 ![](images/UIscreenshots/patientSS/8p.png)
+Command Result:
 ![](images/UIscreenshots/patientSS/pdeleteres.png)
 
 [Back to top](#top)
@@ -163,8 +171,12 @@ Example:
 * `p update Bety -n Betsy Crower -da Aspirin`
 * Edits the name and drug allergy of Bety to be Betsy Crowers and Aspirin respectively.
 
+Command Input:
 ![](images/UIscreenshots/patientSS/pupdate.png)
+Patient to be Updated:
+
 ![](images/UIscreenshots/patientSS/pIC.png)
+Command Result:
 ![](images/UIscreenshots/patientSS/pupdateres.png)
 
 [Back to top](#top)
@@ -243,8 +255,12 @@ Format: `d delete -tn TRADE_NAME`
 Examples:
 * `d delete -tn Panadol`
 
+Input Command:
 ![](images/UIscreenshots/drugSS/ddeletetn.png)
+Drug to be Deleted:
+
 ![](images/UIscreenshots/drugSS/dpanadol.png)
+Command Result:
 ![](images/UIscreenshots/drugSS/ddeletetnres.png)
 
 [Back to top](#top)
@@ -258,8 +274,11 @@ Examples:
 * `d delete -i 4`
 * This deletes the 4th drug entry in the most recently shown list
 
+Command Input:
 ![](images/UIscreenshots/drugSS/d4.png)
+Drug to be Deleted:
 ![](images/UIscreenshots/drugSS/ddeleteindex.png)
+Command Result:
 ![](images/UIscreenshots/drugSS/ddeletetnres.png)
 
 [Back to top](#top)
@@ -278,8 +297,12 @@ Examples:
 * `d update Tylenol PM -by +50`
     * This **increases** storage count of the drug entry with trade name matching "Tylenol PM" by **50**
 
+Command Input:
 ![](images/UIscreenshots/drugSS/dcurrentcount.png)
+Drug to be Updated:
+
 ![](images/UIscreenshots/drugSS/dupdate.png)
+Command Result:
 ![](images/UIscreenshots/drugSS/dupdateres.png)
 
 [Back to top](#top)
