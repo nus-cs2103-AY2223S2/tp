@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-<div class = "normal-text">
+
 
 ## 1. Welcome to ConnectUS!
 
@@ -397,7 +397,6 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 [↑ Back to top](#2-table-of-contents)
 
-</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
