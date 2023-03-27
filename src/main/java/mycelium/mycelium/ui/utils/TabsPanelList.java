@@ -52,7 +52,7 @@ public class TabsPanelList {
      * The current TabsPanel is unhighlighted.
      * The TabsPanel of the given index is highlighted.
      * If the index is out of bounds, nothing happens.
-     * 
+     *
      * @param index The index of the TabsPanel to be focused.
      */
     public void focusTabPanel(int index) {
