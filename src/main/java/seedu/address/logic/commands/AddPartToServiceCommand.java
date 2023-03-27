@@ -60,6 +60,6 @@ public class AddPartToServiceCommand extends Command {
             throw new CommandException(MESSAGE_INSUFFICIENT_PART);
         }
         model.addPartToService(this.serviceId, this.partName, this.quantity);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, ResultType.LISTED_SERVICES);
     }
 }
