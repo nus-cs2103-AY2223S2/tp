@@ -135,6 +135,9 @@ Patient to be Deleted:
 
 ![](images/UIscreenshots/patientSS/pIC.png)
 
+
+
+
 Command Result:
 ![](images/UIscreenshots/patientSS/pdeleteICres.png)
 
@@ -176,10 +179,16 @@ Example:
 * Edits the name and drug allergy of Bety to be Betsy Crowers and Aspirin respectively.
 
 Command Input:
+
 ![](images/UIscreenshots/patientSS/pupdate.png)
+
 Patient to be Updated:
 
 ![](images/UIscreenshots/patientSS/pIC.png)
+
+
+
+
 Command Result:
 ![](images/UIscreenshots/patientSS/pupdateres.png)
 
@@ -264,6 +273,12 @@ Input Command:
 Drug to be Deleted:
 
 ![](images/UIscreenshots/drugSS/dpanadol.png)
+
+
+
+
+
+
 Command Result:
 ![](images/UIscreenshots/drugSS/ddeletetnres.png)
 
@@ -304,7 +319,9 @@ Examples:
     * This **increases** storage count of the drug entry with trade name matching "Tylenol PM" by **50**
 
 Drug to be Updated:
+
 ![](images/UIscreenshots/drugSS/dcurrentcount.png)
+
 
 Command Input:
 
