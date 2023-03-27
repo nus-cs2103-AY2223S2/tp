@@ -29,6 +29,10 @@ public class TankCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label numberOfFish;
+    @FXML
+    private Label alignment;
 
     /**
      * Creates a {@code TankCard} with the given {@code Tank} and index to display.
@@ -37,7 +41,9 @@ public class TankCard extends UiPart<Region> {
         super(FXML);
         this.tank = tank;
         id.setText(displayedIndex + ". ");
+        alignment.setText(displayedIndex + ".  ");
         name.setText(tank.getTankName().toString());
+        numberOfFish.setText("x" + tank.getFishList().size());
     }
 
     @Override

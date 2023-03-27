@@ -29,7 +29,7 @@ public class FishListPanel extends UiPart<Region> {
         fishListView.setCellFactory(listView -> new FishListViewCell());
     }
 
-    public void refreshCard() {
+    public void refresh() {
         fishListView.refresh();
     }
 

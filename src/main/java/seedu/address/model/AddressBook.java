@@ -127,4 +127,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return fishes.hashCode();
     }
+
+    public int size() {
+        return fishes.size();
+    }
 }
