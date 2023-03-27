@@ -31,8 +31,8 @@ public class LinkCrewToLocationCommandFactory implements CommandFactory<LinkCrew
             "No location has been entered. "
                     + "Please enter /lo followed by the location ID.";
     private static final String NO_CREW_MESSAGE =
-            "No crew has been entered. " +
-                    "Please enter /cr followed by the crew ID.";
+            "No crew has been entered. "
+                    + "Please enter /cr followed by the crew ID.";
 
     private final Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy;
 

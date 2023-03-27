@@ -27,7 +27,7 @@ public class UnlinkFlightToLocationCommandFactory implements CommandFactory<Unli
     public static final String LOCATION_ARRIVAL_PREFIX = "/to";
 
     private static final String NO_FLIGHT_MESSAGE =
-            "No flight has been entered. Please enter /flight for the flight.";
+            "No flight has been entered. Please enter /fl for the flight.";
     private static final String NO_LOCATION_MESSAGE =
             "No location has been entered. Please enter /from for the departure location"
                     + " and /to for the arrival location.";
@@ -134,7 +134,6 @@ public class UnlinkFlightToLocationCommandFactory implements CommandFactory<Unli
 
         return flightOptional.get();
     }
-
 
     @Override
     public UnlinkFlightToLocationCommand createCommand(
