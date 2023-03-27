@@ -80,6 +80,6 @@ public abstract class Overview {
         List<DataBin> sortedBins = getAnalyst().getSortedBins();
         return Stream.iterate(1, i -> i + 1).limit(sortedBins.size())
                 .map(i -> makeBinPrefix(i) + GAP + makeBinFormat(sortedBins.get(i - 1)))
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining("\n\n"));
     }
 }
