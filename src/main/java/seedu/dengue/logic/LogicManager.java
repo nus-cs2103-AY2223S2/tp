@@ -14,9 +14,9 @@ import seedu.dengue.logic.parser.DengueHotspotTrackerParser;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
+import seedu.dengue.model.overview.Overview;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.storage.Storage;
-import seedu.dengue.model.overview.Overview;
 
 /**
  * The main LogicManager of the app.
