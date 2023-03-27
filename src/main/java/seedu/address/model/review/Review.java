@@ -177,10 +177,15 @@ public class Review {
         return (int) cardList.stream().filter(card -> card.getTagName() == "untagged").count();
     }
 
+    public void tagCard() {
+        updateReviewStatsList();
+    }
+
     public ObservableList<Pair<String, String> > getReviewDeckNameList() {
         return deck.getDeckNameList();
     }
-    private void updateReviewStatsList() {
+
+    public void updateReviewStatsList() {
         Pair<String, String> title = new Pair<>("Deck Name", deck.getDeckName());
         Pair<String, String> cardsSeen = new Pair<>("Current Card Number:",
                 String.format("%d/%d", currCardNum, totalNumCards));
