@@ -11,9 +11,13 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Searches all recipes within the recipe book for stored ingredient substitutions for given ingredient, and returns a
+ * list of substitutable ingredients (without duplicates).
+ * Ingredient name matching is case-insensitive.
+ */
 public class SubCommand extends Command {
 
     public static final String COMMAND_WORD = "sub";
@@ -43,15 +47,17 @@ public class SubCommand extends Command {
 
         HashSet<Ingredient> subList = new HashSet<>();
 
+        // query all recipes in the current recipe book
         for (Recipe r : recipeObservableList) {
             HashMap<Ingredient, IngredientInformation> tokens = r.getIngredients();
-            // if recipe requires said ingredient
+            // if recipe contains queried ingredient
             if (tokens.containsKey(queryIngredient)) {
                 //inquire for subs
                 IngredientInformation rInfo = tokens.get(queryIngredient);
                 if (!rInfo.getSubstitutions().isEmpty()) {
                     // List of substitutions within that recipe
                     List<Ingredient> subs = rInfo.getSubstitutions();
+                    // store substitutions into subList, ensuring no duplication
                     for (Ingredient i : subs) {
                         subList.add(i);
                     }
