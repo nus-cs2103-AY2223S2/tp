@@ -1,12 +1,64 @@
 ---
 layout: page
 title: User Guide
+
 ---
 
-Mycelium is a desktop application aimed at helping **freelance web developers manage clients and projects** from multiple online sources. All interactions with Mycelium are through text commands, allowing for efficient manipulation of data while benefiting from the ease of viewing offered by the Graphical User Interface.
+Mycelium is a desktop application aimed at helping **freelance web developers
+manage clients and projects** from multiple online sources. All interactions
+with Mycelium are through text commands, allowing for efficient manipulation of
+data while benefiting from the ease of viewing offered by the Graphical User
+Interface.
 
-* Table of Contents
+# Using this Guide
+
+If it is your first time here, the easiest way to get started is to head over
+to [Quick Start](#quick-start), which will guide you through the installation
+process and basic usage.
+
+Alternatively, you may wish to use this guide as a reference for commands and
+hotkeys. The three main parts of this guide contain descriptions on how to use
+commands for managing clients and projects, as well as the available hotkeys.
+
+**TODO: add internal links for the para above**
+
+# Table of Contents
 {:toc}
+
+# Quick Start
+
+Mycelium runs on Java 11, so you should first head over to [Oracle's
+website](https://www.oracle.com/java/technologies/downloads/) to install Java
+11 if your system does not already have it installed. Alternatively, you might
+be able to install Java 11 from your preferred package manager, such as
+[Homebrew](https://formulae.brew.sh/formula/openjdk@11) for Mac or
+[Pacman](https://archlinux.org/packages/extra/x86_64/jdk11-openjdk/) for Arch
+Linux.
+
+Once you have Java 11, we can get started with our first steps using Mycelium.
+
+1. Download the latest release from our [releases
+   page](https://github.com/AY2223S2-CS2103T-W14-1/tp/releases)
+1. Place the `.jar` file in an *empty directory* of your choice
+1. In a terminal, navigate to the directory, and run the following command
+
+```
+java -jar mycelium.jar
+```
+
+If you see a window like the one shown below, then you have successfully
+installed and launched Mycelium! Notice that some mock data has been populated
+to help you get a feel for the application. Feel free to delete them later. 
+
+**TODO: add a screenshot**
+
+At this point, we recommend that you jump over to the [Command
+Summary](#command-summary) and [HotKey Summary](#hotkey-summary) section to get
+an overview of the commands and hotkeys which are the bread and butter of
+Mycelium. You may visit the relevant sections later for more details on your
+preferred use case.
+
+**TODO: add internal links for para above**
 
 --------------------------------------------------------------------------------------------------------------------
 
