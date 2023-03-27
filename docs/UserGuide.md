@@ -178,7 +178,7 @@ Format: `borrow PERSON_INDEX b/BOOK_INDEX d/DUE_DATE`
 * The indexes must be positive integers 1, 2, 3, …​
 
 Examples:
-* `list` followed by `borrow 2 b/3 d/17/10/2024` lends the 3rd book in the book list to the 2nd person in the user records with a due date of Oct. 17, 2024.
+* `listBook/listPerson` followed by `borrow 2 b/3 d/17/10/2024` lends the 3rd book in the book list to the 2nd person in the user records with a due date of Oct. 17, 2024.
 
 ### Returning a book : `return`
 
@@ -192,7 +192,7 @@ Format: `return PERSON_INDEX b/BOOK_INDEX`
 * The indexes must be positive integers 1, 2, 3, …​
 
 Examples:
-* `list` followed by `return 1 b/2` returns the 2nd book in the book list from the 1st person in the user records.
+* `listBook/listPerson` followed by `return 1 b/2` returns the 2nd book in the book list from the 1st person in the user records.
 
 
 ### Common Functions
@@ -249,8 +249,6 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
-**Borrow** | `borrow PERSON_INDEX b/BOOK_INDEX d/DUE_DATE` <br> e.g., `borrow 1 b/2 d/23/09/2024` 
-**Return** | `return PERSON_INDEX b/BOOK_INDEX` <br> e.g., `return 3 b/1`
 **DeletePerson** | `deletePerson INDEX`<br> e.g., `deletePerson 3`
 **EditPerson** | `editPerson INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`
 **FindPerson** | `findPerson KEYWORD [MORE_KEYWORDS]`<br> e.g., `findPerson James Jake`
@@ -261,3 +259,9 @@ Action | Format, Examples
 Action | Format, Examples
 --------|------------------
 **List**| `listBook`
+
+#### General
+Action | Format, Examples
+--------|------------------
+**Borrow** | `borrow PERSON_INDEX b/BOOK_INDEX d/DUE_DATE` <br> e.g., `borrow 1 b/2 d/23/09/2024`
+**Return** | `return PERSON_INDEX b/BOOK_INDEX` <br> e.g., `return 3 b/1`
