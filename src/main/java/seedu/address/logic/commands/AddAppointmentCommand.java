@@ -56,7 +56,9 @@ public class AddAppointmentCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
-        model.addAppointment(toAdd);
+        if (model.hasPatientName(toAdd.getPatientName())) {
+            model.addAppointment(toAdd);
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
