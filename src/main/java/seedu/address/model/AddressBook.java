@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -50,14 +51,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the patient list with {@code patients}.
+     * FOR TESTING
+     * Replaces the contents of the patient list with a COPY of {@code patients}.
      * {@code patients} must not contain duplicate patients.
      */
     public void setPatients(List<Patient> patients) {
-        this.patients.setPatients(patients);
+        List<Patient> patientsCopy = new ArrayList<>();
+        for (Patient patient:patients) {
+            Patient toCopy = new Patient(patient.getNric(), patient.getName(), patient.getStatus(), patient.getWard(),
+                patient.getDischarge());
+            patientsCopy.add(toCopy);
+        }
+        this.patients.setPatients(patientsCopy);
     }
 
     /**
+     * FOR TESTING
      * Replaces the contents of the ward list with {@code wards}.
      * {@code wards} must not contain duplicate wards.
      */

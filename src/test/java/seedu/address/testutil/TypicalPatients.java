@@ -25,7 +25,7 @@ import seedu.address.model.ward.Ward;
 public class TypicalPatients {
 
     // Patients
-    public static final Patient ALEX = new PatientBuilder().withNric("S1334567A")
+    public static final Patient ALEX = new PatientBuilder().withNric("S1000007A")
             .withName("Alex Smith").withStatus("GRAY").withWard("Waiting Room")
             .withDischarge("12/02/2023 1400").build();
     public static final Patient BENSON = new PatientBuilder().withNric("S7654321F")
