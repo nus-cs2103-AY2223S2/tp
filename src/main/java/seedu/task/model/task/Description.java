@@ -35,7 +35,7 @@ public class Description {
     }
 
     /**
-      * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidDescription(String test) {
         return !test.trim().isEmpty();

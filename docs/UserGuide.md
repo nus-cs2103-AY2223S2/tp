@@ -17,7 +17,7 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
     * [2.7 stats](#27-getting-statistics--stats)
     * [2.8 sort](#28-sorting-tasks--sort)
     * [2.9 alert](#29-get-alerts--alert-alert-window)
-    * [2.10 plan](#210-plan-your-month--plan-effort)
+    * [2.10 schedule](#210-schedule-of-the-day--schedule-dshortdate-eeffort)
     * [2.11 subsection](#211-adding-a-subsection-to-a-task--subsection)
     * [2.11 remove-subsection](#212-deleting-a-subsection-from-a-task--remove-subsection)
   * [3. Storage](#3-storage)
@@ -36,11 +36,16 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Clock-Work.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clockwork.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Open a command terminal (e.g. Ubuntu)
+
+5. Navigate to the directory with `clockwork.jar` file downloaded in (Downloads folder in most cases).
+
+6. Use the command `java -jar clockwork.jar` to run the application or double-click on the jar file.
+
+7. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+8. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -53,7 +58,7 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features and commands](#2-features-and-commands) below for details of each command.
+9. Refer to the [Features and commands](#2-features-and-commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -63,28 +68,34 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 
 **:information_source: Notes about the command format:**<br>
 * First word is assumed to be a command word (add/delete/list/find).
-* Each task **must** have a corresponding description.
+
+* A Task can be: 
+  * A simpleTask, which does not have a Date attached to it. ([What is a Date?](#q2-what-is-a-valid-date))
+  * A deadline, which has a Date known as `deadline`.
+  * An event, which has 2 Dates known as a `from` and a `to`.
+
+* A task can have the following additional **Optional** fields attached to it:
+  * Tags
+  * Description 
+  * Effort level
+  * Alert window
+  * Subsection
+  
 * Words in `ALL CAPS` are the parameters to be supplied by the user.<br>
 
-* Items in square brackets are optional.<br>
-  e.g `n/TASK d/DESCRIPTION [tag/TAG]` can be used as `n/Read Book d/Intro to Competitive Programming tag/relax` or as `n/Read Book d/Intro to Competitive Programming t/relax`.
+* Any fields in square brackets are optional.<br>
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/important`, `tag/important t/urgent` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `t/TASK d/DESCRIPTION`, `d/DESCRIPTION t/TASK` is also acceptable.
+  e.g. if the command specifies `t/Task A d/A's sample description`, `d/A's sample description t/Task A` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `d/do it fast d/do it slow`, only `d/do it slow` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* A valid Date (must be a legitimate date) must be in the format of `YYYY-MM-DD HHMM` such as `2023-07-13 1800` (13 July 2023, 6PM)
-
-* A valid Date must have a valid time. A minimum of 4 characters must be supplied and only a maximum of 4 character will be parsed
-  e.g. `2023-07-13 180` is invalid and `2023-07-13 18000000000` is understood as `2023-07-13 1800`
 
 </div>
 
@@ -99,13 +110,10 @@ Format: `help`
 
 ### 2.2 Adding a task: `add`
 
-:speech_balloon: PRO TIP: Parameters that comes after the command can be in any order!
-:warning: You are unable to add any tasks (simpleTask, Deadline, Event) of the same name.
-
 Adds a task to the address book. There are 3 types of tasks. `SimpleTask`, `Deadline` and `Event`.
-For `Deadline` and `Event` date(s) are required.
+For `Deadline` and `Event` `Date` field(s) are required.
 
-Dates should be in the format `YYYY-MM-DD HHMM`. ([What is a valid Date?](#q2-what-is-a-valid-date))
+`Date` should be in the format `YYYY-MM-DD HHMM`. ([What is a valid Date?](#q2-what-is-a-valid-date))
 
 By default, effort level is 24. ([What is an effort level?](#q3-what-is-an-effort-level))
 
@@ -113,38 +121,46 @@ A Task must have a description.([What is a valid Description?](#q4-what-is-a-val
 
 Format:
 
-* SimpleTask: `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT]…​`
+* SimpleTask: `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
 
-* Deadline: `add n/TASKNAME d/DESCRIPTION D/DEADLINE [t/TAGS]…​ [E/EFFORT]…​`
+* Deadline: `add n/TASKNAME D/DEADLINE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
 
-* Event: `add n/TASKNAME d/DESCRIPTION F/FROMDATE T/TODATE [t/TAGS]…​ [E/EFFORT]…​`
-
-You can add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION [t/TAGS]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can add multiple Events and Deadlines as well! However, they have to share the same timings.
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A task can have any number of tags (including 0)
-</div>
+* Event: `add n/TASKNAME F/FROMDATE T/TODATE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
 
 Examples:
 * `add n/Read Book d/Make sure to take notes t/Leisure`
 * `add n/Return Book d/NUS library t/Urgent D/2023-01-01 1800`
 
+You can add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION [t/TAGS]…​`
+
+:bulb: **PRO TIP**: You can add multiple Events and Deadlines as well! However, they have to share the same timings. Use this to add tasks that occur at the same time!
+
+:bulb: **PRO TIP**: Parameters that comes after the command can be in any order!
+
+:bulb: **PRO TIP**: A task can have any number of tags (including 0)
+
+:warning: You are unable to add any tasks (simpleTask, Deadline, Event) of the same name.
+
+:warning: Adding multiple tags of the same tag name will only result in one tag! 
+
+e.g. `add n/SampleTask t/CS2102 t/CS2102` will only register t/CS2102 once!
+
+:warning: There are reserved CLI syntax like `n/`, `d/`, `t/`, `D/`, `F/`, `T/`, `all/`, `E/`, `I/`, `D/`. Input fields will have unexpected behaviour when it contains these characters.
+
+e.g. `add n/Sample d/Why can't I add n/?`
+
+
 ### 2.3 Listing all tasks : `list`
-:speech_balloon: PRO TIP: Some commands (e.g. find) will trigger the UI to display a subset of tasks. Use `list` to return back to the original list.
 
 Shows a list of all tasks in the address book.
 
 Format: `list`
 
+:bulb: PRO TIP: Some commands (e.g. find) will trigger the UI to display a subset of tasks. Use `list` to return back to the original list.
+
 ### 2.4 Editing a task : `edit`
 
 Edits an existing task in the address book.
-
-One parameter field **must** be supplied in the argument.
 
 Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT]…​ [t/TAG]…​`
 
@@ -152,12 +168,16 @@ Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT]…​ [t/TAG]…​`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
-* You can remove all the task’s tags by typing `t/` without
-    specifying any tags after it.
+* You can remove all the task’s tags by typing `t/` without specifying any tags after it.
+* You can remove a description with `d/` without specifying any tags after it.
 
 Examples:
 *  `edit 1 t/CS2102 t/URGENT` Edits the tags of the first task to now be `CS2102` and `URGENT`
 *  `edit 2 n/CS2102 Finals t/` Edits the name of the 2nd task to be `CS2102 Finals` and clears all existing tags.
+
+:warning: When editing the tags of a task, multiple tags of the same name is ignored! 
+
+e.g. `edit 1 t/CS2102 t/CS2102` will only register t/CS2102 once!
 
 ### 2.5 Locating tasks by name: `find`
 
@@ -166,7 +186,6 @@ Find tasks whose attribute best match the user input string.
 Format: `find n/NAME` OR `find d/DESCRIPTION` OR `find t/TAG...`
 
 * The search is case-insensitive. e.g `book` will match `Book`
-* Use only 1 attribute at a time.
 * Substrings will be matched e.g. `book` will match `Books`
 * For names and descriptions, you may use the `all/` prefix to search for a task that contains all of your inputs
   * e.g. `find all/ n/do n/homework` will match a task with a name called "do math homework.
@@ -182,6 +201,10 @@ However, adding `all/` means that a task which contains all your tag inputs will
 
 Examples:
 * `find n/book` returns `read book` and `return books`
+
+:warning: When searching for a description `find d/Description`, Tasks without user's input description will not show up!
+
+e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/No Description` will return only a list with the latter task.
 
 ### 2.6 Deleting a task : `delete`
 
@@ -338,7 +361,6 @@ _Details coming soon ..._
 
 ### Q4 What is a valid Description?
 **A**: A valid Description is a text input that has at least one character.
-
 
 
 --------------------------------------------------------------------------------------------------------------------
