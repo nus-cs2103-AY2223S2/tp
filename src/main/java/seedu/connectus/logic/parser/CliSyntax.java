@@ -17,4 +17,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_SOCMED_INSTAGRAM = new Prefix("ig/");
     public static final Prefix PREFIX_SOCMED_TELEGRAM = new Prefix("tg/");
     public static final Prefix PREFIX_SOCMED_WHATSAPP = new Prefix("wa/");
+    public static final Prefix PREFIX_MESSAGE = new Prefix("m/");
 }

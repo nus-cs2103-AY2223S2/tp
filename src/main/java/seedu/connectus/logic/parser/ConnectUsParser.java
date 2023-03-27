@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.connectus.logic.commands.AddCommand;
 import seedu.connectus.logic.commands.AddTagToPersonCommand;
+import seedu.connectus.logic.commands.ChatCommand;
 import seedu.connectus.logic.commands.ClearCommand;
 import seedu.connectus.logic.commands.Command;
 import seedu.connectus.logic.commands.DeleteCommand;
@@ -79,6 +80,9 @@ public class ConnectUsParser {
 
         case OpenCommand.COMMAND_WORD:
             return new OpenCommandParser().parse(arguments);
+
+        case ChatCommand.COMMAND_WORD:
+            return new ChatCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

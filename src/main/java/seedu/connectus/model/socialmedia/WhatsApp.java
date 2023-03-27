@@ -60,6 +60,11 @@ public class WhatsApp implements Openable, Chatable {
         return getUserLink() + "&text=" + message;
     }
 
+    public static String getUserLinkWithPreparedMessage(Person user, String message) {
+        return user.getSocialMedia().map(SocialMedia::getWhatsapp)
+            .map(u -> u.getUserLinkWithPreparedMessage(message)).orElse("");
+    }
+
     @Override
     public String toString() {
         return value;
