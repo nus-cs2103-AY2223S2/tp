@@ -12,14 +12,25 @@ import javafx.stage.Stage;
 import seedu.socket.MainApp;
 import seedu.socket.commons.core.LogsCenter;
 
+
 /**
  * Controller for a Help Window.
  */
 public class HelpWindow extends UiPart<Stage> {
 
+
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t12-4.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "COMMAND LIST\n"
-            + "\n"
+    public static final String HELP_MESSAGE = "COMMAND LIST\n\n"
+            + "GENERAL COMMANDS\n\n"
+            + "1. Viewing help\n"
+            + "Format: help\n\n"
+            + "2. Undo a change\n"
+            + "Format: undo\n\n"
+            + "3. Redo an undone change\n"
+            + "Format: redo\n\n"
+            + "4. Exit the program\n"
+            + "Format: exit\n\n"
+            + "PERSON COMMANDS\n\n"
             + "1. Adding a person: add\n"
             + "Format: add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] "
             + "[g/GITHUB_PROFILE] [l/LANGUAGE] [t/TAG]…\n\n"
@@ -28,28 +39,42 @@ public class HelpWindow extends UiPart<Stage> {
             + "3. Editing a person : edit\n"
             + "Format: edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] "
             + "[g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…\n\n"
-            + "4. Removing a person's attribute : remove\n"
+            + "4. Removing a person's field: remove\n"
             + "Format: remove INDEX [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] \n\n"
             + "[g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…\n\n"
-            + "5. Clearing groups of person : clear\n"
+            + "5. Clearing groups of person: clear\n"
             + "Format: clear [t/TAG]...\n\n"
             + "6. Locating persons by keyword(s): find\n"
             + "Format: find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]\n\n"
-            + "7. Deleting a person : delete\n"
+            + "7. Deleting a person: delete\n"
             + "Format: delete INDEX\n\n"
-            + "8. Sorting persons (by other fields) : sort\n"
+            + "8. Sorting persons (by other fields): sort\n"
             + "Format: sort [CATEGORY]\n\n"
-            + "9. Viewing a person's detail : view\n"
+            + "9. Viewing a person's detail: view\n"
             + "Format: view INDEX\n\n"
-            + "10. Undoing a change : undo\n"
-            + "Format: undo\n\n"
-            + "11. Redoing a change : redo\n"
-            + "Format: redo"
-            + "12. Exiting the program : exit\n\n"
+            + "PROJECT COMMANDS\n\n"
+            + "1. Adding a project: addpj\n"
+            + "Format: addpj [n/NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]\n\n"
+            + "2. Editing a project: editpj\n\n"
+            + "Format: editpj [n/NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]\n"
+            + "3. Deleting a project: deletepj\n"
+            + "Format: deletepj INDEX\n\n"
+            + "4. Removing a project's field(s): removepj"
+            + "Format: removepj INDEX [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]\n\n"
+            + "5. Clearing all projects: clearpj\n"
+            + "Format: clearpj\n\n"
+            + "6. Sorting projects (by other fields): sortpj\n"
+            + "Format: sortpj [CATEGORY]\n\n"
+            + "7. Assign a person to a project: assign\n"
+            + "Format: assign INDEX n/name\n\n"
+            + "8. Unassign a person from a project: unassign\n"
+            + "Format: unassign INDEX n/name\n\n"
             + "For more info:";
+
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+
 
     @FXML
     private Button copyButton;
@@ -57,6 +82,7 @@ public class HelpWindow extends UiPart<Stage> {
     private Label helpMessage;
     @FXML
     private Hyperlink userGuideLink;
+
 
     /**
      * Creates a new HelpWindow.
@@ -69,12 +95,14 @@ public class HelpWindow extends UiPart<Stage> {
         userGuideLink.setText(USERGUIDE_URL);
     }
 
+
     /**
      * Creates a new HelpWindow.
      */
     public HelpWindow() {
         this(new Stage());
     }
+
 
     /**
      * Shows the help window.
@@ -100,12 +128,14 @@ public class HelpWindow extends UiPart<Stage> {
         getRoot().centerOnScreen();
     }
 
+
     /**
      * Returns true if the help window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
+
 
     /**
      * Hides the help window.
@@ -114,12 +144,14 @@ public class HelpWindow extends UiPart<Stage> {
         getRoot().hide();
     }
 
+
     /**
      * Focuses on the help window.
      */
     public void focus() {
         getRoot().requestFocus();
     }
+
 
     /**
      * Copies the URL to the user guide to the clipboard.
@@ -131,6 +163,7 @@ public class HelpWindow extends UiPart<Stage> {
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
     }
+
 
     /**
      * Opens the URL to the user guide in a browser.
