@@ -10,18 +10,33 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
+import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.Logic;
+import tfifteenfour.clipboard.logic.PageType;
+import tfifteenfour.clipboard.logic.commands.BackCommand;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
-import tfifteenfour.clipboard.logic.commands.UndoCommand;
-import tfifteenfour.clipboard.logic.commands.UploadCommand;
-import tfifteenfour.clipboard.logic.commands.ViewCommand;
+import tfifteenfour.clipboard.logic.commands.HomeCommand;
+import tfifteenfour.clipboard.logic.commands.SelectCommand;
+import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkAbsentCommand;
+import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkPresentCommand;
+import tfifteenfour.clipboard.logic.commands.attendancecommand.SessionCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
+import tfifteenfour.clipboard.model.course.Course;
+import tfifteenfour.clipboard.model.course.Group;
+import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.ui.pagetab.ActiveGroupTab;
+import tfifteenfour.clipboard.ui.pagetab.ActiveModuleTab;
+import tfifteenfour.clipboard.ui.pagetab.ActiveStudentTab;
+import tfifteenfour.clipboard.ui.pagetab.InactiveGroupTab;
+import tfifteenfour.clipboard.ui.pagetab.InactiveModuleTab;
+import tfifteenfour.clipboard.ui.pagetab.InactiveStudentTab;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -37,8 +52,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private StudentListPanel studentListPanel;
-    private StudentViewPanel studentViewPanel;
+    private CourseListPanel courseListPanel;
+    private StudentViewCard studentViewCard;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -49,7 +64,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane leftPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -61,7 +76,19 @@ public class MainWindow extends UiPart<Stage> {
     private HBox studentPanelPlaceholder;
 
     @FXML
-    private StackPane studentViewPanelPlaceholder;
+    private StackPane rightPanelPlaceholder;
+
+    @FXML
+    private VBox moduleTabPlaceholder;
+
+    @FXML
+    private VBox groupTabPlaceholder;
+
+    @FXML
+    private VBox studentTabPlaceholder;
+
+    @FXML
+    private HBox navigationBarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -123,8 +150,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getUnmodifiableFilteredStudentList());
-        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        courseListPanel = new CourseListPanel(logic.getRoster().getUnmodifiableCourseList());
+        leftPanelPlaceholder.getChildren().add(courseListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -134,6 +161,10 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        moduleTabPlaceholder.getChildren().add(new ActiveModuleTab().getRoot());
+        groupTabPlaceholder.getChildren().add(new InactiveGroupTab().getRoot());
+        studentTabPlaceholder.getChildren().add(new InactiveStudentTab().getRoot());
     }
 
     /**
@@ -148,6 +179,10 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    void show() {
+        primaryStage.show();
+    }
+
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -158,10 +193,6 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
-    }
-
-    void show() {
-        primaryStage.show();
     }
 
     /**
@@ -177,33 +208,205 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Refreshes view pane.
+     * Navigates GUI back to main course page.
+     */
+    private void handleHome() {
+        showCoursePane();
+        showModuleTab();
+        closeViewPane();
+        closeGroupTab();
+        closeStudentTab();
+        closeNavigationBar();
+        logic.getCurrentSelection().getSelectedGroup().unMarkAllSessions();
+        logic.getCurrentSelection().navigateBackToCoursePage();
+    }
+
+    private void refreshNavigationBar() {
+        NavigationBar navigationBar = new NavigationBar(logic);
+        navigationBarPlaceholder.getChildren().clear();
+        navigationBarPlaceholder.getChildren().add(navigationBar.getRoot());
+    }
+
+    private void closeNavigationBar() {
+        navigationBarPlaceholder.getChildren().clear();
+    }
+
+    /**
+     * Displays currently viewed student in right pane.
      */
     public void refreshViewPane() {
-        studentViewPanel = new StudentViewPanel(logic.getViewedStudent());
-        studentViewPanelPlaceholder.getChildren().add(studentViewPanel.getRoot());
+        studentViewCard = new StudentViewCard(logic.getCurrentSelection().getSelectedStudent());
+        rightPanelPlaceholder.getChildren().add(studentViewCard.getRoot());
     }
 
-    @FXML
-    private void handleUndo() {
-        studentListPanel.setPersonListView(logic.getUnmodifiableFilteredStudentList());
+    /**
+     * Closes viewed student
+     */
+    public void closeViewPane() {
+        rightPanelPlaceholder.getChildren().clear();
+        logic.getCurrentSelection().emptySelectedStudent();
     }
 
-    public StudentListPanel getStudentListPanel() {
-        return studentListPanel;
+    //@FXML
+    //private void handleUndo() {
+    //    studentListPanel.setPersonListView(logic.getUnmodifiableFilteredStudentList());
+    //}
+
+    /**
+     * Shows course pane.
+     */
+    private void showCoursePane() {
+        courseListPanel = new CourseListPanel(logic.getRoster().getUnmodifiableCourseList());
+        leftPanelPlaceholder.getChildren().add(courseListPanel.getRoot());
     }
+
+    /**
+     * Show group pane.
+     * @param course that groups belong to.
+     */
+    private void showGroupPane(Course course) {
+        GroupListPanel groupListPanel = new GroupListPanel(course.getUnmodifiableGroupList());
+        leftPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
+    }
+
+    /**
+     * Show student pane.
+     * @param group that students belong to.
+     */
+    private void showStudentPane(Group group) {
+        StudentListPanel studentListPanel = new StudentListPanel(group.getUnmodifiableStudentList());
+        leftPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+    }
+
+    private void showSessionPane(Group group) {
+        SessionListPanel sessionListPanel = new SessionListPanel(group.getUnmodifiableSessionList());
+        leftPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
+    }
+
+    private void showAttendancePane(Session session) {
+        AttendanceListPanel attendanceListPanel = new AttendanceListPanel(session.getUnmodifiableStudentList());
+        rightPanelPlaceholder.getChildren().add(attendanceListPanel.getRoot());
+    }
+
+    private void showModuleTab() {
+        moduleTabPlaceholder.getChildren().clear();
+        moduleTabPlaceholder.getChildren().add(new ActiveModuleTab().getRoot());
+    }
+
+    private void showGroupTab() {
+        groupTabPlaceholder.getChildren().clear();
+        groupTabPlaceholder.getChildren().add(new ActiveGroupTab().getRoot());
+    }
+
+    private void showStudentTab() {
+        studentTabPlaceholder.getChildren().clear();
+        studentTabPlaceholder.getChildren().add(new ActiveStudentTab().getRoot());
+    }
+
+    private void closeModuleTab() {
+        moduleTabPlaceholder.getChildren().clear();
+        moduleTabPlaceholder.getChildren().add(new InactiveModuleTab().getRoot());
+    }
+
+    private void closeGroupTab() {
+        groupTabPlaceholder.getChildren().clear();
+        groupTabPlaceholder.getChildren().add(new InactiveGroupTab().getRoot());
+    }
+
+    private void closeStudentTab() {
+        studentTabPlaceholder.getChildren().clear();
+        studentTabPlaceholder.getChildren().add(new InactiveStudentTab().getRoot());
+    }
+
+    /**
+     * Handles UI for select command.
+     */
+    private void handleSelectCommand() {
+        if (logic.getCurrentSelection().getCurrentPage().equals(PageType.GROUP_PAGE)) {
+
+            showGroupPane(logic.getCurrentSelection().getSelectedCourse());
+            closeModuleTab();
+            showGroupTab();
+            refreshNavigationBar();
+
+        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)
+                && !logic.getCurrentSelection().getSelectedStudent().equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
+
+            showStudentPane(logic.getCurrentSelection().getSelectedGroup());
+            refreshViewPane();
+
+        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
+
+            showStudentPane(logic.getCurrentSelection().getSelectedGroup());
+            closeGroupTab();
+            showStudentTab();
+            refreshNavigationBar();
+
+        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.SESSION_STUDENT_PAGE)) {
+            logic.getCurrentSelection().getSelectedSession().selectSession();
+            showSessionPane(logic.getCurrentSelection().getSelectedGroup());
+            showAttendancePane(logic.getCurrentSelection().getSelectedSession());
+            refreshNavigationBar();
+        }
+    }
+
+    /**
+     * Handles UI for back command.
+     * @param backCommand
+     */
+    private void handleBackCommand(BackCommand backCommand) {
+        if (logic.getCurrentSelection().getCurrentPage().equals(PageType.COURSE_PAGE)) {
+            showCoursePane();
+            showModuleTab();
+            closeGroupTab();
+            refreshNavigationBar();
+        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.GROUP_PAGE)) {
+            showGroupPane(backCommand.getPreviousSelection().getSelectedCourse());
+            showGroupTab();
+            closeViewPane();
+            closeStudentTab();
+            refreshNavigationBar();
+        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.SESSION_PAGE)) {
+            logic.getCurrentSelection().getSelectedGroup().unMarkAllSessions();
+            showSessionPane(logic.getCurrentSelection().getSelectedGroup());
+            rightPanelPlaceholder.getChildren().clear();
+            refreshNavigationBar();
+        }
+    }
+
+    private void handleSessionCommand() {
+        showSessionPane(logic.getCurrentSelection().getSelectedGroup());
+        refreshNavigationBar();
+    }
+
 
     private void handleSpecialCommandConsiderations(CommandResult commandResult) {
-        if (commandResult.getCommand() instanceof HelpCommand) {
-            handleHelp();
-        } else if (commandResult.getCommand() instanceof UndoCommand) {
-            handleUndo();
-        } else if (commandResult.getCommand() instanceof ViewCommand
-                || (commandResult.getCommand() instanceof UploadCommand && studentViewPanel != null)) {
-            refreshViewPane();
+
+        if (commandResult.getCommand() instanceof SelectCommand) {
+            handleSelectCommand();
+
+        } else if (commandResult.getCommand() instanceof BackCommand) {
+            handleBackCommand((BackCommand) commandResult.getCommand());
+
         } else if (commandResult.getCommand() instanceof ExitCommand) {
             handleExit();
+
+        } else if (commandResult.getCommand() instanceof HelpCommand) {
+            handleHelp();
+
+        } else if (commandResult.getCommand() instanceof HomeCommand) {
+            handleHome();
+
+        } else if (commandResult.getCommand() instanceof SessionCommand) {
+            handleSessionCommand();
+
+        } else if (commandResult.getCommand() instanceof MarkAbsentCommand
+                || commandResult.getCommand() instanceof MarkPresentCommand) {
+            showAttendancePane(logic.getCurrentSelection().getSelectedSession());
         }
+
+        //} else if (commandResult.getCommand() instanceof UndoCommand) {
+        //handleUndo();
     }
 
     /**

@@ -30,21 +30,24 @@ public class LogicManager implements Logic {
     private final CircularBuffer<Model> stateHistoryBuffer = new CircularBuffer<>(stateHistoryBufferSize);
     private final Storage storage;
 
-
+    private CurrentSelection currentSelection;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
     public LogicManager(Model model, Storage storage) {
+        System.out.println(model.getModifiableFilteredCourseList().size());
+        System.out.println("LOGIC MANGER #####");
         this.model = model;
         this.storage = storage;
+        this.currentSelection = new CurrentSelection();
     }
 
     CommandResult handleUndoCommand(Command command) throws CommandException, ParseException {
         UndoCommand undoCmd = (UndoCommand) command;
 
         undoCmd.setStateHistoryBuffer(this.stateHistoryBuffer);
-        CommandResult commandResult = undoCmd.execute(model);
+        CommandResult commandResult = undoCmd.execute(model, currentSelection);
         model = undoCmd.getPrevModel();
 
         return commandResult;
@@ -54,8 +57,11 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
+        System.out.println(model.getRoster().getUnmodifiableCourseList().size());
+        System.out.println("$$$$$$$$$");
+
         CommandResult commandResult;
-        Command command = RosterParser.parseCommand(commandText);
+        Command command = RosterParser.parseCommand(commandText, currentSelection);
 
         // Special case for UndoCommand because restoring the model to a previous state requires actions that are above
         // the model, as opposed to typical commands that behave within the model.
@@ -63,7 +69,7 @@ public class LogicManager implements Logic {
             commandResult = handleUndoCommand(command);
         } else {
             Model modelCopy = model.copy();
-            commandResult = command.execute(model);
+            commandResult = command.execute(model, currentSelection);
             if (commandResult.isStateModified()) {
                 modelCopy.setCommandTextExecuted(commandText);
                 modelCopy.setCommandExecuted(command);
@@ -110,4 +116,11 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public CurrentSelection getCurrentSelection() {
+        return currentSelection;
+    }
 }
+
+

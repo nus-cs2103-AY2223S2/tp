@@ -6,7 +6,7 @@ import static tfifteenfour.clipboard.logic.parser.CliSyntax.PREFIX_REMARK;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.commons.exceptions.IllegalValueException;
-import tfifteenfour.clipboard.logic.commands.RemarkCommand;
+import tfifteenfour.clipboard.logic.commands.studentcommands.RemarkCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.student.Remark;
 
@@ -22,7 +22,7 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
      */
     public RemarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_REMARK);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizePrefixes(args, PREFIX_REMARK);
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());

@@ -9,7 +9,9 @@ import java.util.Set;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.commons.util.StringUtil;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
-import tfifteenfour.clipboard.model.student.Course;
+import tfifteenfour.clipboard.model.course.Course;
+import tfifteenfour.clipboard.model.course.Group;
+import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.Email;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
@@ -34,6 +36,29 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndexes} into an array of {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if any index is invalid (not non-zero unsigned integer).
+     */
+    public static Index[] parseMultipleIndex(String oneBasedIndexes) throws ParseException {
+        String[] indexArray = oneBasedIndexes.split(",");
+        String[] trimmedArray = new String[indexArray.length];
+        Index[] trimmedIndexes = new Index[indexArray.length];
+
+        for (int i = 0; i < indexArray.length; i++) {
+            trimmedArray[i] = indexArray[i].trim();
+            if (!StringUtil.isNonZeroUnsignedInteger(trimmedArray[i])) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
+        }
+
+        for (int i = 0; i < indexArray.length; i++) {
+            trimmedIndexes[i] = Index.fromOneBased(Integer.parseInt(trimmedArray[i]));
+        }
+        return trimmedIndexes;
     }
 
     /**
@@ -124,18 +149,38 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String module} into a {@code <ModuleCode>}.
+     * Parses a {@code String course} into a {@code <Course>}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code module code} is invalid.
      */
-    public static Course parseModule(String moduleCode) throws ParseException {
-        requireNonNull(moduleCode);
-        String trimmedModule = moduleCode.trim();
-        if (!Course.isValidModuleCode(trimmedModule)) {
+    public static Course parseCourse(String courseCode) throws ParseException {
+        requireNonNull(courseCode);
+        String trimmedCourse = courseCode.trim();
+        if (!Course.isValidCourseCode(trimmedCourse)) {
             throw new ParseException(Course.MESSAGE_CONSTRAINTS);
         }
-        return new Course(trimmedModule);
+        return new Course(trimmedCourse);
+    }
+
+    /**
+     * Parses a {@code String group} into a {@code <Group>}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Group parseGroup(String groupName) throws ParseException {
+        requireNonNull(groupName);
+        String trimmedGroup = groupName.trim();
+        return new Group(trimmedGroup);
+    }
+
+    /**
+     * Parses a {@code String sessionName} into a {@code <Session>}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Session parseSession(String sessionName) throws ParseException {
+        requireNonNull(sessionName);
+        String trimmedSession = sessionName.trim();
+        return new Session(trimmedSession);
     }
 
     /**
@@ -146,7 +191,7 @@ public class ParserUtil {
         final Set<Course> moduleSet = new HashSet<>();
 
         for (String moduleName : modules) {
-            moduleSet.add(parseModule(moduleName));
+            moduleSet.add(parseCourse(moduleName));
         }
         return moduleSet;
     }

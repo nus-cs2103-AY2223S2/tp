@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import tfifteenfour.clipboard.logic.commands.FindCommand;
+import tfifteenfour.clipboard.logic.commands.studentcommands.FindCommand;
 import tfifteenfour.clipboard.model.student.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {

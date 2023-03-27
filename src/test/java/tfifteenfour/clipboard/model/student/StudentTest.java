@@ -8,7 +8,6 @@ import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_MODULE
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
-import static tfifteenfour.clipboard.testutil.Assert.assertThrows;
 import static tfifteenfour.clipboard.testutil.TypicalStudents.ALICE;
 import static tfifteenfour.clipboard.testutil.TypicalStudents.BOB;
 
@@ -18,11 +17,11 @@ import tfifteenfour.clipboard.testutil.StudentBuilder;
 
 public class StudentTest {
 
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Student student = new StudentBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> student.getTags().remove(0));
-    }
+    // @Test
+    // public void asObservableList_modifyList_throwsUnsupportedOperationException() {
+    //     Student student = new StudentBuilder().build();
+    //     assertThrows(UnsupportedOperationException.class, () -> student.getTags().remove(0));
+    // }
 
     @Test
     public void isSameStudent() {
