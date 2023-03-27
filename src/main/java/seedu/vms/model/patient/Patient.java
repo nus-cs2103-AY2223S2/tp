@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.vms.commons.util.AppUtil;
 import seedu.vms.model.GroupName;
 
 /**
@@ -16,8 +17,8 @@ import seedu.vms.model.GroupName;
  * immutable.
  */
 public class Patient {
-    public static final int ALLERGY_LIMIT = 100;
-    public static final int VACCINE_LIMIT = 30;
+    public static final int LIMIT_ALLERGIES = 100;
+    public static final int LIMIT_VACCINES = 30;
 
     // Identity fields
     private final Name name;
@@ -35,6 +36,9 @@ public class Patient {
     public Patient(Name name, Phone phone, Dob dob, BloodType bloodType, Set<GroupName> allergies,
             Set<GroupName> vaccines) {
         requireAllNonNull(name, phone, dob, bloodType, allergies, vaccines);
+
+        AppUtil.checkArgument(AppUtil.isWithinLimit(allergies, LIMIT_ALLERGIES));
+        AppUtil.checkArgument(AppUtil.isWithinLimit(vaccines, LIMIT_VACCINES));
         this.name = name;
         this.phone = phone;
         this.dateOfBirth = dob;

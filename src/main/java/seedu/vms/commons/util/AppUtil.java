@@ -2,6 +2,8 @@ package seedu.vms.commons.util;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collection;
+
 import javafx.scene.image.Image;
 import seedu.vms.MainApp;
 
@@ -39,4 +41,16 @@ public class AppUtil {
             throw new IllegalArgumentException(errorMessage);
         }
     }
+
+    /**
+     * Checks that {@code collection} is within the limit provided
+     *
+     * @param collection
+     * @param limit
+     * @return TRUE if it is within the limits
+     */
+    public static boolean isWithinLimit(Collection<?> collection, int limit) {
+        return collection.size() <= limit;
+    }
+
 }

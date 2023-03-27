@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.commons.util.AppUtil;
 import seedu.vms.model.Age;
 import seedu.vms.model.GroupName;
 
@@ -183,16 +184,16 @@ public class VaxTypeBuilder {
                 List<Requirement> historyReq) {
         ArrayList<String> errMessages = new ArrayList<>();
 
-        if (!VaxType.isValidGroups(groups)) {
+        if (!AppUtil.isWithinLimit(groups, VaxType.LIMIT_GROUPS)) {
             errMessages.add(VaxType.MESSAGE_GROUPS_CONSTRAINTS);
         }
         if (!VaxType.isValidRange(minAge, maxAge)) {
             errMessages.add(VaxType.MESSAGE_AGE_CONSTRAINTS);
         }
-        if (!VaxType.isValidIngredients(ingredients)) {
+        if (!AppUtil.isWithinLimit(ingredients, VaxType.LIMIT_INGREDIENTS)) {
             errMessages.add(VaxType.MESSAGE_INGREDIENTS_CONSTRAINTS);
         }
-        if (!VaxType.isValidHistoryReq(historyReq)) {
+        if (!AppUtil.isWithinLimit(historyReq, VaxType.LIMIT_HISTORY_REQ)) {
             errMessages.add(VaxType.MESSAGE_HISTORY_REQ_CONSTRAINTS);
         }
 
