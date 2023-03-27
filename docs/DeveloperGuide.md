@@ -17,12 +17,13 @@ title: Developer Guide
   * [Model component](#Model-component)
   * [Storage component](#Storage-component)
   * [Common classes](#Common-classes)
-* [Implementation](#Implementation)
+* [Feature Implementations](#Feature-Implementations)
   * [Automatic Feeding Reminders](#Automatic-Feeding-Reminders)
   * [FishSortCommand feature](#FishSortCommand-feature)
   * [TankFeedCommand feature](#TankFeedCommand-feature)
-* [FAQ](#faq)
-* [Summary](#command-summary)
+* [Documentation, logging, testing, configuration, dev-ops](#Documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#Appendix:-Requirements)
+* [Appendix: Instructions for manual testing](#Appendix:-Instructions-for-manual-testing)
 
 ## About *Fish Ahoy!*
 
@@ -37,13 +38,6 @@ given by the user
 This developer guide aims to provide instructions and guidelines for developers to understand how to
 effectively use and contribute to this project by explaining design considerations for certain key features. Moreover, 
 new developers can use this guide as an entry point for navigating this extensive code base.
-* Table of Contents
-  * Acknowledgements
-  * Setting up, getting started
-  * Design
-  * Implementation
-  * Documentation, logging, testing, configuration, dev-ops
-  * Appendix
 --------------------------------------------------------------------------------------------------------------------
 
 ## Acknowledgements
@@ -192,7 +186,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Implementation
+## Feature Implementations
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -372,89 +366,9 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### Automatic Feeding Reminders
-#### Implementation
-
-The entrypoint of this feature is in the `start()` method of MainApp, which is automatically called when the user opens
-Fish Ahoy!. We then access the `Logic` component to access the `Model` component to find out which `Tank` have unfed
-`Fish`. For each tank with unfed `Fish`, we create a `TaskFeedingReminder`. We then return an `ArrayList` of
-`TaskFeedingReminders` as `feedingReminders`. In the `Logic` component, we create a `TaskFeedingReminderCommand` for
-each `TaskFeedingReminder`, then execute these commands, updating the `Model` component before saving the states
-if the various lists. 
-
-Given below is an example usage scenario and how the sort mechanism behaves at each step.
-
-Step 1. User opens app and the `Application`'s `init()` method is called. The sequence to create Reminders is started.
-
-Step 2. Ui component signals MainWindow to create Reminders. 
-
-Step 3. Logic component requests for the list of reminders, which is created by the model component after checking which tanks
-have hungry fishes.
-
-Step 4. MainWindow has acquired the list of feeding reminders to be created and requests
-the logic component to create and execute a `TaskFeedingReminderCommand` for each feeding reminder required.
-
-Step 5. Storage components are updated.
-
-Step 6. GUI changes are reflect.
-
-![FeedingReminderSequenceDiagram](images/FeedingReminderSequenceDiagram.png)
-
-#### Design considerations:
-* Alternative 1: Create a command parser and other relevant files to allow the user to execute this command
-  * Pros: user can update Reminders without opening the app
-  * Cons: will be redundant most of the times as Fish feeding intervals are not that short. Even if user calls this
-command, the reminders likely do not need to be updated.
-  
-* Entry point for automatic feeding reminder feature is the Ui component. Since this feature do not require user inputs,
-we manually start the feature in the Ui component.
-
-### Fish Sort feature
-
-#### Implementation
-The fish sorting feature leverages `SortedList` functionality of Javafx. By creating custom comparators to compare fish
-attributes, we are able to make a `SortedList` sort its list by the specified order.
-Specifically, it currently sorts by the five compulsory fields of a fish:
-
-* Name
-* Last Fed Interval
-* Species
-* Feeding Interval
-* Tank
-
-Currently, upon instantiation of `ModelManager`, it creates a `Filteredlist` from a `AddressBook`. Similarly,
-a `SortedList` is created based off the same `Filteredlist`. Hence, when we perform sorting operations, we are able to manipulate
-the filtered list. As a result, `SortedList` has a separate panel from `FilteredList` and `Tank`.
-
-Given below is an example usage scenario and how the sort mechanism behaves at each step.
-
-Step 1. The user is currently using the application, and there are three entries currently existing in the `AddressBook`, `Marlin, Nemo, Dory`, added in that order.
-
-Step 2. The user executes `fish sort n`. `FishParser` receives the `sort` keyword and calls `FishSortCommandParser#parse()`,
-in which the keyword `n` is used to select a Comparator. In this case, the `NameComparator`, which compares the names between fish,
-is passed to `FishSortCommand` and returned.
-
-![FishSortCommmandDiagram](images/FishSortDiagram.png)
-
-Step 3. `FishSortCommand#execute()` first calls `Model#sortFilteredFishList()`, which in turn calls `SortedList#setComparator()`.
-This call triggers the SortedList to sort the current list using the given comparator. In this case, `Marlin, Nemo, Dory` sorts into `Dory, Marlin, Nemo`.
-
-Step 4. `FishSortCommand#execute()` then calls `Model#setGuiMode()`, which triggers a GUI change in `MainWindow` to display the `SortedList` of `Dory, Marlin, Nemo`.
-
-#### Design considerations:
-
-**Aspect: Where Sorting takes place :**
-
-* **Alternative 1 (current choice):** Use a SortedList and comparators to sort within the list.
-    * Pros: Easy to implement.
-    * Cons: Requires a separate list or wrapping.
-
-* **Alternative 2:** Sorts a list externally before replacing the `AddressBook` list.
-    * Pros: More customization and control over sorting.
-    * Cons: Requires a duplicate list to be made each time.
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -464,7 +378,7 @@ Step 4. `FishSortCommand#execute()` then calls `Model#setGuiMode()`, which trigg
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## Appendix: Requirements
 
 ### Product scope
 
@@ -588,7 +502,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
