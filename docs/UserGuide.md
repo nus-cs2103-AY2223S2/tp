@@ -16,21 +16,28 @@ This User Guide will provide you with an in-depth documentation for you to easil
 So what are you waiting for? Get ready to **Connect** with others and let **US** handle the rest!
 
 ## 2. Table of Contents
-{:.no_toc}
 
-2. Table of Contents
+Table of Contents
   {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## 3. Using this guide
 
+Thank you for choosing ConnectUS! We are delighted to have you onboard with us as a user.
+
+We **highly recommend** that you read through our User Guide in a sequential order.
+
 ### 3.1 Notation
-- [Links](#31-notation) will help you navigate through this document.
+
+Some special notations are used throughout this guide:
+
+- [Links in blue](#31-notation) will help you navigate through this document, or take you to places on the Internet.
 - **Bolded words** are phrases that you should pay attention to.
-- <u>Underlined words</u> can be found in the [glossary](#11-glossary).
+- <u>Underlined words</u> are commonly used terms in ConnectUS, and can be found in the [glossary](#11-glossary).
 
 ### 3.2 Navigation
+
 - If this is your **first time** using ConnectUS, head over to our [installation](#4-installation) guide for instructions on setting up ConnectUS, and our [quick start guide](#5-quick-start-guide) to begin using ConnectUS.
 
 - If you need a **refresher on command syntax**, head over to the [command summary](#9-command-summary) for a reference table of commands, or the [prefix summary](#10-prefix-summary) for a reference table of prefixes.
@@ -38,6 +45,8 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
 - For detailed instructions about the features we offer and how to use each command, please refer to [Features](#6-features).
 
 - Refer to the [glossary](#11-glossary) for definitions of terms used in ConnectUS.
+
+[↑ Back to top](#2-table-of-contents)
 
 ## 4. Installation
 
@@ -57,27 +66,15 @@ If you have yet to install ConnectUS, simply follow these steps to set it up:
 
 Congratulations! You have successfully set up ConnectUS.
 
+[↑ Back to top](#2-table-of-contents)
+
 ## 5. Quick Start Guide
 
-Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   ![Command Box](images/ConnectUSCommandBox.png) <br>
-   Some example commands you can try:
+### 5.1 Layout
 
-   * `list` : Lists all contacts.
+### 5.2 Key Definitions
 
-   * `add n/James p/12345678 e/james@example.com a/Clementi tg/itsjameshere b/14/02/2000` : Adds a contact named `James` to ConnectUS.
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-Refer to the [Features](#6-features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
-
-## 6. Features
+### 5.3 Command Format
 
 <div markdown="block" class="alert alert-info">
 
@@ -106,13 +103,43 @@ Refer to the [Features](#6-features) below for details of each command.
 
 </div>
 
+### 5.4 How to Use the CLI
+
+Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   ![Command Box](images/ConnectUSCommandBox.png) <br>
+   Some example commands you can try:
+
+   * `list` : Lists all contacts.
+
+   * `add n/James p/12345678 e/james@example.com a/Clementi tg/itsjameshere b/14/02/2000` : Adds a contact named `James` to ConnectUS.
+
+   * `delete 3` : Deletes the 3rd contact shown in the current list.
+
+   * `clear` : Deletes all contacts.
+
+   * `exit` : Exits the app.
+
+Refer to the [Features](#6-features) below for details of each command.
+
+[↑ Back to top](#2-table-of-contents)
+
+---
+
+## 6. Features
+
 ### 6.1 Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the help page, or shows the usage instructions of a specified command.
+
+If you are lost while using ConnectUS, simply use the `help` command!
+
+Using the `help` command alone will show a message explaining how to access this User Guide.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+[↑ Back to top](#2-table-of-contents)
 
 ### 6.2 Adding a contact: `add`
 
@@ -132,11 +159,15 @@ Examples:
 
 Please refer to **[this section](#7-additional-information-regarding-specific-fields)** for details on how to use each information field prefix.
 
+[↑ Back to top](#2-table-of-contents)
+
 ### 6.3 Listing all contacts : `list`
 
 Shows a list of all contact in the ConnectUS app.
 
 Format: `list`
+
+[↑ Back to top](#2-table-of-contents)
 
 ### 6.4 Editing a contact : `edit`
 
@@ -156,6 +187,8 @@ Examples:
 
 Please refer to **[this section](#7-additional-information-regarding-specific-fields)** for details on how to use each information field prefix.
 
+[↑ Back to top](#2-table-of-contents)
+
 ### 6.5 Deleting a contact : `delete`
 
 Deletes the specified contact from the ConnectUS app.
@@ -168,7 +201,9 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the ConnectUS app.
-* `search Betsy` followed by `delete 1` deletes the 1st contact in the results of the `search` command.
+* `search Betsy` followed by `delete 1` deletes the 1st contact in the results of the `search` command. 
+
+  [↑ Back to top](#2-table-of-contents)
 
 ### 6.6 Searching for contact information : `search`
 
@@ -182,11 +217,15 @@ Examples:
 
 * The keywords are case-insensitive! This means that `search january`, `search JANUARY` and `search jAnUaRy` will all return the contacts whose information fields contain the keyword `january`.
 
+[↑ Back to top](#2-table-of-contents)
+
 ### 6.7 Clearing all entries : `clear`
 
 Clears all contacts from the ConnectUS app.
 
 Format: `clear`
+
+[↑ Back to top](#2-table-of-contents)
 
 ### 6.8 Exiting the program : `exit`
 
@@ -194,9 +233,13 @@ Exits the program.
 
 Format: `exit`
 
+[↑ Back to top](#2-table-of-contents)
+
 ### 6.9 Saving the data
 
 ConnectUS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+[↑ Back to top](#2-table-of-contents)
 
 ### 6.10 Editing the data file
 
@@ -206,6 +249,8 @@ ConnectUS data is saved as a JSON file `[JAR file location]/data/ConnectUS.json`
 If your changes to the data file makes its format invalid, ConnectUS will discard all data and start with an empty data file at the next run.
 </div>
 
+[↑ Back to top](#2-table-of-contents)
+
 ## 7. Additional information regarding specific fields
 
 ### 7.1 Name:
@@ -213,11 +258,15 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 * The prefix for a name is `n/`.
 * Names should only contain alphanumeric characters and spaces.
 
+[↑ Back to top](#2-table-of-contents)
+
 ### 7.2 Phone:
 * Phone is an *optional* field, i.e. a contact can exist even if it does not have a phone number.
 * The prefix for a phone is `p/`.
 * Phone numbers should only contain numeric characters.
 * Phone numbers should be at least 3 digits long.
+
+[↑ Back to top](#2-table-of-contents)
 
 ### 7.3 Email
 * Email is an *optional* field, i.e. a contact can exist even if it does not have an email.
@@ -230,10 +279,14 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
         - have each domain label start and end with alphanumeric characters
         - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
+[↑ Back to top](#2-table-of-contents)
+
 ### 7.4 Address
 * Address is an *optional* field, i.e. a contact can exist even if it does not have an address.
 * The prefix for an address is `a/`.
 * Addresses can take any values, including special characters.
+
+[↑ Back to top](#2-table-of-contents)
 
 ### 7.5 Instagram
 * Instagram is an *optional* field, i.e. a contact can exist even if it does not have an Instagram.
@@ -243,12 +296,16 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
     * The dots `.` must not be consecutive or at the end.
     * The username should contain at most 30 characters.
 
+[↑ Back to top](#2-table-of-contents)
+
 ### 7.6 Telegram
 * Telegram is an *optional* field, i.e. a contact can exist even if it does not have a Telegram.
 * The prefix for a Telegram username is `tg/`.
 * Telegram usernames should be of the format johndoe and adhere to the following constraints:
     * The username should only contain alphanumeric characters and the special character `_`.
     * The username should contain at least 5 characters.
+
+[↑ Back to top](#2-table-of-contents)
 
 ### 7.7 WhatsApp
 * WhatsApp is an *optional* field, i.e. a contact can exist even if it does not have a WhatsApp.
@@ -257,6 +314,8 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
     * Phone numbers should only contain numeric characters.
     * Phone numbers should be at least 3 digits long.
 
+[↑ Back to top](#2-table-of-contents)
+
 ### 7.8 Birthday
 * Birthday is an *optional* field, i.e. a contact can exist even if it does not have a birthday.
 * The prefix for a birthday is `b/`.
@@ -264,11 +323,15 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
   * `01/01/2000` would correspond to January 1st, 2000
   * `16/05/1990` would correspond to May 16th, 1990.
 
+[↑ Back to top](#2-table-of-contents)
+
 ### 7.9 Tag
 * Tag is an *optional* field, i.e. a contact can exist even if it does not have a tag.
 * The prefix for a tag is `t/`.
 * Tag names should be alphanumeric.
 * A contact can have any number of tags assigned to it.
+
+[↑ Back to top](#2-table-of-contents)
 
 ### 7.10 Module
 * Module is an *optional* field, i.e. a contact can exist even if it does not have a module.
@@ -276,18 +339,24 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 * Module names should be alphanumeric.
 * A contact can have any number of modules assigned to it.
 
+[↑ Back to top](#2-table-of-contents)
+
 ### 7.11 CCA
 * CCA is an *optional* field, i.e. a contact can exist even if it does not have a CCA.
 * The prefix for a CCA is `cca/`.
 * CCA names should be alphanumeric.
 * A contact can have any number of CCAs assigned to it.
 
---------------------------------------------------------------------------------------------------------------------
+[↑ Back to top](#2-table-of-contents)
+
+---
 
 ## 8. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ConnectUS home folder.
+
+[↑ Back to top](#2-table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -303,7 +372,12 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 | **Help**   | `help`                                                                                                                                                                       |                                                                                        |
 | **Search** | `search KEYWORD`                                                                                                                                                             | `search alex january`                                                                  |
 | **Exit**   | `exit`                                                                                                                                                                       |                                                                                        |
+[↑ Back to top](#2-table-of-contents)
 
 ## 10. Prefix Summary
 
+[↑ Back to top](#2-table-of-contents)
+
 ## 11. Glossary
+
+[↑ Back to top](#2-table-of-contents)
