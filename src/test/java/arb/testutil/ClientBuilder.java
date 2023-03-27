@@ -93,6 +93,10 @@ public class ClientBuilder {
         return this;
     }
 
+    /**
+     * Builds the {@code Client}.
+     * @return The new Client.
+     */
     public Client build() {
         Client client = new Client(name, phone.orElse(null), email.orElse(null), tags);
         for (Project p : linkedProjects) {

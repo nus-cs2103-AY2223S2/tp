@@ -181,4 +181,9 @@ public class AddProjectCommandParserTest {
                 + DEADLINE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
     }
+
+    /*@Test
+    public void parse_emptyValue_success() {
+
+    }*/
 }

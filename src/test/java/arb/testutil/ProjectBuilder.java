@@ -100,6 +100,9 @@ public class ProjectBuilder {
         return this;
     }
 
+    /**
+     * Links {@code client} to the {@code Project} being built.
+     */
     public ProjectBuilder withLinkedClient(Client client) {
         this.linkedClient = Optional.ofNullable(client);
         return this;

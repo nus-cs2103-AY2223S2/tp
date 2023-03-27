@@ -202,9 +202,12 @@ public class UniqueClientListTest {
 
     @Test
     public void linkClientToProject_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueClientList.linkClientToProject(ALICE, null));
-        assertThrows(NullPointerException.class, () -> uniqueClientList.linkClientToProject((Client) null, CRAYON_PROJECT));
-        assertThrows(NullPointerException.class, () -> uniqueClientList.linkClientToProject((Name) null, CRAYON_PROJECT));
+        assertThrows(NullPointerException.class, () -> uniqueClientList
+                .linkClientToProject(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueClientList
+                .linkClientToProject((Client) null, CRAYON_PROJECT));
+        assertThrows(NullPointerException.class, () -> uniqueClientList
+                .linkClientToProject((Name) null, CRAYON_PROJECT));
     }
 
     @Test
