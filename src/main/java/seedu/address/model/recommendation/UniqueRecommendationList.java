@@ -46,7 +46,7 @@ public class UniqueRecommendationList implements Iterable<Recommendation> {
     public void add(Recommendation toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            // throw new DuplicateRecommendationException();
+            return;
         }
         internalList.add(toAdd);
     }
