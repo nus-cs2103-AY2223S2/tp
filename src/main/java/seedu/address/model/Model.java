@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -80,7 +81,18 @@ public interface Model {
      */
     void deletePerson(Person target);
 
+    /**
+     * Gets persons at the corresponding indexes
+     * @param indexList list of indexes to retrieve
+     * @return persons at those indexes
+     */
     List<Person> getPersonsByIndexes(List<Index> indexList);
+    /**
+     * Gets meetings at the corresponding indexes
+     * @param indexList list of indexes to retrieve
+     * @return meetings at those indexes
+     */
+    List<Meeting> getMeetingsByIndexesAndStartEnd(List<Index> indexList, DateTime start, DateTime end);
 
     /**
      * Adds the given person.

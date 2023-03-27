@@ -164,6 +164,43 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### CRUD Operations of Meeting and Find Meeting
+#### Implementation
+##### Adding
+The `AddMeetingCommand` adds a meeting to the address book. The meeting is added by creating a `Meeting` object and 
+adding it to the `UniqueMeetingList` in the `Model` component. The `AddMeetingCommandParser` parses the user input and
+creates an `AddMeetingCommand` object. The `AddMeetingCommand` is executed and the meeting is added to the 
+address book's `UniqueMeetingList`. The input format is as follows: 
+```
+// a standard addMeeting command where all arguments are compulsory where Person is minimally 1
+addm t/TITLE d/DATE_TIME [p/PERSON...] l/LOCATION d/DESCRIPTION
+```
+The `AddMeetingCommand` throws a `CommandException` if any of the person's names is not found in the address book (i.e. 
+no person in the address book has a matching name). The name must match exactly (**case-sensitive**) or else the 
+'CommandException' will be thrown.
+
+##### Editing
+
+##### Deleting
+
+##### Finding
+
+The `FindMeetingCommand` finds meetings in the address book. The meeting is found by creating a 
+`MeetingContainsNamesPredicate` object and passing it to the `updateFilteredMeetingList` method in the `Model` 
+component. The `FindMeetingCommandParser` takes in a list of names and creates a `FindMeetingCommand` object. 
+The `FindMeetingCommand` is executed and the `MeetingContainsNamesPredicate` is passed to the 
+`updateFilteredMeetingList` method. The input format is as follows:
+```
+// no arguments to list all meetings
+findm
+
+// arguments supplied to find meetings with matching names
+findm n/NAME [n/NAME]... 
+```
+The `FindMeetingCommand` throws a `CommandException` if no names are provided and there is trailing whitespace.
+The names no need to match exactly (**case-INsensitive**) but the Meetings are only filtered by one of the contact's names,
+as *space* is used as a delimiter. The command can be used **without arguments** to get back the original view of all meetings.
+
 ### Exporting and importing of contacts
 #### Implementation
 ##### Exporting
@@ -204,11 +241,43 @@ Person does not already exist, and ignores those that do. This allows the previo
 The JSON is parsed using the Jackson library. If the Jackson library is unable to parse the json, an error message 
 is thrown.
 
-### \[Proposed\] Exporting and importing of Meetings
-#### Proposed implementation
-Similar to the exporting and importing of contacts.
+### Exporting and importing of Meetings
+#### Implementation
+Exporting and importing for meetings is similar to that of contacts, with the main difference being that meetings 
+has additional functionality of returning meetings between two dates. This is implemented through the use of a 
+`isBetween` function implemented in the `Meeting` class. The program will first gather all the meetings in the 
+corresponding indexes provided, then search for meetings between the start and end dates. If either date is empty, then 
+only the other date is considered.
 
-### Autocomplete inputs
+### Autocompletion of Argument Prefixes
+
+Autocompletion of command inputs is facilitated by the individual command parsers (`XYZCommandParser`) which are
+implementing the `Parser` interface in the `Logic` component. Each `XYZCommandParser` implements how autocompletion
+should work for that particular command by overriding `Parser#getAutocompleteSuggestion`. This action is triggered when
+the user presses `TAB` when the command input starts with a valid command.
+
+The `CommandBox` UI component is actively listening for `TAB` keystrokes by having a `KeyPressedHandler` which will
+trigger `XYZCommandParser#getAutocompleteSuggestion`. A `AutocompleteResult` would then be returned to the `CommandBox`
+which contains the `Prefix` to be appended to the current command input, or used to replace the last `Prefix` in the
+current command input.
+
+#### Design Considerations
+
+**Alternative 1**: Autocomplete by appending the next relevant `Prefix` that is missing
+
+* This will be easier to implement as all we need is to have a list of `Prefix` that is relevant for the command and 
+cycle through and append those that are missing from the current command input.
+* Checking for missing `Prefix` from the command input can be achieved with the help of `ArgumentTokenizer`.
+* Downside: some commands such as `edit` does not need all the `Prefix` as user might just want to modify two 
+attributes. Simply cycling through and appending missing `Prefix` might require users to backspace some
+unnecessary `Prefix`.
+
+**Alternative 2 (current choice)**: Autocomplete by custom behaviour depending on the command
+
+* This would require each `XYZCommandParser` to implement their own behaviour on how autocompletion should
+behave for that particular command.
+* Benefit: There is more flexibility in customising how to best cater autocompletion for each individual
+command to better the user experience.
 
 ### Traverse commands
 

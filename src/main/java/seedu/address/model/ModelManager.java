@@ -15,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -115,6 +116,24 @@ public class ModelManager implements Model {
             );
         }
         return persons;
+    }
+
+    @Override
+    public List<Meeting> getMeetingsByIndexesAndStartEnd(List<Index> indexList, DateTime start, DateTime end) {
+        List<Meeting> meetings = new ArrayList<>();
+        for (Index index : indexList) {
+            meetings.add(filteredMeetings.get(
+                    index.getZeroBased())
+            );
+        }
+        if (start != null || end != null) {
+            for (Meeting meeting : getMeetingsList()) {
+                if (!meetings.contains(meeting) && meeting.isBetween(start, end)) {
+                    meetings.add(meeting);
+                }
+            }
+        }
+        return meetings;
     }
 
     @Override
