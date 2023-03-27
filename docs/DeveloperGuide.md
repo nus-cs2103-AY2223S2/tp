@@ -408,6 +408,7 @@ Use case resumes at step 2.
 - 2a. The list is empty.
 
   Use case ends.
+
 - 3a. The requested patient's NRIC is invalid.
 
     - 3a1. MedInfo shows an error message.
