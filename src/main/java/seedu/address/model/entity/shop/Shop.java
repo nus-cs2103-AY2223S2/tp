@@ -3,6 +3,8 @@ package seedu.address.model.entity.shop;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyShop;
@@ -158,6 +160,23 @@ public class Shop implements ReadOnlyShop {
      */
     public void addPart(String partName, int quantity) {
         this.getPartMap().addPart(partName, quantity);
+    }
+
+    /**
+     * Adds part to service
+     *
+     * @param serviceId ID of service
+     * @param partName Name of part
+     * @param quantity Quantity of part
+     * @throws NoSuchElementException If service not in system
+     */
+    public void addPartToService(int serviceId, String partName, int quantity) throws NoSuchElementException {
+        Optional<Service> serviceOption = this.getServiceList()
+            .stream()
+            .filter(s -> s.getId() == serviceId)
+            .findFirst();
+        Service service = serviceOption.orElseThrow();
+        service.addPart(partName, quantity);
     }
 
     /**
