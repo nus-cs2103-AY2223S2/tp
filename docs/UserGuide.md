@@ -21,24 +21,23 @@ This user guide will help you get up to speed in no time!
 ## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
-  - <details>
-    <summary>more</summary>
+  <details>
+    <summary>Click to expand</summary>
     
     * [Add a Contact](#add-a-contact)
-    * [Link Contact to Event](#link-contact-to-event)
-    * [View Rate](#view-rate)
-    * [Mark Event as Done](#mark-event)
+    * [Clear all Events](#clear-all-events)
     * [Create New Event](#create-new-event)
-    * [View Event List](#list-all-events)
     * [Delete an Event](#delete-an-event)
     * [Edit an Event](#edit-an-event)
+    * [Exit application](#exit-application)
+    * [Find Event](#find-event)
+    * [Link Contact to Event](#link-contact-to-event)
+    * [Mark Event as Done](#mark-event)
+    * [Unmark an Event](#unmark-event)
+    * [View Event List](#list-all-events)
+    * [View Rate](#view-rate)
     * [View Total Revenue](#view-total-revenue)
     * [View Upcoming Events](#view-upcoming-events)
-    * [Clear all Events](#clear-all-events)
-    * [Open help window](#open-help-window)
-    * [Find Event](#find-event)
-    * [Exit application](#exit-application)
-
     </details>
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
@@ -105,7 +104,6 @@ The examples given in this guide are formatted with the following conventions:
 --------------------------------------------------------------------------------------------------------------------
 
 [//]: # (Perhaps we could explain the difference between event and contact here?)
-
 ## Features
 
 ### Add a Contact: `newcontact` <a id = "add-a-contact"></a>
@@ -118,74 +116,20 @@ Adding a contact to contacts
 
 **Example**:
 - `newcontact n/Deborah Tan p/91234567`
-  - This command will create a new contact named `Deborah Tan` with phone number `91234567`. 
+  - This command will create a new contact named `Deborah Tan` with phone number `91234567`.
 - `newcontact n/Tan Jun Wei p/82828234`
   - This command will create a new contact named `Tan Jun Wei` with phone number `82828234`.
 
+### Clear all Events: `clear` <a id = "clear-all-events"></a>
 
-### Link Contact to Event: `linkcontact` <a id = "link-contact-to-event"></a>
+Clears all events in Paidlancers.
 
-Links client contact to an event.
+**Format**: `clear`
 
-**Format**: `linkcontact INDEX PHONE`
+- Clears all events in the event book.
 
-- Links contact using `PHONE` to the event at the specified `INDEX`.
-
-    - The `INDEX` refers to the index number in the displayed events list.
-    - The `INDEX` must be a positive integer 1, 2, 3, …
-    - The `PHONE` must be a valid phone number in the contact list.
-
-**Example**:
-- `linkcontact 2 91234567`
-  - This command will link the contact with phone number `91234567` to the 2nd event in the event list.
-
-
-### View Rate: `rate` <a id = "view-rate"></a>
-
-Displays the rate tagged to an event.
-
-**Format**: `rate INDEX`
-
-- Displays the agreed rate of the event at the specified `INDEX`.
-
-    - The `INDEX` refers to the index number in the displayed events list.
-    - The `INDEX` must be a positive integer 1, 2, 3, …
-
-**Example**:
-- `rate 2`
-  - This command will display the rate of the 2nd event in the event list.
-
-
-### Mark Event as Done: `mark` <a id = "mark-event"></a>
-
-Marks a specified event in Paidlancers as done.
-
-**Format**: `mark INDEX`
-
-- Marks the event at the specified `INDEX` as done.
-
-    - The `INDEX` refers to the index number in the displayed events list.
-    - The `INDEX` must be a positive integer 1, 2, 3, …
-
-**Example**:
-- `mark 2`
-  - This command will mark the 2nd event in the event list as done.
-
-
-### Unmark an Event: `unmark` <a id = "unmark-event"></a>
-
-Unmarks a specified event in Paidlancers.
-
-**Format**: `unmark INDEX`
-
-- Unmarks the event at the specified `INDEX`.
-    - The `INDEX` refers to the index number in the displayed events list.
-    - The `INDEX` must be a positive integer 1, 2, 3, …
-
-**Example**:
-- `unmark 2`
-  - This command will unmark the 2nd event in the event list.
-
+>This is a destructive command. Once you clear all events, there is no way to recover them!
+>Please be careful when using this command.
 
 ### Create new Event: `newevent` <a id = "create-new-event"></a>
 
@@ -199,16 +143,6 @@ Creates a new event
 - `newevent n/DJ at wedding r/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
   - This command will create a new event named `DJ at wedding` with rate `100` at address `311, Clementi Ave 2, #02-25` from `11-03-2023 11:00` to `11-03-2023 17:00` with tags `friends` and `dj`.
 
-
-### List all Events: `list` <a id = "list-all-events"></a>
-
-Shows a list of all events in Paidlancers
-
-**Format**: `list`
-
-- List down the events in the event book.
-
-
 ### Delete an Event: `delete` <a id = "delete-an-event"></a>
 
 Deletes the specified event from the event book.
@@ -217,13 +151,12 @@ Deletes the specified event from the event book.
 
 - Deletes the event at the specified `INDEX`
 
-    - The `INDEX` refers to the index number shown in the displayed event list.
-    - The `INDEX` must be a positive integer 1, 2, 3, …
+  - The `INDEX` refers to the index number shown in the displayed event list.
+  - The `INDEX` must be a positive integer 1, 2, 3, …
 
 **Example**:
 - `delete 2`
   - This command will delete the 2nd event in the event list.
-
 
 ### Edit an Event: `edit` <a id = "edit-an-event"></a>
 
@@ -233,14 +166,14 @@ Edits the specified event from the event book.
 
 - Edits the event at the specified `INDEX`
 
-    - The `INDEX` refers to the index number shown in the displayed event list.
-    - The `INDEX` must be a positive integer 1, 2, 3, …
-    - `[]` are optional parameters.
-    - At least one of the optional fields must be provided.
-    - Edits will replace existing values, edits are not cumulative.
-    - Tags can be removed by typing `t/` without specifying any tags after it.
-    - Do note that `edit` is only for editing the event details, not the contact details.
-    - To link the event to a new contact, consider using [`linkcontact`](#link-contact-to-event) instead.
+  - The `INDEX` refers to the index number shown in the displayed event list.
+  - The `INDEX` must be a positive integer 1, 2, 3, …
+  - `[]` are optional parameters.
+  - At least one of the optional fields must be provided.
+  - Edits will replace existing values, edits are not cumulative.
+  - Tags can be removed by typing `t/` without specifying any tags after it.
+  - Do note that `edit` is only for editing the event details, not the contact details.
+  - To link the event to a new contact, consider using [`linkcontact`](#link-contact-to-event) instead.
 
 **Example**:
 - `edit 1 r/100`
@@ -250,13 +183,105 @@ Edits the specified event from the event book.
 - `edit 1 n/Wedding Lunch`
   - This command will edit the name of the 1st event to be `Wedding Lunch`.
 
+### Exit application: `exit` <a id = "exit-application"></a>
+
+Closes Paidlancers.
+
+**Format**: `exit`
+
+- Close the application.
+
+### Find Event: `find` <a id = "find-event"></a>
+
+Finds event(s) from the event book based on the given search string.
+
+**Format**: `find KEYWORD [MORE_KEYWORDS]`
+
+- Finds the event using the specified `KEYWORD`
+  - The `KEYWORD` refers to the string to search the event list for.
+  - `[]` are optional parameters.
+  - `find` will return all events that contain the `KEYWORD` in their name.
+  - `find` is case-insensitive.
+
+**Example**:
+- `find wedding`
+  - This command will find and list all events that contains 'wedding' in its name.
+- `find wedding dinner`
+  - This command will find and list all events that contains 'wedding' or 'dinner' in its name.
+
+### Link Contact to Event: `linkcontact` <a id = "link-contact-to-event"></a>
+
+Links client contact to an event.
+
+**Format**: `linkcontact INDEX PHONE`
+
+- Links contact using `PHONE` to the event at the specified `INDEX`.
+
+  - The `INDEX` refers to the index number in the displayed events list.
+  - The `INDEX` must be a positive integer 1, 2, 3, …
+  - The `PHONE` must be a valid phone number in the contact list.
+
+**Example**:
+- `linkcontact 2 91234567`
+  - This command will link the contact with phone number `91234567` to the 2nd event in the event list.
+
+### Mark Event as Done: `mark` <a id = "mark-event"></a>
+
+Marks a specified event in Paidlancers as done.
+
+**Format**: `mark INDEX`
+
+- Marks the event at the specified `INDEX` as done.
+
+  - The `INDEX` refers to the index number in the displayed events list.
+  - The `INDEX` must be a positive integer 1, 2, 3, …
+
+**Example**:
+- `mark 2`
+  - This command will mark the 2nd event in the event list as done.
+
+### Unmark an Event: `unmark` <a id = "unmark-event"></a>
+
+Unmarks a specified event in Paidlancers.
+
+**Format**: `unmark INDEX`
+
+- Unmarks the event at the specified `INDEX`.
+  - The `INDEX` refers to the index number in the displayed events list.
+  - The `INDEX` must be a positive integer 1, 2, 3, …
+
+**Example**:
+- `unmark 2`
+  - This command will unmark the 2nd event in the event list.
+
+### List all Events: `list` <a id = "list-all-events"></a>
+
+Shows a list of all events in Paidlancers
+
+**Format**: `list`
+
+- List down the events in the event book.
+
+### View Rate: `rate` <a id = "view-rate"></a>
+
+Displays the rate tagged to an event.
+
+**Format**: `rate INDEX`
+
+- Displays the agreed rate of the event at the specified `INDEX`.
+
+  - The `INDEX` refers to the index number in the displayed events list.
+  - The `INDEX` must be a positive integer 1, 2, 3, …
+
+**Example**:
+- `rate 2`
+  - This command will display the rate of the 2nd event in the event list.
 
 ### View Total Revenue: `revenue` <a id = "view-total-revenue"></a>
 
 Calculates and displays the total revenue based on all the completed events.
 
 **Format**: `revenue`
-
 
 ### View Upcoming Events: `remind` <a id = "view-upcoming-events"></a>
 
@@ -280,54 +305,13 @@ Assume the current date and time is 22-03-2023 11:00.
     * 24-03-2023 the whole day
   - Note that 24-03-2023 is within 2 days of 22-03-2023, so events on 24-03-2023 that start more than 48 hours from the current date and time are displayed.
 
-### Clear all Events: `clear` <a id = "clear-all-events"></a>
 
-Clears all events in Paidlancers.
-
-**Format**: `clear`
-
-- Clears all events in the event book.
-
->This is a destructive command. Once you clear all events, there is no way to recover them!
->Please be careful when using this command.
-
-### Open help window: `help` <a id = "open-help-window"></a>
-
-Opens the help window.
-
-**Format**: `help`
-
-- Opens the help window in the UI.
-
-### Find Event: `find` <a id = "find-event"></a>
-
-Finds event(s) from the event book based on the given search string.
-
-**Format**: `find KEYWORD [MORE_KEYWORDS]`
-
-- Finds the event using the specified `KEYWORD`
-  - The `KEYWORD` refers to the string to search the event list for.
-  - `[]` are optional parameters.
-  - `find` will return all events that contain the `KEYWORD` in their name.
-  - `find` is case-insensitive.
-
-**Example**:
-- `find wedding`
-  - This command will find and list all events that contains 'wedding' in its name.
-- `find wedding dinner`
-  - This command will find and list all events that contains 'wedding' or 'dinner' in its name.
-
-### Exit application: `exit` <a id = "exit-application"></a>
-
-Closes Paidlancers.
-
-**Format**: `exit`
-
-- Close the application.
+--------------------------------------------------------------------------------------------------------------------
 
 ### Saving the data
 
 Paidlancers data are saved in the hard disk automatically on command issue. There is no need to save manually.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
