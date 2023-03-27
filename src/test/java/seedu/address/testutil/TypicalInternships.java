@@ -7,6 +7,9 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.NoteList;
 import seedu.address.model.TodoList;
+import seedu.address.model.documents.CoverLetterLink;
+import seedu.address.model.documents.Documents;
+import seedu.address.model.documents.ResumeLink;
 import seedu.address.model.person.InternshipApplication;
 
 /**
@@ -19,6 +22,13 @@ public class TypicalInternships {
         .withJobTitle("Software Engineer").build();
     public static final InternshipApplication CARL = new InternshipBuilder().withCompanyName("Carl Kurz")
         .withJobTitle("Software Engineer").build();
+    public static final InternshipApplication GOOGLE = new InternshipBuilder()
+            .withCompanyName("Google").withJobTitle("Product Manager").build();
+    public static final InternshipApplication NETFLIX = new InternshipBuilder()
+            .withCompanyName("Netflix")
+            .withJobTitle("Network Engineer")
+            .withDocuments(new Documents(new ResumeLink("https://drive.example.com/resume_netflix"),
+                    new CoverLetterLink("https://drive.example.com/coverletter_netflix"))).build();
     public static final InternshipApplication DANIEL = new InternshipBuilder().withCompanyName("Daniel Meier")
         .withJobTitle("Software Engineer").build();
     public static final InternshipApplication ELLE = new InternshipBuilder().withCompanyName("Elle Meyer")
@@ -27,6 +37,11 @@ public class TypicalInternships {
         .withJobTitle("Software Engineer").build();
     public static final InternshipApplication GEORGE = new InternshipBuilder().withCompanyName("George Best")
         .withJobTitle("Software Engineer").build();
+    public static final InternshipApplication ORACLE = new InternshipBuilder()
+            .withCompanyName("Oracle")
+            .withJobTitle("Data Engineer")
+            .withDocuments(new Documents(new ResumeLink("https://drive.example.com/resume_oracle"),
+                    new CoverLetterLink("https://drive.example.com/coverletter_oracle"))).build();
 
 
     private TypicalInternships() {} // prevents instantiation
@@ -43,7 +58,8 @@ public class TypicalInternships {
     }
 
     public static List<InternshipApplication> getTypicalInternships() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, GOOGLE, NETFLIX, DANIEL, ELLE, FIONA, GEORGE,
+                ORACLE));
     }
 
     public static NoteList getTypicalNoteList() {
