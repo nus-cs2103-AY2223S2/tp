@@ -86,7 +86,7 @@ public class AutoPairCommand extends Command {
             for (Elderly elderly: elderlyList) {
                 if (pairedElderly.contains(elderly)
                         || !volunteer.getRegion().isMatch(elderly.getRegion())
-                        || !AvailableDate.isAvailableDatesIntersect(
+                        || !AvailableDate.isAvailableDatesIntersecting(
                                 volunteer.getAvailableDates(), elderly.getAvailableDates())) {
                     continue;
                 }

@@ -82,7 +82,8 @@ public class AvailableDate {
      * @param dateCollection2 Second Collection of AvailableDates.
      * @return True if at least one intersecting AvailableDate is shared, and false otherwise.
      */
-    public static boolean isAvailableDatesIntersect(Collection<AvailableDate> dateCollection1,
+    public static boolean isAvailableDatesIntersecting(
+            Collection<AvailableDate> dateCollection1,
             Collection<AvailableDate> dateCollection2) {
         if (dateCollection1.isEmpty() || dateCollection2.isEmpty()) {
             return true;
