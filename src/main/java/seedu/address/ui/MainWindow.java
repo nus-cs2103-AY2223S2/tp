@@ -17,8 +17,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 import seedu.address.ui.theme.Theme;
 import seedu.address.ui.theme.ThemeException;
 
@@ -39,6 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ViewPane viewPane;
     private Theme theme;
 
     @FXML
@@ -49,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane viewPanePlaceHolder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -114,16 +120,19 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), this);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(0));
+        viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
+
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        applyTheme(Theme.DARK);
+        applyTheme(Theme.DEFAULT_THEME);
     }
 
     /**
@@ -178,7 +187,6 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            System.out.println(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -198,12 +206,20 @@ public class MainWindow extends UiPart<Stage> {
                 applyDarkTheme();
             }
 
+            if (commandResult.getFeedbackToUser().equals(ViewCommand.MESSAGE_VIEW_PERSON_SUCCESS)) {
+                applyView();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    public CommandResult execute(String commandText) throws CommandException, ParseException {
+        return executeCommand(commandText);
     }
 
     private void applyTheme(Theme newTheme) {
@@ -218,6 +234,12 @@ public class MainWindow extends UiPart<Stage> {
         } catch (ThemeException e) {
             logger.info(e.getMessage());
         }
+    }
+
+    private void applyView() {
+        viewPane = new ViewPane(logic.getFilteredPersonList().get(0));
+        viewPanePlaceHolder.getChildren().clear();
+        viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
     }
 
     /** Sets theme to Light Theme. */
