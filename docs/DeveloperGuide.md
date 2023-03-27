@@ -141,7 +141,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `EventBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a event).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -243,14 +243,17 @@ This section describes some noteworthy details on how certain features are imple
 
 ### New Contact feature
 
-### Implementation
+The `newcontact` feature allows for users to add new contacts to their contact list.
 
-The new contact feature is facilitated by the `Contact` class. `Contact` class encapsulates the two attributes of a contact with the help of the `ContactName` and `ContactPhone` class.
-A new contact created will be added to the contact list which will be saved in a JSON file.
+#### Implementation
 
-### Design considerations:
+The `newcontact` feature is facilitated by the `Contact` class. The feature is implemented as follows:
+- encapsulate two attributes of a contact with the help of `ContactName` and `ContactPhone` class.
+- Phone number should only be numerical and shall not be shorter than 8 digits.
+- A contact is unique to its `ContactPhone`, having the same phone number will result in an error.
+- Once a new contact is created it will be added to the contact list which will be saved in a JSON file.
 
-**Aspect: How new contact is created:**
+#### Design considerations:
 
 * **Alternative 1 (current choice):** Create a new contact through creating `ContactName` and `ContactPhone` attributes.
     * Pros: More levels of abstraction to prevent the accidental change of information.
@@ -261,9 +264,25 @@ A new contact created will be added to the contact list which will be saved in a
   
 
 ### Mark feature
-The mark feature mechanism is implemented by having the Event class keep track of an additional attribute called 'Mark'. When an event is completed, the event will be marked through the class attribute 'Mark'.
 
-**Implementation design**: The feature is implemented with a seperate class 'Mark' instead of a 'isDone' boolean attribute. This ensures that there is a greater abstraction and allows for further development if we wish to further develop the application to keep track of other milestones.
+The `mark` feature allows for marking of the 'Mark' attribute to indicate that the event is done.
+
+#### Implementation
+
+The `mark` feature is implemented with the following considerations:
+- A `Mark` class facilitates the implementation of the mark feature. The class also contains a `isDone` attribute to indicate whether the event is done or not.'
+- A valid `index` will be taken in as a parameter to facilitate marking of the correct event.
+- Marking of a done event would not result in error or exceptions as this action does not reduce correctness of presented information.
+
+#### Design considerations: 
+
+* **Alternative 1 (current choice):** Calls on `mark` method in 'Mark' class to set the tracked boolean variable 'isDone' to true
+  * Pros: Easier to implement.
+  * Cons: Results in higher coupling as it is editing a variable in an event instance, may lead to errors in runtime and testing.
+
+* **Alternative 2:** Replace current instance of specified event with a new unmarked event instance
+  * Pros: Results in less coupling and in turn lower possibility of unintended change cascades.
+  * Cons: May have performance issues in terms of memory usage and runtime.
 
 ### Unmark feature
 
@@ -280,11 +299,11 @@ The `unmark` feature is implemented with the following considerations:
 
 #### Design considerations:  
 
-* **Alternative 1 (current choice): Calls on `unmark` method in 'Mark' class to set the tracked boolean variable 'isDone' to false** 
+* **Alternative 1 (current choice):** Calls on `unmark` method in 'Mark' class to set the tracked boolean variable 'isDone' to false
   * Pros: Easier to implement.
   * Cons: Results in higher coupling as it is editing a variable in an event instance, may lead to errors in runtime and testing.
 
-* **Alternative 2: Replace current instance of specified event with a new unmarked event instance**
+* **Alternative 2:** Replace current instance of specified event with a new unmarked event instance
   * Pros: Results in less coupling and in turn lower possibility of unintended change cascades.
   * Cons: May have performance issues in terms of memory usage and runtime.
 
@@ -337,6 +356,27 @@ The linkcontact feature will take in a contact number as a parameter. This param
 * **Alternative 2:** Add the `contact` as just a normal string attribute to `Event` class.
     * Pros: Even easier to implement.
     * Cons: Hard to implement filtering of events by contact in the future.
+
+### Revenue feature
+
+The `revenue` feature allows for calculating the total revenue earned so far.
+
+#### Implementation
+
+The `revenue` feature is implemented with the following considerations:
+- The revenue takes into account whether the event is marked or not. It only sums up the rate if the event is marked as done.
+- The revenue will display `0.00` and not result in any errors even if there are no events that are done yet.
+
+#### Design considerations: 
+
+* **Alternative 1 (current choice):** Iterates through the event book when the revenue feature is called. 
+  * Pros: Easier to implement.
+  * Cons: Runtime complexity scales as the event book increases in size.
+
+* **Alternative 2:** Keep a static attribute of the revenue and increase accordingly as events are completed.
+  * Pros: Will maintain a low runtime complexity.
+  * Cons: Hard to implement in the case that events are unmarked or deleted.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
