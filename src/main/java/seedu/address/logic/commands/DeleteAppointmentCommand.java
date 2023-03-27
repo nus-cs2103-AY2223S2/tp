@@ -68,7 +68,7 @@ public class DeleteAppointmentCommand extends Command {
 
         int patientApptSize = appointmentPatient.getAppointmentSize();
         int ind = index.getZeroBased();
-        if (patientApptSize <= 0 || ind >= patientApptSize - 1) {
+        if (patientApptSize <= 0 || ind >= patientApptSize) {
             throw new CommandException(MESSAGE_INVALID_INDEX);
         }
 
