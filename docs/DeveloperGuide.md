@@ -294,7 +294,13 @@ behave for that particular command.
 * Benefit: There is more flexibility in customising how to best cater autocompletion for each individual
 command to better the user experience.
 
-### Traverse commands
+### Traversal of Commands
+
+Traversal of commands is facilitated by `CommandHistory` model in addition to `KeyPressedHandler` in the `CommandBox` UI component.
+
+Internally, `CommandHistory` utilises [`LinkedList`](https://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html) to store all the commands that have been executed by the user. Note that `LinkedList` is a [doubly-linked list](https://en.wikipedia.org/wiki/Doubly_linked_list) and this allows us to traverse the list of commands forward and backward in O(1) [time complexity](https://en.wikipedia.org/wiki/Time_complexity). Traversal of the list is facilitated by a `static` pointer.
+
+`CommandBox` UI component is actively listening to the `UP` and `DOWN` keys which would be handled by the `KeyPressedHandler`, which is responsible for traversing the command history using `CommandHistory`.
 
 ### DateTime parsing
 
