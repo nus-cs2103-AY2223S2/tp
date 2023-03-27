@@ -54,7 +54,8 @@ public class DeleteCommandFactory<T extends Item> implements CommandFactory<Dele
 
     @Override
     public DeleteCommand<T> createCommand(CommandParam param) throws ParseException {
-        int index = param.getUnnamedIntOrThrow() - 1;
+        int index = param.getUnnamedIntOrThrow();
+
         try {
             return new DeleteCommand<>(
                     index,

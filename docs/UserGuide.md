@@ -127,7 +127,7 @@ The response box describes the addition that was made and the new entity should 
 #### 2. Deleting a resource
 
 Use this command when you wish to remove a resource entity (e.g. a pilot that has retired)
-from Wingman, so as to keep your database of resources up to date.
+from Wingman, to keep your database of resources up to date.
 ```
 delete index_number
 ```
@@ -169,6 +169,8 @@ This commands links an entity of the current resource mode to a specified locati
 For example, if you are currently in the `plane` mode, then this command will link a `plane` 
 to a specified location entity in the database. It shall be noted, however,
 that the parameters that are specified in different modes are different.
+
+Note that the indexing for `location_index` and `resource_index` starts from 0.
 
 Here are some examples of how the command works in each mode:
 
@@ -214,6 +216,8 @@ For example, if you are currently in the `plane` mode, then this command will un
 from the specified location entity in the database. It shall be noted, however,
 that the parameters that are specified in different modes are different.
 
+Note that the indexing for `location_index` and `resource_index` starts from 0.
+
 Here are some examples of how the command works in each mode:
 
 ##### Crew mode: `unlinklocation /crew 0 /loc 1`
@@ -254,6 +258,8 @@ using the `linklocation` command described [above](#1-linking-a-resource-to-a-lo
 This commands links an entity of the current resource mode to a specified flight in Wingman's database. For example,
 if you are currently in the `plane` mode, then this command will link a `plane`
 to a specified flight in the database. It shall be noted, however, that the parameters that are specified in different modes are different.
+
+Note that the indexing for `flight_index` and `resource_index` starts from 0.
 
 Here are some examples of how the command works in each mode:
 
@@ -298,6 +304,8 @@ This commands unlinks an entity of the current resource mode from a specified fl
 if you are currently in the `plane` mode, then this command will unlink a `plane`
 from a specified flight in the database. It shall be noted, however,
 that the parameters that are specified in different modes are different.
+
+Note that the indexing for `flight_index` and `resource_index` starts from 0.
 
 Here are some examples of how the command works in each mode:
 
