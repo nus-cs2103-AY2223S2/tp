@@ -5,7 +5,7 @@ title: User Guide
 
 ## 1. Welcome to ConnectUS!
 
-ConnectUS is the ultimate **contact management system** for your everyday needs. If you're a School of Computing student, this app is for you. With ConnectUS, you can spend less time stressing over a lack of social interaction (~~due to your exponentially growing assignment backlog~~ — _trust us, we know!_), and more time **connecting** with others!
+ConnectUS is the ultimate **contact management system** for your everyday needs. If you're a School of Computing student, this app is for you. With ConnectUS, you can spend less time stressing about remembering who you met where (~~on top of the stress of your assignment backlog that's holding you back from socializing~~ — _trust us, we know!_), and more time **connecting** with others!
 
 We're focused on:
 - **Efficiency**: Optimized for use via a Command Line Interface (CLI), you can **easily view and edit your contacts** at your fingertips with ConnectUS.
