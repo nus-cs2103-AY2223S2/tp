@@ -1,67 +1,93 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "persons" : [ {
-    "nric": "S1234567A",
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "drugAllergy" : "NKDA",
-    "gender" : "female",
-    "tagged" : [ "Diabetic" ]
-  }, {
-    "nric": "S2345678B",
-    "name" : "Benson Meier",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "drugAllergy" : "NKDA",
-    "gender" : "male",
-    "tagged" : [ "Osteoporotic", "Diabetic" ]
-  }, {
-    "nric": "S3456789C",
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "address" : "wall street",
-    "drugAllergy" : "Penicilin",
-    "gender" : "male",
-    "tagged" : [ "Asthmatic" ]
-  }, {
-    "nric": "S0123456D",
-    "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "drugAllergy" : "Aspirin Panadol",
-    "gender" : "male",
-    "tagged" : [ "Epileptic" ]
-  }, {
-    "nric": "S0000000E",
-    "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "email" : "werner@example.com",
-    "address" : "michegan ave",
-    "drugAllergy" : "NKDA",
-    "gender" : "female",
-    "tagged" : [ "Arthritic" ]
-  }, {
-    "nric": "S1111111F",
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "address" : "little tokyo",
-    "drugAllergy" : "Aspirin Panadol",
-    "gender" : "female",
-    "tagged" : [ "Diabetic" ]
-  }, {
-    "nric": "S2222222G",
-    "name" : "George Best",
-    "phone" : "9482442",
-    "email" : "anna@example.com",
-    "address" : "4th street",
-    "drugAllergy" : "Lidocaine",
-    "gender" : "male",
-    "tagged" : [ "Diabetic" ]
-  } ]
+  "persons": [
+    {
+      "nric": "S1234567A",
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "drugAllergy": "NKDA",
+      "gender": "female",
+      "tagged": [
+        "Diabetic"
+      ]
+    },
+    {
+      "nric": "S2345678B",
+      "name": "Benson Meier",
+      "phone": "98765432",
+      "email": "johnd@example.com",
+      "address": "311, Clementi Ave 2, #02-25",
+      "drugAllergy": "NKDA",
+      "gender": "male",
+      "tagged": [
+        "Osteoporotic",
+        "Diabetic"
+      ],
+      "medicines": [
+        "Paracetamol"
+      ]
+    },
+    {
+      "nric": "S3456789C",
+      "name": "Carl Kurz",
+      "phone": "95352563",
+      "email": "heinz@example.com",
+      "address": "wall street",
+      "drugAllergy": "Penicilin",
+      "gender": "male",
+      "tagged": [
+        "Asthmatic"
+      ]
+    },
+    {
+      "nric": "S0123456D",
+      "name": "Daniel Meier",
+      "phone": "87652533",
+      "email": "cornelia@example.com",
+      "address": "10th street",
+      "drugAllergy": "Aspirin Panadol",
+      "gender": "male",
+      "tagged": [
+        "Epileptic"
+      ]
+    },
+    {
+      "nric": "S0000000E",
+      "name": "Elle Meyer",
+      "phone": "9482224",
+      "email": "werner@example.com",
+      "address": "michegan ave",
+      "drugAllergy": "NKDA",
+      "gender": "female",
+      "tagged": [
+        "Arthritic"
+      ]
+    },
+    {
+      "nric": "S1111111F",
+      "name": "Fiona Kunz",
+      "phone": "9482427",
+      "email": "lydia@example.com",
+      "address": "little tokyo",
+      "drugAllergy": "Aspirin Panadol",
+      "gender": "female",
+      "tagged": [
+        "Diabetic"
+      ]
+    },
+    {
+      "nric": "S2222222G",
+      "name": "George Best",
+      "phone": "9482442",
+      "email": "anna@example.com",
+      "address": "4th street",
+      "drugAllergy": "Lidocaine",
+      "gender": "male",
+      "tagged": [
+        "Diabetic"
+      ]
+    }
+  ]
 }
