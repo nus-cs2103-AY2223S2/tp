@@ -30,10 +30,7 @@ public class Order {
      * Order constructor with default values.
      */
     public Order(Customer customer, Name name, Quantity quantity, Address address) {
-        this(customer, name, quantity, address,
-                Status.PENDING,
-                new CreatedDate(LocalDate.now()),
-                new Note(""));
+        this(customer, name, quantity, address, new Status(), new CreatedDate(LocalDate.now()), new Note(""));
     }
 
     /**
