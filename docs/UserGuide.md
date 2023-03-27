@@ -73,8 +73,14 @@ Vimification is a **desktop app for managing tasks, optimized for use via a Comm
    ![Ui](images/Ui.png)
 
 
+
 ## Using the Command-Line Interface (CLI)
 =======
+
+
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+
    - `:i todo CS2130T UG` : Adds a todo task with description `CS2130T UG` to Vimification.
 
    - `:i deadline CS2130T tp /2023-04-01` : Adds a todo task with description `CS2130T tp` and deadline '2023-04-01' to Vimification.
@@ -82,6 +88,8 @@ Vimification is a **desktop app for managing tasks, optimized for use via a Comm
    - `delete 2` : Deletes the 2nd task shown in the current list.
 
    - `:wq` : Exits the app.
+
+2. Refer to the [Features](#features) below for details of each command.
    
 ---
 
