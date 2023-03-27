@@ -9,10 +9,10 @@ import seedu.recipe.commons.util.StringUtil;
 /**
  * Tests that a {@code Recipe}'s {@code Ingredient} matches any of the keywords given.
  */
-public class IngredientContainsKeywordsPredicate implements Predicate<Recipe> {
+public class IngredientsAllMatchPredicate implements Predicate<Recipe> {
     private final List<String> keywords;
 
-    public IngredientContainsKeywordsPredicate(List<String> keywords) {
+    public IngredientsAllMatchPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -20,18 +20,18 @@ public class IngredientContainsKeywordsPredicate implements Predicate<Recipe> {
     public boolean test(Recipe recipe) {
         Set<Ingredient> recipeIngredients = recipe.getIngredients();
         for (Ingredient i : recipeIngredients) {
-            if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(i.ingredient, keyword))) {
-                return true;
+            if (keywords.stream().noneMatch(keyword -> StringUtil.containsWordIgnoreCase(i.ingredient, keyword))) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof IngredientContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((IngredientContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof IngredientsAllMatchPredicate // instanceof handles nulls
+                && keywords.equals(((IngredientsAllMatchPredicate) other).keywords)); // state check
     }
 
 }

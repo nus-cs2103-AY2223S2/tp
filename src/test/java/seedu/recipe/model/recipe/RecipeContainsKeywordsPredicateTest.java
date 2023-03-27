@@ -11,24 +11,24 @@ import org.junit.jupiter.api.Test;
 
 import seedu.recipe.testutil.RecipeBuilder;
 
-public class AnythingContainsKeywordsPredicateTest {
+public class RecipeContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        AnythingContainsKeywordsPredicate firstPredicate =
-                new AnythingContainsKeywordsPredicate(firstPredicateKeywordList);
-        AnythingContainsKeywordsPredicate secondPredicate =
-                new AnythingContainsKeywordsPredicate(secondPredicateKeywordList);
+        RecipeContainsKeywordsPredicate firstPredicate =
+                new RecipeContainsKeywordsPredicate(firstPredicateKeywordList);
+        RecipeContainsKeywordsPredicate secondPredicate =
+                new RecipeContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        AnythingContainsKeywordsPredicate firstPredicateCopy =
-                new AnythingContainsKeywordsPredicate(firstPredicateKeywordList);
+        RecipeContainsKeywordsPredicate firstPredicateCopy =
+                new RecipeContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -44,35 +44,31 @@ public class AnythingContainsKeywordsPredicateTest {
     @Test
     public void test_titleContainsKeywords_returnsTrue() {
         // One keyword
-        AnythingContainsKeywordsPredicate predicate =
-                new AnythingContainsKeywordsPredicate(Collections.singletonList("Corndog"));
+        RecipeContainsKeywordsPredicate predicate =
+                new RecipeContainsKeywordsPredicate(Collections.singletonList("Corndog"));
         assertTrue(predicate.test(new RecipeBuilder().withTitle("Corndog with cheese").build()));
 
         // Multiple keywords
-        predicate = new AnythingContainsKeywordsPredicate(Arrays.asList("Corndog", "cheese"));
+        predicate = new RecipeContainsKeywordsPredicate(Arrays.asList("Corndog", "cheese"));
         assertTrue(predicate.test(new RecipeBuilder().withTitle("Corndog with cheese").build()));
 
         // Only one matching keyword
-        predicate = new AnythingContainsKeywordsPredicate(Arrays.asList("Corndog", "cheese"));
+        predicate = new RecipeContainsKeywordsPredicate(Arrays.asList("Corndog", "cheese"));
         assertTrue(predicate.test(new RecipeBuilder().withTitle("Corndog with tomato").build()));
 
         // Mixed-case keywords
-        predicate = new AnythingContainsKeywordsPredicate(Arrays.asList("coRnDog", "chEese"));
+        predicate = new RecipeContainsKeywordsPredicate(Arrays.asList("coRnDog", "chEese"));
         assertTrue(predicate.test(new RecipeBuilder().withTitle("Corndog with cheese").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        AnythingContainsKeywordsPredicate predicate = new AnythingContainsKeywordsPredicate(Collections.emptyList());
+        RecipeContainsKeywordsPredicate predicate = new RecipeContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new RecipeBuilder().withTitle("Corndog").build()));
 
         // Non-matching keyword
-        predicate = new AnythingContainsKeywordsPredicate(Arrays.asList("Tomato"));
+        predicate = new RecipeContainsKeywordsPredicate(Arrays.asList("Tomato"));
         assertFalse(predicate.test(new RecipeBuilder().withTitle("Corndog with cheese").build()));
-
-        // Keywords match description but does not match name
-        predicate = new AnythingContainsKeywordsPredicate(Arrays.asList("Cheese"));
-        assertFalse(predicate.test(new RecipeBuilder().withTitle("Corndog").withDesc("Cheese").build()));
     }
 }

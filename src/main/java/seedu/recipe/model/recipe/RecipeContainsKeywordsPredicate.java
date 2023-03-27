@@ -9,10 +9,10 @@ import seedu.recipe.commons.util.StringUtil;
 /**
  * Tests that a {@code Recipe}'s {@code Title} matches any of the keywords given.
  */
-public class AnythingContainsKeywordsPredicate implements Predicate<Recipe> {
+public class RecipeContainsKeywordsPredicate implements Predicate<Recipe> {
     private final List<String> keywords;
 
-    public AnythingContainsKeywordsPredicate(List<String> keywords) {
+    public RecipeContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -21,6 +21,9 @@ public class AnythingContainsKeywordsPredicate implements Predicate<Recipe> {
         boolean doesTitle = keywords.stream()
                 .anyMatch(keyword -> StringUtil
                         .containsWordIgnoreCase(recipe.getTitle().title, keyword));
+        boolean doesDesc = keywords.stream()
+                .anyMatch(keyword -> StringUtil
+                        .containsWordIgnoreCase(recipe.getDesc().description, keyword));
         Set<Ingredient> recipeIngredient = recipe.getIngredients();
         boolean doesIngredientExist = false;
         for (Ingredient i : recipeIngredient) {
@@ -30,14 +33,23 @@ public class AnythingContainsKeywordsPredicate implements Predicate<Recipe> {
                 doesIngredientExist = true;
             }
         }
-        return doesTitle || doesIngredientExist;
+        List<Step> recipeStep = recipe.getSteps();
+        boolean doesStepExist = false;
+        for (Step s : recipeStep) {
+            if (keywords.stream()
+                    .anyMatch(keyword -> StringUtil
+                            .containsWordIgnoreCase(s.step, keyword))) {
+                doesStepExist = true;
+            }
+        }
+        return doesTitle || doesDesc || doesStepExist || doesIngredientExist;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AnythingContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((AnythingContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof RecipeContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((RecipeContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

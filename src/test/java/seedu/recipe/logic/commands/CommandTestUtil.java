@@ -16,8 +16,8 @@ import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.model.Model;
 import seedu.recipe.model.RecipeBook;
-import seedu.recipe.model.recipe.AnythingContainsKeywordsPredicate;
 import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.model.recipe.RecipeContainsKeywordsPredicate;
 import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 
 /**
@@ -127,7 +127,7 @@ public class CommandTestUtil {
 
         Recipe recipe = model.getFilteredRecipeList().get(targetIndex.getZeroBased());
         final String[] splitName = recipe.getTitle().toString().split("\\s+");
-        model.updateFilteredRecipeList(new AnythingContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredRecipeList(new RecipeContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredRecipeList().size());
     }

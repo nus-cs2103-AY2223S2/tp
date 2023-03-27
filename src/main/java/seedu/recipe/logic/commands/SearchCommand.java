@@ -4,27 +4,25 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.recipe.commons.core.Messages;
 import seedu.recipe.model.Model;
-import seedu.recipe.model.recipe.AnythingContainsKeywordsPredicate;
+import seedu.recipe.model.recipe.IngredientsAllMatchPredicate;
 
 /**
- * Finds and lists all recipes in recipe book whose title, ingredients,
- * tags or price contains any of the argument keywords.
+ * Searches and lists all recipes which ingredients are a subset of those already present
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends Command {
+public class SearchCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "search";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all recipes whose title/ingredients/tags/price contain any of "
-            + "the specified keywords (case-insensitive) and "
+            + ": Searchs all recipes that have all the ingredients needed and "
             + "displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n";
 
 
-    private final AnythingContainsKeywordsPredicate predicate;
+    private final IngredientsAllMatchPredicate predicate;
 
-    public FindCommand(AnythingContainsKeywordsPredicate predicate) {
+    public SearchCommand(IngredientsAllMatchPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -39,7 +37,7 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                || (other instanceof SearchCommand // instanceof handles nulls
+                && predicate.equals(((SearchCommand) other).predicate)); // state check
     }
 }

@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.recipe.commons.core.GuiSettings;
-import seedu.recipe.model.recipe.AnythingContainsKeywordsPredicate;
+import seedu.recipe.model.recipe.RecipeContainsKeywordsPredicate;
 import seedu.recipe.testutil.RecipeBookBuilder;
 
 public class ModelManagerTest {
@@ -118,7 +118,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = CORNDOGS.getTitle().title.split("\\s+");
-        modelManager.updateFilteredRecipeList(new AnythingContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredRecipeList(new RecipeContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(recipeBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
