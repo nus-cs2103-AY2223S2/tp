@@ -124,7 +124,7 @@ public class Location implements Comparable<Location> {
 
     @Override
     public String toString() {
-        return getName();
+        return String.format("[%s %s %s]", getName(), latitude, longitude);
     }
 
     @Override

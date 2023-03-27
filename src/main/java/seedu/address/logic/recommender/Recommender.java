@@ -47,6 +47,8 @@ public class Recommender {
      * Returns a list of recommendations.
      */
     public List<Recommendation> recommend(Collection<ContactIndex> contactIndices, Collection<Location> destinations) {
+        logger.info(String.format("Persons to meet: %s", contactIndices.toString()));
+
         initialise(contactIndices, destinations);
         List<HourBlock> timingRecommendations =
                 timingRecommender.giveLongestTimingRecommendations(RECOMMENDATION_LIMIT)
@@ -68,11 +70,10 @@ public class Recommender {
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
 
-        List<Recommendation> filteredRecommendations = filterRecommendations(recommendations);
+        List<Recommendation> sortedRecommendations = sortRecommendations(recommendations);
+        List<Recommendation> filteredRecommendations = filterRecommendations(sortedRecommendations);
 
-        return filteredRecommendations.stream()
-                .sorted().limit(RECOMMENDATION_LIMIT)
-                .collect(Collectors.toList());
+        return filteredRecommendations.stream().limit(RECOMMENDATION_LIMIT).collect(Collectors.toList());
     }
 
     /**
@@ -85,6 +86,10 @@ public class Recommender {
         locationTrackers = timingRecommender.getParticipants().stream()
                 .map(LocationTracker::new)
                 .collect(Collectors.toSet());
+
+        logger.info(String.format("Location Trackers: %s", locationTrackers.stream()
+                .map(LocationTracker::toString)
+                .collect(Collectors.joining("\n"))));
     }
 
     /**
@@ -117,6 +122,8 @@ public class Recommender {
         List<Recommendation> filteredRecommendations = new ArrayList<>();
 
         for (Recommendation recommendation : recommendations) {
+            logger.info(recommendation.toString());
+
             TimePeriod timePeriod = recommendation.getTimePeriod();
             Location location = recommendation.getLocation();
 
@@ -130,5 +137,13 @@ public class Recommender {
         }
 
         return filteredRecommendations;
+    }
+
+    /**
+     * Returns a sorted recommendations list.
+     */
+    private List<Recommendation> sortRecommendations(List<Recommendation> recommendations) {
+        return recommendations.stream()
+                .sorted().collect(Collectors.toList());
     }
 }
