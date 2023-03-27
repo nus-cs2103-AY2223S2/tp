@@ -20,19 +20,19 @@
    * 5.4. [Trying your First Command](#54-trying-your-first-command)
 6. [Commands](#6-commands)
    * 6.1. [Applicant Commands](#61-applicant-commands)
-     * 6.1.1. [Create a new applicant: `add`](#611-create-a-new-applicant-add)
-     * 6.1.2. [Search for an applicant: `find`](#612-search-for-an-applicant--find)
-     * 6.1.3. [List all applicants: `list`](#613-list-all-applicants--list)
-     * 6.1.4. [Delete an applicant: `delete`](#614-delete-an-applicant--delete)
-     * 6.1.5. [Advance an applicant: `advance`](#615-advance-an-applicant--advance)
-     * 6.1.6. [Reject an applicant: `reject`](#616-reject-an-applicant--reject)
-     * 6.1.7. [List all interview dates of applicants: `interview`](#617-list-all-interview-dates-of-applicants--interview)
-     * 6.1.8. [Edit an existing applicant: `edit`](#618-edit-an-existing-applicant--edit)
-     * 6.1.9. [Remind upcoming interviews: `remind`](#619-remind-upcoming-interviews--remind)
+     * 6.1.1. [Create a new applicant `add`](#611-create-a-new-applicant-add)
+     * 6.1.2. [Search for an applicant `find`](#612-search-for-an-applicant-find)
+     * 6.1.3. [List all applicants `list`](#613-list-all-applicants-list)
+     * 6.1.4. [Delete an applicant `delete`](#614-delete-an-applicant-delete)
+     * 6.1.5. [Advance an applicant `advance`](#615-advance-an-applicant-advance)
+     * 6.1.6. [Reject an applicant `reject`](#616-reject-an-applicant-reject)
+     * 6.1.7. [List all interview dates of applicants `interview`](#617-list-all-interview-dates-of-applicants-interview)
+     * 6.1.8. [Edit an existing applicant `edit`](#618-edit-an-existing-applicant-edit)
+     * 6.1.9. [Remind upcoming interviews `remind`](#619-remind-upcoming-interviews-remind)
    * 6.2. [Statistic Commands](#62-statistics-commands)
    * 6.3. [General Commands](#63-general-commands)
-     * 6.3.1. [Receive help during usage: `help`](#631-receive-help-during-usage--help)
-     * 6.3.2. [Exit HMHero: `exit`](#632-exit-hmhero--exit)
+     * 6.3.1. [Receive help during usage `help`](#631-receive-help-during-usage-help)
+     * 6.3.2. [Exit HMHero `exit`](#632-exit-hmhero-exit)
 7. [Command summary](#7-command-summary)
    * 7.1. [Applicant Commands](#71-applicant-commands)
    * 7.2. [Statistics Commands](#72-statistics-commands)
@@ -512,7 +512,7 @@ Address: 6 Sims Drive (s)543230; Status: APPLIED
 ---
 
 
-#### 6.1.2 Search for an applicant: `find`
+#### 6.1.2 Search for an applicant `find`
 
 **Format**: `find n/[KEY] p/[KEY] note/[KEY]`
 
@@ -575,7 +575,7 @@ find n/Thomas p/98765432
 ---
 
 
-#### 6.1.3. List all applicants: `list`
+#### 6.1.3. List all applicants `list`
 
 **Format**: `list`
 
@@ -622,7 +622,7 @@ Total Applicants: 4
 ---
 
 
-#### 6.1.4. Delete an applicant: `delete`
+#### 6.1.4. Delete an applicant `delete`
 
 **Format**: `delete n/NAME p/PHONE`
 
@@ -668,7 +668,7 @@ Address: 6 Sims Drive (s)543230; Status: REJECTED`
 ---
 
 
-#### 6.1.5. Advance an applicant: `advance`
+#### 6.1.5. Advance an applicant `advance`
 
 **Format**: `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]`
 
@@ -734,7 +734,7 @@ Thomas, ACCEPTED, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230
 ---
 
 
-#### 6.1.6. Reject an applicant: `reject`
+#### 6.1.6. Reject an applicant `reject`
 
 **Format**: `reject n/NAME p/PHONE`
 
@@ -781,7 +781,7 @@ Rejected Applicant: Thomas
 
 ---
 
-#### 6.1.7. List all interview dates of applicants: `interview`
+#### 6.1.7. List all interview dates of applicants `interview`
 
 **Format**: `interview`
 
@@ -822,7 +822,7 @@ Listed all shortlisted applicants
 ---
 
 
-#### 6.1.8. Edit an existing applicant: `edit`
+#### 6.1.8. Edit an existing applicant `edit`
 
 **Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATETIME] [note/NOTE]`
 
@@ -881,7 +881,7 @@ Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Notes: [Python] [Java]
 ---
 
 
-#### 6.1.9. Remind upcoming interviews: `remind`
+#### 6.1.9. Remind upcoming interviews `remind`
 - Will update soon
 
 [Back to Table of Contents](#user-guide)
@@ -898,7 +898,7 @@ Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Notes: [Python] [Java]
 
 ### 6.3. General Commands
 
-#### 6.3.1. Receive help during usage: `help`
+#### 6.3.1. Receive help during usage `help`
 
 **Format**: `help [COMMAND_WORD]`
 
@@ -960,7 +960,7 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
 
 ---
 
-#### 6.3.2. Exit HMHero: `exit`
+#### 6.3.2. Exit HMHero `exit`
 
 **Format**: `exit`
 
