@@ -183,7 +183,7 @@ public class ParserUtil {
     }
 
     /**
-     * Performs a map operation.
+     * Performs a map operation. We need this because {@code Optional.map} does not throw checked exceptions.
      *
      * @param src The raw input to pass, which may be an {@code Optional.empty()}
      * @param f   The parsing function to use against the raw input
