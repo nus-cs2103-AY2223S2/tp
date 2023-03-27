@@ -156,7 +156,7 @@ Highlight dangers and things to look out for. </div>
 
 Other than the icons mentioned above, there are also some other notations used in this guide:
 
-- <a href> Phrases underlined in blue </a> are hyperlinks that will bring you to another part of
+- <a href> Phrases coloured in blue </a> are hyperlinks that will bring you to another part of
 this documentation that is relevant to the phrase.
 
 [Back to Table of Contents](#hmhero-user-guide)
