@@ -108,12 +108,12 @@ If you followed the steps above correctly, you would see Bob added at the bottom
 #### 2. Viewing a person's modules
 
 To view Bob in the right info panel, enter `view 8`.
-His contact details will then be shown in the info panel, under the _contact_ tab. We use `8` here because Bob's index is 8 in the person list panel.
+His _contact_ details will then be shown in the info panel, under the _contact_ tab. We use `8` here because Bob's index is 8 in the person list panel.
 
 **Note:** The specified index used with the `view` command must correspond to the index of the person that you want to `view` in the person list panel.
 
 Now let's change to his _modules_ tab: enter `view m` in the command box.
-As shown below, he does not have any modules currently.
+As shown below, he does not have any _modules_ currently.
 
 <img src="images/tutorial/viewing-bobs-modules.png"/>
 
