@@ -126,7 +126,7 @@ public class UpdateProjectCommand extends Command {
         }
 
         Project updatedProject = createUpdatedProject(target.get(), desc);
-        if (model.hasProject(updatedProject)) {
+        if (desc.name.isPresent() && model.hasProject(updatedProject)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT,
                 new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
         }

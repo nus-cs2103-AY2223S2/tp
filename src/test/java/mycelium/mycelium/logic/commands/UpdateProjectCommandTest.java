@@ -3,8 +3,11 @@ package mycelium.mycelium.logic.commands;
 import static mycelium.mycelium.testutil.Assert.assertThrows;
 import static mycelium.mycelium.testutil.TypicalEntities.BARD;
 import static mycelium.mycelium.testutil.TypicalEntities.BING;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +17,7 @@ import mycelium.mycelium.model.AddressBook;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.ModelManager;
 import mycelium.mycelium.model.UserPrefs;
+import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.testutil.ProjectBuilder;
 import mycelium.mycelium.testutil.UpdateProjectDescriptorBuilder;
@@ -82,5 +86,21 @@ public class UpdateProjectCommandTest {
 
         assertFalse(model.hasProject(BING));
         assertTrue(model.hasProject(BARD));
+    }
+
+    @Test
+    public void execute_keepNameChangeField_success() throws CommandException {
+        var newDeadline = "30/12/1970";
+        var cmd = new UpdateProjectCommand(BING.getName(),
+            new UpdateProjectDescriptorBuilder().withDeadline(newDeadline).build());
+        model.addProject(BING);
+        cmd.execute(model);
+
+        var got = model.getUniqueProject(p -> p.isSame(BING));
+        // Check that the name remains the same
+        assertTrue(got.isPresent());
+        assertEquals(got.get().getName(), BING.getName());
+        // Check that the deadline has changed
+        assertEquals(got.get().getDeadline().get(), LocalDate.parse(newDeadline, Project.DATE_FMT));
     }
 }
