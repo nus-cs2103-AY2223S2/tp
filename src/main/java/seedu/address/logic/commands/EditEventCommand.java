@@ -10,9 +10,16 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.editeventcommand.EventDescriptor;
+import seedu.address.logic.parser.editpersoncommandsparser.PersonDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.OneTimeEvent;
+import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.event.fields.DateTime;
+import seedu.address.model.event.fields.Description;
+import seedu.address.model.event.fields.Recurrence;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.fields.*;
 
 import java.util.List;
 
@@ -31,7 +38,7 @@ public class EditEventCommand extends Command {
             + PREFIX_END_DATE_TIME + "2023-03-10 18:00"
             + PREFIX_RECURRENCE + "weekly ";
 
-    private static final String MESSAGE_SUCCESS = "Event edited: %1$s";
+    private static final String MESSAGE_EDIT_EVENT_SUCCESS = "Event edited: %1$s";
     private static final String MESSAGE_INVALID_EVENT = "This event does not exist in the Calendar!";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -57,12 +64,41 @@ public class EditEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         // TODO
         requireNonNull(model);
+        List<Event> eventList = model.getEvents();
 
-        return new CommandResult("");
+        if (index.getZeroBased() >= eventList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Event eventToEdit = eventList.get(index.getZeroBased());
+        Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
+
+        if (!model.hasEvent(eventToEdit)) {
+            throw new CommandException(MESSAGE_INVALID_EVENT);
+        }
+
+        model.setEvent(eventToEdit, editedEvent);
+        // model.updateEventList (Need to do)
+        return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 
     public EventDescriptor getEditEventDescriptor() {
         return this.editEventDescriptor;
+    }
+
+    protected static Event createEditedEvent(Event eventToEdit, EventDescriptor editEventDescriptor) {
+        assert eventToEdit != null;
+
+        Description Description = editEventDescriptor.getDescription().orElse(eventToEdit.getDescription());
+        DateTime startDateTime = editEventDescriptor.getStartDateTime().orElse(eventToEdit.getStartDateTime());
+        DateTime endDateTime = editEventDescriptor.getEndDateTime().orElse(eventToEdit.getEndDateTime());
+        Recurrence recurrence = editEventDescriptor.getRecurrence().orElse(eventToEdit.getRecurrence());
+
+        if (recurrence.isRecurring()) {
+            return new RecurringEvent(Description, startDateTime, endDateTime, recurrence);
+        } else {
+            return new OneTimeEvent(Description, startDateTime, endDateTime);
+        }
     }
 
     /**
