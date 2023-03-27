@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -20,6 +22,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.EduMate;
 import seedu.address.model.ReadOnlyEduMate;
+import seedu.address.model.commitment.Lesson;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
@@ -90,57 +93,26 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
-    /**
-     * Returns a module tag set containing the list of strings given.
-     * Splits a string by space, and processes the tags as varargs.
-     */
-    public static Set<ModuleTag> getModuleTagSetFromUnsplitted(String unsplittedString) {
-        return getModuleTagSet(unsplittedString.split(" "));
-    }
-
-    /**
-     * Returns a sample User singleton object.
-     */
-    public static User getSampleUser() {
-        return new User(new Name("Linus Richards"),
-                new Phone("90102030"),
-                new Email("linusrichards@gmail.com"),
-                new Address("National University of Singapore"),
-                new TelegramHandle("@linusrichards"),
-                new ContactIndex(0),
-                getGroupTagSet(),
-                getSampleModuleTags()
-        );
-    }
-
     private static Set<ModuleTag> getSampleModuleTags() {
-        String moduleTagsString = "CS2100 THURSDAY 11 12\n"
-                + "CS2100 WEDNESDAY 8 9\n"
-                + "CS2100 WEDNESDAY 16 18\n"
-                + "CS2100 THURSDAY 9 10\n"
-                + "CS2101 WEDNESDAY 11 12\n"
-                + "CS2101 FRIDAY 15 17\n"
-                + "CS2102 TUESDAY 10 11\n"
-                + "CS2102 TUESDAY 14 15\n"
-                + "CS2103 TUESDAY 10 12\n"
-                + "CS2103 FRIDAY 9 10\n"
-                + "CS2104 TUESDAY 17 19\n"
-                + "CS2105 MONDAY 13 14\n"
-                + "CS2105 TUESDAY 17 18";
+        Set<String> moduleTagsStrings = new HashSet<>();
+        moduleTagsStrings.add("CS2100 THURSDAY 11 12");
+        moduleTagsStrings.add("CS2100 WEDNESDAY 8 9");
+        moduleTagsStrings.add("CS2100 WEDNESDAY 16 18");
+        moduleTagsStrings.add("CS2101 WEDNESDAY 11 12");
+        moduleTagsStrings.add("CS2101 FRIDAY 15 17");
+        moduleTagsStrings.add("CS2102 TUESDAY 10 11");
+        moduleTagsStrings.add("CS2102 TUESDAY 14 15");
+        moduleTagsStrings.add("CS2103 TUESDAY 10 12");
+        moduleTagsStrings.add("CS2103 FRIDAY 9 10");
+        moduleTagsStrings.add("CS2104 TUESDAY 17 19");
+        moduleTagsStrings.add("CS2105 MONDAY 13 14");
+        moduleTagsStrings.add("CS2105 TUESDAY 17 1");
 
-        return Arrays.stream(moduleTagsString.split("\n"))
-                .map(SampleDataUtil::getModuleTagFromString)
+        return moduleTagsStrings.stream()
+                .map(SampleDataUtil::getModuleTagFromLine)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .collect(Collectors.toSet());
-    }
-
-    private static Optional<ModuleTag> getModuleTagFromString(String tag) {
-        try {
-            return Optional.of(ParserUtil.parseModuleTag(tag));
-        } catch (ParseException pe) {
-            return Optional.empty();
-        }
     }
 
     /**
@@ -165,19 +137,68 @@ public class SampleDataUtil {
         Address address = new Address(personDataList.get(3));
         TelegramHandle telegramHandle = new TelegramHandle(personDataList.get(4));
         Set<GroupTag> groupTagSet = getGroupTagSetFromUnsplitted(personDataList.get(5));
-        Set<ModuleTag> moduleTagSet = getModuleTagSetFromText(personDataList.get(6));
 
-        return new Person(name, phone, email, address,
-                telegramHandle, contactIndex, groupTagSet, moduleTagSet);
+        Person person = new Person(name, phone, email, address,
+                telegramHandle, contactIndex, groupTagSet, new HashSet<>());
+
+        Set<ModuleTag> moduleTagSet = getModuleTagSetFromLines(personDataList.get(6).split(","));
+
+        assignModuleTagsToPerson(person, moduleTagSet);
+
+        logger.info(String.format("Person parsed: %s", person));
+
+        return person;
     }
 
-    private static Set<ModuleTag> getModuleTagSetFromText(String text) {
-        String trimmedText = text.trim();
-        return Arrays.stream(trimmedText.split(","))
-                .map(SampleDataUtil::getModuleTagFromString)
+    /**
+     * Returns a sample User singleton object.
+     */
+    public static User getSampleUser() {
+        User user = new User(new Name("Linus Richards"),
+                new Phone("90102030"),
+                new Email("linusrichards@gmail.com"),
+                new Address("National University of Singapore"),
+                new TelegramHandle("@linusrichards"),
+                new ContactIndex(0),
+                getGroupTagSet(),
+                new HashSet<>()
+        );
+
+        assignModuleTagsToPerson(user, getSampleModuleTags());
+
+        return user;
+    }
+
+    private static Optional<ModuleTag> getModuleTagFromLine(String tag) {
+        logger.info(String.format("Tag to be formatted: %s", tag));
+
+        try {
+            ModuleTag moduleTag = ParserUtil.parseModuleTag(tag);
+            logger.info(String.format("Module Tag parsed: %s", moduleTag));
+            return Optional.of(moduleTag);
+        } catch (ParseException pe) {
+            return Optional.empty();
+        }
+    }
+
+    private static Set<ModuleTag> getModuleTagSetFromLines(String... lines) {
+        return Arrays.stream(lines)
+                .map(SampleDataUtil::getModuleTagFromLine)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .collect(Collectors.toSet());
+    }
+
+    private static void assignModuleTagToPerson(Person person, ModuleTag moduleTag) {
+        Set<Lesson> lessons = moduleTag.getImmutableLessons();
+        if (person.canAddCommitments(lessons)) {
+            person.addModuleTags(moduleTag);
+        }
+    }
+
+    private static void assignModuleTagsToPerson(
+            Person person, Collection<? extends ModuleTag> moduleTags) {
+        moduleTags.forEach(mt -> assignModuleTagToPerson(person, mt));
     }
 
     /**

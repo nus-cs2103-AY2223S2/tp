@@ -57,6 +57,7 @@ public class Person {
         this.telegramHandle = telegramHandle;
         this.contactIndex = contactIndex;
         this.groupTags.addAll(groupTags);
+
         if (canAddModuleTags(moduleTags)) {
             addModuleTags(moduleTags);
         }
@@ -158,7 +159,7 @@ public class Person {
      * They must also not clash with the timetable.
      * @param moduleTags Tags to be added to the person.
      */
-    public void addModuleTags(Set<ModuleTag> moduleTags) {
+    public void addModuleTags(Collection<? extends ModuleTag> moduleTags) {
         Set<Lesson> lessons = moduleTags.stream()
                 .map(ModuleTag::getImmutableLessons)
                 .flatMap(Set::stream)
@@ -173,6 +174,13 @@ public class Person {
 
         this.moduleTags.addAll(moduleTags);
         lessons.forEach(timetable::addCommitment);
+    }
+
+    /**
+     * Overloaded method for adding module tags.
+     */
+    public void addModuleTags(ModuleTag... moduleTags) {
+        addModuleTags(Set.of(moduleTags));
     }
 
     /**
