@@ -13,12 +13,12 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.recommender.location.LocationRecommender;
 import seedu.address.logic.recommender.location.LocationTracker;
+import seedu.address.logic.recommender.timing.TimingRecommender;
 import seedu.address.model.Model;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.recommendation.Recommendation;
 import seedu.address.model.time.TimePeriod;
-import seedu.address.model.timingrecommender.TimingRecommender;
 
 /**
  * Recommends meetup times and locations.

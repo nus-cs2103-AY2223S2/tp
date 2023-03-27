@@ -11,6 +11,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.EduMate;
 import seedu.address.model.Model;

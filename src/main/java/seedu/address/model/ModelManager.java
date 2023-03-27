@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -180,6 +181,14 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedRecommendation);
 
         eduMate.setRecommendation(target, editedRecommendation);
+    }
+
+    @Override
+    public void setRecommendations(List<Recommendation> recommendations) {
+        resetRecommendations();
+        for (Recommendation recommendation : recommendations) {
+            addRecommendation(recommendation);
+        }
     }
 
     @Override

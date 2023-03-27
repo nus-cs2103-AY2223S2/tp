@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.EduMate;
 import seedu.address.model.EduMateHistory;
@@ -218,6 +220,11 @@ public class AddCommandTest {
 
         @Override
         public void setRecommendation(Recommendation target, Recommendation editedRecommendation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setRecommendations(List<Recommendation> recommendations) {
             throw new AssertionError("This method should not be called.");
         }
 

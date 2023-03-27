@@ -36,9 +36,9 @@ import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.recommender.timing.exceptions.CommitmentClashException;
 import seedu.address.model.time.HourBlock;
 import seedu.address.model.timetable.Timetable;
-import seedu.address.model.timingrecommender.exceptions.CommitmentClashException;
 
 class TimetableTest {
 
