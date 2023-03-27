@@ -142,7 +142,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 > **Examples:**
 > - `find John` returns `john` and `John Doe`
 > - `find alex david` returns `Alex Yeoh`, `David Li`<br>
-    ![result for 'find alex david'](images/findAlexDavidResult.png)
+    ![result for 'find alex david'](images/findAlexDavidResult.jpg)
 
 ### view
 `view <PARAMETERS>`<br>
