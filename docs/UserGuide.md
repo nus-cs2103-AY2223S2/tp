@@ -40,7 +40,7 @@ This user guide will help you get up to speed in no time!
     * [Saving data](#saving-data)
     </details>
 - [FAQ](#faq)
-- [Command Summary](#command-summary)
+- [Features Summary](#features-summary)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -335,7 +335,7 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features Summary
-|                    Commands                     |                                Command Format                                 |                                                     Example Usage                                                     |
+|                    Features                     |                                Features Format                                |                                                     Example Usage                                                     |
 |:-----------------------------------------------:|:-----------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|
 |         [Add a Contact](#add-a-contact)         |                         `newcontact n/NAME p/NUMBER`                          |                                         `newcontact n/Deborah Tan p/91234567`                                         |
 |      [Clear all Events](#clear-all-events)      |                                    `clear`                                    |                                                        `clear`                                                        |
