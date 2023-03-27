@@ -1,14 +1,11 @@
 package vimification.commons.exceptions;
 
-/**
- * Signals that some given data does not fulfill some constraints.
- */
-public class IllegalValueException extends Exception {
+public class NonExistentFileException extends Exception {
 
     /**
      * @param message should contain relevant information on the failed constraint(s)
      */
-    public IllegalValueException(String message) {
+    public NonExistentFileException(String message) {
         super(message);
     }
 
@@ -16,7 +13,8 @@ public class IllegalValueException extends Exception {
      * @param message should contain relevant information on the failed constraint(s)
      * @param cause of the main exception
      */
-    public IllegalValueException(String message, Throwable cause) {
+    public NonExistentFileException(String message, Throwable cause) {
         super(message, cause);
     }
+
 }

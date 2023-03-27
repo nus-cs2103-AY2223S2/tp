@@ -2,11 +2,8 @@ package vimification.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
 
-import vimification.commons.exceptions.DataConversionException;
 import vimification.commons.util.JsonUtil;
-import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 
 /**
@@ -26,21 +23,12 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
     }
 
     @Override
-    public Optional<UserPrefs> readUserPrefs() throws DataConversionException {
-        return readUserPrefs(filePath);
-    }
-
-    /**
-     * Similar to {@link #readUserPrefs()}
-     * @param prefsFilePath location of the data. Cannot be null.
-     * @throws DataConversionException if the file format is not as expected.
-     */
-    public Optional<UserPrefs> readUserPrefs(Path prefsFilePath) throws DataConversionException {
-        return JsonUtil.readJsonFile(prefsFilePath, UserPrefs.class);
+    public UserPrefs readUserPrefs() throws IOException {
+        return JsonUtil.readJsonFile(filePath, UserPrefs.class);
     }
 
     @Override
-    public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
+    public void saveUserPrefs(UserPrefs userPrefs) throws IOException {
         JsonUtil.saveJsonFile(userPrefs, filePath);
     }
 

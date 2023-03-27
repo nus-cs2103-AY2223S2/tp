@@ -2,14 +2,11 @@ package vimification.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
 
-import vimification.commons.exceptions.DataConversionException;
-import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 
 /**
- * Represents a storage for {@link seedu.address.model.UserPrefs}.
+ * Represents a storage for {@link vimification.model.UserPrefs}.
  */
 public interface UserPrefsStorage {
 
@@ -19,18 +16,19 @@ public interface UserPrefsStorage {
     Path getUserPrefsFilePath();
 
     /**
-     * Returns UserPrefs data from storage.
-     *   Returns {@code Optional.empty()} if storage file is not found.
-     * @throws DataConversionException if the data in storage is not in the expected format.
+     * Returns UserPrefs data from storage. Returns {@code Optional.empty()} if storage file is not
+     * found.
+     *
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
+    UserPrefs readUserPrefs() throws IOException;
 
     /**
-     * Saves the given {@link vimification.model.ReadOnlyUserPrefs} to the storage.
+     * Saves the given {@link vimification.model.UserPrefs} to the storage.
+     *
      * @param userPrefs cannot be null.
-     * @throws IOException if there was any problem writing to the file.
+     * @throws IOException if there was any problem when writing to the file.
      */
-    void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
+    void saveUserPrefs(UserPrefs userPrefs) throws IOException;
 
 }

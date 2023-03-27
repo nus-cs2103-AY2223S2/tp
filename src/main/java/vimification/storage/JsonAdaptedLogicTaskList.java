@@ -70,6 +70,6 @@ public class JsonAdaptedLogicTaskList {
 
     @Override
     public String toString() {
-        return "JsonAdpatedLogicTaskList: [" + tasks + "]";
+        return "JsonAdpatedLogicTaskList: " + tasks;
     }
 }

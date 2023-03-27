@@ -32,7 +32,7 @@ public class JsonAdaptedMacroMap {
 
     @Override
     public String toString() {
-        return "JsonAdpatedMacroMap: [" + definedMacros + "]";
+        return "JsonAdpatedMacroMap: " + definedMacros;
     }
 
 }
