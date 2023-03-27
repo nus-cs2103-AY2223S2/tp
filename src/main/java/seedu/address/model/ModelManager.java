@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -15,7 +14,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 //import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.exceptions.SessionNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,12 +24,12 @@ import seedu.address.model.tag.Tag;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final Predicate<Session> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
 
     private final VersionedAddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Tag> filteredTags;
-
     private final FilteredList<Session> filteredSessions;;
     //private final ObservableList<CalendarEvent> calendarEventList;
 
@@ -169,6 +170,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Session> getFilteredSessionList() {
+        return filteredSessions;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
@@ -178,6 +184,12 @@ public class ModelManager implements Model {
     public void updateFilteredTagList(Predicate<Tag> predicate) {
         requireNonNull(predicate);
         filteredTags.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredSessionList(Predicate<Session> predicate) {
+        requireNonNull(predicate);
+        filteredSessions.setPredicate(predicate);
     }
 
     /*@Override
@@ -195,6 +207,33 @@ public class ModelManager implements Model {
     @Override
     public void updateCalendarEventList() {
         //getCalendarEventList(filteredPersons);
+    }
+
+    @Override
+    public boolean hasSession(Session toAdd) {
+        return addressBook.hasSession(toAdd);
+    }
+
+    @Override
+    public void addSession(Session toAdd) {
+        addressBook.addSession(toAdd);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+    }
+
+    @Override
+    public void removeSession(Session toRemove) {
+        addressBook.removeSession(toRemove);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+    }
+
+    @Override
+    public void addStudentToSession(Person person, Session session) {
+        addressBook.addStudentToSession(person, session);
+    }
+
+    @Override
+    public void removeStudentFromSession(Person person, Session session) {
+        addressBook.removeStudentFromSession(person, session);
     }
 
     @Override

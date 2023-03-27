@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 //import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
+import seedu.address.model.session.Session;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -83,6 +84,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered session list */
+    ObservableList<Session> getFilteredSessionList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -124,5 +128,17 @@ public interface Model {
 
     //ObservableList<CalendarEvent> getFilteredCalendarEventList();
 
+    void updateFilteredSessionList(Predicate<Session> predicate);
+
     void updateCalendarEventList();
+
+    boolean hasSession(Session toAdd);
+
+    void addSession(Session toAdd);
+
+    void removeSession(Session toRemove);
+
+    void addStudentToSession(Person person, Session session);
+
+    void removeStudentFromSession(Person person, Session session);
 }

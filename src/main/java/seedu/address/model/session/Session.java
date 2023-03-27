@@ -1,5 +1,7 @@
 package seedu.address.model.session;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -7,9 +9,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
-
-import seedu.address.commons.exceptions.IllegalValueException;
 
 
 /**
@@ -23,7 +24,7 @@ public class Session implements Comparable<Session> {
     private String command;
     private final String startDateTime;
     private final String endDateTime;
-    private final Name name;
+    private final SessionName name;
     private final int id;
     private Location location;
     private HashMap<Integer, Boolean> attendanceMap;
@@ -33,18 +34,97 @@ public class Session implements Comparable<Session> {
      * @param startDateTime
      * @param endDateTime
      */
-    public Session(String startDateTime, String endDateTime, Name name, Location location) {
+    public Session(String startDateTime, String endDateTime, SessionName name, Location location) {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.name = name;
         this.location = location;
         this.id = name.hashCode();
+        this.attendanceMap = new HashMap<>();
         if (!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)) {
             throw new IllegalArgumentException("Date Time should be in the format dd-MM-yyyy HH:mm");
         }
         if (!this.isValidSession()) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
+    }
+
+    public Session(String startDateTime, String endDateTime, SessionName name, Location location, int id) {
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.name = name;
+        this.location = location;
+        this.id = id;
+        this.attendanceMap = new HashMap<>();
+        if (!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)) {
+            throw new IllegalArgumentException("Date Time should be in the format dd-MM-yyyy HH:mm");
+        }
+        if (!this.isValidSession()) {
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    public Session(String startDateTime, String endDateTime, SessionName name, Location location, int id, List<IdBooleanPair> idBooleanPairs) {
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.name = name;
+        this.location = location;
+        this.id = id;
+
+        HashMap<Integer, Boolean> attedanceMap = new HashMap<>();
+
+        for (IdBooleanPair pair : idBooleanPairs) {
+            attedanceMap.put(pair.id, pair.isPresent);
+        }
+
+        this.attendanceMap = attedanceMap;
+
+        if (!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)) {
+            throw new IllegalArgumentException("Date Time should be in the format dd-MM-yyyy HH:mm");
+        }
+        if (!this.isValidSession()) {
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * adds student to a session
+     * @param id
+     */
+    public void addStudentToSession(int id) {
+        attendanceMap.put(id, false);
+    }
+
+    /**
+     * removes student to a session
+     * @param id
+     */
+    public void removeStudentToSession(int id) {
+        attendanceMap.remove(id);
+    }
+
+    /**
+     * sets student as present
+     * @param id
+     */
+    public void markStudentPresent(int id) {
+        attendanceMap.put(id, true);
+    }
+
+    /**
+     * sets student as absent
+     * @param id
+     */
+    public void markStudentAbsent(int id) {
+        attendanceMap.put(id, false);
+    }
+
+    /**
+     * checks if session contains student
+     * @param id
+     */
+    public boolean contains(int id) {
+        return attendanceMap.containsKey(id);
     }
 
 //    /**
@@ -214,6 +294,14 @@ public class Session implements Comparable<Session> {
         return builder.toString();
     }
 
+    public String getName() {
+        return name.get();
+    }
+
+    public String getLocation() {
+        return location.get();
+    }
+
     public String getDate() {
         LocalDateTime dateTime = LocalDateTime.parse(startDateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
         return dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
@@ -244,5 +332,9 @@ public class Session implements Comparable<Session> {
         LocalDateTime otherStartDateTime = LocalDateTime.parse(other.startDateTime, DATE_TIME_FORMATTER);
 
         return thisStartDateTime.compareTo(otherStartDateTime);
+    }
+
+    public String getId() {
+        return String.valueOf(id);
     }
 }
