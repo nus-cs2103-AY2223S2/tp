@@ -44,9 +44,13 @@ Some special notations are used throughout this guide:
 
 - For detailed instructions about the features we offer and how to use each command, please refer to [Features](#6-features).
 
+- For detailed information about the different information fields that you can assign to a contact, please refer to [Information Fields & Prefixes](#7-information-fields--prefixes).
+
 - Refer to the [glossary](#11-glossary) for definitions of terms used in ConnectUS.
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to top of section](#3-using-this-guide)
+
+[↑ Back to table of contents](#2-table-of-contents)
 
 ## 4. Installation
 
@@ -66,7 +70,9 @@ If you have yet to install ConnectUS, simply follow these steps to set it up:
 
 Congratulations! You have successfully set up ConnectUS.
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to top of section](#4-installation)
+
+[↑ Back to table of contents](#2-table-of-contents)
 
 ## 5. Quick Start Guide
 
@@ -121,11 +127,24 @@ Type the command in the command box and press Enter to execute it. e.g. typing *
 
 Refer to the [Features](#6-features) below for details of each command.
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to top of section](#5-quick-start-guide)
+
+[↑ Back to table of contents](#2-table-of-contents)
 
 ---
 
 ## 6. Features
+
+- [6.1 Viewing help: `help`](#61-viewing-help--help)
+- [6.2 Adding a contact: `add`](#62-adding-a-contact-add)
+- [6.3 Listing all contacts : `list`](#63-listing-all-contacts--list)
+- [6.4 Editing a contact : `edit`](#64-editing-a-contact--edit)
+- [6.5 Deleting a contact : `delete`](#65-deleting-a-contact--delete)
+- [6.6 Searching for contact information : `search`](#66-searching-for-contact-information--search)
+- [6.7 Clearing all entries : `clear`](#67-clearing-all-entries--clear)
+- [6.8 Exiting the program : `exit`](#68-exiting-the-program--exit)
+- [6.9 Saving the data](#69-saving-the-data)
+- [6.10 Editing the data file](#610-editing-the-data-file)
 
 ### 6.1 Viewing help : `help`
 
@@ -141,7 +160,7 @@ Format: `help [COMMAND]`
 
 Examples: `help`, `help add`, `help list`
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to feature list](#6-features)
 
 ### 6.2 Adding a contact: `add`
 
@@ -161,7 +180,7 @@ Examples:
 
 Please refer to **[this section](#7-additional-information-regarding-specific-fields)** for details on how to use each information field prefix.
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to feature list](#6-features)
 
 ### 6.3 Listing all contacts : `list`
 
@@ -169,7 +188,7 @@ Shows a list of all contact in the ConnectUS app.
 
 Format: `list`
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to feature list](#6-features)
 
 ### 6.4 Editing a contact : `edit`
 
@@ -189,7 +208,7 @@ Examples:
 
 Please refer to **[this section](#7-additional-information-regarding-specific-fields)** for details on how to use each information field prefix.
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to feature list](#6-features)
 
 ### 6.5 Deleting a contact : `delete`
 
@@ -203,9 +222,9 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the ConnectUS app.
-* `search Betsy` followed by `delete 1` deletes the 1st contact in the results of the `search` command. 
+* `search Betsy` followed by `delete 1` deletes the 1st contact in the results of the `search` command.
 
-  [↑ Back to top](#2-table-of-contents)
+[↑ Back to feature list](#6-features)
 
 ### 6.6 Searching for contact information : `search`
 
@@ -219,7 +238,7 @@ Examples:
 
 * The keywords are case-insensitive! This means that `search january`, `search JANUARY` and `search jAnUaRy` will all return the contacts whose information fields contain the keyword `january`.
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to feature list](#6-features)
 
 ### 6.7 Clearing all entries : `clear`
 
@@ -227,7 +246,7 @@ Clears all contacts from the ConnectUS app.
 
 Format: `clear`
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to feature list](#6-features)
 
 ### 6.8 Exiting the program : `exit`
 
@@ -235,13 +254,13 @@ Exits the program.
 
 Format: `exit`
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to feature list](#6-features)
 
 ### 6.9 Saving the data
 
 ConnectUS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to feature list](#6-features)
 
 ### 6.10 Editing the data file
 
@@ -251,16 +270,30 @@ ConnectUS data is saved as a JSON file `[JAR file location]/data/ConnectUS.json`
 If your changes to the data file makes its format invalid, ConnectUS will discard all data and start with an empty data file at the next run.
 </div>
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to feature list](#6-features)
 
-## 7. Additional information regarding specific fields
+[↑ Back to table of contents](#2-table-of-contents)
+
+## 7. Information Fields & Prefixes
+
+- [7.1 Name](#71-name)
+- [7.2 Phone](#72-phone)
+- [7.3 Email](#73-email)
+- [7.4 Address](#74-address)
+- [7.5 Instagram](#75-instagram)
+- [7.6 Telegram](#76-telegram)
+- [7.7 WhatsApp](#77-whatsapp)
+- [7.8 Birthday](#78-birthday)
+- [7.9 Module](#79-module)
+- [7.10 CCA](#710-cca)
+- [7.11 Tag](#711-tag)
 
 ### 7.1 Name:
 * Name is a *compulsory* field, i.e. a contact cannot exist if it does not have a name.
 * The prefix for a name is `n/`.
 * Names should only contain alphanumeric characters and spaces.
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to prefix list](#7-information-fields--prefixes)
 
 ### 7.2 Phone:
 * Phone is an *optional* field, i.e. a contact can exist even if it does not have a phone number.
@@ -268,7 +301,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 * Phone numbers should only contain numeric characters.
 * Phone numbers should be at least 3 digits long.
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to prefix list](#7-information-fields--prefixes)
 
 ### 7.3 Email
 * Email is an *optional* field, i.e. a contact can exist even if it does not have an email.
@@ -281,14 +314,14 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
         - have each domain label start and end with alphanumeric characters
         - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to prefix list](#7-information-fields--prefixes)
 
 ### 7.4 Address
 * Address is an *optional* field, i.e. a contact can exist even if it does not have an address.
 * The prefix for an address is `a/`.
 * Addresses can take any values, including special characters.
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to prefix list](#7-information-fields--prefixes)
 
 ### 7.5 Instagram
 * Instagram is an *optional* field, i.e. a contact can exist even if it does not have an Instagram.
@@ -298,7 +331,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
     * The dots `.` must not be consecutive or at the end.
     * The username should contain at most 30 characters.
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to prefix list](#7-information-fields--prefixes)
 
 ### 7.6 Telegram
 * Telegram is an *optional* field, i.e. a contact can exist even if it does not have a Telegram.
@@ -307,7 +340,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
     * The username should only contain alphanumeric characters and the special character `_`.
     * The username should contain at least 5 characters.
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to prefix list](#7-information-fields--prefixes)
 
 ### 7.7 WhatsApp
 * WhatsApp is an *optional* field, i.e. a contact can exist even if it does not have a WhatsApp.
@@ -316,7 +349,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
     * Phone numbers should only contain numeric characters.
     * Phone numbers should be at least 3 digits long.
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to prefix list](#7-information-fields--prefixes)
 
 ### 7.8 Birthday
 * Birthday is an *optional* field, i.e. a contact can exist even if it does not have a birthday.
@@ -325,29 +358,32 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
   * `01/01/2000` would correspond to January 1st, 2000
   * `16/05/1990` would correspond to May 16th, 1990.
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to prefix list](#7-information-fields--prefixes)
 
-### 7.9 Tag
-* Tag is an *optional* field, i.e. a contact can exist even if it does not have a tag.
-* The prefix for a tag is `t/`.
-* Tag names should be alphanumeric.
-* A contact can have any number of tags assigned to it.
-
-[↑ Back to top](#2-table-of-contents)
-
-### 7.10 Module
+### 7.9 Module
 * Module is an *optional* field, i.e. a contact can exist even if it does not have a module.
 * The prefix for a module is `mod/`.
 * Module names should be alphanumeric.
 * A contact can have any number of modules assigned to it.
 
-[↑ Back to top](#2-table-of-contents)
+[↑ Back to prefix list](#7-information-fields--prefixes)
 
-### 7.11 CCA
+### 7.10 CCA
 * CCA is an *optional* field, i.e. a contact can exist even if it does not have a CCA.
 * The prefix for a CCA is `cca/`.
 * CCA names should be alphanumeric.
 * A contact can have any number of CCAs assigned to it.
+
+[↑ Back to prefix list](#7-information-fields--prefixes)
+
+### 7.11 Tag
+* Tag is an *optional* field, i.e. a contact can exist even if it does not have a tag.
+* The prefix for a tag is `t/`.
+* Tag names should be alphanumeric.
+* A contact can have any number of tags assigned to it.
+* Tags are used for assigning other information to a contact, e.g. their Year of Study, Faculty, Company etc.
+
+[↑ Back to prefix list](#7-information-fields--prefixes)
 
 [↑ Back to top](#2-table-of-contents)
 
