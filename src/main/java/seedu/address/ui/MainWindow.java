@@ -95,7 +95,7 @@ public class MainWindow extends UiPart<Stage> {
         userProfilePanel = new UserProfilePanel(logic);
         userProfilePlaceholder.getChildren().add(userProfilePanel.getRoot());
 
-        meetListPanel = new MeetListPanel(logic.getObservablePersonList());
+        meetListPanel = new MeetListPanel(logic.getObservableRecommendationList());
         meetListPanelPlaceholder.getChildren().add(meetListPanel.getRoot());
 
         setUserName(logic.getUser());

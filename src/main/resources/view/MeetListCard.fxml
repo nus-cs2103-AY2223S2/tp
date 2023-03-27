@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="meetCardPane" fx:id="meetCardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -23,12 +23,12 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="meet" styleClass="person-card-upper-box-element" text="\$first" wrapText="true">
+                <Label fx:id="name" styleClass="person-card-upper-box-element" text="\$first" wrapText="true">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font></Label>
             </HBox>
-            <FlowPane fx:id="allTags">
+            <FlowPane fx:id="allTimings">
                 <VBox.margin>
                     <Insets bottom="5.0" top="5.0" />
                 </VBox.margin>
