@@ -88,7 +88,7 @@ public class BookmarkListPanel extends UiPart<Region> {
      */
     class BookmarkListViewCell extends ListCell<Bookmark> {
         @Override
-        protected void updateItem(Bookmark bookmark, boolean empty)  {
+        protected void updateItem(Bookmark bookmark, boolean empty) {
             super.updateItem(bookmark, empty);
             try {
                 if (empty || bookmark == null) {

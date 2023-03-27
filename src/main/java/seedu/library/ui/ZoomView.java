@@ -1,15 +1,12 @@
 package seedu.library.ui;
 
 import java.awt.Desktop;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Comparator;
-
-
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
@@ -47,6 +44,10 @@ public class ZoomView extends UiPart<Region> {
     private Hyperlink urlLink;
     @FXML
     private Label urlView;
+    @FXML
+    private ImageView ratingStar;
+    @FXML
+    private Label labelHeader;
 
 
 
@@ -56,7 +57,7 @@ public class ZoomView extends UiPart<Region> {
      *
      * @param bookmark a single Bookmark object
      */
-    public ZoomView(Bookmark bookmark)  {
+    public ZoomView(Bookmark bookmark) {
         super(FXML);
 
         try {
@@ -73,10 +74,11 @@ public class ZoomView extends UiPart<Region> {
             InputStream image = new FileInputStream("src/main/resources/images/default-avatar.png");
             avatar.setImage(new Image(image));
             urlLink.setOnAction(e -> {
-               openLink(urlLink.getText());
+                openLink(urlLink.getText());
             });
+            rate(bookmark);
         }
-        catch (IOException  e) {
+        catch (IOException e) {
             System.out.println("error");
         }
 
@@ -94,14 +96,59 @@ public class ZoomView extends UiPart<Region> {
      * Constructs a ZoomView that is empty
      *
      */
-    public ZoomView()  {
+    public ZoomView() {
         super(FXML);
+
         try {
             InputStream image = new FileInputStream("src/main/resources/images/default-avatar.png");
             avatar.setImage(new Image(image));
             hideFields();
         }
         catch (IOException e) {
+            System.out.println("IO error");
+        }
+
+    }
+    /**
+     * Helps set rating image in bookmarkcard
+     * @param bookmark book to get rating value from
+     */
+    public void rate(Bookmark bookmark) {
+        try {
+            InputStream rating1 = new FileInputStream("src/main/resources/images/Rating1.png");
+            InputStream rating2 = new FileInputStream("src/main/resources/images/Rating2.png");
+            InputStream rating3 = new FileInputStream("src/main/resources/images/Rating3.png");
+            InputStream rating4 = new FileInputStream("src/main/resources/images/Rating4.png");
+            InputStream rating5 = new FileInputStream("src/main/resources/images/Rating5.png");
+            String rating = bookmark.getRating().toString();
+
+            if(rating.equals("1")) {
+                ratingStar.setImage(new Image(rating1));
+                ratingStar.setVisible(true);
+            }
+            else if(rating.equals("2")) {
+                ratingStar.setImage(new Image(rating2));
+                ratingStar.setVisible(true);
+            }
+            else if(rating.equals("3")) {
+                ratingStar.setImage(new Image(rating3));
+                ratingStar.setVisible(true);
+            }
+            else if(rating.equals("4")) {
+                ratingStar.setImage(new Image(rating4));
+                ratingStar.setVisible(true);
+            }
+            else if(rating.equals("5")) {
+                ratingStar.setImage(new Image(rating5));
+                ratingStar.setVisible(true);
+            }
+            else {
+                ratingStar.setVisible(false);
+            }
+
+        }
+        catch (IOException e) {
+            System.out.println("IO error");
 
         }
 
@@ -120,6 +167,8 @@ public class ZoomView extends UiPart<Region> {
         zoomTag.setVisible(false);
         urlLink.setVisible(false);
         urlView.setVisible(false);
+        ratingStar.setVisible(false);
+        labelHeader.setVisible(false);
 
     }
 
