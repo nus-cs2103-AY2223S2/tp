@@ -344,6 +344,9 @@ to any flights or not and indicate its availability.
 
 This command is the same across `crew`, `pilot`, and `plane`.
 
+Note that the indexing for `resource_index` starts from 0.
+
+
 <div style="page-break-after: always;"></div>
 
 ## Application Commands
