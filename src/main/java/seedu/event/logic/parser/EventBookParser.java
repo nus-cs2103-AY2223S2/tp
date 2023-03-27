@@ -19,7 +19,6 @@ import seedu.event.logic.commands.LinkContactCommand;
 import seedu.event.logic.commands.ListCommand;
 import seedu.event.logic.commands.MarkCommand;
 import seedu.event.logic.commands.NewContactCommand;
-import seedu.event.logic.commands.RateCommand;
 import seedu.event.logic.commands.RemindCommand;
 import seedu.event.logic.commands.RevenueCommand;
 import seedu.event.logic.commands.UnmarkCommand;
@@ -88,9 +87,6 @@ public class EventBookParser {
 
         case NewContactCommand.COMMAND_WORD:
             return new NewContactCommandParser().parse(arguments);
-
-        case RateCommand.COMMAND_WORD:
-            return new RateCommandParser().parse(arguments);
 
         case RemindCommand.COMMAND_WORD:
             return new RemindCommandParser(clock).parse(arguments);

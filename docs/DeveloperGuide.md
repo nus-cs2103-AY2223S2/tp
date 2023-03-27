@@ -601,7 +601,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC7 - Display Rate**
+<!-- **Use case: UC7 - Display Rate**
 
 **MSS**
 
@@ -621,9 +621,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. User enters an invalid index.
    * 2b1. System displays that the index is invalid and to try again.
 
-      Use case resumes at step 2.
+      Use case resumes at step 2. -->
 
-**Use case: UC8 - Add Contact**
+**Use case: UC7 - Add Contact**
 
 **MSS**
 
@@ -644,7 +644,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC9 - Add Date to Event**
+**Use case: UC8 - Add Date to Event**
 
 **MSS**
 
@@ -676,7 +676,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC10 - Edit Event**
+**Use case: UC9 - Edit Event**
 
 **MSS**
 
