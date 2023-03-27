@@ -11,6 +11,7 @@ import seedu.address.logic.commands.delete.DeleteLectureCommand;
 import seedu.address.logic.commands.delete.DeleteModuleCommand;
 import seedu.address.logic.commands.delete.DeleteMultipleLecturesCommand;
 import seedu.address.logic.commands.delete.DeleteMultipleModulesCommand;
+import seedu.address.logic.commands.delete.DeleteMultipleVideosCommand;
 import seedu.address.logic.commands.delete.DeleteVideoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.LectureName;
@@ -42,8 +43,15 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 if (lectureNameOptional.isPresent()) {
 
                     LectureName lectureName = new LectureName(lectureNameOptional.get());
-                    VideoName videoName = new VideoName(preamble);
-                    return new DeleteVideoCommand(moduleCode, lectureName, videoName);
+
+                    VideoName[] videoNames = MultipleEventsParser.parseVideoNames(preamble);
+
+                    if (videoNames.length > 1) {
+                        return new DeleteMultipleVideosCommand(moduleCode, lectureName, videoNames);
+                    } else {
+                        return new DeleteVideoCommand(moduleCode, lectureName, videoNames[0]);
+                    }
+
                 } else {
                     LectureName[] lectureNames = MultipleEventsParser.parseLectureNames(preamble);
 
@@ -53,6 +61,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                         return new DeleteLectureCommand(moduleCode, lectureNames[0]);
                     }
                 }
+
             } else {
                 ModuleCode[] moduleCodes = MultipleEventsParser.parseModuleCodes(preamble);
 

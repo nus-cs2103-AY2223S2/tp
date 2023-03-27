@@ -6,9 +6,11 @@ import java.util.stream.Collectors;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.video.VideoName;
 
 /**
- * An abstract class specifically for delete commands that delete multiple of specified objects at one time
+ * An interface containing methods specifically for commands that perform actions on
+ * multiple specified objects of the same type at one time
  */
 public interface MultipleEventsParser {
 
@@ -29,8 +31,8 @@ public interface MultipleEventsParser {
      * Parses string into Array of {@code ModuleCode}
      * module codes in string are separated by "," delimiter
      *
-     * @param preamble string input of {@code ModuleCode}s
-     * @return array of {@code ModuleCode}
+     * @param preamble string input of {@code ModuleCode} objects
+     * @return array of {@code ModuleCode} objects
      * @throws ParseException if any module code in string is of invalid format
      */
     public static ModuleCode[] parseModuleCodes(String preamble) throws ParseException {
@@ -45,12 +47,12 @@ public interface MultipleEventsParser {
     }
 
     /**
-     * Parses string into Array of {@code LectureName}
+     * Parses string into Array of {@code LectureName} objects
      * lecture names in string are separated by "," delimiter
      *
      * @param preamble string input of {@code LectureName}s
-     * @return array of {@code LectureName}
-     * @throws ParseException if any lecture name in string contains any invalid characters
+     * @return array of {@code LectureName} objects
+     * @throws ParseException if any lecture name in string contains any invalid characters (excluding ',')
      */
     public static LectureName[] parseLectureNames(String preamble) throws ParseException {
         String[] lectureNameStrings = preamble.split(",");
@@ -61,5 +63,24 @@ public interface MultipleEventsParser {
             lectureNames[i] = ParserUtil.parseLectureName(lectureNameStrings[i]);
         }
         return lectureNames;
+    }
+
+    /**
+     * Parses string into array of {@code VideoName} objects
+     * video names in string are separated by "," delimiter
+     *
+     * @param preamble string input of {@code VideoName}s
+     * @return array of {@code VideoName} objects
+     * @throws ParseException if any video name in string contains any invalid characters (excluding ',')
+     */
+    public static VideoName[] parseVideoNames(String preamble) throws ParseException {
+        String[] videoNameStrings = preamble.split(",");
+        int numOfVideoNames = videoNameStrings.length;
+        VideoName[] videoNames = new VideoName[numOfVideoNames];
+
+        for (int i = 0; i < numOfVideoNames; i++) {
+            videoNames[i] = ParserUtil.parseVideoName(videoNameStrings[i]);
+        }
+        return videoNames;
     }
 }

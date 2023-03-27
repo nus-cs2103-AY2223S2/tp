@@ -27,6 +27,9 @@ public class Messages {
     public static final String MESSAGE_LECTURES_DO_NOT_EXIST = "Lectures "
             + String.format(MESSAGE_DO_NOT_EXIST, "%1$s")
             + " in Module %2$s";
+    public static final String MESSAGE_VIDEOS_DO_NOT_EXIST = "Videos "
+            + String.format(MESSAGE_DO_NOT_EXIST, "%1$s")
+            + " in Lecture %3$s of Module %2$s";
 
     public static final String MESSAGE_CAN_DO_MULTIPLE = "(can be comma \",\" separated to include multiple)";
 
