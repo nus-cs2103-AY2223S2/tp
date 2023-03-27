@@ -21,7 +21,8 @@ public class VimificationParser implements LogicCommandParser<LogicCommand> {
                     .map(input -> macroMap.get(input).orElse(input))
                     .takeNext(ApplicativeParser.choice(
                             CreateCommandParser.getInstance().cast().getInternalParser(),
-                            DeleteCommandParser.getInstance().cast().getInternalParser()));
+                            DeleteCommandParser.getInstance().cast().getInternalParser()))
+                    .throwIfFail("Unknown command");
 
     private VimificationParser(MacroMap macroMap) {
         this.macroMap = macroMap;
