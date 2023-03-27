@@ -509,8 +509,8 @@ The `edit` command allows the user to edit an existing contact in EduMate.
 
 :information_source: **Command Formats:** <br>
 
-* `edit z/FIELD`: Edits the user details. <br>
-* `edit INDEX z/FIELD`: Edits the details of the contact at the specified `INDEX`. <br>
+<li>`edit z/FIELD`: Edits the user details. </li>
+<li>`edit INDEX z/FIELD`: Edits the details of the contact at the specified `INDEX`.</li>
 
 </div>
 
@@ -724,7 +724,7 @@ The `exit` command allows users to exit the EduMate Application via the command 
 
 :information_source: **Command Formats:**
 
-* `exit`: Exits the EduMate Application.
+* * `exit`: Exits the EduMate Application.
 
 </div>
 
