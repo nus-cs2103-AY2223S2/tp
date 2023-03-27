@@ -170,30 +170,30 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, editedPerson);
     }
 
-    public void addStudentToSession(Person person, Session session) {
+    public void addPersonToSession(Person person, Session session) {
         requireAllNonNull(person, session);
         Session newSession = session;
-        int personId = person.getId();
+        String name = person.getName().toString();
         if (!sessions.contains(session)) {
             throw new SessionNotFoundException();
         }
 
-        newSession.addStudentToSession(personId);
+        newSession.addPersonToSession(name);
         sessions.setSession(session, newSession);
     }
 
-    public void removeStudentFromSession(Person person, Session session) {
+    public void removePersonFromSession(Person person, Session session) {
         requireAllNonNull(person, session);
-        int personId = person.getId();
+        String name = person.getName().toString();
         if (!sessions.contains(session)) {
             throw new SessionNotFoundException();
         }
-        if (!session.contains(personId)) {
+        if (!session.contains(name)) {
             throw new PersonNotFoundException();
         }
 
         Session newSession = session;
-        newSession.addStudentToSession(personId);
+        newSession.addPersonToSession(name);
         sessions.setSession(session, newSession);
     }
 
