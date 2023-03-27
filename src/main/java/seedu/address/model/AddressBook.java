@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionName;
 import seedu.address.model.session.UniqueSessionList;
 import seedu.address.model.session.exceptions.SessionNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -170,6 +172,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, editedPerson);
     }
 
+    public void setSession(Session target, Session editedSession) {
+        requireNonNull(editedSession);
+
+        sessions.setSession(target, editedSession);
+    }
+
     public void addPersonToSession(Person person, Session session) {
         requireAllNonNull(person, session);
         Session newSession = session;
@@ -248,5 +256,14 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void sort(int targetField) {
         persons.sort(targetField);
+    }
+
+    public Session getSessionFromName(SessionName name) throws PersonNotFoundException {
+        for(Session session: sessions) {
+            if (name.sessionName.equals(session.getName().toString())) {
+                return session;
+            }
+        }
+        throw new SessionNotFoundException();
     }
 }

@@ -7,8 +7,10 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 //import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -98,6 +100,8 @@ public interface Model {
      */
     void sortAddressBook(int targetField);
 
+    void setSession(Session target, Session editedPerson);
+
     /**
      * Commits the current state of the address book.
      * Removes all elements of the addressBookStateList beyond the current pointer.
@@ -141,4 +145,6 @@ public interface Model {
     void addPersonToSession(Person person, Session session);
 
     void removePersonFromSession(Person person, Session session);
+
+    Session getSessionFromName(SessionName name);
 }

@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,11 +50,6 @@ public class Session implements Comparable<Session> {
         if (!this.isValidSession()) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
-        attendanceMap.put("ant", true);
-        attendanceMap.put("bear", false);
-        attendanceMap.put("cat", true);
-        attendanceMap.put("dog", true);
-        System.out.println(this.toString());
     }
 
     public Session(String startDateTime, String endDateTime, SessionName name, Location location, int id) {
@@ -370,5 +367,22 @@ public class Session implements Comparable<Session> {
 
     public String getId() {
         return String.valueOf(id);
+    }
+
+    public ArrayList<NameBooleanPair> getMap() {
+        ArrayList<NameBooleanPair> map = new ArrayList<>();
+        for (Map.Entry<String, Boolean> set :
+                attendanceMap.entrySet()) {
+            NameBooleanPair toAdd =
+                    new NameBooleanPair(
+                            set.getKey(),
+                            set.getValue());
+            map.add(toAdd);
+        }
+        return map;
+    }
+
+    public HashMap<String, Boolean> getHashMap() {
+        return attendanceMap;
     }
 }

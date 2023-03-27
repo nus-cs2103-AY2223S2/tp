@@ -25,7 +25,7 @@ import seedu.address.model.tag.Tag;
  */
 public class GroupAddCommand extends Command {
 
-    public static final String COMMAND_WORD = "groupadd";
+    public static final String COMMAND_WORD = "group-add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a person of index i to a group specified. "
             + "Parameters: INDEX (must be a positive integer) "

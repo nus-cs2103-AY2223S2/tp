@@ -51,7 +51,7 @@ public class SessionName {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SessionName // instanceof handles nulls
-                && sessionName.equals(((SessionName) other).sessionName)); // state check
+                && sessionName.equalsIgnoreCase(((SessionName) other).sessionName)); // state check
     }
 
     @Override

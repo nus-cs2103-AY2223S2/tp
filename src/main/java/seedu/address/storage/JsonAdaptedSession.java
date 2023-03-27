@@ -2,10 +2,16 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.session.NameBooleanPair;
 import seedu.address.model.session.SessionName;
 import seedu.address.model.session.Location;
 import seedu.address.model.session.Session;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class JsonAdaptedSession {
     static final String MISSING_FIELD_MESSAGE_FORMAT = "Session's %s field is missing!";
@@ -14,19 +20,24 @@ public class JsonAdaptedSession {
     private final String name;
     private final String id;
     private final String location;
-    //private final HashMap<Integer, Boolean> attendanceMap = new HashMap<>();
+    private final List<JsonAdaptedNameBooleanPair> attendanceMap = new ArrayList<>();
 
     @JsonCreator
     public JsonAdaptedSession(@JsonProperty("name") String name,
                              @JsonProperty("startTime") String startDateTime,
                              @JsonProperty("endTime") String endDateTime,
                              @JsonProperty("location") String location,
-                             @JsonProperty("id") String id) {
+                             @JsonProperty("id") String id,
+                              @JsonProperty("attendanceMap")
+                              List<JsonAdaptedNameBooleanPair> attendanceMap) {
         this.name = name;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.location = location;
         this.id = id;
+        if (attendanceMap != null) {
+            this.attendanceMap.addAll(attendanceMap);
+        }
     }
 
     public JsonAdaptedSession(Session source) {
@@ -35,6 +46,10 @@ public class JsonAdaptedSession {
         endDateTime = source.getEndDateTime();
         location = source.getLocation();
         id = source.getId();
+        attendanceMap.addAll(source.getMap().stream()
+                .map(JsonAdaptedNameBooleanPair::new)
+                .collect(Collectors.toList()));
+
     }
 
     public Session toModelType() throws IllegalValueException {
@@ -70,6 +85,10 @@ public class JsonAdaptedSession {
         }
 
         final int modelId = Integer.parseInt(id);
+
+        for (JsonAdaptedNameBooleanPair jsonAdaptedPair: attendanceMap) {
+            NameBooleanPair pair = jsonAdaptedPair.toModelType();
+        }
 
         return new Session(modelStartDateTime, modelEndDateTime, modelName, modelLocation, modelId);
     }

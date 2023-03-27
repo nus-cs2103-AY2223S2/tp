@@ -13,8 +13,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 //import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -143,6 +145,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setSession(Session target, Session editedSession) {
+        requireAllNonNull(target, editedSession);
+
+        addressBook.setSession(target, editedSession);
+    }
+
+    @Override
     public void commitAddressBook() {
         addressBook.commit();
     }
@@ -232,6 +241,11 @@ public class ModelManager implements Model {
     @Override
     public void removePersonFromSession(Person person, Session session) {
         addressBook.removePersonFromSession(person, session);
+    }
+
+    @Override
+    public Session getSessionFromName(SessionName name) {
+        return addressBook.getSessionFromName(name);
     }
 
     @Override
