@@ -79,7 +79,6 @@ public class Scheduler implements ReadOnlyScheduler {
      */
     public void resetData(ReadOnlyScheduler newData) {
         requireNonNull(newData);
-
         setEvents(newData.getEventList());
     }
 

@@ -7,6 +7,7 @@ import static ezschedule.logic.parser.CliSyntax.PREFIX_START;
 
 import ezschedule.logic.commands.AddCommand;
 import ezschedule.logic.commands.EditCommand.EditEventDescriptor;
+import ezschedule.logic.commands.FindCommand.FindEventDescriptor;
 import ezschedule.model.event.Event;
 
 /**
@@ -42,6 +43,16 @@ public class EventUtil {
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date).append(" "));
         descriptor.getStartTime().ifPresent(startTime -> sb.append(PREFIX_START).append(startTime).append(" "));
         descriptor.getEndTime().ifPresent(endTime -> sb.append(PREFIX_END).append(endTime).append(" "));
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code FindEventDescriptor}'s details.
+     */
+    public static String getFindEventDescriptorDetails(FindEventDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
+        descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date).append(" "));
         return sb.toString();
     }
 }

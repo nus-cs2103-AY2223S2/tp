@@ -5,6 +5,7 @@ package ezschedule.model.event;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Event implements Comparable<Event> {
+
     private final Name name;
     private final Date date;
     private final Time startTime;
@@ -67,10 +68,10 @@ public class Event implements Comparable<Event> {
         }
 
         return otherEvent != null
-            && otherEvent.getName().equals(getName())
-            && otherEvent.getDate().equals(getDate())
-            && otherEvent.getStartTime().equals(getStartTime())
-            && otherEvent.getEndTime().equals(getEndTime());
+                && otherEvent.getName().equals(getName())
+                && otherEvent.getDate().equals(getDate())
+                && otherEvent.getStartTime().equals(getStartTime())
+                && otherEvent.getEndTime().equals(getEndTime());
     }
 
     /**
@@ -78,6 +79,35 @@ public class Event implements Comparable<Event> {
      */
     public boolean isEventOverlap(Event otherEvent) {
         return isEqualDate(otherEvent) && isTimeOverlap(otherEvent);
+    }
+
+    private boolean isEqualDate(Event otherEvent) {
+        return this.getDate().equals(otherEvent.getDate());
+    }
+
+    private boolean isTimeOverlap(Event otherEvent) {
+        return isStartTimeOverlap(otherEvent) || isEndTimeOverlap(otherEvent)
+                || isTimeInBetween(otherEvent) || isTimeIsEqual(otherEvent);
+    }
+
+    private boolean isStartTimeOverlap(Event otherEvent) {
+        return otherEvent.getStartTime().isBefore(this.getStartTime())
+                && otherEvent.getEndTime().isAfter(this.getStartTime());
+    }
+
+    private boolean isEndTimeOverlap(Event otherEvent) {
+        return otherEvent.getStartTime().isBefore(this.getEndTime())
+                && otherEvent.getEndTime().isAfter(this.getEndTime());
+    }
+
+    private boolean isTimeInBetween(Event otherEvent) {
+        return otherEvent.getStartTime().isAfter(this.getStartTime())
+                && otherEvent.getEndTime().isBefore(this.getEndTime());
+    }
+
+    private boolean isTimeIsEqual(Event otherEvent) {
+        return otherEvent.getStartTime().equals(this.getStartTime())
+                && otherEvent.getEndTime().equals(this.getEndTime());
     }
 
     @Override
@@ -119,37 +149,8 @@ public class Event implements Comparable<Event> {
                 .append(getDate())
                 .append("\nStart Time: ")
                 .append(getStartTime())
-                .append("\nEnd End: ")
+                .append("\nEnd Time: ")
                 .append(getEndTime());
         return sb.toString();
-    }
-
-    private boolean isEqualDate(Event otherEvent) {
-        return this.getDate().equals(otherEvent.getDate());
-    }
-
-    private boolean isTimeOverlap(Event otherEvent) {
-        return isStartTimeOverlap(otherEvent) || isEndTimeOverlap(otherEvent)
-                || isTimeInBetween(otherEvent) || isTimeIsEqual(otherEvent);
-    }
-
-    private boolean isStartTimeOverlap(Event otherEvent) {
-        return otherEvent.getStartTime().isBefore(this.getStartTime())
-                && otherEvent.getEndTime().isAfter(this.getStartTime());
-    }
-
-    private boolean isEndTimeOverlap(Event otherEvent) {
-        return otherEvent.getStartTime().isBefore(this.getEndTime())
-                && otherEvent.getEndTime().isAfter(this.getEndTime());
-    }
-
-    private boolean isTimeInBetween(Event otherEvent) {
-        return otherEvent.getStartTime().isAfter(this.getStartTime())
-                && otherEvent.getEndTime().isBefore(this.getEndTime());
-    }
-
-    private boolean isTimeIsEqual(Event otherEvent) {
-        return otherEvent.getStartTime().equals(this.getStartTime())
-                && otherEvent.getEndTime().equals(this.getEndTime());
     }
 }
