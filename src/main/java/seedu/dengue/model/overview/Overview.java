@@ -24,7 +24,7 @@ public abstract class Overview {
      * @return The subtitle of the overview.
      */
     public String getOverviewSubtitle() {
-        return String.format("Total : %d",
+        return String.format("Total Cases: %d",
                 getAnalyst().getTotal());
     }
 
