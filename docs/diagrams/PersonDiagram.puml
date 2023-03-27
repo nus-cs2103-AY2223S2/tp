@@ -3,9 +3,12 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+scale 450 width
+scale 400 height
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Person
+HiddenOutside .down.> Person
+
 
 Package Person {
     Class Person
@@ -29,7 +32,8 @@ Package Person {
 
 }
 
-
+Person *--> Gender
+Person *--> Address
 Person *--> Name
 Person *--> Phone
 Person *--> Email
@@ -43,20 +47,19 @@ Person *--> Race
 Person *-right-> Tags
 Tags *--> "*" Tag
 
-Field -up-|> Name
-Field -up-|> Phone
-Field -up-|> Email
-Field -up-|> CommunicationChannel
-Field -up-|> Faculty
-Field -up-|> Favorite
-Field -up-|> Major
-Field --|> NusMod
-Field -up-|> Race
-Field -up-|> Tag
+Name -down-|> Field
+Email -down-|> Field
+Phone -down-|> Field
+CommunicationChannel -down-|> Field
+Faculty -down-|>Field
+Favorite -down-|> Field
+Major -down-|> Field
+NusMod -down-|> Field
+Race -down-|> Field
+Tag -down-|> Field
 
-
-SuperField -up-|> Modules
-SuperField -up-|> Tags
+SuperField -down-|> Modules
+SuperField -down-|> Tags
 
 
 @enduml

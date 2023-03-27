@@ -36,14 +36,14 @@ Class JsonAdaptedUser
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
-StorageManager .up.|> Storage
-StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
-StorageManager -up-> "1" UserDataStorage
+StorageManager ...up.|> Storage
+StorageManager --down-> "1" UserPrefsStorage
+StorageManager --down-> "1" AddressBookStorage
+StorageManager ---down-> "1" UserDataStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
-Storage -down-|> UserDataStorage
+Storage -right-|> UserPrefsStorage
+Storage -down-|> AddressBookStorage
+Storage -left-|> UserDataStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage

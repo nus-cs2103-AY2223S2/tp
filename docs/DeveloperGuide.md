@@ -381,13 +381,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. User cancels the command.
+* 2a. AddressBook is unable to save the person.
 
-  Use case ends.
-
-* 2b. AddressBook is unable to save the person.
-
-    * 2b1. AddressBook shows an error message.
+    * 2a1. AddressBook shows an error message.
 
       Use case resumes at step 1.
 
@@ -460,12 +456,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Locating persons by name**
+**Use case: Find persons by specified fields**
 
 **MSS**
 
-1.  User enters a command to search for persons by specifying one or more keywords
-2.  AddressBook searches for persons whose names contain any of the given keywords
+1.  User enters a command to search for persons by specifying one or more keywords for different fields
+2.  AddressBook searches for persons who contain any of the given keywords for the fields specified
 3.  AddressBook returns a list of persons matching the search criteria
 
     Use case ends.
@@ -475,12 +471,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. User enters an invalid command or incorrect details.
 
     * 1a1. AddressBook shows an error message.
-
-      Use case ends.
-
-* 2a. AddressBook is unable to search for persons.
-
-    * 2a1. AddressBook shows an error message.
 
       Use case ends.
 
