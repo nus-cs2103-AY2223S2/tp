@@ -27,7 +27,7 @@ MyLib is a **desktop app for managing bookmarks, optimized for use via a Command
 
    * `list` : Lists all Bookmarks.
 
-   * `add n/The Odyssey a/Homer p/1 1 1 g/Fantasy u/http://classics.mit.edu/Homer/odyssey.html t/Literature class readings` : Adds a bookmark for the book `The Odessey` to the Library.
+   * `add n/The Odyssey a/Homer p/1 1 1 g/Fantasy r/4 u/http://classics.mit.edu/Homer/odyssey.html t/Literature class readings` : Adds a bookmark for the book `The Odessey` to the Library.
 
    * `delete 3` : Deletes the 3rd Bookmark shown in the current list.
 
@@ -105,15 +105,15 @@ Format: `tags`
 
 Adds a bookmark to the library.
 
-Format: `add n/TITLE a/AUTHOR p/PROGRESS g/GENRE [t/TAG]…​`
+Format: `add n/TITLE a/AUTHOR p/PROGRESS g/GENRE r/RATING [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A bookmark can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/Hobbit a/J. R. R. Tolkien p/Finished g/Fantasy`
-* `add n/The Odyssey a/Homer p/Reading g/Epic poetry n/Literature class readings`
+* `add n/Hobbit a/J. R. R. Tolkien p/Finished r/4 g/Fantasy`
+* `add n/The Odyssey a/Homer p/Reading g/Action r/5 n/Literature class readings`
 
 ### Listing all bookmarks : `list`
 
@@ -125,7 +125,7 @@ Format: `list`
 
 Edits an existing bookmark in the library.
 
-Format: `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [t/TAG]…​`
+Format: `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [r/RATING] [t/TAG]…​`
 
 * Edits the bookmark at the specified `INDEX`. The index refers to the index number shown in the displayed bookmark list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -195,6 +195,11 @@ Examples:
 Clears all entries from the MyLib.
 
 Format: `clear`
+
+### Listing available Genres: `genre`
+Shows list of all valid Genres.
+
+Format: `genre`
 
 ### Exiting the program : `exit`
 
