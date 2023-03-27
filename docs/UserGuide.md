@@ -119,7 +119,7 @@ You can enter `view s` as well if you want to see Bob's _skills_. You can also v
 
 To update Bob's module list to have let's say CS2101 and CS2103T, first make sure that Bob is shown in the right info panel, by entering `view 8`. 
 
-Then enter `edit m/ay2223s2 cs2101 ay2223s2 cs2103t` in the command box. 
+Then enter `edit m/ay2223s2 cs2101 m/ay2223s2 cs2103t` in the command box. 
 
 **Note:** Editing only works on the person shown in the info panel. If the person you want to edit is not shown in the info panel, you have to use the `view` command first to view that person, then edit as you wish. Also, _modules_ must follow a certain format to be successfully added/edited.
 
