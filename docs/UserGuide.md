@@ -227,6 +227,39 @@ documents the meaning of `DATE` with respect to each `STATUS` value.
 
 <p style="text-align: center;">Figure 6: Description of dates</p>
 
+
+### Duplicate internships
+InternBuddy does not allow for the storage of duplicate internships. Should you enter a command that attempts to store 
+a duplicate internship, InternBuddy will remind you that the internship already exists.
+
+A duplicate internship is defined as 2 internships that have the matching `COMPANY_NAME`, `STATUS`, `DATE` and `ROLE`. The comparison 
+will be case-insensitive. Please refer to the examples below for further explanation.
+
+In the table below, Internship A and Internship B will be considered as duplicate internships, because they have the same `COMPANY_NAME`, `STATUS`, `DATE` and `ROLE`
+even though the capitalization of certain parameters may be different.
+
+
+| `PARAMETER`    | Internship A      | Internship B      |
+|----------------|-------------------|-------------------|
+| `COMPANY_NAME` | Google            | google            |
+| `ROLE`         | Frontend Engineer | frontend engineer |
+| `STATUS`       | New               | New               |
+| `DATE`         | 2023-02-02        | 2023-02-02        |
+| `COMMENT`      | NA                | NA                |
+| `TAGS`         | C++               | Java              |
+
+Meanwhile, Internship C and Internship D are not considered duplicate internships, because they have different `COMPANY_NAME`.
+
+
+| `PARAMETER`    | Internship C      | Internship D     |
+|----------------|-------------------|------------------|
+| `COMPANY_NAME` | Apple             | Apple Inc        |
+| `ROLE`         | Frontend Engineer | frontend engineer |
+| `STATUS`       | New               | New              |
+| `DATE`         | 2023-02-02        | 2023-02-02       |
+| `COMMENT`      | NA                | NA               |
+| `TAGS`         | Java              | Java             |
+
 --------------------------------------------------------------------------------------------------------------------
 ## **Features**
 
