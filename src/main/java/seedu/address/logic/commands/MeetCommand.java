@@ -60,7 +60,7 @@ public class MeetCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Recommendation> recommendations = new Recommender(model).recommend(indices, locations);
-        
+
         model.setRecommendations(recommendations);
         model.updateObservableRecommendationList();
 
