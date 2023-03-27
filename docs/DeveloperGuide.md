@@ -48,6 +48,7 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<sub>[return to table of contents](#table-of-contents-)</sub>
 
 ## **Design**
 
@@ -58,6 +59,8 @@ the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/dia
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 </div>
+
+<sub>[return to table of contents](#table-of-contents-)</sub>
 
 ### Architecture
 
@@ -108,6 +111,7 @@ implementation of a component), as illustrated in the (partial) class diagram be
 
 The sections below give more details of each component.
 
+<sub>[return to table of contents](#table-of-contents-)</sub>
 ### UI component
 
 The **API** of this component is specified
@@ -131,6 +135,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+<sub>[return to table of contents](#table-of-contents-)</sub>
 
 ### Logic component
 
@@ -170,6 +176,8 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
+<sub>[return to table of contents](#table-of-contents-)</sub>
+
 ### Model component
 
 **
@@ -195,6 +203,8 @@ The `Model` component,
 
 </div>
 
+<sub>[return to table of contents](#table-of-contents-)</sub>
+
 ### Storage component
 
 **
@@ -210,6 +220,8 @@ The `Storage` component,
   the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
+* 
+<sub>[return to table of contents](#table-of-contents-)</sub>
 
 ### Common classes
 
@@ -227,6 +239,7 @@ The backup feature is facilitated by BackupCommand.
 
 <img src="images/BackupSequenceDiagram.png" />
 
+<sub>[return to table of contents](#table-of-contents-)</sub>
 ### Undo/redo feature
 
 #### Proposed Implementation
@@ -322,6 +335,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+<sub>[return to table of contents](#table-of-contents-)</sub>
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -346,6 +361,8 @@ Step 2. The administrator executes `add i/T0012345A n/John Doe p/98765432 a/John
 The `AddCommand` is executed and `Model#hasPerson` is called and followed by a call to `Model#addPerson()`
 which adds the record into the patient records system if the record does not already exist in the system.
 
+<sub>[return to table of contents](#table-of-contents-)</sub>
+
 ### Edit patient feature
 
 #### Implementation
@@ -367,6 +384,7 @@ followed by getting the patient record specified by the index. Next, `EditComman
 calls to both `Person#isSamePerson` and `Model#hasPerson()` to check for possible duplicates. `Model#setPerson` is called followed by `Model#updateFilteredPersonList()`
 which adds the record into the patient records system if the record does not already exist in the system.
 
+<sub>[return to table of contents](#table-of-contents-)</sub>
 
 ### Delete patient record by NRIC feature
 
@@ -406,6 +424,7 @@ The following sequence diagram shows how the delete command works:
     * Cons: If the record we are searching for does not appear in the top few records, we would have to execute a find
       command and then get corresponding INDEX to carry out deletion.
 
+<sub>[return to table of contents](#table-of-contents-)</sub>
 
 ### Find patient record by NRIC, Health conditions, Medicine feature
 
@@ -449,6 +468,7 @@ The following sequence diagram shows how the delete command works:
     * Pros: More convenient for clinical administrator to search by any attributes that he deem easy to type
     * Cons: Unlikely for the clinical administrator to use other attributes to find a particular patient.
 
+<sub>[return to table of contents](#table-of-contents-)</sub>
 
 ### Light / Dark Theme
 
@@ -480,6 +500,7 @@ The following activity diagram summarizes what happens when a user executes thes
     * Pros: Less resource space and no need to change the file path.
     * Cons: Not easy to implement and require more FXML changes.
 
+<sub>[return to table of contents](#table-of-contents-)</sub>
     
 ### Adding Nric as identifier
 
@@ -516,6 +537,8 @@ Given below is an updated `Model` component diagram.
     * Pros: Will ensure no tampering of identifier for a `Person` object.
     * Cons: If `Nric` is wrongly entered, user will have to re-type the entire `add` command.
         * This can have heavier consequences if much more data is added before the mistake is noticed.
+          
+<sub>[return to table of contents](#table-of-contents-)</sub>
 
 ### Adding Health Conditions
 
@@ -543,8 +566,8 @@ identify what known conditions he/she has.
     * Cons: This will require more restructuring of the codebase, the location to display health conditions may not be
             as obvious as well compared to the current display of tags.
 
-      
 --------------------------------------------------------------------------------------------------------------------
+<sub>[return to table of contents](#table-of-contents-)</sub>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -590,6 +613,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 *{More to be added}*
+
+<sub>[return to table of contents](#table-of-contents-)</sub>
 
 ### Use cases
 
@@ -674,6 +699,8 @@ otherwise)
 
 *{More to be added}*
 
+
+<sub>[return to table of contents](#table-of-contents-)</sub>
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -690,7 +717,7 @@ otherwise)
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
-
+<sub>[return to table of contents](#table-of-contents-)</sub>
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -743,3 +770,5 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+<sub>[return to table of contents](#table-of-contents-)</sub>
