@@ -2,6 +2,8 @@ package seedu.task.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -27,6 +29,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_TIME = "Timeframe is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_WORKLOAD = "Workload has to be a non-zero unsigned integer";
+    public static final String MESSAGE_INVALID_LOCAL_DATE = "Format of date entered should be yyyy-mm-dd";
 
     /**
      * Parses {@code oneBasedIndexList} into an {@code IndexList} and returns it. Leading and trailing whitespaces
@@ -191,6 +194,23 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String date} into a {@code LocalDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDate parseLocalDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        try {
+            LocalDate localDate = LocalDate.parse(trimmedDate);
+            return localDate;
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MESSAGE_INVALID_LOCAL_DATE);
+        }
+    }
+
+    /**
      * Parses a {@code String Effort} into a {@code Effort}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -199,12 +219,11 @@ public class ParserUtil {
     public static Effort parseEffort(String effort) throws ParseException {
         requireNonNull(effort);
         String trimmedEffort = effort.trim();
-        try {
-            long duration = Long.parseLong(trimmedEffort);
-            return new Effort(duration);
-        } catch (NumberFormatException e) {
+        if (!Effort.isValidEffort(trimmedEffort)) {
             throw new ParseException(Effort.MESSAGE_CONSTRAINTS);
         }
+        long taskEffort = Long.parseLong(trimmedEffort);
+        return new Effort(taskEffort);
     }
 
     /**

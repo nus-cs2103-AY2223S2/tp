@@ -140,7 +140,7 @@ Format: `list`
 
 ### 2.4 Editing a task : `edit`
 
-Edits an existing task in the address book. 
+Edits an existing task in the address book.
 
 One parameter field **must** be supplied in the argument.
 
@@ -267,7 +267,15 @@ Examples:
 - Assuming today is 2023-03-26, `schedule D/2023-04-01 E/5` will plan a 30-day schedule starting from today (March 26, 2023) according to a desired effort level of 5, and display tasks planned for April 1.
 - `schedule D/2023-04-02` will show tasks which should be completed on April 2, 2023, based on a previously generated schedule (which should be generated between 3 Mar 2023, and 2 Apr 2023).
 
-### 2.11 Clearing all entries : `clear`
+### Show your daily plans : `schedule DATE`
+
+Displays tasks to be done on 'DATE' entered. Valid dates include 30 days from the last time plan command was ran.
+
+Examples:
+- `schedule 2023-03-25` will display all tasks which should be done on that day, provided the plan command was run
+-  within the past 30 days of 25 March 2023.
+
+### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
@@ -279,7 +287,7 @@ Exits the program.
 
 Format: `exit`
 
-## 3. Storage 
+## 3. Storage
 
 ### 3.1 Saving the data
 
@@ -320,9 +328,20 @@ _Details coming soon ..._
 
 ## 5. Command summary
 
-| Action     | Format, Examples                                                                                                    |
-|------------|---------------------------------------------------------------------------------------------------------------------|
+| Action     | Format, Examples                                                                                                   |
+|------------|--------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT]` <br> e.g., `add n/read book d/Lord of the Flies t/leisure E/5` |
+| **Clear**  | `clear`                                                                                                            |
+| **Delete** | `delete INDEX(S)`<br> e.g., `delete 3`                                                                             |
+| **Edit**   | `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`<br> e.g.,`edit 2 n/study d/CS2103T`                 |
+| **Find**   | `find n/NAME` or `find d/DESCRIPTION`<br> e.g., `find n/read book`                                                 |
+| **List**   | `list`                                                                                                             |
+| **Help**   | `help`                                                                                                             |
+| **Stats**  | `stats`                                                                                                            |
+| **sort**   | `sort`                                                                                                             |
+| **alert**  | `alert ALERT_WINDOW`                                                                                               |
+| **plan**   | `plan EFFORT`                                                                                                      |
+=======
 | **Clear**  | `clear`                                                                                                             |
 | **Delete** | `delete INDEX(S)`<br> e.g., `delete 3`                                                                              |
 | **Edit**   | `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`<br> e.g.,`edit 2 n/study d/CS2103T`                  |
@@ -340,4 +359,3 @@ _Details coming soon ..._
 2. Free day: Allocating a task to this day will not result in overloading.
 3. Short date: YYYY-MM-DD
 4. Date: YYYY-MM-DD HHMM
-

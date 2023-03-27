@@ -1,11 +1,15 @@
 package seedu.task.model.util;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.task.model.Planner;
+import seedu.task.model.ReadOnlyPlanner;
 import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.TaskBook;
+import seedu.task.model.calendar.DailyPlan;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Description;
 import seedu.task.model.task.Effort;
@@ -15,7 +19,7 @@ import seedu.task.model.task.Task;
 
 
 /**
- * Contains utility methods for populating {@code TaskBook} with sample data.
+ * Contains utility methods for populating {@code TaskBook} and {@code Planner} with sample data.
  */
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
@@ -54,4 +58,26 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Creates a 30-day sample daily plan
+     */
+    public static DailyPlan[] getSampleDailyPlan() {
+        LocalDate startDate = LocalDate.now();
+        DailyPlan[] dailyPlans = new DailyPlan[30];
+        for (int i = 0; i < 30; i++) {
+            dailyPlans[i] = new DailyPlan(5, startDate.plusDays(i));
+        }
+        return dailyPlans;
+    }
+
+    /**
+     * Stores generated daily plans in a Planner
+     */
+    public static ReadOnlyPlanner getSamplePlanner() {
+        Planner sample = new Planner();
+        for (DailyPlan samplePlan : getSampleDailyPlan()) {
+            sample.addDailyPlan(samplePlan);
+        }
+        return sample;
+    }
 }

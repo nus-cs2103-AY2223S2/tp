@@ -17,13 +17,17 @@ import seedu.task.logic.Logic;
 import seedu.task.logic.LogicManager;
 import seedu.task.model.Model;
 import seedu.task.model.ModelManager;
+import seedu.task.model.Planner;
+import seedu.task.model.ReadOnlyPlanner;
 import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.ReadOnlyUserPrefs;
 import seedu.task.model.TaskBook;
 import seedu.task.model.UserPrefs;
 import seedu.task.model.util.SampleDataUtil;
+import seedu.task.storage.JsonPlannerStorage;
 import seedu.task.storage.JsonTaskBookStorage;
 import seedu.task.storage.JsonUserPrefsStorage;
+import seedu.task.storage.PlannerStorage;
 import seedu.task.storage.Storage;
 import seedu.task.storage.StorageManager;
 import seedu.task.storage.TaskBookStorage;
@@ -57,7 +61,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         TaskBookStorage taskBookStorage = new JsonTaskBookStorage(userPrefs.getTaskBookFilePath());
-        storage = new StorageManager(taskBookStorage, userPrefsStorage);
+        PlannerStorage plannerStorage = new JsonPlannerStorage(userPrefs.getPlannerFilePath());
+        storage = new StorageManager(taskBookStorage, userPrefsStorage, plannerStorage);
 
         initLogging(config);
 
@@ -76,21 +81,38 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyTaskBook> taskBookOptional;
         ReadOnlyTaskBook initialData;
+        Optional<ReadOnlyPlanner> plannerOptional;
+        ReadOnlyPlanner plannerData;
         try {
             taskBookOptional = storage.readTaskBook();
             if (!taskBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample TaskBook");
+                logger.info("Task Data file not found. Will be starting with a sample TaskBook");
             }
             initialData = taskBookOptional.orElseGet(SampleDataUtil::getSampleTaskBook);
+
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty TaskBook");
+            logger.warning("Task data file not in the correct format. Will be starting with an empty TaskBook");
             initialData = new TaskBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty TaskBook");
+            logger.warning("Problem while reading from the task file. Will be starting with an empty TaskBook");
             initialData = new TaskBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            plannerOptional = storage.readPlanner();
+            if (!plannerOptional.isPresent()) {
+                logger.info("Planner Data file not found. Will be starting with a sample Planner");
+            }
+            plannerData = plannerOptional.orElseGet(SampleDataUtil::getSamplePlanner);
+        } catch (DataConversionException e) {
+            logger.warning("Planner data file not in the correct format. Will be starting with an empty Planner");
+            plannerData = new Planner();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the planner file. Will be starting with an empty Planner");
+            plannerData = new Planner();
+        }
+
+        return new ModelManager(initialData, userPrefs, plannerData);
     }
 
     private void initLogging(Config config) {

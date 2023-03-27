@@ -72,6 +72,10 @@ public abstract class Task implements Comparable<Task> {
         return this.effort;
     }
 
+    public long getEffortValue() {
+        return this.effort.getEffort();
+    }
+
     /**
      * Returns true if both tasks have the same name.
      * This defines a weaker notion of equality between two tasks.

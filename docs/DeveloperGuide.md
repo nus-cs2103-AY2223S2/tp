@@ -150,6 +150,7 @@ The `Model` component,
 * stores the address book data i.e., all `Task` objects (which are contained in a `UniqueTaskList` object).
 * stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* * stores the generated plan, i.e. all `DailyPlan` objects (which are contained within a `MonthlyPlan` object)
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Task` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Task` needing their own `Tag` objects.<br>
@@ -166,8 +167,8 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both address book data, user preference data, and planner data in json format, and read them back into corresponding objects.
+* inherits from `AddressBookStorage`, `UserPrefStorage` and `PlannerStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### 2.6 Common classes
@@ -475,11 +476,12 @@ Cons: Have to scroll down to see SimpleTasks.
 
 **Target user profile**:
 
-* has a need to manage a significant number of assignments/tasks.
-* prefer desktop apps over other types
+* needs to manage a significant number of assignments/tasks.
+* prefer desktop apps over other types (eg. mobile apps)
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* gains familiarity with specific command input formats easily
 
 **Value proposition**: manage tasks faster than a typical mouse/GUI driven app and has convenient features bundled in.
 
@@ -488,24 +490,26 @@ Cons: Have to scroll down to see SimpleTasks.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                                  | So that I can…​                                |
-|----------|-----------------|-----------------------------------------------|------------------------------------------------|
-| `* * *`  | user            | add a task                                    |                                                |
-| `* * *`  | user            | delete a task                                 | delete a task that I erroneously added         |
-| `* * *`  | user            | find a task                                   | perform queries more efficiently               |
-| `* * *`  | user            | view my tasks                                 | plan my time more efficiently                  |
-| `* *`    | user            | sort my tasks by deadline                     | So that I can see which tasks are due sooner   |
-| `* *`    | fickle user     | edit a task                                   | correct mistakes without deleting a task       |
-| `* *`    | user            | have a project folder                         | look at only my projects at a glance           |
-| `* *`    | organized user  | add tags to tasks                             | organize them better                           |
-| `* *`    | indecisive user | know what tasks to prioritise                 | not have to dedicate time to thinking about it |
-| `* *`    | user            | keep track of how many tasks I have completed | keep track of my projects                      |
-| `* *`    | forgetful user  | be prompted when assignments are due          | don't miss deadlines                           |
-| `*`      | organized user  | organize tasks by modules/subjects            | easily find my tasks                           |
-| `*`      | user            | see motivational quotes                       | be motivated to do my tasks                    |
-| `*`      | lazy user       | automate typing in repetitive tasks           | save time entering similar entries             |
-| `*`      | lazy user       | have a schedule planned out for me            | not have to dedicate time to administration    |
-| `*`      | busy user       | add colour codes                              | easily identify my tasks at a glance           |
+| Priority | As a …​         | I want to …​                                  | So that I can…​                                 |
+|----------|-----------------|-----------------------------------------------|-------------------------------------------------|
+| `* * *`  | user            | add a task                                    |                                                 |
+| `* * *`  | user            | delete a task                                 | delete a task that I erroneously added          |
+| `* * *`  | user            | find a task                                   | perform queries more efficiently                |
+| `* * *`  | user            | view my tasks                                 | plan my time more efficiently                   |
+| `* *`    | user            | sort my tasks by deadline                     | So that I can see which tasks are due sooner    |
+| `* *`    | fickle user     | edit a task                                   | correct mistakes without deleting a task        |
+| `* *`    | user            | have a project folder                         | look at only my projects at a glance            |
+| `* *`    | organized user  | add tags to tasks                             | organize them better                            |
+| `* *`    | indecisive user | know what tasks to prioritise                 | not have to dedicate time to thinking about it  |
+| `* *`    | user            | keep track of how many tasks I have completed | keep track of my projects                       |
+| `* *`    | forgetful user  | be prompted when assignments are due          | don't miss deadlines                            |
+| `*`      | organized user  | organize tasks by modules/subjects            | easily find my tasks                            |
+| `*`      | user            | see motivational quotes                       | be motivated to do my tasks                     |
+| `*`      | lazy user       | automate typing in repetitive tasks           | save time entering similar entries              |
+| `*`      | lazy user       | have a schedule planned out for me            | not have to dedicate time to administration     |
+| `*`      | busy user       | add colour codes                              | easily identify my tasks at a glance            |
+| `*`      | forgetful user  | view my previously generated schedule         | continue working on what i was doing previously |
+
 
 *{More to be added}*
 

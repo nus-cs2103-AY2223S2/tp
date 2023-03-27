@@ -2,6 +2,7 @@ package seedu.task.model.task;
 
 import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
@@ -34,6 +35,15 @@ public class Event extends Task {
 
     public Date getTo() {
         return this.to;
+    }
+
+    /**
+     * Checks if the given date happens during this event's period
+     */
+    public boolean isDuringEvent(LocalDate referenceDate) {
+        return referenceDate.isBefore(this.to.getDate()) && referenceDate.isAfter(this.from.getDate())
+                || referenceDate.isEqual(this.to.getDate())
+                || referenceDate.isEqual(this.from.getDate());
     }
 
     @Override

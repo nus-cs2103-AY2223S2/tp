@@ -1,10 +1,12 @@
 package seedu.task.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.task.commons.core.GuiSettings;
+import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.task.Task;
 
 /**
@@ -44,6 +46,8 @@ public interface Model {
      */
     void setTaskBookFilePath(Path taskBookFilePath);
 
+    Path getPlannerFilePath();
+
     /**
      * Replaces task book data with the data in {@code taskBook}.
      */
@@ -82,7 +86,7 @@ public interface Model {
      */
     void sortTask();
 
-    void plan(int workload);
+    void plan(long workload);
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
@@ -101,4 +105,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateAlertTaskList(Predicate<Task> predicate);
+
+    /**
+     * Returns the Planner
+     */
+    ReadOnlyPlanner getPlanner();
+
+    void schedule(LocalDate date) throws CommandException;
 }

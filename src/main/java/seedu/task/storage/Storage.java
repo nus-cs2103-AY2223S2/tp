@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.task.commons.exceptions.DataConversionException;
+import seedu.task.model.ReadOnlyPlanner;
 import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.ReadOnlyUserPrefs;
 import seedu.task.model.UserPrefs;
@@ -12,7 +13,7 @@ import seedu.task.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends TaskBookStorage, UserPrefsStorage {
+public interface Storage extends TaskBookStorage, UserPrefsStorage, PlannerStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -29,4 +30,6 @@ public interface Storage extends TaskBookStorage, UserPrefsStorage {
     @Override
     void saveTaskBook(ReadOnlyTaskBook taskBook) throws IOException;
 
+    @Override
+    Optional<ReadOnlyPlanner> readPlanner() throws DataConversionException, IOException;
 }
