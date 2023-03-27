@@ -341,9 +341,11 @@ if no quantity was specified. We realised it was intuitive for users to make the
 <div> Note: The implementation for `inc` and `dec` are the same, except the variable names and logic used to calculate 
 new quantity (Addition/Subtraction) The described implementation is for the `inc` command. </div>
 
+![IncreaseQuantitySequenceDiagram](images/IncreaseQuantitySequenceDiagram.png)
+
 The first stage of the implementation is parsing the user input to `IncreaseCommand`. `IncreaseCommandParser` is used
 to parse and check whether the user input is valid. After which a `IncreaseCommand` object is created along with a
-`IncreaseFoodDescriptor` instance to modify the current food item.
+`IncreaseFoodDescriptor` instance to increase the quantity of the current food item.
 
 The second stage requires IncreaseCommand#execute() to be called.
 
@@ -358,9 +360,9 @@ The second stage requires IncreaseCommand#execute() to be called.
    key in the command with a valid quantity.
 
 
-The following activity diagram shows the usage of the `inc` command.
+The following activity diagram summarizes what happens when a user executes a new `inc` command:
 
-**insert activity diagram
+![IncreaseQuantityActivityDiagram](images/IncreaseQuantityActivityDiagram.png)
 
 #### \[Implementing\] View details of a food item.
 
