@@ -19,7 +19,7 @@ title: User Guide
     - [Finding a person by their modules](#4-finding-a-person-by-their-modules)
 - [Commands](#commands)
   - [Viewing help : `help`](#viewing-help--help)
-  - [Adding a person: `add`](#adding-a-person--add)
+  - [Adding a person : `add`](#adding-a-person--add)
   - [Viewing a person/Changing tabs : `view`](#viewing-a-personchanging-tabs--view)
   - [Editing a person : `edit`](#editing-a-person--edit)
   - [Finding a person : `find`](#finding-a-person--find)
@@ -170,7 +170,7 @@ Lastly, if you need more info on the usage of each command, you can refer to the
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Adding a person: `add`
+### Adding a person : `add`
 
 `add n/NAME e/EMAIL y/YEAR c/COURSE_INDEX [OPTIONAL/PARAMETER]...`<br>
 >
@@ -195,12 +195,12 @@ Lastly, if you need more info on the usage of each command, you can refer to the
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Viewing a person/Changing tabs: `view`
+### Viewing a person/Changing tabs : `view`
 `view <PARAMETERS>`<br>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Editing a person: `edit`
+### Editing a person : `edit`
 `edit [OPTIONAL/PARAMETER]...`<br>
 > - Edits the person displayed in the view panel
 > - At least one of the optional fields must be provided.
@@ -214,7 +214,7 @@ Lastly, if you need more info on the usage of each command, you can refer to the
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Finding a person: `find`
+### Finding a person : `find`
 `find [OPTIONAL/PARAMETER]...`<br>
 >> find KEYWORD [MORE_KEYWORDS]
 > * The search is case-insensitive. e.g `hans` will match `Hans`
@@ -231,13 +231,13 @@ Lastly, if you need more info on the usage of each command, you can refer to the
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Listing all persons/Resetting filters: `list`
+### Listing all persons/Resetting filters : `list`
 `list`<br>
 > * Shows all persons stored.<br>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Deleting a person: `delete`
+### Deleting a person : `delete`
 `delete <INDEX>`<br>
 > * Deletes the person at the specified INDEX.<br>
 > * INDEX refers to an index currently shown in the displayed person list.<br>
@@ -246,13 +246,13 @@ Lastly, if you need more info on the usage of each command, you can refer to the
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Clearing all entries: `clear`
+### Clearing all entries : `clear`
 `clear`<br>
 > * :warning: Clears **all** entries from CoDoc.<br>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Exiting the program: `exit`
+### Exiting the program : `exit`
 `exit`<br>
 > * Exits the program. <br>
 > * Equivalent to clicking the close button via the GUI. <br>
