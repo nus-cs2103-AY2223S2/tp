@@ -1,10 +1,10 @@
 package mycelium.mycelium.storage;
 
 import static mycelium.mycelium.testutil.Assert.assertThrows;
-import static mycelium.mycelium.testutil.TypicalPersons.ALICE;
-import static mycelium.mycelium.testutil.TypicalPersons.HOON;
-import static mycelium.mycelium.testutil.TypicalPersons.IDA;
-import static mycelium.mycelium.testutil.TypicalPersons.getTypicalAddressBook;
+import static mycelium.mycelium.testutil.TypicalEntities.ALICE;
+import static mycelium.mycelium.testutil.TypicalEntities.HOON;
+import static mycelium.mycelium.testutil.TypicalEntities.IDA;
+import static mycelium.mycelium.testutil.TypicalEntities.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
