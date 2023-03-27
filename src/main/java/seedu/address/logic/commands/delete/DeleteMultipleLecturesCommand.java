@@ -74,4 +74,15 @@ public class DeleteMultipleLecturesCommand extends DeleteCommand {
                     this.moduleCode));
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof DeleteMultipleLecturesCommand) {
+            DeleteMultipleLecturesCommand dmlc = (DeleteMultipleLecturesCommand) other;
+            return this.moduleCode.equals(dmlc.moduleCode)
+                    && this.targetLectureNames.equals(dmlc.targetLectureNames);
+        } else {
+            return false;
+        }
+    }
 }

@@ -63,4 +63,14 @@ public class DeleteMultipleModulesCommand extends DeleteCommand {
                     MultipleEventsParser.convertArrayListToString(invalidModuleCodes)));
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof DeleteMultipleModulesCommand) {
+            DeleteMultipleModulesCommand dmmc = (DeleteMultipleModulesCommand) other;
+            return this.targetModuleCodes.equals(dmmc.targetModuleCodes);
+        } else {
+            return false;
+        }
+    }
 }

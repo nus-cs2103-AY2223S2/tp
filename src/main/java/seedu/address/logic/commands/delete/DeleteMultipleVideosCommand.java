@@ -86,4 +86,16 @@ public class DeleteMultipleVideosCommand extends DeleteCommand {
                     this.lectureName));
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof DeleteMultipleVideosCommand) {
+            DeleteMultipleVideosCommand dmvc = (DeleteMultipleVideosCommand) other;
+            return this.moduleCode.equals(dmvc.moduleCode)
+                    && this.lectureName.equals(dmvc.lectureName)
+                    && this.targetVideoNames.equals(dmvc.targetVideoNames);
+        } else {
+            return false;
+        }
+    }
 }
