@@ -8,6 +8,7 @@ title: User Guide
 <img src="images/Ui.png"/>
 --------------------------------------------------------------------------------------------------------------------
 # Table of Contents
+
 1. [Quick Start](#1-quick-start)
 2. [Downloading CoDoc](#2-downloading-codoc)
 3. [Navigation](#3-navigation)
