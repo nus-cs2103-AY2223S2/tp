@@ -1,15 +1,30 @@
 ---
-layout: page
-title: Developer Guide
+DEVELOPER GUIDE FOR WIFE
 ---
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Introduction
+WIFE is a food inventory management system that aims to aid busy users in managing food items in their fridge. With its 
+inventory management system, users can easily edit their fridge's inventory and view it in a sleek and easy-to-read
+list. Users can also tag their food items according to their preferences.
+
+This developer guide aims to provide detailed documentation for WIFE's design and implementation. This includes its 
+architecture, design choices as well outlines for all features of the software. This project is released under the MIT
+license, making it open source and available for anyone to use and modify.
 
 ## **Acknowledgements**
+WIFE is a brownfield software project developed at the School of Computing at National University of Singapore.
+It was adapted from a previous project called AddressBook Level-3, and it was developed as part of the CS2103T Software
+Engineering Module.
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source}
+Java dependencies:
+* [JavaFX](https://openjfx.io/) for GUI
+* [JUnit 5](https://github.com/junit-team/junit5) for testing
+
+Documentation dependencies:
+* [PlantUML](https://plantuml.com/) for UML diagrams
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -21,10 +36,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
+Below is a high-level view of how WIFE is structured, including its key components.
 
 ### Architecture
 
@@ -294,7 +306,7 @@ The following sequence diagram shows how the `add` command.
 
 *insert sequence diagram*
 
-#### \[Implementing\] Increase/Decrease quantity of a food item.
+#### \[Implemented\] Increase/Decrease quantity of a food item.
 
 **Overview**
 
@@ -329,9 +341,11 @@ if no quantity was specified. We realised it was intuitive for users to make the
 <div> Note: The implementation for `inc` and `dec` are the same, except the variable names and logic used to calculate 
 new quantity (Addition/Subtraction) The described implementation is for the `inc` command. </div>
 
+![IncreaseQuantitySequenceDiagram](images/IncreaseQuantitySequenceDiagram.png)
+
 The first stage of the implementation is parsing the user input to `IncreaseCommand`. `IncreaseCommandParser` is used
 to parse and check whether the user input is valid. After which a `IncreaseCommand` object is created along with a
-`IncreaseFoodDescriptor` instance to modify the current food item.
+`IncreaseFoodDescriptor` instance to increase the quantity of the current food item.
 
 The second stage requires IncreaseCommand#execute() to be called.
 
@@ -346,9 +360,9 @@ The second stage requires IncreaseCommand#execute() to be called.
    key in the command with a valid quantity.
 
 
-The following activity diagram shows the usage of the `inc` command.
+The following activity diagram summarizes what happens when a user executes a new `inc` command:
 
-**insert activity diagram
+![IncreaseQuantityActivityDiagram](images/IncreaseQuantityActivityDiagram.png)
 
 #### \[Implementing\] View details of a food item.
 
@@ -586,8 +600,6 @@ These operations are invoked in `HelpCommandParser.java` which calls HelpMenu#ge
 
 #### Feature Details:
 
-<div/>
-
 Step 1. After successful retrieval of the help message, the message is passed to the `HelpCommand` object returned by `HelpCommandParser`.
 
 Step 2. The `LogicManager` executes the `HelpCommand` object which generates a `Command Result` object with the help message.
@@ -615,7 +627,8 @@ Step 3. MainWindow#executeCommand() extracts the help message from the `CommandR
 * Fridge owner who cares about food waste and wish to track their fridge inventory.
 
 **Value proposition**:
-* The perfect solution to make sure you’re always one step ahead when managing your inventory, saving you time and money while reducing food waste.
+* The perfect solution to make sure you’re always one step ahead when managing your inventory, saving you time and 
+money while reducing food waste.
 
 
 ### User stories *to be edited*
@@ -624,21 +637,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                            | I want to …​                                          | So that I can…​                             |
 |----------|------------------------------------|-------------------------------------------------------|---------------------------------------------|
-| `* * *`  | user                               | add food items to my list                             | track what is in my fridge                  |
-| `* * *`  | meal planner                       | set expiration dates for items in my fridge           | plan meals around items that are expiring   |
-| `* * *`  | chef                               | set item categories for fridge items                  | easily find what I need when cooking.       |
-| `* * *`  | user                               | delete ingredients                                    | know what ingredients I have thrown away    |
-| `* *`    | user                               | layout items                                          | see where all my food items are             |
-| `* *`    | fridge owner                       | transfer my list to another system                    | use the same system with another fridge     |
-| `* *`    | user                               | search for specific food items                        | see whether I still have it in my fridge    |
-| `* *`    | user                               | leave comments on items                               | remember any particular remarks             |
-| `* *`    | user                               | attach images to items                                | remember what they look like                |
-| `* *`    | user who manages finances          | know how much is spent every month                    | track my monthly finances                   |
-| `* *`    | user who likes to try new products | rate the items                                        | know whether to buy the same item next time |
-| `* *`    | forgetful user                     | see past purchases                                    | remember what I have bought in the past     |
-| `* *`    | user                               | set reminders for items                               | remember to use them before they expire     |
-| `*`      | student                            | see recipes with the food in my fridge as ingredients | decide what meals I can make                |
-| `*`      | housewife                          | generate a grocery list                               | bring it to the supermarket                 |
+| `* * *`  | Organised user                     | add food items to my list                             | track what is in my fridge                  |
+| `* * *`  | Meal planner                       | set expiration dates for items in my fridge           | plan meals around items that are expiring   |
+| `* * *`  | Organised user                     | set item categories for fridge items                  | easily find what I need when cooking.       |
+| `* * *`  | Organised user                     | delete ingredients                                    | know what ingredients I have thrown away    |
+| `* *`    | Organised user                     | layout items                                          | see where all my food items are             |
+| `* *`    | Fridge owner                       | transfer my list to another system                    | use the same system with another fridge     |
+| `* *`    | Organised User                     | search for specific food items                        | see whether I still have it in my fridge    |
+| `* *`    | User with unique items             | leave comments on items                               | remember any particular remarks             |
+| `* *`    | User who likes visuals             | attach images to items                                | remember what they look like                |
+| `* *`    | User who manages finances          | know how much is spent every month                    | track my monthly finances                   |
+| `* *`    | User who likes to try new products | rate the items                                        | know whether to buy the same item next time |
+| `* *`    | Forgetful user                     | see past purchases                                    | remember what I have bought in the past     |
+| `* *`    | Forgetful user                     | set reminders for items                               | remember to use them before they expire     |
+| `*`      | User who likes to cook             | see recipes with the food in my fridge as ingredients | decide what meals I can make                |
+| `*`      | User who does grocery shopping     | generate a grocery list                               | bring it to the supermarket                 |
 
 *{More to be added}*
 
@@ -802,12 +815,12 @@ item.
 5.  Should support a minimum of 50 items in storage.
 6.  There should be no more than 1 second of lag when a user inputs a command.
 7.  A first-time user should be able to easily perform CRUD operations on items.
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X <br/>
 * **WIFE** - Well Informed Fridge Environment <br/>
+* **Main Success Scenario (MSS)** - The most straightforward interaction for a given use case with no errors. <br/>
 *{more to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
