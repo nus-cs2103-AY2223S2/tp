@@ -10,6 +10,7 @@ import seedu.address.logic.commands.AddWardCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ward.Capacity;
 import seedu.address.model.ward.Ward;
+import seedu.address.model.ward.WardName;
 
 
 /**
@@ -33,12 +34,12 @@ public class AddWardCommandParser implements Parser<AddWardCommand> {
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CAPACITY)) {
-            String wardName = ParserUtil.parseWard(argMultimap.getValue(PREFIX_NAME).get());
+            WardName wardName = ParserUtil.parseWardName(argMultimap.getValue(PREFIX_NAME).get());
             Ward ward = new Ward(wardName);
             return new AddWardCommand(ward);
         }
 
-        String wardName = ParserUtil.parseWard(argMultimap.getValue(PREFIX_NAME).get());
+        WardName wardName = ParserUtil.parseWardName(argMultimap.getValue(PREFIX_NAME).get());
         Capacity wardCapacity = ParserUtil.parseCapacity(argMultimap.getValue(PREFIX_CAPACITY).get());
         Ward ward = new Ward(wardName, wardCapacity);
         return new AddWardCommand(ward);

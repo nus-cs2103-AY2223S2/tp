@@ -55,7 +55,7 @@ public class PatientCard extends UiPart<Region> {
         status.setText(statusString);
         status.getStyleClass().clear();
         status.getStyleClass().add("status-" + statusString);
-        ward.setText(patient.getWard());
+        ward.setText(patient.getWard().wardName);
     }
 
     @Override

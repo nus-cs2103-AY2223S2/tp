@@ -12,6 +12,7 @@ import seedu.address.model.patient.UniquePatientList;
 import seedu.address.model.ward.UniqueWardList;
 import seedu.address.model.ward.Ward;
 import seedu.address.model.ward.exceptions.WardNotFoundException;
+import seedu.address.model.ward.WardName;
 
 /**
  * Wraps all data at the address-book level

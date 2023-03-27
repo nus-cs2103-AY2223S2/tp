@@ -6,7 +6,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
 
@@ -28,6 +27,8 @@ public class Ward {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String name;
+    public final WardName value;
+
     private final Capacity capacity;
 
     private UniquePatientList patients;
@@ -37,7 +38,7 @@ public class Ward {
      *
      * @param name A valid name.
      */
-    public Ward(String name) {
+    public Ward(WardName name) {
         requireNonNull(name);
         checkArgument(isValidWard(name), MESSAGE_CONSTRAINTS);
         this.name = name;
@@ -51,7 +52,7 @@ public class Ward {
      * @param name A valid name.
      * @param capacity A specified capacity.
      */
-    public Ward(String name, Capacity capacity) {
+    public Ward(WardName name, Capacity capacity) {
         requireNonNull(name);
         checkArgument(isValidWard(name), MESSAGE_CONSTRAINTS);
         this.name = name;
@@ -75,7 +76,7 @@ public class Ward {
         return name.matches(VALIDATION_REGEX);
 
     }
-    public static boolean isValidWard(Name name) {
+    public static boolean isValidWard(WardName name) {
         return name.toString().matches(VALIDATION_REGEX);
     }
 
@@ -87,8 +88,13 @@ public class Ward {
         return patients2.size() <= capacity.getValue();
     }
 
-    public String getName() {
-        return name;
+
+    // public String getName() {
+    //   return name;
+
+    public WardName getName() {
+        return value;
+
     }
 
     public Capacity getCapacity() {

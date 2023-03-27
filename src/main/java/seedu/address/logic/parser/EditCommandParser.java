@@ -40,7 +40,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPatientDescriptor.setStatus(ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get()));
         }
         if (argMultimap.getValue(PREFIX_WARD).isPresent()) {
-            editPatientDescriptor.setWard(ParserUtil.parseWard(argMultimap.getValue(PREFIX_WARD).get()));
+            editPatientDescriptor.setWard(ParserUtil.parseWardName(argMultimap.getValue(PREFIX_WARD).get()));
         }
         if (argMultimap.getValue(PREFIX_DISCHARGE).isPresent()) {
             editPatientDescriptor.setDischarge(ParserUtil.parseDischarge(argMultimap.getValue(PREFIX_DISCHARGE).get()));

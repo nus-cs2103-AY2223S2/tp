@@ -11,6 +11,7 @@ import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Status;
 import seedu.address.model.ward.Capacity;
 import seedu.address.model.ward.Ward;
+import seedu.address.model.ward.WardName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser
@@ -87,13 +88,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code ward} is invalid.
      */
-    public static String parseWard(String ward) throws ParseException {
+    public static WardName parseWardName(String ward) throws ParseException {
         requireNonNull(ward);
         String trimmedWard = ward.trim();
         if (!Ward.isValidWard(trimmedWard)) {
             throw new ParseException(Ward.MESSAGE_CONSTRAINTS);
         }
-        return trimmedWard;
+        return new WardName(trimmedWard);
     }
 
     /**
