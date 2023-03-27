@@ -55,10 +55,9 @@ public class DeleteCommandTest {
     @Test
     public void equals() {
         Person firstPersonToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        System.out.println("first p" + firstPersonToDelete.getNric());
         DeleteCommand deleteFirstCommand = new DeleteCommand(firstPersonToDelete.getNric());
         Person secondPersonToDelete = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        System.out.println("second p" + secondPersonToDelete.getNric());
+
 
         DeleteCommand deleteSecondCommand = new DeleteCommand(secondPersonToDelete.getNric());
 
