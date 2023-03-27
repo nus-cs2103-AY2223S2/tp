@@ -106,7 +106,7 @@ public class UpdateProjectCommandTest {
 
     @Test
     public void execute_changeNameOnly_success() throws CommandException {
-        var newName="billabong";
+        var newName = "billabong";
         var cmd = new UpdateProjectCommand(BING.getName(),
             new UpdateProjectDescriptorBuilder().withName(newName).build());
         model.addProject(BING);
