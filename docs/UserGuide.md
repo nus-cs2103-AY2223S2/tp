@@ -59,6 +59,10 @@ demonstrate the layout.)
 p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com
 ```
 
+You will also discover that all command names in Mycelium are at most two
+characters long. This terseness is *intentional* to allow for faster
+keystrokes.
+
 ### A note on dates
 
 Some arguments are in the form of dates. For these, Mycelium only accepts input
