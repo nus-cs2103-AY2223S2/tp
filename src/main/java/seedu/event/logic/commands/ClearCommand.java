@@ -12,7 +12,7 @@ import seedu.event.model.Model;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Event book and Contact list has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Event book and contact list has been cleared!";
 
 
     @Override
