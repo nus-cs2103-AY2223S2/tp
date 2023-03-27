@@ -4,9 +4,8 @@ import static seedu.ultron.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * Represents an Opening in the Openings list.
@@ -27,7 +26,7 @@ public class Opening {
     /**
      * Every field must be present and not null.
      */
-    public Opening(Position position, Company company, Email email, Status status, Remark remark, Set<Date> dates) {
+    public Opening(Position position, Company company, Email email, Status status, Remark remark, List<Date> dates) {
         requireAllNonNull(position, company, email, status, dates);
         this.position = position;
         this.company = company;
@@ -35,6 +34,7 @@ public class Opening {
         this.status = status;
         this.remark = remark;
         this.dates.addAll(dates);
+        this.dates.sort(new DateComparator());
     }
 
     public Position getPosition() {
@@ -61,8 +61,8 @@ public class Opening {
      * Returns an immutable date set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Date> getDates() {
-        return Collections.unmodifiableSet(dates);
+    public List<Date> getDates() {
+        return Collections.unmodifiableList(dates);
     }
 
     /**
@@ -124,7 +124,7 @@ public class Opening {
                     .append(getRemark());
         }
 
-        Set<Date> dates = getDates();
+        List<Date> dates = getDates();
         if (!dates.isEmpty()) {
             builder.append("; Dates: ");
             dates.forEach(builder::append);
