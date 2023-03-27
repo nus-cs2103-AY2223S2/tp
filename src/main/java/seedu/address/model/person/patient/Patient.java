@@ -94,6 +94,17 @@ public class Patient extends Person {
     }
 
     /**
+     * Assigns a doctor if doctor does not exist in doctor's doctor list.
+     *
+     * @param doctor a doctor.
+     */
+    public void assignDoctor(Doctor doctor) {
+        if (!this.hasDoctor(doctor)) {
+            doctors.add(doctor);
+        }
+    }
+
+    /**
      * Returns true if both patients have the same name.
      * This defines a weaker notion of equality between two patients.
      */

@@ -86,6 +86,11 @@ class JsonSerializableAddressBook {
             // Add Patients of the doctor into single patient list in AddressBook
             if (doctor.hasPatients()) {
                 doctor.getPatients().forEach((Patient patient) -> {
+                    // Assign doctor to patient
+                    // This is done here as doctorsAssigned is not stored
+                    // within each patient json object
+                    patient.assignDoctor(doctor);
+
                     if (!addressBook.hasPatient(patient)) {
                         addressBook.addPatient(patient);
                     }
