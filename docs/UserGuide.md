@@ -70,7 +70,24 @@ The examples given in this guide are formatted with the following conventions:
 - The expected action of this command is written behind.
 
 --------------------------------------------------------------------------------------------------------------------
+## User Interface
 
+At Paidlancers, we understand that time is money, and every second matters for freelancers.
+That's why we've designed our app with a user interface (UI) that optimizes productivity, streamlines workflows,
+and ensures freelancers can get the most out of every moment.
+
+![Ui_Callout](images/Callout_UI.png)
+The UI is split into 3 main parts
+- Eventbook
+  - This is where the events that you specified are displayed. 
+- Contact
+  - This is where the contacts you have stored are displayed.
+- Message Box
+  - This is where the messages regarding the status of your commands are displayed.
+
+The main interaction with Paidlancers would be through the command box at the bottom of the UI.
+This is where you can type in your commands and execute them.
+--------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
