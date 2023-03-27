@@ -191,6 +191,27 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            switch (commandResult.getResultType()) {
+                case SHOW_INFO:
+                    internshipInfoPanel.updateInfoPanel(commandResult.getInternship(), commandResult.getEvents());
+                    break;
+                case HELP:
+                    handleHelp();
+                    break;
+                case EXIT:
+                    handleExit();
+                    break;
+                case HOME:
+                    break;
+                case STATS:
+                    break;
+                case CLASH:
+                    break;
+                case NO_CHANGE:
+                    break;
+                default:
+                    break;
+                    
             if (!commandResult.isEmptyInternship()) {
                 internshipInfoPanel.updateInfoPanel(commandResult.getInternship(), commandResult.getEvents());
                 internshipInfoPanelPlaceholder.getChildren().clear();
