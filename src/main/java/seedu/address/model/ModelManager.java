@@ -272,7 +272,7 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Card> getReviewCardList() {
         assert currReview != null : "Must be in review mode";
-        return currReview.getReviewCardList();
+        return currReview.getFilteredReviewCardList();
     }
 
     @Override
