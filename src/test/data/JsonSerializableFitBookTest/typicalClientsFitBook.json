@@ -12,7 +12,9 @@
     "goal": "lose-weight",
     "tagged" : [ "friends" ],
     "weightHistories" : [ "50.0" ],
-    "weightHistoriesDate" : [ "28-03-2023 02:17" ]
+    "weightHistoriesDate" : [ "28-03-2023 02:17" ],
+    "exercises" : [ ],
+    "routinesRoutineName" : [ ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -25,7 +27,9 @@
     "goal": "lose-weight",
     "tagged" : [ "owesMoney", "friends" ],
     "weightHistories" : [ "50.0" ],
-    "weightHistoriesDate" : [ "28-03-2023 02:17" ]
+    "weightHistoriesDate" : [ "28-03-2023 02:17" ],
+    "exercises" : [ ],
+    "routinesRoutineName" : [ ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -37,7 +41,9 @@
     "goal": "lose-weight",
     "tagged" : [ ],
     "weightHistories" : [ "50.0" ],
-    "weightHistoriesDate" : [ "28-03-2023 02:17" ]
+    "weightHistoriesDate" : [ "28-03-2023 02:17" ],
+    "exercises" : [ ],
+    "routinesRoutineName" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -50,7 +56,9 @@
     "goal": "lose-weight",
     "tagged" : [ "friends" ],
     "weightHistories" : [ "50.0" ],
-    "weightHistoriesDate" : [ "28-03-2023 02:17" ]
+    "weightHistoriesDate" : [ "28-03-2023 02:17" ],
+    "exercises" : [ ],
+    "routinesRoutineName" : [ ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -63,7 +71,9 @@
     "goal": "lose-weight",
     "tagged" : [ ],
     "weightHistories" : [ "50.0" ],
-    "weightHistoriesDate" : [ "28-03-2023 02:17" ]
+    "weightHistoriesDate" : [ "28-03-2023 02:17" ],
+    "exercises" : [ ],
+    "routinesRoutineName" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -76,7 +86,9 @@
     "goal": "lose-weight",
     "tagged" : [ ],
     "weightHistories" : [ "50.0" ],
-    "weightHistoriesDate" : [ "28-03-2023 02:17" ]
+    "weightHistoriesDate" : [ "28-03-2023 02:17" ],
+    "exercises" : [ ],
+    "routinesRoutineName" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -89,6 +101,8 @@
     "goal": "lose-weight",
     "tagged" : [ ],
     "weightHistories" : [ "50.0" ],
-    "weightHistoriesDate" : [ "28-03-2023 02:17" ]
+    "weightHistoriesDate" : [ "28-03-2023 02:17" ],
+    "exercises" : [ ],
+    "routinesRoutineName" : [ ]
   } ]
 }

@@ -3,7 +3,19 @@ package seedu.fitbook.testutil.client;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.fitbook.model.client.*;
+import seedu.fitbook.model.client.Address;
+import seedu.fitbook.model.client.Appointment;
+import seedu.fitbook.model.client.Calorie;
+import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.client.Date;
+import seedu.fitbook.model.client.Email;
+import seedu.fitbook.model.client.Gender;
+import seedu.fitbook.model.client.Goal;
+import seedu.fitbook.model.client.Name;
+import seedu.fitbook.model.client.Phone;
+import seedu.fitbook.model.client.Weight;
+import seedu.fitbook.model.client.WeightHistory;
+import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.tag.Tag;
 import seedu.fitbook.model.util.SampleDataUtil;
 
@@ -34,6 +46,7 @@ public class ClientBuilder {
     private Goal goal;
     private WeightHistory weightHistory;
     private Date weightDate;
+    private Set<Routine> routines;
 
     /**
      * Creates a {@code ClientBuilder} with the default details.
@@ -51,6 +64,7 @@ public class ClientBuilder {
         tags = new HashSet<>();
         weightHistory = new WeightHistory(weight);
         weightDate = new Date(DEFAULT_WEIGHT_DATE);
+        routines = new HashSet<>();
     }
 
     /**
@@ -68,6 +82,7 @@ public class ClientBuilder {
         weightHistory = clientToCopy.getWeightHistory();
         appointments = new HashSet<>(clientToCopy.getAppointments());
         tags = new HashSet<>(clientToCopy.getTags());
+        routines = new HashSet<>(clientToCopy.getRoutines());
     }
 
     /**
@@ -158,7 +173,16 @@ public class ClientBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code routines} into a {@code Set<Routine>}
+     * and set it to the {@code Client} that we are building.
+     */
+    public ClientBuilder withRoutines(String ... routines) {
+        this.routines = SampleDataUtil.getRoutineSet(routines);
+        return this;
+    }
+
     public Client build() {
-        return new Client(name, phone, email, address, appointments, weight, gender, calorie, goal, tags);
+        return new Client(name, phone, email, address, appointments, weight, gender, calorie, goal, tags, routines);
     }
 }

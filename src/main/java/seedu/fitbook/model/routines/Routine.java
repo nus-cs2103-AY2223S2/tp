@@ -49,6 +49,20 @@ public class Routine {
         return exercises;
     }
 
+    public List<String> getExercisesName() {
+        List<String> exercisesName = new ArrayList<>();
+        exercises.forEach(exercise -> exercisesName.add(exercise.exerciseName));
+        return exercisesName;
+    }
+
+    /**
+     * Returns a boolean to check if another {@code RoutineName} is the same as the {@code routineName} in this
+     * instance object.
+     */
+    public boolean isSameRoutineName(Routine otherRoutine) {
+        return routineName.equals(otherRoutine.getRoutineName());
+    }
+
     /**
      * Returns true if both routines have the same identity and data fields.
      * This defines a stronger notion of equality between two routines.
@@ -97,9 +111,10 @@ public class Routine {
     /**
      * Format state as text for viewing.
      */
+    @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getRoutineName());
+        builder.append("[" + getRoutineName() + "]");
         return builder.toString();
     }
 
