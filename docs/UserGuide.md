@@ -2,7 +2,7 @@
 
 Greetings! Welcome to PowerConnect! <br>
 
-Looking for a simple and all in one solution for your teaching needs? Look no futher. <br>
+Looking for a simple and all in one solution for your teaching needs? Look no further. <br>
 
 PowerConnect is a fully customized platform for tuition teachers and school teachers with the primary focus on 
 tuition teachers now as we are still working to scale our features. School teachers, do still give us a try. While our 
@@ -16,28 +16,34 @@ Without further ado, let's get started!
 
 
 ##### Table of Contents
-1. [Quick Start](#quickstart)
+1. [Quick Start](#quick-start)
 2. [Features](#features)
-    1. [Student Features](#student)
-        1. [Add student: `add`](#addstudent)
-        2. [Add students' grade: `grade`](#gradestudent)
-        3. [Deletes students' grade: `gradedelete`](#gradedelete)
-        4. [Add comments to students: `comment`](#commentstudent)
-        5. [Listing all students in a particular class: `list`](#liststudent)
-        6. [Editing a student's particulars: `edit`](#editstudent)
-        7. [Searching students: `find`](#findstudent)
-        8. [Deleting a student: `delete`](#deletestudent)
-    2. [Parent Features](#parent)
-       1. [Add Parent/Next-of-Kin: `add`](#addparent)
-       2. [Listing all Parents/Next-of-Kins: `list`](#listparent)
-       3. [Editing a Parent/Next-of-Kin particulars: `edit`](#editparent)
-       4. [Deleting a Parent/Next-of-Kin: `delete`](#deleteparent)
-3. [Viewing help: `help`](#help)
-4. [Exiting program: `exit`](#exit)
-5. [Additional Features](#addfeatures)
+    1. [Legend](#legend)
+    2. [Student Features](#student)
+         1. [Add student: `add`](#addstudent)
+         2. [Add students' grade: `grade`](#gradestudent)
+         3. [Deletes students' grade: `gradedelete`](#gradedelete)
+         4. [Add comments to students: `comment`](#commentstudent)
+         5. [Listing all students in a particular class: `list`](#liststudent)
+         6. [Editing a student's particulars: `edit`](#editstudent)
+         7. [Searching students: `find`](#findstudent)
+         8. [Deleting a student: `delete`](#deletestudent)
+    3. [Parent Features](#parent)
+        1. [Add Parent/Next-of-Kin: `add`](#addparent)
+        2. [Listing all Parents/Next-of-Kins: `list`](#listparent)
+        3. [Editing a Parent/Next-of-Kin particulars: `edit`](#editparent)
+        4. [Deleting a Parent/Next-of-Kin: `delete`](#deleteparent)
+    4. [General Features](#general)
+       1. [Viewing help: `help`](#help)
+       2. [Exiting program: `exit`](#exit)
+       3. [Additional Features](#addfeatures)
+3. [Saving the data](#savingdata)
+4. [Editting the data file](#editdatafile)
+5. [Images](#images)
 6. [FAQ](#faq)
 7. [Command Summary](#summary)
-
+   1. [Command Summary for Student](#summarystudent)
+   2. [Command Summary for Parent](#summaryparent)
 <a name="quickstart"/>
 --------------------------------------------------------------------------------------------------------------------
 
@@ -45,18 +51,20 @@ Without further ado, let's get started!
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `powerconnect.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-1/tp/releases).
+2. Download the latest `PowerConnect.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for PowerConnect.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. In the same folder, create a new folder named “image” and store all images to be used for the program in this folder. eg student image and parent image. For the student image, it should be named <STUDENT_NAME><CLASS><INDEX NUMBER>.png. For the parent image, it should be named <PARENT_NAME>.
+
+5. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar PowerConnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * `list` : Lists all contacts.
+    * `list student` : Lists all students.
 
     * `student 1A add n/Tan Ah Cow in/13 s/M pn/Tan Ah Niu pnP/91234567 rls/Father` : Adds a student in class 1A named `Tan Ah Cow` to PowerConnect.
 
@@ -68,22 +76,22 @@ Without further ado, let's get started!
     * `exit` : Exits the app.
 
 
-6. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
    <a name="features"/>
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+This section aims to provide a brief overview of the features available in PowerConnect and the appropriate CLI command to call them. <br>
 
-* Command lines supplied by the user are case sensitive and should be supplied in lower case. <br>
+### Legend
+* Command lines supplied by the user are NOT case sensitive. User needs to be ensure they have typed in the command in the correct case.
+  E.g. in the list feature, user can call it via this method:
+  `student 5A list`
 
-  E.g. in the list feature, user can call it via either methods:
-     1. student 5A list
 
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.
@@ -100,56 +108,75 @@ Without further ado, let's get started!
 
 
 
-* General Particulars:
-      - Name <**NAME**>
-        - String value of student's name
-      - Phone <**PH**>
-          - Numbers (integer)
-      - Sex <**SEX**>
-          - M / m means male while F / f means female
-  * Optional:
-      - Age [**AGE**]
-          - Numbers (integer)
-      - Phone number [**PH**]
-          - String value of phone address
-      - Address <**ADDR**>
-          - String value of student's address
-      - Email <**EM**>
-          - String value of email address
-
-
 * Student Particulars:
+  * Compulsory:
+    - Name n/<**NAME**>
+      -  Student's name
     - Class <**CLASS**>
-        - String value of student's class
-    - Index Number <**INDEX_NUMBER**>
-        - Numbers (integer)
-    - Parents/ Next-of-kin <**NOK**>
-      - String value of parent's name
-    - Parents/ Next-of-kin phone number <**NOK_CONTACT_NUMBER**>
-        - Integer value of parent phone number
-    - Parents/ Next-of-kin relationhip to student <**NOK_RELATIONSHIP_TO_STUDENT**>
-        - String relationship of parent/ next-of-kin with student
+      - Student's class
+    - Index Number in/<**INDEX_NUMBER**>
+      - Number value of student's index number
+    - Parents/ Next-of-kin pn/<**PARENT/NOK**>
+      - Parent's name
+    - Parents/ Next-of-kin pnP/<**PARENT/NOK_PHONE_NUMBER**>
+      - Parent's phone number
+      - Should not include country code
+    - Parents/ Next-of-kin rls/<**RELATIONSHIP**>
+      - Relationship between student and parent
   * Optional:
-      - Academics
-          - Test <**TEST_NAME**>
-              - String value of test name
-          - Attendance <**ATTENDANCE**>
-              - Mark as present/ not present
-          - Homework <**HOMEWORK**>
-              - String value of homework name
-          - Grade <**GRADE**>
-              - String value of grade results
-      - Image [**img**]
-      - CCA [**CCA**]
-      - Comments [**com**]
+    - Age ageS/[**AGE**]
+        - Numerical value of student's age
+    - Sex s/[**SEX**]
+      - Student's gender
+      - Should be either M or F
+    - CCA c/[**CCA**]
+      - Student's CCA
+    - Comments com/[**COMMENTS**]
+      - Student's comments
+    - Image imgS/[**IMAGE**]
+      - Student's image
+      - Should be in .png format
+      - Should be named <STUDENT_NAME><CLASS><INDEX NUMBER>.png
+      - Should be stored in the image folder
+    - Residential address a/[**RESIDENTIAL_ADDRESS**]
+      - Student's residential address
+    - Email e/[**EMAIL**]
+      - Student's email address
+    - Phone number pnS/[**PHONE_NUMBER**]
+      - Student's phone number
+      - Should not include country code
 
+  *  Academics:
+      - Attendance att/<**ATTENDANCE**>
+          - Can be T/F/`Date`
+      - Test test/<**TEST_NAME**>
+        - String value of test name
+      - Homework hw/<**HOMEWORK**>
+          - String value of homework name
+      - Grade gde/<**GRADE**>
+          - String value of grade results
+      - Tags t/<**TAGS**>
+          - String value of tags
 
-* Parent/ Guardians Particulars:
-    - Relationship <**nok**>
-
-
-</div>
-<a name="student"/>
+* Parent / Guardians Particular
+  * Compulsory:
+    - Name n/<**NAME**>
+      -  Parent's name
+    - Phone number pnP/<**PHONE_NUMBER**>
+      - Parent's phone number
+      - Should not include country code
+  * Optional:
+    - Age ageP/[**AGE**]
+      - Numerical value of parent's/NOK age
+    - Image imgP/[**IMAGE**]
+      - Parent's image
+      - Should be in .png format
+      - Should be named <PARENT_NAME>.png
+      - Should be stored in the image folder
+    - Email e/[**EMAIL**]
+      - Parent's email address
+    - Residential address a/[**RESIDENTIAL_ADDRESS**]
+      - Parent's residential address
 
 ## General Command for Student Related features
 
