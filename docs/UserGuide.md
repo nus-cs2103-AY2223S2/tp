@@ -85,7 +85,7 @@ HMHero provides straightforward analysis on your hiring process to streamline an
 1. Find out how many applicants are accepted out of total applicants.
 2. Find out the average time taken to process each applicant.
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -128,7 +128,7 @@ to navigate back and forth between the links quickly. (<code>Command + Left arro
 <code>Command + Right arrow</code> if you are using Mac).
 </div>
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -148,7 +148,7 @@ Highlight tips which you might find useful. </div>
 <div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong> <br>
 Highlight dangers and things to look out for. </div>
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -159,7 +159,7 @@ Other than the icons mentioned above, there are also some other notations used i
 - <a href> Phrases underlined in blue </a> are hyperlinks that will bring you to another part of
 this documentation that is relevant to the phrase.
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -188,7 +188,7 @@ Not sure where to start? The following section on [Quick Start](#5-quick-start) 
 after you have launched it for the first time. Feel free to skip to the next section on [Commands](#6-commands) if you
 are already familiar with the application!
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -216,7 +216,7 @@ The Help Window looks like the following:
 
 ![help_window.png](images%2Fhelp_window.png)
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -237,7 +237,7 @@ The following are the attributes stored for each `Applicant`
 Applicants are unique by name and phone number and Case Sensitive.
 This means you cannot add two or more applicants of the same name and phone number.
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -258,7 +258,7 @@ can include:
 HMHero's Notes are unique by name and are case-sensitive. This means you cannot add two or more notes of
 the same name.
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -287,7 +287,7 @@ These placeholders follow immediately after a [Flag](#523-flags).
 Please refer to the subsequent [Command Format](#53-command-format) section to see how [Flags](#523-flags)
 and [Placeholders](#524-placeholders) are used together.
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -307,7 +307,7 @@ section to see how Flags and Placeholders are used together.
 | NOTE         | note/              | The NOTE is the term we use to identify a skill of an Applicant.                             |
 | DATETIME     | d/                 | The DATETIME is the datetime indicating the interview datetime of the Applicant.             |
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -323,7 +323,7 @@ Command Word: Tells HMHero what action you wish to execute. These actions are co
 [Placeholders](#524-placeholders): Represents data that you wish to input. Replace this with valid data.
 For example, ITEM_NAME in n/ITEM_NAME can be replaced with n/Potato.
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -394,7 +394,7 @@ However, note that the following executions are invalid:
 
 * `addn/Thomasp/91918153e/thomas@gmail.coma/6 Sims Drive (s)543230`
 
-  There must be between the placeholders and flags.
+  There must be spacings between the placeholders and flags.
 
 * `add n/ThomaŚ p/91918153 e/thomas@gmail.com a/6 Sims Drivè (s)543230`
 
@@ -438,7 +438,7 @@ Here is a checklist you can use before running a command:
 * [ ] I know the restrictions of each parameter
 * [ ] I know the effects of not specifying each optional flag.
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -467,7 +467,7 @@ What you should expect to find:
 </ul>
 </div>
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ### 6.1 Applicant Commands
 
@@ -510,7 +510,7 @@ New person added: Thomas; Phone: 91918153; Email: thomas@gmail.com;
 Address: 6 Sims Drive (s)543230; Status: APPLIED
 ```
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -573,7 +573,7 @@ find n/Thomas p/98765432
 2. Marry, APPLIED, 98765432, marry@gmail.com, 5 Sims Drive (s)542333
 ```
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -620,7 +620,7 @@ Total Applicants: 4
 4. Thoma, SHORTLISTED, 98231234, thoma@gmail.com, 7 Sims Drive (s)543521
 ```
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -666,7 +666,7 @@ Deleted Person: Thomas; Phone: 91918153; Email: thomas@gmail.com;
 Address: 6 Sims Drive (s)543230; Status: REJECTED`
 ```
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -732,7 +732,7 @@ Thomas, SHORTLISTED 20-03-2023 12:12, 91918153, thomas@gmail.com, 6 Sims Drive (
 Thomas, ACCEPTED, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230
 ```
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -780,7 +780,7 @@ Rejected Applicant: Thomas
 1. Thomas, REJECTED 20-03-2023 12:12, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230
 ```
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -820,7 +820,7 @@ Listed all shortlisted applicants
 3. Amy, SHORTLISTED 21-03-2023 12:12, 98765432, marry@gmail.com, 5 Sims Drive (s)542333
 ```
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -879,7 +879,7 @@ Edited Person: Amy; Phone: 97833468; Email: thomastan@gmail.com;
 Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Notes: [Python] [Java]
 ```
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -887,7 +887,7 @@ Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Notes: [Python] [Java]
 #### 6.1.9. Remind upcoming interviews `remind`
 - Will update soon
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -895,7 +895,7 @@ Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Notes: [Python] [Java]
 
 - Will update soon
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -959,7 +959,7 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
   - Example 1: `find Jack Dill`, `find 91234567`
   - Example 2: `find n/Jack Dill p/91234567`
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -971,7 +971,7 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
 
 <div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
 This command is the only guaranteed way for the data file to be saved when you exit the application.
-To prevent, always exit the application using this command instead of any other way.
+To prevent losing data, always exit the application using this command instead of any other way.
 </div>
 
 **Example:**
@@ -993,7 +993,7 @@ exit
 If your inventory data cannot be saved successfully, HMHero will not close in order to prevent data loss.
 </div>
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -1014,7 +1014,7 @@ If your inventory data cannot be saved successfully, HMHero will not close in or
 | Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                                        | `edit 1 n/Marry p/98763245`                                                 |
 | Remind an applicant's interview date   | TO BE UPDATED                                                                                                                                                                    | To be updated                                                               |
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -1024,7 +1024,7 @@ If your inventory data cannot be saved successfully, HMHero will not close in or
 |-----------------------------------------|----------|---------|
 | Displays statistics collected by HMHero | `stats`  | `stats` | 
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -1035,7 +1035,7 @@ If your inventory data cannot be saved successfully, HMHero will not close in or
 | Shows a help dialog with a list of available commands | `help` | `help`  |
 | Exits HMHero                                          | `exit` | `exit`  |
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -1076,7 +1076,7 @@ Unable to exit/save HMHero to data file
 
 1. This error is due to `hmhero.jar` being started in a protected folder. (Examples of write-protected folders include`C:\WINDOWS\System32` in windows and the `/etc` dir in linux) <br> Please move the `hmhero.jar` file into another folder in your computer and start HMHero application from that folder.
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -1094,7 +1094,7 @@ Unable to exit/save HMHero to data file
 ### Q: How do I transfer my data to another computer?<br>
 **A:** Install HMHero on the other computer and overwrite the empty data file with the data file created by HMHero in your current computer.
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 ## 10. Acknowledgements
@@ -1110,7 +1110,7 @@ Java dependencies:
 Documentation dependencies:
 * [PlantUML](https://plantuml.com/) for creating UML diagrams
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -1205,7 +1205,7 @@ Documentation dependencies:
 > #### URL
 > A hyperlink to a website.
 
-[Back to Table of Contents](#user-guide)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
