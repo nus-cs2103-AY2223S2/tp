@@ -6,6 +6,7 @@ import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.UniqueEventList;
 
 /**
  * Wraps all data at the UserData level
@@ -72,6 +73,10 @@ public class UserData implements ReadOnlyUserData {
     }
     public void addEvent(Event e) {
         this.user.getValue().addEvent(e);
+    }
+
+    public UniqueEventList getEvents() {
+        return this.user.getValue().getEvents();
     }
 
     @Override

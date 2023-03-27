@@ -115,6 +115,8 @@ public interface Model {
 
     void addEvent(Event event);
 
+    // void setEvent(Event eventToEdit, Event editedEvent);
+
     ObservableList<Event> getEvents();
 
     boolean isValidTabIndex(Index index);
