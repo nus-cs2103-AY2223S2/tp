@@ -3,12 +3,16 @@ layout: page
 title: User Guide
 ---
 
-Quick Contacts (QC) is a **cross-platform desktop application** that enables you to easily **manage your contacts and meetings all in one place**! It is designed for users who have a large number of contacts, with many of which are only needed temporarily.
+## About QuickContacts
 
-Equipped with both a Graphical User Interface (GUI) and Command Line Interface (CLI), users are empowered with the ability to perform tasks using QC in a second via the CLI while still enjoying the beauty of the GUI.
+QuickContacts is a **contacts and meetings management application** that enables you to manage your schedule and contacts with ease! It is designed for users who have a large number of contacts and meetings with those contacts.
+
+QuickContacts is a **cross-platform application** that works on Windows, macOS and Linux. We, the developers at QuickContacts, understand the amount of time required to manage many contacts and maintaining a schedule with many meetings with them. Designed for busy individuals, QuickContacts is built around a Command Line Interface (CLI) that empowers users to perform tasks in seconds. With fast fingers, you can be assured that your time spent managing your schedule is minimised!
+
+This user guide serves as an introduction on how to incorporate QuickContacts into your daily workflow. Head over to the [Getting started](#getting-started) section to get onboard!
 
 ## Table of Contents
-- [Quick start](#quick-start)
+- [Getting started](#getting-started)
 - [Features](#features)
     - [`help`](#viewing-help--help)
     - [`add`](#adding-a-person--add)
@@ -32,7 +36,7 @@ Equipped with both a Graphical User Interface (GUI) and Command Line Interface (
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Getting Started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
