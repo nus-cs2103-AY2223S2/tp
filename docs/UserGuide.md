@@ -100,7 +100,57 @@ For some commands, some of these **tags** are optional. Therefore, if the **tag*
 FastTrack will use a _default_ option, with no need to specify the values.
 
 
---------------------------------------------------------------------------------------------------------------------
+
+## About
+This section gives an overview of the features of FastTrack and some frequently used terminologies throughout this user guide.
+
+1. Manage one-time and recurring expenses
+   * Add an expense
+   * Edit an expense
+   * Delete an expense
+   * Find an expense by keyword
+   * List expenses
+     * Filter by category
+     * Filter by time-span
+2. Manage expense categories
+   * Add a category
+   * Edit a category
+   * Delete a category
+   * List categories
+3. Expense Summary Statistics
+
+### Graphical User Interface (GUI)
+The following diagrams highlight the different sections of the _Graphical User Interface (GUI)_ of FastTrack.
+![FastTrack GUI](images/fasttrack_labeled_1.png)
+![FastTrack GUI](images/fasttrack_labeled_2.png)
+
+| Part of FastTrack         | Description                                                                                                                                                                                       |
+|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| One-time Expense Display  | Displays the list of saved one-time expenses with filters applied (if any). This display occupies the _Main View_ section.                                                                        |
+| Category Display          | Displays the list of saved categories, including the number of expenses associated with each category. This display occupies the _Main View_ section.                                             |
+| Recurring Expense Display | Displays the list of saved recurring expenses. This display occupies the _Main View_ section.                                                                                                     |
+| Results Display           | Displays the feedback from the application after entering a command, which can be used to indicate that a command has succeeded or failed. It's role is to provide textual guidance for the user. |
+| Command Box               | A text input field where the user can type in a command for FastTrack to execute.                                                                                                                 |
+| Expense Summary Display   | A visual display containing spending statistics (Refer to the feature [Expense Summary](#Expense Summary) below for details on these statistics.                                                  |
+| Toolbar                   | Contains clickable buttons which allow the user to access the user guide and exit from the application.                                                                                           |
+
+### Terminologies
+The following table contains descriptions of key terminologies used in FastTrack.
+
+| Terminology       | Description                                                                                                                                                             |
+|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Expense           | Also referred to as a one-time expense, this indicates a single expense entry which comprises the name of the expense, it's amount, associated category and date.       |
+| Recurring Expense | An entry representing an expense which is automatically generates one-time expenses at specified intervals, for example, monthly installments or software subscriptions |
+| Category          | An expense category, which comprises a name and summary - a short description of the category                                                                           |
+
+
+### Command Syntax
+| Syntax      | Description                                                                                                                                                                             |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `command`   | Any text within this code block form (text surrounded by a highlight) represents a command which can be executed in FastTrack. It is also used when describing the format of a command. |
+| `PARAMETER` | A word with full uppercase text in code block form (text surrounded by a highlight) parameter is any additional input supplied as part of a command before execution.                   |
+| Prefix      | A special alphabetical character followed by a forward slash `/` which precedes a parameter input. E.g. `n/NAME`,`c/CATEGORY`                                                           |
+
 
 ## Features
 
@@ -321,13 +371,28 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                                                  | Format, Examples                                                                                                                          |
-|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Add Expense**](#adding-an-expense-add)               | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]` <br> e.g., `add c/entertainment n/movie night p/20 d/14/2/23`                          |
-| [**Delete Expense**](#deleting-an-expense--delete)      | `delete INDEX`<br> e.g., `delete 3`                                                                                                       |
-| [**List Expenses**](#listing-expenses--list)            | All expenses: `list -t`<br>Filter by categories:`list c/CATEGORY_NAME​`<br>From past week, month or year: `list /w`, `list /m`, `list /y` |
-| [**List Categories**](#listing-categories-lcat)         | `lcat`                                                                                                                                    |
-| [**Find Expense**](#search-for-an-expense-by-name-find) | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find movie`                                                                                     |
-| [**Add Category**](#adding-a-category-addcat)           | `cat CATEGORY_NAME`                                                                                                                       |
-| [**Delete Category**](#deleting-a-category-delcat)      | `delcat CATEGORY_NAME`                                                                                                                    |
-| [**Help**](#viewing-help--help)                         | `help`                                                                                                                                    |
+
+### Category Commands 
+
+| Action                       | Format | Examples |
+|------------------------------|--------|----------|
+| [**Add Category**](#adding-a-category-addcat) | `addcat c/CATEGORY_NAME s/SUMMARY` | `addcat c/Groceries s/for living`|
+| [**Delete Category**](#deleting-a-category-delcat) | `delcat INDEX` | `delcat 1` |
+| [**Edit Category**](#editing-a-category--ecat) | `ecat INDEX [c/CATEGORY_NAME] [s/SUMMARY]` | `ecat 1 c/New Name s/New Summary`|
+| [**List Categories**](#listing-categories-lcat) | `lcat` | `lcat` |
+
+### Expense Commands 
+| Action                       | Format | Examples |
+|------------------------------|--------|----------|
+| [**Add Expense**](#adding-an-expense-add) | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]` | `add c/Food p/20 n/Mac d/14/2/23`|
+| [**Delete Expense**](#deleting-an-expense--delete) | `delete INDEX` | `delete 1` |
+| [**Edit Expense**](#editing-an-expense--eexp) | `eexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE]` | `eexp 1 c/Food n/Mac d/20/4/23 p/10`|
+| [**List Expenses**](#listing-expenses--list) | `list [c/CATEGORY_NAME] [t/TIMEFRAME]` | `list c/Food t/month`|
+| [**Find Expense**](#search-for-an-expense-by-name-find) | `find KEYWORD [MORE_KEYWORDS]` | `find KFC chicken` |
+
+### General Commands
+| Action                       | Format | Examples |
+|------------------------------|--------|----------|
+| [**Help**](#viewing-help--help) | `help` | `help`|
+| [**Exit program**](#exiting-the-program--exit) | `exit` | `exit`|
+| [**Clear data**](#clearing-all-entries--clear) | `CLEAR` | `CLEAR`|
