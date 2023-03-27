@@ -10,6 +10,7 @@ title: User Guide
   {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## 1. **Introduction**
@@ -24,6 +25,8 @@ If you're a *fast typer*, sprINT is the perfect tool. The app is designed to max
 making it a great asset in managing your internship applications.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 2. **Quick start**
 
@@ -256,9 +259,7 @@ Currently, there are two orders you can choose:
 
 ### 3.4.1  Viewing help : `help`
 
-Shows a pop-up window of summary of commands and their formats.
-
-![help message](images/helpMessage.png)
+Displays a pop-up window of summary of commands and their formats.
 
 Format: `help`
 
@@ -301,10 +302,18 @@ If your changes to the data file makes its format invalid, the internship book w
 
 _Details coming soon ..._
 
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## 4. **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous internship book's home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 5. **Command Summary**
 
@@ -323,3 +332,7 @@ _Details coming soon ..._
 | **Help**                     | `help`                                                                                                                                         |
 | **Sort**                     | `sort ORDER` i.e., `sort alphabetical` or `sort deadline`                                                                                      |
 | **Undo**                     | `undo`                                                                                                                                         |
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
