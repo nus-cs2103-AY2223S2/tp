@@ -53,11 +53,13 @@ public class CommandTestUtil {
     public static final String COMMENT_DESC_GOOGLE = " " + PREFIX_COMMENT + VALID_COMMENT_GOOGLE;
     public static final String TAG_DESC_FRONT = " " + PREFIX_TAG + VALID_TAG_FRONT;
     public static final String TAG_DESC_BACK = " " + PREFIX_TAG + VALID_TAG_BACK;
+    public static final String INVALID_COMPANY_NAME = "This Company name has more than fifty characters hmm";
+    public static final String INVALID_ROLE = "This role has more than fifty characters so it is wrong";
 
     // '&' not allowed in company names
-    public static final String INVALID_COMPANY_NAME_DESC = " " + PREFIX_COMPANY_NAME + "Grab&";
+    public static final String INVALID_COMPANY_NAME_DESC = " " + PREFIX_COMPANY_NAME + INVALID_COMPANY_NAME;
     // '@' not allowed in roles
-    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "Front@Developer";
+    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + INVALID_ROLE;
     // pending is not a possible value for status
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "pending";
     // invalid date format where dates have to be yyyy-MM-dd

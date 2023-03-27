@@ -19,8 +19,8 @@ import seedu.address.model.internship.Role;
 import seedu.address.model.internship.Status;
 
 public class JsonAdaptedInternshipTest {
-    private static final String INVALID_COMPANY_NAME = "A@pple";
-    private static final String INVALID_ROLE = "Software E!gineer";
+    private static final String INVALID_COMPANY_NAME = "This company name has more than fifty characters hmm";
+    private static final String INVALID_ROLE = "This company name has more than fifty characters hmm";
     private static final String INVALID_STATUS = " ";
     private static final String INVALID_DATE = "1st March 2023";
     private static final String INVALID_COMMENT = "";
