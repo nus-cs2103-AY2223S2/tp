@@ -6,7 +6,16 @@ import static seedu.internship.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.internship.logic.commands.*;
+import seedu.internship.logic.commands.AddCommand;
+import seedu.internship.logic.commands.ClashCommand;
+import seedu.internship.logic.commands.Command;
+import seedu.internship.logic.commands.DeleteCommand;
+import seedu.internship.logic.commands.EditCommand;
+import seedu.internship.logic.commands.ExitCommand;
+import seedu.internship.logic.commands.FindCommand;
+import seedu.internship.logic.commands.HelpCommand;
+import seedu.internship.logic.commands.ListCommand;
+import seedu.internship.logic.commands.SelectCommand;
 import seedu.internship.logic.commands.event.EventCommand;
 import seedu.internship.logic.parser.event.EventCatalogueParser;
 import seedu.internship.logic.parser.exceptions.ParseException;
@@ -34,7 +43,7 @@ public class InternshipCatalogueParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandWord = matcher.group("commandWord").toLowerCase();
         final String arguments = matcher.group("arguments");
 
 
