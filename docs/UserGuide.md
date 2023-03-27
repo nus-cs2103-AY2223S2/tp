@@ -104,7 +104,7 @@ i.e. `find name KEYWORD [KEYWORDS]...`, `find tag KEYWORD [KEYWORDS]...`
 >
 > All keyword queries are case-insensitive. e.g. chicken will match Chicken
 >
-> Recipes matching at least one keyword will be returned, e.g. searching `find sandwich fries` will return the search results `cheese fries` and `ham sandwich`
+> Recipes matching at least one keyword will be returned, e.g. searching `sandwich fries` will return the search results `cheese fries` and `ham sandwich`
 >
 > Recipes are listed in the chronological order that they were added.
 >
