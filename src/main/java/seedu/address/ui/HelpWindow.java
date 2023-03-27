@@ -21,20 +21,20 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t13-3.github.io/tp/UserGuide.html";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
-    private final ObservableList<HelpCommand> helpCommands =
+    private static final ObservableList<HelpCommand> helpCommands =
             FXCollections.observableArrayList(
-                    new HelpCommand("Add app", "add-app r/role c/company name e/email s/status [t/tag(s)]\n"),
-                    new HelpCommand("List apps", "list\n"),
-                    new HelpCommand("Edit app",
-                            "edit-app INDEX [r/role] [c/company name] [e/company email] [s/status]\n"),
-                    new HelpCommand("Delete app", "delete-app INDEX\n"),
-                    new HelpCommand("Find", "find [keyword(s)] [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]\n"),
-                    new HelpCommand("Add app task", "add-task d/description by/deadline\n"),
-                    new HelpCommand("Edit app task", "edit-task INDEX [d/description] [by/deadline]\n"),
+                    new HelpCommand("Add app", "add-app r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [t/TAG(s)]\n"),
+                    new HelpCommand("Edit app", "edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS] [t/TAG(s)]\n"),
+                    new HelpCommand("Delete app", "delete-app INDEX \n"),
+                    new HelpCommand("Add app task", "add-task d/DESCRIPTION by/DEADLINE\n"),
+                    new HelpCommand("Edit app task", "edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]\n"),
                     new HelpCommand("Delete app task", "delete-task INDEX\n"),
+                    new HelpCommand("List apps", "list\n"),
+                    new HelpCommand("Find app(s)", "find [keyword(s)] [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]\n"),
                     new HelpCommand("Sort apps", "sort alphabetical/deadline\n"),
-                    new HelpCommand("Clear", "clear\n"),
-                    new HelpCommand("Help", "help\n")
+                    new HelpCommand("Clear internship book", "clear\n"),
+                    new HelpCommand("Help", "help\n"),
+                    new HelpCommand("Exit", "exit\n")
             );
     @FXML
     private Button copyButton;
