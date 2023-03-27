@@ -13,7 +13,7 @@ import seedu.dengue.model.person.Person;
  */
 public abstract class Overview {
     protected static final int MAX_INDEX_LEN = 4; // _12.
-    protected static final String GAP = "     "; // whitespace of length 5
+    protected static final String GAP = "     "; // whitespace of length 3
 
     /**
      * Returns the title {@code String} of the overview.
@@ -67,7 +67,7 @@ public abstract class Overview {
     private String makeBinPrefix(int x) {
         String index = x + ".";
         int paddingNeeded = MAX_INDEX_LEN - index.length();
-        return index + makeWhitespace(paddingNeeded);
+        return makeWhitespace(paddingNeeded) + index;
     }
 
     /**

@@ -3,6 +3,7 @@ package seedu.dengue.ui;
 import static java.util.Objects.requireNonNull;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import seedu.dengue.model.overview.Overview;
@@ -14,9 +15,9 @@ public class OverviewDisplay extends UiPart<Region> {
     private static final String FXML = "OverviewDisplay.fxml";
 
     @FXML
-    private TextArea overviewTitle;
+    private Label overviewTitle;
     @FXML
-    private TextArea overviewSubtitle;
+    private Label overviewSubtitle;
     @FXML
     private TextArea overviewContent;
 
