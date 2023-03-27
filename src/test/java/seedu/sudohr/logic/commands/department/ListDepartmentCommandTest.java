@@ -26,7 +26,7 @@ public class ListDepartmentCommandTest {
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() {
+    public void execute_listIsEmptiedFirst_showsEverything() {
         model.updateFilteredDepartmentList(unused -> false);
         assertCommandSuccess(new ListDepartmentCommand(), model, ListDepartmentCommand.MESSAGE_SUCCESS, expectedModel);
     }

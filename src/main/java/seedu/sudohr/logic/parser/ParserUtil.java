@@ -1,16 +1,20 @@
 package seedu.sudohr.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.commons.util.StringUtil;
+import seedu.sudohr.logic.commands.leave.AddEmployeeToLeaveFromToCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Address;
@@ -162,6 +166,45 @@ public class ParserUtil {
         }
 
         return new LeaveDate(leaveDate);
+    }
+
+    /**
+     * Parses a {@code String startDate} and {@code String endDate} into a list of {@code leaveDates}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     * @throws ParseException if start date is more than 7 days earlier than end date
+     */
+    public static List<LeaveDate> parseLeaveDateFromTo(String startDateString, String endDateString)
+            throws ParseException {
+        requireAllNonNull(startDateString, endDateString);
+        String trimmedStartDate = startDateString.trim();
+        String trimmedEndDate = endDateString.trim();
+        LocalDate startDay;
+        LocalDate endDay;
+        try {
+            startDay = LocalDate.parse(trimmedStartDate);
+            endDay = LocalDate.parse(trimmedEndDate);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(LeaveDate.MESSAGE_CONSTRAINTS);
+        }
+
+        if (startDay.isAfter(endDay)) {
+            throw new ParseException(AddEmployeeToLeaveFromToCommand.DATE_CONSTRAINTS);
+        }
+
+        if (startDay.until(endDay).getDays() > 5) {
+            throw new ParseException(AddEmployeeToLeaveFromToCommand.DATE_CONSTRAINTS);
+        }
+
+        List<LeaveDate> leaveDates = new ArrayList<LeaveDate>();
+        while (!startDay.isAfter(endDay)) {
+
+            leaveDates.add(new LeaveDate(startDay));
+            startDay = startDay.plusDays(1);
+        }
+
+        return leaveDates;
     }
 
     /**

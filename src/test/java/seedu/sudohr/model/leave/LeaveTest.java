@@ -53,7 +53,6 @@ public class LeaveTest {
     public void execute_removeEmployee_success() {
         Leave leave = new LeaveBuilder().build();
         leave.addEmployee(new EmployeeBuilder().build());
-
         leave.deleteEmployee(new EmployeeBuilder().build());
         assertTrue(leave.equals(new LeaveBuilder().build()));
     }

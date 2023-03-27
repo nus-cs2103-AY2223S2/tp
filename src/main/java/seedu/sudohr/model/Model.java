@@ -21,7 +21,7 @@ public interface Model {
 
 
     /** {@code Predicate} that always evaluate to true for leave */
-    Predicate<Leave> PREDICATE_SHOW_ALL_LEAVE = unused -> true;
+    Predicate<Leave> PREDICATE_SHOW_ALL_NON_EMPTY_LEAVES = leave -> leave.getNumberOnLeave() > 0;
 
     /** {@code Predicate} that always evaluate to true for departments */
     Predicate<Department> PREDICATE_SHOW_ALL_DEPARTMENTS = unused -> true;
@@ -256,7 +256,7 @@ public interface Model {
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredLeaveList(Predicate<Leave> predicateShowAllLeave);
+    void updateFilteredLeaveList(Predicate<Leave> predicateShowAllNonEmptyLeaves);
 
     /**
      * Update an employee {@code employee} with editedEmployee {@code employee} in all leave in SudoHR.
