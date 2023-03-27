@@ -12,7 +12,7 @@ public class Phone {
     public static final String NULL_PHONE = "NO_PHONE";
     public static final String MESSAGE_CONSTRAINTS =
             "Telegram handle should only contain numbers, letters, _ and it should be at"
-                    + "least 5 characters long and at most 32 characters long";
+                    + "least 5 characters long and at most 32 characters long. No whitespaces allowed";
     //public static final String VALIDATION_REGEX = "\\d{3,}";
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]{5,32}$";
 
@@ -37,6 +37,9 @@ public class Phone {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
+        if (test.length() != test.trim().length()) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

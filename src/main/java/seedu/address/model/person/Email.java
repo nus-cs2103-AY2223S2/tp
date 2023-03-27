@@ -19,7 +19,7 @@ public class Email {
     // alphanumeric and special characters
     private static final String NUMERIC_NO_UNDERSCORE = "e[0-9]{7}";
     private static final String LOCAL_PART_REGEX = "^" + NUMERIC_NO_UNDERSCORE;
-    private static final String DOMAIN_REGEX = "u.nus.edu";
+    private static final String DOMAIN_REGEX = "u\\.nus\\.edu";
     //public static final String VALIDATION_REGEX = "^e[0-9]{7}@u.nus.edu";
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
