@@ -365,6 +365,11 @@ The linkcontact feature will take in a contact number as a parameter. This param
     * Pros: Even easier to implement.
     * Cons: Hard to implement filtering of events by contact in the future.
 
+<img src="images/LinkContactActivityDiagram.png" width="430" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.5</b> Activity diagram of 'linkcontact'
+</div>
+
 ### Revenue feature
 
 The `revenue` feature allows for calculating the total revenue earned so far.
