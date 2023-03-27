@@ -257,6 +257,7 @@ Calculates and displays the total revenue based on all the completed events.
 
 **Format**: `revenue`
 
+- Displays the total revenue.
 
 ### View Upcoming Events: `remind` <a id = "view-upcoming-events"></a>
 
