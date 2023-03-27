@@ -20,6 +20,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_CLIENT_EMAIL = new Prefix("-e ");
     public static final Prefix PREFIX_CLIENT_YEAR_OF_BIRTH = new Prefix("-y ");
     public static final Prefix PREFIX_CLIENT_MOBILE_NUMBER = new Prefix("-mn ");
+    public static final Prefix PREFIX_CLIENT_NEW_EMAIL = new Prefix("-e2 ");
 
     /* For project related commands. */
     public static final Prefix PREFIX_PROJECT_NAME = new Prefix("-pn ");

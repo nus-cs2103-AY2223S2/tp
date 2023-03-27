@@ -141,15 +141,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasClient(Client client) {
         return clients.contains(client);
     }
-
-    public void removeClient(Client client) {
-        clients.remove(client);
-    }
-
     public void addClient(Client client) {
         clients.add(client);
     }
-
+    public void setClient(Client client, Client editedClient) {
+        clients.setItem(client, editedClient);
+    }
+    public void removeClient(Client client) {
+        clients.remove(client);
+    }
     @Override
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();

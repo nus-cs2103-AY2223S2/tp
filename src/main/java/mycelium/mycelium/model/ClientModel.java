@@ -13,7 +13,7 @@ import mycelium.mycelium.model.person.Person;
  */
 public interface ClientModel {
 
-    Predicate<Person> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
+    Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
     /**
      * Finds a single client that matches the specified predicate. Expects to
      * find either zero or one clients. If more than one client matches the
@@ -56,5 +56,12 @@ public interface ClientModel {
      * @param predicate The new filter predicate.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
+
+    /**
+     * Replaces the given client {@code target} with {@code editedClient}.
+     * @param target client to be replaced
+     * @param editedClient client to replace with
+     */
+    void setClient(Client target, Client editedClient);
 
 }
