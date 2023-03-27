@@ -46,6 +46,8 @@ HospiSearch is a **desktop app for managing hospital patients' particulars, opti
    1. `help` opens up the help menu
 6. Refer to the [Features](#features) below for details of each command.
 
+<sub>[return to table of contents](#table-of-contents-)</sub>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Prefixes
@@ -60,6 +62,7 @@ HospiSearch is a **desktop app for managing hospital patients' particulars, opti
 | Tag                  | t/     |
 | Drug Allergy         | d/     |
 
+<sub>[return to table of contents](#table-of-contents-)</sub>
 
 ## Features
 
@@ -200,8 +203,8 @@ Switch to dark mode.
 
 Format: `dark`
 
-
 --------------------------------------------------------------------------------------------------------------------
+<sub>[return to table of contents](#table-of-contents-)</sub>
 
 ## FAQ
 
@@ -209,6 +212,7 @@ Format: `dark`
 **A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HospiSearch home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+<sub>[return to table of contents](#table-of-contents-)</sub>
 
 ## Command summary
 
@@ -228,3 +232,4 @@ Format: `dark`
 | **Light**     | `light`                                                                                                                                                                                                         |
 | **Dark**      | `dark`                                                                                                                                                                                                          |
 
+<sub>[return to table of contents](#table-of-contents-)</sub>
