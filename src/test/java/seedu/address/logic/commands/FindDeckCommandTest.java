@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_DECKS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
-import static seedu.address.testutil.TypicalDecks.VALID_DECK_HISTORY;
 import static seedu.address.testutil.TypicalDecks.VALID_DECK_SCIENCE;
 
 import java.util.Arrays;
@@ -46,7 +45,7 @@ public class FindDeckCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different card -> returns false
+        // different find deck command -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
