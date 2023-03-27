@@ -4,13 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.commands.cardcommands.AddCommand.MESSAGE_NO_SELECTED_DECK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CARDS;
 
+import java.util.Optional;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.card.CardInDeckPredicate;
 import seedu.address.model.deck.Deck;
-
-import java.util.Optional;
 
 /**
  * Lists all cards in the selected deck to the user.
