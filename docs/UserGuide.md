@@ -2,8 +2,15 @@
 layout: page
 title: User Guide
 ---
+## About TeachMeSenpai
 
-TeachMeSenpai is a **desktop app targeted at private academic tutors who have many students to keep track of.** It is tailored to assist the user in monitoring their schedule, students' progress, and details.
+TeachMeSenpai is a **desktop app targeted at teaching assistants who have many students to keep track of.** It is tailored to assist the user in monitoring their students' progress, and details. 
+As a teaching assistant, you can easily view and edit your student's details on the go. Tailored to fast-typist, TeachMeSenpai is built around a **Command Line Interface (CLI)**, complete with an **autocomplete** feature
+to help you manage your students quicker than a traditional point-and-click interface can.
+
+This user guide provides everything you need to know to get started with TeachMeSenpai and how to use its features.
+Head over to the [Quick Start](#quick-start) section to get started with setting up, or the [Features](#features) section
+to learn more about what TeachMeSenpai can do!
 
 ---
 
@@ -98,7 +105,7 @@ Examples:
 
 - `add n/Shaun a/123 NUS Street r/Good in Japanese t/submitted`
 - `add n/Shao Hong edu/Bachelors y2 r/Good in German s/German`
-- `add n/Wen Li e/e07123456@u.nus.edu p/91234567 a/696 PGPR r/毎日3回うんこをとります`
+- `add n/Wen Li e/e07123456@u.nus.edu p/91234567 a/Kent Ridge PGPR r/Very hardworking :)`
 
 <p align=center>
     <img alt="add before" src="images/user-guide/add_before.jpg" />
