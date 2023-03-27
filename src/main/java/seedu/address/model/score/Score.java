@@ -2,8 +2,8 @@ package seedu.address.model.score;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Objects;
-
 
 /**
  * Represents a Score in the address book.
@@ -56,6 +56,9 @@ public class Score {
         return this.scoreDate;
     }
 
+    public LocalDate getLocalDate() {
+        return this.scoreDate.getDate();
+    }
 
     /**
      * Returns true if both scores have the same date.
