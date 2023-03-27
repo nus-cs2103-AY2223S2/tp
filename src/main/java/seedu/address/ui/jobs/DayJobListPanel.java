@@ -7,7 +7,10 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
@@ -67,8 +70,13 @@ public class DayJobListPanel extends UiPart<Region> {
             if (empty || job == null) {
                 setGraphic(null);
                 setText(null);
+                setStyle("-fx-background-color: transparent;");
             } else {
                 setGraphic(new DayDeliveryJobCard(job, getIndex() + 1).getRoot());
+            }
+
+            if (getIndex() % 2 == 1) {
+                setStyle("-fx-background-color: lightgrey;");
             }
         }
     }

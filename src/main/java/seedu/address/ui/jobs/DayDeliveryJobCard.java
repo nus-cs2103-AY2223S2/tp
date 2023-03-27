@@ -34,14 +34,14 @@ public class DayDeliveryJobCard extends UiPart<Region> {
     private Label receipient;
     @FXML
     private Label address;
-    @FXML
+   /* @FXML
     private Label deliveryTimeDate;
     @FXML
-    private Label deliveryTimeSlot;
+    private Label deliveryTimeSlot;*/
     @FXML
     private Label earning;
-    @FXML
-    private Label completedStatus;
+   // @FXML
+    //private Label completedStatus;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -54,7 +54,7 @@ public class DayDeliveryJobCard extends UiPart<Region> {
         receipient.setText(job.getRecipientId());
         address.setText("Refine later");
 
-        job.getDeliveryDate().ifPresentOrElse(val -> {
+       /* job.getDeliveryDate().ifPresentOrElse(val -> {
             deliveryTimeDate.setText(val.date);
         }, () -> {
             deliveryTimeDate.setText("N.A");
@@ -64,7 +64,7 @@ public class DayDeliveryJobCard extends UiPart<Region> {
             deliveryTimeSlot.setText(val.value);
         }, () -> {
             deliveryTimeSlot.setText("N.A");
-        });
+        });*/
 
         job.getEarning().ifPresentOrElse(val -> {
             earning.setText(val.value);
@@ -72,7 +72,7 @@ public class DayDeliveryJobCard extends UiPart<Region> {
             earning.setText("N.A");
         });
 
-        completedStatus.setText(String.valueOf(job.getDeliveredStatus()));
+       // completedStatus.setText(String.valueOf(job.getDeliveredStatus()));
     }
 
     @Override

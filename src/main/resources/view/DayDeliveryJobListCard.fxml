@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" prefWidth="102" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" prefWidth="102" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+            <ColumnConstraints hgrow="SOMETIMES" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
             <padding>
-                <Insets bottom="5.0" right="5.0" top="5.0" />
+                <Insets right="2.0" />
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="id" styleClass="cell_big_label">
@@ -29,10 +29,7 @@
             </HBox>
             <Label fx:id="receipient" styleClass="cell_small_label" text="\$receipient" />
             <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-            <Label fx:id="deliveryTimeDate" styleClass="cell_small_label" text="\$delivery_time_date" />
-            <Label fx:id="deliveryTimeSlot" styleClass="cell_small_label" text="\$delivery_time_slot" />
             <Label fx:id="earning" styleClass="cell_small_label" text="\$earning" />
-            <Label fx:id="completedStatus" styleClass="cell_small_label" text="\$completed_status" />
         </VBox>
         <rowConstraints>
             <RowConstraints />
