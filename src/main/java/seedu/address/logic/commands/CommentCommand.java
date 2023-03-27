@@ -10,6 +10,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.TaskBookModel;
 import seedu.address.model.task.Comment;
 import seedu.address.model.task.Task;
 
@@ -44,18 +45,19 @@ public class CommentCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, TaskBookModel taskBookModel) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
+        requireNonNull(taskBookModel);
+        List<Task> lastShownList = taskBookModel.getFilteredTaskList();
 
-        if (!model.hasTaskIndex(toReceiveComment)) {
+        if (!taskBookModel.hasTaskIndex(toReceiveComment)) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToComment = lastShownList.get(toReceiveComment.getZeroBased());
         String taskString = taskToComment.toString();
 
-        model.commentOnTask(toAddComment, taskToComment);
+        taskBookModel.commentOnTask(toAddComment, taskToComment);
         return new CommandResult(String.format(MESSAGE_COMMENT_SUCCESS, toAddComment, taskString));
     }
 

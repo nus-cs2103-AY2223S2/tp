@@ -28,7 +28,7 @@ public class DeadlineTaskBuilder {
      */
     public DeadlineTaskBuilder(DeadlineTask taskToCopy) {
         description = taskToCopy.getDescription();
-        date = taskToCopy.getDate();
+        date = taskToCopy.getDeadlineDate();
     }
 
     /**

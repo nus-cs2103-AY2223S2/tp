@@ -18,10 +18,12 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TaskBook;
+import seedu.address.model.TaskBookModel;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Comment;
 import seedu.address.model.task.Score;
@@ -40,7 +42,7 @@ public class ToDoCommandTest {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         Task validTask = new TaskBuilder().build();
 
-        CommandResult commandResult = new ToDoCommand(validTask).execute(modelStub);
+        CommandResult commandResult = new ToDoCommand(validTask).execute(new ModelStub(), modelStub);
 
         assertEquals(String.format(EventCommand.MESSAGE_SUCCESS, validTask),
                 commandResult.getFeedbackToUser());
@@ -51,10 +53,10 @@ public class ToDoCommandTest {
     public void execute_duplicateDeadlineTask_throwsCommandException() {
         Task validTask = new TaskBuilder().build();
         ToDoCommand toDoCommand = new ToDoCommand(validTask);
-        ModelStub modelStub = new ModelStubWithTask(validTask);
+        TaskBookModelStub modelStub = new ModelStubWithTask(validTask);
 
         assertThrows(CommandException.class,
-                DeadlineCommand.MESSAGE_DUPLICATE_TASK, () -> toDoCommand.execute(modelStub));
+                DeadlineCommand.MESSAGE_DUPLICATE_TASK, () -> toDoCommand.execute(new ModelStub(), modelStub));
     }
 
     @Test
@@ -91,11 +93,6 @@ public class ToDoCommandTest {
         }
 
         @Override
-        public void commentOnTask(Comment comment, Task task) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
@@ -126,11 +123,6 @@ public class ToDoCommandTest {
         }
 
         @Override
-        public void addTask(Task task) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -146,18 +138,8 @@ public class ToDoCommandTest {
         }
 
         @Override
-        public boolean hasTask(Task task) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteTask(Task target) {
-            throw new AssertionError("This method should not be called");
         }
 
         @Override
@@ -176,44 +158,124 @@ public class ToDoCommandTest {
         }
 
         @Override
-        public boolean hasTaskIndex(Index taskIndex) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean hasPersonIndex(Index personIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
+    }
+
+    /**
+     * A default model stub that have all of the methods failing.
+     */
+    private class TaskBookModelStub implements TaskBookModel {
+
         @Override
-        public void assignTask(Task taskToAssign, Task assignedTask, Index taskIndex) {
-            throw new AssertionError("This method should not be called.");
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setUserPrefs'");
         }
 
         @Override
-        public ObservableList<Task> getFilteredTaskList() {
-            throw new AssertionError("This method should not be called");
+        public ReadOnlyUserPrefs getUserPrefs() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getUserPrefs'");
         }
 
         @Override
-        public void updateFilteredTaskList(Predicate<Task> predicate) {
-            throw new AssertionError("This method should not be called.");
+        public GuiSettings getGuiSettings() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getGuiSettings'");
         }
 
+        @Override
+        public void setGuiSettings(GuiSettings guiSettings) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setGuiSettings'");
+        }
+
+        @Override
+        public Path getTaskBookFilePath() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getTaskBookFilePath'");
+        }
+
+        @Override
+        public void setTaskBook(ReadOnlyTaskBook taskBook) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setTaskBook'");
+        }
+
+        @Override
+        public ReadOnlyTaskBook getTaskBook() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getTaskBook'");
+        }
+
+        @Override
+        public boolean hasTask(Task task) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'hasTask'");
+        }
+
+        @Override
+        public boolean hasTaskIndex(Index taskIndex) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'hasTaskIndex'");
+        }
+
+        @Override
+        public void deleteTask(Task target) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'deleteTask'");
+        }
+
+        @Override
+        public void addTask(Task target) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'addTask'");
+        }
+
+        @Override
         public void markTask(Task task, Score score) {
-            throw new AssertionError("This method should not be called.");
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'markTask'");
         }
 
         @Override
         public void unmarkTask(Task task) {
-            throw new AssertionError("This method should not be called.");
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'unmarkTask'");
+        }
+
+        @Override
+        public void commentOnTask(Comment comment, Task task) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'commentOnTask'");
+        }
+
+        @Override
+        public void assignTask(Task taskToAssign, Task assignedTask, Index taskIndex) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'assignTask'");
+        }
+
+        @Override
+        public ObservableList<Task> getFilteredTaskList() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getFilteredTaskList'");
+        }
+
+        @Override
+        public void updateFilteredTaskList(Predicate<Task> predicate) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'updateFilteredTaskList'");
         }
     }
 
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithTask extends ModelStub {
+    private class ModelStubWithTask extends TaskBookModelStub {
         private final Task task;
 
         ModelStubWithTask(Task task) {
@@ -231,7 +293,7 @@ public class ToDoCommandTest {
     /**
      * A Model stub that always accept the task being added.
      */
-    private class ModelStubAcceptingTaskAdded extends ModelStub {
+    private class ModelStubAcceptingTaskAdded extends TaskBookModelStub {
         final ArrayList<Task> tasksAdded = new ArrayList<>();
 
         @Override
@@ -247,8 +309,8 @@ public class ToDoCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyTaskBook getTaskBook() {
+            return new TaskBook();
         }
     }
 

@@ -12,21 +12,25 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TaskBook;
+import seedu.address.model.TaskBookModel;
+import seedu.address.model.TaskBookModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Comment;
 
 public class CommentCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private TaskBookModel taskBookModel = new TaskBookModelManager(new TaskBook(), new UserPrefs());
 
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(taskBookModel.getFilteredTaskList().size() + 1);
         Comment com = new Comment("Well Done");
         CommentCommand commentCommand = new CommentCommand(outOfBoundIndex, com);
 
-        assertCommandFailure(commentCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(commentCommand, model, taskBookModel, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
 

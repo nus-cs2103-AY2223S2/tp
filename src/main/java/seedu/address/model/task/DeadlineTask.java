@@ -14,7 +14,7 @@ public class DeadlineTask extends Task {
      * @param date The date of the deadline.
      */
     public DeadlineTask(TaskDescription description, Date date) {
-        super(description);
+        super(description, String.format("Due by: %s", date.toString()), "D");
         this.deadlineDate = date;
     }
 
@@ -24,7 +24,7 @@ public class DeadlineTask extends Task {
      *
      * @return Date deadline date of the task
      */
-    public Date getDate() {
+    public Date getDeadlineDate() {
         return this.deadlineDate;
     }
 

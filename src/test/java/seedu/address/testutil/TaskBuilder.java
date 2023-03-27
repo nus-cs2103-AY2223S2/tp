@@ -35,7 +35,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(description);
+        return new Task(description, "", "");
     }
 
 }

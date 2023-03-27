@@ -17,6 +17,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TaskBook;
+import seedu.address.model.TaskBookModel;
+import seedu.address.model.TaskBookModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Date;
@@ -32,6 +35,7 @@ import seedu.address.testutil.DeadlineTaskBuilder;
  */
 public class AssignTaskCommandTest {
 
+    private TaskBookModel taskBookModel = new TaskBookModelManager(new TaskBook(), new UserPrefs());
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
@@ -40,40 +44,40 @@ public class AssignTaskCommandTest {
         Index personToAssign = INDEX_SECOND_PERSON;
         DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
 
-        model.addTask(validDeadlineTask);
+        taskBookModel.addTask(validDeadlineTask);
 
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(taskToAssign, personToAssign);
 
-        Task task = model.getFilteredTaskList().get(taskToAssign.getZeroBased());
+        Task task = taskBookModel.getFilteredTaskList().get(taskToAssign.getZeroBased());
         Person person = model.getFilteredPersonList().get(personToAssign.getZeroBased());
 
         String expectedMessage = String.format(MESSAGE_SUCCESS, person.getName().toString(), task.toString());
         Task assignedTask = createAssignedTask(task, personToAssign, person);
 
-        model.assignTask(task, assignedTask, taskToAssign);
-        assertEquals(assignTaskCommand.execute(model).getFeedbackToUser(), expectedMessage);
+        taskBookModel.assignTask(task, assignedTask, taskToAssign);
+        assertEquals(assignTaskCommand.execute(model, taskBookModel).getFeedbackToUser(), expectedMessage);
     }
 
     @Test
     public void execute_invalidTaskIndex_throwsCommandException() {
-        Index outOfBoundTaskIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
+        Index outOfBoundTaskIndex = Index.fromOneBased(taskBookModel.getFilteredTaskList().size() + 1);
         Index personToAssign = INDEX_SECOND_PERSON;
 
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(outOfBoundTaskIndex, personToAssign);
 
-        assertCommandFailure(assignTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(assignTaskCommand, model, taskBookModel, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_invalidPersonIndex_throwsCommandException() {
         Index taskToAssign = INDEX_FIRST_TASK;
         DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
-        model.addTask(validDeadlineTask);
+        taskBookModel.addTask(validDeadlineTask);
         Index outOfBoundPersonIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
 
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(taskToAssign, outOfBoundPersonIndex);
 
-        assertCommandFailure(assignTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(assignTaskCommand, model, taskBookModel, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -81,7 +85,7 @@ public class AssignTaskCommandTest {
         Index taskToAssign = INDEX_FIRST_TASK;
         Index personToAssign = INDEX_SECOND_PERSON;
         DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
-        model.addTask(validDeadlineTask);
+        taskBookModel.addTask(validDeadlineTask);
 
         AssignTaskCommand assignFirstCommand = new AssignTaskCommand(taskToAssign, personToAssign);
         AssignTaskCommand assignSecondCommand = new AssignTaskCommand(taskToAssign, personToAssign);
@@ -107,7 +111,7 @@ public class AssignTaskCommandTest {
 
     private static Task createAssignedTask(Task taskToAssign, Index personToAssign, Person personAssigned) {
         TaskDescription taskDesc = taskToAssign.getDescription();
-        Date taskDate = ((DeadlineTask) taskToAssign).getDate();
+        Date taskDate = ((DeadlineTask) taskToAssign).getDeadlineDate();
         Task assignedTask = new DeadlineTask(taskDesc, taskDate);
         assignedTask.assignPerson(personToAssign, personAssigned);
         return assignedTask;
