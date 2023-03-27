@@ -509,9 +509,10 @@ The `edit` command allows the user to edit an existing contact in EduMate.
 
 :information_source: **Command Formats:** <br>
 
-<li>`edit z/FIELD`: Edits the user details. </li>
-<li>`edit INDEX z/FIELD`: Edits the details of the contact at the specified `INDEX`.</li>
-
+<ol>
+    <li>`edit z/FIELD`: Edits the user details. </li>
+    <li>`edit INDEX z/FIELD`: Edits the details of the contact at the specified `INDEX`.</li>
+</ol>
 </div>
 
 **Distinguishing between contact and user** - As specified in the command formats, if the user wants to edit their own details, they can just leave out the index. On our end, the `ArgumentMultimap` has been modified to accept null as a valid index, which will handle such a use case.
