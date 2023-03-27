@@ -90,6 +90,8 @@ public class MeetCommand extends Command {
                 TimeUtil.formatLocalTime(timings.getEndTime()))));
         recommendations.forEach(location -> sb.append("\n").append(location.getName()));
 
+        //TODO add in meetups to list
+
         return new CommandResult(sb.toString());
     }
 

@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.stream.IntStream;
 
+import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.Model;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
@@ -38,6 +39,28 @@ public class IndexHandler {
     public Optional<Person> getPersonByIndex(ContactIndex index) {
         List<Person> personList = model.getObservablePersonList();
         return personList.stream().filter(person -> person.getContactIndex().equals(index)).findFirst();
+    }
+
+    public ContactIndex assignMeetUpIndex() {
+        //todo model should have this
+        List<MeetUp> meetUpList = model.getObservableMeetUpList();
+        if (meetUpList.isEmpty()) {
+            return new ContactIndex(1);
+        }
+
+        OptionalInt takenIndices = IntStream.iterate(1, x -> x + 1)
+                .takeWhile(integer -> meetUpList.stream()
+                        .anyMatch(meetUp -> meetUp
+                                .getContactIndex().equals(new ContactIndex(integer)))).max();
+        Integer availableIndex = takenIndices.getAsInt() + 1;
+        return new ContactIndex(availableIndex);
+    }
+
+    public Optional<MeetUp> getMeetUpByIndex(ContactIndex index) {
+        List<MeetUp> meetUpList = model.getObservableMeetUpList();
+        return meetUpList.stream()
+                .filter(meetUp -> meetUp.getContactIndex().equals(index))
+                .findFirst();
     }
 
 }

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Comparator;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -14,6 +14,7 @@ import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.IndexHandler;
+import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
@@ -31,6 +32,11 @@ public class ModelManager implements Model {
     private final SortedList<Person> observablePersons;
     private final IndexHandler indexHandler;
 
+    //TODO ADD NEW LISTS FOR SCHEDULED MEETS
+    private final FilteredList<MeetUp> filteredMeetUps;
+    private final SortedList<MeetUp> observableMeetUps;
+
+
     /**
      * Initializes a ModelManager with the given eduMate and userPrefs.
      */
@@ -45,6 +51,10 @@ public class ModelManager implements Model {
         indexHandler = new IndexHandler(this);
         filteredPersons = new FilteredList<>(this.eduMate.getPersonList());
         observablePersons = new SortedList<>(filteredPersons);
+
+        //TODO ADD INIT FOR SUGGESTION AND SCHEDULED MEETS LIST
+        filteredMeetUps = new FilteredList<>(this.eduMate.getMeetUpList());
+        observableMeetUps = new SortedList<>(filteredMeetUps);
     }
 
     public ModelManager() {
@@ -200,5 +210,38 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && observablePersons.equals(other.observablePersons);
     }
+
+//    @Override
+//    public Optional<Recommendation> getRecommendationByIndex(ContactIndex index) {
+//        return indexHandler.getRecommendationByIndex(index);
+//        //todo nothing, this fn is in integration pr
+//    }
+
+    @Override
+    public void addMeetUp(MeetUp meetUp) {
+        ContactIndex contactIndex = indexHandler.assignMeetUpIndex();
+        //MeetUp indexedMeetUp = meetUp.setContactIndex(contactIndex);
+        eduMate.addMeetUp(meetUp);
+       // updateObservableMeetUpList();
+        //return meetUp;
+    }
+
+    @Override
+    public ContactIndex getMeetUpIndex() {
+        return indexHandler.assignMeetUpIndex();
+    }
+
+    @Override
+    public List<MeetUp> getObservableMeetUpList() {
+        return observableMeetUps;
+    }
+
+    //todo DO I NEED THIS?
+//    @Override
+//    public void updateObservableMeetUpList() {
+//
+//    }
+
+
 
 }

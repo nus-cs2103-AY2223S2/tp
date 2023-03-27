@@ -2,11 +2,12 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.meetup.MeetUp;
+import seedu.address.model.meetup.UniqueMeetUpList;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.User;
@@ -19,6 +20,8 @@ import seedu.address.model.util.SampleDataUtil;
 public class EduMate implements ReadOnlyEduMate {
 
     private final UniquePersonList persons;
+    private final UniqueMeetUpList meets; //todo check again before push
+    protected Set<ContactIndex> participants; //todo check again before push
     private User user;
 
     /*
@@ -31,18 +34,53 @@ public class EduMate implements ReadOnlyEduMate {
     {
         persons = new UniquePersonList();
         user = SampleDataUtil.getSampleUser();
+        meets = new UniqueMeetUpList(); //todo check again before push
+        participants = new HashSet<>(); //todo check again before push
     }
 
     public EduMate() {}
 
     /**
-     * Creates an EduMate using the Persons in the {@code toBeCopied}
+     * Creates an EduMate using the Persons in the {@code toBeCopied}.
      */
     public EduMate(ReadOnlyEduMate toBeCopied) {
         this();
         resetData(toBeCopied);
     }
 
+    //todo double check new addition
+    /**
+     * Replaces the contents of meet up list with {@code meetUps}.
+     * @param meetUps List of meet ups.
+     */
+    public void setMeetUps(List<MeetUp> meetUps) {
+        this.meets.setMeetUps(meetUps);
+    }
+
+    /**
+     * Replaces the contents of the meet ups list with an empty list of meet ups.
+     */
+    //todo double check new addition
+    public void resetMeetUps() {
+        this.meets.setMeetUps(new ArrayList<>());
+    }
+
+    @Override
+    public ObservableList<MeetUp> getMeetUpList() {
+        return meets.asUnmodifiableObservableList();
+    }
+
+    public void addMeetUp(MeetUp meetUp) {
+        meets.add(meetUp);
+    }
+
+    public Set<ContactIndex> getParticipantList() {
+        return participants;
+    }
+
+    public void setParticipants(Set<ContactIndex> participants) {
+        this.participants = participants;
+    }
     //// list overwrite operations
 
     /**
@@ -149,4 +187,5 @@ public class EduMate implements ReadOnlyEduMate {
     public int hashCode() {
         return Objects.hash(persons, user);
     }
+
 }

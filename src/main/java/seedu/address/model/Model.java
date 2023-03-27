@@ -2,10 +2,14 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.meetup.MeetUp;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 
@@ -123,4 +127,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateObservablePersonList();
+
+    //TODO ADD JAVA DOCS
+    //Optional<Recommendation> getRecommendationByIndex(ContactIndex contactIndex);
+
+    void addMeetUp(MeetUp meetUp);
+
+    ContactIndex getMeetUpIndex();
+
+    List<MeetUp> getObservableMeetUpList();
+
+    //todo do i need this??
+    //void updateObservableMeetUpList();
 }
