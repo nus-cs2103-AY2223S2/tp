@@ -197,7 +197,7 @@ The delete success message and result list of students will then be shown back t
 
 Full implementation sequence diagram
 
-![Sequence Diagram](images/DeleteSequentialDiagram.jpg)
+![Sequence Diagram](images/DeleteSequentialDiagram.png)
 
 ### Design considerations
 We want to keep it simple for the user to delete students, using students' class and index number is sufficient to 
