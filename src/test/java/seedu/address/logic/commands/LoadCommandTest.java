@@ -12,10 +12,13 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.BackupData;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.backup.Backup;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
@@ -95,6 +98,26 @@ public class LoadCommandTest {
         }
 
         @Override
+        public void setBackupData(BackupData backupData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addBackupToBackupData(Backup backup) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeBackupFromBackupData(String index) throws IndexOutOfBoundsException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public BackupData getBackupData() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -161,6 +184,11 @@ public class LoadCommandTest {
 
         @Override
         public Person findPersonByNric(Nric nric) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Backup> getBackupList() throws IllegalValueException {
             throw new AssertionError("This method should not be called.");
         }
     }
