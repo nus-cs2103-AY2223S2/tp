@@ -167,7 +167,7 @@ Classes used by multiple components are in the `seedu.socket.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Undo/redo feature
+### Undo/Redo feature
 
 _This feature was implemented as proposed in [AddressBook-Level3](https://se-education.org/addressbook-level3/DeveloperGuide.html#proposed-undoredo-feature)_
 
@@ -316,20 +316,36 @@ If no argument is provided, an empty list will be shown.
 **Full keyword match or Partial keyword match**
 * We have also considered a partial match of the keyword (For example: `han` keyword will match field with the value `hans`). However we decide to implement a full match due to the following reason:
   * Having partial match may bring out unintended matches as the possible range of results is broadened. We fear that doing a partial match may be too broad for find command to function as a way for users to narrow down their search.
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+The [Documentation guide](Documentation.md) covers how documentation is managed for SOCket.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Logging**
+
+The [Logging guide](Logging.md) covers how logging is used in SOCket.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Testing**
+
+The [Testing guide](Testing.md) covers types of test cases used in SOCket, as well as how to run them.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Configuration**
+
+The [Configuration guide](Configuration.md) covers how certain properties of SOCket can be managed through the configuration file.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Dev-ops**
+
+The [DevOps guide](DevOps.md) covers build automation and steps to create releases for SOCket.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -818,7 +834,8 @@ Similar to **UC03 Delete a contact**, except,
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should work on 64-bit environments.
 3.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Should be able to hold up to 100 projects without a noticeable sluggishness in performance for typical usage.
+5.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
 
