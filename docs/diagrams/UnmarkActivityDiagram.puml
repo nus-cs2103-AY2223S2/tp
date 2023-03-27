@@ -3,9 +3,9 @@ start
 :User executes command;
 
 if () then ([is marked])
-    :unmark event;
+    :Unmark event;
 else ([else])
 endif
-:display details;
+:Display details;
 stop
 @enduml
