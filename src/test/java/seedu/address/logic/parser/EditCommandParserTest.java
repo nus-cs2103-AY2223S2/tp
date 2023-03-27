@@ -21,9 +21,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPTY_ADDRESS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPTY_EMAIL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPTY_PHONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -217,7 +214,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + EMPTY_ADDRESS_DESC;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_EMPTY_ADDRESS).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withAddress(null).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -229,7 +226,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + EMPTY_EMAIL_DESC;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMPTY_EMAIL).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withEmail(null).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -241,7 +238,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + EMPTY_PHONE_DESC;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_EMPTY_PHONE).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(null).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
