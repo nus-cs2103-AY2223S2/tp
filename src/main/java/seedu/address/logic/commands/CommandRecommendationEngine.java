@@ -13,6 +13,7 @@ import seedu.address.logic.parser.AddPairCommandParser;
 import seedu.address.logic.parser.AddVolunteerCommandParser;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.AutoPairCommandParser;
 import seedu.address.logic.parser.ClearCommandParser;
 import seedu.address.logic.parser.DeleteElderlyCommandParser;
 import seedu.address.logic.parser.DeletePairCommandParser;
@@ -100,6 +101,11 @@ public class CommandRecommendationEngine {
                 StatsCommand.COMMAND_WORD,
                 StatsCommand.COMMAND_PROMPTS,
                 StatsCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                AutoPairCommand.COMMAND_WORD,
+                AutoPairCommand.COMMAND_PROMPTS,
+                AutoPairCommandParser::validate
+        ));
     }
 
     /**
