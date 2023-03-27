@@ -16,8 +16,9 @@ This User Guide will provide you with an in-depth documentation for you to easil
 So what are you waiting for? Get ready to **Connect** with others and let **US** handle the rest!
 
 ## 2. Table of Contents
+{:.no_toc}
 
-  * Table of Contents
+2. Table of Contents
   {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -27,16 +28,16 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
 ### 3.1 Notation
 - [Links](#31-notation) will help you navigate through this document.
 - **Bolded words** are phrases that you should pay attention to.
-- <u>Underlined words</u> can be found in the [glossary](#glossary).
+- <u>Underlined words</u> can be found in the [glossary](#11-glossary).
 
 ### 3.2 Navigation
 - If this is your **first time** using ConnectUS, head over to our [installation](#4-installation) guide for instructions on setting up ConnectUS, and our [quick start guide](#5-quick-start-guide) to begin using ConnectUS.
 
-- If you need a **refresher on command syntax**, head over to the [command summary](#command-summary) for a table of commands and syntax examples.
+- If you need a **refresher on command syntax**, head over to the [command summary](#9-command-summary) for a reference table of commands, or the [prefix summary](#10-prefix-summary) for a reference table of prefixes.
 
-- For detailed instructions about the features we offer and how to use each command, please refer to [Features](#features).
+- For detailed instructions about the features we offer and how to use each command, please refer to [Features](#6-features).
 
-- Refer to the [glossary](#glossary) for definitions of terms used in ConnectUS.
+- Refer to the [glossary](#11-glossary) for definitions of terms used in ConnectUS.
 
 ## 4. Installation
 
@@ -72,7 +73,7 @@ Type the command in the command box and press Enter to execute it. e.g. typing *
 
    * `exit` : Exits the app.
 
-Refer to the [Features](#features) below for details of each command.
+Refer to the [Features](#6-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -129,7 +130,7 @@ Examples:
 * `add n/James e/james@example.com ig/itsjameshere b/01/01/2000` would create a contact named James with an email james@example.com, an Instagram of `itsjameshere` and a birthday of January 1st, 2000.
 * `add n/James tg/itsjameshere mod/CS2103T mod/CS2101 cca/NUS Hackers` would create a contact named James with Telegram `itsjameshere`, the module tags of CS2103T and CS2101, and the CCA of NUS Hackers.
 
-Please refer to **[this section](#additional-information-regarding-specific-fields)** for details on how to use each information field prefix.
+Please refer to **[this section](#7-additional-information-regarding-specific-fields)** for details on how to use each information field prefix.
 
 ### 6.3 Listing all contacts : `list`
 
@@ -153,7 +154,7 @@ Examples:
 * `edit 1 p/12345678 e/james@example.com` Edits the phone number and email address of the 1st contact to be `12345678` and `james@example.com` respectively.
 * `edit 2 n/Betsy Crower -t` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
-Please refer to **[this section](#additional-information-regarding-specific-fields)** for details on how to use each information field prefix.
+Please refer to **[this section](#7-additional-information-regarding-specific-fields)** for details on how to use each information field prefix.
 
 ### 6.5 Deleting a contact : `delete`
 
@@ -290,7 +291,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 9. Command summary
+## 9. Command Summary
 
 | Action     | Format                                                                                                                                                                       | Examples                                                                               |
 |------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
@@ -303,4 +304,6 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 | **Search** | `search KEYWORD`                                                                                                                                                             | `search alex january`                                                                  |
 | **Exit**   | `exit`                                                                                                                                                                       |                                                                                        |
 
-## 10. Glossary
+## 10. Prefix Summary
+
+## 11. Glossary
