@@ -67,4 +67,10 @@ public interface Logic {
 
 
     ObjectProperty<VaxType> detailedVaxTypeProperty();
+
+
+    void setCloseAction(Runnable closeAction);
+
+
+    void setShowHelpAction(Runnable showHelpAction);
 }
