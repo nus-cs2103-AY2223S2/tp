@@ -77,8 +77,8 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_IMAGESTUDENT + "C:// "
             + PREFIX_EMAILSTUDENT + "tanahcow@gmail.com "
             + PREFIX_PHONESTUDENT + "91234567 "
-            + PREFIX_CCA + "Captain Ball"
-            + PREFIX_ATTENDANCE + "T";
+            + PREFIX_CCA + "Captain Ball "
+            + PREFIX_ATTENDANCE + "T ";
 
     public static final String MESSAGE_SUCCESS = "New student added:";
 
@@ -156,5 +156,6 @@ public class StudentAddCommand extends StudentCommand {
             throw new DuplicateParentException();
         }
         model.addParent(newParent);
+        student.setParent(newParent);
     }
 }

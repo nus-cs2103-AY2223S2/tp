@@ -4,5 +4,6 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <Label styleClass="students" text="Parents/Next Of Kins (NOK): " />
     <ListView fx:id="parentListView"  VBox.vgrow="ALWAYS" />
 </VBox>

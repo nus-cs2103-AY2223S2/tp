@@ -238,10 +238,10 @@ public class ModelManager implements Model {
     @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-        System.out.println(target.getStudentClass().getClassName());
-        Class c = Class.of(target.getStudentClass().getClassName());
-
-        c.setStudent(target, editedStudent);
+        Class cTarget = Class.of(target.getStudentClass().getClassName());
+        cTarget.removeStudent(target);
+        Class cEdit = Class.of(editedStudent.getStudentClass().getClassName());
+        cEdit.addStudent(editedStudent);
     }
 
     /**
@@ -271,6 +271,13 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents = new FilteredList<>(Class.getAllStudents().asUnmodifiableObservableList());
+        System.out.println(filteredStudents);
+        filteredStudents.setPredicate(predicate);
+    }
+    @Override
+    public void updateFilteredStudentListFind(Predicate<Student> predicate, Class sc) {
+        requireNonNull(predicate);
+        filteredStudents = new FilteredList<>(sc.getStudents().asUnmodifiableObservableList());
         filteredStudents.setPredicate(predicate);
     }
 

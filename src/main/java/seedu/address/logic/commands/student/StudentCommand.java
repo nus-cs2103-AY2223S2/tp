@@ -14,7 +14,9 @@ public abstract class StudentCommand extends Command {
                                               + "4. student <CLASS_NAME> delete\n"
                                               + "5. student <CLASS_NAME> gradedelete\n"
                                               + "6. student <CLASS_NAME> edit\n"
-                                              + "7. student <CLASS_NAME> attendance\n";
+                                              + "7. student <CLASS_NAME> attendance\n"
+                                              + "8. student <CLASS_NAME> list\n"
+                                              + "9. student <CLASS_NAME> find\n";
 
 
     public static final String MESSAGE_SUCCESS = "New student added: <STUDENT_NAME>";

@@ -190,7 +190,9 @@ public class Class {
     public static UniqueStudentList getAllStudents() {
         UniqueStudentList allStudents = new UniqueStudentList();
         for (Class c : classes) {
-            allStudents.setStudents(c.getStudents());
+            for (Student student : c.getStudents()) {
+                allStudents.add(student);
+            }
         }
         return allStudents;
     }
