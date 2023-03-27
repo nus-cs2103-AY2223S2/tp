@@ -47,7 +47,7 @@ public class RerollParser {
         switch (commandWord) {
 
         case MakeCommand.COMMAND_WORD:
-            return new AddEntityCommandParser().parse(userInput);
+            return new MakeCommandParser().parse(userInput);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
