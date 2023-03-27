@@ -104,13 +104,20 @@ Currently, there are five operations around tanks:
 
 ### Adding a tank: `tank add`
 
-Adds a tank to the app.
+Adds a tank to *Fish Ahoy!* <br>
+
+Use this command to add your own tank with a customized name to *Fish Ahoy!* This will start your journey into managing 
+your aquarium.
 
 Format: `tank add d/<TANK_NAME>`
 
+Prefixes:
+* `d/` - Specifies the name of the tank
+
+
 ### Deleting a tank: `tank delete`
 
-Delete a tank entry from the app.
+Delete a tank entry from *Fish Ahoy!*
 
 Format: `tank delete <TANK_INDEX>`
 
@@ -136,7 +143,7 @@ Format: `tank feed <TANK_INDEX>`
 
 ### Adding a fish: `fish add`
 
-Adds a fish to the app.
+Adds a fish to *Fish Ahoy!* .
 
 Format: `add fish n/<FISH_NAME> lfd/<LAST_FED_DATE> s/<SPECIES> fi/<FEEDING_INTERVAL> tk/<TANK_INDEX> [tg/<TAG>]`
 
@@ -146,7 +153,7 @@ A fish can belong to a tank
 
 ### Deleting a fish: `fish delete`
 
-Deletes a fish entry from the app.
+Deletes a fish entry from *Fish Ahoy!* .
 
 Format: `fish delete <FISH_INDEX>`
 
@@ -191,7 +198,7 @@ Optional Prefixes:
 
 ### Adding a task: `task add`
 
-Adds a task to the app.
+Adds a task to *Fish Ahoy!* .
 
 Format: `task add d/<TASK_NAME>`
 
@@ -199,7 +206,7 @@ To specify tank specific task: `task add d/<TASK_NAME> tk/<TANK_INDEX>`
 
 ### Deleting a task: `task delete`
 
-Delete a task entry from the app.
+Delete a task entry from *Fish Ahoy!* .
 
 Format: `task delete <TASK_INDEX>`
 
@@ -210,7 +217,7 @@ Lists all tasks created.
 Format: `list task`
 
 
-### Setting Priorites: `/p`
+### Setting Priorities: `/p`
 
 Use the format specifier /p to specify priorities
 
@@ -241,7 +248,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Fish Ahoy! home folder.
+**A**: Install *Fish Ahoy!*  in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Fish Ahoy! home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
