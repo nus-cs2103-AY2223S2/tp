@@ -15,7 +15,7 @@ import seedu.address.model.session.SessionName;
 import seedu.address.model.session.Location;
 import seedu.address.model.session.Session;
 
-public class CreateSessionParser {
+public class CreateSessionCommandParser {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand

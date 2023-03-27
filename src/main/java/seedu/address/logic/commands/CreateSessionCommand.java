@@ -5,13 +5,9 @@ import seedu.address.model.Model;
 import seedu.address.model.session.Session;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PAY_RATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
  * Creates session and adds it to the session list
@@ -35,7 +31,7 @@ public class CreateSessionCommand extends Command {
     private final Session toAdd;
 
     /**
-     * Creates an GroupCommand to add the specified {@code Person}
+     * Creates an CreateSessionCommand to add the specified {@code Session}
      */
     public CreateSessionCommand(Session session) {
         requireNonNull(session);

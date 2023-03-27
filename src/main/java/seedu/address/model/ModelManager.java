@@ -14,7 +14,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 //import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.exceptions.SessionNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,7 +30,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Tag> filteredTags;
-
     private final FilteredList<Session> filteredSessions;;
     //private final ObservableList<CalendarEvent> calendarEventList;
 
@@ -217,6 +218,22 @@ public class ModelManager implements Model {
     public void addSession(Session toAdd) {
         addressBook.addSession(toAdd);
         updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+    }
+
+    @Override
+    public void removeSession(Session toRemove) {
+        addressBook.removeSession(toRemove);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+    }
+
+    @Override
+    public void addStudentToSession(Person person, Session session) {
+        addressBook.addStudentToSession(person, session);
+    }
+
+    @Override
+    public void removeStudentFromSession(Person person, Session session) {
+        addressBook.removeStudentFromSession(person, session);
     }
 
     @Override

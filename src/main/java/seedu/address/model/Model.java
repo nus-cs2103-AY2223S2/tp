@@ -135,4 +135,10 @@ public interface Model {
     boolean hasSession(Session toAdd);
 
     void addSession(Session toAdd);
+
+    void removeSession(Session toRemove);
+
+    void addStudentToSession(Person person, Session session);
+
+    void removeStudentFromSession(Person person, Session session);
 }
