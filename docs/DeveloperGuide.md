@@ -147,6 +147,19 @@ Classes used by multiple components are in the `seedu.SudoHR.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Employee-related features
+
+The 'Employee' object represents an Employee in the company. They are all stored in a `UniqueEmployeeList`.
+
+The attributes of an Employee are:
+* `Id`: The employee id, which is their unique identifier in the company.
+* `Name`: The name of the employee.
+* `Email`: The email of the employee, which should be unique.
+* `Phone`: The phone of the employee, which should be unique.
+* `Address`: The address of the employee.
+* `Tags`: The tags assigned to the employee.
+
+
 ### Department-related features
 
 The `Department` object represents a department in the company. They are all stored in a `UniqueDepartmentList`.
@@ -177,7 +190,7 @@ Upon execution, it updates the department view.
 
 After that, it returns the command result.
 
-### Event-related features
+# Leave-related features
 
 The `Leave` object represents a leave date in the company. They are all stored in a `UniqueLeaveList`.
 
@@ -185,17 +198,67 @@ The attributes of a leave are:
 * `date`: The date of the leave, which is also the unique identifier for a leave
 * `employees`: The employees who applied for this leave, the list must not contain duplicate employees. It is implemented by reusing the `UniqueEmployeeList` datatype.
 
+## Adding an employee's leave on a specific day
+
+### AddEmployeeToLeave Command
+The AddEmployeeToLeave Command makes use of the following classes:
+
+* `AddEmployeeToLeaveCommand` - Adds the leave of an `Employee` to `SudoHr` on a specific day
+* `AddEmployeeToLeaveCommandParser` - Parses the argument provided by the user
+* `LeaveContainsEmployeePredicate` - Tests that an `Employee` has a `Leave` on the specific date
+
+`LeaveContainsEmployeePredicate` iterates through all employees and check if they are in the `Leave` object on a specific day.
+
+Given below is an example of a usage scenario and what each class does at each step.
+
+Step 1: The user types and enters the command `addEmployeeToLeave eid/1 g/2022-03-04` where 1 is the employee id and 2022-03-04 is the leave date.
+
+Step 2: The command will be parsed by the `SudoHr#parseCommand()` which returns a `AddEmployeeToLeaveCommandParser`.
+
+Step 3: AddEmployeeToLeaveCommandParser will parse the employee id and date using the parse(args) method, which trims the keywords entered by the user.
+
+Step 4: AddEmployeeToLeaveCommandParser then creates a AddEmployeeToLeaveCommand by the date and eid to its constructor.
+
+Step 5: The AddEmployeeToLeaveCommand will then be executed using `execute(model)` method.
+
+Step 6: The command then execute the model's `getEmployee(eid)` command to get the employee with the corresponding eid
+
+Step 7. The command execute the model's `addEmployeetoLeave(eid,date)` command to add the employee to the leave on the specific day.
+
+Step 8: The `updateFilteredEmployeeList(predicate)` method will be called and the list of employees will be filtered according to the `LeaveContainsEmployeePredicate`. This list will include all employees having a leave on that day.
+
+Step 9: A `CommandResult` will be returned.
+
+Step 10: The list of employees taking leave on the specific day will then be displayed to the user.
+
+
+Given below is an example of how `AddEmployeeToLeaveCommand` works
+
+![AddEmployeeToLeaveCommand Sequence Diagram](./images/commands/department/ListDepartmentSequenceDiagram.png)
+
+
 ### Cascading employee updates to department and event
 
 #### Design considerations:
 
 ### Employee
+An important design consideration to note for Employee is the multiple different fields that qualify as a primary key (unique identity).
 
-An important design consideration to note for Employee is the multiple different types of equality checks.
+An employee is identified by his ID field, and this field is used to get an employee object.
 
-An employee is identified by his ID field, and this field is used to get an employee with the specified Id.
+However, there are other fields to guard against duplication, specifically email and phone number fields. 
+For instance, two employees should not share email field or phone number as those two fields are known to be unique.
 
-However, other stronger forms of equality are used in the application. For example, when loading Employees from Storage, strict equality checks are used to ensure no two employees have the same ID, phone number or address.
+### Departments
+
+### Leaves
+
+### Cascading employee updates and deletion to department and leave
+An important functionality is to ensure updates to employee is cascaded down to department-level and leave-level because
+each department and leave has its own list of employees. This issue becomes more prominent during loading of storage files 
+where employee objects are separately created for department's and leave's employee lists. 
+Hence, any modification to an employee after SudoHR is initialized from storage needs to be cascaded down to modify the equivalent employee object.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
