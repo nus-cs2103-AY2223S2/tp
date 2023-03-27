@@ -62,6 +62,10 @@ public class Meeting {
         return description;
     }
 
+    public boolean getHasPassed() {
+        return hasPassed;
+    }
+
     /**
      * Returns true if both meetings have the same title, dateTime and attendees.
      * This defines a weaker notion of equality between two meetings.
@@ -105,6 +109,21 @@ public class Meeting {
                 && otherMeeting.getAttendees().equals(getAttendees())
                 && otherMeeting.getLocation().equals(getLocation())
                 && otherMeeting.getDescription().equals(getDescription());
+    }
+
+    /**
+     * Checks whether meeting is between two datetimes
+     *
+     * @return true if meeting is between two datetimes, else false
+     */
+    public boolean isBetween(DateTime start, DateTime end) {
+        if (end == null) {
+            return this.dateTime.compareTo(start) >= 0;
+        }
+        if (start == null) {
+            return this.dateTime.compareTo(end) <= 0;
+        }
+        return this.dateTime.compareTo(start) >= 0 && this.dateTime.compareTo(end) <= 0;
     }
 
     @Override

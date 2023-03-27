@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -14,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -117,6 +119,24 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public List<Meeting> getMeetingsByIndexesAndStartEnd(List<Index> indexList, DateTime start, DateTime end) {
+        List<Meeting> meetings = new ArrayList<>();
+        for (Index index : indexList) {
+            meetings.add(filteredMeetings.get(
+                    index.getZeroBased())
+            );
+        }
+        if (start != null || end != null) {
+            for (Meeting meeting : getMeetingsList()) {
+                if (!meetings.contains(meeting) && meeting.isBetween(start, end)) {
+                    meetings.add(meeting);
+                }
+            }
+        }
+        return meetings;
+    }
+
+    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -151,10 +171,16 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+
     @Override
     public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireNonNull(predicate);
         filteredMeetings.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortFilteredMeetingList(Comparator comparator) {
+        addressBook.sortMeeting(comparator);
     }
 
     @Override
