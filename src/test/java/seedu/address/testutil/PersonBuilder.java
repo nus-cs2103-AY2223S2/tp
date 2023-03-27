@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.medicine.Medicine;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
@@ -35,6 +36,7 @@ public class PersonBuilder {
     private DrugAllergy drugAllergy;
     private Gender gender;
     private Set<Tag> tags;
+    private Set<Medicine> medicines;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -48,6 +50,7 @@ public class PersonBuilder {
         drugAllergy = new DrugAllergy(DEFAULT_DRUG_ALLERGY);
         gender = new Gender(DEFAULT_GENDER);
         tags = new HashSet<>();
+        medicines = new HashSet<>();
     }
 
     /**
@@ -62,6 +65,7 @@ public class PersonBuilder {
         drugAllergy = personToCopy.getDrugAllergy();
         gender = personToCopy.getGender();
         tags = new HashSet<>(personToCopy.getTags());
+        medicines = new HashSet<>(personToCopy.getMedicines());
     }
 
     /**
@@ -83,8 +87,24 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Gender} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
+
+    /**
+     * Parses the {@code medicines} into a {@code Set<Medicine>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withMedicines(String... medicines) {
+        this.medicines = SampleDataUtil.getMedicineSet(medicines);
         return this;
     }
 
@@ -121,7 +141,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(nric, name, phone, email, address, drugAllergy, gender, tags);
+        return new Person(nric, name, phone, email, address, drugAllergy, gender, tags, medicines);
     }
 
 }

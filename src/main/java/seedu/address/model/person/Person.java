@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.medicine.Medicine;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,13 +28,14 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Medicine> medicines = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
 
     public Person(Nric nric, Name name, Phone phone, Email email, Address address,
-                  DrugAllergy drugAllergy, Gender gender, Set<Tag> tags) {
+                  DrugAllergy drugAllergy, Gender gender, Set<Tag> tags, Set<Medicine> medicines) {
         requireAllNonNull(name, phone, email, address, tags);
         this.nric = nric;
         this.name = name;
@@ -43,6 +45,7 @@ public class Person {
         this.address = address;
         this.drugAllergy = drugAllergy;
         this.tags.addAll(tags);
+        this.medicines.addAll(medicines);
     }
 
     public Nric getNric() {
@@ -82,6 +85,14 @@ public class Person {
     }
 
     /**
+     * Returns an immutable medicine set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Medicine> getMedicines() {
+        return Collections.unmodifiableSet(medicines);
+    }
+
+    /**
      * Returns true if both persons have the same nric.
      * This defines a weaker notion of equality between two persons.
      */
@@ -115,7 +126,8 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getDrugAllergy().equals(getDrugAllergy())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getMedicines().equals(getMedicines());
     }
 
     @Override
@@ -142,9 +154,14 @@ public class Person {
                 .append(getDrugAllergy());
 
         Set<Tag> tags = getTags();
+        Set<Medicine> medicine = getMedicines();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+        if (!medicines.isEmpty()) {
+            builder.append("; Medicines: ");
+            medicines.forEach(builder::append);
         }
         return builder.toString();
     }
