@@ -16,7 +16,7 @@ import seedu.address.model.person.Photo;
  */
 public abstract class Event {
 
-    public static final String MESSAGE_CONSTRAINTS = "Repititon for recur must be a number between 0 and 10";
+    public static final String MESSAGE_CONSTRAINTS = "Repetition for recur must be a number between 0 and 10";
 
     private String name;
     private LocalDate eventDate;

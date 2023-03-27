@@ -49,9 +49,7 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddRecurCommand.MESSAGE_USAGE_MISSING_RECUR_PREFIX));
         }
-
         String recurDetails = " " + ParserUtil.parseRecurName(argMultimap.getValue(PREFIX_RECUR).get());
-
         return checkRecurDetails(recurDetails);
     }
 
@@ -62,6 +60,7 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
      * @throws ParseException
      */
     public AddRecurCommand checkRecurDetails(String recurDetails) throws ParseException {
+        System.out.println(recurDetails);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeFirstPrefix(recurDetails,
                 PREFIX_TUTORIAL, PREFIX_LAB, PREFIX_CONSULTATION);
 
@@ -74,6 +73,7 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_TUTORIAL).isPresent()) {
+            System.out.println(recurDetails);
             return parseEvent(recurDetails, PREFIX_TUTORIAL);
         } else if (argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
             return parseEvent(recurDetails, PREFIX_CONSULTATION);
@@ -102,6 +102,7 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
                     AddRecurCommand.MESSAGE_USAGE_NO_STUDENT_PREFIX));
         }
         int count = ParserUtil.parseRecurCount(argMultimap.getValue(PREFIX_COUNT).get());
+
         String name = ParserUtil.parseEventName(argMultimap.getValue(prefix).get());
         if (prefix.equals(PREFIX_LAB)) {
             Lab lab = new Lab(name);

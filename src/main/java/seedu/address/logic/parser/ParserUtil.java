@@ -253,9 +253,9 @@ public class ParserUtil {
     public static String parseRecurName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
+//        if (!Name.isValidName(trimmedName)) {
+//            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+//        }
         return trimmedName;
     }
 
@@ -269,8 +269,7 @@ public class ParserUtil {
         //date can be null or empty as it is optional
         String trimmedDate = date.trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-        if (!trimmedDate.matches("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((19|20)\\d\\d)")) {
+        if (!trimmedDate.matches("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((19|20)\\d\\d)\\s([0-1]?[0-9]|2?[0-3]):([0-5]\\d)")) {
             throw new ParseException("Invalid date format!");
         }
         return LocalDate.parse(trimmedDate, formatter);

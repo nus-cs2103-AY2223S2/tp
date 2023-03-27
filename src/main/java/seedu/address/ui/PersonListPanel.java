@@ -45,6 +45,8 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private TableColumn<Person, String> remark;
     @FXML
+    private TableColumn<Person, String> telegram;
+    @FXML
     private TableColumn<Person, String> photo;
     @FXML
     private TableColumn<Person, Void> index;
@@ -57,6 +59,8 @@ public class PersonListPanel extends UiPart<Region> {
 
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName().toString()));
         email.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail().toString()));
+        telegram.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getPhone().toString()));
         address.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getAddress().toString()));
         performance.setCellValueFactory(cellData ->
