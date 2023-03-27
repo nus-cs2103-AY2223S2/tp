@@ -58,9 +58,7 @@ public class SubCommand extends Command {
                     // List of substitutions within that recipe
                     List<Ingredient> subs = rInfo.getSubstitutions();
                     // store substitutions into subList, ensuring no duplication
-                    for (Ingredient i : subs) {
-                        subList.add(i);
-                    }
+                    subList.addAll(subs);
                 }
             }
         }
@@ -79,7 +77,7 @@ public class SubCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand) // instanceof handles nulls
+                || (other instanceof SubCommand) // instanceof handles nulls
                 && queryIngredient.equals(((SubCommand) other).queryIngredient); //state check
     }
 }
