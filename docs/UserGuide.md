@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 <p align="center">
-<img src="images/logo.png">
+<img src="images/logo_UG.png" width="300">
 </p>
 
 # Table of Contents

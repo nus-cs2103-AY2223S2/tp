@@ -2,6 +2,10 @@
 layout: page
 title: Developer Guide
 ---
+<p align="center">
+<img src="images/logo_DG.png" width="300">
+</p>
+
 ## About Fish Ahoy!
 
 Fish Ahoy! is a desktop CLI-focused application, designed to help users take better care of their 
@@ -26,7 +30,8 @@ new developers can use this guide as an entry point for navigating this extensiv
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* AY22/23 S1 CS2103T W15-1 [[Github repo]](https://github.com/AY2223S1-CS2103T-W15-1/tp) - Task implementation 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -69,7 +74,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `fish delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -90,7 +95,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FishListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `MainContent`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -101,7 +106,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Fish` object residing in the `Model`.
 
-### Logic component
+### Logic component 
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -119,7 +124,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FishDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -127,8 +132,9 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `FishAddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `FishAddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `FishAddCommandParser`, `TaskDeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* The 3 main types of `XYZCommandParser` are divided into command parsers for `Fish`, `Tank` and `Task`. 
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -142,6 +148,7 @@ The `Model` component,
 * stores the currently 'selected' `Fish` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Fish>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* the `Task` and `Tank` model is implemented similarly to the `Fish` part of the model.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Fish` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Fish` needing their own `Tag` objects.<br>
 
@@ -297,6 +304,22 @@ Fish Ahoy!. We then access the `Logic` component to access the `Model` component
 each `TaskFeedingReminder`, then execute these commands, updating the `Model` component before saving the states
 if the various lists. 
 
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. User opens app and the `Application`'s `init()` method is called. The sequence to create Reminders is started.
+
+Step 2. Ui component signals MainWindow to create Reminders. 
+
+Step 3. Logic component requests for the list of reminders, which is created by the model component after checking which tanks
+have hungry fishes.
+
+Step 4. MainWindow has acquired the list of feeding reminders to be created and requests
+the logic component to create and execute a `TaskFeedingReminderCommand` for each feeding reminder required.
+
+Step 5. Storage components are updated.
+
+Step 6. GUI changes are reflect.
+
 ![FeedingReminderSequenceDiagram](images/FeedingReminderSequenceDiagram.png)
 
 #### Design considerations:
@@ -304,6 +327,9 @@ if the various lists.
   * Pros: user can update Reminders without opening the app
   * Cons: will be redundant most of the times as Fish feeding intervals are not that short. Even if user calls this
 command, the reminders likely do not need to be updated.
+  
+* Entry point for automatic feeding reminder feature is the Ui component. Since this feature do not require user inputs,
+we manually start the feature in the Ui component.
 
 ### Fish Sort feature
 
