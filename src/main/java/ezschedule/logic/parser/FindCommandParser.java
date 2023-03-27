@@ -1,21 +1,24 @@
 package ezschedule.logic.parser;
 
-import java.util.Arrays;
+import java.util.stream.Stream;
 
 import ezschedule.commons.core.Messages;
-import ezschedule.logic.commands.EditCommand;
 import ezschedule.logic.commands.FindCommand;
-import ezschedule.logic.parser.exceptions.ParseException;
-import ezschedule.model.event.Date;
-import ezschedule.model.event.EventContainsKeywordsPredicate;
-import ezschedule.model.event.EventMatchesDatePredicate;
-import ezschedule.model.event.Name;
 import ezschedule.logic.commands.FindCommand.FindEventDescriptor;
+import ezschedule.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
+
+    /**
+     * Returns true if any of the prefixes contains empty {@code Optional} values
+     * in the given {@code ArgumentMultimap}.
+     */
+    private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -27,14 +30,12 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_DATE);
 
-        // TODO: update check
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        if (!areAnyPrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_DATE)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-//        String[] nameKeywords = trimmedArgs.split("\\s+");
         FindEventDescriptor findEventDescriptor = new FindEventDescriptor();
         if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
             findEventDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()));
