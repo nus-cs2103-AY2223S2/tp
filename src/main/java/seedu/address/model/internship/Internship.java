@@ -153,12 +153,13 @@ public class Internship {
 
     @Override
     public String toString() {
+        String status = getStatus().toString();
         final StringBuilder builder = new StringBuilder();
         builder.append(getCompanyName())
                 .append("; Role: ")
                 .append(getRole())
                 .append("; Status: ")
-                .append(getStatus())
+                .append(status.substring(0, 1).toUpperCase() + status.substring(1))
                 .append("; Date: ")
                 .append(getDate())
                 .append("; Comment: ")
