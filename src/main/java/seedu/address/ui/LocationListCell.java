@@ -19,7 +19,7 @@ public class LocationListCell<Location extends Item> extends ListCell<Location> 
             setGraphic(null);
             setText(null);
         } else {
-            setGraphic(new LocationCard((seedu.address.model.location.Location) location).getRoot());
+            setGraphic(new LocationCard((seedu.address.model.location.Location) location, getIndex() + 1).getRoot());
         }
     }
 }

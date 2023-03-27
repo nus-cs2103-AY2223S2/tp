@@ -19,7 +19,7 @@ public class PilotListCell<Pilot extends Item> extends ListCell<Pilot> {
             setGraphic(null);
             setText(null);
         } else {
-            setGraphic(new PilotCard((seedu.address.model.pilot.Pilot) pilot).getRoot());
+            setGraphic(new PilotCard((seedu.address.model.pilot.Pilot) pilot, getIndex() + 1).getRoot());
         }
     }
 }

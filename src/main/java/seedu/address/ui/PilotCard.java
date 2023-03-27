@@ -11,9 +11,13 @@ import seedu.address.model.pilot.Pilot;
 public class PilotCard extends UiPart<VBox> {
     private static final String FXML = "FlightCard.fxml";
     private final Pilot pilot;
+    private final int displayedIndex;
 
     @FXML
     private VBox cardPane;
+
+    @FXML
+    private Label id;
 
     /**
      * Creates a view for the given pilot. The pilot is an identifiable object
@@ -21,9 +25,11 @@ public class PilotCard extends UiPart<VBox> {
      *
      * @param pilot The pilot to be displayed.
      */
-    public PilotCard(Pilot pilot) {
+    public PilotCard(Pilot pilot, int displayedIndex) {
         super(FXML);
         this.pilot = pilot;
+        this.displayedIndex = displayedIndex - 1;
+        id.setText(displayedIndex + ". ");
         for (String line : pilot.getDisplayList()) {
             Label label = new Label(line);
             cardPane.getChildren().add(label);

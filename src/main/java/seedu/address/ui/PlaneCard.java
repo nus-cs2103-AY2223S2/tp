@@ -11,9 +11,13 @@ import seedu.address.model.plane.Plane;
 public class PlaneCard extends UiPart<VBox> {
     private static final String FXML = "PlaneCard.fxml";
     private final Plane plane;
+    private final int displayedIndex;
 
     @FXML
     private VBox cardPane;
+
+    @FXML
+    private Label id;
 
     /**
      * Creates a view for the given plane. The plane is an identifiable object
@@ -21,9 +25,11 @@ public class PlaneCard extends UiPart<VBox> {
      *
      * @param plane The plane to be displayed.
      */
-    public PlaneCard(Plane plane) {
+    public PlaneCard(Plane plane, int displayedIndex) {
         super(FXML);
         this.plane = plane;
+        this.displayedIndex = displayedIndex;
+        id.setText(displayedIndex + ". ");
         for (String line : plane.getDisplayList()) {
             Label label = new Label(line);
             cardPane.getChildren().add(label);

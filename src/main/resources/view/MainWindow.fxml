@@ -48,22 +48,14 @@
             <children>
               <ImageView fx:id="wingmanLogo" fitWidth="140" preserveRatio="true" />
             </children>
-<!--            <padding>-->
-<!--              <Insets bottom="10" left="10" right="10" top="20" />-->
-<!--            </padding>-->
           </StackPane>
         </HBox>
 
-
-          <ListView>
+          <ListView VBox.vgrow="ALWAYS">
               <StackPane fx:id="menuBarPlaceholder" maxHeight="20" VBox.vgrow="NEVER"/>
 
           <ListView orientation="HORIZONTAL" style="-fx-background-color: #DAE3E6" VBox.vgrow="ALWAYS"
                     HBox.hgrow="ALWAYS">
-
-<!--            <padding>-->
-<!--              <Insets bottom="10" left="10" right="10" top="10"/>-->
-<!--            </padding>-->
 
             <VBox fx:id="flightList" styleClass="list-pane" minWidth="240" prefWidth="340" VBox.vgrow="ALWAYS"
                   HBox.hgrow="ALWAYS">
@@ -102,8 +94,7 @@
         </VBox>
       </ListView>
           </ListView>
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-
+        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
       </VBox>
     </Scene>
   </scene>

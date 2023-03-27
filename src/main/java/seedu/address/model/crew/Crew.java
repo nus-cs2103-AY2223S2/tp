@@ -25,8 +25,6 @@ public class Crew implements Item {
             Map.of(
                     CrewLocationType.LOCATION_USING, 1000000
             );
-    private static final String ID_STRING = "ID";
-    private static final String NAME_STRING = "Name";
     private static final String RANK_STRING = "Rank";
     private static final String AVAILABILITY_STRING = "Status";
     private final String id;
