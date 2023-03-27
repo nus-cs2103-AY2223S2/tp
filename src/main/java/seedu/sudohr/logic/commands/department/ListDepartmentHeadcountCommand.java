@@ -89,4 +89,14 @@ public class ListDepartmentHeadcountCommand extends Command {
 
         return isNotBeforeCurrentDate && isWithinOneYearFromCurrentDate;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListDepartmentHeadcountCommand // instanceof handles nulls
+                && currentDate.equals(((ListDepartmentHeadcountCommand) other).currentDate)
+                && date.equals(((ListDepartmentHeadcountCommand) other).date)
+                && departmentName.equals(((ListDepartmentHeadcountCommand) other).departmentName));
+    }
+
 }
