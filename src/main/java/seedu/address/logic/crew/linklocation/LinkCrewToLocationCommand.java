@@ -17,7 +17,7 @@ import seedu.address.model.location.Location;
  */
 public class LinkCrewToLocationCommand implements Command {
     private static final String DISPLAY_MESSAGE =
-            "Linked %s to location %s.";
+            "Linked %s to %s.";
 
     /**
      * The id of the location
@@ -45,7 +45,7 @@ public class LinkCrewToLocationCommand implements Command {
         String result = crews.entrySet()
                 .stream()
                 .map((entry) -> String.format(
-                        "%s: %s",
+                        "%s %s",
                         entry.getKey(),
                         entry.getValue().getName()))
                 .collect(Collectors.joining(","));

@@ -35,7 +35,6 @@ public class LinkCrewToLocationCommandFactory implements CommandFactory<LinkCrew
                     + "Please enter /cr followed by the crew ID.";
 
     private final Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy;
-
     private final Lazy<ReadOnlyItemManager<Location>> locationManagerLazy;
 
     /**

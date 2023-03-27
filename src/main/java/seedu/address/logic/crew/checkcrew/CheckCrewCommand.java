@@ -16,6 +16,9 @@ public class CheckCrewCommand implements Command {
      */
     private final String id;
 
+    private static final String CREW_NOT_FOUND_EXCEPTION =
+            "Crew with ID %s can't be found.";
+
     /**
      * Creates a command that, when executed, checks the availability of the crew with the given UUID.
      *
@@ -31,10 +34,10 @@ public class CheckCrewCommand implements Command {
         try {
             isAvailable = model.checkCrewByIndex(Integer.parseInt(this.id));
         } catch (IndexOutOfBoundException e) {
-            return new CommandResult(
-                    String.format("Error: %s", e.getMessage())
-            );
+            // TODO: this error doesn't show up in the UI
+            return new CommandResult(CREW_NOT_FOUND_EXCEPTION);
         }
+
         if (isAvailable) {
             return new CommandResult("This crew is available.");
         } else {

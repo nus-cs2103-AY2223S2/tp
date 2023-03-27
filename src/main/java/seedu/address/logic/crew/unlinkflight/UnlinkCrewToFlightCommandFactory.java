@@ -29,12 +29,15 @@ public class UnlinkCrewToFlightCommandFactory implements CommandFactory<UnlinkCr
     private static final String FLIGHT_ATTENDANT_PREFIX = "/fa";
     private static final String TRAINEE_PREFIX = "/tr";
 
-    private static final String NO_CREW_MESSAGE =
-            "No crew has been entered. Please enter /csd for the Cabin Service Director,"
-                    + " /sfa for Senior Flight Attendants,"
-                    + " /fa for Flight Attendants or /tr for Trainees";
     private static final String NO_FLIGHT_MESSAGE =
-            "No flight has been entered. Please enter /fl for the flight.";
+            "No flight has been entered. "
+                    + "Please enter /fl followed by the flight ID.";
+    private static final String NO_CREW_MESSAGE =
+            "No crew has been entered. Please enter at least 1 of the following:\n"
+                    + "     /csd for the Cabin Service Director, "
+                    + "/sfa for the Senior Flight Attendants, \n"
+                    + "     /fa for the Flight Attendants, "
+                    + "/tr for the Trainees.";
 
     private final Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy;
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
