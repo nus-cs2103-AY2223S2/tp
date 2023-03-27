@@ -61,7 +61,7 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 - defines its _API_ in an `interface` with the same name as the Component.
-- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -95,26 +95,28 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `VimificationParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a task).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+<!-- The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call. -->
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<!-- ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses.png" width="600"/> -->
 
 How the parsing works:
 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+- Each command has a dedicated parser, `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) to parse it.
+- The main entry point of the parser, `VimificationParser` , combines the command parsers together.
+- When called upon to parse a user command, the `VimificationParser` class tries to parse different prefixes. Each prefixes maps to a single `XYZCommandParser` which parses the remaining user input and create a `XYZCommand` object (e.g., `AddCommand`) which the `VimificationParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `CommandParser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
@@ -124,8 +126,8 @@ How the parsing works:
 
 The `Model` component,
 
-- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the data i.e., all `Task` objects.
+- stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -143,8 +145,8 @@ The `Model` component,
 
 The `Storage` component,
 
-- can save both address book data and user preference data in json format, and read them back into corresponding objects.
-- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- can save both task data and user preference data in json format, and read them back into corresponding objects.
+- inherits from both `TaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 - depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -187,6 +189,16 @@ A class implementing `CommandParser` must provide an implementation for `Command
 Notice the signature of `CommandParser#getInternalParser()`: this method returns an `ApplicativeParser<ApplicativeParser<LogicCommand>>`. The nested `ApplicativeParser` is necessary in this case - the first level will parse the command prefix, and returns a combinator dedicated to parse the particular command identified by the prefix. The remaining input is then piped to the second level (the combinator returned before) to construct the command.
 
 This implementation allows us to fail early and report errors if the prefix does not represent any command, or quickly parse the command without having to try multiple alternatives.
+
+### Storage
+
+#### Represent inheritance relationship
+
+`Task` and its subclasses have can be converted from and to JSON format using `JsonAdoptedXYZ` (`XYZ` is a placeholder for the specific task name e.g., `Todo`).
+
+We need to translate the inheritance relationship between `Task` and its subclasses from and to JSON. The current implementation uses 2 annotations (from the Jackson library), `@JsonTypeInfo` and `@JsonSubTypes` to solve this.
+
+One downside of this implementation is that `JsonAdoptedTask` must know all of its subclasses, which increases coupling. However, after considering another alternative (manually setup the json parser), this seems to be the most suitable implementation for the current scale of the project. The increase in coupling is compensated by the ease of implementation.
 
 ### \[Proposed\] Undo/redo feature
 
