@@ -360,8 +360,8 @@ Use case resumes at step 2.
 
 **MSS**
 
-1.  User requests to list patients
-2.  MedInfo shows a list of patients
+1.  User requests to list filtered patients
+2.  MedInfo shows a list of filtered patients
 3.  User requests to delete a specific patient in the list by index number
 4.  MedInfo shows confirmation window
 5.  MedInfo deletes the patient
@@ -390,8 +390,8 @@ Use case resumes at step 2.
 
 **MSS**
 
-1.  User requests to list patients
-2.  MedInfo shows a list of patients
+1.  User requests to list filtered patients
+2.  MedInfo shows a list of filtered patients
 3.  User requests to edit a specific patient in the list by NRIC
     1. The following can be edited:
        - Status
@@ -431,7 +431,7 @@ Use case resumes at step 2.
 
 **MSS**
 
-1.  User requests to find specific patients by either NRIC or Name or Status
+1.  User requests to find specific patients by either NRIC or Name or Status or Ward
 2.  MedInfo shows a list of patients
 
     Use case ends.
@@ -453,6 +453,11 @@ Use case resumes at step 2.
 - 1c. The requested patient's Status does not exist in the system.
 
     - 1c1. MedInfo does not list any patients.
+
+      Use case ends.
+- 1d. The requested patient's Ward does not exist in the system.
+
+    - 1d1. MedInfo does not list any patients.
 
       Use case ends.
 
