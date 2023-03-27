@@ -95,15 +95,15 @@ The UI is split into 4 main parts
       [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
     * Choose the `JDK FX` version and not any other version.
 
-1. Download the latest `Paidlancers.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-3/tp/releases).
+2. Download the latest `Paidlancers.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for Paidlancers.
+3. Copy the file to the folder you want to use as the _home folder_ for Paidlancers.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Paidlancers.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Paidlancers.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it.
+5. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
 
     * `listcontact` : Lists all contacts.
@@ -112,11 +112,11 @@ The UI is split into 4 main parts
 
     * `delete 3` : Deletes the 3rd event shown in the current list.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
-2. When you are ready to start, you can use the `clear` command to clear all the sample data.
+7. When you are ready to start, you can use the `clear` command to clear all the sample data.
 
-3. Happy ~~free~~ Paidlancing!
+8. Happy ~~free~~Paidlancing!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -334,7 +334,7 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command Summary
+## Features Summary
 |                    Commands                     |                                Command Format                                 |                                                     Example Usage                                                     |
 |:-----------------------------------------------:|:-----------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|
 |         [Add a Contact](#add-a-contact)         |                         `newcontact n/NAME p/NUMBER`                          |                                         `newcontact n/Deborah Tan p/91234567`                                         |
