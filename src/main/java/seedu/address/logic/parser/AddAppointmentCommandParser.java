@@ -17,7 +17,6 @@ import seedu.address.model.appointment.Description;
 import seedu.address.model.appointment.Timeslot;
 import seedu.address.model.id.AppointmentId;
 import seedu.address.model.id.Id;
-import seedu.address.model.id.PatientId;
 import seedu.address.model.patient.Name;
 import seedu.address.model.tag.Tag;
 
