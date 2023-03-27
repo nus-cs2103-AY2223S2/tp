@@ -112,6 +112,10 @@ public class TimeParser implements Comparable<TimeParser> {
         }
     }
 
+    public LocalDate getLd() {
+        return this.ld;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

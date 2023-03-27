@@ -2,6 +2,7 @@ package seedu.internship.model.event;
 
 import static seedu.internship.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 import seedu.internship.model.internship.Internship;
@@ -99,6 +100,13 @@ public class Event {
     }
 
 
+
+    /**
+     * Returns true if start date of event lies between the specified date inclusive.
+     */
+    public boolean isBetweenDate(LocalDate start, LocalDate end) {
+        return !(getStart().getLd().isBefore(start) || getStart().getLd().isAfter(end));
+    }
 
     /**
      * Returns true if both events have the same identity and data fields.

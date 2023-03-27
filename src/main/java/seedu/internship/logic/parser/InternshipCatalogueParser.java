@@ -6,7 +6,18 @@ import static seedu.internship.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.internship.logic.commands.*;
+import seedu.internship.logic.commands.AddCommand;
+import seedu.internship.logic.commands.Command;
+import seedu.internship.logic.commands.ClearCommand;
+import seedu.internship.logic.commands.DeleteCommand;
+import seedu.internship.logic.commands.EditCommand;
+import seedu.internship.logic.commands.ExitCommand;
+import seedu.internship.logic.commands.HelpCommand;
+import seedu.internship.logic.commands.HomeCommand;
+import seedu.internship.logic.commands.ListCommand;
+import seedu.internship.logic.commands.SelectCommand;
+import seedu.internship.logic.commands.StatsCommand;
+
 import seedu.internship.logic.commands.event.EventCommand;
 import seedu.internship.logic.parser.event.EventCatalogueParser;
 import seedu.internship.logic.parser.exceptions.ParseException;
@@ -53,6 +64,12 @@ public class InternshipCatalogueParser {
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+        case HomeCommand.COMMAND_WORD:
+            return new HomeCommand();
+        case StatsCommand.COMMAND_WORD:
+            return new StatsCommand();
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
         case EventCommand.COMMAND_WORD:
             return new EventCatalogueParser().parse(arguments);
         case ClashCommand.COMMAND_WORD:
