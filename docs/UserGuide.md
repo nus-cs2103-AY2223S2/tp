@@ -368,7 +368,8 @@ Format: `removepj INDEX [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]`
 Examples: 
 * `removepj 1 r/` Removes repository name from first project in the project list.
   ![result for `removepj`](images/removepj.png)
-* `removepj 1 d/01/01/2023-2359 m/` Removes deadline `01/01/23-2359` and meeting from first project in the project list.
+* `removepj 1 d/02/01/23-2359 m/` Removes deadline `02/01/23-2359` and meeting from first project in the project list.
+  ![result for `removepj2`](images/removepj2.png)
 
 #### Clearing all projects: `clearpj`
 
