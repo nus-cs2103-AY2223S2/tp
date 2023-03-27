@@ -6,7 +6,23 @@ title: User Guide
 ## Table of Contents
 
 * Table of Contents
-{:toc}
+  {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Introduction
+
+SOCket is a **desktop app for NUS Software Engineering Students to manage the contact information of their peers and professors**. With SOCket, you can easily organize and access contact information. SOCket also allows you to efficiently manage information on projects you are involved in.
+
+SOCket is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SOCket can get your contact management tasks done faster than traditional GUI apps.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## About this User Guide
+
+The SOCket User Guide helps you quickly familiarise yourself with the features and command syntax of SOCket, imparting the knowledge necessary for you to utilise SOCket's functions. More experienced users can use the **[Command summary](#command-summary)** as a quick reference for the syntax of SOCket's commands.
+
+You can use the links in the **[Table of Contents](#table-of-contents)** to quickly navigate through this document. To help you get started, refer to the **[Quick start](#quick-start)** section of the SOCket User Guide.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -41,15 +57,15 @@ You can use the links in the **[Table of Contents](#table-of-contents)** to quic
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to SOCket.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to SOCket.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -203,12 +219,6 @@ Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] 
     * e.g. `find t/friend` will return persons who have either tag `friend` or `best friend` or both
 * If no field is specified, zero persons will be returned.
 
-
-Examples:
-* `find n/John` returns `john` and `John Doe`
-* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
 #### Deleting a person : `delete`
 
 Deletes the specified person from SOCket.
@@ -290,6 +300,31 @@ Commands that help you make changes to the project list.
 
 #### Adding a project: `addpj`
 
+Adds a project to SOCket.
+
+Format: `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`
+
+* If a field flag is specified, it cannot be blank.
+    * e.g `n/  ` is not allowed
+* Project Name should contain only alphanumeric & space.
+    * e.g `n/project 1`
+* Repository Host should:
+    * contain alphanumeric & hyphens only.
+    * not start or end with hyphen.
+    * not exceed 39 characters.
+    * e.g `h/project-1`
+* Repository Name should:
+    * contain alphanumeric, periods, hyphens, or underscores only.
+    * not exceed 100 characters.
+    * e.g `r/project_1`
+* Deadline & Meeting should be given in a date format (dd/MM/yy-HHmm).
+    * e.g `d/ 30/03/22-2045` would be *30th March 2022, 8:45 p.m.
+* A project is considered to be the same if it has the same project name.
+
+Examples:
+* `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`<br>
+  ![result for 'addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045'](images/addpjResult.png)
+
 #### Editing a project: `editpj`
 
 Edits an existing project in SOCket.
@@ -347,7 +382,7 @@ Format: `sortpj [CATEGORY]`
 
 * If no category is provided, the projects are sorted by their deadlines alphanumerically
 * If a category is provided, the projects are sorted by that category alphanumerically
-  * e.g. `sortpj reponame` will sort the projects by their Repository Names alphanumerically. Projects without Repository Names will be at the bottom.
+    * e.g. `sortpj reponame` will sort the projects by their Repository Names alphanumerically. Projects without Repository Names will be at the bottom.
 
 <figure>
   <img src="images/SortpjByDeadline.png" width="600" />
@@ -361,6 +396,15 @@ Format: `sortpj [CATEGORY]`
 </figure>
 
 #### Assign a person to a project: `assign`
+
+Format: `assign PERSON_INDEX PROJECT_INDEX`
+
+* `PERSON_INDEX` refers to the index number shown in the displayed person list.
+* `PROJECT_INDEX` refers to the index number shown in the displayed project list.
+
+Examples:
+* `assign 1 1`<br>
+  ![result for 'assign 1 1'](images/assignResult.png)
 
 #### Unassign a person from a project: `unassign`
 
