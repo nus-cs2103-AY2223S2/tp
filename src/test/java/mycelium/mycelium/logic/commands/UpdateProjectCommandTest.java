@@ -103,4 +103,20 @@ public class UpdateProjectCommandTest {
         // Check that the deadline has changed
         assertEquals(got.get().getDeadline().get(), LocalDate.parse(newDeadline, Project.DATE_FMT));
     }
+
+    @Test
+    public void execute_changeNameOnly_success() throws CommandException {
+        var newName="billabong";
+        var cmd = new UpdateProjectCommand(BING.getName(),
+            new UpdateProjectDescriptorBuilder().withName(newName).build());
+        model.addProject(BING);
+        cmd.execute(model);
+
+        var got = model.getUniqueProject(p -> p.getName().toString().equals(newName));
+        assertTrue(got.isPresent());
+
+        // Check that the old project name is gone
+        var got2 = model.getUniqueProject(p -> p.isSame(BING));
+        assertFalse(got2.isPresent());
+    }
 }
