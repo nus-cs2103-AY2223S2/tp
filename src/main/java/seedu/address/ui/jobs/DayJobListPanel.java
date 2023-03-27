@@ -1,85 +1,58 @@
 package seedu.address.ui.jobs;
 
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.DeliveryList;
 import seedu.address.ui.UiPart;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of jobs divided into slots in day.
  */
 public class DayJobListPanel extends UiPart<Region> {
-    private static final String FXML = "DayJobListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(DeliveryJobListPanel.class);
-
-    private BiConsumer<Integer, DeliveryJob> onSelectHandler;
+    private static final String FXML = "DayJobListPane.fxml";
+    private final Logger logger = LogsCenter.getLogger(DayJobListPanel.class);
 
     @FXML
-    private ListView<DeliveryJob> deliveryJobListView;
+    private ListView<DeliveryJob> jobList1;
+
+    @FXML
+    private ListView<DeliveryJob> jobList2;
+
+    @FXML
+    private ListView<DeliveryJob> jobList3;
+
+    @FXML
+    private ListView<DeliveryJob> jobList4;
+
+    @FXML
+    private ListView<DeliveryJob> jobList5;
+
 
     /**
      * Creates a {@code DeliveryJobListPanel} with the given {@code ObservableList}.
      */
-    public DayJobListPanel(ObservableList<DeliveryJob> jobList,
-                                BiConsumer<Integer, DeliveryJob> selectHandler,
-                                Consumer<DeliveryJob> deleteHandler) {
+    public DayJobListPanel(DeliveryList jobListInDay) {
         super(FXML);
-        deliveryJobListView.setItems(jobList);
-        deliveryJobListView.setCellFactory(listView -> new DayJobListViewCell());
-        this.onSelectHandler = selectHandler;
-
-        deliveryJobListView.setOnMouseClicked(new EventHandler<Event>() {
-
-            @Override
-            public void handle(Event event) {
-                selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());
-            }
-
-        });
-
-        deliveryJobListView.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode().equals(KeyCode.DELETE)) {
-                    deleteHandler.accept(deliveryJobListView.getSelectionModel().getSelectedItem());
-                }
-            }
-
-        });
+        addJobListToSlot(jobList1, jobListInDay.get(0));
+        addJobListToSlot(jobList2, jobListInDay.get(1));
+        addJobListToSlot(jobList3, jobListInDay.get(2));
+        addJobListToSlot(jobList4, jobListInDay.get(3));
+        addJobListToSlot(jobList5, jobListInDay.get(4));
     }
 
-    /**
-     * Creates a {@code DeliveryJobListPanel} with the given {@code ObservableList}
-     * without any event handler.
-     */
-    public DayJobListPanel(ObservableList<DeliveryJob> jobList) {
-        this(jobList, (job, idx) -> {
-        }, (job) -> {
-        });
-    }
-
-    /**
-     * selectItem
-     *
-     * @param idx
-     */
-    public void selectItem(int idx) {
-        logger.info("Delivery selected:" + deliveryJobListView.getSelectionModel().getSelectedIndex());
-        deliveryJobListView.getSelectionModel().select(idx);
-        onSelectHandler.accept(idx, deliveryJobListView.getSelectionModel().getSelectedItem());
+    private void addJobListToSlot(ListView<DeliveryJob> jobSlot, ArrayList<DeliveryJob> jobList) {
+        if (jobList != null) {
+            jobSlot.setItems(FXCollections.observableArrayList(jobList));
+            jobSlot.setCellFactory(listView -> new DayJobListViewCell());
+        }
     }
 
     /**
