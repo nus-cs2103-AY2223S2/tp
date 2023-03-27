@@ -189,6 +189,10 @@ public class ModelManager implements Model {
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
+    public void setContactList(ReadOnlyContactList contactList) {
+        this.contactList.resetData(contactList);
+    }
+
     @Override
     public Rate getRate(Event event) {
         return event.getRate();

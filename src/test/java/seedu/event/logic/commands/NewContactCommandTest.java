@@ -136,6 +136,11 @@ class NewContactCommandTest {
         }
 
         @Override
+        public void setContactList(ReadOnlyContactList contactList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyEventBook getEventBook() {
             throw new AssertionError("This method should not be called.");
         }

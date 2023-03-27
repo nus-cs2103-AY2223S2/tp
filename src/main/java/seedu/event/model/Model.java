@@ -37,23 +37,28 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' event book file path.
      */
     Path getEventBookFilePath();
 
     Path getContactListFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' event book file path.
      */
     void setEventBookFilePath(Path eventBookFilePath);
 
     void setContactListFilePath(Path contactListFilePath);
 
     /**
-     * Replaces address book data with the data in {@code eventBook}.
+     * Replaces event book data with the data in {@code eventBook}.
      */
     void setEventBook(ReadOnlyEventBook eventBook);
+
+    /**
+     * Replaces contact list data with the data in {@code contactList}.
+     */
+    void setContactList(ReadOnlyContactList contactList);
 
     /** Returns the EventBook */
     ReadOnlyEventBook getEventBook();
@@ -68,25 +73,25 @@ public interface Model {
     boolean hasContact(Contact contact);
 
     /**
-     * Returns true if an event with the same identity as {@code event} exists in the address book.
+     * Returns true if an event with the same identity as {@code event} exists in the event book.
      */
     boolean hasEvent(Event event);
 
     /**
      * Deletes the given event.
-     * The event must exist in the address book.
+     * The event must exist in the event book.
      */
     void deleteEvent(Event target);
 
     /**
      * Marks the given event.
-     * The event must exist in the address book.
+     * The event must exist in the event book.
      */
     void markEvent(Event target);
 
     /**
      * Unmarks the given event.
-     * The event must exist in the address book.
+     * The event must exist in the event book.
      */
     void unmarkEvent(Event target);
 
@@ -99,7 +104,7 @@ public interface Model {
 
     /**
      * Adds the given event.
-     * {@code event} must not already exist in the address book.
+     * {@code event} must not already exist in the event book.
      */
     void addEvent(Event event);
 
@@ -110,8 +115,8 @@ public interface Model {
 
     /**
      * Replaces the given event {@code target} with {@code editedEvent}.
-     * {@code target} must exist in the address book.
-     * The event identity of {@code editedEvent} must not be the same as another existing event in the address book.
+     * {@code target} must exist in the event book.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the event book.
      */
     void setEvent(Event target, Event editedEvent);
 

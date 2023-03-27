@@ -6,10 +6,7 @@ import static seedu.event.testutil.TypicalEvents.getTypicalEventBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.event.model.EventBook;
-import seedu.event.model.Model;
-import seedu.event.model.ModelManager;
-import seedu.event.model.UserPrefs;
+import seedu.event.model.*;
 
 public class ClearCommandTest {
 
@@ -26,6 +23,7 @@ public class ClearCommandTest {
         Model model = new ModelManager(getTypicalEventBook(), getTypicalContactList(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalEventBook(), getTypicalContactList(), new UserPrefs());
         expectedModel.setEventBook(new EventBook());
+        expectedModel.setContactList(new ContactList());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
