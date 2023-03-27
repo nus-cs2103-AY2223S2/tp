@@ -14,7 +14,6 @@ import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
-
 /**
  * Controller for a help page
  */
@@ -22,14 +21,19 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t13-3.github.io/tp/UserGuide.html";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
-    private final ObservableList<HelpCommand> data =
+    private final ObservableList<HelpCommand> helpCommands =
             FXCollections.observableArrayList(
-                    new HelpCommand("Add", "add r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS\n"),
-                    new HelpCommand("List", "list\n"),
+                    new HelpCommand("Add app", "add-app r/role c/company name e/email s/status [t/tag(s)]\n"),
+                    new HelpCommand("List apps", "list\n"),
+                    new HelpCommand("Edit app",
+                            "edit-app INDEX [r/role] [c/company name] [e/company email] [s/status]\n"),
+                    new HelpCommand("Delete app", "delete-app INDEX\n"),
+                    new HelpCommand("Find", "find [keyword(s)] [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]\n"),
+                    new HelpCommand("Add app task", "add-task d/description by/deadline\n"),
+                    new HelpCommand("Edit app task", "edit-task INDEX [d/description] [by/deadline]\n"),
+                    new HelpCommand("Delete app task", "delete-task INDEX\n"),
+                    new HelpCommand("Sort apps", "sort alphabetical/deadline\n"),
                     new HelpCommand("Clear", "clear\n"),
-                    new HelpCommand("Delete", "delete INDEX\n"),
-                    new HelpCommand("Edit", "edit INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS]\n"),
-                    new HelpCommand("Find", "find [search term] [r/ROLE] [c/COMPANY_NAME] [s/STATUS]\n"),
                     new HelpCommand("Help", "help\n")
             );
     @FXML
@@ -54,7 +58,7 @@ public class HelpWindow extends UiPart<Stage> {
                 new PropertyValueFactory<>("command"));
         formatColumn.setCellValueFactory(
                 new PropertyValueFactory<>("format"));
-        helpTable.setItems(data);
+        helpTable.setItems(helpCommands);
         helpTable.getColumns().addAll(commandColumn, formatColumn);
     }
 
