@@ -14,9 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 //import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.session.Session;
-import seedu.address.model.session.exceptions.SessionNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -227,13 +225,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addStudentToSession(Person person, Session session) {
-        addressBook.addStudentToSession(person, session);
+    public void addPersonToSession(Person person, Session session) {
+        addressBook.addPersonToSession(person, session);
     }
 
     @Override
-    public void removeStudentFromSession(Person person, Session session) {
-        addressBook.removeStudentFromSession(person, session);
+    public void removePersonFromSession(Person person, Session session) {
+        addressBook.removePersonFromSession(person, session);
     }
 
     @Override

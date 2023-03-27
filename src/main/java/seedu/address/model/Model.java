@@ -138,7 +138,7 @@ public interface Model {
 
     void removeSession(Session toRemove);
 
-    void addStudentToSession(Person person, Session session);
+    void addPersonToSession(Person person, Session session);
 
-    void removeStudentFromSession(Person person, Session session);
+    void removePersonFromSession(Person person, Session session);
 }
