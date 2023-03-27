@@ -7,7 +7,7 @@
 <StackPane minHeight="-Infinity" prefHeight="25.0" styleClass="stack-pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <TextField fx:id="commandTextField" onAction="#handleCommandEntered" prefHeight="25.0" prefWidth="600.0" promptText="Enter command here..." stylesheets="@DarkTheme.css">
       <font>
-         <Font name="Courier New" size="16.0" />
+         <Font size="16.0" />
       </font>
    </TextField>
 </StackPane>
