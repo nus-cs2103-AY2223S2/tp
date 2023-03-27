@@ -9,7 +9,8 @@ With a combination of a Command Line Interface (CLI) and Graphical User Interfac
 * Table of Contents
   {:toc}
 1. [Quick Start](#quick-start)
-2. [Features](#features)
+2. Getting Familiar with CLI
+3. [Features](#features)
     1. Commands
         1. [Viewing Help](#viewing-help--help)
         2. [Adding a Category](#adding-a-category-addcat)
@@ -26,8 +27,8 @@ With a combination of a Command Line Interface (CLI) and Graphical User Interfac
     2. [Saving Data](#saving-the-data)
     3. [Editing the Data File](#editing-the-data-file)
     4. [Archiving Data Files](#archiving-data-files-coming-in-v20)
-3. [Frequently Asked Questions](#faq)
-4. [Command Summary](#command-summary)
+4. [Frequently Asked Questions](#faq)
+5. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -65,6 +66,42 @@ With a combination of a Command Line Interface (CLI) and Graphical User Interfac
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Getting Familiar with the Command Line Interface (CLI)
+
+If you have never used a **Command Line Interface** before, please read this quick guide before using the application.
+Familiarization with the CLI will be beneficial for entering commands for expenses more efficiently,
+saving time in the long run over the usage of FastTrack.
+
+The **Command Line Interface (CLI)** is interacted primarily through single-line text commands. This means that any expense
+can be added with just one line.
+
+Commands are in the form 
+```
+command [tag][parameter for tag] [tag2][parameter] ...
+```
+
+The name of the command, the first word in the text specifies what command you wish the application to execute, while
+the following tags behind and their parameters further provide information for the program to execute the program
+properly.
+
+For example, adding an expense into FastTrack:
+```
+add n/Apple p/2.0 c/Food d/1/1/23
+```
+`add` is the **name** of the command you wish to execute, in this case, adding an expense.
+</br>
+`n/` is a **tag** to specify which parameter the further instructions you add are referring to. In this case, we are
+specifying that the next words we enter will be the **name** of the expense, Apple.
+
+Similarly, `p/`, `c/` and `d/` are also **tags** to specify that we are entering the values for the _Price_, _Category_ and _Date_
+respectively.
+
+For some commands, some of these **tags** are optional. Therefore, if the **tag** is not present in the command text,
+FastTrack will use a _default_ option, with no need to specify the values.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -88,6 +125,7 @@ With a combination of a Command Line Interface (CLI) and Graphical User Interfac
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
 
 </div>
 
@@ -235,9 +273,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-```
 Suppose you have 3 expenses logged:
-
+```
 Date: 2023-03-02, Category: Dining, Name: McDonald's, Price: $7.50
 Date: 2023-03-02, Category: Dining, Name: KFC, Price: $6.00
 Date: 2023-03-03, Category: Groceries, Name: Milk, Price: $4.00
@@ -284,13 +321,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-[**Add Expense**](#adding-an-expense-add) | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]` <br> e.g., `add c/entertainment n/movie night p/20 d/14/2/23`
-[**Delete Expense**](#deleting-an-expense--delete) | `delete INDEX`<br> e.g., `delete 3`
-[**List Expenses**](#listing-expenses--list) | All expenses: `list -t`<br>Filter by categories:`list c/CATEGORY_NAME​`<br>From past week, month or year: `list /w`, `list /m`, `list /y`
-[**List Categories**](#listing-categories-lcat) | `lcat`
-[**Find Expense**](#search-for-an-expense-by-name-find) | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find movie`
-[**Add Category**](#adding-a-category-addcat) | `cat CATEGORY_NAME`
-[**Delete Category**](#deleting-a-category-delcat) | `delcat CATEGORY_NAME`
-[**Help**](#viewing-help--help) | `help`
+| Action                                                  | Format, Examples                                                                                                                          |
+|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add Expense**](#adding-an-expense-add)               | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]` <br> e.g., `add c/entertainment n/movie night p/20 d/14/2/23`                          |
+| [**Delete Expense**](#deleting-an-expense--delete)      | `delete INDEX`<br> e.g., `delete 3`                                                                                                       |
+| [**List Expenses**](#listing-expenses--list)            | All expenses: `list -t`<br>Filter by categories:`list c/CATEGORY_NAME​`<br>From past week, month or year: `list /w`, `list /m`, `list /y` |
+| [**List Categories**](#listing-categories-lcat)         | `lcat`                                                                                                                                    |
+| [**Find Expense**](#search-for-an-expense-by-name-find) | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find movie`                                                                                     |
+| [**Add Category**](#adding-a-category-addcat)           | `cat CATEGORY_NAME`                                                                                                                       |
+| [**Delete Category**](#deleting-a-category-delcat)      | `delcat CATEGORY_NAME`                                                                                                                    |
+| [**Help**](#viewing-help--help)                         | `help`                                                                                                                                    |
