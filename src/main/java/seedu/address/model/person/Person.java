@@ -27,7 +27,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Company company;
-    private final Industry industry;
+    private final Location location;
     private final Occupation occupation;
     private final JobTitle jobTitle;
     private final Set<Tag> tags = new HashSet<>();
@@ -39,9 +39,9 @@ public class Person {
     /**
      * Every field must be present and not null. By default, the LeadStatus is "Uncontacted".
      */
-    public Person(Name name, Gender gender, Phone phone, Email email, Company company, Industry industry,
+    public Person(Name name, Gender gender, Phone phone, Email email, Company company, Location location,
                   Occupation occupation, JobTitle jobTitle, Address address, Remark remark, Set<Tag> tags, Task task) {
-        requireAllNonNull(name, gender, phone, email, company, industry,
+        requireAllNonNull(name, gender, phone, email, company, location,
                 occupation, jobTitle, address, tags, remark, task);
         this.name = name;
         this.gender = gender;
@@ -49,7 +49,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.company = company;
-        this.industry = industry;
+        this.location = location;
         this.occupation = occupation;
         this.jobTitle = jobTitle;
         this.tags.addAll(tags);
@@ -61,10 +61,10 @@ public class Person {
     /**
      * Constructor for a person with a given LeadStatus.
      */
-    public Person(Name name, Gender gender, Phone phone, Email email, Company company, Industry industry,
+    public Person(Name name, Gender gender, Phone phone, Email email, Company company, Location location,
                   Occupation occupation, JobTitle jobTitle, Address address, Remark remark, Set<Tag> tags, Task task,
                   LeadStatus status) {
-        requireAllNonNull(name, gender, phone, email, company, industry,
+        requireAllNonNull(name, gender, phone, email, company, location,
                 occupation, jobTitle, address, tags, remark, task, status);
         this.name = name;
         this.gender = gender;
@@ -72,7 +72,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.company = company;
-        this.industry = industry;
+        this.location = location;
         this.occupation = occupation;
         this.jobTitle = jobTitle;
         this.tags.addAll(tags);
@@ -102,8 +102,8 @@ public class Person {
         return company;
     }
 
-    public Industry getIndustry() {
-        return industry;
+    public Location getLocation() {
+        return location;
     }
 
     public Occupation getOccupation() {
@@ -150,8 +150,8 @@ public class Person {
             return address.toString();
         case "company":
             return company.toString();
-        case "industry":
-            return industry.toString();
+        case "location":
+            return location.toString();
         case "occupation":
             return occupation.toString();
         case "job title":
@@ -208,7 +208,7 @@ public class Person {
                 && otherPerson.getGender().equals(getGender())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getCompany().equals(getCompany())
-                && otherPerson.getIndustry().equals(getIndustry())
+                && otherPerson.getLocation().equals(getLocation())
                 && otherPerson.getOccupation().equals(getOccupation())
                 && otherPerson.getJobTitle().equals(getJobTitle())
                 && otherPerson.getAddress().equals(getAddress())
@@ -218,7 +218,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, gender, phone, email, company, industry, occupation, jobTitle, address, tags);
+        return Objects.hash(name, gender, phone, email, company, location, occupation, jobTitle, address, tags);
     }
 
     /**
@@ -236,8 +236,8 @@ public class Person {
                 .append(getEmail())
                 .append(" Company: ")
                 .append(getCompany())
-                .append(" Industry: ")
-                .append(getIndustry())
+                .append(" Location: ")
+                .append(getLocation())
                 .append(" Occupation: ")
                 .append(getOccupation())
                 .append(" Job Title: ")
@@ -269,8 +269,8 @@ public class Person {
                 .append(getEmail())
                 .append("; Company: ")
                 .append(getCompany())
-                .append("; Industry: ")
-                .append(getIndustry())
+                .append("; Location: ")
+                .append(getLocation())
                 .append("; Occupation: ")
                 .append(getOccupation())
                 .append("; Job Title: ")
