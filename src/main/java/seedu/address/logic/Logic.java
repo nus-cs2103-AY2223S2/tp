@@ -47,4 +47,14 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the user prefs' theme
+     */
+    String getCssFilePath();
+
+    /**
+     * Sets the user prefs' theme
+     */
+    void setCssFilePath(String cssFilePath);
 }
