@@ -13,10 +13,11 @@ import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
 
 /**
- * Deletes multiple lecturese identified using their respective lecture names
- * If one or more the the lectures do not exist, nothing is deleted.
+ * Deletes multiple lectures identified using their respective lecture names
+ * multiple lectures specified are to exist within the same module
+ * If one or more the the lectures do not exist within the same module, nothing is deleted.
  */
-public class DeleteMultipleLecturesCommand extends DeleteCommand implements MultipleEventsParser {
+public class DeleteMultipleLecturesCommand extends DeleteCommand {
 
     public static final String MESSAGE_SUCCESS = "%1$S Lectures deleted from Module %2$s: \n%3$s";
 
