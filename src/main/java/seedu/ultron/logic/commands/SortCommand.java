@@ -36,9 +36,6 @@ public class SortCommand extends Command {
         requireNonNull(model);
         model.updateFilteredOpeningList(predicate);
         model.sortFilteredOpeningList(direction);
-        for (Opening o : model.getFilteredOpeningList()) {
-            System.out.println(o.getCompany());
-        }
         return new CommandResult(
                 String.format(Messages.MESSAGE_OPENING_LISTED_OVERVIEW, model.getFilteredOpeningList().size()));
     }

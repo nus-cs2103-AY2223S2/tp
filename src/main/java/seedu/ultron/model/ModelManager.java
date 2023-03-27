@@ -128,6 +128,8 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredOpeningList(Predicate<Opening> predicate) {
         requireNonNull(predicate);
+        filteredOpenings.clear();
+        filteredOpenings.addAll(this.ultron.getOpeningList());
         for (Iterator<Opening> iterator = filteredOpenings.iterator(); iterator.hasNext();) {
             Opening opening = iterator.next();
             if (!predicate.test(opening)) {
