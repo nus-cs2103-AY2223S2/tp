@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.APPLE;
