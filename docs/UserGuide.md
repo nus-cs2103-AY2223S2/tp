@@ -333,7 +333,7 @@ have a default value based on the commands. These are documented in the [Command
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-The [Placeholder](#placeholders) section covers the restrictions for respective placeholders. For example, 
+The <a href="#524-placeholders">Placeholder</a> section covers the restrictions for respective placeholders. For example, 
 the date format of PHONE, certain characters you cannot use and the limit and precision of numbers. 
 </div>
 
@@ -372,7 +372,7 @@ will be overridden by "97833468".
 
 However, note that the following executions are invalid:
 
-* `addn/Thomasp/91918153e/thomas@gmail.coma/6 Sims Drive (s)543230`
+* `add n/Thomasp/91918153e/thomas@gmail.coma/6 Sims Drive (s)543230`
 
   There must be between the placeholders and flags.
 
@@ -746,7 +746,7 @@ HMHero contains the following applicants, each with their own attributes:
 **Command Input Box:**
 
 ```
-reject n/Thomas p/91918153 d/20-03-2023 12:12
+reject n/Thomas p/91918153
 ```
 
 **Command Output Box:**
