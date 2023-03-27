@@ -127,6 +127,7 @@ public class UniqueProjectList implements Iterable<Project> {
      * Transfers all projects linked to {@code original} to {@code target}.
      */
     public void transferLinkedProjects(Client original, Client target) {
+        requireAllNonNull(original, target);
         Iterator<Project> linkedProjects = original.getLinkedProjects().iterator();
         while (linkedProjects.hasNext()) {
             Project linkedProject = linkedProjects.next();
@@ -140,6 +141,7 @@ public class UniqueProjectList implements Iterable<Project> {
      * Unlinks all linked projects from {@code client}.
      */
     public void removeAllLinks(Client client) {
+        requireNonNull(client);
         Iterator<Project> linkedProjectsIterator = client.getLinkedProjects().iterator();
         while (linkedProjectsIterator.hasNext()) {
             Project toRemove = linkedProjectsIterator.next();
@@ -152,6 +154,7 @@ public class UniqueProjectList implements Iterable<Project> {
      * Marks {@code project} as done.
      */
     public void markProjectAsDone(Project project) {
+        requireNonNull(project);
         project.markAsDone();
         setProject(project, project);
     }
@@ -160,6 +163,7 @@ public class UniqueProjectList implements Iterable<Project> {
      * Marks {@code project} as not done.
      */
     public void markProjectAsNotDone(Project project) {
+        requireNonNull(project);
         project.markAsUndone();
         setProject(project, project);
     }
@@ -186,16 +190,6 @@ public class UniqueProjectList implements Iterable<Project> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("The list: ");
-        Iterator<Project> iterator = iterator();
-        while (iterator.hasNext()) {
-            sb.append(iterator.next());
-        }
-        return sb.toString();
     }
 
     /**

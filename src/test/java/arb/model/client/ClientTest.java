@@ -7,6 +7,7 @@ import static arb.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static arb.testutil.Assert.assertThrows;
 import static arb.testutil.TypicalClients.ALICE;
 import static arb.testutil.TypicalClients.BOB;
+import static arb.testutil.TypicalProjects.CRAYON_PROJECT;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -32,7 +33,7 @@ public class ClientTest {
 
         // same name, all other attributes different -> returns true
         Client editedAlice = new ClientBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_HUSBAND).withProjects(CRAYON_PROJECT).build();
         assertTrue(ALICE.isSameClient(editedAlice));
 
         // same name, all nullable attributes null -> returns true
@@ -93,6 +94,10 @@ public class ClientTest {
 
         // different tags -> returns false
         editedAlice = new ClientBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different linked project -> returns false
+        editedAlice = new ClientBuilder(ALICE).withProjects(CRAYON_PROJECT).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }
