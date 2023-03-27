@@ -255,6 +255,16 @@ Format: `sort [CATEGORY]`
 * If a category is provided, the persons are sorted by that category alphanumerically
     * e.g. `sort address` will sort the persons by their addresses alphanumerically. Persons without addresses will be at the bottom.
 
+<figure>
+  <img src="images/SortByName.png" width="420" />
+  <figcaption>Sorted by Name.</figcaption>
+</figure>
+
+<figure>
+    <img src="images/SortByAddress.png" width="420" />
+    <figcaption>Sorted by Address.</figcaption>
+</figure>
+
 #### Viewing a person's detailed infomation: `view`
 
 Views a person's details whose in the filtered list
@@ -291,11 +301,22 @@ Examples:
 
 Sorts and displays the projects according to the provided category. Sorts the list of projects by deadline if no argument is provided.
 
+
 Format: `sortpj [CATEGORY]`
 
 * If no category is provided, the projects are sorted by their deadlines alphanumerically
 * If a category is provided, the projects are sorted by that category alphanumerically
   * e.g. `sortpj reponame` will sort the projects by their Repository Names alphanumerically. Projects without Repository Names will be at the bottom.
+
+<figure>
+  <img src="images/SortpjByDeadline.png" width="420" />
+  <figcaption>Sorted by Deadline.</figcaption>
+</figure>
+
+<figure>
+    <img src="images/SortpjByName.png" width="420" />
+    <figcaption>Sorted by Name.</figcaption>
+</figure>
 
 #### Assign a person to a project: `assign`
 
