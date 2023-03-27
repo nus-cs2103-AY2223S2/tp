@@ -271,16 +271,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void markWrong() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void markCorrect() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean goToPrevCard() {
             throw new AssertionError("This method should not be called.");
         }
