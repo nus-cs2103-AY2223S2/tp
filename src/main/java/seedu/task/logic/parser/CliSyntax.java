@@ -14,8 +14,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_TO = new Prefix("T/");
     public static final Prefix PREFIX_ALLMATCH = new Prefix("all/");
     public static final Prefix PREFIX_EFFORT = new Prefix("E/");
-
     public static final Prefix PREFIX_SUBTASK_INDEX = new Prefix("I/");
 
 
+
 }
+
+

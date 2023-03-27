@@ -43,7 +43,7 @@ public class DeadlineList extends CategoricalTaskList {
         if (t.isDeadline()) {
             Deadline d = (Deadline) t;
 
-            if (today.isBefore(d.getDeadline().getDate())) {
+            if (d.isValidDate(today)) {
                 taskList.add(d);
                 return true;
             }

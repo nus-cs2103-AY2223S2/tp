@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +13,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.task.commons.core.GuiSettings;
 import seedu.task.commons.core.LogsCenter;
+import seedu.task.logic.commands.ScheduleCommand;
+import seedu.task.logic.commands.exceptions.CommandException;
+import seedu.task.model.calendar.DailyPlan;
+import seedu.task.model.task.IsSameTaskPredicate;
 import seedu.task.model.task.Task;
 
 /**
@@ -18,28 +24,29 @@ import seedu.task.model.task.Task;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final TaskBook taskBook;
     private final UserPrefs userPrefs;
+    private final Planner planner;
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Task> alertTasks;
 
     /**
      * Initializes a ModelManager with the given taskBook and userPrefs.
      */
-    public ModelManager(ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs, ReadOnlyPlanner planner) {
         requireAllNonNull(taskBook, userPrefs);
 
         logger.fine("Initializing with task book: " + taskBook + " and user prefs " + userPrefs);
 
         this.taskBook = new TaskBook(taskBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.planner = new Planner(planner);
         filteredTasks = new FilteredList<>(this.taskBook.getTaskList());
         alertTasks = new FilteredList<>(this.taskBook.getTaskList());
     }
 
     public ModelManager() {
-        this(new TaskBook(), new UserPrefs());
+        this(new TaskBook(), new UserPrefs(), new Planner());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -77,6 +84,11 @@ public class ModelManager implements Model {
         userPrefs.setTaskBookFilePath(taskBookFilePath);
     }
 
+    @Override
+    public Path getPlannerFilePath() {
+        return userPrefs.getPlannerFilePath();
+    }
+
     //=========== TaskBook ================================================================================
 
     @Override
@@ -90,6 +102,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyPlanner getPlanner() {
+        return planner;
+    }
+
+    @Override
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return taskBook.hasTask(task);
@@ -98,6 +115,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteTask(Task target) {
         taskBook.removeTask(target);
+        planner.removeTask(target);
     }
 
     @Override
@@ -109,8 +127,8 @@ public class ModelManager implements Model {
     @Override
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
-
         taskBook.setTask(target, editedTask);
+        planner.setTask(target, editedTask);
     }
 
     @Override
@@ -119,8 +137,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void plan(int workload) {
-        taskBook.plan(workload);
+    public void plan(long workload) {
+        taskBook.plan(workload, planner);
+    }
+
+    @Override
+    public void schedule(LocalDate date) throws CommandException {
+        DailyPlan plans = planner.getDailyPlanOn(date);
+        if (plans == null) {
+            throw new CommandException(ScheduleCommand.OUT_OF_RANGE_MESSAGE);
+        }
+        List<Task> tasksToBeDisplayed = plans.getTasks();
+        updateFilteredTaskList(new IsSameTaskPredicate(tasksToBeDisplayed));
     }
 
     //=========== Filtered Task List Accessors =============================================================

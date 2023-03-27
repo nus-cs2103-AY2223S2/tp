@@ -77,10 +77,6 @@ public class TypicalTasks {
         .withTags(VALID_TAG_FRIEND)
         .build();
 
-
-
-
-
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalTasks() {} // prevents instantiation

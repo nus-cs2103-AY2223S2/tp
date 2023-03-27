@@ -25,6 +25,7 @@ import seedu.task.model.ModelManager;
 import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.UserPrefs;
 import seedu.task.model.task.Task;
+import seedu.task.storage.JsonPlannerStorage;
 import seedu.task.storage.JsonTaskBookStorage;
 import seedu.task.storage.JsonUserPrefsStorage;
 import seedu.task.storage.StorageManager;
@@ -44,7 +45,8 @@ public class LogicManagerTest {
         JsonTaskBookStorage taskBookStorage =
                 new JsonTaskBookStorage(temporaryFolder.resolve("taskBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(taskBookStorage, userPrefsStorage);
+        JsonPlannerStorage plannerStorage = new JsonPlannerStorage(temporaryFolder.resolve("planner.json"));
+        StorageManager storage = new StorageManager(taskBookStorage, userPrefsStorage, plannerStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -73,7 +75,9 @@ public class LogicManagerTest {
                 new JsonTaskBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionTaskBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(taskBookStorage, userPrefsStorage);
+        JsonPlannerStorage plannerStorage =
+                new JsonPlannerStorage(temporaryFolder.resolve("ioExceptionPlanner.json"));
+        StorageManager storage = new StorageManager(taskBookStorage, userPrefsStorage, plannerStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -126,7 +130,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTaskBook(), new UserPrefs(), model.getPlanner());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

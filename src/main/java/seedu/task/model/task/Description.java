@@ -21,6 +21,7 @@ public class Description {
         value = DEFAULT_VALUE;
     }
 
+
     /**
       * Constructs a {@code Description}.
       */
@@ -57,3 +58,5 @@ public class Description {
         return value.hashCode();
     }
 }
+
+

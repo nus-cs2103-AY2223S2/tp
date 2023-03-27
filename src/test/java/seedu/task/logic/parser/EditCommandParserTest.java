@@ -1,9 +1,9 @@
 package seedu.task.logic.parser;
 
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.task.logic.commands.CommandTestUtil.BLANK_DESCRIPTION_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
-import static seedu.task.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -27,7 +27,6 @@ import seedu.task.commons.core.index.Index;
 import seedu.task.logic.commands.EditCommand;
 import seedu.task.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.task.model.tag.Tag;
-import seedu.task.model.task.Description;
 import seedu.task.model.task.Name;
 import seedu.task.testutil.EditTaskDescriptorBuilder;
 
@@ -70,14 +69,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC,
-                Description.MESSAGE_CONSTRAINTS); // invalid description
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
-
-        // valid description followed by invalid description. The test case for invalid description followed by valid
-        // description is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + DESCRIPTION_DESC_BOB + INVALID_DESCRIPTION_DESC,
-                Description.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Task} being edited,
         // parsing it together with a valid tag results in error
@@ -86,7 +78,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_DESCRIPTION_DESC,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + BLANK_DESCRIPTION_DESC,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -134,6 +126,12 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // description is being edited to now be "deleted".
+        userInput = targetIndex.getOneBased() + BLANK_DESCRIPTION_DESC;
+        descriptor = new EditTaskDescriptorBuilder().withDescription("No Description").build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
         descriptor = new EditTaskDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
@@ -160,7 +158,7 @@ public class EditCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_TASK;
-        String userInput = targetIndex.getOneBased() + INVALID_DESCRIPTION_DESC + DESCRIPTION_DESC_BOB;
+        String userInput = targetIndex.getOneBased() + BLANK_DESCRIPTION_DESC + DESCRIPTION_DESC_BOB;
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);

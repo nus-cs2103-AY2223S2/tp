@@ -1,0 +1,10 @@
+@startuml
+start
+
+:User executes a Sort Command;
+:Instantiate a SortCommand;
+:Sorts tasks in internalList using FXCollections;
+:Update UI to inform user List is successfully sorted;
+
+stop
+@enduml

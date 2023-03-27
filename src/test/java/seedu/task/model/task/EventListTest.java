@@ -21,11 +21,11 @@ public class EventListTest {
         // Select Deadline -> return false
         assertFalse(list.isCorrectType(TypicalDeadlines.PROJECT, TypicalLocalDates.LOCAL_DATE_FIFTH));
 
-        // Select Event, date is first/last day of event -> return true
+        // Select Event -> return true
         assertTrue(list.isCorrectType(TypicalEvents.SLEEPOVER, TypicalLocalDates.APR30));
         assertTrue(list.isCorrectType(TypicalEvents.EXAM, TypicalLocalDates.APR26));
 
-        // Select Event, date is outside of event dates -> return false
-        assertFalse(list.isCorrectType(TypicalEvents.REST, TypicalLocalDates.APR30));
+        // Select Event, date is outside of event dates, validation is done during scheduling -> return true
+        assertTrue(list.isCorrectType(TypicalEvents.REST, TypicalLocalDates.APR30));
     }
 }

@@ -1,6 +1,7 @@
 package seedu.task.logic.parser;
 
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.task.commons.core.Messages.MESSAGE_INVALID_EVENT_DATES;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_EFFORT;
@@ -42,16 +43,24 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION,
                             PREFIX_TAG, PREFIX_DEADLINE, PREFIX_TO, PREFIX_FROM, PREFIX_EFFORT);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+                || !argMultimap.getPreamble().isEmpty()
+                || (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)
+                    && areSomePrefixesPresent(argMultimap, PREFIX_FROM, PREFIX_TO))
+                || ((areSomePrefixesPresent(argMultimap, PREFIX_FROM, PREFIX_TO)
+                && areSomePrefixesAbsent(argMultimap, PREFIX_FROM, PREFIX_TO)))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Set<Name> nameList = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_NAME));
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        Description description = new Description();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
         Effort effort = new Effort();
+
+        if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+            description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        }
+
         if (arePrefixesPresent(argMultimap, PREFIX_EFFORT)) {
             effort = ParserUtil.parseEffort(argMultimap.getValue(PREFIX_EFFORT).get());
         }
@@ -67,6 +76,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (arePrefixesPresent(argMultimap, PREFIX_FROM, PREFIX_TO)) {
             Date from = ParserUtil.parseDate(argMultimap.getValue(PREFIX_FROM).get());
             Date to = ParserUtil.parseDate(argMultimap.getValue(PREFIX_TO).get());
+            if (!from.isValidEvent(to)) {
+                throw new ParseException(MESSAGE_INVALID_EVENT_DATES);
+            }
             taskList = addEvents(nameList, description, tagList, from, to, effort);
             return new AddCommand(taskList);
         }
@@ -137,4 +149,19 @@ public class AddCommandParser implements Parser<AddCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Returns true if at least one of the prefixes contains non empty values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean areSomePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if at least one of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean areSomePrefixesAbsent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isEmpty());
+    }
 }

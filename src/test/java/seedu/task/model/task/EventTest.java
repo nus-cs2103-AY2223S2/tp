@@ -47,9 +47,9 @@ public class EventTest {
         editedMeeting = new EventBuilder(MEETING).withName("Assignment").build();
         assertFalse(MEETING.isSameTask(editedMeeting));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Task editedStudy = new EventBuilder(STUDY).withName("Study".toLowerCase()).build();
-        assertFalse(STUDY.isSameTask(editedStudy));
+        assertTrue(STUDY.isSameTask(editedStudy));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = "Study" + " ";

@@ -8,7 +8,7 @@ import seedu.task.model.task.exceptions.InvalidEffortException;
  * Represent a Task's required effort in the task book.
  */
 public class Effort {
-    public static final String MESSAGE_CONSTRAINTS = "Effort must be valid";
+    public static final String MESSAGE_CONSTRAINTS = "Effort must be greater than or equal to 0!";
     public static final long DEFAULT_DAILY_EFFORT = 24;
     private long effort;
 
@@ -29,6 +29,18 @@ public class Effort {
 
     public long getEffort() {
         return this.effort;
+    }
+
+    /**
+     * Returns true if a given long can be converted into a valid effort.
+     */
+    public static boolean isValidEffort(String value) {
+        try {
+            long checkValue = Long.parseLong(value);
+            return checkValue >= 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     @Override

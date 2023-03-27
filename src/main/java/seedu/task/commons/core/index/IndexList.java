@@ -41,6 +41,12 @@ public class IndexList {
             }
         }
 
+        for (int i = 0; i < n - 1; i++) {
+            if (this.indexList.get(i).getZeroBased() >= this.indexList.get(i + 1).getZeroBased()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            }
+        }
+
         return true;
     }
 

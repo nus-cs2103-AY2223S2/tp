@@ -3,30 +3,56 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  * [1. Introduction](#1-introduction)
+    * [1.1 Acknowledgements](#11-acknowledgements)
+    * [1.2 Setting up, getting started](#12-setting-up-getting-started)
+  * [2. Design](#2-design)
+    * [2.1 Architecture](#21-architecture)
+    * [2.2 UI Component](#22-ui-component)
+    * [2.3 Logic Component](#23-logic-component)
+    * [2.4 Model Component](#24-model-component)
+    * [2.5 Storage Component](#25-storage-component)
+    * [2.6 Common Classes](#26-common-classes)
+  * [3. Implementation](#3-implementation)
+    * [3.1 Add Feature](#31-add-feature)
+    * [3.2 Clear Feature](#32-clear-feature)
+    * [3.3 Delete Feature](#33-delete-feature)
+    * [3.4 Edit Feature](#34-edit-feature)
+    * [3.5 Find Feature](#35-find-feature)
+    * [3.6 List Feature](#36-list-feature)
+    * [3.7 Help Feature](#37-help-feature)
+    * [3.8 Stats Feature](#38-stats-feature)
+    * [3.9 Sort Feature](#39-sort-feature)
+    * [3.10 Alert Feature](#310-alert-feature)
+    * [3.11 Plan Feature](#311-plan-feature)
+  * [4. Documentation, Logging, Testing, Configuration, DevOps](#4-documentation-logging-testing-configuration-dev-ops)
+  * [5. Appendix: Requirements](#5-appendix-requirements)
+  * [6. Appendix: Instructions for manual testing](#6-appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## 1. Introduction
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This Developer Guide details Clock-Work's design and implementation details.
 
---------------------------------------------------------------------------------------------------------------------
+### 1.1 **Acknowledgements**
 
-## **Setting up, getting started**
+* Tag's color code examples courtesy of https://sashamaps.net/docs/resources/20-colors/.
+
+### 1.2 **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 2. **Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+### 2.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -67,7 +93,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### 2.2 UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -84,7 +110,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Task` object residing in the `Model`.
 
-### Logic component
+### 2.3 Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -93,7 +119,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `TaskBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a task).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -110,10 +136,10 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `TaskBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### 2.4 Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -124,6 +150,7 @@ The `Model` component,
 * stores the address book data i.e., all `Task` objects (which are contained in a `UniqueTaskList` object).
 * stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* * stores the generated plan, i.e. all `DailyPlan` objects (which are contained within a `MonthlyPlan` object)
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Task` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Task` needing their own `Tag` objects.<br>
@@ -133,24 +160,24 @@ The `Model` component,
 </div>
 
 
-### Storage component
+### 2.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both address book data, user preference data, and planner data in json format, and read them back into corresponding objects.
+* inherits from `AddressBookStorage`, `UserPrefStorage` and `PlannerStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### 2.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 3. **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -224,13 +251,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the task being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the task being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -238,10 +265,202 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### 3.1 Add Feature
+
+The add feature now supports three types of additions: simple tasks, events and deadlines. The AddCommandParser will handle the multiple prefixes in the input before the AddCommand adds a list of tasks into the taskbook.
+Also, our feature allows the user to input multiple tasks with the same descriptions and tags but with different names. This makes it easier for user to add repetitive tasks with similar details.
+
+You can find the specific implementation in the 'AddCommandParser' class and the 'AddCommand' class
+
+Given below is a scenario of how the add command is used and behaves.
+
+Step 1. The user inputs an 'add' Command with parameters 'n/CS2109S n/CS2103T n/homework'.
+
+Step 2. The AddCommandParser recognises that the input command has two names and one description as the parameters. Since there is no deadline prefix 'D' and event prefixes 'f' and 't', the parser will create tasks that are simple tasks. The tasks will have the same description but different names
+
+Step 3. All the tasks are added to a temporary task list and the list is stored in the add command.
+
+Step 4. The add command is returned to the logic manager for execution.
+
+Step 5. For each of the task in the temporary task list, we add them to the task list in the model.
+
+Step 6. The result of execution is returned to the logic manager and the UI will display the result as a message.
+
+The following diagram summarises the sequence of events happening during the execution.
+![AddCommandSequenceDiagram](images/AddCommand.png)
+
+The following diagram summarises how the activities unfold after the user types 'Find' Command.
+![SortCommandSequenceDiagram](images/AddActivityDiagram.png)
+
+### 3.2 Clear Feature
+
+### 3.3 Delete Feature
+Deletes a task based on index(es) of tasks from the list currently being shown to users.
+In the previous iteration of AB3, deletion of task must be done 1 index at a time, but this feature is extended to support deletion at multiple indices in Clock-Work to improve the efficiency of the program.
+Input index(es) is checked for validity (has a task at supposed index), and an error prompt will be displayed to users should the input be invalid.
+
+Multiple deletions within a single command must be done in the following manner:
+1. Indices must be separated by whitespace, such as `delete 1 2 3`
+2. Indices must be entered in ascending order
+
+In the event where one of the multiple indices entered is invalid, the entire command is rejected and no deletion is executed, and users will be informed about the non-execution.
+This is to enforce atomicity and date safety, as deletion is irreversible, so it should only be executed when it is certain that the user is clear about the intended behavior of the command.
+
+Given below is an example usage scenario and how `delete` is executed.
+
+Step 1. The user inputs a `delete` command with parameter `1 2`. The parser recognises the command word and calls DeleteCommandParser.
+
+Step 2. The `DeleteCommandParser` interprets the indices and saves it as an IndexList.
+
+Step 3. `DeleteCommandParser` calls `DeleteCommand`.
+
+Step 4. `DeleteCommand` is executed and all relevant tasks are removed from TaskBook.
+
+Step 5. Results are shown immediately on UI.
+
+The following sequence diagram summarizes what happens in this example usage scenario:
+
+![DeleteCommandSequenceDiagram](images/DeleteCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new `delete` command:
+
+![DeleteCommandSequenceDiagram](images/DeleteCommandActivityDiagram.png)
+
+### 3.4 Edit Feature
+
+### 3.5 Find Feature
+
+Before, the `find` feature on AB3 would find persons whose names contain any of the given keywords. This limited the search functionality to purely names. With our new enhancement, `find` can now search via any field.
+The FindCommandParser does the heavy lifting where it will automatically create appropriate predicates based on user input.
+
+You can find the specific implementation in the `FindCommandParser` class and the `FindCommand` class.
+
+Given below is an example usage scenario and how the find mechanism behaves.
+
+Step 1. The user inputs a `find` command with parameter `n/read`. The parser recognises the command word and calls the FindCommandParser.
+
+Step 2. The `FindCommandParser` recognises that the parameter is being searched is the name field.
+
+Step 3. `FindCommandParser` calls `FindCommand` with appropriate predicate (`NameContainsAllKeywordsPredicate`).
+
+Step 4. `FindCommand` is executed and model filters with the predicate passed.
+
+Step 5. The result of the filtered list is passed back to the UI.
+
+The following sequence diagram summarizes what happens in this example usage scenario:
+
+![SortCommandSequenceDiagram](images/FindSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new `find` command:
+
+![SortCommandSequenceDiagram](images/FindActivityDiagram.png)
+
+#### 3.5.1 Design Consideration
+
+#### Option 1 (current choice):
+* Find can search any attribute
+* It searches via matched substring
+* In the case of a sample search term `n/read book`, the whole string must be in the name of the task.
+* Only accepts 1 attribute at a time.
+* Can accept multiple of same attribute search terms along with a flag to indicate type of searching.
+* e.g. `all/`
+
+Pros: Simple for users while still being flexible and powerful.
+Cons: Cannot find by multiple attributes at a time for more powerful functionality.
+
+#### Option 2:
+* Allow mix-and-matching of attributes for searching
+* Can still have a flag to indicate any or all search term matching
+
+Pros: More powerful functionality
+Cons: More complicated to implement and unwieldy for users.
+
+### 3.6 List Feature
+
+### 3.7 Help Feature
+
+### 3.8 Stats Feature
+Statistics is a useful way for users to get an overview of all open tasks in the TaskBook. Currently, `stats` supports 1 view - categorise by tags. 
+The number of tasks that fall under each tag is counted, and displayed in descending order, for up to a maximum of 10 tags.
+
+Given below is an example usage scenario for the `stats` command.
+
+Step 1. User inputs `stats` and presses enter.
+
+Step 2. The application displays a list of tags and the corresponding number of times it appears in the application.
+
+The following sequence diagram provides an overview of how `stats` works:
+
+![StatsCommandSequenceDiagram](images/StatsCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![StatsCommandActivityDiagram](images/StatsCommandActivityDiagram.png)
+
+### 3.9 Sort Feature
+
+Given below is an example usage scenario and how the sort command behaves at each step
+
+Step 1. The user launches the application.
+
+Step 2. The application displays a list of tasks (that can also be empty).
+
+Step 2. The user executes `sort` command to sort the list. Look at [Sort Design Consideration](#391-design-consideration) for the sorting logic.
+
+Step 3. The sequence diagram below shows how the sort operation works:
+
+![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
+
+#### 3.9.1 Design Consideration
+
+Sorts the list using the following format:
+
+Aspect: How are tasks sorted:
+
+###### Option 1(current choice):
+
+* SimpleTask is listed above Deadline and Event.
+* Deadline is  listed below SimpleTask and above Event.
+* Event is  listed below SimpleTask and Event.
+* When comparing 2 tasks of the same class:
+
+  * SimpleTask
+    * The task with lesser tags is listed above the task with more tags.
+    * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
+  * Deadline
+    * The task with the earlier deadline is listed above the task with later deadline.
+    * Else if both tasks have the same deadline, the task with lesser tags is listed above the task with more tags.
+    * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
+  * Event
+    * The task with the earlier `from` attribute is listed above the task with a later `from` attribute.
+    * Else if both task have the same `from` attribute, the task with the earlier `to` attribute is listed above the task with later `to` attribute.
+    * Else if both task have the same `to` attribute, the task with lesser tags is listed above the task with more tags.
+    * Else if both tasks have the same number of tags, the task with a smaller lexicgraphical name is listed above the other.
+
+Pros: Neater and more intuitive
+Cons: Will have to scroll down to see the order for Events if there are too many SimpleTasks.
+
+###### Option 2:
+
+Same as above, but:
+* Event is listed above SimpleTask and Deadline.
+* Deadline is  listed below Event and above SimpleTask.
+* SimpleTask is listed below Deadline and Event.
+
+Pros: Able to see the Events happening close to date.
+Cons: Have to scroll down to see SimpleTasks.
+
+### 3.10 Alert Feature
+
+### 3.11 Plan Feature
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 4. **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -251,17 +470,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 5. **Appendix: Requirements**
 
 ### Product scope
 
 **Target user profile**:
 
-* has a need to manage a significant number of assignments/tasks.
-* prefer desktop apps over other types
+* needs to manage a significant number of assignments/tasks.
+* prefer desktop apps over other types (eg. mobile apps)
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* gains familiarity with specific command input formats easily
 
 **Value proposition**: manage tasks faster than a typical mouse/GUI driven app and has convenient features bundled in.
 
@@ -270,24 +490,26 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​         | I want to …​                                  | So that I can…​                                |
-|----------|-----------------|-----------------------------------------------|------------------------------------------------|
-| `* * *`  | user            | add a task                                    |                                                |
-| `* * *`  | user            | delete a task                                 | delete a task that I erroneously added         |
-| `* * *`  | user            | find a task                                   | perform queries more efficiently               |
-| `* * *`  | user            | view my tasks                                 | plan my time more efficiently                  |
-| `* *`    | user            | sort my tasks by deadline                     | So that I can see which tasks are due sooner   |
-| `* *`    | fickle user     | edit a task                                   | correct mistakes without deleting a task       |
-| `* *`    | user            | have a project folder                         | look at only my projects at a glance           |
-| `* *`    | organized user  | add tags to tasks                             | organize them better                           |
-| `* *`    | indecisive user | know what tasks to prioritise                 | not have to dedicate time to thinking about it |
-| `* *`    | user            | keep track of how many tasks I have completed | keep track of my projects                      |
-| `* *`    | forgetful user  | be prompted when assignments are due          | don't miss deadlines                           |
-| `*`      | organized user  | organize tasks by modules/subjects            | easily find my tasks                           |
-| `*`      | user            | see motivational quotes                       | be motivated to do my tasks                    |
-| `*`      | lazy user       | automate typing in repetitive tasks           | save time entering similar entries             |
-| `*`      | lazy user       | have a schedule planned out for me            | not have to dedicate time to administration    |
-| `*`      | busy user       | add colour codes                              | easily identify my tasks at a glance           |
+| Priority | As a …​         | I want to …​                                  | So that I can…​                                 |
+|----------|-----------------|-----------------------------------------------|-------------------------------------------------|
+| `* * *`  | user            | add a task                                    |                                                 |
+| `* * *`  | user            | delete a task                                 | delete a task that I erroneously added          |
+| `* * *`  | user            | find a task                                   | perform queries more efficiently                |
+| `* * *`  | user            | view my tasks                                 | plan my time more efficiently                   |
+| `* *`    | user            | sort my tasks by deadline                     | So that I can see which tasks are due sooner    |
+| `* *`    | fickle user     | edit a task                                   | correct mistakes without deleting a task        |
+| `* *`    | user            | have a project folder                         | look at only my projects at a glance            |
+| `* *`    | organized user  | add tags to tasks                             | organize them better                            |
+| `* *`    | indecisive user | know what tasks to prioritise                 | not have to dedicate time to thinking about it  |
+| `* *`    | user            | keep track of how many tasks I have completed | keep track of my projects                       |
+| `* *`    | forgetful user  | be prompted when assignments are due          | don't miss deadlines                            |
+| `*`      | organized user  | organize tasks by modules/subjects            | easily find my tasks                            |
+| `*`      | user            | see motivational quotes                       | be motivated to do my tasks                     |
+| `*`      | lazy user       | automate typing in repetitive tasks           | save time entering similar entries              |
+| `*`      | lazy user       | have a schedule planned out for me            | not have to dedicate time to administration     |
+| `*`      | busy user       | add colour codes                              | easily identify my tasks at a glance            |
+| `*`      | forgetful user  | view my previously generated schedule         | continue working on what i was doing previously |
+
 
 *{More to be added}*
 
@@ -335,7 +557,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 6. **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 

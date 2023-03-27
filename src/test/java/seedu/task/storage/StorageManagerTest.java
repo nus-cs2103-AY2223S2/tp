@@ -2,6 +2,7 @@ package seedu.task.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.task.testutil.TypicalDailyPlans.getTypicalPlanner;
 import static seedu.task.testutil.TypicalTasks.getTypicalTaskBook;
 
 import java.nio.file.Path;
@@ -11,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.task.commons.core.GuiSettings;
+import seedu.task.model.Planner;
+import seedu.task.model.ReadOnlyPlanner;
 import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.TaskBook;
 import seedu.task.model.UserPrefs;
@@ -26,7 +29,8 @@ public class StorageManagerTest {
     public void setUp() {
         JsonTaskBookStorage taskBookStorage = new JsonTaskBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(taskBookStorage, userPrefsStorage);
+        JsonPlannerStorage plannerStorage = new JsonPlannerStorage(getTempFilePath("plans"));
+        storageManager = new StorageManager(taskBookStorage, userPrefsStorage, plannerStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -59,6 +63,20 @@ public class StorageManagerTest {
         ReadOnlyTaskBook retrieved = storageManager.readTaskBook().get();
         assertEquals(original, new TaskBook(retrieved));
     }
+
+    @Test
+    public void plannerReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonPlannerStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonPlannerStorageTest} class.
+         */
+        Planner original = getTypicalPlanner();
+        storageManager.savePlanner(original);
+        ReadOnlyPlanner retrieved = storageManager.readPlanner().get();
+        assertEquals(original, new Planner(retrieved));
+    }
+
 
     @Test
     public void getTaskBookFilePath() {

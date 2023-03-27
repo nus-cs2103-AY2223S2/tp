@@ -1,0 +1,12 @@
+@startuml
+start
+:User uses find command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:find command executed;
+:model updates filtered list;
+:Update UI to show user filtered list;
+stop
+@enduml

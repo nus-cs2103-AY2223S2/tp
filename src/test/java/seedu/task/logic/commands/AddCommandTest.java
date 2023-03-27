@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -17,6 +18,7 @@ import javafx.collections.ObservableList;
 import seedu.task.commons.core.GuiSettings;
 import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.Model;
+import seedu.task.model.ReadOnlyPlanner;
 import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.ReadOnlyUserPrefs;
 import seedu.task.model.TaskBook;
@@ -110,6 +112,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getPlannerFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
@@ -145,7 +152,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void plan(int value) {
+        public void plan(long value) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -166,6 +173,16 @@ public class AddCommandTest {
 
         @Override
         public void updateAlertTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyPlanner getPlanner() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void schedule(LocalDate date) {
             throw new AssertionError("This method should not be called.");
         }
     }

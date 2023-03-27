@@ -1,0 +1,22 @@
+{
+  "plans" : [ {
+    "task" : [ ],
+    "desiredWorkload" : 5,
+    "currentWorkload" : 0,
+    "date" : "2023-04-26"
+  }, {
+    "task" : [ ],
+    "desiredWorkload" : 5,
+    "currentWorkload" : 0,
+    "date" : "2023-04-27"
+  }, {
+    "task" : [ ],
+    "desiredWorkload" : 5,
+    "currentWorkload" : 0,
+    "date" : "2023-04-28"
+  }, {
+    "desiredWorkload" : 5,
+    "currentWorkload" : 0,
+    "date" : "2023-04-29"
+  } ]
+}

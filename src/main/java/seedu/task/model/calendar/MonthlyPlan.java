@@ -3,6 +3,8 @@ package seedu.task.model.calendar;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 import seedu.task.model.task.Deadline;
 import seedu.task.model.task.DeadlineList;
@@ -14,15 +16,15 @@ import seedu.task.model.task.SimpleTaskList;
  * A 30-day overview of the work left to be done.
  */
 public class MonthlyPlan {
+    private static LocalDate today;
     private DailyPlan[] dailyPlans = new DailyPlan[30];
-    private LocalDate today;
 
     /**
      * Instantiates 30 days of daily plans starting from the date the command ran
      * @param workload amount of work user is willing to put in a day
      * @param currentDate date command is ran
      */
-    public MonthlyPlan(int workload, LocalDate currentDate) {
+    public MonthlyPlan(long workload, LocalDate currentDate) {
         today = currentDate;
         for (int i = 0; i < 30; i++) {
             dailyPlans[i] = new DailyPlan(workload, currentDate.plusDays(i));
@@ -38,6 +40,10 @@ public class MonthlyPlan {
     public MonthlyPlan(DailyPlan[] dp, LocalDate today) {
         this.dailyPlans = dp;
         this.today = today;
+    }
+
+    public static LocalDate lastGenerated() {
+        return today;
     }
 
     /**
@@ -171,5 +177,9 @@ public class MonthlyPlan {
             }
             return today.equals(mp.today);
         }
+    }
+
+    public List<DailyPlan> getDailyPlans() {
+        return Arrays.asList(this.dailyPlans);
     }
 }
