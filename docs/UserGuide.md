@@ -413,6 +413,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 | **Help**   | `help`                                                                                                                                                                       |                                                                                       |
 | **Search** | `search KEYWORD`                                                                                                                                                             | `search alex january`                                                                 |
 | **Exit**   | `exit`                                                                                                                                                                       |                                                                                       |
+
 [↑ Back to top](#2-table-of-contents)
 
 ## 10. Prefix Summary
