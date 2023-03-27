@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fx:id="pageContainer" fitToWidth="true" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox id="infoPanel" spacing="10.0">
+         <children>
+            <VBox VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="pageTitle" styleClass="info-panel-h1" text="Title" VBox.vgrow="ALWAYS">
+                     <minWidth>
+                        <Region fx:constant="USE_PREF_SIZE" />
+                     </minWidth>
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Separator fx:id="separator" halignment="LEFT" prefWidth="200.0" />
+                  <Label fx:id="pageSubtitle" styleClass="info-panel-h2" text="Welcome message" wrapText="true" />
+               </children>
+            </VBox>
+            <VBox spacing="5.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="reminderText" styleClass="info-panel-h2-bold" text="Due soon">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane fitToHeight="true" prefHeight="200.0" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                     <content>
+                        <HBox fx:id="reminderBox" spacing="15.0">
+                           <children>
+                              <Label fx:id="noReminderText" text="Nothing to show " />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" top="10.0" />
+                           </padding></HBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox spacing="5.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label styleClass="info-panel-h2-bold" text="Useful commands">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <VBox fx:id="commandSummary" />
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
+      </VBox>
+   </content>
+</ScrollPane>
