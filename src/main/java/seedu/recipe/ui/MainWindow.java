@@ -2,6 +2,7 @@ package seedu.recipe.ui;
 
 import java.util.Map;
 import java.util.logging.Logger;
+import java.io.File;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.recipe.commons.core.GuiSettings;
 import seedu.recipe.commons.core.LogsCenter;
@@ -45,6 +47,9 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private MenuItem importMenuItem;
+
+    @FXML
     private StackPane recipeListPanelPlaceholder;
 
     @FXML
@@ -77,8 +82,6 @@ public class MainWindow extends UiPart<Stage> {
 
         getRoot().addEventFilter(DeleteRecipeEvent.DELETE_RECIPE_EVENT_TYPE, this::handleDeleteRecipeEvent);
 
-        getRoot().addEventFilter(EditRecipeEvent.EDIT_RECIPE_EVENT_TYPE, this::handleEditRecipeEvent);
-
         helpWindow = new HelpWindow();
     }
 
@@ -96,6 +99,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        //setAccelerator(importMenuItem, KeyCombination.valueOf("F2"));
     }
 
     /**
@@ -113,6 +117,24 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    @FXML
+    private void handleImport() {
+        FileChooser fileChooser = new FileChooser();
+
+        // Set the file extension filter for JSON files
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        // Show open file dialog
+        File selectedFile = fileChooser.showOpenDialog(primaryStage);
+
+        if (selectedFile != null) {
+            // The selectedFile variable now contains the selected JSON file
+            // We can now pass this file to your import handling method
+            return;
+        }
+    }
+
     /**
      * Handles the DeleteRecipeEvent by executing the appropriate delete command
      * based on the provided event data.
@@ -126,45 +148,6 @@ public class MainWindow extends UiPart<Stage> {
             executeCommand(commandText);
         } catch (CommandException | ParseException e) {
             logger.info("Failed to delete recipe: " + recipeIndex);
-        }
-    }
-
-    /**
-     * Handles the EditRecipeEvent by executing the appropriate edit command
-     * based on the provided event data. Updates the recipe with the changed values
-     * specified in the event.
-     *
-     * @param event the EditRecipeEvent containing the index of the recipe to be edited
-     *              and a map of the changed values.
-     */
-    private void handleEditRecipeEvent(EditRecipeEvent event) {
-        assert event != null : "EditRecipeEvent cannot be null";
-        int recipeIndex = event.getRecipeIndex();
-        Map<String, String> changedValues = event.getChangedValues();
-        try {
-            StringBuilder commands = new StringBuilder();
-
-            // Add the index of the item to edit.
-            commands.append(recipeIndex);
-
-            // Check if the name has been changed and append the name prefix and value.
-            if (changedValues.containsKey("name")) {
-                commands.append(" n/");
-                commands.append(changedValues.get("name"));
-            }
-
-            // Check if the duration has been changed and append the duration prefix and value.
-            if (changedValues.containsKey("duration")) {
-                commands.append(" d/");
-                commands.append(changedValues.get("duration"));
-            }
-
-            //I'll add in more fields, but I need to make sure this works first.
-            String commandText = "edit " + commands.toString(); // 1-indexed
-            System.out.println(commandText);
-            executeCommand(commandText);
-        } catch (CommandException | ParseException e) {
-            logger.info("Failed to edit recipe: " + recipeIndex);
         }
     }
 
