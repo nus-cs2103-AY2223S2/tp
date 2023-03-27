@@ -16,6 +16,7 @@ import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Priority;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -34,6 +35,8 @@ class JsonAdaptedPerson {
     private final String businessSize;
 
     private final String company;
+
+    private final String priority;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -43,6 +46,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("businessSize") String businessSize, @JsonProperty("company") String company,
+                             @JsonProperty("priority") String priority,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -50,6 +54,7 @@ class JsonAdaptedPerson {
         this.address = address;
         this.businessSize = businessSize;
         this.company = company;
+        this.priority = priority;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -65,6 +70,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         businessSize = source.getBusinessSize().value;
         company = source.getCompany().value;
+        priority = source.getPriority().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -133,8 +139,20 @@ class JsonAdaptedPerson {
 
         final Company modelCompany = new Company(company);
 
+        if (priority == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Priority.class.getSimpleName()));
+        }
+
+        if (!Priority.isValidPriority(priority)) {
+            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+        }
+
+        final Priority modelPriority = new Priority(priority);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBusinessSize, modelCompany, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBusinessSize, modelCompany,
+                modelPriority, modelTags);
     }
 
 }

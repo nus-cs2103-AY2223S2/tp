@@ -10,6 +10,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -27,6 +28,8 @@ public class PersonBuilder {
 
     public static final String DEFAULT_COMPANY = "software engineering is not cs";
 
+    public static final String DEFAULT_PRIORITY = "HIGH";
+
     private Name name;
     private Phone phone;
     private Email email;
@@ -34,6 +37,8 @@ public class PersonBuilder {
     private BusinessSize businessSize;
 
     private Company company;
+
+    private Priority priority;
     private Set<Tag> tags;
 
     /**
@@ -46,6 +51,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         businessSize = new BusinessSize(DEFAULT_BUSINESSSIZE);
         company = new Company(DEFAULT_COMPANY);
+        priority = new Priority(DEFAULT_PRIORITY);
         tags = new HashSet<>();
     }
 
@@ -59,6 +65,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         businessSize = personToCopy.getBusinessSize();
         company = personToCopy.getCompany();
+        priority = personToCopy.getPriority();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -111,6 +118,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Priority} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPriority(String priority) {
+        this.priority = new Priority(priority);
+        return this;
+    }
+
+    /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {
@@ -119,7 +134,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, businessSize, company, tags);
+        return new Person(name, phone, email, address, businessSize, company, priority, tags);
     }
 
 }

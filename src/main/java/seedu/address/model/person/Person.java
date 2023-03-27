@@ -22,20 +22,23 @@ public class Person implements Comparable<Person> {
     private final BusinessSize businessSize;
 
     private final Company company;
+
+    private final Priority priority;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, BusinessSize businessSize,
-                  Company company, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, businessSize, tags);
+                  Company company, Priority priority, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, businessSize, company, priority, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.businessSize = businessSize;
         this.company = company;
+        this.priority = priority;
         this.tags.addAll(tags);
     }
 
@@ -65,6 +68,10 @@ public class Person implements Comparable<Person> {
 
     public Company getCompany() {
         return company;
+    }
+
+    public Priority getPriority() {
+        return priority;
     }
 
     /**
@@ -109,6 +116,7 @@ public class Person implements Comparable<Person> {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getBusinessSize().equals(getBusinessSize())
                 && otherPerson.getCompany().equals(getCompany())
+                && otherPerson.getPriority().equals(getPriority())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -117,7 +125,7 @@ public class Person implements Comparable<Person> {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, businessSize, company, tags);
+        return Objects.hash(name, phone, email, address, businessSize, company, priority, tags);
     }
 
 
@@ -135,7 +143,9 @@ public class Person implements Comparable<Person> {
                 .append("; Business Size: ")
                 .append(getBusinessSize())
                 .append("; Company: ")
-                .append(getCompany());
+                .append(getCompany())
+                .append("; Priority: ")
+                .append(getPriority());
 
 
         Set<Tag> tags = getTags();

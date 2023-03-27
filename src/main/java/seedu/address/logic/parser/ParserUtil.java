@@ -15,6 +15,7 @@ import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -121,6 +122,19 @@ public class ParserUtil {
             throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
         return new Company(company);
+    }
+
+    /**
+     * Parses a {@code String priority} into an {@code Priority}.
+     *
+     * @throws ParseException if the given {@code Priority} is invalid.
+     */
+    public static Priority parsePriority(String priority) throws ParseException {
+        requireNonNull(priority);
+        if (!Priority.isValidPriority(priority)) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+        return new Priority(priority);
     }
 
     /**
