@@ -11,9 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.dengue.commons.core.GuiSettings;
 import seedu.dengue.commons.core.LogsCenter;
+import seedu.dengue.model.overview.PostalOverview;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.overview.Overview;
-import seedu.dengue.model.overview.AgeOverview;
 
 /**
  * Represents the in-memory model of the Dengue Hotspot Tracker data.
@@ -38,7 +38,7 @@ public class ModelManager implements Model {
         this.dengueHotspotTracker = new DengueHotspotTracker(dengueHotspotTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.dengueHotspotTracker.getPersonList());
-        this.overview = new AgeOverview(); // TODO default is Postal
+        this.overview = new PostalOverview();
     }
 
     public ModelManager() {
