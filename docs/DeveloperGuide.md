@@ -188,7 +188,7 @@ The `EditMeetingsCommand` class also has an inner class`EditMeetingDescriptor`, 
 
 There are also constant variables for this class that store messages to display when the command is executed or when there are errors. The `MESSAGE_USAGE` constant holds the command syntax and format, while the `MESSAGE_EDIT_MEETING_SUCCESS`, `MESSAGE_NOT_EDITED`, and `MESSAGE_DUPLICATE_MEETING` constants hold the success message, error message when no fields are provided, and error message when the edited meeting already exists in the address book, respectively.
 
-This class also overrides the equals() method to check if two `EditMeetingsCommnds` are equal
+This class also overrides the equals() method to check if two `EditMeetingsCommnds` are equal.
 
 
 ##### Deleting
