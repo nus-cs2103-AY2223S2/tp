@@ -295,17 +295,18 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                               |
-|--------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| Action             | Format, Examples                                                                                                              |
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------|
 | **Add Client**     | `add client name/NAME [email/EMAIL] [phone/PHONE_NUMBER]​` <br> e.g., `add client name/Bob phone/12345678 email/bob@gmail.com` |
-| **Add Project**    | `add project name/NAME [deadline/DEADLINE]` <br> e.g., `add project name/Background Commission deadline/2023-05-05`            |
-| **Delete Client**  | `delete client <index>`<br> e.g., `delete client 1`                                                                            |
-| **Delete Project** | `delete project <index>`<br> e.g., `delete project 1`                                                                          |
-| **Edit Client**    | `edit client <index> [name/NAME] [email/EMAIL] [phone/PHONE]​` <br> e.g.,`edit client 3 name/Alice Risa phone/1234`            |
-| **Edit Project**   | `edit project <index> [name/NAME] [deadline/DEADLINE]` <br> e.g., `edit project 2 name/The Starry Night`                       |
-| **Mark Project**   | `mark <index>` e.g. `mark 3`                                                                                                   |
-| **Unmark Project** | `unmark <index>` e.g. `unmark 3`                                                                                               |
-| **List Client**    | `list client`                                                                                                                  |
-| **List Project**   | `list project`                                                                                                                 |
-| **Sort Client**    | `sort-client`                                                                                                                  |
-| **Sort Project**   | `sort-project option/Option` <br> e.g., `sort-project option/name`                                                             |
+| **Add Project**    | `add project name/NAME [deadline/DEADLINE]` <br> e.g., `add project name/Background Commission deadline/2023-05-05`           |
+| **Delete Client**  | `delete client <index>`<br> e.g., `delete client 1`                                                                           |
+| **Delete Project** | `delete project <index>`<br> e.g., `delete project 1`                                                                         |
+| **Edit Client**    | `edit client <index> [name/NAME] [email/EMAIL] [phone/PHONE]​` <br> e.g.,`edit client 3 name/Alice Risa phone/1234`           |
+| **Edit Project**   | `edit project <index> [name/NAME] [deadline/DEADLINE]` <br> e.g., `edit project 2 name/The Starry Night`                      |
+| **Mark Project**   | `mark <index>` e.g. `mark 3`                                                                                                  |
+| **Unmark Project** | `unmark <index>` e.g. `unmark 3`                                                                                              |
+| **List Client**    | `list client`                                                                                                                 |
+| **List Project**   | `list project`                                                                                                                |
+| **Sort Client**    | `sort-client`                                                                                                                 |
+| **Sort Project**   | `sort-project option/Option` <br> e.g., `sort-project option/name`                                                            |
+
