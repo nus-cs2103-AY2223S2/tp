@@ -11,7 +11,7 @@ public class Postal {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Postal codes should only contain numbers or start with S, and it must be 6 digits long," +
+            "Postal codes should only contain numbers or start with S, and it must be 6 digits long,\n" +
                     " beginning with a valid two-digit postal sector.";
     public static final String VALIDATION_REGEX = "[Ss]?\\d{6}";
     public final String value;
