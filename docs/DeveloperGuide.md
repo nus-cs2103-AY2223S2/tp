@@ -224,6 +224,32 @@ The form's window title will be "Edit Recipe" when editing an existing recipe, a
 #### Common classes
 Classes used by multiple components are in the `seedu.recipe.commons` package.
 
+### Feature: Find-by-property
+
+The `find` command allows the user to filter recipes by their properties: 
+e.g. their name, tags, or ingredients.
+
+<img src="images/FindSequenceDiagram.png" width="500" />
+
+#### Implementation
+As with all commands, the find command goes through the standard command execution pipeline.
+
+In `FindCommandParser`, we determine which is the target property. 
+Keyword validation and predicate creation is then done depending on the target property.
+
+To determine whether a recipe's target property matches the given keywords, 2 predicate types are used:
+* `PropertyNameContainsKeywordPredicate<T>`: checks whether some string representation of a property T 
+matches any of the keywords
+  * e.g. if the property is `Name`, and we have a recipe named "Cacio e Pepe" and we are 
+  finding recipes whose name match the keywords ["Pepe", "Cereal"], then this recipe would match
+* `PropertyCollectionContainsKeywordPredicate<T>`: checks whether a string representation of any property T 
+in a collection of property T matches any of the keywords
+  * e.g. if the property is `Tag`, and we have a recipe with tags ["Italian", "Breakfast"] and we are
+  finding recipes whose tags match the keywords ["Italian", "Indian"], then this recipe would match
+
+The use of generic types in the above predicates allows it to be implemented independent of the actual type
+of the property, as long as the relevant getters are supplied.
+
 ## **Appendix: Requirements**
 
 ### Product scope
