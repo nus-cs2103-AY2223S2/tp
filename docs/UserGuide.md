@@ -8,29 +8,29 @@ title: User Guide
 <img src="images/Ui.png"/>
 --------------------------------------------------------------------------------------------------------------------
 # Table of Contents
-1. [Quick Start](#quick-start)
-2. [Downloading CoDoc](#downloading-codoc)
-3. [Navigation](#navigation)
-4. [Commands](#commands)
-   1. [add](#add)
-   2. [find](#find)
-   3. [view](#view)
-   4. [edit](#edit)
-   5. [list](#list)
-   6. [delete](#delete)
-   7. [clear](#clear)
-   8. [help](#help)
-   9. [exit](#exit--exit)
-5. [Data Management](#data-management)
-6. [FAQ](#faq)
-7. [Upcoming Features](#)
-8. [Command Summary](#command-summary)
-8. [Additional Resources](#additional-resources)
-   1. [How To Check Java Version](#how-to-check-java-version)
-   2. [How to Open CoDoc](#how-to-open-codoc)
+1. [Quick Start](#1.-quick-start)
+2. [Downloading CoDoc](#2.-downloading-codoc)
+3. [Navigation](#3.-navigation)
+4. [Commands](#4.-commands)
+   4.1. [add](#4.1-add)
+   4.2. [find](#4.2-find)
+   4.3. [view](#4.3-view)
+   4.4. [edit](#4.4-edit)
+   4.5. [list](#4.5-list)
+   4.6. [delete](#4.6-delete)
+   4.7. [clear](#4.7-clear)
+   4.8. [help](#4.8-help)
+   4.9. [exit](#4.9-exit--exit)
+5. [Data Management](#5.-data-management)
+6. [FAQ](#6.-faq)
+7. [Upcoming Features](#7.-upcoming-features)
+8. [Command Summary](#8.-command-summary)
+9. [Additional Resources](#9.-additional-resources)
+   9.1. [How To Check Java Version](#9.1-how-to-check-java-version)
+   9.2. [How to Open CoDoc](#9.2-how-to-open-codoc)
 
 --------------------------------------------------------------------------------------------------------------------
-## Quick Start
+## 1. Quick Start
 Currently, our contact list is empty. Let's try adding a fictitious contact into our list to familiarise ourselves with CoDoc. Don't worry, we will remove this fictitious contact at the end.
 1. **add** a new person -> [add command](#add)
    <br>`add n/Bob y/2 c/1 e/e0823741@nus.edu`<br>
@@ -88,7 +88,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
    
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
 
-## Downloading CoDoc
+## 2. Downloading CoDoc
 1. Ensure you have `Java 11` or above installed in your Computer. -> [How To Check Java Version](#how-to-check-java-version)
    * If not, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#java11) 
 2. Download the latest version of `codoc.jar` [here](https://github.com/AY2223S2-CS2103T-F12-2/tp/releases/tag/v1.3.trial).
@@ -105,11 +105,11 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 
 [ ^Scroll back to *Tables of Contents*](#table-of-contents)
 
-## Navigation
+## 3. Navigation
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
 
-## Commands
-### add
+## 4. Commands
+### 4.1 add
 `add n/NAME e/EMAIL y/YEAR c/COURSE_INDEX [OPTIONAL/PARAMETER]...`<br>
 >
 > **Compulsory parameters:**
@@ -131,7 +131,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 > - `add` n/John Doe e/johnd@example.com y/2 c/3
     > ![Add Example](images/UiAddContact.jpg)
 
-### find
+### 4.2 find
 `find [OPTIONAL/PARAMETER]...`<br>
 >> find KEYWORD [MORE_KEYWORDS]
 > * The search is case-insensitive. e.g `hans` will match `Hans`
@@ -146,10 +146,10 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 > - `find alex david` returns `Alex Yeoh`, `David Li`<br>
     ![result for 'find alex david'](images/findAlexDavidResult.jpg)
 
-### view
+### v4.3 iew
 `view <PARAMETERS>`<br>
 
-### edit
+### 4.4 edit
 `edit [OPTIONAL/PARAMETER]...`<br>
 > - Edits the person displayed in the view panel
 > - At least one of the optional fields must be provided.
@@ -161,35 +161,35 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 > - edit g/91234567 e/johndoe@example.com will edit the github username and email address of the person to be 91234567 and johndoe@example.com respectively.
 > - edit n/Betsy Crower s/ Edits the name of the person to be Betsy Crower and clears all existing skills.
 
-### list
+### 4.5 list
 `list`<br>
 > * Shows all persons stored.<br>
 
-### delete
+### 4.6 delete
 `delete <INDEX>`<br>
 > * Deletes the person at the specified INDEX.<br>
 > * INDEX refers to an index currently shown in the displayed person list.<br>
 > * INDEX must be a positive integer 1, 2, 3, ...<br>
 > * E.g. `delete 1` will delete the current person at index 1 as shown in the list panel.<br>
 
-### clear
+### 4.7 clear
 `clear`<br>
 > * :warning: Clears **all** entries from CoDoc.<br>
 
-### help:
+### 4.8 help:
 `help`<br>
 > <img src="images/UiHelpMenu.png"/>
 > * Opens help menu <br>
 > * Equivalent to clicking Help > Help F1 via the GUI <br>
 
-### exit:
+### 4.9 exit:
 `exit`<br>
 > * Exits the program. <br>
 > * Equivalent to clicking the close button via the GUI. <br>
 
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
 
-## Data Management
+## 5. Data Management
 **Q**: How do I save my person list?<br>
 **A**: CoDoc automatically saves your person list after every successful `add`, `edit` and `clear`.
 
@@ -203,11 +203,11 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
 
-## FAQ
+## 6. FAQ
 
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
 
-## Upcoming Features
+## 7. Upcoming Features
 
 ### Automated bulk edits `[coming in v2.0]`
 _Details coming soon ..._
@@ -220,7 +220,7 @@ _Details coming soon ..._
 [ ^Scroll back up to *Tables of Contents*](#table-of-contents)
 
 
-## Command Summary 
+## 8. Command Summary 
 
 | Actions                          | Description                                                                                                                                 |
 |----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
@@ -238,10 +238,10 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Additional Resources
-### How To Check Java Version
+## 9. Additional Resources
+### 9.1 How To Check Java Version
 [ ^Scroll back up to *Downloading CoDoc*](#downloading-codoc)
-### How to Open CoDoc
+### 9.2 How to Open CoDoc
 [ ^Scroll back up to *Downloading CoDoc*](#downloading-codoc)
 
 --------------------------------------------------------------------------------------------------------------------
