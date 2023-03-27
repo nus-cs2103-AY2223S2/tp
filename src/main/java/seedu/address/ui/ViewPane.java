@@ -27,7 +27,7 @@ public class ViewPane extends UiPart<Region> {
     public final Person person;
 
     @FXML
-    private HBox cardPane;
+    private HBox viewPane;
     @FXML
     private Label nric;
     @FXML
@@ -54,10 +54,11 @@ public class ViewPane extends UiPart<Region> {
         nric.setText("Nric: " + person.getNric().fullNric);
         name.setText(person.getName().fullName);
         phone.setText("Phone Number: " + person.getPhone().value);
-        address.setText("Address " + person.getAddress().value);
+        address.setText("Address: " + person.getAddress().value);
         gender.setText("Gender: " + person.getGender().gender);
         drugAllergy.setText("Drug Allergy: " + person.getDrugAllergy().value);
         email.setText("Email: " + person.getEmail().value);
+        address.setWrapText(true);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

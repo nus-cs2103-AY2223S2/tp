@@ -20,11 +20,11 @@
     <Scene fill="#8fd6e8">
       <stylesheets>
         <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css"/>
+        <URL value="@Extensions.css" />
         <URL value="@LightTheme.css" />
       </stylesheets>
 
-      <VBox prefHeight="400.0" prefWidth="600.0">
+      <VBox prefHeight="400.0" prefWidth="541.0">
         <MenuBar fx:id="menuBar" prefHeight="24.0" prefWidth="769.0" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -44,8 +44,8 @@
           </padding>
                <HBox prefHeight="259.0" prefWidth="448.0" VBox.vgrow="ALWAYS">
                   <children>
-                     <StackPane fx:id="personListPanelPlaceholder" prefHeight="238.0" prefWidth="306.0" HBox.hgrow="NEVER" />
-                     <StackPane fx:id="viewPanePlaceHolder" prefHeight="259.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
+                     <StackPane fx:id="personListPanelPlaceholder" prefHeight="238.0" prefWidth="199.0" HBox.hgrow="ALWAYS" />
+                     <StackPane fx:id="viewPanePlaceHolder" prefHeight="238.0" prefWidth="362.0" HBox.hgrow="NEVER" />
                   </children>
                </HBox>
         </VBox>
