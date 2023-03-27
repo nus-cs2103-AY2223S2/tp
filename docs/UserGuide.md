@@ -6,6 +6,7 @@ title: CareFlow User Guide
 CareFlow is a **desktop application for patient and drug inventory management, optimised for use via a Command Line Interface** (CLI) while benefiting from a Graphical User Interface (GUI).
 
 If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline you with daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being!
+
 * Table of Contents
 {:toc}
 
@@ -177,7 +178,7 @@ Format: `p find PATIENT_NAME`
 * Only the name is searched.
 
 Examples:
-* `p find John` returns john and John Doe
+* `p find Doe` returns David Doe and John Doe
 * `p find alex david` returns Alex Yeoh, David Li
 
 ![find message](images/UIscreenshots/patientSS/patientFindresult.png)
@@ -262,9 +263,9 @@ Examples:
 * `d update Tylenol PM -by +50`
     * This **increases** storage count of the drug entry with trade name matching "Tylenol PM" by **50**
 
-![](images/UIscreenshots/drugSS/dcurrentcount.png)
-![](images/UIscreenshots/drugSS/dupdate.png)
-![](images/UIscreenshots/drugSS/dupdateres.png)
+![](images/UIscreenshots/drugSS/drugPrevCount.png)
+![](images/UIscreenshots/drugSS/dUpdate.png)
+![](images/UIscreenshots/drugSS/drugCurrentCount.png)
 
 [Back to top](#top)
 
@@ -279,7 +280,7 @@ Examples:
 * `d find Panadol`
 
 ![](images/UIscreenshots/drugSS/dfind.png)
-![](images/UIscreenshots/drugSS/dlistres.png)
+![](images/UIscreenshots/drugSS/dFindPanadol.png)
 
 [Back to top](#top)
 
