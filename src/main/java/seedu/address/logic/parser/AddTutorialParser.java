@@ -16,8 +16,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.io.File;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.stream.Stream;
 
+import seedu.address.logic.commands.AddConsultationCommand;
 import seedu.address.logic.commands.AddTutorialCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Note;
