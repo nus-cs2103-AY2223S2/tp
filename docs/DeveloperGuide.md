@@ -445,9 +445,7 @@ Each module in CoDoc have a string representing its module.
 #### Regex and validation
 All module string should satisfy the following regex pattern,
 
-<code>
-^AY[0-9]{4}S[12] [A-Z]+[0-9]+[A-Z]*
-</code>
+`^AY[0-9]{4}S[12] [A-Z]+[0-9]+[A-Z]*`
 
 For example, a valid Module string is "AY2223S1 CS1101S"
 
@@ -462,7 +460,8 @@ The following are valid 4 digit sequence (last 2 digits are increments of first 
 The following are invalid (the last 2 digit number is not an increment of the first)
 - 2224
 - 1111
-- 
+- 2019
+
 [Scroll back to top](#table-of-contents)
 
 ### **Course and CourseList Class**
