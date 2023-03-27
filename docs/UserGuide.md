@@ -96,13 +96,27 @@ customize them with their own names and add in their respective fishes! <br>
 Currently, there are three operations around tanks:
 * [Adding a tank `tank add`](#adding-a-tank-add)
 * [Deleting a tank `tank delete`](#deleting-a-tank-delete-tank)
+* [Viewing a tank `tank view`](#viewing-a-tank-view-tank)
 * [Listing tanks `list tanks`](#listing-tanks-list-tanks)
+* [Feeding a tank `tank feed`](#feeding-a-tank-feed-tank)
 
-### Adding a tank: `add`
+### Adding a tank: `tank add`
 
 Adds a tank to the app.
 
 Format: `tank add d/<TANK_NAME>`
+
+### Deleting a tank: `tank delete`
+
+Delete a tank entry from the app.
+
+Format: `tank delete <TANK_INDEX>`
+
+### Viewing a tank: `tank view`
+
+View a tank, which displays relevant attributes of the selected tank.
+
+Format: `tank view <TANK_INDEX>`
 
 ### Listing tanks: `list tanks`
 
@@ -110,11 +124,11 @@ Lists all tanks created.
 
 Format: `list tanks`
 
-### Deleting a tank: `delete tank`
+### Feeding a tank: `tank feed`
 
-Delete a tank entry from the app.
+Feed a tank for the present day (i.e. today), which updates `lastFedDate` of all fishes in that tank to the present day.
 
-Format: `tank delete <TANK_INDEX>`
+Format: `tank feed <TANK_INDEX>`
 
 ## Fishes
 

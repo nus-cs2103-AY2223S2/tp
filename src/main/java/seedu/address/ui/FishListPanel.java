@@ -48,6 +48,7 @@ public class FishListPanel extends UiPart<Region> {
                 setGraphic(new FishCard(fish, getIndex() + 1).getRoot());
             }
         }
+
     }
 
 }
