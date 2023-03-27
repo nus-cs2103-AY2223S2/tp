@@ -6,8 +6,8 @@ title: User Guide
 <img src="images/sprINT.png">
 </div>
 
-* Table of Contents
-  {:toc}
+## Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ title: User Guide
 ### 1.1 What is sprINT
 
 Welcome to **sprINT's User Guide**. sprINT is a **desktop application** for managing internship applications,
-optimised for use via a Command Line Interface (CLI) while still incorporating the benefits of a Graphical User
+optimized for use via a Command Line Interface (CLI) while incorporating the benefits of a Graphical User
 Interface (GUI).
 
 If you're a *fast typer*, sprINT is the perfect tool. The app is designed to maximize speed and efficiency,
@@ -91,7 +91,7 @@ will delete all data stored locally and this action is irreversible. You will lo
 **Caution:** Stop and read carefully when you see this!
 </div>
 
-<div style="page-break-after: always;"></div>
+<div style="page-break-after: always;" />
 
 <div markdown="block" class="alert alert-info">
 
@@ -119,7 +119,7 @@ will delete all data stored locally and this action is irreversible. You will lo
 
 ### 3.1 Managing applications
 
-### 3.1.1  Adding an application : `add-app`
+#### 3.1.1 Adding an application : `add-app`
 
 Adds an internship application to be tracked.
 
@@ -134,7 +134,7 @@ Examples:
 * `add-app r/SWE Intern c/Goggle e/goggle_careers@gmail.com s/interested`
 * `add-app r/Data Analyst Intern c/Bloomberg e/bloomberg_hires@bloomberg.com`
 
-### 3.1.2  Editing an application : `edit-app`
+#### 3.1.2 Editing an application : `edit-app`
 
 Edits an existing internship application to be tracked.
 
@@ -151,7 +151,7 @@ Examples:
 *  `edit-app 1 r/Cloud Engineer e/goggleHR@example.com` Edits the role and email address of the 1st application to be `Cloud Engineer` and `goggleHR@gmail.com` respectively.
 *  `edit-app 2 s/Rejected t/` Edits the status of the 2nd application to be `Rejected` and clears all existing tags.
 
-### 3.1.3  Deleting an application : `delte-app`
+#### 3.1.3 Deleting an application : `delete-app`
 
 Deletes the specified application from the internship book.
 
@@ -167,7 +167,7 @@ Examples:
 
 ### 3.2 Managing application tasks
 
-### 3.2.1  Adding an application task : `add-task`
+#### 3.2.1 Adding an application task : `add-task`
 
 Adds an upcoming task to an existing application.
 
@@ -181,7 +181,7 @@ Then, `Goggle` reaches out to you for a technical interview on the 24th July 202
 as a task to the application entry you have created (suppose it is showing up as the first one in the list) by typing:
 `add-task 1 d/Technical Interview by/24-07-2023`
 
-### 3.2.2  Editing an application task : `edit-task`
+#### 3.2.2 Editing an application task : `edit-task`
 
 Edits an upcoming task for an application entry.
 
@@ -195,7 +195,7 @@ Example:
 `edit-task 1 d/Accept offer by/09-07-2023` Edits the description and deadline of the task for the 1st application to be
 `Accept offer` and `09-07-2023` respectively.
 
-### 3.2.3  Deleting an application task : `delete-task`
+#### 3.2.3  Deleting an application task : `delete-task`
 
 Deletes the task of the specified application.
 
@@ -216,7 +216,7 @@ Examples:
 
 ### 3.3 Managing display for applications
 
-### 3.3.1  Listing all applications : `list`
+#### 3.3.1  Listing all applications : `list`
 
 Shows a list of all internship applications, in the order of when they are added. Application
 entries that are added more recently will be shown on top.
@@ -226,7 +226,7 @@ Format: `list`
 Example:
 * `list` Returns the current list of internship applications tracked by sprINT.
 
-### 3.3.2  Finding applications : `find`
+#### 3.3.2  Finding applications : `find`
 
 Finds internship applications with information containing any of the given keywords.
 
@@ -243,7 +243,7 @@ Examples:
 * `find Goggle Mata` returns internship applications for `Goggle LLC`, `Mata Platforms`.<br>
 * `find r/SWE Intern c/Mata s/Offered` returns internship application(s) for the role of `SWE Intern` at `Mata` that is of the status `Offered`.<br>
 
-### 3.3.3  Soring applications : `sort`
+#### 3.3.3  Soring applications : `sort`
 
 Sorts internship applications in the order you want.
 
@@ -257,13 +257,13 @@ Currently, there are two orders you can choose:
 
 ### 3.4 Miscellaneous
 
-### 3.4.1  Viewing help : `help`
+#### 3.4.1  Viewing help : `help`
 
 Displays a pop-up window of summary of commands and their formats.
 
 Format: `help`
 
-### 3.4.2  Undoing a command : `undo`
+#### 3.4.2  Undoing a command : `undo`
 
 Undos the previous command that you have typed in.
 
@@ -273,24 +273,24 @@ You can use this command if you have accidentally deleted an applicatione entry 
 
 Format: `undo`
 
-### 3.4.3  Clearing all applications : `clear`
+#### 3.4.3  Clearing all applications : `clear`
 
 Clears all entries from the internship book.
 
 Format: `clear`
 
-### 3.4.4  Exiting the program : `exit`
+#### 3.4.4  Exiting the program : `exit`
 
 Exits the program.
 Alternatively, you can exit the program by clicking the top-right X button to close the window.
 
 Format: `exit`
 
-### 3.4.5  Saving the data
+#### 3.4.5  Saving the data
 
 Data in the internship book are automatically saved in the hard disk after any command that modifies the data. There is no need to save manually.
 
-### 3.4.6  Editing the data file
+#### 3.4.6  Editing the data file
 
 Data in the internship book are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update their data directly by editing that data file.
 
@@ -298,7 +298,7 @@ Data in the internship book are saved as a JSON file `[JAR file location]/data/a
 If your changes to the data file makes its format invalid, the internship book will discard all data and start with an empty data file at the next run.
 </div>
 
-### 3.4.7  Archiving the data files : [coming in v2.0]
+#### 3.4.7  Archiving the data files : [coming in v2.0]
 
 _Details coming soon ..._
 
