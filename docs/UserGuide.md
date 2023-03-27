@@ -85,14 +85,14 @@ Format: `addpart n/NAME q/Quantity`
 
 Example: `addpart n/Cylinder Head q/50`
 
-### Adding a vehicle part to specific service: `addpartservice`
+### Adding a vehicle part to specific service: `addservicepart`
 Adds a vehicle part to a specific service.
 
 Service and part must be registered in the system and part must have sufficient quanity,
 
-Format: `addpartservice s/SERVICE ID n/PART NAME q/QUANTITY`
+Format: `addservicepart s/SERVICE ID n/PART NAME q/QUANTITY`
 
-Example: `addpartservice s/2 n/Cylinder Head q/20` 
+Example: `addservicepart s/2 n/Cylinder Head q/20` 
 
 ### Adding a service to a vehicle: `add service`
 Adds a service to perform on the specified vehicle plate number.
