@@ -306,6 +306,28 @@ If no argument is provided, an empty list will be shown.
 **Full keyword match or Partial keyword match**
 * We have also considered a partial match of the keyword (For example: `han` keyword will match field with the value `hans`). However we decide to implement a full match due to the following reason:
   * Having partial match may bring out unintended matches as the possible range of results is broadened. We fear that doing a partial match may be too broad for find command to function as a way for users to narrow down their search.
+
+
+### Remove Feature
+The remove feature allows users to remove a given value in Person's and Project's respective fields.
+The feature is facilitated by the `RemoveCommand` class and `RemoveProjectCommand` classes.
+They extend `Command` and implements the following operations:
+* `RemoveCommand#execute()`  — Removes the respective Person's field value based on the given input.
+* `RemoveProjectCommand#execute()`  — Removes the respective Project's field value based on the given input.
+
+The `RemoveCommandParser` and `RemoveProjectCommandParser` classes are used to parse the user input and removes the value that matches to the existing value in the respective field using `RemovePersonDescriptor` and `RemoveProjectDescriptor` respectively.
+`RemovePersonDescriptor` and `RemoveProjectDescriptor` objects are created and pass together with the `Index` (parses from the user input) into respective commands.
+The respective classes verify that the user input is valid and create the commands accordingly.
+
+If no argument is provided, exception will be thrown. Else if only predicate is present, the corresponding field of the Person/Project will be emptied.
+
+#### Design considerations:
+
+**Remove a specific field value**
+* Initially considered an edit feature that allows add/remove field value is not really useful in some situations:
+  * If user decides to remove 1 out of many field values in a person's tag field, user will have a difficult time to type all the must-have value. WIth remove feature, user just need to type out the tag that he/she wish to remove.
+  * Currently, edit feature for language field is cumulative, language will not be removed, so remove feature helps to resolve the issue on language removal.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
