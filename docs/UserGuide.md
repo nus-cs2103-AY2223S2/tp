@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-## Welcome to ConnectUS!
+## 1. Welcome to ConnectUS!
 
 ConnectUS is the ultimate **contact management system** for your everyday needs. If you're a School of Computing student, this app is for you. With ConnectUS, you can spend less time stressing over a lack of social interaction (~~due to your exponentially growing assignment backlog~~ — _trust us, we know!_), and more time **connecting** with others!
 
@@ -15,12 +15,14 @@ This User Guide will provide you with an in-depth documentation for you to easil
 
 So what are you waiting for? Get ready to **Connect** with others and let **US** handle the rest!
 
+## 2. Table of Contents
+
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Using this guide
+## 3. Using this guide
 - For instructions on setting up ConnectUS, please refer to [Quick start](#quick-start).
 - For a table of commands, please refer to [Command summary](#command-summary).
 - For detailed instructions on how to use each command, please refer to [Features](#features).
