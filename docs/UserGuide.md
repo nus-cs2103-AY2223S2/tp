@@ -79,7 +79,7 @@ Tags attached to a user are meant to be short notes that do not fit into any oth
 
 **Warning: `WARD_NAME` is case-sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`.
 
-### Format: `add n/PATIENT_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME [t/TAG]...`
+### Format: `addpat n/PATIENT_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME [t/TAG]...`
 
 `ID_NUMBER` should be unique to each patient. This is not case-sensitive. A123456789B is identical to a123456789b.
 **This input will be capitalised automatically.**\
@@ -124,12 +124,12 @@ Creates an empty ward with the specified `WARD_NAME`.
 
 **Warning: `WARD_NAME` is case-sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
 
-### Format: `addward w/WARD_NAME`
+### Format: `addward n/WARD_NAME`
 `WARD_NAME` must be unique and cannot be the same as any existing name. This field is case-sensitive.
 
 ### Examples:
-`addward w/block B ward 2` will create a new empty ward called block B ward 2\
-`addward w/block C ward 1` will create a new empty ward called block C ward 1
+`addward n/block B ward 2` will create a new empty ward called block B ward 2\
+`addward n/block C ward 1` will create a new empty ward called block C ward 1
 
 [Go back to [Table of Contents](#table-of-contents)]
 
@@ -188,10 +188,10 @@ Lists all existing wards on the GUI. Only ward names will be displayed.
 ## Viewing the details of a specific patient: view
 Lists the full detail of a specific patient, including their prescriptions/instructions, name, patient ID and tags in the main window.
 
-### Format: `view id/ID_NUMBER`
+### Format: `view INDEX`
 
 ### Examples:
-`view id/A0123456789B` will display all the information associated with the patient with ID number A0123456789B on the GUI.
+`view 1` will display all the information associated with the 1st patient shown on the GUI.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
@@ -281,22 +281,22 @@ Exits the program.
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary
 
-| Action                           | Format, Examples                                                                                                                                                                                                        |                                                                                                                                                                           
-|----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add patient**                  | `add n/PATIENT_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME [t/TAG]...` <br> e.g., `addpat n/John Doe id/A12345B w/Block B Ward 2 p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends` |                 
-| **Add prescription**             | `addpresc id/ID_NUMBER p/PRESCRIPTION_OR_INSTRUCTION` <br> e.g., `addpresc id/A0123456789B p/paracetamol 500mg`                                                                                                         |                     
-| **Add staff**                    | `addstf n/STAFF_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME`<br> e.g., `addstf n/Dr. Mallory Wong id/A987654321H p/97365482 e/mwong@example.com a/390 Geylang Rd w/block B ward 2`                       |             
-| **Add ward**                     | `addward n/WARD_NAME`<br> e.g.,`addward n/block B ward 2`                                                                                                                                                               |           
-| **List Patients**                | `lspat [w/WARD_NAME]`<br> e.g., `lspat block B ward 2`, `lspat`                                                                                                                                                         |                        
-| **List patient's prescriptions** | `lspresc id/ID_NUMBER`<br> e.g., `lspresc id/A0123456789B`                                                                                                                                                              |                             
-| **List staff members**           | `lsstf [w/WARD_NAME]`<br> e.g., `lsstf w/block A ward 1`, `lsstf`                                                                                                                                                       |                  
-| **List all ward names**          | `lsward`<br>                                                                                                                                                                                                            |                  
-| **Edit patient particulars**     | `editpat id/ID_NUMBER [n/PATIENT_NAME] [w/WARD_NAME] [t/TAG] [p/PHONE_NUMBER] [kn/NOK_NAME] [kp/NOK_PHONE_NUMBER] [a/ADDRESS]`<br> e.g., `editpat id/A0123456789B w/block B ward 2 p/81234567`                          | 
-| **Deleting ward**                | `delward n/WARD_NAME`<br> e.g., `delward n/block B ward 2`                                                                                                                                                              |
-| **Deleting staff member**        | `delstf n/STAFF_NAME w/WARD_NAME`<br> e.g., `delstf n/Dr. Mallory Wong w/block B ward 2`                                                                                                                                |       
-| **Deleting prescription entry**  | `delpresc id/ID_NUMBER idx/INDEX`<br> e.g., `delpresc id/A0123456789B idx/1`                                                                                                                                            |            
-| **Deleting patient from system** | `delpat id/ID_NUMBER`<br> e.g., `delpat id/A0123456789B`                                                                                                                                                                |            
-| **Exit**                         | `exit`<br>                                                                                                                                                                                                              |
+| Action                           | Format, Examples                                                                                                                                                                                                           |                                                                                                                                                                           
+|----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add patient**                  | `addpat n/PATIENT_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME [t/TAG]...` <br> e.g., `addpat n/John Doe id/A12345B w/Block B Ward 2 p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends` |                 
+| **Add prescription**             | `addpresc id/ID_NUMBER p/PRESCRIPTION_OR_INSTRUCTION` <br> e.g., `addpresc id/A0123456789B p/paracetamol 500mg`                                                                                                            |                     
+| **Add staff**                    | `addstf n/STAFF_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME`<br> e.g., `addstf n/Dr. Mallory Wong id/A987654321H p/97365482 e/mwong@example.com a/390 Geylang Rd w/block B ward 2`                          |             
+| **Add ward**                     | `addward n/WARD_NAME`<br> e.g.,`addward n/block B ward 2`                                                                                                                                                                  |           
+| **List Patients**                | `lspat [w/WARD_NAME]`<br> e.g., `lspat block B ward 2`, `lspat`                                                                                                                                                            |                        
+| **List patient's prescriptions** | `lspresc id/ID_NUMBER`<br> e.g., `lspresc id/A0123456789B`                                                                                                                                                                 |                             
+| **List staff members**           | `lsstf [w/WARD_NAME]`<br> e.g., `lsstf w/block A ward 1`, `lsstf`                                                                                                                                                          |                  
+| **List all ward names**          | `lsward`<br>                                                                                                                                                                                                               |                  
+| **Edit patient particulars**     | `editpat id/ID_NUMBER [n/PATIENT_NAME] [w/WARD_NAME] [t/TAG] [p/PHONE_NUMBER] [kn/NOK_NAME] [kp/NOK_PHONE_NUMBER] [a/ADDRESS]`<br> e.g., `editpat id/A0123456789B w/block B ward 2 p/81234567`                             | 
+| **Deleting ward**                | `delward n/WARD_NAME`<br> e.g., `delward n/block B ward 2`                                                                                                                                                                 |
+| **Deleting staff member**        | `delstf n/STAFF_NAME w/WARD_NAME`<br> e.g., `delstf n/Dr. Mallory Wong w/block B ward 2`                                                                                                                                   |       
+| **Deleting prescription entry**  | `delpresc id/ID_NUMBER idx/INDEX`<br> e.g., `delpresc id/A0123456789B idx/1`                                                                                                                                               |            
+| **Deleting patient from system** | `delpat id/ID_NUMBER`<br> e.g., `delpat id/A0123456789B`                                                                                                                                                                   |            
+| **Exit**                         | `exit`<br>                                                                                                                                                                                                                 |
 
 [Go back to [Table of Contents](#table-of-contents)]
 
