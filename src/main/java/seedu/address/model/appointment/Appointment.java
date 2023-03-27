@@ -44,6 +44,16 @@ public class Appointment {
         return timeslot;
     }
 
+    /**
+     * Checks if this timeslot and the provided timeslot overlap.
+     *
+     * @param otherTimeslot The timeslot to check for overlaps with.
+     * @return Whether both timeslots clash.
+     */
+    public boolean hasOverlap(Timeslot otherTimeslot) {
+        return timeslot.hasOverlap(otherTimeslot);
+    }
+
     public Description getDescription() {
         return description;
     }

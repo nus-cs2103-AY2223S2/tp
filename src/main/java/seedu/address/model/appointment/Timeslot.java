@@ -54,6 +54,18 @@ public class Timeslot {
     }
 
     /**
+     * Checks if this timeslot and the provided timeslot overlap.
+     *
+     * @param otherTimeslot The timeslot to check for overlaps with.
+     * @return Whether both timeslots clash.
+     */
+    public boolean hasOverlap(Timeslot otherTimeslot) {
+        return this.startingDateTime.equals(otherTimeslot.startingDateTime)
+            || (this.startingDateTime.isBefore(otherTimeslot.endingDateTime)
+            && otherTimeslot.startingDateTime.isBefore(this.endingDateTime));
+    }
+
+    /**
      * Returns true if a given string is a valid timeslot.
      */
     public static boolean isValidTimeslot(String test) {
@@ -78,7 +90,7 @@ public class Timeslot {
 
     @Override
     public String toString() {
-        return startingDateTime.toString();
+        return startingDateTime.toString() + " " + endingDateTime.toString();
     }
 
     @Override
