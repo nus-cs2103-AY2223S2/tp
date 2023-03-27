@@ -9,6 +9,9 @@ the keyboard as compared to using traditional Graphical User Interface (GUI) app
 typist who is seeking for a one-stop platform to systematically organise your internship applications,
 then InternBuddy is the perfect buddy to accompany you during your internship hunt.
 
+InternBuddy runs using Java 11, and is available on the Windows, macOS and Linux operating systems.
+
+
 ## Core Features
 1. List all internships
 2. Add an internship
