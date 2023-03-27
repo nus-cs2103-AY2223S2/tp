@@ -5,9 +5,13 @@ import seedu.address.model.Model;
 import seedu.address.model.session.Session;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PAY_RATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
  * Creates session and adds it to the session list
@@ -19,7 +23,11 @@ public class CreateSessionCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_SESSION + "SESSION "
-            + PREFIX_LOCATION + "LOCATION";
+            + PREFIX_LOCATION + "LOCATION "
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "Hall "
+            + PREFIX_SESSION + "10-03-2022 10:00 to 10-03-2022 11:00 "
+            + PREFIX_LOCATION + "Leon Lim Sports Hall Of Champions";
 
     public static final String MESSAGE_SUCCESS = "New session added: %1$s";
     public static final String MESSAGE_DUPLICATE_SESSION = "This session already exists in the address book";

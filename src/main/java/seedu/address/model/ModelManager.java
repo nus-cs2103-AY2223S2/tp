@@ -169,6 +169,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Session> getFilteredSessionList() {
+        return filteredSessions;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
