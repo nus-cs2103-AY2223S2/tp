@@ -14,6 +14,7 @@ public class EventDateTimes {
     public static final String MESSAGE_CONSTRAINTS =
             "The END date-time should be after the START date-time";
 
+    public static final DateTimeFormatter PRINT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
     public final LocalDateTime from;
     public final LocalDateTime to;
 
@@ -45,9 +46,8 @@ public class EventDateTimes {
      * Returns the string representation of the EventDateTimes object.
      */
     public String toString() {
-        DateTimeFormatter formatToPrint = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
-        return "from: " + from.format(formatToPrint)
-                + " ; to: " + to.format(formatToPrint);
+        return "from: " + from.format(PRINT_FORMAT)
+                + " ; to: " + to.format(PRINT_FORMAT);
     }
 
     @Override
