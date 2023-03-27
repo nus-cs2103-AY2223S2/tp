@@ -39,7 +39,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = Phone.of(DEFAULT_PHONE);
         email = Email.of(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        address = Address.of(DEFAULT_ADDRESS);
         major = new Major(DEFAULT_MAJOR);
         tags = new HashSet<>();
         teams = new HashSet<>();
@@ -86,7 +86,7 @@ public class PersonBuilder {
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.address = Address.of(address);
         return this;
     }
 

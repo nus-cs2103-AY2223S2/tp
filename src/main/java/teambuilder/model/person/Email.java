@@ -33,7 +33,7 @@ public class Email {
 
     private static final Email NO_EMAIL = new Email();
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs an {@code Email}.
