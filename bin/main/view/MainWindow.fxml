@@ -59,7 +59,7 @@
                   </padding>
                 </StackPane>
 
-                <Button fx:id="addFoodButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="33.0" prefWidth="90.0" styleClass="enterButton" stylesheets="@DarkTheme.css" text="Enter" HBox.hgrow="ALWAYS" />
+                <Button fx:id="addFoodButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="33.0" prefWidth="90.0" styleClass="enterButton" stylesheets="@DarkTheme.css" text="Enter" HBox.hgrow="ALWAYS" />
 
                </children>
                <padding>
