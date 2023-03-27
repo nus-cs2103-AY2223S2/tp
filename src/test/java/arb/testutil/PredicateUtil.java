@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import arb.commons.core.predicate.CombinedPredicate;
-import arb.model.client.ClientContainsTagPredicate;
-import arb.model.client.NameContainsKeywordsPredicate;
-import arb.model.project.TitleContainsKeywordsPredicate;
+import arb.model.client.predicates.ClientContainsTagPredicate;
+import arb.model.client.predicates.NameContainsKeywordsPredicate;
+import arb.model.project.predicates.TitleContainsKeywordsPredicate;
 
 /**
  * A utility class for predicates.

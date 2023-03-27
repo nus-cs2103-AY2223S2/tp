@@ -13,9 +13,9 @@ import arb.commons.core.predicate.CombinedPredicate;
 import arb.logic.commands.project.FindProjectCommand;
 import arb.model.project.Deadline;
 import arb.model.project.Project;
-import arb.model.project.ProjectContainsTagsPredicate;
-import arb.model.project.ProjectWithinTimeframePredicate;
-import arb.model.project.TitleContainsKeywordsPredicate;
+import arb.model.project.predicates.ProjectContainsTagsPredicate;
+import arb.model.project.predicates.ProjectWithinTimeframePredicate;
+import arb.model.project.predicates.TitleContainsKeywordsPredicate;
 
 public class FindProjectCommandParserTest {
 

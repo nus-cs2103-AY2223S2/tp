@@ -21,7 +21,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import arb.commons.core.GuiSettings;
-import arb.model.client.NameContainsKeywordsPredicate;
+import arb.model.client.predicates.NameContainsKeywordsPredicate;
 import arb.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {

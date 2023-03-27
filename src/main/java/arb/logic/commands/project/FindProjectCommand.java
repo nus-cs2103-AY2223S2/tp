@@ -28,10 +28,11 @@ public class FindProjectCommand extends Command {
             new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Finds all projects whose titles contain any of "
-            + "the specified keywords (case-insensitive) and contains any of the tags given (case-insensitive) "
-            + "and falls within the given timeframe and displays them as a list with index numbers.\n"
-            + "Parameters: name/TITLE tag/TAG start/START OF TIMEFRAME end/END OF TIMEFRAME...\n"
-            + "Example: " + MAIN_COMMAND_WORD + " name/sculpture name/digital tag/personal start/last "
+            + "the specified keywords (case-insensitive). contains any of the tags given (case-insensitive), "
+            + "falls within the given timeframe and is linked to the client with the provided client name and displays "
+            + "them as a list with index numbers.\n"
+            + "Parameters: name/TITLE tag/TAG client/CLIENT start/START OF TIMEFRAME end/END OF TIMEFRAME...\n"
+            + "Example: " + MAIN_COMMAND_WORD + " name/sculpture name/digital client/alice tag/personal start/last "
             + "week end/next year";
 
     private final Predicate<Project> predicate;

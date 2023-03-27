@@ -23,9 +23,9 @@ import arb.model.AddressBook;
 import arb.model.ListType;
 import arb.model.Model;
 import arb.model.client.Client;
-import arb.model.client.NameContainsKeywordsPredicate;
+import arb.model.client.predicates.NameContainsKeywordsPredicate;
 import arb.model.project.Project;
-import arb.model.project.TitleContainsKeywordsPredicate;
+import arb.model.project.predicates.TitleContainsKeywordsPredicate;
 import arb.testutil.EditClientDescriptorBuilder;
 import arb.testutil.EditProjectDescriptorBuilder;
 
