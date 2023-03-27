@@ -40,14 +40,24 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow(primaryStage, logic);
-            mainWindow.show(); //This should be called before creating other UI parts
-            mainWindow.fillInnerParts();
+            // this is where the window/scenes will be changed
+
+            this.showMainWindow(primaryStage);
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
+    }
+
+    /**
+     * Shows the main window which is the main application
+     * @param primaryStage Primary stage of the whole application
+     */
+    public void showMainWindow(Stage primaryStage) {
+        mainWindow = new MainWindow(primaryStage, logic);
+        mainWindow.show(); //This should be called before creating other UI parts
+        mainWindow.fillInnerParts();
     }
 
     private Image getImage(String imagePath) {
