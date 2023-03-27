@@ -40,11 +40,19 @@ public class StatisticsTab extends UiPart<Tab> {
         listPlaceholder.getChildren().addAll(content.getRoot());
         logger.fine("Initialized tab page with title: " + title);
     }
-    
+
+    /**
+     * Hides the message in the tab.
+     */
     public void hideMessage() {
         displayMessageBox.setManaged(false);
     }
 
+    /**
+     * Shows a message in the tab.
+     *
+     * @param s Message to be shown
+     */
     public void showMessage(String s) {
         message.setText(s);
         displayMessageBox.setManaged(true);

@@ -141,6 +141,14 @@ public class StatisticsPanel extends UiPart<TabPane> {
                 .map(NonEmptyString::toString);
     }
 
+    /**
+     * Updates the messages in the tabs.
+     * If there are no projects in the due soon or overdue project list,
+     * it will show the corresponding message.
+     * Otherwise, it will hide the message.
+     *
+     * @param logic the logic component.
+     */
     public void updateTabMessages(Logic logic) {
         if (logic.getDueProjectList().size() == 0) {
             dueSoonProjectTab.showMessage(NO_DUE_PROJECT_MESSAGE);
