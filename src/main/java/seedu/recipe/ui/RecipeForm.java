@@ -1,5 +1,6 @@
 package seedu.recipe.ui;
 
+//Core imports
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +8,8 @@ import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+//JavaFX imports
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -19,7 +22,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+//Custom imports
 import seedu.recipe.commons.core.LogsCenter;
 import seedu.recipe.logic.commands.CommandResult;
 import seedu.recipe.logic.commands.exceptions.CommandException;
@@ -127,15 +130,15 @@ public class RecipeForm extends UiPart<Region> {
         nameField.setText(recipe.getName().recipeName);
         //Duration
         durationField.setText(
-                Optional.ofNullable(recipe.getDurationNullable())
-                        .map(Object::toString)
-                        .orElse("Duration was not added.")
+            Optional.ofNullable(recipe.getDurationNullable())
+                .map(Object::toString)
+                .orElse("Duration was not added.")
         );
         //Portion
         portionField.setText(
-                Optional.ofNullable(recipe.getPortionNullable())
-                        .map(Object::toString)
-                        .orElse("Portion was not added.")
+            Optional.ofNullable(recipe.getPortionNullable())
+                .map(Object::toString)
+                .orElse("Portion was not added.")
         );
 
         //Ingredients
@@ -161,7 +164,7 @@ public class RecipeForm extends UiPart<Region> {
         }
 
         //Tags
-        if (!recipe.getTags().isEmpty()) {
+        if (!recipe.getTags().isEmpty()) { //To be set as individual tag pills
             tagsField.setText(recipe.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .map(tag -> tag.tagName)
@@ -316,14 +319,14 @@ public class RecipeForm extends UiPart<Region> {
         VBox parentBox = (VBox) currentTextField.getParent();
         int currentIndex = parentBox.getChildren().indexOf(currentTextField);
         int lastIndex = parentBox.getChildren().size() - 1;
-    
+
         if (currentIndex < lastIndex) {
             Node nextNode = parentBox.getChildren().get(currentIndex + 1);
             if (nextNode instanceof TextField) {
                 return (TextField) nextNode;
             }
         }
-    
+
         return null;
     }
 
@@ -342,6 +345,7 @@ public class RecipeForm extends UiPart<Region> {
         //Keyboard listener for navigation
         textField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             int currentIndex = ((VBox) textField.getParent()).getChildren().indexOf(textField);
+
             if (event.getCode() == KeyCode.UP) {
                 // Condition 1: UP key pressed
                 if (currentIndex > 0) {
@@ -350,28 +354,47 @@ public class RecipeForm extends UiPart<Region> {
                 }
             } else if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.TAB) {
                 TextField nextField = (TextField) ((VBox) textField.getParent()).getChildren().get(currentIndex + 1);
-        
+
+                // >>> Should be removed - arrow keys are for navigation WITHIN text field
                 // Condition 2.1: DOWN key pressed
                 if (event.getCode() == KeyCode.DOWN) {
                     nextField.requestFocus();
-                }
-                // Condition 2.2: TAB key pressed
-                else if (event.getCode() == KeyCode.TAB) {
+
+                // Condition 2.2: Purely TAB key pressed
+                } else if (event.getCode() == KeyCode.TAB && !event.isShiftDown()) {
                     // If it is a new placeholder row and there's another TextField after it, skip to the field after
-                    if (nextField.getText().isEmpty() && currentIndex + 2 < ((VBox) textField.getParent()).getChildren().size()) {
-                        nextField = (TextField) ((VBox) textField.getParent()).getChildren().get(currentIndex + 2);
+                    if (nextField.getText().isEmpty()
+                            && currentIndex + 2
+                                < ((VBox) textField.getParent()).getChildren().size()) {
+                        nextField = (TextField) ((VBox) textField.getParent())
+                                .getChildren()
+                                .get(currentIndex + 2);
                     }
                     nextField.requestFocus();
+                // Shift + TAB
+                } else if (event.getCode() == KeyCode.TAB) {
+                    ObservableList<Node> childList = ((VBox) textField.getParent()).getChildren();
+                    if (textField.getText().isEmpty()) {
+                        childList.remove(textField);
+                    } else {
+                        int index = childList.indexOf(textField);
+                        System.out.println(index);
+                        if (index > 0) {
+                            childList.get(index - 1).requestFocus();
+                        }
+                    }
                 }
                 event.consume();
-            } else {
-                // Default: Do nothing
             }
         });
-        
-        //Textfield listener for automatically adding/removing new input rows
+
+        //Text field listener for automatically adding/removing new input rows
         textField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             VBox parentBox = (VBox) textField.getParent();
+            if (parentBox == null) {
+                return;
+            }
+            parentBox.getChildren().forEach(box -> System.out.println(box.getAccessibleText()));
             int lastIndex = parentBox.getChildren().size() - 1;
 
             // Check if the TextField has gained focus
@@ -379,20 +402,26 @@ public class RecipeForm extends UiPart<Region> {
                 // Check if it's the last TextField in the VBox
                 if (parentBox.getChildren().indexOf(textField) == lastIndex) {
                     TextField newField = createDynamicTextField("");
-                    parentBox.getChildren().add(newField); 
+                    parentBox.getChildren().add(newField);
                 }
             } else {
                 // Check if any other TextField has gained focus or the focus owner is not a TextField
                 Node focusOwner = textField.getScene().getFocusOwner();
                 System.out.println("focus owner:" + parentBox);
-                boolean focusChangedToDifferentVBox = focusOwner instanceof TextField && !focusOwner.getParent().equals(parentBox);
+
+                //Flags
+                boolean focusChangedToDifferentVBox = focusOwner instanceof TextField
+                        && !focusOwner.getParent().equals(parentBox);
                 boolean focusChangedToNonTextField = !(focusOwner instanceof TextField);
                 System.out.println("parent box:" + parentBox);
                 System.out.println("parent box parent:" + parentBox.getParent());
+
                 // Check if it's the last TextField, it's empty, and the focus is not in the same VBox, then remove it
-                if (getNextTextField(textField).getText().isEmpty() && textField.getText().isEmpty()) {
-                        System.out.println("removing" + textField);
-                        System.out.println("removing" + getNextTextField(textField));
+                if (getNextTextField(textField) != null
+                        && getNextTextField(textField).getText().isEmpty()
+                        && textField.getText().isEmpty()) {
+                    System.out.println("removing" + textField);
+                    System.out.println("removing" + getNextTextField(textField));
                     parentBox.getChildren().remove(getNextTextField(textField));
                 }
             }
@@ -419,15 +448,21 @@ public class RecipeForm extends UiPart<Region> {
         // Ensures users do not exit the view by clicking outside
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(recipe == null ? "Add Recipe" : "Edit Recipe");
+
+        //Set dimensions, scene graph
         window.setMinWidth(500);
         window.setMinHeight(700);
         VBox vbox = new VBox(getRoot());
         Scene scene = new Scene(vbox);
+
+        //Event handler for Escape Key
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
                 window.close();
             }
         });
+
+        //Display
         window.setScene(scene);
         window.showAndWait();
     }
