@@ -2,7 +2,10 @@ package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
 
-public class ListCommand extends Command{
+/**
+ * Lists all students or parents in the address book to the user.
+ */
+public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all students or parents\n"
@@ -10,7 +13,12 @@ public class ListCommand extends Command{
 
     public static final String SHOWING_LIST_MESSAGE = "Listed all ";
 
-    public String trimmedType;
+    private String trimmedType;
+
+    /**
+     * Creates a ListCommand to list the specified {@code Student} or {@code Parent}
+     * @param type
+     */
     public ListCommand(String type) {
         String trimmedType = type.trim();
         this.trimmedType = trimmedType;
