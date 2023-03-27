@@ -14,15 +14,15 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Filter students accordingly.";
 
-    private static String group;
-    private static String metric;
-    private static int threshold;
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all address book students.\n "
             + "Parameters: The group of students you wish to sort (either all, lab, tutorial or consultation), "
             + "the metric to be sorted (performance or urgency), "
             + "and the desired threshold value (0 to 100)\n"
             + "For example, 'filter all performance 40' is a command you can type";
+
+    private static String group;
+    private static String metric;
+    private static int threshold;
 
     /**
      * Constructor for a FilterCommand

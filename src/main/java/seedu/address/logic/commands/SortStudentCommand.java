@@ -14,10 +14,6 @@ public class SortStudentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all persons in sorted order";
 
-    private static String group;
-    private static String metric;
-    private static boolean isIncreasing;
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all address book students.\n "
             + "Parameters: The group of students you wish to sort (either all, lab, tutorial or consultation), "
             + "the metric to be sorted (either address, email, name, perfomance or remark), "
@@ -26,6 +22,9 @@ public class SortStudentCommand extends Command {
             + "ordering of their names";
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET = "Sort command not implemented yet";
+    private static String group;
+    private static String metric;
+    private static boolean isIncreasing;
 
     /**
      * Constructor for SortStudentCommand
