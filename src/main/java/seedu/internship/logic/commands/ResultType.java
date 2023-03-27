@@ -1,7 +1,7 @@
 package seedu.internship.logic.commands;
 
 public enum ResultType {
-    CALENDER,
+    CALENDAR,
     CLASH,
     EXIT,
     HELP,

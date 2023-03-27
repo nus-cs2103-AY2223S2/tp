@@ -7,8 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.internship.logic.commands.AddCommand;
-import seedu.internship.logic.commands.Command;
+import seedu.internship.logic.commands.CalendarCommand;
+import seedu.internship.logic.commands.ClashCommand;
 import seedu.internship.logic.commands.ClearCommand;
+import seedu.internship.logic.commands.Command;
 import seedu.internship.logic.commands.DeleteCommand;
 import seedu.internship.logic.commands.EditCommand;
 import seedu.internship.logic.commands.ExitCommand;
@@ -17,7 +19,6 @@ import seedu.internship.logic.commands.HomeCommand;
 import seedu.internship.logic.commands.ListCommand;
 import seedu.internship.logic.commands.SelectCommand;
 import seedu.internship.logic.commands.StatsCommand;
-
 import seedu.internship.logic.commands.event.EventCommand;
 import seedu.internship.logic.parser.event.EventCatalogueParser;
 import seedu.internship.logic.parser.exceptions.ParseException;
@@ -74,6 +75,8 @@ public class InternshipCatalogueParser {
             return new EventCatalogueParser().parse(arguments);
         case ClashCommand.COMMAND_WORD:
             return new ClashCommand();
+        case CalendarCommand.COMMAND_WORD:
+            return new CalendarCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

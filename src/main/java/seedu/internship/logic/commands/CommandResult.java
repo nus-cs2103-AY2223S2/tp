@@ -101,8 +101,8 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value for Clash Function
      */
-    public CommandResult(String feedbackToUser, HashMap<Event, List<Event>> hash) {
-        this(feedbackToUser, false, false, EMPTY_INTERNSHIP, EMPTY_UNIQUE_EVENTS_LIST);
+    public CommandResult(String feedbackToUser, ResultType resultType, HashMap<Event, List<Event>> hash) {
+        this(feedbackToUser, resultType, EMPTY_INTERNSHIP, EMPTY_UNIQUE_EVENTS_LIST, EMPTY_STATISTICS);
         this.hash = hash;
     }
 
