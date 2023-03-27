@@ -10,6 +10,7 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;

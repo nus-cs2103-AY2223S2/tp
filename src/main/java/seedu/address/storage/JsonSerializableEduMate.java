@@ -14,6 +14,7 @@ import seedu.address.model.EduMate;
 import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
+import seedu.address.model.recommendation.Recommendation;
 import seedu.address.model.tag.ModuleTag;
 
 /**
@@ -23,6 +24,8 @@ import seedu.address.model.tag.ModuleTag;
 class JsonSerializableEduMate {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_RECOMMENDATION =
+            "Persons list contains duplicate recommendations(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final JsonAdaptedUser user;
@@ -38,6 +41,7 @@ class JsonSerializableEduMate {
             @JsonProperty("recommendations") List<JsonAdaptedRecommendation> recommendations) {
         this.persons.addAll(persons);
         this.user = user;
+        this.recommendations.addAll(recommendations);
     }
 
     /**
@@ -48,6 +52,9 @@ class JsonSerializableEduMate {
     public JsonSerializableEduMate(ReadOnlyEduMate source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         user = new JsonAdaptedUser(source.getUser());
+        recommendations.addAll(source.getRecommendationList()
+                .stream().map(JsonAdaptedRecommendation::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -69,6 +76,15 @@ class JsonSerializableEduMate {
             person.setCommonModules(userModuleTags);
             eduMate.addPerson(person);
         }
+
+        for (JsonAdaptedRecommendation jsonAdaptedRecommendation : recommendations) {
+            Recommendation recommendation = jsonAdaptedRecommendation.toModelType();
+            if (eduMate.hasRecommendation(recommendation)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_RECOMMENDATION);
+            }
+            eduMate.addRecommendation(recommendation);
+        }
+
         eduMate.setUser(userModel);
         return eduMate;
     }

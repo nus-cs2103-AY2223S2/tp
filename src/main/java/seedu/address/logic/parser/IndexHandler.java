@@ -40,6 +40,10 @@ public class IndexHandler {
      * Gets the first person who satisfies the index, if any.
      */
     public Optional<Person> getPersonByIndex(ContactIndex index) {
+        if (index.getContactIndex() == 0) {
+            return Optional.of(model.getUser());
+        }
+
         List<Person> personList = model.getObservablePersonList();
         return personList.stream().filter(person -> person.getContactIndex().equals(index)).findFirst();
     }

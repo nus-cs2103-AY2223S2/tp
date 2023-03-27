@@ -4,12 +4,13 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
+import seedu.address.model.recommendation.Recommendation;
 
 /**
  * API of the Logic component
@@ -35,6 +36,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getObservablePersonList();
+
+    /** Returns an unmodifiable view of the filtered list of recommendations */
+    ObservableList<Recommendation> getObservableRecommendationList();
 
     /**
      * Returns the user prefs' address book file path.

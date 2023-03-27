@@ -10,12 +10,12 @@ import java.util.stream.Collectors;
 import org.joda.time.LocalTime;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.recommender.timing.exceptions.CommitmentClashException;
 import seedu.address.model.commitment.Commitment;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.HourBlock;
 import seedu.address.model.time.TimePeriod;
 import seedu.address.model.time.util.TimeUtil;
-import seedu.address.model.timingrecommender.exceptions.CommitmentClashException;
 
 /**
  * Represents a timetable for a person.

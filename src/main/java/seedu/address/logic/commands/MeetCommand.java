@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.recommender.Recommender;
 import seedu.address.model.Model;
 import seedu.address.model.location.Location;
@@ -67,7 +68,7 @@ public class MeetCommand extends Command {
 
         model.updateObservableRecommendationList();
 
-        return new CommandResult(model.getObservableRecommendationList().toString());
+        return new CommandResult("");
     }
 
     @Override
