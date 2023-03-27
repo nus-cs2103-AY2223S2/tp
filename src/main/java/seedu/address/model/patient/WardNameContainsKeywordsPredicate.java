@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.ward.WardName;
 
 /**
  * Tests that a {@code Patient}'s {@code Status} matches any of the keywords
@@ -20,7 +19,7 @@ public class WardNameContainsKeywordsPredicate implements Predicate<Patient> {
     @Override
     public boolean test(Patient patient) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(patient.getWard().wardName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(patient.getWard().getNameString(), keyword));
     }
 
     @Override

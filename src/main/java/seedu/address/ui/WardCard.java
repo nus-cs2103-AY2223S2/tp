@@ -44,8 +44,8 @@ public class WardCard extends UiPart<Region> {
         this.ward = ward;
         id.setText(displayedIndex + ". ");
 
-         name.setText(ward.getNameString());
-         capacity.setText(ward.getOccupancyString());
+        name.setText(ward.getNameString());
+        capacity.setText(ward.getOccupancyString());
     }
 
     @Override

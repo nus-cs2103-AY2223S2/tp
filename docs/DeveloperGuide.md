@@ -489,6 +489,7 @@ Use case resumes at step 2.
     1. The following can be edited:
        - Status
        - Ward
+       - Discharge Date
     2. The following cannot be edited:
        - Name
        - NRIC
@@ -502,21 +503,39 @@ Use case resumes at step 2.
 
   Use case ends.
 
-- 3a. The requested patient's NRIC is invalid.
+- 3a. The requested patient's index number is invalid.
 
   - 3a1. MedInfo shows an error message.
 
     Use case resumes at step 2.
 
-- 3b. The requested patient's NRIC does not exist in the system.
+- 3b. The prefixes entered are invalid.
 
-  - 3b1. MedInfo shows an error message.
+    - 3b1. MedInfo shows an error message.
 
-    Use case resumes at step 2.
+      Use case resumes at step 2.
 
-- 3c. User tries to edit a non-editable field (Name/NRIC).
+- 3b. The Status entered is invalid.
 
-  - 3c1. MedInfo shows an error message.
+    - 3b1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
+  
+- 3b. The Ward entered is invalid.
+
+    - 3b1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
+  
+- 3b. The Discharge Date entered is invalid.
+
+    - 3b1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
+
+- 3d. User tries to edit a non-editable field (Name/NRIC).
+
+  - 3d1. MedInfo shows an error message.
 
     Use case resumes at step 2.
 
