@@ -17,7 +17,7 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
 
 ## 2. Table of Contents
 
-<div class="toc-remove-bp">
+<div class="toc-remove-bullet-points">
   * Table of Contents
   {:toc}
 </div>

@@ -265,6 +265,6 @@
 /**
  * Remove ToC bullet points
  */
- .toc-remove-bp ul, .toc-remove-bp ol {
-   list-style-type: none;
- }
+.toc-remove-bullet-points ul, .toc-remove-bullet-points ol {
+  list-style-type: none;
+}
