@@ -50,4 +50,12 @@ public class ViewFileCommand extends Command {
         filesManager.readNthFile(number);
         return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, personToView));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewFileCommand // instanceof handles nulls
+                && targetIndex.equals(((ViewFileCommand) other).targetIndex)
+                && number == ((ViewFileCommand) other).number); // state check
+    }
 }
