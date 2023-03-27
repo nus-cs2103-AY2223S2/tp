@@ -10,13 +10,13 @@ import static seedu.internship.commons.util.AppUtil.checkArgument;
 public class CompanyName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Company names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Company names should not be blank, and should be at most 50 characters";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "^.{1,50}$";
 
     public final String fullCompanyName;
 
@@ -62,7 +62,8 @@ public class CompanyName {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CompanyName // instanceof handles nulls
-                && fullCompanyName.equals(((CompanyName) other).fullCompanyName)); // state check
+                && fullCompanyName.toLowerCase().equals((
+                        (CompanyName) other).fullCompanyName.toLowerCase())); // state check
     }
 
     /**

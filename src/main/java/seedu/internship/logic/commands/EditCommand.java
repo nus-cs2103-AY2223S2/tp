@@ -51,7 +51,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in InternBuddy.";
 
     private final Index index;
     private final EditInternshipDescriptor editInternshipDescriptor;
