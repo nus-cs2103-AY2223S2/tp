@@ -3,12 +3,6 @@ layout: page
 title: User Guide
 ---
 # HMHero User Guide
-=======
-# User Guide
-
-
-## Table of contents
->>>>>>> master
 
 1. [About HMHero](#1-about-hmhero)
 2. [Features](#2-features)
@@ -199,10 +193,11 @@ are already familiar with the application!
 ---
 
 ## 5. Quick Start
-This section covers everything you should know about HMHero, as well as a tutorial on [trying your first command](#54-trying-your-first-command).
-Of special note is the [Key Definitions](#52-key-definitions) and [Command Format](#53-command-format) sections, which covers essential knowledge to using HMHero's features.
+This section covers everything you should know about HMHero, as well as a tutorial on 
+[trying your first command](#54-trying-your-first-command). The special note is the 
+[Key Definitions](#52-key-definitions) and [Command Format](#53-command-format) sections, 
+which covers essential knowledge to using HMHero's features.
 
-[Back to Table of Contents](#table-of-contents)
 
 ### 5.1 User Interface
 When you launch HMHero, HMHero appears on your screen as a Graphical User Interface(GUI). Let's explore the
@@ -244,13 +239,10 @@ The following are the attributes stored for each `Applicant`
 Applicants are unique by name and phone number and Case Sensitive.
 This means you cannot add two or more applicants of the same name and phone number.
 
-<<<<<<< HEAD
+
 [Back to Table of Contents](#hmhero-user-guide)
 
 ---
-=======
-[Back to Table of Contents](#table-of-contents)
->>>>>>> master
 
 #### 5.2.2 Notes
 
@@ -269,13 +261,9 @@ can include:
 HMHero's Notes are unique by name and are case-sensitive. This means you cannot add two or more notes of
 the same name.
 
-<<<<<<< HEAD
 [Back to Table of Contents](#hmhero-user-guide)
 
 ---
-=======
-[Back to Table of Contents](#table-of-contents)
->>>>>>> master
 
 #### 5.2.3 Flags
 Flags are delimiters that enable HMHero to distinguish different parameters without ambiguity.
@@ -302,13 +290,9 @@ These placeholders follow immediately after a [Flag](#523-flags).
 Please refer to the subsequent [Command Format](#53-command-format) section to see how [Flags](#523-flags)
 and [Placeholders](#524-placeholders) are used together.
 
-<<<<<<< HEAD
 [Back to Table of Contents](#hmhero-user-guide)
 
 ---
-=======
-[Back to Table of Contents](#table-of-contents)
->>>>>>> master
 
 #### 5.2.4 Placeholders
 Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
@@ -326,13 +310,9 @@ section to see how Flags and Placeholders are used together.
 | NOTE         | note/              | The NOTE is the term we use to identify a skill of an Applicant.                             |
 | DATETIME     | d/                 | The DATETIME is the datetime indicating the interview datetime of the Applicant.             |
 
-<<<<<<< HEAD
 [Back to Table of Contents](#hmhero-user-guide)
 
 ---
-=======
-[Back to Table of Contents](#table-of-contents)
->>>>>>> master
 
 ### 5.3 Command Format
 You will encounter HMHero commands throughout this User Guide.
@@ -346,14 +326,10 @@ Command Word: Tells HMHero what action you wish to execute. These actions are co
 [Placeholders](#524-placeholders): Represents data that you wish to input. Replace this with valid data.
 For example, `NAME` in `n/NAME` can be replaced with `n/John`.
 
-<<<<<<< HEAD
 [Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
-=======
-[Back to Table of Contents](#table-of-contents)
->>>>>>> master
 
 ### 5.4 Trying your First Command
 
