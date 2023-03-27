@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -213,6 +214,16 @@ public interface Model {
      * @param quantity Quantity of the part to add
      */
     void addPart(String partName, int quantity);
+
+    /**
+     * Adds part to service
+     *
+     * @param serviceId ID of service
+     * @param partName Name of part
+     * @param quantity Quantity of part
+     * @throws NoSuchElementException If service not in system
+     */
+    void addPartToService(int serviceId, String partName, int quantity) throws NoSuchElementException;
 
     /**
      * Checks if part already exists
