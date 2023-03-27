@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Comparator;
 
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.application.AlphabeticalComparator;
@@ -74,9 +75,11 @@ public class SortApplicationCommand extends ApplicationCommand {
     }
 
     @Override
-    public CommandResult execute(ApplicationModel model) throws CommandException {
+    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
         model.updateSortedApplicationList(comparator);
+        model.commitInternshipBookChange();
+        commandHistory.setLastCommandAsModify();
         return new CommandResult(MESSAGE_SORT_SUCCESS);
     }
 }

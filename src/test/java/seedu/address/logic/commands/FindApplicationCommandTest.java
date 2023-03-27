@@ -15,6 +15,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.CommandHistory;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.ApplicationModelManager;
 import seedu.address.model.UserPrefs;
@@ -28,6 +29,7 @@ public class FindApplicationCommandTest {
             getTypicalInternshipBook(), new UserPrefs());
     private ApplicationModel expectedModel = new ApplicationModelManager(
             getTypicalInternshipBook(), new UserPrefs());
+    private CommandHistory commandHistory = new CommandHistory();
 
     @Test
     public void equals() {
@@ -63,7 +65,7 @@ public class FindApplicationCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindApplicationCommand command = new FindApplicationCommand(predicate);
         expectedModel.updateFilteredApplicationList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredApplicationList());
     }
 
@@ -73,7 +75,7 @@ public class FindApplicationCommandTest {
         NameContainsKeywordsPredicate predicate = preparePredicate("Google Amazon Apple");
         FindApplicationCommand command = new FindApplicationCommand(predicate);
         expectedModel.updateFilteredApplicationList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, commandHistory, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(GOOGLE, AMAZON, APPLE), model.getFilteredApplicationList());
     }
     */

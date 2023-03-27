@@ -22,6 +22,8 @@ import seedu.address.logic.commands.ExitSprintCommand;
 import seedu.address.logic.commands.FindApplicationCommand;
 import seedu.address.logic.commands.HelpApplicationCommand;
 import seedu.address.logic.commands.ListApplicationCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.application.Application;
 import seedu.address.model.application.NameContainsKeywordsPredicate;
@@ -90,6 +92,18 @@ public class InternshipBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListApplicationCommand.COMMAND_WORD) instanceof ListApplicationCommand);
         assertTrue(parser.parseCommand(ListApplicationCommand.COMMAND_WORD + " 3") instanceof ListApplicationCommand);
+    }
+
+    @Test
+    public void parseCommand_redo() throws Exception {
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + " 3") instanceof RedoCommand);
+    }
+
+    @Test
+    public void parseCommand_undo() throws Exception {
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + " 3") instanceof UndoCommand);
     }
 
     @Test

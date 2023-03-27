@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.CommandHistory;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.application.NameContainsKeywordsPredicate;
 
@@ -26,7 +27,7 @@ public class FindApplicationCommand extends ApplicationCommand {
     }
 
     @Override
-    public CommandResult execute(ApplicationModel model) {
+    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) {
         requireNonNull(model);
         model.updateFilteredApplicationList(predicate);
         return new CommandResult(String.format(Messages.MESSAGE_APPLICATIONS_LISTED_OVERVIEW,
