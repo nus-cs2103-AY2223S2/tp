@@ -381,25 +381,26 @@ _Details coming soon ..._
 
 ### Category Commands 
 
-| Action                       | Format | Examples |
-|------------------------------|--------|----------|
-| [**Add Category**](#adding-a-category-addcat) | `addcat c/CATEGORY_NAME s/SUMMARY` | `addcat c/Groceries s/for living`|
-| [**Delete Category**](#deleting-a-category-delcat) | `delcat INDEX` | `delcat 1` |
-| [**Edit Category**](#editing-a-category--ecat) | `ecat INDEX [c/CATEGORY_NAME] [s/SUMMARY]` | `ecat 1 c/New Name s/New Summary`|
-| [**List Categories**](#listing-categories-lcat) | `lcat` | `lcat` |
+| Action                                             | Format                                     | Examples                          |
+|----------------------------------------------------|--------------------------------------------|-----------------------------------|
+| [**Add Category**](#adding-a-category-addcat)      | `addcat c/CATEGORY_NAME s/SUMMARY`         | `addcat c/Groceries s/for living` |
+| [**Delete Category**](#deleting-a-category-delcat) | `delcat INDEX`                             | `delcat 1`                        |
+| [**Edit Category**](#editing-a-category--ecat)     | `ecat INDEX [c/CATEGORY_NAME] [s/SUMMARY]` | `ecat 1 c/New Name s/New Summary` |
+| [**List Categories**](#listing-categories-lcat)    | `lcat`                                     | `lcat`                            |
 
 ### Expense Commands 
-| Action                       | Format | Examples |
-|------------------------------|--------|----------|
-| [**Add Expense**](#adding-an-expense-add) | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]` | `add c/Food p/20 n/Mac d/14/2/23 r/week`|
-| [**Delete Expense**](#deleting-an-expense--delete) | `delete INDEX` | `delete 1` |
-| [**Edit Expense**](#editing-an-expense--eexp) | `eexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE]` | `eexp 1 c/Food n/Mac d/20/4/23 p/10`|
-| [**List Expenses**](#listing-expenses--list) | `list [c/CATEGORY_NAME] [t/TIMEFRAME]` | `list c/Food t/month`|
-| [**Find Expense**](#search-for-an-expense-by-name-find) | `find KEYWORD [MORE_KEYWORDS]` | `find KFC chicken` |
+| Action                                                  | Format                                                             | Examples                             |
+|---------------------------------------------------------|--------------------------------------------------------------------|--------------------------------------|
+| [**Add Expense**](#adding-an-expense-add)               | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`                 | `add c/Food p/20 n/Mac d/14/2/23`    |
+| [**Delete Expense**](#deleting-an-expense--delete)      | `delete INDEX`                                                     | `delete 1`                           |
+| [**Edit Expense**](#editing-an-expense--eexp)           | `eexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE]` | `eexp 1 c/Food n/Mac d/20/4/23 p/10` |
+| [**List Expenses**](#listing-expenses--list)            | `list [c/CATEGORY_NAME] [t/TIMEFRAME]`                             | `list c/Food t/month`                |
+| [**Find Expense**](#search-for-an-expense-by-name-find) | `find KEYWORD [MORE_KEYWORDS]`                                     | `find KFC chicken`                   |
 
 ### General Commands
-| Action                       | Format | Examples |
-|------------------------------|--------|----------|
-| [**Help**](#viewing-help--help) | `help` | `help`|
-| [**Exit program**](#exiting-the-program--exit) | `exit` | `exit`|
-| [**Clear data**](#clearing-all-entries--clear) | `CLEAR` | `CLEAR`|
+| Action                                         | Format  | Examples |
+|------------------------------------------------|---------|----------|
+| [**Help**](#viewing-help--help)                | `help`  | `help`   |
+| [**Exit program**](#exiting-the-program--exit) | `exit`  | `exit`   |
+| [**Clear data**](#clearing-all-entries--clear) | `CLEAR` | `CLEAR`  |
+
