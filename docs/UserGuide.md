@@ -1,17 +1,30 @@
 ---
 layout: page
 title: User Guide
-toc: true
 ---
 
 ***RIZZ***ipe is a **command-based recipe database** that was designed with **versatile tagging** and **searching** 
 features in mind so you can always find the recipe you need! Make use of ***RIZZ***ipe's many features to achieve your 
 **culinary rizz**.
 
-* Table of Contents
-  {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+## Table of Contents
+1. [Features](#features)
+   1. [Adding a recipe](#adding-a-recipe-add)
+   2. [Listing recipes](#listing-all-recipes-list)
+   3. [Finding a recipe by name](#finding-a-recipe-by-name-find)
+   4. [Deleting a recipe](#deleting-a-recipe-delete)
+   5. [Clearing the recipe book](#clearing-the-recipe-book-clear)
+   6. [Asking for assistance](#asking-for-assistance-help)
+   7. [Exiting the program](#exiting-the-program-exit)
+2. [Managing Data](#managing-the-data)
+   1. [Saving the data](#saving-the-data)
+   2. [Editing the data file](#editing-the-data-file)
+   3. [Archiving data files](#archiving-data-files-coming-in-v20)
+3. [FAQ](#faq)
+4. [Command Summary](#command-summary)
+
+---
 
 ## Features
 
@@ -88,34 +101,27 @@ Format:
 
 ### Finding a recipe by name: `find`
 
-Have a certain recipe at the back of your mind that you want to refer to? 
-Or want to look up all recipes associated with a specific tag?
-
-`find` helps to save your time scrolling through your whole list of recipes by displaying
+Have a certain recipe at the back of your mind that you want to refer to? `find` helps to save your time scrolling through your whole list of recipes by displaying
 only those that match any of your specified keywords straight away.
 
 Format:
-`find [PROPERTY] KEYWORD [KEYWORDS]...`
-* :bulb: Tip: Supported properties: name, tag
+`find KEYWORD [KEYWORDS]...`
 
-i.e. `find name KEYWORD [KEYWORDS]...`, `find tag KEYWORD [KEYWORDS]...`
-
-> Adding a property behind `find` is optional, and if no property is specified, `find` defaults to filtering by **recipe name**.
-> 
-> All keyword queries are case-insensitive. e.g. chicken will match Chicken
-> 
-> Recipes matching at least one keyword will be returned, e.g. searching `find sandwich fries` will return the search results `cheese fries` and `ham sandwich`
+> Recipes matching at least one keyword will be returned, e.g. searching `sandwich fries` will return the search results `cheese fries` and `ham sandwich`
 >
 > Recipes are listed in the chronological order that they were added.
+> 
+> Only the name of the recipe is searched
+> 
+> The search is case-insensitive. e.g. chicken will match Chicken
 > 
 > The order of the keywords does not matter. e.g. ham sandwich will match sandwich ham
 > 
 > Only full words will be matched. e.g. chick will **not** match chicken
 
 Example of usage:
-* `find cheese` returns all recipes with the keyword `cheese` in their recipe name
-* `find name prawn tofu` returns all recipes with the keyword `prawn` and all recipes with the keyword `tofu` in their names
-* `find tag western` returns all recipes with the tag `western`
+* `find cheese` returns all recipes with the keyword `cheese`
+* `find prawn tofu` returns all recipes with the keyword `prawn` and all recipes with the keyword `tofu`
 
 
 ### Deleting a recipe: `delete`
@@ -133,30 +139,6 @@ Example of usage:
 * `list` followed by `delete 2` deletes the 2nd item stored in the recipe book.
 *  `find chicken` followed by `delete 1` will delete the 1st recipe in the displayed results of the find command.
 
-
-### Searching for substitutions for an ingredient: `sub`
-
-Short of a particular condiment or ingredient to complete your favourite recipe? Have no fear, for the `sub` command
-provides you with a hassle-free way to solve your problem by suggesting some common substitutions so that you can complete your
-dish with an alternative ingredient!
-
-Format:
-`sub INGREDIENT_NAME`
-
-> `sub` searches across your stored recipes and within a preloaded suggested substitutions list to provide you with the most accurate and extensive list of substitutions!
->
-> :bulb: Tip: Adding a substitution together with an ingredient is recommended since it will boost the number of substitutions listed when that ingredient is queried in the future!
-> 
-> The search is case-insensitive, i.e. `sub salt` will return all stored substitutions for `Salt` and `salt` across recipes.
-> 
-> Only full words will be matched i.e. `sub chick` will **not** return stored substitutes for `chicken` 
->
-> For inputs with multiple words, it will only match stored ingredients with the same full multi-word input (case-insensitive) i.e. `sub golden syrup` does not return substitutes for `syrup`
-> 
-> The returned list of ingredients returned will not contain any duplicates
-
-Example of usage:
-* `sub chicken` returns a list of suggested substitutions for the ingredient `chicken`
 
 ### Clearing the recipe book: `clear`
 
@@ -194,7 +176,7 @@ Recipe data are saved in the hard disk automatically after any command that chan
 
 ### Editing the data file
 
-Recipe data are saved as a JSON file `[JAR file location]/data/recipebook.json`. Advanced users are welcome to update data directly by editing that data file.
+Recipe data are saved as a JSON file `[JAR file location]/data/recipes.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ***RIZZ***ipe will discard all data and start with an empty data file at the next run.
