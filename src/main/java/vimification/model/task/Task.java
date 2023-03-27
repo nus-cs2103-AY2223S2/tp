@@ -45,6 +45,11 @@ public abstract class Task {
         this.priority = priority;
     }
 
+    public void deletePriority() {
+        requireNonNull(priority);
+        this.priority = Priority.UNKNOWN;
+    }
+
     public void setPriority(int level) {
         this.priority = Priority.fromInt(level);
     }

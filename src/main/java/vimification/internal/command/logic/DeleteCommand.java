@@ -13,16 +13,16 @@ import vimification.model.task.Task;
  */
 public class DeleteCommand extends UndoableLogicCommand {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "d";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number used in the displayed task list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: delete 1";
+            + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String SUCCESS_MESSAGE_FORMAT = "Deleted Task: %1$s";
+    public static final String SUCCESS_MESSAGE_FORMAT = "Task %1$s deleted";
     public static final String UNDO_MESSAGE =
-            "The command has been undoed. The deleted task has been added back.";
+            "The command has been undone. The deleted task has been added back.";
 
     // targetIndex is ZERO-BASED
     private final Index targetIndex;
@@ -50,17 +50,8 @@ public class DeleteCommand extends UndoableLogicCommand {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) { // short circuit if same object
-            return true;
-        }
-
-        if (!(other instanceof DeleteCommand)) { // instanceof handles nulls
-            return false;
-        }
-
-        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetIndex == otherDeleteCommand.targetIndex // state check
-                && ((this.deletedTask == null && otherDeleteCommand.deletedTask == null)
-                        || deletedTask.equals(otherDeleteCommand.deletedTask));
+        return other == this // short circuit if same object
+                || (other instanceof DeleteCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteCommand) other).targetIndex));
     }
 }

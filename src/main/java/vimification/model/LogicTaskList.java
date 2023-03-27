@@ -127,8 +127,25 @@ public class LogicTaskList {
         tasks.get(index).setPriority(newPriority);
     }
 
+    public void deletePriority(int index) {
+        tasks.get(index).deletePriority();
+    }
+
     public Priority getPriority(int index) {
         return tasks.get(index).getPriority();
+    }
+
+    public List<Task> removeAllDone() {
+        Predicate<Task> pred = Task::isDone;
+        List<Task> tasksDone = tasks.stream()
+                .filter(pred)
+                .collect(Collectors.toCollection(ArrayList::new));
+        tasks.removeAll(tasksDone);
+        return tasksDone;
+    }
+
+    public void addAll(List<Task> tasks) {
+        this.tasks.addAll(tasks);
     }
 
     //// util methods
