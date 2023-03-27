@@ -66,7 +66,7 @@ public class PersonCard extends UiPart<Region> {
                 .ifPresent(label -> tags.getChildren().add(label));
         person.getSubjects().stream()
                 .sorted(Comparator.comparing(subject -> subject.subjectName))
-                .forEach(subject -> subjects.getChildren().add(new Label(subject.subjectName)));
+                .forEach(subject -> tags.getChildren().add(new Label(subject.subjectName)));
 
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

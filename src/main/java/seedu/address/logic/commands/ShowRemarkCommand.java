@@ -14,8 +14,6 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 
-import javax.sql.rowset.Predicate;
-
 /**
  * Shows the remark of an existing person in the address book.
  */

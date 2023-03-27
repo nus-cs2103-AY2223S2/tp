@@ -1,6 +1,9 @@
 package seedu.address.ui;
 
+import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -25,8 +28,8 @@ public class ResultPersonCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label name;
-    @FXML
-    private Label id;
+//    @FXML
+//    private Label id;
     @FXML
     private Label phone;
     @FXML
@@ -43,12 +46,16 @@ public class ResultPersonCard extends UiPart<Region> {
     public ResultPersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
+//        id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getOptionalPhone().map(Phone::toString).orElse(null));
         address.setText(person.getOptionalAddress().map(Address::toString).orElse(null));
         email.setText(person.getOptionalEmail().map(Email::toString).orElse(null));
         remark.setText(person.getOptionalRemark().map(Remark::toString).orElse(null));
+
+        List<Label> labels = Arrays.asList(phone, address, email, remark);
+        resizeLabels(labels);
+
         person.getOptionalEducation()
                 .map(education -> new Label("Education: " + education.value))
                 .ifPresent(label -> tags.getChildren().add(label));
@@ -59,6 +66,17 @@ public class ResultPersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    public void resizeLabels(List<Label> labels) {
+        for (int i = 0; i < labels.size(); i++) {
+            Label label = labels.get(i);
+            String text = label.getText();
+            if (text == null || text.isEmpty()) {
+                label.setVisible(false);
+                label.setManaged(false);
+            }
+        }
     }
 
     @Override
@@ -72,6 +90,6 @@ public class ResultPersonCard extends UiPart<Region> {
         }
 
         ResultPersonCard card = (ResultPersonCard) other;
-        return id.getText().equals(card.id.getText()) && person.equals(card.person);
+        return person.equals(card.person);
     }
 }
