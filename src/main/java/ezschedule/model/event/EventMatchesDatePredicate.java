@@ -17,4 +17,11 @@ public class EventMatchesDatePredicate implements Predicate<Event> {
     public boolean test(Event event) {
         return date.equals(event.getDate());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EventMatchesDatePredicate // instanceof handles nulls
+                && date.equals(((EventMatchesDatePredicate) other).date)); // state check
+    }
 }
