@@ -14,6 +14,7 @@ import seedu.dengue.model.person.Person;
  */
 public class AgeOverview extends Overview {
     private static final String AGE_TITLE = "Overview by Age";
+    private static final int MAX_AGE_LENGTH = 9; // "321 - 123"
 
     private AgeAnalyst analyst;
 
@@ -50,10 +51,16 @@ public class AgeOverview extends Overview {
         this.analyst = new AgeAnalyst(persons);
     }
 
+    private static String padBinName(String binName) {
+        int paddingNeeded = MAX_AGE_LENGTH - binName.length();
+        String whitespace = makeWhitespace(paddingNeeded / 2);
+        return whitespace + binName + whitespace;
+    }
+
     @Override
     public String makeBinFormat(DataBin bin) {
         int maxSizeLen = String.valueOf(getAnalyst().getTotal()).length();
-        return String.format("%s: %" + maxSizeLen + "d",
-                bin.getName(), bin.getSize());
+        return String.format("%s" + GAP + "%" + maxSizeLen + "d",
+                padBinName(bin.getName()), bin.getSize());
     }
 }
