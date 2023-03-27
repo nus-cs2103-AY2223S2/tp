@@ -17,7 +17,7 @@ public class SubCommandParser implements Parser<SubCommand> {
         }
 
         if (!Ingredient.isValidIngredientName(trimmedArgs)) {
-            throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SubCommand.MESSAGE_USAGE));
         }
 
         Ingredient queryIngredient = Ingredient.of(trimmedArgs);
