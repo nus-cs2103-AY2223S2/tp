@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.TankList;
+import seedu.address.storage.tank.JsonSerializableTankList;
 import seedu.address.testutil.TypicalTanks;
 
 /**

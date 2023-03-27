@@ -10,6 +10,8 @@ import seedu.address.model.ReadOnlyTankList;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.storage.fish.AddressBookStorage;
+import seedu.address.storage.userprefs.UserPrefsStorage;
 
 /**
  * API of the Storage component

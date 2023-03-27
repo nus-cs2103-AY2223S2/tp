@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.fish;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -24,7 +24,7 @@ import seedu.address.model.tank.TankName;
 /**
  * Jackson-friendly version of {@link Fish}.
  */
-class JsonAdaptedFish {
+public class JsonAdaptedFish {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Fish's %s field is missing!";
 

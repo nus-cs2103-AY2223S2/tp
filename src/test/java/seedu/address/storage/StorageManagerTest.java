@@ -14,6 +14,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.storage.fish.JsonAddressBookStorage;
+import seedu.address.storage.tank.JsonTankListStorage;
+import seedu.address.storage.task.JsonTaskListStorage;
+import seedu.address.storage.userprefs.JsonUserPrefsStorage;
 
 public class StorageManagerTest {
 

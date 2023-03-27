@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedTank.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.storage.tank.JsonAdaptedTank.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTanks.TANK_A;
 
@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tank.TankName;
+import seedu.address.storage.tank.JsonAdaptedTank;
 
 /**
  * Test class for {@code JsonAdaptedTank}
