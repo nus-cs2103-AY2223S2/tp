@@ -1,9 +1,9 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.commons.core.Messages.MESSAGE_KNOWN_COMMANDS;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.commons.core.Messages.MESSAGE_KNOWN_COMMANDS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2103;
 import static seedu.address.testutil.Assert.assertThrows;
 
