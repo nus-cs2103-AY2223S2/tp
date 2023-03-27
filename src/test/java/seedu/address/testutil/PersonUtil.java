@@ -50,7 +50,9 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(Prefix.NAME).append(name.getValue()).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(Prefix.PHONE).append(phone.getValue()).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(Prefix.EMAIL).append(email.getValue()).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(Prefix.ADDRESS).append(address.getValue()).append(" "));
+        descriptor.getAddress()
+                .ifPresent(address -> sb.append(Prefix.ADDRESS)
+                        .append(address.getValue().getName()).append(" "));
         descriptor.getTelegramHandle().ifPresent(telegramHandle -> sb.append(Prefix.TELEGRAM_HANDLE)
                 .append(telegramHandle.getValue()).append(" "));
         if (descriptor.getGroupTags().isPresent()) {
