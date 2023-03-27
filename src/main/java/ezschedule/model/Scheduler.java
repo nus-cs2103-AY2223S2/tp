@@ -6,6 +6,9 @@ import java.util.List;
 
 import ezschedule.model.event.Event;
 import ezschedule.model.event.UniqueEventList;
+import ezschedule.model.event.UpcomingEventPredicate;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 /**
@@ -27,7 +30,16 @@ public class Scheduler implements ReadOnlyScheduler {
         events = new UniqueEventList();
     }
 
-    public Scheduler() {}
+    public Scheduler() {
+        // Attach a listener to auto-sort events in chronological order
+        events.addListChangeListener(c -> {
+            while (c.next()) {
+                if (!c.wasPermutated()) {
+                    events.sortByChronologicalOrder();
+                }
+            }
+        });
+    }
 
     /**
      * Creates a Scheduler using the Events in the {@code toBeCopied}
