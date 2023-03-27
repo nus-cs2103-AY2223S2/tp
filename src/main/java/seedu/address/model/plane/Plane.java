@@ -11,13 +11,11 @@ import seedu.address.model.location.PlaneLocationType;
  * Represents a plane in the Wingman app.
  */
 public class Plane implements Item {
-
     /**
      * The shape of the link between plane and flight
      */
     public static final Map<FlightPlaneType, Integer> SHAPE =
-            Map.of(FlightPlaneType.PLANE_USING, 1
-            );
+            Map.of(FlightPlaneType.PLANE_USING, 1);
 
     /**
      * THe shape of the link between plane and location.
@@ -25,9 +23,7 @@ public class Plane implements Item {
      * indicate "infinity".
      */
     public static final Map<PlaneLocationType, Integer> SHAPE_FOR_LOCATION =
-            Map.of(
-                    PlaneLocationType.LOCATION_USING, 1000000
-            );
+            Map.of(PlaneLocationType.LOCATION_USING, 1000000);
 
     private static final String AGE_STRING = "Age";
     private static final String AVAILABILITY_STRING = "Status";

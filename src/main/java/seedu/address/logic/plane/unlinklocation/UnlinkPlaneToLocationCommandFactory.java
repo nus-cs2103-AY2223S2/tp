@@ -23,20 +23,18 @@ import seedu.address.model.plane.Plane;
  */
 public class UnlinkPlaneToLocationCommandFactory implements CommandFactory<UnlinkPlaneToLocationCommand> {
     private static final String COMMAND_WORD = "unlinklocation";
-    private static final String LOCATION_PREFIX = "/loc";
+    private static final String LOCATION_PREFIX = "/lo";
     private static final String PLANE_PREFIX = "/pl";
-
-    private static final String NO_PLANE_MESSAGE =
-            "No plane has been entered. "
-                    + "Please enter /pl followed by the plane iD.";
 
     private static final String NO_LOCATION_MESSAGE =
             "No location has been entered. "
-                    + "Please enter /loc followed by the location ID.";
-
-    private final Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy;
+                    + "Please enter /lo followed by the location ID.";
+    private static final String NO_PLANE_MESSAGE =
+            "No plane has been entered. "
+                    + "Please enter /pl followed by the plane ID.";
 
     private final Lazy<ReadOnlyItemManager<Location>> locationManagerLazy;
+    private final Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy;
 
     /**
      * Creates a new link command factory with the model registered.
@@ -52,8 +50,8 @@ public class UnlinkPlaneToLocationCommandFactory implements CommandFactory<Unlin
      */
     public UnlinkPlaneToLocationCommandFactory(Lazy<Model> modelLazy) {
         this(
-                modelLazy.map(Model::getPlaneManager),
-                modelLazy.map(Model::getLocationManager)
+                modelLazy.map(Model::getLocationManager),
+                modelLazy.map(Model::getPlaneManager)
         );
     }
 
@@ -61,31 +59,31 @@ public class UnlinkPlaneToLocationCommandFactory implements CommandFactory<Unlin
      * Creates a new link command factory with the given plane manager
      * lazy and the flight manager lazy.
      *
-     * @param planeManagerLazy    the lazy instance of the plane manager.
      * @param locationManagerLazy the lazy instance of the location manager.
+     * @param planeManagerLazy    the lazy instance of the plane manager.
      */
     public UnlinkPlaneToLocationCommandFactory(
-            Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy,
-            Lazy<ReadOnlyItemManager<Location>> locationManagerLazy
+            Lazy<ReadOnlyItemManager<Location>> locationManagerLazy,
+            Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy
     ) {
-        this.planeManagerLazy = planeManagerLazy;
         this.locationManagerLazy = locationManagerLazy;
+        this.planeManagerLazy = planeManagerLazy;
     }
 
     /**
      * Creates a new link plane command factory with the given plane manager
      * and the location manager.
      *
-     * @param planeManager    the plane manager.
      * @param locationManager the flight manager.
+     * @param planeManager    the plane manager.
      */
     public UnlinkPlaneToLocationCommandFactory(
-            ReadOnlyItemManager<Plane> planeManager,
-            ReadOnlyItemManager<Location> locationManager
+            ReadOnlyItemManager<Location> locationManager,
+            ReadOnlyItemManager<Plane> planeManager
     ) {
         this(
-                Lazy.of(planeManager),
-                Lazy.of(locationManager)
+                Lazy.of(locationManager),
+                Lazy.of(planeManager)
         );
     }
 
@@ -145,6 +143,7 @@ public class UnlinkPlaneToLocationCommandFactory implements CommandFactory<Unlin
         Optional<String> pilotIdOptional =
                 param.getNamedValues(PLANE_PREFIX);
 
+        Location location = getLocationOrThrow(locationIdOptional);
         Map<PlaneLocationType, Plane> plane = new HashMap<>();
 
         boolean hasFoundPilot = addPlane(
@@ -157,7 +156,6 @@ public class UnlinkPlaneToLocationCommandFactory implements CommandFactory<Unlin
             throw new ParseException(NO_PLANE_MESSAGE);
         }
 
-        Location location = getLocationOrThrow(locationIdOptional);
-        return new UnlinkPlaneToLocationCommand(plane, location);
+        return new UnlinkPlaneToLocationCommand(location, plane);
     }
 }

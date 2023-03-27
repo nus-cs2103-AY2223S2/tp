@@ -21,17 +21,17 @@ import seedu.address.model.plane.Plane;
  * The factory that creates {@code LinkPlaneCommand}.
  */
 public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlaneToFlightCommand> {
-    private static final String COMMAND_WORD = "link";
-    private static final String PLANE_USING_PREFIX = "/pu";
+    private static final String COMMAND_WORD = "linkflight";
     private static final String FLIGHT_PREFIX = "/fl";
-    private static final String NO_PLANE_MESSAGE =
-            "No plane has been entered. Please enter /pu for the plane being used in this link.";
+    private static final String PLANE_USING_PREFIX = "/pl";
+
     private static final String NO_FLIGHT_MESSAGE =
             "No flight has been entered. Please enter /fl for the flight.";
-
-    private final Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy;
+    private static final String NO_PLANE_MESSAGE =
+            "No plane has been entered. Please enter /pu for the plane being used in this link.";
 
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
+    private final Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy;
 
     /**
      * Creates a new link command factory with the model registered.
@@ -47,8 +47,8 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
      */
     public LinkPlaneToFlightCommandFactory(Lazy<Model> modelLazy) {
         this(
-                modelLazy.map(Model::getPlaneManager),
-                modelLazy.map(Model::getFlightManager)
+                modelLazy.map(Model::getFlightManager),
+                modelLazy.map(Model::getPlaneManager)
         );
     }
 
@@ -56,29 +56,31 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
      * Creates a new link plane command factory with the given plane manager
      * lazy and the flight manager lazy.
      *
-     * @param planeManagerLazy  the lazy instance of the plane manager.
      * @param flightManagerLazy the lazy instance of the flight manager.
+     * @param planeManagerLazy  the lazy instance of the plane manager.
      */
     public LinkPlaneToFlightCommandFactory(
-            Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy,
-            Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy
+            Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy,
+            Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy
     ) {
-        this.planeManagerLazy = planeManagerLazy;
         this.flightManagerLazy = flightManagerLazy;
+        this.planeManagerLazy = planeManagerLazy;
     }
 
     /**
      * Creates a new link plane command factory with the given plane manager
      * and the flight manager.
      *
-     * @param planeManager  the plane manager.
      * @param flightManager the flight manager.
+     * @param planeManager  the plane manager.
      */
     public LinkPlaneToFlightCommandFactory(
-            ReadOnlyItemManager<Plane> planeManager,
-            ReadOnlyItemManager<Flight> flightManager
+            ReadOnlyItemManager<Flight> flightManager,
+            ReadOnlyItemManager<Plane> planeManager
     ) {
-        this(Lazy.of(planeManager), Lazy.of(flightManager));
+        this(
+                Lazy.of(flightManager),
+                Lazy.of(planeManager));
     }
 
     @Override
@@ -89,8 +91,8 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
     @Override
     public Optional<Set<String>> getPrefixes() {
         return Optional.of(Set.of(
-                PLANE_USING_PREFIX,
-                FLIGHT_PREFIX
+                FLIGHT_PREFIX,
+                PLANE_USING_PREFIX
         ));
     }
 
@@ -135,6 +137,8 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
     public LinkPlaneToFlightCommand createCommand(CommandParam param) throws ParseException, IndexOutOfBoundException {
         Optional<String> planeUsingIdOptional =
                 param.getNamedValues(PLANE_USING_PREFIX);
+
+        Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
         Map<FlightPlaneType, Plane> planes = new HashMap<>();
 
         boolean hasFoundPlane = addPlane(
@@ -147,7 +151,6 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
             throw new ParseException(NO_PLANE_MESSAGE);
         }
 
-        Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
-        return new LinkPlaneToFlightCommand(planes, flight);
+        return new LinkPlaneToFlightCommand(flight, planes);
     }
 }

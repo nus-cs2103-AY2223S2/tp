@@ -80,7 +80,9 @@ public class UnlinkPilotToFlightCommandFactory implements CommandFactory<UnlinkP
             ReadOnlyItemManager<Flight> flightManager,
             ReadOnlyItemManager<Pilot> pilotManager
     ) {
-        this(Lazy.of(flightManager), Lazy.of(pilotManager));
+        this(
+                Lazy.of(flightManager),
+                Lazy.of(pilotManager));
     }
 
     @Override

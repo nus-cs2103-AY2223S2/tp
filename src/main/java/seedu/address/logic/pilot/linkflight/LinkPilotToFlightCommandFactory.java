@@ -81,7 +81,9 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
             ReadOnlyItemManager<Flight> flightManager,
             ReadOnlyItemManager<Pilot> pilotManager
     ) {
-        this(Lazy.of(flightManager), Lazy.of(pilotManager));
+        this(
+                Lazy.of(flightManager),
+                Lazy.of(pilotManager));
     }
 
     @Override

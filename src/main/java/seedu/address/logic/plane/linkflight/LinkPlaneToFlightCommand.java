@@ -25,24 +25,24 @@ public class LinkPlaneToFlightCommand implements Command {
             "Linked %s to flight %s.";
 
     /**
-     * The id of the plane
-     */
-    private final Map<FlightPlaneType, Plane> planes;
-
-    /**
      * The id of the flight
      */
     private final Flight flight;
 
     /**
+     * The id of the plane
+     */
+    private final Map<FlightPlaneType, Plane> planes;
+
+    /**
      * Creates a new link command.
      *
-     * @param planes the id of the planes.
      * @param flight the id of the flight.
+     * @param planes the id of the planes.
      */
-    public LinkPlaneToFlightCommand(Map<FlightPlaneType, Plane> planes, Flight flight) {
-        this.planes = planes;
+    public LinkPlaneToFlightCommand(Flight flight, Map<FlightPlaneType, Plane> planes) {
         this.flight = flight;
+        this.planes = planes;
     }
 
     @Override
@@ -67,6 +67,7 @@ public class LinkPlaneToFlightCommand implements Command {
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());
         }
+
         return new CommandResult(this.toString());
     }
 }

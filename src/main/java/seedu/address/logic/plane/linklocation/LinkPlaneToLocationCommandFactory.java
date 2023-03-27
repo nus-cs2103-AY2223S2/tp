@@ -24,24 +24,21 @@ import seedu.address.model.plane.Plane;
  */
 public class LinkPlaneToLocationCommandFactory implements CommandFactory<LinkPlaneToLocationCommand> {
     private static final String COMMAND_WORD = "linklocation";
-    private static final String LOCATION_PREFIX = "/loc";
-    private static final String PILOT_PREFIX = "/pl";
-
-    private static final String NO_PLANE_MESSAGE =
-            "No plane has been entered. "
-                    + "Please enter /pl followed by the plane iD.";
+    private static final String LOCATION_PREFIX = "/lo";
+    private static final String PLANE_PREFIX = "/pl";
 
     private static final String NO_LOCATION_INPUT_MESSAGE =
             "No location has been entered. "
-                    + "Please enter /loc followed by the location ID.";
-
+                    + "Please enter /lo followed by the location ID.";
     private static final String NO_LOCATION_FOUND_MESSAGE =
             "No location has been found in the list. "
-                    + "Please enter /loc followed by the location ID.";
-
-    private final Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy;
+                    + "Please enter /lo followed by the location ID.";
+    private static final String NO_PLANE_MESSAGE =
+            "No plane has been entered. "
+                    + "Please enter /pl followed by the plane ID.";
 
     private final Lazy<ReadOnlyItemManager<Location>> locationManagerLazy;
+    private final Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy;
 
     /**
      * Creates a new link command factory with the model registered.
@@ -57,8 +54,8 @@ public class LinkPlaneToLocationCommandFactory implements CommandFactory<LinkPla
      */
     public LinkPlaneToLocationCommandFactory(Lazy<Model> modelLazy) {
         this(
-                modelLazy.map(Model::getPlaneManager),
-                modelLazy.map(Model::getLocationManager)
+                modelLazy.map(Model::getLocationManager),
+                modelLazy.map(Model::getPlaneManager)
         );
     }
 
@@ -66,31 +63,31 @@ public class LinkPlaneToLocationCommandFactory implements CommandFactory<LinkPla
      * Creates a new link plane command factory with the given plane manager
      * lazy and the flight manager lazy.
      *
-     * @param planeManagerLazy    the lazy instance of the plane manager.
      * @param locationManagerLazy the lazy instance of the location manager.
+     * @param planeManagerLazy    the lazy instance of the plane manager.
      */
     public LinkPlaneToLocationCommandFactory(
-            Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy,
-            Lazy<ReadOnlyItemManager<Location>> locationManagerLazy
+            Lazy<ReadOnlyItemManager<Location>> locationManagerLazy,
+            Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy
     ) {
-        this.planeManagerLazy = planeManagerLazy;
         this.locationManagerLazy = locationManagerLazy;
+        this.planeManagerLazy = planeManagerLazy;
     }
 
     /**
      * Creates a new link plane command factory with the given plane manager
      * and the location manager.
      *
-     * @param planeManager    the plane manager.
      * @param locationManager the flight manager.
+     * @param planeManager    the plane manager.
      */
     public LinkPlaneToLocationCommandFactory(
-            ReadOnlyItemManager<Plane> planeManager,
-            ReadOnlyItemManager<Location> locationManager
+            ReadOnlyItemManager<Location> locationManager,
+            ReadOnlyItemManager<Plane> planeManager
     ) {
         this(
-                Lazy.of(planeManager),
-                Lazy.of(locationManager)
+                Lazy.of(locationManager),
+                Lazy.of(planeManager)
         );
     }
 
@@ -103,7 +100,7 @@ public class LinkPlaneToLocationCommandFactory implements CommandFactory<LinkPla
     public Optional<Set<String>> getPrefixes() {
         return Optional.of(Set.of(
                 LOCATION_PREFIX,
-                PILOT_PREFIX
+                PLANE_PREFIX
         ));
     }
 
@@ -148,8 +145,9 @@ public class LinkPlaneToLocationCommandFactory implements CommandFactory<LinkPla
         Optional<String> locationIdOptional =
                 param.getNamedValues(LOCATION_PREFIX);
         Optional<String> pilotIdOptional =
-                param.getNamedValues(PILOT_PREFIX);
+                param.getNamedValues(PLANE_PREFIX);
 
+        Location location = getLocationOrThrow(locationIdOptional);
         Map<PlaneLocationType, Plane> plane = new HashMap<>();
 
         boolean hasFoundPilot = addPlane(
@@ -162,7 +160,6 @@ public class LinkPlaneToLocationCommandFactory implements CommandFactory<LinkPla
             throw new ParseException(NO_PLANE_MESSAGE);
         }
 
-        Location location = getLocationOrThrow(locationIdOptional);
-        return new LinkPlaneToLocationCommand(plane, location);
+        return new LinkPlaneToLocationCommand(location, plane);
     }
 }
