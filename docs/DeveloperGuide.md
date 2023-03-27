@@ -307,6 +307,13 @@ The `unmark` feature is implemented with the following considerations:
   * Pros: Results in less coupling and in turn lower possibility of unintended change cascades.
   * Cons: May have performance issues in terms of memory usage and runtime.
 
+Below shows the activity diagram of the `unmark` command:
+
+<img src="images/UnmarkActivityDiagram.png" width="200" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.3</b> Activity diagram of 'Unmark'
+</div>
+
 ### Reminder feature
 
 #### Implementation
