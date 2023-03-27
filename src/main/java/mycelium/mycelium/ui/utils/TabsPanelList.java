@@ -39,8 +39,41 @@ public class TabsPanelList {
      */
     public void nextTabPanel() {
         tabsPanels[focused].unhighlight();
+        if (tabsPanels.length == 0) {
+            return;
+        }
         assert tabsPanels.length > 0;
         focused = (focused + 1) % tabsPanels.length;
         tabsPanels[focused].highlight();
+    }
+
+    /**
+     * Switches to the TabsPanel of a given index.
+     * The current TabsPanel is unhighlighted.
+     * The TabsPanel of the given index is highlighted.
+     * If the index is out of bounds, nothing happens.
+     * 
+     * @param index The index of the TabsPanel to be focused.
+     */
+    public void focusTabPanel(int index) {
+        if (index < 0 || index >= tabsPanels.length) {
+            return;
+        }
+        tabsPanels[focused].unhighlight();
+        focused = index;
+        tabsPanels[focused].highlight();
+    }
+
+    /**
+     * Returns the TabsPanel of a given index.
+     *
+     * @param index The index of the TabsPanel to be returned.
+     * @return The TabsPanel of the given index. If the index is out of bounds, null is returned.
+     */
+    public TabsPanel get(int index) {
+        if (index < 0 || index >= tabsPanels.length) {
+            return null;
+        }
+        return tabsPanels[index];
     }
 }

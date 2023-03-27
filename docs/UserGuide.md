@@ -403,7 +403,7 @@ might wish to note:
 
 ## HotKeys
 
-> We will refer to the left panel containing the project and client tabs as the **main panel** 
+> We will refer to the left panel containing the project and client tabs as the **Entity panel** 
 > and the right panel containing the overdued projects and projects due soon as the **statistic panel**.
 
 HotKeys are keyboard short cuts supported by Mycelium to enable faster navigation and editing of commands with the keyboard. This allows for Mycelium to be fully keyboard driven. The following are the supported hotkeys:
@@ -458,7 +458,7 @@ This shortcut allows you toggle the command box between **search mode** and **co
 
 In **command mode**, the input in the command box is used to execute the command. 
 
-In **search mode**, the command box is highlighted light blue and the input is used to *interactively* search for the closest matching project or client by name in the **main panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type.
+In **search mode**, the command box is highlighted light blue and the input is used to *interactively* search for the closest matching project or client by name in the **main panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the main panel will be put into focus automatically.
 
 If you have a project or client selected, pressing ***Enter*** in **search mode** switches back to **command mode** and appends the name or email of the selected project or client to the command box respectively. This is useful if you want to quickly reference a project or client in your command.
 

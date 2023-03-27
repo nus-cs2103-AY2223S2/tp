@@ -298,7 +298,7 @@ public class MainWindow extends UiPart<Stage> {
         commandLog.setFeedbackToUser(feedback);
     }
 
-    // Entity / Statistic Panel methods =====================================================
+    // TabsPanelList methods =====================================================
     /**
      * Switches between the statistic panel and the entity panel.
      *
@@ -335,6 +335,15 @@ public class MainWindow extends UiPart<Stage> {
         tabsPanelList.prevItem();
     }
 
+    /**
+     * Focus the entity panel.
+     */
+    public void focusEntityPanel() {
+        assert tabsPanelList.get(0) instanceof EntityPanel;
+        tabsPanelList.focusTabPanel(0);
+    }
+
+    // EntityPanel methods ======================================================
     /**
      * Selects the client tab.
      *
