@@ -187,7 +187,7 @@ The `reminder` feature is implemented with the following considerations:
 * The `RemindCommandParser` checks if the command argument has the correct format. The command argument represents days and should be a positive integer.
 
 The following object diagram shows objects involved in the execution of a <b>remind</b> command.
-
+![RemindObjectDiagram](images/RemindObjectDiagram.png)
 
 #### Design considerations:
 
