@@ -53,11 +53,11 @@ public class IndexHandler {
      * @return new Contact Index for new Recommendation.
      */
     public ContactIndex assignRecommendationIndex() {
-        List<Recommendation> personList = model.getObservableRecommendationList();
-        if (personList.isEmpty()) {
+        List<Recommendation> recommendationList = model.getObservableRecommendationList();
+        if (recommendationList.isEmpty()) {
             return new ContactIndex(1);
         }
-        OptionalInt takenIndices = IntStream.iterate(1, integer -> personList.stream()
+        OptionalInt takenIndices = IntStream.iterate(1, integer -> recommendationList.stream()
                         .anyMatch(recommendation -> recommendation
                                 .getContactIndex().equals(new ContactIndex(integer))), x -> x + 1).max();
 

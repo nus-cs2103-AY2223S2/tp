@@ -60,10 +60,9 @@ public class MeetCommand extends Command {
         requireNonNull(model);
         List<Recommendation> recommendations = new Recommender(model).recommend(indices, locations);
 
-        for (Recommendation recommendation : recommendations) {
-            Recommendation indexedRecommendation = model.addRecommendation(recommendation);
-            model.addRecommendation(indexedRecommendation);
-        }
+        model.resetRecommendations();
+
+        recommendations.forEach(model::addRecommendation);
 
         model.updateObservableRecommendationList();
 

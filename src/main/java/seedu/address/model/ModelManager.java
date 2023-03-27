@@ -167,6 +167,9 @@ public class ModelManager implements Model {
         // The only place in the entire code that can set Contact Index.
         ContactIndex contactIndex = indexHandler.assignRecommendationIndex();
         Recommendation indexedRecommendation = recommendation.setContactIndex(contactIndex);
+
+        logger.info(indexedRecommendation.toString());
+
         eduMate.addRecommendation(indexedRecommendation);
         updateObservableRecommendationList();
         return indexedRecommendation;
