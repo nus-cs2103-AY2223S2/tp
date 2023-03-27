@@ -35,6 +35,7 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        assert(predicate != null);
         if (predicate.getTagKeywords() != null
                 && predicate.getTagKeywords().stream().anyMatch(tagName -> !model.hasTag(new Tag(tagName)))) {
             throw new CommandException(MESSAGE_ERROR_TAG);
