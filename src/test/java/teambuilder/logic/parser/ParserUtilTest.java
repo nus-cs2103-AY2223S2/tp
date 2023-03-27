@@ -116,11 +116,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
-    }
-
-    @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
         Address expectedAddress = Address.of(VALID_ADDRESS);
         assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));

@@ -35,7 +35,6 @@ import static teambuilder.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import teambuilder.logic.commands.AddCommand;
-import teambuilder.model.person.Address;
 import teambuilder.model.person.Email;
 import teambuilder.model.person.Name;
 import teambuilder.model.person.Person;
@@ -123,10 +122,6 @@ public class AddCommandParserTest {
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
                 + MAJOR_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
-
-        // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + MAJOR_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
