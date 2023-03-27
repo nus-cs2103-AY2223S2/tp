@@ -14,20 +14,22 @@ have to navigate complex user menus to access the features you need, especially 
 
 Without further ado, let's get started!
 
+----------------------------------------------------------------------------------------------------------------
 
-##### Table of Contents
+## Table of Contents
 1. [Quick Start](#quick-start)
 2. [Features](#features)
     1. [Legend](#legend)
     2. [Student Features](#student)
          1. [Add student: `add`](#addstudent)
-         2. [Add students' grade: `grade`](#gradestudent)
-         3. [Deletes students' grade: `gradedelete`](#gradedelete)
-         4. [Add comments to students: `comment`](#commentstudent)
-         5. [Listing all students in a particular class: `list`](#liststudent)
-         6. [Editing a student's particulars: `edit`](#editstudent)
-         7. [Searching students: `find`](#findstudent)
-         8. [Deleting a student: `delete`](#deletestudent)
+         2. [Add attendance to students: `attendance`](#attendance)
+         3. [Add students' grade: `grade`](#gradestudent)
+         4. [Deletes students' grade: `gradedelete`](#gradedelete)
+         5. [Add comments to students: `comment`](#commentstudent)
+         6. [Listing all students in a particular class: `list`](#liststudent)
+         7. [Editing a student's particulars: `edit`](#editstudent)
+         8. [Searching students: `find`](#findstudent)
+         9. [Deleting a student: `delete`](#deletestudent)
     3. [Parent Features](#parent)
         1. [Add Parent/Next-of-Kin: `add`](#addparent)
         2. [Listing all Parents/Next-of-Kins: `list`](#listparent)
