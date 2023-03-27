@@ -100,7 +100,7 @@ public class AddressBookParser {
 
         case ImportPersonsCommand.COMMAND_WORD:
             return new ImportPersonsParser().parse(arguments);
-            
+
         case SortMeetingCommand.COMMAND_WORD:
             return new SortMeetingParser().parse(arguments);
             
