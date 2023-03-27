@@ -2,6 +2,7 @@ package seedu.ultron.model.opening;
 
 import static seedu.ultron.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -21,7 +22,7 @@ public class Opening {
     // Data fields
     private final Status status;
     private final Remark remark;
-    private final Set<Date> dates = new HashSet<>();
+    private final ArrayList<Date> dates = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
