@@ -20,7 +20,7 @@ public class FindCommand extends Command {
             + "the specified keywords such as name, phone number, note (case-insensitive) and displays them as a "
             + "list with index numbers.\n\n"
             + "Parameters: n/NAME p/PHONE NUMBER\n"
-            + "Providing just one of name or phone prefix is sufficient.\n 
+            + "Providing just one of name or phone prefix is sufficient.\n" 
             + "Providing both name and phone prefixes narrows down the scope.\n\n"
             + "Example: " + COMMAND_WORD + "n/alice p/98752354";
 
