@@ -66,8 +66,8 @@ main {
 img {
   max-width: 100%;
   vertical-align: middle;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 
@@ -111,7 +111,7 @@ h1, h2, h3, h4, h5, h6 {
 /**
  * Normal text
  */
-p {
+.normal-text p {
   text-align: justify;
 }
 
