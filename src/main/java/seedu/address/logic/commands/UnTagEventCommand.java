@@ -61,7 +61,7 @@ public class UnTagEventCommand extends Command {
 
         Person taggingPerson = model.getPersonWithName(personName.toString());
 
-        if (!model.checkPersonTagToEvent(eventIndex, taggingPerson)) {
+        if (!model.isPersonTaggedToEvent(eventIndex, taggingPerson)) {
             return new CommandResult(String.format(MESSAGE_SUCCESS_2, taggingPerson, eventIndex));
         }
 
