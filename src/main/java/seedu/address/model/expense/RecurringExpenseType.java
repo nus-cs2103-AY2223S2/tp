@@ -18,16 +18,22 @@ enum RecurringExpenseType {
     public LocalDate getNextExpenseDate(LocalDate currentDate) {
         while (currentDate.isBefore(LocalDate.now())) {
             switch (this) {
-                case MONTHLY:
+            case MONTHLY:
                 currentDate = currentDate.plusMonths(1);
-                case WEEKLY:
+                break;
+            case WEEKLY:
                 currentDate = currentDate.plusWeeks(1);
-                case DAILY:
+                break;
+            case DAILY:
                 currentDate = LocalDate.now().plusDays(1);
-                case YEARLY:
+                break;
+            case YEARLY:
                 currentDate = currentDate.plusYears(1);
-                }
+                break;
+            default:
+                break;
             }
+        }
         return currentDate;
     }
 }

@@ -9,14 +9,14 @@ import seedu.address.model.category.Category;
  * Represents a Recurring Expense in the Expense Tracker.
  */
 public class RecurringExpenseManager {
-    String expenseName;
-    double expenseAmount;
-    Category expenseCategory;
-    int numberOfExpenses = 0;
-    LocalDate nextExpenseDate = null;
-    LocalDate startDate;
-    LocalDate endDate = null;
-    RecurringExpenseType recurringExpenseType;
+    private String expenseName;
+    private double expenseAmount;
+    private Category expenseCategory;
+    private int numberOfExpenses = 0;
+    private LocalDate nextExpenseDate = null;
+    private LocalDate startDate;
+    private LocalDate endDate = null;
+    private RecurringExpenseType recurringExpenseType;
 
     /**
      * The constructor for the RecurringExpenseManager class with a start and end date.

@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.category.MiscellaneousCategory;
 
 public class RecurringExpenseManagerTest {
-    LocalDate startDate = LocalDate.of(2023, 1, 1);
-    LocalDate endDate = LocalDate.of(2023, 1, 1);
-    MiscellaneousCategory miscellaneousCategory = new MiscellaneousCategory();
+    private LocalDate startDate = LocalDate.of(2023, 1, 1);
+    private LocalDate endDate = LocalDate.of(2023, 1, 1);
+    private MiscellaneousCategory miscellaneousCategory = new MiscellaneousCategory();
 
     private final RecurringExpenseManager recurringExpenseManager = new RecurringExpenseManager("test", 1.0,
             miscellaneousCategory, startDate, endDate, RecurringExpenseType.MONTHLY);
