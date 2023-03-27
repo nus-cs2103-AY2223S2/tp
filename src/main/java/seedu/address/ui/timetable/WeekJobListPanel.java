@@ -62,7 +62,7 @@ public class WeekJobListPanel extends UiPart<Region> {
                 deliveryJobListPanelPlaceholder3, deliveryJobListPanelPlaceholder4,
                 deliveryJobListPanelPlaceholder5, deliveryJobListPanelPlaceholder6,
                 deliveryJobListPanelPlaceholder7);
-        jobListPanel.setSpacing(12.3);//(primaryStage.getWidth() - 714) / 7);
+        jobListPanel.setSpacing(12.3);
         jobListPanel.setAlignment(Pos.CENTER);
     }
 
