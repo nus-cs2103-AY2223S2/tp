@@ -24,7 +24,7 @@ public enum PostalSector {
 
     private final String postalSector;
 
-    private PostalSector(String postalSector) {
+    PostalSector(String postalSector) {
         this.postalSector = postalSector;
     }
 

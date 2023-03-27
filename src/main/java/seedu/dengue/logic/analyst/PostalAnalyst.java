@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
+import seedu.dengue.model.person.Location;
 import seedu.dengue.model.person.Person;
-import seedu.dengue.model.variant.DengueVariant;
+import seedu.dengue.model.person.PostalLocationMapping;
 
 /**
  * An {@code Analyst} that groups {@code Person} instances by {@code Postal}, i.e. neighbourhood/location.
  */
 public class PostalAnalyst extends Analyst {
     private final int total;
-    private final EnumMap<DengueVariant, DataBin> bins; // TODO change to Location
+    private final EnumMap<Location, DataBin> bins;
 
     /**
      * Constructs a {@code PostalAnalyst} instance with the given list of {@code Person}s.
@@ -22,8 +23,15 @@ public class PostalAnalyst extends Analyst {
     public PostalAnalyst(List<Person> personList) {
         List<Person> persons = new ArrayList<>(personList);
         this.total = persons.size();
-        this.bins = null; // TODO change to whatever
+        this.bins = new EnumMap<>(Location.class);
 
+        persons.forEach(person -> {
+            Location location = PostalLocationMapping.getLocation(person.getPostal());
+            if (!bins.containsKey(location)) {
+                bins.put(location, new DataBin(location.toString()));
+            }
+            bins.get(location).addPerson(person);
+        });
     }
 
     @Override
