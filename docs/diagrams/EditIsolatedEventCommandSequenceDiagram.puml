@@ -42,7 +42,7 @@ deactivate AddressBookParser
 LogicManager -> EditIsolatedEventCommand : execute()
 activate EditIsolatedEventCommand
 
-EditIsolatedEventCommand -> Model : setIsolatedEvent(personToEdit, originalEvent, editedIsolatedEvent)
+EditIsolatedEventCommand -> Model : setIsolatedEvent(personToEdit,\n originalEvent, editedIsolatedEvent)
 activate Model
 
 Model --> EditIsolatedEventCommand
