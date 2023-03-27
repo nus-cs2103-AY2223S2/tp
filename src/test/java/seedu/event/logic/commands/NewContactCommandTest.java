@@ -136,6 +136,11 @@ class NewContactCommandTest {
         }
 
         @Override
+        public void setContactList(ReadOnlyContactList contactList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyEventBook getEventBook() {
             throw new AssertionError("This method should not be called.");
         }
@@ -173,6 +178,11 @@ class NewContactCommandTest {
 
         @Override
         public void updateFilteredEventList(Predicate<Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredContactList(Predicate<Contact> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
