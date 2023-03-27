@@ -2,11 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
@@ -113,6 +115,14 @@ public class DeleteEventCommand extends Command {
         }
 
         Tutorial tutorialToDelete = lastShownList.get(targetIndex[0].getZeroBased());
+
+        for (LocalDateTime[] range: ParserUtil.MASTER_TIME) {
+            if (range[0].isEqual(tutorialToDelete.getDate())) {
+                ParserUtil.MASTER_TIME.remove(range);
+                break;
+            }
+        }
+
         for (int i = targetIndex[0].getZeroBased(); i <= targetIndex[1].getZeroBased(); i++) {
             tutorialToDelete = lastShownList.get(targetIndex[0].getZeroBased());
             model.deleteTutorial(tutorialToDelete);
@@ -145,6 +155,14 @@ public class DeleteEventCommand extends Command {
         }
 
         Lab labToDelete = lastShownList.get(targetIndex[0].getZeroBased());
+
+        for (LocalDateTime[] range: ParserUtil.MASTER_TIME) {
+            if (range[0].isEqual(labToDelete.getDate())) {
+                ParserUtil.MASTER_TIME.remove(range);
+                break;
+            }
+        }
+
         for (int i = targetIndex[0].getZeroBased(); i <= targetIndex[1].getZeroBased(); i++) {
             labToDelete = lastShownList.get(targetIndex[0].getZeroBased());
             model.deleteLab(labToDelete);
@@ -177,6 +195,14 @@ public class DeleteEventCommand extends Command {
         }
 
         Consultation consultationToDelete = lastShownList.get(targetIndex[0].getZeroBased());
+
+        for (LocalDateTime[] range: ParserUtil.MASTER_TIME) {
+            if (range[0].isEqual(consultationToDelete.getDate())) {
+                ParserUtil.MASTER_TIME.remove(range);
+                break;
+            }
+        }
+
         for (int i = targetIndex[0].getZeroBased(); i <= targetIndex[1].getZeroBased(); i++) {
             consultationToDelete = lastShownList.get(targetIndex[0].getZeroBased());
             model.deleteConsultation(consultationToDelete);
