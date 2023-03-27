@@ -8,7 +8,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
-import seedu.address.model.event.UniqueEventList;
 
 /**
  * Wraps all data at the UserData level

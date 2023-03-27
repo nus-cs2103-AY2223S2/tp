@@ -1,5 +1,7 @@
 package seedu.address.logic.parser.editeventcommand;
 
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.parser.editpersoncommandsparser.PersonDescriptor;
@@ -7,8 +9,9 @@ import seedu.address.model.event.fields.DateTime;
 import seedu.address.model.event.fields.Description;
 import seedu.address.model.event.fields.Recurrence;
 
-import java.util.Optional;
-
+/**
+ * Stores the details of the event.
+ */
 public class EventDescriptor {
 
     private Optional<Index> index;
