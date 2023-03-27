@@ -35,7 +35,6 @@ This user guide will help you get up to speed in no time!
     * [Mark Event as Done](#mark-event)
     * [Unmark an Event](#unmark-event)
     * [List all Events](#list-all-events)
-    * [View Rate](#view-rate)
     * [View Total Revenue](#view-total-revenue)
     * [View Upcoming Events](#view-upcoming-events)
     * [Saving data](#saving-data)
@@ -263,21 +262,6 @@ Shows a list of all events in Paidlancers
 
 - List down the events in the event book.
 
-### View Rate: `rate` <a id = "view-rate"></a>
-
-Displays the rate tagged to an event.
-
-**Format**: `rate INDEX`
-
-- Displays the agreed rate of the event at the specified `INDEX`.
-
-  - The `INDEX` refers to the index number in the displayed events list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …
-
-**Example**:
-- `rate 2`
-  - This command will display the rate of the 2nd event in the event list.
-
 ### View Total Revenue: `revenue` <a id = "view-total-revenue"></a>
 
 Calculates and displays the total revenue based on all the completed events.
@@ -345,7 +329,6 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 |        [Mark Event as Done](#mark-event)        |                                 `mark INDEX`                                  |                                                       `mark 2`                                                        |
 |        [Unmark an Event](#unmark-event)         |                                `unmark INDEX`                                 |                                                      `unmark 2`                                                       |
 |       [List all Events](#list-all-events)       |                                    `list`                                     |                                                        `list`                                                         |
-|             [View Rate](#view-rate)             |                                 `rate INDEX`                                  |                                                       `rate 2`                                                        |
 |    [View Total Revenue](#view-total-revenue)    |                                   `revenue`                                   |                                                       `revenue`                                                       |
 |  [View Upcoming Events](#view-upcoming-events)  |                                 `remind DAYS`                                 |                                                      `remind 2`                                                       |
 |           [Saving data](#saving-data)           |                                      NIL                                      |                                                          NIL                                                          |
