@@ -2,9 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DECK_NAME;
-
-import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.deckcommands.EditDeckCommand;
@@ -23,27 +20,27 @@ public class EditDeckCommandParser implements Parser<EditDeckCommand> {
      */
     public EditDeckCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DECK_NAME);
+        String trimmedArgs = args.trim();
+        String[] indexAndDeckName = trimmedArgs.split(" ", 2);
+
+        if (indexAndDeckName.length != 2) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditDeckCommand.MESSAGE_USAGE));
+        }
 
         Index index;
+
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(indexAndDeckName[0]);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditDeckCommand.MESSAGE_USAGE), pe);
         }
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DECK_NAME)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditDeckCommand.MESSAGE_USAGE));
-        }
-
-        String deckName = argMultimap.getValue(PREFIX_DECK_NAME).get();
-        Deck editedDeck = ParserUtil.parseDeck(deckName);
+        Deck editedDeck = ParserUtil.parseDeck(indexAndDeckName[1]);
 
         return new EditDeckCommand(index, editedDeck);
     }
 
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
+
 }

@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.deckcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DECK_NAME;
 
 import java.util.List;
 
@@ -23,8 +22,8 @@ public class EditDeckCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the name of the deck "
             + "by the index number used in the displayed deck list. "
-            + "Parameters: INDEX (must be a positive integer) " + PREFIX_DECK_NAME + "DECK NAME\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DECK_NAME + "LAC1201";
+            + "Parameters: INDEX (must be a positive integer) " + "DECK NAME\n"
+            + "Example: " + COMMAND_WORD + " 1 " + "CS2107";
 
     public static final String MESSAGE_EDIT_DECK_SUCCESS = "Deck %1$s is successfully renamed to \"%2$s\".";
     public static final String MESSAGE_NOT_EDITED = "Deck name must be provided.";
