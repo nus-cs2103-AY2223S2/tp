@@ -21,6 +21,8 @@ public class TypicalWards {
 
     private TypicalWards() {}
 
+    public static String VALID_WARD_NAME = "Block A Ward 1";
+
     public static List<Ward> getTypicalWards() {
         return new ArrayList<>(Arrays.asList(getBlockAWard1(), getBlockAWard2()));
     }

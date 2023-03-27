@@ -51,7 +51,7 @@ public class AddPatientCommand extends Command {
      * Creates an AddCommand to add the specified {@code Person}
      */
     public AddPatientCommand(String ward, Patient patient) {
-        requireNonNull(patient);
+        requireNonNull(patient, ward);
         wardToAdd = ward;
         toAdd = patient;
     }
