@@ -106,21 +106,21 @@ Add food item - add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]...
 Example Usage: add n/Broccoli u/STALK q/2 e/03-03-2033 t/VEGETABLES t/HEALTHY
 ```
 
+## Food-related Commands
 
-### Adding a food item: `add`
+### Adding a food: `add`
 
-Add food items into your fridge.
+Add a new food into your fridge.
 
-Format: `add`
+Keyword: `add`
 
 Examples:
-* `add Spinach`
+* `add n/Meiji Milk u/carton q/2 e/13-11-2025`
 
-Example: <br/>
-`add Spinach` returns
-```shell
-  You have successfully added Spinach into your fridge.
-```
+Result: <br/>
+`add Spinach` displays
+
+![AddFood](images/UG/AddFood.png)
 
 ### Listing all food items : `list`
 
@@ -133,68 +133,6 @@ Example:
 `list` returns
 ```shell
   listed all food
-```
-
-### Listing all food items by their tag(s) : `listbytag`
-
-Shows a list of all food item in WIFE by specified tag(s).
-
-Format: `listbytag n/TAG NAME...`
-
-Example:
-
-`listbytag n/Vegetables n/Healthy` returns
-```shell
-Listed all food with the following tags:
-[Vegetables]
-[Healthy]
-```
-
-### Tagging a food item: `tag`
-
-Tag the specified food item in your fridge with our pre-defined tags.
-
-Pre-Defined Tags:
-- Status - `USED`, `UNUSED`
-- Categories - `MEAT`, `DAIRY`, `VEGETABLES`
-
-Format: `tag <Index> /with <Tag Name>`
-- Tag the food item of index `Index` with `Tag Name`
-- Index refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
-
-Example: <br/>
-`tag 1 /with VEGETABLES` returns
-```markdown
-Spinach {VEGETABLES}
-```
-
-### Untagging a food item: `untag`
-
-Remove a tag from a specified food item in your fridge.
-
-Format: `untag <index> n/<tag name>`
-- Remove `Tag Name` from the food item with index `Index`
-- Index refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
-
-Example:
-`untag 1 n/vegetables` displays
-```
-Vegetables successfully untagged from Spinach
-```
-
-### Listing your tags: `listtag`
-
-List all the tags that you have created.
-
-Format: `listtag`
-
-Example:
-`listtag` displays
-```
-Here are your existing tags: 
-Dairy
-Meat
-Vegetables
 ```
 
 ### Updating a food item : `update`
@@ -221,11 +159,89 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed food item list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Result:
 
-`delete 1` returns
+`delete 1` displays
+
+![DeleteFood](images/UG/DeleteFood.png)
+
+## Tag-related Commands
+
+### Create a new tag: `createtag`
+
+Creates a new pre-defined tag in WIFE.
+
+Format: `createtag n/<tag Name>`
+- Creates new `Tag` with `Tag Name`
+
+Example:
+`createtag n/dairy` displays
+```
+Tag(s) successfully created:
+Dairy
+```
+
+### Tagging a food item: `tag`
+
+Tag the specified food item in your fridge with our pre-defined tags.
+
+Pre-Defined Tags:
+- Status - `USED`, `UNUSED`
+- Categories - `MEAT`, `DAIRY`, `VEGETABLES`
+
+Format: `tag <Index> n/ <Tag Name>`
+- Tag the food item of index `Index` with `Tag Name`
+- Index refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
+
+Example: <br/>
+`tag 1 n/dairy` returns
+
+![TagFood](images/UG/TagFood.png)
+
+### Untagging a food item: `untag`
+
+Remove a tag from a specified food item in your fridge.
+
+Format: `untag <index> n/<tag name>`
+- Remove `Tag Name` from the food item with index `Index`
+- Index refers to any number on the food item list and must be a positive number, i.e., 1, 2, 3, 4, …
+
+Example:
+`untag 1 n/vegetables` displays
+
+![UntagFood](images/UG/UntagFood.png)
+
+UntagFood
+
+### Listing your tags: `listtag`
+
+List all the tags that you have created.
+
+Format: `listtag`
+
+Example:
+`listtag` displays
+```
+Here are your existing tags: 
+Dairy
+Meat
+Vegetables
+```
+
+### Listing all food items by their tag(s) : `listbytag`
+
+Shows a list of all food item in WIFE by specified tag(s).
+
+Format: `listbytag n/TAG NAME...`
+
+Example:
+
+`listbytag n/Vegetables n/Healthy` returns
+
 ```shell
-  Deleted Food: Broccoli (expires on: 03-03-2033)
+Listed all food with the following tags:
+[Vegetables]
+[Healthy]
 ```
 
 ### Deleting a food item by their tag(s) : `delbytag`
@@ -243,7 +259,7 @@ Broccoli (expires on: 03-03-2033)
 Meiji Milk (expires on: 03-03-2033)
 ```
 
-### Deleting a food item by their tag(s) : `deltag`
+### Deleting tag(s) : `deltag`
 
 Deletes specified defined tags from WIFE. It also removes all the tags that are tagged on the food item, if any.
 
@@ -257,6 +273,8 @@ Tag successfully deleted:
 [Dairy]
 [Healthy]
 ```
+
+## General Commands
 
 ### Exiting the program : `exit`
 
