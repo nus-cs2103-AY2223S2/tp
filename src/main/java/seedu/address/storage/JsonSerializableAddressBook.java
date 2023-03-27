@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.ward.Ward;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -20,15 +21,19 @@ import seedu.address.model.patient.Patient;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
+    public static final String MESSAGE_DUPLICATE_WARD = "Ward list contains duplicate ward(s).";
 
     private final List<JsonAdaptedPatient> patients = new ArrayList<>();
+    private final List<JsonAdaptedWard> wards = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given patients.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("patients") List<JsonAdaptedPatient> patients) {
+    public JsonSerializableAddressBook(@JsonProperty("patients") List<JsonAdaptedPatient> patients,
+                                       @JsonProperty("wards") List<JsonAdaptedWard> wards) {
         this.patients.addAll(patients);
+        this.wards.addAll(wards);
     }
 
     /**
@@ -38,6 +43,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         patients.addAll(source.getPatientList().stream().map(JsonAdaptedPatient::new).collect(Collectors.toList()));
+        wards.addAll(source.getWardList().stream().map(JsonAdaptedWard::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,6 +53,13 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
+        for (JsonAdaptedWard jsonAdaptedWard : wards) {
+            Ward ward = jsonAdaptedWard.toModelType();
+            if (!addressBook.hasWard(ward)) {
+                addressBook.addWard(ward);
+            }
+        }
+
         for (JsonAdaptedPatient jsonAdaptedPatient : patients) {
             Patient patient = jsonAdaptedPatient.toModelType();
             if (addressBook.hasPatient(patient)) {

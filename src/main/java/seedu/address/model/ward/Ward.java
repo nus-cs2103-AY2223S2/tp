@@ -26,7 +26,9 @@ public class Ward {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
+    public final String name;
     public final WardName value;
+
     private final Capacity capacity;
 
     private UniquePatientList patients;
@@ -39,7 +41,7 @@ public class Ward {
     public Ward(WardName name) {
         requireNonNull(name);
         checkArgument(isValidWard(name), MESSAGE_CONSTRAINTS);
-        this.value = name;
+        this.name = name;
         this.capacity = new Capacity(10);
         patients = new UniquePatientList();
     }
@@ -53,9 +55,18 @@ public class Ward {
     public Ward(WardName name, Capacity capacity) {
         requireNonNull(name);
         checkArgument(isValidWard(name), MESSAGE_CONSTRAINTS);
-        this.value = name;
+        this.name = name;
         this.capacity = capacity;
         patients = new UniquePatientList();
+    }
+
+    /**
+     * Ward constructor with string for comparisons
+     * @param name
+     * @return placeholder Ward
+     */
+    public static Ward wardWithName(String name) {
+        return new Ward(name);
     }
 
     /**
@@ -77,12 +88,20 @@ public class Ward {
         return patients2.size() <= capacity.getValue();
     }
 
+
+    // public String getName() {
+    //   return name;
+
     public WardName getName() {
         return value;
+
     }
 
     public Capacity getCapacity() {
         return capacity;
+    }
+    public String getCapacityString() {
+        return capacity.toString();
     }
 
     public int getOccupancy() {
@@ -93,7 +112,7 @@ public class Ward {
         return getOccupancy() >= capacity.getValue();
     }
 
-    public String getCapacityString() {
+    public String getOccupancyString() {
         return "Current occupancy rate: " + getOccupancy() + "/" + capacity.getValue();
     }
 
@@ -148,7 +167,6 @@ public class Ward {
      */
     public void setPatient(Patient target, Patient editedPatient) {
         requireNonNull(editedPatient);
-
         patients.setPatient(target, editedPatient);
     }
 
@@ -176,7 +194,7 @@ public class Ward {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Ward // instanceof handles nulls
-                        && getName().equals(((Ward) other).getName()));
+                        && name.equals(((Ward) other).name));
     }
 
     @Override
