@@ -226,6 +226,14 @@ public interface Model {
     void addPartToService(int serviceId, String partName, int quantity) throws NoSuchElementException;
 
     /**
+     * Assigns existing technician to existing service
+     * @param serviceId ID of service
+     * @param techId ID of technician
+     * @throws NoSuchElementException If technician or service not in system
+     */
+    void addTechnicianToService(int serviceId, int techId) throws NoSuchElementException;
+
+    /**
      * Checks if part already exists
      *
      * @param partName Name of the part to check against

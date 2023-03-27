@@ -186,6 +186,23 @@ public class Shop implements ReadOnlyShop {
     }
 
     /**
+     * Assigns existing technician to existing service
+     * @param serviceId ID of service
+     * @param technicianId ID of technician
+     * @throws NoSuchElementException If service or technician doesn't exist
+     */
+    public void addTechnicianToService(int serviceId, int technicianId) throws NoSuchElementException {
+        if (!this.hasTechnician(technicianId)) {
+            throw new NoSuchElementException();
+        }
+        Service service = this.getServiceList().stream()
+            .filter(s -> s.getId() == serviceId)
+            .findFirst()
+            .orElseThrow();
+        service.assignTechnician(technicianId);
+    }
+
+    /**
      * Increases part stock by a specified quantity
      *
      * @param partName Name of part

@@ -12,7 +12,7 @@ import seedu.address.model.Model;
  */
 public class AddPartToServiceCommand extends Command {
     public static final String COMMAND_WORD = "addservicepart";
-    public static final String MESSAGE_SUCCESS = "Enough parts in system, part added to service";
+    public static final String MESSAGE_SUCCESS_FORMAT = "%d x (%s) added to service %d";
     public static final String MESSAGE_SERVICE_NOT_FOUND = "Service does not exist";
     public static final String MESSAGE_PART_NOT_FOUND = "Part not in system";
     public static final String MESSAGE_INSUFFICIENT_PART = "Not enough parts to assign to service";
@@ -32,8 +32,8 @@ public class AddPartToServiceCommand extends Command {
 
     /**
      * @param serviceId ID of service
-     * @param partName Name of part
-     * @param quantity Quantity of part
+     * @param partName  Name of part
+     * @param quantity  Quantity of part
      */
     public AddPartToServiceCommand(int serviceId, String partName, int quantity) {
         this.serviceId = serviceId;
@@ -60,6 +60,7 @@ public class AddPartToServiceCommand extends Command {
             throw new CommandException(MESSAGE_INSUFFICIENT_PART);
         }
         model.addPartToService(this.serviceId, this.partName, this.quantity);
-        return new CommandResult(MESSAGE_SUCCESS, ResultType.LISTED_SERVICES);
+        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.quantity, this.partName, this.serviceId),
+            ResultType.LISTED_SERVICES);
     }
 }
