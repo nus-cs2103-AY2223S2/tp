@@ -4,6 +4,7 @@ import static seedu.address.logic.commands.ImportDataCommand.COMMAND_WORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_PATH;
 
 import java.io.File;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -16,10 +17,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.Logic;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
-
 
 /**
  * Controller for a Import window
@@ -29,10 +26,11 @@ public class ImportWindow extends UiPart<Stage> {
     private static final String FXML = "ImportWindow.fxml";
     private static final String TITLE_TEXT = "Import";
 
-    private static final String VALID_FEEDBACK_STYLE = "-fx-text-fill: #9e9e9e";
+    private static final String DEFAULT_FEEDBACK_STYLE = "-fx-text-fill: #9e9e9e";
+    private static final String VALID_FEEDBACK_STYLE = "-fx-text-fill: #646666";
+    private static final String SUCCESS_FEEDBACK_STYLE = "-fx-text-fill: #006400";
     private static final String ERROR_FEEDBACK_STYLE = "-fx-text-fill: #cc0000";
 
-    private Logic logic;
     private String filePath;
 
     @FXML
@@ -56,14 +54,15 @@ public class ImportWindow extends UiPart<Stage> {
     @FXML
     private VBox importContainer;
 
+    private Consumer<String> message;
+
     /**
      * Creates a new ImportWindow.
      *
      * @param root Stage to use as the root of the ImportWindow.
      */
-    public ImportWindow(Logic logic, Stage root) {
+    public ImportWindow(Stage root) {
         super(FXML, root);
-        this.logic = logic;
 
         importHeader.setText(TITLE_TEXT);
         importImage.setImage(new Image(this.getClass().getResourceAsStream("/images/import.png")));
@@ -80,8 +79,10 @@ public class ImportWindow extends UiPart<Stage> {
     /**
      * Creates a new HelpWindow.
      */
-    public ImportWindow(Logic logic) {
-        this(logic, new Stage());
+    public ImportWindow(Consumer<String> message) {
+        this(new Stage());
+
+        this.message = message;
     }
 
     /**
@@ -122,7 +123,7 @@ public class ImportWindow extends UiPart<Stage> {
         getRoot().hide();
         filePath = "";
         feedbackLabel.setText("no files imported");
-        feedbackLabel.setStyle(VALID_FEEDBACK_STYLE);
+        feedbackLabel.setStyle(DEFAULT_FEEDBACK_STYLE);
     }
 
     /**
@@ -169,14 +170,23 @@ public class ImportWindow extends UiPart<Stage> {
      */
     public void handleImport() {
         String commandString = COMMAND_WORD + " " + PREFIX_FILE_PATH + filePath;
+        message.accept(commandString);
+    }
 
-        try {
-            this.logic.execute(commandString);
-            hide();
-        } catch (ParseException | CommandException e) {
-            feedbackLabel.setText(e.getMessage());
-            feedbackLabel.setStyle(ERROR_FEEDBACK_STYLE);
-        }
+    /**
+     * Handles success import styling.
+     */
+    public void handleSuccess() {
+        feedbackLabel.setText("Import Successful");
+        feedbackLabel.setStyle(SUCCESS_FEEDBACK_STYLE);
+    }
+
+    /**
+     * Handles error import styling.
+     */
+    public void handleError(String error) {
+        feedbackLabel.setText(error);
+        feedbackLabel.setStyle(ERROR_FEEDBACK_STYLE);
     }
 
 

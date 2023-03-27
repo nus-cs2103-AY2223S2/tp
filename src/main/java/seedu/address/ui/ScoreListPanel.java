@@ -44,6 +44,10 @@ public class ScoreListPanel extends UiPart<Region> {
                 name.setText("No score history found for " + person.getName().fullName);
             }
         }
+
+        if (person == null) {
+            name.setText("No student being checked now");
+        }
     }
 
     /**

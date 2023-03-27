@@ -65,5 +65,4 @@ public interface Logic {
      * @return the person being selected by the user.
      */
     Person findCheckedPerson();
-
 }

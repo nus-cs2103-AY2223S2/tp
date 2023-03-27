@@ -21,7 +21,7 @@ public class ImportDataCommand extends Command {
 
     public static final String COMMAND_WORD = "import";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports data from a CSV file. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports data from a JSON file. "
             + "Parameters: "
             + PREFIX_FILE_PATH + "FILE_PATH\n"
             + "Example: " + COMMAND_WORD + " "

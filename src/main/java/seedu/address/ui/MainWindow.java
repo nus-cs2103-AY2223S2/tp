@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -81,9 +82,25 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
+        Consumer<String> message;
+
+        // Listener for ImportWindow such that the GUI will be updated after the import is done
+        message = new Consumer<String>() {
+            @Override
+            public void accept(String s) {
+                try {
+                    executeCommand(s);
+                    importWindow.handleSuccess();
+                } catch (CommandException | ParseException e) {
+                    importWindow.handleError(e.getMessage());
+                }
+            }
+        };
+
         helpWindow = new HelpWindow();
-        importWindow = new ImportWindow(this.logic);
+        importWindow = new ImportWindow(message);
         exportWindow = new ExportWindow(this.logic);
+
     }
 
     public Stage getPrimaryStage() {
@@ -226,13 +243,6 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
-            // TODO: Basically bring this in when we have the GUI popup for it
-            // if (commandResult.isShowImport()) {
-            //     handleImport();
-            // }
-            // if (commandResult.isShowExport()) {
-            //     handleExport();
-            // }
 
             if (commandResult.isExit()) {
                 handleExit();

@@ -99,6 +99,4 @@ public class LogicManager implements Logic {
     public Person findCheckedPerson() {
         return model.findSelectedPerson();
     }
-
-
 }
