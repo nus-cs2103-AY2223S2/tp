@@ -46,7 +46,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
    |--------------------|---------------------------------------------|
    | n/Bob              | find all person with Bob in its name AND... |
    | y/2                | year of study is 2 AND...                   |
-   | c/Accounting       | course enrolled is Accounting AND...        |
+   | c/1                | course enrolled is Accounting AND...        |
 3. **view** person at index 1 (should be Bob if you started from an empty list)
    <br>`view 1`<br><br>
 4. **view** current person information -> [view command](#view)
@@ -74,7 +74,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
    |--------------------|---------------------------------------------|
    | n/Bob              | find all person with Bob in its name AND... |
    | y/2                | year of study is 2 AND...                   |
-   | c/Accounting       | course enrolled is Accounting AND...        |
+   | c/1                | course enrolled is Accounting AND...        |
    | m/AY2223S2 CS2109S | AY2223S2 CS2109S in their set of modules    |
    | s/PYTHON           | PYTHON in their set of skills               |
 7. **delete** person at index 1 (should be Bob if you started from an empty list) -> [delete command](#delete)
@@ -108,27 +108,25 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 
 ## Commands
 ### add
-`add n/NAME e/EMAIL y/YEAR c/COURSE [OPTIONAL/PARAMETER]...`<br>
+`add n/NAME e/EMAIL y/YEAR c/COURSE_INDEX [OPTIONAL/PARAMETER]...`<br>
 >
 > **Compulsory parameters:**
 > - n/NAME (eg. n/John Doe)
 > - e/EMAIL (eg. e/johndoe123@email.com)
 > - y/YEAR (eg. ay/3, ay/prof, ay/alum)
-> - c/COURSE (eg. c/Computer Science, c/Information Security)
+> - c/COURSE_INDEX (eg. c/1)
 >
 > **Optional parameters:**
-> - ct/CONTACT (eg.ct/Telegram: @Johndoe123)
-> - sn/STUDENT NUMBER (eg. sn/E1234568)
+> - g/GITHUB (eg.g/johnny)
+> - l/LINKED (eg. l/linkedin.com/in/john-doe)
 > - m/MODULE YEAR (eg. m/AY2223S1 CS2103T, m/AY2122S2 CS2101)
-> - job/WORK (eg. job/Google Software Engineer, job/ATAP)
-> - skill/SKILL (eg. skill/C++, skill/Rust)
-> - link//LINK (eg. link//github.com/johndoe123)
+> - s/SKILL (eg. s/C++, s/Rust)
 >
 > 💡 **Tip:** A person can have any number of [OPTIONAL/PARAMETER] (including 0)
 >
 > **Examples:**
-> - `add` n/Betsy Crowe e/betsycrowe@example.com y/prof c/Information Security ct/Telegram: @betC123 job/Professor, NUS IS link//linkedin.com/in/betsycrowe
-> - `add` n/John Doe e/johnd@example.com y/2 c/Computer Science
+> - `add` n/Betsy Crowe e/betsycrowe@example.com y/prof c/1 g/betsy123 l/linkedin.com/in/betsy-123
+> - `add` n/John Doe e/johnd@example.com y/2 c/3
     > ![Add Example](images/UiAddContact.png)
 
 ### find
