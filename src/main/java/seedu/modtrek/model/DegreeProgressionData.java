@@ -120,8 +120,9 @@ public class DegreeProgressionData {
             });
             completedCredit += credit;
             cumulativePoints += credit * module.getGrade().toPoints();
+        } else if (!module.isComplete()) {
+            plannedCredit += credit;
         }
-        plannedCredit += credit;
     }
 
     private void computeGpa() {
@@ -155,7 +156,8 @@ public class DegreeProgressionData {
                 .append("OVERALL PROGRESS\n")
                 .append(String.format("> Completed: %1$d\n", completedCredit))
                 .append(String.format("> Planned:   %1$d\n", plannedCredit))
-                .append(String.format("> Total:     %1$d\n", TOTALCREDIT));
+                .append(String.format("> Total:     %1$d\n", TOTALCREDIT))
+                .append("Note that completed modules do not mean that it is counted to the overall progress!\n");
         return details.toString();
     }
 
