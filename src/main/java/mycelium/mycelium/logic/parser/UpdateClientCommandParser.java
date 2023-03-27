@@ -43,17 +43,14 @@ public class UpdateClientCommandParser implements Parser<UpdateClientCommand> {
                         CliSyntax.PREFIX_SOURCE,
                         CliSyntax.PREFIX_CLIENT_MOBILE_NUMBER
                 );
-//        Email email;
-//        try {
-//            email = parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
-//        } catch (ParseException pe) {
-//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-//                    UpdateClientCommand.MESSAGE_USAGE), pe);
-//        }
-
-        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateClientCommand.MESSAGE_USAGE));
+        Email email;
+        try {
+            email = parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    UpdateClientCommand.MESSAGE_USAGE), pe);
         }
+        email = parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
         Optional<Name> name = parseOptionalWith(
                 argMultimap.getValue(PREFIX_CLIENT_NAME), ParserUtil::parseName);
         Optional<Email> newEmail = parseOptionalWith(
@@ -77,8 +74,6 @@ public class UpdateClientCommandParser implements Parser<UpdateClientCommand> {
         if (!updateClientDescriptor.isAnyFieldEdited()) {
             throw new ParseException(UpdateClientCommand.MESSAGE_NOT_EDITED);
         }
-
-        Email email = parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
 
         return new UpdateClientCommand(email, updateClientDescriptor);
     }

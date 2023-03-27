@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import mycelium.mycelium.model.client.Client;
-import mycelium.mycelium.model.person.Person;
 
 
 /**
