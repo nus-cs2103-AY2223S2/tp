@@ -12,7 +12,6 @@ import seedu.address.model.patient.UniquePatientList;
 import seedu.address.model.ward.UniqueWardList;
 import seedu.address.model.ward.Ward;
 import seedu.address.model.ward.exceptions.WardNotFoundException;
-import seedu.address.model.ward.WardName;
 
 /**
  * Wraps all data at the address-book level
@@ -59,7 +58,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPatients(List<Patient> patients) {
         List<Patient> patientsCopy = new ArrayList<>();
         for (Patient patient:patients) {
-            Patient toCopy = new Patient(patient.getNric(), patient.getName(), patient.getStatus(), patient.getWardName(),
+            Patient toCopy = new Patient(patient.getNric(), patient.getName(), patient.getStatus(),
+                    patient.getWardName(),
                 patient.getDischarge());
             patientsCopy.add(toCopy);
         }

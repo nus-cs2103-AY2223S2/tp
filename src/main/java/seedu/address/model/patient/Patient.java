@@ -1,12 +1,12 @@
 package seedu.address.model.patient;
 
-import seedu.address.model.ward.Ward;
-import seedu.address.model.ward.WardName;
+import java.util.Objects;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.ward.Ward.wardWithName;
 
-import java.util.Objects;
+import seedu.address.model.ward.Ward;
+import seedu.address.model.ward.WardName;
 
 /**
  * Represents a Patient in the address book.

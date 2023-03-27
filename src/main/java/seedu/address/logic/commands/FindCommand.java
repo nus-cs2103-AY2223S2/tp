@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.function.Predicate;
@@ -36,7 +37,12 @@ public class FindCommand extends Command {
             + ": Finds all patients whose Status is any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_STATUS + " GRAY GREEN\n";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_STATUS + " GRAY GREEN\n"
+            + COMMAND_WORD + " " + PREFIX_WARD
+            + ": Finds all patients whose ward is any of "
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_WARD + " A03\n";
 
     private final Predicate<Patient> predicate;
 

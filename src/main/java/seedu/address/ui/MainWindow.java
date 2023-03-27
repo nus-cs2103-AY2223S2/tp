@@ -186,8 +186,21 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            if (commandText.contains("delete")) {
-                Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete?");
+
+            if (commandText.contains("deleteward")) {
+                Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION,
+                        "Are you sure you want to delete the ward?");
+                Optional<ButtonType> deleteWardResult = confirmationDialog.showAndWait();
+
+                if (deleteWardResult.isPresent() && deleteWardResult.get() == ButtonType.CANCEL) {
+                    CommandResult commandResult = logic.execute("list");
+                    logger.info("Delete ward aborted: " + commandResult.getFeedbackToUser());
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                    return commandResult;
+                }
+            } else if (commandText.contains("delete")) {
+                Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION,
+                        "Are you sure you want to delete the patient?");
                 Optional<ButtonType> deleteResult = confirmationDialog.showAndWait();
 
                 if (deleteResult.isPresent() && deleteResult.get() == ButtonType.CANCEL) {
@@ -199,7 +212,8 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandText.contains("clear")) {
-                Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to clear ALL patients?");
+                Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION,
+                        "Are you sure you want to clear ALL patients?");
                 Optional<ButtonType> clearResult = confirmationDialog.showAndWait();
 
                 if (clearResult.isPresent() && clearResult.get() == ButtonType.CANCEL) {

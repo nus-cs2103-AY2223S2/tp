@@ -15,7 +15,8 @@ import seedu.address.model.ward.WardName;
 public class SampleDataUtil {
     public static Patient[] getSamplePatients() {
         return new Patient[] {
-            new Patient(new Nric("S1234567A"), new Name("Alex Yeoh"), new Status("RED"), new WardName("Intensive Care")),
+            new Patient(new Nric("S1234567A"), new Name("Alex Yeoh"), new Status("RED"),
+                    new WardName("Intensive Care")),
             new Patient(new Nric("S0000000A"), new Name("Bernice Yu"), new WardName("Class C")),
             new Patient(new Nric("S0000001A"), new Name("Charlotte Oliveiro"), new Status("GRAY")),
             new Patient(new Nric("S0000002A"), new Name("David Li"), new Status("GREEN")),

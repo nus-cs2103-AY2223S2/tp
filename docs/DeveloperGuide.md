@@ -451,8 +451,8 @@ Use case resumes at step 2.
 
 **MSS**
 
-1.  User requests to list patients
-2.  MedInfo shows a list of patients
+1.  User requests to list filtered patients
+2.  MedInfo shows a list of filtered patients
 3.  User requests to delete a specific patient in the list by index number
 4.  MedInfo shows confirmation window
 5.  MedInfo deletes the patient
@@ -483,12 +483,13 @@ Use case resumes at step 2.
 
 **MSS**
 
-1.  User requests to list patients
-2.  MedInfo shows a list of patients
-3.  User requests to edit a specific patient in the list by NRIC
+1.  User requests to list filtered patients
+2.  MedInfo shows a list of filtered patients
+3.  User requests to edit a specific patient in the list by index number 
     1. The following can be edited:
        - Status
        - Ward
+       - Discharge Date
     2. The following cannot be edited:
        - Name
        - NRIC
@@ -502,21 +503,39 @@ Use case resumes at step 2.
 
   Use case ends.
 
-- 3a. The requested patient's NRIC is invalid.
+- 3a. The requested patient's index number is invalid.
 
   - 3a1. MedInfo shows an error message.
 
     Use case resumes at step 2.
 
-- 3b. The requested patient's NRIC does not exist in the system.
+- 3b. The prefixes entered are invalid.
 
-  - 3b1. MedInfo shows an error message.
+    - 3b1. MedInfo shows an error message.
 
-    Use case resumes at step 2.
+      Use case resumes at step 2.
 
-- 3c. User tries to edit a non-editable field (Name/NRIC).
+- 3b. The Status entered is invalid.
 
-  - 3c1. MedInfo shows an error message.
+    - 3b1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
+  
+- 3b. The Ward entered is invalid.
+
+    - 3b1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
+  
+- 3b. The Discharge Date entered is invalid.
+
+    - 3b1. MedInfo shows an error message.
+
+      Use case resumes at step 2.
+
+- 3d. User tries to edit a non-editable field (Name/NRIC).
+
+  - 3d1. MedInfo shows an error message.
 
     Use case resumes at step 2.
 
@@ -525,7 +544,7 @@ Use case resumes at step 2.
 
 **MSS**
 
-1.  User requests to find specific patients by either NRIC or Name or Status
+1.  User requests to find specific patients by either NRIC or Name or Status or Ward
 2.  MedInfo shows a list of patients
 
     Use case ends.
@@ -549,6 +568,12 @@ Use case resumes at step 2.
   - 1c1. MedInfo does not list any patients.
 
     Use case ends.
+  
+- 1d. The requested patient's Ward does not exist in the system.
+
+- 1d1. MedInfo does not list any patients.
+
+  Use case ends.
 
 **Use case: UC05 - Clear all patients**
 
