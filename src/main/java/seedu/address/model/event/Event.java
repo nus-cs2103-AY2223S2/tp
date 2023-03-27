@@ -1,7 +1,7 @@
 package seedu.address.model.event;
 
 import java.io.File;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +19,7 @@ public abstract class Event {
     public static final String MESSAGE_CONSTRAINTS = "Repetition for recur must be a number between 0 and 10";
 
     private String name;
-    private LocalDate eventDate;
+    private LocalDateTime eventDate;
     private final List<Person> students;
     private final List<File> attachments;
     private final List<Note> notes;
@@ -31,7 +31,7 @@ public abstract class Event {
      */
     public Event(String name) {
         this.name = name;
-        eventDate = LocalDate.now();
+        eventDate = LocalDateTime.now();
         students = new ArrayList<>();
         attachments = new ArrayList<>();
         notes = new ArrayList<>();
@@ -45,7 +45,7 @@ public abstract class Event {
      */
     public Event(String name, List<Person> students) {
         this.name = name;
-        this.eventDate = LocalDate.now();
+        this.eventDate = LocalDateTime.now();
         this.students = students;
         attachments = new ArrayList<>();
         notes = new ArrayList<>();
@@ -58,7 +58,7 @@ public abstract class Event {
      * @param students
      * @param eventDate
      */
-    public Event(String name, LocalDate eventDate, List<Person> students) {
+    public Event(String name, LocalDateTime eventDate, List<Person> students) {
         this.name = name;
         this.eventDate = eventDate;
         this.students = students;
@@ -74,7 +74,7 @@ public abstract class Event {
      * @param students
      * @param attachments
      */
-    public Event(String name, LocalDate eventDate, List<Person> students, List<File> attachments) {
+    public Event(String name, LocalDateTime eventDate, List<Person> students, List<File> attachments) {
         this.name = name;
         this.eventDate = eventDate;
         this.students = students;
@@ -90,7 +90,7 @@ public abstract class Event {
      * @param notes
      * @param eventDate
      */
-    public Event(String name, List<Person> students, List<Note> notes, LocalDate eventDate) {
+    public Event(String name, List<Person> students, List<Note> notes, LocalDateTime eventDate) {
         this.name = name;
         this.eventDate = eventDate;
         this.students = students;
@@ -107,7 +107,7 @@ public abstract class Event {
      * @param attachments
      * @param notes
      */
-    public Event(String name, LocalDate eventDate, List<Person> students,
+    public Event(String name, LocalDateTime eventDate, List<Person> students,
                  List<File> attachments, List<Note> notes) {
         this.name = name;
         this.eventDate = eventDate;
@@ -182,9 +182,9 @@ public abstract class Event {
 
     /**
      * Gets the date of the event
-     * @return localdate
+     * @return LocalDateTime
      */
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return eventDate;
     }
 
@@ -192,7 +192,7 @@ public abstract class Event {
      * Changes the date of the event
      * @param date
      */
-    public void changeDate(LocalDate date) {
+    public void changeDate(LocalDateTime date) {
         eventDate = date;
     }
 

@@ -63,7 +63,7 @@ public class EventCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         name.setText(event.getName());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         date.setText(event.getDate().format(formatter));
         //notes.setText("" + event.countNotes());
         GuiSettings guiSettings = new GuiSettings();

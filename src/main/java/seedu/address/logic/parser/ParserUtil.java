@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.io.File;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
@@ -265,7 +265,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
-    public static LocalDate parseEventDate(String date) throws ParseException {
+    public static LocalDateTime parseEventDate(String date) throws ParseException {
         //date can be null or empty as it is optional
         String trimmedDate = date.trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -273,7 +273,7 @@ public class ParserUtil {
                 "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((19|20)\\d\\d)\\s([0-1]?[0-9]|2?[0-3]):([0-5]\\d)")) {
             throw new ParseException("Invalid date format!");
         }
-        return LocalDate.parse(trimmedDate, formatter);
+        return LocalDateTime.parse(trimmedDate, formatter);
     }
 
     /**

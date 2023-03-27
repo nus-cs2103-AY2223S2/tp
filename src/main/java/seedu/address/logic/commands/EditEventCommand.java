@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LABS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import java.io.File;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -166,7 +166,7 @@ public class EditEventCommand extends Command {
         assert eventToEdit != null;
 
         String updatedEventName = editEventDescriptor.getEventName().orElse(eventToEdit.getName());
-        LocalDate updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getDate());
+        LocalDateTime updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getDate());
         List<Person> sameStudents = eventToEdit.getStudents();
         List<File> updatedAttachments = editEventDescriptor.getAttachment().orElse(eventToEdit.getAttachments());
         List<Note> sameNotes = eventToEdit.getNotes();
@@ -183,7 +183,7 @@ public class EditEventCommand extends Command {
         assert eventToEdit != null;
 
         String updatedEventName = editEventDescriptor.getEventName().orElse(eventToEdit.getName());
-        LocalDate updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getDate());
+        LocalDateTime updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getDate());
         List<Person> sameStudents = eventToEdit.getStudents();
         List<File> updatedAttachments = editEventDescriptor.getAttachment().orElse(eventToEdit.getAttachments());
         List<Note> sameNotes = eventToEdit.getNotes();
@@ -200,7 +200,7 @@ public class EditEventCommand extends Command {
         assert eventToEdit != null;
 
         String updatedEventName = editEventDescriptor.getEventName().orElse(eventToEdit.getName());
-        LocalDate updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getDate());
+        LocalDateTime updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getDate());
         List<Person> sameStudents = eventToEdit.getStudents();
         List<Note> sameNotes = eventToEdit.getNotes();
         return new Consultation(updatedEventName, sameStudents, sameNotes, updatedDate);
@@ -231,7 +231,7 @@ public class EditEventCommand extends Command {
      */
     public static class EditEventDescriptor {
         private String name;
-        private LocalDate eventDate;
+        private LocalDateTime eventDate;
         private List<Person> students;
         private List<Note> notes;
         private List<File> attachments = new ArrayList<>();
@@ -265,11 +265,11 @@ public class EditEventCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setDate(LocalDate date) {
+        public void setDate(LocalDateTime date) {
             eventDate = date;
         }
 
-        public Optional<LocalDate> getDate() {
+        public Optional<LocalDateTime> getDate() {
             return Optional.ofNullable(eventDate);
         }
 
