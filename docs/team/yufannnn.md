@@ -9,6 +9,8 @@ TutorPro is a desktop app designed to help private tutors manage their student i
 
 Given below are my contributions to the project.
 
+*  **Idea**: Come up with the idea of making an student management application for private tutors' in Singapore. 
+
 * **New Feature**: Adds the ability to view a student's personal profile.
   
     - What it does: Enables users to view detailed information about a student, such as their home address and phone number, by clicking on the "view profile" button next to their name.
@@ -47,12 +49,11 @@ Given below are my contributions to the project.
 * **Code contributed**:
 
 * **Project management**:
-
     * Set up Team Repo
     * Updated Workflow
-
+    
     * Create PR to the upstream Repo
-
+    
 * **Enhancements to existing features**:
 
 * **Documentation**:
