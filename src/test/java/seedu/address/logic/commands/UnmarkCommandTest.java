@@ -12,9 +12,14 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TaskBook;
+import seedu.address.model.TaskBookModel;
+import seedu.address.model.TaskBookModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.task.DeadlineTask;
 import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
+import seedu.address.testutil.DeadlineTaskBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -23,13 +28,17 @@ import seedu.address.model.task.Task;
 public class UnmarkCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private TaskBookModel taskBookModel = new TaskBookModelManager(new TaskBook(), new UserPrefs());
+
 
     @Test
     public void execute_validIndex_success() throws Exception {
-        Task taskToUnmark = model.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
+        taskBookModel.addTask(validDeadlineTask);
+        Task taskToUnmark = taskBookModel.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
         Score score = new Score(4);
         taskToUnmark.mark(score);
-        CommandResult commandResult = new UnmarkCommand(INDEX_FIRST_PERSON).execute(model);
+        CommandResult commandResult = new UnmarkCommand(INDEX_FIRST_PERSON).execute(model, taskBookModel);
 
         assertEquals(String.format(UnmarkCommand.MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark),
                 commandResult.getFeedbackToUser());
@@ -38,9 +47,9 @@ public class UnmarkCommandTest {
 
     @Test
     public void execute_invalidIndex_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(taskBookModel.getFilteredTaskList().size() + 1);
         UnmarkCommand markCommand = new UnmarkCommand(outOfBoundIndex);
 
-        assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(markCommand, model, taskBookModel, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 }

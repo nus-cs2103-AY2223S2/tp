@@ -17,6 +17,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.TaskBook;
+import seedu.address.model.TaskBookModel;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
@@ -76,12 +78,14 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+    public static void assertCommandSuccess(Command command, Model actualModel,
+        TaskBookModel actualTaskBookModel, CommandResult expectedCommandResult,
+        Model expectedModel, TaskBookModel expectedTaskBookModel) {
         try {
-            CommandResult result = command.execute(actualModel);
+            CommandResult result = command.execute(actualModel, actualTaskBookModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
+            assertEquals(expectedTaskBookModel, actualTaskBookModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
@@ -91,10 +95,12 @@ public class CommandTestUtil {
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+    public static void assertCommandSuccess(Command command, Model actualModel,
+        TaskBookModel actualTaskBookModel, String expectedMessage,
+        Model expectedModel, TaskBookModel expectedTaskBookModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+        assertCommandSuccess(command, actualModel, actualTaskBookModel, expectedCommandResult,
+                    expectedModel, expectedTaskBookModel);
     }
 
     /**
@@ -103,16 +109,23 @@ public class CommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
      */
-    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
+    public static void assertCommandFailure(Command command, Model actualModel,
+        TaskBookModel actualTaskBookModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        TaskBook expectedTaskBook = new TaskBook(actualTaskBookModel.getTaskBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Task> expectedTaskFilteredList = new ArrayList<>(actualTaskBookModel.getFilteredTaskList());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel, actualTaskBookModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedTaskBook, actualTaskBookModel.getTaskBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedTaskFilteredList, actualTaskBookModel.getFilteredTaskList());
     }
+
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -131,14 +144,14 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the task at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showTaskAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+    public static void showTaskAtIndex(TaskBookModel taskBookModel, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < taskBookModel.getFilteredTaskList().size());
 
-        Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
+        Task task = taskBookModel.getFilteredTaskList().get(targetIndex.getZeroBased());
         final String[] splitName = task.getDescription().fullTaskDescription.split("\\s+");
-        model.updateFilteredTaskList(new TaskDescriptionContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        taskBookModel.updateFilteredTaskList(new TaskDescriptionContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredTaskList().size());
+        assertEquals(1, taskBookModel.getFilteredTaskList().size());
     }
 
 }

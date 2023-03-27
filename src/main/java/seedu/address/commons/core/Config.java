@@ -15,6 +15,8 @@ public class Config {
     // Config values customizable through config file
     private Level logLevel = Level.INFO;
     private Path userPrefsFilePath = Paths.get("preferences.json");
+    private Path taskPrefsFilePath = Paths.get("preferences.json");
+
 
     public Level getLogLevel() {
         return logLevel;
@@ -28,8 +30,16 @@ public class Config {
         return userPrefsFilePath;
     }
 
+    public Path getTaskPrefsFilePath() {
+        return taskPrefsFilePath;
+    }
+
     public void setUserPrefsFilePath(Path userPrefsFilePath) {
         this.userPrefsFilePath = userPrefsFilePath;
+    }
+
+    public void setTaskPrefsFilePath(Path taskPrefsFilePath) {
+        this.taskPrefsFilePath = taskPrefsFilePath;
     }
 
     @Override
