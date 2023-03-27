@@ -13,6 +13,5 @@
         <VBox fx:id="rightComponent" prefWidth="700.0">
         </VBox>
     </HBox>
-    <VBox fx:id="commandInputComponent" prefHeight="50.0">
-    </VBox>
+    <HBox fx:id="bottomComponent" prefHeight="50.0"></HBox>
 </VBox>

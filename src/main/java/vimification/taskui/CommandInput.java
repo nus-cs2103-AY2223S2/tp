@@ -3,10 +3,13 @@ package vimification.taskui;
 import java.util.List;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import vimification.internal.Logic;
 import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
@@ -15,16 +18,21 @@ import vimification.internal.parser.ParserException;
 /**
  *
  */
-public class CommandInput extends UiPart<TextField> {
+public class CommandInput extends UiPart<HBox> {
 
     private static final String FXML = "CommandInput.fxml";
     private MainScreen parent;
     private Logic logic;
 
+    @FXML
+    private TextField inputField;
+
     public CommandInput(MainScreen parent, Logic logic) {
         super(FXML);
         this.parent = parent;
         this.logic = logic;
+        inputField.prefWidthProperty().bind(this.getRoot().widthProperty());
+        inputField.prefHeightProperty().bind(this.getRoot().heightProperty());
     }
 
     /**
@@ -43,7 +51,7 @@ public class CommandInput extends UiPart<TextField> {
         }
 
         if (isEnterEvent) {
-            String commandString = this.getRoot().getText();
+            String commandString = inputField.getText();
             executeCommand(commandString);
             returnFocusToParent();
         }
@@ -111,19 +119,37 @@ public class CommandInput extends UiPart<TextField> {
         }
     }
 
+    @Override
+    public void requestFocus() {
+        super.requestFocus();
+        this.inputField.requestFocus();
+    }
+
     private void returnFocusToParent() {
+        parent.clearBottomComponent();
         parent.getRoot().requestFocus();
-        this.getRoot().setVisible(false);
     }
 
     @FXML
     private void initialize() {
         this.getRoot().setFocusTraversable(true); // Important
-        this.getRoot().setVisible(false);
+        // this.getRoot().setVisible(false);
+        inputField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue,
+                    Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    returnFocusToParent();
+                }
+
+            }
+        });
     }
 
     private boolean isTextFieldEmpty() {
-        return getRoot().getText().equals("");
+        return inputField.getText().equals("");
     }
+
+
 
 }

@@ -7,6 +7,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -21,9 +22,10 @@ public class MainScreen extends UiPart<VBox> {
 
     private static final String FXML = "MainScreen.fxml";
 
-    private ReadOnlyDoubleProperty stageHeight;
-    private DoubleBinding topComponentHeight; // Height of left and right component
-    private DoubleBinding commandInputComponentHeight;
+    private static ReadOnlyDoubleProperty stageHeight;
+    private static DoubleBinding topComponentHeight; // Height of left and right component
+    private static DoubleBinding bottomComponentHeight;
+    private static ReadOnlyDoubleProperty windowWidth;
 
     private Logic logic;
 
@@ -39,7 +41,7 @@ public class MainScreen extends UiPart<VBox> {
     private VBox rightComponent;
 
     @FXML
-    private VBox commandInputComponent;
+    private HBox bottomComponent;
 
     /**
      * Creates a {@code MainWindow} with {@code Logic}.
@@ -48,8 +50,10 @@ public class MainScreen extends UiPart<VBox> {
         super(FXML);
         this.logic = logic;
         stageHeight = stage.heightProperty();
+        windowWidth = stage.widthProperty();
+
         topComponentHeight = stageHeight.multiply(0.9);
-        commandInputComponentHeight = stageHeight.multiply(0.1);
+        bottomComponentHeight = stageHeight.multiply(0.1);
         setup();
     }
 
@@ -65,7 +69,7 @@ public class MainScreen extends UiPart<VBox> {
     private void setup() {
         leftComponent.prefHeightProperty().bind(topComponentHeight);
         rightComponent.prefHeightProperty().bind(topComponentHeight);
-        commandInputComponent.prefHeightProperty().bind(commandInputComponentHeight);
+        bottomComponent.prefHeightProperty().bind(bottomComponentHeight);
 
         intializeCommandInput();
         initializeTaskListPanel();
@@ -79,9 +83,9 @@ public class MainScreen extends UiPart<VBox> {
 
     private void intializeCommandInput() {
         commandInput = new CommandInput(this, logic);
-        commandInput.getRoot().prefHeightProperty().bind(stageHeight.multiply(0.1));
-
-        commandInputComponent.getChildren().add(commandInput.getRoot());
+        // commandInput.getRoot().prefHeightProperty().bind(stageHeight.multiply(0.1));
+        // bottomComponent.getChildren().add(commandInput.getRoot());
+        // loadBottomComponent(commandInput);
     }
 
     /**
@@ -118,8 +122,13 @@ public class MainScreen extends UiPart<VBox> {
     }
 
     private void loadCommandInputComponent() {
-        commandInput.setVisible(true);
+        loadBottomComponent(commandInput);
+        // commandInput.setVisible(true);
         commandInput.requestFocus();
+    }
+
+    public void loadCommandResultComponent(CommandResult resultComponent) {
+        loadBottomComponent(resultComponent);
     }
 
     public void loadDetailedTaskComponent(Task task) {
@@ -127,19 +136,33 @@ public class MainScreen extends UiPart<VBox> {
         loadRightComponent(detailTask);
     }
 
+    /**
+     * Clears the right component.
+     */
     public void clearRightComponent() {
         rightComponent.getChildren().clear();
+    }
+
+    public void clearBottomComponent() {
+        bottomComponent.getChildren().clear();
     }
 
     private <T extends Pane> void loadLeftComponent(UiPart<T> component) {
         leftComponent.getChildren().clear();
         leftComponent.getChildren().add(component.getRoot());
-        component.getRoot().prefHeightProperty().bind(stageHeight.multiply(0.9));
+        component.getRoot().prefHeightProperty().bind(topComponentHeight);
     }
 
     private <T extends Pane> void loadRightComponent(UiPart<T> component) {
         rightComponent.getChildren().clear();
         rightComponent.getChildren().add(component.getRoot());
-        component.getRoot().prefHeightProperty().bind(stageHeight.multiply(0.9));
+        component.getRoot().prefHeightProperty().bind(topComponentHeight);
+    }
+
+    private <T extends Pane> void loadBottomComponent(UiPart<T> component) {
+        bottomComponent.getChildren().clear();
+        bottomComponent.getChildren().add(component.getRoot());
+        component.getRoot().prefHeightProperty().bind(bottomComponentHeight);
+        component.getRoot().prefWidthProperty().bind(windowWidth);
     }
 }
