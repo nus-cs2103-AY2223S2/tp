@@ -167,6 +167,10 @@ HotKeys are keyboard short cuts supported by Mycelium to enable faster navigatio
 
 This shortcut allows you to quickly access the help page.
 
+### **(CTRL+Q) Quit**
+
+This shortcut allows you to quickly quit Mycelium.
+
 ### **(CTRL+W) Start of Line**
 
 This shortcut allows you to quickly navigate to the start of the line in the command box.
