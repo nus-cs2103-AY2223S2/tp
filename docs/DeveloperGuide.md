@@ -179,7 +179,7 @@ The following sequence diagram shows the interaction between the objects when a 
 
 ![Mark Delivery Sequence Diagram](images/MarkDeliverySequenceDiagram.png)
 
-#### Alternatives considered
+#### Design Considerations
 
 - **Alternative 1**:
   - Add `DeliveryStatus` as `Parcel`'s attribute
@@ -190,103 +190,34 @@ The following sequence diagram shows the interaction between the objects when a 
     - Mark all parcels under a person as delivered in one go
     - Simple for the user to understand and easy to implement for the developer
 
-### \[Proposed\] Undo/redo feature {TO BE DELETED BUT LEFT HERE AS REFERENCE}
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
 ### Add Parcel to Delivery feature
+
+#### Implementation Details
+The adding of a parcel uses a new command argument prefix, `pc/`, to capture the parcel's name.
+
 The following activity diagram summarizes what happens when a user tries to add a parcel to an existing delivery:
 
 <img src="images/AddParcelActivityDiagram.png"/>
 
-#### Design considerations:
-
+#### Design Considerations
 **Aspect: Number of parcel(s) to be added in each command:**
-
 * **Alternative 1 (current choice):** 1 parcel at a time.
     * Pros: Easy to implement, less prone to errors.
     * Cons: A little more troublesome for users to repeatedly type `add_pc` each time.
-
 * **Alternative 2:** Allowing multiple parcels to be added at a time.
     * Pros: Seems more convenient for user as command line `add_pc` will not need to be repeated.
     * Cons: More prone to user errors and also harder to implement the type (fragile, bulky) of each of the parcel (future feature).
 
+### Mark Parcel feature
+#### Implementation Details
+The mark parcel feature is supported by `ParcelStatus` enumerable that represents the possible parcel statuses:
+- FRAGILE (parcel that needs to be handled with care)
+- BULKY (parcel that needs to be handled with extra assistance e.g. trolley)
+- _More can be added in the future_
+
+_{More details to be added in v1.4}_
+#### Design Considerations
+_{More details to be added in v1.4}_
 
 ### View Delivery feature
 #### Implementation Details
@@ -298,7 +229,7 @@ The following partial sequence diagram will show how the view delivery feature i
 
 <img src="images/ViewCommandSequenceDiagram.png">
 
-#### Design Considerations:
+#### Design Considerations
 **Aspect: The method to select recipient**
 * **Alternative 1 (current choice):** Use the `Index` class to select recipient from the list
     * Pros: Easy to implement, `Index` for each person is unique
@@ -330,7 +261,7 @@ The implementation of the sort feature involves the following steps:
    * As the sort command automatically replaces the previous list with the newly sorted list,
    the address book being shown to the User is always updated.
 
-#### Design Considerations:
+#### Design Considerations
 **Aspect: How to specify sorting criteria**
 * **Alternative 1 (current choice):** Predefines the sorting criteria to Delivery Status
     * Pros: Easy to implement, there is already a defined ordering for Delivery Status
@@ -522,6 +453,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. System displays sorted list
 
     Use Case ends
+
+**Use Case: UC8 - Mark Parcel**
+
+**Guarantees:** A parcel is marked with the user given status
+
+**MSS:**
+1. User request to see all deliveries
+2. System shows all deliveries
+3. User request to mark a chosen parcel from an existing delivery with the relevant status (i.e. Fragile, Bulky)
+4. System marks the parcel with user given status
+
+   Use case ends
+
+**Extensions:**
+* 2a. There is no delivery in the system.
+
+  Use case ends.
+* 3a. User inputs invalid parcel status.
+    * 3a1. System shows error message and list the valid statuses.
+
+      Use case resumes at step 3.
+* 3b. User chose an invalid delivery.
+    * 3b1. System shows error message
+
+      Use case resumes at step 3.
+* 3c. User chose an invalid parcel.
+    * 3c1. System shows error message
+
+      Use case resumes at step 3.
 
 ### Non-Functional Requirements
 
