@@ -30,7 +30,7 @@
           </Label>
           <TableView fx:id="helpTable">
               <TableColumn fx:id="commandColumn" prefWidth="150" text="Command"/>
-              <TableColumn fx:id="formatColumn" prefWidth="450" text="Format"/>
+              <TableColumn fx:id="formatColumn" prefWidth="600" text="Format"/>
           </TableView>
           <HBox>
             <padding>

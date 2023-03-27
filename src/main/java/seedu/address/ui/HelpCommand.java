@@ -11,7 +11,6 @@ public class HelpCommand {
     private final SimpleStringProperty command;
     private final SimpleStringProperty format;
 
-
     HelpCommand(String command, String format) {
         this.command = new SimpleStringProperty(command);
         this.format = new SimpleStringProperty(format);
