@@ -328,14 +328,15 @@ public class RecipeForm extends UiPart<Region> {
      */
     private void handleAddRecipeEvent(Map<String, String> changedValues) {
         try {
-            StringBuilder commands = new StringBuilder();
-            commands = collectFields(commands, changedValues);
-            System.out.println(changedValues);
-            String commandText = "add " + commands.toString(); 
-            System.out.println(commandText);
-            executeCommand(commandText);
+        StringBuilder commands = new StringBuilder();
+        commands = collectFields(commands, changedValues);
+        System.out.println(changedValues);
+        String commandText = "add " + commands.toString(); 
+        System.out.println(commandText);
+        executeCommand(commandText);
+
         } catch (CommandException | ParseException e) {
-            logger.info("Failed to add recipe.");
+            logger.info("Failed to edit recipe: ");
         }
     }
 

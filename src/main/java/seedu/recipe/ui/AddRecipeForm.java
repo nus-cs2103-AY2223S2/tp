@@ -62,6 +62,8 @@ public class AddRecipeForm extends UiPart<Region> {
     //Logic executors and system logging
     private final Logger logger = LogsCenter.getLogger(getClass());
 
+    private StringBuilder commands;
+
     @FunctionalInterface
     interface CustomFocusChangeListener {
         void onFocusChange(boolean newValue);
@@ -73,9 +75,9 @@ public class AddRecipeForm extends UiPart<Region> {
      * @param recipe         The recipe to add.
      * @param displayedIndex The index of the recipe in the displayed list.
      */
-    public AddRecipeForm() {
+    public AddRecipeForm(StringBuilder stringBuilder) {
         super(FXML);
-        
+        this.commands = stringBuilder;
         TextField emptyIngredientField = createDynamicTextField("");
         ingredientsBox.getChildren().add(emptyIngredientField);
         TextField emptyStepField = createDynamicTextField("");
@@ -91,7 +93,7 @@ public class AddRecipeForm extends UiPart<Region> {
      * If any fields have been modified, the new values are stored
      * in a map of changed values.
      */
-    private String saveRecipe() {
+    private void saveRecipe() {
         // Check which fields have been changed
         Map<String, String> inputValues = new HashMap<>();
         for (Map.Entry<String, String> entry : initialValues.entrySet()) {
@@ -131,9 +133,8 @@ public class AddRecipeForm extends UiPart<Region> {
                 inputValues.put(key, currentValue);
             }
         }
-            String output = handleAddRecipeEvent(inputValues);
-            closeForm();
-            return output;
+        this.commands = handleAddRecipeEvent(inputValues);       
+        closeForm();
     }
 
     /**
@@ -141,9 +142,8 @@ public class AddRecipeForm extends UiPart<Region> {
      *
      * @param inputValues A map of the changed recipe fields with keys as field names and values as the new data.
      */
-    private String handleAddRecipeEvent(Map<String, String> inputValues) {
-        StringBuilder commands = new StringBuilder();
-
+    private StringBuilder handleAddRecipeEvent(Map<String, String> inputValues) {
+        commands.append("add ");
         // Check if the name has been changed and append the name prefix and value.
         if (inputValues.containsKey("name")) {
             commands.append(" n/");
@@ -182,8 +182,7 @@ public class AddRecipeForm extends UiPart<Region> {
                 commands.append(tag);
             }
         }
-        String commandText = "add " + commands.toString(); 
-        return commandText;
+        return commands;
     }
 
     /**
