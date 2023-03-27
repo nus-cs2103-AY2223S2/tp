@@ -221,9 +221,9 @@ since it is similar to, for example, finding files in IDEs, or the well known
 [fzf](https://github.com/junegunn/fzf) tool. However, here are a few things you
 might wish to note:
 
-* The fuzzy query is performed on clients and projects simultaneously. That is,
-  when you query for something, say, "coc", this query is applied to both
-  clients and projects, regardless of which tab is currently being displayed.
+* Each fuzzy query will be applied to both clients and project. That is, when
+  you query for something, say, "coc", this query is applied to both the client
+  and project tabs, regardless of which tab is currently being displayed.
 * **TODO: add more gotchas**
 
 --------------------------------------------------------------------------------------------------------------------
