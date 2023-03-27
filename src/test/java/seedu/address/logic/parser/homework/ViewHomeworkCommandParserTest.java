@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.homework;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
