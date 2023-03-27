@@ -51,6 +51,8 @@ You can refer to the changes in this [diff](https://github.com/se-edu/addressboo
 
 Run `Main#main` and try out your new `RemarkCommand`. If everything went well, you should see something like this:
 
+:information_source: The screenshot below is from AddressBook 3, but the result is the same as SportSync, for the sake of tutorial.
+
 ![Output displayed](../images/add-remark/RemarkHello.png)
 
 ## Change `RemarkCommand` to throw an exception
@@ -262,7 +264,8 @@ Then insert the following into [`main/resources/view/PersonListCard.fxml`](https
 <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
 ```
 
-That’s it! Fire up the application again and you should see something like this:
+That’s it! Fire up the application again, and you should see something like this:
+:information_source: The screenshot below is from AddressBook 3, but the result is the same as SportSync, for the sake of tutorial.
 
 ![$remark shows up in each entry](../images/add-remark/$Remark.png)
 
@@ -317,6 +320,8 @@ public PersonCard(Person person, int displayedIndex) {
 }
 ```
 
+:information_source: The screenshot below is from AddressBook 3, but the result is the same as SportSync, for the sake of tutorial.
+
 ![The remark label is bound properly!](../images/add-remark/RemarkBound.png)
 
 ## Putting everything together
@@ -345,7 +350,7 @@ save it with `Model#setPerson()`.
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getPayRate(),
                 personToEdit.getAddress(), remark, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
@@ -364,6 +369,8 @@ save it with `Model#setPerson()`.
         return String.format(message, personToEdit);
     }
 ```
+
+:information_source: The screenshot below is from AddressBook 3, but the result is the same as SportSync, for the sake of tutorial.
 
 ![Congratulations!](../images/add-remark/RemarkComplete.png)
 
@@ -398,4 +405,4 @@ You should end up with a test that looks something like [this](https://github.co
 
 ## Conclusion
 
-This concludes the tutorial for adding a new `Command` to AddressBook.
+This concludes the tutorial for adding a new `Command` to SportSync.

@@ -65,6 +65,8 @@ Unfortunately, there are usages of `Address` that IntelliJ IDEA cannot identify.
 
 Places of interest to look out for would be resources used by the application. `main/resources` contains images and `fxml` files used by the application and `test/resources` contains test data. For example, there is a `$address` in each `PersonCard` that has not been removed nor identified.
 
+:information_source: The screenshot below is from AddressBook 3, but the result is the same as SportSync, for the sake of tutorial.
+
 ![$address](../images/remove/$address.png)
 
 A quick look at the `PersonCard` class and its `fxml` file quickly reveals why it slipped past the automated refactoring.
@@ -100,13 +102,12 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
 
 ```json
 {
-  "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
-    "payRate": "hans@example.com",
-    "address": "4th street",
-     "sessionString": "17-03-2022 13:00 to 17-03-2022 14:00"
-  } ]
+   "persons": [ {
+      "name": "Person with invalid name field: Ha!ns Mu@ster",
+      "phone": "9482424",
+      "address": "4th street",
+      "payRate": "10"
+   } ]
 }
 ```
 
