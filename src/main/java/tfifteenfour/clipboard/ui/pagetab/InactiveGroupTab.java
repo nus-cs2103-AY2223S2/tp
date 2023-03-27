@@ -15,6 +15,9 @@ public class InactiveGroupTab extends UiPart<Region> {
     @FXML
     private Label name;
 
+    /**
+     * Creates an InactiveGroupTab
+     */
     public InactiveGroupTab() {
         super(FXML);
         name.setText("Groups");

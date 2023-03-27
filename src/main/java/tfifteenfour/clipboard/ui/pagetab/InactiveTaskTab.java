@@ -15,6 +15,9 @@ public class InactiveTaskTab extends UiPart<Region> {
     @FXML
     private Label name;
 
+    /**
+     * Creates an InactiveTaskTab
+     */
     public InactiveTaskTab() {
         super(FXML);
         name.setText("Tasks");

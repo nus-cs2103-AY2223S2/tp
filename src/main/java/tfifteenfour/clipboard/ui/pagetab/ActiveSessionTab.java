@@ -15,6 +15,9 @@ public class ActiveSessionTab extends UiPart<Region> {
     @FXML
     private Label name;
 
+    /**
+     * Creates an ActiveSessionTab
+     */
     public ActiveSessionTab() {
         super(FXML);
         name.setText("Sessions");

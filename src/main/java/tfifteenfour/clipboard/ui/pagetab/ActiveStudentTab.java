@@ -15,6 +15,9 @@ public class ActiveStudentTab extends UiPart<Region> {
     @FXML
     private Label name;
 
+    /**
+     * Creates an ActiveStudentTab
+     */
     public ActiveStudentTab() {
         super(FXML);
         name.setText("Students");

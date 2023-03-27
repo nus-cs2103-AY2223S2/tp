@@ -15,6 +15,9 @@ public class ActiveGroupTab extends UiPart<Region> {
     @FXML
     private Label name;
 
+    /**
+     * Creates an ActiveGroupTab
+     */
     public ActiveGroupTab() {
         super(FXML);
         name.setText("Groups");

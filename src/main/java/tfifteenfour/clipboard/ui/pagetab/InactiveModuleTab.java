@@ -15,6 +15,9 @@ public class InactiveModuleTab extends UiPart<Region> {
     @FXML
     private Label name;
 
+    /**
+     * Creates an InactiveModuleTab
+     */
     public InactiveModuleTab() {
         super(FXML);
         name.setText("Modules");

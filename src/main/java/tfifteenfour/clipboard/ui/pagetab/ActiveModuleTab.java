@@ -15,6 +15,9 @@ public class ActiveModuleTab extends UiPart<Region> {
     @FXML
     private Label name;
 
+    /**
+     * Creates an ActiveModuleTab
+     */
     public ActiveModuleTab() {
         super(FXML);
         name.setText("Modules");

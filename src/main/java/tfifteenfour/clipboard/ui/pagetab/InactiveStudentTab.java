@@ -15,6 +15,9 @@ public class InactiveStudentTab extends UiPart<Region> {
     @FXML
     private Label name;
 
+    /**
+     * Creates an InactiveStudentTab
+     */
     public InactiveStudentTab() {
         super(FXML);
         name.setText("Students");

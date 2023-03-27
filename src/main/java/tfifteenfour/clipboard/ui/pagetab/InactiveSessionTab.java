@@ -15,6 +15,9 @@ public class InactiveSessionTab extends UiPart<Region> {
     @FXML
     private Label name;
 
+    /**
+     * Creates an InactiveSessionTab
+     */
     public InactiveSessionTab() {
         super(FXML);
         name.setText("Sessions");

@@ -15,6 +15,9 @@ public class ActiveTaskTab extends UiPart<Region> {
     @FXML
     private Label name;
 
+    /**
+     * Creates an ActiveTaskTab
+     */
     public ActiveTaskTab() {
         super(FXML);
         name.setText("Tasks");
