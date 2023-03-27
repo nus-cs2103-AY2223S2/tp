@@ -5,7 +5,7 @@ title: User Guide
 <img src="./images/sprINT.png" />
 
 * Table of Contents
- {:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -35,8 +35,8 @@ making it a great asset in managing your internship applications.
 2.3 Copy the file to the folder you want to use as the _home folder_ for your sprINT application.
 
 2.4 Open a command terminal, enter `cd` to the folder you put the jar file in, and use the `java -jar sprINT.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data already.<br>
-   ![Ui](images/Ui.png)
+A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data already.<br>
+![Ui](images/Ui.png)
 
 2.5 Type the command in the command box and press Enter to execute it.
 e.g. typing **`help`** and pressing Enter will open the help window.<br>
