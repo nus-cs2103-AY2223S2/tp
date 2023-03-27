@@ -97,6 +97,7 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+:warning: A field cannot contain `/`.
 </div>
 
 ### 2.1 Viewing help : `help`
