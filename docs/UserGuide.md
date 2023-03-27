@@ -208,6 +208,8 @@ Format: `addScore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 **:information_source: Note about format of `DATE`:**<br>
 * The format of `DATE` must be `yyyy-MM-DD`. For example, `2022-02-20` represents 20 February 2022.
 
+</div>
+
 Examples:
 
 * `list` followed by `addScore 2 l/Midterm Math Paper v/99.5 d/2023-03-02` adds a `Midterm Math Paper` score with a 

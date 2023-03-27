@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -43,9 +44,10 @@ public class TaskList implements Iterable<Task> {
     public void add(Task toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateTaskException(); //TODO
+            throw new DuplicateTaskException();
         }
         internalList.add(toAdd);
+        Collections.sort(internalList);
     }
 
     /**
@@ -66,6 +68,7 @@ public class TaskList implements Iterable<Task> {
         }
 
         internalList.set(index, editedTask);
+        Collections.sort(internalList);
     }
 
     /**
@@ -77,6 +80,45 @@ public class TaskList implements Iterable<Task> {
         if (!internalList.remove(toRemove)) {
             throw new TaskNotFoundException();
         }
+    }
+
+    /**
+     * Marks the given task from the list as complete.
+     * The task must exist in the list.
+     */
+    public void markTaskAsComplete(Task toMark) {
+        requireNonNull(toMark);
+        if (!contains(toMark)) {
+            throw new TaskNotFoundException();
+        }
+        toMark.markTaskAsComplete();
+        Collections.sort(internalList);
+    }
+
+    /**
+     * Marks the given task from the list as in progress.
+     * The task must exist in the list.
+     */
+    public void markTaskAsInProgress(Task toMark) {
+        requireNonNull(toMark);
+        if (!contains(toMark)) {
+            throw new TaskNotFoundException();
+        }
+        toMark.markTaskAsInProgress();
+        Collections.sort(internalList);
+    }
+
+    /**
+     * Marks the given task from the list as late.
+     * The task must exist in the list.
+     */
+    public void markTaskAsLate(Task toMark) {
+        requireNonNull(toMark);
+        if (!contains(toMark)) {
+            throw new TaskNotFoundException();
+        }
+        toMark.markTaskAsLate();
+        Collections.sort(internalList);
     }
 
     public void setTasks(TaskList replacement) {
@@ -95,14 +137,6 @@ public class TaskList implements Iterable<Task> {
         }
 
         internalList.setAll(tasks);
-    }
-
-    public int size() {
-        return internalList.size();
-    }
-
-    public Task get(int index) {
-        return internalList.get(index);
     }
 
     /**
@@ -150,16 +184,5 @@ public class TaskList implements Iterable<Task> {
             }
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-
-        if (!internalList.isEmpty()) {
-            internalList.forEach(builder::append);
-        }
-
-        return builder.toString();
     }
 }
