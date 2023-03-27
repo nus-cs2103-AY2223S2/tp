@@ -173,3 +173,6 @@ _Details coming soon ..._
 | **Delete**       | `:d [index]`<br> e.g., `:d 3`                                                            |
 | **Exit**         | `:wq!`, `:q!`,,`:wq`,`:q`                                                                |
 | **Help**         | `help`                                                                                   |
+
+
+
