@@ -180,41 +180,60 @@ This section aims to provide a brief overview of the features available in Power
 
 ## General Command for Student Related features
 
-* For all following features that are related to `students`, start first by typing `student <CLASS>` before adding the respective command for the feature.
+* For all following features that are related to `students`, start first by typing `student <CLASS>` before adding the respective command for the feature.<br>
+* Compulsory field are inside <> while optional fields are in []
   <a name="addstudent"/>
 
 ### Adding a Student: `add`
 
 Adds a student to the database
 
-Format: `add n/<NAME> in/<INDEX_NUMBER> s/<SEX> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls<NOK_RELATIONSHIP_TO_STUDENT> [a/<REISDENTIAL_ADDRESS> ageS/<AGE> imgS/<ABSOLUTE_PATH_TO_IMAGE> eS/<EMAIL_ADDRESS> pnS/<PHONE_NUMBER> cca/<CCA>]`
+Format: `add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls<NOK_RELATIONSHIP_TO_STUDENT> [s/<SEX> a/<REISDENTIAL_ADDRESS> ageS/<AGE> imgS/<ABSOLUTE_PATH_TO_IMAGE> eS/<EMAIL_ADDRESS> pnS/<PHONE_NUMBER> cca/<CCA>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person with the same name and same class but different index number can exist.
 </div>
 
 Examples:
-* `student 1A add n/TanAhCow in/03 s/m pn/TanAhNiu pnP/91234567 rls/Father` <br>
+* `student 1A add n/TanAhCow in/03 pn/TanAhNiu pnP/91234567 rls/Father` <br>
 
-  *Above is a situation where the student’s PHOTO_PATH and CCA are not provided!
-* `student 1B add n/Mary Goh in/23 s/F pn/Goh Siew Mai pnP/91234567 rls/Mother a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) ageS/15 imgS/C:\Users\teacher\OneDrive\Desktop\Pictures\marygoh.jpg eS/marygoh@gmail.com pnS/65656565 cca/Chess Club`
+  *Above is a situation where some of the student's information is not given!
+* `student 1A add n/Tan Ah Cow in/13 s/M pn/Tan Ah Niu pnP/91234567 rls/Father a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) ageS/14 imgS/C:// eS/tanahcow@gmail.com pnS/91234567 cca/Captain Ball att/T `
+
+Imagesource will be displayed in decreasing priority: <br>
+* Absolute or relative file path
+* images/<STUDENT_NAME><STUDENT_CLASS>.png
+* Default Image (?) <br>
 
 Note: <br>
-User is able to leave the following categories unfilled by simply not putting their respective "/"
-1. Address
-2. Age
-3. Absolute path to image
-4. Email Address
-5. Phone Number
-6. CCA <br><br>
+1. User cannot create two students of the same index number and same class
+2. Upon creation of a student, a new parent is also created if the parent does not exist based on the particulars given for the parent. Otherwise, the student will get binded to the matching parent.
 
+<a name = "attendance" />
 
+### Marking attendance for student: `attendance`
 
+Marks the student as being present or allow you to define that the student was present
+Ensure that if you mark the same date for the same student as being present, it will prompt that you have indeed added the same date (for verification)
+
+Format : `attendance in/<INDEX_NUMBER> att/<DATE_PRESENT>`
+
+Examples: 
+* `student 3A attendance in/25 att/T`
+* `student 3A attendance in/25 att/25/02/2023
+
+Date is in DD/MM/YYYY format <br>
+This date can be set to:
+* T (Indicates that the student was present today)
+* F (Default when adding student)
+* Specific date (Used when you want to update the attendance of the student in the past)
 <a name="gradestudent"/>
 
 ### Adding a grade for student : `grade`
 
-Adds a test/homework assignment for the student corresponding to the INDEX_NUMBER in the CLASS
+Adds a test OR homework grade for the student corresponding to the `INDEX_NUMBER` in the `CLASS`
+
+Duplicate test/homework  is checked through having the same name
 
 Format: `grade in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>] [score/<score> deadline/<DEADLINE(DD/MM/YYYY)> weightage/<WEIGHTAGE>] [hwdone/<HOMEWORK_DONE(true/false)>]`
 
@@ -234,7 +253,9 @@ Examples:
 
 ### Deleting a grade for student : `gradedelete`
 
-Deletes a test/homework assignment for the student corresponding to the INDEX_NUMBER in the CLASS
+Deletes a test OR homework grade for the student corresponding to the `INDEX_NUMBER` in the `CLASS`
+
+Duplicate test/homework  is checked through having the same name
 
 Format: `gradedelete in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>]`
 
@@ -267,12 +288,15 @@ Format: `list`
 Examples:
 * `student 1A list`
 * `student 1B list`
+
+**Expected Outcome:**
+![list message](images/list.png)
   
 <a name = "editstudent" /> <br><br>
 
 ### Edit Student:  `edit`
 
-Edits personal details of students
+Edits personal details of students for the student corresponding to the `INDEX_NUMBER` in the `CLASS` based on the particulars given by the user.
 
 Format: `edit in/<INDEX_NUMBER (of student)> [nn/<NEWNAME> nin/<NEWINDEXNUMBER> nc/<NEWCLASS> s/<SEX> ageS/<STUDENT AGE>
 imgS/<IMAGE> cca/<CCA> att/<ATTENDANCE> com/<COMMENTS> pnS/<STUDENT PHONE NUMBER> eS/<STUDENT EMAIL> a/<ADDRESS>
@@ -283,10 +307,10 @@ Examples:
 * `student 1A edit in/03 cca/badminton ageS/23`
 
 **Expected Outcome:**
-* Edited student: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 03; Sex: M;
+* Edited student: TanAhCow; Student Class: 1A; Index Number: 03; Sex: M;
 * Student Age: Insert student age here!; Image Path: Insert student image here!;
 * Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: basketball
-* Edited student: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 03; Sex: M;
+* Edited student: TanAhCow; Student Class: 1B; Index Number: 03; Sex: M;
 * Student Age: 23; Image Path: Insert student image here!; Student Email: Insert student email here!;
 * Student Phone: Insert student phone number here!; CCA: badminton
 
@@ -294,7 +318,7 @@ Examples:
 
 ### Locating persons by name:  `find`
 
-Finds student by student id
+Finds and generates all students with matching student name and class
 
 Format: `find <INDEX_NUMBER>  `
 
@@ -317,7 +341,12 @@ Format: `delete in/<INDEX_NUMBER>`
 Examples:
 * `student 1A delete in/2`
 
-The whole student will be removed from the database
+**Expected Outcome:**
+
+Deleted Student: TanAhCow; Student Class: 1A; Index Number: 14; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
+
+Deleted Student: TanAhCow; Student Class: 1B; Index Number: 23; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
+
 
 <a name = "parent" />
 
@@ -443,8 +472,22 @@ Place all your parent images in this format: `images/parent/<PARENT_NAME>.png` <
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+Feel free to ask any questions [here](https://docs.google.com/forms/d/e/1FAIpQLScpZ7Gg52KQ8LRsaq_6rXoPG4nYCClzmXKeRK6lyoYP1ZQV0w/viewform).
+
+--------------------------------------------------------------------------------------------------------------------
+
+**Q**: Where is the information stored?<br>
+**A**: Data is stored locally in the ./data folder. The student and class information is stored in the file pcclass.json whereas the parents information is stored in parents.json
+
+**Q**: What is CLI?<br>
+**A**: Command Line Interface (CLI) is a text based user interface used to run the
+program. Essentially you do not need a mouse to run this program at all!
+
+**Q**: Do I need to pay for this product?<br>
+**A**: No! We made a commitment to keep this program free for all users. Feel free to run and use our program, but remember to like, share and comment down below any feedback.
+
+**Q**: Why is my command not working?<br>
+**A**: PowerConnect is particular with the prefixes (/) and they need to be in the exact format as specified in the user guide. Don’t worry, with practice, it would be second nature to you.
 
 --------------------------------------------------------------------------------------------------------------------
 <a name = "summary" /> </a>
