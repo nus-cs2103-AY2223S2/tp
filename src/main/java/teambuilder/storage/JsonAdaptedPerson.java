@@ -124,7 +124,7 @@ class JsonAdaptedPerson {
         if (!Address.isValidAddress(major)) {
             throw new IllegalValueException(Major.MESSAGE_CONSTRAINTS);
         }
-        final Major modelMajor = new Major(major);
+        final Major modelMajor = Major.of(major);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
