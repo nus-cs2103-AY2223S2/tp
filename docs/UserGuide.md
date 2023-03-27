@@ -145,8 +145,9 @@ Clears all events in Paidlancers.
 
 - Clears all events in the event book.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+<div markdown="span" class="alert alert-warning">:exclamation: Caution:
+This is a destructive command. Once you clear all events, there is no way to recover them!
+Please be careful when using this command.
 </div>
 
 ### Create new Event: `newevent` <a id = "create-new-event"></a>
