@@ -40,17 +40,12 @@ public class TimetableDateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        System.out.println("helu1");
 
         model.updateFocusDate(jobDate);
         model.updateSortedDeliveryJobList(SORTER);
-        /*model.getSortedDeliveryJobListByDate();*/
         model.updateSortedDeliveryJobListByDate();
         model.updateWeekDeliveryJobList(jobDate);
 
-        System.out.println(model.getSortedDeliveryJobList());
-        System.out.println(model.getSortedDeliveryJobListByDate());
-        System.out.print(model.getWeekDeliveryJobList());
         String showTimetableMessage = String.format(SHOWING_TIMETABLE_MESSAGE, jobDate.toString());
         return new CommandResult(showTimetableMessage, false, true, false, false, false);
     }

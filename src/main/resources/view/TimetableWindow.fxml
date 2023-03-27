@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Timetable" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="800.0" onCloseRequest="#handleExit" title="Timetable" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <icons>
       <Image url="@/images/clock.png" />
    </icons>
@@ -39,12 +39,12 @@
                   <Insets bottom="5" left="10" right="10" top="5" />
                </padding>
             </StackPane>
-            <StackPane fx:id="timetablePlaceholder" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+            <StackPane fx:id="timetablePlaceholder" maxHeight="1.7976931348623157E308" minWidth="800.0" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets bottom="3.0" />
                </VBox.margin>
             </StackPane>
-            <StackPane fx:id="statusbarPlaceholder" maxHeight="25.0" prefHeight="25.0" style="-fx-background-color: GREY;" VBox.vgrow="ALWAYS" />
+            <StackPane fx:id="statusbarPlaceholder" alignment="CENTER_LEFT" maxHeight="25.0" prefHeight="25.0" style="-fx-background-color: GREY;" VBox.vgrow="ALWAYS" />
 
          </VBox>
       </Scene>

@@ -50,7 +50,34 @@ public class DayOfMonthPanel extends UiPart<Region> {
         this.primaryStage = primaryStage;
 
         int focusDayOfWeek = focusDate.getDayOfWeek().getValue();
+        setAllDateText(focusDayOfWeek);
+        setAllFont(12.0);
 
+        dayOfMonthPanel.getChildren().addAll(day1, day2, day3, day4, day5, day6, day7);
+        dayOfMonthPanel.setSpacing((primaryStage.getWidth() - 200) / 6);
+        dayOfMonthPanel.setAlignment(Pos.CENTER);
+    }
+
+    /**
+     * Sets all text font to font size
+     * @param fontSize
+     */
+    private void setAllFont(double fontSize) {
+        day1.setFont(new Font(fontSize));
+        day2.setFont(new Font(fontSize));
+        day3.setFont(new Font(fontSize));
+        day4.setFont(new Font(fontSize));
+        day5.setFont(new Font(fontSize));
+        day6.setFont(new Font(fontSize));
+        day7.setFont(new Font(fontSize));
+
+    }
+
+    /**
+     * Sets day of month text for all days
+     * @param focusDayOfWeek day in week of focus date
+     */
+    private void setAllDateText(int focusDayOfWeek) {
         int day1Text = focusDate.plusDays(1 - focusDayOfWeek).getDayOfMonth();
         int day2Text = focusDate.plusDays(2 - focusDayOfWeek).getDayOfMonth();
         int day3Text = focusDate.plusDays(3 - focusDayOfWeek).getDayOfMonth();
@@ -67,16 +94,5 @@ public class DayOfMonthPanel extends UiPart<Region> {
         day6 = new Text(String.valueOf(day6Text));
         day7 = new Text(String.valueOf(day7Text));
 
-        day1.setFont(new Font(12));
-        day2.setFont(new Font(12));
-        day3.setFont(new Font(12));
-        day4.setFont(new Font(12));
-        day5.setFont(new Font(12));
-        day6.setFont(new Font(12));
-        day7.setFont(new Font(12));
-
-        dayOfMonthPanel.getChildren().addAll(day1, day2, day3, day4, day5, day6, day7);
-        dayOfMonthPanel.setSpacing((primaryStage.getWidth() - 200) / 6);
-        dayOfMonthPanel.setAlignment(Pos.CENTER);
     }
 }

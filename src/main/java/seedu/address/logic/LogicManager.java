@@ -149,6 +149,7 @@ public class LogicManager implements Logic {
 
     @Override
     public void updateWeekDeliveryJobList(LocalDate focusDate) {
+        logger.info("----------------[Update focus date to " + focusDate.toString() + "]");
         model.updateWeekDeliveryJobList(focusDate);
     };
 

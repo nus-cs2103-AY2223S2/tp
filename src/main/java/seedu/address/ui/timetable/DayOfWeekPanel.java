@@ -52,25 +52,41 @@ public class DayOfWeekPanel extends UiPart<Region> {
         sat = new Text("Sat");
         sun = new Text("Sun");
 
-        mon.setFont(new Font(18));
-        tue.setFont(new Font(18));
-        wed.setFont(new Font(18));
-        thur.setFont(new Font(18));
-        fri.setFont(new Font(18));
-        sat.setFont(new Font(18));
-        sun.setFont(new Font(18));
-
-
-        mon.setWrappingWidth(60);
-        tue.setWrappingWidth(60);
-        wed.setWrappingWidth(60);
-        thur.setWrappingWidth(60);
-        fri.setWrappingWidth(60);
-        sat.setWrappingWidth(60);
-        sun.setWrappingWidth(60);
+        setAllFont(18.0);
+        setAllWrappingWidth(60.0);
 
         dayOfWeekPanel.getChildren().addAll(mon, tue, wed, thur, fri, sat, sun);
         dayOfWeekPanel.setSpacing((primaryStage.getWidth() - 420) / 7);
         dayOfWeekPanel.setAlignment(Pos.CENTER);
+    }
+
+    /**
+     * Sets all text font to size
+     * @param fontSize
+     */
+    private void setAllFont(double fontSize) {
+        mon.setFont(new Font(fontSize));
+        tue.setFont(new Font(fontSize));
+        wed.setFont(new Font(fontSize));
+        thur.setFont(new Font(fontSize));
+        fri.setFont(new Font(fontSize));
+        sat.setFont(new Font(fontSize));
+        sun.setFont(new Font(fontSize));
+
+    }
+
+    /**
+     * Sets all text wrapping width
+     * @param widthSize
+     */
+    private void setAllWrappingWidth(double widthSize) {
+        mon.setWrappingWidth(widthSize);
+        tue.setWrappingWidth(widthSize);
+        wed.setWrappingWidth(widthSize);
+        thur.setWrappingWidth(widthSize);
+        fri.setWrappingWidth(widthSize);
+        sat.setWrappingWidth(widthSize);
+        sun.setWrappingWidth(widthSize);
+
     }
 }

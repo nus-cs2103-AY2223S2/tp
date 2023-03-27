@@ -95,7 +95,7 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing timetable.");
+        logger.fine("Showing timetable of week of " + focusDate.toString());
         getRoot().show();
         getRoot().centerOnScreen();
     }

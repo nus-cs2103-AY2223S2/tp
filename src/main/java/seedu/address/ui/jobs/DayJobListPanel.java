@@ -14,7 +14,7 @@ import seedu.address.model.jobs.DeliveryList;
 import seedu.address.ui.UiPart;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of jobs divided into slots in day.
  */
 public class DayJobListPanel extends UiPart<Region> {
     private static final String FXML = "DayJobListPane.fxml";
@@ -46,21 +46,6 @@ public class DayJobListPanel extends UiPart<Region> {
         addJobListToSlot(jobList3, jobListInDay.get(2));
         addJobListToSlot(jobList4, jobListInDay.get(3));
         addJobListToSlot(jobList5, jobListInDay.get(4));
-
-        /*jobList1.setItems(FXCollections.observableArrayList(jobListInDay.get(0)));
-        jobList1.setCellFactory(listView -> new DayJobListViewCell());
-
-        jobList2.setItems(FXCollections.observableArrayList(jobListInDay.get(1)));
-        jobList2.setCellFactory(listView -> new DayJobListViewCell());
-
-        jobList3.setItems(FXCollections.observableArrayList(jobListInDay.get(2)));
-        jobList3.setCellFactory(listView -> new DayJobListViewCell());
-
-        jobList4.setItems(FXCollections.observableArrayList(jobListInDay.get(3)));
-        jobList4.setCellFactory(listView -> new DayJobListViewCell());
-
-        jobList5.setItems(FXCollections.observableArrayList(jobListInDay.get(4)));
-        jobList5.setCellFactory(listView -> new DayJobListViewCell());*/
     }
 
     private void addJobListToSlot(ListView<DeliveryJob> jobSlot, ArrayList<DeliveryJob> jobList) {

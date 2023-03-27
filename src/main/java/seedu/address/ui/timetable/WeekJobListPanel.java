@@ -53,22 +53,42 @@ public class WeekJobListPanel extends UiPart<Region> {
         deliveryJobListPanelPlaceholder6 = new StackPane();
         deliveryJobListPanelPlaceholder7 = new StackPane();
 
-        deliveryJobListPanelPlaceholder1.setStyle("-fx-background-color: DARKCYAN");
-        deliveryJobListPanelPlaceholder2.setStyle("-fx-background-color: DARKCYAN");
-        deliveryJobListPanelPlaceholder3.setStyle("-fx-background-color: DARKCYAN");
-        deliveryJobListPanelPlaceholder4.setStyle("-fx-background-color: DARKCYAN");
-        deliveryJobListPanelPlaceholder5.setStyle("-fx-background-color: DARKCYAN");
-        deliveryJobListPanelPlaceholder6.setStyle("-fx-background-color: DARKCYAN");
-        deliveryJobListPanelPlaceholder7.setStyle("-fx-background-color: DARKCYAN");
+        setAllPlaceholderBackgroundColor("DARKCYAN");
+        setAllPalceholderPrefWidth((primaryStage.getWidth() - 86.1) / 6);
+        addAllPlaceholderJobs();
 
-        deliveryJobListPanelPlaceholder1.setPrefWidth(102.0);
-        deliveryJobListPanelPlaceholder2.setPrefWidth(102.0);
-        deliveryJobListPanelPlaceholder3.setPrefWidth(102.0);
-        deliveryJobListPanelPlaceholder4.setPrefWidth(102.0);
-        deliveryJobListPanelPlaceholder5.setPrefWidth(102.0);
-        deliveryJobListPanelPlaceholder6.setPrefWidth(102.0);
-        deliveryJobListPanelPlaceholder7.setPrefWidth(102.0);
 
+        jobListPanel.getChildren().addAll(deliveryJobListPanelPlaceholder1, deliveryJobListPanelPlaceholder2,
+                deliveryJobListPanelPlaceholder3, deliveryJobListPanelPlaceholder4,
+                deliveryJobListPanelPlaceholder5, deliveryJobListPanelPlaceholder6,
+                deliveryJobListPanelPlaceholder7);
+        jobListPanel.setSpacing(12.3);//(primaryStage.getWidth() - 714) / 7);
+        jobListPanel.setAlignment(Pos.CENTER);
+    }
+
+    private void setAllPlaceholderBackgroundColor(String backgroundColor) {
+        deliveryJobListPanelPlaceholder1.setStyle("-fx-background-color: " + backgroundColor);
+        deliveryJobListPanelPlaceholder2.setStyle("-fx-background-color: " + backgroundColor);
+        deliveryJobListPanelPlaceholder3.setStyle("-fx-background-color: " + backgroundColor);
+        deliveryJobListPanelPlaceholder4.setStyle("-fx-background-color: " + backgroundColor);
+        deliveryJobListPanelPlaceholder5.setStyle("-fx-background-color: " + backgroundColor);
+        deliveryJobListPanelPlaceholder6.setStyle("-fx-background-color: " + backgroundColor);
+        deliveryJobListPanelPlaceholder7.setStyle("-fx-background-color: " + backgroundColor);
+
+    }
+
+    private void setAllPalceholderPrefWidth(double widthSize) {
+        deliveryJobListPanelPlaceholder1.setPrefWidth(widthSize);
+        deliveryJobListPanelPlaceholder2.setPrefWidth(widthSize);
+        deliveryJobListPanelPlaceholder3.setPrefWidth(widthSize);
+        deliveryJobListPanelPlaceholder4.setPrefWidth(widthSize);
+        deliveryJobListPanelPlaceholder5.setPrefWidth(widthSize);
+        deliveryJobListPanelPlaceholder6.setPrefWidth(widthSize);
+        deliveryJobListPanelPlaceholder7.setPrefWidth(widthSize);
+
+    }
+
+    private void addAllPlaceholderJobs() {
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder1, logic.getDayofWeekJob(1));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder2, logic.getDayofWeekJob(2));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder3, logic.getDayofWeekJob(3));
@@ -76,15 +96,6 @@ public class WeekJobListPanel extends UiPart<Region> {
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder5, logic.getDayofWeekJob(5));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder6, logic.getDayofWeekJob(6));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder7, logic.getDayofWeekJob(7));
-
-
-        jobListPanel.getChildren().addAll(deliveryJobListPanelPlaceholder1, deliveryJobListPanelPlaceholder2,
-                deliveryJobListPanelPlaceholder3, deliveryJobListPanelPlaceholder4,
-                deliveryJobListPanelPlaceholder5, deliveryJobListPanelPlaceholder6,
-                deliveryJobListPanelPlaceholder7);
-        jobListPanel.setSpacing((primaryStage.getWidth() - 714) / 7);
-        jobListPanel.setAlignment(Pos.CENTER);
-
 
     }
 
