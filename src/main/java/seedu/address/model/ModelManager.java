@@ -119,7 +119,7 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         this.addressBook.removePerson(target);
-        this.userData.deletePersonFromEvents(target);
+        this.userData.deletePersonFromAllEvents(target);
     }
 
     @Override
@@ -180,6 +180,11 @@ public class ModelManager implements Model {
     @Override
     public void tagPersonToEvent(Index index, Person p) {
         this.userData.tagPersonToEvent(index, p);
+    }
+
+    @Override
+    public void untagPersonFromEvent(Index index, Person p) {
+        this.userData.untagPersonFromEvent(index, p);
     }
     //=========== Filtered Person List Accessors =============================================================
 

@@ -110,7 +110,7 @@ public class UniqueEventList implements Iterable<Event> {
     /**
      * Removes person from all events in the event list.
      */
-    public void deletePerson(Person target) {
+    public void deletePersonFromAllEvents(Person target) {
         for (Event event: this.internalList) {
             if (event.hasTaggedPerson(target)) {
                 event.deleteTaggedPerson(target);
@@ -133,6 +133,23 @@ public class UniqueEventList implements Iterable<Event> {
         Event eventToBeAddedTo = this.internalList.get(zeroBasedIndex);
 
         eventToBeAddedTo.addTaggedPerson(p);
+    }
+
+    /**
+     * Untags a person from an event.
+     */
+    public void untagPersonFromEvent(Index index, Person p) {
+        requireAllNonNull(index, p);
+
+        int zeroBasedIndex = index.getZeroBased();
+
+        if (zeroBasedIndex > this.internalList.size() - 1 || zeroBasedIndex < 0) {
+            throw new PersonNotFoundException();
+        }
+
+        Event eventToBeRemovedFrom = this.internalList.get(zeroBasedIndex);
+
+        eventToBeRemovedFrom.deleteTaggedPerson(p);
     }
 
     /**

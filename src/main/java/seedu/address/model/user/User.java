@@ -91,12 +91,16 @@ public class User extends Person {
         return this.events;
     }
 
-    public void deletePersonFromEvents(Person target) {
-        this.events.deletePerson(target);
+    public void deletePersonFromAllEvents(Person target) {
+        this.events.deletePersonFromAllEvents(target);
     }
 
     public void tagPersonToEvent(Index index, Person p) {
         this.events.tagPersonToEvent(index, p);
+    }
+
+    public void untagPersonFromEvent(Index index, Person p) {
+        this.events.untagPersonFromEvent(index, p);
     }
 }
 

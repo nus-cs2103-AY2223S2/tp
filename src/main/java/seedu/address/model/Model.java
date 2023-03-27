@@ -135,6 +135,9 @@ public interface Model {
     /** Tags Person to an Event */
     void tagPersonToEvent(Index index, Person p);
 
+    /** Untags person from an Event */
+    void untagPersonFromEvent(Index index, Person p);
+
     /** Checks if {@code index} is a valid tab index. */
     boolean isValidTabIndex(Index index);
 

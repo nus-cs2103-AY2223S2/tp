@@ -67,15 +67,19 @@ public class UserData implements ReadOnlyUserData {
         return this.user.getValue().hasEvent(e);
     }
 
-    public void deletePersonFromEvents(Person target) {
-        this.user.get().deletePersonFromEvents(target);
+    public void deletePersonFromAllEvents(Person target) {
+        this.user.get().deletePersonFromAllEvents(target);
     }
 
     public void tagPersonToEvent(Index index, Person p) {
         this.user.get().tagPersonToEvent(index, p);
     }
 
+    public void untagPersonFromEvent(Index index, Person p) {
+        this.user.get().untagPersonFromEvent(index, p);
+    }
     //// util methods
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
