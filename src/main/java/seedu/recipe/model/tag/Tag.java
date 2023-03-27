@@ -9,8 +9,7 @@ import static seedu.recipe.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tag names should not be empty";
 
     public final String tagName;
 
@@ -29,7 +28,8 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        String whiteSpacesRemoved = test.replaceAll("\\s", "");
+        return whiteSpacesRemoved.length() != 0;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return tagName;
     }
 
 }

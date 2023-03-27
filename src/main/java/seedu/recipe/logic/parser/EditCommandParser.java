@@ -5,6 +5,7 @@ import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.Collection;
@@ -32,7 +33,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_STEP, PREFIX_TITLE,
-                        PREFIX_INGREDIENT, PREFIX_DESCRIPTION);
+                        PREFIX_INGREDIENT, PREFIX_DESCRIPTION, PREFIX_TAG);
 
         Index index;
 
@@ -60,7 +61,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setDesc(ParserUtil
                     .parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
-        // parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

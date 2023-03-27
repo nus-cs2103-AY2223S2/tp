@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.recipe.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 
@@ -22,6 +23,7 @@ import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.Title;
+import seedu.recipe.model.tag.Tag;
 
 /**
  * Edits the details of an existing recipe in the recipe book.
@@ -37,7 +39,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_INGREDIENT + "INGREDIENT] "
-            + "[" + PREFIX_STEP + "STEP]...";
+            + "[" + PREFIX_STEP + "STEP] "
+            + "[" + PREFIX_TAG + "TAG]...";
 
 
     public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Edited Recipe: %1$s";
@@ -95,7 +98,9 @@ public class EditCommand extends Command {
                 .orElse(recipeToEdit.getIngredients());
         List<Step> updatedSteps = editRecipeDescriptor.getSteps()
                 .orElse(recipeToEdit.getSteps());
-        return new Recipe(updatedTitle, updatedDesc, updatedIngredients, updatedSteps);
+        Set<Tag> updatedTags = editRecipeDescriptor.getTags()
+                .orElse(recipeToEdit.getTags());
+        return new Recipe(updatedTitle, updatedDesc, updatedIngredients, updatedSteps, updatedTags);
     }
 
     @Override
@@ -125,6 +130,7 @@ public class EditCommand extends Command {
         private Description desc;
         private Set<Ingredient> ingredients;
         private List<Step> steps;
+        private Set<Tag> tags;
 
         public EditRecipeDescriptor() {}
 
@@ -136,13 +142,14 @@ public class EditCommand extends Command {
             setDesc(toCopy.desc);
             setIngredients(toCopy.ingredients);
             setSteps(toCopy.steps);
+            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, desc, ingredients, steps);
+            return CollectionUtil.isAnyNonNull(title, desc, ingredients, steps, tags);
         }
 
         public void setTitle(Title title) {
@@ -177,6 +184,14 @@ public class EditCommand extends Command {
             return (steps != null) ? Optional.of(Collections.unmodifiableList(steps)) : Optional.empty();
         }
 
+        public void setTags(Set<Tag> tags) {
+            this.tags = tags;
+        }
+
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -195,7 +210,8 @@ public class EditCommand extends Command {
             return getTitle().equals(e.getTitle())
                     && getDesc().equals(e.getDesc())
                     && getIngredients().equals(e.getIngredients())
-                    && getSteps().equals(e.getSteps());
+                    && getSteps().equals(e.getSteps())
+                    && getTags().equals(e.getTags());
         }
     }
 }

@@ -13,6 +13,7 @@ import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.Title;
+import seedu.recipe.model.tag.Tag;
 
 /**
  * A utility class to help with building Recipe objects.
@@ -25,11 +26,14 @@ public class RecipeBuilder {
             new Ingredient("eggs"), new Ingredient("flour"));
     public static final List<Step> DEFAULT_STEPS = Arrays.asList(
             new Step("step 1"), new Step("step 2"));
+    public static final List<Tag> DEFAULT_TAGS = Arrays.asList(
+            new Tag("easy"), new Tag("snack"));
 
     private Title title;
     private Description desc;
     private Set<Ingredient> ingredients;
     private List<Step> steps;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code RecipeBuilder} with the default details.
@@ -39,6 +43,7 @@ public class RecipeBuilder {
         desc = new Description(DEFAULT_DESCRIPTION);
         ingredients = new HashSet<Ingredient>(DEFAULT_INGREDIENTS);
         steps = new ArrayList<Step>(DEFAULT_STEPS);
+        tags = new HashSet<Tag>(DEFAULT_TAGS);
     }
 
     /**
@@ -49,6 +54,7 @@ public class RecipeBuilder {
         desc = recipeToCopy.getDesc();
         ingredients = recipeToCopy.getIngredients();
         steps = recipeToCopy.getSteps();
+        tags = recipeToCopy.getTags();
     }
 
     /**
@@ -85,8 +91,17 @@ public class RecipeBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Tag} of the {@code Recipe} that we are building.
+     */
+    public RecipeBuilder withTags(String... tags) {
+        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+        this.tags = tagSet;
+        return this;
+    }
+
     public Recipe build() {
-        return new Recipe(title, desc, ingredients, steps);
+        return new Recipe(title, desc, ingredients, steps, tags);
     }
 
 }

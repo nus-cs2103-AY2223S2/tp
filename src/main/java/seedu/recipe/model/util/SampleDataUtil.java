@@ -27,7 +27,10 @@ public class SampleDataUtil {
                             new Ingredient("flour"))),
                     new ArrayList<Step>(Arrays.asList(
                             new Step("Test1"),
-                            new Step("Test2"))))
+                            new Step("Test2"))),
+                    new HashSet<Tag>(Arrays.asList(
+                            new Tag("snack"),
+                            new Tag("easy"))))
         };
     }
 

@@ -46,9 +46,9 @@ public class RecipeCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(recipe.getTitle().title);
         desc.setText(recipe.getDesc().description);
-        recipe.getIngredients().stream()
-                .sorted(Comparator.comparing(ingredient -> ingredient.ingredient))
-                .forEach(ingredient -> tags.getChildren().add(new Label(ingredient.ingredient)));
+        recipe.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

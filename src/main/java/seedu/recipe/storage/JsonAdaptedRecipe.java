@@ -15,6 +15,7 @@ import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.Title;
+import seedu.recipe.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Recipe}.
@@ -29,6 +30,7 @@ class JsonAdaptedRecipe {
     // Data fields
     private final Set<JsonAdaptedIngredient> ingredients = new HashSet<>();
     private final List<JsonAdaptedStep> steps = new ArrayList<>();
+    private final Set<JsonAdaptedTag> tags = new HashSet<>();
 
     /**
      * Constructs a {@code JsonAdaptedRecipe} with the given recipe details.
@@ -37,7 +39,8 @@ class JsonAdaptedRecipe {
     public JsonAdaptedRecipe(@JsonProperty("title") String title,
                              @JsonProperty("desc") String desc,
                              @JsonProperty("ingredients") Set<JsonAdaptedIngredient> ingredients,
-                             @JsonProperty("steps") List<JsonAdaptedStep> steps) {
+                             @JsonProperty("steps") List<JsonAdaptedStep> steps,
+                             @JsonProperty("tags") Set<JsonAdaptedTag> tags) {
         this.title = title;
         this.desc = desc;
         if (ingredients != null) {
@@ -45,6 +48,9 @@ class JsonAdaptedRecipe {
         }
         if (steps != null) {
             this.steps.addAll(steps);
+        }
+        if (tags != null) {
+            this.tags.addAll(tags);
         }
     }
 
@@ -60,6 +66,10 @@ class JsonAdaptedRecipe {
         steps.addAll(source.getSteps().stream()
                 .map(JsonAdaptedStep::new)
                 .collect(Collectors.toList()));
+
+        tags.addAll(source.getTags().stream()
+                    .map(JsonAdaptedTag::new)
+                    .collect(Collectors.toList()));
     }
 
     /**
@@ -75,6 +85,11 @@ class JsonAdaptedRecipe {
         final List<Step> modelSteps = new ArrayList<>();
         for (JsonAdaptedStep step : steps) {
             modelSteps.add(step.toModelType());
+        }
+
+        final List<Tag> recipeTags = new ArrayList<>();
+        for (JsonAdaptedTag tag: tags) {
+            recipeTags.add(tag.toModelType());
         }
 
         if (title == null) {
@@ -94,7 +109,8 @@ class JsonAdaptedRecipe {
         }
         final Description modelDesc = new Description(desc);
         final Set<Ingredient> modelIngredients = new HashSet<>(recipeIngredients);
-        return new Recipe(modelTitle, modelDesc, modelIngredients, modelSteps);
+        final Set<Tag> modelTags = new HashSet<>(recipeTags);
+        return new Recipe(modelTitle, modelDesc, modelIngredients, modelSteps, modelTags);
     }
 
 }

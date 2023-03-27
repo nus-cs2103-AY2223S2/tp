@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.recipe.testutil.Assert.assertThrows;
 
@@ -34,17 +35,22 @@ public class CommandTestUtil {
     public static final String VALID_STEPS_SOUP = "step 2";
     public static final String VALID_INGREDIENTS_CORNDOGS = "flour";
     public static final String VALID_INGREDIENTS_SOUP = "water";
+    public static final String VALID_TAGS_CORNDOGS = "easy";
+    public static final String VALID_TAGS_SOUP = "snack";
 
 
     public static final String TITLE_DESC_CORNDOGS = " " + PREFIX_TITLE + VALID_TITLE_CORNDOGS;
     public static final String DESC_DESC_CORNDOGS = " " + PREFIX_DESCRIPTION + VALID_DESC_CORNDOGS;
     public static final String STEP_DESC_CORNDOGS = " " + PREFIX_STEP + VALID_STEPS_CORNDOGS;
     public static final String INGREDIENT_DESC_CORNDOGS = " " + PREFIX_INGREDIENT + VALID_INGREDIENTS_CORNDOGS;
+    public static final String TAG_DESC_CORNDOGS = " " + PREFIX_TAG + VALID_TAGS_CORNDOGS;
+
 
     public static final String TITLE_DESC_SOUP = " " + PREFIX_TITLE + VALID_TITLE_SOUP;
     public static final String DESC_DESC_SOUP = " " + PREFIX_DESCRIPTION + VALID_DESC_SOUP;
     public static final String STEP_DESC_SOUP = " " + PREFIX_STEP + VALID_STEPS_SOUP;
     public static final String INGREDIENT_DESC_SOUP = " " + PREFIX_INGREDIENT + VALID_INGREDIENTS_SOUP;
+    public static final String TAG_DESC_SOUP = " " + PREFIX_TAG + VALID_TAGS_SOUP;
 
 
     public static final String INVALID_TITLE_DESC =
@@ -55,6 +61,8 @@ public class CommandTestUtil {
             " " + PREFIX_STEP + "boil water & flour"; // missing '@' symbol
     public static final String INVALID_INGREDIENT_DESC =
             " " + PREFIX_INGREDIENT; // empty string not allowed for addresses
+    public static final String INVALID_TAG_DESC =
+            " " + PREFIX_TAG; // empty string not allowed for tag
 
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -69,9 +77,11 @@ public class CommandTestUtil {
         DESC_CORNDOGS = new EditRecipeDescriptorBuilder().withTitle(VALID_TITLE_CORNDOGS)
                 .withDesc(VALID_DESC_CORNDOGS).withSteps(VALID_STEPS_CORNDOGS)
                 .withIngredients(VALID_INGREDIENTS_CORNDOGS)
+                .withTags(VALID_TAGS_CORNDOGS)
                 .build();
         DESC_SOUP = new EditRecipeDescriptorBuilder().withTitle(VALID_TITLE_SOUP)
                 .withDesc(VALID_DESC_SOUP).withSteps(VALID_STEPS_SOUP).withIngredients(VALID_INGREDIENTS_SOUP)
+                .withTags(VALID_TAGS_SOUP)
                 .build();
 
     }

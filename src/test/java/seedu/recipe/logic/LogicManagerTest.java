@@ -6,6 +6,7 @@ import static seedu.recipe.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.recipe.logic.commands.CommandTestUtil.DESC_DESC_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.INGREDIENT_DESC_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.STEP_DESC_CORNDOGS;
+import static seedu.recipe.logic.commands.CommandTestUtil.TAG_DESC_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.TITLE_DESC_CORNDOGS;
 import static seedu.recipe.testutil.Assert.assertThrows;
 import static seedu.recipe.testutil.TypicalRecipes.CORNDOGS;
@@ -80,7 +81,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + TITLE_DESC_CORNDOGS
-                + INGREDIENT_DESC_CORNDOGS + STEP_DESC_CORNDOGS + DESC_DESC_CORNDOGS;
+                + INGREDIENT_DESC_CORNDOGS + STEP_DESC_CORNDOGS + DESC_DESC_CORNDOGS + TAG_DESC_CORNDOGS;
         Recipe expectedRecipe = new RecipeBuilder(CORNDOGS).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addRecipe(expectedRecipe);
