@@ -302,7 +302,7 @@ Format: `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`
 
 Examples:
 * `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`<br>
-  ![result for 'addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045'](images/findAlexDavidResult.png)
+  ![result for 'addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045'](images/addpjResult.png)
 
 #### Editing a project: `editpj`
 
@@ -341,7 +341,7 @@ Format: `assign PERSON_INDEX PROJECT_INDEX`
 
 Examples:
 * `assign 1 1`<br>
-  ![result for 'assign 1 1'](images/findAlexDavidResult.png)
+  ![result for 'assign 1 1'](images/assignResult.png)
 
 #### Unassign a person from a project: `unassign`
 
