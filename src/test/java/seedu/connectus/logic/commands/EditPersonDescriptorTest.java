@@ -60,7 +60,7 @@ public class EditPersonDescriptorTest {
         // different tags -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND)
                 .withModules(VALID_MODULE_CS2103T, VALID_MODULE_CS2101).withCcas(VALID_CCA_ICS, VALID_CCA_NES)
-                .withCcaPositions(VALID_CCA_POSITION_PRESIDENT,VALID_CCA_POSITION_DIRECTOR).build();
+                .withCcaPositions(VALID_CCA_POSITION_PRESIDENT, VALID_CCA_POSITION_DIRECTOR).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

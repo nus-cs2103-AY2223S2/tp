@@ -7,14 +7,16 @@ package seedu.connectus.model.tag;
 public class CcaPosition extends Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "CCA Position should be alphanumeric";
+    public final String ccaPositionName;
 
     /**
      * Constructs a {@code Module}.
      *
-     * @param ccaPosition A valid CCA position.
+     * @param ccaPositionName A valid CCA position.
      */
-    public CcaPosition(String ccaPosition) {
-        super(ccaPosition);
+    public CcaPosition(String ccaPositionName) {
+        super(ccaPositionName, MESSAGE_CONSTRAINTS);
+        this.ccaPositionName = ccaPositionName;
     }
 
     /**

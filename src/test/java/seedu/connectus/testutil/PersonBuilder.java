@@ -10,10 +10,10 @@ import seedu.connectus.model.person.Name;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.socialmedia.SocialMedia;
-import seedu.connectus.model.tag.Module;
-import seedu.connectus.model.tag.Tag;
 import seedu.connectus.model.tag.Cca;
 import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Module;
+import seedu.connectus.model.tag.Tag;
 import seedu.connectus.model.util.SampleDataUtil;
 
 /**
@@ -101,8 +101,6 @@ public class PersonBuilder {
         this.ccas = SampleDataUtil.getCcaSet(ccas);
         return this;
     }
-
-
 
     /**
      * Parses the {@code ccaPositions} into a {@code Set<CcaPosition>} and set it to the

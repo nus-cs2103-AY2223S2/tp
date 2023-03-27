@@ -18,15 +18,16 @@ import org.junit.jupiter.api.Test;
 
 import seedu.connectus.logic.parser.exceptions.ParseException;
 import seedu.connectus.model.person.Address;
+import seedu.connectus.model.person.Birthday;
 import seedu.connectus.model.person.Email;
 import seedu.connectus.model.person.Name;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.socialmedia.Instagram;
 import seedu.connectus.model.socialmedia.Telegram;
 import seedu.connectus.model.socialmedia.WhatsApp;
-import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Cca;
 import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -55,7 +56,6 @@ public class ParserUtilTest {
     private static final String VALID_CCA_POSITION_2 = "DIRECTOR";
     private static final String VALID_INSTAGRAM = "john.doe";
     private static final String VALID_TELEGRAM = "some_tele123gram";
-
     private static final String VALID_BIRTHDAY = "01/01/2000";
 
     private static final String WHITESPACE = " \t\r\n";
@@ -408,6 +408,11 @@ public class ParserUtilTest {
         assertEquals(expectedCcaPositionSet, actualCcaPositionSet);
     }
 
+    @Test
+    public void parseBirthday_validValue_returnsBirthday() throws Exception {
+        Birthday expectedBirthday = new Birthday(VALID_BIRTHDAY);
+        assertEquals(expectedBirthday, ParserUtil.parseBirthday(VALID_BIRTHDAY));
+    }
 
     @Test
     public void parseBirthday_null_throwsNullPointerException() {

@@ -14,7 +14,7 @@ class JsonAdaptedCca {
     private final String ccaName;
 
     /**
-     * Constructs a {@code JsonAdaptedModule} with the given {@code moduleName}.
+     * Constructs a {@code JsonAdaptedCca} with the given {@code ccaName}.
      */
     @JsonCreator
     public JsonAdaptedCca(String ccaName) {
@@ -22,14 +22,14 @@ class JsonAdaptedCca {
     }
 
     /**
-     * Converts a given {@code Module} into this class for Jackson use.
+     * Converts a given {@code Cca} into this class for Jackson use.
      */
     public JsonAdaptedCca(Cca source) {
-        this.ccaName = source.tagName;
+        this.ccaName = source.ccaName;
     }
 
     @JsonValue
-    public String getModuleName() {
+    public String getCcaName() {
         return ccaName;
     }
 

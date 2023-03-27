@@ -7,6 +7,7 @@ package seedu.connectus.model.tag;
 public class Cca extends Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "CCA names should be alphanumeric";
+    public final String ccaName;
 
     /**
      * Constructs a {@code Module}.
@@ -14,7 +15,8 @@ public class Cca extends Tag {
      * @param ccaName A valid CCA name.
      */
     public Cca(String ccaName) {
-        super(ccaName);
+        super(ccaName, MESSAGE_CONSTRAINTS);
+        this.ccaName = ccaName;
     }
 
     /**
