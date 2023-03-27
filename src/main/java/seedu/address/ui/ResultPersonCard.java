@@ -17,6 +17,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.tag.Subject;
 
 public class ResultPersonCard extends UiPart<Region> {
     private static final String FXML = "ResultPersonCard.fxml";
@@ -41,6 +42,8 @@ public class ResultPersonCard extends UiPart<Region> {
     @FXML
     private FlowPane subjects;
     @FXML
+    private HBox tagset;
+    @FXML
     private Label remark;
 
     public ResultPersonCard(Person person, int displayedIndex) {
@@ -55,10 +58,10 @@ public class ResultPersonCard extends UiPart<Region> {
 
         person.getOptionalEducation()
                 .map(education -> new Label("Education: " + education.value))
-                .ifPresent(label -> tags.getChildren().add(label));
+                .ifPresent(label -> tags.getChildren().add(setStyleEducationLabel(label)));
         person.getSubjects().stream()
                 .sorted(Comparator.comparing(subject -> subject.subjectName))
-                .forEach(subject -> tags.getChildren().add(new Label(subject.subjectName)));
+                .forEach(subject -> tags.getChildren().add(createSubjectLabel(subject)));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -67,6 +70,17 @@ public class ResultPersonCard extends UiPart<Region> {
         resizeLabels(labels);
         resizeFlowPanes(tags);
 
+    }
+
+    public Label setStyleEducationLabel(Label label) {
+        label.setStyle("-fx-background-color : #107896;");
+        return label;
+    }
+
+    public Label createSubjectLabel(Subject s) {
+        Label subjectLabel = new Label(s.subjectName);
+        subjectLabel.setStyle("-fx-background-color : #829356;");
+        return subjectLabel;
     }
 
     public void resizeLabels(List<Label> labels) {
@@ -82,7 +96,6 @@ public class ResultPersonCard extends UiPart<Region> {
 
     public void resizeFlowPanes(FlowPane flowpane) {
         if (flowpane.getChildren().isEmpty()) {
-            System.out.println("there is empty flowpane");
             flowpane.setVisible(false);
             flowpane.setManaged(false);
         }
