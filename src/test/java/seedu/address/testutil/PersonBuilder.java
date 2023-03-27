@@ -1,8 +1,12 @@
 package seedu.address.testutil;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import seedu.address.model.location.Location;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
@@ -89,10 +93,27 @@ public class PersonBuilder {
     }
 
     /**
+     * Parses the {@code moduleTags} into a {@code Set<ModuleTag>}
+     * and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withModuleTags(ModuleTag... moduleTags) {
+        this.moduleTags = Arrays.stream(moduleTags).collect(Collectors.toSet());
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
         this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAddress(Location location) {
+        this.address = new Address(location.getName());
         return this;
     }
 

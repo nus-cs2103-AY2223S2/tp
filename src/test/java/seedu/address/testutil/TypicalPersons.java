@@ -14,6 +14,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_2;
+import static seedu.address.model.location.util.TypicalLocation.KING_ALBERT_PARK;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2102;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2103T;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,11 +31,13 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALBERT = new PersonBuilder().withName("Albert Park")
-            .withAddress("King Albert Park").withEmail("albertpark@gmail.com")
+            .withAddress(KING_ALBERT_PARK)
+            .withEmail("albertpark@gmail.com")
             .withPhone("89760441").withTelegramHandle("@albertpark")
             .withContactIndex(1)
             .withGroupTags("TA")
-            .withModuleTags("CS2105", "CS2104", "CS2103", "CS1010", "CHC5338", "BT2103").build();
+            .withModuleTags(CS2103T, CS2102)
+            .build();
 
     public static final Person ANG = new PersonBuilder().withName("Ang Mei Hua")
             .withAddress("Mayflower").withEmail("angmeihua@gmail.com")

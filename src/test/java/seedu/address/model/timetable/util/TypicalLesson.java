@@ -167,50 +167,376 @@ public class TypicalLesson {
             new LocalTime(9, 0),
             Day.FRIDAY,
             new Location("NUS", 1.341, 103.71));
+
+    public static final Lesson CS2101_MON_8AM_2HR = new LessonBuilder()
+            .withModuleCode("CS2101")
+            .withStartTime(8)
+            .withDuration(2)
+            .withDay(Day.MONDAY)
+            .build();
+
+    public static final Lesson CS2101_THU_8AM_2HR = new LessonBuilder()
+            .withModuleCode("CS2101")
+            .withStartTime(8)
+            .withDuration(2)
+            .withDay(Day.THURSDAY)
+            .build();
+
+    public static final Lesson CS2103T_WED_2PM_1HR = new LessonBuilder()
+            .withModuleCode("CS2103T")
+            .withStartTime(14)
+            .withDuration(1)
+            .withDay(Day.WEDNESDAY)
+            .build();
+
+    public static final Lesson CS2103T_FRI_2PM_2HR = new LessonBuilder()
+            .withModuleCode("CS2103T")
+            .withStartTime(14)
+            .withDuration(2)
+            .withDay(Day.FRIDAY)
+            .build();
+
+    public static final Lesson CS2109S_TUE_4PM_2HR = new LessonBuilder()
+            .withModuleCode("CS2109S")
+            .withStartTime(16)
+            .withDuration(2)
+            .withDay(Day.TUESDAY)
+            .build();
+
+    public static final Lesson CS2109S_WED_3PM_1HR = new LessonBuilder()
+            .withModuleCode("CS2109S")
+            .withStartTime(15)
+            .withDuration(1)
+            .withDay(Day.WEDNESDAY)
+            .build();
+
+    public static final Lesson CS2108_TUE_10AM_2HR = new LessonBuilder()
+            .withModuleCode("CS2108")
+            .withStartTime(10)
+            .withDuration(1)
+            .withDay(Day.TUESDAY)
+            .build();
+
+    public static final Lesson CS2108_THU_5PM_1HR = new LessonBuilder()
+            .withModuleCode("CS2108")
+            .withStartTime(17)
+            .withDuration(1)
+            .withDay(Day.THURSDAY)
+            .build();
+
+    public static final Lesson MA2104_TUE_12PM_2HR = new LessonBuilder()
+            .withModuleCode("MA2104")
+            .withStartTime(12)
+            .withDuration(2)
+            .withDay(Day.TUESDAY)
+            .build();
+
+    public static final Lesson MA2104_WED_12PM_1HR = new LessonBuilder()
+            .withModuleCode("MA2104")
+            .withStartTime(12)
+            .withDuration(1)
+            .withDay(Day.WEDNESDAY)
+            .build();
+
+    public static final Lesson MA2104_FRI_12PM_2HR = new LessonBuilder()
+            .withModuleCode("MA2104")
+            .withStartTime(12)
+            .withDuration(2)
+            .withDay(Day.FRIDAY)
+            .build();
+
+    public static final Lesson MA3252_WED_10AM_1HR = new LessonBuilder()
+            .withModuleCode("MA3252")
+            .withStartTime(10)
+            .withDuration(1)
+            .withDay(Day.WEDNESDAY)
+            .build();
+
+    public static final Lesson MA3252_FRI_7PM_3HR = new LessonBuilder()
+            .withModuleCode("MA3252")
+            .withStartTime(19)
+            .withDuration(3)
+            .withDay(Day.FRIDAY)
+            .build();
+
+    public static final Lesson MA2108_TUE_2PM_2HR = new LessonBuilder()
+            .withModuleCode("MA2108")
+            .withStartTime(14)
+            .withDuration(2)
+            .withDay(Day.TUESDAY)
+            .build();
+
+    public static final Lesson MA2108_THU_9AM_1HR = new LessonBuilder()
+            .withModuleCode("MA2108")
+            .withStartTime(9)
+            .withDuration(1)
+            .withDay(Day.THURSDAY)
+            .build();
+
+    public static final Lesson MA2108_FRI_2PM_2HR = new LessonBuilder()
+            .withModuleCode("MA2108")
+            .withStartTime(14)
+            .withDuration(2)
+            .withDay(Day.FRIDAY)
+            .build();
+
+    public static final Lesson MA2101_WED_1PM_1HR = new LessonBuilder()
+            .withModuleCode("MA2101")
+            .withStartTime(13)
+            .withDuration(1)
+            .withDay(Day.WEDNESDAY)
+            .build();
+
+    public static final Lesson MA2101_WED_4PM_2HR = new LessonBuilder()
+            .withModuleCode("MA2101")
+            .withStartTime(16)
+            .withDuration(2)
+            .withDay(Day.WEDNESDAY)
+            .build();
+
+    public static final Lesson MA2101_FRI_4PM_2HR = new LessonBuilder()
+            .withModuleCode("MA2101")
+            .withStartTime(16)
+            .withDuration(2)
+            .withDay(Day.FRIDAY)
+            .build();
+
+    public static final Lesson CS3230_TUE_10AM_2HR = new LessonBuilder()
+            .withModuleCode("CS3230")
+            .withStartTime(10)
+            .withDuration(2)
+            .withDay(Day.TUESDAY)
+            .build();
+
+    public static final Lesson CS3230_WED_10AM_1HR = new LessonBuilder()
+            .withModuleCode("CS3230")
+            .withStartTime(10)
+            .withDuration(1)
+            .withDay(Day.WEDNESDAY)
+            .build();
+
+    public static final Lesson CS2102_TUE_12PM_2HR = new LessonBuilder()
+            .withModuleCode("CS2102")
+            .withStartTime(12)
+            .withDuration(2)
+            .withDay(Day.TUESDAY)
+            .build();
+
+    public static final Lesson CS2102_FRI_10AM_1HR = new LessonBuilder()
+            .withModuleCode("CS2102")
+            .withStartTime(10)
+            .withDuration(1)
+            .withDay(Day.FRIDAY)
+            .build();
+
+    public static final Lesson CS2100_TUE_4PM_2HR = new LessonBuilder()
+            .withModuleCode("CS2100")
+            .withStartTime(16)
+            .withDuration(2)
+            .withDay(Day.TUESDAY)
+            .build();
+
+    public static final Lesson CS2100_WED_11AM_1HR = new LessonBuilder()
+            .withModuleCode("CS2100")
+            .withStartTime(11)
+            .withDuration(1)
+            .withDay(Day.WEDNESDAY)
+            .build();
+
+    public static final Lesson CS2100_FRI_11AM_1HR = new LessonBuilder()
+            .withModuleCode("CS2100")
+            .withStartTime(11)
+            .withDuration(1)
+            .withDay(Day.FRIDAY)
+            .build();
+
+    public static final Lesson GEC1030_MON_8AM_2HR = new LessonBuilder()
+            .withModuleCode("GEC1030")
+            .withStartTime(8)
+            .withDuration(2)
+            .withDay(Day.MONDAY)
+            .build();
+
+    public static final Lesson GEC1030_TUE_4PM_2HR = new LessonBuilder()
+            .withModuleCode("GEC1030")
+            .withStartTime(16)
+            .withDuration(2)
+            .withDay(Day.TUESDAY)
+            .build();
+
+    public static final Lesson CS2030S_MON_12PM_2HR = new LessonBuilder()
+            .withModuleCode("CS2030S")
+            .withStartTime(12)
+            .withDuration(2)
+            .withDay(Day.MONDAY)
+            .build();
+
+    public static final Lesson CS2030S_THU_10AM_2HR = new LessonBuilder()
+            .withModuleCode("CS2030S")
+            .withStartTime(10)
+            .withDuration(2)
+            .withDay(Day.THURSDAY)
+            .build();
+
+    public static final Lesson CS2030S_THU_1PM_1HR = new LessonBuilder()
+            .withModuleCode("CS2030S")
+            .withStartTime(13)
+            .withDuration(1)
+            .withDay(Day.THURSDAY)
+            .build();
+
+    public static final Lesson ST2334_MON_2PM_1HR = new LessonBuilder()
+            .withModuleCode("ST2334")
+            .withStartTime(14)
+            .withDuration(1)
+            .withDay(Day.MONDAY)
+            .build();
+
+    public static final Lesson ST2334_TUE_12PM_2HR = new LessonBuilder()
+            .withModuleCode("ST2334")
+            .withStartTime(12)
+            .withDuration(2)
+            .withDay(Day.TUESDAY)
+            .build();
+
+    public static final Lesson ST2334_FRI_12PM_2HR = new LessonBuilder()
+            .withModuleCode("ST2334")
+            .withStartTime(12)
+            .withDuration(2)
+            .withDay(Day.FRIDAY)
+            .build();
+
+    public static final Lesson CS2040S_MON_4PM_2HR = new LessonBuilder()
+            .withModuleCode("CS2040S")
+            .withStartTime(16)
+            .withDuration(2)
+            .withDay(Day.MONDAY)
+            .build();
+
+    public static final Lesson CS2040S_TUE_9AM_2HR = new LessonBuilder()
+            .withModuleCode("CS2040S")
+            .withStartTime(9)
+            .withDuration(2)
+            .withDay(Day.TUESDAY)
+            .build();
+
+    public static final Lesson CS2040S_WED_2PM_1HR = new LessonBuilder()
+            .withModuleCode("CS2040S")
+            .withStartTime(14)
+            .withDuration(1)
+            .withDay(Day.WEDNESDAY)
+            .build();
+
+    public static final Lesson CS2040S_FRI_10AM_1HR = new LessonBuilder()
+            .withModuleCode("CS2040S")
+            .withStartTime(10)
+            .withDuration(1)
+            .withDay(Day.FRIDAY)
+            .build();
+
+    public static final Lesson GEA1000_THU_3PM_3HR = new LessonBuilder()
+            .withModuleCode("GEA1000")
+            .withStartTime(15)
+            .withDuration(3)
+            .withDay(Day.THURSDAY)
+            .build();
+
+    public static final Lesson GESS1019_MON_10AM_2HR = new LessonBuilder()
+            .withModuleCode("GESS1019")
+            .withStartTime(10)
+            .withDuration(2)
+            .withDay(Day.MONDAY)
+            .build();
+
+    public static final Lesson GESS1019_TUE_2PM_2HR = new LessonBuilder()
+            .withModuleCode("GESS1019")
+            .withStartTime(14)
+            .withDuration(2)
+            .withDay(Day.TUESDAY)
+            .build();
+
+    public static final Lesson CS1101S_MON_12PM_2HR = new LessonBuilder()
+            .withModuleCode("CS1101S")
+            .withStartTime(12)
+            .withDuration(2)
+            .withDay(Day.MONDAY)
+            .build();
+
+    public static final Lesson CS1101S_WED_10AM_2HR = new LessonBuilder()
+            .withModuleCode("CS1101S")
+            .withStartTime(10)
+            .withDuration(2)
+            .withDay(Day.WEDNESDAY)
+            .build();
+
+    public static final Lesson CS1101S_THU_11AM_1HR = new LessonBuilder()
+            .withModuleCode("CS1101S")
+            .withStartTime(11)
+            .withDuration(1)
+            .withDay(Day.THURSDAY)
+            .build();
+
+    public static final Lesson CS1101S_FRI_10AM_2HR = new LessonBuilder()
+            .withModuleCode("CS1101S")
+            .withStartTime(10)
+            .withDuration(2)
+            .withDay(Day.FRIDAY)
+            .build();
+
+    public static final Lesson CS1231S_WED_12PM_2HR = new LessonBuilder()
+            .withModuleCode("CS1231S")
+            .withStartTime(12)
+            .withDuration(2)
+            .withDay(Day.WEDNESDAY)
+            .build();
+
+    public static final Lesson CS1231S_THU_12PM_2HR = new LessonBuilder()
+            .withModuleCode("CS1231S")
+            .withStartTime(12)
+            .withDuration(2)
+            .withDay(Day.THURSDAY)
+            .build();
+
+    public static final Lesson CS1231S_FRI_3PM_1HR = new LessonBuilder()
+            .withModuleCode("CS1231S")
+            .withStartTime(13)
+            .withDuration(1)
+            .withDay(Day.FRIDAY)
+            .build();
+
+    public static final Lesson MA2001_WED_2PM_1HR = new LessonBuilder()
+            .withModuleCode("MA2001")
+            .withStartTime(14)
+            .withDuration(1)
+            .withDay(Day.WEDNESDAY)
+            .build();
+
+    public static final Lesson MA2001_FRI_12PM_2HR = new LessonBuilder()
+            .withModuleCode("MA2001")
+            .withStartTime(12)
+            .withDuration(2)
+            .withDay(Day.FRIDAY)
+            .build();
+
+    public static final Lesson MA1521_WED_6PM_2HR = new LessonBuilder()
+            .withModuleCode("MA1521")
+            .withStartTime(18)
+            .withDuration(2)
+            .withDay(Day.WEDNESDAY)
+            .build();
+
+    public static final Lesson MA1521_THU_2PM_1HR = new LessonBuilder()
+            .withModuleCode("MA1521")
+            .withStartTime(14)
+            .withDuration(1)
+            .withDay(Day.THURSDAY)
+            .build();
+
+    public static final Lesson MA1521_FRI_6PM_2HR = new LessonBuilder()
+            .withModuleCode("MA1521")
+            .withStartTime(18)
+            .withDuration(2)
+            .withDay(Day.FRIDAY)
+            .build();
 }
 
-public class LessonBuilder {
-    public static final String DEFAULT_MODULE_CODE = "CS2103T";
-    public static final LocalTime DEFAULT_START_TIME = new LocalTime(10, 0);
-    public static final LocalTime DEFAULT_END_TIME = new LocalTime(12, 0);
-    public static final Day DEFAULT_DAY = Day.TUESDAY;
-
-    private String moduleCode;
-    private LocalTime startTime;
-    private LocalTime endTime;
-    private Day day;
-
-    public LessonBuilder() {
-        moduleCode = DEFAULT_MODULE_CODE;
-        startTime = DEFAULT_START_TIME;
-        endTime = DEFAULT_END_TIME;
-        day = DEFAULT_DAY;
-    }
-
-    public LessonBuilder(Lesson lesson) {
-        moduleCode = lesson.getModuleCode();
-        startTime = lesson.getStartTime();
-        endTime = lesson.getEndTime();
-        day = lesson.getDay();
-    }
-
-    public LessonBuilder withModuleCode(String moduleCode) {
-        this.moduleCode = moduleCode;
-        return this;
-    }
-
-    public LessonBuilder withStartTime(LocalTime startTime) {
-        this.startTime = startTime;
-        return this;
-    }
-
-    public LessonBuilder withDay(Day day) {
-        this.day = day;
-        return this;
-    }
-
-    public Lesson build() {
-        return new Lesson(moduleCode, startTime,
-                endTime, day, Location.NUS);
-    }
-}
