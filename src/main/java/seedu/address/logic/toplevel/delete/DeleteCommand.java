@@ -60,7 +60,7 @@ public class DeleteCommand<T extends Item> implements Command {
 
         deleteFunction.delete(model, toDelete);
         return new CommandResult(String.format(
-                "Deleted item: %s.",
+                "Deleted %s.",
                 toDelete.toString()
         ));
     }

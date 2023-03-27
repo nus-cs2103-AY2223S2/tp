@@ -28,10 +28,13 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
     private static final String PILOT_MONITORING_PREFIX = "/pm";
 
     private static final String NO_FLIGHT_MESSAGE =
-            "No flight has been entered. Please enter /fl for the flight.";
+            "No flight has been entered.\n"
+                    + "Please enter /fl followed by the flight ID.";
     private static final String NO_PILOT_MESSAGE =
-            "No pilot has been entered. Please enter /pm for the pilot monitoring"
-                    + " and /pf for the pilot flying.";
+            "No pilot has been entered.\n"
+                    + "Please enter at least 1 of the following:\n"
+                    + "     /pm for the Pilot Monitoring,"
+                    + "/pf for the Pilot Flying.";
 
     private final Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy;
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;

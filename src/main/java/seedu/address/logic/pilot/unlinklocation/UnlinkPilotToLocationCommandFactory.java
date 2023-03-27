@@ -27,11 +27,11 @@ public class UnlinkPilotToLocationCommandFactory implements CommandFactory<Unlin
     private static final String PILOT_PREFIX = "/pi";
 
     private static final String NO_LOCATION_MESSAGE =
-            "No location has been entered. "
+            "No location has been entered.\n"
                     + "Please enter /lo followed by the location ID.";
     private static final String NO_PILOT_MESSAGE =
-            "No pilot has been entered. "
-                    + "Please enter /pi followed by the pilot iD.";
+            "No pilot has been entered.\n"
+                    + "Please enter /pi followed by the pilot ID.";
 
     private final Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy;
     private final Lazy<ReadOnlyItemManager<Location>> locationManagerLazy;

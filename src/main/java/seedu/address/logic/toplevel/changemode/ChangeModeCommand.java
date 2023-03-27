@@ -22,6 +22,6 @@ public class ChangeModeCommand implements Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.setOperationMode(mode);
-        return new CommandResult("Changed mode to " + mode);
+        return new CommandResult("Currently in " + mode + " mode.");
     }
 }
