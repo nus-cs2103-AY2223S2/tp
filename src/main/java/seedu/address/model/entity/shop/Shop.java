@@ -20,6 +20,7 @@ import seedu.address.model.service.UniqueVehicleList;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
 import seedu.address.model.service.appointment.UniqueAppointmentList;
+import seedu.address.model.service.exception.PartLessThanZeroException;
 import seedu.address.model.service.exception.PartNotFoundException;
 import seedu.address.model.service.exception.VehicleNotFoundException;
 
@@ -91,8 +92,8 @@ public class Shop implements ReadOnlyShop {
      */
     public boolean hasService(int serviceId) {
         return this.getServiceList()
-                .stream()
-                .anyMatch(s -> s.getId() == serviceId);
+            .stream()
+            .anyMatch(s -> s.getId() == serviceId);
     }
 
     /**
@@ -145,6 +146,7 @@ public class Shop implements ReadOnlyShop {
     public void removeAppointment(Appointment key) {
         appointments.remove(key);
     }
+
     // --------------------------------------------------
     //// part-level operations
     @Override
@@ -166,16 +168,20 @@ public class Shop implements ReadOnlyShop {
      * Adds part to service
      *
      * @param serviceId ID of service
-     * @param partName Name of part
-     * @param quantity Quantity of part
-     * @throws NoSuchElementException If service not in system
+     * @param partName  Name of part
+     * @param quantity  Quantity of part
+     * @throws NoSuchElementException    If service not in system
+     * @throws PartNotFoundException     If part not registered
+     * @throws PartLessThanZeroException If part insufficient
      */
-    public void addPartToService(int serviceId, String partName, int quantity) throws NoSuchElementException {
+    public void addPartToService(int serviceId, String partName, int quantity)
+            throws NoSuchElementException, PartNotFoundException, PartLessThanZeroException {
         Optional<Service> serviceOption = this.getServiceList()
             .stream()
             .filter(s -> s.getId() == serviceId)
             .findFirst();
         Service service = serviceOption.orElseThrow();
+        this.getPartMap().decreasePartQuantity(partName, quantity);
         service.addPart(partName, quantity);
     }
 
@@ -224,7 +230,7 @@ public class Shop implements ReadOnlyShop {
      */
     public boolean hasCustomer(int customerId) {
         return this.getCustomerList().stream()
-                .anyMatch(c -> c.getId() == customerId);
+            .anyMatch(c -> c.getId() == customerId);
     }
 
     /**
@@ -286,7 +292,7 @@ public class Shop implements ReadOnlyShop {
      */
     public boolean hasTechnician(int technicianId) {
         return this.getTechnicianList().stream()
-                .anyMatch(p -> p.getId() == technicianId);
+            .anyMatch(p -> p.getId() == technicianId);
     }
 
     /**
@@ -365,7 +371,7 @@ public class Shop implements ReadOnlyShop {
      */
     public boolean hasVehicle(int vehicleId) {
         return this.getVehicleList().stream()
-                .anyMatch(v -> v.getId() == vehicleId);
+            .anyMatch(v -> v.getId() == vehicleId);
     }
 
     /**
@@ -407,7 +413,6 @@ public class Shop implements ReadOnlyShop {
     public ObservableList<Vehicle> getVehicleList() {
         return this.vehicles.asUnmodifiableObservableList();
     }
-
 
 
     // --------------------------------------------------

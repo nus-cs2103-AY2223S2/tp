@@ -16,7 +16,7 @@ import seedu.address.model.service.exception.PartNotFoundException;
 public class PartMap {
 
     public static final String MESSAGE_CONSTRAINTS = "Parts should only contain alphanumeric characters, dashes,"
-            + "underscore and spaces, and it should not be blank";
+        + "underscore and spaces, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}-_ ]*";
     private final Map<String, Integer> map;
@@ -141,9 +141,11 @@ public class PartMap {
      *
      * @param partName Part name to increase quantity of
      * @param quantity Amount to decrease
-     * @throws PartNotFoundException If part not in Set
+     * @throws PartNotFoundException     If part not in Set
+     * @throws PartLessThanZeroException If part does not have sufficient quantity
      */
-    public void decreasePartQuantity(String partName, int quantity) throws PartNotFoundException {
+    public void decreasePartQuantity(String partName, int quantity)
+            throws PartNotFoundException, PartLessThanZeroException {
         if (!this.map.containsKey(partName)) {
             throw new PartNotFoundException(partName);
         }
