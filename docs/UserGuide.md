@@ -289,14 +289,14 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 - [7.10 CCA](#710-cca)
 - [7.11 Tag](#711-tag)
 
-### 7.1 Name:
+### 7.1 Name
 * Name is a *compulsory* field, i.e. a contact cannot exist if it does not have a name.
 * The prefix for a name is `n/`.
 * Names should only contain alphanumeric characters and spaces.
 
 [↑ Back to prefix list](#7-information-fields--prefixes)
 
-### 7.2 Phone:
+### 7.2 Phone
 * Phone is an *optional* field, i.e. a contact can exist even if it does not have a phone number.
 * The prefix for a phone is `p/`.
 * Phone numbers should only contain numeric characters.
@@ -417,19 +417,19 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 ## 10. Prefix Summary
 
-| Information Field | Prefix | Example                      |
-|-------------------|--------|------------------------------|
-| **Address**       | a/     | a/Blk 456, Den Road, #01-355 |
-| **Birthday**      | b/     | b/01/01/2000                 |
-| **CCA**           | cca/   | cca/NUS Hackers              |
-| **Email**         | e/     | e/johndoe@example.com        |
-| **Instagram**     | ig/    | ig/john.doe                  |
-| **Module**        | mod/   | mod/CS2103T                  |
-| **Name**          | n/     | n/John Doe                   |
-| **Phone**         | p/     | p/91234567                   |
-| **Tag**           | t/     | t/School of Computing        |
-| **Telegram**      | tg/    | tg/johndoe                   |
-| **WhatsApp**      | wa/    | wa/91234567                  |
+| Information Field | Prefix | Example                        |
+|-------------------|--------|--------------------------------|
+| **Address**       | `a/`   | `a/Blk 456, Den Road, #01-355` |
+| **Birthday**      | `b/`   | `b/01/01/2000`                 |
+| **CCA**           | `cca/` | `cca/NUS Hackers`              |
+| **Email**         | `e/`   | `e/johndoe@example.com`        |
+| **Instagram**     | `ig/`  | `ig/john.doe`                  |
+| **Module**        | `mod/` | `mod/CS2103T`                  |
+| **Name**          | `n/`   | `n/John Doe`                   |
+| **Phone**         | `p/`   | `p/91234567`                   |
+| **Tag**           | `t/`   | `t/School of Computing`        |
+| **Telegram**      | `tg/`  | `tg/johndoe`                   |
+| **WhatsApp**      | `wa/`  | `wa/91234567`                  |
 
 [↑ Back to top](#2-table-of-contents)
 
