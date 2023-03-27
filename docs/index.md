@@ -31,4 +31,4 @@ InternBuddy runs using Java 11, and is available on the Windows, macOS and Linux
 * Libraries and frameworks used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson),
   [JUnit5](https://github.com/junit-team/junit5) and [TestFX](https://github.com/TestFX/TestFX).
 * Other references: [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
-  and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp).
+  and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) (Primarily for the purpose of GUI testing).
