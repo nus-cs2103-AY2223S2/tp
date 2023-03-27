@@ -48,6 +48,8 @@ public class PersonCard extends UiPart<Region> {
     private Label gender;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane medicines;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -64,8 +66,11 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         gender.setText(person.getGender().gender);
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getMedicines().stream()
+            .sorted(Comparator.comparing(medicine -> medicine.medicineName))
+            .forEach(medicine -> medicines.getChildren().add(new Label(medicine.medicineName)));
     }
 
     private EventHandler<MouseEvent> viewPerson() {
@@ -96,6 +101,6 @@ public class PersonCard extends UiPart<Region> {
         // state check
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+            && person.equals(card.person);
     }
 }

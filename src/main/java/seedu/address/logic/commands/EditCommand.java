@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -22,6 +23,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.medicine.Medicine;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
@@ -40,20 +42,21 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NRIC + "NRIC] "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_DRUG_ALLERGY + "ADDRESS] "
-            + "[" + PREFIX_GENDER + "GENDER] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+        + "by the index number used in the displayed person list. "
+        + "Existing values will be overwritten by the input values.\n"
+        + "Parameters: INDEX (must be a positive integer) "
+        + "[" + PREFIX_NRIC + "NRIC] "
+        + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_PHONE + "PHONE] "
+        + "[" + PREFIX_EMAIL + "EMAIL] "
+        + "[" + PREFIX_ADDRESS + "ADDRESS] "
+        + "[" + PREFIX_DRUG_ALLERGY + "ADDRESS] "
+        + "[" + PREFIX_GENDER + "GENDER] "
+        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "[" + PREFIX_MEDICINE + "MEDICINE]...\n"
+        + "Example: " + COMMAND_WORD + " 1 "
+        + PREFIX_PHONE + "91234567 "
+        + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -63,7 +66,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -110,9 +113,10 @@ public class EditCommand extends Command {
         DrugAllergy updatedAllergy = editPersonDescriptor.getDrugAllergy().orElse(personToEdit.getDrugAllergy());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Medicine> updatedMedicines = editPersonDescriptor.getMedicines().orElse(personToEdit.getMedicines());
 
         return new Person(updatedNric, updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedAllergy, updatedGender, updatedTags);
+            updatedAddress, updatedAllergy, updatedGender, updatedTags, updatedMedicines);
     }
 
     @Override
@@ -130,7 +134,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+            && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
     /**
@@ -146,8 +150,10 @@ public class EditCommand extends Command {
         private Gender gender;
         private DrugAllergy drugAllergy;
         private Set<Tag> tags;
+        private Set<Medicine> medicines;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -162,13 +168,14 @@ public class EditCommand extends Command {
             setGender(toCopy.gender);
             setDrugAllergy(toCopy.drugAllergy);
             setTags(toCopy.tags);
+            setMedicines(toCopy.medicines);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(nric, name, phone, email, address, drugAllergy, tags);
+            return CollectionUtil.isAnyNonNull(nric, name, phone, email, address, drugAllergy, gender, tags, medicines);
         }
 
         public void setNric(Nric nric) {
@@ -211,7 +218,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-
         public void setGender(Gender gender) {
             this.gender = gender;
         }
@@ -219,6 +225,7 @@ public class EditCommand extends Command {
         public Optional<Gender> getGender() {
             return Optional.ofNullable(gender);
         }
+
         public void setDrugAllergy(DrugAllergy drugAllergy) {
             this.drugAllergy = drugAllergy;
         }
@@ -245,6 +252,23 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code medicines} to this object's {@code medicines}.
+         * A defensive copy of {@code medicines} is used internally.
+         */
+        public void setMedicines(Set<Medicine> medicines) {
+            this.medicines = (medicines != null) ? new HashSet<>(medicines) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code medicines} is null.
+         */
+        public Optional<Set<Medicine>> getMedicines() {
+            return (medicines != null) ? Optional.of(Collections.unmodifiableSet(medicines)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -261,12 +285,13 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getNric().equals(e.getNric())
-                    && getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getDrugAllergy().equals(e.getDrugAllergy())
-                    && getTags().equals(e.getTags());
+                && getName().equals(e.getName())
+                && getPhone().equals(e.getPhone())
+                && getEmail().equals(e.getEmail())
+                && getAddress().equals(e.getAddress())
+                && getDrugAllergy().equals(e.getDrugAllergy())
+                && getTags().equals(e.getTags())
+                && getMedicines().equals(e.getMedicines());
         }
     }
 }

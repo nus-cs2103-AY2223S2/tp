@@ -3,14 +3,35 @@ layout: page
 title: User Guide
 ---
 
-HospiSearch is a **desktop app for managing hospital patients' particulars, optimized for use via a Command Line Interface** 
+# Introduction
+
+HospiSearch is a **desktop app for managing hospital patients' particulars, optimized for use via a Command Line Interface**
 (CLI) while still having the benefits of a **Graphical User Interface (GUI)**. If you can type fast, HospiSearch can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents: coming soon
+# Table of Contents:
+
+- [Setup](#setup)
+- [Command Prefixes](#command-prefixes)
+- [Features](#features)
+  - [Help](#help-menu--help)
+  - [Undo](#undoing-previous-command--undo)
+  - [Redo](#redoing-previous-undo--redo)
+  - [Add patient](#adding-patient-record--add): `add`
+  - [Edit patient](#editing-a-patient-record--edit): `edit`
+  - [Delete patient](#deleting-a-patient-record--delete): `delete`
+  - [List all patients](#listing-all-patients--list): `list`
+  - [Filter patients](#find-patients-by-nric-name-address-or-tags--find): `find`
+  - [Backup patient records](#backup-data--backup): `backup`
+  - [Load backups](#load-data--load): `load`
+  - [Clear all data](#clearing-all-data--clear): `clear`
+  - [Light mode](#switch-to-light-mode--light): `light`
+  - [Dark mode](#switch-to-dark-mode--dark): `dark`
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Setup
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -25,12 +46,28 @@ HospiSearch is a **desktop app for managing hospital patients' particulars, opti
    1. `help` opens up the help menu
 6. Refer to the [Features](#features) below for details of each command.
 
+<sub>[return to table of contents](#table-of-contents-)</sub>
+
 --------------------------------------------------------------------------------------------------------------------
+
+## Command Prefixes
+| Patient Record Field | Prefix |
+|----------------------|--------|
+| NRIC                 | i/     |
+| Name                 | n/     |
+| Phone                | p/     |
+| Gender               | g/     |
+| Email                | e/     |
+| Address              | a/     |
+| Tag                  | t/     |
+| Drug Allergy         | d/     |
+
+<sub>[return to table of contents](#table-of-contents-)</sub>
 
 ## Features
 
 ### Notes:
-- Words in `UPPER_CASE` are the parameters to be supplied by the user. 
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.
 e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 - Items in square brackets are optional.
@@ -44,57 +81,71 @@ e.g. [t/TAG]…​ can be used as   (i.e. 0 times), t/friend, t/friend t/family 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 
-
-
-  
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Lists out all the commands available, along with a brief description
 
 Format: `help`
 
 
-### Adding a person: `add`
+### Undoing previous command: `undo`
+
+Reverts the patient records to the state before the previous command was executed.
+Format: `undo`
+
+
+### Redoing previous undo: `redo`
+Reverts the patient records to the state before the previous undo was executed.
+Format: `redo`
+
+
+### Adding patient record: `add`
 
 Adds a person to the patient records.
 
-Format: `add n/NAME i/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DIAGNOSIS] [t/TAG]…`
+Format: `add i/NRIC n/NAME p/PHONE a/ADDRESS d/DRUG ALLERGIES g/GENDER [e/EMAIL] [t/TAG]…​`
 
-
-**Tip**: A person can have any number of tags (including 0)
+**Tip**: A patient can have any number of tags (including 0)
 
 
 Examples:
-* `add i/T0012345A n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/Diabetic`
-* `add i/T0012345B n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/Dyslexic d/Osteoporotic`
+* `add i/T0012345A n/John Doe p/98765432 a/John street, block 123, #01-01 d/NKDA g/Male e/johnd@example.com t/Diabetic`
+* `add i/T0012345B n/Betsy Crowe p/1234567 a/Newgate Prison d/Panadol g/Female e/betsycrowe@example.com t/Dyslexic`
 
 
+### Editing a patient record: `edit`
 
-### Editing a person: `edit`
+Edits an existing patient in the patient records.
 
-Edits an existing person in the patient record.
+Format: `edit INDEX [i/NRIC] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [t/TAG]…​`
 
-Format: `edit i/NRIC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DIAGNOSIS] [t/TAG]…​`
-
-* You can remove all the person’s tags by typing t/ without specifying any tags after it.
+* You can remove all the patient’s tags by typing t/ without specifying any tags after it.
 
 Examples:
-* `edit i/T0012345A p/91234567 e/johndoe@example.com` edit the phone number and email address of the patient with NRIC T0012345A to be 91234567 and johndoe@example.com respectively
+* `edit 1 p/91234567 e/johndoe@example.com` edit the phone number and email address of the patient at index 1 to be 91234567 and johndoe@example.com respectively
 
 
-### Deleting a person: `delete`
+### Deleting a patient record: `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified patient from the patient records.
 
 Format: `delete i/NRIC`
 
 Examples:
-* `delete i/T0012345A` delete the patient with NRIC T0012345A from patient records system
-
-### Find persons by nric, name, address or tags: `find`
+* `delete i/T0012345A` deletes the patient with NRIC T0012345A from patient records system
 
 
-Find persons according to a particular attribute stated followed by the change. 
+
+### Listing all patients: `list`
+
+Shows a list of all patients in the patient records.
+
+Format: `list`
+
+
+### Find patients by nric, name, address or tags: `find`
+
+Find patients according to a particular attribute stated followed by the change.
 
 Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`)
 
@@ -116,13 +167,9 @@ Examples:
 * `find t/Diabetic` returns all persons with the tag `Diabetic`
 * `find t/Diabetic Osteoporotic` returns all persons with the tag `Diabetic` or `Osteoporotic` or both.
 
-### Clearing all data: `clear`
-Purges all data from the database
 
-Format: `clear`
-
-### Backup data: `backup`
-Backs up the data to a specified slot represented by an index
+### Backup patient records: `backup`
+Backs up the patient records to a specified slot represented by an index
 
 Format: `backup INDEX_NO`
 
@@ -136,39 +183,29 @@ Loads the data from a specified slot represented by an index
 
 Format: `load INDEX_NO`
 
-Example: 
+Example:
 * `load 3` loads the data from the 3rd slot
 
-### Help menu: `help`
-Lists out all the commands available, along with a brief description
 
-Format: `help`
+### Clearing all data: `clear`
+Purges all data from the database
 
-### Listing all persons : `list`
+Format: `clear`
 
-Shows a list of all people in the address book.
-
-Format: `list`
 
 ### Switch to light mode: `light`
 Switch to light mode.
+
 Format: `light`
+
 
 ### Switch to dark mode: `dark`
 Switch to dark mode.
+
 Format: `dark`
 
-### Undoing previous command: `undo`
-Reverts the address book to the state before the previous command was executed.
-Format: `undo`
-
-### Redoing previous undo: `redo`
-Reverts the address book to the state before the previous undo was executed.
-Format: `redo`
-
-
-
 --------------------------------------------------------------------------------------------------------------------
+<sub>[return to table of contents](#table-of-contents-)</sub>
 
 ## FAQ
 
@@ -176,21 +213,24 @@ Format: `redo`
 **A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HospiSearch home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+<sub>[return to table of contents](#table-of-contents-)</sub>
 
 ## Command summary
 
-| Action        | Format, Examples                                                                                                                                                                                |
-|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**       | `add n/NAME i/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/diagnosis] [t/TAG]…​` <br/> e.g. add n/John Doe i/T0012345A p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/depression |                                                                                                                                                      |
-| **Clear all** | `clear`                                                                                                                                                                                         |
-| **Delete**    | `delete i/NRIC` <br/> e.g. delete i/T0012345A                                                                                                                                                   |
-| **Edit**      | `edit i/NRIC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DIAGNOSIS] [t/TAG]…​` <br/> e.g. edit i/T0012345A p/91234567 e/johndoe@example.com                                                     |
-| **Find**      | `find attribute/KEYWORD [MORE_KEYWORDS]` <br/> e.g. find a/Alex  <br/> e.g. find t/diabetic                                                                                                     |
-| **Backup**    | `backup INDEX_NO` <br/> e.g. backup 3                                                                                                                                                           |
-| **Save**      | `save INDEX_NO` <br/> e.g. save 3                                                                                                                                                               |
-| **List**      | `list`                                                                                                                                                                                          |
-| **Help**      | `help`                                                                                                                                                                                          |
-| **Light**     | `light`                                                                                                                                                                                         |
-| **Dark**      | `dark`                                                                                                                                                                                          |
-| **Undo**      | `undo`                                                                                                                                                                                          |
-| **Redo**      | `redo`                                                                                                                                                                                          |
+| Action        | Format, Examples                                                                                                                                                                                                |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**      | `help`                                                                                                                                                                                                          |
+| **Undo**      | `undo`                                                                                                                                                                                                          |
+| **Redo**      | `redo`                                                                                                                                                                                                          |
+| **Add**       | `add i/NRIC n/NAME p/PHONE a/ADDRESS d/DRUG ALLERGIES g/GENDER m/MEDICINE [e/EMAIL] [t/TAG]…​` <br/> e.g. add i/S1234567A n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/Male d/NKDA |  
+| **Edit**      | `edit INDEX [i/NRIC] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGY] [g/GENDER] [t/TAG]…​` <br/> e.g. edit 1 p/91234567 e/johndoe@example.com                                                          |
+| **Delete**    | `delete i/NRIC` <br/> e.g. delete i/T0012345A                                                                                                                                                                   |
+| **List**      | `list`                                                                                                                                                                                                          |
+| **Find**      | `find attribute/KEYWORD [MORE_KEYWORDS]` <br/> e.g. find a/Alex  <br/> e.g. find t/diabetic                                                                                                                     |
+| **Backup**    | `backup INDEX_NO` <br/> e.g. backup 3                                                                                                                                                                           |
+| **Load**      | `load INDEX_NO` <br/> e.g. load 3                                                                                                                                                                               |
+| **Clear all** | `clear`                                                                                                                                                                                                         |
+| **Light**     | `light`                                                                                                                                                                                                         |
+| **Dark**      | `dark`                                                                                                                                                                                                          |
+
+<sub>[return to table of contents](#table-of-contents-)</sub>
