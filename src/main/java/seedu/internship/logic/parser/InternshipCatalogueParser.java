@@ -7,10 +7,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.internship.logic.commands.AddCommand;
+import seedu.internship.logic.commands.ClashCommand;
 import seedu.internship.logic.commands.Command;
 import seedu.internship.logic.commands.DeleteCommand;
 import seedu.internship.logic.commands.EditCommand;
 import seedu.internship.logic.commands.ExitCommand;
+import seedu.internship.logic.commands.FindCommand;
 import seedu.internship.logic.commands.HelpCommand;
 import seedu.internship.logic.commands.ListCommand;
 import seedu.internship.logic.commands.SelectCommand;
@@ -41,7 +43,7 @@ public class InternshipCatalogueParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandWord = matcher.group("commandWord").toLowerCase();
         final String arguments = matcher.group("arguments");
 
 
@@ -60,8 +62,12 @@ public class InternshipCatalogueParser {
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
         case EventCommand.COMMAND_WORD:
             return new EventCatalogueParser().parse(arguments);
+        case ClashCommand.COMMAND_WORD:
+            return new ClashCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
