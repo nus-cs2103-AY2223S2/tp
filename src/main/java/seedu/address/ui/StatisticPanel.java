@@ -62,7 +62,7 @@ public class StatisticPanel extends UiPart<Region> {
         int numOffered = statsMap.get(new Status("offered"));
         int numRejected = statsMap.get(new Status("rejected"));
 
-        totalNum.setText("Total Number of Applications: " + statistic.getTotalNum().toString());
+        totalNum.setText("Total No. of Applications: " + statistic.getTotalNum().toString());
         interestedNum.setText("Interested Applications: "
                 + String.format("%d", numInterested));
         appliedNum.setText("Applied Applications: "
