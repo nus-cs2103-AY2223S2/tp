@@ -365,6 +365,30 @@ A considered field to be included in `find` is the `progress` field. However, it
 bookmark by the `progress` field as it is not common for people to remember how far they have read a book, so users are
 unlikely to search for a bookmark using `progress`.
 
+### Tags Feature
+
+#### Implementation
+The `ListTagsCommand` lists all tags in the tag list. The `AddTagCommand` allows you to add tags to the tag list. 
+The `DeleteTagCommand` allows you to delete tags from the tag list.
+
+For listing the tags, you can use the `tags` command. For adding a tag to the tag list, 
+you can use the `addtag` command followed by the tag prefix, `t/`. An example of a user input
+would be `addtag t/MaleProtagonist`. For deleting a tag from the tag list, you can use the 
+`dtag` command followed by the name of the tag name. An example of user input would be 
+`dtag MaleProtagnoist`.
+
+Some limitations of the user inputs include:
+1. For deleting tags, only one tag name can be specified
+    * You cannot delete more than one tag name in a single command
+
+#### Design considerations:
+
+**Aspect: How to store the tag list?:**
+The tag list is stored as a JSON file which will be saved to the user's local device.
+
+The main reason for this is due to the need for the user's tag list to be saved even after the user exist 
+the application. When the user starts the application in the future, the tag list must be how the user left it.
+
 ### [Proposed] Rating Field
 #### Implementation
 The `Rating` field of a bookmark allows user to rate books in the Library. This is stored as the attribute `Rating` 
