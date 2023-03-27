@@ -223,7 +223,7 @@ Examples:
 
 Adds an expense to the expense tracker.
 
-Format: `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`
+Format: `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE] [r/RECUR_PERIOD]`
 
 | Parameter       | Description                                                                                                                                                                       |
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -231,10 +231,12 @@ Format: `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`
 | `ITEM_NAME`     | Name of the expense being added.                                                                                                                                                  |
 | `PRICE`         | The price of the expense being added.<br/><br/>The specified price should be a `double`, e.g. 4, 4.50.                                                                            |
 | `DATE`           | The date of the expense being added.<br/><br/> This is an optional input, and if left unspecified, the date of which the command is issued will be the expense's date by default. |
+| `RECUR_PERIOD`   | The period with which the expense is recurring.<br/><br/> This is an optional input, and if left unspecified, the expense is assumed to be a one-time expense by default. The timeframes available are:<br/>1. week <br/>2. month<br/>3. year|
 
 Examples:
 * `add c/groceries n/milk p/4.50 `
 * `add c/entertainment p/20 n/movie night d/14/2/23`
+* `add c/subscriptions p/21.98 n/Netflix d/01/1/23 r/month`
 
 ## Deleting an expense : `delete`
 
@@ -257,16 +259,18 @@ Format: `lcat`
 
 ## Listing expenses : `list`
 
-Shows a list of expenses in the expense tracker based on the specified `CATEGORY_NAME` and `TIMEFRAME`.
+Shows a list of expenses in the expense tracker based on the specified `CATEGORY_NAME`, `TIMEFRAME` and `RECUR_PERIOD`.
 
 If `CATEGORY_NAME` and `TIMEFRAME` are left unspecified, all expenses in the expense tracker will be listed.
+If only `RECUR_PERIOD` is left unspecified, all non-recurring expenses will be listed.
 
-Format: `list [c/CATEGORY_NAME] [t/TIMEFRAME]`
+Format: `list [c/CATEGORY_NAME] [t/TIMEFRAME] [r/RECUR_PERIOD]`
 
 | Parameter       | Description                                                                                                               |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------|
 | `CATEGORY_NAME` | The name of the category of which expenses are classed under.<br/><br/>Optional to specify.                                           |
 | `TIMEFRAME`      | The timeframe of which expenses were added. <br/><br/>The timeframes available are:<br/>1. week (alias: w) <br/>2. month (alias: m)<br/>3. year (alias: y)<br/><br/>Optional to specify.|
+| `RECUR_PERIOD`  | The period with which the expense is recurring.<br/><br/> The timeframes available are:<br/>1. week <br/>2. month<br/>3. year |
 
 Examples:
 * `list`
@@ -274,6 +278,7 @@ Examples:
 * `list c/Entertainment t/month`
 * `list c/Food`
 * `list t/w`
+* `list c/Entertainment t/year r/month`
 
 ## Editing a category : `ecat`
 
@@ -288,14 +293,14 @@ to `INDEX`, otherwise the command will not go through.
 |-----------------|---------------------------------------------------------------------------------------------------|
 | `INDEX`         | The index of the category to be edited.<br/><br/>It must be a positive integer i.e. 1, 2, 3, ...  |
 | `CATEGORY_NAME` | The new name of the category being edited at the specified index.<br/><br/>Optional parameter.    |
-| `SUMMARY`        | The new summary of the category being edited at the specified index.<br/><br/>Optional parameter. |
+| `SUMMARY`       | The new summary of the category being edited at the specified index.<br/><br/>Optional parameter. |
 
 
 ## Editing an expense : `eexp`
 
 Edits the expense at the specified `INDEX`
 
-Format: `eexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE]`
+Format: `eexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE] [r/RECUR_PERIOD]`
 
 Every parameter except for `INDEX` is optional by themselves, but at least one of other parameters MUST be
 specified, otherwise the command will not go through.
@@ -306,7 +311,9 @@ specified, otherwise the command will not go through.
 | `CATEGORY_NAME` | The new category name of the expense to be changed to.<br/><br/>Optional parameter.             |
 | `EXPENSE_NAME`  | The new expense name of the expense to be changed to.<br/><br/>Optional parameter.              |
 | `DATE`          | The new date of the expense to be changed to.<br/><br/>Optional parameter.                      |
-| `PRICE`          | The new price of the expense to be changed to.<br/><br/>Optional parameter.                     |
+| `PRICE`         | The new price of the expense to be changed to.<br/><br/>Optional parameter.                     |
+| `RECUR_PERIOD`  | The new recurrence period of the expense to be changed to.<br/><br/>Optional parameter.         |
+
 
 ## Search for an expense by name: `find`
 
@@ -384,7 +391,7 @@ _Details coming soon ..._
 ### Expense Commands 
 | Action                       | Format | Examples |
 |------------------------------|--------|----------|
-| [**Add Expense**](#adding-an-expense-add) | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]` | `add c/Food p/20 n/Mac d/14/2/23`|
+| [**Add Expense**](#adding-an-expense-add) | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]` | `add c/Food p/20 n/Mac d/14/2/23 r/week`|
 | [**Delete Expense**](#deleting-an-expense--delete) | `delete INDEX` | `delete 1` |
 | [**Edit Expense**](#editing-an-expense--eexp) | `eexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE]` | `eexp 1 c/Food n/Mac d/20/4/23 p/10`|
 | [**List Expenses**](#listing-expenses--list) | `list [c/CATEGORY_NAME] [t/TIMEFRAME]` | `list c/Food t/month`|
