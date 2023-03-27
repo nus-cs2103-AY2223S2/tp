@@ -49,6 +49,7 @@ public class SortStudentCommand extends Command {
         }
 
          */
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateSortAllPersonList(this.metric, this.increasingOrder);
         return new CommandResult(MESSAGE_SUCCESS);
     }
