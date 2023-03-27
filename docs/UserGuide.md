@@ -62,11 +62,11 @@ preferred use case.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Main View - Projects and Clients
+# Main View - Projects and Clients
 
 Mycelium has two main tabs. One tab lists all existing projects, and the other lists existing clients.
 
-### Projects Tab
+## Projects Tab
 
 The Projects tab lists all the projects you've created. Each project block contains the project’s
 
@@ -78,7 +78,7 @@ The Projects tab lists all the projects you've created. Each project block conta
 - Accepted date
 - Deadline
 
-### Clients Tab
+## Clients Tab
 
 The Clients tab lists all the clients you've created. Each client block contains the client’s
 
@@ -90,7 +90,8 @@ The Clients tab lists all the clients you've created. Each client block contains
 
 
 --------------------------------------------------------------------------------------------------------------------
-## Command Layout
+
+# Command Layout
 
 Commands in Mycelium take the general form of `command_name [arguments]`. Arguments may be compulsory or optional. For optional arguments, Mycelium uses sensible defaults in their place.
 
@@ -102,16 +103,16 @@ As an example, the command below creates a new project with the name *Mycelium D
 p -pn 'Mycelium Desktop' -e spiderman@gmail.com -src fiverr.com
 ```
 
-### A note on dates
+## A note on dates
 
 For arguments which expect a date, Mycelium only accepts input of the format dd/MM/yyyy.
 For example, "14/03/2023" is okay, but "14/3/2023", or "14-03-2023" are not okay.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Managing Clients
+# Managing Clients
 
-### Creating a client contact: `c`
+## Creating a client contact: `c`
 
 Creates a new client contact.
 
@@ -142,7 +143,7 @@ The following command creates a new client with name *Alice Baker*, whose email 
 c -cn 'Alice Baker' -e alice_baker@bakers.com -y 2000
 ```
 
-### Deleting a client contact: `dc`
+## Deleting a client contact: `dc`
 
 Deletes an *existing* client contact.
 
@@ -156,10 +157,9 @@ Deletes an *existing* client contact.
 The command `dc -e alice_baker@bakers.com`  deletes the contact with the corresponding email.
 
 --------------------------------------------------------------------------------------------------------------------
+# Managing Projects
 
-## Managing Projects
-
-### Creating a project: `p`
+## Creating a project: `p`
 
 Creates a new project.
 
@@ -214,7 +214,7 @@ New project added: Mycelium Desktop from client spiderman@gmail.com
 * If you attempt to create a project with a name which already exists in
   Mycelium, an error will be displayed to block the operation.
 
-### Deleting a project: `dp`
+## Deleting a project: `dp`
 
 Deletes an existing project.
 
@@ -244,7 +244,7 @@ Deleted Project: Mycelium Desktop from client spiderman@gmail.com
   will be displayed and no changes will be made to your data.
 * Deletion is irreversible!
 
-### Updating a project: `up`
+## Updating a project: `up`
 
 Performs partial updates an existing project.
 
@@ -317,7 +317,7 @@ up -pn Mycelium Desktop -pn2 Mycelium Mobile -s in_progress
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# Command summary
 
 Action | Format
 --------|------------------
