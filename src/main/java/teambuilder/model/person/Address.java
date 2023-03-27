@@ -51,7 +51,7 @@ public class Address {
         return new Address(address);
     }
 
-    private static Address getEmptyAddress() {
+    public static Address getEmptyAddress() {
         return EMPTY_ADDRESS;
     }
 
