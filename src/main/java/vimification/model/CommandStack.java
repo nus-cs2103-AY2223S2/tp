@@ -1,10 +1,12 @@
 package vimification.model;
 
 import java.util.Deque;
+import java.util.stream.Stream;
 
 import vimification.internal.command.logic.UndoableLogicCommand;
 
 import java.util.ArrayDeque;
+import java.util.Collection;
 
 public class CommandStack {
 
@@ -16,18 +18,20 @@ public class CommandStack {
         this.commands = new ArrayDeque<>();
     }
 
-    public CommandStack(Deque<UndoableLogicCommand> commands) {
+    public CommandStack(Collection<UndoableLogicCommand> commands) {
+        this.commands = new ArrayDeque<>(commands);
+        ensureCorrectSize();
+    }
+
+    private void ensureCorrectSize() {
         while (commands.size() > MAX_SIZE) {
             commands.pollFirst();
         }
-        this.commands = new ArrayDeque<>(commands);
     }
 
     public void push(UndoableLogicCommand cmd) {
         commands.offerLast(cmd);
-        if (commands.size() > MAX_SIZE) {
-            commands.pollFirst();
-        }
+        ensureCorrectSize();
     }
 
     public UndoableLogicCommand pop() {
@@ -41,5 +45,9 @@ public class CommandStack {
     @Override
     public String toString() {
         return "CommandDeque: " + commands;
+    }
+
+    public Stream<UndoableLogicCommand> stream() {
+        return commands.stream();
     }
 }

@@ -28,7 +28,10 @@ public class JsonAdaptedLogicTaskList {
 
     @JsonCreator
     public JsonAdaptedLogicTaskList(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
-        this.tasks = tasks == null ? List.of() : tasks;
+        if (tasks == null) {
+            tasks = List.of();
+        }
+        this.tasks = tasks;
     }
 
     /**

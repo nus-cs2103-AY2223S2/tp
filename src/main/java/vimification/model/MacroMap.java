@@ -25,6 +25,10 @@ public class MacroMap {
         definedMacros.put(macro, command);
     }
 
+    public void remove(String macro) {
+        definedMacros.remove(macro);
+    }
+
     public Set<Map.Entry<String, String>> entrySet() {
         return definedMacros.entrySet();
     }

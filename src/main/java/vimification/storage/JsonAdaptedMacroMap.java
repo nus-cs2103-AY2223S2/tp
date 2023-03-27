@@ -13,7 +13,7 @@ public class JsonAdaptedMacroMap {
     private final Map<String, String> definedMacros;
 
     @JsonCreator
-    public JsonAdaptedMacroMap(@JsonProperty("definedMacro") Map<String, String> definedMacros) {
+    public JsonAdaptedMacroMap(@JsonProperty("definedMacros") Map<String, String> definedMacros) {
         if (definedMacros == null) {
             definedMacros = Map.of();
         }
