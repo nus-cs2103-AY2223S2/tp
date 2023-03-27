@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Objects;
 
 import seedu.address.model.Relationship;
-import seedu.address.model.shared.Datetime;
 import seedu.address.model.person.Person;
+import seedu.address.model.shared.Datetime;
 import seedu.address.model.shared.Id;
 
 /**
@@ -29,6 +29,8 @@ public class Task implements Relationship<Task> {
 
     private final Datetime createDateTime;
     private final Datetime deadline;
+
+
 
     /**
      * Every field must be present and not null.
@@ -93,13 +95,6 @@ public class Task implements Relationship<Task> {
         return status;
     }
 
-    public void setPeoples(List<Person> peoples) {
-        this.peoples = peoples;
-    }
-
-    public List<Person> getPeoples() {
-        return peoples;
-    }
     public Datetime getCreateDateTime() {
         return createDateTime;
     }
@@ -107,6 +102,15 @@ public class Task implements Relationship<Task> {
     public Datetime getDeadline() {
         return deadline;
     }
+
+    public void setPeoples(List<Person> peoples) {
+        this.peoples = peoples;
+    }
+
+    public List<Person> getPeoples() {
+        return peoples;
+    }
+
 
 
     /**
