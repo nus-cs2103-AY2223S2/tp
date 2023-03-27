@@ -3,95 +3,48 @@ layout: page
 title: User Guide
 ---
 
-#### CoDoc is a desktop app for students in SoC (School of Computing) to connect with each other for the benefit of their course of study. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoDoc can get your contact management tasks done faster than traditional GUI apps and networking with people can be easily done.
+#### Welcome to CoDoc, a desktop app that allows students in SoC to connect with each other for the benefit of their course of study. CoDoc is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoDoc can get your contact management tasks done faster than traditional GUI apps and networking with people can be easily done.
 
 <img src="images/Ui.png"/>
 --------------------------------------------------------------------------------------------------------------------
 
 # Table of Contents
-1. [Quick Start](#1-quick-start)
-2. [Downloading CoDoc](#2-downloading-codoc)
-3. [Navigation](#3-navigation)
-4. [Commands](#4-commands)
-   1. [add](#41-add)
-   2. [find](#42-find)
-   3. [view](#43-view)
-   4. [edit](#44-edit)
-   5. [list](#45-list)
-   6. [delete](#46-delete)
-   7. [clear](#47-clear)
-   8. [help](#48-help)
-   9. [exit](#49-exit)
-5. [Data Management](#5-data-management)
-6. [FAQ](#6-faq)
-7. [Upcoming Features](#7-upcoming-features)
-8. [Command Summary](#8-command-summary)
-9. [Additional Resources](#9-additional-resources)
-   1. [How To Check Java Version](#91-how-to-check-java-version)
-   2. [How to Open CoDoc](#92-how-to-open-codoc)
+- [Quick Start](#quick-start)
+  - [Download and Installation](#download-and-installation)
+  - [Navigation](#navigation)
+  - [Tutorial](#tutorial)
+    - [Adding a person](#1-adding-a-person)
+    - [Viewing a person's modules](#2-viewing-a-persons-modules)
+    - [Editing a person's modules](#3-editing-a-persons-modules)
+    - [Finding a person by their modules](#4-finding-a-person-by-their-modules)
+- [Commands](#commands)
+  - [Viewing help: `help`](#help)
+  - [Adding a person: `add`](#adding-a-person--add)
+  - [Viewing a person/Changing tabs: `view`](#viewing-a-personchanging-tabs--view)
+  - [Editing a person: `edit`](#editing-a-person--edit)
+  - [Finding a person: `find`](#finding-a-person--find)
+  - [Lising all persons/Resetting filters: `list`](#listing-all-personsresetting-filters--list)
+  - [Deleting a person: `delete`](#deleting-a-person--delete)
+  - [Clearing all entries: `clear`](#clearing-all-entries--clear)
+  - [Exiting the program: `exit`](#exiting-the-program--exit)
+- [Data Management](#data-management)
+- [FAQ](#faq)
+- [Upcoming Features](#upcoming-features)
+- [Command Summary](#command-summary)
+- [Additional Resources](#additional-resources)
+  - [How To Check Java Version](#how-to-check-java-version)
+  - [How to Open CoDoc](#how-to-open-codoc)
 
 --------------------------------------------------------------------------------------------------------------------
-## 1. Quick Start
-Currently, our contact list is empty. Let's try adding a fictitious contact into our list to familiarise ourselves with CoDoc. Don't worry, we will remove this fictitious contact at the end.
-1. **add** a new person -> [add command](#41-add)
-   <br>`add n/Bob y/2 c/1 e/e0823741@nus.edu`<br>
 
-   | Parameters         | Description                                             |
-   |---------------------------------------------------------|---------------------------------------------------------|
-   | n/Bob              | person name is Bob                                      |
-   | y/2                | year of study is 2                                      |
-   | c/1                | course enrolled is Accounting—index 1 on the left panel |
-   | e/e0823741@nus.edu | email is e0823741@nus.edu                               |
-2. **find** Bob in list of persons -> [find command](#42-find)
-   <br>`find n/Bob y/2 c/Accounting`<br>
+## Quick Start
 
-   | Parameters         | Description                                 | 
-   |--------------------|---------------------------------------------|
-   | n/Bob              | find all person with Bob in its name AND... |
-   | y/2                | year of study is 2 AND...                   |
-   | c/1                | course enrolled is Accounting AND...        |
-3. **view** person at index 1 (should be Bob if you started from an empty list)
-   <br>`view 1`<br><br>
-4. **view** current person information -> [view command](#43-view)
-   <br>`view m`
-   <br>`view s`
-   <br>`view c`<br>
+### Download and Installation
 
-   | Parameters         | Description                       |
-   |--------------------|-----------------------------------|
-   | view m             | view person's list of modules     |
-   | view s             | view person's list of skills      |
-   | view c             | view person's contact information |
-5. **edit** current contact -> [edit command](#44-edit)
-    <br>`edit n/Bob Sim m+/AY2223S2 CS2109S s+/PYTHON`<br>
+Before you can use CoDoc, you need to download it. To do this, follow these steps:
 
-   | Parameters           | Description                                      |
-   |----------------------|--------------------------------------------------|
-   | n/Bob Sim            | change name to Bob Sim                           |
-   | m+/AY2223S2 CS2109S  | add AY2223S2 CS2109S to Bob Sim's set of modules |
-   | s+/python            | add PYTHON to Bob Sim's set of skills            |
-6. **find** Bob in list of persons -> [find command](#42-find)
-    <br>`find n/Bob Sim y/2 c/Accounting m/AY2223S2 CS2109S s/PYTHON`<br>
-
-   | Parameters         | Description                                 |
-   |--------------------|---------------------------------------------|
-   | n/Bob              | find all person with Bob in its name AND... |
-   | y/2                | year of study is 2 AND...                   |
-   | c/1                | course enrolled is Accounting AND...        |
-   | m/AY2223S2 CS2109S | AY2223S2 CS2109S in their set of modules    |
-   | s/PYTHON           | PYTHON in their set of skills               |
-7. **delete** person at index 1 (should be Bob if you started from an empty list) -> [delete command](#46-delete)
-    <br>`delete 1`<br><br>
-8. **list** all person -> [list command](#45-list)
-    <br>`list`<br><br>
-9. **exit** CoDoc -> [exit command](#49-exit)
-    <br>`exit`<br><br>
-   
-[ ^Scroll back up to *Tables of Contents*](#table-of-contents)
-
-## 2. Downloading CoDoc
 1. Ensure you have `Java 11` or above installed in your Computer. -> [How To Check Java Version](#how-to-check-java-version)
-   * If not, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#java11) 
+   * If not, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#java11)
 2. Download the latest version of `codoc.jar` [here](https://github.com/AY2223S2-CS2103T-F12-2/tp/releases/tag/v1.3.trial).
 3. Copy the file to the folder you want to use as the _home folder_ for CoDoc.<br>
    For example,
@@ -101,16 +54,118 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
    1. `cd` into the folder you put the jar file in.
    2. `java -jar codoc.jar` to run the application.<br>
    3. A window similar to the one below should appear in a few seconds.
-   <img src="images/Ui.png"/>
-   <br>
 
-[ ^Scroll back to *Tables of Contents*](#table-of-contents)
+      <img src="images/Ui-minimised.png"/>
+      <br>
 
-## 3. Navigation
-[ ^Scroll back up to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Tables of Contents*](#table-of-contents)
 
-## 4. Commands
-### 4.1 add
+### Navigation
+
+Before we begin, let's familiarize ourselves with the different parts of the CoDoc interface.
+Maximise the screen to have a clearer view.
+This way you can see more content as well.
+
+<img src="images/navigation.png"/>
+
+- **Menu Bar:** if you ever feel stuck, you can always click on the `Help` button here or enter `help` in the command box. 
+- **Command Box:** this is where you can type in commands.
+- **Result Display:** shows the result of a command that you have executed.
+- **Person List Panel:** here are your contacts in CoDoc.
+- **Course List Panel:** you can refer to this list when adding a person.
+- **Info Panel:** displays information about a selected person, such as their contact details, modules, and skills, which are presented as tabs.
+
+### Tutorial
+
+Now that you know how to navigate CoDoc, let's start by adding a person to our contact list! To do this, follow these steps:
+
+#### 1. Adding a person
+
+Let's start by adding a person named Bob, a year 2 student taking Computer Science with the email e0823741@nus.edu. 
+
+Enter the command `add n/Bob y/2 c/6 e/e0823741@nus.edu` into the command box. This will add a new person named Bob to our contact list. 
+
+**Note:** You must specify minimally, the person's _name_, _email_, _year_ and _course_ when adding a person.
+
+As you can see, we first specify the `add` command followed by the _name prefix_ `n/` and the _name_ that we want to add i.e. `Bob`. Same goes for the _year_, _course_ and _email_. 
+
+**Note:** The person's _course_ corresponds to its index in the course list panel.
+
+Here we used `c/6`, because if you look at the course list panel on the left, Computer Science refers to index `6`. 
+
+If you want to, you can add other details of the person such as his/her _GitHub username_, _LinkedIn profile URL_, _modules_ and _skills_.
+
+Related docs: [Adding a person: `add`](#adding-a-person--add)
+
+If you followed the steps above correctly, you would see this screen:
+
+<img src="images/tutorial/adding-bob.png"/>
+
+**Note:** Your profile pictures and the profile pictures shown here will not be exactly the same as they are randomised.
+
+#### 2. Viewing a person's modules
+
+As shown above, the right info panel automatically updated to show Bob's contact after we added him. 
+
+Now let's take a look at his _modules_: enter `view m` in the command box. As you can see, his module list is currently empty.
+
+<img src="images/tutorial/viewing-bobs-modules.png"/>
+
+You can enter `view s` as well if you want to see Bob's _skills_. You can also view another person by specifying the person's index in the list i.e. `view 2` would load Nicole Lee in the info panel.
+
+**Related docs:** [Viewing a person/Changing tabs: `view`](#viewing-a-personchanging-tabs--view)
+
+#### 3. Editing a person's modules
+
+To update Bob's module list to have let's say CS2101 and CS2103T, first make sure that Bob is shown in the right info panel, by entering `view 8`. 
+
+Then enter `edit m/ay2223s2 cs2101 m/ay2223s2 cs2103t` in the command box. 
+
+**Note:** Editing only works on the person shown in the info panel. If the person you want to edit is not shown in the info panel, you have to use the `view` command first to view that person, then edit as you wish. Also, _modules_ must follow a certain format to be successfully added/edited.
+
+**Related docs:** [Viewing a person/Changing tabs: `view`](#viewing-a-personchanging-tabs--view), [Editing a person: `edit`](#editing-a-person--edit)
+
+Bob's updated module list (use `view m` to see) would look like this after you entered the `edit` command:
+
+<img src="images/tutorial/editing-bobs-modules.png"/>
+
+You might be thinking why not we just add Bob's _modules_ in the first place when adding him? You can do that! But for this tutorial, we have separated it to show how you can use the `edit` command. 
+
+You can also edit other details of the person such as his/her _name_, _year_, _GitHub username_, etc., not just their _modules_.
+
+**Related docs:** [Adding a person: `add`](#adding-a-person--add), [Editing a person: `edit`](#editing-a-person--edit)
+
+#### 4. Finding a person by their modules
+
+Let's try to find contacts that are taking/have taken CS2103T. First, let's reset all existing filters if they have been applied. We can do this by entering `list`. This shows us all the contacts in CoDoc. 
+
+Then enter `find m/cs2103t`. This would show the contacts in the person list panel that have CS2103T in their module list:
+
+<img src="images/tutorial/finding-cs2103t.png"/>
+
+Here, if you followed the previous steps correctly, Bob would be shown as well.
+
+Our `find` command is pretty powerful; it works for other attributes, like _year_, _skills_, etc. and you can find by multiple attributes. To learn more about it, you can take a look at [Finding a person: `find`](#finding-a-person--find)
+
+**Related docs:** [Finding a person: `find`](#finding-a-person--find), [Listing all persons/Resetting filters: `list`](#listing-all-personsresetting-filters--list)
+
+Congrats! You have completed the tutorial 🎉 
+
+The pre-existing contacts are just some examples that you can play around with, but if you want to start with a fresh contact list, enter `clear` to clear all contacts. Also, if you need more info on the usage of each command, you can refer to the relevant sections below. 
+
+[Scroll back to *Tables of Contents*](#table-of-contents)
+
+## Commands
+
+### Viewing help : `help`
+
+`help`<br>
+> <img src="images/UiHelpMenu.png"/>
+> * Opens help menu <br>
+> * Equivalent to clicking Help > Help F1 via the GUI <br>
+
+### Adding a person: `add`
+
 `add n/NAME e/EMAIL y/YEAR c/COURSE_INDEX [OPTIONAL/PARAMETER]...`<br>
 >
 > **Compulsory parameters:**
@@ -132,7 +187,22 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 > - `add` n/John Doe e/johnd@example.com y/2 c/3
     > ![Add Example](images/UiAddContact.jpg)
 
-### 4.2 find
+### Viewing a person/Changing tabs: `view`
+`view <PARAMETERS>`<br>
+
+### Editing a person: `edit`
+`edit [OPTIONAL/PARAMETER]...`<br>
+> - Edits the person displayed in the view panel
+> - At least one of the optional fields must be provided.
+> - Existing values will be updated to the input values.
+> - When editing skills, the existing skills of the person will be removed i.e adding of skills is not cumulative.
+> - You can remove all the person’s skills by typing s/ without specifying any skills after it
+>
+> **Examples:**
+> - edit g/91234567 e/johndoe@example.com will edit the github username and email address of the person to be 91234567 and johndoe@example.com respectively.
+> - edit n/Betsy Crower s/ Edits the name of the person to be Betsy Crower and clears all existing skills.
+
+### Finding a person: `find`
 `find [OPTIONAL/PARAMETER]...`<br>
 >> find KEYWORD [MORE_KEYWORDS]
 > * The search is case-insensitive. e.g `hans` will match `Hans`
@@ -147,50 +217,30 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 > - `find alex david` returns `Alex Yeoh`, `David Li`<br>
     ![result for 'find alex david'](images/findAlexDavidResult.jpg)
 
-### 4.3 iew
-`view <PARAMETERS>`<br>
-
-### 4.4 edit
-`edit [OPTIONAL/PARAMETER]...`<br>
-> - Edits the person displayed in the view panel
-> - At least one of the optional fields must be provided.
-> - Existing values will be updated to the input values.
-> - When editing skills, the existing skills of the person will be removed i.e adding of skills is not cumulative.
-> - You can remove all the person’s skills by typing s/ without specifying any skills after it
->
-> **Examples:**
-> - edit g/91234567 e/johndoe@example.com will edit the github username and email address of the person to be 91234567 and johndoe@example.com respectively.
-> - edit n/Betsy Crower s/ Edits the name of the person to be Betsy Crower and clears all existing skills.
-
-### 4.5 list
+### Listing all persons/Resetting filters: `list`
 `list`<br>
 > * Shows all persons stored.<br>
 
-### 4.6 delete
+### Deleting a person: `delete`
 `delete <INDEX>`<br>
 > * Deletes the person at the specified INDEX.<br>
 > * INDEX refers to an index currently shown in the displayed person list.<br>
 > * INDEX must be a positive integer 1, 2, 3, ...<br>
 > * E.g. `delete 1` will delete the current person at index 1 as shown in the list panel.<br>
 
-### 4.7 clear
+### Clearing all entries: `clear`
 `clear`<br>
 > * :warning: Clears **all** entries from CoDoc.<br>
 
-### 4.8 help:
-`help`<br>
-> <img src="images/UiHelpMenu.png"/>
-> * Opens help menu <br>
-> * Equivalent to clicking Help > Help F1 via the GUI <br>
 
-### 4.9 exit:
+### Exiting the program: `exit`
 `exit`<br>
 > * Exits the program. <br>
 > * Equivalent to clicking the close button via the GUI. <br>
 
-[ ^Scroll back up to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Tables of Contents*](#table-of-contents)
 
-## 5. Data Management
+## Data Management
 **Q**: How do I save my person list?<br>
 **A**: CoDoc automatically saves your person list after every successful `add`, `edit` and `clear`.
 
@@ -202,13 +252,13 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 
 :warning: If your changes to the data file makes its format invalid, CoDoc will discard all data and start with an empty data file at the next run.
 
-[ ^Scroll back up to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Tables of Contents*](#table-of-contents)
 
-## 6. FAQ
+## FAQ
 
-[ ^Scroll back up to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Tables of Contents*](#table-of-contents)
 
-## 7. Upcoming Features
+## Upcoming Features
 
 ### Automated bulk edits `[coming in v2.0]`
 _Details coming soon ..._
@@ -218,10 +268,11 @@ _Details coming soon ..._
 _Details coming soon ..._
 
 <br>
-[ ^Scroll back up to *Tables of Contents*](#table-of-contents)
+
+[Scroll back to *Tables of Contents*](#table-of-contents)
 
 
-## 8. Command Summary 
+## Command Summary 
 
 | Actions                          | Description                                                                                                                                 |
 |----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
@@ -235,15 +286,15 @@ _Details coming soon ..._
 | View tab                         | view c, view m, view s                                                                                                                      |
 | View user guide and command list | help                                                                                                                                        |
 
-[ ^Scroll back up to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Tables of Contents*](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 9. Additional Resources
-### 9.1 How To Check Java Version
-[ ^Scroll back up to *Downloading CoDoc*](#downloading-codoc)
-### 9.2 How to Open CoDoc
-[ ^Scroll back up to *Downloading CoDoc*](#downloading-codoc)
+## Additional Resources
+### How To Check Java Version
+[Scroll back to *Downloading CoDoc*](#downloading-codoc)
+### How to Open CoDoc
+[Scroll back to *Downloading CoDoc*](#downloading-codoc)
 
 --------------------------------------------------------------------------------------------------------------------
-[ ^Scroll back up to *Tables of Contents*](#table-of-contents)
+[Scroll back to *Tables of Contents*](#table-of-contents)
