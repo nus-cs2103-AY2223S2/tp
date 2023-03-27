@@ -46,12 +46,12 @@ public class FindCommand extends Command {
         int returnListSize;
         ModelState currentState = model.getState();
         switch (currentState) {
-        case DECK_MODE:
+        case MAIN_SELECTED_MODE:
             model.updateFilteredCardList(cardPredicate);
             returnMessage = Messages.MESSAGE_CARDS_LISTED_OVERVIEW;
             returnListSize = model.getFilteredCardList().size();
             break;
-        case MAIN_MODE:
+        case MAIN_UNSELECTED_MODE:
             model.updateFilteredDeckList(deckPredicate);
             returnMessage = Messages.MESSAGE_DECKS_LISTED_OVERVIEW;
             returnListSize = model.getFilteredDeckList().size();
