@@ -11,7 +11,8 @@
         <VBox maxWidth="350.0" minWidth="200.0" HBox.hgrow="ALWAYS" >
             <ListView fx:id="recipeListView" onMouseClicked="#handleMouseClick" />
         </VBox>
-        <AnchorPane fx:id="recipeDetailsPanelPlaceholder" minWidth="300.0" VBox.vgrow="ALWAYS">
+        <AnchorPane fx:id="recipeDetailsPanelPlaceholder" minWidth="300.0" HBox.hgrow="ALWAYS"
+                    >
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>

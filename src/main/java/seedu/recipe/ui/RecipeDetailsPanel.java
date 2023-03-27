@@ -58,7 +58,8 @@ public class RecipeDetailsPanel extends UiPart<Region> {
             stepsTitle.setText("Instructions:");
             recipe.getSteps().stream()
                     .forEach(step -> {
-                        Label stepLabel = new Label(step.step);
+                        String eachStep = recipe.getSteps().indexOf(step) + 1 + ". " + step.step;
+                        Label stepLabel = new Label(eachStep);
                         steps.getChildren().add(stepLabel);
                     });
         }
