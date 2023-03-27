@@ -8,22 +8,31 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+---
+
+>## **About FitBook**
+
+FitBook app is a collective project by a group of NUS undergrads (AY2223/CS2103T-T15-2).
+
+This app aims to promote efficiency recording of clients and exercise routines for fitness instructors. It is written in java 11
+and uses javafx for its UI. The storage are made up of Json files to store the user's input data.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+>## **Acknowledgements**
 
 * Libraries
   * LocalDateTime
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+>## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+>## **Design**
 
 <div markdown="span" class="alert alert-primary">
 
@@ -118,6 +127,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### FitBookModel component
+
 **API** : [`FitBookModel.java`](https://github.com/AY2223S2-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/fitbook/model/FitBookModel.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -160,7 +170,7 @@ Classes used by multiple components are in the `seedu.fitbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+>## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -553,7 +563,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+>## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -563,7 +573,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+>## **Appendix: Requirements**
 
 ### Product scope
 
@@ -982,7 +992,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+>## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
