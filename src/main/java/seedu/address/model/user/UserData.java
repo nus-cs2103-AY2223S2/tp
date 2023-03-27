@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.event.Event;
+import seedu.address.model.person.Person;
 import seedu.address.model.event.UniqueEventList;
 
 /**
@@ -56,24 +58,28 @@ public class UserData implements ReadOnlyUserData {
         setUser(newData.getData().getValue());
     }
 
-    //// util methods
+    //// Event methods
 
-    //@Override
-    //public String toString() {
-    // TODO: refine later
-    //}
-
-    @Override
-    public ReadOnlyObjectProperty<User> getData() {
-        return this.user.getReadOnlyProperty();
+    public void addEvent(Event e) {
+        this.user.getValue().addEvent(e);
     }
 
     public boolean hasEvent(Event e) {
         return this.user.getValue().hasEvent(e);
     }
-    public void addEvent(Event e) {
-        this.user.getValue().addEvent(e);
+
+    public void deletePersonFromAllEvents(Person target) {
+        this.user.get().deletePersonFromAllEvents(target);
     }
+
+    public void tagPersonToEvent(Index index, Person p) {
+        this.user.get().tagPersonToEvent(index, p);
+    }
+
+    public void untagPersonFromEvent(Index index, Person p) {
+        this.user.get().untagPersonFromEvent(index, p);
+    }
+    //// util methods
 
     public void setEvent(Event target, Event editedEvent) {
         this.user.getValue().setEvent(target, editedEvent);
@@ -84,6 +90,16 @@ public class UserData implements ReadOnlyUserData {
         return other == this // short circuit if same object
                 || (other instanceof UserData // instanceof handles nulls
                 && user.equals(((UserData) other).user));
+    }
+
+    @Override
+    public String toString() {
+        return this.user.toString();
+    }
+
+    @Override
+    public ReadOnlyObjectProperty<User> getData() {
+        return this.user.getReadOnlyProperty();
     }
 
     @Override

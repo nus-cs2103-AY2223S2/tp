@@ -82,6 +82,17 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Gets the given person with name of {@code name}.
+     * Person with name of {@code target} must exist in the address book.
+     */
+    Person getPersonWithName(String name);
+
+    /**
+     * Checks if the Person with name of {@code name} exists in the address book.
+     */
+    boolean hasPersonWithName(String name);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -109,21 +120,35 @@ public interface Model {
     /** Returns the UserData */
     ReadOnlyUserData getUserData();
 
+    /** Sets the user in UserData */
     void setUser(User user);
 
+    /** Checks if {@code event} exists in UserData */
     boolean hasEvent(Event event);
 
+    /** Adds {@code event} to the event list */
     void addEvent(Event event);
 
     void setEvent(Event target, Event editedEvent);
 
+    /** Gets list of all events */
     ObservableList<Event> getEvents();
 
+    /** Tags Person to an Event */
+    void tagPersonToEvent(Index index, Person p);
+
+    /** Untags person from an Event */
+    void untagPersonFromEvent(Index index, Person p);
+
+    /** Checks if {@code index} is a valid tab index. */
     boolean isValidTabIndex(Index index);
 
+    /** Gets the TabUtil object */
     TabUtil getTabUtil();
 
+    /** Gets the selected tab */
     ReadOnlyObjectProperty<TabInfo> getSelectedTab();
 
+    /** Sets the tab to the one specified in {@code index} */
     void setSelectedTab(Index index);
 }

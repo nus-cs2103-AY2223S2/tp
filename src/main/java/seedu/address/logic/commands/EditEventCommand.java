@@ -77,6 +77,10 @@ public class EditEventCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_EVENT);
         }
 
+        if (!DateTime.isValidInterval(editedEvent.getStartDateTime(), editedEvent.getEndDateTime())) {
+            throw new CommandException(MESSAGE_INVALID_INTERVAL);
+        }
+
         model.setEvent(eventToEdit, editedEvent);
         // model.updateEventList (Need to do)
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
