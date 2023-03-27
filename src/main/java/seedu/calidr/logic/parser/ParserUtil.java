@@ -25,6 +25,7 @@ import seedu.calidr.model.person.Remark;
 import seedu.calidr.model.tag.Tag;
 import seedu.calidr.model.task.params.Description;
 import seedu.calidr.model.task.params.EventDateTimes;
+import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
 import seedu.calidr.model.task.params.TodoDateTime;
 
@@ -298,5 +299,25 @@ public class ParserUtil {
             throw new ParseException("Invalid page type.");
         }
         return pageType;
+    }
+
+    /**
+     * Parses a {@code String priority} into a {@code Priority}.
+     *
+     * @param priorityString The string containing the priority.
+     * @return A {@code Priority} object representing the given priority.
+     * @throws ParseException if the given {@code priority} is invalid.
+     */
+    public static Priority parsePriority(String priorityString) throws ParseException {
+        requireNonNull(priorityString);
+
+        Priority priority;
+        try {
+            priority = Priority.valueOf(priorityString.trim().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+
+        return priority;
     }
 }
