@@ -19,11 +19,14 @@ public class AnythingContainsKeywordsPredicate implements Predicate<Recipe> {
     @Override
     public boolean test(Recipe recipe) {
         boolean doesTitle = keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(recipe.getTitle().title, keyword));
+                .anyMatch(keyword -> StringUtil
+                        .containsWordIgnoreCase(recipe.getTitle().title, keyword));
         Set<Ingredient> recipeIngredient = recipe.getIngredients();
         boolean doesIngredientExist = false;
         for (Ingredient i : recipeIngredient) {
-            if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(i.ingredient, keyword))) {
+            if (keywords.stream()
+                    .anyMatch(keyword -> StringUtil
+                            .containsWordIgnoreCase(i.ingredient, keyword))) {
                 doesIngredientExist = true;
             }
         }

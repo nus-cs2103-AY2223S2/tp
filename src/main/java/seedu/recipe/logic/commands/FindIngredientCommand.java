@@ -7,15 +7,18 @@ import seedu.recipe.model.Model;
 import seedu.recipe.model.recipe.IngredientContainsKeywordsPredicate;
 
 /**
- * Finds and lists all recipes in recipe book whose title, ingredients, tags or price contains any of the argument keywords.
+ * Finds and lists all recipes in recipe book whose ingredients
+ * contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindIngredientCommand extends Command {
 
-    public static final String COMMAND_WORD = "findt";
+    public static final String COMMAND_WORD = "findi";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all recipes whose title contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all recipes whose ingredient contain any of "
+            + "the specified keywords (case-insensitive) and"
+            + " displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n";
 
 
@@ -30,7 +33,8 @@ public class FindIngredientCommand extends Command {
         requireNonNull(model);
         model.updateFilteredRecipeList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_RECIPES_LISTED_OVERVIEW, model.getFilteredRecipeList().size()));
+                String.format(Messages.MESSAGE_RECIPES_LISTED_OVERVIEW,
+                        model.getFilteredRecipeList().size()));
     }
 
     @Override

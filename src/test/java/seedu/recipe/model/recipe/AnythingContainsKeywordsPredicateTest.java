@@ -18,8 +18,10 @@ public class AnythingContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        AnythingContainsKeywordsPredicate firstPredicate = new AnythingContainsKeywordsPredicate(firstPredicateKeywordList);
-        AnythingContainsKeywordsPredicate secondPredicate = new AnythingContainsKeywordsPredicate(secondPredicateKeywordList);
+        AnythingContainsKeywordsPredicate firstPredicate =
+                new AnythingContainsKeywordsPredicate(firstPredicateKeywordList);
+        AnythingContainsKeywordsPredicate secondPredicate =
+                new AnythingContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
@@ -69,8 +71,8 @@ public class AnythingContainsKeywordsPredicateTest {
         predicate = new AnythingContainsKeywordsPredicate(Arrays.asList("Tomato"));
         assertFalse(predicate.test(new RecipeBuilder().withTitle("Corndog with cheese").build()));
 
-        // Keywords match ingredient but does not match name
+        // Keywords match description but does not match name
         predicate = new AnythingContainsKeywordsPredicate(Arrays.asList("Cheese"));
-        assertFalse(predicate.test(new RecipeBuilder().withTitle("Corndog").withIngredients("Cheese").build()));
+        assertFalse(predicate.test(new RecipeBuilder().withTitle("Corndog").withDesc("Cheese").build()));
     }
 }

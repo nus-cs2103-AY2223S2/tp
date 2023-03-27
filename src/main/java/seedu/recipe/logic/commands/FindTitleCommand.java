@@ -7,7 +7,8 @@ import seedu.recipe.model.Model;
 import seedu.recipe.model.recipe.TitleContainsKeywordsPredicate;
 
 /**
- * Finds and lists all recipes in recipe book whose title, ingredients, tags or price contains any of the argument keywords.
+ * Finds and lists all recipes in recipe book whose title,
+ * contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindTitleCommand extends Command {

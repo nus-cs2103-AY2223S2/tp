@@ -23,13 +23,13 @@ import seedu.recipe.logic.commands.FindCommand;
 import seedu.recipe.logic.commands.HelpCommand;
 import seedu.recipe.logic.commands.ListCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
-import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.AnythingContainsKeywordsPredicate;
+import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 import seedu.recipe.testutil.RecipeBuilder;
 import seedu.recipe.testutil.RecipeUtil;
 
-public class AddressBookParserTest {
+public class CookHubParserTest {
 
     private final CookHubParser parser = new CookHubParser();
 

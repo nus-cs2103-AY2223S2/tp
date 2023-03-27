@@ -18,8 +18,13 @@ public class IngredientContainsKeywordsPredicate implements Predicate<Recipe> {
 
     @Override
     public boolean test(Recipe recipe) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(recipe.getIngredient().ingre, keyword));
+        Set<Ingredient> recipeIngredients = recipe.getIngredients();
+        for (Ingredient i : recipeIngredients) {
+            if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(i.ingredient, keyword))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

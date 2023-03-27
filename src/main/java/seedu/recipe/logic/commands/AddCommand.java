@@ -1,7 +1,10 @@
 package seedu.recipe.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.recipe.logic.parser.CliSyntax.*;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.model.Model;
