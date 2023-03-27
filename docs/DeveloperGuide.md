@@ -16,7 +16,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+<!-- - {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well} -->
 
 ---
 
@@ -205,6 +205,12 @@ This implementation allows us to fail early and report errors if the prefix does
 We need to translate the inheritance relationship between `Task` and its subclasses from and to JSON. The current implementation uses 2 annotations (from the Jackson library), `@JsonTypeInfo` and `@JsonSubTypes` to solve this.
 
 One downside of this implementation is that `JsonAdoptedTask` must know all of its subclasses, which increases coupling. However, after considering another alternative (manually setup the json parser), this seems to be the most suitable implementation for the current scale of the project. The increase in coupling is compensated by the ease of implementation.
+
+### \[Proposed\] Modification compared to AB3
+
+AB3 uses the **Model–view–controller (MVC)** design pattern. One detail we observed is that the `Model` uses `ObservableList` to carry application data, however, we argued that this is not the optimal design, since `ObservableList` should be used for `view`. AB3 implementation makes the view and bussiness logic bundled together, hinder our development speed.
+
+Therefore, we wish to improve the current design of the application. \<The design will be finalized soon\>.
 
 ### \[Proposed\] Undo/redo feature
 
