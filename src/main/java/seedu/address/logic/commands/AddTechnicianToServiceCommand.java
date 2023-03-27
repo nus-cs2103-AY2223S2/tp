@@ -27,7 +27,7 @@ public class AddTechnicianToServiceCommand extends Command {
     private final int serviceId;
 
     /**
-     * @param techId ID of technician
+     * @param techId    ID of technician
      * @param serviceId ID of service
      */
     public AddTechnicianToServiceCommand(int techId, int serviceId) {
@@ -47,6 +47,7 @@ public class AddTechnicianToServiceCommand extends Command {
             throw new CommandException(MESSAGE_SERVICE_NOT_FOUND);
         }
         model.addTechnicianToService(this.serviceId, this.techId);
-        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.serviceId));
+        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.serviceId),
+            ResultType.LISTED_SERVICES);
     }
 }
