@@ -26,7 +26,6 @@ public class Ward {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String name;
     public final WardName value;
 
     private final Capacity capacity;
@@ -41,7 +40,7 @@ public class Ward {
     public Ward(WardName name) {
         requireNonNull(name);
         checkArgument(isValidWard(name), MESSAGE_CONSTRAINTS);
-        this.name = name;
+        this.value = name;
         this.capacity = new Capacity(10);
         patients = new UniquePatientList();
     }
@@ -55,7 +54,7 @@ public class Ward {
     public Ward(WardName name, Capacity capacity) {
         requireNonNull(name);
         checkArgument(isValidWard(name), MESSAGE_CONSTRAINTS);
-        this.name = name;
+        this.value = name;
         this.capacity = capacity;
         patients = new UniquePatientList();
     }
@@ -66,7 +65,8 @@ public class Ward {
      * @return placeholder Ward
      */
     public static Ward wardWithName(String name) {
-        return new Ward(name);
+        WardName wardName = new WardName(name);
+        return new Ward(wardName);
     }
 
     /**
@@ -94,7 +94,10 @@ public class Ward {
 
     public WardName getName() {
         return value;
+    }
 
+    public String getNameString() {
+        return value.wardName;
     }
 
     public Capacity getCapacity() {
@@ -194,7 +197,7 @@ public class Ward {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Ward // instanceof handles nulls
-                        && name.equals(((Ward) other).name));
+                        && value.wardName.equals(((Ward) other).value.wardName));
     }
 
     @Override

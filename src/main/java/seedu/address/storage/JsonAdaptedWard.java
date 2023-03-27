@@ -7,6 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.patient.Name;
 import seedu.address.model.ward.Capacity;
 import seedu.address.model.ward.Ward;
+import seedu.address.model.ward.WardName;
 
 
 /**
@@ -33,7 +34,7 @@ class JsonAdaptedWard {
      * Converts a given {@code Ward} into this class for Jackson use.
      */
     public JsonAdaptedWard(Ward source) {
-        name = source.getName();
+        name = source.getNameString();
         capacity = source.getCapacityString();
 
     }
@@ -53,7 +54,7 @@ class JsonAdaptedWard {
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final String modelName = name;
+        final WardName modelName = new WardName(name);
 
         if (capacity == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPatients(List<Patient> patients) {
         List<Patient> patientsCopy = new ArrayList<>();
         for (Patient patient:patients) {
-            Patient toCopy = new Patient(patient.getNric(), patient.getName(), patient.getStatus(), patient.getWard(),
+            Patient toCopy = new Patient(patient.getNric(), patient.getName(), patient.getStatus(), patient.getWardName(),
                 patient.getDischarge());
             patientsCopy.add(toCopy);
         }
@@ -109,7 +109,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The patient must not already exist in the address book.
      */
     public void addPatient(Patient p) {
-        if (!wards.contains(p.getWard())) { //If wardlist does not contain patient's ward, don't add it in.
+        if (!wards.contains(p.getWardNameString())) { //If wardlist does not contain patient's ward, don't add it in.
             throw new WardNotFoundException();
         }
         patients.add(p);

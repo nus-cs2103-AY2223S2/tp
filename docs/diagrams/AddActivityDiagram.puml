@@ -1,0 +1,18 @@
+@startuml
+skinparam activity {
+    ArrowColor #A80036
+    BackgroundColor #FEFECE
+    BorderColor #A80036
+    BorderThickness 1.5
+}
+start
+:User executes add command;
+if () then ([Status present])
+    :Create patient with Status;
+else ([else])
+    :Create guest with Status GRAY;
+endif
+:Add patient to model;
+stop
+
+@enduml
