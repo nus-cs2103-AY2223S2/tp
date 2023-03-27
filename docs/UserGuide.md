@@ -96,15 +96,15 @@ only those that match any of your specified keywords straight away.
 
 Format:
 `find [PROPERTY] KEYWORD [KEYWORDS]...`
-* :bulb: Tip: Supported properties: name, tag
+* :bulb: Tip: Supported properties: `name`, `tag`
 
 i.e. `find name KEYWORD [KEYWORDS]...`, `find tag KEYWORD [KEYWORDS]...`
 
-> Adding a property behind `find` is optional, and if no property is specified, `find` defaults to filtering by **recipe name**.
+> Adding a property behind `find` is optional, and if no property is specified, `find` defaults to filtering by `name`.
 >
 > All keyword queries are case-insensitive. e.g. chicken will match Chicken
 >
-> Recipes matching at least one keyword will be returned, e.g. searching `sandwich fries` will return the search results `cheese fries` and `ham sandwich`
+> Recipes matching at least one keyword will be returned, e.g. searching `sandwich fries` will match recipes named `cheese fries` and `ham sandwich`
 >
 > Recipes are listed in the chronological order that they were added.
 >
@@ -153,7 +153,7 @@ Format:
 >
 > For inputs with multiple words, it will only match stored ingredients with the same full multi-word input (case-insensitive) i.e. `sub golden syrup` does not return substitutes for `syrup`
 >
-> The returned list of ingredients returned will not contain any duplicates
+> The returned list of ingredients returned will not contain any duplicates.
 
 Example of usage:
 * `sub chicken` returns a list of suggested substitutions for the ingredient `chicken`
@@ -219,8 +219,9 @@ _Details coming soon ..._
 |------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e {ESTIMATED AMOUNT}] [-cn {COMMON NAME}] [-r {REMARKS}]... [-s {SUBSTITUTION}]...]... [s/RECIPE_STEPS]...` <br/> e.g., `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt` |                                                                                                                                                             |            |                                      |
 | **List**   | `list`                                                                                                                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                             |            |                                      |
-| **Find**   | `find KEYWORD [KEYWORDS]...    `<br/> e.g., `find cheese rice`                                                                                                                                                                                                                                                                                                                         |
+| **Find**   | `find [PREDICATE] KEYWORD [KEYWORDS]...    ` for predicate: `name`, `tag` <br/> e.g., `find cheese rice`, `find name popcorn`, `find tag western`                                                                                                                                                                                                                                      |
 | **Delete** | `delete INDEX`<br/> e.g., `delete 2`                                                                                                                                                                                                                                                                                                                                                   |
+| **Sub**    | `sub INGREDIENT_NAME`<br/> e.g. `sub salt`                                                                                                                                                                                                                                                                                                                                             |
 | **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                          |            |                                      |
 | **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                                                 |
 | **Exit**   | `exit`                                                                                                                                                                                                                                                                                                                                                                                 |   
