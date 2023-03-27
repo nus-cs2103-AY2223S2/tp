@@ -223,7 +223,6 @@ public class MainWindow extends UiPart<Stage> {
             }
             UniqueStudentList list = new UniqueStudentList();
             if (commandResult.isFind()) {
-                System.out.println(logic.getFilteredStudentList());
                 studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
                 studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             } else {

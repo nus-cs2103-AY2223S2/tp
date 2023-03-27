@@ -88,7 +88,6 @@ public class Student extends Person {
      */
     public void setParent(Parent parent) {
         this.parent = parent;
-        System.out.println(parent);
         this.parentName = parent.getName();
         this.parentNumber = parent.getPhone();
     }

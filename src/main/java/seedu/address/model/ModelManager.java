@@ -271,7 +271,6 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents = new FilteredList<>(Class.getAllStudents().asUnmodifiableObservableList());
-        System.out.println(filteredStudents);
         filteredStudents.setPredicate(predicate);
     }
     @Override
