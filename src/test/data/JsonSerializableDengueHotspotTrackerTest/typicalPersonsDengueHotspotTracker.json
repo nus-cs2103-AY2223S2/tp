@@ -2,43 +2,43 @@
   "_comment": "DengueHotspotTracker save file which contains the same Person values as in TypicalPersons#getTypicalDengueHotspotTracker()",
   "persons" : [ {
     "name" : "Alice Pauline",
-    "postal" : "943512",
+    "postal" : "123456",
     "date" : "2023-03-05",
     "age" : "21",
     "variants" : [ "DENV1" ]
   }, {
     "name" : "Benson Meier",
-    "postal" : "987654",
+    "postal" : "234567",
     "date" : "2022-03-05",
     "age" : "85",
     "variants" : [ "DENV2", "DENV4" ]
   }, {
     "name" : "Carl Kurz",
-    "postal" : "953525",
+    "postal" : "654321",
     "date" : "2023-02-02",
     "age" : "35",
     "variants": [ ]
   }, {
     "name" : "Daniel Meier",
-    "postal" : "876525",
+    "postal" : "816253",
     "date" : "2023-01-01",
     "age" : "143",
     "variants": [ "DENV3" ]
   }, {
     "name" : "Elle Meyer",
-    "postal" : "948222",
+    "postal" : "012345",
     "date" : "2022-12-31",
     "age" : "65",
     "variants": [ ]
   }, {
     "name" : "Fiona Kunz",
-    "postal" : "948247",
+    "postal" : "432156",
     "date" : "2022-01-05",
     "age" : "5",
     "variants": [ ]
   }, {
     "name" : "George Best",
-    "postal" : "948244",
+    "postal" : "321235",
     "date" : "2023-01-05",
     "age" : "12",
     "variants": [ ]

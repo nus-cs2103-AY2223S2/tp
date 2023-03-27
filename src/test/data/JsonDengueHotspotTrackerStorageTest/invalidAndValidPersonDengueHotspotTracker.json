@@ -1,7 +1,7 @@
 {
   "persons": [ {
     "name": "Valid Person",
-    "postal": "948242",
+    "postal": "812345",
     "date": "2023-03-05",
     "age": "22",
     "variants": [ "DENV1" ]

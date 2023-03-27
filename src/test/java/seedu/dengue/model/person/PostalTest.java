@@ -31,10 +31,11 @@ public class PostalTest {
         assertFalse(Postal.isValidPostal("postal")); // non-numeric
         assertFalse(Postal.isValidPostal("9011p041")); // alphabets within digits
         assertFalse(Postal.isValidPostal("9312 1534")); // spaces within digits
+        assertFalse(Postal.isValidPostal("999999")); // invalid postal sector
 
         // valid postal numbers
-        assertTrue(Postal.isValidPostal("911123")); // exactly 3 numbers
-        assertTrue(Postal.isValidPostal("931215"));
-        assertTrue(Postal.isValidPostal("124293")); // long postal numbers
+        assertTrue(Postal.isValidPostal("111222"));
+        assertTrue(Postal.isValidPostal("821750"));
+        assertTrue(Postal.isValidPostal("024293"));
     }
 }
