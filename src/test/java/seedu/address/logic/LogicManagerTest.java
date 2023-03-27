@@ -25,6 +25,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.TaskBookModel;
+import seedu.address.model.TaskBookModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -40,6 +42,7 @@ public class LogicManagerTest {
     public Path temporaryFolder;
 
     private Model model = new ModelManager();
+    private TaskBookModel taskBookModel = new TaskBookModelManager();
     private Logic logic;
 
     @BeforeEach
@@ -49,7 +52,7 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonTaskStorage taskStorage = new JsonTaskStorage(temporaryFolder.resolve("tasks.json"));
         StorageManager storage = new StorageManager(addressBookStorage, taskStorage, userPrefsStorage);
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager(model, taskBookModel, storage);
     }
 
     @Test

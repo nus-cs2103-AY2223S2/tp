@@ -16,8 +16,10 @@ import seedu.address.model.TaskBook;
 import seedu.address.model.TaskBookModel;
 import seedu.address.model.TaskBookModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.task.DeadlineTask;
 import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
+import seedu.address.testutil.DeadlineTaskBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -31,6 +33,8 @@ public class MarkCommandTest {
 
     @Test
     public void execute_validIndex_success() throws Exception {
+        DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
+        taskBookModel.addTask(validDeadlineTask);
         Task taskToMark = taskBookModel.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
         Score score = new Score(4);
         CommandResult commandResult = new MarkCommand(INDEX_FIRST_PERSON, score).execute(model, taskBookModel);
@@ -51,6 +55,8 @@ public class MarkCommandTest {
 
     @Test
     public void execute_invalidScore_throwsCommandException() {
+        DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
+        taskBookModel.addTask(validDeadlineTask);
         Score score = new Score(6);
         MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, score);
         assertCommandFailure(markCommand, model, taskBookModel, Score.MESSAGE_CONSTRAINTS);

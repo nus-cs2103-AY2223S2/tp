@@ -167,12 +167,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    /**
-     * Assigns the given task {@code taskToAssign} to the given task {@code assignedTask}.
-     * @param taskToAssign
-     * @param assignedTask
-     * @param taskIndex
-     */
+    // /**
+    //  * Assigns a task to a person.
+    //  * @param taskIndex
+    //  * @param personIndex
+    //  */
+    // public void assignTask(Index taskIndex, Index personIndex) {
+    //     String personName = persons.getPerson(personIndex).getName().toString();
+    //     System.out.println(personName);
+    //     tasks.assignTask(taskIndex, personIndex, personName);
+    // }
+
     public void assignTask(Task taskToAssign, Task assignedTask, Index taskIndex) {
         tasks.assignTask(taskToAssign, assignedTask, taskIndex);
     }

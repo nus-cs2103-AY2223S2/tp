@@ -20,7 +20,9 @@ import seedu.address.model.TaskBook;
 import seedu.address.model.TaskBookModel;
 import seedu.address.model.TaskBookModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.task.DeadlineTask;
 import seedu.address.model.task.Task;
+import seedu.address.testutil.DeadlineTaskBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -33,6 +35,8 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
+        DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
+        taskBookModel.addTask(validDeadlineTask);
         Task taskToDelete = taskBookModel.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_TASK);
 
@@ -57,6 +61,8 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
+        DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
+        taskBookModel.addTask(validDeadlineTask);
         showTaskAtIndex(taskBookModel, INDEX_FIRST_TASK);
 
         Task taskToDelete = taskBookModel.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
@@ -74,6 +80,8 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
+        DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
+        taskBookModel.addTask(validDeadlineTask);
         showTaskAtIndex(taskBookModel, INDEX_FIRST_TASK);
 
         Index outOfBoundIndex = INDEX_SECOND_TASK;

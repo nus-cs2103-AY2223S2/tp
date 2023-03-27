@@ -16,8 +16,10 @@ import seedu.address.model.TaskBook;
 import seedu.address.model.TaskBookModel;
 import seedu.address.model.TaskBookModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.task.DeadlineTask;
 import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
+import seedu.address.testutil.DeadlineTaskBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -31,6 +33,8 @@ public class UnmarkCommandTest {
 
     @Test
     public void execute_validIndex_success() throws Exception {
+        DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
+        taskBookModel.addTask(validDeadlineTask);
         Task taskToUnmark = taskBookModel.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
         Score score = new Score(4);
         taskToUnmark.mark(score);
