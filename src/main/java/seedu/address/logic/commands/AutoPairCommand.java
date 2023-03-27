@@ -24,7 +24,8 @@ public class AutoPairCommand extends Command {
 
     public static final String COMMAND_WORD = "auto_pair";
     public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
-    public static final String MESSAGE_SUCCESS = "Paired the following elderly and volunteers together:\n";
+    public static final String MESSAGE_SUCCESS_HEADER = "Paired the following elderly and volunteers together:\n";
+    public static final String MESSAGE_SUCCESS_ITEM_FORMAT = "Elderly %s (%s) -- Volunteer %s (%s)\n";
     public static final String MESSAGE_SUCCESS_NO_PAIRS = "No pairs were formed.";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Automatically pairs unpaired elderly and volunteers together. "
@@ -37,22 +38,15 @@ public class AutoPairCommand extends Command {
         List<Volunteer> unpairedVolunteers = getUnpairedVolunteers(friendlyLink);
         List<Elderly> unpairedElderly = getUnpairedElderly(friendlyLink);
 
-        List<Pair> pairsToAdd = getGoodPairs(unpairedVolunteers, unpairedElderly);
+        List<Pair> pairsToAdd = getCompatiblePairs(unpairedVolunteers, unpairedElderly);
         if (pairsToAdd.size() == 0) {
             return new CommandResult(MESSAGE_SUCCESS_NO_PAIRS);
         }
-        StringBuilder messageDetails = new StringBuilder(MESSAGE_SUCCESS);
         for (Pair pair: pairsToAdd) {
             model.addPair(pair);
-            Elderly elderlyInPair = pair.getElderly();
-            Volunteer volunteerInPair = pair.getVolunteer();
-            messageDetails.append(String.format("Elderly %s (%s) -- Volunteer %s (%s)\n",
-                    elderlyInPair.getName().toString(),
-                    elderlyInPair.getNric().toString(),
-                    volunteerInPair.getName().toString(),
-                    volunteerInPair.getNric().toString()));
         }
-        return new CommandResult(messageDetails.toString());
+        String successMessage = getSuccessMessageFromPairList(pairsToAdd);
+        return new CommandResult(successMessage);
     }
 
     private List<Volunteer> getUnpairedVolunteers(FriendlyLink friendlyLink) {
@@ -72,6 +66,26 @@ public class AutoPairCommand extends Command {
     }
 
     /**
+     * Returns the feedback success message for the auto-pair command.
+     *
+     * @param pairList List of pairs.
+     * @return String representing the full success message.
+     */
+    public static String getSuccessMessageFromPairList(List<Pair> pairList) {
+        StringBuilder successMessageBuilder = new StringBuilder(MESSAGE_SUCCESS_HEADER);
+        for (Pair pair: pairList) {
+            Elderly elderlyInPair = pair.getElderly();
+            Volunteer volunteerInPair = pair.getVolunteer();
+            successMessageBuilder.append(String.format(MESSAGE_SUCCESS_ITEM_FORMAT,
+                    elderlyInPair.getName().toString(),
+                    elderlyInPair.getNric().toString(),
+                    volunteerInPair.getName().toString(),
+                    volunteerInPair.getNric().toString()));
+        }
+        return successMessageBuilder.toString();
+    }
+
+    /**
      * Greedily pairs volunteers with elderly that have matching regions and availability. Pairs are
      * one-to-one.
      *
@@ -79,9 +93,9 @@ public class AutoPairCommand extends Command {
      * @param elderlyList List of elderly.
      * @return List of pairs formed greedily.
      */
-    private List<Pair> getGoodPairs(List<Volunteer> volunteerList, List<Elderly> elderlyList) {
+    public static List<Pair> getCompatiblePairs(List<Volunteer> volunteerList, List<Elderly> elderlyList) {
         HashSet<Elderly> pairedElderly = new HashSet<>();
-        ArrayList<Pair> goodPairs = new ArrayList<>();
+        ArrayList<Pair> compatiblePairs = new ArrayList<>();
         for (Volunteer volunteer: volunteerList) {
             for (Elderly elderly: elderlyList) {
                 if (pairedElderly.contains(elderly)
@@ -90,11 +104,11 @@ public class AutoPairCommand extends Command {
                                 volunteer.getAvailableDates(), elderly.getAvailableDates())) {
                     continue;
                 }
-                goodPairs.add(new Pair(elderly, volunteer));
+                compatiblePairs.add(new Pair(elderly, volunteer));
                 pairedElderly.add(elderly);
                 break;
             }
         }
-        return goodPairs;
+        return compatiblePairs;
     }
 }
