@@ -86,10 +86,10 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 * Any fields in square brackets are optional.<br>
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/important`, `tag/important t/urgent` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/important`, `t/important t/urgent` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `t/Task A d/A's sample description`, `d/A's sample description t/Task A` is also acceptable.
+  e.g. if the command specifies `n/Task A d/A's sample description`, `d/A's sample description n/Task A` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `d/do it fast d/do it slow`, only `d/do it slow` will be taken.
