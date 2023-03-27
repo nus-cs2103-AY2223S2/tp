@@ -54,7 +54,8 @@ Before you can use CoDoc, you need to download it. To do this, follow these step
    1. `cd` into the folder you put the jar file in.
    2. `java -jar codoc.jar` to run the application.<br>
    3. A window similar to the one below should appear in a few seconds.
-      <img src="images/Ui.png"/>
+
+      <img src="images/Ui-minimised.png"/>
       <br>
 
 [Scroll back to *Tables of Contents*](#table-of-contents)
@@ -62,8 +63,10 @@ Before you can use CoDoc, you need to download it. To do this, follow these step
 ### Navigation
 
 Before we begin, let's familiarize ourselves with the different parts of the CoDoc interface.
+Maximise the screen to have a clearer view.
+This way you can see more content as well.
 
-(Insert pic of UI with annotations of the different parts.)
+(Insert pic of maximised UI with annotations of the different parts.)
 
 - **Menu bar:** if you ever feel stuck, you can always click on the `Help` button to see more details. 
 - **Command box:** this is where you can type in commands.
@@ -74,7 +77,7 @@ Before we begin, let's familiarize ourselves with the different parts of the CoD
 
 ### Tutorial
 
-Now that you know how to navigate CoDoc, let's start by adding a contact to our contact list! To do this, follow these steps:
+Now that you know how to navigate CoDoc, let's start by adding a person to our contact list! To do this, follow these steps:
 
 #### 1. Adding a person
 
@@ -90,13 +93,15 @@ As you can see, we first specify the `add` command followed by the _name prefix_
 
 Here we used `c/6`, because if you look at the course list panel on the left, Computer Science refers to index `6`. 
 
-If you want to, you can add other details of the person such as his/her _GitHub username_ and _LinkedIn profile URL_.
+If you want to, you can add other details of the person such as his/her _GitHub username_, _LinkedIn profile URL_, _modules_ and _skills_.
 
 Related docs: [Adding a person: `add`](#adding-a-person--add)
 
 If you followed the steps above correctly, you would see this screen:
 
-(Insert pic of Bob added)
+<img src="images/tutorial/adding-bob.png"/>
+
+**Note:** Your profile pictures and the profile pictures shown here will not be exactly the same as they are randomised.
 
 #### 2. Viewing a person's modules
 
@@ -104,7 +109,7 @@ As shown above, the right info panel automatically updated to show Bob's contact
 
 Now let's take a look at his _modules_: enter `view m` in the command box. As you can see, his module list is currently empty.
 
-(Insert pic of bob's module pane)
+<img src="images/tutorial/viewing-bobs-modules.png"/>
 
 You can enter `view s` as well if you want to see Bob's _skills_. You can also view another person by specifying the person's index in the list i.e. `view 2` would load Nicole Lee in the info panel.
 
@@ -114,15 +119,15 @@ You can enter `view s` as well if you want to see Bob's _skills_. You can also v
 
 To update Bob's module list to have let's say CS2101 and CS2103T, first make sure that Bob is shown in the right info panel, by entering `view 8`. 
 
-Then enter `edit m/ay2223S2 cs2101 ay2223S2 cs2103t` in the command box. 
+Then enter `edit m/ay2223s2 cs2101 ay2223s2 cs2103t` in the command box. 
 
 **Note:** Editing only works on the person shown in the info panel. If the person you want to edit is not shown in the info panel, you have to use the `view` command first to view that person, then edit as you wish. Also, _modules_ must follow a certain format to be successfully added/edited.
 
 **Related docs:** [Viewing a person/Changing tabs: `view`](#viewing-a-personchanging-tabs--view), [Editing a person: `edit`](#editing-a-person--edit)
 
-Bob's updated module list would look like this after you entered the `edit` command:
+Bob's updated module list (use `view m` to see) would look like this after you entered the `edit` command:
 
-(insert pic)
+<img src="images/tutorial/editing-bobs-modules.png"/>
 
 You might be thinking why not we just add Bob's _modules_ in the first place when adding him? You can do that! But for this tutorial, we have separated it to show how you can use the `edit` command. 
 
@@ -136,7 +141,7 @@ Let's try to find contacts that are taking/have taken CS2103T. First, let's rese
 
 Then enter `find m/cs2103t`. This would show the contacts in the person list panel that have CS2103T in their module list:
 
-(insert pic )
+<img src="images/tutorial/finding-cs2103t.png"/>
 
 Here, if you followed the previous steps correctly, Bob would be shown as well.
 
