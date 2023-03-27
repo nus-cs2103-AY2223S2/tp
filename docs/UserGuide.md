@@ -166,11 +166,11 @@ Should you get stuck at any point, it is likely that the solution can be found i
 
 After getting comfortable trying EduMate, you are now ready to start personalising it!
 
-1. Run `java -jar eduMate.jar`. The application window will open and show you where you have left off
-(if you have tried out `sample` from earlier)
-2. On the Command Box, execute `edit n/[YOUR NAME] p/[YOUR CONTACT NUMBER] t/@[YOUR TELEGRAM HANDLE] 
+Step 1. Run `java -jar eduMate.jar`. The application window will open and show you where you have left off
+(if you have tried out `sample` from earlier) <br>
+Step 2. On the Command Box, execute `edit n/[YOUR NAME] p/[YOUR CONTACT NUMBER] t/@[YOUR TELEGRAM HANDLE] 
 a/[NEAREST MRT STATION TO YOUR HOUSE] e/[YOUR EMAIL]`
-
+<br>
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** <br>
@@ -183,9 +183,9 @@ can then edit over later!
 
 </div>
 
-3. To add the modules that you are studying as such :
+Step 3. To add the modules that you are studying as such :
 `tag m/[MODULE_CODE] DAY START_TIME END_TIME`
-
+<br>
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** <br>
@@ -193,8 +193,8 @@ E.g `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
 
 </div>
 
-4. To add group tags {Kenny Please}
-5. You are done! **ENJOY!**
+Step 4. To add group tags {Kenny Please} <br>
+Step 5. You are done! **ENJOY!** <br>
 
 
 [Return to the top](#table-of-contents)
