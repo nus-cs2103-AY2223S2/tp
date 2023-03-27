@@ -1,6 +1,10 @@
 package seedu.modtrek.ui.resultssection;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.modtrek.logic.Logic;
+import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.ReadOnlyDegreeProgression;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.ui.UiPart;
@@ -49,7 +54,8 @@ public class ResultsSection extends UiPart<Region> {
 
         displayFooter("Degree Progress", "Module List", "Module Search", () ->
                 displayProgress(logic.getDegreeProgression()), () ->
-                displayAllModules(logic.getDegreeProgression().getModuleList()), () ->
+                displayAllModules(logic.getDegreeProgression().getModuleGroups(),
+                        logic.getDegreeProgression().getSort(), getSorters(logic)), () ->
                 displayFindModules(logic.getFilteredModuleList(), logic.getFiltersList()));
 
         displayProgress(logic.getDegreeProgression());
@@ -89,18 +95,6 @@ public class ResultsSection extends UiPart<Region> {
     }
 
     /**
-     * Displays all the modules, sorted by year.
-     *
-     * @param modules the list of all modules.
-     */
-    public void displayAllModules(ObservableList<Module> modules) {
-        headerTitle.setText("My Modules");
-        headerSubtitle.setText("in total");
-
-        displayModules(modules);
-    }
-
-    /**
      * Displays the modules that satisfy a given search query.
      */
     public void displayFindModules(ObservableList<Module> modules, List<String> filters) {
@@ -118,18 +112,13 @@ public class ResultsSection extends UiPart<Region> {
     /**
      * Displays all the modules, sorted by a given category.
      */
-    public void displaySortedModules(
-            /* ObservableList<Module> modules sorted by a certain category, String category */) {
-        // TODO: next iteration
-    }
+    public void displayAllModules(TreeMap<? extends Object, ObservableList<Module>> sortedLists, String sort,
+                                  List<Supplier<TreeMap<? extends Object, ObservableList<Module>>>> sorters) {
+        headerTitle.setText("My Modules");
+        headerSubtitle.setText("in total");
 
-    /**
-     * Displays a list of modules on the {@code ResultsSection}.
-     * @param modules the list of modules.
-     */
-    private void displayModules(ObservableList<Module> modules) {
         footerButtonGroup.selectModuleListButton();
-        ModuleSection moduleListSection = new ModuleListSection(modules);
+        ModuleSection moduleListSection = new ModuleListSection(sortedLists, sort, sorters);
         renderSection(moduleListSection.getRoot());
     }
 
@@ -141,5 +130,23 @@ public class ResultsSection extends UiPart<Region> {
     private void renderSection(Node section) {
         body.getChildren().clear();
         body.getChildren().add(section);
+    }
+
+    /**
+     * Gets the executables to sort the list of modules.
+     * @param modules the list of modules.
+     * @return the executable.
+     */
+    public List<Supplier<TreeMap<? extends Object, ObservableList<Module>>>> getSorters(Logic logic) {
+        List<Supplier<TreeMap<? extends Object, ObservableList<Module>>>> sorters = new ArrayList<>();
+
+        for (SortCommand.Sort sort : SortCommand.Sort.values()) {
+            sorters.add(() -> {
+                logic.sortModuleGroups(sort);
+                return logic.getDegreeProgression().getModuleGroups();
+            });
+        }
+
+        return sorters;
     }
 }

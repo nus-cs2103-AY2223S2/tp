@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.modtrek.commons.core.GuiSettings;
 import seedu.modtrek.logic.commands.CommandResult;
+import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.Model;
@@ -54,4 +55,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    void sortModuleGroups(SortCommand.Sort sort);
 }

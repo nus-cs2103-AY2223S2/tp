@@ -14,6 +14,7 @@ import seedu.modtrek.commons.core.LogsCenter;
 import seedu.modtrek.logic.commands.Command;
 import seedu.modtrek.logic.commands.CommandResult;
 import seedu.modtrek.logic.commands.FindCommand;
+import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.logic.parser.ModTrekParser;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
@@ -78,6 +79,10 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Module> getFilteredModuleList() {
         return model.getFilteredModuleList();
+    }
+
+    public void sortModuleGroups(SortCommand.Sort sort) {
+        model.sortModuleGroups(sort);
     }
 
     @Override
