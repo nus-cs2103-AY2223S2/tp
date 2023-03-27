@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddElderlyCommand;
 import seedu.address.logic.commands.AddPairCommand;
 import seedu.address.logic.commands.AddVolunteerCommand;
+import seedu.address.logic.commands.AutoPairCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteElderlyCommand;
@@ -59,6 +60,9 @@ public class FriendlyLinkParser {
 
         case AddPairCommand.COMMAND_WORD:
             return new AddPairCommandParser().parse(arguments);
+
+        case AutoPairCommand.COMMAND_WORD:
+            return new AutoPairCommand();
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
