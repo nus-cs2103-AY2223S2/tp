@@ -20,7 +20,9 @@ import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.IndexCommand;
 import seedu.address.logic.commands.ListAllCommand;
+import seedu.address.logic.commands.ListAssignment;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.MarkCommand;
@@ -116,6 +118,24 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case ListAssignment.COMMAND_WORD_ASSIGN_TASK:
+            return new ListAssignment(ListAssignment.TYPE_TASK, true);
+        case ListAssignment.COMMAND_WORD_ASSIGN_PERSON:
+            return new ListAssignment(ListAssignment.TYPE_PERSON, true);
+        case ListAssignment.COMMAND_WORD_UNASSIGN_PERSON:
+            return new ListAssignment(ListAssignment.TYPE_PERSON, false);
+        case ListAssignment.COMMAND_WORD_UNASSIGN_TASK:
+            return new ListAssignment(ListAssignment.TYPE_TASK, false);
+        case ListAssignment.COMMAND_WORD_ASSIGN:
+            return new ListAssignment("", true);
+        case ListAssignment.COMMAND_WORD_UNASSIGN:
+            return new ListAssignment("", false);
+
+
+        case IndexCommand.COMMAND_WORD_PERSON:
+            return new IndexPersonCommandParser().parse(arguments);
+        case IndexCommand.COMMAND_WORD_TASK:
+            return new IndexTaskCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

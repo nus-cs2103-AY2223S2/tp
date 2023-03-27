@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.UnassignCommand.MESSAGE_NON_EXIST_ASSIGNMENT;
 import static seedu.address.logic.commands.UnassignCommand.MESSAGE_SUCCESS;
 import static seedu.address.model.util.TypicalPersons.ALICE;
-import static seedu.address.model.util.TypicalPersons.BOB;
+import static seedu.address.model.util.TypicalPersons.BENSON;
 import static seedu.address.model.util.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
@@ -44,7 +44,7 @@ public class UnassignCommandTest {
         officeConnectModel.getTaskModelManager().addItem(taskB);
 
         AssignTask assignTask1 = new AssignTask(ALICE.getId(), taskA.getId());
-        AssignTask assignTask2 = new AssignTask(BOB.getId(), taskB.getId());
+        AssignTask assignTask2 = new AssignTask(BENSON.getId(), taskB.getId());
         officeConnectModel.getAssignTaskModelManager().addItem(assignTask1);
         officeConnectModel.getAssignTaskModelManager().addItem(assignTask2);
     }

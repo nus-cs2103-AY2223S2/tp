@@ -5,10 +5,8 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
-import javafx.scene.ImageCursor;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -87,9 +85,10 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
         quickstartWindow = new QuickstartWindow();
 
-        Image customCursorImage = new Image("/images/cursor.png");
-        this.customCursor = new ImageCursor(customCursorImage);
-        primaryStage.getScene().getRoot().setCursor(customCursor);
+        // NOT COMPATIBLE WITH MACOS
+        // Image customCursorImage = new Image("/images/cursor.png");
+        // this.customCursor = new ImageCursor(customCursorImage);
+        // primaryStage.getScene().getRoot().setCursor(customCursor);
     }
 
     public Stage getPrimaryStage() {
@@ -130,9 +129,8 @@ public class MainWindow extends UiPart<Stage> {
         });
 
         // set event filter on menu to set custom cursor on hover
-        primaryStage.getScene().addEventFilter(MouseEvent.MOUSE_ENTERED, e -> {
-            primaryStage.getScene().setCursor(customCursor);
-        });
+        primaryStage.getScene().addEventFilter(MouseEvent.MOUSE_ENTERED, e
+            -> primaryStage.getScene().setCursor(customCursor));
     }
 
     /**

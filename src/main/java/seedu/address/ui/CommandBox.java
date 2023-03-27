@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -29,6 +30,9 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.textProperty().addListener((observable, oldValue, newValue)
+            -> onInputChange(oldValue, newValue));
+
     }
 
     /**
@@ -67,6 +71,19 @@ public class CommandBox extends UiPart<Region> {
         }
 
         styleClass.add(ERROR_STYLE_CLASS);
+    }
+
+    private void onInputChange(String oldValue, String newValue) {
+        // Your logic to handle input changes here
+        if (oldValue.contains(FindCommand.COMMAND_WORD) && !newValue.isEmpty()
+            && (!newValue.trim().equals(FindCommand.COMMAND_WORD))) {
+            try {
+                commandExecutor.execute(newValue);
+            } catch (CommandException | ParseException e) {
+                setStyleToIndicateCommandFailure();
+            }
+
+        }
     }
 
     /**
