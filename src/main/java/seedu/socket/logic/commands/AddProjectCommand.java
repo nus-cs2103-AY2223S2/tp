@@ -19,9 +19,9 @@ public class AddProjectCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to SOCket. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_REPO_HOST + "REPO HOST "
-            + PREFIX_REPO_NAME + "REPO NAME "
+            + PREFIX_NAME + "PROJECT_NAME "
+            + PREFIX_REPO_HOST + "REPO_HOST "
+            + PREFIX_REPO_NAME + "REPO_NAME "
             + PREFIX_DEADLINE + "DEADLINE "
             + "[" + PREFIX_MEETING + "MEETING]\n "
             + "Example: " + COMMAND_WORD + " "
