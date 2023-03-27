@@ -382,7 +382,7 @@ The `AddIsolatedEventCommand` receives an isolated event to be added into the pe
 #### Activity diagram
 The following activity diagram summarises what happens when a user executes an `event_create` command:
 
-<img src="images/AddIsolatedEventCommandActivityDiagram.png" width="200" />
+<img src="images/AddIsolatedEventCommandActivityDiagram.png" width="300" />
 
 ### Sequence diagram
 The following sequence diagram illustrates the interaction within the Logic component for the execute
@@ -429,7 +429,7 @@ This feature allows the user to edit a specific isolated event in the person's i
 ### Activity Diagram
 The following activity diagram summarises what happens when a user executes an `ie_edit` command:
 
-<img src="images/EditIsolatedEventCommandActivityDiagram.png" width="200" />
+<img src="images/EditIsolatedEventCommandActivityDiagram.png" width="300" />
 
 ### Sequence diagram
 The following sequence diagram illustrates the interaction within the Logic component for the execute
