@@ -18,7 +18,8 @@ public class VimificationParser {
     private static final CommandParser<LogicCommand> COMMAND_PARSER =
             CreateCommandParser.getInstance()
                     .<LogicCommand>cast()
-                    .or(DeleteCommandParser.getInstance());
+                    .or(DeleteCommandParser.getInstance())
+                    .updateInternalParser(parser -> parser.throwIfFail("Unknown command"));
 
     private MacroMap macroMap;
 
@@ -47,4 +48,9 @@ public class VimificationParser {
         String preprocessedInput = macroPreprocessor.parse(input);
         return COMMAND_PARSER.parse(preprocessedInput);
     }
+
+    // public static void main(String[] args) {
+    // String input = ". todo sleep";
+    // VimificationParser.getInstance(null).parse(input);
+    // }
 }

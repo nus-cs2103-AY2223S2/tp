@@ -1,25 +1,14 @@
 package vimification.internal.parser;
 
-import vimification.commons.core.Index;
 import vimification.internal.command.logic.DeleteCommand;
 
 public class DeleteCommandParser implements CommandParser<DeleteCommand> {
 
-    private static final ApplicativeParser<Index> INDEX_PARSER =
-            ApplicativeParser.nonWhitespaces().flatMap(indexStr -> {
-                try {
-                    int indexInt = Integer.parseInt(indexStr);
-                    Index index = Index.fromOneBased(indexInt);
-                    return ApplicativeParser.of(index);
-                } catch (NumberFormatException | IndexOutOfBoundsException ex) {
-                    return ApplicativeParser.fail();
-                }
-            });
-
-    private static final ApplicativeParser<DeleteCommand> COMMAND_PARSER = INDEX_PARSER
-            .dropNext(ApplicativeParser.skipWhitespaces())
-            .dropNext(ApplicativeParser.eof())
-            .map(DeleteCommand::new);
+    private static final ApplicativeParser<DeleteCommand> COMMAND_PARSER =
+            CommandParserUtil.ONE_BASED_INDEX_PARSER
+                    .dropNext(ApplicativeParser.skipWhitespaces())
+                    .dropNext(ApplicativeParser.eof())
+                    .map(DeleteCommand::new);
 
     private static final ApplicativeParser<ApplicativeParser<DeleteCommand>> INTERNAL_PARSER =
             ApplicativeParser.string("d")

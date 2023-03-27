@@ -35,4 +35,10 @@ public interface CommandParser<T extends Command> {
     default <U extends Command> CommandParser<U> cast() {
         return (CommandParser<U>) this;
     }
+
+    default CommandParser<T> updateInternalParser(
+            Function<ApplicativeParser<ApplicativeParser<T>>, ApplicativeParser<ApplicativeParser<T>>> mapper) {
+        ApplicativeParser<ApplicativeParser<T>> newInternal = mapper.apply(getInternalParser());
+        return () -> newInternal;
+    }
 }

@@ -37,25 +37,19 @@ public final class ApplicativeParser<T> {
         return Optional.of(Pair.of(input.subview(offset), null));
     });
 
-    private static final ApplicativeParser<String> NON_WHITESPACES_PARSER = fromRunner(input -> {
-        int length = input.length();
-        int offset = 0;
-        while (offset < length && !Character.isWhitespace(input.charAt(offset))) {
-            offset++;
-        }
-        String value = input.substringTo(offset);
-        return value.isEmpty()
-                ? Optional.empty()
-                : Optional.of(Pair.of(input.subview(offset), input.substringTo(offset)));
-    });
+    private static final ApplicativeParser<Void> SKIP_WHITESPACES_1_PARSER =
+            satisfy(Character::isWhitespace).takeNext(SKIP_WHITESPACES_PARSER);
+
+    private static final ApplicativeParser<String> NON_WHITESPACES_1_PARSER =
+            munch1(c -> !Character.isWhitespace(c));
+
+    private static final ApplicativeParser<String> LETTERS_1_PARSER =
+            munch1(Character::isLetter);
 
     private static final ApplicativeParser<String> UNTIL_EOF_PARSER = fromRunner(input -> {
         int length = input.length();
         return Optional.of(Pair.of(input.subview(length), input.substringTo(length)));
     });
-
-    private static final ApplicativeParser<Void> SKIP_WHITESPACES_1_PARSER =
-            satisfy(Character::isWhitespace).takeNext(SKIP_WHITESPACES_PARSER);
 
     /////////////////////////////////////
     // INSTANCE FIELDS AND CONSTRUCTOR //
@@ -161,8 +155,12 @@ public final class ApplicativeParser<T> {
      *
      * @return a parser that parses until a whitespace character
      */
-    public static ApplicativeParser<String> nonWhitespaces() {
-        return NON_WHITESPACES_PARSER;
+    public static ApplicativeParser<String> nonWhitespaces1() {
+        return NON_WHITESPACES_1_PARSER;
+    }
+
+    public static ApplicativeParser<String> letters1() {
+        return LETTERS_1_PARSER;
     }
 
     /**
@@ -201,9 +199,7 @@ public final class ApplicativeParser<T> {
             if (offset < 0) {
                 return Optional.empty();
             }
-            StringView nextInput = input.subview(offset + end.length());
-            String value = input.substringTo(offset);
-            return Optional.of(Pair.of(nextInput, value));
+            return Optional.of(Pair.of(input.subview(offset), input.substringTo(offset)));
         });
     }
 
@@ -221,6 +217,21 @@ public final class ApplicativeParser<T> {
                     ? Optional.of(Pair.of(input.subview(1), value))
                     : Optional.empty();
         });
+    }
+
+    public static ApplicativeParser<String> munch(CharPredicate predicate) {
+        return fromRunner(input -> {
+            int length = input.length();
+            int offset = 0;
+            while (offset < length && predicate.test(input.charAt(offset))) {
+                offset++;
+            }
+            return Optional.of(Pair.of(input.subview(offset), input.substringTo(offset)));
+        });
+    }
+
+    public static ApplicativeParser<String> munch1(CharPredicate predicate) {
+        return lift(c -> s -> c + s, satisfy(predicate), munch(predicate));
     }
 
     /**
@@ -392,6 +403,29 @@ public final class ApplicativeParser<T> {
             result.add(pair.getSecond());
             while (true) {
                 Optional<Pair<StringView, T>> opt = run(nextInput);
+                if (opt.isEmpty()) {
+                    break;
+                }
+                Pair<StringView, T> nextPair = opt.get();
+                nextInput = nextPair.getFirst();
+                result.add(nextPair.getSecond());
+            }
+            return Pair.of(nextInput, result);
+        }));
+    }
+
+    public <U> ApplicativeParser<List<T>> sepBy(ApplicativeParser<U> that) {
+        return sepBy1(that).or(of(new ArrayList<>()));
+    }
+
+    public <U> ApplicativeParser<List<T>> sepBy1(ApplicativeParser<U> that) {
+        ApplicativeParser<T> parser = that.takeNext(this);
+        return fromRunner(input -> run(input).map(pair -> {
+            List<T> result = new ArrayList<>();
+            StringView nextInput = pair.getFirst();
+            result.add(pair.getSecond());
+            while (true) {
+                Optional<Pair<StringView, T>> opt = parser.run(nextInput);
                 if (opt.isEmpty()) {
                     break;
                 }

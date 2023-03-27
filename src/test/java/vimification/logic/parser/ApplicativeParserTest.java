@@ -36,7 +36,7 @@ public class ApplicativeParserTest {
         String input = "Red, White and Black Butterfly";
         ApplicativeParser<String> parser = ApplicativeParser.until("Butterfly");
         Pair<String, String> result = parser.parsePartOf(input);
-        assertEquals("", result.getFirst());
+        assertEquals("Butterfly", result.getFirst());
         assertEquals("Red, White and Black ", result.getSecond());
     }
 
@@ -106,7 +106,7 @@ public class ApplicativeParserTest {
     public void many1_validInput_shouldStopAtCorrectPosition() {
         String input = "Shoot the Bullet";
         ApplicativeParser<List<String>> parser = ApplicativeParser
-                .nonWhitespaces()
+                .nonWhitespaces1()
                 .filter(str -> !str.equals("Bullet"))
                 .dropNext(ApplicativeParser.skipWhitespaces())
                 .many1();
