@@ -2,9 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.Set;
-
-import org.joda.time.LocalTime;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -12,14 +12,12 @@ import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
 import seedu.address.model.commitment.Lesson;
-import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
-import seedu.address.model.person.ModuleTagSet;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 import seedu.address.model.tag.ModuleTag;
-import seedu.address.model.time.Day;
-import seedu.address.model.timetable.Module;
+import seedu.address.model.time.TimePeriod;
+import seedu.address.model.time.util.TimeUtil;
 
 /**
  * Adds a ModuleTag to a person.
@@ -39,6 +37,7 @@ public class TagCommand extends Command {
 
     private final ContactIndex index;
     private final Set<ModuleTag> moduleTags;
+    private final Set<Lesson> lessons;
 
     /**
      * @param index of the person in the filtered person list to add modules.
@@ -49,42 +48,52 @@ public class TagCommand extends Command {
 
         this.index = index;
         this.moduleTags = modulesToAdd;
+        lessons = moduleTags.stream()
+                .map(ModuleTag::getImmutableLessons)
+                .flatMap(Set::stream)
+                .collect(Collectors.toSet());
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (index == null) {
-            return addUserTags(model);
+        Person personToEdit = getPersonToEdit(model);
+
+        List<TimePeriod> timePeriods = lessons.stream().map(Lesson::getTimePeriod).collect(Collectors.toList());
+
+        if (!personToEdit.canAddCommitments(lessons) || TimeUtil.hasAnyClash(timePeriods)) {
+            throw new CommandException("There is a clash in commitments!");
         }
-        return addPersonTags(model);
+
+        personToEdit.addModuleTags(moduleTags);
+
+        if (personToEdit instanceof User) {
+            return setUserCommonModuleTags(model, (User) personToEdit);
+        }
+
+        return setPersonCommonModuleTags(model, personToEdit);
+    }
+
+    private Person getPersonToEdit(Model model) throws CommandException {
+        if (index == null) {
+            return model.getUser();
+        }
+
+        IndexHandler indexHandler = new IndexHandler(model);
+        return indexHandler.getPersonByIndex(index).orElseThrow(() ->
+                new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
     }
 
     /**
      * Add tags to person at given index.
-     * @param model {@code Model} which the command should operate on
      * @return feedback message of the operation result for display
-     * @throws CommandException If an error occurs during command execution.
      */
-    public CommandResult addPersonTags(Model model) throws CommandException {
-        IndexHandler indexHandler = new IndexHandler(model);
-
-        Person personToEdit = indexHandler.getPersonByIndex(index).orElseThrow(() ->
-                new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
-
-        ModuleTagSet oldModules = personToEdit.getModuleTags();
-
-        oldModules.addAll(this.moduleTags);
-
+    public CommandResult setPersonCommonModuleTags(Model model, Person personToEdit) {
         Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
 
         // caches the common modules in each ModuleTagSet as running set
         // intersection is expensive if we only use it in the compareTo method
         personToEdit.setCommonModules(userModuleTags);
-
-        model.updateObservablePersonList();
-
-        addLessons(personToEdit, oldModules);
 
         return new CommandResult(String.format(MESSAGE_TAG_PERSON_SUCCESS
                 + "Name: " + personToEdit.getName().toString() + '\n'
@@ -97,19 +106,10 @@ public class TagCommand extends Command {
      * Adds modules to user.
      * @param model {@code Model} which the command should operate on.
      * @return feedback message of the operation result for display.
-     * @throws CommandException If an error occurs during command execution.
      */
-    public CommandResult addUserTags(Model model) throws CommandException {
-        User editedUser = model.getUser();
-
-        ModuleTagSet userModuleTags = model.getUser().getModuleTags();
-
-        userModuleTags.addAll(this.moduleTags);
-
+    public CommandResult setUserCommonModuleTags(Model model, User editedUser) {
         model.getObservablePersonList().forEach(person ->
                 person.setCommonModules(editedUser.getImmutableModuleTags()));
-
-        addLessons(editedUser, userModuleTags);
 
         return new CommandResult(String.format(MESSAGE_TAG_USER_SUCCESS
                 + "Name: " + editedUser.getName().toString() + '\n'
@@ -126,6 +126,10 @@ public class TagCommand extends Command {
         return this.moduleTags;
     }
 
+    public Set<Lesson> getLessons() {
+        return lessons;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -139,29 +143,4 @@ public class TagCommand extends Command {
 
         return false;
     }
-
-    private void addLessons(Person editedPerson, ModuleTagSet moduleTagSet) throws CommandException {
-        for (ModuleTag tag : moduleTags) {
-            String day = tag.getDayAsStr();
-            String startTime = tag.getStartTimeAsStr();
-            String endTime = tag.getEndTimeAsStr();
-            if (day == null || startTime == null || endTime == null) {
-                continue;
-            }
-
-            Module mod = new Module(tag.tagName);
-            int startHour = Integer.parseInt(startTime);
-            int endHour = Integer.parseInt(endTime);
-
-            LocalTime start = new LocalTime(startHour, 0);
-            LocalTime end = new LocalTime(endHour, 0);
-
-            Day schoolDay = Day.valueOf(day.toUpperCase());
-
-            Lesson lesson = new Lesson(mod, start, end, schoolDay, Location.NUS);
-
-            moduleTagSet.addLesson(tag, lesson);
-        }
-    }
-
 }

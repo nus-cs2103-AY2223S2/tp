@@ -1,48 +1,54 @@
 package seedu.address.model.commitment;
 
+import java.util.Objects;
+
 import org.joda.time.LocalTime;
 
 import seedu.address.model.location.Location;
 import seedu.address.model.time.Day;
-import seedu.address.model.timetable.Module;
+import seedu.address.model.time.TimeBlock;
+import seedu.address.model.time.TimePeriod;
 
 /**
  * Represents a typical NUS lesson.
  */
 public class Lesson extends Commitment {
-
-    private final Day day;
-    private final LocalTime startTime;
-    private final LocalTime endTime;
-    private final Location location;
-    private final Module module;
+    private final String moduleCode;
 
     /**
      * Constructs a lesson.
      */
-    public Lesson(Module module, LocalTime startTime, LocalTime endTime, Day schoolDay, Location location) {
-        super(startTime, endTime, schoolDay);
-        this.day = schoolDay;
-        this.module = module;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.location = location;
+    public Lesson(String moduleCode, LocalTime startTime, LocalTime endTime, Day schoolDay, Location location) {
+        super(location, new TimeBlock(startTime, endTime, schoolDay));
+        this.moduleCode = moduleCode;
     }
 
-    public Module getModule() {
-        return module;
+    /**
+     * Constructs a lesson.
+     */
+    public Lesson(String moduleCode, Location location, TimePeriod timePeriod) {
+        super(location, timePeriod);
+        this.moduleCode = moduleCode;
     }
 
-    public Day getDay() {
-        return day;
+    /**
+     * Constructs a lesson.
+     */
+    public Lesson(TimePeriod timePeriod) {
+        super(Location.NUS, timePeriod);
+        this.moduleCode = "";
     }
 
-    public LocalTime getStartTime() {
-        return startTime;
+    /**
+     * Creates a new {@code Lesson} with updated module code.
+     * Used for handling empty module code strings.
+     */
+    public Lesson updateModuleCode(String moduleCode) {
+        return new Lesson(moduleCode, location, timePeriod);
     }
 
-    public LocalTime getEndTime() {
-        return endTime;
+    public String getModuleCode() {
+        return moduleCode;
     }
 
     public Location getLocation() {
@@ -52,9 +58,9 @@ public class Lesson extends Commitment {
     @Override
     public String toString() {
         return "Lesson{"
-                + day
-                + ", " + startTime
-                + " to " + endTime
+                + getDay()
+                + ", " + getStartTime()
+                + " to " + getEndTime()
                 + " at " + location + '}';
     }
 
@@ -63,20 +69,17 @@ public class Lesson extends Commitment {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Lesson)) {
             return false;
         }
+
         Lesson lesson = (Lesson) o;
-        return day == lesson.day
-                && startTime.isEqual(lesson.getStartTime())
-                && endTime.isEqual(lesson.getEndTime())
-                && location.equals(lesson.getLocation())
-                && module.equals(lesson.getModule());
+        return super.equals(o)
+                && moduleCode.equals(lesson.getModuleCode());
     }
 
     @Override
     public int hashCode() {
-        String hash = day.toString() + startTime.toString() + endTime.toString();
-        return hash.hashCode();
+        return Objects.hash(super.hashCode(), moduleCode);
     }
 }

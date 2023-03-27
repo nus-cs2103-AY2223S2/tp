@@ -1,10 +1,11 @@
 package seedu.address.model.util;
 
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -15,9 +16,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.EduMate;
 import seedu.address.model.ReadOnlyEduMate;
-import seedu.address.model.location.LocationUtil;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
@@ -133,20 +135,30 @@ public class SampleDataUtil {
         Address address = new Address(personDataList.get(3));
         TelegramHandle telegramHandle = new TelegramHandle(personDataList.get(4));
         Set<GroupTag> groupTagSet = getGroupTagSetFromUnsplitted(personDataList.get(5));
-        Set<ModuleTag> moduleTagSet = getModuleTagSetFromUnsplitted(personDataList.get(6));
+        Set<ModuleTag> moduleTagSet = getModuleTagSetFromText(personDataList.get(6));
 
         return new Person(name, phone, email, address,
                 telegramHandle, contactIndex, groupTagSet, moduleTagSet);
+    }
+
+    private static Set<ModuleTag> getModuleTagSetFromText(String text) {
+        String trimmedText = text.trim();
+        Set<ModuleTag> moduleTags = new HashSet<>();
+        for (String lessonAsStr : trimmedText.split(",")) {
+            try {
+                moduleTags.add(ParserUtil.parseModuleTag(lessonAsStr.trim()));
+            } catch (ParseException pe) {
+                continue;
+            }
+        }
+        return moduleTags;
     }
 
     /**
      * Returns a sample array of Persons.
      */
     public static List<Person> getSamplePersons() throws FileNotFoundException {
-        InputStreamReader sampleDataFile =
-                new InputStreamReader(
-                        LocationUtil.class.getClassLoader()
-                                .getResourceAsStream("data/sampleData.txt"));
+        File sampleDataFile = new File("src/main/resources/data/sampleData.txt");
         Scanner scanner = new Scanner(sampleDataFile);
         List<String> lines = new ArrayList<>();
 
@@ -166,4 +178,3 @@ public class SampleDataUtil {
         return personList;
     }
 }
-

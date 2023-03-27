@@ -4,13 +4,15 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.MeetCommand;
-import seedu.address.model.location.LocationUtil;
+import seedu.address.model.location.util.LocationDataUtil;
 import seedu.address.model.person.ContactIndex;
 
 public class MeetCommandParserTest {
@@ -36,29 +38,40 @@ public class MeetCommandParserTest {
     public void parse_validIndex_success() {
         // standard
         assertParseSuccess(MEET_COMMAND_PARSER, "1",
-                new MeetCommand(Set.of(new ContactIndex(1)), LocationUtil.MEET_LOCATIONS));
+                new MeetCommand(createContactIndicesWithUser(1), LocationDataUtil.MEET_LOCATIONS));
         assertParseSuccess(EAT_COMMAND_PARSER, "1",
-                new MeetCommand(Set.of(new ContactIndex(1)), LocationUtil.EAT_LOCATIONS));
+                new MeetCommand(createContactIndicesWithUser(1), LocationDataUtil.EAT_LOCATIONS));
         assertParseSuccess(STUDY_COMMAND_PARSER, "1",
-                new MeetCommand(Set.of(new ContactIndex(1)), LocationUtil.STUDY_LOCATIONS));
+                new MeetCommand(createContactIndicesWithUser(1), LocationDataUtil.STUDY_LOCATIONS));
 
         assertParseSuccess(MEET_COMMAND_PARSER, "2 7",
-                new MeetCommand(Set.of(new ContactIndex(2), new ContactIndex(7)),
-                        LocationUtil.MEET_LOCATIONS));
+                new MeetCommand(createContactIndicesWithUser(2, 7),
+                        LocationDataUtil.MEET_LOCATIONS));
         assertParseSuccess(EAT_COMMAND_PARSER, "2 7",
-                new MeetCommand(Set.of(new ContactIndex(7), new ContactIndex(2)),
-                        LocationUtil.EAT_LOCATIONS));
+                new MeetCommand(createContactIndicesWithUser(7, 2),
+                        LocationDataUtil.EAT_LOCATIONS));
         assertParseSuccess(STUDY_COMMAND_PARSER, "2 7",
-                new MeetCommand(Set.of(new ContactIndex(2), new ContactIndex(7)),
-                        LocationUtil.STUDY_LOCATIONS));
+                new MeetCommand(createContactIndicesWithUser(2, 7),
+                        LocationDataUtil.STUDY_LOCATIONS));
 
         // untrimmed
         assertParseSuccess(MEET_COMMAND_PARSER, "   1   ",
-                new MeetCommand(Set.of(new ContactIndex(1)), LocationUtil.MEET_LOCATIONS));
+                new MeetCommand(createContactIndicesWithUser(1), LocationDataUtil.MEET_LOCATIONS));
         assertParseSuccess(EAT_COMMAND_PARSER, "2 7",
-                new MeetCommand(Set.of(new ContactIndex(7), new ContactIndex(2)),
-                        LocationUtil.EAT_LOCATIONS));
+                new MeetCommand(createContactIndicesWithUser(7, 2),
+                        LocationDataUtil.EAT_LOCATIONS));
         assertParseSuccess(STUDY_COMMAND_PARSER, "   6     ",
-                new MeetCommand(Set.of(new ContactIndex(6)), LocationUtil.STUDY_LOCATIONS));
+                new MeetCommand(createContactIndicesWithUser(6), LocationDataUtil.STUDY_LOCATIONS));
+    }
+
+    private Set<ContactIndex> createContactIndicesWithUser(int... indices) {
+        Set<ContactIndex> contactIndices = new HashSet<>();
+        contactIndices.add(new ContactIndex(0));
+
+        Arrays.stream(indices)
+                .mapToObj(ContactIndex::new)
+                .forEach(contactIndices::add);
+
+        return contactIndices;
     }
 }

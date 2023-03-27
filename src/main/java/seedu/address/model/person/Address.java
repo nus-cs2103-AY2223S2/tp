@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.model.location.Location;
-import seedu.address.model.location.LocationUtil;
+import seedu.address.model.location.util.LocationDataUtil;
 
 /**
  * Represents a Person's address in the address book.
@@ -26,7 +26,7 @@ public class Address implements Comparable<Address> {
     public Address(String address) {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = LocationUtil.ADDRESSES_HASH_MAP.get(address.toLowerCase());
+        value = LocationDataUtil.ADDRESSES_HASH_MAP.get(address.toLowerCase());
     }
 
     /**
@@ -34,7 +34,7 @@ public class Address implements Comparable<Address> {
      */
     public static boolean isValidAddress(String test) {
         return test != null
-                && LocationUtil.ADDRESSES_HASH_MAP.containsKey(test.trim().toLowerCase());
+                && LocationDataUtil.ADDRESSES_HASH_MAP.containsKey(test.trim().toLowerCase());
     }
 
     /**

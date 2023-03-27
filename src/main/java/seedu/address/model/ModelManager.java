@@ -17,6 +17,7 @@ import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
+import seedu.address.model.recommendation.Recommendation;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -29,6 +30,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final SortedList<Person> observablePersons;
+    private final FilteredList<Recommendation> filteredRecommendations;
+    private final SortedList<Recommendation> observableRecommendations;
     private final IndexHandler indexHandler;
 
     /**
@@ -45,6 +48,9 @@ public class ModelManager implements Model {
         indexHandler = new IndexHandler(this);
         filteredPersons = new FilteredList<>(this.eduMate.getPersonList());
         observablePersons = new SortedList<>(filteredPersons);
+        filteredRecommendations = new FilteredList<>(this.eduMate.getRecommendationList());
+        observableRecommendations = new SortedList<>(filteredRecommendations);
+
     }
 
     public ModelManager() {
@@ -108,6 +114,8 @@ public class ModelManager implements Model {
         eduMateHistory.addCommand(command);
     }
 
+    // person-level methods
+
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -139,6 +147,41 @@ public class ModelManager implements Model {
     @Override
     public void resetPersons() {
         eduMate.resetPersons();
+    }
+
+    // recommendation-level methods
+
+    @Override
+    public boolean hasRecommendation(Recommendation recommendation) {
+        requireNonNull(recommendation);
+        return eduMate.hasRecommendation(recommendation);
+    }
+
+    @Override
+    public void deleteRecommendation(Recommendation target) {
+        eduMate.removeRecommendation(target);
+    }
+
+    @Override
+    public Recommendation addRecommendation(Recommendation recommendation) {
+        // The only place in the entire code that can set Contact Index.
+        ContactIndex contactIndex = indexHandler.assignRecommendationIndex();
+        Recommendation indexedRecommendation = recommendation.setContactIndex(contactIndex);
+        eduMate.addRecommendation(indexedRecommendation);
+        updateObservableRecommendationList();
+        return indexedRecommendation;
+    }
+
+    @Override
+    public void setRecommendation(Recommendation target, Recommendation editedRecommendation) {
+        requireAllNonNull(target, editedRecommendation);
+
+        eduMate.setRecommendation(target, editedRecommendation);
+    }
+
+    @Override
+    public void resetRecommendations() {
+        eduMate.resetRecommendations();
     }
 
     @Override
@@ -179,7 +222,30 @@ public class ModelManager implements Model {
     @Override
     public void updateObservablePersonList() {
         filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
-        observablePersons.setComparator(COMPARATOR_CONTACT_INDEX);
+        observablePersons.setComparator(COMPARATOR_CONTACT_INDEX_PERSON);
+    }
+
+    @Override
+    public ObservableList<Recommendation> getObservableRecommendationList() {
+        return observableRecommendations;
+    }
+
+    @Override
+    public void updateObservableRecommendationList(Comparator<Recommendation> comparator) {
+        requireNonNull(comparator);
+        observableRecommendations.setComparator(comparator);
+    }
+
+    @Override
+    public void updateObservableRecommendationList(Predicate<Recommendation> predicate) {
+        requireNonNull(predicate);
+        filteredRecommendations.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateObservableRecommendationList() {
+        filteredRecommendations.setPredicate(PREDICATE_SHOW_ALL_RECOMMENDATIONS);
+        observableRecommendations.setComparator(COMPARATOR_CONTACT_INDEX_RECOMMENDATION);
     }
 
     @Override

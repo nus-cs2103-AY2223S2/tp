@@ -1,35 +1,41 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.commitment.Lesson;
 import seedu.address.model.tag.ModuleTag;
 
 /**
  * Jackson-friendly version of {@link ModuleTag}.
  */
 public class JsonAdaptedModuleTag extends JsonAdaptedTag {
-    private final String moduleTagName;
+    private final String moduleCode;
+    private final List<JsonAdaptedLesson> lessons;
 
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedModuleTag(String moduleTagName) {
-        this.moduleTagName = moduleTagName;
+    public JsonAdaptedModuleTag(
+            @JsonProperty("moduleCode") String moduleCode, @JsonProperty("lessons") List<JsonAdaptedLesson> lessons) {
+        this.moduleCode = moduleCode;
+        this.lessons = lessons;
     }
 
     /**
      * Converts a given {@code GroupTag} into this class for Jackson use.
      */
-    public JsonAdaptedModuleTag(ModuleTag source) {
-        moduleTagName = source.tagName;
-    }
-
-    @JsonValue
-    public String getTagName() {
-        return moduleTagName;
+    public JsonAdaptedModuleTag(ModuleTag moduleTag) {
+        moduleCode = moduleTag.tagName;
+        lessons = moduleTag.getImmutableLessons().stream()
+                .map(JsonAdaptedLesson::new)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -38,9 +44,15 @@ public class JsonAdaptedModuleTag extends JsonAdaptedTag {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public ModuleTag toModelType() throws IllegalValueException {
-        if (!ModuleTag.isValidTagName(moduleTagName)) {
+        if (!ModuleTag.isValidTagName(moduleCode)) {
             throw new IllegalValueException(ModuleTag.MESSAGE_CONSTRAINTS);
         }
-        return new ModuleTag(moduleTagName);
+
+        List<Lesson> parsedLessons = new ArrayList<>();
+
+        for (JsonAdaptedLesson lesson : lessons) {
+            parsedLessons.add(lesson.toModelType().updateModuleCode(moduleCode));
+        }
+        return new ModuleTag(moduleCode, parsedLessons);
     }
 }

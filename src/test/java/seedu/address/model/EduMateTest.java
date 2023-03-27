@@ -23,6 +23,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.recommendation.Recommendation;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalUser;
 
@@ -108,6 +109,13 @@ public class EduMateTest {
     private static class EduMateStub implements ReadOnlyEduMate {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private User user;
+        private final ObservableList<Recommendation> recommendations = FXCollections.observableArrayList();
+
+        EduMateStub(Collection<Person> persons, User user, Collection<Recommendation> recommendations) {
+            this.persons.setAll(persons);
+            this.user = user;
+            this.recommendations.setAll(recommendations);
+        }
 
         EduMateStub(Collection<Person> persons, User user) {
             this.persons.setAll(persons);
@@ -117,6 +125,11 @@ public class EduMateTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Recommendation> getRecommendationList() {
+            return null;
         }
 
         @Override
