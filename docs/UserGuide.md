@@ -255,13 +255,14 @@ Format: `sort [CATEGORY]`
 * If a category is provided, the persons are sorted by that category alphanumerically
     * e.g. `sort address` will sort the persons by their addresses alphanumerically. Persons without addresses will be at the bottom.
 
-#### Viewing a person's detailed infomation: `view`
+#### Viewing a person's detailed information: `view`
 
 Views a person's details whose in the filtered list
 
 Format: `view INDEX`
 * Views the person's detailed information at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
+* Alternatively, click on the person in contact list to view detailed information.
 
 ### Project Commands
 
