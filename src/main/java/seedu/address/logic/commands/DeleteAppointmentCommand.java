@@ -112,7 +112,7 @@ public class DeleteAppointmentCommand extends Command {
         model.setDoctor(appointmentToDeleteDr, editedDoctor);
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
+        model.deleteAppointment(appointmentToDeletePatient);
         return new CommandResult(String.format(MESSAGE_SUCCESS, appointmentToDeletePatient));
 
 

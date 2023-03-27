@@ -55,8 +55,16 @@ public class HospitalAppointmentList implements Iterable<Appointment> {
      */
     public void deleteAppointment(Appointment appointment) {
         requireNonNull(appointment);
-        boolean isSuccessfulDeletion = internalList.remove(appointment);
-        if (!isSuccessfulDeletion) {
+
+        //boolean isSuccessfulDeletion = false;
+        Appointment toDelete = null;
+        //boolean isSuccessfulDeletion = internalList.remove(appointment);
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).isSameAppointment(appointment)) {
+                toDelete = internalList.remove(i);
+            }
+        }
+        if (toDelete == null) {
             throw new AppointmentNotFoundException();
         }
     }
