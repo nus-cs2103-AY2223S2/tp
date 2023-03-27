@@ -9,124 +9,101 @@ import seedu.address.model.category.Category;
  * Represents a Recurring Expense in the Expense Tracker.
  */
 public class RecurringExpenseManager {
-    RecurringExpense recurringExpense;
-    ArrayList<Expense> recurringExpenseList;
-    ArrayList<LocalDate> recurringExpenseDateList;
-    ArrayList<LocalDate> ignoredDateList;
+    String expenseName;
+    double expenseAmount;
+    Category expenseCategory;
+    int numberOfExpenses = 0;
+    LocalDate nextExpenseDate = null;
+    LocalDate startDate;
+    LocalDate endDate = null;
+    RecurringExpenseType recurringExpenseType;
 
     /**
-     * Constructor for RecurringExpense class.
-     * @param recurringExpense RecurringExpense object
+     * The constructor for the RecurringExpenseManager class with a start and end date.
+     * @param expenseName The name of the recurring expense.
+     * @param expenseAmount The amount of the recurring expense.
+     * @param expenseCategory The category of the recurring expense.
+     * @param startDate The start date of the recurring expense.
+     * @param endDate The end date of the recurring expense.
+     * @param recurringExpenseType The type of the recurring expense.
      */
-    public RecurringExpenseManager(RecurringExpense recurringExpense) {
-        this.recurringExpense = recurringExpense;
-        recurringExpenseList = new ArrayList<>();
-        recurringExpenseDateList = new ArrayList<>();
-        populateDateList();
+    public RecurringExpenseManager(String expenseName, double expenseAmount,
+            Category expenseCategory, LocalDate startDate, LocalDate endDate,
+            RecurringExpenseType recurringExpenseType) {
+        this.expenseName = expenseName;
+        this.expenseAmount = expenseAmount;
+        this.expenseCategory = expenseCategory;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.recurringExpenseType = recurringExpenseType;
     }
 
     /**
-     * Constructor for RecurringExpense class.
-     * @param Expense     Expense object
-     * @param startDate   Start date of the expense
-     * @param endDate     End date of the expense
+     * The constructor for the RecurringExpenseManager class with no end date.
+     * @param expenseName The name of the recurring expense.
+     * @param expenseAmount The amount of the recurring expense.
+     * @param expenseCategory The category of the recurring expense.
+     * @param startDate The start date of the recurring expense.
+     * @param recurringExpenseType The type of the recurring expense.
      */
-    public RecurringExpenseManager(Expense expense, LocalDate startDate, LocalDate endDate) {
-        recurringExpense = new RecurringExpense(expense.getName(), expense.getAmount(), 
-                expense.getDate(), expense.getCategory(), startDate, endDate);
-        recurringExpenseList = new ArrayList<>();
-        recurringExpenseDateList = new ArrayList<>();
-        populateDateList();
+    public RecurringExpenseManager(String expenseName, double expenseAmount,
+            Category expenseCategory, LocalDate startDate, RecurringExpenseType recurringExpenseType) {
+        this.expenseName = expenseName;
+        this.expenseAmount = expenseAmount;
+        this.expenseCategory = expenseCategory;
+        this.startDate = startDate;
+        this.recurringExpenseType = recurringExpenseType;
+        // Get the next expense date from recurringExpenseType
+        this.nextExpenseDate = recurringExpenseType.getNextExpenseDate(startDate);
     }
 
-    /**
-     * Constructor for RecurringExpense class.
-     * @param ignoredDateList List of ignored dates
-     * @param recurringExpenseList List of recurring expenses
-     * @param recurringExpenseDateList List of recurring expense dates
-     * @param recurringExpense RecurringExpense object
-     */
-    public RecurringExpenseManager(ArrayList<LocalDate> recurringExpenseDateList, 
-            RecurringExpense recurringExpense,
-            ArrayList<LocalDate> ignoredDateList, 
-            ArrayList<Expense> recurringExpenseList) {
-        this.ignoredDateList = ignoredDateList;
-        this.recurringExpenseList = recurringExpenseList;
-        this.recurringExpenseDateList = recurringExpenseDateList;
-        this.recurringExpense = recurringExpense;
-    }
 
-    private void populateDateList() {
-        LocalDate currentDate = recurringExpense.getCurrentDate();
-        LocalDate endDate = recurringExpense.getEndDate();
-        // Populate the date list, excluding the ignored dates
-        while (currentDate.isBefore(endDate)) {
-            if (!ignoredDateList.contains(currentDate)) {
-                addDate(currentDate);
-                addExpense(new RecurringExpense(recurringExpense.getName(), 
-                        recurringExpense.getAmount(), currentDate, 
-                        recurringExpense.getCategory(), recurringExpense.getStartDate(),
-                        recurringExpense.getEndDate()));
+    public ArrayList<Expense> getExpenses() {
+        ArrayList<Expense> expenses = new ArrayList<>();
+        LocalDate currentExpense = startDate;
+        LocalDate lastDate = endDate == null ? nextExpenseDate : endDate;
+        while (currentExpense.isBefore(lastDate)) {
+            expenses.add(new Expense(expenseName, expenseAmount, currentExpense, expenseCategory));
+            currentExpense = recurringExpenseType.getNextExpenseDate(currentExpense);
+        }
+        nextExpenseDate = recurringExpenseType.getNextExpenseDate(nextExpenseDate);
+        if (LocalDate.now().isAfter(nextExpenseDate)) {
+            nextExpenseDate = recurringExpenseType.getNextExpenseDate(nextExpenseDate);
+            Expense nextExpense = new Expense(expenseName, expenseAmount, nextExpenseDate, expenseCategory);
+            // add the next expense if it is not already in the list
+            if (!expenses.contains(nextExpense)) {
+                expenses.add(nextExpense);
             }
-            currentDate = currentDate.plusMonths(1);
         }
-    }
-
-    public void addExpense(Expense expense) {
-        recurringExpenseList.add(expense);
-        if (!recurringExpenseDateList.contains(expense.getDate())) {
-            recurringExpenseDateList.add(expense.getDate());
-        }
-        if (ignoredDateList.contains(expense.getDate())) {
-            ignoredDateList.remove(expense.getDate());
-        }
-    }
-
-    public void addDate(LocalDate date) {
-        recurringExpenseDateList.add(date);
-    }
-
-    public void removeDate(LocalDate date) {
-        recurringExpenseDateList.remove(date);
-    }
-
-    public void removeExpense(Expense expense) {
-        if (recurringExpenseList.contains(expense)) {
-            removeDate(expense.getDate());
-            recurringExpenseList.remove(expense);
-        }
-    }
-    
-    public ArrayList<Expense> getRecurringExpenseList() {
-        return recurringExpenseList;
+        startDate = nextExpenseDate;
+        numberOfExpenses = expenses.size();
+        return expenses;
     }
 
     public void editRecurringExpenseName(String name) {
-        recurringExpense.setName(name);
-        for (Expense expense : recurringExpenseList) {
-            expense.setName(name);
-        }
+        expenseName = name;
     }
 
     public void editRecurringExpenseAmount(double amount) {
-        recurringExpense.setAmount(amount);
-        for (Expense expense : recurringExpenseList) {
-            expense.setAmount(amount);
-        }
+        expenseAmount = amount;
     }
 
     public void editRecurringExpenseCategory(Category category) {
-        recurringExpense.setCategory(category);
-        for (Expense expense : recurringExpenseList) {
-            expense.setCategory(category);
-        }
+        expenseCategory = category;
     }
 
-    public void editRecurringExpenseDate(LocalDate date) {
-        recurringExpense.setDate(date);
-        for (Expense expense : recurringExpenseList) {
-            expense.setDate(date);
-        }
+    public int getNumberOfExpenses() {
+        return numberOfExpenses;
     }
-    
+
+    public double getTotalAmount() {
+        return expenseAmount * numberOfExpenses;
+    }
+
+    @Override
+    public String toString() {
+        return "Recurring Expense: " + expenseName + " Amount: " + expenseAmount + " Category: "
+                + expenseCategory + " Start Date: " + startDate + " End Date: " + endDate
+                + " Recurring Expense Type: " + recurringExpenseType;
+    }
 }
