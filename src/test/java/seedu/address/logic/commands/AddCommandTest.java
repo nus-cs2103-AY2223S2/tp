@@ -146,6 +146,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public Person getPersonWithName(String name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPersonWithName(String name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -195,6 +205,13 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        public void tagPersonToEvent(Index index, Person p) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public void untagPersonFromEvent(Index index, Person p) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public boolean isValidTabIndex(Index index) {
