@@ -21,6 +21,9 @@ public class UiManager implements Ui {
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String INITIAL_MESSAGE =
+            "Welcome to HMHero!\n\nType help to obtain the link to our User Guide "
+            + "where you can see all the commands available!";
 
     private Logic logic;
     private MainWindow mainWindow;
@@ -40,7 +43,7 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow(primaryStage, logic);
+            mainWindow = new MainWindow(primaryStage, logic, INITIAL_MESSAGE);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 

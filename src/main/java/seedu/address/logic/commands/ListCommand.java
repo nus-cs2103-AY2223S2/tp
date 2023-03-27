@@ -16,7 +16,7 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_SUCCESS_FORMAT =
-            "Listed all applicants\nTotal Applicants: %d\nApplied: %d\n"
+            "Listed all applicants\n\nTotal Applicants: %d\nApplied: %d\n"
                     + "Shortlisted: %d\nAccepted: %d\nRejected: %d";
 
     /**

@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -49,16 +50,18 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+    private final String initialMessage;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, Logic logic) {
+    public MainWindow(Stage primaryStage, Logic logic, String initialMessage) {
         super(FXML, primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.initialMessage = initialMessage;
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -114,6 +117,12 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
+        TextArea message = new TextArea(initialMessage);
+        message.setWrapText(true);
+        message.setEditable(false);
+        message.setMinHeight(1000);
+        message.setStyle("-fx-font-size: 16;");
+        resultDisplay.place(message);
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
@@ -174,11 +183,16 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            resultDisplay.clear();
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             personListPanel.updateListPanel(logic.getFilteredPersonList());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
+            TextArea message = new TextArea(commandResult.getFeedbackToUser());
+            message.setWrapText(true);
+            message.setEditable(false);
+            message.setMinHeight(1000);
+            message.setStyle("-fx-font-size: 16;");
+            resultDisplay.place(message);
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -190,7 +204,12 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            TextArea message = new TextArea(e.getMessage());
+            message.setWrapText(true);
+            message.setEditable(false);
+            message.setMinHeight(1000);
+            message.setStyle("-fx-font-size: 16;");
+            resultDisplay.place(message);
             throw e;
         }
     }

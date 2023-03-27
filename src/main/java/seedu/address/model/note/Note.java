@@ -1,16 +1,12 @@
 package seedu.address.model.note;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Note in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidNoteName(String)}
+ * Represents a Note in the HMHero.
+ * Guarantees: immutable;
  */
 public class Note {
-
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}\\s-]+";
 
     public final String noteName;
 
@@ -21,15 +17,7 @@ public class Note {
      */
     public Note(String noteName) {
         requireNonNull(noteName);
-        checkArgument(isValidNoteName(noteName), MESSAGE_CONSTRAINTS);
         this.noteName = noteName;
-    }
-
-    /**
-     * Returns true if a given string is a valid note name.
-     */
-    public static boolean isValidNoteName(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

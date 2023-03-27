@@ -18,10 +18,11 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords such as name, phone number, note (case-insensitive) and displays them as a "
-            + "list with index numbers.\n"
-            + "Parameters: n/NAME p/PHONE NUMBER note/NOTE_1 note/NOTE_2\n"
-            + "Any combination of prefixes are allowed for Format 2. Using more prefixes narrows down the target. \n"
-            + "Example: " + COMMAND_WORD + "n/alice p/98752354 note/java";
+            + "list with index numbers.\n\n"
+            + "Parameters: n/NAME p/PHONE NUMBER\n"
+            + "Providing just one of name or phone prefix is sufficient.\n"
+            + "Providing both name and phone prefixes narrows down the scope.\n\n"
+            + "Example: " + COMMAND_WORD + "n/alice p/98752354";
 
     private final Predicate<Person> findPredicate;
 
