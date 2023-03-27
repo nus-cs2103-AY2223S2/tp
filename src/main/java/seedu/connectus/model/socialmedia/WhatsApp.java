@@ -3,16 +3,17 @@ package seedu.connectus.model.socialmedia;
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.util.AppUtil.checkArgument;
 
+import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 
 /**
  * Represents a Person's WhatsApp in ConnectUS.
  * Guarantees: immutable; is valid as declared in {@link #isValidWhatsApp(String)}
  */
-public class WhatsApp {
+public class WhatsApp implements Openable, Chatable {
 
     public static final String MESSAGE_CONSTRAINTS = "WhatsApp's user identifier is a phone number. "
-            + Phone.MESSAGE_CONSTRAINTS;
+        + Phone.MESSAGE_CONSTRAINTS;
 
     public final String value;
 
@@ -27,6 +28,10 @@ public class WhatsApp {
     public static WhatsApp of(String phone) {
         requireNonNull(phone);
         checkArgument(isValidWhatsApp(phone), MESSAGE_CONSTRAINTS);
+        if (phone.length() == 8) {
+            // Singaporean phone number?
+            phone = "65" + phone;
+        }
         return new WhatsApp(phone);
     }
 
@@ -42,6 +47,20 @@ public class WhatsApp {
     }
 
     @Override
+    public String getUserLink() {
+        return "whatsapp://send?phone=" + value;
+    }
+
+    public static String getUserLink(Person user) {
+        return user.getSocialMedia().map(SocialMedia::getWhatsapp).map(WhatsApp::getUserLink).orElse("");
+    }
+
+    @Override
+    public String getUserLinkWithPreparedMessage(String message) {
+        return getUserLink() + "&text=" + message;
+    }
+
+    @Override
     public String toString() {
         return value;
     }
@@ -49,8 +68,8 @@ public class WhatsApp {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof WhatsApp // instanceof handles nulls
-                && value.equals(((WhatsApp) other).value)); // state check
+            || (other instanceof WhatsApp // instanceof handles nulls
+            && value.equals(((WhatsApp) other).value)); // state check
     }
 
     @Override
