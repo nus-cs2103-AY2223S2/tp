@@ -46,35 +46,36 @@ public class UpdateClientCommand extends Command {
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book.";
 
     public final Email email;
-    private final EditClientDescriptor editClientDescriptor;
+    private final UpdateClientDescriptor updateClientDescriptor;
 
     /**
      * Creates an UpdateClientCommand to edit the specified {@code Client}.
      * @param email of the client in the filtered client list to edit.
-     * @param editClientDescriptor details to edit the client with.
+     * @param updateClientDescriptor details to edit the client with.
      */
-    public UpdateClientCommand(Email email, EditClientDescriptor editClientDescriptor) {
+    public UpdateClientCommand(Email email, UpdateClientDescriptor updateClientDescriptor) {
         requireNonNull(email);
-        requireNonNull(editClientDescriptor);
+        requireNonNull(updateClientDescriptor);
 
         this.email = email;
-        this.editClientDescriptor = new EditClientDescriptor(editClientDescriptor);
+        this.updateClientDescriptor = new UpdateClientDescriptor(updateClientDescriptor);
     }
 
     /**
      * Creates and returns a {@code Client} with the details of {@code clientToEdit}
      * @param clientToEdit the client to edit.
-     * @param editClientDescriptor the details to edit the client with.
+     * @param updateClientDescriptor the details to edit the client with.
      * @return a client with the details of {@code clientToEdit} edited with {@code editClientDescriptor}.
      */
-    private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor) {
+    private static Client createEditedClient(Client clientToEdit, UpdateClientDescriptor updateClientDescriptor) {
         assert clientToEdit != null;
-        Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
-        Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
-        Optional<YearOfBirth> updatedYearOfBirth = editClientDescriptor.getYearOfBirth()
+        Name updatedName = updateClientDescriptor.getName().orElse(clientToEdit.getName());
+        Email updatedEmail = updateClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
+        Optional<YearOfBirth> updatedYearOfBirth = updateClientDescriptor.getYearOfBirth()
                 .or(clientToEdit::getYearOfBirth);
-        Optional<NonEmptyString> updatedSource = editClientDescriptor.getSource().or(clientToEdit::getSource);
-        Optional<Phone> updatedMobileNumber = editClientDescriptor.getMobileNumber().or(clientToEdit::getMobileNumber);
+        Optional<NonEmptyString> updatedSource = updateClientDescriptor.getSource().or(clientToEdit::getSource);
+        Optional<Phone> updatedMobileNumber = updateClientDescriptor
+                .getMobileNumber().or(clientToEdit::getMobileNumber);
         return new Client(updatedName, updatedEmail, updatedYearOfBirth, updatedSource, updatedMobileNumber);
     }
 
@@ -89,14 +90,14 @@ public class UpdateClientCommand extends Command {
         requireNonNull(model);
         Optional<Client> uniqueClient = model.getUniqueClient(c -> c.getEmail().equals(email));
 
-        if (!uniqueClient.isEmpty()) {
+        if (!uniqueClient.isPresent()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT);
         }
-        if (!editClientDescriptor.isAnyFieldEdited()) {
+        if (!updateClientDescriptor.isAnyFieldEdited()) {
             throw new CommandException(MESSAGE_NOT_EDITED);
         }
 
-        Client editedClient = createEditedClient(uniqueClient.get(), editClientDescriptor);
+        Client editedClient = createEditedClient(uniqueClient.get(), updateClientDescriptor);
 
         if (model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
@@ -126,7 +127,7 @@ public class UpdateClientCommand extends Command {
         // state check
         UpdateClientCommand e = (UpdateClientCommand) other;
         return email.equals(e.email)
-                && editClientDescriptor.equals(e.editClientDescriptor);
+                && updateClientDescriptor.equals(e.updateClientDescriptor);
     }
 
     /**
@@ -135,14 +136,14 @@ public class UpdateClientCommand extends Command {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(email, editClientDescriptor);
+        return Objects.hash(email, updateClientDescriptor);
     }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditClientDescriptor {
+    public static class UpdateClientDescriptor {
         private Optional<Name> name;
         private Optional<Email> email;
         private Optional<YearOfBirth> yearOfBirth;
@@ -152,7 +153,7 @@ public class UpdateClientCommand extends Command {
         /**
          * Creates an EditClientDescriptor with all fields optionally null.
          */
-        public EditClientDescriptor() {
+        public UpdateClientDescriptor() {
             name = Optional.empty();
             email = Optional.empty();
             yearOfBirth = Optional.empty();
@@ -165,7 +166,7 @@ public class UpdateClientCommand extends Command {
          *
          * @param toCopy the EditClientDescriptor to copy.
          */
-        public EditClientDescriptor(EditClientDescriptor toCopy) {
+        public UpdateClientDescriptor(UpdateClientDescriptor toCopy) {
             setName(toCopy.name);
             setEmail(toCopy.email);
             setYearOfBirth(toCopy.yearOfBirth);
@@ -337,12 +338,12 @@ public class UpdateClientCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditClientDescriptor)) {
+            if (!(other instanceof UpdateClientDescriptor)) {
                 return false;
             }
 
             // state check
-            EditClientDescriptor e = (EditClientDescriptor) other;
+            UpdateClientDescriptor e = (UpdateClientDescriptor) other;
 
             return getName().equals(e.getName())
                     && getEmail().equals(e.getEmail())
