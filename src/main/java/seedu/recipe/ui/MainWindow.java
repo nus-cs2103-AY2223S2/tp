@@ -2,6 +2,7 @@ package seedu.recipe.ui;
 
 import java.util.Map;
 import java.util.logging.Logger;
+import java.io.File;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.recipe.commons.core.GuiSettings;
 import seedu.recipe.commons.core.LogsCenter;
@@ -43,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem importMenuItem;
 
     @FXML
     private StackPane recipeListPanelPlaceholder;
@@ -94,6 +99,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        //setAccelerator(importMenuItem, KeyCombination.valueOf("F2"));
     }
 
     /**
@@ -109,6 +115,24 @@ public class MainWindow extends UiPart<Stage> {
                 event.consume();
             }
         });
+    }
+
+    @FXML
+    private void handleImport() {
+        FileChooser fileChooser = new FileChooser();
+
+        // Set the file extension filter for JSON files
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        // Show open file dialog
+        File selectedFile = fileChooser.showOpenDialog(primaryStage);
+
+        if (selectedFile != null) {
+            // The selectedFile variable now contains the selected JSON file
+            // We can now pass this file to your import handling method
+            return;
+        }
     }
 
     /**
