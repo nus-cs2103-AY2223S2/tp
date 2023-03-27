@@ -484,7 +484,7 @@ The arguments for `AddCommand` are unordered, so the user can type them in any o
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **For Your Information**
+:information_source: **For Your Information** <br>
 
 The User has the default `ContactIndex` of 0.
 </div>
@@ -581,9 +581,9 @@ The `tag` command allows user to tag a ModuleTag and Lessons to an existing cont
 
 :information_source: **Command Formats**: <br>
 
-- `tag m/MODULE`: Tags a module to user.
-- `tag INDEX m/MODULE`: Tags a module to the contact at specified index.
-- `tag m/MODULE DAY START END`: Tags a lesson to the user with the specified parameters, and tags the module if not already done so.
+- `tag m/MODULE`: Tags a module to user. <br>
+- `tag INDEX m/MODULE`: Tags a module to the contact at specified index. <br>
+- `tag m/MODULE DAY START END`: Tags a lesson to the user with the specified parameters, and tags the module if not already done so. <br>
 
 </div>
 
