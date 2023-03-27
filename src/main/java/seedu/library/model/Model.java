@@ -94,6 +94,11 @@ public interface Model {
     void updateFilteredBookmarkList(Predicate<Bookmark> predicate);
 
     /**
+     * Updates the filtered list to be sorted by rating.
+     */
+    public void updateSortedBookmarkList(String order);
+
+    /**
      * Returns true if any tag with the same identity as {@code tag} exists in the tag list.
      */
     boolean hasTag(Set<Tag> tag);

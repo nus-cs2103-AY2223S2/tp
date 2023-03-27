@@ -93,6 +93,11 @@ public class Library implements ReadOnlyLibrary {
         bookmarks.remove(key);
     }
 
+    //// library-level operations
+    public void sortBookmarks(String order) {
+        bookmarks.sortBookmarks(order);
+    }
+
     //// util methods
 
     @Override

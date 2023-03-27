@@ -13,7 +13,7 @@ import seedu.library.model.tag.Tag;
  * Represents a Bookmark in the library.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Bookmark {
+public class Bookmark implements Comparable<Bookmark> {
 
     // Identity fields
     private final Title title;
@@ -107,6 +107,11 @@ public class Bookmark {
                 && otherBookmark.getRating().equals(getRating())
                 //&& otherBookmark.getUrl().equals(getUrl())
                 && otherBookmark.getTags().equals(getTags());
+    }
+
+    @Override
+    public int compareTo(Bookmark other) {
+        return this.rating.compareTo(other.rating);
     }
 
     @Override

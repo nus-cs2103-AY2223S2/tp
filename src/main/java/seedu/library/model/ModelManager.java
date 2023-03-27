@@ -169,6 +169,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateSortedBookmarkList(String order) {
+        requireNonNull(order);
+        library.sortBookmarks(order);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

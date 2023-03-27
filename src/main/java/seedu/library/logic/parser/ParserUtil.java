@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.library.commons.core.index.Index;
 import seedu.library.commons.util.StringUtil;
 import seedu.library.logic.parser.exceptions.ParseException;
+import seedu.library.model.RatingOrder;
 import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
@@ -128,6 +129,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String sort} into an {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code String} is invalid.
+     */
+    public static String parseSort(String sort) throws ParseException {
+        requireNonNull(sort);
+        String trimmedSort = sort.trim();
+        if (!RatingOrder.isValidRatingOrder(trimmedSort)) {
+            throw new ParseException(RatingOrder.MESSAGE_CONSTRAINT);
+        }
+        return trimmedSort;
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -141,7 +157,6 @@ public class ParserUtil {
         }
         return new Tag(trimmedTag);
     }
-
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
