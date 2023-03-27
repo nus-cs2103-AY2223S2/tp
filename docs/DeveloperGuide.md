@@ -176,11 +176,11 @@ However, this representation is too verbose and space-inefficient. Hence, we opt
 each component clas, which can be found in the [`seedu.recipe.storage.jsonadapters`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/jsonadapters) 
 package. These JSON adapters allow us to express how each class should be serialized.
 
-## **Implementation**
+## **Feature Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Edit Form Feature
+### Feature: "Edit" Form UI
 
 #### Implementation
 
@@ -197,7 +197,7 @@ In addition, it implements the following operations:
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-### Example Usage Scenario
+#### Example Usage Scenario
 
 Step 1. The user selects a recipe and presses the F key on the keyboard, triggering the `RecipeForm` to appear with the selected recipe's details pre-populated in the form fields.
 
@@ -221,7 +221,7 @@ Notes
 If the user clicks the "Cancel" button or presses the ESC key, the form will be closed without saving any changes.
 The form's window title will be "Edit Recipe" when editing an existing recipe, and "Add Recipe" when adding a new recipe.
 
-### Common classes
+#### Common classes
 Classes used by multiple components are in the `seedu.recipe.commons` package.
 
 ## **Appendix: Requirements**
