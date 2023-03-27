@@ -59,7 +59,7 @@ Throughout this user guide, you may come across different formatting styles and 
 | UPPER_CASE | Words in UPPER CASE are the parameters that you need to supply to the system.<p>E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add.<p> For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`.|
 | [brackets] | Items in square brackets are optional.<p>E.g. update -n NAME [-ph PHONE] can be used as<p>`update -n Alice` or `update -n Alice -ph 12345678`|
 | `command` | The grey highlighting indicates that the word is a command to be entered by the user.|
-|[2. About](#2-about)| Text that are in blue and clickable link. These links will take you to specific sections of this User Guide or external website.|
+|[2. About](#2-about)| Blue texts shown are clickable links. These links will take you to specific sections of this User Guide or external website.|
 
 Table 1. Symbols and formats used in this User Guide.
 
