@@ -2,12 +2,15 @@ package seedu.recipe.ui;
 
 import static seedu.recipe.model.util.IngredientUtil.ingredientKeyValuePairToString;
 
-import java.awt.*;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.Set;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Orientation;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
@@ -15,6 +18,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
+import seedu.recipe.model.util.IngredientUtil;
 import seedu.recipe.ui.CommandBox.CommandExecutor;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
 
@@ -99,23 +106,11 @@ public class RecipeCard extends UiPart<Region> {
 
         //Ingredients
         ingredientsTitle.setText("Ingredients:");
-        GridManager ingredientManager = new GridManager();
-        recipe.getIngredients()
-            .forEach((ingredient, information) -> ingredients
-                .add(
-                    createUnorderedListItem(
-                        ingredientKeyValuePairToString(ingredient, information)
-                    ),
-                    0, ingredientManager.getCount())
-            );
+        setIngredients(recipe.getIngredients());
 
         //Steps
-        GridManager stepLabelManager = new GridManager(1);
-        GridManager stepGridManager = new GridManager();
         stepsTitle.setText("Steps:");
-        recipe.getSteps()
-            .forEach(step -> steps.add(
-                createOrderedListItem(stepLabelManager, step.toString()), 0, stepGridManager.getCount()));
+        setSteps(recipe.getSteps());
 
         //Tags
         tagsTitle.setText("Steps:");
@@ -162,14 +157,41 @@ public class RecipeCard extends UiPart<Region> {
         return createLabel("• " + text);
     }
 
-    private Label createOrderedListItem(GridManager manager, String text) {
-        return createLabel(manager.getCount() + ". " + text);
+    private Label createOrderedListItem(int count, String text) {
+        return createLabel(count + ". " + text);
     }
 
     private Label createLabel(String text) {
         Label label = new Label(text);
         label.setWrapText(true);
         return label;
+    }
+
+    private void setIngredients(HashMap<Ingredient, IngredientInformation> ingredientsTable) {
+        int count = 0;
+        Iterator<Entry<Ingredient, IngredientInformation>> entries = ingredientsTable.entrySet().iterator();
+        while (entries.hasNext() && count < 3) {
+            Entry<Ingredient, IngredientInformation> nextIngredient = entries.next();
+            ingredients.add(createUnorderedListItem(
+                IngredientUtil.ingredientKeyValuePairToString(nextIngredient.getKey(), nextIngredient.getValue())
+            ), 0, count);
+            count += 1;
+        }
+        if (count == 3 && entries.hasNext()) {
+            ingredients.add(createLabel(
+                    "... and " + (ingredientsTable.size() - 3) + " more ingredients"), 0, count);
+        }
+    }
+
+    private void setSteps(List<Step> stepList) {
+        int count = 1;
+        while (count < 4 && count <= stepList.size()) {
+            steps.add(createOrderedListItem(count, stepList.get(count - 1).toString()), 0, count - 1);
+            count += 1;
+        }
+        if (count == 4 && stepList.size() > 4) {
+            steps.add(createLabel("... and " + (stepList.size() - count) + " more steps"), 0, count);
+        }
     }
 
     @Override

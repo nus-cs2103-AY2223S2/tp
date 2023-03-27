@@ -31,9 +31,9 @@
       <Label fx:id="duration" styleClass="cell_small_label" text="\$duration" />
       <Label fx:id="portion" styleClass="cell_small_label" text="\$portion" />
       <Label fx:id="ingredientsTitle" styleClass="cell_small_label" text="Ingredients: " />
-      <GridPane fx:id="ingredients" vgap="0.5"/>
+      <GridPane fx:id="ingredients" vgap="0.5" maxHeight="100" VBox.vgrow="NEVER"/>
       <Label fx:id="stepsTitle" styleClass="cell_small_label" text="Steps: " />
-      <GridPane fx:id="steps" vgap="0.5"/>
+      <GridPane fx:id="steps" vgap="0.5" maxHeight="100" VBox.vgrow="NEVER"/>
       <Label fx:id="tagsTitle" styleClass="cell_small_label" text="Tags: " />
       <FlowPane fx:id="tags" />
     </VBox>
