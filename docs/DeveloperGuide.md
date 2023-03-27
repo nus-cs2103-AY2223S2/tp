@@ -687,8 +687,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. WIFE is empty.
   * 1a1. WIFE displays a message that tells the User that there are no items and cannot delete specified item. <br/>
     Use case ends. 
-* 1b. User selects an item that does not exist.
-  * 1b1. WIFE displays a message that tells the User that specified item does not exist. <br/>
+* 1b. User selects an index that is more than the food items in WIFE.
+  * 1b1. WIFE displays a message that tells the User that the food item index provided is invalid. <br/>
     Use case ends.
 
 ### **Use case UC04: View help**
