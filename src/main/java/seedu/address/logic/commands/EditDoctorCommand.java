@@ -105,8 +105,10 @@ public class EditDoctorCommand extends Command {
         Specialty updatedSpecialty = editDoctorDescriptor.getSpecialty().orElse(doctorToEdit.getSpecialty());
         Yoe updatedYoe = editDoctorDescriptor.getYoe().orElse(doctorToEdit.getYoe());
         Set<Tag> updatedTags = editDoctorDescriptor.getTags().orElse(doctorToEdit.getTags());
+        Set<Patient> updatedPatients = editDoctorDescriptor.getPatients().orElse(doctorToEdit.getPatients());
 
-        return new Doctor(updatedName, updatedPhone, updatedEmail, updatedSpecialty, updatedYoe, updatedTags);
+        return new Doctor(updatedName, updatedPhone, updatedEmail, updatedSpecialty, updatedYoe, updatedTags,
+                updatedPatients);
     }
 
     @Override

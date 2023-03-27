@@ -2,6 +2,7 @@ package seedu.address.model.person.patient;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -9,6 +10,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.tag.Tag;
 /**
  * Represents a Patient in the address book.
@@ -21,7 +23,23 @@ public class Patient extends Person {
     private final Diagnosis diagnosis;
     private final Status status;
     private final Remark remark;
+    private final Set<Doctor> doctors;
     /**
+     * Every field must be present and not null.
+     */
+    public Patient(Name name, Phone phone, Email email, Height height, Weight weight,
+                   Diagnosis diagnosis, Status status, Remark remark, Set<Tag> tags, Set<Doctor> doctors) {
+        super(name, phone, email, tags);
+        requireAllNonNull(height, weight, diagnosis, status, remark, tags, doctors);
+        this.height = height;
+        this.weight = weight;
+        this.diagnosis = diagnosis;
+        this.status = status;
+        this.remark = remark;
+        this.doctors = doctors;
+    }
+    /**
+     * Initializes {@code Patient} object without {@code doctors}.
      * Every field must be present and not null.
      */
     public Patient(Name name, Phone phone, Email email, Height height, Weight weight,
@@ -33,6 +51,7 @@ public class Patient extends Person {
         this.diagnosis = diagnosis;
         this.status = status;
         this.remark = remark;
+        this.doctors = new HashSet<>();
     }
 
     public Height getHeight() {
@@ -49,6 +68,29 @@ public class Patient extends Person {
     }
     public Remark getRemark() {
         return remark;
+    }
+    public Set<Doctor> getDoctors() {
+        return doctors;
+    }
+
+    /**
+     * Returns true if patient contains supplied doctor.
+     *
+     * @param doctor a doctor.
+     */
+    public boolean hasDoctor(Doctor doctor) {
+        return doctors.contains(doctor);
+    }
+
+    /**
+     * Removes a doctor if it exists in doctor's doctor list.
+     *
+     * @param doctor a doctor.
+     */
+    public void removeDoctorIfAssigned(Doctor doctor) {
+        if (this.hasDoctor(doctor)) {
+            doctors.remove(doctor);
+        }
     }
 
     /**
@@ -87,7 +129,8 @@ public class Patient extends Person {
                 && otherPatient.getDiagnosis().equals(getDiagnosis())
                 && otherPatient.getStatus().equals(getStatus())
                 && otherPatient.getRemark().equals(getRemark())
-                && otherPatient.getTags().equals(getTags());
+                && otherPatient.getTags().equals(getTags())
+                && otherPatient.getDoctors().equals(getDoctors());
     }
 
     @Override
@@ -114,6 +157,14 @@ public class Patient extends Person {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        Set<Doctor> doctors = getDoctors();
+        if (!doctors.isEmpty()) {
+            builder.append("; Doctors: ");
+            doctors.forEach((Doctor doctor) -> {
+                builder.append(doctor.getName());
+            });
         }
         return builder.toString();
     }

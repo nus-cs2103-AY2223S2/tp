@@ -26,6 +26,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Diagnosis;
 import seedu.address.model.person.patient.Height;
 import seedu.address.model.person.patient.Patient;
@@ -116,9 +117,10 @@ public class EditPatientCommand extends Command {
         Status updatedStatus = editPatientDescriptor.getStatus().orElse(patientToEdit.getStatus());
         Remark updatedRemark = editPatientDescriptor.getRemark().orElse(patientToEdit.getRemark());
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
+        Set<Doctor> updatedDoctors = editPatientDescriptor.getDoctors().orElse(patientToEdit.getDoctors());
 
         return new Patient(updatedName, updatedPhone, updatedEmail, updatedHeight, updatedWeight,
-                updatedDiagnosis, updatedStatus, updatedRemark, updatedTags);
+                updatedDiagnosis, updatedStatus, updatedRemark, updatedTags, updatedDoctors);
     }
 
     @Override
@@ -153,6 +155,7 @@ public class EditPatientCommand extends Command {
         private Status status;
         private Remark remark;
         private Set<Tag> tags;
+        private Set<Doctor> doctors;
 
         public EditPatientDescriptor() {}
 
@@ -170,6 +173,7 @@ public class EditPatientCommand extends Command {
             setStatus(toCopy.status);
             setRemark(toCopy.remark);
             setTags(toCopy.tags);
+            setDoctors(toCopy.doctors);
         }
 
         /**
@@ -252,6 +256,22 @@ public class EditPatientCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
+        /**
+         * Sets {@code doctors} to this object's {@code doctors}.
+         * A defensive copy of {@code doctors} is used internally.
+         */
+        public void setDoctors(Set<Doctor> doctors) {
+            this.doctors = (doctors != null) ? new HashSet<>(doctors) : null;
+        }
+
+        /**
+         * Returns an unmodifiable doctor set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code doctors} is null.
+         */
+        public Optional<Set<Doctor>> getDoctors() {
+            return (doctors != null) ? Optional.of(Collections.unmodifiableSet(doctors)) : Optional.empty();
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -276,7 +296,8 @@ public class EditPatientCommand extends Command {
                     && getDiagnosis().equals(e.getDiagnosis())
                     && getStatus().equals(e.getStatus())
                     && getRemark().equals(e.getRemark())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getDoctors().equals(e.getDoctors());
         }
     }
 }
