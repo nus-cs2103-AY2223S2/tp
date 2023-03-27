@@ -21,15 +21,15 @@ import vimification.internal.parser.ParserException;
 public class CommandInput extends UiPart<HBox> {
 
     private static final String FXML = "CommandInput.fxml";
-    private MainScreen parent;
+    private MainScreen mainScreen;
     private Logic logic;
 
     @FXML
     private TextField inputField;
 
-    public CommandInput(MainScreen parent, Logic logic) {
+    public CommandInput(MainScreen mainScreen, Logic logic) {
         super(FXML);
-        this.parent = parent;
+        this.mainScreen = mainScreen;
         this.logic = logic;
         inputField.prefWidthProperty().bind(this.getRoot().widthProperty());
         inputField.prefHeightProperty().bind(this.getRoot().heightProperty());
@@ -87,11 +87,11 @@ public class CommandInput extends UiPart<HBox> {
 
         try {
             CommandResult result = logic.execute(commandString);
-            parent.initializeTaskListPanel();
+            mainScreen.initializeTaskListPanel();
 
             // TODO: Should only clear if the task has been deleted.
             if (result.getFeedbackToUser().contains("Deleted Task:")) {
-                parent.clearRightComponent();
+                mainScreen.clearRightComponent();
             }
             System.out.println(result.getFeedbackToUser());
         } catch (CommandException e) {
@@ -106,7 +106,7 @@ public class CommandInput extends UiPart<HBox> {
 
         // TODO : TEMPORARY, REMOVE THIS IN THE FUTURE AFTER ABSTRACTING INTO GUI COMMANDS
         if (isNumeric(commandString)) {
-            parent.getTaskListPanel().scrollToTaskIndex(Integer.parseInt(commandString));
+            mainScreen.getTaskListPanel().scrollToTaskIndex(Integer.parseInt(commandString));
             return;
         }
     }
@@ -126,14 +126,13 @@ public class CommandInput extends UiPart<HBox> {
     }
 
     private void returnFocusToParent() {
-        parent.clearBottomComponent();
-        parent.getRoot().requestFocus();
+        mainScreen.clearBottomComponent();
+        mainScreen.getRoot().requestFocus();
     }
 
     @FXML
     private void initialize() {
         this.getRoot().setFocusTraversable(true); // Important
-        // this.getRoot().setVisible(false);
         inputField.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue,
@@ -149,7 +148,4 @@ public class CommandInput extends UiPart<HBox> {
     private boolean isTextFieldEmpty() {
         return inputField.getText().equals("");
     }
-
-
-
 }

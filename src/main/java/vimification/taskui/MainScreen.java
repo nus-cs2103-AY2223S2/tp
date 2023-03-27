@@ -10,7 +10,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import vimification.internal.Logic;
 import vimification.model.task.Task;
 
@@ -22,10 +21,11 @@ public class MainScreen extends UiPart<VBox> {
 
     private static final String FXML = "MainScreen.fxml";
 
-    private static ReadOnlyDoubleProperty stageHeight;
+    private static ReadOnlyDoubleProperty windowHeight;
+    private static ReadOnlyDoubleProperty windowWidth;
+
     private static DoubleBinding topComponentHeight; // Height of left and right component
     private static DoubleBinding bottomComponentHeight;
-    private static ReadOnlyDoubleProperty windowWidth;
 
     private Logic logic;
 
@@ -46,19 +46,23 @@ public class MainScreen extends UiPart<VBox> {
     /**
      * Creates a {@code MainWindow} with {@code Logic}.
      */
-    public MainScreen(Logic logic, Stage stage) {
+    public MainScreen(Logic logic) {
         super(FXML);
         this.logic = logic;
-        stageHeight = stage.heightProperty();
-        windowWidth = stage.widthProperty();
-
-        topComponentHeight = stageHeight.multiply(0.9);
-        bottomComponentHeight = stageHeight.multiply(0.1);
+        windowHeight = this.getRoot().heightProperty();
+        windowWidth = this.getRoot().widthProperty();
+        topComponentHeight = windowHeight.multiply(0.9);
+        bottomComponentHeight = windowHeight.multiply(0.1);
         setup();
     }
 
+    /**
+     * Returns the {@code TaskListPanel} component
+     *
+     * @return
+     */
     public TaskListPanel getTaskListPanel() {
-        return this.taskListPanel;
+        return taskListPanel;
     }
 
     @FXML
@@ -83,9 +87,6 @@ public class MainScreen extends UiPart<VBox> {
 
     private void intializeCommandInput() {
         commandInput = new CommandInput(this, logic);
-        // commandInput.getRoot().prefHeightProperty().bind(stageHeight.multiply(0.1));
-        // bottomComponent.getChildren().add(commandInput.getRoot());
-        // loadBottomComponent(commandInput);
     }
 
     /**
@@ -123,7 +124,6 @@ public class MainScreen extends UiPart<VBox> {
 
     private void loadCommandInputComponent() {
         loadBottomComponent(commandInput);
-        // commandInput.setVisible(true);
         commandInput.requestFocus();
     }
 
