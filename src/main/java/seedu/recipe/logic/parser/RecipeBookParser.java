@@ -6,7 +6,9 @@ import static seedu.recipe.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.recipe.ui.CommandBox.CommandExecutor;
 import seedu.recipe.logic.commands.AddCommand;
+import seedu.recipe.logic.commands.AddFormCommand;
 import seedu.recipe.logic.commands.ClearCommand;
 import seedu.recipe.logic.commands.Command;
 import seedu.recipe.logic.commands.DeleteCommand;
@@ -26,7 +28,6 @@ public class RecipeBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-
     /**
      * Parses user input into command for execution.
      *
@@ -46,7 +47,8 @@ public class RecipeBookParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
-
+        case AddFormCommand.COMMAND_WORD:
+            return new AddFormCommand(null);
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
