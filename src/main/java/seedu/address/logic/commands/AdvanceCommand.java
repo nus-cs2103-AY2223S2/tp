@@ -25,11 +25,11 @@ import seedu.address.model.person.Status;
 public class AdvanceCommand extends Command {
     public static final String COMMAND_WORD = "advance";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Advance an applicant in HMHero.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Advance an applicant in HMHero.\n\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
-            + "[" + PREFIX_DATETIME + "INTERVIEW DATETIME]\n"
+            + "[" + PREFIX_DATETIME + "INTERVIEW DATETIME]\n\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "

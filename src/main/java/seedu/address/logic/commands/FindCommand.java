@@ -18,10 +18,10 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords such as name, phone number, note (case-insensitive) and displays them as a "
-            + "list with index numbers.\n"
-            + "Parameters: Format 1: KEYWORDS(either NAME or PHONE NUMBER)\n "
+            + "list with index numbers.\n\n"
+            + "Parameters:\nFormat 1: KEYWORDS(either NAME or PHONE NUMBER)\n"
             + "Format 2: n/NAME p/PHONE NUMBER note/NOTE_1 note/NOTE_2\n"
-            + "Any combination of prefixes are allowed for Format 2. Using more prefixes narrows down the target. \n"
+            + "Any combination of prefixes are allowed for Format 2. Using more prefixes narrows down the target. \n\n"
             + "Example for Format 1: " + COMMAND_WORD + " alice bob charlie OR 12345678\n"
             + "Example for Format 2: " + COMMAND_WORD + "n/alice bob p/12345678";
 

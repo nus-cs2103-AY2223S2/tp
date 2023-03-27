@@ -35,13 +35,8 @@ class JsonAdaptedNote {
 
     /**
      * Converts this Jackson-friendly adapted note object into the model's {@code Note} object.
-     *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted note.
      */
     public Note toModelType() throws IllegalValueException {
-        if (!Note.isValidNoteName(noteName)) {
-            throw new IllegalValueException(Note.MESSAGE_CONSTRAINTS);
-        }
         return new Note(noteName);
     }
 

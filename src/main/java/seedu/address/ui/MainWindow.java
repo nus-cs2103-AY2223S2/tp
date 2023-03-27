@@ -206,6 +206,9 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             TextArea message = new TextArea(e.getMessage());
             message.setWrapText(true);
+            message.setEditable(false);
+            message.setMinHeight(1000);
+            message.setStyle("-fx-font-size: 16;");
             resultDisplay.place(message);
             throw e;
         }
