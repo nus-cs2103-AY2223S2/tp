@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 
-##Table of Contents
+## Table of Contents
 * [What is MediMeet](#what-is-medimeet)
 * [Quick start](#quick-start)
 * [Features](#features)
