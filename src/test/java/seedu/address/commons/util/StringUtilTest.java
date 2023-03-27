@@ -45,6 +45,31 @@ public class StringUtilTest {
         assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
     }
 
+    //---------------- Tests for isTwoIndexString --------------------------------------
+
+    @Test
+    public void isTwoIndexString() {
+
+        // EP: empty strings
+        assertFalse(StringUtil.isTwoIndexString("")); // Boundary value
+        assertFalse(StringUtil.isTwoIndexString("  "));
+
+        // EP: less than two values
+        assertFalse(StringUtil.isTwoIndexString("1"));
+        assertFalse(StringUtil.isTwoIndexString("b"));
+
+        // EP: more than two values
+        assertFalse(StringUtil.isTwoIndexString("1 2 3"));
+        assertFalse(StringUtil.isTwoIndexString("49 93 9 02 2 4"));
+
+        // EP: valid values, should return true
+        assertTrue(StringUtil.isTwoIndexString("1 2")); // Boundary value
+        assertTrue(StringUtil.isTwoIndexString("10 3"));
+        assertTrue(StringUtil.isTwoIndexString("10      3")); // More than one space
+        assertTrue(StringUtil.isTwoIndexString("a b"));
+        assertTrue(StringUtil.isTwoIndexString("10 b"));
+        assertTrue(StringUtil.isTwoIndexString("a 3"));
+    }
 
     //---------------- Tests for containsWordIgnoreCase --------------------------------------
 

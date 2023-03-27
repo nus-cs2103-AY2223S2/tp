@@ -30,6 +30,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private int tabNumber = 0;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -141,6 +142,21 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    private void fillScoreAndTask() {
+        Consumer<Integer> callBack = new Consumer<Integer>() {
+            @Override
+            public void accept(Integer tabNumber) {
+                setTabNumber(tabNumber);
+            }
+        };
+
+        taskListPanel = new TaskListPanel(logic.findCheckedPerson());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+
+        scoreListPanel = new ScoreListPanel(logic.findCheckedPerson(), tabNumber, callBack);
+        scoreListPanelPlaceholder.getChildren().add(scoreListPanel.getRoot());
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
@@ -157,11 +173,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        taskListPanel = new TaskListPanel(logic.findCheckedPerson());
-        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-
-        scoreListPanel = new ScoreListPanel(logic.findCheckedPerson());
-        scoreListPanelPlaceholder.getChildren().add(scoreListPanel.getRoot());
+        fillScoreAndTask();
     }
 
     /**
@@ -230,6 +242,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Sets tab number.
+     *
+     * @param tabNumber The tab number expected.
+     */
+    private void setTabNumber(int tabNumber) {
+        this.tabNumber = tabNumber;
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -248,11 +269,11 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            taskListPanel = new TaskListPanel(logic.findCheckedPerson());
-            taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+            if (commandResult.isTabSwitch()) {
+                tabNumber = (tabNumber == 0) ? 1 : 0;
+            }
 
-            scoreListPanel = new ScoreListPanel(logic.findCheckedPerson());
-            scoreListPanelPlaceholder.getChildren().add(scoreListPanel.getRoot());
+            fillScoreAndTask();
 
             return commandResult;
         } catch (CommandException | ParseException e) {

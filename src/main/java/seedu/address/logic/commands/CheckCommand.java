@@ -3,7 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.AppParameters;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -23,6 +26,7 @@ public class CheckCommand extends Command {
 
     public static final String MESSAGE_CHECK_PERSON_SUCCESS = "Check Person: %1$s";
 
+    private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
     private final Index targetIndex;
 
     public CheckCommand(Index targetIndex) {
@@ -36,6 +40,7 @@ public class CheckCommand extends Command {
         List<Person> personList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= personList.size()) {
+            logger.info("The student index is exceeding the total number of students. Index is invalid.");
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 

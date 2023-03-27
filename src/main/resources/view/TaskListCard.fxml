@@ -17,7 +17,7 @@
             <padding>
                 <Insets top="0" right="10" bottom="0" left="10" />
             </padding>
-            <ImageView fx:id="isDone" fitWidth="30" fitHeight="30" style="-fx-padding: 0 0 4 0"/>
+            <ImageView fx:id="taskStatus" fitWidth="30" fitHeight="30" style="-fx-padding: 0 0 4 0"/>
             <Label fx:id="id" styleClass="cell_middle_label" style="-fx-padding: 0 0 0 20">
                 <minWidth>
                     <!-- Ensures that the label text is never truncated -->

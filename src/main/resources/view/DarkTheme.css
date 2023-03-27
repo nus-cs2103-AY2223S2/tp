@@ -149,6 +149,153 @@
     -fx-text-fill: #4A4A4A;
 }
 
+.list_tab {
+    -fx-background-color: #DAD8FF;
+    -fx-font-family: "SansSerif";
+    -fx-text-fill: #605BF1;
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+.tab-header-area .tab{
+    -fx-background-radius: 10 10 0 0;
+    -fx-padding: 8;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #605BF1;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+.tab-pane .tab:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.tab-pane .tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+    -fx-border-radius: 10 4 0 0;
+}
+
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+}
+
+/*Score Chart*/
+.chart-content {
+    -fx-padding: 5 10 10 5;
+}
+
+.axis {
+    -fx-font-size: 2em;
+    -fx-tick-label-fill: #605BF1;
+    -fx-font-family: "SansSerif";
+    -fx-tick-length: 12;
+    -fx-minor-tick-length: 7;
+}
+
+.axis-label {
+    -fx-font-family: "SansSerif";
+    -fx-font-size: 17px;
+    -fx-text-fill: #605BF1;
+}
+
+.chart-plot-background {
+    -fx-background-color: #e2ecfe;
+}
+
+.chart-vertical-grid-lines {
+    -fx-stroke: #605BF1;
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: #605BF1;
+}
+
+.chart-alternative-row-fill {
+    -fx-fill: #99bcfd;
+    -fx-stroke: transparent;
+    -fx-stroke-width: 0;
+}
+
+/*Score Chart Ends*/
+
+/*table view ends*/
+
+.table-view {
+     -fx-base: #EFEEFC;
+     -fx-control-inner-background: #EFEEFC;
+     -fx-background-color: white;
+     -fx-table-cell-border-color: transparent;
+     -fx-table-header-border-color: transparent;
+     -fx-padding: 5;
+}
+
+.table-view .column-header .label {
+    -fx-font-family: "SansSerif";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-text-fill: #4A4A4A;
+    -fx-padding: 0 0 4 0;
+    -fx-alignment: center;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #B9B7EF;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-label-padding: 0,0,0,0;
+    -fx-pref-height: 30px;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color:
+        transparent
+        transparent
+        derive(-fx-base, 80%)
+        transparent;
+    -fx-border-insets: 0 5 2 5;
+}
+
+.table-view .table-cell {
+    -fx-font-family: "SansSerif";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-padding: 0 0 4 0;
+    -fx-alignment: center;
+    -fx-pref-height: 30px;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: null;
+}
+
+.table-row-cell: odd{
+    -fx-background-color: #EFEEFC;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+.table-row-cell: even{
+    -fx-background-color: #EFEEFC;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+/*table view ends*/
+
 .cell_big_label {
     -fx-font-family: "SansSerif";
     -fx-font-weight: bold;
