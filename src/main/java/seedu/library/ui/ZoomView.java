@@ -79,7 +79,7 @@ public class ZoomView extends UiPart<Region> {
             rate(bookmark);
         }
         catch (IOException e) {
-            System.out.println("error");
+            throw new AssertionError(e);
         }
 
     }
@@ -89,7 +89,7 @@ public class ZoomView extends UiPart<Region> {
             Desktop.getDesktop().browse(new URI(url));
         }
         catch (IOException | URISyntaxException ex) {
-            System.out.println("error");
+            throw new AssertionError(ex);
         }
     }
     /**
@@ -148,7 +148,7 @@ public class ZoomView extends UiPart<Region> {
 
         }
         catch (IOException e) {
-            System.out.println("IO error");
+            throw new AssertionError(e);
 
         }
 

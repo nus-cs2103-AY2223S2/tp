@@ -85,7 +85,7 @@ Adds a bookmark to the library.
 Format: `add n/TITLE a/AUTHOR p/PROGRESS g/GENRE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A bookmark can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -208,10 +208,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/TITLE a/AUTHOR p/PROGRESS g/GENRE [t/TAG]…​` <br> e.g., `add n/The Odyssey a/Homer p/Reading g/Epic poetry t/Literature class readings`
+**Add** | `add n/TITLE a/AUTHOR p/PROGRESS g/GENRE [u/URL] [t/TAG]…​` <br> e.g., `add n/The Odyssey a/Homer p/Reading g/Epic poetry t/Literature class readings`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [t/TAG]…​`<br> e.g.,`edit 1 n/Hobbit a/J. R. R. Tolkien`
+**Edit** | `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [u/URL] [t/TAG]…​`<br> e.g.,`edit 1 n/Hobbit a/J. R. R. Tolkien`
 **Find** | `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`<br> e.g., `find n/ Chainsaw Man`
 **GoTo** | `goto INDEX`<br> e.g., `goto 3`
 **List** | `list`
