@@ -2,8 +2,39 @@
 layout: page
 title: User Guide
 ---
+## Introduction
 
+Welcome to Vimification, the ultimate task tracker for Vim enthusiasts! If you are a student at NUS, you know how hectic it can get to manage different deadlines and schedules for different classes and modules. With VimPlanner, you can now manage your tasks and deadlines with ease, using the powerful and efficient Vim-like commands that you already know and love.
+
+Vimification is designed to help you stay organized and productive by providing a simple and intuitive interface that allows you to keep track of all your tasks and deadlines in one place. Whether you are a seasoned Vim user or just starting out, you will find Vimification to be an easy and efficient way to manage your daily tasks.
+
+With Vimification, you can quickly and easily create new tasks, set due dates, prioritize your work, and track your progress. Whether you are working on a group project, studying for an exam, or just trying to stay on top of your assignments, VimPlanner has everything you need to stay organized and focused.
+
+So why waste time fumbling around with a mouse and keyboard? Try Vimification today and experience the power of Vim-like productivity for yourself!
+
+## Purpose of User Guide
+
+The purpose of this user guide is to provide you with a comprehensive resource that will guide you through the various features and functionality of the app, so that you can efficiently manage your tasks and deadlines using VimPlanner's powerful and intuitive interface.
+
+The guide will walk you through the process of creating and managing tasks, setting due dates, prioritizing work, and tracking progress, among other topics. It will provide you with clear and concise instructions that are easy to follow, whether you are a new Vim user or an experienced Vim enthusiast.
+
+Additionally, it will offer troubleshooting tips and solutions to common issues that you may encounter while using VimPlanner, and provide you with a comprehensive resource that will help you optimize your productivity and stay on top of your tasks and deadlines.
+
+Overall, we hope to empower you to streamline your daily workflows and increase your productivity. So, let's get started!
+
+
+---
+
+
+## Installation 
+
+1. Download the latest `Vimification.jar` from [here](https://github.com/AY2122S2-CS2103T-W11-4/tp/releases).
+
+
+2. Save the file in your intended folder.
+=======
 Vimification is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can get your task management tasks done faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, we also provide a Graphical User interface (GUI) to assist you. 
+
 
 ## Table of Contents
 - [Quick Start](#quick-start)
@@ -14,28 +45,38 @@ Vimification is a **desktop app for managing tasks, optimized for use via a Comm
   - [Deleting a task](#deleting-a-task)
   - [Exiting the program](#exiting-the-program)
   - [Saving the data](#saving-the-data)
-  
 
 ---
-## Introduction
+## Quick Start
 
-Welcome to Vimification
+### For Windows 
 
-Vimificiation is a desktop app that helps Students manage tasks. It is specifically catered towards NUS SoC students, with features such as vim-like commands to increase efficiency. Students can also add priority and tags to tasks to future customize and categorize them. 
+1. Ensure that you have Java `11` or above installed in your Computer.
 
 
-## Quick start
+2. Double-click the file to start the app.
 
-1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `vimification.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+3. The application should launch, and a GUI similar to the below should appear in a few seconds. <br>
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Vimification.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+### For Mac (M1 Chip)
 
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Ensure that you have Java `11` Zulu SDK installed in your Computer.
+
+
+2. Open your Mac Terminal, and `cd` into the folder you put the jar file in.
+
+3. Run `java -jar Vimification.jar`.
+
+4. The application should launch, and a GUI similar to the below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
+
+
+
+## Using the Command-Line Interface (CLI)
+=======
+
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -48,8 +89,8 @@ Vimificiation is a desktop app that helps Students manage tasks. It is specifica
 
    - `:wq` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
-
+2. Refer to the [Features](#features) below for details of each command.
+   
 ---
 
 ## Features
