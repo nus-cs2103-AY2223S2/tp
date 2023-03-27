@@ -1,5 +1,7 @@
 package seedu.sudohr.testutil;
 
+import static seedu.sudohr.testutil.TypicalDepartmentNames.DEPARTMENT_NAME_FIRST;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +16,7 @@ import seedu.sudohr.model.employee.Employee;
 
 public class DepartmentBuilder {
 
-    public static final String DEFAULT_NAME = "Human Resources";
+    public static final String DEFAULT_NAME = DEPARTMENT_NAME_FIRST.fullName;
 
     private DepartmentName name;
     private Set<Employee> employees;

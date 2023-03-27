@@ -22,7 +22,4 @@ public class ListDepartmentCommand extends Command {
         model.updateFilteredDepartmentList(PREDICATE_SHOW_ALL_DEPARTMENTS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
-
-
-
 }
