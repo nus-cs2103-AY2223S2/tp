@@ -9,7 +9,7 @@ import java.util.Optional;
 import seedu.address.logic.commands.delete.DeleteCommand;
 import seedu.address.logic.commands.delete.DeleteLectureCommand;
 import seedu.address.logic.commands.delete.DeleteModuleCommand;
-import seedu.address.logic.commands.delete.DeleteMultipleLecturesCommands;
+import seedu.address.logic.commands.delete.DeleteMultipleLecturesCommand;
 import seedu.address.logic.commands.delete.DeleteMultipleModulesCommand;
 import seedu.address.logic.commands.delete.DeleteVideoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -48,7 +48,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                     LectureName[] lectureNames = MultipleEventsParser.parseLectureNames(preamble);
 
                     if (lectureNames.length > 1) {
-                        return new DeleteMultipleLecturesCommands(moduleCode, lectureNames);
+                        return new DeleteMultipleLecturesCommand(moduleCode, lectureNames);
                     } else {
                         return new DeleteLectureCommand(moduleCode, lectureNames[0]);
                     }

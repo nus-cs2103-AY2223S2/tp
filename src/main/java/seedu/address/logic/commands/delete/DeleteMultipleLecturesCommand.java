@@ -16,7 +16,7 @@ import seedu.address.model.module.ModuleCode;
  * Deletes multiple lecturese identified using their respective lecture names
  * If one or more the the lectures do not exist, nothing is deleted.
  */
-public class DeleteMultipleLecturesCommands extends DeleteCommand implements MultipleEventsParser {
+public class DeleteMultipleLecturesCommand extends DeleteCommand implements MultipleEventsParser {
 
     public static final String MESSAGE_SUCCESS = "%1$S Lectures deleted from Module %2$s: \n%3$s";
 
@@ -28,7 +28,7 @@ public class DeleteMultipleLecturesCommands extends DeleteCommand implements Mul
      * @param moduleCode Module Code of module that all lectures to be deleted are within
      * @param lectureNames any number of lecture names to identify lectures to delete in a select module
      */
-    public DeleteMultipleLecturesCommands(ModuleCode moduleCode, LectureName ... lectureNames) {
+    public DeleteMultipleLecturesCommand(ModuleCode moduleCode, LectureName ... lectureNames) {
         this.moduleCode = moduleCode;
 
         ArrayList<LectureName> lectureNamesArr = new ArrayList<LectureName>();
