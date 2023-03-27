@@ -35,7 +35,7 @@ public class Event extends Task {
      */
     public Event(Name name, Description description, Set<Tag> tags, Date from, Date to,
                  Effort effort, List<Subtask> subtask) {
-        super(name, description, tags, effort);
+        super(name, description, tags, effort, subtask);
         requireAllNonNull(from, to);
         this.from = from;
         this.to = to;
