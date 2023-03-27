@@ -4,6 +4,8 @@ title: Developer Guide
 ---
 <img src="./images/sprINT.png" />
 
+## Table of Contents
+
 * Table of Contents
 {:toc}
 
@@ -43,7 +45,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **4. Design**
-### Architecture
+### 4.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -53,7 +55,9 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/Main.java) 
+and [`MainApp`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/MainApp.java). 
+It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -84,9 +88,9 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### 4.2 UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -101,9 +105,9 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Logic component
+### 4.3 Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -131,7 +135,7 @@ How the parsing works:
 * When called upon to parse a user command, the `InternshipBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddApplicationCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddApplicationCommand`) which the `InternshipBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddApplicationCommandParser`, `DeleteApplicationCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### 4.4 Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -144,7 +148,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-### Storage component
+### 4.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -155,39 +159,47 @@ The `Storage` component,
 * inherits from both `InternshipBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### 4.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **5. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add Application feature
+### 5.1 Add Application feature
 
 #### About
 The add application command is a core feature of sprINT, allowing users to easily keep track of their internship
 applications. By issuing the command with the appropriate prefixes, users can input the key details of their application,
-including the role, company, email, and status.
+including the role, company, email, and status. 
+
+<div style="page-break-after: always;"></div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** While `task` is also a field associated
+with an application, users are only allowed to add a task to an application via the 
+<a href="#56-add-task-feature">add task command</a>.</div>
+
+<div style="page-break-after: always;"></div>
 
 With the add application command, users no longer have to rely on memory or scattered notes to keep track of their
 applications. Instead, they can quickly and easily input all relevant information into sprINT, and access it at any
 time to monitor their progress.
 
 #### Usage
-To use the add application command in sprINT, simply issue the command in the following format:
+To add an application in sprINT, simply issue the command in the following format:
 
-add r/[role] c/[company name] e/[company email] s/[status]
+`add-app r/[role] c/[company name] e/[company email] s/[status]`
 
 Here's a breakdown of what each prefix means:
 
-- `r/` - this prefix is used to indicate the role or position you're applying for in the internship application.
-- `c/` - this prefix is used to indicate the name of the company you're applying to for the internship.
-- `e/` - this prefix is used to indicate the email address of the company or the contact person you're communicating with regarding the application.
-- `s/` - this prefix is used to indicate the status of your application, such as "interested", "applied", "rejected", or "offered".
-- `t/` - this prefix is used to indicate the tags that you want to associate with your application.
+- `r/` - indicates the role or position you're applying for in the internship application.
+- `c/` - indicates the name of the company you're applying to for the internship.
+- `e/` - indicates the email address of the company or the contact person you're communicating with regarding the application.
+- `s/` - indicates the [status](#status) of your application.
+- `t/` - indicates the tags that you want to associate with your application.
 
 #### Implementation
 The add application mechanism is facilitated by the Ui, Logic and Model components of sprINT. 
@@ -196,18 +208,20 @@ Given below are the steps that illustrate the interaction between the components
 application command from the user.
 
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via its `execute()` method.
+2. The command is processed as a value of type `String`, and is passed to `ApplicationLogicManager` via its `execute()` method.
 3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
 4. The `InternshipBookParser` in turn creates an `AddApplicationCommandParser` that is responsible for the specific purpose of 
 parsing user commands for adding applications.
 5. The `InternshipBookParser` then passes the string input to the `AddApplicationCommandParser` via the `parse()` method.
 6. The `AddApplicationCommandParser` then identifies the different prefixes in the string and creates the fields for the application.
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The field entities that are minimally created include
 the `Role`, `CompanyName`, `CompanyEmail` and `Status`. These also coincide with the compulsory fields that the user
-must provide in the input when using the add application feature.
+must provide in the input when using the add application feature.</div>
 
-</div>   
+<div style="page-break-after: always;"></div>
 
 7. These fields will then be used to create an `Application` instance.
 8. The newly created `Application` instance will then be used to create an `AddApplicationCommand`. This command instances
@@ -218,11 +232,13 @@ the logic behind adding the associated application instance to the existing `Int
 the execution of the command. 
 11. The Ui component displays the contents of the `CommandResult` to the User.
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The CommandResult will display the newly updated
 application list to the User, should the add command execute successfully. If an error occurred during execution, the corresponding
-exception that was thrown and the error message will be displayed to the user.
+exception that was thrown and the error message will be displayed to the user.</div>
 
-</div> 
+<div style="page-break-after: always;"></div>
 
 For a more graphical illustration of how an add application command is processed, please refer to the following
 sequence diagram:
@@ -230,28 +246,18 @@ sequence diagram:
 ![AddApplicationSequenceDiagram](images/AddApplicationSequenceDiagram.png)
 
 
-### Edit Application feature
+### 5.2 Edit Application feature
 
 #### About
-The edit application command is another core feature of sprINT, similar to add. User can edit existing application to reflect their latest status of the application, or to rectify input errors.
-Old values will be changed to the new input values.
-
+The edit application command is another core feature of sprINT, similar to [add](#51-add-application-feature). Users 
+can edit any field(s) of an existing application to update it or rectify input errors.
 
 #### Usage
-To use the edit application command in sprINT, simply issue the command in the following format:
+To edit an application in sprINT, simply issue the command in the following format:
 
-edit INDEX r/[role] c/[company name] e/[company email] s/[status]
+`edit-app INDEX r/[role] c/[company name] e/[company email] s/[status]`
 
-Apart from INDEX, all fields are optional. However, at least one of the optional fields must be provided.
-
-Here's a breakdown of what each prefix means:
-
-- `INDEX`  The index refers to the index number shown in the displayed application list. The index must be a positive integer 1, 2, 3, …​
-- `r/` - this prefix is used to indicate the role or position you're applying for in the internship application.
-- `c/` - this prefix is used to indicate the name of the company you're applying to for the internship.
-- `e/` - this prefix is used to indicate the email address of the company or the contact person you're communicating with regarding the application.
-- `s/` - this prefix is used to indicate the status of your application, such as "interested", "applied", "rejected", or "offered".
-- `t/` - this prefix is used to indicate the tags that you want to associate with your application.
+Apart from `INDEX`, all other fields are optional. However, at least one of the optional fields must be provided.
 
 #### Implementation
 The edit application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
@@ -260,19 +266,12 @@ Given below are the steps that illustrate the interaction between the components
 application command from the user.
 
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via its `execute()` method.
+2. The command is processed as a value of type `String`, and is passed to `ApplicationLogicManager` via its `execute()` method.
 3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
 4. The `InternshipBookParser` in turn creates an `EditApplicationCommandParser` that is responsible for the specific purpose of
    parsing user commands for editing applications.
 5. The `InternshipBookParser` then passes the string input to the `EditApplicationCommandParser` via the `parse()` method.
 6. The `EditApplicationCommandParser` then identifies the input prefixes in the string and edits the fields for the application.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The field entities that are minimally created include
-the `Role`, `CompanyName`, `CompanyEmail` and `Status`. These also coincide with the compulsory fields that the user
-must provide in the input when using the add application feature.
-
-</div>   
-
 7. These fields will then be used to create an edited `Application` instance through `createEditedApplication` method.
 8. The newly created `Application` instance will then be used to create an `EditApplicationCommand`. This command instances
    is returned back to `ApplicationLogicManager`.
@@ -282,26 +281,20 @@ must provide in the input when using the add application feature.
     the execution of the command.
 11. The Ui component displays the contents of the `CommandResult` to the User.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The CommandResult will display the newly updated
-application list to the User, should the edit command execute successfully. If an error occurred during execution, the corresponding
-exception that was thrown and the error message will be displayed to the user.
-
-</div> 
-
 For a more graphical illustration of how an edit application command is processed, please refer to the following
 sequence diagram:
 
 ![EditApplicationSequenceDiagram](images/EditApplicationSequenceDiagram.png)
 
 
-### Find Application feature
+### 5.3 Find Application feature
 
 #### About
-The "find" command is a tool that enables users to search for a specific application within the internship book.
+The find command is a feature that enables users to search for a specific application within the internship book.
 
-Users can locate the application by providing its index and optionally using the parameters "r/", "c/", and "s/" to 
-refine their search. These parameters correspond to the role, company, and status fields in the internship book
-, allowing for customized searches. Without any of the required prefixes, it will do a global search for the search
+Users can locate the application by providing its index and optionally using the parameters `r/`, `c/`, and `s/` to 
+refine their search. These parameters correspond to the role, company, and status fields in the internship book, 
+allowing for customised searches. Without any of the required prefixes, it will do a global search for the
 keyword in all fields of the applications.
 
 #### Usage
@@ -311,18 +304,18 @@ To find an application in sprINT, issue the command in the following format:
 
 Here's a breakdown of what each prefix means:
 
-- `r/` - this prefix is used to find role or position in the internship application.
-- `c/` - this prefix is used to find the company name in the internship.
-- `s/` - this prefix is used to find the status of your application, such as "interested", "applied", "rejected", or "offered".
+- `r/` - finds the role or position of the application.
+- `c/` - finds the company name of the application.
+- `s/` - finds the status of the application. The only valid values are "interested", "applied", "rejected" and "offered".
 
 #### Implementation
 The find application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
 
-Given below are the steps that illustrate the interaction between the components when it receives a valid find
-application command from the user.
+Given below are the steps that illustrate the interaction between the components when it receives a valid find 
+command from the user.
 
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via its `execute()` method.
+2. The command is processed as a value of type `String`, and is passed to `ApplicationLogicManager` via its `execute()` method.
 3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
 4. The `InternshipBookParser` in turn creates an `FindApplicationCommandParser` that is responsible for the specific purpose of
    parsing user commands for finding applications.
@@ -341,22 +334,31 @@ sequence diagram:
 
 ![FindApplicationSequenceDiagram](images/FindApplicationSequenceDiagram.png)
 
-### Sort feature
+### 5.4 Sort Applications feature
 
 #### About
-sprINT offers the options to sort the applications list in two ways:
-- `sort deadline` will sort by the deadline of upcoming tasks
-- `sort alphabetical` will sort by the alphabetical order of the company names; if there are two application entries to
-the same company, the tiebreaker will be the alphabetical order of role
+The sort command is a feature that enables users to rearrange the list of applications they see on the GUI in 2 ways:
+- `sort deadline` will sort applications by the deadline of upcoming tasks in ascending order (i.e. from earliest 
+to latest). 
+
+<div style="page-break-after: always;"></div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only applications that have a task 
+associated will be displayed in the sorted list. Those without an associated task will **not** be shown.</div> 
+
+<div style="page-break-after: always;"></div>
+
+- `sort alphabetical` will sort applications by the company name in ascending order. If there are two or more 
+applications under the same company, the role will be used as a tiebreaker. 
 
 #### Implementation
 The sort application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
 
 Given below are the steps that illustrate the interaction between the components when it receives a valid sort
-application command from the user.
+command from the user.
 
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via its `execute()` method.
+2. The command is processed as a value of type `String`, and is passed to `ApplicationLogicManager` via its `execute()` method.
 3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
 4. The `InternshipBookParser` in turn creates an `SortApplicationCommandParser` that is responsible for the specific purpose of
    parsing user commands for sorting the application list.
@@ -364,7 +366,7 @@ application command from the user.
 6. The `SortApplicationCommandParser` then identifies the part of the string that describes the sorting order the user wants.
 7. The `parse()` method will return a `SortApplicationCommand(String sortingOrder)`.
 8. The `isValidSortingOrder` method in `SortApplicationCommand` will then check that the user-inputted sorting order is one
-of the accepted sorting order as dictated by the enum values in enum `Sorting Order`.
+of the accepted sorting order as dictated by the enum values in enum `SortingOrder`.
 9. If the sorting order is valid, the `SortApplicationCommand`'s comparator will be set to the corresponding comparator.
 10. This `SortApplicationCommand` is returned back to `ApplicationLogicManager`.
 11. The `ApplicationLogicManager` then calls the `execute()` method of the `SortApplicationCommand`. This initializes the execution
@@ -380,18 +382,18 @@ sequence diagram:
 
 ![SortApplicationSequenceDiagram](images/SortApplicationSequenceDiagram.png)
 
-#### Future expansion of the `sort` command
-Should the need to implement other ways to sort the application list arise in the future, you can do so by following these 3 main steps:
-1. Create a new Comparator class not dissimilar to `AlphabeticalComparator` and `DeadlineComparator` that
-implements the `Comparator<Application` interface.
-2. Modify `SortApplicationCommandParser` to be able to accept a new sorting order.
+#### Future extensions
+Should the need to implement other ways of sorting the application list arise in the future, you can do so by following these 3 main steps:
+1. Create a new `Comparator` class not dissimilar to `AlphabeticalComparator` and `DeadlineComparator` that
+implements the `Comparator<Application>` interface.
+2. Modify `SortApplicationCommandParser` to accept a new sorting order.
 3. Modify `SortApplicationCommand`. Specifically, its enum class `SortingOrder` should be expanded to accept a new enum values for your new sorting order.
-Also, modify its constructor so that it can create a comparator of the newly created Comparator class for `SortApplicationCommand`.
+Also, modify its constructor so that it can create a comparator of the newly created `Comparator` class for `SortApplicationCommand`.
 
 #### Relation with `list` command
-The implementation of the `sort` command shares some similarities with that of the `list` command.
-The `list` command lists all applications in the order of creation; i.e., application entries that are more recently created
-and added will be shown higher up in the list.
+The implementation of the `sort` command shares some similarities with the `list` command.
+The `list` command lists all applications in the order of creation; i.e., applications that are more recently added
+will be shown higher up in the list.
 The execution of these commands is essentially a two-step process of first **filtering** and then **storing**: 
 1. `ApplicationLogicManager` takes the internal list that keeps track of all the applications. It stores a **filtered** version of this
 list in `FilteredList`.
@@ -402,46 +404,74 @@ and `list` commands:
 
 ![CommandExecutionWorkflow](images/CommandExecutionWorkflow.png)
 
-### Undo/redo feature
+### 5.5 Undo/redo feature
+
+#### About
+
+The undo/redo command is a feature that helps to enhance users' experience. The undo command allows users to backtrack
+and reverse their previous action, while the redo command allows users to reapply any changes they have undone. 
+
+### Usage
+
+To undo or redo the previous command, simply issue the command `undo` or `redo` respectively.
 
 #### Implementation
 
 The undo/redo mechanism is facilitated by `VersionedInternshipBook`. It extends `InternshipBook` with an undo/redo history, stored internally as an `internshipBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedInternshipBook#commit()` — Saves the current internship book state in its history.
+* `VersionedInternshipBook#undo()` — Restores the previous internship book state from its history.
+* `VersionedInternshipBook#redo()` — Restores a previously undone internship book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitInternshipBook()`, `Model#undoInternshipBook()` and `Model#redoInternshipBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedInternshipBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedInternshipBook` will be initialized with the initial internship book state, and the `currentStatePointer` pointing to that single internship book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the internship book. The `delete` command calls `Model#commitInternshipBook()`, causing the modified state of the internship book after the `delete 5` command executes to be saved in the `internshipBookStateList`, and the `currentStatePointer` is shifted to the newly inserted internship book state.
+Step 2. The user executes `delete 5` command to delete the 5th application in the internship book. The `delete` command calls `Model#commitInternshipBook()`, causing the modified state of the internship book after the `delete 5` command executes to be saved in the `internshipBookStateList`, and the `currentStatePointer` is shifted to the newly inserted internship book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add-app c/Google …​` to add a new company. The `add` command also calls `Model#commitAddressBook()`, causing another modified internship book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add-app c/Google …​` to add a new application. The `add-app` command also calls `Model#commitInternshipBook()`, causing another modified internship book state to be saved into the `internshipBookStateList`.
+
+<div style="page-break-after: always;"></div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will 
+not call `Model#commitInternshipBook()`, so the internship book state will not be saved into the 
+`internshipBookStateList`.</div>
+
+<div style="page-break-after: always;"></div>
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitInternshipBook()`, so the internship book state will not be saved into the `internshipBookStateList`.
+<div style="page-break-after: always;"></div>
 
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The command shown in the diagram above 
+is shortened for brevity. For the complete correct syntax, please refer to the <a href="#51-add-application-feature">add-application</a> section.</div>
 
-Step 4. The user now decides that adding the company was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoInternshipBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous internship book state, and restores the internship book to that state.
+<div style="page-break-after: always;"></div>
+
+Step 4. The user now decides that adding the application was a mistake, and decides to undo that action by executing 
+the `undo` command. The `undo` command will call `Model#undoInternshipBook()`, which will shift the 
+`currentStatePointer` once to the left, pointing it to the previous internship book state, and restores the
+internship book to that state.
+
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial InternshipBook state, then there are no previous InternshipBook states to restore. The `undo` command uses `Model#canUndoInternshipBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<div style="page-break-after: always;"></div>
 
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, 
+pointing to the initial InternshipBook state, then there are no previous InternshipBook states to restore. The `undo` 
+command uses `Model#canUndoInternshipBook()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.</div>
 
-The following sequence diagram shows how the undo operation works:
+<div style="page-break-after: always;"></div>
+
+The following sequence diagram provides a graphical illustration of how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
@@ -449,17 +479,22 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoInternshipBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the internship book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div style="page-break-after: always;"></div>
 
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 
+`internshipBookStateList.size() - 1`, pointing to the latest internship book state, then there are no undone 
+InternshipBook states to restore. The `redo` command uses `Model#canRedoInternshipBook()` to check if this is the case. 
+If so, it will return an error to the user rather than attempting to perform the redo.</div>
+
+<div style="page-break-after: always;"></div>
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the internship book, such as `list`, will usually not call `Model#commitInternshipBook()`, `Model#undoInternshipBook()` or `Model#redoInternshipBook()`. Thus, the `internshipBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitInternshipBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add-app c/Google …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitInternshipBook()`. Since the `currentStatePointer` is not pointing at the end of the `internshipBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add-app c/Google …​` command. This is the behaviour that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -480,45 +515,50 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the company being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+### 5.6 Add Task feature 
 
-### \[Proposed\] Data archiving
+#### About
 
-_{Explain here how the data archiving feature will be implemented}_
+The add task command is a feature that allows users to add a [task](#task) to an existing application in the 
+internship book. This allows users to keep track of additional requirements for an application that other fields 
+may not be able to capture adequately.
 
-### Add Task feature
+<div style="page-break-after: always;"></div>
 
-#### Description
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Currently, sprINT only supports adding 
+**one** task per application. This means that users will **not** be allowed to add more tasks to an application that 
+already has an existing task associated with it.</div>
 
-The `add-task` command allows users to add a task to an existing application in the internship book, specified by
-its index, with the parameters `description` and `deadline`. 
+<div style="page-break-after: always;"></div>
+
+### Usage
+
+To add a task to an existing application in sprINT, simply issue the command in the following format:
+`add-task INDEX d/[description] by/[deadline]`
+
+Here's a breakdown of what each prefix means:
+* `d/` - indicates the description of the task.
+* `by/` - indicates the deadline of the task, in `DD-MM-YYYY` format. 
+
 
 #### Implementation
 
-The following sequence diagram illustrates how sprINT's internal components interact with one another in response 
-to the `add-task` command.
+The add task mechanism is facilitated by the Ui, Logic and Model components of sprINT. Although it has its own parser 
+class (`AddTaskCommandParser`), the steps taken when it receives a valid add task command from the user are largely 
+similar to the [edit application](#52-edit-application-feature) command, since the add task feature uses existing logic
+from `EditApplicationCommand` under the hood (for why this is the case, refer to 
+[Design Considerations](#design-considerations)).
 
-<img src="images/AddTaskSequenceDiagram.png" />
+The following sequence diagram provides a graphical illustration of how the add task operation works:
 
-When a user enters the `add-task` command: 
-1. The `parse` method of `AddTaskCommandParser` is invoked.
-   1. The target application's `index`, along with the `deadline` and `description` fields for the new task,
-      are extracted from the command string. 
-   2. A new `EditApplicationDescriptor` object, which stores details about the new task for the target application,
-      is created. 
-   3. A new `AddTaskCommand` object containing the target application's `index` and the aforementioned `descriptor` 
-      is created.
-2. The newly created `AddTaskCommand` object is then executed. 
-   1. The `createEditedApplication` method of the `EditApplicationCommand` class is invoked to create a new 
-       application with the task added. This represents the edited application.
-   2. This `editedApplication` object replaces the existing `Application` object in the model. 
+![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
 
 #### Design Considerations
 
 **Aspect: How `add task` executes**
   
-* **Option 1** (Current design): use existing logic from the `EditApplicationCommand` class (i.e. 
-  `createEditedApplication` and `EditApplicationDescriptor`)
+* **Option 1** (Current design): Use existing logic from the `EditApplicationCommand` class (i.e. 
+  `createEditedApplication` and `EditApplicationDescriptor`).
   * Pros:
     * Reduces duplicate code (and thus code redundancy).
     * Makes sense from a logical perspective: since `Task` is implemented as just another field in `Application`, 
@@ -526,79 +566,27 @@ When a user enters the `add-task` command:
   * Cons:
     * Increases coupling between `AddTaskCommand` and `EditApplicationCommand`.
 
-* **Option 2**: implement logic for `createEditedApplication` and `EditApplicationDescriptor` **within** the 
-    `AddTaskCommand` class
+* **Option 2**: Implement logic for `createEditedApplication` and `EditApplicationDescriptor` **within** the 
+    `AddTaskCommand` class.
     * Pros:
       * Reduces coupling between `AddTaskCommand` and `EditApplicationCommand`.
     * Cons:
       * Increases code redundancy.
       * Violates Single Responsibility Principle.
 
-### Clear Applications Feature
+
+### 5.7 Exit sprINT feature
 
 #### About
 
-The clear applications command is a feature in sprINT. This command allows users to remove all previously inserted
-applications from the system, providing a fresh start for new application entries. With this feature, users can
-easily reset their application history and begin again with a clean slate.
+The exit command allows users to close the desktop application safely, terminating any running processes and freeing up
+system resources. With this feature, users can efficiently exit the application without any risk of data loss or 
+system instability. This action serves the same purpose as closing the application window by clicking the top-right 
+X button.
 
 #### Usage
 
-To use the clear applications command, simply enter `clear` in the command line interface. Upon executing the command,
-sprINT will remove all previously inserted applications from the system, leaving a blank slate for the user to begin anew.
-It is important to note that this action cannot be undone, so use this command with caution. This feature is especially
-useful for users who have completed their internships or want to start afresh with a new internship cycle.
-With the clear applications command, sprINT provides an efficient and simple way to manage internship applications.
-
-#### Implementation
-
-The find application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
-
-Given below are the steps that illustrate the interaction between the components when it receives a valid add
-application command from the user.
-
-1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
-3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
-4. Upon parsing the `clear` Command Keyword, the `InternshipBookParser` creates a `ClearApplicationsCommand`. This command instance
-   is returned back to `ApplicationLogicManager`.
-5. The `ApplicationLogicManager` then calls the `execute()` method of the `ClearApplicationsCommand`. This initializes the execution
-   the logic behind resetting the entire `InternshipBook`.
-6. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
-   the execution of the command.
-7. The Ui component displays the contents of the `CommandResult` to the User.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `clear` command executed successfully,
-the CommandResult will display the newly updated application list to the user, which would be empty in this case.
-If an error occurred during execution, the corresponding exception that was thrown and the error message will be displayed to the user.
-</div> 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The `clear` command must be used with
-extreme caution, as it might potentially lead to highly undesirable outcomes. As a safety precaution, we do not delete
-the original instance of the `InternshipBook` immediately after executing a `clear` command. Users will have the
-opportunity to revert back to the previous state using the `undo` command.
-</div> 
-
-For a more graphical illustration of how a clear application command is processed, please refer to the following
-sequence diagram:
-
-![ClearApplicationsSequenceDiagram](images/ClearApplicationsSequenceDiagram.png)
-
-
-### Exit SprINT
-
-#### About
-
-The exit command is a feature in sprINT. This command allows users to close the desktop application safely,
-terminating any running processes and freeing up system resources. With this feature, users can efficiently exit
-the application without any risk of data loss or system instability.
-
-#### Usage
-
-To use the exit command, simply enter `exit` in the command line interface. Upon executing the command, sprINT will
-safely close the desktop application, freeing up any system resources used by the program. Since SprINT saves data
-and changes upon each received user command, Users do not have to worry about unsaved or possible loss of data
-when exiting sprINT.
+To exit sprINT, simply issue the command `exit` or click on the X button on the top-right of the application window.
 
 #### Implementation
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
@@ -617,14 +605,14 @@ This is what allows the Ui Component, `MainWindow`, to detect that a request to 
 from the user.
 </div> 
 
-For a more graphical illustration of how an exit application command is processed, please refer to the following
+For a more graphical illustration of how the exit sprINT command is processed, please refer to the following
 sequence diagram:
 
 ![ExitSprintSequenceDiagram](images/ExitSprintSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 6. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -634,9 +622,41 @@ sequence diagram:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 7. Glossary
 
-### Product scope
+### 7.1 sprINT-specific Terminology
+
+#### Application
+Represents an internship application entry in the internship book. Each application contains a role,
+company name, company email and one of four possible statuses.
+
+#### Status
+Represents the current stage of the internship application. Can be one of 4 values:
+* **Interested**: An internship that the user is interested in, but has yet to apply to.
+* **Applied**: An internship that the user has applied to, but has yet to receive an offer or rejection for.
+* **Offered**: An internship that the user has received an offer for.
+* **Rejected**: An internship that the user has been rejected for.
+
+#### Task 
+Represents additional milestones that are part of the internship application process. Examples include online 
+assessment, technical interview, etc.
+
+### 7.2 Others
+
+#### GUI
+Graphical User Interface
+
+#### CLI
+Command Line Interface
+
+#### Mainstream OS
+Windows, Linux, Unix, OS-X
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 8. Appendix: Requirements
+
+### 8.1 Product Scope
 
 **Target user profile**:
 
@@ -650,7 +670,7 @@ sequence diagram:
 **Value proposition**: manages internship applications faster than a typical mouse/GUI driven app
 
 
-### User stories
+### 8.2 User Stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -670,9 +690,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | clumsy user           | undo a command                                   | if I ever typed one by mistake                                                               |
 | `* `     | user                  | tag an application                               | label them as I wish                                                                         |
 | `* `     | data-oriented user    | view statistics of all my application entries    | get the general idea of how well I'm doing in my internship hunt                             |
-*{More to be added}*
 
-### Use cases
+### 8.3 Use Cases
 
 (For all use cases below, the **System** refers to `sprINT` and the **Actor** refers to the `user`, unless specified otherwise)
 
@@ -804,7 +823,7 @@ upcoming tasks of closer deadlines being showed first.
 
     Use case ends.
 
-*{More to be added}*
+---
 
 ### Non-Functional Requirements
 
@@ -814,33 +833,9 @@ upcoming tasks of closer deadlines being showed first.
 4. Will not perform any automated tasks e.g., send periodic reminders. Hence, sprINT will not have a server component.
 5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
-
-### Glossary
-
-#### sprINT-specific Terminology
-
-* **Application**: Represents an internship application entry in the internship book. Each application contains a role,
-company name, company email and one of four possible statuses.
-
-* **Status**: Represents the current stage of the internship application. Can be one of 4 values:
-  * **Interested**: An internship that the user is interested in, but has yet to apply to. 
-  * **Applied**: An internship that the user has applied to, but has yet to receive an offer or rejection for.  
-  * **Offered**: An internship that the user has received an offer for. 
-  * **Rejected**: An internship that the user has been rejected for. 
-
-* **Task**: Represents additional requirements or milestones that are part of the internship application process.
-Examples include online assessment, technical interview, etc.
-
-#### Others
-
-* **GUI**: Graphical User Interface
-* **CLI**: Command Line Interface
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 9. Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -864,29 +859,20 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting an application
 
-1. Deleting a person while all persons are being shown
+1. Deleting an application while all applications are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all applications using the `list` command. Multiple applications in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete-app 1`<br>
+      Expected: First application is deleted from the list. Details of the deleted application shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `delete-app 0`<br>
+      Expected: No application is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete-app`, `delete-app x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+      
