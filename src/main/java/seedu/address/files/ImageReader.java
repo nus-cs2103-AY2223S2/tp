@@ -105,7 +105,7 @@ public class ImageReader implements FileReader<BufferedImage> {
 
             //Set the frame properties
             frame.setSize(windowWidth, windowHeight);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.add(label);
             frame.setVisible(true);
         }

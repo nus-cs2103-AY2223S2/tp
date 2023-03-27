@@ -18,6 +18,7 @@ If you can type fast, MM can get your contact management tasks done faster than 
     - [`addTime`](#adding-patient-scheduled-time--addTime)
     - [`list`](#listing-all-patients--list)
     - [`listTime`](#listing-patients-by-time--listTime)
+    - [`list_name`](#listing-patients-by-name--list_name)
     - [`edit`](#editing-a-patient--edit)
     - [`find`](#locating-patients-by-name--find)
     - [`delete`](#deleting-a-patient--delete)
@@ -121,14 +122,18 @@ The first example contains strictly required information to identify a patient.
 
 The second example contains more information relevant to that patient.
 
-### Adding patient scheduled time : `addTime`
-_Details coming in v1.3 soon ..._
-
 ### Listing all patients : `list`
 
 Shows a list of all patients in the address book.
 
 Format: `list`
+
+
+### Listing patients by name : `list_name`
+
+Shows a list of all patients in the address book by their name lexicographically.
+
+Format: `list_name`
 
 ### Listing patients by time : `listTime`
 
@@ -151,6 +156,35 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
+### Making Appointment to a patient : `makeApp`
+
+Makes an appointment with a patient(reschedule appointment allowed)
+
+Format: `makeApp INDEX /from {startTime} /to {endTime}`
+
+* Makes an appointment with a patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+* startTime and endTime should be on the same date
+* endTime should not be before startTime
+* If a patient already had an appointment, will reschedule this appointment
+* New Appointment should not clash with any existing appointment with other patients
+
+Examples:
+* `makeApp 5 /from 2023-08-15 1430 /to 2023-08-15 1630` Makes an Appointment with 5th patient, starting from 
+14:30 to 16:30 on 2023-08-15
+
+### Marking Appointment with a patient: `markApp`
+
+Marks an appointment with a patient as done
+
+Format: `markApp INDEX`
+
+* Marks an appointment with a patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+* The patient will now have no appointment
+* Can not mark with a patient who haven't got an appointment
+
+Examples:
+* `markApp 5` Marks an appointment with 5th patient as done.
+
 ### Locating patients by name : `find`
 
 Finds patients whose names contain any of the given keywords.
@@ -161,13 +195,26 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Patients maching at least one keyword will be returned (i.e. `OR` search).
+* Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Searching patients with Appointment on specified date
+
+Lists all patients with appointment on specified date
+
+Format: `searchDate {date}`
+
+* Lists all patients with appointment on {date}
+* Detailed time on that date is sorted for doctors to avoid clashes
+
+Examples:
+* `searchDate 2002-11-21` lists three patients with appointment on 2002-11-21 and the time is sorted<br>
+  ![result for 'find alex david'](images/screenshot_of_searchDate.png)
 
 ### Deleting a patient : `delete`
 
@@ -196,6 +243,21 @@ Format: `delete INDEX1 INDEX2 ...`
 Examples:
 * `list` followed by `delete 2 3` deletes the 2nd person and 3rd in the address book.
 * `find Betsy` followed by `delete 1 2` deletes the 1st and 2nd person in the results of the `find` command.
+
+### Uploading an Index File for a Patient: `upload`
+
+The upload index command allows you to upload an index file for a specific patient.
+This index file can contain additional information about the patient, such as medical history, 
+test results, or treatment plans [Files allowed are PDF and images]
+
+Format: `upload INDEX`
+* Uploads an index file for the patient at the specified INDEX. 
+* The index refers to the index number shown in the displayed patient list. 
+* The index must be a positive integer 1, 2, 3, …​
+* File must be type PDF or Image
+* 
+Examples: 
+* To upload an index file for the patient at index 2, type:upload 2
 
 ### Clearing all entries : `clear`
 
@@ -244,4 +306,5 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**ListByName** | `list_name`
 **Help** | `help`
