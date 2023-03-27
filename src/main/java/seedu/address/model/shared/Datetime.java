@@ -1,7 +1,8 @@
 package seedu.address.model.shared;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -11,10 +12,12 @@ import java.util.Optional;
  * The Datetime class represents a date and time value.
  * The class accepts date and time input as a string in various formats, validates the input,
  * and stores the resulting timestamp if the input is valid and not in the past.
- * The class provides a getter for the stored timestamp as an Optional<Long>.
+ * The class provides a getter for the stored timestamp as an Optional.
  */
 public class Datetime {
 
+    public static final String MESSAGE_CONSTRAINTS_TIMESTAMP = "Invalid Timestamp!";
+    public static final String MESSAGE_CONSTRAINTS_DATETIME = "Invalid datetime format!";
     private final Long timestamp;
 
     /**
@@ -35,7 +38,7 @@ public class Datetime {
      */
     public Datetime(String input) {
         ZoneId zoneId = ZoneId.systemDefault();
-        LocalDateTime dateTime = validateInput(input, zoneId);
+        LocalDateTime dateTime = validateInput(input);
         if (dateTime != null) {
             this.timestamp = dateTime.toInstant(zoneId.getRules().getOffset(dateTime)).toEpochMilli();
         } else {
@@ -48,10 +51,9 @@ public class Datetime {
      * If the input is not valid or is in the past, returns null.
      *
      * @param input the date and time input string
-     * @param zoneId the time zone to use for validation
      * @return a LocalDateTime object if the input is valid and not in the past, otherwise null
      */
-    public LocalDateTime validateInput(String input, ZoneId zoneId) {
+    public LocalDateTime validateInput(String input) {
         if (input == null) {
             return null;
         }
@@ -61,17 +63,14 @@ public class Datetime {
         DateTimeFormatter humanDateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         try {
-            LocalDateTime dateTime = LocalDateTime.parse(input, dateTimeFormat);
-            return isValidDateTime(dateTime, zoneId) ? dateTime : null;
+            return LocalDateTime.parse(input, dateTimeFormat);
         } catch (DateTimeParseException e1) {
             try {
                 LocalDate date = LocalDate.parse(input, dateOnlyFormat);
-                LocalDateTime dateTime = date.atStartOfDay();
-                return isValidDateTime(dateTime, zoneId) ? dateTime : null;
+                return date.atStartOfDay();
             } catch (DateTimeParseException e2) {
                 try {
-                    LocalDateTime dateTime = LocalDateTime.parse(input, humanDateTimeFormat);
-                    return isValidDateTime(dateTime, zoneId) ? dateTime : null;
+                    return LocalDateTime.parse(input, humanDateTimeFormat);
                 } catch (DateTimeParseException e3) {
                     return null;
                 }
@@ -80,20 +79,29 @@ public class Datetime {
     }
 
     /**
-     * Checks if the given LocalDateTime object is valid and not in the past.
+     * Checks if the given string input is a valid timestamp.
      *
-     * @param dateTime the LocalDateTime object to check
-     * @param zoneId the time zone to use for validation
-     * @return true if the LocalDateTime object is valid and not in the past, otherwise false
+     * @param input the timestamp string to check
+     * @return true if the input string represents a valid timestamp, otherwise false
      */
-    private boolean isValidDateTime(LocalDateTime dateTime, ZoneId zoneId) {
-        return dateTime != null && !isPastDateTime(dateTime, zoneId);
+    public static boolean isValidTimestamp(String input) {
+        if (input == null || input.trim().isEmpty()) {
+            return false;
+        }
+
+        try {
+            long timestamp = Long.parseLong(input);
+            LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault());
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     /**
-     * Returns the stored timestamp as an Optional<Long>.
+     * Returns the stored timestamp as an Optional
      *
-     * @return an Optional<Long> containing the stored timestamp if it exists, otherwise an empty Optional
+     * @return an Optional containing the stored timestamp if it exists, otherwise an empty Optional
      */
     public Optional<Long> getTimestamp() {
         return Optional.ofNullable(timestamp);
@@ -103,10 +111,11 @@ public class Datetime {
      * Checks if the given LocalDateTime object represents a past date and time.
      *
      * @param dateTime the LocalDateTime object to check
-     * @param zoneId the time zone to use for comparison
-     * @return true if the LocalDateTime object is before the current date and time in the given time zone, otherwise false
+     * @param zoneId   the time zone to use for comparison
+     * @return true if the LocalDateTime object is before the current date and time
+     *     in the given time zone, otherwise false
      */
-    private boolean isPastDateTime(LocalDateTime dateTime, ZoneId zoneId) {
+    public static boolean isPastDateTime(LocalDateTime dateTime, ZoneId zoneId) {
         LocalDateTime currentDate = LocalDateTime.now(zoneId);
         return dateTime.isBefore(currentDate);
     }

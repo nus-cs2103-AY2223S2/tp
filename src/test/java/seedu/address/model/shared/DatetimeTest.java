@@ -1,64 +1,101 @@
 package seedu.address.model.shared;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDate;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
-class DatetimeTest {
+public class DatetimeTest {
+    private static final String VALID_DATETIME_1 = "2023-03-27T15:30:00";
+    private static final String VALID_DATE = "2023-03-27";
+    private static final String INVALID_DATETIME = "2023/03/27 15:30:00";
+    private static final String INVALID_DATE = "2023.03.27";
+    private static final String VALID_TIMESTAMP = "1731033000000";
+    private static final String INVALID_TIMESTAMP = "abc";
 
     @Test
-    void testValidDate() {
-        String futureDate = LocalDate.now().plusYears(2).format(DateTimeFormatter.ISO_LOCAL_DATE);
-        Datetime dt = new Datetime(futureDate);
-        Optional<Long> timestamp = dt.getTimestamp();
+    void constructor_validInput_successfulCreation() {
+        Datetime datetime = new Datetime(VALID_DATETIME_1);
+        Optional<Long> timestamp = datetime.getTimestamp();
         assertTrue(timestamp.isPresent());
-    }
-    @Test
-    void testValidDatetime() {
-        Datetime dt = new Datetime("2023-03-27T15:30:00");
-        Optional<Long> timestamp = dt.getTimestamp();
-        assertTrue(timestamp.isPresent());
-    }
-    @Test
-    void testValidDatetimeHumanFormat() {
-        Datetime dt = new Datetime("2023-03-27 23:30:00");
-        Optional<Long> timestamp = dt.getTimestamp();
-        assertTrue(timestamp.isPresent());
+        LocalDateTime expectedDateTime = LocalDateTime.parse(VALID_DATETIME_1);
+        assertEquals(expectedDateTime, LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp.get()),
+            ZoneId.systemDefault()));
     }
 
     @Test
-    void testNullInput() {
-        Datetime dt = new Datetime(null);
-        Optional<Long> timestamp = dt.getTimestamp();
+    void constructor_nullInput_successfulCreation() {
+        Datetime datetime = new Datetime(null);
+        Optional<Long> timestamp = datetime.getTimestamp();
         assertFalse(timestamp.isPresent());
     }
 
     @Test
-    void testInvalidFormat() {
-        Datetime dt = new Datetime("2023-02-27T15:30");
-        Optional<Long> timestamp = dt.getTimestamp();
+    void constructor_invalidInput_successfulCreation() {
+        Datetime datetime = new Datetime(INVALID_DATETIME);
+        Optional<Long> timestamp = datetime.getTimestamp();
         assertFalse(timestamp.isPresent());
     }
 
     @Test
-    void testPastDate() {
-        Datetime dt = new Datetime("2020-01-01");
-        Optional<Long> timestamp = dt.getTimestamp();
-        assertFalse(timestamp.isPresent());
+    void isValidTimestamp_validTimestamp_returnsTrue() {
+        assertTrue(Datetime.isValidTimestamp(VALID_TIMESTAMP));
     }
 
     @Test
-    void testValidDatetimeHumanFormatZone() {
-        ZoneId zoneId = ZoneId.systemDefault();
-        String futureDateTime = LocalDateTime.now(zoneId).plusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        Datetime dt = new Datetime(futureDateTime);
-        Optional<Long> timestamp = dt.getTimestamp();
-        assertTrue(timestamp.isPresent());
+    void isValidTimestamp_invalidTimestamp_returnsFalse() {
+        assertFalse(Datetime.isValidTimestamp(INVALID_TIMESTAMP));
     }
+
+    @Test
+    void validateInput_validDatetime_returnsLocalDateTime() {
+        Datetime datetime = new Datetime(VALID_DATETIME_1);
+        LocalDateTime expectedDateTime = LocalDateTime.parse(VALID_DATETIME_1);
+        assertEquals(expectedDateTime, datetime.validateInput(VALID_DATETIME_1));
+    }
+
+    @Test
+    void validateInput_validDate_returnsLocalDateTime() {
+        Datetime datetime = new Datetime(VALID_DATE);
+        LocalDateTime expectedDateTime = LocalDateTime.parse(VALID_DATE + "T00:00:00");
+        assertEquals(expectedDateTime, datetime.validateInput(VALID_DATE));
+    }
+
+    @Test
+    void validateInput_invalidDatetime_returnsNull() {
+        Datetime datetime = new Datetime(INVALID_DATETIME);
+        assertNull(datetime.validateInput(INVALID_DATETIME));
+    }
+
+    @Test
+    void validateInput_invalidDate_returnsNull() {
+        Datetime datetime = new Datetime(INVALID_DATE);
+        assertNull(datetime.validateInput(INVALID_DATE));
+    }
+
+    @Test
+    void isPastDateTime_currentDateTime_returnsFalse() {
+        LocalDateTime currentDateTime = LocalDateTime.now(ZoneId.systemDefault());
+        assertFalse(Datetime.isPastDateTime(currentDateTime, ZoneId.systemDefault()));
+    }
+
+    @Test
+    void isPastDateTime_pastDateTime_returnsTrue() {
+        LocalDateTime pastDateTime = LocalDateTime.parse("2022-03-27T15:30:00");
+        assertTrue(Datetime.isPastDateTime(pastDateTime, ZoneId.systemDefault()));
+    }
+
+    @Test
+    void isPastDateTime_futureDateTime_returnsFalse() {
+        LocalDateTime futureDateTime = LocalDateTime.parse("2024-03-27T15:30:00");
+        assertFalse(Datetime.isPastDateTime(futureDateTime, ZoneId.systemDefault()));
+    }
+
 }
