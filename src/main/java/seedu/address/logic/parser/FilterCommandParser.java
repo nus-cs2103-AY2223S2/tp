@@ -12,9 +12,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class FilterCommandParser implements Parser<FilterCommand> {
 
-    public static final int groupIndex = 1;
-    public static final int metricIndex = 2;
-    public static final int thresholdIndex = 3;
+    public static final int GROUP_INDEX = 1;
+    public static final int METRIC_INDEX = 2;
+    public static final int THRESHOLD_INDEX = 3;
+
     /**
      * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
      * and returns a {@code RemarkCommand} object for execution.
@@ -33,9 +34,9 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             if (terms.length != 4) {
                 throw new IllegalArgumentException("Wrong number of items");
             } else {
-                group = terms[groupIndex];
-                metric = terms[metricIndex];
-                threshold = Integer.valueOf(terms[thresholdIndex]);
+                group = terms[GROUP_INDEX];
+                metric = terms[METRIC_INDEX];
+                threshold = Integer.valueOf(terms[THRESHOLD_INDEX]);
             }
         } catch (IllegalArgumentException iae) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE), iae);

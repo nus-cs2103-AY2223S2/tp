@@ -4,13 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
-import java.util.Comparator;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
@@ -236,25 +237,25 @@ public class ModelManager implements Model {
     }
 
 
-    public void updateSortAllPersonList(String metric, boolean increasingOrder) {
+    public void updateSortAllPersonList(String metric, boolean isIncreasing) {
         requireNonNull(metric);
         SortedList<Person> sortedData = new SortedList<>(filteredPersons);
         Comparator<Person> comparator;
         switch (metric) {
         case "performance":
-            comparator = new PerformanceComparator(increasingOrder);
+            comparator = new PerformanceComparator(isIncreasing);
             break;
         case "email":
-            comparator = new EmailComparator(increasingOrder);
+            comparator = new EmailComparator(isIncreasing);
             break;
         case "name":
-            comparator = new NameComparator(increasingOrder);
+            comparator = new NameComparator(isIncreasing);
             break;
         case "address":
-            comparator = new AddressComparator(increasingOrder);
+            comparator = new AddressComparator(isIncreasing);
             break;
         default:
-            comparator = new RemarkComparator(increasingOrder);
+            comparator = new RemarkComparator(isIncreasing);
         }
         sortedData.setComparator(comparator);
 
