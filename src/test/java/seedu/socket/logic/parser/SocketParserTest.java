@@ -42,6 +42,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.socket.logic.commands.AddCommand;
 import seedu.socket.logic.commands.AddProjectCommand;
+import seedu.socket.logic.commands.AssignCommand;
 import seedu.socket.logic.commands.ClearCommand;
 import seedu.socket.logic.commands.ClearProjectCommand;
 import seedu.socket.logic.commands.DeleteCommand;
@@ -304,6 +305,13 @@ public class SocketParserTest {
                 + INDEX_FIRST_PROJECT.getOneBased() + " " + REPO_NAME_DESC_ALPHA
                 + REPO_HOST_DESC_ALPHA + DEADLINE_DESC_ALPHA + MEETING_DESC_ALPHA);
         assertEquals(new RemoveProjectCommand(INDEX_FIRST_PROJECT, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_assign() throws Exception {
+        AssignCommand command = (AssignCommand) parser.parseCommand(AssignCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_PROJECT.getOneBased());
+        assertEquals(new AssignCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PROJECT), command);
     }
 
     @Test
