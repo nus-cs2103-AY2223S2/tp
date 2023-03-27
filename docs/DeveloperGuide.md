@@ -9,7 +9,9 @@ students to keep track of. TeachMeSenpai is optimised for fast-typists with a **
 
 This Developer Guide provides in-depth documentation on the design and implementation consideration behind TeachMeSenpai.
 This guide covers everything you need to know from the architecture down to the feature implementation details of TeachMeSenpai.
-If you're eager to get started, head over to 
+
+If you're eager to get started with TeachMeSenpai, head over to [Setting up, getting started](#setting-up-getting-started)!
+If you'd like to learn more about how TeachMeSenpai was implemented, you can head over to [Implementation](#implementation)!
 You may use this guide to evolve TeachMeSenpai to suit your needs.
 
 ## **Table of Contents**
