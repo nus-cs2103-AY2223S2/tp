@@ -19,6 +19,7 @@ import seedu.address.logic.commands.InterviewCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RejectCommand;
 import seedu.address.logic.commands.RemindCommand;
+import seedu.address.logic.commands.SkillCommand;
 import seedu.address.logic.commands.SummaryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -88,6 +89,9 @@ public class HMHeroParser {
 
         case RemindCommand.COMMAND_WORD:
             return new RemindCommand();
+
+        case SkillCommand.COMMAND_WORD:
+            return new SkillCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
