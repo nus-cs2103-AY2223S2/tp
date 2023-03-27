@@ -119,6 +119,9 @@ public class DeliveryJob {
     }
 
     public String getDescription() {
+        if (description == null) {
+            return "";
+        }
         return description;
     }
 
@@ -197,6 +200,7 @@ public class DeliveryJob {
             this.deliverySlot = job.getDeliverySlot();
             this.earning = job.getEarning();
             this.isDelivered = job.getDeliveredStatus();
+            this.description = job.getDescription();
             return this;
         }
 

@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.collections.ListChangeListener;
@@ -54,13 +56,10 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane commandBoxPlaceholder;
-
     @FXML
     private StackPane deliveryJobDetailPlaceholder;
-
     @FXML
     private MenuItem helpMenuItem;
-
     @FXML
     private MenuItem timetableMenuItem;
     @FXML
@@ -69,18 +68,57 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem statsItem;
     @FXML
     private MenuItem addressBookMenuItem;
-
     @FXML
     private StackPane deliveryJobListPanelPlaceholder;
-
     @FXML
     private StackPane emptyDeliveryJobListPanelPlaceholder;
-
     @FXML
     private StackPane resultDisplayPlaceholder;
-
     @FXML
     private StackPane statusbarPlaceholder;
+
+
+    private Consumer<DeliveryJob> completeDeliveryJobHandler = (job) -> {
+        try {
+            logic.execute(new CompleteDeliveryJobCommand(job.getJobId(), !job.getDeliveredStatus()));
+            refreshDeliveryJobDetailPane();
+        } catch (ParseException | CommandException e) {
+            logger.warning(e.getMessage());
+        }
+    };
+
+    private Consumer<DeliveryJob> eidtDeliveryJobHandler = (job) -> {
+        addDeliveryJobWindow = new AddDeliveryJobWindow(new Stage(), logic, job, () -> {
+            refreshDeliveryJobDetailPane();
+        });
+        addDeliveryJobWindow.show();
+        addDeliveryJobWindow.fillInnerParts();
+    };
+
+    private BiConsumer<Integer, DeliveryJob> selectDeliveryJobHandler = (idx, job) -> {
+        logger.info("[JobListView] select: " + idx);
+        deliveryJobDetailPlaceholder.getChildren().clear();
+
+        if (idx >= 0) {
+            DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(job);
+            detailPane.fillInnerParts(logic.getAddressBook());
+            deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
+            detailPane.setCompleteHandler(completeDeliveryJobHandler);
+            detailPane.setEditHandler(eidtDeliveryJobHandler);
+            return;
+        }
+
+        emptyDeliveryJobListPanelPlaceholder.setVisible(true);
+    };
+
+    private Consumer<DeliveryJob> deleteDeliveryJobHandler = job -> {
+        try {
+            deliveryJobListPanel.selectPrevious();
+            logic.execute(new DeleteDeliveryJobCommand(job.getJobId()));
+        } catch (ParseException | CommandException e) {
+            logger.warning(e.getMessage());
+        }
+    };
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -143,8 +181,8 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
-    void refreshDeliveryJobListView() {
-        logger.info("[JobListView] Refresh: " + deliveryJobListPanel.size());
+    private void refreshDeliveryJobListView() {
+        logger.info("[JobListView] Refresh List: " + deliveryJobListPanel.size());
         if (deliveryJobListPanel.size() > 0) {
             emptyDeliveryJobListPanelPlaceholder.setVisible(false);
         } else {
@@ -153,39 +191,19 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    private void refreshDeliveryJobDetailPane() {
+        logger.info("[JobListView] Refresh Detail");
+        deliveryJobListPanel.refresh();
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
         // Append views
-        deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList(), (idx, job) -> {
-            logger.info("[JobListView] select: " + idx);
-            deliveryJobDetailPlaceholder.getChildren().clear();
-
-            if (idx >= 0) {
-                DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(job, idx);
-                detailPane.fillInnerParts(logic.getAddressBook());
-                deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
-                return;
-            }
-
-            emptyDeliveryJobListPanelPlaceholder.setVisible(true);
-        },
-                job -> {
-                    try {
-                        logic.execute(new CompleteDeliveryJobCommand(job.getJobId(), !job.getDeliveredStatus()));
-                    } catch (ParseException | CommandException e) {
-                        logger.warning(e.getMessage());
-                    }
-                },
-                job -> {
-                    try {
-                        deliveryJobListPanel.selectPrevious();
-                        logic.execute(new DeleteDeliveryJobCommand(job.getJobId()));
-                    } catch (ParseException | CommandException e) {
-                        logger.warning(e.getMessage());
-                    }
-                });
+        deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList(), selectDeliveryJobHandler,
+                completeDeliveryJobHandler,
+                deleteDeliveryJobHandler);
 
         deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
         deliveryJobListPanel.selectItem(0);
