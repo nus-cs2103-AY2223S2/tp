@@ -1,9 +1,12 @@
 ---
 layout: page
 title: Developer Guide
+toc: true
 ---
 * Table of Contents
-  {:toc}
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Design
 
@@ -71,7 +74,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Recipe` object residing in the `Model`.
 
-### Logic
+### Logic component
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/recipe/logic/Logic)
 
 Here's a (partial) class diagram of the `Logic` component:
@@ -120,13 +123,13 @@ How the parsing works:
 The `Model` component,
 
 * stores the recipe book data i.e., all `Recipe` objects (which are contained in a `UniqueRecipeBook` object).
-* stores the currently 'selected' `Recipe` objects (e.g., results of a search query such as `find` or `list`) as a 
-  separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Recipe>` instance that 
-  can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the 
+* stores the currently 'selected' `Recipe` objects (e.g., results of a search query such as `find` or `list`) as a
+  separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Recipe>` instance that
+  can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the
   list changes.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a 
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a
   `ReadOnlyUserPref` object.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they 
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 * However, it is worth noting that to populate their `Recipe` objects with `Ingredient` instances, clients need only
   pass valid `IngredientBuilder` instances to `Recipe` objects.
@@ -135,19 +138,19 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list and 
-an `Ingredient` list in the `RecipeBook`, which `Recipe` references. This allows `RecipeBook` to only require 
-one `Tag` object per unique **tag**, and one `Ingredient` object per unique **ingredient**, instead of each `Recipe` 
+:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list and
+an `Ingredient` list in the `RecipeBook`, which `Recipe` references. This allows `RecipeBook` to only require
+one `Tag` object per unique **tag**, and one `Ingredient` object per unique **ingredient**, instead of each `Recipe`
 needing their own `Tag` or `Ingredient` objects.<br/><br/>
 This, however is highly complex and adds additional dependencies,
-which may in turn introduce more vulnerabilities or points of failure. As such, its implementation is a proposed 
+which may in turn introduce more vulnerabilities or points of failure. As such, its implementation is a proposed
 extension feature to this project.<br/><br/>
 
 <img src="images/BetterModelClassDiagram.png" width="500" />
 
 </div>
 
-### Storage Component
+### Storage component
 
 The **API** of this component is specified
 in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/Storage.java)
@@ -169,14 +172,19 @@ in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src
 
 **Implementation:**
 
-Serialization and deserialization of recipe book objects is done using [Jackson](https://github.com/FasterXML/jackson). 
-To serialize a recipe, we must necessarily serialize its component fields too: its `Name`, `RecipePortion`, 
+Serialization and deserialization of recipe book objects is done using [Jackson](https://github.com/FasterXML/jackson).
+To serialize a recipe, we must necessarily serialize its component fields too: its `Name`, `RecipePortion`,
 `RecipeDuration`, `Tag` set, `Ingredient` list, and `Step` list.
 
-The default JSON representation for each component is to express the fields of each component as key-value pairs. 
+The default JSON representation for each component is to express the fields of each component as key-value pairs.
 However, this representation is too verbose and space-inefficient. Hence, we opted to write custom JSON adapters for
 each component clas, which can be found in the [`seedu.recipe.storage.jsonadapters`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/jsonadapters) 
 package. These JSON adapters allow us to express how each class should be serialized.
+
+### Common classes
+Classes used by multiple components are in the `seedu.recipe.commons` package.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Feature Implementation**
 
@@ -186,8 +194,8 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The `RecipeForm` class extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields` and `Buttons`,
-that are used for displaying and editing recipe details. The class has a constructor that takes a `Recipe` object and an `int` representing the displayed index.
+The `RecipeForm` class extends the `UiPart<Region>` class and initializes various UI components, such as `TextFields` and `Buttons`, 
+that are used for displaying and editing recipe details. The class has a constructor that takes a `Recipe` object and an `int` representing the displayed index. 
 The fields of the form are pre-populated with the existing recipe's data if a non-null recipe is provided.
 
 In addition, it implements the following operations:
@@ -223,9 +231,6 @@ Notes
 If the user clicks the "Cancel" button or presses the ESC key, the form will be closed without saving any changes.
 The form's window title will be "Edit Recipe" when editing an existing recipe, and "Add Recipe" when adding a new recipe.
 
-#### Common classes
-Classes used by multiple components are in the `seedu.recipe.commons` package.
-
 ### Feature: Find-by-property
 
 The `find` command allows the user to filter recipes by their properties: 
@@ -251,6 +256,9 @@ in a collection of property T matches any of the keywords
 
 The use of generic types in the above predicates allows it to be implemented independent of the actual type
 of the property, as long as the relevant getters are supplied.
+
+--------------------------------------------------------------------------------------------------------------------
+
 
 ## **Appendix: Requirements**
 
@@ -429,6 +437,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Book**: Refers to the application or system that manages the storage and retrieval of recipe data.
 * **Storage file**: The file used by the application to store and retrieve recipe data.
 * **Index**: Refers to the position of a specific recipe within a list of recipes, represented by a numerical value.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
