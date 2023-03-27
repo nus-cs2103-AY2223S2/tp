@@ -12,6 +12,7 @@ import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.internal.parser.ParserException;
 import vimification.internal.parser.VimificationParser;
+import vimification.model.CommandStack;
 import vimification.model.LogicTaskList;
 import vimification.model.MacroMap;
 import vimification.model.task.Task;
@@ -30,6 +31,7 @@ public class LogicManager implements Logic {
     private final ObservableList<Task> viewTaskList;
     private final VimificationParser vimificationParser;
     private final MacroMap macroMap;
+    private final CommandStack commandStack;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -39,6 +41,7 @@ public class LogicManager implements Logic {
         this.storage = storage;
         this.viewTaskList = FXCollections.observableList(taskList.getInternalList());
         this.macroMap = new MacroMap(); // TODO: fix this
+        this.commandStack = new CommandStack(); // TODO: fix this
         this.vimificationParser = VimificationParser.getInstance(macroMap);
     }
 
