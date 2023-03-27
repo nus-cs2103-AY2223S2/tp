@@ -88,7 +88,7 @@ public class EditCommand extends Command {
         Name updatedName = editPatientDescriptor.getName().orElse((Name) patientToEdit.getName());
         Nric updatedNric = editPatientDescriptor.getNric().orElse((Nric) patientToEdit.getNric());
         Status updatedStatus = editPatientDescriptor.getStatus().orElse((Status) patientToEdit.getStatus());
-        WardName updatedWard = editPatientDescriptor.getWard().orElse(patientToEdit.getWard());
+        WardName updatedWard = editPatientDescriptor.getWard().orElse(patientToEdit.getWardName());
         Discharge updatedDischarge = editPatientDescriptor.getDischarge()
                 .orElse((Discharge) patientToEdit.getDischarge());
 

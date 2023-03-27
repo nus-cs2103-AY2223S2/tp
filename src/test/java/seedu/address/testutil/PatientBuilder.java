@@ -42,7 +42,7 @@ public class PatientBuilder {
         nric = patientToCopy.getNric();
         name = patientToCopy.getName();
         status = patientToCopy.getStatus();
-        ward = patientToCopy.getWard();
+        ward = patientToCopy.getWardNameString();
         discharge = patientToCopy.getDischarge();
     }
 

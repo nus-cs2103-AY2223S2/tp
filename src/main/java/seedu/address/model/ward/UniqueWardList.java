@@ -73,7 +73,8 @@ public class UniqueWardList implements Iterable<Ward> {
      */
     public boolean contains(String toCheckName) {
         requireNonNull(toCheckName);
-        Ward toCheck = new Ward(toCheckName);
+        WardName wardName = new WardName(toCheckName);
+        Ward toCheck = new Ward(wardName);
         return internalList.stream().anyMatch(toCheck::isSameWard);
     }
 
@@ -94,7 +95,7 @@ public class UniqueWardList implements Iterable<Ward> {
      */
     public void addPatient(Patient p) {
         requireNonNull(p);
-        String targetName = p.getWard();
+        String targetName = p.getWardNameString();
         int index = internalList.indexOf(wardWithName(targetName));
         Ward target = internalList.get(index);
         target.addPatient(p);
@@ -127,8 +128,8 @@ public class UniqueWardList implements Iterable<Ward> {
      * {@code target} must exist in the ward.
      */
     public void setPatient(Patient target, Patient editedPatient) {
-        String targetName = target.getWard();
-        String editedName = editedPatient.getWard();
+        String targetName = target.getWardNameString();
+        String editedName = editedPatient.getWardNameString();
         int targetIndex = internalList.indexOf(wardWithName(targetName));
         int editedIndex = internalList.indexOf(wardWithName(editedName));
 
@@ -172,7 +173,7 @@ public class UniqueWardList implements Iterable<Ward> {
      */
     public void remove(Patient toRemove) {
         requireNonNull(toRemove);
-        String targetName = toRemove.getWard();
+        String targetName = toRemove.getWardNameString();
         int index = internalList.indexOf(wardWithName(targetName));
         Ward targetWard = internalList.get(index);
         targetWard.removePatient(toRemove);

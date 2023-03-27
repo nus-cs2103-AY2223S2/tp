@@ -4,6 +4,7 @@ import seedu.address.model.ward.Ward;
 import seedu.address.model.ward.WardName;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.ward.Ward.wardWithName;
 
 import java.util.Objects;
 
@@ -117,8 +118,14 @@ public class Patient {
         return status.getDesc();
     }
 
-    public WardName getWard() {
+    public Ward getWard() {
+        return wardWithName(ward.wardName);
+    }
+    public WardName getWardName() {
         return ward;
+    }
+    public String getWardNameString() {
+        return wardWithName(ward.wardName).getNameString();
     }
     public Discharge getDischarge() {
         return discharge;
