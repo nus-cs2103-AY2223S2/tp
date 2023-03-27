@@ -3,9 +3,12 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
+scale 450 width
+scale 400 height
 
 Class HiddenOutside #FFFFFF
 HiddenOutside .down.> Person
+
 
 Package Person {
     Class Person
