@@ -1,9 +1,19 @@
 ---
 layout: page
-title: Welcome to ConnectUS!
+title: User Guide
 ---
 
-ConnectUS is a desktop app for **managing contacts, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ConnectUS can get your contact management tasks done faster than traditional GUI apps.
+## Welcome to ConnectUS!
+
+ConnectUS is the ultimate **contact management system** for your everyday needs. If you're a School of Computing student, this app is for you. With ConnectUS, you can spend less time stressing over a lack of social interaction (~~due to your exponentially growing assignment backlog~~ — _trust us, we know!_), and more time **connecting** with others!
+
+We're focused on:
+- **Efficiency**: Optimized for use via a Command Line Interface (CLI), you can **easily view and edit your contacts** at your fingertips with ConnectUS.
+- **User-friendliness**: With the benefits of having a Graphical User Interface (GUI), **easily navigate through your contact information** to find exactly what you need to **connect** with others.
+
+This User Guide will provide you with an in-depth documentation for you to easily integrate ConnectUS into your daily life. It covers **step-by-step instructions** on setting up ConnectUS, core ConnectUS features and commands, and a glossary for definitions used in ConnectUS.
+
+So what are you waiting for? Get ready to **Connect** with others and let **US** handle the rest!
 
 * Table of Contents
 {:toc}
