@@ -22,6 +22,7 @@ import ezschedule.logic.commands.ExitCommand;
 import ezschedule.logic.commands.FindCommand;
 import ezschedule.logic.commands.HelpCommand;
 import ezschedule.logic.commands.ListCommand;
+import ezschedule.logic.commands.ShowNextCommand;
 import ezschedule.logic.parser.exceptions.ParseException;
 import ezschedule.model.event.Event;
 import ezschedule.model.event.EventContainsKeywordsPredicate;
@@ -86,6 +87,12 @@ public class SchedulerParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_showNext() throws Exception {
+        assertTrue(parser.parseCommand(ShowNextCommand.COMMAND_WORD) instanceof ShowNextCommand);
+        assertTrue(parser.parseCommand(ShowNextCommand.COMMAND_WORD + " 3") instanceof ShowNextCommand);
     }
 
     @Test
