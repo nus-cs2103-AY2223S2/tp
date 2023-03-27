@@ -9,6 +9,12 @@ QuickContacts is a **contacts and meetings management application** that enables
 
 QuickContacts is a **cross-platform application** that works on Windows, macOS and Linux. We, the developers at QuickContacts, understand the amount of time required to manage many contacts and maintaining a schedule with many meetings with them. Designed for busy individuals, QuickContacts is built around a Command Line Interface (CLI) that empowers users to perform tasks in seconds. With fast fingers, you can be assured that your time spent managing your schedule is minimised!
 
+QuickContacts is specially designed for:
+
+* Seamless creation and management of contacts and meetings
+* Users who have a large number of contacts and meetings
+* Typists
+
 This user guide serves as an introduction on how to incorporate QuickContacts into your daily workflow. Head over to the [Getting started](#getting-started) section to get onboard!
 
 ## Table of Contents
