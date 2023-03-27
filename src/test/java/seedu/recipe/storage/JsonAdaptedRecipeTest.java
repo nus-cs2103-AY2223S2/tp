@@ -22,7 +22,7 @@ public class JsonAdaptedRecipeTest {
     private static final String INVALID_DESC = "+6@*1234";
     private static final String INVALID_INGREDIENT = "+6@*1234";
     private static final String INVALID_STEP = "+6@*1234";
-    private static final String INVALID_TAG = "+6@*1234";
+    private static final String INVALID_TAG = "";
 
 
     private static final String VALID_TITLE = CORNDOGS.getTitle().toString();
