@@ -13,8 +13,8 @@ public class SortCommandParserTest {
     @Test
     public void checkParseSuccess() {
         assertParseSuccess(parser, "/g", new SortCommand("grade"));
-        assertParseSuccess(parser, "/y", new SortCommand("semyear"));
-        assertParseSuccess(parser, "/c", new SortCommand("credit"));
+        assertParseSuccess(parser, "/y", new SortCommand("year"));
+        assertParseSuccess(parser, "/c", new SortCommand("credits"));
     }
 
     @Test
