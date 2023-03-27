@@ -18,6 +18,8 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
     * [2.8 sort](#28-sorting-tasks--sort)
     * [2.9 alert](#29-get-alerts--alert-alert-window)
     * [2.10 plan](#210-plan-your-month--plan-effort)
+    * [2.11 subsection](#211-adding-a-subsection-to-a-task--subsection)
+    * [2.11 remove-subsection](#212-deleting-a-subsection-from-a-task--remove-subsection)
   * [3. Storage](#3-storage)
     * [3.1 saving the data](#31-saving-the-data)
     * [3.2 editing the data](#32-editing-the-data-file)
@@ -272,6 +274,21 @@ Examples:
 - Assuming today is 2023-03-26, `schedule D/2023-04-01 E/5` will plan a 30-day schedule starting from today (March 26, 2023) according to a desired effort level of 5, and display tasks planned for April 1.
 - `schedule D/2023-04-02` will show tasks which should be completed on April 2, 2023, based on a previously generated schedule (which should be generated between 3 Mar 2023, and 2 Apr 2023).
 
+### 2.11 Adding a Subsection to a Task : `subsection`
+
+Adds a subsection to a task in the task book. The subsection added will appear as in the corresponding task's task card.
+You can do so by entering `subsection index n/name d/description`, and the description prefix `d/` is optional.
+
+Examples:
+- Assuming your current task list has a task with index 1, `subsection 1 n/homework d/Math` will add a subsection to the main task at index 1 with a subsection with the name "homework" and description "Math".
+
+### 2.12 Deleting a Subsection From a Task : `remove-subsection`
+
+Deletes a subsection from a task, assuming you have one in the task. You can do so by entering `remove-subsection index I/subsection index`, where the first index is the main task's index, and the latter is the subsection's.
+
+Examples:
+- Assuming your current task list has a task with index 1, which in turn contains a subsection with index 1. You can delete it with `remove-subsection 1 I/1`. The newly updated task will be shown.
+
 ### Show your daily plans : `schedule DATE`
 
 Displays tasks to be done on 'DATE' entered. Valid dates include 30 days from the last time plan command was ran.
@@ -286,7 +303,7 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-### 2.12 Exiting the program : `exit`
+### 2.13 Exiting the program : `exit`
 
 Exits the program.
 

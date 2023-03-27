@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_SUBTASK_INDEX;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TO;
 import static seedu.task.testutil.Assert.assertThrows;
@@ -31,11 +32,24 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_AMY = "Amy's description";
     public static final String VALID_DESCRIPTION_DEFAULT = "No Description";
     public static final String VALID_DESCRIPTION_BOB = "Bob's description";
+
+    public static final String VALID_TASK_INDEX = "1";
+
+    public static final String VALID_SUBTASK_INDEX = "1";
+
+    public static final String INVALID_INDEX = "a";
+
+    public static final String INDEX_1 = " " + VALID_SUBTASK_INDEX;
+    public static final String INDEX_SUBTASK = " " + PREFIX_SUBTASK_INDEX + VALID_SUBTASK_INDEX;
+    public static final String INVALID_SUBTASK_INDEX = " " + PREFIX_SUBTASK_INDEX;
+
     public static final String VALID_DESCRIPTION_BOTH = "Both description";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
     public static final String VALID_FROM_DATE = "2023-01-01 1800";
     public static final String VALID_TO_DATE = "2023-01-02 1800";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;

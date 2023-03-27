@@ -5,9 +5,12 @@ import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
+import seedu.task.commons.core.index.Index;
 import seedu.task.model.tag.Tag;
 
 /**
@@ -24,6 +27,7 @@ public abstract class Task implements Comparable<Task> {
     // Data fields
     protected final Set<Tag> tags = new HashSet<>();
     protected Effort effort;
+    protected UniqueSubtaskList subtasks = new UniqueSubtaskList();
 
     /**
      * Name, Description and Tag must be present and not null.
@@ -38,6 +42,20 @@ public abstract class Task implements Comparable<Task> {
         this.tags.addAll(tags);
         this.effort = effort;
         this.alertWindow = Duration.ofHours(24);
+    }
+
+    /**
+     * Overload the constructor with an additional field of subtasks
+     */
+    public Task(Name name, Description description, Set<Tag> tags, Effort effort, List<Subtask> subtasks) {
+        requireAllNonNull(name, description, tags);
+        this.name = name;
+        this.description = description;
+        this.tags.addAll(tags);
+        this.effort = effort;
+        this.alertWindow = Duration.ofHours(24);
+        this.subtasks.setSubtasks(subtasks);
+
     }
 
     public Name getName() {
@@ -68,6 +86,83 @@ public abstract class Task implements Comparable<Task> {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Adds a non-null subtask to the list
+     * @param subtask A subtask to be added
+     */
+    public void addSubtask(Subtask subtask) {
+        requireAllNonNull(subtask);
+        subtasks.addSubtask(subtask);
+    }
+
+    /**
+     * Removes a subtask from the list
+     * @param index The position where the subtask is
+     */
+    public void removeSubtask(Index index) {
+        requireAllNonNull(index);
+        Subtask subtask = this.subtasks.getSubtask(index.getZeroBased());
+        subtasks.remove(subtask);
+    }
+
+    /**
+     * Gets the subtasks as an {@code unmodifiableObservableList}
+     * @return An UnmodifiableObservableList
+     */
+    public ObservableList<Subtask> getSubtasks() {
+        return this.subtasks.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Gets the subtasks as the {@code uniqueSubtaskList}
+     * @return
+     */
+    public UniqueSubtaskList getSubtasksAsOriginal() {
+        return this.subtasks;
+    }
+
+    /**
+     * Change the subtask list to String format to be displayed later
+     * @return A string description of subtasks
+     */
+    public String formatSubtasks() {
+        if (hasSubtasks()) {
+            StringBuilder output = new StringBuilder();
+            int index = 1;
+            output.append("\n");
+            for (Subtask subtask: subtasks) {
+                output.append(index);
+                output.append(". ");
+                output.append(subtask);
+                output.append("\n");
+                index += 1;
+            }
+            return output.toString();
+        }
+        return "There is no subsection";
+    }
+
+    /**
+     * Checks if there is at least one task in the list of subtasks
+     * @return True or False
+     */
+    public boolean hasSubtasks() {
+        if (this.subtasks != null) {
+            if (subtasks.size() > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Gets the size of the subtask list in this task
+     * @return An integer representing the subtask size
+     */
+    public int getSubtaskSize() {
+        return this.subtasks.size();
+    }
+
     public Effort getEffort() {
         return this.effort;
     }
@@ -94,6 +189,7 @@ public abstract class Task implements Comparable<Task> {
     public abstract boolean isDeadline();
 
     public abstract boolean isEvent();
+
 
     /**
      * Returns true if both tasks have the same identity and data fields.

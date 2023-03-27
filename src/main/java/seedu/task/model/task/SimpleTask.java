@@ -1,5 +1,6 @@
 package seedu.task.model.task;
 
+import java.util.List;
 import java.util.Set;
 
 import seedu.task.model.tag.Tag;
@@ -15,6 +16,13 @@ public class SimpleTask extends Task {
      */
     public SimpleTask(Name name, Description description, Set<Tag> tags, Effort effort) {
         super(name, description, tags, effort);
+    }
+
+    /**
+     * Overload the constructor to take in a {@code subtasks} field
+     */
+    public SimpleTask(Name name, Description description, Set<Tag> tags, Effort effort, List<Subtask> subtasks) {
+        super(name, description, tags, effort, subtasks);
     }
 
     @Override
