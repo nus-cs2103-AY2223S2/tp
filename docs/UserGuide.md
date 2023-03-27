@@ -100,7 +100,7 @@ Examples:
 * `add n/James e/james@example.com ig/itsjameshere b/01/01/2000` would create a contact named James with an email james@example.com, an Instagram of `itsjameshere` and a birthday of January 1st, 2000.
 * `add n/James tg/itsjameshere mod/CS2103T mod/CS2101 cca/NUS Hackers` would create a contact named James with Telegram `itsjameshere`, the module tags of CS2103T and CS2101, and the CCA of NUS Hackers.
 
-Please refer to **[this section](#additonal_information_regarding_specific_fields)** for details on how to use each information field prefix.
+Please refer to **[this section](#additional-information-regarding-specific-fields)** for details on how to use each information field prefix.
 
 ### Listing all persons : `list`
 
@@ -124,7 +124,7 @@ Examples:
 * `edit 1 p/12345678 e/james@example.com` Edits the phone number and email address of the 1st person to be `12345678` and `james@example.com` respectively.
 * `edit 2 n/Betsy Crower -t` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-Please refer to **[this section](#additonal_information_regarding_specific_fields)** for details on how to use each information field prefix.
+Please refer to **[this section](#additional-information-regarding-specific-fields)** for details on how to use each information field prefix.
 
 ### Deleting a person : `delete`
 
