@@ -48,22 +48,26 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
+        RecipeDescriptor recipeDescriptor = parseToAddCommand(args);
+
+        return new AddCommand(recipeDescriptor);
+    }
+
+    /**
+     * Generates a RecipeDescriptor object based on the string input by the user, which we then use to create a new AddCommand object. 
+     * 
+     * @param args full user input string
+     * @return the RecipeDescriptor based on user input
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    public static RecipeDescriptor parseToAddCommand(String args) throws ParseException{
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PORTION, PREFIX_DURATION,
-                                           PREFIX_TAG, PREFIX_INGREDIENT, PREFIX_STEP);
-
-        /* 
-        // If no arguments are provided, return an AddFormCommand object
-        if (args.length() == 0) {
-            return new AddFormCommand(CommandExecutor);
-        }
-        */
-
+        ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PORTION, PREFIX_DURATION,
+                                   PREFIX_TAG, PREFIX_INGREDIENT, PREFIX_STEP);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
-
         RecipeDescriptor recipeDescriptor = new RecipeDescriptor();
 
         // we call Optional<Name>::get here without checking ifPresent
@@ -95,8 +99,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         // 5. Parse Steps
         List<Step> steps = ParserUtil.parseSteps(argMultimap.getAllValues(PREFIX_STEP));
         recipeDescriptor.setSteps(steps);
-
-        return new AddCommand(recipeDescriptor);
+        return recipeDescriptor;
     }
-
 }
