@@ -23,6 +23,7 @@ public class DeleteAppointmentCommand extends Command {
         + ": Deletes the appointment of the patient identified "
         + "by the NRIC and index number of the "
         + "corresponding patient's appointment listing. "
+        + "\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "ic/ [NRIC]\n"
         + "Example: " + COMMAND_WORD + " 1 "
@@ -64,7 +65,7 @@ public class DeleteAppointmentCommand extends Command {
 
         int patientApptSize = appointmentPatient.getAppointmentSize();
         int ind = index.getZeroBased();
-        if (patientApptSize <= 0 || ind > patientApptSize) {
+        if (patientApptSize <= 0 || ind >= patientApptSize - 1) {
             throw new CommandException(MESSAGE_INVALID_INDEX);
         }
 

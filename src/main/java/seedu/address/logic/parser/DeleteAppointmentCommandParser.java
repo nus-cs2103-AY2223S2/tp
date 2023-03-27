@@ -34,6 +34,7 @@ public class DeleteAppointmentCommandParser implements Parser<DeleteAppointmentC
         } catch (ParseException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteAppointmentCommand.MESSAGE_USAGE), ive);
+                    // todo handle 0 index with specific error message
         }
 
         Nric patientNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
