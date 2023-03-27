@@ -32,9 +32,9 @@ This user guide will help you get up to speed in no time!
     * [Exit application](#exit-application)
     * [Find Event](#find-event)
     * [Link Contact to Event](#link-contact-to-event)
+    * [List all Events](#list-all-events)
     * [Mark Event as Done](#mark-event)
     * [Unmark an Event](#unmark-event)
-    * [List all Events](#list-all-events)
     * [View Total Revenue](#view-total-revenue)
     * [View Upcoming Events](#view-upcoming-events)
     * [Saving data](#saving-data)
@@ -244,6 +244,14 @@ Links client contact to an event.
 - `linkcontact 2 91234567`
   - This command will link the contact with phone number `91234567` to the 2nd event in the event list.
 
+### List all Events: `list` <a id = "list-all-events"></a>
+
+Shows a list of all events in Paidlancers
+
+**Format**: `list`
+
+- List down the events in the event book.
+
 ### Mark Event as Done: `mark` <a id = "mark-event"></a>
 
 Marks a specified event in Paidlancers as done.
@@ -272,14 +280,6 @@ Unmarks a specified event in Paidlancers.
 **Example**:
 - `unmark 2`
   - This command will unmark the 2nd event in the event list.
-
-### List all Events: `list` <a id = "list-all-events"></a>
-
-Shows a list of all events in Paidlancers
-
-**Format**: `list`
-
-- List down the events in the event book.
 
 ### View Total Revenue: `revenue` <a id = "view-total-revenue"></a>
 
@@ -345,9 +345,9 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 |      [Exit application](#exit-application)      |                                    `exit`                                     |                                                        `exit`                                                         |
 |            [Find Event](#find-event)            |                        `find KEYWORD [MORE_KEYWORDS]`                         |                                                 `find wedding dinner`                                                 |
 | [Link Contact to Event](#link-contact-to-event) |                          `linkcontact INDEX CONTACT`                          |                                               `linkcontact 2 91234567`                                                |
+|       [List all Events](#list-all-events)       |                                    `list`                                     |                                                        `list`                                                         |
 |        [Mark Event as Done](#mark-event)        |                                 `mark INDEX`                                  |                                                       `mark 2`                                                        |
 |        [Unmark an Event](#unmark-event)         |                                `unmark INDEX`                                 |                                                      `unmark 2`                                                       |
-|       [List all Events](#list-all-events)       |                                    `list`                                     |                                                        `list`                                                         |
 |    [View Total Revenue](#view-total-revenue)    |                                   `revenue`                                   |                                                       `revenue`                                                       |
 |  [View Upcoming Events](#view-upcoming-events)  |                                 `remind DAYS`                                 |                                                      `remind 2`                                                       |
 |           [Saving data](#saving-data)           |                                      NIL                                      |                                                          NIL                                                          |
