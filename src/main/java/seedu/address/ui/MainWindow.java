@@ -223,6 +223,8 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getReviewCardList(), true);
+        rightPanelPlaceholder.getChildren().clear();
+        rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(REVIEW_TITLE);
@@ -243,6 +245,8 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredCardList(), true);
+        rightPanelPlaceholder.getChildren().clear();
+        rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(MAIN_TITLE);

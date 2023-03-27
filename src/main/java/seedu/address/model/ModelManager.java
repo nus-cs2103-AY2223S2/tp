@@ -222,7 +222,7 @@ public class ModelManager implements Model {
 
     @Override
     public void unselectDeck() {
-        assert this.selectedDeck != null : "Can only unselectDeck when inside Deck mode";
+        assert this.selectedDeck != null : "Can only unselectDeck when a deck is selected";
 
         setDeck(selectedDeck, selectedDeck.buildUnselectedDeck());
         this.selectedDeck = null;
@@ -328,6 +328,7 @@ public class ModelManager implements Model {
     public void tagCurrentCardInReview(Tag tag) { // legacy code
         assert filteredCards.size() == 1 : "One and only one card can be reviewed at once.";
         masterDeck.tagCard(filteredCards.get(0), tag);
+        currReview.updateReviewStatsList();
     }
 
     @Override
@@ -349,9 +350,9 @@ public class ModelManager implements Model {
         }
 
         if (selectedDeck != null) {
-            return ModelState.DECK_MODE;
+            return ModelState.MAIN_SELECTED_MODE;
         }
 
-        return ModelState.MAIN_MODE;
+        return ModelState.MAIN_UNSELECTED_MODE;
     }
 }

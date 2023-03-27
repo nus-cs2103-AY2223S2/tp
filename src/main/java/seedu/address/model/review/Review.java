@@ -23,8 +23,11 @@ import seedu.address.model.deck.Deck;
 public class Review {
 
     private final Deck deck;
+
     private UniqueCardList reviewCardList;
     private final FilteredList<Card> filteredReviewCardList;
+    private final List<Card> cardList;
+
     private final int totalNumCards;
     private Card currCard;
     private final List<Integer> orderOfCards;
@@ -42,6 +45,7 @@ public class Review {
 
         initReviewCardList(cardList);
         filteredReviewCardList = new FilteredList<>(reviewCardList.asUnmodifiableObservableList());
+        this.cardList = reviewCardList.asUnmodifiableObservableList();
 
         // Randomise order of cards based on the deck size
         orderOfCards = new Random().ints(0, cardList.size())
@@ -87,7 +91,7 @@ public class Review {
     }
 
     private void unflipCard(Card card) {
-        this.reviewCardList.setCard(card, card.buildFlippedCard());
+        this.reviewCardList.setCard(card, card.buildUnflippedCard());
     }
 
     private void flipCard(Card card) {
@@ -115,7 +119,7 @@ public class Review {
         currCardIndex++;
 
         currCard = this.reviewCardList.asUnmodifiableObservableList().get(orderOfCards.get(currCardIndex));
-        flipCard(currCard);
+        filteredReviewCardList.setPredicate(new IsSameCardPredicate(currCard));
 
         updateReviewStatsList();
         return true;
@@ -134,7 +138,7 @@ public class Review {
         currCardIndex--;
 
         currCard = this.reviewCardList.asUnmodifiableObservableList().get(orderOfCards.get(currCardIndex));
-        flipCard(currCard);
+        filteredReviewCardList.setPredicate(new IsSameCardPredicate(currCard));
 
         updateReviewStatsList();
         return true;
@@ -145,17 +149,45 @@ public class Review {
         return reviewStatsList;
     }
 
+    public int getNoOfEasyTags() {
+        return (int) cardList.stream().filter(card -> card.getTagName().equals("easy")).count();
+    }
+
+    public int getNoOfMediumTags() {
+        return (int) cardList.stream().filter(card -> card.getTagName().equals("medium")).count();
+    }
+
+    public int getNoOfHardTags() {
+        return (int) cardList.stream().filter(card -> card.getTagName().equals("hard")).count();
+    }
+
+    public int getNoOfUntagged() {
+        return (int) cardList.stream().filter(card -> card.getTagName().equals("untagged")).count();
+    }
+
+    public void tagCard() {
+        updateReviewStatsList();
+    }
+
     public ObservableList<Pair<String, String> > getReviewDeckNameList() {
         return deck.getDeckNameList();
     }
 
-    private void updateReviewStatsList() {
+    /**
+     * Updates the list of review statistics (deck name, number of cards seen and tag count)
+     * The review statistics are updated when next, prev and tagging commands are called.
+     */
+    public void updateReviewStatsList() {
         Pair<String, String> title = new Pair<>("Deck Name", deck.getDeckName());
         Pair<String, String> cardsSeen = new Pair<>("Current Card Number:",
                 String.format("%d/%d", currCardIndex + 1, totalNumCards));
-        Pair<String, String> flip = new Pair<>("Press \\ to flip", "");
+        Pair<String, String> tagCount = new Pair<>("Current Tags:",
+                 String.format("%d Easy, %d Medium, %d Hard",
+                         getNoOfEasyTags(), getNoOfMediumTags(), getNoOfHardTags()));
+        Pair<String, String> flip = new Pair<>("Enter p to flip", "");
         Pair<String, String> next = new Pair<>("Enter [ to go back, ] to go forward", "");
+        Pair<String, String> tagging = new Pair<>("To tag, enter l for easy, ; for medium and ' for hard", "");
         this.reviewStatsList.clear();
-        this.reviewStatsList.addAll(title, cardsSeen, flip, next); // warning being called here
+        this.reviewStatsList.addAll(title, cardsSeen, tagCount, flip, next, tagging); // warning being called here
     }
 }

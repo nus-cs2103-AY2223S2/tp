@@ -1,6 +1,10 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DECK_SELECTED;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_IN_REVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_NOT_IN_REVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_DECK_SELECTED;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
@@ -9,26 +13,28 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.cardcommands.AddCommand;
 import seedu.address.logic.commands.cardcommands.DeleteCommand;
 import seedu.address.logic.commands.cardcommands.EditCommand;
+import seedu.address.logic.commands.cardcommands.FindCardCommand;
+import seedu.address.logic.commands.cardcommands.ShowCardsCommand;
 import seedu.address.logic.commands.deckcommands.AddDeckCommand;
 import seedu.address.logic.commands.deckcommands.DeleteDeckCommand;
 import seedu.address.logic.commands.deckcommands.EditDeckCommand;
+import seedu.address.logic.commands.deckcommands.FindDeckCommand;
 import seedu.address.logic.commands.deckcommands.SelectDeckCommand;
+import seedu.address.logic.commands.deckcommands.ShowDecksCommand;
 import seedu.address.logic.commands.deckcommands.UnselectDeckCommand;
 import seedu.address.logic.commands.reviewcommands.EndReviewCommand;
 import seedu.address.logic.commands.reviewcommands.FlipCardCommand;
-import seedu.address.logic.commands.reviewcommands.MarkCorrectCommand;
-import seedu.address.logic.commands.reviewcommands.MarkWrongCommand;
 import seedu.address.logic.commands.reviewcommands.NextCardCommand;
 import seedu.address.logic.commands.reviewcommands.PreviousCardCommand;
 import seedu.address.logic.commands.reviewcommands.ReviewCommand;
 import seedu.address.logic.commands.reviewcommands.SetNumCardsPerReviewCommand;
-import seedu.address.logic.commands.reviewcommands.TagCardDuringReviewCommand;
+import seedu.address.logic.commands.reviewcommands.TagEasyCommand;
+import seedu.address.logic.commands.reviewcommands.TagHardCommand;
+import seedu.address.logic.commands.reviewcommands.TagMediumCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -66,11 +72,12 @@ public class MasterDeckParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommandInMainMode(String userInput) throws ParseException {
+    public Command parseCommandInMainUnselectedMode(String userInput) throws ParseException {
         updateCommandWordAndArguments(userInput);
 
         switch (commandWord) {
 
+        // Deck-related Commands
         case AddDeckCommand.COMMAND_WORD:
             return new AddDeckCommandParser().parse(arguments);
 
@@ -83,23 +90,65 @@ public class MasterDeckParser {
         case SelectDeckCommand.COMMAND_WORD:
             return new SelectDeckCommandParser().parse(arguments);
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case UnselectDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, UnselectDeckCommand.COMMAND_WORD));
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ShowDecksCommand.COMMAND_WORD:
+            return new ShowDecksCommand();
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+        case FindDeckCommand.COMMAND_WORD:
+            return new FindDeckCommandParser().parse(arguments);
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+        // Card-related Commands
+        case AddCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, AddCommand.COMMAND_WORD));
 
+        case EditCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, EditCommand.COMMAND_WORD));
+
+        case DeleteCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, DeleteCommand.COMMAND_WORD));
+
+        case ShowCardsCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, ShowCardsCommand.COMMAND_WORD));
+
+        case FindCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, FindCardCommand.COMMAND_WORD));
+
+        // Review-related Commands
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommandParser().parse(arguments);
 
         case SetNumCardsPerReviewCommand.COMMAND_WORD:
             return new SetNumCardsPerReviewCommandParser().parse(arguments);
+
+        case FlipCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, FlipCardCommand.COMMAND_WORD));
+
+        case PreviousCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, PreviousCardCommand.COMMAND_WORD));
+
+        case NextCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, NextCardCommand.COMMAND_WORD));
+
+        case TagEasyCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagEasyCommand.COMMAND_WORD));
+
+        case TagMediumCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagMediumCommand.COMMAND_WORD));
+
+        case TagHardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagHardCommand.COMMAND_WORD));
+
+        case EndReviewCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, EndReviewCommand.COMMAND_WORD));
+
+        // Other commands
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -116,11 +165,34 @@ public class MasterDeckParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommandInDeckMode(String userInput) throws ParseException {
+    public Command parseCommandInMainSelectedMode(String userInput) throws ParseException {
         updateCommandWordAndArguments(userInput);
 
         switch (commandWord) {
 
+        // Deck-related Commands
+        case AddDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_DECK_SELECTED, AddDeckCommand.COMMAND_WORD));
+
+        case DeleteDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_DECK_SELECTED, DeleteDeckCommand.COMMAND_WORD));
+
+        case EditDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_DECK_SELECTED, EditDeckCommand.COMMAND_WORD));
+
+        case SelectDeckCommand.COMMAND_WORD:
+            return new SelectDeckCommandParser().parse(arguments);
+
+        case UnselectDeckCommand.COMMAND_WORD:
+            return new UnselectDeckCommand();
+
+        case ShowDecksCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_DECK_SELECTED, ShowDecksCommand.COMMAND_WORD));
+
+        case FindDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_DECK_SELECTED, FindDeckCommand.COMMAND_WORD));
+
+        // Card-related Commands
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
@@ -130,23 +202,49 @@ public class MasterDeckParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case ShowCardsCommand.COMMAND_WORD:
+            return new ShowCardsCommand();
 
-        case UnselectDeckCommand.COMMAND_WORD:
-            return new UnselectDeckCommand();
+        case FindCardCommand.COMMAND_WORD:
+            return new FindCardCommandParser().parse(arguments);
 
+        // Review-related Commands
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommandParser().parse(arguments);
+
+        case SetNumCardsPerReviewCommand.COMMAND_WORD:
+            return new SetNumCardsPerReviewCommandParser().parse(arguments);
+
+        case FlipCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, FlipCardCommand.COMMAND_WORD));
+
+        case PreviousCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, PreviousCardCommand.COMMAND_WORD));
+
+        case NextCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, NextCardCommand.COMMAND_WORD));
+
+        case TagEasyCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagEasyCommand.COMMAND_WORD));
+
+        case TagMediumCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagMediumCommand.COMMAND_WORD));
+
+        case TagHardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, TagHardCommand.COMMAND_WORD));
+
+        case EndReviewCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, EndReviewCommand.COMMAND_WORD));
+
+        // Other Commands
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
-        case SelectDeckCommand.COMMAND_WORD:
-            return new SelectDeckCommandParser().parse(arguments);
-
-        case SetNumCardsPerReviewCommand.COMMAND_WORD:
-            return new SetNumCardsPerReviewCommandParser().parse(arguments);
+        case ClearCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_DECK_SELECTED, ClearCommand.COMMAND_WORD));
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -165,8 +263,53 @@ public class MasterDeckParser {
 
         switch (commandWord) {
 
-        case EndReviewCommand.COMMAND_WORD:
-            return new EndReviewCommand();
+        // Deck-related Commands
+        case AddDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, AddDeckCommand.COMMAND_WORD));
+
+        case DeleteDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, DeleteDeckCommand.COMMAND_WORD));
+
+        case EditDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, EditDeckCommand.COMMAND_WORD));
+
+        case SelectDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, SelectDeckCommand.COMMAND_WORD));
+
+        case UnselectDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, UnselectDeckCommand.COMMAND_WORD));
+
+        case ShowDecksCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, ShowDecksCommand.COMMAND_WORD));
+
+        case FindDeckCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, FindDeckCommand.COMMAND_WORD));
+
+        // Card-related Commands
+        case AddCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, AddCommand.COMMAND_WORD));
+
+        case EditCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, EditCommand.COMMAND_WORD));
+
+        case DeleteCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, DeleteCommand.COMMAND_WORD));
+
+        case ShowCardsCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, ShowCardsCommand.COMMAND_WORD));
+
+        case FindCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, FindCardCommand.COMMAND_WORD));
+
+        // Review-related Commands
+        case ReviewCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, ReviewCommand.COMMAND_WORD));
+
+        case SetNumCardsPerReviewCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, SetNumCardsPerReviewCommand.COMMAND_WORD));
+
+        case FlipCardCommand.COMMAND_WORD:
+            return new FlipCardCommand();
 
         case PreviousCardCommand.COMMAND_WORD:
             return new PreviousCardCommand();
@@ -174,20 +317,27 @@ public class MasterDeckParser {
         case NextCardCommand.COMMAND_WORD:
             return new NextCardCommand();
 
-        case FlipCardCommand.COMMAND_WORD:
-            return new FlipCardCommand();
+        case TagEasyCommand.COMMAND_WORD:
+            return new TagEasyCommand();
 
-        case MarkCorrectCommand.COMMAND_WORD:
-            return new MarkCorrectCommand();
+        case TagMediumCommand.COMMAND_WORD:
+            return new TagMediumCommand();
 
-        case MarkWrongCommand.COMMAND_WORD:
-            return new MarkWrongCommand();
+        case TagHardCommand.COMMAND_WORD:
+            return new TagHardCommand();
 
-        case TagCardDuringReviewCommand.COMMAND_WORD:
-            return new TagCardDuringReviewCommandParser().parse(arguments);
+        case EndReviewCommand.COMMAND_WORD:
+            return new EndReviewCommand();
+
+        // Other commands
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case ClearCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, ClearCommand.COMMAND_WORD));
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
