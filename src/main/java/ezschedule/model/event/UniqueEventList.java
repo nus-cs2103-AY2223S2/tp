@@ -32,7 +32,7 @@ public class UniqueEventList implements Iterable<Event> {
 
     /**
      * Constructor of UniqueEventList.
-     * Attaches a listener to sort the list whenever its changed.
+     * Attaches a listener to sort the list of events in chronological order whenever its changed.
      */
     public UniqueEventList() {
         // Auto-sort whenever a list is changed
@@ -118,13 +118,6 @@ public class UniqueEventList implements Iterable<Event> {
             throw new DuplicateEventException();
         }
         internalList.setAll(events);
-    }
-
-    /**
-     * Sorts all events in chronological order.
-     */
-    public void sortByChronologicalOrder() {
-        FXCollections.sort(internalList);
     }
 
     /**

@@ -116,11 +116,6 @@ public class ModelManager implements Model {
         scheduler.setEvent(target, editedEvent);
     }
 
-    @Override
-    public void sortEvents() {
-        scheduler.sortEvent();
-    }
-
     //=========== Filtered Event List Accessors =============================================================
 
     /**
