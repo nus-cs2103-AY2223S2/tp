@@ -17,6 +17,9 @@ import seedu.connectus.logic.commands.ListCommand;
 import seedu.connectus.logic.commands.SearchCommand;
 import seedu.connectus.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new HelpCommand object
+ */
 public class HelpCommandParser implements Parser<HelpCommand> {
 
     //@@author gremmyz-reused
@@ -36,6 +39,15 @@ public class HelpCommandParser implements Parser<HelpCommand> {
         COMMAND_USAGE_MESSAGES.put(SearchCommand.COMMAND_WORD, SearchCommand.MESSAGE_USAGE);
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the HelpCommand
+     * and returns an HelpCommand object for execution.
+     *
+     * If no argument is received, return the HelpCommand that opens up a helpWindow.
+     * Else, return HelpCommand that shows specific command usage instructions.
+     *
+     * @throws ParseException
+     */
     public HelpCommand parse(String args) throws ParseException {
         if (args.trim().isEmpty()) {
             return new HelpCommand();

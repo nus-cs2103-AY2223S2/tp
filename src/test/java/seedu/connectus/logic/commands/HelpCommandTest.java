@@ -18,5 +18,5 @@ public class HelpCommandTest {
         assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
     }
 
-    
+
 }
