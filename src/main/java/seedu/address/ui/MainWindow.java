@@ -226,7 +226,6 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isChangeGui()) {
                 handleGuiChange();
             }
-            fishListPanel.refreshCard();
 
             refreshPanes();
             return commandResult;

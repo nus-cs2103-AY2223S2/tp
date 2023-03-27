@@ -33,7 +33,7 @@ public class ListCommandTest {
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         CommandResult expectedResult = new CommandResult(ListCommand.MESSAGE_SUCCESS_FISHES, false, false, true);
-        expectedModel.setGuiMode(GuiSettings.GuiMode.DISPLAY_FISHES_TASKS);
+        expectedModel.setGuiMode(GuiSettings.GuiMode.DISPLAY_FISHES);
         assertCommandSuccess(ListCommand.LIST_FISHES, model, expectedResult, expectedModel);
     }
 
@@ -41,7 +41,7 @@ public class ListCommandTest {
     public void execute_listIsFiltered_showsEverything() {
         showFishAtIndex(model, INDEX_FIRST_FISH);
         CommandResult expectedResult = new CommandResult(ListCommand.MESSAGE_SUCCESS_FISHES, false, false, true);
-        expectedModel.setGuiMode(GuiSettings.GuiMode.DISPLAY_FISHES_TASKS);
+        expectedModel.setGuiMode(GuiSettings.GuiMode.DISPLAY_FISHES);
         assertCommandSuccess(ListCommand.LIST_FISHES, model, expectedResult, expectedModel);
     }
 }
