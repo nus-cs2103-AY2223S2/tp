@@ -36,10 +36,9 @@ public class AddSubtaskCommand extends Command {
         + "by the index number used in the displayed task list.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
-        + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "[" + PREFIX_DESCRIPTION + "DESCRIPTION](Optional)\n"
         + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_NAME + "do lab"
+        + PREFIX_NAME + "do lab "
         + PREFIX_DESCRIPTION + "lab worksheet needs to be printed";
 
     public static final String MESSAGE_SUCCESS = "New subsection added: %1$s";
