@@ -84,7 +84,7 @@ public class AddRecurCommand extends Command {
             LocalDateTime newDate = currDate.plus(1, ChronoUnit.WEEKS);
             newEvent.changeDate(newDate);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, false, true);
     }
 
     @Override

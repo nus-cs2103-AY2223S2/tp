@@ -103,7 +103,8 @@ public class EditEventCommand extends Command {
 
         model.setTutorial(tutorialToEdit, editedTutorial);
         model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
-        return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedTutorial));
+        return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedTutorial),
+                false, false, false, true);
     }
 
     /**
@@ -128,7 +129,7 @@ public class EditEventCommand extends Command {
 
         model.setLab(labToEdit, editedLab);
         model.updateFilteredLabList(PREDICATE_SHOW_ALL_LABS);
-        return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedLab));
+        return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedLab), false, false, false, true);
     }
 
     /**
@@ -154,7 +155,8 @@ public class EditEventCommand extends Command {
 
         model.setConsultation(consultationToEdit, editedConsultation);
         model.updateFilteredConsultationList(PREDICATE_SHOW_ALL_CONSULTATIONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedConsultation));
+        return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedConsultation),
+                false, false, false, true);
     }
 
     /**

@@ -129,9 +129,10 @@ public class DeleteEventCommand extends Command {
         }
 
         if (targetIndex[0].getZeroBased() == targetIndex[1].getZeroBased()) {
-            return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, tutorialToDelete));
+            return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, tutorialToDelete),
+                    false, false, false, true);
         } else {
-            return new CommandResult(String.format(MESSAGE_DELETE_MULTIPLE_EVENTS_SUCCESS));
+            return new CommandResult(String.format(MESSAGE_DELETE_MULTIPLE_EVENTS_SUCCESS), false, false, false, true);
         }
     }
 
@@ -169,9 +170,11 @@ public class DeleteEventCommand extends Command {
         }
 
         if (targetIndex[0].getZeroBased() == targetIndex[1].getZeroBased()) {
-            return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, labToDelete));
+            return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, labToDelete),
+                    false, false, false, true);
         } else {
-            return new CommandResult(String.format(MESSAGE_DELETE_MULTIPLE_EVENTS_SUCCESS));
+            return new CommandResult(String.format(MESSAGE_DELETE_MULTIPLE_EVENTS_SUCCESS),
+                    false, false, false, true);
         }
     }
 
@@ -209,9 +212,11 @@ public class DeleteEventCommand extends Command {
         }
 
         if (targetIndex[0].getZeroBased() == targetIndex[1].getZeroBased()) {
-            return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, consultationToDelete));
+            return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, consultationToDelete),
+                    false, false, false, true);
         } else {
-            return new CommandResult(String.format(MESSAGE_DELETE_MULTIPLE_EVENTS_SUCCESS));
+            return new CommandResult(String.format(MESSAGE_DELETE_MULTIPLE_EVENTS_SUCCESS),
+                    false, false, false, true);
         }
     }
 
