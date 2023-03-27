@@ -26,7 +26,7 @@ public class ShowCardsCommandTest {
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsSameList() {
+    public void execute_cardListIsNotFiltered_showsSameCardList() {
         expectedModel.updateFilteredCardList(Model.PREDICATE_SHOW_ALL_CARDS);
         expectedModel.selectDeck(INDEX_FIRST);
         model.selectDeck(INDEX_FIRST);
@@ -34,7 +34,7 @@ public class ShowCardsCommandTest {
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() {
+    public void execute_cardListIsFiltered_showsEverything() {
         expectedModel.updateFilteredCardList(Model.PREDICATE_SHOW_ALL_CARDS);
         expectedModel.selectDeck(INDEX_FIRST);
         model.selectDeck(INDEX_FIRST);

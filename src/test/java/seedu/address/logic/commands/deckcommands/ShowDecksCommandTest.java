@@ -25,13 +25,13 @@ public class ShowDecksCommandTest {
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsSameList() {
+    public void execute_deckListIsNotFiltered_showsSameDeckList() {
         expectedModel.updateFilteredDeckList(Model.PREDICATE_SHOW_ALL_DECKS);
         assertCommandSuccess(new ShowDecksCommand(), model, ShowDecksCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() {
+    public void execute_deckListIsFiltered_showsEverything() {
         expectedModel.updateFilteredDeckList(Model.PREDICATE_SHOW_ALL_DECKS);
         assertCommandSuccess(new ShowDecksCommand(), model, ShowDecksCommand.MESSAGE_SUCCESS, expectedModel);
     }
