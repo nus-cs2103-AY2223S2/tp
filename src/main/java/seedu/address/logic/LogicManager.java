@@ -2,6 +2,9 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -77,5 +80,72 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    public String getWorkToday() {
+
+        String deadlinesToday = "Deadlines Today: \n";
+        String timeSlotsToday = "Time Slots Today: \n";
+
+        for (int i = 0; i < model.getFilteredModuleList().size(); i++) {
+            boolean isDeadlineNull = model.getFilteredModuleList().get(i).getDeadline().value == null;
+            boolean isSlotNull = model.getFilteredModuleList().get(i).getTimeSlot().value == null;
+
+            // Handle deadlines
+            if (!isDeadlineNull) {
+                deadlinesToday += getDeadlinesToday(i);
+            }
+
+            // Handle Time Slots
+            if (!isSlotNull) {
+                timeSlotsToday += getSlotsToday(i);
+            }
+
+        }
+        return deadlinesToday + "\n\n" + timeSlotsToday;
+    }
+
+    private String getDeadlinesToday(int index) {
+        LocalDate today = LocalDate.now();
+        Module module = model.getFilteredModuleList().get(index);
+        String fullLine = "";
+
+        boolean isDeadlineToday = module.getDeadline().value.toLocalDate().isEqual(today);
+
+        if(isDeadlineToday) {
+            String moduleName = module.getName().fullName;
+            String moduleType = module.getTags().toString();
+            moduleType = moduleType.replace("[", "").replace("]", "");
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+            LocalDateTime date = module.getDeadline().value;
+            String formattedDate = formatter.format(date);
+
+            fullLine = moduleName + " " + moduleType + " by: " + formattedDate + "\n";
+        }
+
+        return fullLine;
+    }
+
+    private String getSlotsToday(int index) {
+        LocalDate today = LocalDate.now();
+        String fullLine = "";
+        Module module = model.getFilteredModuleList().get(index);
+
+        boolean isSlotToday = module.getTimeSlot().value.toLocalDate().isEqual(today);
+
+        if(isSlotToday) {
+            String moduleName = module.getName().fullName;
+            String moduleType = module.getTags().toString();
+            moduleType = moduleType.replace("[", "").replace("]", "");
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+            LocalDateTime date = module.getTimeSlot().value;
+            String formattedDate = formatter.format(date);
+
+            fullLine = moduleName + " " + moduleType + " Starting at: " + formattedDate + "\n";
+        }
+
+        return fullLine;
     }
 }
