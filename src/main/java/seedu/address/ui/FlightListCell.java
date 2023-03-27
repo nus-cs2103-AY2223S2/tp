@@ -19,7 +19,7 @@ public class FlightListCell<Flight extends Item> extends ListCell<Flight> {
             setGraphic(null);
             setText(null);
         } else {
-            setGraphic(new FlightCard((seedu.address.model.flight.Flight) flight).getRoot());
+            setGraphic(new FlightCard((seedu.address.model.flight.Flight) flight, getIndex() + 1).getRoot());
         }
     }
 }

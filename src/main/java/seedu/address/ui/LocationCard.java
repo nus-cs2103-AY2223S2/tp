@@ -11,9 +11,13 @@ import seedu.address.model.location.Location;
 public class LocationCard extends UiPart<VBox> {
     private static final String FXML = "LocationCard.fxml";
     private final Location location;
+    private final int displayedIndex;
 
     @FXML
     private VBox cardPane;
+
+    @FXML
+    private Label id;
 
     /**
      * Creates a view for the given location. The location is an identifiable object
@@ -21,12 +25,15 @@ public class LocationCard extends UiPart<VBox> {
      *
      * @param location The location to be displayed.
      */
-    public LocationCard(Location location) {
+    public LocationCard(Location location, int displayedIndex) {
         super(FXML);
         this.location = location;
+        this.displayedIndex = displayedIndex - 1;
         for (String line : location.getDisplayList()) {
             Label label = new Label(line);
             cardPane.getChildren().add(label);
+
+        id.setText(displayedIndex + ". ");
         }
     }
 

@@ -11,22 +11,28 @@ import seedu.address.model.crew.Crew;
 public class CrewCard extends UiPart<VBox> {
     private static final String FXML = "CrewCard.fxml";
     private final Crew crew;
+    private final int displayedIndex;
 
     @FXML
     private VBox cardPane;
 
+    @FXML
+    private Label id;
+
     /**
      * Creates a view for the given crew. The crew is an identifiable object
      * that can be displayed in a list.
-     *
      * @param crew The crew to be displayed.
      */
-    public CrewCard(Crew crew) {
+    public CrewCard(Crew crew, int displayedIndex) {
         super(FXML);
         this.crew = crew;
+        this.displayedIndex = displayedIndex - 1;
         for (String line : crew.getDisplayList()) {
             Label label = new Label(line);
             cardPane.getChildren().add(label);
+
+        id.setText(displayedIndex + ". ");
         }
     }
 

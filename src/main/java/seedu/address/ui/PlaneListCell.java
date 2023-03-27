@@ -19,7 +19,7 @@ public class PlaneListCell<Plane extends Item> extends ListCell<Plane> {
             setGraphic(null);
             setText(null);
         } else {
-            setGraphic(new PlaneCard((seedu.address.model.plane.Plane) plane).getRoot());
+            setGraphic(new PlaneCard((seedu.address.model.plane.Plane) plane, getIndex() + 1).getRoot());
         }
     }
 }

@@ -25,8 +25,6 @@ public class Crew implements Item {
             Map.of(
                     CrewLocationType.LOCATION_USING, 1000000
             );
-    private static final String ID_STRING = "ID";
-    private static final String NAME_STRING = "Name";
     private static final String RANK_STRING = "Rank";
     private static final String AVAILABILITY_STRING = "Status";
     private final String id;
@@ -123,6 +121,7 @@ public class Crew implements Item {
     @Override
     public List<String> getDisplayList() {
         return List.of(
+//              String.format("%s", Integer.parseInt(id), ". "),
                 String.format("%s", name),
                 String.format("%s: %s", RANK_STRING, rank),
                 String.format("%s: %s", AVAILABILITY_STRING, getAvailabilityString())
