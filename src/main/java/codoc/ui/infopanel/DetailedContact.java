@@ -2,7 +2,10 @@ package codoc.ui.infopanel;
 
 import codoc.model.person.Person;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 
 /**
  * DetailedContact controller for showing contact details at DetailedInfoPanel.
@@ -20,6 +23,13 @@ public class DetailedContact extends DetailedInfo {
     @FXML
     private Label linkedin;
 
+    @FXML
+    private Button copyGithubButton;
+
+    @FXML
+    private Button copyLinkedinButton;
+
+
     private Person protagonist;
 
     /**
@@ -28,10 +38,28 @@ public class DetailedContact extends DetailedInfo {
     public DetailedContact(Person protagonist) {
         super(FXML);
         this.protagonist = protagonist;
+        github.setWrapText(true);
+        linkedin.setWrapText(true);
         github.setText(protagonist.getGithub().value);
         email.setText(protagonist.getEmail().value);
         github.setText(protagonist.getGithub().value == null ? "Not Added" : "@" + protagonist.getGithub().value);
         linkedin.setText(protagonist.getLinkedin().value == null ? "Not Added" : protagonist.getLinkedin().value);
+
+
+    }
+    @FXML
+    private void copyGithubUrl() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent url = new ClipboardContent();
+        url.putString(protagonist.getGithub().value == null ? "" : "@" + protagonist.getGithub().value);
+        clipboard.setContent(url);
+    }
+    @FXML
+    private void copyLinkedinUrl() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent url = new ClipboardContent();
+        url.putString(protagonist.getLinkedin().value == null ? "" : protagonist.getLinkedin().value);
+        clipboard.setContent(url);
     }
 
 }
