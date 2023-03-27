@@ -29,8 +29,6 @@ public class PairListPanel extends UiPart<Region> {
     @FXML
     private VBox pairListBox;
 
-    static ImageView imageView;
-
     private final VBox emptyBox = new VBox();
 
     /**
@@ -41,7 +39,7 @@ public class PairListPanel extends UiPart<Region> {
     public PairListPanel(ObservableList<Pair> pairList) {
         super(FXML);
 
-        imageView = new ImageView();
+        ImageView imageView = new ImageView();
         Image image = new Image("/images/empty.png");
         imageView.setFitHeight(100);
         imageView.setPickOnBounds(true);
