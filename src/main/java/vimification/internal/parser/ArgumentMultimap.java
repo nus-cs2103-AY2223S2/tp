@@ -6,19 +6,17 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.HashSet;
 
-
 /**
- * Stores mapping of prefixes to their respective arguments. Each key may be associated with
- * multiple argument values. Values for a given key are stored in a list, and the insertion ordering
- * is maintained. Keys are unique, but the list of argument values may contain duplicate argument
- * values, i.e. the same argument value can be inserted multiple times for the same prefix.
+ * Stores mapping of flags to their respective arguments. Each flag may be associated with multiple
+ * argument values. Values for a given flag are stored in a set, and the insertion ordering may be
+ * maintained.
  */
 public class ArgumentMultimap {
 
     private final Set<ArgumentFlag> allowedFlags;
 
     /**
-     * Flags mapped to their respective arguments
+     * Flags mapped to their respective arguments.
      **/
     private final Map<ArgumentFlag, Set<String>> args;
 

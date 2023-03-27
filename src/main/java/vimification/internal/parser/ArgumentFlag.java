@@ -6,7 +6,7 @@ public class ArgumentFlag {
 
     private final String shortForm;
     private final String longForm;
-    private final int maxCount; // sigh, Java have to unsigned integer
+    private final int maxCount; // sigh, Java don't have unsigned integer
 
     public ArgumentFlag(String shortForm, String longForm, int maxCount) {
         this.shortForm = shortForm;

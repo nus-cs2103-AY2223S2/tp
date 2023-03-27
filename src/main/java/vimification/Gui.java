@@ -19,6 +19,7 @@ import vimification.model.MacroMap;
 import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 import vimification.storage.JsonLogicTaskListStorage;
+import vimification.storage.JsonMacroMapStorage;
 import vimification.storage.JsonUserPrefsStorage;
 import vimification.storage.LogicTaskListStorage;
 import vimification.storage.Storage;
@@ -32,7 +33,7 @@ import vimification.taskui.UiManager;
  */
 public class Gui extends Application {
 
-    private static final Logger logger = LogsCenter.getLogger(Gui.class);
+    private static final Logger LOGGER = LogsCenter.getLogger(Gui.class);
 
     protected Ui ui;
     protected Logic logic;
@@ -41,22 +42,27 @@ public class Gui extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("========== [ Initializing Vimification ] ==========");
+        LOGGER.info("========== [ Initializing Vimification ] ==========");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
-        UserPrefs userPrefs = initUserPref(userPrefsStorage);
+        UserPrefs userPrefs = initUserPrefs(userPrefsStorage);
 
         LogicTaskListStorage logicTaskListStorage =
-                new JsonLogicTaskListStorage(userPrefs.getTaskListFilePath());
+                new JsonLogicTaskListStorage(userPrefs.getLogicTaskListFilePath());
+        JsonMacroMapStorage macroMapStorage =
+                new JsonMacroMapStorage(userPrefs.getMacroMapFilePath()); // TODO: change this
+
         storage = new StorageManager(logicTaskListStorage, userPrefsStorage);
-
         initLogging(config);
-
-        logic = new LogicManager(initLogicTaskList(storage), storage);
+        logic = new LogicManager(
+                initLogicTaskList(storage),
+                initMacroMap(),
+                initCommandStack(),
+                storage);
         ui = new UiManager(logic);
     }
 
@@ -77,10 +83,10 @@ public class Gui extends Application {
         try {
             initialData = storage.readLogicTaskList();
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format.");
+            LOGGER.warning("Data file not in the correct format.");
             initialData = new LogicTaskList();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file.");
+            LOGGER.warning("Problem while reading from the file.");
             initialData = new LogicTaskList();
         }
         return initialData;
@@ -93,28 +99,27 @@ public class Gui extends Application {
     protected Config initConfig(Path configFilePath) {
         Path configFilePathUsed;
         if (configFilePath != null) {
-            logger.info("Custom config file specified: " + configFilePath);
+            LOGGER.info("Custom config file specified: " + configFilePath);
             configFilePathUsed = configFilePath;
         } else {
             configFilePathUsed = Config.DEFAULT_CONFIG_FILE;
         }
 
-        logger.info("Using config file: " + configFilePathUsed);
+        LOGGER.info("Using config file: " + configFilePathUsed);
         Config initializedConfig;
         try {
             initializedConfig = JsonUtil.readJsonFile(configFilePathUsed, Config.class);
         } catch (IOException e) {
-            logger.warning("Config file at " + configFilePathUsed
+            LOGGER.warning("Config file at " + configFilePathUsed
                     + " is not in the correct format."
                     + " Using default config.");
             initializedConfig = new Config();
         }
 
-        // Update config file in case it was missing to begin with or there are new/unused fields
         try {
             JsonUtil.saveJsonFile(initializedConfig, configFilePathUsed);
         } catch (IOException e) {
-            logger.warning("Failed to save file: " + StringUtil.getDetails(e));
+            LOGGER.warning("Failed to save file: " + StringUtil.getDetails(e));
         }
         return initializedConfig;
     }
@@ -124,14 +129,14 @@ public class Gui extends Application {
      * Returns a {@code UserPrefs} using the file at {@code storage}'s user prefs file path, or a
      * new {@code UserPrefs} with default configuration if errors occur when reading from the file.
      */
-    protected UserPrefs initUserPref(UserPrefsStorage storage) {
+    protected UserPrefs initUserPrefs(UserPrefsStorage storage) {
         Path prefsFilePath = storage.getUserPrefsFilePath();
-        logger.info("Using pref file: " + prefsFilePath);
+        LOGGER.info("Using pref file: " + prefsFilePath);
         UserPrefs initializedPrefs;
         try {
             initializedPrefs = storage.readUserPrefs();
         } catch (IOException e) {
-            logger.warning("UserPrefs file at " + prefsFilePath
+            LOGGER.warning("UserPrefs file at " + prefsFilePath
                     + " is not in the correct format."
                     + " Using default user prefs");
             initializedPrefs = new UserPrefs();
@@ -141,7 +146,7 @@ public class Gui extends Application {
         try {
             storage.saveUserPrefs(initializedPrefs);
         } catch (IOException e) {
-            logger.warning("Failed to save file: " + StringUtil.getDetails(e));
+            LOGGER.warning("Failed to save file: " + StringUtil.getDetails(e));
         }
         return initializedPrefs;
     }
