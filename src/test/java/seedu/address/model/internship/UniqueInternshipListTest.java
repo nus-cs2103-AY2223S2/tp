@@ -3,8 +3,7 @@ package seedu.address.model.internship;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACK;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.APPLE;
 import static seedu.address.testutil.TypicalInternships.GOOGLE;
@@ -42,7 +41,7 @@ public class UniqueInternshipListTest {
     @Test
     public void contains_internshipWithSameIdentityFieldsInList_returnsTrue() {
         uniqueInternshipList.add(APPLE);
-        Internship editedAlice = new InternshipBuilder(APPLE).withDate(VALID_DATE_GOOGLE).withTags(VALID_TAG_BACK)
+        Internship editedAlice = new InternshipBuilder(APPLE).withDate(VALID_DATE_APPLE).withTags(VALID_TAG_BACK)
                 .build();
         assertTrue(uniqueInternshipList.contains(editedAlice));
     }

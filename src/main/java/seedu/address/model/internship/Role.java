@@ -62,7 +62,7 @@ public class Role {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Role // instanceof handles nulls
-                && fullRole.equals(((Role) other).fullRole)); // state check
+                && fullRole.toLowerCase().equals(((Role) other).fullRole.toLowerCase())); // state check
     }
 
     /**

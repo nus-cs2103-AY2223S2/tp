@@ -62,7 +62,8 @@ public class CompanyName {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CompanyName // instanceof handles nulls
-                && fullCompanyName.equals(((CompanyName) other).fullCompanyName)); // state check
+                && fullCompanyName.toLowerCase().equals((
+                        (CompanyName) other).fullCompanyName.toLowerCase())); // state check
     }
 
     /**

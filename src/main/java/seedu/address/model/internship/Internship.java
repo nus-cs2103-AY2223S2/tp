@@ -115,7 +115,10 @@ public class Internship {
         }
 
         return otherInternship != null
-                && otherInternship.getCompanyName().equals(getCompanyName());
+                && otherInternship.getCompanyName().equals(getCompanyName())
+                && otherInternship.getStatus().equals(getStatus())
+                && otherInternship.getDate().equals(getDate())
+                && otherInternship.getRole().equals(getRole());
     }
 
     /**

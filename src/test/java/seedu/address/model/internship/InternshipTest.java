@@ -25,31 +25,48 @@ public class InternshipTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameInternship() {
         // same object -> returns true
         assertTrue(APPLE.isSameInternship(APPLE));
 
         // null -> returns false
         assertFalse(APPLE.isSameInternship(null));
 
-        // same company name, all other attributes different -> returns true
+        // same company name, all other attributes different -> returns false
         Internship editedApple = new InternshipBuilder(APPLE).withRole(VALID_ROLE_GOOGLE)
                 .withStatus(VALID_STATUS_GOOGLE).withDate(VALID_DATE_GOOGLE).withTags(VALID_TAG_BACK).build();
-        assertTrue(APPLE.isSameInternship(editedApple));
+        assertFalse(APPLE.isSameInternship(editedApple));
 
         // different company name, all other attributes same -> returns false
         editedApple = new InternshipBuilder(APPLE).withCompanyName(VALID_COMPANY_NAME_GOOGLE).build();
         assertFalse(APPLE.isSameInternship(editedApple));
 
-        // company name differs in case, all other attributes same -> returns false
+        // company name differs in case, all other attributes same -> returns true
         Internship editedGoogle = new InternshipBuilder(GOOGLE)
                 .withCompanyName(VALID_COMPANY_NAME_GOOGLE.toLowerCase()).build();
-        assertFalse(GOOGLE.isSameInternship(editedGoogle));
+        assertTrue(GOOGLE.isSameInternship(editedGoogle));
+
+        // role differs in case, all other attributes same -> returns true
+        editedGoogle = new InternshipBuilder(GOOGLE)
+                .withRole(VALID_ROLE_GOOGLE.toLowerCase()).build();
+        assertTrue(GOOGLE.isSameInternship(editedGoogle));
 
         // company name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_COMPANY_NAME_GOOGLE + " ";
         editedGoogle = new InternshipBuilder(GOOGLE).withCompanyName(nameWithTrailingSpaces).build();
         assertFalse(GOOGLE.isSameInternship(editedGoogle));
+
+        // different date -> returns false
+        editedApple = new InternshipBuilder(APPLE).withDate(VALID_DATE_GOOGLE).build();
+        assertFalse(APPLE.isSameInternship(editedApple));
+
+        // different comment -> returns true
+        editedApple = new InternshipBuilder(APPLE).withComment(VALID_COMMENT_GOOGLE).build();
+        assertTrue(APPLE.isSameInternship(editedApple));
+
+        // different tags -> returns true
+        editedApple = new InternshipBuilder(APPLE).withTags(VALID_TAG_BACK).build();
+        assertTrue(APPLE.isSameInternship(editedApple));
     }
 
     @Test
@@ -67,7 +84,7 @@ public class InternshipTest {
         // different type -> returns false
         assertFalse(APPLE.equals(5));
 
-        // different person -> returns false
+        // different internship -> returns false
         assertFalse(APPLE.equals(GOOGLE));
 
         // different name -> returns false

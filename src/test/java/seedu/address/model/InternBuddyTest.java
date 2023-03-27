@@ -3,8 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACK;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.APPLE;
 import static seedu.address.testutil.TypicalInternships.getTypicalInternBuddy;
@@ -45,8 +44,8 @@ public class InternBuddyTest {
 
     @Test
     public void resetData_withDuplicateInternships_throwsDuplicateInternshipException() {
-        // Two internships with the same identity fields
-        Internship editedApple = new InternshipBuilder(APPLE).withDate(VALID_DATE_GOOGLE).withTags(VALID_TAG_BACK)
+        // Two internships with the same  fields
+        Internship editedApple = new InternshipBuilder(APPLE).withDate(VALID_DATE_APPLE).withTags(VALID_TAG_BACK)
                 .build();
         List<Internship> newInternships = Arrays.asList(APPLE, editedApple);
         InternBuddyStub newData = new InternBuddyStub(newInternships);
@@ -73,7 +72,7 @@ public class InternBuddyTest {
     @Test
     public void hasInternship_internshipWithSameIdentityFieldsInInternBuddy_returnsTrue() {
         internBuddy.addInternship(APPLE);
-        Internship editedApple = new InternshipBuilder(APPLE).withDate(VALID_DATE_GOOGLE).withTags(VALID_TAG_BACK)
+        Internship editedApple = new InternshipBuilder(APPLE).withDate(VALID_DATE_APPLE).withTags(VALID_TAG_BACK)
                 .build();
         assertTrue(internBuddy.hasInternship(editedApple));
     }
