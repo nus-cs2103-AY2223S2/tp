@@ -204,7 +204,6 @@ public class EditCommand extends Command {
             setSocialMedia(toCopy.socialMedia);
             setTags(toCopy.tags);
             setModules(toCopy.modules);
-
             setBirthday(toCopy.birthday);
         }
 

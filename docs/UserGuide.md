@@ -19,18 +19,18 @@ ConnectUS is a desktop app for **managing contacts, optimized for use via a Comm
 
 1. Ensure you have Java `11`(found [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)) or above installed in your computer.
 
-2. Download the latest `ConnectUS.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases). <br>
-   ### ![Latest](images/ConnectUSLatest.png) <br>
+2. Download the latest `ConnectUS.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases).<br>
+   ![Latest](images/ConnectUSLatest.png)
 
-3. Copy the file to the folder you want to use as the _home folder_ for your ConnectUS app. <br>
-   ### ![Home Folder](images/ConnectUSHomeFolder.png)
+3. Copy the file to the folder you want to use as the _home folder_ for your ConnectUS app.<br>
+   ![Home Folder](images/ConnectUSHomeFolder.png)
 
 4. Double-click the `ConnectUS.jar` file to start the app.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ### ![Ui](images/Ui.png)
+   ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window. <br>
-   ### ![Command Box](images/ConnectUSCommandBox.png) <br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   ![Command Box](images/ConnectUSCommandBox.png) <br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -100,7 +100,7 @@ Examples:
 * `add n/James e/james@example.com ig/itsjameshere b/01/01/2000` would create a contact named James with an email james@example.com, an Instagram of `itsjameshere` and a birthday of January 1st, 2000.
 * `add n/James tg/itsjameshere mod/CS2103T mod/CS2101 cca/NUS Hackers` would create a contact named James with Telegram `itsjameshere`, the module tags of CS2103T and CS2101, and the CCA of NUS Hackers.
 
-Please refer to **[this section](#additonal_information_regarding_specific_fields)** for details on how to use each information field prefix.
+Please refer to **[this section](#additional-information-regarding-specific-fields)** for details on how to use each information field prefix.
 
 ### Listing all persons : `list`
 
@@ -124,7 +124,7 @@ Examples:
 * `edit 1 p/12345678 e/james@example.com` Edits the phone number and email address of the 1st person to be `12345678` and `james@example.com` respectively.
 * `edit 2 n/Betsy Crower -t` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-Please refer to **[this section](#additonal_information_regarding_specific_fields)** for details on how to use each information field prefix.
+Please refer to **[this section](#additional-information-regarding-specific-fields)** for details on how to use each information field prefix.
 
 ### Deleting a person : `delete`
 
@@ -207,7 +207,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 **Instagram**
 * Instagram is an *optional* field, i.e. a contact can exist even if it does not have an Instagram.
-* The prefix for an Instagram username is `ig/`
+* The prefix for an Instagram username is `ig/`.
 * Instagram usernames should be of the format john.123.doe and adhere to the following constraints:
     * The username should only contain alphanumeric characters and the special character: `.`.
     * The dots `.` must not be consecutive or at the end.
@@ -215,29 +215,34 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 **Telegram**
 * Telegram is an *optional* field, i.e. a contact can exist even if it does not have a Telegram.
+* The prefix for a Telegram username is `tg/`.
 * Telegram usernames should be of the format johndoe and adhere to the following constraints:
     * The username should only contain alphanumeric characters and the special character `_`.
     * The username should contain at least 5 characters.
 
 **WhatsApp**
 * WhatsApp is an *optional* field, i.e. a contact can exist even if it does not have a WhatsApp.
+* The prefix for adding a WhatsApp is `wa/`.
 * A WhatsApp's user identifier is a phone number, which should adhere to the following constraints:
     * Phone numbers should only contain numeric characters.
     * Phone numbers should be at least 3 digits long.
 
 **Birthday**
 * Birthday is an *optional* field, i.e. a contact can exist even if it does not have a birthday.
+* The prefix for a birthday is `b/`.
 * Birthdays should be of the format DD/MM/YYYY:
   * `01/01/2000` would correspond to January 1st, 2000
   * `16/05/1990` would correspond to May 16th, 1990.
 
 **Module**
 * Module is an *optional* field, i.e. a contact can exist even if it does not have a module.
+* The prefix for a module is `mod/`.
 * Module names should be alphanumeric.
 * A person can have any number of modules assigned to it.
 
 **Tag**
 * Tag is an *optional* field, i.e. a contact can exist even if it does not have a tag.
+* The prefix for a tag is `t/`.
 * Tag names should be alphanumeric.
 * A person can have any number of tags assigned to it.
 
@@ -254,10 +259,10 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 | Action     | Format                                                                                                                                                                       | Examples                                                                               |
 |------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​`                                            | `add n/James p/12345678 e/james@example.com tg/@itsjameshere b/14/02/2000 mod/CS2103T` |
+| **Add**    | `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​`                                            | `add n/James p/12345678 e/james@example.com tg/itsjameshere b/14/02/2000 mod/CS2103T` |
 | **Clear**  | `clear`                                                                                                                                                                      |                                                                                        |
 | **Delete** | `delete INDEX`                                                                                                                                                               | `delete 3`                                                                             |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​ -t` | `edit 1 p/12345678 e/james@example.com tg/@itsjameshere`                               |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​ -t` | `edit 1 p/12345678 e/james@example.com tg/itsjameshere`                               |
 | **List**   | `list`                                                                                                                                                                       |                                                                                        |
 | **Help**   | `help`                                                                                                                                                                       |                                                                                        |
 | **Search** | `search KEYWORD`                                                                                                                                                             | `search alex january`                                                                  |
