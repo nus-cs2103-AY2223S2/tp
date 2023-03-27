@@ -20,7 +20,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
-import seedu.address.ui.core.ItemListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -37,8 +36,11 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private ItemListPanel itemListPanel;
     private FlightListPanel flightListPanel;
+    private CrewListPanel crewListPanel;
+    private PlaneListPanel planeListPanel;
+    private PilotListPanel pilotListPanel;
+    private LocationListPanel locationListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -52,16 +54,28 @@ public class MainWindow extends UiPart<Stage> {
     private ImageView wingmanLogo;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
-
-    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
 
     @FXML
+    private StackPane menuBarPlaceholder;
+
+    @FXML
     private StackPane flightListPanelPlaceholder;
+
+    @FXML
+    private StackPane crewListPanelPlaceholder;
+
+    @FXML
+    private StackPane pilotListPanelPlaceholder;
+
+    @FXML
+    private StackPane planeListPanelPlaceholder;
+
+    @FXML
+    private StackPane locationListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -126,10 +140,6 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         wingmanLogo.setImage(getImage(WINGMAN_LOGO));
 
-        itemListPanel = new ItemListPanel(logic.getFilteredItemList());
-        Region item = itemListPanel.getRoot();
-        personListPanelPlaceholder.getChildren().add(item);
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -137,12 +147,32 @@ public class MainWindow extends UiPart<Stage> {
             new StatusBarFooter(logic.getOperationMode());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
+        MenuBar menuBar =
+                new MenuBar();
+        menuBarPlaceholder.getChildren().add(menuBar.getRoot());
+
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         flightListPanel = new FlightListPanel(logic.getFilteredFlightList());
         Region flight = flightListPanel.getRoot();
         flightListPanelPlaceholder.getChildren().add(flight);
+
+        crewListPanel = new CrewListPanel(logic.getFilteredCrewList());
+        Region crew = crewListPanel.getRoot();
+        crewListPanelPlaceholder.getChildren().add(crew);
+
+        planeListPanel = new PlaneListPanel(logic.getFilteredPlaneList());
+        Region plane = planeListPanel.getRoot();
+        planeListPanelPlaceholder.getChildren().add(plane);
+
+        pilotListPanel = new PilotListPanel(logic.getFilteredPilotList());
+        Region pilot = pilotListPanel.getRoot();
+        pilotListPanelPlaceholder.getChildren().add(pilot);
+
+        locationListPanel = new LocationListPanel(logic.getFilteredLocationList());
+        Region location = locationListPanel.getRoot();
+        locationListPanelPlaceholder.getChildren().add(location);
     }
 
     /**
@@ -200,9 +230,29 @@ public class MainWindow extends UiPart<Stage> {
                     new StatusBarFooter(logic.getOperationMode());
             statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
+            MenuBar menuBar =
+                    new MenuBar();
+            menuBarPlaceholder.getChildren().add(menuBar.getRoot());
+
             flightListPanel = new FlightListPanel(logic.getFilteredFlightList());
             Region flight = flightListPanel.getRoot();
             flightListPanelPlaceholder.getChildren().add(flight);
+
+            crewListPanel = new CrewListPanel(logic.getFilteredCrewList());
+            Region crew = crewListPanel.getRoot();
+            crewListPanelPlaceholder.getChildren().add(crew);
+
+            planeListPanel = new PlaneListPanel(logic.getFilteredPlaneList());
+            Region plane = planeListPanel.getRoot();
+            planeListPanelPlaceholder.getChildren().add(plane);
+
+            pilotListPanel = new PilotListPanel(logic.getFilteredPilotList());
+            Region pilot = pilotListPanel.getRoot();
+            pilotListPanelPlaceholder.getChildren().add(pilot);
+
+            locationListPanel = new LocationListPanel(logic.getFilteredLocationList());
+            Region location = locationListPanel.getRoot();
+            locationListPanelPlaceholder.getChildren().add(location);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

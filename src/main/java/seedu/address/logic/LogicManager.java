@@ -13,8 +13,12 @@ import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.OperationMode;
+import seedu.address.model.crew.Crew;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.item.Item;
+import seedu.address.model.location.Location;
+import seedu.address.model.pilot.Pilot;
+import seedu.address.model.plane.Plane;
 import seedu.address.storage.Storage;
 
 /**
@@ -120,6 +124,34 @@ public class LogicManager implements Logic {
         logger.info("Getting filtered flight list: " + model.getFlightList().size() + " "
                 + "flights");
         return model.getFlightList();
+    }
+
+    @Override
+    public ObservableList<Crew> getFilteredCrewList() {
+        logger.info("Getting filtered crew list: " + model.getCrewList().size() + " "
+                + "crew");
+        return model.getCrewList();
+    }
+
+    @Override
+    public ObservableList<Plane> getFilteredPlaneList() {
+        logger.info("Getting filtered plane list: " + model.getPlaneList().size() + " "
+                + "planes");
+        return model.getPlaneList();
+    }
+
+    @Override
+    public ObservableList<Pilot> getFilteredPilotList() {
+        logger.info("Getting filtered pilot list: " + model.getPilotList().size() + " "
+                + "pilots");
+        return model.getPilotList();
+    }
+    @Override
+
+    public ObservableList<Location> getFilteredLocationList() {
+        logger.info("Getting filtered location list: " + model.getLocationList().size() + " "
+                + "locations");
+        return model.getLocationList();
     }
 
     @Override
