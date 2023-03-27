@@ -153,7 +153,9 @@ The **API** of this component is specified
 in [`Storage.java`](https://github.com/AY2223S2-CS2103T-T13-2/tp/tree/master/src/main/java/seedu/recipe/storage/Storage.java)
 
 **Structure:**
+
 <img src="images/StorageClassDiagram.png" width="500" />
+
 <img src="images/JsonAdaptersDiagram.png" width="500" />
 
 **The `Storage` component:**
@@ -229,7 +231,7 @@ Classes used by multiple components are in the `seedu.recipe.commons` package.
 The `find` command allows the user to filter recipes by their properties: 
 e.g. their name, tags, or ingredients.
 
-<img src="images/FindSequenceDiagram.png" width="500" />
+<img src="images/FindSequenceDiagram.png" width="1000" />
 
 #### Implementation
 As with all commands, the find command goes through the standard command execution pipeline.
