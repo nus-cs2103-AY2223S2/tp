@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: page
 title: Developer Guide
 ---
 
@@ -220,7 +220,7 @@ The `Storage` component,
   the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
-* 
+
 <sub>[return to table of contents](#table-of-contents-)</sub>
 
 ### Common classes
@@ -357,7 +357,7 @@ Given below is an example usage scenario and how the add command works at each s
 
 Step 1. A new patient visits the clinic/hospital and the clinic administrator registers the new patient in the patient records system.
 
-Step 2. The administrator executes `add i/T0012345A n/John Doe p/98765432 a/John street, block 123, #01-01 d/NKDA g/Male e/johnd@example.com t/Diabetic`. 
+Step 2. The administrator executes `add i/T0012345A n/John Doe p/98765432 a/John street, block 123, #01-01 d/NKDA g/Male e/johnd@example.com t/Diabetic`.
 The `AddCommand` is executed and `Model#hasPerson` is called and followed by a call to `Model#addPerson()`
 which adds the record into the patient records system if the record does not already exist in the system.
 
@@ -501,7 +501,7 @@ The following activity diagram summarizes what happens when a user executes thes
     * Cons: Not easy to implement and require more FXML changes.
 
 <sub>[return to table of contents](#table-of-contents-)</sub>
-    
+
 ### Adding Nric as identifier
 
 #### Implementation
@@ -554,7 +554,7 @@ identify what known conditions he/she has.
 **Aspect: Implementing a new object to represent conditions:**
 
 * **Alternative 1 (current choice):** Convert `Tag` objects to health conditions.
-    * Pros: The `Tag` object originally implemented in AB3 currently does not have much meaning in the context of 
+    * Pros: The `Tag` object originally implemented in AB3 currently does not have much meaning in the context of
             HospiSearch. The highlighting of the tags can be repurposed to show a quick view of known conditions
             a patient has.
     * Cons: If a patient has many pre-existing conditions, this may end up as visual clutter. Furthermore, we may

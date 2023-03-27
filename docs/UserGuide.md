@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-HospiSearch is a **desktop app for managing hospital patients' particulars, optimized for use via a Command Line Interface** 
+HospiSearch is a **desktop app for managing hospital patients' particulars, optimized for use via a Command Line Interface**
 (CLI) while still having the benefits of a **Graphical User Interface (GUI)**. If you can type fast, HospiSearch can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents: coming soon
@@ -30,7 +30,7 @@ HospiSearch is a **desktop app for managing hospital patients' particulars, opti
 ## Features
 
 ### Notes:
-- Words in `UPPER_CASE` are the parameters to be supplied by the user. 
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.
 e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 - Items in square brackets are optional.
@@ -44,9 +44,6 @@ e.g. [t/TAG]…​ can be used as   (i.e. 0 times), t/friend, t/friend t/family 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 
-
-
-  
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -136,7 +133,7 @@ Loads the data from a specified slot represented by an index
 
 Format: `load INDEX_NO`
 
-Example: 
+Example:
 * `load 3` loads the data from the 3rd slot
 
 ### Help menu: `help`
