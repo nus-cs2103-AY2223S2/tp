@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import javafx.collections.ObservableList;
 import seedu.address.experimental.model.Model;
@@ -37,8 +37,8 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Entity> ListByClassification = model.getListByClassification(classification.toString());
-        Entity toDelete = ListByClassification.stream()
+        ObservableList<Entity> listByClassification = model.getListByClassification(classification.toString());
+        Entity toDelete = listByClassification.stream()
                 .filter(entity -> entity.getName().equals(entityName))
                 .findFirst()
                 .orElseThrow(() -> new CommandException("No such entity found!"));
