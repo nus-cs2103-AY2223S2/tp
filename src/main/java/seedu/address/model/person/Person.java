@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.score.Score;
 import seedu.address.model.score.ScoreList;
+import seedu.address.model.score.ScoreList.ScoreSummary;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
@@ -239,6 +240,33 @@ public class Person {
     public ObservableList<Score> getFilteredScoreList() {
         FilteredList<Score> filteredScores = new FilteredList<>(this.getScoreListAsObservableList());
         return filteredScores;
+    }
+
+    /**
+     * Gets the sorted score list with recent score at front.
+     * @return A view of list of sorted scores.
+     */
+    public ObservableList<Score> getSortedScoreList() {
+        ObservableList<Score> sortedScoreList = this.scoreList.getSortedScoreList();
+        return sortedScoreList;
+    }
+
+    /**
+     * Gets the recent 5 scores with recent score at back.
+     * @return A view of list of recent 5 scores.
+     */
+    public ObservableList<Score> getRecentScoreList() {
+        ObservableList<Score> recentScoreList = this.scoreList.getRecentScoreList();
+        return recentScoreList;
+    }
+
+    /**
+     * Gets the summary statistic of recent 5 scores.
+     * @return A view of list of recent 5 scores' summary statistic.
+     */
+    public ObservableList<ScoreSummary> getScoreSummary() {
+        ObservableList<ScoreSummary> scoreSummary = this.scoreList.getScoreSummary();
+        return scoreSummary;
     }
 
     /**
