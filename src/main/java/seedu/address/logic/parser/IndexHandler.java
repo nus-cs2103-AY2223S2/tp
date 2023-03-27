@@ -49,7 +49,6 @@ public class IndexHandler {
         return personList.stream().filter(person -> person.getContactIndex().equals(index)).findFirst();
     }
 
-<<<<<<< HEAD
     public ContactIndex assignMeetUpIndex() {
         //todo model should have this
         List<MeetUp> meetUpList = model.getObservableMeetUpList();
@@ -68,8 +67,9 @@ public class IndexHandler {
     public Optional<MeetUp> getMeetUpByIndex(ContactIndex index) {
         List<MeetUp> meetUpList = model.getObservableMeetUpList();
         return meetUpList.stream()
-                .filter(meetUp -> meetUp.getContactIndex().equals(index))
-=======
+                .filter(meetUp -> meetUp.getContactIndex().equals(index)).findFirst();
+    }
+
     /**
      * Assigns a contact index for a Recommendation.
      * @return new Contact Index for new Recommendation.
@@ -93,11 +93,10 @@ public class IndexHandler {
      * Returns the recommendation at the given index.
      */
     public Optional<Recommendation> getRecommendationByIndex(ContactIndex index) {
-        List<Recommendation> recommendationList = model.getObservableRecommendationList();
-        return recommendationList.stream()
-                .filter(recommendation -> recommendation.getContactIndex().equals(index))
->>>>>>> master
-                .findFirst();
-    }
+            List<Recommendation> recommendationList = model.getObservableRecommendationList();
+            return recommendationList.stream()
+                    .filter(recommendation -> recommendation.getContactIndex().equals(index))
+                    .findFirst();
+        }
 
 }

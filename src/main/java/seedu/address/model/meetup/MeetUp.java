@@ -2,8 +2,10 @@ package seedu.address.model.meetup;
 
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
-import seedu.address.model.scheduler.time.TimePeriod;
+import seedu.address.model.recommendation.Recommendation;
+import seedu.address.model.time.TimePeriod;
 
+import java.util.Optional;
 import java.util.Set;
 
 public class MeetUp implements Comparable<MeetUp> {
@@ -13,12 +15,12 @@ public class MeetUp implements Comparable<MeetUp> {
     private final ContactIndex contactIndex;
 
     //todo constructor for choice form recommendations
-//    public MeetUp(Recommendation recommendation, Set<ContactIndex> participants, ContactIndex contactIndex) {
-//        this.timePeriod = recommendation.getTimePeriod();
-//        this.location = recommendation.getLocation();
-//        this.participants = participants;
-//        this.contactIndex = contactIndex;
-//    }
+    public MeetUp(Recommendation recommendation, Set<ContactIndex> participants, ContactIndex contactIndex) {
+        this.timePeriod = recommendation.getTimePeriod();
+        this.location = recommendation.getLocation();
+        this.participants = participants;
+        this.contactIndex = contactIndex;
+    }
 
     //todo constructor for customised meet
     public MeetUp(TimePeriod timePeriod, Location location, Set<ContactIndex> participants, ContactIndex contactIndex) {
@@ -30,6 +32,10 @@ public class MeetUp implements Comparable<MeetUp> {
 
     public ContactIndex getContactIndex() {
         return this.contactIndex;
+    }
+
+    public int getContactIndexValue() {
+        return this.contactIndex.getContactIndex();
     }
 
     public Location getLocation() {

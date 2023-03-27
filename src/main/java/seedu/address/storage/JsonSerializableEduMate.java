@@ -32,9 +32,8 @@ class JsonSerializableEduMate {
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final JsonAdaptedUser user;
 
-    //todo add meetup list and last participants list
-    private final JsonAdaptedParticipantList participantList;
-    private final List<JsonAdaptedMeetUp> meetUpList = new ArrayList<>();
+    //todo add meetup list
+    //private final List<JsonAdaptedMeetUp> meetUpList = new ArrayList<>();
 
     private final List<JsonAdaptedRecommendation> recommendations = new ArrayList<>();
 
@@ -46,12 +45,12 @@ class JsonSerializableEduMate {
     public JsonSerializableEduMate(
             @JsonProperty("persons") List<JsonAdaptedPerson> persons,
             @JsonProperty("user") JsonAdaptedUser user,
-            @JsonProperty("recommendations") List<JsonAdaptedRecommendation> recommendations, @JsonProperty("participants") JsonAdaptedParticipantList participantList, @JsonProperty("meetUps") List<JsonAdaptedMeetUp> meetUpList) {
+            @JsonProperty("recommendations") List<JsonAdaptedRecommendation> recommendations) {
+        //@JsonProperty("meetUps") List<JsonAdaptedMeetUp> meetUpList
         this.persons.addAll(persons);
         this.user = user;
         this.recommendations.addAll(recommendations);
-        this.participantList = participantList;
-        this.meetUpList.addAll(meetUpList); //todo double check
+        //this.meetUpList.addAll(meetUpList); //todo double check
 
     }
 
@@ -63,8 +62,6 @@ class JsonSerializableEduMate {
     public JsonSerializableEduMate(ReadOnlyEduMate source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         user = new JsonAdaptedUser(source.getUser());
-
-        participantList = new JsonAdaptedParticipantList(source.getParticipantList()); //todo double check
 
         recommendations.addAll(source.getRecommendationList()
                 .stream().map(JsonAdaptedRecommendation::new)
@@ -83,8 +80,6 @@ class JsonSerializableEduMate {
         User userModel = user.toModelType();
         Set<ModuleTag> userModuleTags = userModel.getImmutableModuleTags();
 
-        Set<ContactIndex> participants = participantList.toModelType(); //todo double check
-
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (eduMate.hasPerson(person)) {
@@ -94,11 +89,11 @@ class JsonSerializableEduMate {
             eduMate.addPerson(person);
         }
 
-        for (JsonAdaptedMeetUp jsonAdaptedMeetUp : meetUpList) {
-            MeetUp meetUp = jsonAdaptedMeetUp.toModelType();
-            //check for duplicate meetup
-
-        }
+//        for (JsonAdaptedMeetUp jsonAdaptedMeetUp : meetUpList) {
+//            MeetUp meetUp = jsonAdaptedMeetUp.toModelType();
+//            //check for duplicate meetup
+//
+//        }
 
         for (JsonAdaptedRecommendation jsonAdaptedRecommendation : recommendations) {
             Recommendation recommendation = jsonAdaptedRecommendation.toModelType();
@@ -109,7 +104,6 @@ class JsonSerializableEduMate {
         }
 
         eduMate.setUser(userModel);
-        eduMate.setParticipants(participants); //todo double check
         return eduMate;
     }
 

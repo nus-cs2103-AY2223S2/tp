@@ -2,22 +2,21 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.model.location.Location;
 import seedu.address.model.meetup.MeetUp;
-import seedu.address.model.person.ContactIndex;
-import seedu.address.model.scheduler.time.TimePeriod;
-
-import java.util.Set;
 
 public class JsonAdaptedMeetUp {
 
-    protected final Location location;
-    protected final TimePeriod timePeriod;
-    protected final Set<ContactIndex> participants;
-    protected final ContactIndex contactIndex;
+    protected final JsonAdaptedLocation location;
+    protected final JsonAdaptedTimePeriod timePeriod;
+    protected final JsonAdaptedParticipants participants;
+    protected final int contactIndex;
 
     @JsonCreator
-    public JsonAdaptedMeetUp(@JsonProperty("location") Location location, @JsonProperty("timePeriod") TimePeriod timePeriod, @JsonProperty("participants") Set<ContactIndex> participants, @JsonProperty("contactIndex") ContactIndex contactIndex) {
+    public JsonAdaptedMeetUp(
+            @JsonProperty("location") JsonAdaptedLocation location,
+            @JsonProperty("timePeriod")JsonAdaptedTimePeriod timePeriod,
+            @JsonProperty("participants") JsonAdaptedParticipants participants,
+            @JsonProperty("contactIndex") int contactIndex) {
         this.location = location;
         this.participants = participants;
         this.timePeriod = timePeriod;
@@ -25,13 +24,13 @@ public class JsonAdaptedMeetUp {
     }
 
     public JsonAdaptedMeetUp(MeetUp meetUp) {
-        this.location = meetUp.getLocation();
-        this.participants = meetUp.getParticipants();
-        this.timePeriod = meetUp.getTimePeriod();
-        this.contactIndex = meetUp.getContactIndex();
+        this.location = new JsonAdaptedLocation(meetUp.getLocation());
+        this.participants = new JsonAdaptedParticipants(meetUp.getParticipants());
+        this.timePeriod = new JsonAdaptedTimePeriod(meetUp.getTimePeriod());
+        this.contactIndex = meetUp.getContactIndexValue();
     }
 
     public MeetUp toModelType() {
-        return new MeetUp(timePeriod, location, participants,contactIndex);
+        //todo to implement later
     }
 }

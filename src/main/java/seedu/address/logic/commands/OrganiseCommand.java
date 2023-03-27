@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import org.joda.time.LocalTime;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.meetup.MeetUp;
@@ -9,11 +11,13 @@ import seedu.address.model.Model;
 import seedu.address.model.location.Location;
 import seedu.address.model.meetup.exceptions.DuplicateMeetUpException;
 import seedu.address.model.person.ContactIndex;
-import seedu.address.model.scheduler.time.Day;
-import seedu.address.model.scheduler.time.TimeBlock;
-import seedu.address.model.scheduler.time.TimePeriod;
+import seedu.address.model.recommendation.Recommendation;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.TimeBlock;
+import seedu.address.model.time.TimePeriod;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class OrganiseCommand extends Command {
@@ -50,20 +54,19 @@ public class OrganiseCommand extends Command {
         requireNonNull(model);
 
         if (this.index != null) {
-            return new CommandResult("NOT IMPLEMENTED YET");
-//            SortedList<Recommendation> recommendations = model.getObservableRecommendationList(); //todo shouldnt be red after integration merge
-//
-//            Recommendation recommendation = model.getRecommendationByIndex(this.index);
-//            if (recommendation == null) {
-//                throw new CommandException("NO RECOMMENDATION WITH THIS INDEX"); //todo make this a constant
-//            }
-//            Set<ContactIndex> participants = model.getParticipants(); //todo model should save this
-//            //todo check if participants is null, tho technically if recc isnt null, this shld not be either, maybe an assert here
-//            ContactIndex newIndex = model.getMeetUpIndex();
-//            MeetUp meetUp = new MeetUp(recommendation, participants, newIndex);
-//            model.addMeetUp(meetUp);
-//            //model.updateObservableMeetUpList();
-//            //todo update the meetup observable list
+
+            Recommendation recommendation = model.getRecommendationByIndex(this.index).get();
+
+            if (recommendation == null) {
+                throw new CommandException("NO RECOMMENDATION WITH THIS INDEX"); //todo make this a constant
+            }
+            Set<ContactIndex> participants = model.getParticipants(); //todo model should save this
+            //todo check if participants is null, tho technically if recc isnt null, this shld not be either, maybe an assert here
+            ContactIndex newIndex = model.getMeetUpIndex();
+            MeetUp meetUp = new MeetUp(recommendation, participants, newIndex);
+            model.addMeetUp(meetUp);
+            model.updateObservableMeetUpList(); //todo update the meetup observable list
+            return new CommandResult("SUCCESSFULLY added new meeting from recommendation");
         }
 
         //
@@ -75,7 +78,7 @@ public class OrganiseCommand extends Command {
             throw new CommandException("DUPLICATE MEET");
         }
 
-        model.addMeetUp(meetUp);
+        model.updateObservableMeetUpList();
         List<MeetUp> l = model.getObservableMeetUpList();
         l.forEach(System.out::println);
 

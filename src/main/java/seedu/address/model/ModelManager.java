@@ -279,19 +279,16 @@ public class ModelManager implements Model {
                 && observablePersons.equals(other.observablePersons);
     }
 
-//    @Override
-//    public Optional<Recommendation> getRecommendationByIndex(ContactIndex index) {
-//        return indexHandler.getRecommendationByIndex(index);
-//        //todo nothing, this fn is in integration pr
-//    }
+    @Override
+    public Optional<Recommendation> getRecommendationByIndex(ContactIndex index) {
+        return indexHandler.getRecommendationByIndex(index);
+        //todo DOUBLE CHECK
+    }
 
     @Override
     public void addMeetUp(MeetUp meetUp) {
         ContactIndex contactIndex = indexHandler.assignMeetUpIndex();
-        //MeetUp indexedMeetUp = meetUp.setContactIndex(contactIndex);
         eduMate.addMeetUp(meetUp);
-       // updateObservableMeetUpList();
-        //return meetUp;
     }
 
     @Override
@@ -304,12 +301,15 @@ public class ModelManager implements Model {
         return observableMeetUps;
     }
 
-    //todo DO I NEED THIS?
-//    @Override
-//    public void updateObservableMeetUpList() {
-//
-//    }
+    @Override
+    public Set<ContactIndex> getParticipants() {
+        return eduMate.getParticipantList();
+    }
 
-
+    @Override
+    public void updateObservableMeetUpList() {
+        filteredMeetUps.setPredicate(PREDICATE_SHOW_ALL_MEETUPS);
+        observableMeetUps.setComparator(COMPARATOR_CONTACT_INDEX_MEETUP);
+    }
 
 }

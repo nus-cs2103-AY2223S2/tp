@@ -2,10 +2,11 @@ package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.OrganiseCommand;
 import seedu.address.model.location.Location;
-import seedu.address.model.scheduler.time.Day;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ContactIndex;
 import org.joda.time.LocalTime;
+import seedu.address.model.time.Day;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;

@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -30,6 +31,11 @@ public interface Model {
     /** {@code Comparator} that sorts by contact index */
     Comparator<Recommendation> COMPARATOR_CONTACT_INDEX_RECOMMENDATION =
             Comparator.comparing(Recommendation::getContactIndex);
+
+    //todo double check
+    Predicate<MeetUp> PREDICATE_SHOW_ALL_MEETUPS = unused -> true;
+
+    Comparator<MeetUp> COMPARATOR_CONTACT_INDEX_MEETUP = Comparator.comparing(MeetUp::getContactIndex);
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -169,7 +175,7 @@ public interface Model {
     void updateObservablePersonList();
 
     //TODO ADD JAVA DOCS
-    //Optional<Recommendation> getRecommendationByIndex(ContactIndex contactIndex);
+    Optional<Recommendation> getRecommendationByIndex(ContactIndex contactIndex);
 
     void addMeetUp(MeetUp meetUp);
 
@@ -203,4 +209,7 @@ public interface Model {
      */
     void updateObservableRecommendationList();
 
+    Set<ContactIndex> getParticipants();
+
+    void updateObservableMeetUpList();
 }
