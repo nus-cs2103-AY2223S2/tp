@@ -559,9 +559,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. TaskBook shows an error message.
+  * 3a1. TaskBook shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
+  
+* 3b. The input syntax is invalid
+
+  * 3a2. TaskBook shows an error message
+
+    Use case resumes at step 2.
+    
 
 ### Non-Functional Requirements
 
