@@ -53,7 +53,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ? ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get())
                 : Address.getEmptyAddress();
         Major major = argMultimap.getValue(PREFIX_MAJOR).isPresent()
-                ? ParserUtil.parseMajor(argMultimap.getValue(PREFIX_ADDRESS).get())
+                ? ParserUtil.parseMajor(argMultimap.getValue(PREFIX_MAJOR).get())
                 : Major.getEmptyMajor();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Tag> teamList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TEAM));
