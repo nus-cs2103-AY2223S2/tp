@@ -70,6 +70,9 @@ public class EditCommand extends Command {
 
         return new Event(updatedName, updatedDate, updatedStartTime, updatedEndTime);
     }
+    
+    @Override
+    public String commandWord() {return COMMAND_WORD;}
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -89,6 +92,11 @@ public class EditCommand extends Command {
 
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
+        model.recentCommand().clear();
+        model.recentEvent().clear();
+        model.recentCommand().add(this);
+        model.recentEvent().add(eventToEdit);
+        model.recentEvent().add(editedEvent);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 

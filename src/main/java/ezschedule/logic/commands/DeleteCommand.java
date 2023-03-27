@@ -29,6 +29,9 @@ public class DeleteCommand extends Command {
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
+    
+    @Override
+    public String commandWord() {return COMMAND_WORD;}
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -40,7 +43,11 @@ public class DeleteCommand extends Command {
         }
 
         Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.recentCommand().clear();
+        model.recentEvent().clear();
         model.deleteEvent(eventToDelete);
+        model.recentEvent().add(eventToDelete);
+        model.recentCommand().add(this);
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete));
     }
 

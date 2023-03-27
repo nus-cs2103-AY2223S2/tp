@@ -38,6 +38,9 @@ public class AddCommand extends Command {
         requireNonNull(event);
         toAdd = event;
     }
+    
+    @Override
+    public String commandWord() {return COMMAND_WORD;}
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -46,8 +49,11 @@ public class AddCommand extends Command {
         if (model.hasEvent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
-
+        model.recentEvent().clear();
+        model.recentCommand().clear();
         model.addEvent(toAdd);
+        model.recentEvent().add(toAdd);
+        model.recentCommand().add(this);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -6,12 +6,15 @@ import static java.util.Objects.requireNonNull;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.HashMap;
 
 import ezschedule.commons.core.GuiSettings;
 import ezschedule.commons.core.LogsCenter;
+import ezschedule.logic.commands.Command;
 import ezschedule.model.event.Event;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import java.util.ArrayList;
 
 /**
  * Represents the in-memory model of the scheduler data.
@@ -22,6 +25,9 @@ public class ModelManager implements Model {
     private final Scheduler scheduler;
     private final UserPrefs userPrefs;
     private final FilteredList<Event> filteredEvents;
+    
+    private ArrayList<Command> recentCommand;
+    private ArrayList<Event> recentEvent;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,10 +40,18 @@ public class ModelManager implements Model {
         this.scheduler = new Scheduler(scheduler);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEvents = new FilteredList<>(this.scheduler.getEventList());
+        recentCommand = new ArrayList<Command>();
+        recentEvent = new ArrayList<Event>();
     }
 
     public ModelManager() {
         this(new Scheduler(), new UserPrefs());
+    }
+    
+    public ModelManager(ArrayList<Command> command, ArrayList<Event> event) {
+        this(new Scheduler(), new UserPrefs());
+        this.recentCommand = command;
+        this.recentEvent = event;
     }
 
     //=========== UserPrefs ==================================================================================
@@ -109,6 +123,22 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedEvent);
         scheduler.setEvent(target, editedEvent);
     }
+    
+    @Override
+    public ArrayList<Command> recentCommand() {
+        return recentCommand;
+    }
+    
+    @Override
+    public ArrayList<Event> recentEvent() {
+        return recentEvent;
+    }
+    
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+    }
+    
 
     //=========== Filtered Event List Accessors =============================================================
 

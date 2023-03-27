@@ -1,9 +1,11 @@
 package ezschedule.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import ezschedule.commons.core.GuiSettings;
+import ezschedule.logic.commands.Command;
 import ezschedule.model.event.Event;
 import javafx.collections.ObservableList;
 
@@ -79,7 +81,11 @@ public interface Model {
      * The event identity of {@code editedEvent} must not be the same as another existing Event in the scheduler.
      */
     void setEvent(Event target, Event editedEvent);
-
+    
+    
+    ArrayList<Command> recentCommand();
+    
+    ArrayList<Event> recentEvent();
     /**
      * Returns an unmodifiable view of the filtered event list
      */

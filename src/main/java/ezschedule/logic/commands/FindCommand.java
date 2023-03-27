@@ -32,7 +32,12 @@ public class FindCommand extends Command {
         return new CommandResult(
             String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()));
     }
-
+    
+    @Override
+    public String commandWord() {
+        return COMMAND_WORD;
+    }
+    
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
