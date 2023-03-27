@@ -2,44 +2,42 @@ package seedu.modtrek.ui.modulesection;
 
 import java.util.List;
 import java.util.TreeMap;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.Region;
-import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.ui.UiPart;
-import seedu.modtrek.ui.resultssection.ResultsSection;
 
 /**
  * A subsection within the ResultsSection (left panel) that displays all the modules in the user's
  * module list.
  */
 public class ModuleListSection extends ModuleSection {
+    private ModuleSectionSortNav sortNav;
+
     /**
      * Instantiates a new Module list section.
      *
-     * @param sortedLists the sorted lists
+     * @param sortedModules the sorted lists
+     * @param sort the sort criteria
+     * @param sorters the list of sorting handlers for the buttons in the dropdown box in sortNav.
      */
-    public ModuleListSection(TreeMap<? extends Object, ObservableList<Module>> sortedLists, String sort,
-                             List<Supplier<TreeMap<? extends Object, ObservableList<Module>>>> sorters) {
+    public ModuleListSection(TreeMap<? extends Object, ObservableList<Module>> sortedModules,
+                             String sort, List<Runnable> sorters) {
         super();
 
-        ModuleList moduleList = new ModuleList(sortedLists);
-        moduleListPlaceholder.getChildren().add(moduleList.getRoot());
+        this.sortNav = new ModuleSectionSortNav(sort, sorters);
+        this.moduleList = new ModuleList(sortedModules);
 
-        ModuleSectionSortNav nav = new ModuleSectionSortNav(sort, sorters);
-        moduleSectionNav.getChildren().add(nav.getRoot());
+        moduleSectionNav.getChildren().add(sortNav.getRoot());
+        moduleListPlaceholder.getChildren().add(moduleList.getRoot());
     }
 
-    public void refreshList(TreeMap<? extends Object, ObservableList<Module>> newList) {
-        moduleListPlaceholder.getChildren().clear();
-
-        ModuleList moduleList = new ModuleList(newList);
-        moduleListPlaceholder.getChildren().add(moduleList.getRoot());
+    public void update(TreeMap<? extends Object, ObservableList<Module>> sortedModules, String sort) {
+        moduleList.updateSortedModules(sortedModules);
+        sortNav.updateSortLabel(sort);
     }
 
     /**
@@ -57,21 +55,23 @@ public class ModuleListSection extends ModuleSection {
         /**
          * Instantiates a new Module section sort nav.
          */
-        public ModuleSectionSortNav(String sort,
-                                    List<Supplier<TreeMap<? extends Object, ObservableList<Module>>>> sorters) {
+        public ModuleSectionSortNav(String sort, List<Runnable> sorters) {
             super(FXML);
 
-            sort = sort.substring(0, 1) + sort.toLowerCase().substring(1);
-            sortDropdown.setValue(sort);
-
+            updateSortLabel(sort);
             setListeners(sorters);
         }
 
-        private void setListeners(List<Supplier<TreeMap<? extends Object, ObservableList<Module>>>> sorters) {
+        private void setListeners(List<Runnable> sorters) {
             sortDropdown.setOnAction((event) -> {
                 int selectedIndex = sortDropdown.getSelectionModel().getSelectedIndex();
-                ModuleListSection.this.refreshList(sorters.get(selectedIndex).get());
+                sorters.get(selectedIndex).run();
             });
+        }
+
+        public void updateSortLabel(String sort) {
+            sort = sort.substring(0, 1) + sort.toLowerCase().substring(1);
+            sortDropdown.setValue(sort);
         }
     }
 }

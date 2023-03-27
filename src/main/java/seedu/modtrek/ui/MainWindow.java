@@ -111,7 +111,7 @@ public class MainWindow extends UiPart<Stage> {
                 resultsSection.displayProgress(logic.getDegreeProgression());
             } else if (commandResult.isDisplayAllModules) {
                 resultsSection.displayAllModules(logic.getDegreeProgression().getModuleGroups(),
-                        logic.getDegreeProgression().getSort(), resultsSection.getSorters(logic));
+                        logic.getDegreeProgression().getSort());
             } else if (commandResult.isDisplayFilteredModules) {
                 resultsSection.displayFindModules(logic.getFilteredModuleList(), logic.getFiltersList());
             } else {

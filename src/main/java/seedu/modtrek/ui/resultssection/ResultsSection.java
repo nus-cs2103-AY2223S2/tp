@@ -3,8 +3,6 @@ package seedu.modtrek.ui.resultssection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,7 +17,6 @@ import seedu.modtrek.model.module.Module;
 import seedu.modtrek.ui.UiPart;
 import seedu.modtrek.ui.modulesection.ModuleListSection;
 import seedu.modtrek.ui.modulesection.ModuleSearchSection;
-import seedu.modtrek.ui.modulesection.ModuleSection;
 import seedu.modtrek.ui.progresssection.ProgressSection;
 
 /**
@@ -29,8 +26,9 @@ import seedu.modtrek.ui.progresssection.ProgressSection;
 public class ResultsSection extends UiPart<Region> {
     private static final String FXML = "resultssection/ResultsSection.fxml";
 
-    private ObservableList<Module> modules;
-
+    private ProgressSection progressSection;
+    private ModuleListSection moduleListSection;
+    private ModuleSearchSection moduleSearchSection;
     private FooterButtonGroup footerButtonGroup;
 
     @FXML
@@ -52,14 +50,22 @@ public class ResultsSection extends UiPart<Region> {
     public ResultsSection(Logic logic) {
         super(FXML);
 
+        this.progressSection = new ProgressSection();
+        this.moduleListSection = new ModuleListSection(
+                logic.getDegreeProgression().getModuleGroups(),
+                logic.getDegreeProgression().getSort(),
+                getSorters(logic));
+        this.moduleSearchSection = new ModuleSearchSection(logic.getFilteredModuleList(), logic.getFiltersList());
+
         displayFooter("Degree Progress", "Module List", "Module Search", () ->
                 displayProgress(logic.getDegreeProgression()), () ->
                 displayAllModules(logic.getDegreeProgression().getModuleGroups(),
-                        logic.getDegreeProgression().getSort(), getSorters(logic)), () ->
+                        logic.getDegreeProgression().getSort()), () ->
                 displayFindModules(logic.getFilteredModuleList(), logic.getFiltersList()));
 
         displayProgress(logic.getDegreeProgression());
     }
+
 
     /**
      * Displays the footer buttons that enables user to toggle between displaying progress
@@ -86,39 +92,36 @@ public class ResultsSection extends UiPart<Region> {
     public void displayProgress(ReadOnlyDegreeProgression degreeProgression) {
         footerButtonGroup.selectProgressButton();
 
-        body.getChildren().clear();
-
         headerTitle.setText("My Degree Progress");
         headerSubtitle.setText("in summary");
 
-        renderSection(new ProgressSection(degreeProgression.getProgressionData()).getRoot());
+        progressSection.displayProgress(degreeProgression.getProgressionData());
+        renderSection(progressSection.getRoot());
     }
 
     /**
      * Displays the modules that satisfy a given search query.
      */
-    public void displayFindModules(ObservableList<Module> modules, List<String> filters) {
+    public void displayFindModules(ObservableList<Module> filteredModules, List<String> filters) {
         footerButtonGroup.selectModuleSearchButton();
-
-        body.getChildren().clear();
 
         headerTitle.setText("Module Search");
         headerSubtitle.setText("find a module");
 
-        ModuleSection moduleSearchSection = new ModuleSearchSection(modules, filters);
+        moduleSearchSection.update(filteredModules, filters);
         renderSection(moduleSearchSection.getRoot());
     }
 
     /**
      * Displays all the modules, sorted by a given category.
      */
-    public void displayAllModules(TreeMap<? extends Object, ObservableList<Module>> sortedLists, String sort,
-                                  List<Supplier<TreeMap<? extends Object, ObservableList<Module>>>> sorters) {
+    public void displayAllModules(TreeMap<? extends Object, ObservableList<Module>> sortedModules, String sort) {
+        footerButtonGroup.selectModuleListButton();
+
         headerTitle.setText("My Modules");
         headerSubtitle.setText("in total");
 
-        footerButtonGroup.selectModuleListButton();
-        ModuleSection moduleListSection = new ModuleListSection(sortedLists, sort, sorters);
+        moduleListSection.update(sortedModules, sort);
         renderSection(moduleListSection.getRoot());
     }
 
@@ -134,16 +137,17 @@ public class ResultsSection extends UiPart<Region> {
 
     /**
      * Gets the executables to sort the list of modules.
-     * @param modules the list of modules.
+     * @param logic the logic manager used to update the sorting criteria.
      * @return the executable.
      */
-    public List<Supplier<TreeMap<? extends Object, ObservableList<Module>>>> getSorters(Logic logic) {
-        List<Supplier<TreeMap<? extends Object, ObservableList<Module>>>> sorters = new ArrayList<>();
+    private List<Runnable> getSorters(Logic logic) {
+        List<Runnable> sorters = new ArrayList<>();
 
         for (SortCommand.Sort sort : SortCommand.Sort.values()) {
             sorters.add(() -> {
                 logic.sortModuleGroups(sort);
-                return logic.getDegreeProgression().getModuleGroups();
+                moduleListSection.update(logic.getDegreeProgression().getModuleGroups(),
+                        logic.getDegreeProgression().getSort());
             });
         }
 

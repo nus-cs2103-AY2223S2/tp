@@ -15,19 +15,25 @@ import seedu.modtrek.ui.UiPart;
  * the user.
  */
 public class ModuleSearchSection extends ModuleSection {
+    private ModuleSectionFindNav findNav;
 
     /**
      * Instantiates a ModuleSearchSection.
-     * @param modules The modules to display in the section.
+     * @param filteredModules The modules to display in the section.
      */
-    public ModuleSearchSection(ObservableList<Module> modules, List<String> filters) {
+    public ModuleSearchSection(ObservableList<Module> filteredModules, List<String> filters) {
         super();
 
-        ModuleList moduleList = new ModuleList(modules, true);
-        moduleListPlaceholder.getChildren().add(moduleList.getRoot());
+        this.findNav = new ModuleSectionFindNav(filters);
+        this.moduleList = new ModuleList(filteredModules);
 
-        ModuleSectionFindNav nav = new ModuleSectionFindNav(filters);
-        moduleSectionNav.getChildren().add(nav.getRoot());
+        moduleSectionNav.getChildren().add(findNav.getRoot());
+        moduleListPlaceholder.getChildren().add(moduleList.getRoot());
+    }
+
+    public void update(ObservableList<Module> filteredModules, List<String> filters) {
+        moduleList.updateFilteredModules(filteredModules);
+        findNav.updateFilters(filters);
     }
 
     /**
@@ -47,14 +53,20 @@ public class ModuleSearchSection extends ModuleSection {
         public ModuleSectionFindNav(List<String> filters) {
             super(FXML);
 
-            displayFilters(filters);
+            updateFilters(filters);
         }
 
         /**
          * Displays list of filters applied on the module list.
          * @param filters The list of filters.
          */
-        private void displayFilters(List<String> filters) {
+        public void updateFilters(List<String> filters) {
+            /* Remove previous filters */
+            int numPrevFilters = findNav.getChildren().size() - 1;
+            if (numPrevFilters > 0) {
+                findNav.getChildren().remove(1, numPrevFilters + 1);
+            }
+
             if (filters.size() == 0) {
                 Label placeholder = new Label("None");
                 placeholder.getStyleClass().addAll("module-section-find-nav-label-placeholder", "h3");
