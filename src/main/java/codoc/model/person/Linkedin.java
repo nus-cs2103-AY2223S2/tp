@@ -40,10 +40,7 @@ public class Linkedin {
 
     @Override
     public String toString() {
-        if (value != null) {
-            return value;
-        }
-        return "<not added>";
+        return value;
     }
 
     @Override
