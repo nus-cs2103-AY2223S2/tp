@@ -322,7 +322,7 @@ grade
 ungrade
 
 
-**Use case: Add Class List** classlist 
+**Use case: Add Class List** classlist
 
 **User case: List Student** list
 
@@ -409,6 +409,10 @@ Below is the sequence diagram for adding an assignment.
 
 <img src="images/AddAssignmentSequenceDiagram.png" width="574" />
 
+## **Students-Related Commands**
+
+Below is the main success scenario of students-related commands.
+
 **Adding a student**
 
 1. User requests to add a user with a specific name into one or more classes.
@@ -457,6 +461,21 @@ Below is the sequence diagram for adding an assignment.
 * 2a. Class list with the same name already exists.
   * 2a1. TAA shows an error message.
     Use case ends.
+
+## **Adding Alarm**
+
+Below is the main success scenario of adding alarm.
+
+**add alarm**
+1.  User requests to add an alarm with specified time and comment.
+2.  TAA adds the new alarm with the time and comment specified.
+    Use case ends.
+
+**Extensions**
+
+* 2a. User does not provide sufficient arguments
+    * 2a1. TAA shows an error message.
+      Use case ends.
 
 
 *{More to be added}*

@@ -105,4 +105,13 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses time for countdown
+     */
+    public static Integer parseTime(String time) {
+        requireNonNull(time);
+        String trimmedPoints = time.trim();
+        return Integer.parseInt(time);
+    }
 }

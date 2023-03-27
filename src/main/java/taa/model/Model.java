@@ -122,4 +122,6 @@ public interface Model {
     String listAssignments();
 
     void ungrade(String assignmentName, int studentId) throws CommandException;
+
+    void addAlarm(Alarm alarm) throws CommandException;
 }

@@ -2,14 +2,21 @@ package taa.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Duration;
 import taa.assignment.AssignmentList;
 import taa.commons.core.GuiSettings;
 import taa.commons.core.LogsCenter;
@@ -260,5 +267,23 @@ public class ModelManager implements Model {
     @Override
     public String listAssignments() {
         return assignmentList.list();
+    }
+
+    //Solution below adapted from ChatGPT
+    @Override
+    public void addAlarm(Alarm alarm) {
+        Duration duration = Duration.minutes(alarm.getTime());
+        Timeline timeline = new Timeline(new KeyFrame(duration, event -> {
+            String music = "src/main/resources/sounds/bell.wav";
+            try {
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(music));
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInputStream);
+                clip.start();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }));
+        timeline.play();
     }
 }

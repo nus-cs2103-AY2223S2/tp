@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import taa.commons.core.Messages;
+import taa.logic.commands.AddAlarmCommand;
 import taa.logic.commands.AddAssignmentCommand;
 import taa.logic.commands.AddStudentCommand;
 import taa.logic.commands.ClearCommand;
@@ -113,6 +114,9 @@ public class TaaParser {
 
         case ListAssignmentCommand.COMMAND_WORD:
             return new ListAssignmentCommand();
+
+        case AddAlarmCommand.COMMAND_WORD:
+            return new AddAlarmCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

@@ -8,6 +8,10 @@ public class CliSyntax {
     /* Prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix("n/");
 
+    public static final Prefix PREFIX_TIME = new Prefix("t/");
+
+    public static final Prefix PREFIX_COMMENT = new Prefix("c/");
+
     public static final Prefix PREFIX_CLASS_TAG = new Prefix("cl/");
     public static final Prefix PREFIX_WEEK = new Prefix("w/");
 
