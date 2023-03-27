@@ -71,8 +71,7 @@ public class Ingredient implements Comparable<Ingredient> {
     public boolean equals(Object o) {
         return o == this
             || o instanceof Ingredient
-            && ((Ingredient) o).name.equals(this.name)
-            && ((Ingredient) o).commonName.equals(this.commonName);
+            && ((Ingredient) o).name.equals(this.name);
     }
 
     @Override
