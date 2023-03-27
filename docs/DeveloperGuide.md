@@ -5,40 +5,40 @@ title: Developer Guide
 ## Table of Contents
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
-  -    <details>
-       <summary>Design</summary>
+  <details>
+  <summary>Design</summary>
 
-       - [Architecture](#architecture)
-       - [UI component](#ui-component)
-       - [Logic component](#logic-component)
-       - [Model component](#model-component)
-       - [Event component](#event-component)
-       - [Contact component](#contact-component)
-       - [Storage component](#storage-component)
+   - [Architecture](#architecture)
+   - [UI component](#ui-component)
+   - [Logic component](#logic-component)
+   - [Model component](#model-component)
+   - [Event component](#event-component)
+   - [Contact component](#contact-component)
+   - [Storage component](#storage-component)
 
-       </details>
+  </details>
 - [Implementation](#implementation)
-   -   <details>
-       <summary>Features</summary>
+  <details>
+  <summary>Features</summary>
       
-       - [New Contact feature](#new-contact-feature)
-       - [Mark feature](#mark-feature)
-       - [Unmark feature](#unmark-feature)
-       - [Reminder feature](#reminder-feature)
-       - [Linkcontact feature](#linkcontact-feature)
+   - [New Contact feature](#new-contact-feature)
+   - [Mark feature](#mark-feature)
+   - [Unmark feature](#unmark-feature)
+   - [Reminder feature](#reminder-feature)
+   - [Linkcontact feature](#linkcontact-feature)
 
-       </details>
+  </details>
 - [Appendix: Requirements](#appendix-requirements)
-  -    <details>
-       <summary>more</summary>
+  <details>
+  <summary>more</summary>
 
-       * [Product scope](#product-scope)
-       * [User stories](#user-stories)
-       * [Use cases](#use-cases)
-       * [Non-Functional Requirements](#non-functional-requirements)
-       * [Glossary](#glossary)
+   * [Product scope](#product-scope)
+   * [User stories](#user-stories)
+   * [Use cases](#use-cases)
+   * [Non-Functional Requirements](#non-functional-requirements)
+   * [Glossary](#glossary)
 
-       </details>
+  </details>
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -110,7 +110,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 <div style="width:80%;margin:0">
@@ -119,7 +119,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 <br>
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EventListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -130,7 +130,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/logic/Logic.java)
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
@@ -168,7 +168,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 <div style="width:80%;margin:0">
@@ -184,7 +184,7 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 ### Event component
-**API** : [`Event.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/model/event/Event.java)
+**API** : [`Event.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/model/event/Event.java)
 
 <img src="images/EventClassDiagram.png" width="450" />
 <div style="width:80%;margin:0">
@@ -207,7 +207,7 @@ The `Event` component,
 * the event will be added to the UniqueEventList.
 
 ### Contact component
-**API** : [`Contact.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/model/contact/Contact.java)
+**API** : [`Contact.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/model/contact/Contact.java)
 
 <img src="images/ContactClassDiagram.png" width="450" />
 <div style="width:80%;margin:0">
@@ -222,7 +222,7 @@ The `Contact` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T11-3/tp/blob/master/src/main/java/seedu/event/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
