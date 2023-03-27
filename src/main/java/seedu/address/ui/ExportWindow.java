@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.commands.ExportDataCommand.COMMAND_WORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_PATH;
 
@@ -152,14 +153,17 @@ public class ExportWindow extends UiPart<Stage> {
      * Handles import button click event. Creates a command string and executes it.
      */
     public void handleExport() {
-        String commandString = COMMAND_WORD + " " + PREFIX_FILE_PATH + filePath;
-
         try {
+            requireNonNull(filePath);
+            String commandString = COMMAND_WORD + " " + PREFIX_FILE_PATH + filePath;
             this.logic.execute(commandString);
             hide();
         } catch (ParseException | CommandException e) {
             feedbackLabel.setText(e.getMessage());
             feedbackLabel.setStyle(ERROR_FEEDBACK_STYLE);
-        }
+        } catch (NullPointerException e) {
+            feedbackLabel.setText("No file selected");
+            feedbackLabel.setStyle(ERROR_FEEDBACK_STYLE);
+        } 
     }
 }
