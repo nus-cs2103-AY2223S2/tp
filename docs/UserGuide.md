@@ -130,9 +130,11 @@ Examples:
 
 Command Input:
 ![](images/UIscreenshots/patientSS/pdeleteic.png)
+
 Patient to be Deleted:
 
 ![](images/UIscreenshots/patientSS/pIC.png)
+
 Command Result:
 ![](images/UIscreenshots/patientSS/pdeleteICres.png)
 
@@ -151,9 +153,11 @@ Example:
 
 Command Input:
 ![](images/UIscreenshots/patientSS/pdelete.png)
+
 Patient to be Deleted:
 
 ![](images/UIscreenshots/patientSS/8p.png)
+
 Command Result:
 ![](images/UIscreenshots/patientSS/pdeleteres.png)
 
@@ -274,10 +278,12 @@ Examples:
 * `d delete -i 4`
 * This deletes the 4th drug entry in the most recently shown list
 
-Command Input:
-![](images/UIscreenshots/drugSS/d4.png)
 Drug to be Deleted:
+![](images/UIscreenshots/drugSS/d4.png)
+
+Command Input:
 ![](images/UIscreenshots/drugSS/ddeleteindex.png)
+
 Command Result:
 ![](images/UIscreenshots/drugSS/ddeletetnres.png)
 
@@ -297,11 +303,13 @@ Examples:
 * `d update Tylenol PM -by +50`
     * This **increases** storage count of the drug entry with trade name matching "Tylenol PM" by **50**
 
-Command Input:
-![](images/UIscreenshots/drugSS/dcurrentcount.png)
 Drug to be Updated:
+![](images/UIscreenshots/drugSS/dcurrentcount.png)
+
+Command Input:
 
 ![](images/UIscreenshots/drugSS/dupdate.png)
+
 Command Result:
 ![](images/UIscreenshots/drugSS/dupdateres.png)
 
