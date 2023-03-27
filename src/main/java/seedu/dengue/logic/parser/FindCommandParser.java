@@ -21,7 +21,7 @@ import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
-import seedu.dengue.model.person.Postal;
+import seedu.dengue.model.person.SubPostal;
 import seedu.dengue.model.predicate.FindPredicate;
 import seedu.dengue.model.variant.Variant;
 
@@ -47,12 +47,12 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         Optional<Name> name = ParserUtil.parseOptionalName(argMultimap.getValue(PREFIX_NAME));
-        Optional<Postal> postal = ParserUtil.parseOptionalPostal(argMultimap.getValue(PREFIX_POSTAL));
+        Optional<SubPostal> subPostal = ParserUtil.parseOptionalSubPostal(argMultimap.getValue(PREFIX_POSTAL));
         Optional<Age> age = ParserUtil.parseOptionalAge(argMultimap.getValue(PREFIX_AGE));
         Optional<Date> date = ParserUtil.parseOptionalDate(argMultimap.getValue(PREFIX_DATE));
         Set<Variant> variantList = ParserUtil.parseVariants(argMultimap.getAllValues(PREFIX_VARIANT));
 
-        FindPredicate canFilter = new FindPredicate(name, postal, age, date, variantList);
+        FindPredicate canFilter = new FindPredicate(name, subPostal, age, date, variantList);
 
         return new FindCommand(canFilter);
     }

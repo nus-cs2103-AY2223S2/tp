@@ -5,22 +5,22 @@ import java.util.function.Predicate;
 
 import seedu.dengue.commons.util.StringUtil;
 import seedu.dengue.model.person.Person;
-import seedu.dengue.model.person.Postal;
+import seedu.dengue.model.person.SubPostal;
 
 public class PersonContainsPostalPredicate implements Predicate<Person> {
 
-    private final Optional<Postal> postal;
+    private final Optional<SubPostal> subPostal;
 
-    public PersonContainsPostalPredicate(Optional<Postal> postal) {
-        this.postal = postal;
+    public PersonContainsPostalPredicate(Optional<SubPostal> subPostal) {
+        this.subPostal = subPostal;
     }
 
     @Override
     public boolean test(Person person) {
-        if (postal.isPresent()) {
+        if (subPostal.isPresent()) {
             Predicate<String> containsPostal =
                     keyword -> StringUtil.containsSubstringIgnoreCase(person.getPostal().value, keyword);
-            return containsPostal.test(postal.get().value);
+            return containsPostal.test(subPostal.get().value);
         } else {
             return true;
         }

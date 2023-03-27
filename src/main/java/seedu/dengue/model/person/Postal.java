@@ -48,13 +48,6 @@ public class Postal {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Returns true if a given string is a valid substring of a postal code.
-     */
-    public static boolean isValidSubPostal(String test) {
-        return test.matches(VALIDATION_REGEX_FOR_SUB_POSTAL);
-    }
-
     @Override
     public String toString() {
         return value;

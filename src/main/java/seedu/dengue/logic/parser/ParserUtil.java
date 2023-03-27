@@ -14,6 +14,7 @@ import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Postal;
+import seedu.dengue.model.person.SubPostal;
 import seedu.dengue.model.predicate.PredicateUtil;
 import seedu.dengue.model.variant.Variant;
 
@@ -146,13 +147,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code postal} is invalid.
      */
-    public static Optional<Postal> parseOptionalPostal(Optional<String> postal) throws ParseException {
-        if (postal.isPresent()) {
-            if (!PredicateUtil.isPostalValid(postal.get())) {
-                throw new ParseException(Postal.MESSAGE_CONSTRAINTS);
-            };
-            String trimmedPostal = postal.get().trim();
-            return Optional.of(new Postal(trimmedPostal));
+    public static Optional<SubPostal> parseOptionalSubPostal(Optional<String> subPostal) throws ParseException {
+        if (subPostal.isPresent()) {
+            if (!PredicateUtil.isSubPostalValid(subPostal.get())) {
+                throw new ParseException(SubPostal.MESSAGE_CONSTRAINTS);
+            }
+            String trimmedSubPostal = subPostal.get().trim();
+            return Optional.of(new SubPostal(trimmedSubPostal));
         } else {
             return Optional.empty();
         }

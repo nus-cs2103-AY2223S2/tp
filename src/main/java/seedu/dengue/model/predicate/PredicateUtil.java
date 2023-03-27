@@ -6,6 +6,7 @@ import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Postal;
+import seedu.dengue.model.person.SubPostal;
 import seedu.dengue.model.variant.Variant;
 
 /**
@@ -30,7 +31,13 @@ public class PredicateUtil {
     public static boolean isPostalValid(String postal) {
         requireNonNull(postal);
         String trimmedPostal = postal.trim();
-        return Postal.isValidSubPostal(trimmedPostal);
+        return Postal.isValidPostal(trimmedPostal);
+    }
+
+    public static boolean isSubPostalValid(String subPostal) {
+        requireNonNull(subPostal);
+        String trimmedSubPostal = subPostal.trim();
+        return SubPostal.isValidSubPostal(trimmedSubPostal);
     }
 
 
