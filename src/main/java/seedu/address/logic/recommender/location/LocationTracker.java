@@ -1,5 +1,7 @@
 package seedu.address.logic.recommender.location;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,6 +18,7 @@ import seedu.address.model.location.util.DistanceUtil;
 import seedu.address.model.person.Person;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.HourBlock;
+import seedu.address.model.time.TimePeriod;
 import seedu.address.model.timetable.Timetable;
 
 /**
@@ -99,6 +102,21 @@ public class LocationTracker {
     private Optional<Location> getLocation(Day day, int hour) {
         assert hour >= EARLIEST_TIMING && hour <= LATEST_TIMING;
         return locations.get(day).get(hour - EARLIEST_TIMING);
+    }
+
+    /**
+     * Gets the average location of a person within a time period.
+     */
+    public Optional<Location> getLocation(TimePeriod timePeriod) {
+        requireNonNull(timePeriod);
+        List<Location> locations =
+                timePeriod.fragmentIntoHourBlocks()
+                        .stream().map(this::getLocation)
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .collect(Collectors.toList());
+
+        return Optional.of(DistanceUtil.getMidpoint(locations));
     }
 
     /**

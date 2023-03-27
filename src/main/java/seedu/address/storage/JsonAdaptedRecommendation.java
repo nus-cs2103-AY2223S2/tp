@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.location.Location;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.recommendation.Recommendation;
 import seedu.address.model.tag.ModuleTag;
 import seedu.address.model.time.TimePeriod;
@@ -18,6 +19,7 @@ public class JsonAdaptedRecommendation {
     protected final JsonAdaptedLocation location;
     protected final JsonAdaptedTimePeriod timePeriod;
     protected final boolean isSaved;
+    protected final Integer index;
 
     /**
      * Constructs a {@code Recommendation} with the given
@@ -27,10 +29,12 @@ public class JsonAdaptedRecommendation {
     public JsonAdaptedRecommendation(
             @JsonProperty("location") JsonAdaptedLocation location,
             @JsonProperty("timePeriod") JsonAdaptedTimePeriod timePeriod,
-            @JsonProperty("isSaved") boolean isSaved) {
+            @JsonProperty("isSaved") boolean isSaved,
+            @JsonProperty("index") Integer index) {
         this.location = location;
         this.timePeriod = timePeriod;
         this.isSaved = isSaved;
+        this.index = index;
     }
 
     /**
@@ -40,6 +44,7 @@ public class JsonAdaptedRecommendation {
         location = new JsonAdaptedLocation(recommendation.getLocation());
         timePeriod = new JsonAdaptedTimePeriod(recommendation.getTimePeriod());
         isSaved = recommendation.getIsSaved();
+        index = recommendation.getContactIndex().getContactIndex();
     }
 
     /**
@@ -61,6 +66,8 @@ public class JsonAdaptedRecommendation {
         }
         final TimePeriod modelTimePeriod = timePeriod.toModelType();
 
-        return new Recommendation(modelLocation, modelTimePeriod, isSaved);
+        final ContactIndex modelContactIndex = new ContactIndex(index);
+
+        return new Recommendation(modelLocation, modelTimePeriod, modelContactIndex, isSaved);
     }
 }
