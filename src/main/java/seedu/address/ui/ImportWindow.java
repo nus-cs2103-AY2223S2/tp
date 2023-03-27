@@ -121,7 +121,7 @@ public class ImportWindow extends UiPart<Stage> {
      */
     public void hide() {
         getRoot().hide();
-        filePath = "";
+        filePath = null;
         feedbackLabel.setText("no files imported");
         feedbackLabel.setStyle(DEFAULT_FEEDBACK_STYLE);
     }

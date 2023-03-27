@@ -117,7 +117,7 @@ public class ExportWindow extends UiPart<Stage> {
      */
     public void hide() {
         getRoot().hide();
-        filePath = "";
+        filePath = null;
         feedbackLabel.setText("no folder selected");
         feedbackLabel.setStyle(VALID_FEEDBACK_STYLE);
     }

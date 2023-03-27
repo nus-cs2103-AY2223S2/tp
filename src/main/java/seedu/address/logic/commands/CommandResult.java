@@ -14,9 +14,6 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
-    /** Opens the file explorer for user to import data */
-    private final boolean showImport;
-
     /** The application should exit. */
     private final boolean exit;
 
@@ -29,7 +26,6 @@ public class CommandResult {
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showImport, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
-        this.showImport = showImport;
         this.exit = exit;
         this.tabSwitch = false;
     }
@@ -58,10 +54,6 @@ public class CommandResult {
 
     public boolean isShowHelp() {
         return showHelp;
-    }
-
-    public boolean isShowImport() {
-        return showImport;
     }
 
     public boolean isExit() {
