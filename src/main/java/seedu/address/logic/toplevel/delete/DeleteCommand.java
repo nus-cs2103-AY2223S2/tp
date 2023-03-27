@@ -47,14 +47,17 @@ public class DeleteCommand<T extends Item> implements Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         T toDelete;
-        try {
-            toDelete = getManagerFunction.get(model).getItem(itemIndex);
-        } catch (IndexOutOfBoundException e) {
+
+        if (itemIndex >=  getManagerFunction.get(model).size() || itemIndex < 0) {
             throw new CommandException(String.format(
-                    "Please enter a valid index: %s",
-                    e.getMessage()
+                    "Index %s is out of bounds."
+                            + "Please enter a valid index.",
+                    itemIndex
             ));
+        } else {
+            toDelete = getManagerFunction.get(model).getItem(itemIndex);
         }
+
         deleteFunction.delete(model, toDelete);
         return new CommandResult(String.format(
                 "Deleted item: %s.",

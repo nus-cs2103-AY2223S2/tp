@@ -12,16 +12,14 @@ import seedu.address.model.link.exceptions.LinkException;
 import seedu.address.model.location.FlightLocationType;
 import seedu.address.model.location.Location;
 
-
-
 /**
  * The command that unlinks locations from flights.
  */
 public class UnlinkFlightToLocationCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
-            "Flight with id %s is not found.";
+            "Flight with ID %s can't be found.";
     private static final String LOCATION_NOT_FOUND_EXCEPTION =
-            "Location with id %s is not found.";
+            "Location with ID %s can't be found.";
     private static final String DISPLAY_MESSAGE =
             "Unlinked %s from flight %s.";
 
@@ -51,8 +49,7 @@ public class UnlinkFlightToLocationCommand implements Command {
         String result = locations.entrySet()
                 .stream()
                 .map((entry) -> String.format(
-                        "%s: %s",
-                        entry.getKey(),
+                        "%s",
                         entry.getValue().getName()))
                 .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());

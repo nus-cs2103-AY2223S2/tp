@@ -28,7 +28,6 @@ public class AddPilotCommand implements Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.addPilot(pilot);
-        // TODO: better message
         return new CommandResult("Added pilot: " + pilot);
     }
 }

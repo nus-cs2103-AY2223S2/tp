@@ -27,10 +27,10 @@ public class UnlinkCrewToLocationCommandFactory implements CommandFactory<Unlink
     private static final String CREW_PREFIX = "/cr";
 
     private static final String NO_LOCATION_MESSAGE =
-            "No location has been entered. "
+            "No location has been entered.\n"
                     + "Please enter /lo followed by the location ID.";
     private static final String NO_CREW_MESSAGE =
-            "No crew has been entered. "
+            "No crew has been entered.\n"
                     + "Please enter /cr followed by the crew ID.";
 
     private final Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy;

@@ -30,10 +30,11 @@ public class UnlinkCrewToFlightCommandFactory implements CommandFactory<UnlinkCr
     private static final String TRAINEE_PREFIX = "/tr";
 
     private static final String NO_FLIGHT_MESSAGE =
-            "No flight has been entered. "
+            "No flight has been entered.\n"
                     + "Please enter /fl followed by the flight ID.";
     private static final String NO_CREW_MESSAGE =
-            "No crew has been entered. Please enter at least 1 of the following:\n"
+            "No crew has been entered.\n"
+                    + "Please enter at least 1 of the following:\n"
                     + "     /csd for the Cabin Service Director, "
                     + "/sfa for the Senior Flight Attendants, \n"
                     + "     /fa for the Flight Attendants, "

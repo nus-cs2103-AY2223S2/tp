@@ -27,10 +27,12 @@ public class LinkFlightToLocationCommandFactory implements CommandFactory<LinkFl
     public static final String LOCATION_ARRIVAL_PREFIX = "/to";
 
     private static final String NO_FLIGHT_MESSAGE =
-            "No flight has been entered. Please enter /fl for the flight.";
+            "No flight has been entered.\n"
+                    + "Please enter /fl followed by the flight ID.";
     private static final String NO_LOCATION_MESSAGE =
-            "No location has been entered. Please enter /from for the departure location"
-                    + " and /to for the arrival location.";
+            "No location has been entered.\n"
+                    + "Please enter /from followed by the departure location ID "
+                    + " and /to followed by the arrival location ID.";
 
     private final Lazy<ReadOnlyItemManager<Location>> locationManagerLazy;
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
