@@ -99,21 +99,25 @@ If you want to, you can add other details of the person such as his/her _GitHub 
 
 Related docs: [Adding a person: `add`](#adding-a-person--add)
 
-If you followed the steps above correctly, you would see this screen:
+If you followed the steps above correctly, you would see Bob added at the bottom of the person list panel:
 
 <img src="images/tutorial/adding-bob.png"/>
 
-**Note:** Your profile pictures and the profile pictures shown here will not be exactly the same as they are randomised.
+**Note:** Your profile pictures and the profile pictures shown here might not be exactly the same as they are randomised.
 
 #### 2. Viewing a person's modules
 
-As shown above, the right info panel automatically updated to show Bob's contact after we added him. 
+To view Bob in the right info panel, enter `view 8`.
+His contact details will then be shown in the info panel, under the _contact_ tab. We use `8` here because Bob's index is 8 in the person list panel.
 
-Now let's take a look at his _modules_: enter `view m` in the command box. As shown under his _modules_ tab, he does not have any modules currently.
+**Note:** The specified index used with the `view` command must correspond to the index of the person that you want to `view` in the person list panel.
+
+Now let's change to his _modules_ tab: enter `view m` in the command box.
+As shown below, he does not have any modules currently.
 
 <img src="images/tutorial/viewing-bobs-modules.png"/>
 
-You can enter `view s` as well if you want to see Bob's _skills_. You can also view another person by specifying the person's index in the list i.e. `view 2` would load Nicole Lee in the info panel.
+You can enter `view s` as well if you want to see Bob's _skills_. You can also view other contacts by specifying the person's index in the list i.e. `view 2` would load Nicole Lee in the info panel.
 
 **Related docs:** [Viewing a person/Changing tabs: `view`](#viewing-a-personchanging-tabs--view)
 
