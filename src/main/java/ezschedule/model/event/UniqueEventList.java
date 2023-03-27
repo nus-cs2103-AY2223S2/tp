@@ -9,6 +9,7 @@ import ezschedule.commons.util.CollectionUtil;
 import ezschedule.model.event.exceptions.DuplicateEventException;
 import ezschedule.model.event.exceptions.EventNotFoundException;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 /**
@@ -28,6 +29,21 @@ public class UniqueEventList implements Iterable<Event> {
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();
     private final ObservableList<Event> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
+    /**
+     * Constructor of UniqueEventList.
+     * Attaches a listener to sort the list of events in chronological order whenever its changed.
+     */
+    public UniqueEventList() {
+        // Auto-sort whenever a list is changed
+        internalList.addListener((ListChangeListener<Event>) c -> {
+            while (c.next()) {
+                if (!c.wasPermutated()) {
+                    FXCollections.sort(internalList);
+                }
+            }
+        });
+    }
 
     /**
      * Returns true if the list contains an equivalent event as the given argument.
@@ -102,13 +118,6 @@ public class UniqueEventList implements Iterable<Event> {
             throw new DuplicateEventException();
         }
         internalList.setAll(events);
-    }
-
-    /**
-     * Sorts all events in chronological order.
-     */
-    public void sortByChronologicalOrder() {
-        FXCollections.sort(internalList);
     }
 
     /**

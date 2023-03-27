@@ -13,6 +13,7 @@ public class RecurFactor {
             "RecurFactor should only be {DAY, MONTH, YEAR}";
 
     public static final String VALIDATION_REGEX_DAY = "DAY";
+    public static final String VALIDATION_REGEX_WEEK = "WEEK";
     public static final String VALIDATION_REGEX_MONTH = "MONTH";
     public static final String VALIDATION_REGEX_YEAR = "YEAR";
 
@@ -30,12 +31,13 @@ public class RecurFactor {
     }
 
     /**
-     * Tests for valid recur factor strictly in {DAY, MONTH, YEAR}.
+     * Tests for valid recur factor strictly in {DAY, WEEK, MONTH, YEAR}.
      * @param test the string to test
      * @return boolean result of validity
      */
     public static boolean isValidRecurFactor(String test) {
         return (test.matches(VALIDATION_REGEX_DAY)
+                | test.matches(VALIDATION_REGEX_WEEK)
                 | test.matches(VALIDATION_REGEX_MONTH)
                 | test.matches(VALIDATION_REGEX_YEAR));
     }

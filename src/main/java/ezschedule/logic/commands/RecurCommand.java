@@ -24,7 +24,7 @@ public class RecurCommand extends Command {
             + "the index number used in the displayed event list. "
             + "\nParameters: INDEX (must be a positive integer) "
             + CliSyntax.PREFIX_DATE + "ENDING DATE "
-            + CliSyntax.PREFIX_EVERY + "{DAY, MONTH, YEAR} "
+            + CliSyntax.PREFIX_EVERY + "{DAY, WEEK, MONTH, YEAR} "
             + "\nExample: " + COMMAND_WORD + " 1 "
             + CliSyntax.PREFIX_DATE + "2024-02-20 "
             + CliSyntax.PREFIX_EVERY + "MONTH ";
@@ -64,6 +64,10 @@ public class RecurCommand extends Command {
             addEventPerDay(model, eventToRecur);
             break;
 
+        case "WEEK":
+            addEventPerWeek(model, eventToRecur);
+            break;
+
         case "MONTH":
             addEventPerMonth(model, eventToRecur);
             break;
@@ -97,6 +101,31 @@ public class RecurCommand extends Command {
         for (int i = 0; i < daysDiff; i++) {
             model.addEvent(nextEventToRecur);
             newDate = new Date(nextEventToRecur.getDate().date.plusDays(1).toString());
+            nextEventToRecur =
+                    new Event(eventToRecur.getName(), newDate,
+                            eventToRecur.getStartTime(), eventToRecur.getEndTime());
+        }
+    }
+
+    /**
+     * Adds new events to every week until endDate.
+     * @param model model to add
+     * @param eventToRecur event to recur in the model
+     */
+    public void addEventPerWeek(Model model, Event eventToRecur) {
+
+        int daysPerWeek = 7;
+
+        Date baseDate = eventToRecur.getDate();
+        int weeksDiff = (int) baseDate.getDaysBetween(endDate.date) / daysPerWeek;
+        Date newDate = new Date(eventToRecur.getDate().date.plusWeeks(1).toString());
+        Event nextEventToRecur =
+                new Event(eventToRecur.getName(), newDate,
+                        eventToRecur.getStartTime(), eventToRecur.getEndTime());
+
+        for (int i = 0; i < weeksDiff; i++) {
+            model.addEvent(nextEventToRecur);
+            newDate = new Date(nextEventToRecur.getDate().date.plusWeeks(1).toString());
             nextEventToRecur =
                     new Event(eventToRecur.getName(), newDate,
                             eventToRecur.getStartTime(), eventToRecur.getEndTime());
