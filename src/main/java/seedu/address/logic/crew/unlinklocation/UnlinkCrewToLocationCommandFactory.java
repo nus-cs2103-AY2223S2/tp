@@ -23,19 +23,17 @@ import seedu.address.model.location.Location;
  */
 public class UnlinkCrewToLocationCommandFactory implements CommandFactory<UnlinkCrewToLocationCommand> {
     private static final String COMMAND_WORD = "unlinklocation";
-    private static final String LOCATION_PREFIX = "/loc";
-    private static final String CREW_PREFIX = "/crew";
-
-    private static final String NO_CREW_MESSAGE =
-            "No crew has been entered. "
-                    + "Please enter /crew followed by the crew iD.";
+    private static final String LOCATION_PREFIX = "/lo";
+    private static final String CREW_PREFIX = "/cr";
 
     private static final String NO_LOCATION_MESSAGE =
             "No location has been entered. "
                     + "Please enter /loc followed by the location ID.";
+    private static final String NO_CREW_MESSAGE =
+            "No crew has been entered. "
+                    + "Please enter /crew followed by the crew ID.";
 
     private final Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy;
-
     private final Lazy<ReadOnlyItemManager<Location>> locationManagerLazy;
 
     /**
@@ -145,6 +143,7 @@ public class UnlinkCrewToLocationCommandFactory implements CommandFactory<Unlink
         Optional<String> crewIdOptional =
                 param.getNamedValues(CREW_PREFIX);
 
+        Location location = getLocationOrThrow(locationIdOptional);
         Map<CrewLocationType, Crew> crews = new HashMap<>();
 
         boolean hasFoundCrew = addCrew(
@@ -157,7 +156,6 @@ public class UnlinkCrewToLocationCommandFactory implements CommandFactory<Unlink
             throw new ParseException(NO_CREW_MESSAGE);
         }
 
-        Location location = getLocationOrThrow(locationIdOptional);
-        return new UnlinkCrewToLocationCommand(crews, location);
+        return new UnlinkCrewToLocationCommand(location, crews);
     }
 }

@@ -1,6 +1,5 @@
 package seedu.address.logic.crew.linklocation;
 
-
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -14,16 +13,11 @@ import seedu.address.model.location.CrewLocationType;
 import seedu.address.model.location.Location;
 
 /**
- * The command that links a crew to a flight
+ * The command that links a crew to a location
  */
 public class LinkCrewToLocationCommand implements Command {
     private static final String DISPLAY_MESSAGE =
-            "Linked %s to flight %s.";
-
-    /**
-     * The id of the crews
-     */
-    private final Map<CrewLocationType, Crew> crews;
+            "Linked %s to location %s.";
 
     /**
      * The id of the location
@@ -31,14 +25,19 @@ public class LinkCrewToLocationCommand implements Command {
     private final Location location;
 
     /**
+     * The id of the crews
+     */
+    private final Map<CrewLocationType, Crew> crews;
+
+    /**
      * Creates a new link command.
      *
      * @param crews the id of the crews.
      * @param location the id of the location.
      */
-    public LinkCrewToLocationCommand(Map<CrewLocationType, Crew> crews, Location location) {
-        this.crews = crews;
+    public LinkCrewToLocationCommand(Location location, Map<CrewLocationType, Crew> crews) {
         this.location = location;
+        this.crews = crews;
     }
 
     @Override
@@ -64,5 +63,4 @@ public class LinkCrewToLocationCommand implements Command {
         }
         return new CommandResult(this.toString());
     }
-
 }

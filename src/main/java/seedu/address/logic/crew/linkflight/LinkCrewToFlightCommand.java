@@ -25,14 +25,14 @@ public class LinkCrewToFlightCommand implements Command {
             "Linked %s to flight %s.";
 
     /**
-     * The id of the crews
-     */
-    private final Map<FlightCrewType, Crew> crews;
-
-    /**
-     * The id of the flight
+     * The flight to be linked to.
      */
     private final Flight flight;
+
+    /**
+     * The crew to be linked.
+     */
+    private final Map<FlightCrewType, Crew> crews;
 
     /**
      * Creates a new link command.
@@ -40,9 +40,9 @@ public class LinkCrewToFlightCommand implements Command {
      * @param crews the id of the crews.
      * @param flight the id of the flight.
      */
-    public LinkCrewToFlightCommand(Map<FlightCrewType, Crew> crews, Flight flight) {
-        this.crews = crews;
+    public LinkCrewToFlightCommand(Flight flight, Map<FlightCrewType, Crew> crews) {
         this.flight = flight;
+        this.crews = crews;
     }
 
     @Override

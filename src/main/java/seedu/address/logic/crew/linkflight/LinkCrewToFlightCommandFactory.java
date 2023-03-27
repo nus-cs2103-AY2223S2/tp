@@ -21,21 +21,21 @@ import seedu.address.model.flight.Flight;
  * The factory that creates {@code LinkCrewCommand}.
  */
 public class LinkCrewToFlightCommandFactory implements CommandFactory<LinkCrewToFlightCommand> {
-    private static final String COMMAND_WORD = "link";
+    private static final String COMMAND_WORD = "linkflight";
+    private static final String FLIGHT_PREFIX = "/fl";
     private static final String CABIN_SERVICE_DIRECTOR_PREFIX = "/csd";
     private static final String SENIOR_FLIGHT_ATTENDANT_PREFIX = "/sfa";
     private static final String FLIGHT_ATTENDANT_PREFIX = "/fa";
     private static final String TRAINEE_PREFIX = "/tr";
-    private static final String FLIGHT_PREFIX = "/fl";
+
+    private static final String NO_FLIGHT_MESSAGE =
+            "No flight has been entered. Please enter /fl for the flight.";
     private static final String NO_CREW_MESSAGE =
             "No crew has been entered. Please enter /csd for the Cabin Service Director."
                     + " Optional crew include: /sfa for Senior Flight Attendants,"
                     + " /fa for Flight Attendants and /tr for Trainees";
-    private static final String NO_FLIGHT_MESSAGE =
-            "No flight has been entered. Please enter /fl for the flight.";
 
     private final Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy;
-
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
 
     /**
@@ -76,12 +76,12 @@ public class LinkCrewToFlightCommandFactory implements CommandFactory<LinkCrewTo
      * Creates a new link crew command factory with the given crew manager
      * and the flight manager.
      *
-     * @param crewManager   the crew manager.
      * @param flightManager the flight manager.
+     * @param crewManager   the crew manager.
      */
     public LinkCrewToFlightCommandFactory(
-            ReadOnlyItemManager<Crew> crewManager,
-            ReadOnlyItemManager<Flight> flightManager
+            ReadOnlyItemManager<Flight> flightManager,
+            ReadOnlyItemManager<Crew> crewManager
     ) {
         this(Lazy.of(crewManager), Lazy.of(flightManager));
     }
@@ -94,11 +94,11 @@ public class LinkCrewToFlightCommandFactory implements CommandFactory<LinkCrewTo
     @Override
     public Optional<Set<String>> getPrefixes() {
         return Optional.of(Set.of(
+                FLIGHT_PREFIX,
                 CABIN_SERVICE_DIRECTOR_PREFIX,
                 SENIOR_FLIGHT_ATTENDANT_PREFIX,
                 FLIGHT_ATTENDANT_PREFIX,
-                TRAINEE_PREFIX,
-                FLIGHT_PREFIX
+                TRAINEE_PREFIX
         ));
     }
 
@@ -148,6 +148,8 @@ public class LinkCrewToFlightCommandFactory implements CommandFactory<LinkCrewTo
                 param.getNamedValues(FLIGHT_ATTENDANT_PREFIX);
         Optional<String> traineeIdOptional =
                 param.getNamedValues(TRAINEE_PREFIX);
+
+        Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
         Map<FlightCrewType, Crew> crews = new HashMap<>();
 
         boolean hasFoundCrew = addCrew(
@@ -172,7 +174,6 @@ public class LinkCrewToFlightCommandFactory implements CommandFactory<LinkCrewTo
             throw new ParseException(NO_CREW_MESSAGE);
         }
 
-        Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
-        return new LinkCrewToFlightCommand(crews, flight);
+        return new LinkCrewToFlightCommand(flight, crews);
     }
 }
