@@ -9,8 +9,7 @@ import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Objects;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Session in the address book.
@@ -70,7 +69,6 @@ public class Session implements Comparable<Session> {
 //        this.endDateTime = endDateTime;
 //    }
 
-
     /**
      * Returns true if the given string is a valid date format.
      * The date format is "dd-MM-yyyy".
@@ -83,7 +81,6 @@ public class Session implements Comparable<Session> {
             return false;
         }
     }
-
 
     /**
      * Returns true if the given string is a valid time format, i.e. "HH:mm".
@@ -101,18 +98,20 @@ public class Session implements Comparable<Session> {
         }
     }
 
-
-
-
-
-
-
     public String getStartDateTime() {
         return startDateTime;
     }
 
     public String getEndDateTime() {
         return endDateTime;
+    }
+
+    public String getName() {
+        return name.toString();
+    }
+
+    public String getLocation() {
+        return location.toString();
     }
 
     /**
@@ -128,7 +127,7 @@ public class Session implements Comparable<Session> {
     }
 
     /**
-     * Returns true if both sessions have the same identity and data fields.
+     * Returns true if both sessions have the same identity and attributes.
      * This defines a stronger notion of equality between two sessions.
      */
     public boolean isSameSession(Session otherSession) {
@@ -138,11 +137,13 @@ public class Session implements Comparable<Session> {
 
         return otherSession != null
                 && otherSession.getStartDateTime().equals(getStartDateTime())
-                && otherSession.getEndDateTime().equals(getEndDateTime());
+                && otherSession.getEndDateTime().equals(getEndDateTime())
+                && otherSession.getName().equals(getName())
+                && otherSession.getLocation().equals(getLocation());
     }
 
     /**
-     * Returns true if both sessions have the same identity and data fields.
+     * Returns true if both sessions have the same identity and attributes.
      * This defines a weaker notion of equality between two sessions.
      */
     public boolean equals(Object other) {
@@ -156,14 +157,17 @@ public class Session implements Comparable<Session> {
 
         Session otherSession = (Session) other;
         return otherSession.getStartDateTime().equals(getStartDateTime())
-                && otherSession.getEndDateTime().equals(getEndDateTime());
+                && otherSession.getEndDateTime().equals(getEndDateTime())
+                && otherSession.getName().equals(getName())
+                && otherSession.getLocation().equals(getLocation());
     }
 
     public boolean isValidSession() {
         return LocalDateTime.parse(startDateTime, DateTimeFormatter
                         .ofPattern("dd-MM-yyyy HH:mm"))
                 .isBefore(LocalDateTime.parse(endDateTime, DateTimeFormatter
-                        .ofPattern("dd-MM-yyyy HH:mm")));
+                        .ofPattern("dd-MM-yyyy HH:mm")))
+                && Name.isValidName(getName()) && Location.isValidLocation(getLocation());
     }
 
     /**
@@ -180,23 +184,28 @@ public class Session implements Comparable<Session> {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(startDateTime, endDateTime);
+        return Objects.hash(startDateTime, endDateTime, name, location);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(" Start: ")
+        builder.append(" Session name: ")
+                .append(getName())
+                .append("\n Start: ")
                 .append(LocalDateTime.parse(getStartDateTime(),
                         DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER))
                 .append("\n End: ")
                 .append(LocalDateTime.parse(getEndDateTime(),
-                        DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER));
+                        DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER))
+                .append("\n Location: ")
+                .append(getLocation());
         return builder.toString();
     }
 
     public String getCommand() {
-        return startDateTime + " to " + endDateTime;
+        return String.format("%s: from %s to %s | at %s",
+                getName(), startDateTime, endDateTime, getLocation());
     }
 
     /**
@@ -206,11 +215,15 @@ public class Session implements Comparable<Session> {
      */
     public String toCommandString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(LocalDateTime.parse(getStartDateTime(),
+        builder.append(getName())
+                .append(": ")
+                .append(LocalDateTime.parse(getStartDateTime(),
                         DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER))
                 .append(" to ")
                 .append(LocalDateTime.parse(getEndDateTime(),
-                        DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER));
+                        DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER))
+                .append(" at ")
+                .append(getLocation());
         return builder.toString();
     }
 
@@ -238,6 +251,25 @@ public class Session implements Comparable<Session> {
         LocalDateTime dateTime = LocalDateTime.parse(startDateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
         return dateTime.format(DateTimeFormatter.ofPattern("HH:mm"));
     }
+
+    /**
+     * Marks attendance in attendance hash map
+     * @param Person to change
+     */
+    public void markAttendance(Person person) {
+        int key = person.getName().hashCode();
+        attendanceMap.put(key, true);
+    }
+
+    /**
+     * Unmarks attendance in attendance hash map
+     * @param Person to change
+     */
+    public void unmarkAttendance(Person person) {
+        int key = person.getName().hashCode();
+        attendanceMap.put(key, false);
+    }
+
     @Override
     public int compareTo(Session other) {
         LocalDateTime thisStartDateTime = LocalDateTime.parse(startDateTime, DATE_TIME_FORMATTER);
