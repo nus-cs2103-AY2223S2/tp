@@ -7,9 +7,8 @@ title: Developer Guide
 </p>
 
 # Table of Contents
-* [About *Fish Ahoy!*](#About-*Fish-Ahoy!*)
-* [About *Fish Ahoy! Developer Guide*](#About-*Fish-Ahoy!-Developer-Guide*)
-* [Acknowledgements](#Acknowledgements)
+* [About](#about)
+* [Acknowledgements](#acknowledgements)
 * [Setting up, getting started](#Getting-started)
 * [Design](#Design)
   * [Architecture](#Architecture)
@@ -21,24 +20,23 @@ title: Developer Guide
   * [Automatic Feeding Reminders](#Automatic-Feeding-Reminders)
   * [FishSortCommand feature](#FishSortCommand-feature)
   * [TankFeedCommand feature](#TankFeedCommand-feature)
-* [Documentation, logging, testing, configuration, dev-ops](#Documentation-logging-testing-configuration-dev-ops)
-* [Appendix: Requirements](#Appendix:-Requirements)
-* [Appendix: Instructions for manual testing](#Appendix:-Instructions-for-manual-testing)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
-## About *Fish Ahoy!*
+## About
 
 *Fish Ahoy!* is a desktop CLI-focused application, designed to help users take better care of their
 aquatic pets. It allows fish keepers to:
 
 1. Keep track of their tanks and fishes in a hierarchical view, sorted by tanks.
-2. Keep track of their fishes' attributes like the last time it was fed and how often it needs to be fed
+2. Keep track of their fishes' attributes such as the last time it was fed and how often it needs to be fed
 3. Consolidate fish-up-keeping tasks and automatically remind users to feed their fish according to information
 given by the user
 
 This developer guide aims to provide instructions and guidelines for developers to understand how to
-effectively use and contribute to this project by explaining design considerations for certain key features. Moreover, 
+effectively use and contribute to this project by explaining design considerations for certain key features. Moreover,
 new developers can use this guide as an entry point for navigating this extensive code base.
---------------------------------------------------------------------------------------------------------------------
 
 ## Acknowledgements
 
@@ -534,13 +532,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all fish using the `list` command. Multiple fish in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `fish delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `fish delete 0`<br>
       Expected: No fish is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `fish delete`, `fish delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
