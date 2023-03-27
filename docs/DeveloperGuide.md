@@ -2,6 +2,16 @@
 layout: page
 title: Developer Guide
 ---
+## About TeachMeSenpai
+TeachMeSenpai **is a student managing application** specially customised for **teaching assistants** who have a lot of 
+students to keep track of. TeachMeSenpai is optimised for fast-typists with a **Command Line Interface (CLI)** with the benefits of a 
+**Graphical User Interface (GUI)**. 
+
+This Developer Guide provides in-depth documentation on the design and implementation consideration behind TeachMeSenpai.
+This guide covers everything you need to know from the architecture down to the feature implementation details of TeachMeSenpai.
+If you're eager to get started, head over to 
+You may use this guide to evolve TeachMeSenpai to suit your needs.
+
 ## **Table of Contents**
 {:.no_toc}
 
@@ -195,6 +205,8 @@ The `add` command has the following fields:
 Here is a sequence diagram showing the interactions between components when `add n/Alice edu/Primary 6` is run.: <br>
 
 ![add_sequence](images/AddSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` and `AddCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Feature details
 1. The app will validate the parameters supplied by the user with pre-determined formats for each attribute.
@@ -213,7 +225,7 @@ Some additions made were the `Education`, `Subject` and `Remark` attributes. </b
     * We utilised the [java.util.Optional<T>](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html "java.util.Optional<T>") class to encapsulate the optional logic of the attributes.
 
 When adding a student entry, these were the alternatives considered.
-* **Alternative 1 (current choice):** Only `Name` has to be specified to create a `Student` entry, making the other attributes `Optional<>`.
+* **Alternative 1 (current choice):** Only `Name` has to be specified to create a `Student` entry, making the other attributes optional.
     * Pros:
         * Improves user convenience by allowing them to add a `Student` entry even with limited knowledge about their details.
     * Cons:
@@ -236,6 +248,8 @@ The `delete` implementation is identical to the implementation in AB3's codebase
 Here is a sequence diagram showing the interactions between components when `delete 1` is run.: <br>
 
 ![delete_sequence](images/DeleteSequenceDiagram2.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Proposed Implementation
 
@@ -271,7 +285,7 @@ we believe that if a single invalid `INDEX` is given, the system should generate
 The implementation of `edit` involves creating a new `Student` object with updated details to replace the previous `Student` object.
 This is done with the help of the `EditPersonDescriptor` class, which helps create the new `Student` object.
 
-With a similar fields to the [Add feature](#add-feature), `edit` has an additional `INDEX` parameter. </br>
+`edit` has similar fields to the [Add feature](#add-feature) and an additional `INDEX` parameter. </br>
 > NOTE : `[COMPULSORY]` indicates that the field is cannot be omitted when using `add`.
 > Unless stated as`[COMPULSORY]`, the field is optional.
 * `INDEX` which represents the index number of the student to be edited in the list.
@@ -287,6 +301,9 @@ With a similar fields to the [Add feature](#add-feature), `edit` has an addition
 Here is a sequence diagram showing the interactions between components when `edit 1 n/Bob edu/Primary 5` is run.: <br>
 
 ![edit_sequence](images/EditSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser`, `EditCommand`, and `EditPersonDescriptor` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Feature details
 1. Similar to `add`, the app will validate the parameters supplied by the user with pre-determined formats for each attribute.
@@ -294,14 +311,14 @@ Here is a sequence diagram showing the interactions between components when `edi
 3. If the input passes the validation check, the corresponding `Student` is replaced by a new edited `Student` object and stored in the `AddressBook`.
 
 #### General Design Considerations
-When editing a student entry, whether a new `Student` object should be created.
+Whether a new `Student` object should be created when editing a student entry.
 * **Alternative 1 (Current choice):** `edit` will create a new `Student` object with the help of `EditPersonDescriptor`
     * Pros:
         * Meets the expectations of the immutable `Student` class.
     * Cons:
         * Inefficient as an entire `Student` object is created even if only one field is changed. </br>
 
-* **Alternative 2:** `edit` directly sets the updated values in the existing `Student` object directly.
+* **Alternative 2:** `edit` directly sets the updated values in the existing `Student` object.
     * Pros:
         * More timely option and space efficient.
     * Cons:
@@ -322,6 +339,9 @@ The reason for implementing this feature with `Predicate<Person>` is that it can
 Here is a sequence diagram showing the interactions between components when `find Alice` is run.: <br>
 
 ![find_sequence](images/FindSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` and `FindCommand` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Feature details
 Our implementation extends from the `find` implementation in AB3 by enchancing the current `find KEYWORD`feature to `find PARTIAL_KEYWORD`.
@@ -380,48 +400,12 @@ The `list` implementation is identical to the implementation in AB3's codebase.
 Here is a sequence diagram showing the interactions between components when `list` is run.: <br>
 
 ![list_sequence](images/ListSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design Consideration
 The `list` command does not accept any arguments in order to make it as convenient for users to view their full list of students after a prior command such as `find` which displays
 a filtered list.
-
-#### \[Proposed\] Sort feature
-
-#### Proposed Implementation
-
-The proposed `sort` implementation will sort the `UniquePersonList` object, hence it will make use of: <br>
-* `sort` in [javafx.collections.FXCollections](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/FXCollections.html) for the main sorting functionality.
-  * In order to sort by `Name`, the comparator will be as follows `Comparator<Name>`.
-* `comparing` in [java.util.Comparator](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html) class to execute `sort` in ascending and descending orders. <br>
-
-An example usage would be `sort ASC` to sort the list in ascending order, and `sort DESC` to sort the list in descending order.
-> `ASC` and `DESC` will not be case-sensitive, in other words, `sort ASC` and `sort asc` are both acceptable commands.
-
-**Exepected execution:**
-1. Upon entering the command `sort ASC` in the command line of the application, the list of students will be sorted in alphabetically ascending order of their `Name`.
-2. Upon entering the command `sort DESC` in the command line of the application , the list of students will be sorted in alphabetically descending order of their `Name`.
-
-#### Design Considerations:
-**Aspect: Command format:**
-* **Alternative 1:** `sort`
-  * Pros:
-    * Simpler command for users to execute
-  * Cons:
-      * Less flexible as users cannot decide which attribute to sort by.
-      * Reduces extensibility of the feature (eg. sort by subject tag is more complicated if `sort` doesn't accept inputs)
-      * Users cannot choose which order to sort in as it will be defaulted to sorting in ascending order.
-* **Alternative 2 (Current choice):** `sort ORDER`
-  * Pros:
-    * Provides extensibility of sort (eg. future implementation of `sort edu ORDER` to sort by education level)
-    * Allows users to choose the order they would like to sort the list by
-    * Gives flexibility and convenience to users.
-  * Cons:
-    * Adds complexity to the implementation as more error checking of the inputs is required.
-  
-_{more aspects to be added}_
-
-
-[↑ Back to top](#table-of-contents)
 
 ### Remark feature
 
@@ -475,6 +459,44 @@ Additionally, the command line only provides a restricted view and input option 
   * Cons:
     * Remarks are limited to the view of `PersonCard` and size of the window.
     * Remarks that are too long will be cut off and not visible.
+
+[↑ Back to top](#table-of-contents)
+
+#### \[Proposed\] Sort feature
+
+#### Proposed Implementation
+
+The proposed `sort` implementation will sort the `UniquePersonList` object, hence it will make use of: <br>
+* `sort` in [javafx.collections.FXCollections](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/FXCollections.html) for the main sorting functionality.
+  * In order to sort by `Name`, the comparator will be as follows `Comparator<Name>`.
+* `comparing` in [java.util.Comparator](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html) class to execute `sort` in ascending and descending orders. <br>
+
+An example usage would be `sort ASC` to sort the list in ascending order, and `sort DESC` to sort the list in descending order.
+> `ASC` and `DESC` will not be case-sensitive, in other words, `sort ASC` and `sort asc` are both acceptable commands.
+
+**Exepected execution:**
+1. Upon entering the command `sort ASC` in the command line of the application, the list of students will be sorted in alphabetically ascending order of their `Name`.
+2. Upon entering the command `sort DESC` in the command line of the application , the list of students will be sorted in alphabetically descending order of their `Name`.
+
+#### Design Considerations:
+**Aspect: Command format:**
+* **Alternative 1:** `sort`
+  * Pros:
+    * Simpler command for users to execute
+  * Cons:
+    * Less flexible as users cannot decide which attribute to sort by.
+    * Reduces extensibility of the feature (eg. sort by subject tag is more complicated if `sort` doesn't accept inputs)
+    * Users cannot choose which order to sort in as it will be defaulted to sorting in ascending order.
+* **Alternative 2 (Current choice):** `sort ORDER`
+  * Pros:
+    * Provides extensibility of sort (eg. future implementation of `sort edu ORDER` to sort by education level)
+    * Allows users to choose the order they would like to sort the list by
+    * Gives flexibility and convenience to users.
+  * Cons:
+    * Adds complexity to the implementation as more error checking of the inputs is required.
+
+_{more aspects to be added}_
+
 
 [↑ Back to top](#table-of-contents)
 
