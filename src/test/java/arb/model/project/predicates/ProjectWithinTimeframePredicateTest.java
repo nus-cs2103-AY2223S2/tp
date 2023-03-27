@@ -1,10 +1,11 @@
-package arb.model.project;
+package arb.model.project.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import arb.model.project.Deadline;
 import arb.testutil.ProjectBuilder;
 
 public class ProjectWithinTimeframePredicateTest {

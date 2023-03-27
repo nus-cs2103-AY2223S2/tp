@@ -24,7 +24,7 @@ import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.model.ListType;
 import arb.model.Model;
-import arb.model.client.NameContainsKeywordsPredicate;
+import arb.model.client.predicates.NameContainsKeywordsPredicate;
 import arb.model.project.Deadline;
 import arb.model.project.Price;
 import arb.model.project.Project;

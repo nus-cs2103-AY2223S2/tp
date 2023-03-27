@@ -1,4 +1,4 @@
-package arb.commons.predicate;
+package arb.commons.core.predicate;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -8,9 +8,8 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import arb.commons.core.predicate.CombinedPredicate;
 import arb.model.client.Client;
-import arb.model.client.NameContainsKeywordsPredicate;
+import arb.model.client.predicates.NameContainsKeywordsPredicate;
 
 public class CombinedPredicateTest {
     @Test

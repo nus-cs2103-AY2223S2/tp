@@ -1,4 +1,4 @@
-package arb.model.client;
+package arb.model.client.predicates;
 
 import java.util.HashSet;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import arb.commons.util.StringUtil;
+import arb.model.client.Client;
 
 /**
  * Tests that a {@code Client}'s {@code Name} matches any of the keywords given.

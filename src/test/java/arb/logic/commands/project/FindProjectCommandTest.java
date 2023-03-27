@@ -19,7 +19,7 @@ import arb.model.ListType;
 import arb.model.Model;
 import arb.model.ModelManager;
 import arb.model.UserPrefs;
-import arb.model.project.TitleContainsKeywordsPredicate;
+import arb.model.project.predicates.TitleContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindProjectCommand}.

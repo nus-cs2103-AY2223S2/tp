@@ -17,8 +17,8 @@ import arb.logic.parser.Parser;
 import arb.logic.parser.Prefix;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Client;
-import arb.model.client.ClientContainsTagPredicate;
-import arb.model.client.NameContainsKeywordsPredicate;
+import arb.model.client.predicates.ClientContainsTagPredicate;
+import arb.model.client.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindClientCommand object
