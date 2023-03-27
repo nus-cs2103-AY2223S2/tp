@@ -1,0 +1,56 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class "<<interface>>\nUi" as Ui
+Class "{abstract}\nUiPart" as UiPart
+Class UiManager
+Class MainWindow
+Class StudentListPanel
+Class StudentCard
+Class ProfileButton
+Class HomeworkButton
+Class LessonsButton
+Class ExamsButton
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+package Logic <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Ui
+
+UiManager .left.|> Ui
+UiManager -down-> "1" MainWindow
+MainWindow *-down-> "1" StudentListPanel
+StudentCard *-down-> "1" ProfileButton
+StudentCard *-down-> "1" HomeworkButton
+StudentCard *-down-> "1" LessonsButton
+StudentCard *-down-> "1" ExamsButton
+
+StudentListPanel -down-> "*" StudentCard
+
+MainWindow -left-|> UiPart
+
+StudentListPanel --|> UiPart
+StudentCard --|> UiPart
+ProfileButton --|> UiPart
+HomeworkButton --|> UiPart
+LessonsButton --|> UiPart
+ExamsButton --|> UiPart
+
+StudentCard ..> Model
+UiManager -right-> Logic
+MainWindow -left-> Logic
+
+
+MainWindow -[hidden]-|> UiPart
+@enduml

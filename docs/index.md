@@ -8,7 +8,7 @@ title: TutorPro
 
 ![Ui](images/Ui.png)
 
-[![TutorPro](docs/images/Thumbnail.png)]
+<img src="images/Thumbnail.png" alt="TutorPro" width="50"/>
 
 * TutorPro is a desktop application for managing contacts of students and classes, optimised for use via a Command Line Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
 * For the detailed documentation of this project, see the **[TutorPro Website](https://ay2223s2-cs2103t-w13-4.github.io/tp/)**.
