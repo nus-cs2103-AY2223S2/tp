@@ -83,7 +83,7 @@ public class ShortcutCommandParser implements Parser<ShortcutCommand> {
         } else if (commandWord.equals(ListCommand.commandWords.get(0))) {
             commandToChange = CommandType.LIST;
         } else if (commandWord.equals(MassOpCommand.commandWords.get(0))) {
-            commandToChange = CommandType.REDO;
+            commandToChange = CommandType.MASS_OP;
         } else if (commandWord.equals(RedoCommand.commandWords.get(0))) {
             commandToChange = CommandType.REDO;
         } else if (commandWord.equals(ShortcutCommand.commandWords.get(0))) {
@@ -93,10 +93,10 @@ public class ShortcutCommandParser implements Parser<ShortcutCommand> {
         } else if (commandWord.equals(UndoCommand.commandWords.get(0))) {
             commandToChange = CommandType.UNDO;
         } else {
-            throw new ParseException(ShortcutCommand.MESSAGE_INVALID_SHORTCUT);
+            throw new ParseException(
+                    String.format(ShortcutCommand.MESSAGE_INVALID_SHORTCUT, ShortcutCommand.MESSAGE_USAGE));
         }
 
         return new ShortcutCommand(commandToChange, shortForm);
     }
-
 }

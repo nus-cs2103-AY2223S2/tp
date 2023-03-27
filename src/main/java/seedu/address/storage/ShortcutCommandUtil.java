@@ -46,7 +46,7 @@ public class ShortcutCommandUtil {
     public static final Path LIST_PATH = Paths.get("data", "listCommand.txt");
     public static final Path MASS_OP_PATH = Paths.get("data", "massOpCommand.txt");
     public static final Path REDO_PATH = Paths.get("data", "redoCommand.txt");
-    public static final Path SHORTCUT_PATH = Paths.get("data", "listCommand.txt");
+    public static final Path SHORTCUT_PATH = Paths.get("data", "shortcutCommand.txt");
     public static final Path TAG_PATH = Paths.get("data", "tagCommand.txt");
     public static final Path UNDO_PATH = Paths.get("data", "undoCommand.txt");
 

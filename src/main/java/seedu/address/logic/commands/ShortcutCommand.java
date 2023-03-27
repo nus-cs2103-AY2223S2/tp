@@ -29,6 +29,8 @@ public class ShortcutCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New shortcut added: Command: %1$s, Shortcut: %2$s";
     public static final String MESSAGE_INVALID_SHORTCUT = "Shortcut does not exist.";
 
+    public static final String UNKNOWN_ERROR = "Contact an admin";
+
     private final ShortcutCommandParser.CommandType command;
     private final String shortForm;
 
@@ -47,8 +49,6 @@ public class ShortcutCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // replace with calling a function inherited by all subclasses
-        // on top of adding, do serialization and saving
         if (command.equals(ShortcutCommandParser.CommandType.ADD)) {
             AddCommand.commandWords.add(this.shortForm);
             ShortcutCommandUtil.saveWords(ShortcutCommandUtil.ADD_PATH, AddCommand.commandWords);
@@ -100,6 +100,8 @@ public class ShortcutCommand extends Command {
         } else if (command.equals(ShortcutCommandParser.CommandType.MASS_OP)) {
             MassOpCommand.commandWords.add(this.shortForm);
             ShortcutCommandUtil.saveWords(ShortcutCommandUtil.MASS_OP_PATH, MassOpCommand.commandWords);
+        } else {
+            throw new CommandException(UNKNOWN_ERROR);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, command, shortForm), true, true);
@@ -112,5 +114,4 @@ public class ShortcutCommand extends Command {
                 && command.equals(((ShortcutCommand) other).command)
                 && shortForm.equals(((ShortcutCommand) other).shortForm));
     }
-
 }
