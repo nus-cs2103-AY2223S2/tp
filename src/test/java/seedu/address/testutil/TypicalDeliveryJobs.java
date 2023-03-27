@@ -15,27 +15,35 @@ public class TypicalDeliveryJobs {
     public static final DeliveryJob JOBA = new DeliveryJob(
         TypicalPersons.ALICE.getPersonId(),
         TypicalPersons.BOB.getPersonId(),
-        "1.0", "");
+        "2123-03-30",
+        "0",
+        "1.12", "This a test description");
 
     public static final DeliveryJob JOBB = new DeliveryJob(
         TypicalPersons.BOB.getPersonId(),
         TypicalPersons.CARL.getPersonId(),
-        "2.0", "");
+        "1232.0", "");
     public static final DeliveryJob JOBC = new DeliveryJob(
         TypicalPersons.CARL.getPersonId(),
         TypicalPersons.DANIEL.getPersonId(),
-        "3.0", "");
+        "3.51234", "This a test description \n This a test description");
     public static final DeliveryJob JOBD = new DeliveryJob(
         TypicalPersons.DANIEL.getPersonId(),
         TypicalPersons.ELLE.getPersonId(),
+        "2023-03-30",
+        "1",
         "4.0", "");
     public static final DeliveryJob JOBE = new DeliveryJob(
         TypicalPersons.ELLE.getPersonId(),
         TypicalPersons.FIONA.getPersonId(),
+        "2023-03-30",
+        "5",
         "5.0", "");
     public static final DeliveryJob JOBF = new DeliveryJob(
         TypicalPersons.FIONA.getPersonId(),
         TypicalPersons.GEORGE.getPersonId(),
+        "2023-03-30",
+        "0",
         "6.0", "");
 
     public static DeliveryJobSystem getTypicalDeliveryJobSystem() {

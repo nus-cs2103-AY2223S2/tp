@@ -92,6 +92,9 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     public void selectItem(int idx) {
         if (deliveryJobListView.getItems().size() > 0) {
             logger.info("Delivery selected:" + deliveryJobListView.getSelectionModel().getSelectedIndex());
+            if (idx < 0) {
+                idx = 0;
+            }
             deliveryJobListView.getSelectionModel().select(idx);
             onSelectHandler.accept(idx + 1, deliveryJobListView.getSelectionModel().getSelectedItem());
         } else {
@@ -138,5 +141,12 @@ public class DeliveryJobListPanel extends UiPart<Region> {
      */
     public int size() {
         return deliveryJobListView.getItems().size();
+    }
+
+    /**
+     * Triggers update event for child elemets.
+     */
+    public void refresh() {
+        selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());
     }
 }

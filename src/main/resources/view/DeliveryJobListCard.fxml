@@ -25,8 +25,12 @@
                   <Label fx:id="label" styleClass="cell_big_label" text="\$job_label" />
                </children>
             </HBox>
-            <Label fx:id="receipient" styleClass="cell_small_label" text="\$receipient" />
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            <Label contentDisplay="RIGHT" styleClass="cell_small_label" text="Recipient:">
+               <graphic>
+                  <Label fx:id="receipient" styleClass="cell_small_label" text="\$receipient" />
+               </graphic>
+            </Label>
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address" visible="false" />
             <HBox spacing="2.0">
                <children>
                   <Label fx:id="deliveryTimeDate" styleClass="cell_small_label" text="\$delivery_time_date" />
