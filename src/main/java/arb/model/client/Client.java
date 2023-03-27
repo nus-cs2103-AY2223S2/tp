@@ -8,7 +8,10 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import arb.model.project.Project;
+import arb.model.project.UniqueProjectList;
 import arb.model.tag.Tag;
+import javafx.collections.ObservableList;
 
 /**
  * Represents a Client in the address book.
@@ -24,6 +27,8 @@ public class Client {
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
+    private final UniqueProjectList linkedProjects;
+
     /**
      * Name and tags must be present and not null.
      */
@@ -33,6 +38,7 @@ public class Client {
         this.phone = Optional.ofNullable(phone);
         this.email = Optional.ofNullable(email);
         this.tags.addAll(tags);
+        this.linkedProjects = new UniqueProjectList();
     }
 
     public Name getName() {
@@ -70,6 +76,37 @@ public class Client {
     }
 
     /**
+     * Links {@code project} to this client.
+     */
+    public void linkProject(Project project) {
+        if (!linkedProjects.contains(project)) {
+            linkedProjects.add(project);
+        }
+    }
+
+    /**
+     * Unlinks {@code project} from this client.
+     */
+    public void unlinkProject(Project project) {
+        assert linkedProjects.contains(project) : getName() + ": " + linkedProjects.toString();
+        linkedProjects.remove(project);
+    }
+
+    /**
+     * Unlinks all linked projects from this client.
+     */
+    public void unlinkAllProjects() {
+        linkedProjects.setProjects(new UniqueProjectList());
+    }
+
+    public int getNumberOfProjectsLinked() {
+        return linkedProjects.asUnmodifiableObservableList().size();
+    }
+
+    public ObservableList<Project> getLinkedProjects() {
+        return linkedProjects.asUnmodifiableObservableList();
+    }
+    /**
      * Returns true if both clients have the same name.
      * This defines a weaker notion of equality between two clients.
      */
@@ -100,13 +137,14 @@ public class Client {
         return otherClient.getName().equals(getName())
                 && otherClient.phone.equals(phone)
                 && otherClient.email.equals(email)
-                && otherClient.getTags().equals(getTags());
+                && otherClient.getTags().equals(getTags())
+                && otherClient.linkedProjects.equals(linkedProjects);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(name, phone, email, tags, linkedProjects);
     }
 
     @Override

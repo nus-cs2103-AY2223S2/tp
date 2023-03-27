@@ -56,9 +56,7 @@ public class UnmarkProjectCommand extends Command {
         }
 
         Project projectToUnmark = lastShownList.get(targetIndex.getZeroBased());
-        projectToUnmark.markAsUndone();
-
-        model.setProject(projectToUnmark, projectToUnmark);
+        model.markProjectAsNotDone(projectToUnmark);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
         return new CommandResult(String.format(MESSAGE_UNMARK_PROJECT_SUCCESS, projectToUnmark), ListType.PROJECT);

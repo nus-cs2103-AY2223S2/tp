@@ -103,13 +103,17 @@ public class ModelManager implements Model {
 
     @Override
     public void resetProjectList() {
+        logger.info("Resetting the project list");
         addressBook.resetProjectTagMappings();
+        addressBook.resetClientLinkings(); // unlink clients
         addressBook.setProjects(new ArrayList<Project>());
     }
 
     @Override
     public void resetClientList() {
+        logger.info("Resetting the client list");
         addressBook.resetClientTagMappings();
+        addressBook.resetProjectLinkings(); // unlink projects
         addressBook.setClients(new ArrayList<Client>());
     }
 
@@ -161,6 +165,36 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedProject);
 
         addressBook.setProject(target, editedProject);
+    }
+
+    @Override
+    public void setProjectToLink(Project project) {
+        requireNonNull(project);
+        addressBook.setProjectToLink(project);
+    }
+
+    @Override
+    public void linkProjectToClient(Client client) {
+        requireNonNull(client);
+        addressBook.linkProjectToClient(client);
+    }
+
+    @Override
+    public void unlinkClientFromProject(Project project) {
+        requireNonNull(project);
+        addressBook.unlinkClientFromProject(project);
+    }
+
+    @Override
+    public void markProjectAsDone(Project project) {
+        requireNonNull(project);
+        addressBook.markProjectAsDone(project);
+    }
+
+    @Override
+    public void markProjectAsNotDone(Project project) {
+        requireNonNull(project);
+        addressBook.markProjectAsNotDone(project);
     }
 
     //=========== Filtered Client List Accessors ============================================================

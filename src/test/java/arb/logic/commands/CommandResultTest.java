@@ -16,7 +16,7 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback", ListType.NONE)));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, ListType.NONE)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false, ListType.NONE)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -31,10 +31,10 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different", ListType.NONE)));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, ListType.NONE)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, false, ListType.NONE)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, ListType.NONE)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false, ListType.NONE)));
 
         // different list type value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", ListType.CLIENT)));
@@ -51,10 +51,12 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different", ListType.NONE).hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false, ListType.NONE).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false,
+                false, ListType.NONE).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, ListType.NONE).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true,
+                false, ListType.NONE).hashCode());
 
         // different list type value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", ListType.CLIENT).hashCode());

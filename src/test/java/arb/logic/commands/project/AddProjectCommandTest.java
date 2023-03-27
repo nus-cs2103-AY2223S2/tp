@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ public class AddProjectCommandTest {
 
     @Test
     public void constructor_nullProject_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddProjectCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddProjectCommand(null, null));
     }
 
     @Test
@@ -40,7 +41,8 @@ public class AddProjectCommandTest {
         ModelStubAcceptingProjectAdded modelStub = new ModelStubAcceptingProjectAdded();
         Project validProject = new ProjectBuilder().build();
 
-        CommandResult commandResult = new AddProjectCommand(validProject).execute(modelStub, ListType.CLIENT);
+        CommandResult commandResult = new AddProjectCommand(validProject, Optional.empty())
+                .execute(modelStub, ListType.CLIENT);
 
         assertEquals(String.format(AddProjectCommand.MESSAGE_SUCCESS, validProject), commandResult.getFeedbackToUser());
         assertEquals(ListType.PROJECT, commandResult.getListToBeShown());
@@ -50,7 +52,7 @@ public class AddProjectCommandTest {
     @Test
     public void execute_duplicateProject_throwsCommandException() {
         Project validProject = new ProjectBuilder().build();
-        AddProjectCommand addProjectCommand = new AddProjectCommand(validProject);
+        AddProjectCommand addProjectCommand = new AddProjectCommand(validProject, Optional.empty());
         ModelStub modelStub = new ModelStubWithProject(validProject);
 
         assertThrows(CommandException.class, AddProjectCommand.MESSAGE_DUPLICATE_PROJECT, () ->
@@ -61,14 +63,14 @@ public class AddProjectCommandTest {
     public void equals() {
         Project crochet = new ProjectBuilder().withTitle("Crochet").build();
         Project sculpture = new ProjectBuilder().withTitle("sculpture").build();
-        AddProjectCommand addCrochetCommand = new AddProjectCommand(crochet);
-        AddProjectCommand addSculptureCommand = new AddProjectCommand(sculpture);
+        AddProjectCommand addCrochetCommand = new AddProjectCommand(crochet, Optional.empty());
+        AddProjectCommand addSculptureCommand = new AddProjectCommand(sculpture, Optional.empty());
 
         // same object -> returns true
         assertTrue(addCrochetCommand.equals(addCrochetCommand));
 
         // same values -> returns true
-        AddProjectCommand addCrochetCommandCopy = new AddProjectCommand(crochet);
+        AddProjectCommand addCrochetCommandCopy = new AddProjectCommand(crochet, Optional.empty());
         assertTrue(addCrochetCommand.equals(addCrochetCommandCopy));
 
         // different types -> returns false
@@ -172,6 +174,31 @@ public class AddProjectCommandTest {
 
         @Override
         public void setProject(Project target, Project editedProject) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setProjectToLink(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void linkProjectToClient(Client client) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unlinkClientFromProject(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markProjectAsDone(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markProjectAsNotDone(Project project) {
             throw new AssertionError("This method should not be called.");
         }
 

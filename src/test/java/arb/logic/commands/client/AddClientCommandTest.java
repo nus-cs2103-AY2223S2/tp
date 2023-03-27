@@ -176,6 +176,31 @@ public class AddClientCommandTest {
         }
 
         @Override
+        public void setProjectToLink(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void linkProjectToClient(Client client) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unlinkClientFromProject(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markProjectAsDone(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markProjectAsNotDone(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Client> getFilteredClientList() {
             throw new AssertionError("This method should not be called.");
         }

@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -71,7 +72,7 @@ public class AddressBookParserTest {
         for (String commandWord : AddProjectCommand.getCommandWords()) {
             AddProjectCommand command = (AddProjectCommand) parser
                 .parseCommand(ProjectUtil.getAddProjectCommand(project, commandWord));
-            assertEquals(new AddProjectCommand(project), command);
+            assertEquals(new AddProjectCommand(project, Optional.empty()), command);
         }
     }
 
@@ -114,9 +115,6 @@ public class AddressBookParserTest {
         for (String commandWord : EditClientCommand.getCommandWords()) {
             Client client = new ClientBuilder().build();
             EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
-            /* assert false : commandWord + " "
-                    + INDEX_FIRST.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor); */
-
             EditClientCommand command = (EditClientCommand) parser.parseCommand(commandWord + " "
                     + INDEX_FIRST.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
             assertEquals(new EditClientCommand(INDEX_FIRST, descriptor), command);
@@ -128,9 +126,6 @@ public class AddressBookParserTest {
         for (String commandWord : EditProjectCommand.getCommandWords()) {
             Project project = new ProjectBuilder().build();
             EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(project).build();
-            /*assert false : commandWord + " "
-                    + INDEX_FIRST.getOneBased() + " "
-                    + ProjectUtil.getEditProjectDescriptorDetails(descriptor); */
             EditProjectCommand command = (EditProjectCommand) parser
                     .parseCommand(commandWord + " "
                     + INDEX_FIRST.getOneBased() + " "
