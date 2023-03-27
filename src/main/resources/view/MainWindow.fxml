@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
+<?import javafx.scene.control.Label?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="QuickContacts" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
     <icons>
@@ -48,12 +49,14 @@
                     <VBox fx:id="personList" HBox.hgrow="ALWAYS" styleClass="pane-with-border"
                           minWidth="340"
                           prefWidth="340">
+                        <Label styleClass="panel-title">Contacts</Label>
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10"/>
                         </padding>
                         <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                     </VBox>
                     <VBox fx:id="meetingListPanel" HBox.hgrow="ALWAYS" styleClass="pane-with-border" minWidth="340">
+                        <Label styleClass="panel-title">Meetings</Label>
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10"/>
                         </padding>
