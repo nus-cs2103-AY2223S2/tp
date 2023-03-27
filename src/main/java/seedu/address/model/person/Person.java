@@ -221,6 +221,42 @@ public class Person {
         return Objects.hash(name, gender, phone, email, company, industry, occupation, jobTitle, address, tags);
     }
 
+    /**
+     * Returns the appended string of person object delimited by a " "
+     * @return String
+     */
+    public String toStringSpaceDelimited() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append(" Phone: ")
+                .append(getPhone())
+                .append(" Gender: ")
+                .append(getGender())
+                .append(" Email: ")
+                .append(getEmail())
+                .append(" Company: ")
+                .append(getCompany())
+                .append(" Industry: ")
+                .append(getIndustry())
+                .append(" Occupation: ")
+                .append(getOccupation())
+                .append(" Job Title: ")
+                .append(getJobTitle())
+                .append(" Address: ")
+                .append(getAddress())
+                .append(" Remark: ")
+                .append(getRemark())
+                .append(" Task: ")
+                .append(getTask());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append(" Tags: ");
+            tags.forEach(builder::append);
+        }
+        return builder.toString();
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
