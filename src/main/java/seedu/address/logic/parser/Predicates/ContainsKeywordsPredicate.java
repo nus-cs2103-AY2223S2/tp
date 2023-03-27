@@ -1,6 +1,8 @@
-package seedu.address.model.person;
+package seedu.address.logic.parser.Predicates;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION;
@@ -13,34 +15,31 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * Predicate that returns true if all keywords are contained in the Person's fields (Name, Address, Phone).
  */
-public class MultiFieldContainsKeywordsPredicate implements Predicate<Person> {
+public class ContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
     private Prefix findCategory;
 
     /**
-     * Constructs a MultiFieldContainsKeywordsPredicate.
+     * Constructs a ContainsKeywordsPredicate.
      *
      * @param keywords list of keywords to match with the Person's fields
      */
-    public MultiFieldContainsKeywordsPredicate(List<String> keywords) {
+    public ContainsKeywordsPredicate(List<String> keywords) {
         this.findCategory = CliSyntax.isPrefix(new Prefix(keywords.get(0)))
                             ? new Prefix(keywords.get(0))
                             : PREFIX_NAME;
-        System.out.println(keywords.get(0));
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Person person) {
         boolean hasMatching = false;
-        /*
-        boolean hasMatchingTag = tags.stream()
-                .anyMatch(tag -> person.getTags().contains(tag));
-        */
         if (findCategory.equals(PREFIX_NAME)) {
             hasMatching = keywords.stream()
                     .anyMatch(keyword -> StringUtil.containsPartialIgnoreCase(person.getName().fullName, keyword));
@@ -66,7 +65,13 @@ public class MultiFieldContainsKeywordsPredicate implements Predicate<Person> {
                     .anyMatch(keyword -> StringUtil.containsPartialIgnoreCase(
                             person.getOptionalRemark().map(remark -> remark.value).orElse(null), keyword));
         } else if (findCategory.equals(PREFIX_TAG)) {
-            boolean hasMatchingTag = keywords.stream()
+            Set<Tag> tags = new HashSet<>();
+            for (int i = 1; i < keywords.size(); i++) {
+                String currKeyword = keywords.get(i);
+                Tag curr = new Tag(currKeyword);
+                tags.add(curr);
+            }
+            hasMatching = tags.stream()
                     .anyMatch(tag -> person.getTags().contains(tag));
         }
 
@@ -76,10 +81,12 @@ public class MultiFieldContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof MultiFieldContainsKeywordsPredicate
-                && keywords.equals(((MultiFieldContainsKeywordsPredicate) other).keywords));
+                || (other instanceof ContainsKeywordsPredicate
+                && keywords.equals(((ContainsKeywordsPredicate) other).keywords));
         /*
-                && tags.equals(((MultiFieldContainsKeywordsPredicate) other).tags));
+                && tags.equals(((ContainsKeywordsPredicate) other).tags));
         */
     }
+
+
 }
