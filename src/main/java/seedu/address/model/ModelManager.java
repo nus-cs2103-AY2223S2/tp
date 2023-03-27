@@ -192,6 +192,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setRecommendations(List<Recommendation> recommendations) {
+        resetRecommendations();
+        for (Recommendation recommendation : recommendations) {
+            addRecommendation(recommendation);
+        }
+    }
+
+    @Override
     public void resetRecommendations() {
         eduMate.resetRecommendations();
     }

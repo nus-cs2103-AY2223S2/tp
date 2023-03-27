@@ -2,10 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
 import org.joda.time.LocalTime;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.Model;
 import seedu.address.model.location.Location;
@@ -17,7 +16,6 @@ import seedu.address.model.time.TimeBlock;
 import seedu.address.model.time.TimePeriod;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 public class OrganiseCommand extends Command {
@@ -26,7 +24,6 @@ public class OrganiseCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Organised a new meeting";
 
     //need error messages for wrong formats
-
 
     private final ContactIndex index;
     private final TimePeriod timePeriod;

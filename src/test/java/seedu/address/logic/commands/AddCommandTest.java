@@ -9,9 +9,7 @@ import static seedu.address.testutil.TypicalPersons.ALEX;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,6 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.EduMate;
 import seedu.address.model.EduMateHistory;
@@ -29,6 +28,7 @@ import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.ReadOnlyEduMateHistory;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
@@ -208,7 +208,8 @@ public class AddCommandTest {
 
         @Override
         public void deleteRecommendation(Recommendation target) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method should not be called.")
+                    ;
         }
 
         @Override
@@ -218,6 +219,11 @@ public class AddCommandTest {
 
         @Override
         public void setRecommendation(Recommendation target, Recommendation editedRecommendation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setRecommendations(List<Recommendation> recommendations) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -253,7 +259,28 @@ public class AddCommandTest {
 
         @Override
         public void updateObservablePersonList() {
-            return;
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Recommendation> getRecommendationByIndex(ContactIndex contactIndex) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public void addMeetUp(MeetUp meetUp) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ContactIndex getMeetUpIndex() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<MeetUp> getObservableMeetUpList() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -275,10 +302,20 @@ public class AddCommandTest {
         public void updateObservableRecommendationList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Set<ContactIndex> getParticipants() {
+            return null;
+        }
+
+        @Override
+        public void updateObservableMeetUpList() {
+
+        }
     }
 
     /**
-     * A Model stub that contains a single person.
+     *  A Model stub that contains a single person.
      */
     private class ModelStubWithPerson extends ModelStub {
         private final Person person;

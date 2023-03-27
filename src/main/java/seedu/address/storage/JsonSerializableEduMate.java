@@ -66,7 +66,6 @@ class JsonSerializableEduMate {
         recommendations.addAll(source.getRecommendationList()
                 .stream().map(JsonAdaptedRecommendation::new)
                 .collect(Collectors.toList()));
-
     }
 
     /**

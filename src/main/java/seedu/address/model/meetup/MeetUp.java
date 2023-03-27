@@ -1,5 +1,6 @@
 package seedu.address.model.meetup;
 
+import seedu.address.model.Participants;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.recommendation.Recommendation;
@@ -11,11 +12,11 @@ import java.util.Set;
 public class MeetUp implements Comparable<MeetUp> {
     private final TimePeriod timePeriod; //todo comment later: this is an abstract class, could be hour block or timeblock
     private final Location location;
-    private final Set<ContactIndex> participants;
+    private final Participants participants;
     private final ContactIndex contactIndex;
 
     //todo constructor for choice form recommendations
-    public MeetUp(Recommendation recommendation, Set<ContactIndex> participants, ContactIndex contactIndex) {
+    public MeetUp(Recommendation recommendation, Participants participants, ContactIndex contactIndex) {
         this.timePeriod = recommendation.getTimePeriod();
         this.location = recommendation.getLocation();
         this.participants = participants;
@@ -23,7 +24,7 @@ public class MeetUp implements Comparable<MeetUp> {
     }
 
     //todo constructor for customised meet
-    public MeetUp(TimePeriod timePeriod, Location location, Set<ContactIndex> participants, ContactIndex contactIndex) {
+    public MeetUp(TimePeriod timePeriod, Location location, Participants participants, ContactIndex contactIndex) {
         this.timePeriod = timePeriod;
         this.location = location;
         this.participants = participants;
@@ -46,7 +47,7 @@ public class MeetUp implements Comparable<MeetUp> {
         return timePeriod;
     }
 
-    public Set<ContactIndex> getParticipants() {
+    public Participants getParticipants() {
         return participants;
     }
 
@@ -54,6 +55,7 @@ public class MeetUp implements Comparable<MeetUp> {
     public int compareTo(MeetUp o) {
         return 0;
     }
+    //todo implement this
 
     public boolean isSameMeetUp(MeetUp other) {
         return this.timePeriod.equals(other.timePeriod) && this.location.equals(other.location) && this.participants.equals(other.participants);
