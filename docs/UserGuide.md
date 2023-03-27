@@ -115,9 +115,9 @@ Format: `help`
 :warning: You are unable to add any tasks (simpleTask, Deadline, Event) of the same name.
 
 Adds a task to the address book. There are 3 types of tasks. `SimpleTask`, `Deadline` and `Event`.
-For `Deadline` and `Event` `longDate` field(s) are required.
+For `Deadline` and `Event` `Date` field(s) are required.
 
-`longDates` should be in the format `YYYY-MM-DD HHMM`. ([What is a valid longDate?](#q2-what-is-a-valid-date))
+`Date` should be in the format `YYYY-MM-DD HHMM`. ([What is a valid Date?](#q2-what-is-a-valid-date))
 
 By default, effort level is 24. ([What is an effort level?](#q3-what-is-an-effort-level))
 
@@ -152,16 +152,14 @@ Format: `list`
 
 Edits an existing task in the address book.
 
-One parameter field **must** be supplied in the argument.
-
 Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT]…​ [t/TAG]…​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
-* You can remove all the task’s tags by typing `t/` without
-    specifying any tags after it.
+* You can remove all the task’s tags by typing `t/` without specifying any tags after it.
+* You can remove a description with `d/` without specifying any tags after it.
 
 Examples:
 *  `edit 1 t/CS2102 t/URGENT` Edits the tags of the first task to now be `CS2102` and `URGENT`
@@ -169,7 +167,8 @@ Examples:
 
 ### 2.5 Locating tasks by name: `find`
 :warning: When searching for a description `find d/Description`, Tasks without user's input description will not show up!
-e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/No Description` will return only the latter task. 
+
+e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/No Description` will return only a list with the latter task. 
 
 Find tasks whose attribute best match the user input string.
 
