@@ -1,0 +1,86 @@
+@startuml
+!include style.puml
+
+box ApplicationLogic LOGIC_COLOR_T1
+participant ":ApplicationLogicManager" as ApplicationLogicManager LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
+participant ":SortApplicationCommandParser" as SortApplicationCommandParser LOGIC_COLOR
+participant ":SortApplicationCommand" as SortApplicationCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box ApplicationModel MODEL_COLOR_T1
+participant ":ApplicationModelManager" as ApplicationModelManager MODEL_COLOR
+participant ":AlphabeticalComparator" as AlphabeticalComparator MODEL_COLOR
+end box
+
+note left of ApplicationLogicManager #aqua
+Let user input be: sort <str>
+str = "alphabetical"
+end note
+
+[-> ApplicationLogicManager : execute("sort {str}")
+activate ApplicationLogicManager
+
+ApplicationLogicManager -> InternshipBookParser : parseCommand("sort {str}")
+activate InternshipBookParser
+
+create SortApplicationCommandParser
+InternshipBookParser -> SortApplicationCommandParser
+activate SortApplicationCommandParser
+
+SortApplicationCommandParser --> InternshipBookParser
+deactivate SortApplicationCommandParser
+
+InternshipBookParser -> SortApplicationCommandParser : parse("{str}")
+activate SortApplicationCommandParser
+
+create SortApplicationCommand
+SortApplicationCommandParser -> SortApplicationCommand : new SortApplicationCommand({str})
+activate SortApplicationCommand
+
+SortApplicationCommand -> SortApplicationCommand : isValidSortingOrder({str})
+
+create AlphabeticalComparator
+SortApplicationCommand -> AlphabeticalComparator: new AlphabeticalComparator()
+activate AlphabeticalComparator
+
+AlphabeticalComparator --> SortApplicationCommand : comparator
+deactivate AlphabeticalComparator
+
+SortApplicationCommand --> SortApplicationCommandParser : SortApplicationCommand
+deactivate SortApplicationCommand
+
+SortApplicationCommandParser --> InternshipBookParser : SortApplicationCommand
+deactivate SortApplicationCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortApplicationCommandParser -[hidden]-> InternshipBookParser
+destroy SortApplicationCommandParser
+
+InternshipBookParser --> ApplicationLogicManager : SortApplicationCommand
+deactivate InternshipBookParser
+
+ApplicationLogicManager -> SortApplicationCommand : execute()
+activate SortApplicationCommand
+
+SortApplicationCommand -> ApplicationModelManager : updateSortedApplicationList(comparator)
+activate ApplicationModelManager
+
+ApplicationModelManager -> ApplicationModelManager : setComparator(comparator)
+ApplicationModelManager --> SortApplicationCommand
+deactivate ApplicationModelManager
+
+create CommandResult
+SortApplicationCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortApplicationCommand
+deactivate CommandResult
+
+SortApplicationCommand --> ApplicationLogicManager : result
+deactivate SortApplicationCommand
+
+[<--ApplicationLogicManager
+deactivate ApplicationLogicManager
+@enduml
