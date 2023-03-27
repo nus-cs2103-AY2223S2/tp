@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.layout.StackPane?>
-
-<?import java.net.URL?>
-
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<Tab text="Untitled Tab" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<Tab text="Untitled Tab" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <content>
         <VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
             <stylesheets>
@@ -17,13 +14,9 @@
             </stylesheets>
 
             <StackPane fx:id="displayMessageBox" maxHeight="20" prefHeight="20" styleClass="message-box-bg">
-                <padding>
-                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                </padding>
                 <Label fx:id="message" alignment="CENTER" />
             </StackPane>
             <StackPane fx:id="listPlaceholder" />
         </VBox>
     </content>
 </Tab>
-

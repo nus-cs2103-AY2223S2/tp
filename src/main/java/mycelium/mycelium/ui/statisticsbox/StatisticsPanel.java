@@ -4,11 +4,11 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.scene.control.Label;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import mycelium.mycelium.commons.core.LogsCenter;
+import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.ui.UiPart;
@@ -20,6 +20,9 @@ import mycelium.mycelium.ui.entitypanel.EntityList;
  */
 public class StatisticsPanel extends UiPart<TabPane> {
     private static final String FXML = "EntityPanel.fxml";
+    private static final String NO_DUE_PROJECT_MESSAGE = "No projects due soon";
+    private static final String NO_OVERDUE_PROJECT_MESSAGE = "No overdue projects!";
+
     private Logger logger = LogsCenter.getLogger(getClass());
     private EntityList<Project> dueSoonProjectListPanel;
     private EntityList<Project> overdueProjectListPanel;
@@ -32,13 +35,13 @@ public class StatisticsPanel extends UiPart<TabPane> {
     /**
      * Initialises a {@code StatisticsPanel} with given {@code Logic} and message {@code Label}.
      */
-    public StatisticsPanel(ObservableList<Project> dueSoonProjectList, Label noDueProjectLabel,
-                           ObservableList<Project> overdueProjectList, Label noOverdueProjectLabel) {
+    public StatisticsPanel(ObservableList<Project> dueSoonProjectList,
+                           ObservableList<Project> overdueProjectList) {
         super(FXML);
         dueSoonProjectListPanel = new EntityList<Project>(dueSoonProjectList, SpecialProjectEntity::new);
         overdueProjectListPanel = new EntityList<Project>(overdueProjectList, SpecialProjectEntity::new);
-        dueSoonProjectTab = new StatisticsTab("Due soon", dueSoonProjectListPanel, noDueProjectLabel);
-        overdueProjectTab = new StatisticsTab("Overdue", overdueProjectListPanel, noOverdueProjectLabel);
+        dueSoonProjectTab = new StatisticsTab("Due soon", dueSoonProjectListPanel);
+        overdueProjectTab = new StatisticsTab("Overdue", overdueProjectListPanel);
         this.selectionModel = getRoot().getSelectionModel();
         this.tabs = getRoot().getTabs();
         this.tabs.add(dueSoonProjectTab.getRoot());
@@ -136,6 +139,20 @@ public class StatisticsPanel extends UiPart<TabPane> {
         return Optional.ofNullable(currentPanel.getSelectedItem())
                 .map(Project::getName)
                 .map(NonEmptyString::toString);
+    }
+
+    public void updateTabMessages(Logic logic) {
+        if (logic.getDueProjectList().size() == 0) {
+            dueSoonProjectTab.showMessage(NO_DUE_PROJECT_MESSAGE);
+        } else {
+            dueSoonProjectTab.hideMessage();
+        }
+
+        if (logic.getOverdueProjectList().size() == 0) {
+            overdueProjectTab.showMessage(NO_OVERDUE_PROJECT_MESSAGE);
+        } else {
+            overdueProjectTab.hideMessage();
+        }
     }
 }
 

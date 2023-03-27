@@ -7,7 +7,6 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import mycelium.mycelium.commons.core.LogsCenter;
@@ -30,10 +29,6 @@ public class StatisticsBox extends UiPart<Region> {
     private StackPane statisticsPanelPlaceholder;
     @FXML
     private PieChart progressOverview;
-    @FXML
-    private Label noDueProjectLabel = new Label("No projects due soon");
-    @FXML
-    private Label noOverdueProjectLabel = new Label("No overdue projects!");
 
 
     /**
@@ -54,7 +49,7 @@ public class StatisticsBox extends UiPart<Region> {
         filteredProjectList.addListener(new ListChangeListener<Project>() {
             @Override
             public void onChanged(Change<? extends Project> c) {
-                updateVisibility(logic);
+                statisticsPanel.updateTabMessages(logic);
                 addPieChartData(logic);
             }
         });
@@ -66,15 +61,9 @@ public class StatisticsBox extends UiPart<Region> {
     }
 
     private void addProjectData(Logic logic) {
-        statisticsPanel = new StatisticsPanel(logic.getDueProjectList(), noDueProjectLabel,
-                logic.getOverdueProjectList(), noOverdueProjectLabel);
+        statisticsPanel = new StatisticsPanel(logic.getDueProjectList(), logic.getOverdueProjectList());
         statisticsPanelPlaceholder.getChildren().add(statisticsPanel.getRoot());
-        updateVisibility(logic);
-    }
-
-    private void updateVisibility(Logic logic) {
-        setLabelVisibility(logic.getDueProjectList(), noDueProjectLabel);
-        setLabelVisibility(logic.getOverdueProjectList(), noOverdueProjectLabel);
+        statisticsPanel.updateTabMessages(logic);
     }
 
     private void addPieChartData(Logic logic) {
@@ -86,14 +75,6 @@ public class StatisticsBox extends UiPart<Region> {
                     pieChartData.add(new PieChart.Data(k, v));
                 }
             });
-        }
-    }
-
-    private void setLabelVisibility(ObservableList<Project> projects, Label label) {
-        if (projects.size() != 0) {
-            label.setVisible(false);
-        } else {
-            label.setVisible(true);
         }
     }
 }

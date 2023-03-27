@@ -24,6 +24,9 @@ public class StatisticsTab extends UiPart<Tab> {
     @FXML
     private StackPane displayMessageBox;
 
+    @FXML
+    private Label message;
+
     /**
      * Initialises a {@code TabPage} in Statistics Dashboard with a given title.
      *
@@ -31,11 +34,19 @@ public class StatisticsTab extends UiPart<Tab> {
      * @param content Content the tab should be populated with
      * @param message Message that the tab will display when content is empty
      */
-    public StatisticsTab(String title, UiPart<? extends Node> content, Label message) {
+    public StatisticsTab(String title, UiPart<? extends Node> content) {
         super(FXML);
         getRoot().setText(title);
-        displayMessageBox.getChildren().add(message);
         listPlaceholder.getChildren().addAll(content.getRoot());
         logger.fine("Initialized tab page with title: " + title);
+    }
+    
+    public void hideMessage() {
+        displayMessageBox.setManaged(false);
+    }
+
+    public void showMessage(String s) {
+        message.setText(s);
+        displayMessageBox.setManaged(true);
     }
 }
