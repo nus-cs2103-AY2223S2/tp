@@ -17,7 +17,9 @@ import java.util.Optional;
 public class Datetime {
 
     public static final String MESSAGE_CONSTRAINTS_TIMESTAMP = "Invalid Timestamp!";
-    public static final String MESSAGE_CONSTRAINTS_DATETIME = "Invalid datetime format!";
+    public static final String MESSAGE_CONSTRAINTS_DATETIME = "Invalid datetime format!\n"
+        + "e.g: 2023-03-27 15:30:00\nNote the leading zeros!\nTime is optional."
+        + "\nWe are too lazy to support more format...";
     private final Long timestamp;
 
     /**
@@ -53,7 +55,7 @@ public class Datetime {
      * @param input the date and time input string
      * @return a LocalDateTime object if the input is valid and not in the past, otherwise null
      */
-    public LocalDateTime validateInput(String input) {
+    public static LocalDateTime validateInput(String input) {
         if (input == null) {
             return null;
         }

@@ -25,7 +25,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_TITLE + "Complete Project X "
             + PREFIX_CONTENT + "Do the UML diagram "
             + PREFIX_STATUS + "false "
-            + PREFIX_TASK_DEADLINE + "DEADLINE";
+            + PREFIX_TASK_DEADLINE + "2023-03-27 15:30:00";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";

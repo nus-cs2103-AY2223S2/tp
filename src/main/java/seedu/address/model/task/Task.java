@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,7 +26,7 @@ public class Task implements Relationship<Task> {
     private final Content content;
     private final Status status;
 
-    private List<Person> peoples;
+    private List<Person> peoples = new ArrayList<>();
 
     private final Datetime createDateTime;
     private final Datetime deadline;
@@ -45,6 +46,21 @@ public class Task implements Relationship<Task> {
         this.createDateTime = new Datetime(LocalDateTime.now().toString());
 
     }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Task(Title title, Content content, Status status, Datetime deadline) {
+        requireAllNonNull(title, content, status, deadline);
+        this.title = title;
+        this.content = content;
+        this.status = status;
+        this.id = new Id();
+        this.deadline = deadline;
+        this.createDateTime = new Datetime(LocalDateTime.now().toString());
+
+    }
+
 
     /**
      * ID must be specific when loading from local storage
