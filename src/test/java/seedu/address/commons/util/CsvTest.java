@@ -3,12 +3,13 @@ package seedu.address.commons.util;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.model.files.Csv;
 
 public class CsvTest {
 
@@ -16,9 +17,8 @@ public class CsvTest {
     @Test
     public void canReadTypicalCsvFile() throws FileNotFoundException, IOException {
         Path CsvPath = CSV_FOLDER.resolve("typicalCsvFile.csv");
-        FileReader CsvFileReader = new FileReader(CsvPath.toString());
 
-        Csv typicalCsv = new Csv(CsvFileReader);
+        Csv typicalCsv = new Csv(CsvPath.toString());
 
         assertEquals(typicalCsv.getNumOfRows(), 4);
         assertEquals(typicalCsv.getNumOfCols(), 11);

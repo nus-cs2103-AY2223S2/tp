@@ -62,7 +62,7 @@ public class UniquePersonList implements Iterable<Person> {
         requireAllNonNull(newPersons);
         HashSet<Person> existingPersons = internalList.stream().collect(Collectors.toCollection(HashSet::new));
         for (int i = 0; i < newPersons.size(); i++) {
-            if (existingPersons.add(newPersons.get(i))) {
+            if (!existingPersons.add(newPersons.get(i))) {
                 return i;
             }
         }

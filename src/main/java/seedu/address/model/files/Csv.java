@@ -1,9 +1,11 @@
-package seedu.address.commons.util;
+package seedu.address.model.files;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -15,25 +17,68 @@ import com.opencsv.CSVReader;
  */
 public class Csv {
 
-    private List<String[]> csvNestedArray;
-    private List<String> headers;
-    private int numOfCols;
-    private int numOfRows;
+    public static final String MESSAGE_CONSTRAINTS = "Files should end in either '.csv' or '.txt'";
+    public static final String VALIDATION_REGEX = ".*((\\.csv)|(\\.txt))\\z";
+    private final List<String[]> csvNestedArray;
+    private final List<String> headers;
+    private final int numOfCols;
+    private final int numOfRows;
+    private final boolean isEmpty;
 
     /**
      * Constructs a CSV object from a given CSV file.
      *
-     * @param csvFileReader capable of reading the given CSV file.
+     * @param path path to the given CSV file.
      * @throws IOException thrown if error occurs due to reading the file.
      */
-    public Csv(FileReader csvFileReader) throws IOException {
-        requireNonNull(csvFileReader);
-
-        CSVReader csvReader = new CSVReader(csvFileReader);
+    public Csv(String path) throws IOException {
+        requireNonNull(path);
+        checkArgument(isValidCsvPath(path), MESSAGE_CONSTRAINTS);
+        FileReader fr = new FileReader(path);
+        CSVReader csvReader = new CSVReader(fr);
         csvNestedArray = csvReader.readAll();
-        headers = Arrays.asList(csvNestedArray.get(0));
-        numOfCols = headers.size();
-        numOfRows = csvNestedArray.size();
+        fr.close();
+        if (csvNestedArray.isEmpty()) {
+            isEmpty = true;
+            headers = new ArrayList<>();
+            numOfCols = 0;
+            numOfRows = 0;
+        } else {
+            isEmpty = false;
+            headers = Arrays.asList(csvNestedArray.get(0));
+            numOfCols = headers.size();
+            numOfRows = csvNestedArray.size();
+        }
+    }
+
+    /**
+     * Returns if a given path ends with .csv or .txt.
+     */
+    public static boolean isValidCsvPath(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns if the {@code Csv} is empty.
+     */
+    public boolean isEmpty() {
+        return isEmpty;
+    }
+
+    /**
+     * Returns true if each row of the CSV has the same number of columns.
+     */
+    public boolean isColNumFixedPerRow() {
+        if (isEmpty) {
+            return false;
+        }
+
+        for (int i = 0; i < numOfRows; i++) {
+            if (csvNestedArray.get(i).length != numOfCols) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -42,7 +87,7 @@ public class Csv {
      * @param index given row index.
      */
     private void requireValidRowIndex(int index) {
-        if (index < 0 || index >= numOfRows) {
+        if (isEmpty || index < 0 || index >= numOfRows) {
             throw new IndexOutOfBoundsException();
         }
     }
@@ -53,17 +98,19 @@ public class Csv {
      * @param index given column index
      */
     private void requireValidColInput(int index) {
-        if (index < 0 || index >= numOfCols) {
+        if (isEmpty || index < 0 || index >= numOfCols) {
             throw new IndexOutOfBoundsException();
         }
     }
 
     /**
      * Checks that the given header is an existing one.
-     *
-     * @param header
      */
     private void requireValidColInput(String header) {
+        if (isEmpty) {
+            throw new NoSuchElementException();
+        }
+
         boolean isValid = false;
         for (int i = 0; i < numOfCols; i++) {
             if (header.equalsIgnoreCase(headers.get(i))) {
@@ -124,4 +171,8 @@ public class Csv {
         return numOfRows;
     }
 
+    @Override
+    public String toString() {
+        return csvNestedArray.toString();
+    }
 }

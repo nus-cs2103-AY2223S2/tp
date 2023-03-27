@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import seedu.address.logic.commands.ImportCsvCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.files.Csv;
 
 /**
  * Parses input arguments and creates a new {@code ImportCsvCommand} object
@@ -25,16 +26,21 @@ public class ImportCsvCommandParser implements Parser<ImportCsvCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCsvCommand.MESSAGE_USAGE));
         }
 
-        ParseFromCsvToPersons csvToPersons;
-
         try {
-            csvToPersons = new ParseFromCsvToPersons(path);
+            Csv csv = ParserUtil.parseCsv(path);
+            requireCsvNotEmpty(csv);
+            ParseFromCsvToPersons csvToPersons = new ParseFromCsvToPersons(csv);
+            return new ImportCsvCommand(csvToPersons.parse());
         } catch (FileNotFoundException e) {
             throw new ParseException("File was not found!");
         } catch (IOException e) {
             throw new ParseException("Error occurred while reading the given file");
         }
+    }
 
-        return new ImportCsvCommand(csvToPersons.parse());
+    private void requireCsvNotEmpty(Csv csv) throws ParseException {
+        if (csv.isEmpty()) {
+            throw new ParseException("File given cannot be empty!");
+        }
     }
 }

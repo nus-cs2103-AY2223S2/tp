@@ -1,7 +1,8 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,8 +10,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.commons.util.Csv;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.files.Csv;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -27,7 +28,7 @@ import seedu.address.model.tag.Tag;
  */
 public class ParseFromCsvToPersons {
 
-    private final String[] necessaryFields = {"name", "phone", "email", "address", "rank", "unit", "company",
+    private static final String[] necessaryFields = {"name", "phone", "email", "address", "rank", "unit", "company",
         "platoon", "tags"};
     private Csv csv;
     private int numOfPersons;
@@ -35,16 +36,19 @@ public class ParseFromCsvToPersons {
     /**
      * Checks if the file given can be read, and if the CSV file's headers are in the correct format.
      *
-     * @param path Path to the CSV file.
+     * @param csv Csv object containing data from given CSV file.
      * @throws FileNotFoundException if file does not exist at given path
      * @throws IOException if error occurs while reading the file
      * @throws ParseException if user input does not conform to the expected format
      */
-    public ParseFromCsvToPersons(String path) throws FileNotFoundException, IOException, ParseException {
-        FileReader fr = new FileReader(path);
-        csv = new Csv(fr);
+    public ParseFromCsvToPersons(Csv csv) throws ParseException {
+        requireNonNull(csv);
+        this.csv = csv;
         numOfPersons = csv.getNumOfRows() - 1;
 
+        if (!csv.isColNumFixedPerRow()) {
+            throw new ParseException("Each row in the CSV file given must have the same number of columns");
+        }
         requireAllFieldsPresent();
     }
 

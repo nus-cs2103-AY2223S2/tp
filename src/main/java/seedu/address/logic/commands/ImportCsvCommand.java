@@ -23,6 +23,7 @@ public class ImportCsvCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON_CSV = "Rows %1$d and %2$d (%3$s) are duplicates";
     public static final String MESSAGE_DUPLICATE_PERSON_ADDRESS_BOOK =
             "Row %1$d (%2$s) already exists in the address book";
+    public static final int HEADER_AND_ZERO_INDEX_OFFSET = 2;
 
     private final List<Person> personsToAdd;
     private final int numOfPersons;
@@ -42,7 +43,8 @@ public class ImportCsvCommand extends Command {
             Optional<Integer> duplicateEntry = Optional.ofNullable(hm.put(personList.get(i), i));
             if (duplicateEntry.isPresent()) {
                 int duplicated = duplicateEntry.get();
-                throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON_CSV, duplicated, i,
+                throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON_CSV,
+                        duplicated + HEADER_AND_ZERO_INDEX_OFFSET, i + HEADER_AND_ZERO_INDEX_OFFSET,
                         personList.get(duplicated).getName()));
             }
         }
@@ -68,8 +70,8 @@ public class ImportCsvCommand extends Command {
         if (model.hasPersons(personsToAdd)) {
             int index = model.findDuplicateIndex(personsToAdd);
             assert index >= 0 : "no duplicate found even though duplicates between CSV and address book were reported";
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON_ADDRESS_BOOK, index,
-                    personsToAdd.get(index).getName().toString()));
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON_ADDRESS_BOOK,
+                    index + HEADER_AND_ZERO_INDEX_OFFSET, personsToAdd.get(index).getName().toString()));
         }
 
         model.addPersons(personsToAdd);

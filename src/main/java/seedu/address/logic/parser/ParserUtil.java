@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +10,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.files.Csv;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
@@ -185,5 +187,17 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String path} into a {@code Csv}.
+     */
+    public static Csv parseCsv(String path) throws ParseException, IOException {
+        requireNonNull(path);
+        String trimmedPath = path.trim();
+        if (!Csv.isValidCsvPath(trimmedPath)) {
+            throw new ParseException(Csv.MESSAGE_CONSTRAINTS);
+        }
+        return new Csv(path);
     }
 }
