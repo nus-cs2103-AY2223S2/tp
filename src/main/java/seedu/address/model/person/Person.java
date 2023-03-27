@@ -235,10 +235,9 @@ public class Person {
                 .append(getAddress())
                 .append("; Status: ")
                 .append(getStatus())
-                .append("; Application Date:")
-                .append(getApplicationDateTimeString())
-                .append("; Interview DateTime")
-                .append(getInterviewDateTimeString());
+                .append("; Application Date: ")
+                .append(getApplicationDateTimeString());
+
         if (interviewDateTime.isPresent()) {
             builder.append("; InterviewDateTime: ")
                     .append(interviewDateTime.get());
@@ -246,7 +245,7 @@ public class Person {
 
         Set<Note> notes = getNotes();
         if (!notes.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("; Notes: ");
             notes.forEach(builder::append);
         }
         return builder.toString();
