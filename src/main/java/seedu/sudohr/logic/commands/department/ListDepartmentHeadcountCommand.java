@@ -26,11 +26,11 @@ public class ListDepartmentHeadcountCommand extends Command {
 
     public static final String COMMAND_WORD = "ldhc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "Lists the headcount for "
-            + "the department on a given date. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the headcount for "
+            + "the department on a given date. \n"
             + "Parameters: "
-            + PREFIX_DATE + "DATE"
-            + PREFIX_DEPARTMENT_NAME + "DEPARTMENT_NAME"
+            + PREFIX_DEPARTMENT_NAME + "DEPARTMENT_NAME "
+            + PREFIX_DATE + "DATE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DEPARTMENT_NAME + "Human Resources"
             + PREFIX_DATE + "2023-03-04";
