@@ -13,14 +13,14 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("event_create 1 ie/biking f/26/03/2023 14:00 t/26/03/2023 15:00")
+[-> LogicManager : execute("event_create 1 ie/biking \nf/26/03/2023 14:00 t/26/03/2023 15:00")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("event_create 1 ie/biking f/26/03/2023 14:00 t/26/03/2023 15:00")
+LogicManager -> AddressBookParser : parseCommand("event_create 1 ie/biking\n f/26/03/2023 14:00 t/26/03/2023 15:00")
 activate AddressBookParser
 
 create AddIsolatedEventCommandParser
-AddressBookParser -> AddIsolatedEventCommandParser : parse(1 ie/biking f/26/03/2023 14:00 t/26/03/2023 15:00)
+AddressBookParser -> AddIsolatedEventCommandParser : parse(1 ie/biking f/26/03/2023 14:00\n t/26/03/2023 15:00)
 activate AddIsolatedEventCommandParser
 
 create AddIsolatedEventCommand
