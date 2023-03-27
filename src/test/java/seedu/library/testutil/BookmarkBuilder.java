@@ -19,7 +19,7 @@ public class BookmarkBuilder {
 
     public static final String DEFAULT_TITLE = "Amy Bee";
     public static final String[] DEFAULT_PROGRESS = {"1", "50", "~"};
-    public static final String DEFAULT_GENRE = "amy@gmail.com";
+    public static final String DEFAULT_GENRE = "Fantasy";
     public static final String DEFAULT_AUTHOR = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_URL = "https://www.abc.com";
 

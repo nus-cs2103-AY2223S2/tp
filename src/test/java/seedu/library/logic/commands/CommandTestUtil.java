@@ -26,14 +26,14 @@ import seedu.library.testutil.EditBookmarkDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_TITLE_AMY = "Amy Bee";
-    public static final String VALID_TITLE_BOB = "Bob Choo";
+    public static final String VALID_TITLE_AMY = "Attack on Titans";
+    public static final String VALID_TITLE_BOB = "Blue Lock";
     public static final String VALID_PROGRESS_AMY = "1 32 7";
     public static final String VALID_PROGRESS_BOB = "2 20 12";
-    public static final String VALID_GENRE_AMY = "Amy";
-    public static final String VALID_GENRE_BOB = "Bob";
-    public static final String VALID_AUTHOR_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_AUTHOR_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_GENRE_AMY = "Fantasy";
+    public static final String VALID_GENRE_BOB = "Others";
+    public static final String VALID_AUTHOR_AMY = "Hajime Isayama";
+    public static final String VALID_AUTHOR_BOB = "Muneyuki Kaneshiro";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 

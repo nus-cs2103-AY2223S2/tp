@@ -7,7 +7,7 @@
       "chapter": "2",
       "page": "~"
     },
-    "genre": "alice@example.com",
+    "genre": "Action",
     "author": "123, Jurong West Ave 6, #08-111",
     "url": "",
     "tagged" : [ {
@@ -20,7 +20,7 @@
       "chapter": "2",
       "page": "~"
     },
-    "genre": "johnd@example.com",
+    "genre": "Adventure",
     "author": "311, Clementi Ave 2, #02-25",
     "url": "",
     "tagged" : [ {
@@ -35,7 +35,7 @@
       "chapter": "2",
       "page": "~"
     },
-    "genre": "heinz@example.com",
+    "genre": "Comedy",
     "author": "wall street",
     "url": "",
     "tagged" : [ ]
@@ -46,7 +46,7 @@
       "chapter": "2",
       "page": "~"
     },
-    "genre": "cornelia@example.com",
+    "genre": "Drama",
     "author": "10th street",
     "url": "",
     "tagged" : [ {
@@ -59,7 +59,7 @@
       "chapter": "2",
       "page": "~"
     },
-    "genre": "werner@example.com",
+    "genre": "Fantasy",
     "author": "michegan ave",
     "url": "",
     "tagged" : [ ]
@@ -70,7 +70,7 @@
       "chapter": "2",
       "page": "~"
     },
-    "genre": "lydia@example.com",
+    "genre": "Historical",
     "author": "little tokyo",
     "url": "",
     "tagged" : [ ]
@@ -81,7 +81,7 @@
       "chapter": "2",
       "page": "~"
     },
-    "genre": "anna@example.com",
+    "genre": "Horror",
     "author": "4th street",
     "url": "",
     "tagged" : [ ]
