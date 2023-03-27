@@ -10,6 +10,7 @@ import mycelium.mycelium.logic.uievent.key.FindKey;
 import mycelium.mycelium.logic.uievent.key.HelpKey;
 import mycelium.mycelium.logic.uievent.key.NextItemKey;
 import mycelium.mycelium.logic.uievent.key.PrevItemKey;
+import mycelium.mycelium.logic.uievent.key.QuitKey;
 import mycelium.mycelium.logic.uievent.key.StartOfLineKey;
 import mycelium.mycelium.logic.uievent.key.SwitchKey;
 import mycelium.mycelium.logic.uievent.key.TabKey;
@@ -57,6 +58,8 @@ public class UiEventManager implements UiEvent {
             new StartOfLineKey().execute(logic, mainWindow);
         } else if (EndOfLineKey.KEY_COMBINATION.match(event)) {
             new EndOfLineKey().execute(logic, mainWindow);
+        } else if (QuitKey.KEY_COMBINATION.match(event)) {
+            new QuitKey().execute(logic, mainWindow);
         } else {
             mainWindow.focusCommandBox();
             return;
