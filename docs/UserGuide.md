@@ -4,8 +4,8 @@ title: User Guide
 ---
 <img src="./images/sprINT.png" />
 
-* Table of Contents
-  {:toc}
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
