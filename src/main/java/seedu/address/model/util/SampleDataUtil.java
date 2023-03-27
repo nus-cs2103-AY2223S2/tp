@@ -93,28 +93,6 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
-    private static Set<ModuleTag> getSampleModuleTags() {
-        Set<String> moduleTagsStrings = new HashSet<>();
-        moduleTagsStrings.add("CS2100 THURSDAY 11 12");
-        moduleTagsStrings.add("CS2100 WEDNESDAY 8 9");
-        moduleTagsStrings.add("CS2100 WEDNESDAY 16 18");
-        moduleTagsStrings.add("CS2101 WEDNESDAY 11 12");
-        moduleTagsStrings.add("CS2101 FRIDAY 15 17");
-        moduleTagsStrings.add("CS2102 TUESDAY 10 11");
-        moduleTagsStrings.add("CS2102 TUESDAY 14 15");
-        moduleTagsStrings.add("CS2103 TUESDAY 10 12");
-        moduleTagsStrings.add("CS2103 FRIDAY 9 10");
-        moduleTagsStrings.add("CS2104 TUESDAY 17 19");
-        moduleTagsStrings.add("CS2105 MONDAY 13 14");
-        moduleTagsStrings.add("CS2105 TUESDAY 17 1");
-
-        return moduleTagsStrings.stream()
-                .map(SampleDataUtil::getModuleTagFromLine)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .collect(Collectors.toSet());
-    }
-
     /**
      * Formats the data from the text file.
      * @param personData String representing the person data in the text file.
@@ -154,19 +132,22 @@ public class SampleDataUtil {
      * Returns a sample User singleton object.
      */
     public static User getSampleUser() {
-        User user = new User(new Name("Linus Richards"),
+        return new User(new Name("Linus Richards"),
                 new Phone("90102030"),
                 new Email("linusrichards@gmail.com"),
                 new Address("National University of Singapore"),
                 new TelegramHandle("@linusrichards"),
                 new ContactIndex(0),
                 getGroupTagSet(),
-                new HashSet<>()
-        );
-
-        assignModuleTagsToPerson(user, getSampleModuleTags());
-
-        return user;
+                new HashSet<>() {{
+                    add(new ModuleTag("CS2100"));
+                    add(new ModuleTag("CS2101"));
+                    add(new ModuleTag("CS2102"));
+                    add(new ModuleTag("CS2103"));
+                    add(new ModuleTag("CS2104"));
+                    add(new ModuleTag("CS2105"));
+                    add(new ModuleTag("CS2106"));
+                }});
     }
 
     private static Optional<ModuleTag> getModuleTagFromLine(String tag) {

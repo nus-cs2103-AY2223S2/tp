@@ -5,8 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.User;
@@ -19,6 +21,8 @@ import seedu.address.model.util.SampleDataUtil;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class EduMate implements ReadOnlyEduMate {
+
+    private static final Logger logger = LogsCenter.getLogger(EduMate.class);
 
     private final UniquePersonList persons;
     private User user;
@@ -203,10 +207,23 @@ public class EduMate implements ReadOnlyEduMate {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof EduMate // instanceof handles nulls
-                && persons.equals(((EduMate) other).persons)
-                && user.equals(((EduMate) other).user));
+        if (this == other) {
+            return true;
+        }
+
+        if (!(other instanceof EduMate)) {
+            return false;
+        }
+
+        EduMate otherEduMate = (EduMate) other;
+
+        logger.info("Persons equality: "
+                + persons.equals(otherEduMate.persons));
+        logger.info("User equality: "
+                + user.equals(otherEduMate.user));
+
+        return persons.equals(otherEduMate.persons)
+                && user.equals(otherEduMate.user);
     }
 
     @Override
