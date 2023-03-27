@@ -13,6 +13,7 @@ Class JsonAdaptedRecipeDuration
 Class JsonAdaptedTimeUnit
 Class JsonAdaptedTag
 Class JsonAdaptedIngredient
+Class JsonAdaptedSubstitutionIngredient
 Class JsonAdaptedStep
 }
 
@@ -26,6 +27,7 @@ JsonAdaptedRecipe *--> "0..1" JsonAdaptedRecipeDuration
 JsonAdaptedRecipeDuration *--> "1" JsonAdaptedTimeUnit
 JsonAdaptedRecipe *--> "*" JsonAdaptedTag
 JsonAdaptedRecipe *--> "*" JsonAdaptedIngredient
+JsonAdaptedIngredient *--> "*" JsonAdaptedSubstitutionIngredient
 JsonAdaptedRecipe *--> "*" JsonAdaptedStep
 
 @enduml
