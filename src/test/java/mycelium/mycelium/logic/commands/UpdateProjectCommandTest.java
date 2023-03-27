@@ -56,6 +56,13 @@ public class UpdateProjectCommandTest {
     }
 
     @Test
+    public void execute_noChanges_throwsCommandException() {
+        var cmd = new UpdateProjectCommand(SAMPLE_NAME, EMPTY_DESC);
+        model.addProject(new ProjectBuilder().withName(SAMPLE_NAME).build());
+        assertThrows(CommandException.class, UpdateProjectCommand.MESSAGE_NOT_UPDATED, () -> cmd.execute(model));
+    }
+
+    @Test
     public void execute_validArgs_success() throws CommandException {
         var cmd = new UpdateProjectCommand(SAMPLE_NAME, SAMPLE_DESC);
         model.addProject(new ProjectBuilder().withName(SAMPLE_NAME).build());
