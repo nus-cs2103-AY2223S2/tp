@@ -273,6 +273,9 @@ The input is then passed to the `sort` function in `UniquePersonList` and `Uniqu
 The `sort` makes use of a comparator that sorts the persons or projects by the category specified by the user. 
 If the person or project does not have that field, they are sorted at the back. If there are multiple persons or contacts where the field is empty, they are sorted by name.
 
+The following sequence diagram shows how the sort operation works for persons (implementation is similar for projects):
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
 ### Find Feature
 The find feature allows users to display a list of persons that contains the given keyword of each respective fields.
 The feature is facilitated by the `FindCommand` class mainly but Predicate classes are also used.
