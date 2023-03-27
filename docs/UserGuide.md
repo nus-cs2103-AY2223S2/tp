@@ -102,7 +102,7 @@ i.e. `find name KEYWORD [KEYWORDS]...`, `find tag KEYWORD [KEYWORDS]...`
 
 > Adding a property behind `find` is optional, and if no property is specified, `find` defaults to filtering by `name`.
 >
-> All keyword queries are case-insensitive. e.g. chicken will match Chicken
+> All keyword queries are case-insensitive. e.g. `chicken` will match `Chicken`
 >
 > Recipes matching at least one keyword will be returned, e.g. searching `sandwich fries` will match recipes named `cheese fries` and `ham sandwich`
 >
