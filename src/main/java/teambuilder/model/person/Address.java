@@ -79,4 +79,7 @@ public class Address {
         return value.hashCode();
     }
 
+    public boolean isEmptyAddress() {
+        return this == EMPTY_ADDRESS;
+    }
 }

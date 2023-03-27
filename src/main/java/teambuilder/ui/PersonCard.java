@@ -53,15 +53,9 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        System.out.println(person.getPhone().isEmptyPhone());
-        if (!person.getPhone().isEmptyPhone()) {
-            phone.setText(person.getPhone().toString());
-        } else {
-            phone.setVisible(false);
-            phone.setManaged(false);
-        }
-        address.setText(person.getAddress().toString());
-        email.setText(person.getEmail().toString());
+        setPhone(person);
+        setAddress(person);
+        setEmail(person);
         major.setText(person.getMajor().majorStudy);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -69,6 +63,33 @@ public class PersonCard extends UiPart<Region> {
         person.getTeams().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> teams.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private void setPhone(Person person) {
+        if (person.getPhone().isEmptyPhone()) {
+            phone.setVisible(false);
+            phone.setManaged(false);
+        } else {
+            phone.setText(person.getPhone().toString());
+        }
+    }
+
+    private void setEmail(Person person) {
+        if (person.getEmail().isEmptyEmail()) {
+            email.setVisible(false);
+            email.setManaged(false);
+        } else {
+            email.setText(person.getEmail().toString());
+        }
+    }
+
+    private void setAddress(Person person) {
+        if (person.getAddress().isEmptyAddress()) {
+            address.setVisible(false);
+            address.setManaged(false);
+        } else {
+            address.setText(person.getAddress().toString());
+        }
     }
 
     @Override
