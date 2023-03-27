@@ -164,6 +164,6 @@ public class ExportWindow extends UiPart<Stage> {
         } catch (NullPointerException e) {
             feedbackLabel.setText("No file selected");
             feedbackLabel.setStyle(ERROR_FEEDBACK_STYLE);
-        } 
+        }
     }
 }
