@@ -25,6 +25,13 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Using this guide
+
+### 3.1 Navigation
+If you're a first time user 
+
+
+### 3.2 Notation
+
 - For instructions on setting up ConnectUS, please refer to [Quick start](#quick-start).
 - For a table of commands, please refer to [Command summary](#command-summary).
 - For detailed instructions on how to use each command, please refer to [Features](#features).
