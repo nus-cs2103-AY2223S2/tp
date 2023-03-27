@@ -52,7 +52,6 @@ public class Scheduler implements ReadOnlyScheduler {
      */
     public void resetData(ReadOnlyScheduler newData) {
         requireNonNull(newData);
-
         setEvents(newData.getEventList());
     }
 
@@ -90,13 +89,6 @@ public class Scheduler implements ReadOnlyScheduler {
     public void setEvent(Event target, Event editedEvent) {
         requireNonNull(editedEvent);
         events.setEvent(target, editedEvent);
-    }
-
-    /**
-     * Sorts all events in the scheduler in chronological order.
-     */
-    public void sortEvent() {
-        events.sortByChronologicalOrder();
     }
 
     /**

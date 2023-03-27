@@ -17,7 +17,7 @@ import ezschedule.commons.util.AppUtil;
 public class Date implements Comparable<Date> {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Date should only contain numeric characters, follows the format yyyy-MM-dd, and it should not be blank";
+            "Date should only contain numeric characters, follows the format yyyy-MM-dd, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
 
@@ -35,6 +35,13 @@ public class Date implements Comparable<Date> {
         this.date = LocalDate.parse(date, formatter);
     }
 
+    /**
+     * Returns true if a given string is a valid date.
+     */
+    public static boolean isValidDate(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
     public long getDaysBetween(LocalDate comparingDate) {
         return DAYS.between(date, comparingDate);
     }
@@ -47,19 +54,33 @@ public class Date implements Comparable<Date> {
         return YEARS.between(date, comparingDate);
     }
 
-    /**
-     * Returns true if a given string is a valid date.
-     */
-    public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
     public boolean isPastDate() {
         return date.isBefore(LocalDate.now());
     }
 
     public boolean isFutureDate() {
         return date.isAfter(LocalDate.now());
+    }
+
+    /**
+     * Returns the year value of date.
+     */
+    public int getYear() {
+        return date.getYear();
+    }
+
+    /**
+     * Returns the month value of date.
+     */
+    public int getMonth() {
+        return date.getMonthValue();
+    }
+
+    /**
+     * Returns the day value of date.
+     */
+    public int getDay() {
+        return date.getDayOfMonth();
     }
 
     @Override
@@ -75,8 +96,8 @@ public class Date implements Comparable<Date> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof Date // instanceof handles nulls
-            && date.equals(((Date) other).date)); // state check
+                || (other instanceof Date // instanceof handles nulls
+                && date.equals(((Date) other).date)); // state check
     }
 
     @Override
