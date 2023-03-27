@@ -23,4 +23,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_DIAGNOSIS = new Prefix("d/");
     public static final Prefix PREFIX_REMARK = new Prefix("r/");
     public static final Prefix PREFIX_STATUS = new Prefix("st/");
+
 }

@@ -11,7 +11,7 @@ public class Yoe {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Years of Experience (YOE) should only contain numbers, and it should be at most 2 digits long";
-    public static final String VALIDATION_REGEX = "^0*[1-9][0-9]{0,1}$";
+    public static final String VALIDATION_REGEX = "^0*[0-9][0-9]{0,1}$";
     public final String value;
 
     /**

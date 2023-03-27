@@ -7,16 +7,17 @@ participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":AddDoctorCommandParser" as AddDoctorCommandParser LOGIC_COLOR
 participant "a:AddDoctorCommand" as AddDoctorCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":Doctor" as Doctor USER_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon")
+[-> LogicManager : execute("add-doc args")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon")
+LogicManager -> AddressBookParser : parseCommand("add-doc args")
 activate AddressBookParser
 
 create AddDoctorCommandParser
@@ -26,7 +27,7 @@ activate AddDoctorCommandParser
 AddDoctorCommandParser --> AddressBookParser
 deactivate AddDoctorCommandParser
 
-AddressBookParser -> AddDoctorCommandParser : parse("n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon")
+AddressBookParser -> AddDoctorCommandParser : parse("args")
 activate AddDoctorCommandParser
 
 create AddDoctorCommand
@@ -47,6 +48,13 @@ deactivate AddressBookParser
 
 LogicManager -> AddDoctorCommand : execute()
 activate AddDoctorCommand
+
+create Doctor
+AddDoctorCommand -> Doctor: new
+activate Doctor
+
+Doctor --> AddDoctorCommand : doctor
+deactivate Doctor
 
 AddDoctorCommand -> Model : addDoctor(doctor)
 activate Model
