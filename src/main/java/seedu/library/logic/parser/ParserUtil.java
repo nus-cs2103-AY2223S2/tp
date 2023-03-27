@@ -137,7 +137,6 @@ public class ParserUtil {
     public static String parseSort(String sort) throws ParseException {
         requireNonNull(sort);
         String trimmedSort = sort.trim();
-        System.out.println(trimmedSort);
         if (!RatingOrder.isValidRatingOrder(trimmedSort)) {
             throw new ParseException(RatingOrder.MESSAGE_CONSTRAINT);
         }
@@ -158,7 +157,6 @@ public class ParserUtil {
         }
         return new Tag(trimmedTag);
     }
-
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
