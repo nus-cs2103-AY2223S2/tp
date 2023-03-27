@@ -379,14 +379,19 @@ Optional Parameter `f/` that forces imports regardless of duplicate values.
 
 Format: `import JSON f/`
 
-### Create meetings `[Coming Soon]`
-_Details coming soon ..._
+### Delete meetings : `delm`
 
-### Delete meetings `[Coming Soon]`
-_Details coming soon ..._
+Deletes the specified meeting.
 
-### Edit meetings `[Coming Soon]`
-_Details coming soon ..._
+Format: `delm INDEX`
+
+* Deletes the meeting at the specified `INDEX`.
+* The index refers to the index number shown in the displayed meetings list.
+* The index must be a positive integer 1, 2, 3...
+
+Examples:
+
+* `listm` followed by `delm 2` deletes the 2nd meeting.
 
 --------------------------------------------------------------------------------------------------------------------
 
