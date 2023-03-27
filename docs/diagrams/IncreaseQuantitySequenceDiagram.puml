@@ -67,3 +67,4 @@ deactivate IncreaseCommand
 [<--LogicManager
 deactivate LogicManager
 @enduml
+
