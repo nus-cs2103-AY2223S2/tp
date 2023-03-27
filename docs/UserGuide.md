@@ -188,7 +188,7 @@ Examples:
 
 ### Locating persons using filters on fields: `filter`
 
-Filters all persons, only displaying persons whose respective fields contain all the given keywords.
+Filters all persons to only show those whose fields contain all of the given keywords.
 
 Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [p/PLATOON] [t/TAG]…​`
 
@@ -203,7 +203,7 @@ Examples:
 
 - `filter n/Jo` returns `john`, `John Doe` and `joseph`
 - `filter a/street r/sg ` returns `David Li`, `S Lee Chong Wei`<br>
-  ![result for 'find david lee'](images/filterDavidLeeResult.png)
+  ![result for 'filter david lee'](images/filterDavidLeeResult.png)
 
 ### Deleting a person : `delete`
 
