@@ -5,7 +5,7 @@ import static mycelium.mycelium.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static mycelium.mycelium.testutil.Assert.assertThrows;
-import static mycelium.mycelium.testutil.TypicalPersons.AMY;
+import static mycelium.mycelium.testutil.TypicalEntities.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;

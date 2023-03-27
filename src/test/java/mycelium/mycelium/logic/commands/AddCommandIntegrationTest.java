@@ -2,7 +2,7 @@ package mycelium.mycelium.logic.commands;
 
 import static mycelium.mycelium.logic.commands.CommandTestUtil.assertCommandFailure;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static mycelium.mycelium.testutil.TypicalPersons.getTypicalAddressBook;
+import static mycelium.mycelium.testutil.TypicalEntities.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
