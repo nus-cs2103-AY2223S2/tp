@@ -148,6 +148,32 @@ The supported date formats are:
 
 Only 8 digit Singapore numbers are allowed.
 
+#### `<vax-retriever>`
+
+`<vax-retriever>` or vaccination retriever aids in referring to a vaccination stored in the system. Vaccination may be referred to either by their names or the index that they are displayed in.
+
+The syntax of a vaccination retriever is as follows:
+
+<pre>
+[<var>RETRIEVER_TYPE</var> :: ] <var>RETRIEVER_VALUE</var>
+</pre>
+
+* <code><var>RETRIEVER_TYPE</var></code> : `<retriever-type>` - the type of the retriever.
+* <code><var>RETRIEVER_VALUE</var></code> : `<string>` - the value of the retriever.
+
+If <code><var>RETRIEVER_TYPE</var></code> is omitted, its value will be inferred from <code><var>RETRIEVER_VALUE</var></code>. It will be `INDEX` if <code><var>RETRIEVER_VALUE</var></code> contains only the digits 0 to 9 and `NAME` otherwise.
+
+Specifying the <code><var>RETRIEVER_TYPE</var></code> will override the inference and retrieve the vaccination based on the type specified. Thus, to refer to a vaccination whose name contains only digits, use <code>NAME :: <var>VAX_NAME</var></code> to avoid the inference.
+
+#### `<retriever-type>`
+
+Only the following values are allowed:
+
+* `INDEX` - to retrieve a vaccination by its index that it is displayed in the vaccination list view.
+* `NAME` - to retrieve a vaccination by its name.
+
+These values are not case sensitive.
+
 #### `<req>`
 
 `<req>` represents a requirement. It is used to evaluate if a patient's vaccination records meets a vaccination history
