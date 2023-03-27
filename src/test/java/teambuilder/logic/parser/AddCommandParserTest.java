@@ -35,7 +35,6 @@ import static teambuilder.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import teambuilder.logic.commands.AddCommand;
-import teambuilder.model.person.Address;
 import teambuilder.model.person.Email;
 import teambuilder.model.person.Name;
 import teambuilder.model.person.Person;
