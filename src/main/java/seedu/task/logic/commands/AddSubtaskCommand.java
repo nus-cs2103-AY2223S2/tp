@@ -3,7 +3,6 @@ package seedu.task.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.task.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;

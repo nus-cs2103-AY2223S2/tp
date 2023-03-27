@@ -6,7 +6,6 @@ import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.task.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -26,7 +25,7 @@ import seedu.task.model.task.Name;
 import seedu.task.model.task.SimpleTask;
 import seedu.task.model.task.Subtask;
 import seedu.task.model.task.Task;
-import seedu.task.model.task.UniqueSubtaskList;
+
 
 /**
  * Edits the details of an existing task in the task book.

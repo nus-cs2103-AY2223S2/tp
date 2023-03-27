@@ -8,6 +8,7 @@ import static seedu.task.testutil.Assert.assertThrows;
 import static seedu.task.testutil.TypicalSubtasks.ALICE_HOMEWORK;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,7 @@ import seedu.task.commons.core.Messages;
 import seedu.task.commons.core.index.Index;
 import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.Model;
+import seedu.task.model.ReadOnlyPlanner;
 import seedu.task.model.ReadOnlyTaskBook;
 import seedu.task.model.ReadOnlyUserPrefs;
 import seedu.task.model.task.Subtask;
@@ -163,10 +165,24 @@ public class DeleteSubtaskCommandTest {
         }
 
         @Override
-        public void plan(int value) {
+        public void plan(long value) {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void schedule(LocalDate date) throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getPlannerFilePath() {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public ReadOnlyPlanner getPlanner() {
+            throw new AssertionError("This method should not be called.");
+        };
         @Override
         public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");

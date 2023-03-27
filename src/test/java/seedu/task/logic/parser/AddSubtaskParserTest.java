@@ -1,10 +1,10 @@
 package seedu.task.logic.parser;
 
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.task.logic.commands.CommandTestUtil.BLANK_DESCRIPTION_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.INDEX_1;
-import static seedu.task.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
@@ -76,7 +76,7 @@ public class AddSubtaskParserTest {
         assertParseFailure(parser, INDEX_1 + INVALID_NAME_DESC + DESCRIPTION_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
         // invalid description
-        assertParseFailure(parser, INDEX_1 + NAME_DESC_BOB + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INDEX_1 + NAME_DESC_BOB + BLANK_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS);
 
 
         // empty preamble
@@ -85,7 +85,7 @@ public class AddSubtaskParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSubtaskCommand.MESSAGE_USAGE));
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INDEX_1 + INVALID_NAME_DESC + INVALID_DESCRIPTION_DESC,
+        assertParseFailure(parser, INDEX_1 + INVALID_NAME_DESC + BLANK_DESCRIPTION_DESC,
                 Name.MESSAGE_CONSTRAINTS);
     }
 }

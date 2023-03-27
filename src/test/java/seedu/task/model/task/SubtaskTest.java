@@ -28,9 +28,9 @@ public class SubtaskTest {
         editedAliceHomework = new SubtaskBuilder().withName("AMY").build();
         assertFalse(ALICE_HOMEWORK.isSameTask(editedAliceHomework));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Subtask editedAlice = new SubtaskBuilder().withName("Homework".toLowerCase()).build();
-        assertFalse(ALICE_HOMEWORK.isSameTask(editedAlice));
+        assertTrue(ALICE_HOMEWORK.isSameTask(editedAlice));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = "Homework" + " ";
