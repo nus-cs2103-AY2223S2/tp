@@ -13,10 +13,16 @@ public class HelpCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_help_success() {
+    public void execute_helpWithoutInput_success() {
         CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_WINDOW, true, false);
         assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
     }
 
-
+    @Test
+    public void execute_helpWithValidInput_success() {
+        ClearCommand clearCommand = new ClearCommand();
+        CommandResult expectedCommandResult = new CommandResult(clearCommand.MESSAGE_USAGE, false, false);
+        assertCommandSuccess(new HelpCommand(clearCommand.MESSAGE_USAGE), model, expectedCommandResult,
+                expectedModel);
+    }
 }
