@@ -2,9 +2,13 @@ package seedu.address.model.event;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.event.fields.DateTime;
 import seedu.address.model.event.fields.Description;
 import seedu.address.model.event.fields.Recurrence;
+import seedu.address.model.person.Person;
 
 /**
  * Represents an Event in the Calendar.
@@ -15,6 +19,7 @@ public abstract class Event {
     private final DateTime startDateTime;
     private final DateTime endDateTime;
     private final Recurrence recurrence;
+    private final Set<Person> taggedPeople;
 
     /**
      * Every field must be present and not null.
@@ -26,6 +31,7 @@ public abstract class Event {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.recurrence = recurrence;
+        this.taggedPeople = new HashSet<>();
     }
 
     public Description getDescription() {
@@ -44,7 +50,19 @@ public abstract class Event {
         return recurrence;
     }
 
-    //Check if this is a recurring event
+    public void addTaggedPerson(Person p) {
+        this.taggedPeople.add(p);
+    }
+
+    public void deleteTaggedPerson(Person p) {
+        this.taggedPeople.remove(p);
+    }
+
+    public boolean hasTaggedPerson(Person p) {
+        return this.taggedPeople.contains(p);
+    }
+
+    //Check if this is a recurring event.
     public boolean isRecurring() {
         return recurrence.isRecurring();
     }

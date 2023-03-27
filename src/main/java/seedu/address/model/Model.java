@@ -82,7 +82,19 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Gets the given person with name of {@code name}.
+     * Person with name of {@code target} must exist in the address book.
+     */
+    Person getPersonWithName(String name);
+
+    /**
+     * Checks if the Person with name of {@code name} exists in the address book.
+     */
+    boolean hasPersonWithName(String name);
+
+
+                                                                                                        /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
     /**
@@ -116,6 +128,8 @@ public interface Model {
     void addEvent(Event event);
 
     ObservableList<Event> getEvents();
+
+    void tagPersonToEvent(Index index, Person p);
 
     boolean isValidTabIndex(Index index);
 

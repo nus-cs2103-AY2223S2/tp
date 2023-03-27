@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -133,5 +134,29 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns if the UniquePersonList has a Person with that name.
+     */
+    public boolean hasPersonWithName(String name) {
+        for (Person p: this.internalList) {
+            if (Objects.equals(p.getName().value, name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns person from UniquePersonList which has {@code name} as its name.
+     */
+    public Person getPersonWithName(String name) {
+        for (Person p: this.internalList) {
+            if (Objects.equals(p.getName().value, name)) {
+                return p;
+            }
+        }
+        throw new PersonNotFoundException();
     }
 }

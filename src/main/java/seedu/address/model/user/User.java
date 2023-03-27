@@ -4,6 +4,7 @@ package seedu.address.model.user;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.person.Person;
@@ -88,6 +89,14 @@ public class User extends Person {
 
     public UniqueEventList getEvents() {
         return this.events;
+    }
+
+    public void deletePersonFromEvents(Person target) {
+        this.events.deletePerson(target);
+    }
+
+    public void tagPersonToEvent(Index index, Person p) {
+        this.events.tagPersonToEvent(index, p);
     }
 }
 
