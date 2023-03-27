@@ -154,8 +154,18 @@ public class StudentCard extends UiPart<Region> {
 
     /**
      * Updates the image of the student.
+     * If the student has an image, it will be displayed, else it will check the image folder for the student's image.
      */
     public void updateImage() {
+        String strImage = student.getImage().value;
+        if (!strImage.equals("Insert student image here!")) {
+            File file = new File(strImage);
+            if (file.exists()) {
+                Image image = new Image(file.toURI().toString());
+                circle.setFill(new ImagePattern(image));
+                return;
+            }
+        }
         String path = "images/student/" + student.getName()
                 + student.getStudentClass().getClassName() + ".png";
         File file = new File(path);
@@ -166,7 +176,6 @@ public class StudentCard extends UiPart<Region> {
             Image newImage = new Image(file.toURI().toString());
             circle.setFill(new ImagePattern(newImage));
         }
-
     }
 
     @Override
