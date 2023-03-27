@@ -95,7 +95,7 @@ Or want to look up all recipes associated with a specific tag?
 only those that match any of your specified keywords straight away.
 
 Format:
-`find [PROPERTY] KEYWORD [KEYWORDS]...`
+`find [PROPERTY] KEYWORD [ADDITIONAL KEYWORDS]...`
 * :bulb: Tip: Supported properties: `name`, `tag`
 
 i.e. `find name KEYWORD [KEYWORDS]...`, `find tag KEYWORD [KEYWORDS]...`
@@ -114,7 +114,7 @@ i.e. `find name KEYWORD [KEYWORDS]...`, `find tag KEYWORD [KEYWORDS]...`
 
 Example of usage:
 * `find cheese` returns all recipes with the keyword `cheese` in their recipe name
-* `find name prawn tofu` returns all recipes with the keyword `prawn` and all recipes with the keyword `tofu` in their names
+* `find name prawn tofu` returns all recipes with the keyword `prawn` and/or `tofu` in their names
 * `find tag western` returns all recipes with the tag `western`
 
 
@@ -219,7 +219,7 @@ _Details coming soon ..._
 |------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e {ESTIMATED AMOUNT}] [-cn {COMMON NAME}] [-r {REMARKS}]... [-s {SUBSTITUTION}]...]... [s/RECIPE_STEPS]...` <br/> e.g., `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt` |                                                                                                                                                             |            |                                      |
 | **List**   | `list`                                                                                                                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                             |            |                                      |
-| **Find**   | `find [PREDICATE] KEYWORD [KEYWORDS]...    ` for predicate: `name`, `tag` <br/> e.g., `find cheese rice`, `find name popcorn`, `find tag western`                                                                                                                                                                                                                                      |
+| **Find**   | `find [PROPERTY] KEYWORD [ADDITIONAL KEYWORDS]...    ` for properties: `name`, `tag` <br/> e.g., `find cheese rice`, `find name popcorn`, `find tag western`                                                                                                                                                                                                                           |
 | **Delete** | `delete INDEX`<br/> e.g., `delete 2`                                                                                                                                                                                                                                                                                                                                                   |
 | **Sub**    | `sub INGREDIENT_NAME`<br/> e.g. `sub salt`                                                                                                                                                                                                                                                                                                                                             |
 | **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                          |            |                                      |
