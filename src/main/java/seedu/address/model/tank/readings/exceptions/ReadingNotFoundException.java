@@ -1,2 +1,3 @@
-package seedu.address.model.tank.readings.exceptions;public class ReadingNotFoundException {
-}
+package seedu.address.model.tank.readings.exceptions;
+
+public class ReadingNotFoundException extends RuntimeException {}

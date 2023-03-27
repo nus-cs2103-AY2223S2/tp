@@ -3,11 +3,9 @@ package seedu.address.model.tank.readings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.tank.readings.exceptions.DuplicateReadingException;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.UniqueTaskList;
-import seedu.address.model.task.exceptions.DuplicateTaskException;
-import seedu.address.model.task.exceptions.TaskNotFoundException;
+import seedu.address.model.tank.readings.exceptions.ReadingNotFoundException;
 
+import java.util.Iterator;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
@@ -18,14 +16,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  *
  * Supports a minimal set of list operations.
  */
-public class ReadingAmmoniaList implements Iterable<Reading> {
+public class UniqueAmmoniaLevelList implements Iterable<AmmoniaLevel> {
     public final ObservableList<AmmoniaLevel> internalList = FXCollections.observableArrayList();
 
     private final ObservableList<AmmoniaLevel> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent task as the given argument.
+     * Returns true if the list contains an equivalent reading as the given argument.
      */
     public boolean containsSameDayReading(AmmoniaLevel toCheck) {
         requireNonNull(toCheck);
@@ -33,7 +31,7 @@ public class ReadingAmmoniaList implements Iterable<Reading> {
     }
 
     /**
-     * Adds a task to the list.
+     * Adds a reading to the list.
      * If a reading of the same day
      */
     public void add(AmmoniaLevel toAdd) {
@@ -45,33 +43,32 @@ public class ReadingAmmoniaList implements Iterable<Reading> {
     }
 
     /**
-     * Replaces a {@code Todo} in the list with {@code editedTodo}.
+     * Replaces a {@code AmmoniaLevel} in the list with {@code editedAmmoniaLevel}.
      * {@code target} must exist in the list.
-     * The {@code editedTodo} must not be the same as an existing {@code Todo} in the list.
      */
     public void setAmmoniaLevel(AmmoniaLevel target, AmmoniaLevel editedAmmoniaLevel) {
         requireAllNonNull(target, editedAmmoniaLevel);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new TaskNotFoundException();
+            throw new ReadingNotFoundException();
         }
 
         internalList.set(index, editedAmmoniaLevel);
     }
 
     /**
-     * Removes the equivalent Task from the list.
-     * The Task must exist in the list.
+     * Removes the equivalent reading from the list.
+     * The reading must exist in the list.
      */
     public void remove(AmmoniaLevel toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new TaskNotFoundException();
+            throw new ReadingNotFoundException();
         }
     }
 
-    public void setTasks(ReadingAmmoniaList replacement) {
+    public void setAmmoniaLevels(UniqueAmmoniaLevelList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -80,7 +77,7 @@ public class ReadingAmmoniaList implements Iterable<Reading> {
      * Replaces the contents of this list with {@code ammoniaLevels}.
      * {@code ammoniaLevels} must not contain duplicate ammoniaLevels.
      */
-    public void setTasks(List<AmmoniaLevel> ammoniaLevels) {
+    public void setAmmoniaLevels(List<AmmoniaLevel> ammoniaLevels) {
         requireAllNonNull(ammoniaLevels);
         if (!ammoniaLevelsAreUnique(ammoniaLevels)) {
             throw new DuplicateReadingException();
@@ -90,7 +87,7 @@ public class ReadingAmmoniaList implements Iterable<Reading> {
     }
 
     /**
-     * Returns true if {@code Tasks} contains only unique Tasks.
+     * Returns true if {@code Readings} contains only unique Readings.
      */
     private boolean ammoniaLevelsAreUnique(List<AmmoniaLevel> ammoniaLevels) {
         for (int i = 0; i < ammoniaLevels.size() - 1; i++) {
@@ -101,5 +98,33 @@ public class ReadingAmmoniaList implements Iterable<Reading> {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<AmmoniaLevel> asUnmodifiableObservableList() {
+        return internalUnmodifiableList;
+    }
+
+    @Override
+    public Iterator<AmmoniaLevel> iterator() {
+        return internalList.iterator();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UniqueAmmoniaLevelList // instanceof handles nulls
+                && internalList.equals(((UniqueAmmoniaLevelList) other).internalList));
+    }
+
+    @Override
+    public int hashCode() {
+        return internalList.hashCode();
+    }
+
+    public int size() {
+        return internalList.size();
     }
 }

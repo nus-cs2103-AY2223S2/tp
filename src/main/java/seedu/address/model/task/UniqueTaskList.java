@@ -43,23 +43,23 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Replaces a {@code Todo} in the list with {@code editedTodo}.
+     * Replaces a {@code Task} in the list with {@code editedTask}.
      * {@code target} must exist in the list.
-     * The {@code editedTodo} must not be the same as an existing {@code Todo} in the list.
+     * The {@code editedTask} must not be the same as an existing {@code Task} in the list.
      */
-    public void setTask(Task target, Task editedTodo) {
-        requireAllNonNull(target, editedTodo);
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new TaskNotFoundException();
         }
 
-        if (!target.equals(editedTodo) && contains(editedTodo)) {
+        if (!target.equals(editedTask) && contains(editedTask)) {
             throw new DuplicateTaskException();
         }
 
-        internalList.set(index, editedTodo);
+        internalList.set(index, editedTask);
     }
 
     /**
