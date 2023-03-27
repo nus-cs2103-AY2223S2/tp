@@ -188,8 +188,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean checkPersonTagToEvent(Index index, Person p) {
-        return this.userData.checkPersonTagToEvent(index, p);
+    public boolean isPersonTaggedToEvent(Index index, Person p) {
+        return this.userData.isPersonTaggedToEvent(index, p);
     }
     //=========== Filtered Person List Accessors =============================================================
 
