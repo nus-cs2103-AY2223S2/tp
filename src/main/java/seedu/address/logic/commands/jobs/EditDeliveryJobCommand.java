@@ -127,6 +127,12 @@ public class EditDeliveryJobCommand extends Command {
             toEdit.isDelivered(deliveryJobToEdit.getDeliveredStatus());
         });
 
+        editjobDescriptor.getDescription().ifPresentOrElse(val -> {
+            toEdit.description(val);
+        }, () -> {
+            toEdit.description(deliveryJobToEdit.getDescription());
+        });
+
         return toEdit.build();
     }
 
@@ -194,11 +200,12 @@ public class EditDeliveryJobCommand extends Command {
 
         // Delivery informations
         private String recipient;
-        private String sender; // aka customer
+        private String sender;
         private DeliveryDate deliveryDate;
         private DeliverySlot deliverySlot;
         private Earning earning;
         private boolean isDelivered;
+        private String description;
 
         public EditDeliveryJobDescriptor() {
         }
@@ -215,6 +222,7 @@ public class EditDeliveryJobCommand extends Command {
             setDeliverySlot(toCopy.deliverySlot);
             setEarning(toCopy.earning);
             setDelivered(toCopy.isDelivered);
+            setDescription(toCopy.description);
         }
 
         /**
@@ -278,6 +286,14 @@ public class EditDeliveryJobCommand extends Command {
 
         public void setDelivered(boolean isDelivered) {
             this.isDelivered = isDelivered;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public Optional<String> getDescription() {
+            return Optional.ofNullable(description);
         }
 
         @Override

@@ -68,7 +68,7 @@ public class DeliveryJobCard extends UiPart<Region> {
         });
 
         job.getDeliverySlot().ifPresentOrElse(val -> {
-            deliveryTimeSlot.setText(val.value);
+            deliveryTimeSlot.setText(val.getDescription());
         }, () -> {
             deliveryTimeSlot.setText("N.A");
         });
@@ -77,7 +77,8 @@ public class DeliveryJobCard extends UiPart<Region> {
             earningDollar.setText(val.dollar);
             earningCent.setText(val.cent);
         }, () -> {
-            earning.setText("N.A");
+            earningDollar.setText("0");
+            earningCent.setText("00");
         });
 
         checkmarkIcon.setVisible(job.getDeliveredStatus());

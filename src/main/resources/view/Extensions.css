@@ -21,10 +21,30 @@
 
 #job_earning_dollar {
     -fx-font-size: 26px;
+    -fx-text-fill: #00ff0080;
 }
 
 #job_earning_cent {
 
+}
+
+#detail-pane {
+
+}
+
+.job_person_card {
+    -fx-border-width: 1;
+    -fx-border-color: white;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+
+.job_person_card .cell_big_label {
+    -fx-text-fill: white;
+}
+
+.job_person_card .cell_small_label {
+    -fx-text-fill: white;
 }
 
 .error-input {

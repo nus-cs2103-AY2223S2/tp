@@ -24,6 +24,7 @@ import seedu.address.logic.commands.jobs.EditDeliveryJobCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryDate;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.DeliverySlot;
 import seedu.address.model.jobs.Earning;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.person.AddressBookWindow;
@@ -43,6 +44,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private Runnable completeEditCallback;
 
     @FXML
     private TextField inputSender;
@@ -74,11 +76,12 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
     /**
      * Edit mode.
      */
-    public AddDeliveryJobWindow(Stage primaryStage, Logic logic, DeliveryJob job) {
+    public AddDeliveryJobWindow(Stage primaryStage, Logic logic, DeliveryJob job, Runnable callback) {
         super(FXML, primaryStage);
         this.primaryStage = primaryStage;
         this.logic = logic;
         toEdit = Optional.of(job);
+        completeEditCallback = callback;
     }
 
     /**
@@ -117,7 +120,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
                 inputDeliverySlot.getSelectionModel().select(val.value);
             });
             job.getEarning().ifPresent(val -> {
-                inputEarning.setText(job.getRecipientId());
+                inputEarning.setText(val.value);
             });
             inputDescription.setText(job.getDescription());
             primaryStage.setTitle(EDIT_TITLE);
@@ -155,11 +158,10 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
 
         try {
             if (toEdit.isPresent()) {
-                EditDeliveryJobCommand.EditDeliveryJobDescriptor des =
-                    new EditDeliveryJobCommand.EditDeliveryJobDescriptor();
-                des.setJobId(toEdit.get().getJobId());
-                // set changes
+                EditDeliveryJobCommand.EditDeliveryJobDescriptor des = prepareChange();
                 logic.execute(new EditDeliveryJobCommand(des));
+                completeEditCallback.run();
+                getRoot().close();
             } else {
                 DeliveryJob job;
 
@@ -179,6 +181,51 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
         } catch (ParseException | CommandException e) {
             logger.warning("[Event] createDeliveryJob" + e.getMessage());
         }
+    }
+
+    private EditDeliveryJobCommand.EditDeliveryJobDescriptor prepareChange() {
+        EditDeliveryJobCommand.EditDeliveryJobDescriptor des = new EditDeliveryJobCommand.EditDeliveryJobDescriptor();
+        DeliveryJob job = toEdit.get();
+        des.setJobId(job.getJobId());
+        if (!inputSender.getText().equalsIgnoreCase(job.getSenderId())) {
+            des.setSender(inputSender.getText());
+        }
+
+        if (!inputRecipient.getText().equalsIgnoreCase(job.getRecipientId())) {
+            des.setRecipient(inputRecipient.getText());
+        }
+
+        job.getEarning().ifPresentOrElse(val -> {
+            if (!inputEarning.getText().equals(val.value)) {
+                des.setEarning(new Earning(inputEarning.getText()));
+            }
+        }, () -> {
+            if (!inputEarning.getText().isEmpty()) {
+                des.setEarning(new Earning(inputEarning.getText()));
+            }
+        });
+
+        if (inputDeliveryDate.getValue() != null) {
+            job.getDeliveryDate().ifPresent(val -> {
+                if (!inputDeliveryDate.getValue().format(DeliveryDate.VALID_FORMAT).equals(val.date)) {
+                    des.setDeliveryDate(
+                            new DeliveryDate(inputDeliveryDate.getValue().format(DeliveryDate.VALID_FORMAT)));
+                }
+            });
+        }
+
+        if (inputDeliverySlot.getValue() != null) {
+            job.getDeliverySlot().ifPresent(val -> {
+                if (!inputDeliverySlot.getValue().equals(val.value)) {
+                    des.setDeliverySlot(new DeliverySlot(inputDeliverySlot.getValue()));
+                }
+            });
+        }
+
+        if (!inputDescription.getText().equalsIgnoreCase(job.getDescription())) {
+            des.setDescription(inputDescription.getText());
+        }
+        return des;
     }
 
     @FXML
