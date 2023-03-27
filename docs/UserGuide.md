@@ -11,13 +11,14 @@ Fast Army Internal Lookup System (FAILS) is a **desktop app for managing the per
 - [Quick start](#quick-start)
 - [Features](#features)
   - [Viewing help : `help`](#viewing-help--help)
-  - [Adding a person: `add`](#adding-a-person-add)
+  - [Adding a person : `add`](#adding-a-person--add)
   - [Listing all persons : `list`](#listing-all-persons--list)
   - [Copy information to clipboard : `copy`](#copy-information-to-clipboard--copy)
   - [Editing a person : `edit`](#editing-a-person--edit)
-  - [Locating persons by name: `find`](#locating-persons-by-name-find)
+  - [Locating persons by name : `find`](#locating-persons-by-name--find)
   - [Deleting a person : `delete`](#deleting-a-person--delete)
   - [Clearing all entries : `clear`](#clearing-all-entries--clear)
+  - [Undo last modification : `undo`](#undo-last-modification--undo)
   - [Exiting the program : `exit`](#exiting-the-program--exit)
   - [Saving the data](#saving-the-data)
   - [Editing the data file](#editing-the-data-file)
@@ -44,7 +45,7 @@ Fast Army Internal Lookup System (FAILS) is a **desktop app for managing the per
 
     - `list` : Lists all contacts.
 
-    - `add n/Jaden Ng p/91297723 e/jadend@gmail.com a/Smith street, block 13, #07-04 r/3SG u/alpha c/SIR pl/4` adds a new person `Jaden Ng` to the FAILS with the following information:
+    - `add n/Jaden Ng p/91297723 e/jadend@gmail.com a/Smith street, block 13, #07-04 r/3SG u/alpha c/SIR pl/4` adds a new person `Jaden Ng` to FAILS with the following information:
 
       | Field        | Value                          |
       |--------------|--------------------------------|
@@ -101,9 +102,9 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a person: `add`
+### Adding a person : `add`
 
-Adds a person to the FAILS.
+Adds a person to FAILS.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON]`
 
@@ -115,7 +116,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ r/RANK [u/UNI
 
 Examples:
 
-- `add n/Jaden Ng p/91297723 e/jadend@gmail.com a/Smith street, block 13, #07-04 r/3SG u/alpha c/SIR pl/4` adds a new person `Jaden Ng` to the FAILS with the following information:
+- `add n/Jaden Ng p/91297723 e/jadend@gmail.com a/Smith street, block 13, #07-04 r/3SG u/alpha c/SIR pl/4` adds a new person `Jaden Ng` to FAILS with the following information:
 
   | Field        | Value                          |
   |--------------|--------------------------------|
@@ -128,7 +129,7 @@ Examples:
   | company      | SIR                            |
   | platoon      | 4                              |
 
-- `add n/Lawrence Tay t/platoon-leader e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 r/3SG u/801 t/allergy-seafood` adds a new person `Lawrence Tay` to the FAILS with the following information:
+- `add n/Lawrence Tay t/platoon-leader e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 r/3SG u/801 t/allergy-seafood` adds a new person `Lawrence Tay` to FAILS with the following information:
 
   | Field        | Value                  |
   |--------------|------------------------|
@@ -143,7 +144,7 @@ Examples:
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the FAILS.
+Shows a list of all persons in FAILS.
 
 Format: `list`
 
@@ -188,7 +189,7 @@ After running the command, the following text is copied into your clipboard.
 
 ### Editing a person : `edit`
 
-Edits an existing person in the FAILS.
+Edits an existing person in FAILS.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -206,7 +207,7 @@ Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name : `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -227,7 +228,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the FAILS.
+Deletes the specified person from FAILS.
 
 Format: `delete INDEX`
 
@@ -237,14 +238,26 @@ Format: `delete INDEX`
 
 Examples:
 
-- `list` followed by `delete 2` deletes the 2nd person in the FAILS.
+- `list` followed by `delete 2` deletes the 2nd person in FAILS.
 - `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the FAILS.
+Clears all entries from FAILS.
 
 Format: `clear`
+
+### Undo last modification : `undo`
+
+Undoes the last modification done to FAILS.
+
+<div markdown="block" class="alert alert-warning">
+
+:exclamation: **Caution:** Once FAILS is closed, the undo history will be lost.
+
+</div>
+
+Format: `undo`
 
 ### Exiting the program : `exit`
 
