@@ -4,12 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableList;
 import seedu.fitbook.commons.core.Messages;
+import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
-import seedu.fitbook.model.client.Weight;
+import seedu.fitbook.model.client.Date;
+import seedu.fitbook.model.client.WeightHistory;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,13 +28,12 @@ public class GraphCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Graph shown for client %1$s";
 
-    private final int targetIndex;
+    private final Index targetIndex;
 
     /**
      * Creates an AddWeightCommand to add the specified {@code Weight} to the client at the specified index.
      */
-    public GraphCommand(int targetIndex) {
-        assert(targetIndex > 0);
+    public GraphCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -40,35 +41,44 @@ public class GraphCommand extends Command {
     public CommandResult execute(FitBookModel model) throws CommandException {
         requireNonNull(model);
 
-        if (targetIndex > model.getFilteredClientList().size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_INDEX);
+        int clientIndex = targetIndex.getOneBased();
+
+        if (clientIndex > model.getFilteredClientList().size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
+
         ObservableList<Client> clientList = model.getFilteredClientList();
-        Client clientToShowGraph = clientList.get(targetIndex - 1);
+        Client clientToShowGraph = clientList.get(clientIndex - 1);
 
-        List<Weight> graphWeightList = clientToShowGraph.getWeightList();
+        WeightHistory graphWeightHistory = clientToShowGraph.getWeightHistory();
+        refineGraphWeightHistory(graphWeightHistory);
 
-        refineGraphWeightList(graphWeightList);
+        //a list of weight values for the y-axis
+        List<Integer> graphYAxis = new ArrayList<>();
+        for (int i = 0; i < graphWeightHistory.getListSize(); i++) {
+            Integer weightValue = Integer.parseInt(graphWeightHistory.getWeightValue(i));
+            graphYAxis.add(weightValue);
+        }
+
+        //a list of date values for the x-axis
+        List<Date> graphXAxis = new ArrayList<>();
+        for (int i = 0; i < graphWeightHistory.getListSize(); i++) {
+            Date dateValue = graphWeightHistory.getDateValue(i);
+            graphXAxis.add(dateValue);
+        }
 
         //iterate through the list to plot the graph in UI
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, clientIndex));
     }
 
-    public Integer getIndex() {
+    public Index getIndex() {
         return targetIndex;
     }
 
-    public void refineGraphWeightList(List<Weight> weightList) {
-        for (int i = 0; i < weightList.size(); i++) {
-            Weight weight = weightList.get(i);
-            LocalDate weightDate = LocalDate.parse(weight.getDate().toString());
-            LocalDate oneMonthAgo = LocalDate.now().minusMonths(1);
-            if (weightDate.isBefore(oneMonthAgo)) {
-                //handle exception if there is no weight left in the graph list
-                weightList.remove(i);
-            }
-        }
+    public void refineGraphWeightHistory(WeightHistory weightHistory) {
+        weightHistory.sortByDate();
+        weightHistory.removeOldWeights();
     }
 
     @Override

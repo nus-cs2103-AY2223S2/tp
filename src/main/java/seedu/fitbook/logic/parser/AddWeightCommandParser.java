@@ -1,9 +1,10 @@
 package seedu.fitbook.logic.parser;
 
-import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.fitbook.commons.core.Messages.*;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.fitbook.commons.core.index.Index;
@@ -28,17 +29,17 @@ public class AddWeightCommandParser implements Parser<AddWeightCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_WEIGHT, PREFIX_DATE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddWeightCommand.MESSAGE_USAGE));
         }
-        Index index;
 
+        Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddWeightCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
-        //handle invalid input here
         Weight weight = ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        checkDate(date);
 
         return new AddWeightCommand(index, weight, date);
     }
@@ -49,5 +50,14 @@ public class AddWeightCommandParser implements Parser<AddWeightCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    public void checkDate(Date date) throws ParseException {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime dateToCheck = date.localDateTime;
+        if (dateToCheck.isAfter(now)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_DATE, AddWeightCommand.MESSAGE_USAGE));
+        }
     }
 }

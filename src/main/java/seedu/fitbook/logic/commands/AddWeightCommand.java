@@ -23,7 +23,7 @@ public class AddWeightCommand extends Command {
             + "Parameters: i/INDEX w/WEIGHT d/DATE\n"
             + "Example: " + COMMAND_WORD + " 1 w/70 d/10-03-2024 19:00";
 
-    public static final String MESSAGE_SUCCESS = "New weight added to client %1$s:" + "kg " + "on %3$s";
+    public static final String MESSAGE_SUCCESS = "New weight added to client %1$s:" + " %2$skg " + "on %3$s";
 
     private final Index index;
     private final Weight weightToAdd;
@@ -46,17 +46,20 @@ public class AddWeightCommand extends Command {
     public CommandResult execute(FitBookModel model) throws CommandException {
         requireNonNull(model);
 
-        if (index.getZeroBased() > model.getFilteredClientList().size()) {
+        int clientIndex = index.getOneBased();
+
+        if (clientIndex > model.getFilteredClientList().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
         ObservableList<Client> clientList = model.getFilteredClientList();
-        Client clientToAddWeight = clientList.get(index.getZeroBased());
+        Client clientToAddWeight = clientList.get(clientIndex - 1);
 
         clientToAddWeight.getWeightHistory().addWeight(date, weightToAdd.value);
         Weight lastWeight = clientToAddWeight.getWeightHistory().getLastEntry();
         clientToAddWeight.setWeight(lastWeight);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, index.getOneBased(), weightToAdd, date.toString()));
+        return new CommandResult(
+                String.format(MESSAGE_SUCCESS, index.getOneBased(), weightToAdd.value, date.toString()));
     }
 
     public Index getIndex() {

@@ -52,8 +52,8 @@ public class Weight {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public Date getDate() {
-        return date;
+    public LocalDateTime getDateTime() {
+        return date.localDateTime;
     }
 
     public String getWeight() {
@@ -76,5 +76,4 @@ public class Weight {
     public int hashCode() {
         return value.hashCode();
     }
-
 }

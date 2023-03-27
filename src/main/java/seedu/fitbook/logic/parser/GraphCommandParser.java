@@ -1,11 +1,8 @@
 package seedu.fitbook.logic.parser;
 
-import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_CLIENT_INDEX;
+import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
 
-import java.util.stream.Stream;
-
-import seedu.fitbook.logic.commands.AddWeightCommand;
+import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.logic.commands.GraphCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 
@@ -21,23 +18,15 @@ public class GraphCommandParser implements Parser<GraphCommand> {
      */
     public GraphCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_INDEX);
-        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_INDEX)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddWeightCommand.MESSAGE_USAGE));
+                ArgumentTokenizer.tokenize(args);
+        Index index;
+
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
-        //handle invalid input here
-        int clientIndex = Integer.parseInt(argMultimap.getValue(PREFIX_CLIENT_INDEX).get().trim());
-
-        return new GraphCommand(clientIndex);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+        return new GraphCommand(index);
     }
 }
