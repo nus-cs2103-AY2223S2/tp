@@ -13,7 +13,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
 import java.util.Set;
 
 import seedu.address.commons.util.PrefixUtil;
@@ -37,19 +36,22 @@ import seedu.address.model.tag.Tag;
 public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddElderlyCommand
+     * Parses the given {@code String} of arguments in the context of the
+     * AddElderlyCommand
      * and returns an AddElderlyCommand object for execution.
      *
      * @param args Arguments.
      * @return {@code AddVolunteerCommand} for execution.
-     * @throws ParseException If the user input does not conform the expected format.
+     * @throws ParseException If the user input does not conform the expected
+     *                        format.
      */
     public AddVolunteerCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_NRIC,
-            PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_AVAILABILITY, PREFIX_TAG, PREFIX_MEDICAL_TAG};
-        Prefix[] compulsoryPrefixes = Arrays.copyOfRange(availablePrefixes, 0, 7);
+        Prefix[] availablePrefixes = { PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_NRIC,
+                PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_AVAILABILITY, PREFIX_TAG, PREFIX_MEDICAL_TAG };
+        Prefix[] compulsoryPrefixes = { PREFIX_NAME, PREFIX_NRIC_VOLUNTEER,
+                PREFIX_BIRTH_DATE, PREFIX_REGION };
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, availablePrefixes);
 
@@ -67,8 +69,8 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
         Set<AvailableDate> availableDates = ParserUtil.parseDateRanges(argMultimap.getAllValues(PREFIX_AVAILABILITY));
         Region region = ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Set<MedicalQualificationTag> medicalTagList =
-                ParserUtil.parseMedicalTags(argMultimap.getAllValues(PREFIX_MEDICAL_TAG));
+        Set<MedicalQualificationTag> medicalTagList = ParserUtil
+                .parseMedicalTags(argMultimap.getAllValues(PREFIX_MEDICAL_TAG));
 
         Volunteer volunteer = new Volunteer(name, phone, email, address, nric,
                 birthDate, region, tagList, medicalTagList, availableDates);
@@ -77,7 +79,8 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
     }
 
     /**
-     * Validates the given ArgumentMultimap by checking that it fulfils certain criteria.
+     * Validates the given ArgumentMultimap by checking that it fulfils certain
+     * criteria.
      *
      * @param map the ArgumentMultimap to be validated.
      * @return true if the ArgumentMultimap is valid, false otherwise.

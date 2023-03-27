@@ -54,6 +54,9 @@ public class AddVolunteerCommand extends Command {
             + PREFIX_NRIC + "NRIC "
             + PREFIX_BIRTH_DATE + "BIRTH DATE "
             + PREFIX_REGION + "REGION "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_MEDICAL_TAG + "MEDICAL_TAG] "
             + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_AVAILABILITY + "START_DATE,END_DATE]...\n"
@@ -104,7 +107,7 @@ public class AddVolunteerCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddVolunteerCommand // instanceof handles nulls
-                && toAdd.equals(((AddVolunteerCommand) other).toAdd));
+                        && toAdd.equals(((AddVolunteerCommand) other).toAdd));
     }
 
     @Override

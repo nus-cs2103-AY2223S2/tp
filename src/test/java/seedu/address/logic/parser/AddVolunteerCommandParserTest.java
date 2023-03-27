@@ -53,7 +53,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.model.person.Volunteer;
-import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
@@ -167,7 +166,7 @@ public class AddVolunteerCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + VALID_NRIC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB, expectedMessage);
 
-        // missing age prefix
+        // missing birthdate prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_DESC_BOB + VALID_BIRTH_DATE_BOB + REGION_DESC_BOB, expectedMessage);
 
