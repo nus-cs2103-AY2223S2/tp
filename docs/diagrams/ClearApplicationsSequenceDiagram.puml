@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box ApplicationLogic LOGIC_COLOR_T1
+participant ":ApplicationLogicManager" as ApplicationLogicManager LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
+participant "d:ClearApplicationsCommand" as ClearApplicationsCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box ApplicationModel MODEL_COLOR_T1
+participant ":ApplicationModel" as ApplicationModel MODEL_COLOR
+participant ":InternshipBook" as InternshipBook MODEL_COLOR
+end box
+
+[-> ApplicationLogicManager : execute("clear")
+activate ApplicationLogicManager
+
+ApplicationLogicManager -> InternshipBookParser : parseCommand("clear")
+activate InternshipBookParser
+
+create ClearApplicationsCommand
+InternshipBookParser -> ClearApplicationsCommand
+activate ClearApplicationsCommand
+
+ClearApplicationsCommand --> InternshipBookParser : clearCommand
+deactivate ClearApplicationsCommand
+
+InternshipBookParser --> ApplicationLogicManager : clearCommand
+deactivate InternshipBookParser
+
+ApplicationLogicManager -> ClearApplicationsCommand : execute()
+activate ClearApplicationsCommand
+
+create InternshipBook
+ClearApplicationsCommand -> InternshipBook : new InternshipBook()
+activate InternshipBook
+
+InternshipBook --> ClearApplicationsCommand : newIB
+deactivate InternshipBook
+
+ClearApplicationsCommand -> ApplicationModel : setInternshipBook(newIB)
+activate ApplicationModel
+
+ApplicationModel --> ClearApplicationsCommand
+deactivate ApplicationModel
+
+create CommandResult
+ClearApplicationsCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ClearApplicationsCommand : result
+deactivate CommandResult
+
+ClearApplicationsCommand --> ApplicationLogicManager : result
+deactivate ClearApplicationsCommand
+
+[<--ApplicationLogicManager
+deactivate ApplicationLogicManager
+@enduml

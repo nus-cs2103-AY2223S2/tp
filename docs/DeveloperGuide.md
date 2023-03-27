@@ -196,9 +196,9 @@ Given below are the steps that illustrate the interaction between the components
 application command from the user.
 
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
+2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via its `execute()` method.
 3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
-4. The `InternshipBookParser` in turn creates an `AddApplicationCommandParser` that is responsible for a specific purpose of 
+4. The `InternshipBookParser` in turn creates an `AddApplicationCommandParser` that is responsible for the specific purpose of 
 parsing user commands for adding applications.
 5. The `InternshipBookParser` then passes the string input to the `AddApplicationCommandParser` via the `parse()` method.
 6. The `AddApplicationCommandParser` then identifies the different prefixes in the string and creates the fields for the application.
@@ -219,7 +219,7 @@ the execution of the command.
 11. The Ui component displays the contents of the `CommandResult` to the User.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The CommandResult will display the newly updated
-application list to the User, should the add command have executed successfully. If an error occurred during execution, the corresponding
+application list to the User, should the add command execute successfully. If an error occurred during execution, the corresponding
 exception that was thrown and the error message will be displayed to the user.
 
 </div> 
@@ -260,7 +260,7 @@ Given below are the steps that illustrate the interaction between the components
 application command from the user.
 
 1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
-2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
+2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via its `execute()` method.
 3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
 4. The `InternshipBookParser` in turn creates an `EditApplicationCommandParser` that is responsible for the specific purpose of
    parsing user commands for editing applications.
@@ -291,20 +291,116 @@ exception that was thrown and the error message will be displayed to the user.
 For a more graphical illustration of how an edit application command is processed, please refer to the following
 sequence diagram:
 
-
 ![EditApplicationSequenceDiagram](images/EditApplicationSequenceDiagram.png)
 
 
-### \[In Progress\] Sort feature
+### Find Application feature
+
+#### About
+The "find" command is a tool that enables users to search for a specific application within the internship book.
+
+Users can locate the application by providing its index and optionally using the parameters "r/", "c/", and "s/" to 
+refine their search. These parameters correspond to the role, company, and status fields in the internship book
+, allowing for customized searches. Without any of the required prefixes, it will do a global search for the search
+keyword in all fields of the applications.
+
+#### Usage
+To find an application in sprINT, issue the command in the following format:
+
+`find [r/role] [c/companyName] [s/status]`
+
+Here's a breakdown of what each prefix means:
+
+- `r/` - this prefix is used to find role or position in the internship application.
+- `c/` - this prefix is used to find the company name in the internship.
+- `s/` - this prefix is used to find the status of your application, such as "interested", "applied", "rejected", or "offered".
+
+#### Implementation
+The find application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
+
+Given below are the steps that illustrate the interaction between the components when it receives a valid find
+application command from the user.
+
+1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
+2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via its `execute()` method.
+3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+4. The `InternshipBookParser` in turn creates an `FindApplicationCommandParser` that is responsible for the specific purpose of
+   parsing user commands for finding applications.
+5. The `InternshipBookParser` then passes the string input to the `FindApplicationCommandParser` via the `parse()` method.
+6. The `FindApplicationCommandParser` then identifies the different prefixes (if any) in the string and creates a list of keywords.
+7. The `parse()` method will return a `FindApplicationCommand(new NameContainsKeywordsPredicate(keywords))`.
+8. This `FindApplicationCommand` is returned back to `ApplicationLogicManager`.
+9. The `ApplicationLogicManager` then calls the `execute()` method of the `FindApplicationCommand`. This initializes the execution
+   logic behind finding the associated application instance in the existing `InternshipBook`.
+10. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
+    the execution of the command.
+11. The Ui component displays the contents of the `CommandResult` to the User.
+
+For a more graphical illustration of how a find application command is processed, please refer to the following
+sequence diagram:
+
+![FindApplicationSequenceDiagram](images/FindApplicationSequenceDiagram.png)
+
+### Sort feature
 
 #### About
 sprINT offers the options to sort the applications list in two ways:
 - `sort deadline` will sort by the deadline of upcoming tasks
-- `sort alphabetical` will sort by the alphabetical order of the internship roles; if there are two internship roles 
-that are the same, the tiebreaker will be the alphabetical order of the company name
+- `sort alphabetical` will sort by the alphabetical order of the company names; if there are two application entries to
+the same company, the tiebreaker will be the alphabetical order of role
 
 #### Implementation
-_to be added_
+The sort application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
+
+Given below are the steps that illustrate the interaction between the components when it receives a valid sort
+application command from the user.
+
+1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
+2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via its `execute()` method.
+3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+4. The `InternshipBookParser` in turn creates an `SortApplicationCommandParser` that is responsible for the specific purpose of
+   parsing user commands for sorting the application list.
+5. The `InternshipBookParser` then passes the string input to the `SortApplicationCommandParser` via the `parse()` method.
+6. The `SortApplicationCommandParser` then identifies the part of the string that describes the sorting order the user wants.
+7. The `parse()` method will return a `SortApplicationCommand(String sortingOrder)`.
+8. The `isValidSortingOrder` method in `SortApplicationCommand` will then check that the user-inputted sorting order is one
+of the accepted sorting order as dictated by the enum values in enum `Sorting Order`.
+9. If the sorting order is valid, the `SortApplicationCommand`'s comparator will be set to the corresponding comparator.
+10. This `SortApplicationCommand` is returned back to `ApplicationLogicManager`.
+11. The `ApplicationLogicManager` then calls the `execute()` method of the `SortApplicationCommand`. This initializes the execution
+    logic behind modifying the existing sorted list in `InternshipBook`, by calling the method `updateSortedApplicationList` in `ApplicationLogicManager`.
+12. `updateSortedApplicationList` will make use of the comparator from the `SortApplicationCommand` to sort the model's sorted list.
+13. The model's sorted list is then passed to the UI to be shown to the user on the GUI.
+14. An instance of `CommandResult` is also created which contains the information that will be displayed back to the User after
+    the execution of the command.
+15. The Ui component displays the contents of the `CommandResult` to the User.
+
+For a more graphical illustration of how a sort application command is processed, please refer to the following
+sequence diagram:
+
+![SortApplicationSequenceDiagram](images/SortApplicationSequenceDiagram.png)
+
+#### Future expansion of the `sort` command
+Should the need to implement other ways to sort the application list arise in the future, you can do so by following these 3 main steps:
+1. Create a new Comparator class not dissimilar to `AlphabeticalComparator` and `DeadlineComparator` that
+implements the `Comparator<Application` interface.
+2. Modify `SortApplicationCommandParser` to be able to accept a new sorting order.
+3. Modify `SortApplicationCommand`. Specifically, its enum class `SortingOrder` should be expanded to accept a new enum values for your new sorting order.
+Also, modify its constructor so that it can create a comparator of the newly created Comparator class for `SortApplicationCommand`.
+
+#### Relation with `list` command
+The implementation of the `sort` command shares some similarities with that of the `list` command.
+The `list` command lists all applications in the order of creation; i.e., application entries that are more recently created
+and added will be shown higher up in the list.
+The execution of these commands is essentially a two-step process of first **filtering** and then **storing**: 
+1. `ApplicationLogicManager` takes the internal list that keeps track of all the applications. It stores a **filtered** version of this
+list in `FilteredList`.
+2. `ApplicationLogicManager` takes the `FilteredList` and stores a **sorted** version of this list in `SortedList`.
+
+See the following activity diagram that illustrates this workflow with some example executions of the `sort`, `find`
+and `list` commands:
+
+![CommandExecutionWorkflow](images/CommandExecutionWorkflow.png)
 
 ### Undo/redo feature
 
@@ -437,6 +533,94 @@ When a user enters the `add-task` command:
     * Cons:
       * Increases code redundancy.
       * Violates Single Responsibility Principle.
+
+### Clear Applications Feature
+
+#### About
+
+The clear applications command is a feature in sprINT. This command allows users to remove all previously inserted
+applications from the system, providing a fresh start for new application entries. With this feature, users can
+easily reset their application history and begin again with a clean slate.
+
+#### Usage
+
+To use the clear applications command, simply enter `clear` in the command line interface. Upon executing the command,
+sprINT will remove all previously inserted applications from the system, leaving a blank slate for the user to begin anew.
+It is important to note that this action cannot be undone, so use this command with caution. This feature is especially
+useful for users who have completed their internships or want to start afresh with a new internship cycle.
+With the clear applications command, sprINT provides an efficient and simple way to manage internship applications.
+
+#### Implementation
+
+The find application mechanism is facilitated by the Ui, Logic and Model components of sprINT.
+
+Given below are the steps that illustrate the interaction between the components when it receives a valid add
+application command from the user.
+
+1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
+2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
+3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+4. Upon parsing the `clear` Command Keyword, the `InternshipBookParser` creates a `ClearApplicationsCommand`. This command instance
+   is returned back to `ApplicationLogicManager`.
+5. The `ApplicationLogicManager` then calls the `execute()` method of the `ClearApplicationsCommand`. This initializes the execution
+   the logic behind resetting the entire `InternshipBook`.
+6. An instance of `CommandResult` is created which contains the information that will be displayed back to the User after
+   the execution of the command.
+7. The Ui component displays the contents of the `CommandResult` to the User.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `clear` command executed successfully,
+the CommandResult will display the newly updated application list to the user, which would be empty in this case.
+If an error occurred during execution, the corresponding exception that was thrown and the error message will be displayed to the user.
+</div> 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `clear` command must be used with
+extreme caution, as it might potentially lead to highly undesirable outcomes. As a safety precaution, we do not delete
+the original instance of the `InternshipBook` immediately after executing a `clear` command. Users will have the
+opportunity to revert back to the previous state using the `undo` command.
+</div> 
+
+For a more graphical illustration of how a clear application command is processed, please refer to the following
+sequence diagram:
+
+![ClearApplicationsSequenceDiagram](images/ClearApplicationsSequenceDiagram.png)
+
+
+### Exit SprINT
+
+#### About
+
+The exit command is a feature in sprINT. This command allows users to close the desktop application safely,
+terminating any running processes and freeing up system resources. With this feature, users can efficiently exit
+the application without any risk of data loss or system instability.
+
+#### Usage
+
+To use the exit command, simply enter `exit` in the command line interface. Upon executing the command, sprINT will
+safely close the desktop application, freeing up any system resources used by the program. Since SprINT saves data
+and changes upon each received user command, Users do not have to worry about unsaved or possible loss of data
+when exiting sprINT.
+
+#### Implementation
+1. The Ui component receives the user command from the `CommandBox` of sprINT's GUI.
+2. The command is processed as a value of type string, and is passed to `ApplicationLogicManager` via it's `execute()` method.
+3. The `ApplicationLogicManager` passes the string input to the `InternshipBookParser` via the `parseCommand()` method.
+4. Upon parsing the `exit` Command Keyword, the `InternshipBookParser` creates a `ExitSprintCommand`. This command instance
+   is returned back to `ApplicationLogicManager`.
+5. The `ApplicationLogicManager` then calls the `execute()` method of the `ExitSprintCommand`.
+6. An instance of `CommandResult` is created and returned to the Ui component.
+7. The Ui component detects the `CommandResult` initiated from an `ExitSprintCommand`, and then handles the closure
+   of the desktop application.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** All `CommandResult` instances have an
+`exit` boolean field. The boolean value indicates whether the CommandResult corresponds to that of an `exit` command.
+This is what allows the Ui Component, `MainWindow`, to detect that a request to close the application has been issued
+from the user.
+</div> 
+
+For a more graphical illustration of how an exit application command is processed, please refer to the following
+sequence diagram:
+
+![ExitSprintSequenceDiagram](images/ExitSprintSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
