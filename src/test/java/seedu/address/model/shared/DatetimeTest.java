@@ -56,45 +56,41 @@ public class DatetimeTest {
 
     @Test
     void validateInput_validDatetime_returnsLocalDateTime() {
-        Datetime datetime = new Datetime(VALID_DATETIME_1);
         LocalDateTime expectedDateTime = LocalDateTime.parse(VALID_DATETIME_1);
-        assertEquals(expectedDateTime, datetime.validateInput(VALID_DATETIME_1));
+        assertEquals(expectedDateTime, Datetime.validateInput(VALID_DATETIME_1));
     }
 
     @Test
     void validateInput_validDate_returnsLocalDateTime() {
-        Datetime datetime = new Datetime(VALID_DATE);
         LocalDateTime expectedDateTime = LocalDateTime.parse(VALID_DATE + "T00:00:00");
-        assertEquals(expectedDateTime, datetime.validateInput(VALID_DATE));
+        assertEquals(expectedDateTime, Datetime.validateInput(VALID_DATE));
     }
 
     @Test
     void validateInput_invalidDatetime_returnsNull() {
-        Datetime datetime = new Datetime(INVALID_DATETIME);
-        assertNull(datetime.validateInput(INVALID_DATETIME));
+        assertNull(Datetime.validateInput(INVALID_DATETIME));
     }
 
     @Test
     void validateInput_invalidDate_returnsNull() {
-        Datetime datetime = new Datetime(INVALID_DATE);
-        assertNull(datetime.validateInput(INVALID_DATE));
+        assertNull(Datetime.validateInput(INVALID_DATE));
     }
 
     @Test
     void isPastDateTime_currentDateTime_returnsFalse() {
-        LocalDateTime currentDateTime = LocalDateTime.now(ZoneId.systemDefault());
+        LocalDateTime currentDateTime = LocalDateTime.now(ZoneId.systemDefault()).plusMonths(1);
         assertFalse(Datetime.isPastDateTime(currentDateTime, ZoneId.systemDefault()));
     }
 
     @Test
     void isPastDateTime_pastDateTime_returnsTrue() {
-        LocalDateTime pastDateTime = LocalDateTime.parse("2022-03-27T15:30:00");
+        LocalDateTime pastDateTime = LocalDateTime.parse("2022-02-27T15:30:00");
         assertTrue(Datetime.isPastDateTime(pastDateTime, ZoneId.systemDefault()));
     }
 
     @Test
     void isPastDateTime_futureDateTime_returnsFalse() {
-        LocalDateTime futureDateTime = LocalDateTime.parse("2024-03-27T15:30:00");
+        LocalDateTime futureDateTime = LocalDateTime.parse("2124-03-27T15:30:00");
         assertFalse(Datetime.isPastDateTime(futureDateTime, ZoneId.systemDefault()));
     }
 
