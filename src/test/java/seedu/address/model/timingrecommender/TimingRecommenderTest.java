@@ -23,6 +23,7 @@ import org.joda.time.Hours;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.recommender.timing.TimingRecommender;
 import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;

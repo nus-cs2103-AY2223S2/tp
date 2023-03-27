@@ -61,9 +61,11 @@ public class EduMateParserTest {
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+
         String commandString = EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " "
                 + PersonUtil.getEditPersonDescriptorDetails(descriptor);
+
         EditCommand command = (EditCommand) parser.parseCommand(commandString);
         assertEquals(new EditCommand(new ContactIndex(INDEX_FIRST_PERSON.getOneBased()), descriptor), command);
     }
