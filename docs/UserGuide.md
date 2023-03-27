@@ -207,7 +207,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 **Instagram**
 * Instagram is an *optional* field, i.e. a contact can exist even if it does not have an Instagram.
-* The prefix for an Instagram username is `ig/`
+* The prefix for an Instagram username is `ig/`.
 * Instagram usernames should be of the format john.123.doe and adhere to the following constraints:
     * The username should only contain alphanumeric characters and the special character: `.`.
     * The dots `.` must not be consecutive or at the end.
@@ -215,29 +215,34 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 **Telegram**
 * Telegram is an *optional* field, i.e. a contact can exist even if it does not have a Telegram.
+* The prefix for a Telegram username is `tg/`.
 * Telegram usernames should be of the format johndoe and adhere to the following constraints:
     * The username should only contain alphanumeric characters and the special character `_`.
     * The username should contain at least 5 characters.
 
 **WhatsApp**
 * WhatsApp is an *optional* field, i.e. a contact can exist even if it does not have a WhatsApp.
+* The prefix for adding a WhatsApp is `wa/`.
 * A WhatsApp's user identifier is a phone number, which should adhere to the following constraints:
     * Phone numbers should only contain numeric characters.
     * Phone numbers should be at least 3 digits long.
 
 **Birthday**
 * Birthday is an *optional* field, i.e. a contact can exist even if it does not have a birthday.
+* The prefix for a birthday is `b/`.
 * Birthdays should be of the format DD/MM/YYYY:
   * `01/01/2000` would correspond to January 1st, 2000
   * `16/05/1990` would correspond to May 16th, 1990.
 
 **Module**
 * Module is an *optional* field, i.e. a contact can exist even if it does not have a module.
+* The prefix for a module is `/mod`.
 * Module names should be alphanumeric.
 * A person can have any number of modules assigned to it.
 
 **Tag**
 * Tag is an *optional* field, i.e. a contact can exist even if it does not have a tag.
+* The prefix for a tag is `/t`.
 * Tag names should be alphanumeric.
 * A person can have any number of tags assigned to it.
 
