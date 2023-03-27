@@ -47,7 +47,7 @@ public class TransactionCard extends UiPart<Region> {
         this.txn = txn;
         id.setText(displayedIndex + ". ");
         description.setText(txn.getDescription().toString());
-        status.setText(txn.getStatus().value);
+        status.setText(txn.getStatus().getStatusName().getLabel());
         value.setText(txn.getValue().toString());
         owner.setText(txn.getOwner().toString());
     }

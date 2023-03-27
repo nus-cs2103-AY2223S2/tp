@@ -22,8 +22,9 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Owner;
-import seedu.address.model.transaction.TxnStatus;
 import seedu.address.model.transaction.Value;
+import seedu.address.model.transaction.status.TxnStatus;
+import seedu.address.model.transaction.status.TxnStatusName;
 
 //import javax.xml.validation.Validator;
 
@@ -219,7 +220,7 @@ public class ParserUtil {
      */
     public static TxnStatus parseTxnStatus(String status) throws ParseException {
         requireNonNull(status);
-        if (!TxnStatus.isValidTxnStatus(status)) {
+        if (!TxnStatusName.isValidStatusName(status)) {
             throw new ParseException(TxnStatus.MESSAGE_CONSTRAINTS);
         }
         return new TxnStatus(status);

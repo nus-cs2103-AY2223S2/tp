@@ -20,8 +20,8 @@ import seedu.address.model.Model;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Owner;
 import seedu.address.model.transaction.Transaction;
-import seedu.address.model.transaction.TxnStatus;
 import seedu.address.model.transaction.Value;
+import seedu.address.model.transaction.status.TxnStatus;
 
 /**
  * Edits the details of an existing transaction in the sales book.

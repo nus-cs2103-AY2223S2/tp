@@ -110,7 +110,7 @@ public class CommandTestUtil {
     public static final String VALID_TXN_DESC_COFFEE_MACHINES = "20 HotPot CoffeePots for The Pot Company";
     public static final String VALID_TXN_VALUE_COFFEE_MACHINES = "6600";
     public static final String VALID_TXN_OWNER_COFFEE_MACHINES = "Tom Petey";
-    public static final String VALID_TXN_STATUS_COFFEE_MACHINES = "closed";
+    public static final String VALID_TXN_STATUS_COFFEE_MACHINES = "Closed";
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withGender(VALID_GENDER_AMY)

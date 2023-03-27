@@ -26,8 +26,8 @@ public class TxnCommandTestUtil {
     public static final String VALID_DESCRIPTION_MAC = "15 AwfullyHot Coffee Pots for Hotel Californication";
     public static final String VALID_VALUE_LIMMY = "5000";
     public static final String VALID_VALUE_MAC = "30000";
-    public static final String VALID_STATUS_LIMMY = "open";
-    public static final String VALID_STATUS_MAC = "closed";
+    public static final String VALID_STATUS_LIMMY = "Open";
+    public static final String VALID_STATUS_MAC = "Closed";
 
     public static final String OWNER_DESC_LIMMY = " " + PREFIX_TXN_OWNER + VALID_OWNER_LIMMY;
     public static final String OWNER_DESC_MAC = " " + PREFIX_TXN_OWNER + VALID_OWNER_MAC;

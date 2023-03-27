@@ -1,10 +1,12 @@
 package seedu.address.testutil;
 
+import static seedu.address.model.transaction.status.TxnStatusName.OPEN;
+
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Owner;
 import seedu.address.model.transaction.Transaction;
-import seedu.address.model.transaction.TxnStatus;
 import seedu.address.model.transaction.Value;
+import seedu.address.model.transaction.status.TxnStatus;
 
 //import javax.lang.model.util.AbstractAnnotationValueVisitor6;
 
@@ -16,7 +18,7 @@ public class TransactionBuilder {
     public static final String DEFAULT_DESCRIPTION = "Coffee cost.";
     public static final String DEFAULT_OWNER = "Coffeeeeeeee Inc";
     public static final String DEFAULT_VALUE = "10203040";
-    public static final String DEFAULT_STATUS = "closed";
+    public static final String DEFAULT_STATUS = OPEN.getLabel();
 
     private Description description;
     private Owner owner;

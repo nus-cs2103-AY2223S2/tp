@@ -18,8 +18,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Owner;
 import seedu.address.model.transaction.Transaction;
-import seedu.address.model.transaction.TxnStatus;
 import seedu.address.model.transaction.Value;
+import seedu.address.model.transaction.status.TxnStatus;
 
 /**
  * Parses input arguments and creates a new AddTxnCommand object

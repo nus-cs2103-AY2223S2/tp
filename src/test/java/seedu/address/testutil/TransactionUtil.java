@@ -28,7 +28,7 @@ public class TransactionUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TXN_DESCRIPTION + transaction.getDescription().value + " ");
         sb.append(PREFIX_TXN_OWNER + transaction.getOwner().value + " ");
-        sb.append(PREFIX_TXN_STATUS + transaction.getStatus().value + " ");
+        sb.append(PREFIX_TXN_STATUS + transaction.getStatus().getStatusName().getLabel() + " ");
         sb.append(PREFIX_TXN_VALUE + transaction.getValue().value + " ");
         return sb.toString();
     }
@@ -41,7 +41,8 @@ public class TransactionUtil {
         descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_TXN_DESCRIPTION).append(
                 description.value).append(" "));
         descriptor.getOwner().ifPresent(owner -> sb.append(PREFIX_TXN_OWNER).append(owner.value).append(" "));
-        descriptor.getStatus().ifPresent(status -> sb.append(PREFIX_TXN_STATUS).append(status.value).append(" "));
+        descriptor.getStatus().ifPresent(status -> sb.append(PREFIX_TXN_STATUS).append(status.getStatusName()
+                .getLabel()).append(" "));
         descriptor.getValue().ifPresent(value -> sb.append(PREFIX_TXN_VALUE).append(value.value).append(" "));
 
         return sb.toString();

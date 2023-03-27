@@ -50,7 +50,7 @@ public enum LeadStatusName {
     /**
      * Retrieves a LeadStatusName given a String, if it is valid.
      * @param name the search key for a LeadStatusName. Can be "X" or "Unqualified" for the LeadStatus of "Unqualified"
-     * @return a valid LeadStatus
+     * @return a valid LeadStatusName
      */
     public static LeadStatusName get(String name) {
         checkArgument(isValidStatusName(name), LeadStatus.MESSAGE_CONSTRAINTS);

@@ -1,10 +1,12 @@
 package seedu.address.model.transaction;
 
-
-//import javax.management.Descriptor;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+
+import seedu.address.model.transaction.status.TxnStatus;
+
+
 
 /**
  * Represents a Transaction in the sales book.

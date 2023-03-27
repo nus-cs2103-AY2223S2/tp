@@ -26,8 +26,8 @@ import seedu.address.model.person.status.LeadStatus;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Owner;
 import seedu.address.model.transaction.Transaction;
-import seedu.address.model.transaction.TxnStatus;
 import seedu.address.model.transaction.Value;
+import seedu.address.model.transaction.status.TxnStatus;
 
 public class SampleDataUtilTest {
     public static final Remark EMPTY_REMARK = new Remark("");
@@ -116,24 +116,24 @@ public class SampleDataUtilTest {
     private static Transaction[] sampleTxns = new Transaction[] {
         new Transaction(new Description("18 AwfullyHot CoffeePots for Singapore National University"),
             new Value("2700"),
-            new TxnStatus("closed"),
+            new TxnStatus("Closed"),
             new Owner("Roy Balakrishnan")),
         new Transaction(new Description("3 KoffeeMaster Espresso Machines for SalesPUNCH Inc."),
             new Value("6000"),
-            new TxnStatus("open"),
+            new TxnStatus("Open"),
             new Owner("Irfan Ibrahim")),
         new Transaction(new Description("150kg Grade 4 Busta Robusta Brazilian Coffe Beans for Singapore National "
                 + "University"),
             new Value("750"),
-            new TxnStatus("open"),
+            new TxnStatus("Open"),
             new Owner("Roy Balakrishnan")),
         new Transaction(new Description("5 KoffeeGuru Espresso Machines for Mac King"),
             new Value("12000"),
-            new TxnStatus("open"),
+            new TxnStatus("Open"),
             new Owner("Charlotte Oliveiro")),
         new Transaction(new Description("3 FrappeBlaster Machine Rental for Corporate Event at Tesleh"),
             new Value("750"),
-            new TxnStatus("open"),
+            new TxnStatus("Open"),
             new Owner("Bernice Yu"))
     };
 
