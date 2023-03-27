@@ -68,6 +68,7 @@ public class FishCard extends UiPart<Region> {
         fish.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+//        image.setPath(fish.getFishImage());
     }
 
     @Override

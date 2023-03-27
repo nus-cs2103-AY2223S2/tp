@@ -107,6 +107,10 @@ public class Fish {
         return ret;
     }
 
+    public String getFishImage() {
+        return this.species.getFishImageBySpecies();
+    }
+
     /**
      * Returns true if both Fishes have the same identity and data fields.
      * This defines a stronger notion of equality between two Fishes.
