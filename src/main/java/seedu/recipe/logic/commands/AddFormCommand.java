@@ -2,6 +2,8 @@ package seedu.recipe.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.text.ParseException;
+
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.logic.parser.AddCommandParser;
 import seedu.recipe.logic.util.RecipeDescriptor;
@@ -20,25 +22,27 @@ public class AddFormCommand extends Command {
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the recipe book";
     private RecipeDescriptor toAdd;
 
-    public AddFormCommand(RecipeDescriptor recipe) {
-        requireNonNull(recipe);
-        toAdd = recipe;
+
+    public AddFormCommand() {
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        AddRecipeForm recipeForm = new AddRecipeForm();
-        recipeForm.display();
-        String commandString = recipeForm.saveRecipe();
-        toAdd = AddCommandParser.parseToAddCommand(commandString);
-        Recipe recipeToAdd = toAdd.toRecipe();
-
-        if (model.hasRecipe(recipeToAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_RECIPE);
+        try{
+            requireNonNull(model);
+            StringBuilder stringBuilder = new StringBuilder();
+            AddRecipeForm recipeForm = new AddRecipeForm(stringBuilder);
+            recipeForm.display();
+            String commandString = stringBuilder.toString();
+            toAdd = AddCommandParser.parseToAddCommand(commandString);
+            Recipe recipeToAdd = toAdd.toRecipe();
+            if (model.hasRecipe(recipeToAdd)) {
+                throw new CommandException(MESSAGE_DUPLICATE_RECIPE);
+            }
+            model.addRecipe(recipeToAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, recipeToAdd));
+        } catch (CommandException | ParseException e) {
+            throw e;
         }
-        model.addRecipe(recipeToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, recipeToAdd));
     }
 }

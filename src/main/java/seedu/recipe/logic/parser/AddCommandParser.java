@@ -24,7 +24,6 @@ import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
-import seedu.recipe.ui.CommandBox.CommandExecutor;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -49,7 +48,6 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         RecipeDescriptor recipeDescriptor = parseToAddCommand(args);
-
         return new AddCommand(recipeDescriptor);
     }
 

@@ -6,7 +6,6 @@ import static seedu.recipe.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.recipe.ui.CommandBox.CommandExecutor;
 import seedu.recipe.logic.commands.AddCommand;
 import seedu.recipe.logic.commands.AddFormCommand;
 import seedu.recipe.logic.commands.ClearCommand;
@@ -47,8 +46,10 @@ public class RecipeBookParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
         case AddFormCommand.COMMAND_WORD:
-            return new AddFormCommand(null);
+            return new AddFormCommand();
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
