@@ -2,18 +2,16 @@
 layout: page
 title: User Guide
 ---
-<div style="text-align:center;">
-<img src="images/sprINT.png">
-</div>
+<img src="./images/sprINT.png" />
 
-## Table of Contents 
-{:toc}
+* Table of Contents
+ {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
-## 1. **Introduction**
+## **1. Introduction**
 
 ### 1.1 What is sprINT
 
@@ -28,7 +26,7 @@ making it a great asset in managing your internship applications.
 
 <div style="page-break-after: always;"></div>
 
-## 2. **Quick start**
+## **2. Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -62,7 +60,7 @@ Refer to the [Command summary](#Command summary) section below for a list of all
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## 3. **Features**
+## **3. Features**
 
 Before you begin reading, here are some special notations to help you along the way.
 
@@ -195,7 +193,7 @@ Example:
 `edit-task 1 d/Accept offer by/09-07-2023` Edits the description and deadline of the task for the 1st application to be
 `Accept offer` and `09-07-2023` respectively.
 
-#### 3.2.3  Deleting an application task : `delete-task`
+#### 3.2.3 Deleting an application task : `delete-task`
 
 Deletes the task of the specified application.
 
@@ -216,7 +214,7 @@ Examples:
 
 ### 3.3 Managing display for applications
 
-#### 3.3.1  Listing all applications : `list`
+#### 3.3.1 Listing all applications : `list`
 
 Shows a list of all internship applications, in the order of when they are added. Application
 entries that are added more recently will be shown on top.
@@ -226,7 +224,7 @@ Format: `list`
 Example:
 * `list` Returns the current list of internship applications tracked by sprINT.
 
-#### 3.3.2  Finding applications : `find`
+#### 3.3.2 Finding applications : `find`
 
 Finds internship applications with information containing any of the given keywords.
 
@@ -243,7 +241,7 @@ Examples:
 * `find Goggle Mata` returns internship applications for `Goggle LLC`, `Mata Platforms`.<br>
 * `find r/SWE Intern c/Mata s/Offered` returns internship application(s) for the role of `SWE Intern` at `Mata` that is of the status `Offered`.<br>
 
-#### 3.3.3  Soring applications : `sort`
+#### 3.3.3 Soring applications : `sort`
 
 Sorts internship applications in the order you want.
 
@@ -257,13 +255,13 @@ Currently, there are two orders you can choose:
 
 ### 3.4 Miscellaneous
 
-#### 3.4.1  Viewing help : `help`
+#### 3.4.1 Viewing help : `help`
 
 Displays a pop-up window of summary of commands and their formats.
 
 Format: `help`
 
-#### 3.4.2  Undoing a command : `undo`
+#### 3.4.2 Undoing a command : `undo`
 
 Undos the previous command that you have typed in.
 
@@ -273,24 +271,24 @@ You can use this command if you have accidentally deleted an applicatione entry 
 
 Format: `undo`
 
-#### 3.4.3  Clearing all applications : `clear`
+#### 3.4.3 Clearing all applications : `clear`
 
 Clears all entries from the internship book.
 
 Format: `clear`
 
-#### 3.4.4  Exiting the program : `exit`
+#### 3.4.4 Exiting the program : `exit`
 
 Exits the program.
 Alternatively, you can exit the program by clicking the top-right X button to close the window.
 
 Format: `exit`
 
-#### 3.4.5  Saving the data
+#### 3.4.5 Saving the data
 
 Data in the internship book are automatically saved in the hard disk after any command that modifies the data. There is no need to save manually.
 
-#### 3.4.6  Editing the data file
+#### 3.4.6 Editing the data file
 
 Data in the internship book are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update their data directly by editing that data file.
 
@@ -298,7 +296,7 @@ Data in the internship book are saved as a JSON file `[JAR file location]/data/a
 If your changes to the data file makes its format invalid, the internship book will discard all data and start with an empty data file at the next run.
 </div>
 
-#### 3.4.7  Archiving the data files : [coming in v2.0]
+#### 3.4.7 Archiving the data files : [coming in v2.0]
 
 _Details coming soon ..._
 
@@ -306,7 +304,7 @@ _Details coming soon ..._
 
 <div style="page-break-after: always;"></div>
 
-## 4. **FAQ**
+## **4.FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous internship book's home folder.
@@ -315,7 +313,7 @@ _Details coming soon ..._
 
 <div style="page-break-after: always;"></div>
 
-## 5. **Command Summary**
+## **5.Command Summary**
 
 | Action                       | Format, Examples                                                                                                                               |
 |------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
