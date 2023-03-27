@@ -4,7 +4,6 @@ import static mycelium.mycelium.commons.core.Messages.MESSAGE_INVALID_COMMAND_FO
 import static mycelium.mycelium.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static mycelium.mycelium.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.time.LocalDate;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
@@ -12,15 +11,15 @@ import org.junit.jupiter.api.Test;
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.UpdateProjectCommand;
 import mycelium.mycelium.model.person.Email;
-import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.model.util.NonEmptyString;
+import mycelium.mycelium.testutil.UpdateProjectDescriptorBuilder;
 
 public class UpdateProjectCommandParserTest {
-    private UpdateProjectCommandParser parser = new UpdateProjectCommandParser();
-
     private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
         UpdateProjectCommand.MESSAGE_USAGE);
+
+    private UpdateProjectCommandParser parser = new UpdateProjectCommandParser();
 
     @Test
     public void parse_emptyString_throwsParseException() {
@@ -72,14 +71,15 @@ public class UpdateProjectCommandParserTest {
         var acceptedOn = "31/12/2023";
         var deadline = "31/12/2024";
 
-        var descriptor = new UpdateProjectCommand.UpdateProjectDescriptor();
-        descriptor.setName(new NonEmptyString(name));
-        descriptor.setStatus(ProjectStatus.fromString(status));
-        descriptor.setClientEmail(new Email(email));
-        descriptor.setSource(new NonEmptyString(src));
-        descriptor.setDescription(desc);
-        descriptor.setAcceptedOn(LocalDate.parse(acceptedOn, Project.DATE_FMT));
-        descriptor.setDeadline(LocalDate.parse(deadline, Project.DATE_FMT));
+        var descriptor = new UpdateProjectDescriptorBuilder()
+            .withName(name)
+            .withStatus(status)
+            .withClientEmail(email)
+            .withSource(src)
+            .withDescription(desc)
+            .withAcceptedOn(acceptedOn)
+            .withDeadline(deadline)
+            .build();
 
         var input = String.format(" -pn %s -pn2 %s -s %s -e %s -src %s -d %s -ad %s -dd %s",
             curName, name, status, email, src, desc, acceptedOn, deadline);
@@ -89,7 +89,7 @@ public class UpdateProjectCommandParserTest {
     }
 
     @Test
-    public void parse_invalidArg_followedByValidArg_success() {
+    public void parse_invalidArgfollowedByValidArg_success() {
         var descriptor = new UpdateProjectCommand.UpdateProjectDescriptor();
         descriptor.setName(new NonEmptyString("barfoo"));
         descriptor.setStatus(ProjectStatus.DONE);

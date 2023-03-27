@@ -32,21 +32,21 @@ public class UpdateProjectCommand extends Command {
     public static final String MESSAGE_USAGE =
         COMMAND_ACRONYM + ": Updates the selected project.\n"
 
-        + "Compulsory Arguments: "
-        + PREFIX_PROJECT_NAME + "PROJECT NAME\n"
-        + "Optional Arguments: "
-        + PREFIX_NEW_PROJECT_NAME + "NEW PROJECT NAME "
-        + PREFIX_PROJECT_STATUS + "PROJECT STATUS "
-        + PREFIX_CLIENT_EMAIL + "CLIENT EMAIL "
-        + PREFIX_SOURCE + "SOURCE "
-        + PREFIX_PROJECT_DESCRIPTION + "DESCRIPTION "
-        + PREFIX_ACCEPTED_DATE + "ACCEPTED DATE "
-        + PREFIX_DEADLINE_DATE + "DEADLINE\n"
+            + "Compulsory Arguments: "
+            + PREFIX_PROJECT_NAME + "PROJECT NAME\n"
+            + "Optional Arguments: "
+            + PREFIX_NEW_PROJECT_NAME + "NEW PROJECT NAME "
+            + PREFIX_PROJECT_STATUS + "PROJECT STATUS "
+            + PREFIX_CLIENT_EMAIL + "CLIENT EMAIL "
+            + PREFIX_SOURCE + "SOURCE "
+            + PREFIX_PROJECT_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_ACCEPTED_DATE + "ACCEPTED DATE "
+            + PREFIX_DEADLINE_DATE + "DEADLINE\n"
 
-        + "Example: " + COMMAND_ACRONYM + " "
-        + PREFIX_PROJECT_NAME + "Mycelium "
-        + PREFIX_NEW_PROJECT_NAME + "Mycelium 2.0 "
-        + PREFIX_PROJECT_STATUS + "in_progress";
+            + "Example: " + COMMAND_ACRONYM + " "
+            + PREFIX_PROJECT_NAME + "Mycelium "
+            + PREFIX_NEW_PROJECT_NAME + "Mycelium 2.0 "
+            + PREFIX_PROJECT_STATUS + "in_progress";
 
     public static final String MESSAGE_UPDATE_PROJECT_SUCCESS = "Updated project: %1$s";
     public static final String MESSAGE_NOT_UPDATED = "Project not updated";
@@ -126,6 +126,10 @@ public class UpdateProjectCommand extends Command {
         }
 
         Project updatedProject = createUpdatedProject(target.get(), desc);
+        if (model.hasProject(updatedProject)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PROJECT,
+                new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
+        }
         model.setProject(target.get(), updatedProject);
         return new CommandResult(String.format(MESSAGE_UPDATE_PROJECT_SUCCESS, updatedProject),
             new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
@@ -148,6 +152,32 @@ public class UpdateProjectCommand extends Command {
          * Creates a new UpdateProjectDescriptor with all fields set to empty.
          */
         public UpdateProjectDescriptor() {
+        }
+
+        /**
+         * Constructs a new UpdateProjectDescriptor by copying the values of an existing descriptor.
+         */
+        public UpdateProjectDescriptor(UpdateProjectDescriptor toCopy) {
+            setName(toCopy.name);
+            setStatus(toCopy.status);
+            setClientEmail(toCopy.clientEmail);
+            setSource(toCopy.source);
+            setDescription(toCopy.description);
+            setAcceptedOn(toCopy.acceptedOn);
+            setDeadline(toCopy.deadline);
+        }
+
+        /**
+         * Constructs a new UpdateProjectDescriptor by copying the values of an existing project.
+         */
+        public UpdateProjectDescriptor(Project toCopy) {
+            setName(toCopy.getName());
+            setStatus(toCopy.getStatus());
+            setClientEmail(toCopy.getClientEmail());
+            setSource(toCopy.getSource());
+            setDescription(toCopy.getDescription());
+            setAcceptedOn(toCopy.getAcceptedOn());
+            setDeadline(toCopy.getDeadline());
         }
 
         public void setName(NonEmptyString name) {
