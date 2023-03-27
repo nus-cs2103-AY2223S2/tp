@@ -418,25 +418,45 @@ _Details coming soon ..._
 
 # 6. Command Summary
 
-| Action                        | Format, Examples                                                                                                                                                                                                                                                                                |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Help**                      | `g help`                                                                                                                                                                                                                                                                                        |
-| **Exit**                      | `g exit`                                                                                                                                                                                                                                                                                        |
-| **Add patient**               | `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]` <br> e.g., `add -n John Doe -ph 98765432 -em johnd@example.com -ad John Street, Block 123, #01-01 -dob 21-01-2000 -g male -ic T3871918C` |
-| **Delete patient by index**   | `p delete PATIENT_INDEX` <br> e.g., `delete -i 3`                                                                                                                                                                                                                                               |
-| **Delete patient by NRIC**    | `p delete -ic PATIENT_NRIC` <br> e.g., `delete -ic T0021248C`                                                                                                                                                                                                                                   |
-| **Update patient by name**    | `p update PATIENT_NAME [-n NEW_NAME] [-ph NEW_PHONE_NUMBER] [-em NEW_EMAIL] [-ad NEW_ADDRESS] [-dob NEW_DATE_OF_BIRTH] [-g GENDER] [-ic IC] [-da PATIENT_DRUG_ALLERGY] [-ec NEW_EMERGENCY_CONTACT_NUMBER]`                                                                                      |
-| **Find patient by name**      | `p find PATIENT_NAME` <br> e.g., `p find John` returns `john` and `John Doe`                                                                                                                                                                                                                    |
-| **Clear all patient**         | `p clear`                                                                                                                                                                                                                                                                                       |
-| **List patient**              | `p list`                                                                                                                                                                                                                                                                                        |
-| **View patient by index**     | `p view -i PATIENT_INDEX`                                                                                                                                                                                                                                                                       |
-| **Add a drug**                | `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT` <br> e.g., `d add -tn Panadol -ai paracetamol, sodium -dir Adults, 1-2 capsules -pur treat fever, headache -se dizziness -sc 500`                                                  |
-| **Delete drug by trade name** | `d delete -tn TRADE_NAME`<br> e.g., `d delete -tn Panadol Flu Max`                                                                                                                                                                                                                              |
-| **Delete drug by index**      | `d delete -i INDEX`<br> e.g.,`d delete -i 7`                                                                                                                                                                                                                                                    |
-| **Update drug storage count** | `d update TRADE_NAME -by +-VALUE`<br> e.g.,`d update -tn Panadol Flu Max -by +90`                                                                                                                                                                                                               |
-| **Find drug by trade name**   | `d find TRADE_NAME` <br> e.g., `d find Panadol`                                                                                                                                                                                                                                                 |
-| **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                                                                       |
-| **List drug**                 | `d list`                                                                                                                                                                                                                                                                                        |
-| **View drug by index**        | `d view -i DRUG_INDEX`                                                                                                                                                                                                                                                                          |
+If you need a quick and easy way to find the commands available in CareFlow, simply refer to the list below
+
+## 6.1 General Commands
+
+The following are the general commands that are available in Careflow for you to use! You will need to use the prefix `g` to use the commands.
+
+| Action | Format, Example | Expected Outcome |
+| -------|--------|------------------|
+| **Help** | `g help` | Opens up a window with a link to the User Guide. |
+| **Exit** | `g exit` | Saves all data and safely exits. |
+
+## 6.2 Patient Commands
+
+The following commands are patient-related commands that are available in Careflow for you to use! You will need to use the prefix `p` to use the commands.
+
+| Action | Format, Example | Expected Outcome |
+| -------|--------|------------------|
+| **Add patient**  | `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]` <p> e.g., `p add -n John Doe -ph 98765432 -em johnd@example.com -ad John Street, Block 123, #01-01 -dob 21-01-2000 -g male -ic T3871918C` | Adds a patient record with the particulars that you have entered.|
+| **Delete patient by index**   | `p delete -i PATIENT_INDEX` <p> e.g., `p delete -i 3`| Removes patient record at the index you have selected.|
+| **Delete patient by NRIC**    | `p delete -ic PATIENT_NRIC` <p> e.g., `p delete -ic T0021248C`| Removes patient record associated with the provided IC number.|
+| **Update patient by name**    | `p update PATIENT_NAME [-n NAME] [-ph PHONE] [-em EMAIL] [-ad ADDRESS] [-dob DATE_OF_BIRTH] [-g GENDER] [-ic IC] [-da DRUG_ALLERGY] [-ec NEW_EMERGENCY_CONTACT_NUMBER]` <p> e.g., `p update John -ph 12345678 -em 23456789` | Edit patient details located at the i-th position in the patient list with your given arguments.|
+| **View patient by index**     | `p view -i PATIENT_INDEX` <p> e.g. `p view -i 1` | Shows the patient record located at the i-th position in the patient list.|
+| **Find patient by name**      | `p find PATIENT_NAME` <p> e.g., `p find John` | Shows patient(s) record that match the patient name you have provided.|
+| **Clear all patient**         | `p clear` | Removes all patient records stored in CareFlow.|
+| **List patient**              | `p list` | Lists all the patients that have been recorded in CareFlow.| 
+
+## 6.3 Drug Commands
+
+The following commands are drug-related commands that are available in Careflow for you to use! You will need to use the prefix `d` to use the commands.
+
+| Action | Format | Expected Outcome |
+| -------|--------|------------------|
+| **Add a drug**                | `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT` <br> e.g., `d add -tn Panadol -ai paracetamol, sodium -dir Adults, 1-2 capsules -pur treat fever, headache -se dizziness -sc 500` | Adds a drug record with the particulars that you have entered. |
+| **Delete drug by index**      | `d delete -i INDEX`<br> e.g.,`d delete -i 7` | Removes drug record at the index you have selected.|
+| **Delete drug by trade name** | `d delete -tn TRADE_NAME`<br> e.g., `d delete -tn Panadol Flu Max` | Removes drug record associated with the provided trade name.|
+| **Update drug storage count** | `d update TRADE_NAME -by +-VALUE`<br> e.g.,`d update -tn Panadol Flu Max -by +90` | Edit drug's storage count with the provided trade name.|
+| **View drug by index**        | `d view -i DRUG_INDEX` <p> e.g. `d view -i 1`| Shows the drug record located at the i-th position in the drug list.|
+| **Find drug by trade name**   | `d find TRADE_NAME` <br> e.g., `d find Panadol`| Shows drug(s) record that match the drugs' trade name you have provided.|
+| **List drug**                 | `d list` | Lists all the drugs that have been recorded in CareFlow. |
+| **Clear all drugs**           | `d clear` | Removes all drug records stored in CareFlow |
 
 [Back to top](#top)
