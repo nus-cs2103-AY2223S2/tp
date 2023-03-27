@@ -250,9 +250,11 @@ Formats:
 
 #### Implementation
 
-The implementation of this feature is requires 'FilterCommand' and 'FilterCommandParser'.
+The implementation of this feature is requires 'FilterCommand' and 'FilterCommandParser'.                                                                                      
 
 Below is an activity diagram that shows what happens when a user executes the `filter` command
+
+![FilterActivityDiagram](images/filter/filterActivityDiagram.png)
 
 
 ### \[Proposed\] Data archiving
