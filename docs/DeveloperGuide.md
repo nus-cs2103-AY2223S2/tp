@@ -389,20 +389,35 @@ The tag list is stored as a JSON file which will be saved to the user's local de
 The main reason for this is due to the need for the user's tag list to be saved even after the user exist 
 the application. When the user starts the application in the future, the tag list must be how the user left it.
 
-### [Proposed] Rating Field
+### Rating Field
 #### Implementation
 The `Rating` field of a bookmark allows user to rate books in the Library. This is stored as the attribute `Rating` 
-in the `Bookmark` class.
+in the `Bookmark` class. 
 
-
+`Rating` is an optional field to be added to a bookmark. It was represented as an integer as that allows it to be 
+easily displayed as stars on the user interface and thus easy to understand for the user. When no `Rating` is provided, 
+no star logos would be displayed.
 
 #### Design considerations:
 
-##### Aspect: How should `Rating` be represented?
+##### Aspect: How should `Rating` be stored?
 The `Rating` field is represented by integer values from 1 to 5. This allows for a simple and intuitive way to rate
 books in the `Library`.
 
+- **Alternative 1(current choice):** Representing it as an integer from 1 to 5 inclusive. 
+  - Pros: Simple to keep track of and store, easily map rating to star icons in UI.
+  - Cons: Might not be granular enough to represent all possible values.
+- **Alternative 2:** Representing it a decimal value from 0 to 5.
+  - Pros: Higher level of granularity
+  - Cons: Difficult to represent with visual symbols in the UI to accurately reflect difference in ratings.
 
+##### Aspect: How should `Rating` be displayed to users?
+- Alternative 1: Represented as a number for example "Rating: 4".
+  - Pros: Easy to implement in the UI
+  - Cons: Lots of textual information already present in the UI, adding more text makes it less visually appealing
+- Alternative 2(current choice): Representing it with 5 star icons in the BookmarkList Panel
+  - Pros: User can view ratings of books without having to click on the Bookmark Card
+  - Cons: Harder to implement in the UI
 
 ### \[Proposed\] Data archiving
 
