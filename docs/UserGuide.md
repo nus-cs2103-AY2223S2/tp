@@ -15,9 +15,9 @@ Welcome to CareFlow, your all-in-one solution for managing patient information a
 
 CareFlow is a **desktop application for patient and drug inventory management, optimised for use via a Command Line Interface** (CLI) while benefiting from a Graphical User Interface (GUI). With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [3. Quick Start](#3-quick-start) to get started. Enjoy!
 
-![Screenshot of Graphical User Interface (GUI) of CareFlow](TODO: update link!!!)
+<img src="images/Ui.png" width=50% height=50%>
 
-*Figure 1. Graphical User Interface (GUI) of CareFlow*
+Figure 1. Graphical User Interface (GUI) of CareFlow*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -53,8 +53,6 @@ To make the most of this user guide, we recommend reading through it in order, s
 
 Throughout this user guide, you may come across different formatting styles and symbols. These are used to make the guide more readable and easier to understand. Here are some of the formatting styles and symbols you may encounter:
 
-Table 1. Symbols and formats used in this User Guide.
-
 | <p>**Symbol/**<p>**Format** | **Meaning** |
 | --- | --- |
 | :exclamation: | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.|
@@ -62,6 +60,8 @@ Table 1. Symbols and formats used in this User Guide.
 | [brackets] | Items in square brackets are optional.<p>E.g. update -n NAME [-ph PHONE] can be used as<p>`update -n Alice` or `update -n Alice -ph 12345678`|
 | `command` | The grey highlighting indicates that the word is a command to be entered by the user.|
 |[2. About](#2-about)| Text that are in blue and clickable link. These links will take you to specific sections of this User Guide or external website.|
+
+Table 1. Symbols and formats used in this User Guide.
 
 --------------------------------------------------------------------------------------------------------------------
 
