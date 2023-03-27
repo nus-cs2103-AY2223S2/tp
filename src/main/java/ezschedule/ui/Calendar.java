@@ -86,7 +86,7 @@ public class Calendar extends UiPart<Region> {
         Map<Integer, List<Event>> eventsForMonthMap = getEventsForMonth();
 
         // Check for leap year
-        if (isLeapYear()) {
+        if (isNotLeapYear()) {
             monthMaxDate = 28;
         }
         drawCalenderBoxes(eventsForMonthMap);
@@ -121,9 +121,11 @@ public class Calendar extends UiPart<Region> {
     private void drawCalenderBoxes(Map<Integer, List<Event>> eventsForMonthMap) {
         int dateOffset = ZonedDateTime.of(date.getYear(), date.getMonthValue(), 1, 0,
                 0, 0, 0, date.getZone()).getDayOfWeek().getValue() % 7;
+        int rows = 6;
+        int columns = 7;
 
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 7; j++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
                 int calculatedDate = (j + 1) + (7 * i);
                 if (calculatedDate > dateOffset) {
                     int currentDate = calculatedDate - dateOffset;
@@ -152,7 +154,11 @@ public class Calendar extends UiPart<Region> {
                 && today.getDayOfMonth() == currentDate;
     }
 
-    private boolean isLeapYear() {
+    private boolean isNotLeapYear() {
+        boolean isCenturyYear = date.getYear() % 100 == 0;
+        if (isCenturyYear) {
+            return date.getYear() % 4 != 0 && monthMaxDate == 29 && date.getYear() % 400 != 0;
+        }
         return date.getYear() % 4 != 0 && monthMaxDate == 29;
     }
 

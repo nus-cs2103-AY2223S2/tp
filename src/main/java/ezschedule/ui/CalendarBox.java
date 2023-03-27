@@ -73,25 +73,31 @@ public class CalendarBox extends UiPart<Region> {
     private void setEvents() {
         if (events != null) {
             calendarEvents.setStyle("-fx-background-color:GRAY");
-            for (int i = 0; i < events.size(); i++) {
-                if (i >= 1) {
-                    Text moreEvents = new Text("...");
-                    calendarEvents.getChildren().add(moreEvents);
-                    break;
-                }
-                String eventName = getEventName(events.get(i));
-                Text event = new Text(eventName);
-                calendarEvents.getChildren().add(event);
+            int firstEvent = 0;
+            String eventName = getEventName(events.get(firstEvent));
+            Text event = new Text(eventName);
+            calendarEvents.getChildren().add(event);
+
+            if (events.size() >= 2) {
+                Text moreEvents = new Text("...");
+                calendarEvents.getChildren().add(moreEvents);
             }
         }
     }
 
     private String getEventName(Event event) {
         String name = event.getName().toString();
-        if (name.length() > 5) {
-            String firstFiveChars = name.substring(0, 5);
-            name = firstFiveChars + "...";
+        if (isNameTooLong(name)) {
+            name = refactorName(name);
         }
         return name;
+    }
+
+    private boolean isNameTooLong(String name) {
+        return name.length() > 5;
+    }
+
+    private String refactorName(String name) {
+        return name.substring(0, 5) + "...";
     }
 }
