@@ -316,12 +316,16 @@ public class MainWindow extends UiPart<Stage> {
             if (!commandResult.isDisplayPatient()) {
                 logger.info("Result: " + commandResult.getFeedbackToUser());
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            } else if (commandResult.isDisplayPatient()) {
+            } else if (!commandResult.isDisplayDrug()) {
+                logger.info("Result: " + commandResult.getFeedbackToUser());
                 Patient selectedPatient = commandResult.getSelectedPatient();
                 patientListPanel.updateDisplay(selectedPatient);
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             } else {
+                logger.info("Result: " + commandResult.getFeedbackToUser());
                 Drug selectedDrug = commandResult.getSelectedDrug();
                 drugListPanel.updateDisplay(selectedDrug);
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             }
 
             if (commandResult.isShowHelp()) {
