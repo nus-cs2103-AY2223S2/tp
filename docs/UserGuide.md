@@ -34,9 +34,10 @@ Without further ado, let's get started!
         3. [Editing a Parent/Next-of-Kin particulars: `edit`](#editparent)
         4. [Deleting a Parent/Next-of-Kin: `delete`](#deleteparent)
     4. [General Features](#general)
-       1. [Viewing help: `help`](#help)
-       2. [Exiting program: `exit`](#exit)
-       3. [Additional Features](#addfeatures)
+   
+       1. [List all](#listing)
+       2. [Viewing help: `help`](#help)
+       3. [Exiting program: `exit`](#exit)
 3. [Saving the data](#savingdata)
 4. [Editting the data file](#editdatafile)
 5. [Images](#images)
@@ -78,12 +79,11 @@ Without further ado, let's get started!
 
 7. Refer to the [Features](#features) below for details of each command.
 
-   <a name="features"/>
+<a name="features"/>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
 
 This section aims to provide a brief overview of the features available in PowerConnect and the appropriate CLI command to call them. <br>
 
