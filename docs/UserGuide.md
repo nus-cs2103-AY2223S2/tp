@@ -23,7 +23,7 @@ This user guide will help you get up to speed in no time!
 - [Features](#features)
   <details>
     <summary>more</summary>
-    
+
     * [Add a Contact](#add-a-contact)
     * [Link Contact to Event](#link-contact-to-event)
     * [View Rate](#view-rate)
@@ -118,7 +118,7 @@ Adding a contact to contacts
 
 **Example**:
 - `newcontact n/Deborah Tan p/91234567`
-  - This command will create a new contact named `Deborah Tan` with phone number `91234567`. 
+  - This command will create a new contact named `Deborah Tan` with phone number `91234567`.
 - `newcontact n/Tan Jun Wei p/82828234`
   - This command will create a new contact named `Tan Jun Wei` with phone number `82828234`.
 
