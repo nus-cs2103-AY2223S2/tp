@@ -63,6 +63,7 @@ public class AddCommandParserTest {
         // zero tags
         AddCardDescriptor expectedCard = new AddCardDescriptorBuilder().withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
                 .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).build(); // tags are optional
+
         assertParseSuccess(parser, QUESTION_DESC_PHOTOSYNTHESIS + ANSWER_DESC_PHOTOSYNTHESIS,
                 new AddCommand(expectedCard));
     }
@@ -77,10 +78,8 @@ public class AddCommandParserTest {
                 expectedMessage);
 
         // missing answer prefix
-
         assertParseFailure(parser, QUESTION_DESC_PHOTOSYNTHESIS + VALID_ANSWER_PHOTOSYNTHESIS,
                 expectedMessage);
-
 
         // all prefixes missing
         assertParseFailure(parser, VALID_QUESTION_PHOTOSYNTHESIS + VALID_ANSWER_PHOTOSYNTHESIS,

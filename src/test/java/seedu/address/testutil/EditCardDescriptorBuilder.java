@@ -7,6 +7,8 @@ import seedu.address.model.card.Card;
 import seedu.address.model.card.Question;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Tag.TagName;
+
 
 /**
  * A utility class to help with building EditCardDescriptor objects.
@@ -53,7 +55,7 @@ public class EditCardDescriptorBuilder {
      * Sets the {@code Tag} of the {@code EditCardDescriptor} that we are building.
      */
     public EditCardDescriptorBuilder withTag(String tagName) {
-        descriptor.setTag(new Tag(tagName));
+        descriptor.setTag(new Tag(TagName.valueOf(tagName.toUpperCase())));
         return this;
     }
 

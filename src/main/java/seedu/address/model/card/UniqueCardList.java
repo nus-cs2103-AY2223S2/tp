@@ -78,7 +78,13 @@ public class UniqueCardList implements Iterable<Card> {
      */
     public void tagCard(Card target, Tag tag) {
         int index = internalList.indexOf(target);
+
+        if (index == -1) {
+            throw new CardNotFoundException();
+        }
+
         Card newCard = new Card(target.getQuestion(), target.getAnswer(), tag, target.getDeck());
+
         internalList.set(index, newCard);
     }
 

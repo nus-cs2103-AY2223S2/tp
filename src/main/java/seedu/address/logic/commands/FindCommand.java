@@ -15,7 +15,7 @@ import seedu.address.model.deck.DeckContainsKeywordsPredicate;
 
 /**
  * Finds and lists all cards in the master deck that contain any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
@@ -34,7 +34,7 @@ public class FindCommand extends Command {
      * The command will search for cards and decks that contain any of the keywords.
      * @param keywords the list of keywords to search for
      */
-    public FindCommand(List keywords) {
+    public FindCommand(List<String> keywords) {
         this.cardPredicate = new QuestionContainsKeywordsPredicate(keywords);
         this.deckPredicate = new DeckContainsKeywordsPredicate(keywords);
     }

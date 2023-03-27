@@ -5,6 +5,7 @@ import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.Question;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Tag.TagName;
 
 /**
  * A utility class to help with building AddCardDescriptor objects.
@@ -53,7 +54,7 @@ public class AddCardDescriptorBuilder {
      * that we are building.
      */
     public AddCardDescriptorBuilder withTag(String tag) {
-        descriptor.setTag(new Tag(tag));
+        descriptor.setTag(new Tag(TagName.valueOf(tag.toUpperCase())));
         return this;
     }
 

@@ -18,23 +18,23 @@ public class SampleDataUtil {
         return new Card[]{
             new Card(new Question("What is a loop"),
                     new Answer("A construct that repeats instructions until a condition is met"),
-                    new Tag("easy"), DEFAULT_DECK),
+                    new Tag(Tag.TagName.EASY), DEFAULT_DECK),
             new Card(new Question("What is a variable"),
                     new Answer("A named memory location that stores a value"),
-                    new Tag("easy"), DEFAULT_DECK),
+                    new Tag(Tag.TagName.EASY), DEFAULT_DECK),
             new Card(new Question("What is the structure of an atom"),
                     new Answer("Atoms consist of a nucleus containing protons and neutrons, "
                             + "surrounded by electrons in shells or energy levels"),
-                    new Tag("medium"), DEFAULT_DECK),
+                    new Tag(Tag.TagName.MEDIUM), DEFAULT_DECK),
             new Card(new Question("What is the basic unit of life"),
                     new Answer("The cell is the basic unit of life"),
-                    new Tag("easy"), DEFAULT_DECK),
+                    new Tag(Tag.TagName.HARD), DEFAULT_DECK),
             new Card(new Question("Who was the first president of the United States"),
                     new Answer("George Washington"),
-                    new Tag("medium"), DEFAULT_DECK),
+                    new Tag(Tag.TagName.HARD), DEFAULT_DECK),
             new Card(new Question("When did Singapore gain independence"),
                     new Answer("9 August 1965"),
-                    new Tag("hard"), DEFAULT_DECK),
+                    new Tag(Tag.TagName.MEDIUM), DEFAULT_DECK),
         };
     }
 
@@ -46,5 +46,4 @@ public class SampleDataUtil {
         sampleMasterDeck.initDecks();
         return sampleMasterDeck;
     }
-
 }

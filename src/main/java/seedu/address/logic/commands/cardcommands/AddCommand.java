@@ -35,7 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "hard";
 
     public static final String MESSAGE_SUCCESS = "New card added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CARD = "This card already exists in the this selected deck.";
+    public static final String MESSAGE_DUPLICATE_CARD = "This card already exists in this selected deck.";
     public static final String MESSAGE_NO_SELECTED_DECK = "A deck must be selected before a card can be added";
     private final AddCardDescriptor cardDescriptor;
 
@@ -147,9 +147,6 @@ public class AddCommand extends Command {
          * @return The new Card instance.
          */
         public Card buildCard() {
-            if (tag == null) {
-                return new Card(question, answer, deck);
-            }
             return new Card(question, answer, tag, deck);
         }
 
@@ -166,14 +163,11 @@ public class AddCommand extends Command {
             }
 
             // state check
-            AddCommand.AddCardDescriptor e = (AddCommand.AddCardDescriptor) other;
-            if (getTag() != null) {
-                return getQuestion().equals(e.getQuestion())
-                        && getAnswer().equals(e.getAnswer())
-                        && getTag().equals(e.getTag());
-            }
-            return getQuestion().equals(e.getQuestion())
-                    && getAnswer().equals(e.getAnswer());
+            AddCommand.AddCardDescriptor otherDesc = (AddCommand.AddCardDescriptor) other;
+
+            return question.equals(otherDesc.question)
+                    && answer.equals(otherDesc.answer)
+                    && tag == null ? otherDesc.tag == null : tag.equals(otherDesc.tag);
         }
     }
 }

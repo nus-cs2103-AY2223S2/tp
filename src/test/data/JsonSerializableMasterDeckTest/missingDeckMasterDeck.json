@@ -2,7 +2,7 @@
   "cards": [ {
     "question": "Como estas usted",
     "answer": "Muy bien",
-    "tagged": "easy",
+    "tag": "easy",
     "deck" : "MISSING"
   } ],
   "decks" : [ {

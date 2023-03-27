@@ -72,11 +72,13 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        // user can't type untagged
-        if (!Tag.isValidTagName(trimmedTag) || trimmedTag.toLowerCase().equals("untagged")) {
+
+        if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+
+        Tag.TagName tagName = Tag.TagName.valueOf(trimmedTag.toUpperCase());
+        return new Tag(tagName);
     }
 
     /**

@@ -19,7 +19,7 @@ class JsonAdaptedCard {
 
     private final String question;
     private final String answer;
-    private final String tagged;
+    private final String tag;
     private final String deck;
 
     /**
@@ -27,10 +27,10 @@ class JsonAdaptedCard {
      */
     @JsonCreator
     public JsonAdaptedCard(@JsonProperty("question") String question, @JsonProperty("answer") String address,
-                           @JsonProperty("tagged") String tagged, @JsonProperty("deck") String deck) {
+                           @JsonProperty("tag") String tag, @JsonProperty("deck") String deck) {
         this.question = question;
         this.answer = address;
-        this.tagged = tagged;
+        this.tag = tag;
         this.deck = deck;
     }
 
@@ -40,7 +40,7 @@ class JsonAdaptedCard {
     public JsonAdaptedCard(Card source) {
         question = source.getQuestion().question;
         answer = source.getAnswer().answer;
-        tagged = source.getTagName();
+        tag = source.getTagName();
         deck = source.getDeck().getDeckName();
     }
 
@@ -50,6 +50,15 @@ class JsonAdaptedCard {
      * @throws IllegalValueException if there were any data constraints violated in the adapted card.
      */
     public Card toModelType() throws IllegalValueException {
+        final Question modelQuestion = toModelQuestion();
+        final Answer modelAnswer = toModelAnswer();
+        final Tag modelTag = toModelTag();
+        final Deck modelDeck = new Deck(deck);
+
+        return new Card(modelQuestion, modelAnswer, modelTag, modelDeck);
+    }
+
+    private Question toModelQuestion() throws IllegalValueException {
         if (question == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Question.class.getSimpleName())
@@ -58,26 +67,33 @@ class JsonAdaptedCard {
         if (!Question.isValidQuestion(question)) {
             throw new IllegalValueException(Question.MESSAGE_CONSTRAINTS);
         }
-        final Question modelQuestion = new Question(question);
+        return new Question(question);
+    }
 
+    private Answer toModelAnswer() throws IllegalValueException {
         if (answer == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Answer.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Answer.class.getSimpleName())
+            );
         }
         if (!Answer.isValidAnswer(answer)) {
             throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
         }
-        final Answer modelAnswer = new Answer(answer);
+        return new Answer(answer);
+    }
 
-        if (tagged == null) {
+    private Tag toModelTag() throws IllegalValueException {
+        if (tag == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
         }
-        if (!Tag.isValidTagName(tagged)) {
-            throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
-        }
-        final Tag modelTag = new Tag(tagged);
 
-        final Deck modelDeck = new Deck(deck); // todo: any constraints on deck name?
-        return new Card(modelQuestion, modelAnswer, modelTag, modelDeck);
+        Tag modelTag;
+        if (tag.equalsIgnoreCase("untagged") || Tag.isValidTagName(tag)) {
+            modelTag = new Tag(Tag.TagName.valueOf(tag.toUpperCase()));
+        } else {
+            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return modelTag;
     }
 
 }

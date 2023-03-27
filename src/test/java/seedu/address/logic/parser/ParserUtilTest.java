@@ -19,8 +19,8 @@ public class ParserUtilTest {
 
     private static final String VALID_QUESTION = "What is gravity";
     private static final String VALID_ANSWER = "A force of attraction between objects due to their mass";
-    private static final String VALID_TAG_MEDIUM = "Hard";
-    private static final String VALID_TAG_HIGH = "Medium";
+    private static final String VALID_TAG_MEDIUM = "medium";
+    private static final String VALID_TAG_HARD = "hard";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -102,25 +102,34 @@ public class ParserUtilTest {
 
     @Test
     public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_MEDIUM);
+        Tag expectedTag = new Tag(Tag.TagName.MEDIUM);
         assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_MEDIUM));
     }
 
     @Test
     public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
         String tagWithWhitespace = WHITESPACE + VALID_TAG_MEDIUM + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_MEDIUM);
+        Tag expectedTag = new Tag(Tag.TagName.MEDIUM);
         assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    void parseNumCardsPerReview_validValues_returnsNumCardInteger() throws Exception {
+        String inputAll = "all";
+        assertEquals(-1, ParserUtil.parseNumCardsPerReview(inputAll));
+
+        String inputTen = "10";
+        assertEquals(10, ParserUtil.parseNumCardsPerReview(inputTen));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    void parseNumCardsPerReview_invalidValues_throwsParseException() throws Exception {
+        String inputString = "helloWorld";
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumCardsPerReview(inputString));
+
+        String inputFloat = "10.5";
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumCardsPerReview(inputFloat));
     }
+
 
 }

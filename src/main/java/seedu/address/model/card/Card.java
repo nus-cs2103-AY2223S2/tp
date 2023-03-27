@@ -1,8 +1,10 @@
 package seedu.address.model.card;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.tag.Tag.TagName.UNTAGGED;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
@@ -30,18 +32,7 @@ public class Card {
         requireAllNonNull(question, answer, deck);
         this.question = question;
         this.answer = answer;
-        this.tag = tag;
-        this.deck = deck;
-    }
-
-    /**
-     * When tag is not given by user.
-     */
-    public Card(Question question, Answer answer, Deck deck) {
-        requireAllNonNull(question, answer, deck);
-        this.question = question;
-        this.answer = answer;
-        this.tag = new Tag("untagged");
+        this.tag = Optional.ofNullable(tag).orElse(new Tag(UNTAGGED));
         this.deck = deck;
     }
 
@@ -62,10 +53,7 @@ public class Card {
     }
 
     public String getTagName() {
-        if (tag == null) {
-            return null;
-        }
-        return tag.tagName.name().toLowerCase();
+        return tag.tagName.name().toLowerCase(); // either "easy, medium, hard, untagged"
     }
 
     public Deck getDeck() {
@@ -121,6 +109,13 @@ public class Card {
     }
 
     /**
+     * Flips/unflips card as specified.
+     */
+    public void setFlip(boolean isFlipped) {
+        this.isFlipped = isFlipped;
+    }
+
+    /**
      * Returns true if both cards have the same identity and data fields.
      * This defines a stronger notion of equality between two cards.
      */
@@ -150,12 +145,14 @@ public class Card {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getQuestion())
+        builder.append("Question: ")
+                .append(getQuestion())
                 .append("; Answer: ")
                 .append(getAnswer());
 
-        if (getTag() != null) {
-            builder.append(getTag());
+        if (!tag.isUntagged()) {
+            builder.append("; Tag: ")
+                    .append(tag);
         }
 
         return builder.toString();

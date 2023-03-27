@@ -5,6 +5,7 @@ import seedu.address.model.card.Card;
 import seedu.address.model.card.Question;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Tag.TagName;
 
 /**
  * A utility class to help with building Card objects.
@@ -15,7 +16,7 @@ public class CardBuilder {
     public static final String DEFAULT_ANSWER = "A default question is a standard, "
             + "common question used to provide basic information or understanding";
 
-    public static final String DEFAULT_TAG = "Hard";
+    public static final TagName DEFAULT_TAG = TagName.HARD;
     public static final String DEFAULT_DECK = "Default";
     private Question question;
     private Answer answer;
@@ -55,7 +56,7 @@ public class CardBuilder {
      * Sets the {@code Tag} of the {@code Card} that we are building.
      */
     public CardBuilder withTag(String tagName) {
-        this.tag = new Tag(tagName);
+        this.tag = new Tag(TagName.valueOf(tagName.toUpperCase()));
         return this;
     }
 
