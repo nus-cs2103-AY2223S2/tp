@@ -13,7 +13,7 @@ import seedu.address.experimental.storage.Storage;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.RerollParser;
 import seedu.address.logic.parser.EditModeParser;
 import seedu.address.logic.parser.UiSwitchMode;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -29,7 +29,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final RerollParser rerollParser;
     private final EditModeParser editModeParser;
     private boolean isInEditMode;
 
@@ -39,7 +39,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        rerollParser = new RerollParser();
         editModeParser = new EditModeParser(model);
         isInEditMode = false;
     }
@@ -52,7 +52,7 @@ public class LogicManager implements Logic {
 
         Command command;
         if (!isInEditMode) {
-            command = addressBookParser.parseCommand(commandText);
+            command = rerollParser.parseCommand(commandText);
         } else {
             try {
                 command = editModeParser.parseCommand(commandText);
