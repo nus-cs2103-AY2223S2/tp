@@ -52,7 +52,7 @@ public class Email {
      * @return True if {@code test} is a valid email and false otherwise.
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.equals("") || test.matches(VALIDATION_REGEX);
     }
 
     @Override

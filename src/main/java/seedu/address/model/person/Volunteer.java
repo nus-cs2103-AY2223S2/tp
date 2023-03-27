@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -33,16 +35,8 @@ public class Volunteer extends Person {
                      Region region, Set<Tag> tags, Set<MedicalQualificationTag> medicalTags,
                      Set<AvailableDate> dateAvailabilities) {
         super(name, phone, email, address, nric, birthDate, region, tags, dateAvailabilities);
+        requireNonNull(dateAvailabilities);
         this.medicalTags.addAll(medicalTags);
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
-    public Volunteer(Name name, Phone phone, Email email, Address address,
-                     Nric nric, BirthDate birthDate, Region region,
-                     Set<Tag> tags, Set<MedicalQualificationTag> medicalTags) {
-        this(name, phone, email, address, nric, birthDate, region, tags, medicalTags, new HashSet<>());
     }
 
     public Set<MedicalQualificationTag> getMedicalTags() {

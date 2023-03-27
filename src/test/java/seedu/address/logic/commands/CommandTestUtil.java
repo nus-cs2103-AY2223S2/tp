@@ -124,7 +124,8 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_ADDRESS_DESC = " "
+            + PREFIX_ADDRESS + " abc"; // string starting with whitespace not allowed for addresses
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + INVALID_NRIC;
     public static final String INVALID_VOLUNTEER_NRIC_DESC = " " + PREFIX_NRIC_VOLUNTEER + INVALID_NRIC;
     public static final String INVALID_ELDERLY_NRIC_DESC = " " + PREFIX_NRIC_ELDERLY + INVALID_NRIC;
@@ -225,7 +226,8 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered volunteer list to show only the volunteer at the given {@code targetIndex}.
+     * Updates {@code model}'s filtered volunteer list to show only the volunteer at the given {@code targetIndex}
+     * in the {@code model}'s FriendlyLink.
      */
     public static void showVolunteerAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredVolunteerList().size());
@@ -239,7 +241,7 @@ public class CommandTestUtil {
 
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s FriendlyLink.
      */
     public static void showElderlyAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredElderlyList().size());
@@ -249,5 +251,18 @@ public class CommandTestUtil {
         model.updateFilteredElderlyList(new NameContainsKeywordsPredicate<>(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredElderlyList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the pair at the given {@code targetIndex} in the
+     * {@code model}'s FriendlyLink.
+     */
+    public static void showPairAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPairList().size());
+
+        Pair pair = model.getFilteredPairList().get(targetIndex.getZeroBased());
+        model.updateFilteredPairList(pairElement -> pairElement.equals(pair));
+
+        assertEquals(1, model.getFilteredPairList().size());
     }
 }

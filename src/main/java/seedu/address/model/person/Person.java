@@ -36,12 +36,12 @@ public abstract class Person {
     private final Set<AvailableDate> availableDates = new HashSet<>();
 
     /**
+     * Constructs a new person.
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address,
-                  Nric nric, BirthDate birthDate, Region region, Set<Tag> tags, Set<AvailableDate> availableDates) {
-
-        requireAllNonNull(name, phone, email, address, tags, availableDates);
+    public Person(Name name, Phone phone, Email email, Address address, Nric nric,
+                  BirthDate birthDate, Region region, Set<Tag> tags, Set<AvailableDate> availableDates) {
+        requireAllNonNull(name, phone, email, address, nric, birthDate, region, tags, availableDates);
         this.name = name;
         this.phone = phone;
         this.email = email;

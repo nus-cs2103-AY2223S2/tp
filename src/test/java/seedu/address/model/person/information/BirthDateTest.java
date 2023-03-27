@@ -27,13 +27,13 @@ class BirthDateTest {
         // null address
         assertThrows(NullPointerException.class, () -> BirthDate.isValidBirthDate(null));
 
-        // invalid birth date
+        // invalid birthdate
         assertFalse(BirthDate.isValidBirthDate("")); // empty string
         assertFalse(BirthDate.isValidBirthDate(" ")); // spaces only
         assertFalse(BirthDate.isValidBirthDate("hello")); // random letters
         assertFalse(BirthDate.isValidBirthDate("23-03-2020")); // not correct format
 
-        // valid birth date
+        // valid birthdate
         assertTrue(BirthDate.isValidBirthDate("2023-03-23"));
         assertTrue(BirthDate.isValidBirthDate("2000-12-28"));
     }

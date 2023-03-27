@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -14,7 +13,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
 import java.util.Set;
 
 import seedu.address.commons.util.PrefixUtil;
@@ -41,6 +39,7 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddElderlyCommand
      * and returns an AddElderlyCommand object for execution.
+     * Name, Nric, birthdate, region and risk must be specified.
      *
      * @param args Arguments.
      * @return {@code AddElderlyCommand} for execution.
@@ -52,7 +51,8 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
         Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
             PREFIX_ADDRESS, PREFIX_NRIC_ELDERLY,
             PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_RISK, PREFIX_AVAILABILITY, PREFIX_TAG};
-        Prefix[] compulsoryPrefixes = Arrays.copyOfRange(availablePrefixes, 0, 8);
+        Prefix[] compulsoryPrefixes = {PREFIX_NAME, PREFIX_NRIC_ELDERLY, PREFIX_BIRTH_DATE,
+            PREFIX_REGION, PREFIX_RISK};
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, availablePrefixes);
 
@@ -62,10 +62,10 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC_ELDERLY).get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
         BirthDate birthDate = ParserUtil.parseBirthDate(argMultimap.getValue(PREFIX_BIRTH_DATE).get());
         Region region = ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).get());
         RiskLevel risk = ParserUtil.parseRiskLevel(argMultimap.getValue(PREFIX_RISK).get());
