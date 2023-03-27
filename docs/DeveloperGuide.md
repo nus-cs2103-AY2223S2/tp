@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+ **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -54,7 +54,7 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram-0.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -69,11 +69,11 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts, e.g. the `CommandBox`, `ResultDisplay`, `InternshipListPanel`, `StatusBarFooter`, `InfoPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,20 +82,33 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Internship` object residing in the `Model`.
+
+The abstract `Page` class represents the part of the GUI that displays information requested by the user. This may include details of an internship, existing clashes and etc. Note that a `Page` differs from `ResultDisplay`, which outputs the outcome of a command (e.g. success or failure) keyed in by the user. 
+
+Different types of information are rendered by different components, each of which is represented by their own concrete `Page` subclasses, such as `InternshipInfoPage`, `ClashesInfoPage` and etc. 
+
+![Subclasses of Page abstract class](images/PageClasses.png)
+
+When the user executes a command, `Page` factory method `of` will be called and the result returned will be either of its concrete subclasses. The sequence diagram below illustrates the chain of method calls whenever a new Page is constructed to be displayed in the UI. 
+
+![Subclasses of Page abstract class](images/PageSequenceDiagram.png)
+
+
+
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `InternshipCatalogueParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add an Internship).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -110,28 +123,32 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `InternshipCatalogueParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `InternshipCatalogueParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/internship/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* Model Stores Independent Entities(`Internship` and `Events`) which interact with each other to give the features of intern's ship
+* For each entity :
+  * model stores the entity catalogue data i.e., all `entity` objects (which are contained in a `UniqueEntityList` object).
+  * model stores the currently 'selected' `Entity` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Entity>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* model also stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+  
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+#### Relationship Between `Internship` and `Event` entities
+Events cannot exist without it's correponding internship, thus there exists a composite relationship between the two.
+Also, to make insertions and deletions of events easier, each event instance stores the internship instance it is
+associated with. Due to this, extra precautions are taken during internship deletions, making sure the corresponding
+events are deleted as well.
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
 
-</div>
-
+<img src="images/InternshipEventModelClassDiagram.png" width="250" />
 
 ### Storage component
 
@@ -140,13 +157,16 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* can save internship catalogue data, event catalogue data and user preference data in json format, and read them back
+into corresponding objects.
+* inherits from both `InternshipCatalogueStorage`, `EventCatalogueStorage` and `UserPrefStorage`, which means it can be
+treated as either one (if only the functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
+that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.internship.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,89 +174,118 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### View Calendar feature
+The view calendar feature displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX.
+It is accessible by the command `calendar`.
 
-#### Proposed Implementation
+#### Implementation
+Given below is an example usage, and what happens at every step of the execution of the `calendar` command.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+Step 1. The user enters `calendar` command into the CommandBox.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+Step 2. `MainWindow` receives the input and calls `execute('calendar')`. `execute(String)` is a method declared in LogicManager.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Step 3. `InternshipCatalogueParser` parses the input and extracts the command String `calendar`. A `CalendarCommand` is then created.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Step 4. `LogicManager` calls `execute(Model)` method of the `CalendarCommand`. The argument is a `Model` instance stored in `LogicManager`.   
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 5. In the method `execute`, `updateFilteredEventList(Predicate)` of the `Model` instance is called. `PREDICATE_SHOW_ALL_EVENTS`, which is a `Predicate` that evaluates to `true` for all `Event` is passed as argument. As a result, the `Model` now maintains a list of all added `Events`. 
 
-![UndoRedoState0](images/UndoRedoState0.png)
+Step 6. The `execute` method then obtains the list of all `Event`s generated in `Model` instance, and creates a `CommandResult` that encapsulates it. The `CommandResult` is returned to `LogicManager`. 
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 7. `LogicManager` returns the `CommandResult` to `MainWindow`.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+Step 8. In `MainWindow`'s `executeCommand` method, the `ResultType` of the `CommandResult` is recognized as `CALENDAR`, and `Page.of(CommandResult)` is called.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 9. `Page.of(CommandResult)` again detects that `ResultType` of the `CommandResult` is `CALENDAR`, and calls `new CalendarPage(commandResult.getEvents())`. 
 
-![UndoRedoState2](images/UndoRedoState2.png)
+Step 10. Within constructor of the `CalendarPage`, the necessary CalendarFX components are created and initialized with the current time.
+Two crucial CalendarFX components used here include a `Calendar` and a `MonthPage`. A `Calendar` is a CalendarFX class that stores all events it receives, whereas `MonthPage` is a composite CalendarFX control that showcases all events by month in grids.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+Step 11. Then, the list of `Event`s received by the `CalendarPage` constructor is added to `Calendar`, each as an `Entry`, a CalendarFX class that represents an event. If the `Event` is a deadline, then the `Entry` will be set as a full-day `Entry` with `setFullDay(true)`.
 
-</div>
+Step 12. The `CalendarPage` is constructed and now returned to the `MainWindow`, where it will be added as a children of `pagePlaceholder` for display on the GUI. 
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
 
-![UndoRedoState3](images/UndoRedoState3.png)
+### Add Event feature 
+The Add Event Event feature allows Users to Add Events/Deadlines to their selected internship.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+#### Implementation
+ 1. User Selects the Internship they want to add the event to by executing ` Select <Internship Id>`. 
 
-</div>
+ 2. User executes `event add na/<event name> st/<event start datetime> en/<event end datetime> de/<event description>` if they want to add an Event to their selected internship.
 
-The following sequence diagram shows how the undo operation works:
+    2.1 User executes ` event add na/<event name> en/<event end datetime> de/<event description>` if they want to add a deadline to their selected internship.
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+The Activity Diagram for Add event is 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+![EventAddActivityDiagram](images/EventAddActivityDiagram.png)
 
-</div>
+3. UI sends the Command to `Logic#InternshipCatalogueParser` , which uses the keyword `event` to identify this as an event command and sends the remainder of the command ` add na/... ` to `Logic#EventCatalogueParser`
+4. `EventCatalogueParser` identifies the add event command using the keyword `add`, then calls the `EventAddCommandParser` passing the arguments (everything except the keyword `and`) to be parsed.
+5. `EventAddCommandParser` tokenizes the arguments and creates an `Event` Object , which is then passed into a ` new EventAddCommand(event)` instance and the instance is returned by `EventAddCommandParser`.
+6. Then `LogicManager` passes the current `model` instance to `execute` method of  `EventAddCommand` instance.
+7. `EventAddCommand` instance uses the model object to find the `seletedInternship` and passes it to the `Event` object to initialise the `internship` variable inside the `Event` object.
+8. `Event` object is then added to the `UniqueEventsList` using the `addEvent` method of `model`.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The Sequence Diagram for the adding the event is
+![EventAddSequenceDiagram](images/EventAddSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+### Select command feature
 
-</div>
+#### Implementation
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+The `select` command feature is standard command that extends `Command` and returns a `CommandResult` in the `execute()` method, which does the following:
 
-![UndoRedoState4](images/UndoRedoState4.png)
+* Update `currentInternship` field in `InternshipCatalogue` which stores the current selected `Internship` for use in other commands.
+* Obtains a list of all the `Event` belonging to that `Internship`.
+* Returns a `CommandResult` containing the `Internship` and its list of `Event`, to be passed to the UI for display.
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Given below is an example usage scenario and how the select command behaves at each step.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+Step 1. The user enters the `select` command into the CLI: `select 2`.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+Step 2. `InternshipCatalogueParser` parses the input and extracts the command `select`, creating a `SelectCommandParser` and passing it `"2"` by calling its `parser()` method.
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+Step 3. `SelectCommandParser` parses the index `2` of the selected internship and creates a `SelectCommand` instance with that index and returns it up to `LogicManager`.
 
-#### Design considerations:
+Step 4. `LogicManager` calls the `execute()` method of the `SelectCommand` instance, which invokes `getFilteredInternshipList()` on `Model` to get a list of internships, and obtains the internship at index `2`.
 
-**Aspect: How undo & redo executes:**
+Step 5. `SelectCommand` then passes that `Internship` instance through `updateSelectedInternship()` on `Model` which invokes `updateCurrent()` on `InternshipCatalogue` which updates its `currentInternship` field to that instance of `Internship`.
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+Step 6. `SelectCommand` also invokes `updateFilteredEventList()` and `getFilteredEventList()` on `Model` to obtain the list of `Event` belonging to that instance of `Internship` as `ObservableList<Event>`.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+Step 7. Finally, a `CommandResult` is created containing that `Internship` and its `ObservableList<Event>` and it is returned to `LogicManager` for use in the UI.
 
-_{more aspects and alternatives to be added}_
+The following sequence diagram shows how the select command works:
 
-### \[Proposed\] Data archiving
+![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
 
-_{Explain here how the data archiving feature will be implemented}_
+Note: The lifeline for `SelectCommand` should end at the destroy marker(X) but due to a limitation of PlantUML, the
+lifeline reaches the end of diagram.
+
+### Clash Command feature
+
+#### Implementation
+The purpose of the `clash` command is for users to finding events with clashing timing, enabling them to reschedule
+clashing events.
+
+The `clash` command feature is standard command that extends `Command` and returns a `CommandResult` in the
+`execute()` method.
+
+Given below is an example usage scenario and how the select command behaves at each step.
+
+Step 1. The user enters the `clash` command into the CLI.
+
+Step 2. `InternshipCatalogueParser` parses the input and extracts the command `clash`, and creates a new `ClashCommand`.
+
+Step 3. `LogicManager` calls the `execute()` method of the `ClashCommand` instance, 
+which invokes `getEventCatalogue()` on `Model` to get the current Event Catalogue of TinS.
+
+Step 4. The `findClashEvents` is then called on `eventCatalogue`, which invokes a series of methods to loop through
+all events in `eventCatalogue` and find events with clashing datetimes. This returns a hash map of an event to a list
+of events that it clashes with.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -257,71 +306,226 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of internships applications from different hiring websites
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage internship applications faster than a typical mouse/GUI driven app.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+
+| Priority | As a …​                                    | I want to …​                                          | So that I can…​                                                        |
+|----------|--------------------------------------------|-------------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions                                | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person                                      |                                                                        |
+| `* * *`  | user                                       | delete a person                                       | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name                                 | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details                          | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name                                  | locate a person easily                                                 |
+| `* *`    | novice user                                | edit existing internship applications                 | update outdated information or add new details                         |
+| `*`      | intermediate user                          | quickly update the status of an internship            | keep the status of my applications up to date                          |
+ | `* *`    | expert user                                | see all internship events that have clashes in dates  | try to reschedule some of those events                                 |
+| `* * *`  | new user                                   | see usage instructions                       | refer to instructions when I forget how to use the App                |
+| `* * *`  | Beginner user                              | add a new internship listing                 | record details of my internship application                           |
+| `* * *`  | Beginner user                              | delete a previously added internship listing | rid of dummy data or unwanted internship application                  |
+| `* * *`  | user                                       | find a person by name                        | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details                 | minimize chance of someone else seeing them by accident               |
+| `*`      | user with many persons in the address book | sort persons by name                         | locate a person easily                                                |
+| `* * *`  | novice user                                | list all my intership applications easily | can confirm that my internship listing has been created
+| `* *`    | intermediate user                          | list all internships that have deadlines on a particular date	| avoid scheduling an interview on that day |
+| `* * *`  | intermediate user                          | view my list of internships sorted by my desired criteria/field (e.g. status, deadline, interview date) | Easily look up internships that I am concerned about |
+| `* *`    | expert user                                | see all internships that have not received updates in a long time | know which internships I need to follow up on |
+
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `TinS` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Edit eventDescription of an Internship Application**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to list all internship applications.
+2. System shows a list of all internship applications
+3. User specifies the ID of the internship application he wishes to edit.
+4. System shows current eventDescription of the internship application and prompts user to input a new eventDescription to edit it.
+5. User inputs the new eventDescription of the internship application.
+6. System updates the internship application with the new details.
+
+Use Case ends.
+
+**Extensions**
+
+* 3a. The specified ID is invalid.
+
+    * 3a1. System shows an error message.
+
+* 5a. User cancels the operation midway.
+
+    * 5a1. System retains the original eventDescription and does not edit the internship application.
+
+      Use case ends.
+
+* 5b. User inputs invalid eventDescription.
+
+    * 5b1. System shows an error message.
+    * 5b2. System retains the original eventDescription and does not edit the internship application.
+
+      Use case resumes at step 4.
+
+**Use Case: Add an Internship Listing**
+
+**MSS**
+
+1. User requests to Add
+2. System asks the user for Internship Position
+3. User inputs the Internship Position
+4. System asks the user for Company Name
+5. User inputs the Company Name
+6. System asks the user for application status
+7. User inputs the Status
+8. System Confirms Internship Addition
+9. User confirms addition
+10. System adds the internship listing
+
+Use Case ends.
+
+**Extensions**
+* 7.a System asks User to add addition information
+* 7.a1 System ask User for Application Link
+
+    * 7.a2 User inputs Application link
+
+    * 7.a3 System ask User for Contact details of Hiring Manager
+
+    * 7.a3 User inputs Contact details of Hiring Manager
+
+* 8a. User denies the addition of the listing
+      Use Case ends.
+
+**Use case: List all internship applications**
+
+**MSS**
+
+1.  User requests to list all internship applications saved on System.
+2.  System displays a list of internships.
+    Use case ends.
+
+* 1a. User requests to list all internship applications that have not received updates in a long time.
+
+  * 1b1. System displays all internships that have not had a change in status in a week.
+
+    Use case ends.
+
+* 2a. The list is empty.
+    Use case ends.
+
+**Use Case: Delete Internship Listing**
+
+**MSS**
+
+1. User requests to list internships inputted
+2. System shows a list all the inputted internships
+3. User requests to delete an internship listing
+4. System Confirms the listing User wants to delete
+5. User confirms the listing to be deleted
+6. System deletes the internship listing
+
+Use case ends.
+
+**Extensions**
+
+* 4a. User decides to not delete the listing
+Use Case Ends.
+
+**Use case: List all internship applications with a deadline on a particular date**
+
+**MSS**
+
+1.  User requests to list all internship applications with an upcoming deadline on a particular date.
+2.  System prompts user to key in a date.
+3.  User inputs a date.
+4.  System displays the input date and a list of internships, with the target of the upcoming deadline (e.g. interview, online assessment)   highlighted.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 3a. The date given by user is in the future (i.e. later than today).
+
+  * 3a1. System displays an error message to inform the user that the input date is not valid and needs to be today's date and earlier.
+
+    Use case resumes from step 2.
+
+* 4a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 4b. There are no internship applications with an upcoming deadline.
 
-    * 3a1. AddressBook shows an error message.
 
-      Use case resumes at step 2.
+**Use case: List internships by desired criteria**
 
-*{More to be added}*
+**MSS**
+
+1. User requests to list sorted internships
+2. System prompts user to choose a criteria to list internship by
+3. User inputs desired criteria
+4. System displays list of all internships sorted in order based on chosen
+   criteria
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given criteria is invalid.
+
+    * 3a1. TinS shows an error message.
+
+  Use case ends.
+
+**Use case: View all clashes of internship Events.**
+
+**MSS**
+
+1.  User requests to view all clashes of internship Event dates.
+2.  AddressBook shows a list of dates that have clashes and the Events that clashed.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. There are no Event clashes.
+
+  Use case ends.
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 internships without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. A user should be able to navigate the application solely using the keyboard (i.e. input new internships, scroll through
+   internship listing via keyboard).
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **CLI**: A command-line interface (CLI) is a text based user interface to run programs.
+* **ID**: This is a key to uniquely identify each internship. It is auto-generated by TinS based on position and company name.
+* **Status**: This refers to the status of application.
+* **Position**: The name of the internship position/role.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -329,8 +533,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">Note: These instructions only provide a starting point for testers to work on;
+testers are expected to do more <b>exploratory</b> testing.
 
 </div>
 
@@ -351,17 +555,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting an Internship
 
-1. Deleting a person while all persons are being shown
+1. Deleting an internship while all internships are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all internships using the `list` command. Multiple internships in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First internship is deleted from the list. Details of the deleted internship shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No internship is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -375,3 +579,4 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
