@@ -11,6 +11,6 @@ if() then ([contact not found])
 :Show error message;
 stop
 else([else])
-:link contact;
+:Link contact;
 stop
 @enduml
