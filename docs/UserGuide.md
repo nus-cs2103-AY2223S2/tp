@@ -208,6 +208,34 @@ Examples:
 
 [//]: # (add image later)
 
+### Borrowing a book : `borrow`
+
+Lends a book to a person given a person index, book index and due date.
+
+Format: `borrow PERSON_INDEX b/BOOK_INDEX d/DUE_DATE`
+
+* Lends a book specified by the BOOK_INDEX to the person at the specified PERSON_INDEX.
+* The PERSON_INDEX refers to the index number shown in the displayed person list.
+* The BOOK_INDEX refers to the index number shown in the displayed book list.
+* The indexes must be positive integers 1, 2, 3, …​
+
+Examples:
+* `listBook/listPerson` followed by `borrow 2 b/3 d/17/10/2024` lends the 3rd book in the book list to the 2nd person in the user records with a due date of Oct. 17, 2024.
+
+### Returning a book : `return`
+
+Returns a person's borrowed book to the library given a person index and book index.
+
+Format: `return PERSON_INDEX b/BOOK_INDEX`
+
+* Returns a person's borrowed book specified by the PERSON_INDEX and specified BOOK_INDEX.
+* The PERSON_INDEX refers to the index number shown in the displayed person list.
+* The BOOK_INDEX refers to the index number shown in the displayed book list.
+* The indexes must be positive integers 1, 2, 3, …​
+
+Examples:
+* `listBook/listPerson` followed by `return 1 b/2` returns the 2nd book in the book list from the 1st person in the user records.
+
 ### Editing a book : `editBook`
 
 Edits an existing book in the book records.
@@ -285,3 +313,9 @@ Action | Format, Examples
 Action | Format, Examples
 --------|------------------
 **List**| `listBook`
+
+#### General
+Action | Format, Examples
+--------|------------------
+**Borrow** | `borrow PERSON_INDEX b/BOOK_INDEX d/DUE_DATE` <br> e.g., `borrow 1 b/2 d/23/09/2024`
+**Return** | `return PERSON_INDEX b/BOOK_INDEX` <br> e.g., `return 3 b/1`
