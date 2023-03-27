@@ -25,13 +25,16 @@
     -fx-vgap: 5px;
 }
 
-/* Style the tags */
-.tag {
-    -fx-background-color: #4caf50;
-    -fx-text-fill: #ffffff;
-    -fx-padding: 2px 6px;
-    -fx-border-radius: 3px;
+
+/* Label inside the tags FlowPane */
+.label.tag {
+    -fx-background-color: white;
+    -fx-padding: 3px 5px;
+    -fx-text-fill: black;
     -fx-font-size: 12px;
+    -fx-border-color: #ff9cb9; /* Purple border color */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
 }
 
 .progress-indicator .percentage {

@@ -163,6 +163,11 @@ public class AddCommandTest {
         public ObservableList<Person> filterReadOnlyPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setPeopleTasks(OfficeConnectModel officeConnectModel) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

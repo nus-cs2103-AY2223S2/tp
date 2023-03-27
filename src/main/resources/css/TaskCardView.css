@@ -23,3 +23,35 @@
 #status {
     -fx-font-style: italic;
 }
+/* FlowPane for personIndexes */
+#taskCardPane .flow-pane.cell_small_label {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 5px;
+    -fx-spacing: 5px;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+
+/* Label inside the personIndexes FlowPane */
+.person-index {
+    -fx-background-color: white;
+    -fx-padding: 3px 5px;
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+    -fx-border-color: #ff9cb9; /* Dark pink border color */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-margin: 0 5px 5px 10px; /* Margin: top, right, bottom, left */
+}
+
+/* Other existing styles */
+.cell_big_label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.cell_small_label {
+    -fx-font-size: 12px;
+}

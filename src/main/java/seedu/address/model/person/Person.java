@@ -4,11 +4,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.shared.Id;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Represents a Person in the address book.
@@ -21,10 +23,13 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private int index;
 
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private List<Task> tasks;
+
 
     /**
      * Every field must be present and not null.
@@ -72,8 +77,25 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
     public Id getId() {
         return id;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     /**
@@ -94,7 +116,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+            && otherPerson.getName().equals(getName());
     }
 
     /**
@@ -113,11 +135,11 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getId().equals(getId());
+            && otherPerson.getPhone().equals(getPhone())
+            && otherPerson.getEmail().equals(getEmail())
+            && otherPerson.getAddress().equals(getAddress())
+            && otherPerson.getTags().equals(getTags())
+            && otherPerson.getId().equals(getId());
     }
 
     @Override
@@ -130,12 +152,12 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+            .append("; Phone: ")
+            .append(getPhone())
+            .append("; Email: ")
+            .append(getEmail())
+            .append("; Address: ")
+            .append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -145,4 +167,17 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Calculates the progress of completed tasks as a ratio.
+     *
+     * <p>The progress is calculated as the number of completed tasks divided by the total number of tasks.
+     * If there are no tasks, the progress is set to 1.</p>
+     *
+     * @return The progress ratio, as a value between 0 and 1 (inclusive), where 0 indicates no tasks are completed, 1
+     *      indicates all tasks are completed, and values in between indicate partial completion.
+     */
+    public double progress() {
+        double doneTask = tasks.stream().filter(t -> t.getStatus().isValue()).count();
+        return tasks.size() == 0 ? 1 : doneTask / tasks.size();
+    }
 }

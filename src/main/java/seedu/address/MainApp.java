@@ -77,6 +77,8 @@ public class MainApp extends Application {
         model = initModelManager(storage, userPrefs);
 
         officeConnectModel = initOfficeConnectModel(storage);
+        officeConnectModel.setTaskPeoples(model.getAddressBook().getPersonList());
+        model.setPeopleTasks(officeConnectModel);
 
         logic = new LogicManager(model, storage, officeConnectModel);
 

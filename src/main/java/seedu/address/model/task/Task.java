@@ -2,9 +2,11 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
 import java.util.Objects;
 
 import seedu.address.model.Relationship;
+import seedu.address.model.person.Person;
 import seedu.address.model.shared.Id;
 
 /**
@@ -20,6 +22,8 @@ public class Task implements Relationship<Task> {
     private final Title title;
     private final Content content;
     private final Status status;
+
+    private List<Person> peoples;
 
     /**
      * Every field must be present and not null.
@@ -66,6 +70,13 @@ public class Task implements Relationship<Task> {
         return status;
     }
 
+    public void setPeoples(List<Person> peoples) {
+        this.peoples = peoples;
+    }
+
+    public List<Person> getPeoples() {
+        return peoples;
+    }
 
     /**
      * Returns true if both tasks have the same title.

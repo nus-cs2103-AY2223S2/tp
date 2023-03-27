@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -31,6 +32,8 @@
             </HBox>
             <Label fx:id="content" styleClass="cell_small_label" text="\$content" />
             <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
+            <FlowPane fx:id="personIndexes" />
+
         </VBox>
     </GridPane>
 </HBox>

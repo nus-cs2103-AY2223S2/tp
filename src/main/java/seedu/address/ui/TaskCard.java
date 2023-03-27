@@ -1,7 +1,9 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.task.Task;
@@ -20,9 +22,10 @@ public class TaskCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-
     public final Task task;
 
+    @FXML
+    private FlowPane personIndexes;
     @javafx.fxml.FXML
     private HBox cardPane;
     @FXML
@@ -46,6 +49,18 @@ public class TaskCard extends UiPart<Region> {
         title.setText(task.getTitle().getValue());
         content.setText(task.getContent().getValue());
         setStatusSymbol(task.getStatus().isValue());
+
+        task.getPeoples()
+            .forEach(person -> {
+                Label label = new Label(String.valueOf(person.getName()));
+                label.getStyleClass().add("cell_small_label");
+                label.getStyleClass().add("person-index");
+                FlowPane.setMargin(label, new Insets(0, 5, 5, 0));
+
+                personIndexes.getChildren().add(label);
+            });
+
+
     }
 
     @Override
