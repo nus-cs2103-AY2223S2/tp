@@ -6,11 +6,11 @@ Given below are my contributions to the project.
 
 -   **New Feature**: to be added soon
 -   **New Feature**: to be added soon
-    
+
 -   **Code contributed**:  to be added soon
-    
+
 -   **Project management**: to be added soon
 -   **Enhancements to existing features**:
     -   Expanded the help command
-  
+
 -   **Documentation**: to be added soon

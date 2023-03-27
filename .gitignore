@@ -27,3 +27,6 @@ docs/_site/
 #bin file for compiled code
 /bin/
 
+#github build files
+.github
+

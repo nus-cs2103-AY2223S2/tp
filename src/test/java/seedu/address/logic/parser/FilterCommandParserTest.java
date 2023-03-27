@@ -32,6 +32,7 @@ public class FilterCommandParserTest {
                         Collections.singletonList(".*95.*"),
                         new ArrayList<>(),
                         Collections.singletonList(".*[0-9].*"),
+                        new ArrayList<>(),
                         new ArrayList<>()
                 ));
         assertParseSuccess(parser, " n/l p/95 a/[0-9]", expectedFilterCommand);
@@ -49,6 +50,7 @@ public class FilterCommandParserTest {
                         Arrays.asList(".*95.*", ".*94.*"),
                         Collections.singletonList(".*@.*"),
                         Collections.singletonList(".*[0-9].*"),
+                        new ArrayList<>(),
                         Arrays.asList(".*fri.*", ".*col.*")
                 ));
         assertParseSuccess(parser, " e/@ n/l p/95 t/fri a/[0-9] p/94 n/Ge t/col", expectedFilterCommand);

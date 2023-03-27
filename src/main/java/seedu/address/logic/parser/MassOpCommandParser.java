@@ -13,14 +13,16 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.commands.MassOpCommand;
+import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.FieldsMatchRegexPredicate;
+import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new FilterCommand object
+ * Parses input arguments and creates a new MassOpCommand object
  */
-public class FilterCommandParser implements Parser<FilterCommand> {
+public class MassOpCommandParser implements Parser<MassOpCommand> {
     public static final String MESSAGE_INVALID_REGEX = "Invalid regex: %1$s\n(becomes: %2$s)";
 
     /**
@@ -44,21 +46,34 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FilterCommand
-     * and returns a FilterCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the MassOpCommand
+     * and returns a MassOpCommand object for execution.
      *
-     * @param args The arguments to the FilterCommand
-     * @return The parsed FilterCommand
+     * @param args The arguments to the MassOpCommand
+     * @return The parsed MassOpCommand
      * @throws ParseException if {@code args} does not conform the expected format
      */
-    public FilterCommand parse(String args) throws ParseException {
+    public MassOpCommand parse(String args) throws ParseException {
+        boolean isDelete = true;
+        int tagNameIndex = 1;
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_INCOME, PREFIX_TAG);
 
-        if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+        if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MassOpCommand.MESSAGE_USAGE));
         }
+
+        for (int i = 0; i < TagCommand.COMMAND_WORDS.size(); i++) {
+            if (argMultimap.getPreamble().contains(TagCommand.COMMAND_WORDS.get(i))) {
+                isDelete = false;
+            }
+        }
+
+        String[] preamble = argMultimap.getPreamble().split(" ");
+        String tagName = preamble[tagNameIndex];
+        Tag tagToAddOrDelete = new Tag(tagName);
 
         List<String> nameList = formSubstring(argMultimap.getAllValues(PREFIX_NAME));
         List<String> phoneList = formSubstring(argMultimap.getAllValues(PREFIX_PHONE));
@@ -67,8 +82,9 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         List<String> incomeList = formSubstring(argMultimap.getAllValues(PREFIX_INCOME));
         List<String> tagList = formSubstring(argMultimap.getAllValues(PREFIX_TAG));
 
-        return new FilterCommand(
-                new FieldsMatchRegexPredicate(nameList, phoneList, emailList, addressList, incomeList, tagList));
+        return new MassOpCommand(
+                new FieldsMatchRegexPredicate(nameList, phoneList, emailList, addressList, incomeList, tagList),
+                tagToAddOrDelete, isDelete);
     }
 
 }
