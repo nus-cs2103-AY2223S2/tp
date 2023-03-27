@@ -7,8 +7,8 @@ title: User Guide
 
 <img src="images/Ui.png"/>
 --------------------------------------------------------------------------------------------------------------------
-# Table of Contents
 
+# Table of Contents
 1. [Quick Start](#1-quick-start)
 2. [Downloading CoDoc](#2-downloading-codoc)
 3. [Navigation](#3-navigation)
@@ -21,14 +21,14 @@ title: User Guide
    6. [delete](#46-delete)
    7. [clear](#47-clear)
    8. [help](#48-help)
-   9. [exit](#49-exit--exit)
+   9. [exit](#49-exit)
 5. [Data Management](#5-data-management)
 6. [FAQ](#6-faq)
 7. [Upcoming Features](#7-upcoming-features)
 8. [Command Summary](#8-command-summary)
 9. [Additional Resources](#9-additional-resources)
-   9.1. [How To Check Java Version](#91-how-to-check-java-version)
-   9.2. [How to Open CoDoc](#92-how-to-open-codoc)
+   1. [How To Check Java Version](#91-how-to-check-java-version)
+   2. [How to Open CoDoc](#92-how-to-open-codoc)
 
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Quick Start
@@ -147,7 +147,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 > - `find alex david` returns `Alex Yeoh`, `David Li`<br>
     ![result for 'find alex david'](images/findAlexDavidResult.jpg)
 
-### v4.3 iew
+### 4.3 iew
 `view <PARAMETERS>`<br>
 
 ### 4.4 edit
