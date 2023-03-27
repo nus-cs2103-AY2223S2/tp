@@ -357,16 +357,19 @@ appointment list
 
 ### `vaccination` - Vaccination functionalities
 
-Vaccinations are uniquely identified by their names. Below shows a table describing the attributes vaccination has.
+Vaccinations are uniquely identified by their names. The following is a list of the attributes that a vaccination has and their description.
 
-| Attribute               | Type                 | Description                                                       | Default value |
-| ----------------------- | -------------------- | ----------------------------------------------------------------- | ------------- |
-| Name                    | `<group-name>`       | The name of the vaccination.                                      | -             |
-| Groups                  | `...<group-name>...` | The groups the vaccination<br>classifies under                    | `empty list`  |
-| Minimum<br>age          | `<age>`              | The minimum age (inclusive)<br>to take the vaccination            | `0`           |
-| Maximum<br>age          | `<age>`              | The maximum age (inclusive)<br>to take the vaccination            | `200`         |
-| Ingredients             | `<group-name>`       | Ingredients of the vaccination.<br>Similar to patient's allergies | `empty list`  |
-| History<br>requirements | `...<req>...`        | The list of requirements to<br>take the vaccination               | `empty list`  |
+* **Name** : `<group-name>` - the name of the vaccination.
+* **Groups** : list of `<group-name>` - The groups the vaccination classifies under.
+  * Default value = `empty list`.
+* **Minimum age** : `<Age>` - the minimum age (inclusive) allowed to take the vaccination.
+  * Default value = `0`.
+* **Maximum age** : `Age` - the maximum age (inclusive) allowed to take the vaccination.
+  * Default value = `200`.
+* **Ingredients** : list of `<group-name>` - ingredients of the vaccination. Similar to patient's allergies.
+  * Default value = `empty list`.
+* **History requirements** - the list requirements of vaccination groups to take the vaccination.
+  * Default value = `empty list`.
 
 #### `add` - Add a vaccination type
 
