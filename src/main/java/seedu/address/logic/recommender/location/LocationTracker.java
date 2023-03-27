@@ -128,8 +128,9 @@ public class LocationTracker {
         Pair<Location, Integer> endPair = new Pair<>(homeAddress, NUMBER_OF_HOURS);
 
         for (List<Optional<Location>> dayLocations : locations.values()) {
-            List<Pair<Location, Integer>> knownLocationIndices = findKnownLocationIndices(dayLocations);
+            List<Pair<Location, Integer>> knownLocationIndices = new ArrayList<>();
             knownLocationIndices.add(startPair);
+            knownLocationIndices.addAll(findKnownLocationIndices(dayLocations));
             knownLocationIndices.add(endPair);
             fillUnknownWithKnown(knownLocationIndices, dayLocations);
         }

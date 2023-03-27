@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -109,8 +110,38 @@ public class SampleDataUtil {
                 new TelegramHandle("@linusrichards"),
                 new ContactIndex(0),
                 getGroupTagSet(),
-                getModuleTagSetFromUnsplitted("CS2100 CS2101 CS2102 CS2103 CS2104 CS2105")
+                getSampleModuleTags()
         );
+    }
+
+    private static Set<ModuleTag> getSampleModuleTags() {
+        String moduleTagsString = "CS2100 THURSDAY 11 12\n"
+                + "CS2100 WEDNESDAY 8 9\n"
+                + "CS2100 WEDNESDAY 16 18\n"
+                + "CS2100 THURSDAY 9 10\n"
+                + "CS2101 WEDNESDAY 11 12\n"
+                + "CS2101 FRIDAY 15 17\n"
+                + "CS2102 TUESDAY 10 11\n"
+                + "CS2102 TUESDAY 14 15\n"
+                + "CS2103 TUESDAY 10 12\n"
+                + "CS2103 FRIDAY 9 10\n"
+                + "CS2104 TUESDAY 17 19\n"
+                + "CS2105 MONDAY 13 14\n"
+                + "CS2105 TUESDAY 17 18";
+
+        return Arrays.stream(moduleTagsString.split("\n"))
+                .map(SampleDataUtil::getModuleTagFromString)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toSet());
+    }
+
+    private static Optional<ModuleTag> getModuleTagFromString(String tag) {
+        try {
+            return Optional.of(ParserUtil.parseModuleTag(tag));
+        } catch (ParseException pe) {
+            return Optional.empty();
+        }
     }
 
     /**
@@ -143,15 +174,11 @@ public class SampleDataUtil {
 
     private static Set<ModuleTag> getModuleTagSetFromText(String text) {
         String trimmedText = text.trim();
-        Set<ModuleTag> moduleTags = new HashSet<>();
-        for (String lessonAsStr : trimmedText.split(",")) {
-            try {
-                moduleTags.add(ParserUtil.parseModuleTag(lessonAsStr.trim()));
-            } catch (ParseException pe) {
-                continue;
-            }
-        }
-        return moduleTags;
+        return Arrays.stream(trimmedText.split(","))
+                .map(SampleDataUtil::getModuleTagFromString)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toSet());
     }
 
     /**

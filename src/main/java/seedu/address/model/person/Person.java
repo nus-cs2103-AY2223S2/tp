@@ -164,12 +164,15 @@ public class Person {
                 .flatMap(Set::stream)
                 .collect(Collectors.toSet());
 
-        List<TimePeriod> timePeriods = lessons.stream().map(Lesson::getTimePeriod).collect(Collectors.toList());
+        List<TimePeriod> timePeriods = lessons.stream()
+                .map(Lesson::getTimePeriod)
+                .collect(Collectors.toList());
 
         assert !TimeUtil.hasAnyClash(timePeriods);
         assert canAddCommitments(lessons);
 
         this.moduleTags.addAll(moduleTags);
+        lessons.forEach(timetable::addCommitment);
     }
 
     /**
