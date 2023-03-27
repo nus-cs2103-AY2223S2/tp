@@ -361,10 +361,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Chef requests to list recipes
-2. Book shows a list of ***all*** recipes
-3. Chef requests to view a specific recipe in the list
-4. Book return the specified recipe
+1. Chef requests to view a specific recipe in the list
+2. Book return the specified recipe
    Use case ends.
 
 **Extensions**
