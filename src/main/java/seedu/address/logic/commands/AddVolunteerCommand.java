@@ -38,11 +38,11 @@ public class AddVolunteerCommand extends Command {
         COMMAND_PROMPTS.put(PREFIX_ADDRESS, "<address>");
         COMMAND_PROMPTS.put(PREFIX_PHONE, "<phone>");
         COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
-        COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
         COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
         COMMAND_PROMPTS.put(PREFIX_BIRTH_DATE, "<birth_date>");
         COMMAND_PROMPTS.put(PREFIX_MEDICAL_TAG, "<medical_qualification>");
         COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "<start_date,end_date>");
+        COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
     }
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a volunteer to the database. "
