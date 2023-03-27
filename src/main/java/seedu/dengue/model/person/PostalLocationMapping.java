@@ -2,6 +2,9 @@ package seedu.dengue.model.person;
 
 import java.util.HashMap;
 
+/**
+ * A mapping of postal sectors to locations.
+ */
 public class PostalLocationMapping {
     private static final HashMap<PostalSector, Location> postalLocationMapping = new HashMap<>();
     static {

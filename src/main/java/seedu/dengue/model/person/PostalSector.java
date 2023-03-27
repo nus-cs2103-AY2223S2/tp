@@ -1,5 +1,8 @@
 package seedu.dengue.model.person;
 
+/**
+ * Represents the first two digits of a postal code.
+ */
 public enum PostalSector {
     SECTOR01("01"), SECTOR02("02"), SECTOR03("03"), SECTOR04("04"), SECTOR05("05"),
     SECTOR06("06"), SECTOR07("07"), SECTOR08("08"), SECTOR09("09"), SECTOR10("10"),

@@ -1,5 +1,8 @@
 package seedu.dengue.model.person;
 
+/**
+ * Represents the locations that each postal sector maps to.
+ */
 public enum Location {
     DIST01("Raffles Place, Cecil, Marina, People's Park"),
     DIST02("Anson, Tanjong Pagar"),
