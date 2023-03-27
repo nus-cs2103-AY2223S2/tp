@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -25,7 +23,6 @@ public class Review {
 
     private final Deck deck;
     private final List<Card> cardList;
-    private final List<Boolean> scoreList;
     private int currCardNum = 1; // 1-Indexed
     private Card currCard;
 
@@ -51,10 +48,6 @@ public class Review {
         // initialise first card
         currCard = this.cardList.get(orderOfCards.get(currCardNum - 1));
 
-        // initialise scoreList
-        scoreList = new ArrayList<>(Arrays.asList(new Boolean[totalNumCards]));
-        Collections.fill(scoreList, false);
-
         // initialise reviewStats
         reviewStatsList = FXCollections.observableList(new ArrayList<>());
     }
@@ -72,28 +65,12 @@ public class Review {
         totalNumCards = userSetNum;
         unflipAllCards();
 
-        // initialise order of card
-        if (userSetNum >= cardList.size()) {
-            orderOfCards = new Random().ints(0, cardList.size())
-                    .distinct().limit(cardList.size()).boxed().collect(Collectors.toList());
-            // ensures user sees all cards once, then appends remaining cards at random
-            orderOfCards.addAll(new Random().ints(
-                            userSetNum - cardList.size(),
-                            0,
-                            cardList.size() - 1)
-                    .boxed().collect(Collectors.toList()));
-        } else if (userSetNum < cardList.size()) {
-            // all cards seen will be unique when user set number is less than card list size
-            orderOfCards = new Random().ints(0, cardList.size())
-                    .distinct().limit(userSetNum).boxed().collect(Collectors.toList());
-        }
+        // initialise shuffled order of cards and limit
+        orderOfCards = new Random().ints(0, cardList.size())
+                .distinct().limit(userSetNum).boxed().collect(Collectors.toList());
 
         // initialise first card
         currCard = this.cardList.get(orderOfCards.get(currCardNum - 1));
-
-        // initialise scoreList
-        scoreList = new ArrayList<>(Arrays.asList(new Boolean[totalNumCards]));
-        Collections.fill(scoreList, false);
 
         reviewStatsList = FXCollections.observableList(new ArrayList<Pair<String, String>>());
     }
@@ -123,14 +100,6 @@ public class Review {
         } else {
             currCard.setAsFlipped();
         }
-    }
-
-    /**
-     * Returns the sum of the total score on the current scoreList.
-     * @return current total score of review.
-     */
-    public Integer getTotalScore() {
-        return scoreList.stream().map(bool -> bool ? 1 : 0).mapToInt(a -> a).sum();
     }
 
     /**
@@ -175,24 +144,6 @@ public class Review {
         }
     }
 
-    /**
-     * Marks the current card as correct in the scoreList
-     * by setting the respective index in scoreList as true.
-     */
-    public void markCurrCardAsCorrect() {
-        scoreList.set(currCardNum - 1, true);
-        updateReviewStatsList();
-    }
-
-    /**
-     * Marks the current card as wrong in the scoreList
-     * by setting the respective index in scoreList as false.
-     */
-    public void markCurrCardAsWrong() {
-        scoreList.set(currCardNum - 1, false);
-        updateReviewStatsList();
-    }
-
     public void setCard(Tag tag) {
         currCard = new Card(currCard.getQuestion(), currCard.getAnswer(), tag, currCard.getDeck());
     }
@@ -209,6 +160,23 @@ public class Review {
         updateReviewStatsList();
         return reviewStatsList;
     }
+
+    public int getNoOfEasyTags() {
+        return (int) cardList.stream().filter(card -> card.getTagName().equals("easy")).count();
+    }
+
+    public int getNoOfMediumTags() {
+        return (int) cardList.stream().filter(card -> card.getTagName().equals("medium")).count();
+    }
+
+    public int getNoOfHardTags() {
+        return (int) cardList.stream().filter(card -> card.getTagName().equals("hard")).count();
+    }
+
+    public int getNoOfUntagged() {
+        return (int) cardList.stream().filter(card -> card.getTagName() == "untagged").count();
+    }
+
     public ObservableList<Pair<String, String> > getReviewDeckNameList() {
         return deck.getDeckNameList();
     }
@@ -216,12 +184,13 @@ public class Review {
         Pair<String, String> title = new Pair<>("Deck Name", deck.getDeckName());
         Pair<String, String> cardsSeen = new Pair<>("Current Card Number:",
                 String.format("%d/%d", currCardNum, totalNumCards));
-        Pair<String, String> currentScore = new Pair<>("Current Score: ",
-                 String.format("%d", getTotalScore()));
-        Pair<String, String> flip = new Pair<>("Press \\ to flip", "");
+        Pair<String, String> currentTags = new Pair<>("Current Tags:",
+                 String.format("%d Easy, %d Medium, %d Hard",
+                         getNoOfEasyTags(), getNoOfMediumTags(), getNoOfHardTags()));
+        Pair<String, String> flip = new Pair<>("Enter p to flip", "");
         Pair<String, String> next = new Pair<>("Enter [ to go back, ] to go forward", "");
-        Pair<String, String> mark = new Pair<>("Press ; to mark wrong, ' to mark correct", "");
+        Pair<String, String> tagging = new Pair<>("To tag, enter l for easy, ; for medium and ' for hard", "");
         this.reviewStatsList.clear();
-        this.reviewStatsList.addAll(title, cardsSeen, currentScore, flip, next, mark); // warning being called here
+        this.reviewStatsList.addAll(title, cardsSeen, currentTags, flip, next, tagging); // warning being called here
     }
 }

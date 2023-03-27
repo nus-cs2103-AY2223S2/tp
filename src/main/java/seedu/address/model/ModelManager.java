@@ -277,16 +277,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void markCorrect() {
-        this.currReview.markCurrCardAsCorrect();
-    }
-
-    @Override
-    public void markWrong() {
-        this.currReview.markCurrCardAsWrong();
-    }
-
-    @Override
     public boolean goToPrevCard() {
         boolean isFirstCard = this.currReview.goToPrevCard();
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));

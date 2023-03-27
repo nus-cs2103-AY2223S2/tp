@@ -11,21 +11,12 @@ import seedu.address.model.tag.Tag;
 
 /**
  * The TagHardCommand class is responsible for tagging the
- * current card being reviewed with the EASY tag.
+ * current card being reviewed with the HARD tag.
  */
 public class TagHardCommand extends Command {
     public static final String COMMAND_WORD = "'";
 
-    public static final String MESSAGE_SUCCESS = "Card is tagged with %1$s!";
-
-    private final Tag tag;
-
-    /**
-     * Constructs a new TagHardCommand object with the specified tag name.
-     */
-    public TagHardCommand() {
-        this.tag = new Tag(HARD);
-    }
+    public static final String MESSAGE_SUCCESS = "Card is tagged with HARD!";
 
     /**
      * Executes the tagging operation by calling the tagCurrentCardInReview() method of the Model object.
@@ -37,7 +28,7 @@ public class TagHardCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.tagCurrentCardInReview(this.tag);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.tag.tagName));
+        model.tagCurrentCardInReview(new Tag(HARD));
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -49,6 +49,10 @@ public class Tag {
         return tagName.equals(TagName.UNTAGGED);
     }
 
+    public TagName getTagName() {
+        return this.tagName;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

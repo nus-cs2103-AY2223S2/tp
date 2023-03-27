@@ -16,16 +16,7 @@ import seedu.address.model.tag.Tag;
 public class TagEasyCommand extends Command {
     public static final String COMMAND_WORD = "l";
 
-    public static final String MESSAGE_SUCCESS = "Card is tagged with %1$s!";
-
-    private final Tag tag;
-
-    /**
-     * Constructs a new TagEasyCommand object with the specified tag name.
-     */
-    public TagEasyCommand() {
-        this.tag = new Tag(EASY);
-    }
+    public static final String MESSAGE_SUCCESS = "Card is tagged with EASY!";
 
     /**
      * Executes the tagging operation by calling the tagCurrentCardInReview() method of the Model object.
@@ -37,7 +28,7 @@ public class TagEasyCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.tagCurrentCardInReview(this.tag);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.tag.tagName));
+        model.tagCurrentCardInReview(new Tag(EASY));
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }
