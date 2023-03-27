@@ -31,7 +31,7 @@
       <Label fx:id="time" styleClass="cell_big_label"/>
       <Label fx:id="effort" styleClass="cell_small_label" text="\$description"/>
       <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
-      <Label fx:id="subsections" styleClass="cell_big_label" text="\$description" />
+      <Label fx:id="subsections" styleClass="cell_small_label" text="\$description" />
     </VBox>
   </GridPane>
 </HBox>
