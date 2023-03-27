@@ -13,6 +13,7 @@ Fast Army Internal Lookup System (FAILS) is a **desktop app for managing the per
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a person : `add`](#adding-a-person--add)
   - [Listing all persons : `list`](#listing-all-persons--list)
+  - [Copy information to clipboard : `copy`](#copy-information-to-clipboard--copy)
   - [Editing a person : `edit`](#editing-a-person--edit)
   - [Locating persons by name : `find`](#locating-persons-by-name--find)
   - [Deleting a person : `delete`](#deleting-a-person--delete)
@@ -147,6 +148,45 @@ Shows a list of all persons in FAILS.
 
 Format: `list`
 
+### Copy information to clipboard : `copy`
+
+Copies the information of a person to the user's clipboard.
+
+Format: `copy INDEX`
+
+- Copies the information of the person at the specified `INDEX` to the user's clipboard.
+- The index refers to the index number shown in the displayed person list.
+- The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If FAILS fails to access your clipboard, the information will be displayed in the result display box instead. You can then highlight the text using your mouse and copy it to your clipboard by using `Ctrl + C` on Windows/Linux or `Command + C` on Mac.
+
+</div>
+
+Examples:
+
+- Suppose you want to copy the second person, `Bernice Yu`, entering the command `copy 2` will copy all information into your clipboard.
+![result for 'copy 2'](images/copy2Result.png)
+
+After running the command, the following text is copied into your clipboard.
+```
+  Name: Bernice Yu
+  Phone: 99272758
+  Email: berniceyu@example.com
+  Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
+  Rank: CPL
+  Unit: Bravo
+  Company: Charlie
+  Platoon: Tiger 123
+ ```
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** You can use `find`/`filter` to find a person first before using `copy`!
+
+</div>
+
 ### Editing a person : `edit`
 
 Edits an existing person in FAILS.
@@ -258,6 +298,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/RCT u/BRAVO c/207 pl/1`
 **Clear** | `clear`
+**Copy** | `copy INDEX`<br> e.g., `copy 1`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
