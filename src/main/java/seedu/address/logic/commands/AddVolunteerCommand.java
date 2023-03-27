@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -34,7 +34,7 @@ public class AddVolunteerCommand extends Command {
 
     static {
         COMMAND_PROMPTS.put(PREFIX_NAME, "<name>");
-        COMMAND_PROMPTS.put(PREFIX_NRIC_VOLUNTEER, "<nric>");
+        COMMAND_PROMPTS.put(PREFIX_NRIC, "<nric>");
         COMMAND_PROMPTS.put(PREFIX_ADDRESS, "<address>");
         COMMAND_PROMPTS.put(PREFIX_PHONE, "<phone>");
         COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
@@ -51,7 +51,7 @@ public class AddVolunteerCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_NRIC_VOLUNTEER + "NRIC "
+            + PREFIX_NRIC + "NRIC "
             + PREFIX_BIRTH_DATE + "BIRTH DATE "
             + PREFIX_REGION + "REGION "
             + "[" + PREFIX_MEDICAL_TAG + "MEDICAL_TAG] "
@@ -62,7 +62,7 @@ public class AddVolunteerCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_NRIC_VOLUNTEER + "S1234567A "
+            + PREFIX_NRIC + "S1234567A "
             + PREFIX_BIRTH_DATE + "2002-12-01 "
             + PREFIX_REGION + "NORTH "
             + PREFIX_MEDICAL_TAG + "CPR BASIC "

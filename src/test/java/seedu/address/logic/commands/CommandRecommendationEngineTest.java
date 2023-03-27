@@ -33,13 +33,13 @@ public class CommandRecommendationEngineTest {
     @Test
     public void recommendCommand_validCommand_success() {
         try {
-            String expected = "add_volunteer n/<name> vnr/<nric> a/<address> p/<phone> "
+            String expected = "add_volunteer n/<name> nr/<nric> a/<address> p/<phone> "
                     + "e/<email> t/<tag> re/<region> bd/<birth_date> "
                     + "mt/<medical_qualification> dr/<start_date,end_date>";
             String actual = commandRecommendationEngine.recommendCommand("add_volunteer");
             assertEquals(expected, actual);
 
-            expected = "add_elderly n/Zong Xun enr/<nric> a/<address> p/<phone> "
+            expected = "add_elderly n/Zong Xun nr/<nric> a/<address> p/<phone> "
                     + "e/<email> t/<tag> re/<region> bd/<birth_date> r/<risk> dr/<start_date,end_date>";
             actual = commandRecommendationEngine.recommendCommand("add_elderly n/Zong Xun");
             assertEquals(expected, actual);
