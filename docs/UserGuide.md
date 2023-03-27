@@ -21,17 +21,25 @@ This user guide will help you get up to speed in no time!
 ## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
+  <details>
+    <summary>more</summary>
+    
     * [Add a Contact](#add-a-contact)
-  <!-- * [View Contact List](#list-all-contacts) -->
     * [Link Contact to Event](#link-contact-to-event)
     * [View Rate](#view-rate)
-    * [Tag Rate](#tag-rate)
     * [Mark Event as Done](#mark-event)
     * [Create New Event](#create-new-event)
     * [View Event List](#list-all-events)
     * [Delete an Event](#delete-an-event)
     * [Edit an Event](#edit-an-event)
     * [View Total Revenue](#view-total-revenue)
+    * [View Upcoming Events](#view-upcoming-events)
+    * [Clear all Events](#clear-all-events)
+    * [Open help window](#open-help-window)
+    * [Find Event](#find-event)
+    * [Exit application](#exit-application)
+
+    </details>
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -73,7 +81,7 @@ The examples given in this guide are formatted with the following conventions:
 
 1. Download the latest `Paidlancers.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your EventBook.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Paidlancers.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -89,6 +97,10 @@ The examples given in this guide are formatted with the following conventions:
     * `delete 3` : Deletes the 3rd event shown in the current list.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+2. When you are ready to start, you can use the `clear` command to clear all the sample data.
+
+3. Happy ~~free~~ Paidlancing!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -109,13 +121,6 @@ Adding a contact to contacts
   - This command will create a new contact named `Deborah Tan` with phone number `91234567`. 
 - `newcontact n/Tan Jun Wei p/82828234`
   - This command will create a new contact named `Tan Jun Wei` with phone number `82828234`.
-
-
-<!-- ### List all Contacts: `listcontact` <a id = "list-all-contacts"></a>
-
-Displays all contacts saved in a list
-
-**Format**: `listcontact` -->
 
 
 ### Link Contact to Event: `linkcontact` <a id = "link-contact-to-event"></a>
@@ -151,21 +156,6 @@ Displays the rate tagged to an event.
   - This command will display the rate of the 2nd event in the event list.
 
 
-<!-- ### Tag Rate: `newrate` <a id = "tag-rate"></a>
-
-Tags a rate to an event.
-
-**Format**: `newrate INDEX AMOUNT`
-
-- Adds a specified rate, `AMOUNT`, to an event at the specified `INDEX`.
-
-  - The `INDEX` refers to the index number in the displayed events list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …
-
-**Example**:
-- `newrate 2 100` adds the rate of `100` to the `2nd event` in the event list. -->
-
-
 ### Mark Event as Done: `mark` <a id = "mark-event"></a>
 
 Marks a specified event in Paidlancers as done.
@@ -181,6 +171,7 @@ Marks a specified event in Paidlancers as done.
 - `mark 2`
   - This command will mark the 2nd event in the event list as done.
 
+
 ### Unmark an Event: `unmark` <a id = "unmark-event"></a>
 
 Unmarks a specified event in Paidlancers.
@@ -195,6 +186,7 @@ Unmarks a specified event in Paidlancers.
 - `unmark 2`
   - This command will unmark the 2nd event in the event list.
 
+
 ### Create new Event: `newevent` <a id = "create-new-event"></a>
 
 Creates a new event
@@ -206,6 +198,7 @@ Creates a new event
 **Example**:
 - `newevent n/DJ at wedding r/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
   - This command will create a new event named `DJ at wedding` with rate `100` at address `311, Clementi Ave 2, #02-25` from `11-03-2023 11:00` to `11-03-2023 17:00` with tags `friends` and `dj`.
+
 
 ### List all Events: `list` <a id = "list-all-events"></a>
 
@@ -230,6 +223,7 @@ Deletes the specified event from the event book.
 **Example**:
 - `delete 2`
   - This command will delete the 2nd event in the event list.
+
 
 ### Edit an Event: `edit` <a id = "edit-an-event"></a>
 
@@ -256,11 +250,81 @@ Edits the specified event from the event book.
 - `edit 1 n/Wedding Lunch`
   - This command will edit the name of the 1st event to be `Wedding Lunch`.
 
+
 ### View Total Revenue: `revenue` <a id = "view-total-revenue"></a>
 
 Calculates and displays the total revenue based on all the completed events.
 
 **Format**: `revenue`
+
+- Displays the total revenue.
+
+### View Upcoming Events: `remind` <a id = "view-upcoming-events"></a>
+
+Displays events that start within a specified number of days.
+
+**Format**: `remind DAYS`
+
+- Displays events that start within the specified number of `DAYS`.
+  - `DAYS` must be a positive integer 1, 2, 3, …
+  - Only events that start after the current date and time will be displayed.
+  - The number of days to an event are the days from today's date to the event's start date. Their times are not considered.
+
+**Example**:
+
+Assume the current date and time is 22-03-2023 11:00.
+
+- `remind 2`
+  - Events that start within 2 days will be displayed. These are events that start on:
+    * 22-03-2023 after 11:00
+    * 23-03-2023 the whole day
+    * 24-03-2023 the whole day
+  - Note that 24-03-2023 is within 2 days of 22-03-2023, so events on 24-03-2023 that start more than 48 hours from the current date and time are displayed.
+
+### Clear all Events: `clear` <a id = "clear-all-events"></a>
+
+Clears all events in Paidlancers.
+
+**Format**: `clear`
+
+- Clears all events in the event book.
+
+>This is a destructive command. Once you clear all events, there is no way to recover them!
+>Please be careful when using this command.
+
+### Open help window: `help` <a id = "open-help-window"></a>
+
+Opens the help window.
+
+**Format**: `help`
+
+- Opens the help window in the UI.
+
+### Find Event: `find` <a id = "find-event"></a>
+
+Finds event(s) from the event book based on the given search string.
+
+**Format**: `find KEYWORD [MORE_KEYWORDS]`
+
+- Finds the event using the specified `KEYWORD`
+  - The `KEYWORD` refers to the string to search the event list for.
+  - `[]` are optional parameters.
+  - `find` will return all events that contain the `KEYWORD` in their name.
+  - `find` is case-insensitive.
+
+**Example**:
+- `find wedding`
+  - This command will find and list all events that contains 'wedding' in its name.
+- `find wedding dinner`
+  - This command will find and list all events that contains 'wedding' or 'dinner' in its name.
+
+### Exit application: `exit` <a id = "exit-application"></a>
+
+Closes Paidlancers.
+
+**Format**: `exit`
+
+- Close the application.
 
 ### Saving the data
 
@@ -276,18 +340,26 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
-|                    Commands                     |               Command Format                |                                Example Usage                                |
-|:-----------------------------------------------:|:-------------------------------------------:|:---------------------------------------------------------------------------:|
-|         [Add a Contact](#add-a-contact)         |        `newcontact n/NAME p/NUMBER`         |                    `newcontact n/Deborah Tan p/91234567`                    |
-| [Link Contact to Event](#link-contact-to-event) |            `linkcontact INDEX CONTACT`             |                              `linkcontact 2 91234567`                              |
-|             [View Rate](#view-rate)             |                `rate INDEX`                 |                                  `rate 2`                                   |
-|       [Marks Event as Done](#mark-event)        |                `mark INDEX`                 |                                  `mark 2`                                   |
-|       [Unmark Event](#unmark-event)        |                `unmark INDEX`                 |                                  `unmark 2`                                   |
-|     [Create a new Event](#create-new-event)     |               `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`               |                             `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`                  |
-|       [View Event List](#list-all-events)       |                 `list`                 |                                 `list`                                 |
-|       [Delete an Event](#delete-an-event)       |               `delete INDEX`               |                               `delete 2`                               |
-|       [Edit an Event](#edit-an-event)       |               `edit INDEX  [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`               |                               `edit 2 r/100`                               |
-| [View Total Revenue](#view-total-revenue) | `revenue` | `revenue` |
+|                    Commands                     |                                 Command Format                                 |                                                     Example Usage                                                     |
+|:-----------------------------------------------:|:------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|
+|         [Add a Contact](#add-a-contact)         |                          `newcontact n/NAME p/NUMBER`                          |                                         `newcontact n/Deborah Tan p/91234567`                                         |
+| [Link Contact to Event](#link-contact-to-event) |                          `linkcontact INDEX CONTACT`                           |                                               `linkcontact 2 91234567`                                                |
+|             [View Rate](#view-rate)             |                                  `rate INDEX`                                  |                                                       `rate 2`                                                        |
+|       [Marks Event as Done](#mark-event)        |                                  `mark INDEX`                                  |                                                       `mark 2`                                                        |
+|          [Unmark Event](#unmark-event)          |                                 `unmark INDEX`                                 |                                                      `unmark 2`                                                       |
+|     [Create a new Event](#create-new-event)     |     `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`      | `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj` |
+|       [View Event List](#list-all-events)       |                                     `list`                                     |                                                        `list`                                                         |
+|       [Delete an Event](#delete-an-event)       |                                 `delete INDEX`                                 |                                                      `delete 2`                                                       |
+|         [Edit an Event](#edit-an-event)         | `edit INDEX  [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...` |                                                    `edit 2 r/100`                                                     |
+|    [View Total Revenue](#view-total-revenue)    |                                   `revenue`                                    |                                                       `revenue`                                                       |
+|  [View Upcoming Events](#view-upcoming-events)  |                                 `remind DAYS`                                  |                                                      `remind 2`                                                       |
+|      [Clear all Events](#clear-all-events)      |                                    `clear`                                     |                                                        `clear`                                                        |
+|            [Find Event](#find-event)            |                         `find KEYWORD [MORE_KEYWORDS]`                         |                                                 `find wedding dinner`                                                 |
+|      [Exit application](#exit-application)      |                                     `exit`                                     |                                                        `exit`                                                         |
 
-[Back to top](#)
+
+<div style="position: fixed; font-size: large; bottom: 25px; right: 50px; background-color: #d8d8d8">
+  <a href="#top">Back to top</a>
+</div>
+<br>
 
