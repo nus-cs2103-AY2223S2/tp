@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TestUtil.getTypicalModelManager;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,9 +16,6 @@ import seedu.address.testutil.ElderlyBuilder;
 import seedu.address.testutil.FriendlyLinkBuilder;
 import seedu.address.testutil.ModelManagerBuilder;
 import seedu.address.testutil.VolunteerBuilder;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class AutoPairCommandTest {
     private VolunteerBuilder volunteerBuilder1 = new VolunteerBuilder()
