@@ -415,7 +415,7 @@ public final class ApplicativeParser<T> {
     }
 
     public <U> ApplicativeParser<List<T>> sepBy(ApplicativeParser<U> that) {
-        return sepBy1(that).or(of(new ArrayList<>()));
+        return sepBy1(that).orElse(new ArrayList<>());
     }
 
     public <U> ApplicativeParser<List<T>> sepBy1(ApplicativeParser<U> that) {

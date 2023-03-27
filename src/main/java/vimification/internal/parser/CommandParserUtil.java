@@ -1,20 +1,22 @@
 package vimification.internal.parser;
 
+import java.util.Arrays;
+
 import vimification.commons.core.Index;
 import vimification.model.task.Priority;
 
 public class CommandParserUtil {
 
     public static final ApplicativeParser<Integer> INT_PARSER = ApplicativeParser
-                    .nonWhitespaces1()
-                    .flatMap(str -> {
-                        try {
-                            int val = Integer.parseInt(str);
-                            return ApplicativeParser.of(val);
-                        } catch (NumberFormatException ex) {
-                            return ApplicativeParser.fail();
-                        }
-                    });
+            .nonWhitespaces1()
+            .flatMap(str -> {
+                try {
+                    int val = Integer.parseInt(str);
+                    return ApplicativeParser.of(val);
+                } catch (NumberFormatException ex) {
+                    return ApplicativeParser.fail();
+                }
+            });
 
     public static final ApplicativeParser<Index> ONE_BASED_INDEX_PARSER =
             INT_PARSER.flatMap(val -> {
@@ -46,30 +48,22 @@ public class CommandParserUtil {
                     .dropNext(ApplicativeParser.string(quote)))
             .or(ApplicativeParser.nonWhitespaces1());
 
-    // public static final ApplicativeParser<String> SHORT_FLAG_PARSER = ApplicativeParser
-    //         .string("-")
-    //         .combine(ApplicativeParser.satisfy(Character::isLetter), s -> c -> s + c);
-
-    // public static final ApplicativeParser<String> LONG_FLAG_PARSER = ApplicativeParser
-    //         .string("--")
-    //         .combine(ApplicativeParser.letters1(), String::concat);
-
-    // public static final ApplicativeParser<Pair<String, String>> ARG_PARSER = ApplicativeParser
-    //         .choice(SHORT_FLAG_PARSER, LONG_FLAG_PARSER)
-    //         .dropNext(ApplicativeParser.skipWhitespaces1())
-    //         .combine(STRING_PARSER, Pair::of);
-
-    // public static final ApplicativeParser<ArgumentMultimap> ARG_MAP_PARSER = ARG_PARSER
-    //         .sepBy(ApplicativeParser.skipWhitespaces1())
-    //         .map(list -> {
-    //             ArgumentMultimap map = new ArgumentMultimap();
-    //             for (Pair<String, String> entry : list) {
-    //                 String key = entry.getFirst();
-    //                 String value = entry.getSecond();
-    //                 map.put(key, value);
-    //             }
-    //             return map;
-    //         });
+    public static ApplicativeParser<ArgumentMultimap> arguments(ArgumentFlag... flags) {
+        ArgumentMultimap map = new ArgumentMultimap(flags);
+        return Arrays.stream(flags).map(flag -> {
+            String shortForm = flag.getShortForm();
+            String longForm = flag.getLongForm();
+            return ApplicativeParser
+                    .string(shortForm)
+                    .or(ApplicativeParser.string(longForm))
+                    .dropNext(ApplicativeParser.skipWhitespaces1())
+                    .takeNext(STRING_PARSER)
+                    .map(value -> {
+                        map.put(flag, value);
+                        return map;
+                    });
+        }).reduce(ApplicativeParser::or).orElseGet(ApplicativeParser::fail);
+    }
 
     private CommandParserUtil() {}
 }

@@ -2,6 +2,7 @@ package vimification.internal.parser;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -47,6 +48,9 @@ public class ArgumentMultimap {
         if (!argValues.add(value)) {
             throw new ParserException("Duplicated argument");
         }
+        if (argValues.size() > flag.getMaxCount()) {
+            throw new ParserException("Number of argument exceeded limit");
+        }
     }
 
     public Set<String> get(ArgumentFlag flag) {
@@ -59,5 +63,12 @@ public class ArgumentMultimap {
         throwIfNotAllowed(flag);
         Set<String> result = args.remove(flag);
         return result == null ? Set.of() : result;
+    }
+
+    public Optional<String> getFirst(ArgumentFlag flag) {
+        throwIfNotAllowed(flag);
+        return args.getOrDefault(flag, Set.of())
+                .stream()
+                .findFirst();
     }
 }

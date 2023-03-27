@@ -6,10 +6,16 @@ public class ArgumentFlag {
 
     private final String shortForm;
     private final String longForm;
+    private final int maxCount; // sigh, Java have to unsigned integer
 
-    public ArgumentFlag(String shortForm, String longForm) {
+    public ArgumentFlag(String shortForm, String longForm, int maxCount) {
         this.shortForm = shortForm;
         this.longForm = longForm;
+        this.maxCount = maxCount;
+    }
+
+    public ArgumentFlag(String shortForm, String longForm) {
+        this(shortForm, longForm, 1);
     }
 
     public String getShortForm() {
@@ -20,9 +26,15 @@ public class ArgumentFlag {
         return longForm;
     }
 
+    public int getMaxCount() {
+        return maxCount;
+    }
+
     @Override
     public String toString() {
-        return String.format("Prefix [shortForm: %s, longForm: %s]", shortForm, longForm);
+        return String.format(
+                "Prefix [shortForm: %s, longForm: %s, maxCount: %d]",
+                shortForm, longForm, maxCount);
     }
 
     @Override
@@ -36,7 +48,8 @@ public class ArgumentFlag {
             return false;
         }
         ArgumentFlag otherFlag = (ArgumentFlag) other;
-        return Objects.equals(shortForm, otherFlag.shortForm)
+        return maxCount == otherFlag.maxCount
+                && Objects.equals(shortForm, otherFlag.shortForm)
                 && Objects.equals(longForm, otherFlag.longForm);
     }
 }

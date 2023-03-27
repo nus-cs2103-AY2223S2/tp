@@ -1,13 +1,18 @@
 package vimification.internal.parser;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import vimification.internal.command.logic.CreateCommand;
 import vimification.model.task.Deadline;
+import vimification.model.task.Priority;
 import vimification.model.task.Task;
 import vimification.model.task.Todo;
 
 public class CreateCommandParser implements CommandParser<CreateCommand> {
+
+    private static final ArgumentFlag TAG_FLAG = new ArgumentFlag("-t", "--tag", Integer.MAX_VALUE);
+    private static final ArgumentFlag PRIORITY_FLAG = new ArgumentFlag("-p", "--priority");
 
     /**
      * todo <description>
@@ -34,10 +39,15 @@ public class CreateCommandParser implements CommandParser<CreateCommand> {
             .dropNext(ApplicativeParser.skipWhitespaces1())
             .combine(DATE_TIME_PARSER, Deadline::new);
 
+    private static final ApplicativeParser<Priority> PRIORITY_PARSER =
+            CommandParserUtil.PRIORITY_PARSER
+                    .throwIfFail("Invalid priority");
+
     private static final ApplicativeParser<Task> TASK_PARSER = ApplicativeParser
             .choice(TODO_PARSER, DEADLINE_PARSER)
-            .dropNext(ApplicativeParser.skipWhitespaces1());
-            // .combine(CommandParserUtil.ARG_MAP_PARSER, CreateCommandParser::setTaskArgs);
+            .dropNext(ApplicativeParser.skipWhitespaces1())
+            .combine(CommandParserUtil.arguments(TAG_FLAG, PRIORITY_FLAG),
+                    CreateCommandParser::setTaskOptionalFields);
 
     private static final ApplicativeParser<CreateCommand> COMMAND_PARSER = TASK_PARSER
             .dropNext(ApplicativeParser.skipWhitespaces())
@@ -53,11 +63,14 @@ public class CreateCommandParser implements CommandParser<CreateCommand> {
 
     private CreateCommandParser() {}
 
-    private static Task setTaskArgs(Task task, ArgumentMultimap map) {
+    private static Task setTaskOptionalFields(Task task, ArgumentMultimap map) {
         // set tags
-
+        Set<String> tags = map.get(TAG_FLAG);
         // set priority
-
+        map.getFirst(PRIORITY_FLAG).ifPresent(str -> {
+            Priority priority = PRIORITY_PARSER.parse(str);
+            task.setPriority(priority);
+        });
         return task;
     }
 
