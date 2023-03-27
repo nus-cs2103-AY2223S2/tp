@@ -29,11 +29,10 @@ public class PlaneCard extends UiPart<VBox> {
         super(FXML);
         this.plane = plane;
         this.displayedIndex = displayedIndex;
+        id.setText(displayedIndex + ". ");
         for (String line : plane.getDisplayList()) {
             Label label = new Label(line);
             cardPane.getChildren().add(label);
-
-        id.setText(displayedIndex + ". ");
         }
     }
 

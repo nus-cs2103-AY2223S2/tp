@@ -28,11 +28,10 @@ public class CrewCard extends UiPart<VBox> {
         super(FXML);
         this.crew = crew;
         this.displayedIndex = displayedIndex - 1;
+        id.setText(displayedIndex + ". ");
         for (String line : crew.getDisplayList()) {
             Label label = new Label(line);
             cardPane.getChildren().add(label);
-
-        id.setText(displayedIndex + ". ");
         }
     }
 

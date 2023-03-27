@@ -29,11 +29,10 @@ public class PilotCard extends UiPart<VBox> {
         super(FXML);
         this.pilot = pilot;
         this.displayedIndex = displayedIndex - 1;
+        id.setText(displayedIndex + ". ");
         for (String line : pilot.getDisplayList()) {
             Label label = new Label(line);
             cardPane.getChildren().add(label);
-
-        id.setText(displayedIndex + ". ");
         }
     }
 

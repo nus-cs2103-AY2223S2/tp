@@ -29,11 +29,10 @@ public class LocationCard extends UiPart<VBox> {
         super(FXML);
         this.location = location;
         this.displayedIndex = displayedIndex - 1;
+        id.setText(displayedIndex + ". ");
         for (String line : location.getDisplayList()) {
             Label label = new Label(line);
             cardPane.getChildren().add(label);
-
-        id.setText(displayedIndex + ". ");
         }
     }
 
