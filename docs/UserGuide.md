@@ -127,7 +127,7 @@ Currently, our contact list is empty. Let's try adding a fictitious contact into
 > **Examples:**
 > - `add` n/Betsy Crowe e/betsycrowe@example.com y/prof c/1 g/betsy123 l/linkedin.com/in/betsy-123
 > - `add` n/John Doe e/johnd@example.com y/2 c/3
-    > ![Add Example](images/UiAddContact.png)
+    > ![Add Example](images/UiAddContact.jpg)
 
 ### find
 `find [OPTIONAL/PARAMETER]...`<br>
