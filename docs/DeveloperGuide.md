@@ -121,17 +121,18 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the patientist data, i,e all `Ward` objects (contained in a singleton `WardList` object), all `Person` objects (contained within `UniquePersonList` objects within their respective wards)
-* differentiates between `Patient` and `Staff` objects within each `Ward`, each are kept in their separate `UniquePersonList`.
-* stores the currently 'selected' `Person` objects (e.g. results of search, lsward, lsstf, lspat etc) as separate filtered list which is available to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
+* stores the patientist data, i,e all `Ward` objects (contained in a singleton `WardList` object), 
+all `Person` objects (contained within `UniquePersonList` objects within their respective wards)
+* differentiates between `Patient` and `Staff` objects within each `Ward`, each are kept in their 
+separate `UniquePersonList`.
+* stores the currently 'selected' `Person` objects (e.g. results of search, lsward, lsstf, lspat etc) 
+as separate filtered list which is available to outsiders as an unmodifiable `ObservableList<Person>` 
+that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when 
+the data in the list change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside 
+as a `ReadOnlyUserPref` objects.
+* does not depend on any of the other three components (as the `Model` represents data entities 
+of the domain, they should make sense on their own without depending on other components)
 
 
 ### Storage component
@@ -161,10 +162,10 @@ This section describes some noteworthy details on how certain features are imple
 The mechanism will extend the functionality provided by AddressBook's base code to provide for functionality
 that allows `Staff` and `Patient`s to be grouped logically according to the `Ward` they are assigned to. This allows
 us to implement the following functionalities:
-* `Ward#contains(Patient)`
-* `Ward#addPatient(Patient)`
-* `Ward#deletePatient(Patient)`
-* `Ward#setPatient(Patient)`
+* `contains(Patient)`
+* `addPatient(Patient)`
+* `deletePatient(Patient)`
+* `setPatient(Patient)`
 
 and similar functionality for `Staff` as well. This makes for easy implementation of searching for a particular
 person within a ward and other operations involving transferring between wards, through providing a clean 
@@ -173,6 +174,10 @@ changes reflect in the modification of the API supplied by `Model`, which requir
 a `Staff` or `Patient` is to be added to, and also implements operations to add, remove and edit wards, and transfer
 `Person` between wards.
 
+Of course, in order to implement this functionality, we need to have the ability to add and delete `Ward` objects
+as well. As such, all wards are stored in a `WardList` that enforces uniqueness of the `Ward` objects contained. This list
+provides support for lookup, add, delete and modification of elements.
+
 Other alternatives considered for this functionality were simply assigning the ward and role of a `Person` through the
 `Tag` field that already exists in the base application. However, this makes for very poor object oriented design as
 there would not exist any trace of wards in the model, which is intuitively a container object for `Staff` and `Patient`.
@@ -180,6 +185,36 @@ Furthermore, operations such as searching and deleting will become extremely cou
 ward along with all patients and staff inside, we would have to search through all `Patient` and `Staff` objects, look through
 their tags and delete them one by one. Wards will thus become a fully abstract concept not modelled anywhere in the code,
 which is not ideal as it is a core part of what our application seeks to manage.
+
+
+Given below is a sample usage scenario and how the mechanism behaves at each step. For the sake of focus in the 
+illustration, we will only look at a subset of the Model package involved in maintaining this feature. Higher level
+management logic such as `ModelManager` are not explicitly included, but obviously exist in the system nonetheless.
+
+Step 1. The user first needs to add a `Ward` to the empty `Patientist`. The user input is parsed by `Logic`, eventually
+making a call to `addWard()` specified by `Model`. Let's say the user first adds a `Ward` called `Block A Ward 1`.
+
+![AddWardState1](images/WardFeatureStep1-After_adding_first_Ward.png)
+
+Step 2. The user decides to add another `Ward` similar to in step 1, but this new ward is called `Block B Ward 1`.
+
+![AddWardState2](images/WardFeatureStep2-After_adding_second_Ward.png)
+
+Step 3. The user adds a `Staff`, let's say `Amy` and a `Patient`, let's say `Bob` to `Block A Ward 1`. Note that UniquePersonList
+is a container for multiple `Person`. `Staff` and `Patient` inherit from `Person`, and are thus instances of `Person`.
+
+![AddWardState3](images/WardFeatureStep3-After_adding_Patient_and_Staff.png)
+
+
+
+Further notes about the wards feature:
+* The identity of `Person` objects added to the ward system must be unique. This uniqueness is enforced by `Person::isSamePerson`
+rather than `Person::equals`. The same person cannot exist in the same ward or in 2 or more different wards.
+* As in the above point, it is illegal to modify an existing `Person` such that his or her identity is equal to another
+`Person` object's identity. Doing this programmatically through `Model::setPatient` or `Model::setStaff` will throw a `DuplicatePersonException`, and doing this by
+modifying json data files will result in undefined behaviour.
+* `Ward` objects contained in `WardList` have their uniqueness enforced by name. In other words, there cannot exist 2 or 
+more wards with the same name.
 
 For these data to be stored for subsequent sessions, the `Storage` module had to be modified to store a list of wards containing
 `Patient` and `Staff` instead of a list of `Person`.
@@ -197,9 +232,8 @@ are then stored in a new `Patientist` object, ready to be used.
 
 The opposite occurs after a command, allowing us to save the data into a `JSON` file.
 
-[DRAW THE UML DIAGRAMS AND WHATNOT EVENTUALLY...................]
 
-### \[Proposed\] Undo/redo feature
+### \[Proposed\] Undo/redo feature: this section is to be deleted before submission. It is kept here for reference only.
 
 #### Proposed Implementation
 
