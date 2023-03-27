@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.patientist.testutil.Assert.assertThrows;
+import static seedu.patientist.testutil.TypicalWards.VALID_WARD_NAME;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class AddStaffCommandTest {
 
     @Test
     public void constructor_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddStaffCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddStaffCommand(VALID_WARD_NAME, null));
     }
 
     @Test
@@ -38,7 +39,7 @@ public class AddStaffCommandTest {
         ModelStubAcceptingStaffAdded modelStub = new ModelStubAcceptingStaffAdded();
         Staff validStaff = new StaffBuilder().build();
 
-        CommandResult commandResult = new AddStaffCommand(validStaff).execute(modelStub);
+        CommandResult commandResult = new AddStaffCommand(VALID_WARD_NAME, validStaff).execute(modelStub);
 
         assertEquals(String.format(AddStaffCommand.MESSAGE_SUCCESS, validStaff), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validStaff), modelStub.staffAdded);
@@ -47,7 +48,7 @@ public class AddStaffCommandTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Staff validStaff = new StaffBuilder().build();
-        AddStaffCommand addStaffCommand = new AddStaffCommand(validStaff);
+        AddStaffCommand addStaffCommand = new AddStaffCommand(VALID_WARD_NAME, validStaff);
         ModelStub modelStub = new ModelStubWithPerson(validStaff);
 
         assertThrows(CommandException.class,
@@ -58,14 +59,14 @@ public class AddStaffCommandTest {
     public void equals() {
         Staff alex = new StaffBuilder().withName("Alex").build();
         Staff billy = new StaffBuilder().withName("Billy").build();
-        AddStaffCommand addStaffAlexCommand = new AddStaffCommand(alex);
-        AddStaffCommand addStaffBillyCommand = new AddStaffCommand(billy);
+        AddStaffCommand addStaffAlexCommand = new AddStaffCommand(VALID_WARD_NAME, alex);
+        AddStaffCommand addStaffBillyCommand = new AddStaffCommand(VALID_WARD_NAME, billy);
 
         // same object -> returns true
         assertTrue(addStaffAlexCommand.equals(addStaffAlexCommand));
 
         // same values -> returns true
-        AddStaffCommand addStaffAlexCommandCopy = new AddStaffCommand(alex);
+        AddStaffCommand addStaffAlexCommandCopy = new AddStaffCommand(VALID_WARD_NAME, alex);
         assertTrue(addStaffAlexCommand.equals(addStaffAlexCommandCopy));
 
         // different types -> returns false
@@ -112,11 +113,6 @@ public class AddStaffCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        //@Override
-        //public void addPerson(Person person) {
-        //throw new AssertionError("This method should not be called.");
-        //}
-
         @Override
         public void setPatientist(ReadOnlyPatientist patientist) {
             throw new AssertionError("This method should not be called.");
@@ -147,11 +143,6 @@ public class AddStaffCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        //@Override
-        //public void deleteStaff(Staff target) {
-        //    throw new AssertionError("This method should not be called.");
-        //}
-
         @Override
         public void deleteStaff(Staff target, Ward ward) {
             throw new AssertionError("This method should not be called.");
@@ -161,16 +152,6 @@ public class AddStaffCommandTest {
         public void deletePatient(Patient target, Ward ward) {
             throw new AssertionError("This method should not be called.");
         }
-
-        //@Override
-        //public void deletePerson(Person target) {
-        //    throw new AssertionError("This method should not be called.");
-        //}
-
-        //@Override
-        //public void deletePerson(Person target, Ward ward) {
-        //    throw new AssertionError("This method should not be called.");
-        //}
 
         @Override
         public void addPatient(Patient patient, Ward ward) {
@@ -203,11 +184,6 @@ public class AddStaffCommandTest {
             throw new AssertionError("This method should not be called.");
 
         }
-
-        //@Override
-        //public void setPerson(Person target, Person editedPerson) {
-        //    throw new AssertionError("This method should not be called.");
-        //}
 
         @Override
         public boolean hasWard(Ward ward) {
@@ -274,12 +250,6 @@ public class AddStaffCommandTest {
             requireNonNull(person);
             return staffAdded.stream().anyMatch(x -> x.isSamePerson(person));
         }
-
-        //@Override
-        //public void addPerson(Person person) {
-        //requireNonNull(person);
-        //staffAdded.add((Staff) person);
-        //}
 
         @Override
         public ReadOnlyPatientist getPatientist() {
