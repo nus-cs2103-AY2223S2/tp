@@ -126,6 +126,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Card> getReviewCardList() {
+        return model.getReviewCardList();
+    }
+
+    @Override
     public void factoryReset() {
         model.setMasterDeck(new MasterDeck());
         try {
