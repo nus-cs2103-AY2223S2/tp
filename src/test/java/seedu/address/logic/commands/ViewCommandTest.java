@@ -12,9 +12,12 @@ import static seedu.address.testutil.TypicalPersons.FORD;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 import static seedu.address.testutil.TypicalUser.LINUS;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.ViewCommandResult;
 import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -29,16 +32,16 @@ public class ViewCommandTest {
     @Test
     public void execute_byIndex_correctPersonQueried() throws CommandException {
         ViewCommand command1 = new ViewCommand(null, new ContactIndex(2));
-        CommandResult commandResult1 = command1.execute(model);
-        assertEquals(ANG, commandResult1.getDisplayPerson());
+        ViewCommandResult commandResult1 = command1.execute(model);
+        assertEquals(Optional.of(ANG), commandResult1.getDisplayPerson());
 
         ViewCommand command2 = new ViewCommand(null, new ContactIndex(3));
-        CommandResult commandResult2 = command2.execute(model);
-        assertEquals(BART, commandResult2.getDisplayPerson());
+        ViewCommandResult commandResult2 = command2.execute(model);
+        assertEquals(Optional.of(BART), commandResult2.getDisplayPerson());
 
         ViewCommand command3 = new ViewCommand(null, new ContactIndex(4));
-        CommandResult commandResult3 = command3.execute(model);
-        assertEquals(CLARK, commandResult3.getDisplayPerson());
+        ViewCommandResult commandResult3 = command3.execute(model);
+        assertEquals(Optional.of(CLARK), commandResult3.getDisplayPerson());
     }
 
     @Test
@@ -47,21 +50,22 @@ public class ViewCommandTest {
         ViewCommand command2 = new ViewCommand("Edward Richards", null);
         ViewCommand command3 = new ViewCommand("Ford Canning", null);
 
-        CommandResult result1 = command1.execute(model);
-        CommandResult result2 = command2.execute(model);
-        CommandResult result3 = command3.execute(model);
+        ViewCommandResult result1 = command1.execute(model);
+        ViewCommandResult result2 = command2.execute(model);
+        ViewCommandResult result3 = command3.execute(model);
 
-        assertEquals(DAKOTA, result1.getDisplayPerson());
-        assertEquals(EDWARD, result2.getDisplayPerson());
-        assertEquals(FORD, result3.getDisplayPerson());
+        assertEquals(Optional.of(DAKOTA), result1.getDisplayPerson());
+        assertEquals(Optional.of(EDWARD), result2.getDisplayPerson());
+        assertEquals(Optional.of(FORD), result3.getDisplayPerson());
+
         assertNotEquals("No such name found!", result1.getFeedbackToUser());
     }
 
     @Test
     public void execute_noArguments_userQueried() throws CommandException {
         ViewCommand command = new ViewCommand(null, null);
-        CommandResult result = command.execute(model);
-        assertEquals(LINUS, result.getDisplayPerson());
+        ViewCommandResult result = command.execute(model);
+        assertEquals(Optional.of(LINUS), result.getDisplayPerson());
     }
 
     @Test
@@ -70,13 +74,13 @@ public class ViewCommandTest {
         ViewCommand command2 = new ViewCommand("Alan Turing", null);
         ViewCommand command3 = new ViewCommand("Pierre de Fermat", null);
 
-        CommandResult result1 = command1.execute(model);
-        CommandResult result2 = command2.execute(model);
-        CommandResult result3 = command3.execute(model);
+        ViewCommandResult result1 = command1.execute(model);
+        ViewCommandResult result2 = command2.execute(model);
+        ViewCommandResult result3 = command3.execute(model);
 
-        assertEquals(LINUS, result1.getDisplayPerson());
-        assertEquals(LINUS, result2.getDisplayPerson());
-        assertEquals(LINUS, result3.getDisplayPerson());
+        assertEquals(Optional.of(LINUS), result1.getDisplayPerson());
+        assertEquals(Optional.of(LINUS), result2.getDisplayPerson());
+        assertEquals(Optional.of(LINUS), result3.getDisplayPerson());
     }
 
     @Test
@@ -85,9 +89,9 @@ public class ViewCommandTest {
         ViewCommand command2 = new ViewCommand("Tony Hoare", null);
         ViewCommand command3 = new ViewCommand("John Nash", null);
 
-        CommandResult result1 = command1.execute(model);
-        CommandResult result2 = command2.execute(model);
-        CommandResult result3 = command3.execute(model);
+        ViewCommandResult result1 = command1.execute(model);
+        ViewCommandResult result2 = command2.execute(model);
+        ViewCommandResult result3 = command3.execute(model);
 
         assertEquals("No such person found!", result1.getFeedbackToUser());
         assertEquals("No such person found!", result2.getFeedbackToUser());

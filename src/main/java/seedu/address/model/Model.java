@@ -135,6 +135,8 @@ public interface Model {
      */
     void setRecommendation(Recommendation target, Recommendation editedRecommendation);
 
+    void setRecommendations(List<Recommendation> recommendations);
+
     /**
      * Clears the person list.
      * Used for sorting the list, as the list needs to be cleared before it can be sorted.

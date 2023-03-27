@@ -10,8 +10,8 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
@@ -34,6 +34,8 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private UserProfilePanel userProfilePanel;
     private MeetListPanel meetListPanel;
+    private ScheduledMeetsListPanel scheduledMeetsListPanel;
+
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -97,6 +99,9 @@ public class MainWindow extends UiPart<Stage> {
 
         meetListPanel = new MeetListPanel(logic.getObservableRecommendationList());
         meetListPanelPlaceholder.getChildren().add(meetListPanel.getRoot());
+
+        // scheduledMeetsListPanel = new ScheduledMeetsListPanel(logic.getObservablePersonList());
+        // scheduledMeetsPlaceholder.getChildren().add(scheduledMeetsListPanel.getRoot());
 
         setUserName(logic.getUser());
     }
@@ -176,12 +181,13 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            // For view command
-            if (commandResult.isToShowNewPerson()) {
-                Person newPerson = commandResult.getDisplayPerson();
-                updateUserProfilePanel(newPerson);
-
+            if (commandResult.isToShowNewPerson() && commandResult.getDisplayPerson().isPresent()) {
+                Person newPerson = commandResult.getDisplayPerson().get();
+                userProfilePanel = new UserProfilePanel(newPerson);
+                userProfilePlaceholder.getChildren().clear();
+                userProfilePlaceholder.getChildren().add(userProfilePanel.getRoot());
             }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
