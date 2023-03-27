@@ -85,6 +85,15 @@ Format: `addpart n/NAME q/Quantity`
 
 Example: `addpart n/Cylinder Head q/50`
 
+### Adding a vehicle part to specific service: `addpartservice`
+Adds a vehicle part to a specific service.
+
+Service and part must be registered in the system and part must have sufficient quanity,
+
+Format: `addpartservice s/SERVICE ID n/PART NAME q/QUANTITY`
+
+Example: `addpartservice s/2 n/Cylinder Head q/20` 
+
 ### Adding a service to a vehicle: `add service`
 Adds a service to perform on the specified vehicle plate number.
 
@@ -270,19 +279,21 @@ to be updated
 
 ## Command summary
 
-| Action                                                  | Format, Examples                                                                                                                                                    |
-|---------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Customer**                                        | `addcustomer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add Vehicle**                                         | `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE` <br> e.g., `add vehicle p/SBA1234A b/Toyota c/1 t/4wd`                                                    |
-| **Add Service**                                         | `addservice v/VEHICLE_ID t/SERVICE_TYPE [s/STATUS] [d/DESCRIPTION]`<br> e.g., `add service v/10 t/standard s/in progress d/Customer says abc`                      |
-| **Add Appointment**                                     | `addappointment c/CUSTOMER_ID d/DATE t/TIME`<br> e.g.,`add appointment c/5 d/05/03/2023 t/5pm`                                                                     |
-| **List all Vehicles/Customers/Parts/Appointments**      | `list(vehicles/customers/parts/appointments)`<br> e.g., `list customers`                                                                                           |
-| **Sort Displayed List**                                 | `sort by/BRAND d/DIRECTION`<br> e.g., `list vehicles` then `sort by/brand d/asc`                                                                                    |
-| **Find specific Vehicle/Customer/Part/Appointment**     | `find(vehicle/customer/part/appointment) KEYWORD`<br> e.g., `find vehicle toyota`                                                                                  |
-| **View specific Vehicle/Customer/Part/Appointment**     | `view(vehicle/customer/part/appointment) ID`<br> e.g., `view appointment 56`                                                                                       |
-| **Edit a specific Vehicle/Customer/Part/Appointment**   | `edit(vehicle/customer/part/appointment) ID [?/PARAM] …​`<br> e.g., `edit customer 1 p/91234567 e/johndoe@example.com`                                             |
-| **Delete a specific Vehicle/Customer/Part/Appointment** | `delete(vehicle/customer/part/appointment) ID`<br> e.g., `delete customer 12`                                                                                      |
-| **Undo**                                                | `undo`                                                                                                                                                              |
-| **Redo**                                                | `redo`                                                                                                                                                              |
-| **Exit**                                                | `exit`                                                                                                                                                              |
-| **Help**                                                | `help`                                                                                                                                                              |
+| Action                                                  | Format, Examples                                                                                                                                                            |
+|---------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Customer**                                        | `addcustomer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addcustomer n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add Vehicle**                                         | `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE` <br> e.g., `addvehicle p/SBA1234A b/Toyota c/1 t/4wd`                                                              |
+| **Add Service**                                         | `addservice v/VEHICLE_ID t/SERVICE_TYPE [s/STATUS] [d/DESCRIPTION]`<br> e.g., `addservice v/10 t/standard s/in progress d/Customer says abc`                                |
+| **Add Appointment**                                     | `addappointment c/CUSTOMER_ID d/DATE t/TIME`<br> e.g.,`addappointment c/5 d/05/03/2023 t/5pm`                                                                               |
+| **Add Part**                                            | `addpart n/PART_NAME q/PART_QUANTITY` <br> e.g. `addpart n/Cylinder Head q/50`                                                                                              |
+| **Add Part to Service**                                 | `addpartservice s/SERVICE_ID n/PART_NAME q/QUANTITY` <br> e.g. `addpartservice s/2 n/Cylinder Head q/20`                                                                    |
+| **List all Vehicles/Customers/Parts/Appointments**      | `list(vehicles/customers/parts/appointments)`<br> e.g., `list customers`                                                                                                    |
+| **Sort Displayed List**                                 | `sort by/BRAND d/DIRECTION`<br> e.g., `list vehicles` then `sort by/brand d/asc`                                                                                            |
+| **Find specific Vehicle/Customer/Part/Appointment**     | `find(vehicle/customer/part/appointment) KEYWORD`<br> e.g., `find vehicle toyota`                                                                                           |
+| **View specific Vehicle/Customer/Part/Appointment**     | `view(vehicle/customer/part/appointment) ID`<br> e.g., `view appointment 56`                                                                                                |
+| **Edit a specific Vehicle/Customer/Part/Appointment**   | `edit(vehicle/customer/part/appointment) ID [?/PARAM] …​`<br> e.g., `edit customer 1 p/91234567 e/johndoe@example.com`                                                      |
+| **Delete a specific Vehicle/Customer/Part/Appointment** | `delete(vehicle/customer/part/appointment) ID`<br> e.g., `delete customer 12`                                                                                               |
+| **Undo**                                                | `undo`                                                                                                                                                                      |
+| **Redo**                                                | `redo`                                                                                                                                                                      |
+| **Exit**                                                | `exit`                                                                                                                                                                      |
+| **Help**                                                | `help`                                                                                                                                                                      |
