@@ -2,6 +2,9 @@
 layout: page
 title: Developer Guide
 ---
+
+<img src="images/FitBookBanner.png" width="1200" />
+
 * Table of Contents
 {:toc}
 
@@ -9,7 +12,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Libraries
+  * LocalDateTime
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -30,7 +34,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The ***Architecture Diagram*** given above explains the high-level design of the FitBook App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -96,13 +100,13 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `FitBookParser` class to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `FitBookModel` when it is executed (e.g. to add a client).
-4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+4. The result of the command execution is encapsulated as a `CommandResult` object which is return from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -116,22 +120,28 @@ How the parsing works:
 ### FitBookModel component
 **API** : [`FitBookModel.java`](https://github.com/AY2223S2-CS2103T-T15-2/tp/blob/master/src/main/java/seedu/fitbook/model/FitBookModel.java)
 
-<img src="images/FitBookModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `FitBookModel` component,
-
 * stores the FitBook data i.e., all `Client` objects (which are contained in a `UniqueClientList` object).
+* stores the FitBookExerciseRoutine data i.e., all `Routine` objects (which are contained in a `UniqueRoutineList` object).
 * stores the currently 'selected' `Client` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Client>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Routine` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Routine>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `FitBookModel` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FitBook`, which `Client` references. This allows `FitBook` to only require one `Tag` object per unique tag, instead of each `Client` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FitBook`, which `Client` references. This allows `FitBook` to only require one `Tag` object per unique tag, instead of each `Client` needing their own `Tag` objects. Consists of other type of objects like `Appointment`<br>
 
-<img src="images/BetterFitBookModelClassDiagram.png" width="450" />
+<img src="images/BetterFitBookModelClassDiagram.png"/>
 
 </div>
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has an `Exercise` list in the `FitBookExerciseRoutine`, which `Routine` references. This allows `FitBookExerciseRoutine` to only require one `Exercise` object per unique exercise, instead of each `Routine` needing their own `Exercise` objects.<br>
+
+<img src="images/BetterFitBookExerciseRoutineModelClassDiagram.png"  />
+
+</div>
 
 ### Storage component
 
@@ -140,8 +150,8 @@ The `FitBookModel` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both FitBook data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `FitBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save all FitBook, FitBookExerciseRoutine data and user preference data in json format, and read them back into corresponding objects.
+* inherits from all `FitBookExerciseRoutineStorage`, `FitBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `FitBookModel` component (because the `Storage` component's job is to save/retrieve objects that belong to the `FitBookModel`)
 
 ### Common classes
@@ -582,8 +592,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 =======
-| Priority | As a …​           | I can …​                                                             | So that …​                                                     |
-|----------|-------------------|----------------------------------------------------------------------|------------------------------------------------------------------------|
+
+| Priority | As a …​        | I can …​                                                          | So that …​                                                          |
+| -------- | ----------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | new user          | look at the list of clients                                          | I know who are my clients and their details                            |
 | `* * *`  | new user          | edit my client's routine                                             | the client's routine data is accurate                                  |
 | `* * *`  | new user          | edit my client's current routine                                     | so that the client's calorie intake is accurate                        |
@@ -600,17 +611,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | intermediate user | mark the exercise as complete                                        | I can teach my clients new exercises                                   |
 | `* * *`  | intermediate user | edit previous data                                                   | I can change my client's data                                          |
 | `* * *`  | intermediate user | add time to a client's appointment                                   | I can easily view my appointments for the week                         |
-| `* `     | intermediate user | search client's using their contact number                           | I can contact them when necessary                                      |
+| `*`      | intermediate user | search client's using their contact number                           | I can contact them when necessary                                      |
 | `*`      | intermediate user | filter clients by gender or exercise level                           | I can find my client easily                                            |
 | `*`      | Expert user       | link my clients under the same price package or classes              | I know who is under which class or price package                       |
-| `* *`    | Expert user  | add clients into specific groups                                     | it will be easier to track if they are in the same session             |
-| `* *`    | Expert user  | download data collected in FitBook                          | I can show results of my services to new potential clients             |
-| `* *`    | Expert user  | view reminder messages                                               | I remember the session I have with my clients for the day              |
-| `* *`    | Expert user  | add the time taken for each exercise for each session of the client  | I can achieve my target time for each exercise                         |
+| `* *`    | Expert user       | add clients into specific groups                                     | it will be easier to track if they are in the same session             |
+| `* *`    | Expert user       | download data collected in FitBook                                   | I can show results of my services to new potential clients             |
+| `* *`    | Expert user       | view reminder messages                                               | I remember the session I have with my clients for the day              |
+| `* *`    | Expert user       | add the time taken for each exercise for each session of the client  | I can achieve my target time for each exercise                         |
 
-
-
-*{More to be added}*
+=======
 
 ---
 
@@ -946,9 +955,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2d1. FitBook shows an error for incorrect format.
 
       Use case ends.
-
-*{More to be added}
-
+    
 ---
 ### Non-Functional Requirements
 

@@ -4,11 +4,13 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package FitBookModel <<Rectangle>>{
+Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyFitBook" as ReadOnlyFitBook
+Class "<<interface>>\nReadOnlyFitBookExerciseRoutine" as ReadOnlyFitBookExerciseRoutine
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nFitBookModel" as FitBookModel
 Class FitBook
+Class FitBookExerciseRoutine
 Class FitBookModelManager
 Class UserPrefs
 
@@ -19,32 +21,65 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class Goal
+Class Weight
+Class WeightHistory
+Class Calorie
+Class Gender
+Class Appointment
 
+Class Routine
+Class UniqueRoutineList
+Class RoutineName
+Class Exercise
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> FitBookModel
+HiddenOutside ...> FitBookModel
 
 FitBook .up.|> ReadOnlyFitBook
+FitBookExerciseRoutine .up.|> ReadOnlyFitBookExerciseRoutine
 
 FitBookModelManager .up.|> FitBookModel
 FitBookModel .right.> ReadOnlyUserPrefs
 FitBookModel .left.> ReadOnlyFitBook
-FitBookModelManager -left-> "1" FitBook
-FitBookModelManager -right-> "1" UserPrefs
+FitBookModel ...> ReadOnlyFitBookExerciseRoutine
+FitBookModelManager --> "1" FitBook
+FitBookModelManager --> "1" UserPrefs
+FitBookModelManager --> "1" FitBookExerciseRoutine
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+FitBookExerciseRoutine *--> "1" UniqueRoutineList
 FitBook *--> "1" UniqueClientList
 UniqueClientList --> "~* all" Client
+UniqueRoutineList --> "~* all" Routine
+Client *--> "*" Routine
+Routine --> RoutineName
+Routine *--> "*" Exercise
 Client *--> Name
 Client *--> Phone
 Client *--> Email
 Client *--> Address
 Client *--> "*" Tag
+Client *--> "*" Appointment
+Client *--> Weight
+Client *--> WeightHistory
+Client *--> Calorie
+Client *--> Goal
+Client *--> Gender
 
+Routine -[hidden]right-> Name
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+Email -[hidden]right-> WeightHistory
+WeightHistory -[hidden]right-> Appointment
+Appointment -[hidden]right-> Tag
+Tag -[hidden]right-> Goal
+Goal -[hidden]right-> Weight
+Weight -[hidden]right-> Gender
+Gender -[hidden]right-> Calorie
 
 FitBookModelManager -->"~* filtered" Client
+FitBookModelManager -->"~* filtered" Routine
 @enduml

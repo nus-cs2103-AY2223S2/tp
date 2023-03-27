@@ -16,7 +16,7 @@ Class "<<interface>>\nLogic" as Logic
 Class LogicManager
 }
 
-package FitBookModel{
+package Model{
 Class HiddenFitBookModel #FFFFFF
 }
 
@@ -33,11 +33,11 @@ FitBookParser ..> XYZCommand : creates >
 XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
-LogicManager --> FitBookModel
+LogicManager --> Model
 LogicManager --> Storage
-Storage --[hidden] FitBookModel
+Storage --[hidden] Model
 Command .[hidden]up.> Storage
-Command .right.> FitBookModel
+Command .right.> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
 Logic ..> CommandResult
