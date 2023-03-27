@@ -52,6 +52,9 @@ public class LogicManager implements Logic {
     private final LinkedBlockingDeque<String> commandQueue = new LinkedBlockingDeque<>();
     private volatile boolean isExecuting = true;
 
+    private Runnable closeAction = () -> {};
+    private Runnable showHelpAction = () -> {};
+
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
@@ -152,8 +155,11 @@ public class LogicManager implements Logic {
     }
 
 
-    private synchronized void completeExecution(List<CommandMessage> results, Optional<Command> followUp) {
-        onExecutionComplete.accept(results);
+    private synchronized void completeExecution(List<CommandMessage> messages, Optional<Command> followUp) {
+        onExecutionComplete.accept(messages);
+        if (performActions(messages)) {
+            return;
+        }
         if (followUp.isPresent()) {
             new Thread(() -> attemptProcess(
                     () -> execute(followUp.get()))).start();
@@ -161,6 +167,27 @@ public class LogicManager implements Logic {
         }
         isExecuting = false;
         startNext();
+    }
+
+
+    /**
+     * Performs the actions as given in the given list of messages. Returns if
+     * the application should stop.
+     *
+     * @return {@code true} if the application should stop and {@code false}
+     *      otherwise.
+     */
+    private boolean performActions(List<CommandMessage> messages) {
+        for (CommandMessage message : messages) {
+            if (message.isExit()) {
+                closeAction.run();
+                return true;
+            }
+            if (message.isShowHelp()) {
+                showHelpAction.run();
+            }
+        }
+        return false;
     }
 
 
@@ -310,5 +337,17 @@ public class LogicManager implements Logic {
     @Override
     public void bindVaccinationDisplayList(ObservableList<VaxType> displayList) {
         model.bindVaccinationDisplayList(displayList);
+    }
+
+
+    @Override
+    public void setCloseAction(Runnable closeAction) {
+        this.closeAction = closeAction;
+    }
+
+
+    @Override
+    public void setShowHelpAction(Runnable showHelpAction) {
+        this.showHelpAction = showHelpAction;
     }
 }

@@ -71,4 +71,9 @@ public interface Logic {
 
 
     void bindVaccinationDisplayList(ObservableList<VaxType> displayList);
+
+    void setCloseAction(Runnable closeAction);
+
+
+    void setShowHelpAction(Runnable showHelpAction);
 }

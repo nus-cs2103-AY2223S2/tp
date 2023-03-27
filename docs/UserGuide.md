@@ -25,11 +25,11 @@ Vaccination Management System (VMS) is a **desktop app for managing vaccination 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-<!--    * `list` : Lists all contacts.
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-   * `clear` : Deletes all contacts.
-   * `exit` : Exits the app. -->
+   * `patient list` : Lists all patients.
+   * `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+` : Adds a patient named `John Doe` to the Patient List.
+   * `patient delete 3` : Deletes the 3rd patient shown in the current list.
+   * `patient clear` : Deletes all patients.
+   * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -271,9 +271,9 @@ Updates the Patient using it's PATIENT_ID.
 ##### Syntax
 
 <pre>
-patient edit <PATIENT_ID> --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
+patient edit <var>PATIENT_ID</var> --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
     --b <var>BLOODTYPE</var> --a <var>ALLERGIES</var>... --v <var>VACCINES</var>...
-patient edit <PATIENT_ID> --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
+patient edit <var>PATIENT_ID</var> --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
     --b <var>BLOODTYPE</var>
 </pre>
 
@@ -302,6 +302,20 @@ patient delete <PATIENT_ID>
 ##### Example
 
 * `patent delete 5`
+
+#### `clear` - Delete a patient
+
+Deletes all Patients from VMS. It is for users to clear the dummy patients out from VMS
+
+##### Syntax
+
+```text
+patient clear
+```
+
+##### Example
+
+* `patent clear`
 
 ### `appointment` - Appointment functionalities
 
