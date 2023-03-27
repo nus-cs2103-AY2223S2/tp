@@ -78,6 +78,10 @@ public class UserData implements ReadOnlyUserData {
     public void untagPersonFromEvent(Index index, Person p) {
         this.user.get().untagPersonFromEvent(index, p);
     }
+
+    public boolean isPersonTaggedToEvent(Index index, Person p) {
+        return this.user.get().isPersonTaggedToEvent(index, p);
+    }
     //// util methods
 
     @Override

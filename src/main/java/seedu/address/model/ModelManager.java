@@ -186,6 +186,11 @@ public class ModelManager implements Model {
     public void untagPersonFromEvent(Index index, Person p) {
         this.userData.untagPersonFromEvent(index, p);
     }
+
+    @Override
+    public boolean isPersonTaggedToEvent(Index index, Person p) {
+        return this.userData.isPersonTaggedToEvent(index, p);
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**

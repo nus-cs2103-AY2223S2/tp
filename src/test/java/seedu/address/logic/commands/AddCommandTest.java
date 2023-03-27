@@ -209,6 +209,10 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        public boolean isPersonTaggedToEvent(Index index, Person p) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public void untagPersonFromEvent(Index index, Person p) {
             throw new AssertionError("This method should not be called.");
         }
