@@ -17,6 +17,7 @@ import seedu.internship.logic.commands.HomeCommand;
 import seedu.internship.logic.commands.ListCommand;
 import seedu.internship.logic.commands.SelectCommand;
 import seedu.internship.logic.commands.StatsCommand;
+
 import seedu.internship.logic.commands.event.EventCommand;
 import seedu.internship.logic.parser.event.EventCatalogueParser;
 import seedu.internship.logic.parser.exceptions.ParseException;
@@ -71,6 +72,8 @@ public class InternshipCatalogueParser {
             return new ClearCommand();
         case EventCommand.COMMAND_WORD:
             return new EventCatalogueParser().parse(arguments);
+        case ClashCommand.COMMAND_WORD:
+            return new ClashCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

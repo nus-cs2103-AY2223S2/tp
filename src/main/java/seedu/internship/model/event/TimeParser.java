@@ -1,5 +1,6 @@
 package seedu.internship.model.event;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -63,6 +64,14 @@ public class TimeParser implements Comparable<TimeParser> {
      */
     public boolean isValidTimeParser() {
         return isValid;
+    }
+
+    public boolean isBetween(TimeParser start, TimeParser end) {
+        return this.ldt.isBefore(end.ldt) && this.ldt.isAfter(start.ldt);
+    }
+
+    public boolean isEqualTime(TimeParser time) {
+        return this.ldt.equals(time.ldt);
     }
 
     /**

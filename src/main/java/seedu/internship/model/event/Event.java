@@ -88,8 +88,18 @@ public class Event {
         return otherEvent != null
                 && otherEvent.getStart().equals(getStart())
                 && otherEvent.getEnd().equals(getEnd())
+                && otherEvent.getName().equals(getName())
                 && otherEvent.getInternship().equals(getInternship());
     }
+
+    public boolean isClash(Event otherEvent) {
+        return !this.equals(otherEvent) &&
+                (this.start.isEqualTime(otherEvent.start)
+                || this.start.isBetween(otherEvent.start, otherEvent.end)
+                || this.end.isBetween(otherEvent.start, otherEvent.end));
+    }
+
+
 
     /**
      * Returns true if start date of event lies between the specified date inclusive.

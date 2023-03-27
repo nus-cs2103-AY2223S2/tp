@@ -5,6 +5,8 @@ import static seedu.internship.model.event.UniqueEventList.EMPTY_UNIQUE_EVENTS_L
 import static seedu.internship.model.internship.Internship.EMPTY_INTERNSHIP;
 import static seedu.internship.model.internship.Statistics.EMPTY_STATISTICS;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
@@ -29,6 +31,9 @@ public class CommandResult {
 
     /** Statistical data of current application progress **/
     private final Statistics statistics;
+
+    /** Hash map of event to a list of events **/
+    private HashMap<Event, List<Event>> hash = null;
 
     /**
      * Constructs a {@code CommandResult} with all specified fields.
@@ -91,6 +96,16 @@ public class CommandResult {
                          ObservableList<Event> events) {
         this(feedbackToUser, resultType, internship, events, EMPTY_STATISTICS);
     }
+    
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and other fields set to their default value for Clash Function
+     */
+    public CommandResult(String feedbackToUser, HashMap<Event, List<Event>> hash) {
+        this(feedbackToUser, false, false, EMPTY_INTERNSHIP, EMPTY_UNIQUE_EVENTS_LIST);
+        this.hash = hash;
+    }
+
 
     public String getFeedbackToUser() {
         return feedbackToUser;
@@ -118,6 +133,10 @@ public class CommandResult {
 
     public Statistics getStatistics() {
         return statistics;
+    }
+
+    public HashMap<Event, List<Event>> getClashingEvents() {
+        return hash;
     }
 
     @Override
