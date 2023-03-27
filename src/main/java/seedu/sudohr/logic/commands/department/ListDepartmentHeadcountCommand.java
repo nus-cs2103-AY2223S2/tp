@@ -2,6 +2,8 @@ package seedu.sudohr.logic.commands.department;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
 
 import java.time.LocalDate;
 
@@ -19,6 +21,17 @@ import seedu.sudohr.model.leave.LeaveDate;
  * Lists headcount for the department on a specified date.
  */
 public class ListDepartmentHeadcountCommand extends Command {
+
+    public static final String COMMAND_WORD = "ldhc";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "Lists the headcount for "
+            + "the department on a given date. "
+            + "Parameters: "
+            + PREFIX_DATE + "DATE"
+            + PREFIX_DEPARTMENT_NAME + "DEPARTMENT_NAME"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_DEPARTMENT_NAME + "Human Resources"
+            + PREFIX_DATE + "2023-03-04";
 
     public static final String MESSAGE_DEPARTMENT_NOT_EXIST = "The given department does not exist.";
 
