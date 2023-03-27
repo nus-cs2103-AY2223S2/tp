@@ -1,5 +1,6 @@
 package seedu.address.ui.person;
 
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.person.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
@@ -24,6 +26,7 @@ public class AddressBookWindow extends UiPart<Stage> {
     private static final String FXML = "AddressBookWIndow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
+    private final Consumer<Person> selectHandler;
 
     private Stage primaryStage;
     private Logic logic;
@@ -44,13 +47,20 @@ public class AddressBookWindow extends UiPart<Stage> {
      * Creates a {@code AddressBookWindow} with the given {@code Stage} and {@code Logic}.
      */
     public AddressBookWindow(Stage primaryStage, Logic logic) {
+        this(primaryStage, logic, (person) -> {});
+    }
+
+    /**
+     * Creates a {@code AddressBookWindow} with the given {@code Stage} and
+     * {@code Logic} with a select handler.
+     */
+    public AddressBookWindow(Stage primaryStage, Logic logic, Consumer<Person> selectHandler) {
         super(FXML, primaryStage);
 
         // Set dependencies
-        this.primaryStage = primaryStage;
+        this.primaryStage = new Stage();
         this.logic = logic;
-
-        // Configure the UI
+        this.selectHandler = selectHandler;
     }
 
     /**
@@ -87,7 +97,10 @@ public class AddressBookWindow extends UiPart<Stage> {
      * fillInnerParts.
      */
     public void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), personIndex -> {
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), (person) -> {
+            selectHandler.accept(person);
+            getRoot().close();
+        }, personIndex -> {
             try {
                 logic.execute(new DeleteCommand(personIndex));
             } catch (ParseException | CommandException e) {

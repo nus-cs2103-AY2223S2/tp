@@ -51,35 +51,35 @@ public class SampleDataUtil {
                 persons[1].getPersonId(),
                 "2023-03-01",
                 "1",
-                "0.0"),
+                "0.0", ""),
             new DeliveryJob(
                 persons[1].getPersonId(),
                 persons[2].getPersonId(),
                 "2023-03-01",
                 "2",
-                "1.0"),
+                "1.0", ""),
             new DeliveryJob(
                 persons[2].getPersonId(),
                 persons[3].getPersonId(),
                 "2023-03-01",
                 "2",
-                "2.0"),
+                "2.0", ""),
             new DeliveryJob(
                 persons[3].getPersonId(),
                 persons[4].getPersonId(),
                 "2023-03-01",
                 "3",
-                "3.0"),
+                "3.0", ""),
             new DeliveryJob(
                 persons[4].getPersonId(),
                 persons[5].getPersonId(),
                 "2023-03-02",
                 "5",
-                "4.0"),
+                "4.0", ""),
             new DeliveryJob(
                 persons[5].getPersonId(),
                 persons[0].getPersonId(),
-                "5.0")
+                "5.0", "")
             };
     }
 

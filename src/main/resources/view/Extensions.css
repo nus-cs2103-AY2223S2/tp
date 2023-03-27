@@ -18,3 +18,16 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+#job_earning_dollar {
+    -fx-font-size: 26px;
+}
+
+#job_earning_cent {
+
+}
+
+.error-input {
+    -fx-text-box-border: red ;
+    -fx-focus-color: red ;
+}

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a job's job date in the address book.
@@ -20,6 +21,7 @@ public class DeliveryDate {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
+    public static final DateTimeFormatter VALID_FORMAT = DateTimeFormatter.ofPattern("YYYY-MM-dd");
 
     public final String date;
 

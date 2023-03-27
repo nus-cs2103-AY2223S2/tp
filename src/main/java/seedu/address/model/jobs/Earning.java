@@ -1,7 +1,7 @@
 package seedu.address.model.jobs;
 
 import static java.util.Objects.requireNonNull;
-// import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Delivery's earning in the delivery jobs book.
@@ -11,9 +11,12 @@ public class Earning {
 
     public static final String MESSAGE_CONSTRAINTS = "Earning should only contain double, and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "\\d+\\.\\d+";
+    public static final String VALIDATION_REGEX = "\\d+";
+    public static final String VALIDATION_REGEX_DECI = "\\d+\\.\\d+";
 
     public final String value;
+    public final String dollar;
+    public final String cent;
 
     /**
      * Constructs an {@code earning}.
@@ -22,20 +25,28 @@ public class Earning {
      */
     public Earning(String earning) {
         requireNonNull(earning);
-        // TODO: Refine later, need to accept 10, 10.1 10.11 and 10.111~
-        // checkArgument(isValidEarning(earning), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidEarning(earning), MESSAGE_CONSTRAINTS);
         value = earning;
+
+        String[] format = earning.split("\\.");
+        if (format.length == 2) {
+            dollar = format[0];
+            cent = String.format("%-2s", format[1]).replace(' ', '0').substring(0, 2);
+        } else {
+            dollar = format[0];
+            cent = "00";
+        }
     }
 
     public static Earning placeholder() {
-        return new Earning("0");
+        return new Earning("0.00");
     }
 
     /**
      * Returns true if a given string is a valid earning.
      */
     public static boolean isValidEarning(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) || test.matches(VALIDATION_REGEX_DECI);
     }
 
     @Override
