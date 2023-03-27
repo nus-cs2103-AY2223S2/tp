@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.ApplicationCommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ApplicationCommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.ApplicationCommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 

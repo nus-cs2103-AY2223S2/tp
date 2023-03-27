@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
-
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_DESCRIPTION;
+
+import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 
 /**
  * A utility class for Task.

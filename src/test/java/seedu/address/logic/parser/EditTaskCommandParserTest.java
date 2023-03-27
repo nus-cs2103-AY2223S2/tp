@@ -1,17 +1,25 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.DEADLINE_DESC;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.DESCRIPTION_DESC_ASSESSMENT;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.DESCRIPTION_DESC_INTERVIEW;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.INVALID_DATE_DEADLINE_DESC;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.INVALID_DESCRIPTION_DESC;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.INVALID_FORMAT_DEADLINE_DESC;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_DEADLINE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_DESCRIPTION;
+import static seedu.address.logic.parser.ApplicationCommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.ApplicationCommandParserTestUtil.assertParseSuccess;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.*;
-import static seedu.address.logic.parser.ApplicationCommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.ApplicationCommandParserTestUtil.assertParseSuccess;
 
 public class EditTaskCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =

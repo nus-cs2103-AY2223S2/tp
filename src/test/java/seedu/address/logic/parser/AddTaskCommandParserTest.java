@@ -1,7 +1,16 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.ApplicationCommandTestUtil.*;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.DEADLINE_DESC;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.DESCRIPTION_DESC_ASSESSMENT;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.DESCRIPTION_DESC_INTERVIEW;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.INVALID_DATE_DEADLINE_DESC;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.INVALID_DESCRIPTION_DESC;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.INVALID_FORMAT_DEADLINE_DESC;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_DEADLINE;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_DESCRIPTION;
+import static seedu.address.logic.commands.ApplicationCommandTestUtil.VALID_DESCRIPTION_INTERVIEW;
 import static seedu.address.logic.parser.ApplicationCommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.ApplicationCommandParserTestUtil.assertParseSuccess;
 

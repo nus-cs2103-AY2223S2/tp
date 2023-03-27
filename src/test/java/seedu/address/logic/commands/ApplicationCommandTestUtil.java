@@ -69,7 +69,8 @@ public class ApplicationCommandTestUtil {
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "waitlisted";
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "OA&"; //'&' not allowed
     public static final String INVALID_DATE_DEADLINE_DESC = " " + PREFIX_DEADLINE + "33-02-2024"; //date does not exist
-    public static final String INVALID_FORMAT_DEADLINE_DESC = " " + PREFIX_DEADLINE + "01/01/2023"; // invalid date format (should be dd-mm-yyyy)
+    public static final String INVALID_FORMAT_DEADLINE_DESC = " "
+            + PREFIX_DEADLINE + "01/01/2023"; // invalid date format (should be dd-mm-yyyy)
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
