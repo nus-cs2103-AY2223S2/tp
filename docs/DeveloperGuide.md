@@ -261,7 +261,7 @@ The `newcontact` feature is facilitated by the `Contact` class. The feature is i
 * **Alternative 2:** Created a new contact through storing strings input by user.
     * Pros: Easy to code.
     * Cons: Might be hard to keep track or do comparisons with.
-  
+
 
 ### Mark feature
 
@@ -274,7 +274,7 @@ The `mark` feature is implemented with the following considerations:
 - A valid `index` will be taken in as a parameter to facilitate marking of the correct event.
 - Marking of a done event would not result in error or exceptions as this action does not reduce correctness of presented information.
 
-#### Design considerations: 
+#### Design considerations:
 
 * **Alternative 1 (current choice):** Calls on `mark` method in 'Mark' class to set the tracked boolean variable 'isDone' to true
   * Pros: Easier to implement.
@@ -283,6 +283,13 @@ The `mark` feature is implemented with the following considerations:
 * **Alternative 2:** Replace current instance of specified event with a new unmarked event instance
   * Pros: Results in less coupling and in turn lower possibility of unintended change cascades.
   * Cons: May have performance issues in terms of memory usage and runtime.
+
+Below shows the activity diagram of the `mark` command:
+
+<img src="images/MarkActivityDiagram.png" width="200" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.2</b> Activity diagram of 'Mark'
+</div>
 
 ### Unmark feature
 
@@ -297,7 +304,7 @@ The `unmark` feature is implemented with the following considerations:
 - Allows for undo of accidental marking by setting the 'isDone' boolean attribute of the 'Mark' class to false to signify an undone event.
 - Unmarking of an undone event would not result in error or exceptions as this action does not reduce correctness of presented information.
 
-#### Design considerations:  
+#### Design considerations:
 
 * **Alternative 1 (current choice):** Calls on `unmark` method in 'Mark' class to set the tracked boolean variable 'isDone' to false
   * Pros: Easier to implement.
@@ -367,9 +374,9 @@ The `revenue` feature is implemented with the following considerations:
 - The revenue takes into account whether the event is marked or not. It only sums up the rate if the event is marked as done.
 - The revenue will display `0.00` and not result in any errors even if there are no events that are done yet.
 
-#### Design considerations: 
+#### Design considerations:
 
-* **Alternative 1 (current choice):** Iterates through the event book when the revenue feature is called. 
+* **Alternative 1 (current choice):** Iterates through the event book when the revenue feature is called.
   * Pros: Easier to implement.
   * Cons: Runtime complexity scales as the event book increases in size.
 
@@ -377,7 +384,12 @@ The `revenue` feature is implemented with the following considerations:
   * Pros: Will maintain a low runtime complexity.
   * Cons: Hard to implement in the case that events are unmarked or deleted.
 
+Below shows the activity diagram of the `revenue` command:
 
+<img src="images/RevenueActivityDiagram.png" width="200" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.6</b> Activity diagram of 'Revenue'
+</div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Requirements
@@ -749,7 +761,7 @@ testers are expected to do more *exploratory* testing.
       Expected: First event is deleted from the list. Details of the deleted event shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No event is deleted. Error details shown in the status message. 
+      Expected: No event is deleted. Error details shown in the status message.
 
 
 
@@ -757,12 +769,12 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `newevent n/DJ at wedding r/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`<br>
       Expected: New event created. Details of event created shown in the status message.
-   
+
    1. Test case: `newevent n/ r/`<br>
       Expected: No event is created. Error details shown in the status message.
 
 
-### Adding a contact 
+### Adding a contact
 
    1. Test case: `newcontact n/Deborah Tan p/91234567`<br>
    Expected: New contact created. Details of contact created shown in status message.
