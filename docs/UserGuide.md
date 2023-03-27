@@ -168,20 +168,20 @@ Format: `listBook`
 
 ### Locate book by name: `findBook`
 
-Finds persons whose names contain any of the given keywords.
+Find books whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findBook KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `DUNE` will match `dune`
 * The order of the keywords does not matter. e.g. `Great Gatsby` will match `Gatsby Great`
 * Only the name is searched.
 * Only full words will be matched e.g. `Dun` will not match `Dune`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Books matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Dune Great` will return `Dune`, `Great Gatsby`
 
 Examples:
 * `find The` returns `The Cat in the Hat` and `Call of the wild`
-* `find dune Cat` returns `Dune`, `The Cat in the Hat`<br>
+* `find dune Cat` returns `Dune`, `The Cat in the Hat`
 
 [//]: # (add image later)
 
