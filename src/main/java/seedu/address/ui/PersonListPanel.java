@@ -23,18 +23,24 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Card> cardList) {
+    public PersonListPanel(ObservableList<Card> cardList, boolean isReview) {
         super(FXML);
 
         personListView.setItems(cardList);
         personListView.setCellFactory(listView -> new CardListViewCell());
+
+        if (isReview) {
+            toggleReview();
+        } else {
+            endReview();
+        }
     }
 
-    public void toggleReview() {
+    private void toggleReview() {
         personListView.setCellFactory(listView -> new ReviewCardListViewCell());
     }
 
-    public void endReview() {
+    private void endReview() {
         personListView.setCellFactory(listView -> new CardListViewCell());
     }
 
