@@ -23,6 +23,7 @@ public class CliSyntax {
 
     /* For project related commands. */
     public static final Prefix PREFIX_PROJECT_NAME = new Prefix("-pn ");
+    public static final Prefix PREFIX_NEW_PROJECT_NAME = new Prefix("-pn2 ");
     public static final Prefix PREFIX_PROJECT_DESCRIPTION = new Prefix("-d ");
     public static final Prefix PREFIX_ACCEPTED_DATE = new Prefix("-ad ");
     public static final Prefix PREFIX_DEADLINE_DATE = new Prefix("-dd ");

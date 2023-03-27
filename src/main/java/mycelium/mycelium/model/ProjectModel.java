@@ -13,6 +13,7 @@ import mycelium.mycelium.model.project.Project;
  */
 public interface ProjectModel {
     Predicate<Person> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
+
     /**
      * Finds a single project that matches the specified predicate. Expects to
      * find either zero or one projects. If more than one project matches the
@@ -39,6 +40,12 @@ public interface ProjectModel {
      * @param project The new project
      */
     void addProject(Project project);
+
+    /**
+     * Replaces the project with the same name as {@code project} with {@code newProject}. If no such
+     * project exists, then a {@code ProjectNotFoundException} is thrown.
+     */
+    void setProject(Project project, Project newProject);
 
     /**
      * Retrieves a list of all the projects in Mycelium.
