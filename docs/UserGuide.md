@@ -13,30 +13,30 @@ GUI). If you can type fast, FAILS can get your contact management tasks done fas
 
 - [Quick start](#quick-start)
 - [Features](#features)
-    - [Viewing help : `help`](#viewing-help--help)
-    - [Adding a person: `add`](#adding-a-person-add)
-    - [Listing all persons : `list`](#listing-all-persons--list)
-    - [Editing a person : `edit`](#editing-a-person--edit)
-    - [Locating persons by name: `find`](#locating-persons-by-name-find)
-    - [Deleting a person : `delete`](#deleting-a-person--delete)
-    - [Clearing all entries : `clear`](#clearing-all-entries--clear)
-    - [Exiting the program : `exit`](#exiting-the-program--exit)
-    - [Saving the data](#saving-the-data)
-    - [Editing the data file](#editing-the-data-file)
-    - [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
+  - [Viewing help : `help`](#viewing-help--help)
+  - [Adding a person: `add`](#adding-a-person-add)
+  - [Listing all persons : `list`](#listing-all-persons--list)
+  - [Editing a person : `edit`](#editing-a-person--edit)
+  - [Locating persons by name: `find`](#locating-persons-by-name-find)
+  - [Deleting a person : `delete`](#deleting-a-person--delete)
+  - [Clearing all entries : `clear`](#clearing-all-entries--clear)
+  - [Exiting the program : `exit`](#exiting-the-program--exit)
+  - [Saving the data](#saving-the-data)
+  - [Editing the data file](#editing-the-data-file)
+  - [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `fails.jar` from [~~here~~](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases) (*coming
-   soon*).
+1. Download the latest `fails.jar` from [~~here~~](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases) (_coming
+   soon_).
 
-1. Copy the file to the folder you want to use as the *home folder* for your FAILS.
+1. Copy the file to the folder you want to use as the _home folder_ for your FAILS.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar fails.jar` command to
    run the application.<br>
@@ -47,31 +47,31 @@ GUI). If you can type fast, FAILS can get your contact management tasks done fas
    open the help window.<br>
    Some example commands you can try:
 
-    - `list` : Lists all contacts.
+   - `list` : Lists all contacts.
 
-    - `add n/Jaden Ng p/91297723 e/jadend@gmail.com a/Smith street, block 13, #07-04 r/3SG u/alpha c/SIR pl/4` adds a
-      new person `Jaden Ng` to the FAILS with the following information:
+   - `add n/Jaden Ng p/91297723 e/jadend@gmail.com a/Smith street, block 13, #07-04 r/3SG u/alpha c/SIR pl/4` adds a
+     new person `Jaden Ng` to the FAILS with the following information:
 
-      | Field        | Value                          |
-                        |--------------|--------------------------------|
-      | name         | Jaden Ng                       |
-      | phone number | 91297723                       |
-      | email        | jadend@gmail.com               |
-      | address      | Smith street, block 13, #07-04 |
-      | rank         | 3SG                            |
-      | unit         | alpha                          |
-      | company      | SIR                            |
-      | platoon      | 4                              |
+     | Field        | Value                          |
+     | ------------ | ------------------------------ |
+     | name         | Jaden Ng                       |
+     | phone number | 91297723                       |
+     | email        | jadend@gmail.com               |
+     | address      | Smith street, block 13, #07-04 |
+     | rank         | 3SG                            |
+     | unit         | alpha                          |
+     | company      | SIR                            |
+     | platoon      | 4                              |
 
-    - `delete 3` : Deletes the 3rd contact shown in the current list.
+   - `delete 3` : Deletes the 3rd contact shown in the current list.
 
-    - `clear` : Deletes all contacts.
+   - `clear` : Deletes all contacts.
 
-    - `exit` : Exits the app.
+   - `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Features
 
@@ -127,7 +127,7 @@ Examples:
   person `Jaden Ng` to the FAILS with the following information:
 
   | Field        | Value                          |
-        |--------------|--------------------------------|
+  | ------------ | ------------------------------ |
   | name         | Jaden Ng                       |
   | phone number | 91297723                       |
   | email        | jadend@gmail.com               |
@@ -140,16 +140,16 @@ Examples:
 - `add n/Lawrence Tay t/platoon-leader e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 r/3SG u/801 t/allergy-seafood`
   adds a new person `Lawrence Tay` to the FAILS with the following information:
 
-  | Field        | Value                  |
-        |--------------|------------------------|
-  | name         | Lawrence Tay           |
-  | phone number | 91649723               |
-  | email        | lawrencetay@gmail.com  |
-  | address      | 124 Drummond Street    |
-  | rank         | 3SG                    |
-  | unit         | 801                    |
-  | tag          | platoon-leader         |
-  | tag          | allergy-seafood        |
+  | Field        | Value                 |
+  | ------------ | --------------------- |
+  | name         | Lawrence Tay          |
+  | phone number | 91649723              |
+  | email        | lawrencetay@gmail.com |
+  | address      | 124 Drummond Street   |
+  | rank         | 3SG                   |
+  | unit         | 801                   |
+  | tag          | platoon-leader        |
+  | tag          | allergy-seafood       |
 
 ### Listing all persons : `list`
 
@@ -242,9 +242,9 @@ start with an empty data file at the next run.
 
 ### Archiving data files `[coming in v2.0]`
 
-(*coming soon*)
+(_coming soon_)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## FAQ
 
@@ -252,16 +252,16 @@ start with an empty data file at the next run.
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous FAILS home folder.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Command summary
 
- Action     | Format, Examples                                                                                                                                                                                                                       
-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/RCT u/BRAVO c/207 pl/1` 
- **Clear**  | `clear`                                                                                                                                                                                                                                
- **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                    
- **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                            
- **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                             
- **List**   | `list`                                                                                                                                                                                                                                 
- **Help**   | `help`                                                                                                                                                                                                                                 
+| Action     | Format, Examples                                                                                                                                                                                                                       |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/RCT u/BRAVO c/207 pl/1` |
+| **Clear**  | `clear`                                                                                                                                                                                                                                |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                    |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                 |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                             |
+| **List**   | `list`                                                                                                                                                                                                                                 |
+| **Help**   | `help`                                                                                                                                                                                                                                 |
