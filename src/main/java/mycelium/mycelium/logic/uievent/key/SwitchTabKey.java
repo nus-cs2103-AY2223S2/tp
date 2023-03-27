@@ -5,9 +5,9 @@ import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.ui.MainWindow;
 
 /**
- * SwitchKey is the key combination to switch between the entity panel tabs.
+ * SwitchTabKey is the key combination to switch between the tabs within a panel.
  */
-public class SwitchKey extends Key {
+public class SwitchTabKey extends Key {
     public static final KeyCombination KEY_COMBINATION = KeyCombination.valueOf("Ctrl+L");
 
     @Override

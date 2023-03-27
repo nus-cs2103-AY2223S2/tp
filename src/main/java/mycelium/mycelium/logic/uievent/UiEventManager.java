@@ -12,7 +12,8 @@ import mycelium.mycelium.logic.uievent.key.NextItemKey;
 import mycelium.mycelium.logic.uievent.key.PrevItemKey;
 import mycelium.mycelium.logic.uievent.key.QuitKey;
 import mycelium.mycelium.logic.uievent.key.StartOfLineKey;
-import mycelium.mycelium.logic.uievent.key.SwitchKey;
+import mycelium.mycelium.logic.uievent.key.SwitchPanelKey;
+import mycelium.mycelium.logic.uievent.key.SwitchTabKey;
 import mycelium.mycelium.logic.uievent.key.TabKey;
 import mycelium.mycelium.ui.MainWindow;
 
@@ -44,8 +45,10 @@ public class UiEventManager implements UiEvent {
             new HelpKey().execute(logic, mainWindow);
         } else if (FindKey.KEY_COMBINATION.match(event)) {
             new FindKey().execute(logic, mainWindow);
-        } else if (SwitchKey.KEY_COMBINATION.match(event)) {
-            new SwitchKey().execute(logic, mainWindow);
+        } else if (SwitchPanelKey.KEY_COMBINATION.match(event)) {
+            new SwitchPanelKey().execute(logic, mainWindow);
+        } else if (SwitchTabKey.KEY_COMBINATION.match(event)) {
+            new SwitchTabKey().execute(logic, mainWindow);
         } else if (NextItemKey.KEY_COMBINATION.match(event)) {
             new NextItemKey().execute(logic, mainWindow);
         } else if (PrevItemKey.KEY_COMBINATION.match(event)) {
