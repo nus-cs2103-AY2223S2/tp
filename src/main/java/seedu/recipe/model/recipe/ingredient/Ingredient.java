@@ -55,8 +55,9 @@ public class Ingredient implements Comparable<Ingredient> {
     }
 
     @Override
+    // converting all char in IngredientName to lowercase to make it such that hashing is case insensitive
     public int hashCode() {
-        return Objects.hash(name, commonName);
+        return Objects.hash(name.toLowerCase());
     }
 
     @Override
@@ -71,7 +72,7 @@ public class Ingredient implements Comparable<Ingredient> {
     public boolean equals(Object o) {
         return o == this
             || o instanceof Ingredient
-            && ((Ingredient) o).name.equals(this.name);
+            && ((Ingredient) o).name.equalsIgnoreCase(this.name);
     }
 
     @Override
