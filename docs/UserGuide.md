@@ -333,8 +333,17 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer? \
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Paidlancers home folder.
+**Q**: How do I transfer my data to another Computer?
+1. Follow the quickstart guide until step 3.
+2. In the same _home folder_ as your Paidlancers, copy the old data folder from your old computer to the new computer.
+   - Your _home folder_ should contain the following files and folders:
+    ```    
+       Paidlancers.jar
+       data/
+           contactlist.json
+           eventbook.json
+    ```
+3. Run the jar file as per usual!
 
 --------------------------------------------------------------------------------------------------------------------
 
