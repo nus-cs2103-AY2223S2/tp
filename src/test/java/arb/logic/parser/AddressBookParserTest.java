@@ -115,6 +115,9 @@ public class AddressBookParserTest {
         for (String commandWord : EditClientCommand.getCommandWords()) {
             Client client = new ClientBuilder().build();
             EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
+            /* assert false : commandWord + " "
+                    + INDEX_FIRST.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor); */
+
             EditClientCommand command = (EditClientCommand) parser.parseCommand(commandWord + " "
                     + INDEX_FIRST.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
             assertEquals(new EditClientCommand(INDEX_FIRST, descriptor), command);
@@ -126,6 +129,9 @@ public class AddressBookParserTest {
         for (String commandWord : EditProjectCommand.getCommandWords()) {
             Project project = new ProjectBuilder().build();
             EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(project).build();
+            /*assert false : commandWord + " "
+                    + INDEX_FIRST.getOneBased() + " "
+                    + ProjectUtil.getEditProjectDescriptorDetails(descriptor); */
             EditProjectCommand command = (EditProjectCommand) parser
                     .parseCommand(commandWord + " "
                     + INDEX_FIRST.getOneBased() + " "

@@ -63,10 +63,14 @@ public class ProjectUtil {
     public static String getEditProjectDescriptorDetails(EditProjectDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_NAME).append(title.fullTitle).append(" "));
-        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE)
-                .append(deadline.toString()).append(" "));
-        descriptor.getPrice().ifPresent(price -> sb.append(PREFIX_PRICE)
-                .append(price.getPrice().toString()).append(" "));
+        /* descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE)
+                .append(deadline.toString()).append(" ")); */
+        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE
+                + deadline.map(d -> d.toString()).orElse("") + " "));
+        /*descriptor.getPrice().ifPresent(price -> sb.append(PREFIX_PRICE)
+                .append(price.toString()).append(" ")); */
+        descriptor.getPrice().ifPresent(price -> sb.append(PREFIX_PRICE
+                + price.map(p -> p.getPrice().toString()).orElse("") + " "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

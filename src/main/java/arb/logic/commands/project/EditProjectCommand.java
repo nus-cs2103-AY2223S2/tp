@@ -129,8 +129,18 @@ public class EditProjectCommand extends Command {
         assert projectToEdit != null;
 
         Title updatedTitle = editProjectDescriptor.getTitle().orElse(projectToEdit.getTitle());
-        Deadline updatedDeadline = editProjectDescriptor.getDeadline().orElse(projectToEdit.getDeadline());
-        Price updatedPrice = editProjectDescriptor.getPrice().orElse(projectToEdit.getPrice());
+        Optional<Optional<Deadline>> optionalUpdatedDeadline = editProjectDescriptor.getDeadline();
+        Deadline updatedDeadline = projectToEdit.getDeadline();
+        if (optionalUpdatedDeadline.isPresent()) {
+            updatedDeadline = optionalUpdatedDeadline.get().orElse(null);
+        }
+
+        Optional<Optional<Price>> optionalUpdatedPrice = editProjectDescriptor.getPrice();
+        Price updatedPrice = projectToEdit.getPrice();
+        if (optionalUpdatedPrice.isPresent()) {
+            updatedPrice = optionalUpdatedPrice.get().orElse(null);
+        }
+
         Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
 
         return new Project(updatedTitle, updatedDeadline, updatedPrice, updatedTags);
@@ -168,8 +178,8 @@ public class EditProjectCommand extends Command {
      */
     public static class EditProjectDescriptor {
         private Title title;
-        private Deadline deadline;
-        private Price price;
+        private Optional<Deadline> deadline = null;
+        private Optional<Price> price = null;
 
         private Set<Tag> tags;
 
@@ -182,8 +192,8 @@ public class EditProjectCommand extends Command {
          */
         public EditProjectDescriptor(EditProjectDescriptor toCopy) {
             setTitle(toCopy.title);
-            setDeadline(toCopy.deadline);
-            setPrice(toCopy.price);
+            this.deadline = toCopy.deadline;
+            this.price = toCopy.price;
             setTags(toCopy.tags);
             setClient(toCopy.clientName);
         }
@@ -200,11 +210,11 @@ public class EditProjectCommand extends Command {
         }
 
         public void setDeadline(Deadline deadline) {
-            this.deadline = deadline;
+            this.deadline = Optional.ofNullable(deadline);
         }
 
         public void setPrice(Price price) {
-            this.price = price;
+            this.price = Optional.ofNullable(price);
         }
 
         public void setClient(String clientName) {
@@ -215,11 +225,11 @@ public class EditProjectCommand extends Command {
             return Optional.ofNullable(title);
         }
 
-        public Optional<Deadline> getDeadline() {
-            return Optional.ofNullable(deadline);
+        public Optional<Optional<Deadline>> getDeadline() {
+            return Optional.ofNullable(this.deadline);
         }
 
-        public Optional<Price> getPrice() {
+        public Optional<Optional<Price>> getPrice() {
             return Optional.ofNullable(price);
         }
 

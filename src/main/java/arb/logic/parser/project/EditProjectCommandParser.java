@@ -52,10 +52,12 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
         if (argumentMultimap.getValue(PREFIX_NAME).isPresent()) {
             editProjectDescriptor.setTitle(ParserUtil.parseTitle(argumentMultimap.getValue(PREFIX_NAME).get()));
         }
+
         if (argumentMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             editProjectDescriptor.setDeadline(ParserUtil.parseDeadline(argumentMultimap.getValue(PREFIX_DEADLINE)
                                                                                         .get()));
         }
+
         if (argumentMultimap.getValue(PREFIX_PRICE).isPresent()) {
             editProjectDescriptor.setPrice(ParserUtil.parsePrice(argumentMultimap.getValue(PREFIX_PRICE)
                     .get()));
