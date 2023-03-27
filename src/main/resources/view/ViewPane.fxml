@@ -45,6 +45,11 @@
                 </padding>
             </Label>
             <Label fx:id="drugAllergy" prefHeight="37.0" prefWidth="316.0" styleClass="cell_small_label" text="$drugAllergy" />
+            <FlowPane fx:id="medicines">
+                <padding>
+                    <Insets bottom="2.0" top="5.0"/>
+                </padding>
+            </FlowPane>
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
             </GridPane.margin>
