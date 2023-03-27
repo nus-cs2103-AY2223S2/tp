@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User enters find command;
+if () then ([Name flag
+present])
+    :Create Name Predicate;
+endif
+if () then ([Phone flag
+present])
+    :Create Phone Predicate;
+endif
+
+if () then ([else])
+:Apply logical AND to all existing Predicates;
+:Find command successfully executes;
+stop
+else ([No flag present])
+:Error: Invalid command format;
+stop
+@enduml

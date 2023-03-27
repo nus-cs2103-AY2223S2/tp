@@ -1,4 +1,8 @@
-## Table of contents
+---
+layout: page
+title: User Guide
+---
+# HMHero User Guide
 
 1. [About HMHero](#1-about-hmhero)
 2. [Features](#2-features)
@@ -19,19 +23,19 @@
    * 5.4. [Trying your First Command](#54-trying-your-first-command)
 6. [Commands](#6-commands)
    * 6.1. [Applicant Commands](#61-applicant-commands)
-     * 6.1.1. [Create a new applicant](#611-create-a-new-applicant--add)
-     * 6.1.2. [Search for an applicant](#612-search-for-an-applicant--find)
-     * 6.1.3. [List all applicants](#613-list-all-applicants--list)
-     * 6.1.4. [Delete an applicant](#614-delete-an-applicant--delete)
-     * 6.1.5. [Advance an applicant](#615-advance-an-applicant--advance)
-     * 6.1.6. [Reject an applicant](#616-reject-an-applicant--reject)
-     * 6.1.7. [List all interview dates of applicants](#617-list-all-interview-dates-of-applicants--interview)
-     * 6.1.8. [Edit an existing applicant](#618-edit-an-existing-applicant--edit)
-     * 6.1.9. [Remind upcoming interviews](#619-remind-upcoming-interviews--remind)
+     * 6.1.1. [Create a new applicant `add`](#611-create-a-new-applicant-add)
+     * 6.1.2. [Search for an applicant `find`](#612-search-for-an-applicant-find)
+     * 6.1.3. [List all applicants `list`](#613-list-all-applicants-list)
+     * 6.1.4. [Delete an applicant `delete`](#614-delete-an-applicant-delete)
+     * 6.1.5. [Advance an applicant `advance`](#615-advance-an-applicant-advance)
+     * 6.1.6. [Reject an applicant `reject`](#616-reject-an-applicant-reject)
+     * 6.1.7. [List all interview dates of applicants `interview`](#617-list-all-interview-dates-of-applicants-interview)
+     * 6.1.8. [Edit an existing applicant `edit`](#618-edit-an-existing-applicant-edit)
+     * 6.1.9. [Remind upcoming interviews `remind`](#619-remind-upcoming-interviews-remind)
    * 6.2. [Statistic Commands](#62-statistics-commands)
    * 6.3. [General Commands](#63-general-commands)
-     * 6.3.1. [Receive help during usage](#631-receive-help-during-usage--help)
-     * 6.3.2. [Exit HMHero](#632-exit-hmhero--exit)
+     * 6.3.1. [Receive help during usage `help`](#631-receive-help-during-usage-help)
+     * 6.3.2. [Exit HMHero `exit`](#632-exit-hmhero-exit)
 7. [Command summary](#7-command-summary)
    * 7.1. [Applicant Commands](#71-applicant-commands)
    * 7.2. [Statistics Commands](#72-statistics-commands)
@@ -72,6 +76,8 @@ HMHero empowers you to manage applicants during hiring process.
 4. Filter all applicants based on their skill-sets.
 5. View all applicants that have interviews coming up in three days.
 
+---
+
 ### 2.2 Hiring Process Analytics
 
 HMHero provides straightforward analysis on your hiring process to streamline and make your hiring process more efficient.
@@ -79,7 +85,7 @@ HMHero provides straightforward analysis on your hiring process to streamline an
 1. Find out how many applicants are accepted out of total applicants.
 2. Find out the average time taken to process each applicant.
 
-[Back to Table of Contents](#table-of-contents)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -87,7 +93,7 @@ HMHero provides straightforward analysis on your hiring process to streamline an
 
 Thank you for choosing HMHero! We believe that our product will be of use in the journey of your company's growth.
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong>
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 We highly recommend that you read through this User Guide in **sequential order** to get a thorough understanding
 of how to use HMHero.
 </div>
@@ -110,48 +116,53 @@ If you are stuck, please refer to the section on [Troubleshooting](#8-troublesho
 
 You can also refer to the [Glossary](#11-glossary) for definitions of commonly used terminologies in HMHero.
 
-<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong>
+<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
 To aid in your navigation, we have included the a [Back to Table of Contents](#table-of-contents) link in every
 sub-section in this User Guide so that it is easy for you to jump across different sections!
 </div>
 
-<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong>
+<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
 This User Guide contains many clickable links for you to navigate around different sections.
 You may use the keyboard shortcuts <code>Alt + Left arrow</code>  and <code>Alt + Right arrow</code>
 to navigate back and forth between the links quickly. (<code>Command + Left arrow</code> and
 <code>Command + Right arrow</code> if you are using Mac).
 </div>
 
-[Back to Table of Contents](#table-of-contents)
+[Back to Table of Contents](#hmhero-user-guide)
+
+---
 
 ### 3.1 Admonition Boxes
 
 In this guide, you will often come across colored boxes containing text that will aid you in better understanding
 how to use each feature.
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong>
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 Highlight and display information you should pay attention to. </div>
 
 
-<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong>
+<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
 Highlight tips which you might find useful. </div>
 
 
-<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
+<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong> <br>
 Highlight dangers and things to look out for. </div>
 
-[Back to Table of Contents](#table-of-contents)
+[Back to Table of Contents](#hmhero-user-guide)
+
+---
 
 ### 3.2 Miscellaneous Notations
 
 Other than the icons mentioned above, there are also some other notations used in this guide:
 
-- <a href> Phrases underlined in blue </a> are hyperlinks that will bring you to another part of
+- <a href> Phrases coloured in blue </a> are hyperlinks that will bring you to another part of
 this documentation that is relevant to the phrase.
 
-[Back to Table of Contents](#table-of-contents)
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
+
 ## 4. Installation
 
 1. Ensure you have downloaded `Java 11` or above installed in your computer. If you have not, you may download it [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html).
@@ -163,13 +174,12 @@ will reside in.
 
 **(To Insert Picture of Launch Screen)**
 
-<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
+<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong> <br>
 Ensure that the file is added to an empty folder as additional data and configuration files will be created when HMHero
 is launched for the first time in your computer!
 </div>
 
-<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
-
+<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong> <br>
 You will notice that a folder called "data" would have been created in the same folder as <code>hmhero.jar</code>.
 Do not edit this file because doing so might result in a corruption of your data, causing the application to fail!
 </div>
@@ -178,16 +188,16 @@ Not sure where to start? The following section on [Quick Start](#5-quick-start) 
 after you have launched it for the first time. Feel free to skip to the next section on [Commands](#6-commands) if you
 are already familiar with the application!
 
-[Back to Table of Contents](#table-of-contents)
-
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
-
 ## 5. Quick Start
-This section covers everything you should know about HMHero, as well as a tutorial on [trying your first command](#54-trying-your-first-command).
-Of special note is the [Key Definitions](#52-key-definitions) and [Command Format](#53-command-format) sections, which covers essential knowledge to using
-HMHero's features.
+This section covers everything you should know about HMHero, as well as a tutorial on 
+[trying your first command](#54-trying-your-first-command). The special note is the 
+[Key Definitions](#52-key-definitions) and [Command Format](#53-command-format) sections, 
+which covers essential knowledge to using HMHero's features.
+
 
 ### 5.1 User Interface
 When you launch HMHero, HMHero appears on your screen as a Graphical User Interface(GUI). Let's explore the
@@ -208,6 +218,10 @@ The Help Window looks like the following:
 
 ![help_window.png](images%2Fhelp_window.png)
 
+[Back to Table of Contents](#hmhero-user-guide)
+
+---
+
 ### 5.2 Key Definitions
 
 #### 5.2.1 Applicant
@@ -224,6 +238,11 @@ The following are the attributes stored for each `Applicant`
 
 Applicants are unique by name and phone number and Case Sensitive.
 This means you cannot add two or more applicants of the same name and phone number.
+
+
+[Back to Table of Contents](#hmhero-user-guide)
+
+---
 
 #### 5.2.2 Notes
 
@@ -242,12 +261,16 @@ can include:
 HMHero's Notes are unique by name and are case-sensitive. This means you cannot add two or more notes of
 the same name.
 
+[Back to Table of Contents](#hmhero-user-guide)
+
+---
+
 #### 5.2.3 Flags
 Flags are delimiters that enable HMHero to distinguish different parameters without ambiguity.
 
 You could put in the corresponding [Placeholder](#524-placeholders) immediately after each flag.
 
-<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong>
+<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
 You may find the following image taken from the subsequent <a href> Command Format </a> section helpful:
 <img src="/Users/merrick/Documents/NUS/Y2S2/CS2103T/tp/docs/images/CommandExample.png">
 </div>
@@ -267,6 +290,10 @@ These placeholders follow immediately after a [Flag](#523-flags).
 Please refer to the subsequent [Command Format](#53-command-format) section to see how [Flags](#523-flags)
 and [Placeholders](#524-placeholders) are used together.
 
+[Back to Table of Contents](#hmhero-user-guide)
+
+---
+
 #### 5.2.4 Placeholders
 Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
 These placeholders follow immediately after a [Flag](#523-flags).
@@ -283,6 +310,10 @@ section to see how Flags and Placeholders are used together.
 | NOTE         | note/              | The NOTE is the term we use to identify a skill of an Applicant.                             |
 | DATETIME     | d/                 | The DATETIME is the datetime indicating the interview datetime of the Applicant.             |
 
+[Back to Table of Contents](#hmhero-user-guide)
+
+---
+
 ### 5.3 Command Format
 You will encounter HMHero commands throughout this User Guide.
 Before you delve into the different commands in Commands, let’s learn what a command consists of.
@@ -293,7 +324,11 @@ A command consists of:
 Command Word: Tells HMHero what action you wish to execute. These actions are covered in [Commands](#6-commands).
 [Flags](#523-flags): Distinguishes between inputs. A flag is usually followed by a placeholder.
 [Placeholders](#524-placeholders): Represents data that you wish to input. Replace this with valid data.
-For example, ITEM_NAME in n/ITEM_NAME can be replaced with n/Potato.
+For example, `NAME` in `n/NAME` can be replaced with `n/John`.
+
+[Back to Table of Contents](#hmhero-user-guide)
+
+---
 
 
 ### 5.4 Trying your First Command
@@ -321,7 +356,7 @@ have a default value based on the commands. These are documented in the [Command
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-The [Placeholder](#placeholders) section covers the restrictions for respective placeholders. For example, 
+The [Placeholder](#524-placeholders) section covers the restrictions for respective placeholders. For example, 
 the date format of PHONE, certain characters you cannot use and the limit and precision of numbers. 
 </div>
 
@@ -362,7 +397,7 @@ However, note that the following executions are invalid:
 
 * `addn/Thomasp/91918153e/thomas@gmail.coma/6 Sims Drive (s)543230`
 
-  There must be between the placeholders and flags.
+  There must be spacings between the placeholders and flags.
 
 * `add n/ThomaŚ p/91918153 e/thomas@gmail.com a/6 Sims Drivè (s)543230`
 
@@ -406,6 +441,9 @@ Here is a checklist you can use before running a command:
 * [ ] I know the restrictions of each parameter
 * [ ] I know the effects of not specifying each optional flag.
 
+[Back to Table of Contents](#hmhero-user-guide)
+
+---
 
 ## 6. Commands
 
@@ -422,18 +460,20 @@ What you should expect to find:
 * Important points to note
 
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
-    <li>For each command, "Format" indicates the syntax of the command.</li>
+<li> For each command, "Format" indicates the syntax of the command.</li>
     <li>Square brackets indicates an optional parameter.</li>
     <li>In most commands, if the same parameter is repeated and only one is required, we take the last value provided.
 </li> 
 </ul>
 </div>
 
+[Back to Table of Contents](#hmhero-user-guide)
+
 ### 6.1 Applicant Commands
 
-#### 6.1.1 Create a new applicant: `add`
+#### 6.1.1 Create a new applicant `add`
 
 **Format**: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`
 
@@ -447,9 +487,11 @@ What you should expect to find:
 * The value of `NOTE` will be `-` if it is not provided.
 
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-<li> If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-</li> </div>
+<div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<ul>
+    <li> If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
+</li> 
+</ul> </div>
 
 
 **Example:**
@@ -470,10 +512,12 @@ New person added: Thomas; Phone: 91918153; Email: thomas@gmail.com;
 Address: 6 Sims Drive (s)543230; Status: APPLIED
 ```
 
+[Back to Table of Contents](#hmhero-user-guide)
+
 ---
 
 
-#### 6.1.2 Search for an applicant: `find`
+#### 6.1.2 Search for an applicant `find`
 
 **Format**: `find n/[KEY] p/[KEY] note/[KEY]`
 
@@ -484,26 +528,26 @@ Address: 6 Sims Drive (s)543230; Status: APPLIED
   In this case, at least one `KEY` is required.
 * The `n/[KEY]` and `note/[KEY]` are case-insensitive. (e.g. "apples" will match "Apples").
 * The result will be applicants where each of the `KEY` are present in the `NAME` or `PHONE` or `NOTE`.
-  (e.g. "Thomas" will match "Thomas Lee", "Thomas", "Thomas Tan" and "Thomas Lim",
-  "91918153" will only match "91918153", "java" will match "java" and "javas")
+  (e.g. "Thomas" will only match "Thomas", "91918153" will only match "91918153", "java" will only match "java")
 
 
-<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
-<li> You can use the [List Command](#List) in the next section to display all applicants again!
-</li> </div> 
+<div class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
+<ul>
+    <li> You can use the [List Command](#List) in the next section to display all applicants again!</li> 
+</ul> </div>
 
-
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-<li> The `find` command only finds `Applicants` which has a name, phone or both that fully matches the specified search
-  of part of the name, phone or both! </li>
-<li> This means that if the `NAME` `Thomas Lee` and `Thomas Tan` is in HMHero,
-  executing `Thomas` will find these two `Applicants`. </li>
-<li> This also means that if the `PHONE` `91918153` and `9191` is in HMHero, executing `91918153` will only find
-  `PHONE` `91918153`. </li>
-<li> If you try to find an `NAME` `Thomas` by executing the command `Thomas Lee`, it will still work! </li>
-<li> However, if you try to find an `PHONE` `91918153` by executing the command `919181532`, it will not work! </li>
-<li> If you try to find `Applicants` using both `NAME` and `PHONE`, it will work the same as finding individually! </li>
-</div>
+<div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<ul>
+    <li> The <code>find</code> command only finds <code>Applicants</code> which has a name, phone or both 
+that fully matches the specified search of the full name, phone or both!</li>
+    <li> This means that if the <code>NAME</code> <code>Thomas Lee</code> and <code>Thomas Tan</code> is in HMHero, 
+executing <code>Thomas Lee</code> will only find <code>Thomas Lee</code>. </li>
+    <li> This also means that if the <code>PHONE</code> <code>91918153</code> and <code>9191</code> is in HMHero, 
+executing <code>91918153</code> will only find <code>PHONE</code> <code>91918153</code>. </li>
+    <li> If you try to find <code>Applicants</code> using both <code>NAME</code> and <code>PHONE</code>,
+it will work the same as finding individually! 
+</li>
+</ul> </div>
 
 **Example:**
 
@@ -530,10 +574,13 @@ find n/Thomas p/98765432
 1. Thomas, REJECTED, 98765432, thomas@gmail.com, 6 Sims Drive (s)543230
 2. Marry, APPLIED, 98765432, marry@gmail.com, 5 Sims Drive (s)542333
 ```
+
+[Back to Table of Contents](#hmhero-user-guide)
+
 ---
 
 
-#### 6.1.3. List all applicants: `list`
+#### 6.1.3. List all applicants `list`
 
 **Format**: `list`
 
@@ -563,7 +610,7 @@ list
 **Command Output Box:**
 ```
 Listed all applicants
-- Total Applicants: 4
+Total Applicants: 4
 - Applied: 1
 - Shortlisted: 1
 - Accepted: 1
@@ -574,10 +621,13 @@ Listed all applicants
 3. Thomas Tan, ACCEPTED, 91918153, thomastan@gmail.com, 4 Sims Drive (s)543231
 4. Thoma, SHORTLISTED, 98231234, thoma@gmail.com, 7 Sims Drive (s)543521
 ```
+
+[Back to Table of Contents](#hmhero-user-guide)
+
 ---
 
 
-#### 6.1.4. Delete an applicant: `delete`
+#### 6.1.4. Delete an applicant `delete`
 
 **Format**: `delete n/NAME p/PHONE`
 
@@ -587,9 +637,11 @@ Listed all applicants
 * All fields are compulsory.
 
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-<li> The `delete` command only deletes `Applicant` which has a name and phone that fully matches the specified search.
-</li> </div>
+<div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<ul>
+    <li> The <code>delete</code> command only deletes <code>Applicant</code> which has a name and phone 
+that fully matches the specified search.</li> 
+</ul> </div>
 
 
 **Example:**
@@ -600,8 +652,8 @@ HMHero contains the following applicants, each with their own attributes:
 
 1. Thomas Tan, 91918153
 2. Thomas, 91918153
-3. Marry, 98765432
-4. Thoma, 98231234
+3. John, 98765432
+4. Amy, 98231234
 
 **Command Input Box:**
 
@@ -616,10 +668,12 @@ Deleted Person: Thomas; Phone: 91918153; Email: thomas@gmail.com;
 Address: 6 Sims Drive (s)543230; Status: REJECTED`
 ```
 
+[Back to Table of Contents](#hmhero-user-guide)
+
 ---
 
 
-#### 6.1.5. Advance an applicant: `advance`
+#### 6.1.5. Advance an applicant `advance`
 
 **Format**: `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]`
 
@@ -630,23 +684,27 @@ Address: 6 Sims Drive (s)543230; Status: REJECTED`
 * [INTERVIEW DATETIME] is compulsory when the initial `status` is `APPLIED`.
 
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-<li> The `advance` command only advances `Applicant` which has a name and phone that fully matches the specified search.
-</li> 
-<li> The `INTERVIEW DATETIME` is required to advance `Applicant` from `status` `APPLIED` to `status` `SHORTLISTED`.
-</li> 
-<li> However, `INTERVIEW DATETIME` is not required to advance `Applicant` from `status` `SHORTLISTED`
-to `status` `ACCEPTED`. </li>
-<li> The format for `INTERVIEW DATETIME` should follow: "dd-mm-yyyy HH:MM".
-</li> 
+<div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
-<li> “dd”: Day of the month. For example, “10” would represent the 10th day of the month. </li>
-<li> “mm”: Month of the year, ranging from 1 to 12 for January to December respectively. 
+    <li>The <code>advance</code> command only advances <code>Applicant</code> which has a name and phone that
+fully matches the specified search.</li> 
+    <li> The <code>INTERVIEW DATETIME</code> is required to advance <code>Applicant</code> from <code>status</code>
+<code>APPLIED</code> to <code>status</code> <code>SHORTLISTED</code>.
+</li> 
+    <li> However, <code>INTERVIEW DATETIME</code> is not required to advance <code>Applicant</code> from <code>status
+</code> <code>SHORTLISTED</code> to <code>status</code> <code>ACCEPTED</code>. </li>
+    <li> The format for <code>INTERVIEW DATETIME</code> should follow: "dd-mm-yyyy HH:MM".
+        <ul>
+            <li> “dd”: Day of the month. For example, “10” would represent the 10th day of the month. </li>
+            <li> “mm”: Month of the year, ranging from 1 to 12 for January to December respectively.
 For example, “05” would represent May. </li>
-<li> “yyyy”: A 4-digit year. For example, “2023” would represent the year 2023. </li>
-<li> "HH": Hour of the day, ranging from 0-23 in 24-hour clock format. 
-For example, "15" would represent 15th hour of the day. </li>
-<li> "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 59th minute of the hour. </li>
+            <li> “yyyy”: A 4-digit year. For example, “2023” would represent the year 2023. </li>
+            <li> "HH": Hour of the day, ranging from 0-23 in 24-hour clock format. 
+            For example, "15" would represent 15th hour of the day. </li>
+            <li> "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 50th minute of the 
+hour.</li>
+        </ul> 
+    </li> 
 </ul> </div>
 
 
@@ -675,10 +733,13 @@ Thomas, SHORTLISTED 20-03-2023 12:12, 91918153, thomas@gmail.com, 6 Sims Drive (
 
 Thomas, ACCEPTED, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230
 ```
+
+[Back to Table of Contents](#hmhero-user-guide)
+
 ---
 
 
-#### 6.1.6. Reject an applicant: `reject`
+#### 6.1.6. Reject an applicant `reject`
 
 **Format**: `reject n/NAME p/PHONE`
 
@@ -688,11 +749,14 @@ Thomas, ACCEPTED, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230
 * All fields are compulsory.
 
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-<li> The `reject` command only rejects `Applicant` which has a name and phone that fully matches the specified search.
-</li> 
-<li> The `NAME` and `PHONE `is required to reject `Applicant` from `status` `APPLIED`, `SHORTLISTED` and `ACCEPTED`
-to `status` `REJECTED`. </li> </div>
+<div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<ul>
+    <li> The <code>reject</code> command only rejects <code>Applicant</code> which has a name and phone that 
+fully matches the specified search.</li> 
+    <li> The <code>NAME</code> and <code>PHONE</code> is required to reject <code>Applicant</code> from <code>status</code> 
+<code>APPLIED</code>, <code>SHORTLISTED</code> and <code>ACCEPTED</code> to <code>status</code> <code>REJECTED</code>.
+    </li> 
+</ul> </div>
 
 
 **Example:**
@@ -717,9 +781,12 @@ Rejected Applicant: Thomas
 
 1. Thomas, REJECTED 20-03-2023 12:12, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230
 ```
+
+[Back to Table of Contents](#hmhero-user-guide)
+
 ---
 
-#### 6.1.7. List all interview dates of applicants: `interview`
+#### 6.1.7. List all interview dates of applicants `interview`
 
 **Format**: `interview`
 
@@ -738,7 +805,7 @@ HMHero contains the following applicants, each with their own attributes:
 
 1. Thomas Tan, SHORTLISTED 19-03-2023 12:12, 91918153, 
 2. Thomas, SHORTLISTED 18-03-2023 12:12, 98765432 
-3. Marry, SHORTLISTED 21-03-2023 12:12, 98765432
+3. Amy, SHORTLISTED 21-03-2023 12:12, 98765432
 
 **Command Input Box:**
 
@@ -752,12 +819,15 @@ Listed all shortlisted applicants
 
 1. Thomas, SHORTLISTED 18-03-2023 12:12, 98765432, thomas@gmail.com, 6 Sims Drive (s)543230
 2. Thomas Tan, SHORTLISTED 19-03-2023 12:12, 91918153, thomastan@gmail.com, 4 Sims Drive (s)543231
-3. Marry, SHORTLISTED 21-03-2023 12:12, 98765432, marry@gmail.com, 5 Sims Drive (s)542333
+3. Amy, SHORTLISTED 21-03-2023 12:12, 98765432, marry@gmail.com, 5 Sims Drive (s)542333
 ```
+
+[Back to Table of Contents](#hmhero-user-guide)
+
 ---
 
 
-#### 6.1.8. Edit an existing applicant: `edit`
+#### 6.1.8. Edit an existing applicant `edit`
 
 **Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATETIME] [note/NOTE]`
 
@@ -767,18 +837,23 @@ Listed all shortlisted applicants
 * If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
 * However, if two or more values of `NOTE` are provided, both parameter will be taken in.
 
-< markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-<li> All fields apart from `INDEX` are optional. However, you need to include at least one optional parameter. </li>
-<li> The format for `INTERVIEW DATETIME` should follow: "dd-mm-yyyy HH:MM". </li>
-<ul> 
-<li> “dd”: Day of the month. For example, “10” would represent the 10th day of the month. </li>
-<li> “mm”: Month of the year, ranging from 1 to 12 for January to December respectively.
+<div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+<ul>
+    <li> All fields apart from <code>INDEX</code> are optional. However, you need to include at least one optional 
+parameter. </li>
+    <li> The format for <code>INTERVIEW DATETIME</code> should follow: "dd-mm-yyyy HH:MM".
+        <ul> 
+            <li> “dd”: Day of the month. For example, “10” would represent the 10th day of the month. </li>
+            <li> “mm”: Month of the year, ranging from 1 to 12 for January to December respectively.
 For example, “05” would represent May. </li>
-<li> “yyyy”: A 4-digit year. For example, “2023” would represent the year 2023. </li>
-<li> "HH": Hour of the day, ranging from 0-23 in 24-hour clock format. 
+            <li> “yyyy”: A 4-digit year. For example, “2023” would represent the year 2023. </li>
+            <li> "HH": Hour of the day, ranging from 0-23 in 24-hour clock format. 
 For example, "15" would represent 15th hour of the day. </li>
-<li> "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 59th minute of the hour. </li> 
-</ul>> </div>
+            <li> "MM": Minute of the day, ranging from 0-59. For example, 
+"50" would represent the 50th minute of the hour. </li> 
+        </ul>
+    </li> 
+</ul> </div>
 
 
 **Example:**
@@ -797,29 +872,38 @@ For example, "15" would represent 15th hour of the day. </li>
 **Command Input Box:**
 
 ```
-edit 1 p/97833468 n/Tammy note/Python note/Java
+edit 1 p/97833468 n/Amy note/Python note/Java
 ```
 
 **Command Output Box:**
 ```
-Edited Person: Tammy; Phone: 97833468; Email: thomastan@gmail.com;
+Edited Person: Amy; Phone: 97833468; Email: thomastan@gmail.com;
 Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Notes: [Python] [Java]
 ```
+
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
 
-#### 6.1.9. Remind upcoming interviews: `remind`
+#### 6.1.9. Remind upcoming interviews `remind`
 - Will update soon
 
+[Back to Table of Contents](#hmhero-user-guide)
+
+---
 
 ### 6.2. Statistics Commands
 
 - Will update soon
 
+[Back to Table of Contents](#hmhero-user-guide)
+
+---
+
 ### 6.3. General Commands
 
-#### 6.3.1. Receive help during usage: `help`
+#### 6.3.1. Receive help during usage `help`
 
 **Format**: `help [COMMAND_WORD]`
 
@@ -877,9 +961,11 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
   - Example 1: `find Jack Dill`, `find 91234567`
   - Example 2: `find n/Jack Dill p/91234567`
 
+[Back to Table of Contents](#hmhero-user-guide)
+
 ---
 
-#### 6.3.2. Exit HMHero: `exit`
+#### 6.3.2. Exit HMHero `exit`
 
 **Format**: `exit`
 
@@ -887,7 +973,7 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
 
 <div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
 This command is the only guaranteed way for the data file to be saved when you exit the application.
-To prevent, always exit the application using this command instead of any other way.
+To prevent losing data, always exit the application using this command instead of any other way.
 </div>
 
 **Example:**
@@ -909,6 +995,10 @@ exit
 If your inventory data cannot be saved successfully, HMHero will not close in order to prevent data loss.
 </div>
 
+[Back to Table of Contents](#hmhero-user-guide)
+
+---
+
 
 ## 7. Command Summary
 
@@ -926,6 +1016,9 @@ If your inventory data cannot be saved successfully, HMHero will not close in or
 | Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                                        | `edit 1 n/Marry p/98763245`                                                 |
 | Remind an applicant's interview date   | TO BE UPDATED                                                                                                                                                                    | To be updated                                                               |
 
+[Back to Table of Contents](#hmhero-user-guide)
+
+---
 
 ### 7.2. Statistics Commands
 
@@ -933,6 +1026,9 @@ If your inventory data cannot be saved successfully, HMHero will not close in or
 |-----------------------------------------|----------|---------|
 | Displays statistics collected by HMHero | `stats`  | `stats` | 
 
+[Back to Table of Contents](#hmhero-user-guide)
+
+---
 
 ### 7.3. General Commands
 
@@ -941,6 +1037,7 @@ If your inventory data cannot be saved successfully, HMHero will not close in or
 | Shows a help dialog with a list of available commands | `help` | `help`  |
 | Exits HMHero                                          | `exit` | `exit`  |
 
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -980,6 +1077,10 @@ Unable to exit/save HMHero to data file
 **Solution:**
 
 1. This error is due to `hmhero.jar` being started in a protected folder. (Examples of write-protected folders include`C:\WINDOWS\System32` in windows and the `/etc` dir in linux) <br> Please move the `hmhero.jar` file into another folder in your computer and start HMHero application from that folder.
+   
+[Back to Table of Contents](#table-of-contents)
+
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
@@ -997,6 +1098,8 @@ Unable to exit/save HMHero to data file
 ### Q: How do I transfer my data to another computer?<br>
 **A:** Install HMHero on the other computer and overwrite the empty data file with the data file created by HMHero in your current computer.
 
+[Back to Table of Contents](#hmhero-user-guide)
+
 ---
 ## 10. Acknowledgements
 
@@ -1010,12 +1113,76 @@ Java dependencies:
 
 Documentation dependencies:
 * [PlantUML](https://plantuml.com/) for creating UML diagrams
+* [Jekyll](https://jekyllrb.com/)  for rendering the website
+
+[Back to Table of Contents](#hmhero-user-guide)
 
 ---
 
 ## 11. Glossary
+
 ### A
-> #### ADDRESS (Placeholder)
+- [ADDRESS (Placeholder)](#address-placeholder)
+- [Address](#address)
+- [Admonitions](#admonitions)
+- [Applicant](#applicant)
+- [Application Stage](#application-stage)
+
+### C
+- [COMMAND_WORD (Placeholder)](#commandword-placeholder)
+- [Command](#command)
+- [Command Line (CLI)](#command-line)
+
+### E
+- [Placeholder](#email-placeholder)
+- [Email](#email)
+
+### F
+- [Flags](#flags)
+
+### G
+- [Graphical User Interface(GUI)](#graphical-user-interface)
+
+### H
+- [Help Window](#help-window)
+- [Hiring Manager](#hiring-manager)
+
+### I
+- [Input](#input)
+- [INTERVIEW_DATE (Placeholder)](#interviewdate-placeholder)
+- [Interview Date](#interview-date)
+
+### K
+- [KEYWORD (Placeholder)](#keyword-placeholder)
+
+### N
+- [NAME (Placeholder)](#name-placeholder)
+- [Name](#name)
+- [NOTES (Placeholder)](#notes-placeholder)
+- [Notes](#notes)
+
+### O
+- [Operating System (OS)](#operating-system)
+- [Output](#output)
+
+### P
+- [Parameter](#parameter)
+- [PHONE_NUMBER (Placeholder)](#phonenumber-placeholder)
+- [Phone Number](#phone-number)
+- [Placeholder](#placeholder)
+
+### S
+- [STATUS (Placeholder)](#status-placeholder)
+- [Status](#status)
+- [Syntax](#syntax)
+
+### U
+- [URL](#url)
+
+
+
+### A
+> #### ADDRESS Placeholder
 > The ADDRESS is a text representing the address of the applicants.
 > #### Address
 > The address of the applicant provided by the user.
@@ -1027,15 +1194,15 @@ Documentation dependencies:
 > All applicants added are at the Applied status by default. From there, hiring managers can advance their application status to Shortlisted, then to Accepted. Applicants can be rejected at any stage excepted for Accepted.
 
 ### C
-> #### COMMAND_WORD (Placeholder)
+> #### COMMAND_WORD Placeholder
 > The COMMAND_WORD is a text indicating a command word of a command
 > #### Command
 > A feature or function that HMHero can perform.
-> #### Command Line (CLI)
+> #### Command Line 
 > The typing interface that you use to interact with HMHero. It is represented as the box where you type in commands.
 
 ### E
-> #### EMAIL (Placeholder)
+> #### EMAIL Placeholder
 > The EMAIL is a text representing the email address of the applicants.
 > #### Email
 > The email address of the applicant provided by the user.
@@ -1045,7 +1212,7 @@ Documentation dependencies:
 > A marker to identify the type of input by the user. For instance, in `n/NAME`, `n/` is the flag.
 
 ### G
-> #### Graphical User Interface(GUI)
+> #### Graphical User Interface
 > A Graphical User Interface is a graphics-based interface that uses icons, menus and a mouse (to click on the icon or pull down the menus) to manage interaction with the system. In HMHero, this presents as the window that appears when launching it.
 
 ### H
@@ -1057,27 +1224,27 @@ Documentation dependencies:
 ### I
 > #### Input
 > The text that a user would enter into HMHero
-> #### INTERVIEW_DATE (Placeholder)
+> #### INTERVIEW_DATE Placeholder
 > The INTERVIEW_DATE is the date indicating when the applicant is having his/her interview.
 > #### Interview Date
 > Date where applicants are going to have their interviews. Interview date is in the format "day-month-year hour:minute", represented in the "DD-MM-YYYY HH:MM" format.
 
 ### K
-> #### KEYWORD (Placeholder)
+> #### KEYWORD Placeholder
 > The KEYWORD is the text we use search for an item. It can be `NAME` or `PHONE_NUMBER` of the applicant.
 
 ### N
-> #### NAME (Placeholder)
+> #### NAME Placeholder
 > The NAME is a text representing the name of the applicants.
 > #### Name
 > The name of the applicant provided by the user.
-> #### NOTES (Placeholder)
+> #### NOTES Placeholder
 > The NOTES are some texts that use to represent the skill set of the applicants.
 > #### Notes
 > The skill set the applicant possesses provided by the user.
 
 ### O
-> #### Operating System (OS)
+> #### Operating System
 > Is a software program that manages computer hardware and software resources, and provides common services for computer programs to run and interact with the computer hardware.
 > #### Output
 > The result after calling a Command. Results are displayed in the GUI.
@@ -1085,7 +1252,7 @@ Documentation dependencies:
 ### P
 > #### Parameter
 > Values that are passed while calling the Commands. For instance, when calling `find n/NAME`, parameter here is `n/NAME`.
-> #### PHONE_NUMBER (Placeholder)
+> #### PHONE_NUMBER Placeholder
 > The PHONE_NUMBER is an integer representing the phone number of the applicant.
 > #### Phone Number
 > The phone number of the applicant provided by the user.
@@ -1093,7 +1260,7 @@ Documentation dependencies:
 > Placeholders in HMHero refers to the UPPER_CASE words that appear after the flags in commands that is provided by the user. For instance, `n/NAME`, `NAME` is a placeholder
 
 ### S
-> #### STATUS (Placeholder)
+> #### STATUS Placeholder
 > The STATUS is a text that represent the current state of the applicant.
 > #### Status
 > Status has four stages, which are APPLIED, SHORTLISTED, ACCEPTED and REJECTED. Status can only be modified by using <kbd>advance</kbd> or <kbd>reject</kbd> command.
@@ -1103,4 +1270,8 @@ Documentation dependencies:
 ### U
 > #### URL
 > A hyperlink to a website.
+
+[Back to Table of Contents](#hmhero-user-guide)
+
+---
 
