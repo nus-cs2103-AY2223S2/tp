@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import seedu.address.logic.commands.MeetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.location.Location;
-import seedu.address.model.location.LocationUtil;
+import seedu.address.model.location.util.LocationDataUtil;
 import seedu.address.model.person.ContactIndex;
 
 /**
@@ -27,13 +27,13 @@ public class MeetCommandParser implements Parser<MeetCommand> {
     public MeetCommandParser(MeetType meetType) {
         switch (meetType) {
         case EAT:
-            locationHashSet = LocationUtil.EAT_LOCATIONS;
+            locationHashSet = LocationDataUtil.EAT_LOCATIONS;
             break;
         case STUDY:
-            locationHashSet = LocationUtil.STUDY_LOCATIONS;
+            locationHashSet = LocationDataUtil.STUDY_LOCATIONS;
             break;
         case MEET:
-            locationHashSet = LocationUtil.MEET_LOCATIONS;
+            locationHashSet = LocationDataUtil.MEET_LOCATIONS;
             break;
         default:
             locationHashSet = new HashSet<>();
@@ -53,6 +53,9 @@ public class MeetCommandParser implements Parser<MeetCommand> {
 
         Set<ContactIndex> indices =
                 ParserUtil.parseIndices(indexArray);
+
+        indices.add(new ContactIndex(0));
+
         return new MeetCommand(indices, locationHashSet);
     }
 }

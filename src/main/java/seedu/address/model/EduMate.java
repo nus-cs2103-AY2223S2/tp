@@ -11,6 +11,8 @@ import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.User;
+import seedu.address.model.recommendation.Recommendation;
+import seedu.address.model.recommendation.UniqueRecommendationList;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -23,6 +25,7 @@ public class EduMate implements ReadOnlyEduMate {
     private final UniqueMeetUpList meets; //todo check again before push
     protected Set<ContactIndex> participants; //todo check again before push
     private User user;
+    private final UniqueRecommendationList recommendations;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -36,6 +39,7 @@ public class EduMate implements ReadOnlyEduMate {
         user = SampleDataUtil.getSampleUser();
         meets = new UniqueMeetUpList(); //todo check again before push
         participants = new HashSet<>(); //todo check again before push
+        recommendations = new UniqueRecommendationList();
     }
 
     public EduMate() {}
@@ -99,6 +103,21 @@ public class EduMate implements ReadOnlyEduMate {
     }
 
     /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setRecommendations(List<Recommendation> recommendations) {
+        this.recommendations.setRecommendations(recommendations);
+    }
+
+    /**
+     * Replaces the contents of the person list with an empty list of recommendations.
+     */
+    public void resetRecommendations() {
+        this.recommendations.setRecommendations(new ArrayList<>());
+    }
+
+    /**
      * Sets the user of the Address Book.
      */
     public void setUser(User user) {
@@ -113,6 +132,7 @@ public class EduMate implements ReadOnlyEduMate {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setRecommendations(newData.getRecommendationList());
         setUser(newData.getUser());
     }
 
@@ -153,6 +173,45 @@ public class EduMate implements ReadOnlyEduMate {
         persons.remove(key);
     }
 
+    //// recommendation-level operations
+
+    /**
+     * Returns true if a recommendation with the same identity as
+     * {@code recommendation} exists in the address book.
+     */
+    public boolean hasRecommendation(Recommendation person) {
+        requireNonNull(person);
+        return recommendations.contains(person);
+    }
+
+    /**
+     * Adds a recommendation to the address book.
+     * The recommendation must not already exist in the address book.
+     */
+    public void addRecommendation(Recommendation p) {
+        recommendations.add(p);
+    }
+
+    /**
+     * Replaces the given recommendation {@code target} in the list with {@code editedRecommendation}.
+     * {@code target} must exist in the address book.
+     * The recommendation identity of {@code editedRecommendation} must not
+     * be the same as another existing person in the address book.
+     */
+    public void setRecommendation(Recommendation target, Recommendation editedRecommendation) {
+        requireNonNull(editedRecommendation);
+
+        recommendations.setRecommendation(target, editedRecommendation);
+    }
+
+    /**
+     * Removes {@code key} from this {@code EduMate}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeRecommendation(Recommendation key) {
+        recommendations.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -168,6 +227,11 @@ public class EduMate implements ReadOnlyEduMate {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Recommendation> getRecommendationList() {
+        return recommendations.asUnmodifiableObservableList();
     }
 
     @Override

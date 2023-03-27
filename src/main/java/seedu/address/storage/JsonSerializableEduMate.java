@@ -16,6 +16,7 @@ import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
+import seedu.address.model.recommendation.Recommendation;
 import seedu.address.model.tag.ModuleTag;
 
 /**
@@ -25,22 +26,33 @@ import seedu.address.model.tag.ModuleTag;
 class JsonSerializableEduMate {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_RECOMMENDATION =
+            "Persons list contains duplicate recommendations(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final JsonAdaptedUser user;
+
     //todo add meetup list and last participants list
     private final JsonAdaptedParticipantList participantList;
     private final List<JsonAdaptedMeetUp> meetUpList = new ArrayList<>();
+
+    private final List<JsonAdaptedRecommendation> recommendations = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonSerializableEduMate} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableEduMate(@JsonProperty("persons") List<JsonAdaptedPerson> persons, @JsonProperty("user") JsonAdaptedUser user, @JsonProperty("participants") JsonAdaptedParticipantList participantList, @JsonProperty("meetUps") List<JsonAdaptedMeetUp> meetUpList) {
+    public JsonSerializableEduMate(
+            @JsonProperty("persons") List<JsonAdaptedPerson> persons,
+            @JsonProperty("user") JsonAdaptedUser user,
+            @JsonProperty("recommendations") List<JsonAdaptedRecommendation> recommendations, @JsonProperty("participants") JsonAdaptedParticipantList participantList, @JsonProperty("meetUps") List<JsonAdaptedMeetUp> meetUpList) {
         this.persons.addAll(persons);
         this.user = user;
+        this.recommendations.addAll(recommendations);
         this.participantList = participantList;
         this.meetUpList.addAll(meetUpList); //todo double check
+
     }
 
     /**
@@ -51,7 +63,13 @@ class JsonSerializableEduMate {
     public JsonSerializableEduMate(ReadOnlyEduMate source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         user = new JsonAdaptedUser(source.getUser());
+
         participantList = new JsonAdaptedParticipantList(source.getParticipantList()); //todo double check
+
+        recommendations.addAll(source.getRecommendationList()
+                .stream().map(JsonAdaptedRecommendation::new)
+                .collect(Collectors.toList()));
+
     }
 
     /**
@@ -81,6 +99,15 @@ class JsonSerializableEduMate {
             //check for duplicate meetup
 
         }
+
+        for (JsonAdaptedRecommendation jsonAdaptedRecommendation : recommendations) {
+            Recommendation recommendation = jsonAdaptedRecommendation.toModelType();
+            if (eduMate.hasRecommendation(recommendation)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_RECOMMENDATION);
+            }
+            eduMate.addRecommendation(recommendation);
+        }
+
         eduMate.setUser(userModel);
         eduMate.setParticipants(participants); //todo double check
         return eduMate;

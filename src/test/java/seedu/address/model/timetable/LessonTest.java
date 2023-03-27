@@ -16,8 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.location.Location;
-import seedu.address.model.scheduler.Module;
-import seedu.address.model.scheduler.time.Day;
+import seedu.address.model.time.Day;
 
 class LessonTest {
 
@@ -58,7 +57,7 @@ class LessonTest {
 
     @Test
     public void equalityCheck_sameObjectDifferentReference_equals() {
-        Lesson anotherLesson = new Lesson(new Module("MA2104"),
+        Lesson anotherLesson = new Lesson("MA2104",
                 new LocalTime(8, 0),
                 new LocalTime(9, 0),
                 Day.FRIDAY,

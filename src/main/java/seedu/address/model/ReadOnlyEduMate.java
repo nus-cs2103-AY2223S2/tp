@@ -5,6 +5,7 @@ import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
+import seedu.address.model.recommendation.Recommendation;
 
 import java.util.Set;
 
@@ -18,6 +19,12 @@ public interface ReadOnlyEduMate {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getPersonList();
+
+    /**
+     * Returns an unmodifiable view of the recommendations list.
+     * This list will not contain any duplicate recommendations.
+     */
+    ObservableList<Recommendation> getRecommendationList();
 
     /**
      * Returns a view of the user object.

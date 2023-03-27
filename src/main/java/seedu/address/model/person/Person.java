@@ -2,12 +2,23 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.commitment.Commitment;
+import seedu.address.model.commitment.Lesson;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
+import seedu.address.model.time.TimePeriod;
+import seedu.address.model.time.util.TimeUtil;
+import seedu.address.model.timetable.Timetable;
 
 /**
  * Represents a Person in the address book.
@@ -28,6 +39,10 @@ public class Person {
     private final Address address;
     private final GroupTagSet groupTags = new GroupTagSet();
     private final ModuleTagSet moduleTags = new ModuleTagSet();
+    private final Timetable timetable = new Timetable();
+
+    // logger
+    private final Logger logger = LogsCenter.getLogger(Person.class);
 
     /**
      * Every field must be present and not null.
@@ -42,7 +57,9 @@ public class Person {
         this.telegramHandle = telegramHandle;
         this.contactIndex = contactIndex;
         this.groupTags.addAll(groupTags);
-        this.moduleTags.addAll(moduleTags);
+        if (canAddModuleTags(moduleTags)) {
+            addModuleTags(moduleTags);
+        }
     }
 
     public Name getName() {
@@ -133,6 +150,82 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Adds module tags to the {@code ModuleTagSet}.
+     * Lessons within the {@code moduleTags} must not clash with each other.
+     * They must also not clash with the timetable.
+     * @param moduleTags Tags to be added to the person.
+     */
+    public void addModuleTags(Set<ModuleTag> moduleTags) {
+        Set<Lesson> lessons = moduleTags.stream()
+                .map(ModuleTag::getImmutableLessons)
+                .flatMap(Set::stream)
+                .collect(Collectors.toSet());
+
+        List<TimePeriod> timePeriods = lessons.stream().map(Lesson::getTimePeriod).collect(Collectors.toList());
+
+        assert !TimeUtil.hasAnyClash(timePeriods);
+        assert canAddCommitments(lessons);
+
+        this.moduleTags.addAll(moduleTags);
+    }
+
+    /**
+     * Checks whether the timetable allows the addition of the commitments.
+     */
+    public boolean canAddCommitments(Collection<? extends Commitment> commitments) {
+        return commitments.stream().allMatch(timetable::canFitCommitment);
+    }
+
+    private boolean canAddModuleTags(Collection<? extends ModuleTag> moduleTags) {
+        Set<Lesson> lessons = moduleTags.stream()
+                .map(ModuleTag::getImmutableLessons)
+                .flatMap(Set::stream)
+                .collect(Collectors.toSet());
+
+        List<TimePeriod> timePeriods = lessons.stream()
+                .map(Lesson::getTimePeriod)
+                .collect(Collectors.toList());
+
+        return canAddCommitments(lessons) && !TimeUtil.hasAnyClash(timePeriods);
+    }
+
+    /**
+     * Checks the {@code ModuleTagSet} whether the lesson exists.
+     * If it exists, then remove the
+     * lesson from both the {@code ModuleTagSet} and {@code Timetable}
+     */
+    public void removeModuleTags(Set<ModuleTag> moduleTags) {
+        List<ModuleTag> removableModuleTags = moduleTags.stream()
+                .map(ModuleTag::getImmutableLessons)
+                .flatMap(Set::stream)
+                .map(lesson -> new ModuleTag(lesson.getModuleCode(), lesson))
+                .filter(this.moduleTags::canRemove)
+                .collect(Collectors.toList());
+
+        removableModuleTags.forEach(this.moduleTags::remove);
+        removableModuleTags.stream()
+                .map(ModuleTag::getImmutableLessons)
+                .flatMap(Set::stream)
+                .forEach(timetable::removeCommitment);
+    }
+
+    public Timetable getTimetable() {
+        return timetable;
+    }
+
+    public Set<? extends Commitment> getCommitments() {
+        return getLessons();
+    }
+
+    private Set<? extends Lesson> getLessons() {
+        Set<Lesson> lessons = new HashSet<>();
+        getImmutableModuleTags()
+                .stream().map(ModuleTag::getImmutableLessons)
+                .forEach(lessons::addAll);
+        return lessons;
     }
 
     /**

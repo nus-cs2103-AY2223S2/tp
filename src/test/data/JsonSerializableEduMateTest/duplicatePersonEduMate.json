@@ -9,54 +9,322 @@
       "User"
     ],
     "modules": [
-      "CS2100",
-      "CS2101",
-      "CS2102",
-      "CS2103",
-      "CS2104",
-      "CS2105",
-      "CS2106"
+      {
+        "moduleCode": "CS2105",
+        "lessons": [
+          {
+            "startHour": 12,
+            "endHour": 14,
+            "day": "TUESDAY"
+          },
+          {
+            "startHour": 9,
+            "endHour": 10,
+            "day": "WEDNESDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "EL1101E",
+        "lessons": [
+          {
+            "startHour": 14,
+            "endHour": 15,
+            "day": "THURSDAY"
+          },
+          {
+            "startHour": 10,
+            "endHour": 12,
+            "day": "WEDNESDAY"
+          },
+          {
+            "startHour": 10,
+            "endHour": 11,
+            "day": "MONDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "CS2103T",
+        "lessons": [
+          {
+            "startHour": 16,
+            "endHour": 17,
+            "day": "THURSDAY"
+          },
+          {
+            "startHour": 11,
+            "endHour": 13,
+            "day": "FRIDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "CS2103",
+        "lessons": [
+          {
+            "startHour": 16,
+            "endHour": 17,
+            "day": "THURSDAY"
+          },
+          {
+            "startHour": 19,
+            "endHour": 21,
+            "day": "WEDNESDAY"
+          },
+          {
+            "startHour": 9,
+            "endHour": 10,
+            "day": "TUESDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "CS2102",
+        "lessons": [
+          {
+            "startHour": 18,
+            "endHour": 19,
+            "day": "THURSDAY"
+          },
+          {
+            "startHour": 9,
+            "endHour": 11,
+            "day": "MONDAY"
+          },
+          {
+            "startHour": 10,
+            "endHour": 12,
+            "day": "THURSDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "CS2107",
+        "lessons": [
+          {
+            "startHour": 17,
+            "endHour": 19,
+            "day": "MONDAY"
+          }
+        ]
+      }
     ],
     "index": 0
   },
   "persons": [
     {
-      "name": "Nee Soon",
-      "email": "neesoon@gmail.com",
-      "telegramHandle": "@neesoon",
-      "address": "Yishun",
-      "groups": [
-        "NS"
-      ],
-      "phone": "83322492",
-      "index": 68,
+      "name": "Samantha Kee",
+      "email": "samanthakee@gmail.com",
+      "telegramHandle": "@samanthakee",
+      "address": "Sam Kee",
+      "groups": [],
+      "phone": "88544089",
       "modules": [
-        "CS2105",
-        "BT2201",
-        "CS2103",
-        "CS2030",
-        "CE2155",
-        "CS2106"
-      ]
+        {
+          "moduleCode": "IFS4201",
+          "lessons": [
+            {
+              "startHour": 12,
+              "endHour": 13,
+              "day": "FRIDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "CS2113",
+          "lessons": [
+            {
+              "startHour": 18,
+              "endHour": 20,
+              "day": "MONDAY"
+            },
+            {
+              "startHour": 17,
+              "endHour": 18,
+              "day": "FRIDAY"
+            },
+            {
+              "startHour": 13,
+              "endHour": 15,
+              "day": "TUESDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "CS2103",
+          "lessons": [
+            {
+              "startHour": 9,
+              "endHour": 10,
+              "day": "MONDAY"
+            },
+            {
+              "startHour": 13,
+              "endHour": 15,
+              "day": "WEDNESDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "PS3257",
+          "lessons": [
+            {
+              "startHour": 14,
+              "endHour": 16,
+              "day": "THURSDAY"
+            },
+            {
+              "startHour": 18,
+              "endHour": 20,
+              "day": "TUESDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "CS2104",
+          "lessons": [
+            {
+              "startHour": 16,
+              "endHour": 17,
+              "day": "MONDAY"
+            },
+            {
+              "startHour": 15,
+              "endHour": 17,
+              "day": "WEDNESDAY"
+            },
+            {
+              "startHour": 15,
+              "endHour": 17,
+              "day": "FRIDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "CS2101",
+          "lessons": [
+            {
+              "startHour": 8,
+              "endHour": 10,
+              "day": "THURSDAY"
+            },
+            {
+              "startHour": 9,
+              "endHour": 11,
+              "day": "WEDNESDAY"
+            }
+          ]
+        }
+      ],
+      "index": 78
     },
     {
-      "name": "Nee Soon",
-      "email": "neesoon@gmail.com",
-      "telegramHandle": "@neesoon",
-      "address": "Yishun",
-      "groups": [
-        "NS"
-      ],
-      "phone": "83322492",
-      "index": 68,
+      "name": "Samantha Kee",
+      "email": "samanthakee@gmail.com",
+      "telegramHandle": "@samanthakee",
+      "address": "Sam Kee",
+      "groups": [],
+      "phone": "88544089",
       "modules": [
-        "CS2105",
-        "BT2201",
-        "CS2103",
-        "CS2030",
-        "CE2155",
-        "CS2106"
-      ]
+        {
+          "moduleCode": "IFS4201",
+          "lessons": [
+            {
+              "startHour": 12,
+              "endHour": 13,
+              "day": "FRIDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "CS2113",
+          "lessons": [
+            {
+              "startHour": 18,
+              "endHour": 20,
+              "day": "MONDAY"
+            },
+            {
+              "startHour": 17,
+              "endHour": 18,
+              "day": "FRIDAY"
+            },
+            {
+              "startHour": 13,
+              "endHour": 15,
+              "day": "TUESDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "CS2103",
+          "lessons": [
+            {
+              "startHour": 9,
+              "endHour": 10,
+              "day": "MONDAY"
+            },
+            {
+              "startHour": 13,
+              "endHour": 15,
+              "day": "WEDNESDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "PS3257",
+          "lessons": [
+            {
+              "startHour": 14,
+              "endHour": 16,
+              "day": "THURSDAY"
+            },
+            {
+              "startHour": 18,
+              "endHour": 20,
+              "day": "TUESDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "CS2104",
+          "lessons": [
+            {
+              "startHour": 16,
+              "endHour": 17,
+              "day": "MONDAY"
+            },
+            {
+              "startHour": 15,
+              "endHour": 17,
+              "day": "WEDNESDAY"
+            },
+            {
+              "startHour": 15,
+              "endHour": 17,
+              "day": "FRIDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "CS2101",
+          "lessons": [
+            {
+              "startHour": 8,
+              "endHour": 10,
+              "day": "THURSDAY"
+            },
+            {
+              "startHour": 9,
+              "endHour": 11,
+              "day": "WEDNESDAY"
+            }
+          ]
+        }
+      ],
+      "index": 78
     }
-  ]
+  ],
+  "recommendations": []
 }

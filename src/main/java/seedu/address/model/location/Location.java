@@ -23,82 +23,82 @@ public class Location implements Comparable<Location> {
      * The absolute bounds of Singapore.
      * i.e. the lat and the lon should never break these bounds.
      */
-    private static final double MIN_LAT = 1.23776;
-    private static final double MAX_LAT = 1.47066;
-    private static final double MIN_LON = 103.61751;
-    private static final double MAX_LON = 104.04360;
+    private static final double MIN_LATITUDE = 1.23776;
+    private static final double MAX_LATITUDE = 1.47066;
+    private static final double MIN_LONGITUDE = 103.61751;
+    private static final double MAX_LONGITUDE = 104.04360;
     private static final double ALLOWABLE_ERROR = 0.0001;
 
     private static final String DOUBLE_PATTERN = "[0-9]+(\\.)?[0-9]*";
 
     private final String name;
-    private final double lat;
-    private final double lon;
+    private final double latitude;
+    private final double longitude;
 
     /**
      * Constructs an unnamed {@code Location}.
-     * @param lat A valid latitude.
-     * @param lon A valid longitude.
+     * @param latitude A valid latitude.
+     * @param longitude A valid longitude.
      */
-    public Location(double lat, double lon) {
-        this("", lat, lon);
+    public Location(double latitude, double longitude) {
+        this("", latitude, longitude);
     }
 
     /**
      * Constructs a named {@code Location}.
      * @param name A non-null string.
-     * @param lat A valid latitude.
-     * @param lon A valid longitude.
+     * @param latitude A valid latitude.
+     * @param longitude A valid longitude.
      */
-    public Location(String name, double lat, double lon) {
-        requireAllNonNull(name, lat, lon);
-        checkArgument(isValidLocation(lat, lon), MESSAGE_CONSTRAINTS);
+    public Location(String name, double latitude, double longitude) {
+        requireAllNonNull(name, latitude, longitude);
+        checkArgument(isValidLocation(latitude, longitude), MESSAGE_CONSTRAINTS);
         this.name = name;
-        this.lat = lat;
-        this.lon = lon;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     /**
      * Checks whether the location is valid.
      * We also check whether the lat and lon can be parsed into a {@code Double}
      * so that we don't have to error-handle later on.
-     * @param lat A string representation of the latitude.
-     * @param lon A string representation of the longitude.
+     * @param latitude A string representation of the latitude.
+     * @param longitude A string representation of the longitude.
      * @return whether the lat and lon fit the requirements.
      */
-    public static boolean isValidLocation(String lat, String lon) {
-        return lat.matches(DOUBLE_PATTERN)
-                && lon.matches(DOUBLE_PATTERN)
-                && isValidLocation(Double.parseDouble(lat), Double.parseDouble(lon));
+    public static boolean isValidLocation(String latitude, String longitude) {
+        return latitude.matches(DOUBLE_PATTERN)
+                && longitude.matches(DOUBLE_PATTERN)
+                && isValidLocation(Double.parseDouble(latitude), Double.parseDouble(longitude));
     }
 
     /**
      * Checks whether the location lies within the bounds of Singapore.
-     * @param lat Latitude.
-     * @param lon Longitude.
+     * @param latitude Latitude.
+     * @param longitude Longitude.
      * @return Whether the lat and lon fit the requirements.
      */
-    public static boolean isValidLocation(double lat, double lon) {
-        return isValidLatitude(lat)
-                && isValidLongitude(lon);
+    public static boolean isValidLocation(double latitude, double longitude) {
+        return isValidLatitude(latitude)
+                && isValidLongitude(longitude);
     }
 
     /**
      * Checks whether the latitude lies within the bounds of Singapore.
-     * @param lat Latitude.
-     * @return Whether the lat fits the requirements.
+     * @param latitude Latitude.
+     * @return Whether the latitude fits the requirements.
      */
-    public static boolean isValidLatitude(double lat) {
-        return lat >= MIN_LAT && lat <= MAX_LAT;
+    public static boolean isValidLatitude(double latitude) {
+        return latitude >= MIN_LATITUDE && latitude <= MAX_LATITUDE;
     }
 
     /**
      * Checks whether the longitude lies within the bounds of Singapore.
-     * @param lon Longitude.
-     * @return Whether the lon fits the requirements.
+     * @param longitude Longitude.
+     * @return Whether the longitude fits the requirements.
      */
-    public static boolean isValidLongitude(double lon) {
-        return lon >= MIN_LON && lon <= MAX_LON;
+    public static boolean isValidLongitude(double longitude) {
+        return longitude >= MIN_LONGITUDE && longitude <= MAX_LONGITUDE;
     }
 
     /**
@@ -111,34 +111,40 @@ public class Location implements Comparable<Location> {
     /**
      * Gets the latitude of the location.
      */
-    public double getLat() {
-        return lat;
+    public double getLatitude() {
+        return latitude;
     }
 
     /**
      * Gets the longitude of the location.
      */
-    public double getLon() {
-        return lon;
+    public double getLongitude() {
+        return longitude;
     }
 
     @Override
     public String toString() {
-        return getName();
+        return String.format("[%s %s %s]", getName(), latitude, longitude);
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this
-                || (other instanceof Location
-                && name.equals(((Location) other).name)
-                && Math.abs(lat - ((Location) other).lat) <= ALLOWABLE_ERROR
-                && Math.abs(lon - ((Location) other).lon) <= ALLOWABLE_ERROR);
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Location)) {
+            return false;
+        }
+
+        Location otherLocation = (Location) other;
+        return Math.abs(latitude - otherLocation.latitude) <= ALLOWABLE_ERROR
+                && Math.abs(longitude - otherLocation.longitude) <= ALLOWABLE_ERROR;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, lat, lon);
+        return Objects.hash(name, latitude, longitude);
     }
 
     @Override

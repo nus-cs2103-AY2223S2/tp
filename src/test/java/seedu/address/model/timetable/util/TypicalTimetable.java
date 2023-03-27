@@ -25,8 +25,9 @@ import static seedu.address.model.timetable.util.TypicalLesson.WEDNESDAY_6PM_1HR
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.model.commitment.Commitment;
 import seedu.address.model.commitment.Lesson;
-import seedu.address.model.scheduler.Timetable;
+import seedu.address.model.timetable.Timetable;
 
 /**
  * Composes of all the Typical Timetables
@@ -88,6 +89,25 @@ public class TypicalTimetable {
             .withLesson(THURSDAY_9PM_1HR_LESSON)
             .build();
 
+    public static final Timetable EMPTY_TIMETABLE = new TimetableBuilder().build();
+
+    public static final Timetable NO_CONFLICT_TIMETABLE = new TimetableBuilder()
+        .withLesson(MONDAY_8AM_2HR_LESSON)
+        .withLesson(TUESDAY_10AM_2HR_LESSON)
+        .withLesson(WEDNESDAY_10AM_3HR_LESSON)
+        .withLesson(WEDNESDAY_6PM_1HR_LESSON)
+        .withLesson(THURSDAY_4PM_2HR_LESSON)
+        .withLesson(FRIDAY_7PM_3HR_LESSON)
+        .build();
+
+    public static final Timetable NO_CONFLICT_TIMETABLE_B = new TimetableBuilder()
+        .withLesson(MONDAY_10AM_2HR_LESSON)
+        .withLesson(TUESDAY_2PM_2HR_LESSON)
+        .withLesson(WEDNESDAY_4PM_1HR_LESSON)
+        .withLesson(THURSDAY_9PM_1HR_LESSON)
+        .withLesson(FRIDAY_8AM_1HR_LESSON)
+        .withLesson(FRIDAY_9AM_2HR_LESSON)
+        .build();
 }
 
 /**
@@ -95,7 +115,7 @@ public class TypicalTimetable {
  */
 class TimetableBuilder {
 
-    private List<Lesson> lessons;
+    private List<Commitment> lessons;
 
     public TimetableBuilder() {
         lessons = new ArrayList<>();
@@ -108,7 +128,7 @@ class TimetableBuilder {
 
     public Timetable build() {
         Timetable timetable = new Timetable();
-        lessons.stream().forEach(timetable::addLesson);
+        lessons.forEach(timetable::<Commitment>addCommitment);
         return timetable;
     }
 

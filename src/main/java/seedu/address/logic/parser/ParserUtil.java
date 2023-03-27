@@ -11,9 +11,13 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import org.joda.time.LocalTime;
+
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commitment.Lesson;
+import seedu.address.model.location.Location;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
@@ -22,6 +26,9 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.TimeBlock;
+import seedu.address.model.timetable.Timetable;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -183,10 +190,60 @@ public class ParserUtil {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         ArrayList<String> args = parseMoreModules(trimmedTag);
-        if (!ModuleTag.isValidTagName(args.get(0))) {
+
+        if (args.size() == 1) {
+            return parseModuleTagFromSingle(args.get(0));
+        }
+
+        if (args.size() != 4) {
             throw new ParseException(ModuleTag.MESSAGE_CONSTRAINTS);
         }
-        return new ModuleTag(args);
+
+        String moduleCode = args.get(0);
+        Day day = parseDay(args.get(1));
+        LocalTime startTime = parseLocalTime(args.get(2));
+        LocalTime endTime = parseLocalTime(args.get(3));
+        TimeBlock timeBlock = new TimeBlock(startTime, endTime, day);
+
+        Lesson lesson = new Lesson(moduleCode, Location.NUS, timeBlock);
+
+        return new ModuleTag(moduleCode, lesson);
+    }
+
+    private static ModuleTag parseModuleTagFromSingle(String tag) throws ParseException {
+        if (!ModuleTag.isValidTagName(tag)) {
+            throw new ParseException(ModuleTag.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleTag(tag);
+    }
+
+    /**
+     * Tries to partial match a day string.
+     * MON will output MONDAY.
+     */
+    public static Day parseDay(String dayAsStr) throws ParseException {
+        String upperDayAsStr = dayAsStr.toUpperCase();
+        for (Day day : Day.values()) {
+            if (day.toString().startsWith(upperDayAsStr)) {
+                return day;
+            }
+        }
+        throw new ParseException("Day is invalid");
+    }
+
+    /**
+     * Parses a local time and checks whether it is valid.
+     */
+    public static LocalTime parseLocalTime(String localTimeAsStr) throws ParseException {
+        try {
+            int hour = Integer.parseInt(localTimeAsStr);
+            if (!Arrays.asList(Timetable.START_TIMINGS).contains(hour)) {
+                throw new ParseException("Invalid time");
+            }
+            return new LocalTime(hour, 0);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException("Invalid time");
+        }
     }
 
     /**

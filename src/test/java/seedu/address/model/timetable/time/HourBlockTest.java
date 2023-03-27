@@ -16,12 +16,12 @@ import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.scheduler.exceptions.CommitmentClashException;
-import seedu.address.model.scheduler.time.Day;
-import seedu.address.model.scheduler.time.HourBlock;
-import seedu.address.model.scheduler.time.TimeBlock;
-import seedu.address.model.scheduler.time.TimePeriod;
-import seedu.address.model.scheduler.time.exceptions.WrongTimeException;
+import seedu.address.logic.recommender.timing.exceptions.CommitmentClashException;
+import seedu.address.model.time.Day;
+import seedu.address.model.time.HourBlock;
+import seedu.address.model.time.TimeBlock;
+import seedu.address.model.time.TimePeriod;
+import seedu.address.model.time.exceptions.WrongTimeException;
 
 class HourBlockTest {
 
@@ -42,31 +42,31 @@ class HourBlockTest {
     @Test
     public void initialise_morningSlotWithLesson_success() {
         HourBlock hourBlock = new HourBlock(MORNING_START, Day.MONDAY);
-        assertTrue(hourBlock.canFitLesson(MONDAY_8AM_2HR_LESSON));
-        assertDoesNotThrow(() -> hourBlock.setLesson(MONDAY_8AM_2HR_LESSON));
+        assertTrue(hourBlock.canFitCommitment(MONDAY_8AM_2HR_LESSON));
+        assertDoesNotThrow(() -> hourBlock.setCommitment(MONDAY_8AM_2HR_LESSON));
         assertFalse(hourBlock.isFree());
     }
 
     @Test
     public void initialise_dayMismatchTimeCorrect_failure() {
         HourBlock hourBlock = new HourBlock(MORNING_START, Day.MONDAY);
-        assertFalse(hourBlock.canFitLesson(FRIDAY_8AM_1HR_LESSON));
-        assertThrows(WrongTimeException.class, () -> hourBlock.setLesson(FRIDAY_8AM_1HR_LESSON));
+        assertFalse(hourBlock.canFitCommitment(FRIDAY_8AM_1HR_LESSON));
+        assertThrows(WrongTimeException.class, () -> hourBlock.setCommitment(FRIDAY_8AM_1HR_LESSON));
     }
 
     @Test
     public void initialise_dayMatchTimeWrong_throwsWrongTimeException() {
         HourBlock hourBlock = new HourBlock(MORNING_START, Day.MONDAY);
-        assertFalse(hourBlock.canFitLesson(MONDAY_10AM_2HR_LESSON));
-        assertThrows(WrongTimeException.class, () -> hourBlock.setLesson(MONDAY_10AM_2HR_LESSON));
+        assertFalse(hourBlock.canFitCommitment(MONDAY_10AM_2HR_LESSON));
+        assertThrows(WrongTimeException.class, () -> hourBlock.setCommitment(MONDAY_10AM_2HR_LESSON));
     }
 
     @Test
     public void initialise_dayMatchLaterHalfLesson_success() {
         HourBlock hourBlock = new HourBlock(MORNING_SECOND, Day.MONDAY);
         assertTrue(hourBlock.isFree());
-        assertTrue(hourBlock.canFitLesson(MONDAY_8AM_2HR_LESSON));
-        assertDoesNotThrow(() -> hourBlock.setLesson(MONDAY_8AM_2HR_LESSON));
+        assertTrue(hourBlock.canFitCommitment(MONDAY_8AM_2HR_LESSON));
+        assertDoesNotThrow(() -> hourBlock.setCommitment(MONDAY_8AM_2HR_LESSON));
         assertFalse(hourBlock.isFree());
     }
 
@@ -74,17 +74,17 @@ class HourBlockTest {
     public void initialise_dayMatchMiddleSlot_success() {
         HourBlock hourBlock = new HourBlock(new LocalTime(20, 0), Day.FRIDAY);
         assertTrue(hourBlock.isFree());
-        assertTrue(hourBlock.canFitLesson(FRIDAY_7PM_3HR_LESSON));
-        assertDoesNotThrow(() -> hourBlock.setLesson(FRIDAY_7PM_3HR_LESSON));
+        assertTrue(hourBlock.canFitCommitment(FRIDAY_7PM_3HR_LESSON));
+        assertDoesNotThrow(() -> hourBlock.setCommitment(FRIDAY_7PM_3HR_LESSON));
         assertFalse(hourBlock.isFree());
-        assertEquals(FRIDAY_7PM_3HR_LESSON, hourBlock.getLesson().get());
+        assertEquals(FRIDAY_7PM_3HR_LESSON, hourBlock.getCommitment().get());
     }
 
     @Test
     public void addLesson_emptyTimeSlot_success() {
         HourBlock hourBlock = new HourBlock(MORNING_START, Day.MONDAY);
         assertTrue(hourBlock.isFree());
-        hourBlock.setLesson(MONDAY_8AM_2HR_LESSON);
+        hourBlock.setCommitment(MONDAY_8AM_2HR_LESSON);
         assertFalse(hourBlock.isFree());
     }
 
@@ -92,11 +92,11 @@ class HourBlockTest {
     public void addLesson_occupiedTimeSlot_throwsLessonClashException() {
         HourBlock hourBlock = new HourBlock(MORNING_START, Day.MONDAY);
         assertTrue(hourBlock.isFree());
-        hourBlock.setLesson(MONDAY_8AM_2HR_LESSON);
+        hourBlock.setCommitment(MONDAY_8AM_2HR_LESSON);
         assertFalse(hourBlock.isFree());
         // check to see if lesson can even fit inside the slot.
-        assertTrue(hourBlock.canFitLesson(MONDAY_ANOTHER_8AM_2HR_LESSON));
-        assertThrows(CommitmentClashException.class, () -> hourBlock.setLesson(MONDAY_ANOTHER_8AM_2HR_LESSON));
+        assertTrue(hourBlock.canFitCommitment(MONDAY_ANOTHER_8AM_2HR_LESSON));
+        assertThrows(CommitmentClashException.class, () -> hourBlock.setCommitment(MONDAY_ANOTHER_8AM_2HR_LESSON));
     }
 
     @Test
@@ -204,7 +204,7 @@ class HourBlockTest {
     public void equalityCheck_sameTimeDifferentLesson_notEqual() {
         HourBlock hourBlockA = new HourBlock(MORNING_START, Day.MONDAY);
         HourBlock hourBlockB = new HourBlock(MORNING_START, Day.MONDAY);
-        hourBlockA.setLesson(MONDAY_8AM_2HR_LESSON);
+        hourBlockA.setCommitment(MONDAY_8AM_2HR_LESSON);
         assertNotEquals(hourBlockA, hourBlockB);
     }
 

@@ -24,36 +24,45 @@ title: Developer Guide
    * [UI Component](#ui-component)
    * [Key_Mapping](#key-mapping)
    * [Model Component](#model-component)
-   * [Person](#person)
-       * [Name](#name)
-       * [Address](#address)
-       * [Phone](#phone)
-       * [Email](#email)
-       * [Telegram Handle](#telegram-handle)
-       * [Group Tag Set](#group-tag-set)
-       * [Module Tag Set](#module-tag-set)
-   * [Tag](#tag)
-       * [Group Tag](#group-tag)
-       * [Module Tag](#module-tag)
-   * [Utils](#utils)
+     * [Person](#person)
+         * [Name](#name)
+         * [Address](#address)
+         * [Phone](#phone)
+         * [Email](#email)
+         * [Telegram Handle](#telegram-handle)
+         * [Group Tag Set](#group-tag-set)
+         * [Module Tag Set](#module-tag-set)
+     * [Tag](#tag)
+         * [Group Tag](#group-tag)
+         * [Module Tag](#module-tag)
+     * [Time](#time)
+       * [Day](#day)
+       * [TimePeriod](#timeperiod)
+     * [Timetable](#timetable)
+       * [Module](#module)
+     * [Utils](#utils)
        * [Sample Data Util](#sample-data-util)
    * [Logic Component](#logic-component)
-   * [Commands](#commands)
-       * [Add Command](#add-command)
-       * [Edit Command](#edit-command)
-       * [Delete Command](#delete-command)
-       * [Tag Command](#tag-command)
-       * [View Command](#view-command)
-       * [Find Command](#find-command)
-       * [Sort Command](#sort-command)
-       * [List Command](#list-command)
-       * [Exit Command](#exit-command)
-       * [Meet Command](#meet-command)
-   * [Parsers](#parsers)
+     * [Commands](#commands)
+         * [Add Command](#add-command)
+         * [Edit Command](#edit-command)
+         * [Delete Command](#delete-command)
+         * [Tag Command](#tag-command)
+         * [View Command](#view-command)
+         * [Find Command](#find-command)
+         * [Sort Command](#sort-command)
+         * [List Command](#list-command)
+         * [Exit Command](#exit-command)
+         * [Meet Command](#meet-command)
+     * [Parsers](#parsers)
        * [Argument Multimap](#argument-multimap)
        * [Prefix](#prefix)
+     * [Recommenders](#recommenders)
+       * [Timing Recommender](#timingRecommender)
+       * [Location Recommender](#location-recommender)
    * [Storage Component](#storage-component)
    * [Commons Component](#common-classes)
+     * [MathUtil](#math-util)
 5. [Testing](#5-testing)
    * [Unit Tests](#unit-tests)
    * [Testing Models](#testing-models)
@@ -392,6 +401,30 @@ The `Model` component,
 #### **Group Tag**
 #### **Module Tag**
 
+### **Time**
+
+We use `org.joda.time.LocalTime` as the very basis of how we construct our time-related
+objects which is then used elsewhere in the codebase.
+
+<img src="images/TimeGroup.png" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.3.3</b> Class Diagram for classes in Time Package.
+</div>
+
+#### **Day**
+
+`Day` is an enumeration class in Java and it only contains the 5 weekdays: `MONDAY`,
+` TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`
+
+#### **HourBlock**
+
+`HourBlock` is an object which represents an hour of time.
+
+#### **TimeBlock**
+`TimeBlock` is an object which can represent any (non-negative) hour of time.
+
+### **Timetable**
+
 ### **Utils**
 #### **Sample Data Util**
 
@@ -706,20 +739,9 @@ However, we will be referring to all 3 commands generally as `meet`. All 3 comma
 recommendations as certain locations are only appropriate for certain activities.
 </div>
 
-This feature is composed of 2 modules : `LocationUtil` and `Scheduler`
+This feature is utilises the [`Recommender`](#recommenders)
 
-#### LocationUtil
-{to be filled by Hafeez}
-#### Scheduler
-The Scheduler uses the participants' schedule to find common time periods that everyone
-would be free so that a meetup could be scheduled.
 
-The scheduler will always recommend timeslots and rank them in descending time duration that
-the participants could meet up.
-
-##### What needs to be fixed:
-Integration with the `LocationUtil` so that we can find the exact location of every participant
-before the time recommended so that we can use LocationUtil to recommend an optimal meetup spot.
 
 ### **Organise Command**
 
@@ -729,9 +751,9 @@ before the time recommended so that we can use LocationUtil to recommend an opti
 
 The `organise` command will set a meetup with the time and place for all participants and the user himself/herself.
 
-The `Scheduler` will check if the timing is a suitable for every participant to meet.
+The `TimingRecommender` will check if the timing is a suitable for every participant to meet.
 
-### **Parsers**
+## **Parsers**
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -752,6 +774,50 @@ The `ArgumentMultimap` utilises a `HashMap` to store an `ArrayList<String>` of a
 #### **Prefix**
 
 The `Prefix` is an `enum` consisting of `n/` ,`a/`, `p/`, `t/`, `e/`, `g/`, `m/` and a blank `Prefix` which is an empty String. The Prefixes listed previously correspond to [Name](#name), [Address](#address), [Phone](#phone), [Telegram Handle](#telegram-handle), [Email](#email), [Group Tags](#group-tag) and [Module Tags](#module-tag)).
+
+## **Recommenders**
+
+**API** : `Recommender.java` {to be filled in}
+
+<img src="images/RecommenderClassDiagram.png" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.6</b> Class Diagram for Recommender Module
+</div>
+<br>
+
+The `Recommender` component,
+* consists of 2 sub-components (modules) : `LocationRecommender` and `TimingRecommender`
+* recommends timing and location of meetups for relevant participants and the user.
+
+How the `Recommender` Component works:
+1. User enters a `meet/eat/study` command.
+2. Triggers the `TimingRecommender` to recommend common available timings amongst users and participants.
+3. `TimingRecommender` passes the recommended timings to `LocationRecommender`
+4. `LocationRecommender` recommends optimal meeting points paired with suitable timings based on
+   their `Location` at that particular timing.
+5. Feedbacks to user the recommended meetup locations and timings.
+
+#### Timing Recommender
+The `TimingRecommender`'s role is to recommend timings in which the user and all participants are available.
+The `TimingRecommedner` uses the participants' schedule to find common time periods that everyone
+will be free so that a meetup could be scheduled.
+
+<img src="images/SchedulerActivity.png" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.6.1</b> Activity Diagram for <code>TimingRecommender</code>
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+
+:information_source: **Very Important Re-emphasis** <br>
+The timingRecommender will always recommend timeslots and **rank them in descending time** duration that
+the participants could meet up.
+</div>
+
+#### Location Recommender
+
+{to be filled by Hafeez}
 
 ---
 
@@ -1135,6 +1201,9 @@ Expected Output in the Person List: New person added to EduMate.
 Expected Output in the Command Output Box: Error message for invalid command format.
 
 ### **View a person**
+`view`
+
+Expected Output in the Profile Panel: The user's (you) profile is shown.
 
 `view 5`
 
