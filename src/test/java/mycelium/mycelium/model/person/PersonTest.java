@@ -6,8 +6,8 @@ import static mycelium.mycelium.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static mycelium.mycelium.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static mycelium.mycelium.testutil.Assert.assertThrows;
-import static mycelium.mycelium.testutil.TypicalPersons.ALICE;
-import static mycelium.mycelium.testutil.TypicalPersons.BOB;
+import static mycelium.mycelium.testutil.TypicalEntities.ALICE;
+import static mycelium.mycelium.testutil.TypicalEntities.BOB;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

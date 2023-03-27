@@ -37,14 +37,14 @@ import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.person.Phone;
 import mycelium.mycelium.model.tag.Tag;
 import mycelium.mycelium.testutil.PersonBuilder;
-import mycelium.mycelium.testutil.TypicalPersons;
+import mycelium.mycelium.testutil.TypicalEntities;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(TypicalPersons.BOB).withTags(VALID_TAG_FRIEND).build();
+        Person expectedPerson = new PersonBuilder(TypicalEntities.BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -69,7 +69,7 @@ public class AddCommandParserTest {
         // multiple tags - all accepted
         Person
             expectedPersonMultipleTags =
-            new PersonBuilder(TypicalPersons.BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+            new PersonBuilder(TypicalEntities.BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
@@ -78,7 +78,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(TypicalPersons.AMY).withTags().build();
+        Person expectedPerson = new PersonBuilder(TypicalEntities.AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
             new AddCommand(expectedPerson));
     }

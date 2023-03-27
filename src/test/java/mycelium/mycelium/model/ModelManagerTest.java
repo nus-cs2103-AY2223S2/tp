@@ -1,9 +1,13 @@
 package mycelium.mycelium.model;
 
 import static mycelium.mycelium.testutil.Assert.assertThrows;
-import static mycelium.mycelium.testutil.TypicalPersons.ALICE;
-import static mycelium.mycelium.testutil.TypicalPersons.BENSON;
-import static mycelium.mycelium.testutil.TypicalPersons.WEST;
+import static mycelium.mycelium.testutil.TypicalEntities.ALICE;
+import static mycelium.mycelium.testutil.TypicalEntities.BARD;
+import static mycelium.mycelium.testutil.TypicalEntities.BING;
+import static mycelium.mycelium.testutil.TypicalEntities.BOSE;
+import static mycelium.mycelium.testutil.TypicalEntities.FUTA;
+import static mycelium.mycelium.testutil.TypicalEntities.RANTARO;
+import static mycelium.mycelium.testutil.TypicalEntities.WEST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -11,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
@@ -21,7 +24,6 @@ import mycelium.mycelium.commons.core.GuiSettings;
 import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.client.exceptions.DuplicateClientException;
 import mycelium.mycelium.model.person.Name;
-import mycelium.mycelium.model.person.NameContainsKeywordsPredicate;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.exceptions.DuplicateProjectException;
 import mycelium.mycelium.testutil.AddressBookBuilder;
@@ -201,17 +203,16 @@ public class ModelManagerTest {
 
     @Test
     public void hasProject_projectInAddressBook_returnsTrue() {
-        Project project = new ProjectBuilder().build();
-        modelManager.addProject(project);
+        modelManager.addProject(BARD);
 
-        Map<String, Project> cases = Map.ofEntries(
-            Map.entry("same reference", project),
-            Map.entry("same fields", new ProjectBuilder().withName(project.getName()).build()),
-            Map.entry("same name diff email", new ProjectBuilder().withClientEmail("chungus@chungus.org").build())
+        Map<String, Project> cases = Map.of(
+            "same reference", BARD,
+            "same fields", new ProjectBuilder(BARD).build(),
+            "same name diff email", new ProjectBuilder(BARD).withClientEmail("jamal@supercell.com").build()
         );
 
         cases.forEach((desc, tt) -> {
-            assertTrue(modelManager.hasProject(project), "While testing case: " + desc);
+            assertTrue(modelManager.hasProject(tt), "While testing case: " + desc);
         });
     }
 
@@ -222,15 +223,14 @@ public class ModelManagerTest {
 
     @Test
     public void getUniqueProject_projectNotInAddressBook_returnsEmpty() {
-        modelManager.addProject(new ProjectBuilder().withName("Bard").build());
+        modelManager.addProject(BARD);
         assertTrue(modelManager.getUniqueProject(p -> p.getName().equals("Bing")).isEmpty());
     }
 
     @Test
     public void getUniqueProject_projectInAddressBook_returnsProject() {
-        Project project = new ProjectBuilder().withName("Bing").build();
-        modelManager.addProject(project);
-        assertEquals(modelManager.getUniqueProject(p -> p.equals(project)).get(), project);
+        modelManager.addProject(BARD);
+        assertEquals(modelManager.getUniqueProject(p -> p.equals(BARD)).get(), BARD);
     }
 
     @Test
@@ -240,18 +240,17 @@ public class ModelManagerTest {
 
     @Test
     public void deleteProject_projectNotInAddressBook_nothingHappens() {
-        Project project = new ProjectBuilder().build();
-        assertFalse(modelManager.hasProject(project));
-        modelManager.deleteProject(project);
-        assertFalse(modelManager.hasProject(project));
+        assertFalse(modelManager.hasProject(BARD));
+        modelManager.deleteProject(BARD);
+        assertFalse(modelManager.hasProject(BARD));
     }
 
     @Test
     public void deleteProject_projectInAddressBook_success() {
-        Project project = new ProjectBuilder().build();
-        modelManager.addProject(project);
-        modelManager.deleteProject(project);
-        assertFalse(modelManager.hasProject(project));
+        modelManager.addProject(BARD);
+        assertTrue(modelManager.hasProject(BARD));
+        modelManager.deleteProject(BARD);
+        assertFalse(modelManager.hasProject(BARD));
     }
 
     @Test
@@ -261,24 +260,21 @@ public class ModelManagerTest {
 
     @Test
     public void addProject_projectInAddressBook_throwsDuplicateProjectException() {
-        Project project = new ProjectBuilder().build();
-        modelManager.addProject(project);
-        assertThrows(DuplicateProjectException.class, () -> modelManager.addProject(project));
+        modelManager.addProject(BARD);
+        assertThrows(DuplicateProjectException.class, () -> modelManager.addProject(BARD));
     }
 
     @Test
     public void addProject_projectWithSameIdentityFieldsInAddressBook_throwsDuplicateProjectException() {
-        Project project = new ProjectBuilder().build();
-        modelManager.addProject(project);
-        Project editedProject = new ProjectBuilder(project).withClientEmail("chungus@chungus.org").build();
-        assertThrows(DuplicateProjectException.class, () -> modelManager.addProject(editedProject));
+        modelManager.addProject(BARD);
+        Project alsoBard = new ProjectBuilder(BARD).withClientEmail("chungus@chungus.org").build();
+        assertThrows(DuplicateProjectException.class, () -> modelManager.addProject(alsoBard));
     }
 
     @Test
     public void addProject_projectNotInAddressBook_success() {
-        Project project = new ProjectBuilder().build();
-        modelManager.addProject(project);
-        assertTrue(modelManager.hasProject(project));
+        modelManager.addProject(BARD);
+        assertTrue(modelManager.hasProject(BARD));
     }
 
     @Test
@@ -289,11 +285,14 @@ public class ModelManagerTest {
     @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder()
-                .withPerson(ALICE)
-                .withPerson(BENSON)
-                .withClient(WEST)
-                .withProject(new ProjectBuilder().build())
-                .build();
+            .withClient(WEST)
+            .withClient(RANTARO)
+            .withClient(FUTA)
+            .withProject(BARD)
+            .withProject(BING)
+            .withProject(BOSE)
+            .build();
+
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -314,14 +313,6 @@ public class ModelManagerTest {
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
         assertNotEquals(modelManager.hashCode(), new ModelManager(differentAddressBook, userPrefs).hashCode());
-
-        // different person filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
-
-        // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
