@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.model.person.ContactIndex;
+import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
 
@@ -23,17 +24,29 @@ public class TagCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsTagCommand() {
-        createValidArgsReturnsTagCommand(
+        createModuleValidArgsReturnsTagCommand(
                 new ContactIndex(1),
                 new HashSet<ModuleTag>() {{
                     add(new ModuleTag("CS1234"));
                     }},
                 "1 m/CS1234");
 
+        createGroupValidArgsReturnsTagCommand(
+                new ContactIndex(2),
+                new HashSet<GroupTag>() {{
+                    add(new GroupTag("Enemy"));
+                }},
+                "2 g/Enemy");
     }
 
-    private void createValidArgsReturnsTagCommand(ContactIndex index, Set<ModuleTag> modules, String userInput) {
-        TagCommand expectedTagCommand = new TagCommand(index, modules);
+    private void createModuleValidArgsReturnsTagCommand(ContactIndex index, Set<ModuleTag> modules, String userInput) {
+        TagCommand expectedTagCommand = new TagCommand(index, modules, TagType.MODULE);
+
+        assertParseSuccess(parser, userInput, expectedTagCommand);
+    }
+
+    private void createGroupValidArgsReturnsTagCommand(ContactIndex index, Set<GroupTag> groups, String userInput) {
+        TagCommand expectedTagCommand = new TagCommand(index, groups, TagType.GROUP);
 
         assertParseSuccess(parser, userInput, expectedTagCommand);
     }

@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +13,6 @@ import java.util.Set;
 import org.joda.time.LocalTime;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.location.Location;
@@ -173,9 +171,9 @@ public class ParserUtil {
      */
     public static ArrayList<String> parseMoreModules(String tags) throws ParseException {
         String trimmedArgs = tags.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
-        }
+        //if (trimmedArgs.isEmpty()) {
+        //    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
+        //}
         // I can just set them as null and exceptions will be throw in TagCommand.
         return new ArrayList<String>(Arrays.asList(trimmedArgs.split("\\s+")));
     }
