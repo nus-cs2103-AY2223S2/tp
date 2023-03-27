@@ -27,6 +27,7 @@ import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentId;
 
 /**
+ * Edits the information of a student.
  */
 public class EditStudentCommand extends EditCommand {
     public static final String COMMAND_TYPE_WORD = "student";

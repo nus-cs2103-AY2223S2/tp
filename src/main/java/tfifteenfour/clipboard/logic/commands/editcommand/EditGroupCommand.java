@@ -16,6 +16,9 @@ import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.Student;
 
+/**
+ * Edits the name of a group.
+ */
 public class EditGroupCommand extends EditCommand {
     public static final String COMMAND_TYPE_WORD = "group";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -30,6 +33,12 @@ public class EditGroupCommand extends EditCommand {
     private final Index index;
     private final Group newGroup;
 
+    /**
+     * Constructs a EditGroupCommand object with the given index and new group.
+     *
+     * @param index   The index of the group to edit.
+     * @param newGroup The new Group object with the updated name.
+     */
 
     public EditGroupCommand(Index index, Group newGroup) {
         this.index = index;
@@ -53,14 +62,14 @@ public class EditGroupCommand extends EditCommand {
             throw new CommandException(MESSAGE_DUPLICATE_GROUP);
         }
 
-        Group GroupToEdit = lastShownList.get(index.getZeroBased());
-        List<Student> students = GroupToEdit.getUnmodifiableStudentList();
-        List<Session> sessions = GroupToEdit.getUnmodifiableSessionList();
+        Group groupToEdit = lastShownList.get(index.getZeroBased());
+        List<Student> students = groupToEdit.getUnmodifiableStudentList();
+        List<Session> sessions = groupToEdit.getUnmodifiableSessionList();
         students.forEach(newGroup::addStudent);
         sessions.forEach(newGroup::addSession);
 
         lastShownList.set(index.getZeroBased(), newGroup);
-        return new CommandResult(this, String.format(MESSAGE_SUCCESS, GroupToEdit, newGroup), willModifyState);
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, groupToEdit, newGroup), willModifyState);
     }
 
 }

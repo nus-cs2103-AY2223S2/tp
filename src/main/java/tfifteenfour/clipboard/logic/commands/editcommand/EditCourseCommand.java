@@ -14,6 +14,9 @@ import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 
+/**
+ * Edits the name of an existing course.
+ */
 public class EditCourseCommand extends EditCommand {
     public static final String COMMAND_TYPE_WORD = "course";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -29,7 +32,11 @@ public class EditCourseCommand extends EditCommand {
     private final Index index;
     private final Course newCourse;
 
-
+    /**
+     * Constructs an {@code EditCourseCommand} with the specified index and new course.
+     * @param index The index of the course to be edited.
+     * @param newCourse The new course to replace the existing course.
+     */
     public EditCourseCommand(Index index, Course newCourse) {
         this.index = index;
         this.newCourse = newCourse;

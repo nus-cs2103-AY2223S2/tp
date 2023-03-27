@@ -14,6 +14,9 @@ import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
 
+/**
+ * Edits the name of a session in the gorup.
+ */
 public class EditSessionCommand extends EditCommand {
     public static final String COMMAND_TYPE_WORD = "session";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -28,7 +31,11 @@ public class EditSessionCommand extends EditCommand {
     private final Index index;
     private final Session newSession;
 
-
+    /**
+     * Constructs an {@code EditSessionCommand} with the specified index and new session.
+     * @param index The index of the session to be edited.
+     * @param newSession The new session to be set.
+     */
     public EditSessionCommand(Index index, Session newSession) {
         this.index = index;
         this.newSession = newSession;

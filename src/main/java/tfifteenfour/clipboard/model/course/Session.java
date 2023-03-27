@@ -112,6 +112,11 @@ public class Session {
         this.attendance = new HashMap<>(attendance);
     }
 
+    /**
+     * Replaces a student in current session with a new student.
+     * @param oldStudent Student to be replaced.
+     * @param newStudent New student to replace with.
+     */
     public void replaceStudent(Student oldStudent, Student newStudent) {
         if (!attendance.containsKey(oldStudent)) {
             throw new StudentNotInSessionException();
