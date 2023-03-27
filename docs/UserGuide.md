@@ -39,17 +39,17 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
   - [4.9 Saving the data](#49-saving-the-data)
   - [4.10 Editing the data file](#410-editing-the-data-file)
 - [5. Information Fields & Prefixes](#5-information-fields--prefixes)
-  - [5.1 Name](#51-name)
-  - [5.2 Phone](#52-phone)
-  - [5.3 Email](#53-email)
-  - [5.4 Address](#54-address)
-  - [5.5 Instagram](#55-instagram)
-  - [5.6 Telegram](#56-telegram)
-  - [5.7 WhatsApp](#57-whatsapp)
-  - [5.8 Birthday](#58-birthday)
-  - [5.9 Module](#59-module)
-  - [5.10 CCA](#510-cca)
-  - [5.11 Tag](#511-tag)
+  - [5.1 Name: `n/`](#51-name-n)
+  - [5.2 Phone: `p/`](#52-phone-p)
+  - [5.3 Email: `e/`](#53-email-e)
+  - [5.4 Address: `a/`](#54-address-a)
+  - [5.5 Instagram: `ig/`](#55-instagram-ig)
+  - [5.6 Telegram: `tg/`](#56-telegram-tg)
+  - [5.7 WhatsApp: `wa/`](#57-whatsapp-wa)
+  - [5.8 Birthday: `b/`](#58-birthday-b)
+  - [5.9 Module: `mod/`](#59-module-mod)
+  - [5.10 CCA: `cca/`](#510-cca-cca)
+  - [5.11 Tag: `t/`](#511-tag-t)
 - [6. FAQ](#6-faq)
 - [7. Command Summary](#7-command-summary)
 - [8. Prefix Summary](#8-prefix-summary)
@@ -311,26 +311,26 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 ## 5. Information Fields & Prefixes
 
-- [5.1 Name](#51-name)
-- [5.2 Phone](#52-phone)
-- [5.3 Email](#53-email)
-- [5.4 Address](#54-address)
-- [5.5 Instagram](#55-instagram)
-- [5.6 Telegram](#56-telegram)
-- [5.7 WhatsApp](#57-whatsapp)
-- [5.8 Birthday](#58-birthday)
-- [5.9 Module](#59-module)
-- [5.10 CCA](#510-cca)
-- [5.11 Tag](#511-tag)
+- [5.1 Name: `n/`](#51-name-n)
+- [5.2 Phone: `p/`](#52-phone-p)
+- [5.3 Email: `e/`](#53-email-e)
+- [5.4 Address: `a/`](#54-address-a)
+- [5.5 Instagram: `ig/`](#55-instagram-ig)
+- [5.6 Telegram: `tg/`](#56-telegram-tg)
+- [5.7 WhatsApp: `wa/`](#57-whatsapp-wa)
+- [5.8 Birthday: `b/`](#58-birthday-b)
+- [5.9 Module: `mod/`](#59-module-mod)
+- [5.10 CCA: `cca/`](#510-cca-cca)
+- [5.11 Tag: `t/`](#511-tag-t)
 
-### 5.1 Name
+### 5.1 Name: `n/`
 * Name is a *compulsory* field, i.e. a contact cannot exist if it does not have a name.
 * The prefix for a name is `n/`.
 * Names should only contain alphanumeric characters and spaces.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.2 Phone
+### 5.2 Phone: `p/`
 * Phone is an *optional* field, i.e. a contact can exist even if it does not have a phone number.
 * The prefix for a phone is `p/`.
 * Phone numbers should only contain numeric characters.
@@ -338,7 +338,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.3 Email
+### 5.3 Email: `e/`
 * Email is an *optional* field, i.e. a contact can exist even if it does not have an email.
 * The prefix for an email is `e/`.
 * Emails should be of the format local-part@domain and adhere to the following constraints:
@@ -351,14 +351,14 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.4 Address
+### 5.4 Address: `a/`
 * Address is an *optional* field, i.e. a contact can exist even if it does not have an address.
 * The prefix for an address is `a/`.
 * Addresses can take any values, including special characters.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.5 Instagram
+### 5.5 Instagram: `ig/`
 * Instagram is an *optional* field, i.e. a contact can exist even if it does not have an Instagram.
 * The prefix for an Instagram username is `ig/`.
 * Instagram usernames should be of the format john.123.doe and adhere to the following constraints:
@@ -368,7 +368,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.6 Telegram
+### 5.6 Telegram: `tg/`
 * Telegram is an *optional* field, i.e. a contact can exist even if it does not have a Telegram.
 * The prefix for a Telegram username is `tg/`.
 * Telegram usernames should be of the format johndoe and adhere to the following constraints:
@@ -377,7 +377,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.7 WhatsApp
+### 5.7 WhatsApp: `wa/`
 * WhatsApp is an *optional* field, i.e. a contact can exist even if it does not have a WhatsApp.
 * The prefix for adding a WhatsApp is `wa/`.
 * A WhatsApp's user identifier is a phone number, which should adhere to the following constraints:
@@ -386,7 +386,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.8 Birthday
+### 5.8 Birthday: `b/`
 * Birthday is an *optional* field, i.e. a contact can exist even if it does not have a birthday.
 * The prefix for a birthday is `b/`.
 * Birthdays should be of the format DD/MM/YYYY:
@@ -395,7 +395,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.9 Module
+### 5.9 Module: `mod/`
 * Module is an *optional* field, i.e. a contact can exist even if it does not have a module.
 * The prefix for a module is `mod/`.
 * Module names should be alphanumeric.
@@ -403,7 +403,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.10 CCA
+### 5.10 CCA: `cca/`
 * CCA is an *optional* field, i.e. a contact can exist even if it does not have a CCA.
 * The prefix for a CCA is `cca/`.
 * CCA names should be alphanumeric.
@@ -411,7 +411,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.11 Tag
+### 5.11 Tag: `t/`
 * Tag is an *optional* field, i.e. a contact can exist even if it does not have a tag.
 * The prefix for a tag is `t/`.
 * Tag names should be alphanumeric.
