@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,6 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ViewCommand;
-import seedu.address.model.Model;
 
 public class Autocompletion {
     private static final List<String> POSSIBLE_COMMAND_WORDS = Arrays.asList(
@@ -50,12 +50,10 @@ public class Autocompletion {
     }};
 
     private String query;
-    private Model model;
     private List<String> result;
 
-    public Autocompletion(String query, Model model) {
+    public Autocompletion(String query) {
         this.query = query;
-        this.model = model;
         this.result = new ArrayList<>();
     }
 
@@ -63,7 +61,7 @@ public class Autocompletion {
         addSuggestionsForCommandWord();
         addSuggestionsForCommandWordUsage();
 
-        result.sort((a,b) -> a.length() - b.length());
+        result.sort(Comparator.comparingInt(String::length));
 
         return result;
     }
@@ -83,17 +81,17 @@ public class Autocompletion {
 //                        new Applicant(new Name("Xiao Ming")),
 //                        new Applicant(new Name("Muthu"))))));
 //
-//        String query = "  add";
+//        String query = "add ";
 //        System.out.println("Query: " + query);
 //        System.out.println("---------------------------");
-//        Autocompletion autocompletion = new Autocompletion(query, model);
+//        Autocompletion autocompletion = new Autocompletion(query);
 //        for (String suggestion : autocompletion.getListOfSuggestions()) {
 //            System.out.println(suggestion);
 //        }
 //    }
 
     private void addSuggestionsForCommandWord() {
-        if (query.matches("(?i)^\\s*[a-zA-Z]+\\s*$")) {
+        if (query.matches("(?i)^\\s*[a-zA-Z]+$")) {
             String trimmedToLowerQuery = query.trim().toLowerCase();
             for (String command : POSSIBLE_COMMAND_WORDS) {
                 if (command.toLowerCase().equals(trimmedToLowerQuery) &&
