@@ -27,9 +27,10 @@ public class CommandResultPanel extends UiPart<HBox> {
 
     public void display(CommandResult result) {
         resultField.setText(result.getFeedbackToUser());
-        // PauseTransition pause = new PauseTransition(Duration.seconds(3));
-        // pause.setOnFinished(e -> resultField.setText(""));
-        // pause.play();
+        System.out.println("CommandResultPanel.resultField: " + resultField.getText());
+        PauseTransition pause = new PauseTransition(Duration.seconds(3));
+        pause.setOnFinished(e -> resultField.setText(""));
+        pause.play();
         mainScreen.loadBottomComponent(this);
     }
 

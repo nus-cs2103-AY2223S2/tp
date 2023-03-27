@@ -47,6 +47,7 @@ public class CommandInput extends UiPart<HBox> {
         boolean isEscEvent = event.getCode().equals(KeyCode.ESCAPE);
 
         if (isEscEvent || isTextFieldEmpty()) {
+            mainScreen.clearBottomComponent();
             returnFocusToParent();
         }
 
@@ -87,8 +88,8 @@ public class CommandInput extends UiPart<HBox> {
 
         try {
             CommandResult result = logic.execute(commandString);
-            mainScreen.loadCommandResultComponent(result);
             mainScreen.initializeTaskListPanel();
+            mainScreen.loadCommandResultComponent(result);
 
             // TODO: Should only clear if the task has been deleted.
             if (result.getFeedbackToUser().contains("Deleted Task:")) {
@@ -98,7 +99,11 @@ public class CommandInput extends UiPart<HBox> {
         } catch (CommandException e) {
             System.out.println("[Your command] " + input + " is invalid");
         } catch (ParserException e) {
-            System.out.println("[Your command] " + input + " can't be parsed");
+            // TODO: Remove this once execute no longer throws error and returns error in
+            // CommandResult
+            // instead.
+            CommandResult errorResult = new CommandResult("[Not a valid command] " + input);
+            mainScreen.loadCommandResultComponent(errorResult);
         }
     }
 
@@ -123,27 +128,28 @@ public class CommandInput extends UiPart<HBox> {
     @Override
     public void requestFocus() {
         super.requestFocus();
-        this.inputField.requestFocus();
+        inputField.setText(":");
+        inputField.positionCaret(1);
+        inputField.requestFocus();
     }
 
     private void returnFocusToParent() {
-        mainScreen.clearBottomComponent();
         mainScreen.getRoot().requestFocus();
     }
 
     @FXML
     private void initialize() {
         this.getRoot().setFocusTraversable(true); // Important
-        inputField.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue,
-                    Boolean newPropertyValue) {
-                if (!newPropertyValue) {
-                    returnFocusToParent();
-                }
+        // inputField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+        // @Override
+        // public void changed(ObservableValue<? extends Boolean> arg0, Boolean wasFocused,
+        // Boolean isFocused) {
+        // if (!isFocused) {
+        // mainScreen.clearBottomComponent();
+        // }
 
-            }
-        });
+        // }
+        // });
     }
 
     private boolean isTextFieldEmpty() {
