@@ -8,8 +8,8 @@ import seedu.dengue.logic.commands.CommandResult;
 import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
-import seedu.dengue.model.person.Person;
 import seedu.dengue.model.overview.Overview;
+import seedu.dengue.model.person.Person;
 
 /**
  * API of the Logic component

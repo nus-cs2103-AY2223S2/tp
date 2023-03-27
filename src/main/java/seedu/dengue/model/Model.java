@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.dengue.commons.core.GuiSettings;
-import seedu.dengue.model.person.Person;
 import seedu.dengue.model.overview.Overview;
+import seedu.dengue.model.person.Person;
 
 /**
  * The API of the Model component.

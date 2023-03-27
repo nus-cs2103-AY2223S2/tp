@@ -27,6 +27,12 @@ public class OverviewCommand extends Command {
     private final Overview overview;
     private final String type;
 
+    /**
+     * Creates an {@code OverviewCommand} to change the overview to the given type.
+     *
+     * @param blankOverview An empty {@code Overview}.
+     * @param type The type of the overview.
+     */
     public OverviewCommand(Overview blankOverview, String type) {
         requireNonNull(blankOverview);
         this.overview = blankOverview;
