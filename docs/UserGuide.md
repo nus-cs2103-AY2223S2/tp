@@ -17,7 +17,7 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
     * [2.7 stats](#27-getting-statistics--stats)
     * [2.8 sort](#28-sorting-tasks--sort)
     * [2.9 alert](#29-get-alerts--alert-alert-window)
-    * [2.10 plan](#210-plan-your-month--plan-effort)
+    * [2.10 schedule](#210-schedule-of-the-day--schedule-dshortdate-eeffort)
     * [2.11 subsection](#211-adding-a-subsection-to-a-task--subsection)
     * [2.11 remove-subsection](#212-deleting-a-subsection-from-a-task--remove-subsection)
   * [3. Storage](#3-storage)
@@ -36,11 +36,16 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Clock-Work.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clockwork.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Open a command terminal (e.g. Ubuntu)
+
+5. Navigate to the directory with `clockwork.jar` file downloaded in (Downloads folder in most cases).
+
+6. Use the command `java -jar clockwork.jar` to run the application or double-click on the jar file.
+
+7. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+8. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -53,7 +58,7 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features and commands](#2-features-and-commands) below for details of each command.
+9. Refer to the [Features and commands](#2-features-and-commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -63,25 +68,28 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 
 **:information_source: Notes about the command format:**<br>
 * First word is assumed to be a command word (add/delete/list/find).
+
 * A Task can be: 
-  * A simpleTask, which does not have a date attached to it.
-  * A deadline, which has a `deadline`.
-  * An event, which has a `from` and a `to`.
-* A task can have the following fields attached to it:
+  * A simpleTask, which does not have a Date attached to it. ([What is a Date?]())
+  * A deadline, which has a Date known as `deadline`.
+  * An event, which has 2 Dates known as a `from` and a `to`.
+
+* A task can have the following additional **Optional** fields attached to it:
   * Tags
-  * Description
-  * Subsection 
-  * Effort
+  * Description 
+  * Effort level
+  * Alert window
+  * Subsection
+  
 * Words in `ALL CAPS` are the parameters to be supplied by the user.<br>
 
-* Items in square brackets are optional.<br>
-  e.g `n/TASK [d/DESCRIPTION] [tag/TAG]` can be used as `n/Read Book d/Intro to Competitive Programming tag/relax` or as `n/Read Book d/Intro to Competitive Programming t/relax`.
+* Any fields in square brackets are optional.<br>
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/important`, `tag/important t/urgent` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `t/TASK d/DESCRIPTION`, `d/DESCRIPTION t/TASK` is also acceptable.
+  e.g. if the command specifies `t/Task A d/A's sample description`, `d/A's sample description t/Task A` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `d/do it fast d/do it slow`, only `d/do it slow` will be taken.
@@ -117,11 +125,11 @@ A Task must have a description.([What is a valid Description?](#q4-what-is-a-val
 
 Format:
 
-* SimpleTask: `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]…​`
+* SimpleTask: `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
 
-* Deadline: `add n/TASKNAME D/DEADLINE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]…​`
+* Deadline: `add n/TASKNAME D/DEADLINE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
 
-* Event: `add n/TASKNAME F/FROMDATE T/TODATE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]…​`
+* Event: `add n/TASKNAME F/FROMDATE T/TODATE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
 
 You can add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION [t/TAGS]…​`
 
@@ -343,6 +351,9 @@ _Details coming soon ..._
 
 ### Q4 What is a valid Description?
 **A**: A valid Description is a text input that has at least one character.
+
+### Q5 What is a Date?
+**A**: A Date has the format `YYYY-MM-DD HHMM`.
 
 
 
