@@ -18,7 +18,7 @@ public class MedicationTest {
 
     @Test
     public void constructor_invalidMedication_throwsIllegalArgumentException() {
-        String invalidMedication = "";
+        String invalidMedication = " ";
         assertThrows(IllegalArgumentException.class, () -> new Medication(invalidMedication));
     }
 

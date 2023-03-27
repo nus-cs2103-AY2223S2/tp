@@ -39,8 +39,7 @@ public class PrescribeCommand extends Command {
             + PREFIX_MEDICATION + "1 paracetamol "
             + PREFIX_COST + "1";
 
-    public static final String MESSAGE_ADD_PRESCRIBE_SUCCESS = "Added medication to Person: %1$s";
-    public static final String MESSAGE_DELETE_PRESCRIBE_SUCCESS = "Deleted medication from Person: %1$s";
+    public static final String MESSAGE_SUCCESS = "Medication of Person Changed!: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "This patient does not exist.";
 
     public final Nric nric;
@@ -95,15 +94,11 @@ public class PrescribeCommand extends Command {
     }
 
     /**
-     * Generates a command execution success message based on whether
-     * the medication is added to or removed from
+     * Generates a command execution success message when prescription is changed
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = prescription.isEmpty()
-                ? MESSAGE_DELETE_PRESCRIBE_SUCCESS
-                : MESSAGE_ADD_PRESCRIBE_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(MESSAGE_SUCCESS, personToEdit);
     }
     //@@author Jeffry Lum
 

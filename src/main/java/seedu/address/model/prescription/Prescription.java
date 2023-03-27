@@ -48,8 +48,8 @@ public class Prescription {
         }
 
         Prescription otherPrescription = (Prescription) other;
-        return otherPrescription.medication.equals(otherPrescription.medication)
-                && otherPrescription.cost.equals(otherPrescription.cost);
+        return medication.equals(otherPrescription.medication)
+                && cost.equals(otherPrescription.cost);
     }
 
 }

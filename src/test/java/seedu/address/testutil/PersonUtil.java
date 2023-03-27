@@ -47,10 +47,6 @@ public class PersonUtil {
         sb.append(PREFIX_NRIC + person.getNric().nric + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
 
-        if (person.isPatient() && !((Patient) person).getMedication().isEmpty()) {
-            sb.append("; Medication: ")
-                    .append(((Patient) person).getMedication());
-        }
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
