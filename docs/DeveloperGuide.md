@@ -74,10 +74,10 @@ It is responsible for, At app launch: Initializes the components in the correct 
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#22-ui-component): The UI of the App.
+* [**`Logic`**](#23-logic-component): The command executor.
+* [**`Model`**](#24-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#26-storage-component): Reads data from, and writes data to, the hard disk.
 
 #### 2.1.2 How the architecture components interact with each other
 
