@@ -215,7 +215,7 @@ Exits the program.
 
 Format: `exit`
 
-### Adding a Meeting: `addm`
+### Adding a Meeting : `addm`
 
 Adds a meeting to the address book.
 
@@ -225,7 +225,7 @@ Examples:
 * `addm m/CS2103T Tutorial p/John Doe p/Jane Doe dt/2022-02-22 10:00 l/COM1-B103 des/CS2103T Tutorial`
 * `addm m/CS2103T Tutorial p/John Doe p/Mary Jane dt/2022-02-22 22:22 l/COM1-B103 des/CS2101 Tutorial`
 
-### Finding Meetings by name: `findm`
+### Finding Meetings by name : `findm`
 
 Find meetings whose names contain any of the given keywords.
 
@@ -257,14 +257,14 @@ If your changes to the data file makes its format invalid, QuickContacts will di
 
 _Details coming soon ..._
 
-### Exporting of contact: `export`
+### Exporting of contact : `export`
 * Exports the persons at the specified `INDEX`es.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Format: `export p/ INDEX1 p/ INDEX2`
 
-### Importing of contacts: `import`
+### Importing of contacts : `import`
 * Imports the persons in the provided JSON.
 * The JSON **must contain a valid array of persons** 
 
@@ -296,7 +296,7 @@ Optional Parameter `f/` that forces imports regardless of duplicate values.
 
 Format: `import JSON f/`
 
-### Export meetings: `exportm`
+### Export meetings : `exportm`
 * Exports the meetings at the specified `INDEX`es, between `start` and `end` dates.
 * The indexes refer to the index numbers shown in the displayed meetings list.
 * The indexes **must be positive integers** 1, 2, 3
@@ -304,7 +304,7 @@ Format: `import JSON f/`
 
 Format: `exportm p/ INDEX1 p/ INDEX2 start/ START_DATE end/ END_DATE`
 
-### Import meetings: `importm`
+### Import meetings : `importm`
 * Imports the meetings in the provided JSON.
 * The JSON **must contain a valid array of meetings**
 
