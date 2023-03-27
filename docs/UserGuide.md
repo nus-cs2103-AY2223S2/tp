@@ -133,7 +133,7 @@ An elderly can have any number of tags and available dates.
 
 Examples:
 
-* `add_volunteer n/John Wk e/johnwk@example.com a/New york p/1234561 vnr/T1254567D re/CENTRAL mt/CPR BASIC ag/63`
+* `add_elderly n/John p/98765432 e/johnd@example.com a/John street enr/S1234567C bd/1950-02-03 re/NORTH r/HIGH t/lonely dr/2023-06-03,2023-06-17`
 
 #### Adding a volunteer: `add_volunteer`
 
@@ -187,6 +187,35 @@ Examples:
 
 * `add_pair enr/S2235243I vnr/t0123423a`
 * `add_pair enr/s1135243A vnr/S0773423a`
+
+#### Auto pairing of volunteers and elderly: `auto_pair`
+
+Automatically pairs all unpaired elderly and volunteers, if possible. This command is intended to give
+you a starting point for how the pairs can be formed, and aims to make the manual process of pairing
+slightly easier. 
+
+Format: `auto_pair`
+
+* The volunteer and elderly in each pair generated will 
+always have **matching regions** and **compatible availabilities**.
+* In the event that no pairs can be formed satisfying the above constraints 
+(either because there are no unpaired volunteers or elderly, or all the unpaired volunteers 
+and elderly have incompatible regions or availabilities)
+then a simple "_No pairs were formed._" message will be displayed.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: How are the volunteers and elderly paired?**<br>
+
+* The volunteers and elderly are paired in a _greedy_ manner: We essentially match each unpaired volunteer
+with the first unpaired elderly that is compatible with it. 
+* Furthermore, the pairs will be **one-to-one** i.e. every unpaired volunteer will be paired with at most
+one unpaired elderly, and vice versa.
+* This approach will not necessarily maximise the number of possible pairs, but it should serve as a good
+starting point.
+
+</div>
+
 
 ---------------------------------------------
 
