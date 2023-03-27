@@ -13,6 +13,7 @@ import expresslibrary.logic.commands.Command;
 import expresslibrary.logic.commands.DeletePersonCommand;
 import expresslibrary.logic.commands.EditPersonCommand;
 import expresslibrary.logic.commands.ExitCommand;
+import expresslibrary.logic.commands.FindBookCommand;
 import expresslibrary.logic.commands.FindPersonCommand;
 import expresslibrary.logic.commands.HelpCommand;
 import expresslibrary.logic.commands.ListBookCommand;
@@ -79,6 +80,9 @@ public class ExpressLibraryParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case FindBookCommand.COMMAND_WORD:
+            return new FindBookCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
