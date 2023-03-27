@@ -148,7 +148,7 @@ class JsonAdaptedPerson {
             medicalCondition = source.getMedicalCondition().getValue();
         }
         if (source.hasAppointment()) {
-            appointment = source.getAppointment().toString();
+            appointment = source.getAppointment().saveToAddressbook();
         }
         if (source.getNric() != null) {
             nric = source.getNric().getNumber();

@@ -69,8 +69,18 @@ public class Appointment {
         return !(endTime.isBefore(appointment.startTime) || appointment.endTime.isBefore(startTime));
     }
 
+    private boolean isPassed() {
+        LocalDateTime nowTime = LocalDateTime.now();
+        return nowTime.isAfter(startTime);
+    }
+
     @Override
     public String toString() {
+        return "Next appointment time from: " + startTime + " to: " + endTime
+                + (isPassed() ? " (Appointment passed already)" : "");
+    }
+
+    public String saveToAddressbook() {
         return "Next appointment time from: " + startTime + " to: " + endTime;
     }
 
