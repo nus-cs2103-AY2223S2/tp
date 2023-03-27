@@ -21,8 +21,9 @@ public class EditSessionCommand extends EditCommand {
     public static final String COMMAND_TYPE_WORD = "session";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits a session name."
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD
+            + " Parameters: INDEX NEW_SESSION_NAME\n"
+            + "Note: INDEX must be a positive integer\n"
+            + "Example: " + COMMAND_WORD + " " + COMMAND_TYPE_WORD
             + " 1 Tutorial1";
 
     public static final String MESSAGE_SUCCESS = "Edited session: %1$s to %2$s";

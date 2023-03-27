@@ -19,10 +19,11 @@ import tfifteenfour.clipboard.model.course.Group;
  */
 public class EditCourseCommand extends EditCommand {
     public static final String COMMAND_TYPE_WORD = "course";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_TYPE_WORD
             + ": Edits a course name."
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD
+            + " Parameters: INDEX NEW_COURSE_NAME\n"
+            + "Note: INDEX must be a positive integer\n"
+            + "Example: " + COMMAND_WORD + " " + COMMAND_TYPE_WORD
             + " 1 CS2105";
 
     public static final String MESSAGE_SUCCESS = "Edited course: %1$s to %2$s";

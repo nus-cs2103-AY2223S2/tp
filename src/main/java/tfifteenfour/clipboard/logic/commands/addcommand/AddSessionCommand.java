@@ -21,7 +21,7 @@ public class AddSessionCommand extends AddCommand {
             + "SESSION_NAME\n"
             + "Example: " + COMMAND_WORD + " " + COMMAND_TYPE_WORD
             + " " + "Tutorial1\n"
-            + "Note: No space allowed in the session name";
+            + "Note: Whitespaces are not allowed in the session name";
 
     public static final String MESSAGE_SUCCESS = "New session added in %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_SESSION = "This session already exists in the course";

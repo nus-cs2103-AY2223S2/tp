@@ -31,7 +31,7 @@ public enum CommandTargetType {
             }
         }
 
-        throw new ParseException("Unrecognised category for command: " + type);
+        throw new ParseException("Unrecognised type for command: " + type + "\nCurrent available types: course, group, student, session");
     }
 
     /**
