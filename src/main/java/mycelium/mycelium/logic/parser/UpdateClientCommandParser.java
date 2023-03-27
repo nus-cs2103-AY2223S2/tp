@@ -43,20 +43,21 @@ public class UpdateClientCommandParser implements Parser<UpdateClientCommand> {
                         CliSyntax.PREFIX_SOURCE,
                         CliSyntax.PREFIX_CLIENT_MOBILE_NUMBER
                 );
+//        Email email;
+//        try {
+//            email = parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
+//        } catch (ParseException pe) {
+//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+//                    UpdateClientCommand.MESSAGE_USAGE), pe);
+//        }
 
-        Email email;
-
-        try {
-            email = parseEmail(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    UpdateClientCommand.MESSAGE_USAGE), pe);
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateClientCommand.MESSAGE_USAGE));
         }
-        email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
-        Optional<Email> newEmail = parseOptionalWith(
-                argMultimap.getValue(PREFIX_CLIENT_NEW_EMAIL), ParserUtil::parseEmail);
         Optional<Name> name = parseOptionalWith(
                 argMultimap.getValue(PREFIX_CLIENT_NAME), ParserUtil::parseName);
+        Optional<Email> newEmail = parseOptionalWith(
+                argMultimap.getValue(PREFIX_CLIENT_NEW_EMAIL), ParserUtil::parseEmail);
         Optional<YearOfBirth> yearOfBirth = parseOptionalWith(
                 argMultimap.getValue(PREFIX_CLIENT_YEAR_OF_BIRTH),
                 ParserUtil::parseYearOfBirth);
@@ -66,7 +67,8 @@ public class UpdateClientCommandParser implements Parser<UpdateClientCommand> {
         Optional<Phone> mobileNumber = parseOptionalWith(
                 argMultimap.getValue(PREFIX_CLIENT_MOBILE_NUMBER),
                 ParserUtil::parsePhone);
-        UpdateClientCommand.UpdateClientDescriptor updateClientDescriptor = new UpdateClientCommand.UpdateClientDescriptor();
+        UpdateClientCommand.UpdateClientDescriptor updateClientDescriptor = new UpdateClientCommand
+                .UpdateClientDescriptor();
         updateClientDescriptor.setName(name);
         updateClientDescriptor.setEmail(newEmail);
         updateClientDescriptor.setYearOfBirth(yearOfBirth);
@@ -75,6 +77,9 @@ public class UpdateClientCommandParser implements Parser<UpdateClientCommand> {
         if (!updateClientDescriptor.isAnyFieldEdited()) {
             throw new ParseException(UpdateClientCommand.MESSAGE_NOT_EDITED);
         }
+
+        Email email = parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
+
         return new UpdateClientCommand(email, updateClientDescriptor);
     }
 

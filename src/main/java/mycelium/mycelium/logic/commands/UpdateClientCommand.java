@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import mycelium.mycelium.commons.core.Messages;
-import mycelium.mycelium.commons.util.CollectionUtil;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.CliSyntax;
 import mycelium.mycelium.model.Model;
@@ -28,22 +28,20 @@ public class UpdateClientCommand extends Command {
             + "Compulsory Arguments: "
             + CliSyntax.PREFIX_CLIENT_EMAIL + "CLIENT EMAIL\n"
             + "Options (At least one): "
-            + CliSyntax.PREFIX_CLIENT_NEW_EMAIL + "NEW CLIENT EMAIL\n"
+            + CliSyntax.PREFIX_CLIENT_NEW_EMAIL + "NEW CLIENT EMAIL "
+            + CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH + "YEAR OF BIRTH "
             + CliSyntax.PREFIX_SOURCE + "CLIENT SOURCE "
-            + CliSyntax.PREFIX_CLIENT_MOBILE_NUMBER + "MOBILE NUMBER "
-            + CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH + "YEAR OF BIRTH\n"
+            + CliSyntax.PREFIX_CLIENT_MOBILE_NUMBER + "MOBILE NUMBER\n"
 
             + "Example: " + COMMAND_ACRONYM + " "
-            + CliSyntax.PREFIX_CLIENT_EMAIL + "alice_baker@bakers.com "
+            + CliSyntax.PREFIX_CLIENT_EMAIL + "topg@gmail.com "
             + CliSyntax.PREFIX_CLIENT_NEW_EMAIL + "patrick_bateman@pandp.com"
-            + CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH + "2001 "
-            + CliSyntax.PREFIX_SOURCE + "PierceAndPierce "
-            + CliSyntax.PREFIX_CLIENT_MOBILE_NUMBER + "21255563";
+            + CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH + "2000";
 
     public static final String MESSAGE_SUCCESS = "Client edited: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field must be provided.";
     // To be checked
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists.";
 
     public final Email email;
     private final UpdateClientDescriptor updateClientDescriptor;
@@ -58,7 +56,7 @@ public class UpdateClientCommand extends Command {
         requireNonNull(updateClientDescriptor);
 
         this.email = email;
-        this.updateClientDescriptor = new UpdateClientDescriptor(updateClientDescriptor);
+        this.updateClientDescriptor = updateClientDescriptor;
     }
 
     /**
@@ -67,8 +65,11 @@ public class UpdateClientCommand extends Command {
      * @param updateClientDescriptor the details to edit the client with.
      * @return a client with the details of {@code clientToEdit} edited with {@code editClientDescriptor}.
      */
-    private static Client createEditedClient(Client clientToEdit, UpdateClientDescriptor updateClientDescriptor) {
+    private static Client createUpdatedClient(Client clientToEdit, UpdateClientDescriptor updateClientDescriptor) {
         assert clientToEdit != null;
+        if (!updateClientDescriptor.isAnyFieldEdited()) {
+            return clientToEdit;
+        }
         Name updatedName = updateClientDescriptor.getName().orElse(clientToEdit.getName());
         Email updatedEmail = updateClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Optional<YearOfBirth> updatedYearOfBirth = updateClientDescriptor.getYearOfBirth()
@@ -97,12 +98,15 @@ public class UpdateClientCommand extends Command {
             throw new CommandException(MESSAGE_NOT_EDITED);
         }
 
-        Client editedClient = createEditedClient(uniqueClient.get(), updateClientDescriptor);
+        Client editedClient = createUpdatedClient(uniqueClient.get(), updateClientDescriptor);
 
-        if (model.hasClient(editedClient)) {
+        // Not sure if this is needed
+        /*
+         if (model.hasClient(editedClient)) {
+            System.out.println("Duplicate client in execute()");
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
-        }
-
+          }
+        */
         model.setClient(uniqueClient.get(), editedClient);
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedClient));
     }
@@ -175,10 +179,25 @@ public class UpdateClientCommand extends Command {
         }
 
         /**
+         * Creates an EditClientDescriptor with all fields optionally null.
+         * @param toCopy the Client to copy.
+         */
+        public UpdateClientDescriptor(Client toCopy) {
+            setName(toCopy.getName());
+            setEmail(toCopy.getEmail());
+            setYearOfBirth(toCopy.getYearOfBirth());
+            setSource(toCopy.getSource());
+            setMobileNumber(toCopy.getMobileNumber());
+        }
+
+
+
+        /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, email, yearOfBirth, source, mobileNumber);
+            return Stream.of(name, email, yearOfBirth, source, mobileNumber)
+                    .anyMatch(Optional::isPresent);
         }
 
         /**

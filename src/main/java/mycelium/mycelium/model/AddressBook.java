@@ -138,35 +138,78 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     * @param client must not be null.
+     * @return true if a client with the same identity as {@code client} exists in the address book.
+     */
     public boolean hasClient(Client client) {
         return clients.contains(client);
     }
+
+    /**
+     * Adds a client to the address book.
+     * @param client must not be null.
+     */
     public void addClient(Client client) {
         clients.add(client);
     }
+
+    /**
+     * Replaces the given client {@code client} in the list with {@code editedClient}.
+     * @param client must exist in the address book.
+     * @param editedClient must not be the same as another existing client in the address book.
+     */
     public void setClient(Client client, Client editedClient) {
         clients.setItem(client, editedClient);
     }
+
+    /**
+     * Removes {@code client} from this {@code AddressBook}.
+     * @param client must exist in the address book.
+     */
     public void removeClient(Client client) {
         clients.remove(client);
     }
+
+    /**
+     * Returns an unmodifiable view of the clients list.
+     * @return an unmodifiable view of the clients list.
+     */
     @Override
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns true if a project with the same identity as {@code project} exists in the address book.
+     * @param project must not be null.
+     * @return true if a project with the same identity as {@code project} exists in the address book.
+     */
     public boolean hasProject(Project project) {
         return projects.contains(project);
     }
 
+    /**
+     * Replaces the given project {@code project} in the list with {@code editedProject}.
+     * @param project must exist in the address book.
+     */
     public void removeProject(Project project) {
         projects.remove(project);
     }
 
+    /**
+     * Replaces the given project {@code project} in the list with {@code editedProject}.
+     * @param project must exist in the address book.
+     */
     public void addProject(Project project) {
         projects.add(project);
     }
 
+    /**
+     * Replaces the given project {@code project} in the list with {@code editedProject}.
+     * @return an unmodifiable view of the projects list.
+     */
     @Override
     public ObservableList<Project> getProjectList() {
         return projects.asUnmodifiableObservableList();
