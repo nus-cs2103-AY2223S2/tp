@@ -20,7 +20,7 @@
    * 5.4. [Trying your First Command](#54-trying-your-first-command)
 6. [Commands](#6-commands)
    * 6.1. [Applicant Commands](#61-applicant-commands)
-     * 6.1.1. [Create a new applicant: `add`](#611-create-a-new-applicant--add)
+     * 6.1.1. [Create a new applicant: `add`](#611-create-a-new-applicant-add)
      * 6.1.2. [Search for an applicant: `find`](#612-search-for-an-applicant--find)
      * 6.1.3. [List all applicants: `list`](#613-list-all-applicants--list)
      * 6.1.4. [Delete an applicant: `delete`](#614-delete-an-applicant--delete)
@@ -468,7 +468,7 @@ What you should expect to find:
 
 ### 6.1 Applicant Commands
 
-#### 6.1.1 Create a new applicant:`add`
+#### 6.1.1 Create a new applicant `add`
 
 **Format**: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`
 
