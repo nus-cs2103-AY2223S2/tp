@@ -2,9 +2,13 @@ package seedu.dengue.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_ALICE;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_BOB;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_ALICE;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_BOB;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_ALICE;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_ALICE;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV2_UPPERCASE;
 import static seedu.dengue.testutil.Assert.assertThrows;
@@ -31,11 +35,11 @@ public class PersonTest {
         // null -> returns false
         assertFalse(ALICE.isSamePerson(null));
 
-        // same name, all other attributes different -> returns true
+        // same name, all other attributes different -> returns false
         Person editedAlice = new PersonBuilder(ALICE).withPostal(VALID_POSTAL_BOB)
                 .withDate(VALID_DATE_BOB)
                 .withAge(VALID_AGE_BOB).withVariants(VALID_VARIANT_DENV2_UPPERCASE).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
@@ -49,6 +53,15 @@ public class PersonTest {
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSamePerson(editedBob));
+
+        // name same, all other attributes same -> returns true
+        Person duplicateAlice = new PersonBuilder(ALICE)
+                .withName(VALID_NAME_ALICE)
+                .withAge(VALID_AGE_ALICE)
+                .withDate(VALID_DATE_ALICE)
+                .withPostal(VALID_POSTAL_ALICE)
+                .build();
+        assertTrue(ALICE.isSamePerson(duplicateAlice));
     }
 
     @Test
