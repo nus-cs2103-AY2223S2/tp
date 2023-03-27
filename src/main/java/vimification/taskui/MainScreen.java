@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import vimification.internal.Logic;
+import vimification.internal.command.CommandResult;
 import vimification.model.task.Task;
 
 /**
@@ -127,8 +128,9 @@ public class MainScreen extends UiPart<VBox> {
         commandInput.requestFocus();
     }
 
-    public void loadCommandResultComponent(CommandResult resultComponent) {
-        loadBottomComponent(resultComponent);
+    public void loadCommandResultComponent(CommandResult result) {
+        CommandResultPanel resultPanel = new CommandResultPanel(this);
+        resultPanel.display(result);
     }
 
     public void loadDetailedTaskComponent(Task task) {
@@ -159,7 +161,7 @@ public class MainScreen extends UiPart<VBox> {
         component.getRoot().prefHeightProperty().bind(topComponentHeight);
     }
 
-    private <T extends Pane> void loadBottomComponent(UiPart<T> component) {
+    public <T extends Pane> void loadBottomComponent(UiPart<T> component) {
         bottomComponent.getChildren().clear();
         bottomComponent.getChildren().add(component.getRoot());
         component.getRoot().prefHeightProperty().bind(bottomComponentHeight);

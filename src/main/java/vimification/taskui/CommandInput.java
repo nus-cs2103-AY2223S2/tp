@@ -87,6 +87,7 @@ public class CommandInput extends UiPart<HBox> {
 
         try {
             CommandResult result = logic.execute(commandString);
+            mainScreen.loadCommandResultComponent(result);
             mainScreen.initializeTaskListPanel();
 
             // TODO: Should only clear if the task has been deleted.
