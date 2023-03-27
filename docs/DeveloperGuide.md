@@ -326,6 +326,26 @@ If no argument is provided, an empty list will be shown.
 * We have also considered a partial match of the keyword (For example: `han` keyword will match field with the value `hans`). However we decide to implement a full match due to the following reason:
   * Having partial match may bring out unintended matches as the possible range of results is broadened. We fear that doing a partial match may be too broad for find command to function as a way for users to narrow down their search.
 
+### Remove Feature
+The remove feature allows users to remove a given value in Person's and Project's respective fields.
+The feature is facilitated by the `RemoveCommand` class and `RemoveProjectCommand` classes.
+They extend `Command` and implement the following operations:
+* `RemoveCommand#execute()`  — Removes the respective Person's field value based on the given input.
+* `RemoveProjectCommand#execute()`  — Removes the respective Project's field value based on the given input.
+
+The `RemoveCommandParser` and `RemoveProjectCommandParser` classes are used to parse the user input and remove the value that matches to the existing value in the respective field using `RemovePersonDescriptor` and `RemoveProjectDescriptor` respectively.
+`RemovePersonDescriptor` and `RemoveProjectDescriptor` objects are created and pass with the `Index` (parsed from the user input) into respective commands.
+The respective classes verify that the user input is valid and create the commands accordingly.
+
+If no argument is provided, an exception will be thrown. Otherwise, if only predicate is present, the corresponding field of the Person/Project will be emptied.
+
+#### Design considerations:
+
+**Remove a specific field value**
+* While an edit feature that allows users to add or remove field values can be useful in certain contexts, it may not be appropriate or necessary in all situations:
+    * If user decides to remove 1 out of many field values in a person's tag field, user will have a difficult time to type all the must-have value. WIth remove feature, user just need to type out the tag that he/she wish to remove.
+    * Currently, edit feature for language field is cumulative, language will not be removed, so remove feature helps to resolve the issue on language removal.
+
 ### Project feature:
 
 This feature allows users to create and track ongoing projects. Details of each `Project` are recorded as attributes of the `Project`, which include `ProjectName`, `ProjectRepoHost`, `ProjectRepoName`, `ProjectDeadline`, `ProjectMeeting`, and a `Set<Person>`, which stores the `Person` objects involved with the `Project`. `Project` objects are stored in a `UniqueProjectList` in `Socket`.
@@ -372,8 +392,6 @@ When `JsonSerializableSocket#toModelType` is called to convert the stored data i
 * **Alternative 2:** Stores the `Project` objects with the `Person` objects in separate `.json` files.
     * Pros: Corrupt data in "projects" will only cause "projects" file to be discarded.
     * Cons: More files to manage, harder to write data to upon any changes to `Socket`.
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -430,28 +448,28 @@ The [DevOps guide](DevOps.md) covers build automation and steps to create releas
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                          | I can…​                                                    | So that I can…​                                                                           |
-|----------|------------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| `* * *`  | new user                                                         | see usage instructions                                     | refer to instructions when I forget how to use the App                                    |
-| `* * *`  | user                                                             | add a new person                                           |                                                                                           |
-| `* * *`  | user                                                             | delete a person                                            | remove entries that I no longer need                                                      |
-| `* * *`  | user                                                             | find a person by name                                      | locate details of persons without having to go through the entire list                    |
-| `* * *`  | student with many friends                                        | save my friend's details                                   | easily contact them                                                                       |
-| `* * *`  | student who likes to ask questions                               | save my professors' details                                | easily contact them to ask questions                                                      |
-| `* * *`  | student with fast typing speed                                   | use command based inputs to search for contacts            | quickly pull out contacts without needing to spend time moving my mouse                   |
-| `* *`    | user                                                             | hide private contact details                               | minimize the chance of someone else seeing them by accident                               |
-| `* *`    | student involved in project work                                 | search contacts belonging to a certain group               | contact my groupmates easily                                                              |
-| `* *`    | student with many assignments                                    | tag deadlines and responsibilities to my contacts          | easily keep track of which tasks are more urgent and who is taking care of it             |
-| `* *`    | organised user                                                   | group contacts into different groups                       | manage my contacts easily                                                                 |
-| `* *`    | software engineering student with many SE projects               | access the github repositories of my peers                 | easily keep track of the github repos that I'm involved and interested in                 |
-| `* *`    | student interested in hackathons                                 | find students based on skills                              | form groups with them                                                                     |
-| `* *`    | software engineering student                                     | find repositories of group projects I am involved in       | easily access team repositories                                                           |
-| `* *`    | student who is organised                                         | sort all my peers' contact information                     | have only one platform where I know my contacts are organized                             |
-| `* *`    | software engineering student                                     | tag contacts with their skills                             | know what skills they have and can easily find those with a particular skill              |
-| `* *`    | advanced user                                                    | use the shortcut keys                                      | get things done more effectively                                                          |
-| `* *`    | busy software engineering student                                | create shortcuts to long commands                          | not type out long commands repeatedly to save time                                        |
-| `* *`    | student constantly getting into new projects with other memebers | quickly remove tags of specific groups and delete contacts | not be flooded with too much irrelevant contacts which can cause accidental wrong contact |
-| `* *`    | software engineering student with many peers                     | save and access my peers' github information               | easily access their profiles and view their repositories                                  |
+| Priority | As a …​                                                         | I can…​                                                    | So that I can…​                                                                           |
+|----------|-----------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | new user                                                        | see usage instructions                                     | refer to instructions when I forget how to use the App                                    |
+| `* * *`  | user                                                            | add a new person                                           |                                                                                           |
+| `* * *`  | user                                                            | delete a person                                            | remove entries that I no longer need                                                      |
+| `* * *`  | user                                                            | find a person by name                                      | locate details of persons without having to go through the entire list                    |
+| `* * *`  | student with many friends                                       | save my friend's details                                   | easily contact them                                                                       |
+| `* * *`  | student who likes to ask questions                              | save my professors' details                                | easily contact them to ask questions                                                      |
+| `* * *`  | student with fast typing speed                                  | use command based inputs to search for contacts            | quickly pull out contacts without needing to spend time moving my mouse                   |
+| `* *`    | user                                                            | hide private contact details                               | minimize the chance of someone else seeing them by accident                               |
+| `* *`    | student involved in project work                                | search contacts belonging to a certain group               | contact my groupmates easily                                                              |
+| `* *`    | student with many assignments                                   | tag deadlines and responsibilities to my contacts          | easily keep track of which tasks are more urgent and who is taking care of it             |
+| `* *`    | organised user                                                  | group contacts into different groups                       | manage my contacts easily                                                                 |
+| `* *`    | software engineering student with many SE projects              | access the github repositories of my peers                 | easily keep track of the github repos that I'm involved and interested in                 |
+| `* *`    | student interested in hackathons                                | find students based on skills                              | form groups with them                                                                     |
+| `* *`    | software engineering student                                    | find repositories of group projects I am involved in       | easily access team repositories                                                           |
+| `* *`    | student who is organised                                        | sort all my peers' contact information                     | have only one platform where I know my contacts are organized                             |
+| `* *`    | software engineering student                                    | tag contacts with their skills                             | know what skills they have and can easily find those with a particular skill              |
+| `* *`    | advanced user                                                   | use the shortcut keys                                      | get things done more effectively                                                          |
+| `* *`    | busy software engineering student                               | create shortcuts to long commands                          | not type out long commands repeatedly to save time                                        |
+| `* *`    | student constantly getting into new projects with other members | quickly remove tags of specific groups and delete contacts | not be flooded with too much irrelevant contacts which can cause accidental wrong contact |
+| `* *`    | software engineering student with many peers                    | save and access my peers' github information               | easily access their profiles and view their repositories                                  |
 
 ### Use cases
 
