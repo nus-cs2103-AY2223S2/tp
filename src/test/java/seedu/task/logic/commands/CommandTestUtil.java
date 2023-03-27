@@ -32,6 +32,7 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_AMY = "Amy's description";
     public static final String VALID_DESCRIPTION_DEFAULT = "No Description";
     public static final String VALID_DESCRIPTION_BOB = "Bob's description";
+
     public static final String VALID_TASK_INDEX = "1";
 
     public static final String VALID_SUBTASK_INDEX = "1";
@@ -41,9 +42,11 @@ public class CommandTestUtil {
     public static final String INDEX_1 = " " + VALID_SUBTASK_INDEX;
     public static final String INDEX_SUBTASK = " " + PREFIX_SUBTASK_INDEX + VALID_SUBTASK_INDEX;
     public static final String INVALID_SUBTASK_INDEX = " " + PREFIX_SUBTASK_INDEX;
+
     public static final String VALID_DESCRIPTION_BOTH = "Both description";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
     public static final String VALID_FROM_DATE = "2023-01-01 1800";
     public static final String VALID_TO_DATE = "2023-01-02 1800";
 
