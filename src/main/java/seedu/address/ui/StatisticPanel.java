@@ -45,7 +45,7 @@ public class StatisticPanel extends UiPart<Region> {
      * Constructs a new StatisticPanel containing the statistics
      * for current applications.
      *
-     * @param applications an ObservableList<Application>
+     * @param applications an ObservableList containing current applications.
      */
     public StatisticPanel(ObservableList<Application> applications) {
         super(FXML);
