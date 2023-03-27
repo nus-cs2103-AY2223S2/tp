@@ -51,7 +51,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletePerson 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -94,12 +94,12 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `ExpressLibraryParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddPersonCommand`) which is executed by the `LogicManager`.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletePerson 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletePerson 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -109,8 +109,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `ExpressLibraryParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ExpressLibraryParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `ExpressLibraryParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `ExpressLibraryParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T12-3/tp/tree/master/src/main/java/expresslibrary/model/Model.java)
@@ -155,70 +155,27 @@ Classes used by multiple components are in the `expresslibrary.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Find book feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedExpressLibrary`. It extends `ExpressLibrary` with an undo/redo history, stored internally as an `ExpressLibraryStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+Given below is an example usage scenario and how the findBook command progresses from step to step.
 
-* `VersionedExpressLibrary#commit()` — Saves the current express library state in its history.
-* `VersionedExpressLibrary#undo()` — Restores the previous express library state from its history.
-* `VersionedExpressLibrary#redo()` — Restores a previously undone express library state from its history.
+[//]: # (Step 1. The user launches the app and enters `findBook The` command to look for any books with the keyword `The` in its title &#40;non case-sensitive&#41;. `CommandBox.fxml` detects that a new command has been entered and invokes the `CommandBox#handleCommandEntered&#40;&#41;` to handle the findBook command, which calls `MainWindow#executeCommand&#40;&#41;` to execute the findBook command which then passes the control over to the Logic component by calling `LogicManager#execute&#40;&#41;`.)
 
-These operations are exposed in the `Model` interface as `Model#commitExpressLibrary()`, `Model#undoExpressLibrary()` and `Model#redoExpressLibrary()` respectively.
+Step 1. The user launches the app and enters `findBook The` command to look for any books with the keyword `The` in its title (non case-sensitive). `MainWindow#executeCommand()` is called, which passes the control over to the Logic component by calling `LogicManager#execute()`.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Step 2. `ExpressLibraryParser#parseCommand` is called to parse the given findBook command text, which calls `FindBookCommandParser#parse` to further parse findBook command text. This ultimately produces a `FindBookCommand` object. The logic manager then calls `FindBookCommand#execute` on the new object which passes control to the Model component.
 
-Step 1. The user launches the application for the first time. The `VersionedExpressLibrary` will be initialized with the initial express library state, and the `currentStatePointer` pointing to that single express library state.
+Step 3. `FindBookCommand#execute` will call `Model#updateFilteredBookList` to update the `FilteredList` of books which is then reflected in the UI because `BookListPanel#BookListPanel()` constructor sets `BookListPanel.fxml` to be constantly viewing the book list. The Model component then passes control back to the Logic component.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+Step 4. `FindBookCommand#execute` returns a `CommandResult` object to the `LogicManager#execute`, which then passes control back to the UI component.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the express library. The `delete` command calls `Model#commitExpressLibrary()`, causing the modified state of the express library after the `delete 5` command executes to be saved in the `expressLibraryStateList`, and the `currentStatePointer` is shifted to the newly inserted express library state.
+[//]: # (Step 5. `MainWindow#executeCommand` then uses the `CommandResult` to display feedback to the user on the UI which states: “{Number of books that match keyword} books found!”)
 
-![UndoRedoState1](images/UndoRedoState1.png)
+The following sequence diagram shows how the findBook operation works:
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitExpressLibrary()`, causing another modified express library state to be saved into the `expressLibraryStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitExpressLibrary()`, so the express library state will not be saved into the `expressLibraryStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoExpressLibrary()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous express library state, and restores the express library to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial ExpressLibrary state, then there are no previous ExpressLibrary states to restore. The `undo` command uses `Model#canUndoExpressLibrary()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoExpressLibrary()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the express library to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `expressLibraryStateList.size() - 1`, pointing to the latest express library state, then there are no undone ExpressLibrary states to restore. The `redo` command uses `Model#canRedoExpressLibrary()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the express library, such as `list`, will usually not call `Model#commitExpressLibrary()`, `Model#undoExpressLibrary()` or `Model#redoExpressLibrary()`. Thus, the `expressLibraryStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitExpressLibrary()`. Since the `currentStatePointer` is not pointing at the end of the `expressLibraryStateList`, all express library states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+![FindBookSequenceDiagram](images/FindBookSequenceDiagram.png)
 
 #### Design considerations:
 
@@ -367,19 +324,62 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a book
+
+1. Adding a book while all books are being shown
+
+    1. Test case: `addBook t/Diary of a Wimpy kid a/Jeff Kinney i/9780810993136`<br>
+       Expected: A book and its details is added into the book list.
+
+    1. Test case: `addBook 0`<br>
+       Expected: No book is added. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `addBook`, `addBook 5`, `...`<br>
+       Expected: Similar to previous.
+
+### Deleting a book
+
+1. Deleting a book while all books are being shown
+
+    1. Prerequisites: List all books using the `list` command. Multiple books in the list.
+
+    1. Test case: `deleteBook 1`<br>
+       Expected: First book is deleted from the list. Details of the deleted book shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `deleteBook 0`<br>
+       Expected: No book is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `deleteBook`, `deleteBook x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Editing a book
+
+1. Editing a book while all books are being shown
+
+    1. Prerequisites: List all books using the `list` command. Multiple books in the list.
+
+    1. Test case: `editBook 1 t/Diary of a Wimpy kid a/Jeff Kinney i/9780810993136`<br>
+       Expected: First book is edited. Details of the book are changed according to the input.
+
+    1. Test case: `editBook 0`<br>
+       Expected: No book is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `editBook`, `editBook 3`, `...`<br>
+       Expected: Similar to previous.
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `listPerson` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `deletePerson 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `deletePerson 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `deletePerson`, `deletePerson x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_

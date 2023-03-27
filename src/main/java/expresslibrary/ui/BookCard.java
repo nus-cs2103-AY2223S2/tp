@@ -43,7 +43,6 @@ public class BookCard extends UiPart<Region> {
     private Label borrowDate;
     @FXML
     private Label dueDate;
-
     /**
      * Creates a {@code BookCode} with the given {@code Book} and index to display.
      */
