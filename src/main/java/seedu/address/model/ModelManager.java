@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -333,6 +334,22 @@ public class ModelManager implements Model {
     @Override
     public void addPart(String partName, int quantity) {
         this.shop.addPart(partName, quantity);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addPartToService(int serviceId, String partName, int quantity) throws NoSuchElementException {
+        this.shop.addPartToService(serviceId, partName, quantity);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addTechnicianToService(int serviceId, int techId) throws NoSuchElementException {
+        this.shop.addTechnicianToService(serviceId, techId);
     }
 
     /**

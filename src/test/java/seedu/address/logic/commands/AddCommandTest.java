@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -240,6 +241,16 @@ public class AddCommandTest {
 
         @Override
         public void addPart(String partName, int quantity) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPartToService(int serviceId, String partName, int quantity) throws NoSuchElementException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTechnicianToService(int serviceId, int techId) throws NoSuchElementException {
             throw new AssertionError("This method should not be called.");
         }
 
