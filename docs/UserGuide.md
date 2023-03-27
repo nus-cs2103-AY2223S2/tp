@@ -160,9 +160,32 @@ Examples:
 
 ### Book Commands
 
+### Adding a book: `addBook`
+
+Adds a book to the book records
+
+Format: `addBook t/TITLE a/AUTHOR i/ISBN…​`
+
+Examples:
+* `addBook t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
+
+### Deleting a book : `deleteBook`
+
+Delete a book given a book ID.
+
+Format: `deleteBook BOOK_ID`
+
+* Deletes the book at the specified BOOK_ID.
+* The index refers to the index number shown in the displayed book list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `listBook` followed by `deleteBook 2` deletes the 2nd book in the user records.
+
+
 ### Listing all books : `listBook`
 
-Shows a list of all books in the user records.
+Shows a list of all books in the book records.
 
 Format: `listBook`
 
@@ -184,6 +207,24 @@ Examples:
 * `find dune Cat` returns `Dune`, `The Cat in the Hat`
 
 [//]: # (add image later)
+
+### Editing a book : `editBook`
+
+Edits an existing book in the book records.
+
+Format: `edit INDEX [t/TITLE] [a/AUTHOR] [i/ISBN] [bd/BORROW_DATE] [dd/DUE_DATE]…​`
+
+* Edits the book at the specified `INDEX`. The index refers to the index number shown in the displayed book list. The index **must be a positive integer** 1, 2, 3, …​
+
+* At least one of the optional fields must be provided.
+
+* Existing values will be updated to the input values.
+
+Examples:
+
+*  `editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136` Edits the title and author and isbn of the 1st book to be `Diary of a Wimpy Kid` and `Jeff Kinney` and `9780810993136`respectively.
+
+*  `editBook 2 bd/22/03/2023 dd/29/03/2023` Edits the borrow date and due date of the 2nd book to be `22/03/2023` and `29/03/2023`.
 
 
 ### Common Functions
