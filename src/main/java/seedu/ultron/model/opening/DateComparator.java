@@ -32,7 +32,7 @@ public class DateComparator implements Comparator<Opening> {
         if (o1Smallest == null) {
             o1Smallest = LocalDate.MAX;
         }
-        
+
         // find smallest date >= today for o2
         for (Date date : o2.getDates()) {
             LocalDate curr = LocalDate.parse(date.fullDate);
@@ -45,7 +45,7 @@ public class DateComparator implements Comparator<Opening> {
         if (o2Smallest == null) {
             o2Smallest = LocalDate.MAX;
         }
-        
+
         return o1Smallest.compareTo(o2Smallest);
     }
 }
