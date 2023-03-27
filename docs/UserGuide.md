@@ -133,13 +133,9 @@ Format:
 
 You can add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION [t/TAGS]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can add multiple Events and Deadlines as well! However, they have to share the same timings. Use this to add tasks that occur at the same time!
-</div>
+:bulb: **PRO TIP**: You can add multiple Events and Deadlines as well! However, they have to share the same timings. Use this to add tasks that occur at the same time!
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A task can have any number of tags (including 0)
-</div>
+:bulb: **Tip**: A task can have any number of tags (including 0)
 
 Examples:
 * `add n/Read Book d/Make sure to take notes t/Leisure`
