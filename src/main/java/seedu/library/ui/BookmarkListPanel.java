@@ -36,6 +36,7 @@ public class BookmarkListPanel extends UiPart<Region> {
     private ObservableList<Bookmark> bookmarks;
     private boolean flag;
 
+
     /**
      * Creates a {@code BookmarkListPanel} with the given {@code ObservableList}.
      */
@@ -56,21 +57,39 @@ public class BookmarkListPanel extends UiPart<Region> {
 
 
     }
+
+    /**
+     * Method to get the Bookmark currently selected in bookmarklistpanel
+     */
     public Bookmark getSelectedItem() {
         return selectedItem;
     }
+
+    /**
+     * Unselects the item in bookmarklistpanel
+     */
     public void unSelect() {
         bookmarkListView.getSelectionModel().clearSelection();
     }
+
+    /**
+     * Return the flag which indicates if item selected has changed or if app started with
+     * an empty library
+     */
     public boolean isChangedSelect() {
         return flag;
     }
+
+    /**
+     * Method to get the first bookmark in bookmarklistpanel
+     */
     public Bookmark getFirstItem() {
         try {
-            Bookmark item = bookmarks.get(0);
-            return item;
+            bookmarkListView.getSelectionModel().select(0);
+            return bookmarks.get(0);
         } catch (IndexOutOfBoundsException e) {
             // just a default bookmark change
+            flag = true;
             String[] sampleProgress = {"1", "32", "56"};
             return new Bookmark(new Title("Attack on Titans"), new Progress(sampleProgress), new Genre("Fantasy"),
                     new Author("Hajime Isayama"), new Rating("5"), new Url(""),
@@ -79,7 +98,6 @@ public class BookmarkListPanel extends UiPart<Region> {
         }
 
     }
-
 
 
 
@@ -99,7 +117,7 @@ public class BookmarkListPanel extends UiPart<Region> {
                 }
             }
             catch (IOException e) {
-                System.out.println("IO exception");
+                throw new AssertionError(e);
             }
         }
     }

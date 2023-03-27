@@ -49,8 +49,22 @@ public class ZoomView extends UiPart<Region> {
     @FXML
     private Label labelHeader;
 
+    /**
+     * Constructs a ZoomView that is empty
+     *
+     */
+    public ZoomView() {
+        super(FXML);
+        try {
+            InputStream image = new FileInputStream("src/main/resources/images/default-avatar.png");
+            avatar.setImage(new Image(image));
+            hideFields();
+        }
+        catch (IOException e) {
+            System.out.println("IO error");
+        }
 
-
+    }
 
     /**
      * Constructs a ZoomView that displays the details of the provided bookmark.
@@ -79,36 +93,24 @@ public class ZoomView extends UiPart<Region> {
             rate(bookmark);
         }
         catch (IOException e) {
-            System.out.println("error");
+            throw new AssertionError(e);
         }
 
     }
 
-    void openLink(String url) {
+    /**
+     * Open url in default browser
+     * @param url url to open
+     */
+    public void openLink(String url) {
         try {
             Desktop.getDesktop().browse(new URI(url));
         }
         catch (IOException | URISyntaxException ex) {
-            System.out.println("error");
+            throw new AssertionError(ex);
         }
     }
-    /**
-     * Constructs a ZoomView that is empty
-     *
-     */
-    public ZoomView() {
-        super(FXML);
 
-        try {
-            InputStream image = new FileInputStream("src/main/resources/images/default-avatar.png");
-            avatar.setImage(new Image(image));
-            hideFields();
-        }
-        catch (IOException e) {
-            System.out.println("IO error");
-        }
-
-    }
     /**
      * Helps set rating image in bookmarkcard
      * @param bookmark book to get rating value from
@@ -122,23 +124,23 @@ public class ZoomView extends UiPart<Region> {
             InputStream rating5 = new FileInputStream("src/main/resources/images/Rating5.png");
             String rating = bookmark.getRating().toString();
 
-            if(rating.equals("1")) {
+            if (rating.equals("1")) {
                 ratingStar.setImage(new Image(rating1));
                 ratingStar.setVisible(true);
             }
-            else if(rating.equals("2")) {
+            else if (rating.equals("2")) {
                 ratingStar.setImage(new Image(rating2));
                 ratingStar.setVisible(true);
             }
-            else if(rating.equals("3")) {
+            else if (rating.equals("3")) {
                 ratingStar.setImage(new Image(rating3));
                 ratingStar.setVisible(true);
             }
-            else if(rating.equals("4")) {
+            else if (rating.equals("4")) {
                 ratingStar.setImage(new Image(rating4));
                 ratingStar.setVisible(true);
             }
-            else if(rating.equals("5")) {
+            else if (rating.equals("5")) {
                 ratingStar.setImage(new Image(rating5));
                 ratingStar.setVisible(true);
             }
@@ -148,7 +150,7 @@ public class ZoomView extends UiPart<Region> {
 
         }
         catch (IOException e) {
-            System.out.println("IO error");
+            throw new AssertionError(e);
 
         }
 

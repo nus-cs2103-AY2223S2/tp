@@ -132,16 +132,14 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         bookmarkListPanel = new BookmarkListPanel(logic.getFilteredBookmarkList());
         bookmarkListPanelPlaceholder.getChildren().add(bookmarkListPanel.getRoot());
+        //update right panel when clicking different bookmarks
         bookmarkListPanelPlaceholder.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> handleChange());
-
-
-
+        //Prevent user from using arrow keys to change selection
+        bookmarkListPanelPlaceholder.addEventFilter(KeyEvent.KEY_PRESSED, event -> event.consume());
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getLibraryFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         Boolean flag = bookmarkListPanel.isChangedSelect();
