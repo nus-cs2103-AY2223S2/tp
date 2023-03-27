@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.task.commons.core.Messages;
 import seedu.task.commons.core.index.Index;
 import seedu.task.commons.util.CollectionUtil;
@@ -22,7 +23,9 @@ import seedu.task.model.task.Description;
 import seedu.task.model.task.Effort;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.SimpleTask;
+import seedu.task.model.task.Subtask;
 import seedu.task.model.task.Task;
+
 
 /**
  * Edits the details of an existing task in the task book.
@@ -91,8 +94,9 @@ public class EditCommand extends Command {
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
         Effort updatedEffort = editTaskDescriptor.getEffort().orElse(taskToEdit.getEffort());
+        ObservableList<Subtask> subtaskList = taskToEdit.getSubtasks();
 
-        return new SimpleTask(updatedName, updatedDescription, updatedTags, updatedEffort);
+        return new SimpleTask(updatedName, updatedDescription, updatedTags, updatedEffort, subtaskList);
     }
 
     @Override
@@ -122,6 +126,7 @@ public class EditCommand extends Command {
         private Description description;
         private Effort effort;
         private Set<Tag> tags;
+        private Subtask subtaskList;
 
         public EditTaskDescriptor() {}
 
@@ -134,6 +139,7 @@ public class EditCommand extends Command {
             setDescription(toCopy.description);
             setTags(toCopy.tags);
             setEffort(toCopy.effort);
+
         }
 
         /**
@@ -183,6 +189,10 @@ public class EditCommand extends Command {
         public Optional<Effort> getEffort() {
             return (Optional.ofNullable(this.effort));
         }
+
+
+
+
 
         @Override
         public boolean equals(Object other) {

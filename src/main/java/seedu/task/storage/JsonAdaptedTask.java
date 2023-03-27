@@ -19,6 +19,7 @@ import seedu.task.model.task.Effort;
 import seedu.task.model.task.Event;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.SimpleTask;
+import seedu.task.model.task.Subtask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.exceptions.InvalidEffortException;
 
@@ -38,7 +39,10 @@ class JsonAdaptedTask {
     private String from = "";
     private String to = "";
     private long effort;
+
     private String alertWindow = "";
+
+    private final List<JsonAdaptedSubtask> subtaskList = new ArrayList<>();
 
 
     /**
@@ -52,6 +56,7 @@ class JsonAdaptedTask {
                            @JsonProperty("from") String from,
                            @JsonProperty("to") String to,
                            @JsonProperty("effort") Long effort,
+                           @JsonProperty("subtasks") List<JsonAdaptedSubtask> subtaskList,
                            @JsonProperty("alertWindow") String alertWindow,
                            @JsonProperty("hasDescription") String hasDescription) {
         this.name = name;
@@ -71,6 +76,9 @@ class JsonAdaptedTask {
         if (alertWindow != null) {
             this.alertWindow = alertWindow;
         }
+        if (subtaskList != null) {
+            this.subtaskList.addAll(subtaskList);
+        }
 
     }
 
@@ -84,6 +92,9 @@ class JsonAdaptedTask {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        subtaskList.addAll(source.getSubtasks().stream()
+            .map(JsonAdaptedSubtask::new)
+            .collect(Collectors.toList()));
         if (source instanceof Deadline) {
             deadline = ((Deadline) source).getDeadline().getValue();
         }
@@ -157,10 +168,16 @@ class JsonAdaptedTask {
         }
         final Effort modelEffort = new Effort(this.effort);
 
+        final List<Subtask> modelSubtaskList = new ArrayList<>();
+        for (JsonAdaptedSubtask subtask : subtaskList) {
+            modelSubtaskList.add(subtask.toModelType());
+        }
+
         if (Date.isValidDate(deadline)) {
             // Deadline
             Date modelDeadline = new Date(deadline);
-            Deadline deadline = new Deadline(modelName, modelDescription, modelTags, modelDeadline, modelEffort);
+            Deadline deadline = new Deadline(modelName, modelDescription,
+                modelTags, modelDeadline, modelEffort, modelSubtaskList);
             deadline.setAlertWindow(Duration.ofHours(Long.valueOf(alertWindow)));
             return deadline;
 
@@ -170,13 +187,14 @@ class JsonAdaptedTask {
             Date modelFrom = new Date(from);
             Date modelTo = new Date(to);
 
-            Event event = new Event(modelName, modelDescription, modelTags, modelFrom, modelTo, modelEffort);
+            Event event = new Event(modelName, modelDescription,
+                modelTags, modelFrom, modelTo, modelEffort, modelSubtaskList);
             event.setAlertWindow(Duration.ofHours(Long.valueOf(alertWindow)));
             return event;
         }
 
         // Simple Task
-        SimpleTask simpleTask = new SimpleTask(modelName, modelDescription, modelTags, modelEffort);
+        SimpleTask simpleTask = new SimpleTask(modelName, modelDescription, modelTags, modelEffort, modelSubtaskList);
         simpleTask.setAlertWindow(Duration.ofHours(Long.valueOf(alertWindow)));
         return simpleTask;
 

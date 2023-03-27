@@ -56,6 +56,7 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
@@ -88,6 +89,7 @@ public class ParserUtil {
         }
         return new Name(trimmedName);
     }
+
 
     /**
      * Parses {@code Collection<String> names} into a {@code Set<Name>}.
