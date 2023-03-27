@@ -30,8 +30,6 @@ import seedu.address.storage.CsvAddressBookStorage;
 public class ImportCommand extends Command {
 
     public static List<String> COMMAND_WORDS = new ArrayList<String>(Arrays.asList("import", "i"));
-    private static final Path p = Paths.get("data", "importCommand.txt");
-
 
     public static final String MESSAGE_USAGE = COMMAND_WORDS + ": Imports customer data from an existing dataset.";
 
@@ -82,36 +80,6 @@ public class ImportCommand extends Command {
 
         return new CommandResult("Imported data from file", false, false);
     }
-
-    public static void saveWords() {
-        if (!Files.exists(p)) {
-            try {
-                Files.createFile(p);
-            } catch (java.io.IOException ignored) {}
-        }
-
-        try {
-            FileOutputStream fos = new FileOutputStream(p.toFile());
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(COMMAND_WORDS);
-            oos.close();
-        } catch (IOException ignored) {}
-    }
-
-    public static void loadWords() {
-        if (!Files.exists(p)) {
-            try {
-                Files.createFile(p);
-            } catch (java.io.IOException ignored) {}
-        }
-        try {
-            FileInputStream fis = new FileInputStream(p.toFile());
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            COMMAND_WORDS = (List<String>) ois.readObject();
-            ois.close();
-        } catch (IOException | ClassNotFoundException ignored) {}
-    }
-
 
     @Override
     public boolean equals(Object other) {

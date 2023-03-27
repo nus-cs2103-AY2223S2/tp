@@ -27,8 +27,6 @@ public class DeleteCommand extends Command {
 
     public static List<String> COMMAND_WORDS = new ArrayList<String>(Arrays.asList("delete", "d"));
 
-    private static final Path p = Paths.get("data", "deleteCommand.txt");
-
 
     public static final String MESSAGE_USAGE = COMMAND_WORDS
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
@@ -55,35 +53,6 @@ public class DeleteCommand extends Command {
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete), true, true);
-    }
-
-    public static void saveWords() {
-        if (!Files.exists(p)) {
-            try {
-                Files.createFile(p);
-            } catch (java.io.IOException ignored) {}
-        }
-
-        try {
-            FileOutputStream fos = new FileOutputStream(p.toFile());
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(COMMAND_WORDS);
-            oos.close();
-        } catch (IOException ignored) {}
-    }
-
-    public static void loadWords() {
-        if (!Files.exists(p)) {
-            try {
-                Files.createFile(p);
-            } catch (java.io.IOException ignored) {}
-        }
-        try {
-            FileInputStream fis = new FileInputStream(p.toFile());
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            COMMAND_WORDS = (List<String>) ois.readObject();
-            ois.close();
-        } catch (IOException | ClassNotFoundException ignored) {}
     }
 
     @Override

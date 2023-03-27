@@ -25,6 +25,7 @@ import seedu.address.logic.commands.ShortcutCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.storage.ShortcutCommandUtil;
 
 /**
  * Parses user input.
@@ -35,25 +36,6 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-
-    private void loadShortcuts() {
-        AddCommand.loadWords();
-        ClearCommand.loadWords();
-        DeleteCommand.loadWords();
-        DeleteTagCommand.loadWords();
-        EditCommand.loadWords();
-        ExitCommand.loadWords();
-        ExportCommand.loadWords();
-        FilterCommand.loadWords();
-        FindCommand.loadWords();
-        HelpCommand.loadWords();
-        ImportCommand.loadWords();
-        ListCommand.loadWords();
-        RedoCommand.loadWords();
-        ShortcutCommand.loadWords();
-        TagCommand.loadWords();
-        UndoCommand.loadWords();
-    }
 
     /**
      * Parses user input into command for execution.
@@ -71,7 +53,7 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        loadShortcuts();
+        ShortcutCommandUtil.loadShortcuts();
 
         // if the user's command fits a keyword for a command, create a parser
         if (AddCommand.COMMAND_WORDS.contains(commandWord)) {

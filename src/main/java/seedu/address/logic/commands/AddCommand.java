@@ -34,9 +34,6 @@ public class AddCommand extends Command {
 
     public static List<String> COMMAND_WORDS = new ArrayList<String>(Arrays.asList("add", "a"));
 
-    private static final Path p = Paths.get("data", "addCommand.txt");
-
-
     public static final String MESSAGE_USAGE = COMMAND_WORDS + ": Adds a person to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -84,40 +81,5 @@ public class AddCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
                         && toAdd.equals(((AddCommand) other).toAdd));
-    }
-
-    public static void saveWords() {
-        if (!Files.exists(p)) {
-            try {
-                Files.createFile(p);
-            } catch (java.io.IOException ignored) {}
-        }
-
-        try {
-            FileOutputStream fos = new FileOutputStream(p.toFile());
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(COMMAND_WORDS);
-            oos.close();
-        } catch (IOException ignored) {}
-    }
-
-    public static void loadWords() {
-
-        if (!Files.exists(p)) {
-            try {
-                Files.createFile(p);
-            } catch (java.io.IOException ignored) {}
-        }
-        try {
-            FileInputStream fis = new FileInputStream(p.toFile());
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            COMMAND_WORDS = (List<String>) ois.readObject();
-            ois.close();
-        } catch (IOException | ClassNotFoundException ignored) {}
-    }
-
-    public static void addWord(String shortForm) {
-        AddCommand.COMMAND_WORDS.add(shortForm);
-        saveWords();
     }
 }
