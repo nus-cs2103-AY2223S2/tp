@@ -43,6 +43,7 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
+            showWorkToday(logic.getWorkToday());
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
@@ -83,6 +84,15 @@ public class UiManager implements Ui {
         showAlertDialogAndWait(Alert.AlertType.ERROR, title, e.getMessage(), e.toString());
         Platform.exit();
         System.exit(1);
+    }
+
+    private void showWorkToday(String tasks) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Work Today");
+        alert.setHeaderText(null);
+        alert.setContentText(tasks);
+        alert.showAndWait();
+
     }
 
 }
