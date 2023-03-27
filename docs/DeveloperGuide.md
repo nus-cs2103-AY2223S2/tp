@@ -199,8 +199,8 @@ The `deleteEventFromPersonList` method will check through the full list of `Pers
 
 Sorting a list of events is a feature that uses the command `sortevent a/b/c/d`. 
 The events can be sorted based on their:
-- names in ascending order (using `sortevent a`)
-- names in descending order (using `sortevent b`)
+- names in ascending ASCII order (using `sortevent a`)
+- names in descending ASCII order (using `sortevent b`)
 - start date times in ascending order (using `sortevent c`)
 - end date times in ascending order (using `sortevent d`)
 
