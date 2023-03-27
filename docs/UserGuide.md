@@ -3,7 +3,15 @@ layout: page
 title: User Guide
 ---
 
-Clock-Work is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Clock-Work can get your assignment management tasks done faster than traditional GUI apps.
+:alarm_clock: Tick-tock. Tick-tock. Time is ticking. :alarm_clock:
+
+:scream: Are you stressed about the lab assignment you can't seem to make any progress with? Worried about the endless list of assignments to do? :scream:
+
+:bellhop_bell: If a quick organisation tool is what you need to get your life together, you're at the right place! :bellhop_bell:
+
+Introducing, Clock-Work!
+
+Clock-Work is a **desktop application for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Clock-Work can get your assignment management tasks done faster than traditional GUI apps.
 
 * Table of Contents
   * [1. Quick start](#1-quick-start)
