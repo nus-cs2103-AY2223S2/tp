@@ -32,7 +32,7 @@ public class VimificationParserTest {
 
     @Test
     public void validCommand_shouldSuccess() {
-        String input = "i todo play touhou 6";
+        String input = "i todo 'play touhou 6'";
         LogicCommand cmd = PARSER.parse(input);
         assertTrue(cmd != null);
     }

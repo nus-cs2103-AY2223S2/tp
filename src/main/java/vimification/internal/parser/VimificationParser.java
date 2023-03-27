@@ -48,9 +48,4 @@ public class VimificationParser {
         String preprocessedInput = macroPreprocessor.parse(input);
         return COMMAND_PARSER.parse(preprocessedInput);
     }
-
-    // public static void main(String[] args) {
-    // String input = ". todo sleep";
-    // VimificationParser.getInstance(null).parse(input);
-    // }
 }

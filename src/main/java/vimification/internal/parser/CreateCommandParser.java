@@ -45,9 +45,11 @@ public class CreateCommandParser implements CommandParser<CreateCommand> {
 
     private static final ApplicativeParser<Task> TASK_PARSER = ApplicativeParser
             .choice(TODO_PARSER, DEADLINE_PARSER)
-            .dropNext(ApplicativeParser.skipWhitespaces1())
-            .combine(CommandParserUtil.arguments(TAG_FLAG, PRIORITY_FLAG),
-                    CreateCommandParser::setTaskOptionalFields);
+            .flatMap(task -> ApplicativeParser
+                    .skipWhitespaces1()
+                    .takeNext(CommandParserUtil.arguments(TAG_FLAG, PRIORITY_FLAG))
+                    .map(args -> modifyTask(task, args))
+                    .orElse(task));
 
     private static final ApplicativeParser<CreateCommand> COMMAND_PARSER = TASK_PARSER
             .dropNext(ApplicativeParser.skipWhitespaces())
@@ -55,7 +57,8 @@ public class CreateCommandParser implements CommandParser<CreateCommand> {
             .map(CreateCommand::new);
 
     private static final ApplicativeParser<ApplicativeParser<CreateCommand>> INTERNAL_PARSER =
-            ApplicativeParser.string("i")
+            ApplicativeParser
+                    .string("i")
                     .takeNext(ApplicativeParser.skipWhitespaces1())
                     .constMap(COMMAND_PARSER);
 
@@ -63,11 +66,11 @@ public class CreateCommandParser implements CommandParser<CreateCommand> {
 
     private CreateCommandParser() {}
 
-    private static Task setTaskOptionalFields(Task task, ArgumentMultimap map) {
+    private static Task modifyTask(Task task, ArgumentMultimap args) {
         // set tags
-        Set<String> tags = map.get(TAG_FLAG);
+        Set<String> tags = args.get(TAG_FLAG);
         // set priority
-        map.getFirst(PRIORITY_FLAG).ifPresent(str -> {
+        args.getFirst(PRIORITY_FLAG).ifPresent(str -> {
             Priority priority = PRIORITY_PARSER.parse(str);
             task.setPriority(priority);
         });

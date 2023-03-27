@@ -50,7 +50,10 @@ public class CommandParserUtil {
 
     public static ApplicativeParser<ArgumentMultimap> arguments(ArgumentFlag... flags) {
         ArgumentMultimap map = new ArgumentMultimap(flags);
-        return Arrays.stream(flags).map(flag -> {
+        /**
+         * This parser parse a single flag.
+         */
+        ApplicativeParser<Void> flagParser = Arrays.stream(flags).map(flag -> {
             String shortForm = flag.getShortForm();
             String longForm = flag.getLongForm();
             return ApplicativeParser
@@ -58,11 +61,12 @@ public class CommandParserUtil {
                     .or(ApplicativeParser.string(longForm))
                     .dropNext(ApplicativeParser.skipWhitespaces1())
                     .takeNext(STRING_PARSER)
-                    .map(value -> {
+                    .<Void>map(value -> {
                         map.put(flag, value);
-                        return map;
+                        return null;
                     });
         }).reduce(ApplicativeParser::or).orElseGet(ApplicativeParser::fail);
+        return flagParser.sepBy(ApplicativeParser.skipWhitespaces1()).constMap(map);
     }
 
     private CommandParserUtil() {}
