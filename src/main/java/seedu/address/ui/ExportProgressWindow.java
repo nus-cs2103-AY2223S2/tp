@@ -116,7 +116,7 @@ public class ExportProgressWindow extends UiPart<Stage> {
     @FXML
     private void saveAs() throws IOException {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
         fileChooser.setInitialFileName(this.person.getName().fullName + "'s Progress Report");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
 

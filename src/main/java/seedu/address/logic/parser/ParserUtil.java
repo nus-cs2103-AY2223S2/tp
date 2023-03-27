@@ -240,6 +240,9 @@ public class ParserUtil {
         if (filePath.contains("/")) {
             throw new ParseException("Path must contain backslashes ('\\') instead of forward slashes");
         }
+        if (File.separator.equals("/")) {
+            filePath = filePath.replace("\\", "/");
+        }
         Path path = Paths.get(filePath);
         if (Files.isWritable(path) && Files.isDirectory(path)) {
             return path.toString();

@@ -64,7 +64,7 @@ public class ExportProgressCommand extends Command {
             this.fileName = studentName + "'s Progress Report.pdf";
         }
         if (this.filePath.equals("")) {
-            this.filePath = System.getProperty("user.dir");
+            this.filePath = System.getProperty("user.home");
         }
         try {
             model.exportProgress(personToExport, String.valueOf(Paths.get(this.filePath, this.fileName)));

@@ -156,7 +156,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         List<Object> taskTable = createTaskTable(key.getTaskList(), xInit, yInit, fontBold, 16, font,
                 14, contentStream, document, horizontalWrap, margin);
         contentStream = (PDPageContentStream) taskTable.get(0);
-        yInit = (float) taskTable.get(2);
+        yInit = (float) taskTable.get(2) - 3 * textHeight(fontBold, 20, 0);
 
         List<Object> scoreListString = wrapText("Score List", horizontalWrap, xInit, yInit, fontBold, 18,
                 contentStream, document, margin, -1, List.of());
@@ -174,6 +174,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     private List<Object> createTaskTable(TaskList tasks, float x, float y, PDFont fontBold, int fontSizeBold,
                                          PDFont font, int fontSize, PDPageContentStream contentStream,
                                          PDDocument document, float wrap, float margin) throws IOException {
+        if (tasks.size() == 0) {
+            List<Object> noTaskFoundString = wrapText("No task found", wrap, x, y, fontBold, 16,
+                    contentStream, document, margin, -1, List.of());
+            contentStream = (PDPageContentStream) noTaskFoundString.get(0);
+            List<Object> next = new ArrayList<>();
+            next.add(contentStream);
+            next.add(x);
+            next.add(y);
+            return next;
+        }
         List<String> headers = Arrays.asList("Status", "Name");
         List<String> maxContentWidthString = Arrays.asList("In Progress", "");
         float yInitTable = (float) (y + textHeight(fontBold, fontSizeBold, 0) / 2 + margin);
@@ -181,10 +191,13 @@ public class AddressBook implements ReadOnlyAddressBook {
                 contentStream, document, wrap, margin, yInitTable);
         contentStream = (PDPageContentStream) tableHeaders.get(0);
         y = (float) tableHeaders.get(2) - textHeight(fontBold, fontSizeBold, 0) / 2 - 2 * margin;
+        yInitTable = (float) ((float) tableHeaders.get(2) + textHeight(fontBold, fontSizeBold, 0) / 2 + 2 * margin);
 
         List<Object> tableContent = createTableContentForTask(tasks, maxContentWidthString, 90, y, font, fontSize,
                 contentStream, document, wrap, margin, yInitTable);
         contentStream = (PDPageContentStream) tableContent.get(0);
+        x = (float) tableContent.get(1);
+        y = (float) tableContent.get(2);
 
         List<Object> next = new ArrayList<>();
         next.add(contentStream);
@@ -196,6 +209,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     private List<Object> createScoreTable(ScoreList scores, float x, float y, PDFont fontBold, int fontSizeBold,
                                           PDFont font, int fontSize, PDPageContentStream contentStream,
                                           PDDocument document, float wrap, float margin) throws IOException {
+        if (scores.size() == 0) {
+            List<Object> noScoreFoundString = wrapText("No score history found", wrap, x, y, fontBold, 16,
+                    contentStream, document, margin, -1, List.of());
+            contentStream = (PDPageContentStream) noScoreFoundString.get(0);
+            List<Object> next = new ArrayList<>();
+            next.add(contentStream);
+            next.add(x);
+            next.add(y);
+            return next;
+        }
         List<String> headers = Arrays.asList("Date", "Test", "Score");
         List<String> maxContentWidthString = Arrays.asList("8888-88-88", "WWWWWWWWWWWWWWWWWW", "88.8");
         float yInitTable = (float) (y + textHeight(fontBold, fontSizeBold, 0) / 2 + margin);
@@ -203,6 +226,7 @@ public class AddressBook implements ReadOnlyAddressBook {
                 contentStream, document, wrap, margin, yInitTable);
         contentStream = (PDPageContentStream) tableHeaders.get(0);
         y = (float) tableHeaders.get(2) - textHeight(fontBold, fontSizeBold, 0) / 2 - 2 * margin;
+        yInitTable = (float) ((float) tableHeaders.get(2) + textHeight(fontBold, fontSizeBold, 0) / 2 + 2 * margin);
 
         List<Object> tableContent = createTableContentForScore(scores, maxContentWidthString, 90, y, font,
                 fontSize, contentStream, document, wrap, margin, yInitTable);
@@ -223,8 +247,12 @@ public class AddressBook implements ReadOnlyAddressBook {
                                         PDFont font, int fontSize, PDPageContentStream contentStream,
                                         PDDocument document, float wrap, float margin, float yInit) throws IOException {
         float xInit = x;
-        float yFinal = y;
-        createHorizontalLine(contentStream, (float) (y + textHeight(font, fontSize, 0) / 2 + margin));
+        float yFinal = yInit;
+        boolean isDoneDrawLine = false;
+        if (y - margin > 90) {
+            isDoneDrawLine = true;
+            createHorizontalLine(contentStream, (float) (y + textHeight(font, fontSize, 0) / 2 + margin));
+        }
         for (int i = 0; i < headers.size(); i++) {
             float wrapCur;
             if (i != 0 && i != headers.size() - 1) {
@@ -239,6 +267,10 @@ public class AddressBook implements ReadOnlyAddressBook {
             yFinal = (float) current.get(2);
             yInit = (float) current.get(3);
             x += textLength(maxContentWidthString.get(i), PDType1Font.HELVETICA_BOLD, 16) + 2 * margin;
+            y = yFinal + margin;
+            if (!isDoneDrawLine && i == 0) {
+                createHorizontalLine(contentStream, (float) (y + textHeight(font, fontSize, 0) / 2 + margin));
+            }
         }
         List<Object> next = new ArrayList<>();
         next.add(contentStream);
@@ -267,7 +299,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         List<Object> next = new ArrayList<>();
         next.add(contentStream);
         next.add(x);
-        next.add(y);
+        next.add(yFinal);
         return next;
     }
 
@@ -338,9 +370,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     private PDPageContentStream handleNextPage(PDPageContentStream contentStream, PDDocument document, float yInitTable,
-                                               float yFinal, List<String> maxContentWidthString, float margin)
+                                               float yFinal, List<String> maxContentWidthString, float margin,
+                                               PDFont font, int fontSize)
             throws IOException {
-        createVerticalLines(contentStream, yInitTable, yFinal, maxContentWidthString, margin);
+        if (yInitTable - 90 >= textHeight(font, fontSize, 0) + 2 * margin) {
+            createVerticalLines(contentStream, yInitTable, yFinal, maxContentWidthString, margin);
+        }
         contentStream.close();
         PDPage newPage = new PDPage();
         document.addPage(newPage);
@@ -375,9 +410,9 @@ public class AddressBook implements ReadOnlyAddressBook {
                 x = xInit;
                 lengthUsed = textLength(curString, font, fontSize);
             }
-            if (y <= 92) {
+            if (y <= 90) {
                 contentStream = handleNextPage(contentStream, document, yInitTable, yPrev - margin,
-                        maxContentWidthString, margin);
+                        maxContentWidthString, margin, font, fontSize);
                 x = xInit;
                 y = 702;
                 yInitTable = y + textHeight(font, fontSize, 0) / 2 + 2 * margin;
