@@ -77,6 +77,29 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Adding a tag: `addtag`
+
+Adds a tag to the list of tags.
+
+Format: `addtag [t/TAG]…`
+
+Examples: 
+* `addtag t/Novel t/MaleProtagonist`
+* `addtag t/FemaleProtagonist`
+
+### Deleting a tag: `dtag`
+
+Deletes a tag from the tag list.
+
+Format: `dtag TAGNAME`
+
+Example:
+* `dtag MaleProtagonist`
+
+### Listing all tags: tags
+Lists all tags in the tag list.
+
+Format: `tags`
 
 ### Adding a bookmark: `add`
 
