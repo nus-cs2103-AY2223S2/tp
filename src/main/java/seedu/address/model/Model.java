@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -124,6 +125,8 @@ public interface Model {
      * must not be the same as another existing recommendation in the address book.
      */
     void setRecommendation(Recommendation target, Recommendation editedRecommendation);
+
+    void setRecommendations(List<Recommendation> recommendations);
 
     /**
      * Clears the person list.
