@@ -76,6 +76,15 @@ public class ParentCard extends UiPart<Region> {
                     students.add(new Label(Student.getIndexNumber().value), 7, rowCounter.get());
                     rowCounter.getAndIncrement();
                 });
+        String strImage = parent.getImage().value;
+        if (!strImage.equals("Insert parent image here!")) {
+            File file = new File(strImage);
+            if (file.exists()) {
+                Image image = new Image(file.toURI().toString());
+                circle.setFill(new ImagePattern(image));
+                return;
+            }
+        }
         String path = "images/parent/" + parent.getName() + ".png";
         File file = new File(path);
         if (!file.exists()) {
