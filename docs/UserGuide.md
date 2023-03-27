@@ -127,6 +127,10 @@ Format:
 
 * Event: `add n/TASKNAME F/FROMDATE T/TODATE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
 
+Examples:
+* `add n/Read Book d/Make sure to take notes t/Leisure`
+* `add n/Return Book d/NUS library t/Urgent D/2023-01-01 1800`
+
 You can add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION [t/TAGS]…​`
 
 :bulb: **PRO TIP**: You can add multiple Events and Deadlines as well! However, they have to share the same timings. Use this to add tasks that occur at the same time!
@@ -134,10 +138,6 @@ You can add multiple tasks with the same parameters except for name with this co
 :bulb: **PRO TIP**: Parameters that comes after the command can be in any order!
 
 :bulb: **PRO TIP**: A task can have any number of tags (including 0)
-
-Examples:
-* `add n/Read Book d/Make sure to take notes t/Leisure`
-* `add n/Return Book d/NUS library t/Urgent D/2023-01-01 1800`
 
 :warning: You are unable to add any tasks (simpleTask, Deadline, Event) of the same name.
 
