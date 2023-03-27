@@ -24,9 +24,9 @@ title: User Guide
   - [Editing a person: `edit`](#editing-a-person--edit)
   - [Finding a person: `find`](#finding-a-person--find)
   - [Lising all persons/Resetting filters: `list`](#listing-all-personsresetting-filters--list)
-  - [delete](#delete)
-  - [clear](#clear)
-  - [exit](#exit-)
+  - [Deleting a person: `delete`](#deleting-a-person--delete)
+  - [Clearing all entries: `clear`](#clearing-all-entries--clear)
+  - [Exiting the program: `exit`](#exiting-the-program--exit)
 - [Data Management](#data-management)
 - [FAQ](#faq)
 - [Upcoming Features](#upcoming-features)
@@ -216,19 +216,19 @@ The pre-existing contacts are just some examples that you can play around with, 
 `list`<br>
 > * Shows all persons stored.<br>
 
-### delete
+### Deleting a person: `delete`
 `delete <INDEX>`<br>
 > * Deletes the person at the specified INDEX.<br>
 > * INDEX refers to an index currently shown in the displayed person list.<br>
 > * INDEX must be a positive integer 1, 2, 3, ...<br>
 > * E.g. `delete 1` will delete the current person at index 1 as shown in the list panel.<br>
 
-### clear
+### Clearing all entries: `clear`
 `clear`<br>
 > * :warning: Clears **all** entries from CoDoc.<br>
 
 
-### exit:
+### Exiting the program: `exit`
 `exit`<br>
 > * Exits the program. <br>
 > * Equivalent to clicking the close button via the GUI. <br>
