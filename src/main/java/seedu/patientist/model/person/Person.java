@@ -7,13 +7,14 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.patientist.model.tag.RoleTag;
 import seedu.patientist.model.tag.Tag;
 
 /**
  * Represents a Person in the patientist book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public abstract class Person {
 
     // Identity fields
     private final Name name;
@@ -59,6 +60,11 @@ public class Person {
     }
 
     /**
+     * Returns the tag of the person that identifies their role.
+     */
+    public abstract RoleTag getRoleTag();
+
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -67,7 +73,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same ID number.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -76,7 +82,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getIdNumber().equals(getIdNumber());
     }
 
     /**

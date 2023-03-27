@@ -1,6 +1,7 @@
 package seedu.patientist.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,8 @@ public class IdNumberTest {
     private static final IdNumber PID1_LOWER = new IdNumber("a12345b");
     private static final IdNumber PID2_UPPER = new IdNumber("C67890D");
     private static final IdNumber PID2_LOWER = new IdNumber("c67890d");
-
+    private static final String INVALID_PID_1 = "there are spaces in this pid";
+    private static final String INVALID_PID_2 = "+_(#$";
 
     @Test
     public void equals_sameId_true() {
@@ -28,5 +30,16 @@ public class IdNumberTest {
     public void equals_diffCase_true() {
         assertTrue(PID1_UPPER.equals(PID1_LOWER));
         assertTrue(PID2_LOWER.equals(PID2_UPPER));
+    }
+
+    @Test
+    public void constructor_invalidIdNumberInput() {
+        assertThrows(IllegalArgumentException.class, () -> new IdNumber(INVALID_PID_1));
+        assertThrows(IllegalArgumentException.class, () -> new IdNumber(INVALID_PID_2));
+    }
+
+    @Test
+    public void constructor_nullInput() {
+        assertThrows(NullPointerException.class, () -> new IdNumber(null));
     }
 }

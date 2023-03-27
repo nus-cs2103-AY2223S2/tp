@@ -16,6 +16,7 @@ import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
 import seedu.patientist.model.tag.Tag;
+import seedu.patientist.model.ward.Ward;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -152,5 +153,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code wardName} is invalid.
+     */
+    public static Ward parseWard(String wardName) throws ParseException {
+        requireNonNull(wardName);
+        String trimmedWard = wardName.trim();
+        if (!Ward.isValidWardName(trimmedWard)) {
+            throw new ParseException(Ward.MESSAGE_CONSTRAINTS);
+        }
+        return new Ward(trimmedWard);
     }
 }

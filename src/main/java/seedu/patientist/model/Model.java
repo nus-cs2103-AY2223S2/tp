@@ -6,6 +6,9 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.patientist.commons.core.GuiSettings;
 import seedu.patientist.model.person.Person;
+import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.staff.Staff;
+import seedu.patientist.model.ward.Ward;
 
 /**
  * The API of the Model component.
@@ -41,7 +44,7 @@ public interface Model {
     /**
      * Sets the user prefs' patientist book file path.
      */
-    void setPatientistFilePath(Path addressBookFilePath);
+    void setPatientistFilePath(Path patientistFilePath);
 
     /**
      * Replaces patientist book data with the data in {@code patientist}.
@@ -52,28 +55,114 @@ public interface Model {
     ReadOnlyPatientist getPatientist();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the patientist book.
+     * Returns true if a person with the same identity as {@code person} exists in the patientist book (all wards).
+     * This method makes use of {@code Person::isSamePerson} to check identity
      */
     boolean hasPerson(Person person);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the patientist book.
+     * Returns true if a person with the same identity as {@code person} exists in the given {@code ward}.
+     * {@code ward} must exist.
+     * Patients are uniquely identified by Patient ID, through {@code Patient::isSamePerson}
+     * Staff are uniquely identified by name, through {@code Staff::isSamePerson}
      */
-    void deletePerson(Person target);
+    boolean hasPerson(Person person, Ward ward);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the patientist book.
+     * Returns true if a patient with the same identity as {@code patient} exists in the ward.
+     * Patients are uniquely identified by ID, through {@code Person::isSamePerson}.
      */
-    void addPerson(Person person);
+    boolean hasPatient(Patient patient, Ward ward);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the patientist book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the patientist.
+     * Returns true if a staff with the same identity as {@code staff} exists in the ward.
+     * Staff are uniquely identified by ID, through {@code Person::isSamePerson}.
      */
-    void setPerson(Person target, Person editedPerson);
+    boolean hasStaff(Staff staff, Ward ward);
+
+    /**
+     * Deletes the given staff from the given ward. Other instances of this staff in other wards are untouched.
+     * The staff must exist in the ward.
+     */
+    void deleteStaff(Staff target, Ward ward);
+
+    /**
+     * Deletes the given patient.
+     * Ward must exist, and patient must be in the ward.
+     */
+    void deletePatient(Patient target, Ward ward);
+
+    /**
+     * Adds the given patient to the ward.
+     * {@code patient} must not already exist in the patientist book.
+     * {@code ward} must exist
+     */
+    void addPatient(Patient patient, Ward ward);
+
+    /**
+     * Adds the given staff to the ward.
+     * {@code person} must not already exist in the ward.
+     * {@code ward} must exist
+     */
+    void addStaff(Staff staff, Ward ward);
+
+    /**
+     * Replaces target Patient with edited Patient.
+     * Target patient must exist in ward, edited patient must not already exist.
+     */
+    void setPatient(Patient target, Patient edited);
+
+    /**
+     * Replaces target Staff with edited Staff throughout whole Patientist.
+     * Target Staff must exist in ward, edited Staff must not already exist.
+     */
+    void setStaff(Staff target, Staff edited);
+
+    /**
+     * Transfers patient from original ward to target ward.
+     * Patient must exist in original ward.
+     */
+    void transferPatient(Patient patient, Ward original, Ward target);
+
+    /**
+     * Transfers staff from original ward to target ward.
+     * Staff must exist in original ward.
+     */
+    void transferStaff(Staff staff, Ward original, Ward target);
+
+    /**
+     * Returns true if a ward with the same name as {@code ward} exists in the patientist book
+     */
+    boolean hasWard(Ward ward);
+
+    /**
+     * Adds the given ward.
+     * {@code ward} must not already exist in the patientist book.
+     * Wards are uniquely identified by name, through {@code Ward::equals}
+     * @param ward
+     */
+    void addWard(Ward ward);
+
+    /**
+     * Deletes the given ward.
+     * The ward must exist in the patientist book.
+     */
+    void deleteWard(Ward ward);
+
+    /**
+     * Replaces the given ward {@code ward} with {@code editedWard}.
+     * {@code ward} must exist in the patientist book.
+     * The ward identity of {@code editedWard} must not be the same as another existing ward in the patientist.
+     * @param target
+     * @param editedWard
+     */
+    void setWard(Ward target, Ward editedWard);
+
+    /**
+     * Returns the Ward object with the associated name in the Patientist, if it exists.
+     * Else, null is returned.
+     */
+    Ward getWard(String wardName);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

@@ -45,6 +45,8 @@ public class LogicManager implements Logic {
         Command command = patientistParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
+        model.getPatientist().updatePersonList();
+
         try {
             storage.savePatientist(model.getPatientist());
         } catch (IOException ioe) {

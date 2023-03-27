@@ -82,7 +82,7 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        //model.setPerson(personToEdit, editedPerson); TODO: either setpatient or setstaff. refer to API.
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
@@ -101,7 +101,8 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedIdNumber, updatedAddress, updatedTags);
+        return null; //new Person(updatedName, updatedPhone, updatedEmail, updatedIdNumber, updatedAddress, updatedTags)
+        //TODO: instantiate patient or staff as appropriate, based on set staff or set patient
     }
 
     @Override

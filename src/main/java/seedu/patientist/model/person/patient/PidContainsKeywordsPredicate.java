@@ -8,7 +8,7 @@ import seedu.patientist.model.person.Person;
 import seedu.patientist.model.tag.Tag;
 
 /**
- * Tests that a {@code Patient}'s {@code PatientIdNumber} matches any of the keywords given.
+ * Tests that a {@code Patient}'s {@code IdNumber} matches any of the keywords given.
  */
 public class PidContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
