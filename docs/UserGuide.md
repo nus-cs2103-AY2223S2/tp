@@ -167,6 +167,32 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Sorting Meetings: `sortm`
+
+Sorts meetings in the address book by a specified attribute.
+
+Format: `sortm ATTRIBUTE [r]`
+
+* Sorts the meetings in the address book by the specified `ATTRIBUTE`, which can be one of the following: `m/` (meeting title), `dt/` (date/time), `l/` (location), or `des/` (description).
+* If the `r` option is included, the meetings will be sorted in reverse order.
+* Meetings with the same value for the specified attribute will be sorted by date/time in ascending order.
+* Example: `sortm m/` sorts meetings by title in ascending order.
+* Example: `sortm dt/r` sorts meetings by date/time in descending order.
+
+### Editing a meeting: `editm`
+
+Edits an existing meeting in the meeting book.
+
+Format: `editm INDEX [t/TITLE] [dt/DATE] [l/LOCATION] [des/DESCRIPTION]`
+
+* Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* The `DATE`, `START_TIME` and `END_TIME` must be provided in the format `YYYY-MM-DD`, `HH:MM` (24-hour) respectively.
+
+Examples:
+* `editm 1 t/Project Update dt/2023-04-01 10:00`  Edits the date first meeting to be on `2023-04-01`, and change its title to "Project Update".
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
