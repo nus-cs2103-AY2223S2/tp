@@ -326,8 +326,6 @@ public class ModelManager implements Model {
     public void flipCard() {
         assert currReview != null : "Flip command executed without a Review session.";
         masterDeck.flipCard(filteredCards.get(0));
-        //        currReview.flipCard();
-        //        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
     }
 
     @Override
@@ -339,8 +337,6 @@ public class ModelManager implements Model {
     public void tagCurrentCardInReview(Tag tag) {
         assert filteredCards.size() == 1 : "One and only one card can be reviewed at once.";
         masterDeck.tagCard(filteredCards.get(0), tag);
-        currReview.setCard(tag);
-        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
     }
 
     @Override

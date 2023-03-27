@@ -11,9 +11,15 @@ public class IsSameCardPredicate implements Predicate<Card> {
         this.card = card;
     }
 
+    /**
+     * Checks if the 2 cards are semantically equal based on Card::isSameCard.
+     *
+     * @param card the input argument
+     * @return true if 2 cards are semantically the same based on question, answer, deck
+     */
     @Override
     public boolean test(Card card) {
-        return card.equals(this.card);
+        return card.isSameCard(this.card);
     }
 
     @Override
@@ -22,5 +28,4 @@ public class IsSameCardPredicate implements Predicate<Card> {
                 || (other instanceof IsSameCardPredicate // instanceof handles nulls
                 && card.equals(((IsSameCardPredicate) other).card)); // state check
     }
-
 }
