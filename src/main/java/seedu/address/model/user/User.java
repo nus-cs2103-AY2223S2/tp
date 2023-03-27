@@ -103,8 +103,8 @@ public class User extends Person {
         this.events.untagPersonFromEvent(index, p);
     }
 
-    public boolean checkPersonTagToEvent(Index index, Person p) {
-        return this.events.checkPersonTagToEvent(index, p);
+    public boolean isPersonTaggedToEvent(Index index, Person p) {
+        return this.events.isPersonTaggedToEvent(index, p);
     }
 }
 
