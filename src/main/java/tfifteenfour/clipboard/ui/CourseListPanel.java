@@ -14,19 +14,19 @@ import tfifteenfour.clipboard.model.course.Course;
  * Panel containing the list of courses.
  */
 public class CourseListPanel extends UiPart<Region> {
-    private static final String FXML = "CourseListPanel.fxml";
+    private static final String FXML = "ListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(CourseListPanel.class);
 
     @FXML
-    private ListView<Course> courseListView;
+    private ListView<Course> listView;
 
     /**
      * Creates a {@code CourseListPanel} with the given {@code ObservableList}.
      */
     public CourseListPanel(ObservableList<Course> courseList) {
         super(FXML);
-        courseListView.setItems(courseList);
-        courseListView.setCellFactory(listView -> new CourseListViewCell());
+        listView.setItems(courseList);
+        listView.setCellFactory(listView -> new CourseListViewCell());
     }
 
     /**
@@ -47,7 +47,7 @@ public class CourseListPanel extends UiPart<Region> {
     }
 
     public void setCourseListView(ObservableList<Course> courseList) {
-        courseListView.setItems(courseList);
+        listView.setItems(courseList);
     }
 
 }

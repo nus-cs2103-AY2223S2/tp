@@ -10,13 +10,14 @@ import tfifteenfour.clipboard.ui.UiPart;
  */
 public class ActiveModuleTab extends UiPart<Region> {
 
-    private static final String FXML = "ModuleTab.fxml";
+    private static final String FXML = "ActiveTab.fxml";
 
     @FXML
     private Label name;
 
     public ActiveModuleTab() {
         super(FXML);
+        name.setText("Modules");
     }
 
 }

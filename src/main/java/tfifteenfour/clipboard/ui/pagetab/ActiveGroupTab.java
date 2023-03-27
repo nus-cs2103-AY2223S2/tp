@@ -10,13 +10,14 @@ import tfifteenfour.clipboard.ui.UiPart;
  */
 public class ActiveGroupTab extends UiPart<Region> {
 
-    private static final String FXML = "GroupTab.fxml";
+    private static final String FXML = "ActiveTab.fxml";
 
     @FXML
     private Label name;
 
     public ActiveGroupTab() {
         super(FXML);
+        name.setText("Groups");
     }
 
 }

@@ -14,19 +14,19 @@ import tfifteenfour.clipboard.model.student.StudentWithAttendance;
  * Panel containing the list of student attendance.
  */
 public class AttendanceListPanel extends UiPart<Region> {
-    private static final String FXML = "AttendanceListPanel.fxml";
+    private static final String FXML = "ListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(CourseListPanel.class);
 
     @FXML
-    private ListView<StudentWithAttendance> attendanceListView;
+    private ListView<StudentWithAttendance> listView;
 
     /**
      * Creates a {@code AttendanceListPanel} with the given {@code ObservableList}.
      */
     public AttendanceListPanel(ObservableList<StudentWithAttendance> studentList) {
         super(FXML);
-        attendanceListView.setItems(studentList);
-        attendanceListView.setCellFactory(listView -> new AttendanceListViewCell());
+        listView.setItems(studentList);
+        listView.setCellFactory(listView -> new AttendanceListViewCell());
     }
 
     /**
@@ -51,7 +51,7 @@ public class AttendanceListPanel extends UiPart<Region> {
     }
 
     public void setAttendanceListView(ObservableList<StudentWithAttendance> studentList) {
-        attendanceListView.setItems(studentList);
+        listView.setItems(studentList);
     }
 
 }

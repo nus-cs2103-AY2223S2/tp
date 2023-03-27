@@ -14,19 +14,19 @@ import tfifteenfour.clipboard.model.course.Session;
  * Panel containing the list of sessions.
  */
 public class SessionListPanel extends UiPart<Region> {
-    private static final String FXML = "SessionListPanel.fxml";
+    private static final String FXML = "ListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(SessionListPanel.class);
 
     @FXML
-    private ListView<Session> sessionListView;
+    private ListView<Session> listView;
 
     /**
      * Creates a {@code SessionListPanel} with the given {@code ObservableList}.
      */
     public SessionListPanel(ObservableList<Session> sessionList) {
         super(FXML);
-        sessionListView.setItems(sessionList);
-        sessionListView.setCellFactory(listView -> new SessionListViewCell());
+        listView.setItems(sessionList);
+        listView.setCellFactory(listView -> new SessionListViewCell());
     }
 
     /**
@@ -51,7 +51,7 @@ public class SessionListPanel extends UiPart<Region> {
     }
 
     public void setSessionListView(ObservableList<Session> sessionList) {
-        sessionListView.setItems(sessionList);
+        listView.setItems(sessionList);
     }
 
 }

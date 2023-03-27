@@ -6,18 +6,18 @@ import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.ui.UiPart;
 
 /**
- * A UI for the student tab.
+ * A UI for the session tab.
  */
-public class ActiveStudentTab extends UiPart<Region> {
+public class ActiveSessionTab extends UiPart<Region> {
 
     private static final String FXML = "ActiveSubTab.fxml";
 
     @FXML
     private Label name;
 
-    public ActiveStudentTab() {
+    public ActiveSessionTab() {
         super(FXML);
-        name.setText("Students");
+        name.setText("Sessions");
     }
 
 }

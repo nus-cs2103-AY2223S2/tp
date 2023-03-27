@@ -10,13 +10,14 @@ import tfifteenfour.clipboard.ui.UiPart;
  */
 public class InactiveGroupTab extends UiPart<Region> {
 
-    private static final String FXML = "InactiveGroupTab.fxml";
+    private static final String FXML = "InactiveTab.fxml";
 
     @FXML
     private Label name;
 
     public InactiveGroupTab() {
         super(FXML);
+        name.setText("Groups");
     }
 
 }
