@@ -5,10 +5,11 @@ import static seedu.ultron.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Opening's status in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String)}
  */
 public class Status {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Statuses should only match the following: FOUND, APPLIED, INTERVIEWING, OFFERED, REJECTED";
+    public static final String MESSAGE_CONSTRAINTS = "Statuses are case-insensitive but should only "
+            + "match the following: FOUND, APPLIED, INTERVIEWING, OFFERED, REJECTED, ACCEPTED";
 
     /**
      * The enum of all possible statuses.
@@ -27,7 +28,7 @@ public class Status {
     public Status(String status) {
         requireNonNull(status);
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
-        fullStatus = status;
+        fullStatus = status.toUpperCase();
     }
 
     /**
@@ -35,7 +36,7 @@ public class Status {
      */
     public static boolean isValidStatus(String test) {
         for (StatusEnum status : StatusEnum.values()) {
-            if (status.name().equals(test)) {
+            if (status.name().equals(test.toUpperCase())) {
                 return true;
             }
         }

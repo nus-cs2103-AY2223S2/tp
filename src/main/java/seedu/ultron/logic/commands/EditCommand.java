@@ -232,6 +232,7 @@ public class EditCommand extends Command {
                     && getCompany().equals(e.getCompany())
                     && getEmail().equals(e.getEmail())
                     && getStatus().equals(e.getStatus())
+                    && getRemark().equals(e.getRemark())
                     && getDates().equals(e.getDates());
         }
     }

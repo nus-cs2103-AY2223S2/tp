@@ -31,7 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_POSITION + "Backend Developer "
             + PREFIX_COMPANY + "Shopee "
             + PREFIX_EMAIL + "hr@shopee.com "
-            + PREFIX_STATUS + "APPLIED "
+            + PREFIX_STATUS + "applied "
             + PREFIX_REMARK + "3 rounds of interviews ";
 
     public static final String MESSAGE_SUCCESS = "New opening added: %1$s";

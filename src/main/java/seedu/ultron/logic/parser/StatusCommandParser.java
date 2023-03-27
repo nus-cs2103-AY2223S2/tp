@@ -4,6 +4,7 @@ import static seedu.ultron.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.ultron.logic.commands.StatusCommand;
 import seedu.ultron.logic.parser.exceptions.ParseException;
+import seedu.ultron.model.opening.Status;
 import seedu.ultron.model.opening.StatusContainsKeywordPredicate;
 
 /**
@@ -19,7 +20,7 @@ public class StatusCommandParser implements Parser<StatusCommand> {
     public StatusCommand parse(String arg) throws ParseException {
         String trimmedArg = arg.trim();
         String[] nameKeywords = trimmedArg.split("\\s+");
-        if (trimmedArg.isEmpty() || nameKeywords.length != 1) {
+        if (trimmedArg.isEmpty() || nameKeywords.length != 1 || !Status.isValidStatus(trimmedArg)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatusCommand.MESSAGE_USAGE));
         }

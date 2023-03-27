@@ -95,10 +95,15 @@ public class ParserUtil {
     /**
      * Parses a {@code String status} into an {@code Status}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException
      */
-    public static Status parseStatus(String status) {
+    public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
+        if (!Status.isValidStatus(trimmedStatus)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
         return new Status(trimmedStatus);
     }
 
