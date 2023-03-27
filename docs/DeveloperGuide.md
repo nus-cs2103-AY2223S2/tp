@@ -294,7 +294,13 @@ behave for that particular command.
 * Benefit: There is more flexibility in customising how to best cater autocompletion for each individual
 command to better the user experience.
 
-### Traverse commands
+### Traversal of Commands
+
+Traversal of commands is facilitated by `CommandHistory` model in addition to `KeyPressedHandler` in the `CommandBox` UI component.
+
+Internally, `CommandHistory` utilises [`LinkedList`](https://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html) to store all the commands that have been executed by the user. Note that `LinkedList` is a [doubly-linked list](https://en.wikipedia.org/wiki/Doubly_linked_list) and this allows us to traverse the list of commands forward and backward in O(1) [time complexity](https://en.wikipedia.org/wiki/Time_complexity). Traversal of the list is facilitated by a `static` pointer.
+
+`CommandBox` UI component is actively listening to the `UP` and `DOWN` keys which would be handled by the `KeyPressedHandler`, which is responsible for traversing the command history using `CommandHistory`.
 
 ### DateTime parsing
 
@@ -333,45 +339,45 @@ command to better the user experience.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                             | I want to …​                                                                | So that I can…​                                                 |
-| -------- | ---------------------------------------------------------------------------| -----------------------------------------------------------------------------------|----------------------------------------------------------------------- |
-| `* * *`  | new user                                                                   | see usage instructions                                                             | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                                                       | add a new person                                                                   |                                                                        |
-| `* * *`  | user                                                                       | delete a person                                                                    | remove entries that I no longer need                                   |
-| `* * *`  | user                                                                       | find a person by name                                                              | locate details of persons without having to go through the entire list |
-| `* *`    | user                                                                       | hide private contact details                                                       | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the contact book                                 | sort persons by name                                                               | locate a person easily                                                 |
-|`*`       | user                                                                       | Find a person by tag                                                               | I can filter the contacts by tags                                      |
-|`*`       | user                                                                       | Sort by tag priority                                                               | I can find the most important contacts                                 |
-|`*`       | user                                                                       | Assign tag priority                                                                |                                                                        |
-|`*`       | user                                                                       | Retrieve deleted contacts                                                          |                                                                        |
-|`*`       | user                                                                       | Set a date for deletion of contacts                                                | Remove the contacts automatically                                      |
-|`*`       | user                                                                       | Add a contact                                                                      | Store my contact in app                                                |
-|`*`       | user                                                                       | Delete a contact                                                                   | Remove unwanted contacts                                               |
-|`*`       | user                                                                       | Edit a contact                                                                     | Change details of existing contacts                                    |
-|`*`       | user                                                                       | Assign tag to contact                                                              | Categorise my contacts                                                 |
-|`*`       | user                                                                       | Use the help command                                                               | To see available commands                                              |
-|`*`       | power user                                                                 | Assign shortcuts to different actions                                              | I can cut down on the time taken to type                               |
-|`*`       | User with many connections                                                 | Export my contacts                                                                 | I can share my contacts easily                                         |
-|`*`       | User with many connections                                                 | Copy the details of my contacts                                                    | I can share my contacts easily                                         |
-|`*`       | User with many existing contacts                                           | Import my contacts automatically                                                   | I don\'t have to spend too much time creating contacts one by one  |
-|`*`       | User with many meetups with people                                         | Sort meetings based on the date and time                                           | I can prioritize my time well                                          |
-|`*`       | Busy user with many meetups                                                | Receive notifications about meetups with contacts                                  | I won\'t be late for meetups                                       |
-|`*`       | User with many meetups with people                                         | Create a meeting                                                                   | Schedule a meeting                                                     |
-|`*`       | User with many meetups with people                                         | Edit a meeting                                                                     | Change meeting details                                                 |
-|`*`       | User with many meetups with people                                         | Delete a meeting                                                                   | Remove cancelled or completed meetings                                 |
-|`*`       | User with many meetups with people                                         | View all meetings                                                                  | See in a glance the meetings that I have                               |
-|`*`       | User with many meetups with people                                         | View meeting details                                                               | Understand what my meeting is about                                    |
-|`*`       | Users with meetings                                                        | Add a reminder to meeting                                                          | So I do not forget the meeting                                         |
-|`*`       | Users with meetings                                                        | Edit reminder of meeting                                                           | Change how frequent my reminders are                                   |
-|`*`       | Users with meetings                                                        | Delete a reminder                                                                  | So I am not spammed with reminders                                     |
-|`*`       | Users with many meetings                                                   | Tag meeting                                                                        | Organize they types of meetings                                        |
-|`*`       | User who are very familiar with the keyboard                               | Add custom keybinds | So that I am faster at organizing contacts                   |                                                                        |
-|`*`       | User with many meetings                                                    | See how many days left to a meeting                                                | I don\'t forget to attend one                                      |
-|`*`       | User in a hurry                                                            | Undo previous action up to 3 previous actions                                      | I can be fast and a bit sloppy without worrying                        |
-|`*`       | User who use the app for a long time                                       | Set a reminder to tag people | In future I can better organize people              |                                                                        |
-|`*`       | User who forget what is in contacts                                        | Ask if person/meeting still relevant | So that the contact remain relatively clean |                                                                        |
-|`*`       | User assign name to priority tag                                           | Customise the tags                                                                 | I can remember more easily who is ranked higher                        |
+| Priority | As a …​                                      | I want to …​                                      | So that I can…​                                                        |
+|----------|----------------------------------------------|---------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                     | see usage instructions                            | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                         | add a new person                                  |                                                                        |
+| `* * *`  | user                                         | delete a person                                   | remove entries that I no longer need                                   |
+| `* * *`  | user                                         | find a person by name                             | locate details of persons without having to go through the entire list |
+| `* *`    | user                                         | hide private contact details                      | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the contact book   | sort persons by name                              | locate a person easily                                                 |
+| `*`      | user                                         | Find a person by tag                              | I can filter the contacts by tags                                      |
+| `*`      | user                                         | Sort by tag priority                              | I can find the most important contacts                                 |
+| `*`      | user                                         | Assign tag priority                               |                                                                        |
+| `*`      | user                                         | Retrieve deleted contacts                         |                                                                        |
+| `*`      | user                                         | Set a date for deletion of contacts               | Remove the contacts automatically                                      |
+| `*`      | user                                         | Add a contact                                     | Store my contact in app                                                |
+| `*`      | user                                         | Delete a contact                                  | Remove unwanted contacts                                               |
+| `*`      | user                                         | Edit a contact                                    | Change details of existing contacts                                    |
+| `*`      | user                                         | Assign tag to contact                             | Categorise my contacts                                                 |
+| `*`      | user                                         | Use the help command                              | To see available commands                                              |
+| `*`      | power user                                   | Assign shortcuts to different actions             | I can cut down on the time taken to type                               |
+| `*`      | User with many connections                   | Export my contacts                                | I can share my contacts easily                                         |
+| `*`      | User with many connections                   | Copy the details of my contacts                   | I can share my contacts easily                                         |
+| `*`      | User with many existing contacts             | Import my contacts automatically                  | I don\'t have to spend too much time creating contacts one by one      |
+| `*`      | User with many meetups with people           | Sort meetings based on the date and time          | I can prioritize my time well                                          |
+| `*`      | Busy user with many meetups                  | Receive notifications about meetups with contacts | I won\'t be late for meetups                                           |
+| `*`      | User with many meetups with people           | Create a meeting                                  | Schedule a meeting                                                     |
+| `*`      | User with many meetups with people           | Edit a meeting                                    | Change meeting details                                                 |
+| `*`      | User with many meetups with people           | Delete a meeting                                  | Remove cancelled or completed meetings                                 |
+| `*`      | User with many meetups with people           | View all meetings                                 | See in a glance the meetings that I have                               |
+| `*`      | User with many meetups with people           | View meeting details                              | Understand what my meeting is about                                    |
+| `*`      | Users with meetings                          | Add a reminder to meeting                         | So I do not forget the meeting                                         |
+| `*`      | Users with meetings                          | Edit reminder of meeting                          | Change how frequent my reminders are                                   |
+| `*`      | Users with meetings                          | Delete a reminder                                 | So I am not spammed with reminders                                     |
+| `*`      | Users with many meetings                     | Tag meeting                                       | Organize they types of meetings                                        |
+| `*`      | User who are very familiar with the keyboard | Add custom keybinds                               | So that I am faster at organizing contacts                             |
+| `*`      | User with many meetings                      | See how many days left to a meeting               | I don\'t forget to attend one                                          |
+| `*`      | User in a hurry                              | Undo previous action up to 3 previous actions     | I can be fast and a bit sloppy without worrying                        |
+| `*`      | User who use the app for a long time         | Set a reminder to tag people                      | In future I can better organize people                                 |
+| `*`      | User who forget what is in contacts          | Ask if person/meeting still relevant              | So that the contact remain relatively clean                            |
+| `*`      | User assign name to priority tag             | Customise the tags                                | I can remember more easily who is ranked higher                        |
 
 ### Use cases
 
