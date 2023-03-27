@@ -32,10 +32,11 @@ public class AddStaffCommandTest {
     @Test
     public void constructor_nullPatient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddStaffCommand(VALID_WARD_NAME, null));
+
     }
 
     @Test
-    public void execute_patientAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_staffAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingStaffAdded modelStub = new ModelStubAcceptingStaffAdded();
         Staff validStaff = new StaffBuilder().build();
 

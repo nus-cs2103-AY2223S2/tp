@@ -36,6 +36,7 @@ public class DeleteCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getPatientist(), new UserPrefs());
         expectedModel.deleteStaff((Staff) personToDelete, expectedModel.getWard("Block A Ward 1"));
+        expectedModel.getPatientist().updatePersonList();
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -59,6 +60,7 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getPatientist(), new UserPrefs());
         expectedModel.deleteStaff((Staff) personToDelete, expectedModel.getWard("Block A Ward 1"));
+        expectedModel.getPatientist().updatePersonList();
         showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
