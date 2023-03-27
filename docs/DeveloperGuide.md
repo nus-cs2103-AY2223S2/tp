@@ -176,13 +176,9 @@ The add application command is a core feature of sprINT, allowing users to easil
 applications. By issuing the command with the appropriate prefixes, users can input the key details of their application,
 including the role, company, email, and status. 
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** While `task` is also a field associated
 with an application, users are only allowed to add a task to an application via the 
 <a href="#56-add-task-feature">add task command</a>.</div>
-
-<div style="page-break-after: always;"></div>
 
 With the add application command, users no longer have to rely on memory or scattered notes to keep track of their
 applications. Instead, they can quickly and easily input all relevant information into sprINT, and access it at any
@@ -215,13 +211,9 @@ parsing user commands for adding applications.
 5. The `InternshipBookParser` then passes the string input to the `AddApplicationCommandParser` via the `parse()` method.
 6. The `AddApplicationCommandParser` then identifies the different prefixes in the string and creates the fields for the application.
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The field entities that are minimally created include
 the `Role`, `CompanyName`, `CompanyEmail` and `Status`. These also coincide with the compulsory fields that the user
 must provide in the input when using the add application feature.</div>
-
-<div style="page-break-after: always;"></div>
 
 7. These fields will then be used to create an `Application` instance.
 8. The newly created `Application` instance will then be used to create an `AddApplicationCommand`. This command instances
@@ -232,19 +224,14 @@ the logic behind adding the associated application instance to the existing `Int
 the execution of the command. 
 11. The Ui component displays the contents of the `CommandResult` to the User.
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The CommandResult will display the newly updated
 application list to the User, should the add command execute successfully. If an error occurred during execution, the corresponding
 exception that was thrown and the error message will be displayed to the user.</div>
-
-<div style="page-break-after: always;"></div>
 
 For a more graphical illustration of how an add application command is processed, please refer to the following
 sequence diagram:
 
 ![AddApplicationSequenceDiagram](images/AddApplicationSequenceDiagram.png)
-
 
 ### 5.2 Edit Application feature
 
@@ -341,12 +328,8 @@ The sort command is a feature that enables users to rearrange the list of applic
 - `sort deadline` will sort applications by the deadline of upcoming tasks in ascending order (i.e. from earliest 
 to latest). 
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Only applications that have a task 
 associated will be displayed in the sorted list. Those without an associated task will **not** be shown.</div> 
-
-<div style="page-break-after: always;"></div>
 
 - `sort alphabetical` will sort applications by the company name in ascending order. If there are two or more 
 applications under the same company, the role will be used as a tiebreaker. 
@@ -411,7 +394,7 @@ and `list` commands:
 The undo/redo command is a feature that helps to enhance users' experience. The undo command allows users to backtrack
 and reverse their previous action, while the redo command allows users to reapply any changes they have undone. 
 
-### Usage
+#### Usage
 
 To undo or redo the previous command, simply issue the command `undo` or `redo` respectively.
 
@@ -437,22 +420,14 @@ Step 2. The user executes `delete 5` command to delete the 5th application in th
 
 Step 3. The user executes `add-app c/Google …​` to add a new application. The `add-app` command also calls `Model#commitInternshipBook()`, causing another modified internship book state to be saved into the `internshipBookStateList`.
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will 
 not call `Model#commitInternshipBook()`, so the internship book state will not be saved into the 
 `internshipBookStateList`.</div>
 
-<div style="page-break-after: always;"></div>
-
 ![UndoRedoState2](images/UndoRedoState2.png)
-
-<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The command shown in the diagram above 
 is shortened for brevity. For the complete correct syntax, please refer to the <a href="#51-add-application-feature">add-application</a> section.</div>
-
-<div style="page-break-after: always;"></div>
 
 Step 4. The user now decides that adding the application was a mistake, and decides to undo that action by executing 
 the `undo` command. The `undo` command will call `Model#undoInternshipBook()`, which will shift the 
@@ -462,14 +437,10 @@ internship book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, 
 pointing to the initial InternshipBook state, then there are no previous InternshipBook states to restore. The `undo` 
 command uses `Model#canUndoInternshipBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.</div>
-
-<div style="page-break-after: always;"></div>
 
 The following sequence diagram provides a graphical illustration of how the undo operation works:
 
@@ -481,14 +452,10 @@ The following sequence diagram provides a graphical illustration of how the undo
 
 The `redo` command does the opposite — it calls `Model#redoInternshipBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the internship book to that state.
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 
 `internshipBookStateList.size() - 1`, pointing to the latest internship book state, then there are no undone 
 InternshipBook states to restore. The `redo` command uses `Model#canRedoInternshipBook()` to check if this is the case. 
 If so, it will return an error to the user rather than attempting to perform the redo.</div>
-
-<div style="page-break-after: always;"></div>
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the internship book, such as `list`, will usually not call `Model#commitInternshipBook()`, `Model#undoInternshipBook()` or `Model#redoInternshipBook()`. Thus, the `internshipBookStateList` remains unchanged.
 
@@ -523,15 +490,11 @@ The add task command is a feature that allows users to add a [task](#task) to an
 internship book. This allows users to keep track of additional requirements for an application that other fields 
 may not be able to capture adequately.
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Currently, sprINT only supports adding 
 **one** task per application. This means that users will **not** be allowed to add more tasks to an application that 
 already has an existing task associated with it.</div>
 
-<div style="page-break-after: always;"></div>
-
-### Usage
+#### Usage
 
 To add a task to an existing application in sprINT, simply issue the command in the following format:
 `add-task INDEX d/[description] by/[deadline]`
@@ -612,7 +575,7 @@ sequence diagram:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Documentation, logging, testing, configuration, dev-ops
+## **6. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -622,7 +585,7 @@ sequence diagram:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. Glossary
+## **7. Glossary**
 
 ### 7.1 sprINT-specific Terminology
 
@@ -654,7 +617,7 @@ Windows, Linux, Unix, OS-X
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 8. Appendix: Requirements
+## **8. Appendix: Requirements**
 
 ### 8.1 Product Scope
 
@@ -835,7 +798,7 @@ upcoming tasks of closer deadlines being showed first.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 9. Appendix: Instructions for manual testing
+## **9. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
