@@ -48,7 +48,7 @@ class JsonAdaptedPatient {
         name = source.getName().fullName;
         nric = source.getNric().value;
         status = source.getStatus().value;
-        ward = source.getWard().wardName;
+        ward = source.getWardNameString();
         discharge = source.getDischarge().value;
 
     }
