@@ -60,5 +60,6 @@ else is toggle command box mode event
     destroy FindKey
 end
 UiEventManager -->[
+deactivate UiEventManager
 @enduml
 
