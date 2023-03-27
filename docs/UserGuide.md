@@ -110,10 +110,6 @@ Format: `help`
 
 ### 2.2 Adding a task: `add`
 
-:bulb: PRO TIP: Parameters that comes after the command can be in any order!
-
-:warning: You are unable to add any tasks (simpleTask, Deadline, Event) of the same name.
-
 Adds a task to the address book. There are 3 types of tasks. `SimpleTask`, `Deadline` and `Event`.
 For `Deadline` and `Event` `Date` field(s) are required.
 
@@ -135,11 +131,20 @@ You can add multiple tasks with the same parameters except for name with this co
 
 :bulb: **PRO TIP**: You can add multiple Events and Deadlines as well! However, they have to share the same timings. Use this to add tasks that occur at the same time!
 
-:bulb: **Tip**: A task can have any number of tags (including 0)
+:bulb: **PRO TIP**: Parameters that comes after the command can be in any order!
+
+:bulb: **PRO TIP**: A task can have any number of tags (including 0)
 
 Examples:
 * `add n/Read Book d/Make sure to take notes t/Leisure`
 * `add n/Return Book d/NUS library t/Urgent D/2023-01-01 1800`
+
+:warning: You are unable to add any tasks (simpleTask, Deadline, Event) of the same name.
+
+:warning: Adding multiple tags of the same tag name will only result in one tag! 
+
+e.g. `add n/SampleTask t/CS2102 t/CS2102` will only register t/CS2102 once!
+
 
 ### 2.3 Listing all tasks : `list`
 :bulb: PRO TIP: Some commands (e.g. find) will trigger the UI to display a subset of tasks. Use `list` to return back to the original list.
@@ -164,6 +169,10 @@ Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT]…​ [t/TAG]…​`
 Examples:
 *  `edit 1 t/CS2102 t/URGENT` Edits the tags of the first task to now be `CS2102` and `URGENT`
 *  `edit 2 n/CS2102 Finals t/` Edits the name of the 2nd task to be `CS2102 Finals` and clears all existing tags.
+
+:warning: When editing the tags of a task, multiple tags of the same name is ignored! 
+
+e.g. `edit 1 t/CS2102 t/CS2102` will only register t/CS2102 once!
 
 ### 2.5 Locating tasks by name: `find`
 :warning: When searching for a description `find d/Description`, Tasks without user's input description will not show up!
