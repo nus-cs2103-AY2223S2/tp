@@ -331,6 +331,16 @@ Format: `unassign INDEX n/NAME`
 * `NAME` is case-insensitive.
 * `NAME` must match in full.
 
+<figure>
+  <img src="images/UnassignBefore.png" width="420" />
+  <figcaption>Before Unassign.</figcaption>
+</figure>
+
+<figure>
+    <img src="images/UnassignAfter.png" width="420" />
+    <figcaption>After Unassign.</figcaption>
+</figure>
+
 ### Saving the data
 
 SOCket data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
