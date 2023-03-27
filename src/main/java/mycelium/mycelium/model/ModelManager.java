@@ -233,6 +233,13 @@ public class ModelManager implements Model {
         updateFilteredProjectList(x -> true);
     }
 
+    @Override
+    public void setProject(Project target, Project editedProject) {
+        requireAllNonNull(target, editedProject);
+
+        addressBook.setProject(target, editedProject);
+    }
+
     //=========== Filtered Project List Accessors =============================================================
 
     @Override
