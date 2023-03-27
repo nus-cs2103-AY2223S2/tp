@@ -110,7 +110,7 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -171,7 +171,7 @@ This section describes some noteworthy details on how certain features are imple
 
 _This feature was implemented as proposed in [AddressBook-Level3](https://se-education.org/addressbook-level3/DeveloperGuide.html#proposed-undoredo-feature)_
 
-The proposed undo/redo mechanism is facilitated by `VersionedSocket`. It extends `Socket` with an undo/redo history, stored internally as an `socketStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedSocket`. It extends `Socket` with an undo/redo history, stored internally as an `socketStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedSocket#commit()` — Saves the current 'Socket' state in its history.
 * `VersionedSocket#undo()` — Restores the previous 'Socket' state from its history.
@@ -244,8 +244,9 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
- 
+
 ### List Feature 
+
 The `list` feature allows user to display a list of persons. The user can filter the list by tag or language. `list` filters the list by **AND** search. If no argument is given, then list by default displays all persons in SOCket. 
 The feature is mainly facilitated by the `ListCommand` class and with the help of Predicate classes. 
 `ListCommand` extends `Command` and implements the following operation: 
@@ -263,12 +264,15 @@ This Predicate class will return True as long as any of the Predicate classes in
 The Predicate classes works using an AND search, persons will be shown in the resulting list only if all the keywords given should match to the Person. 
 
 ### Design considerations:
-**Filtering by other fields** 
+
+**Aspect: Filtering by other fields** 
+
 * Initially considered list to not have additional arguments but as decided to filter through Language and Tag due to:
   * Find currently does a partial keyword match, thus list allows user to have the option to do full keyword matches 
   * As language(s) and tag(s) are the only fields which can belong to more than one person, it makes sense to use list to do full keyword matches on these fields.
 
 ### Sort Feature
+
 The sort feature allows users to sort the list of persons and projects in the application. 
 The feature is facilitated by the `SortCommand` and `SortProjectCommand` classes. 
 They extend `Command` and implements the following operations:
@@ -283,6 +287,7 @@ The input is then passed to the `sort` function in `UniquePersonList` and `Uniqu
 The `sort` makes use of a comparator that sorts the persons or projects by the category specified by the user. If the person or project does not have that field, they are sorted at the back. If there are multiple persons or contacts where the field is empty, they are sorted by name.
 
 ### Find Feature
+
 The find feature allows users to display a list of persons that contains the given keyword of each respective fields.
 The feature is facilitated by the `FindCommand` class mainly but Predicate classes are also used.
 `FindCommand` extends `Command` and implements the following operation:
@@ -308,14 +313,63 @@ If no argument is provided, an empty list will be shown.
 
 #### Design considerations:
 
-**AND search or OR search**
+**Aspect: AND search or OR search**
 * An AND search has been considered for find initially but ultimately dropped in favor of OR search due to the following reasons:
   * List command already does an AND search. Though only on Tag & Language currently, it can be extended to include the other fields eventually, making find a duplicate command of list command should find use AND search as well.
   * We intend for find command to be a more broad search, getting all persons that matches just a keyword. This is to help users narrow down their search should they forgot the exact name of a contact they are looking for.
 
-**Full keyword match or Partial keyword match**
+**Aspect: Full keyword match or Partial keyword match**
 * We have also considered a partial match of the keyword (For example: `han` keyword will match field with the value `hans`). However we decide to implement a full match due to the following reason:
   * Having partial match may bring out unintended matches as the possible range of results is broadened. We fear that doing a partial match may be too broad for find command to function as a way for users to narrow down their search.
+
+### Project feature:
+
+This feature allows users to create and track ongoing projects. Details of each `Project` are recorded as attributes of the `Project`, which include `ProjectName`, `ProjectRepoHost`, `ProjectRepoName`, `ProjectDeadline`, `ProjectMeeting`, and a `Set<Person>`, which stores the `Person` objects involved with the `Project`. `Project` objects are stored in a `UniqueProjectList` in `Socket`.
+
+Any changes to `Person` objects that are associated with a `Project` object automatically updates the outdated `Person` object in the associated `Project` object (i.e., `edit`, `remove`, `delete`).
+
+The following sequence diagram shows how updates are made to the associated `Project` object when updates are made to `Person` objects on execution of a `DeleteCommand`:
+
+![Interactions inside the Model Component on execution of a 'DeleteCommand'](images/UpdateProjectOnDeletePersonSequenceDiagram.png)
+
+Step 1. The `DeleteCommand#execute()` method is called.
+
+Step 2. The `ModelManager#deletePerson(p)` method of the `ModelManager` implementing the `Model` interface is then called.
+
+Step 3. This calls the method `Socket#removePerson(p)`, which:
+
+* calls `UniquePersonList#remove(p)` to delete the person `p` from the `UniquePersonList` `persons`.
+* calls `UniqueProjectList#removeMemberInProjects(p)` which removes any stored references to the deleted person `p` from the `Project` objects in the `UniqueProjectList` `projects`.
+
+Step 4. The execution of the `DeleteCommand` then continues, and the result is encapsulated as a `CommandResult` (not shown) and returned.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The diagram omits the `commitSocket()` and creation of a `CommandResult` portions of the execution as they are not relevant to the discussion.
+</div>
+
+Updates to `Person` objects associated with a `Project` object through the other commands are handled similarly.
+
+The following classes handle operations on `Project` objects:
+* `XYZProjectCommand` - represents a command operating on `Project` objects, i.e., `AddProjectCommand`, `EditProjectCommand`, etc.
+* `XYZProjectCommandParser` - parses the respective `XYZProjectCommand` that operates on `Project` objects.
+* `AssignCommand`, `UnassignCommand` - represent commands for assigning/unassigning a `Person` object to a `Project` object.
+
+The `JsonAdaptedProject` class handles the reading/writing to storage for `Project` objects. It makes use of `JsonAdaptedPerson` to store the `Person` objects associated with the `Project`. Storage for `Person` objects associated with a `Project` object are stored in the `.json` file by making a copy of the data for the `Person` in the "persons" list in the "members" list under the respective `Project` object in the "projects" list.
+
+When `JsonSerializableSocket#toModelType` is called to convert the stored data into a `Socket` object, the restored `Person` objects in the `UniquePersonList` are matched to the duplicate `Person` objects in the `Project` objects and the duplicate `Person` objects are replaced with the exiting objects in the `UniquePersonList`.
+
+#### Design considerations:
+
+**Aspect: How `Project` objects are stored:**
+
+* **Alternative 1 (current choice):** Stores the `Project` objects with the `Person` objects in a single `.json` file.
+    * Pros: Fewer files to manage, simpler to write data to upon any changes to `Socket`.
+    * Cons: Corrupt data in "projects" will cause entire file to be discarded, deleting "persons" data.
+
+* **Alternative 2:** Stores the `Project` objects with the `Person` objects in separate `.json` files.
+    * Pros: Corrupt data in "projects" will only cause "projects" file to be discarded.
+    * Cons: More files to manage, harder to write data to upon any changes to `Socket`.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
