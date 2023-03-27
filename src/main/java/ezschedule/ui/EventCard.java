@@ -60,6 +60,6 @@ public class EventCard extends UiPart<Region> {
         // state check
         EventCard card = (EventCard) other;
         return id.getText().equals(card.id.getText())
-            && event.equals(card.event);
+                && event.equals(card.event);
     }
 }

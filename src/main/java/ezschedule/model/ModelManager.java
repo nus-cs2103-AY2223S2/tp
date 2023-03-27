@@ -116,12 +116,17 @@ public class ModelManager implements Model {
         scheduler.setEvent(target, editedEvent);
     }
 
-    //=========== Filtered Event List Accessors =============================================================
+    //=========== Event List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
      * {@code versionedScheduler}
      */
+    @Override
+    public ObservableList<Event> getEventList() {
+        return scheduler.getEventList();
+    }
+
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return filteredEvents;
@@ -148,7 +153,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return scheduler.equals(other.scheduler)
-            && userPrefs.equals(other.userPrefs)
-            && filteredEvents.equals(other.filteredEvents);
+                && userPrefs.equals(other.userPrefs)
+                && filteredEvents.equals(other.filteredEvents);
     }
 }

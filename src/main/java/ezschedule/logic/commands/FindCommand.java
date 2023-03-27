@@ -30,13 +30,13 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredEventList(predicate);
         return new CommandResult(
-            String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()));
+                String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof FindCommand // instanceof handles nulls
-            && predicate.equals(((FindCommand) other).predicate)); // state check
+                || (other instanceof FindCommand // instanceof handles nulls
+                && predicate.equals(((FindCommand) other).predicate)); // state check
     }
 }

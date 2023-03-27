@@ -121,8 +121,7 @@ public class EditCommand extends Command {
         private Time startTime;
         private Time endTime;
 
-        public EditEventDescriptor() {
-        }
+        public EditEventDescriptor() {}
 
         /**
          * Copy constructor.

@@ -47,14 +47,14 @@ public interface Model {
     void setSchedulerFilePath(Path schedulerFilePath);
 
     /**
-     * Replaces scheduler data with the data in {@code scheduler}.
-     */
-    void setScheduler(ReadOnlyScheduler scheduler);
-
-    /**
      * Returns the Scheduler
      */
     ReadOnlyScheduler getScheduler();
+
+    /**
+     * Replaces scheduler data with the data in {@code scheduler}.
+     */
+    void setScheduler(ReadOnlyScheduler scheduler);
 
     /**
      * Returns true if an event with the same identity as {@code event} exists in the Scheduler.
@@ -84,6 +84,11 @@ public interface Model {
      * The event identity of {@code editedEvent} must not be the same as another existing Event in the scheduler.
      */
     void setEvent(Event target, Event editedEvent);
+
+    /**
+     * Returns an unmodifiable view of the event list
+     */
+    ObservableList<Event> getEventList();
 
     /**
      * Returns an unmodifiable view of the filtered event list
