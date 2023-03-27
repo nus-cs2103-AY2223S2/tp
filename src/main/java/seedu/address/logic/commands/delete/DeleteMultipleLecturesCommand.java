@@ -15,7 +15,7 @@ import seedu.address.model.module.ModuleCode;
 /**
  * Deletes multiple lectures identified using their respective lecture names
  * multiple lectures specified are to exist within the same module
- * If one or more the the lectures do not exist within the same module, nothing is deleted.
+ * If one or more of the lectures do not exist within the same module, nothing is deleted.
  */
 public class DeleteMultipleLecturesCommand extends DeleteCommand {
 
