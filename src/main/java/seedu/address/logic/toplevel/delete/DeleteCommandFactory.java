@@ -19,10 +19,12 @@ public class DeleteCommandFactory<T extends Item> implements CommandFactory<Dele
      * The command word for deletion.
      */
     private static final String COMMAND_WORD = "delete";
+
     /**
      * The function that gets the manager.
      */
     private final GetManagerFunction<T> getManagerFunction;
+
     /**
      * The function that deletes the item.
      */

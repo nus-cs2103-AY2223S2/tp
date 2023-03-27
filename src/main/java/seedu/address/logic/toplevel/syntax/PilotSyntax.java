@@ -18,26 +18,32 @@ public abstract class PilotSyntax {
      * The type name.
      */
     public static final String TYPE_NAME = "Pilot";
+
     /**
      * The prefix for getting the name of the pilot.
      */
     public static final String PREFIX_NAME = "/n";
+
     /**
      * The prefix for getting the rank of the pilot.
      */
     public static final String PREFIX_RANK = "/r";
+
     /**
      * The prefix for getting the age of the pilot.
      */
     public static final String PREFIX_AGE = "/a";
+
     /**
      * The prefix for getting the gender of the pilot.
      */
     public static final String PREFIX_GENDER = "/g";
+
     /**
      * The prefix for getting the flight hour of the pilot.
      */
     public static final String PREFIX_FLIGHT_HOUR = "/fh";
+
     /**
      * The set of all prefixes of a pilot.
      */

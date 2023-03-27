@@ -16,6 +16,7 @@ public abstract class LocationSyntax {
      * The prefix for name.
      */
     public static final String PREFIX_NAME = "/n";
+
     /**
      * The prefixes.
      */
