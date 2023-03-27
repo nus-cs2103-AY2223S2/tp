@@ -21,11 +21,15 @@ public class LogsCenter {
     private static final int MAX_FILE_COUNT = 5;
     private static final int MAX_FILE_SIZE_IN_BYTES = (2 << 20) * 5; // 5MB
     private static final String LOG_FILE = "vimification.log";
-    private static final Logger logger = LogsCenter.getLogger(LogsCenter.class);
 
+    /**
+     * Must come before LOGGER, otherwise, it will case error.
+     */
     private static Level currentLogLevel = Level.INFO;
     private static FileHandler fileHandler;
     private static ConsoleHandler consoleHandler;
+
+    private static final Logger LOGGER = LogsCenter.getLogger(LogsCenter.class);
 
     /**
      * Initializes with a custom log level (specified in the {@code config} object).
@@ -37,7 +41,7 @@ public class LogsCenter {
      */
     public static void init(Config config) {
         currentLogLevel = config.getLogLevel();
-        logger.info("currentLogLevel: " + currentLogLevel);
+        LOGGER.info("currentLogLevel: " + currentLogLevel);
     }
 
     /**
@@ -46,12 +50,10 @@ public class LogsCenter {
     public static Logger getLogger(String name) {
         Logger logger = Logger.getLogger(name);
         logger.setUseParentHandlers(false);
-
         removeHandlers(logger);
         addConsoleHandler(logger);
         addFileHandler(logger);
-
-        return Logger.getLogger(name);
+        return logger;
     }
 
     /**
