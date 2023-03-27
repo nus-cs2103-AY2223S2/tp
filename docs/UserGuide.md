@@ -271,9 +271,9 @@ Updates the Patient using it's PATIENT_ID.
 ##### Syntax
 
 <pre>
-patient edit <PATIENT_ID> --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
+patient edit <var>PATIENT_ID</var> --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
     --b <var>BLOODTYPE</var> --a <var>ALLERGIES</var>... --v <var>VACCINES</var>...
-patient edit <PATIENT_ID> --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
+patient edit <var>PATIENT_ID</var> --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
     --b <var>BLOODTYPE</var>
 </pre>
 
