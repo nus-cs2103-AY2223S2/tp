@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_EMAIL;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_TAG;
@@ -49,6 +51,10 @@ public class ApplicationCommandTestUtil {
             + VALID_COMPANY_EMAIL_BYTEDANCE;
     public static final String COMPANY_EMAIL_DESC_GRAB = " " + PREFIX_COMPANY_EMAIL + VALID_COMPANY_EMAIL_GRAB;
     public static final String STATUS_DESC_BYTEDANCE = " " + PREFIX_STATUS + VALID_STATUS_BYTEDANCE;
+    public static final String DEADLINE_DESC = " " + PREFIX_DEADLINE + VALID_DEADLINE;
+    public static final String DESCRIPTION_DESC_ASSESSMENT = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION;
+    public static final String DESCRIPTION_DESC_INTERVIEW = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_INTERVIEW;
+
     public static final String STATUS_DESC_GRAB = " " + PREFIX_STATUS + VALID_STATUS_GRAB;
     public static final String TAG_DESC_SCHOOL = " " + PREFIX_TAG + VALID_TAG_SCHOOL;
     public static final String TAG_DESC_HIGHSALARY = " " + PREFIX_TAG + VALID_TAG_HIGHSALARY;
@@ -61,6 +67,10 @@ public class ApplicationCommandTestUtil {
     public static final String INVALID_COMPANY_EMAIL_DESC = " " + PREFIX_COMPANY_EMAIL + "bob!yahoo";
     // status must be within given range of values
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "waitlisted";
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "OA&"; //'&' not allowed
+    public static final String INVALID_DATE_DEADLINE_DESC = " " + PREFIX_DEADLINE + "33-02-2024"; //date does not exist
+    public static final String INVALID_FORMAT_DEADLINE_DESC = " "
+            + PREFIX_DEADLINE + "01/01/2023"; // invalid date format (should be dd-mm-yyyy)
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
