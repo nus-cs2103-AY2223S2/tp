@@ -417,19 +417,19 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 ## 10. Prefix Summary
 
-| Information Field | Prefix | Example                      |
-|-------------------|--------|------------------------------|
-| **Address**       | a/     | a/Blk 456, Den Road, #01-355 |
-| **Birthday**      | b/     | b/01/01/2000                 |
-| **CCA**           | cca/   | cca/NUS Hackers              |
-| **Email**         | e/     | e/johndoe@example.com        |
-| **Instagram**     | ig/    | ig/john.doe                  |
-| **Module**        | mod/   | mod/CS2103T                  |
-| **Name**          | n/     | n/John Doe                   |
-| **Phone**         | p/     | p/91234567                   |
-| **Tag**           | t/     | t/School of Computing        |
-| **Telegram**      | tg/    | tg/johndoe                   |
-| **WhatsApp**      | wa/    | wa/91234567                  |
+| Information Field | Prefix | Example                        |
+|-------------------|--------|--------------------------------|
+| **Address**       | `a/`   | `a/Blk 456, Den Road, #01-355` |
+| **Birthday**      | `b/`   | `b/01/01/2000`                 |
+| **CCA**           | `cca/` | `cca/NUS Hackers`              |
+| **Email**         | `e/`   | `e/johndoe@example.com`        |
+| **Instagram**     | `ig/`  | `ig/john.doe`                  |
+| **Module**        | `mod/` | `mod/CS2103T`                  |
+| **Name**          | `n/`   | `n/John Doe`                   |
+| **Phone**         | `p/`   | `p/91234567`                   |
+| **Tag**           | `t/`   | `t/School of Computing`        |
+| **Telegram**      | `tg/`  | `tg/johndoe`                   |
+| **WhatsApp**      | `wa/`  | `wa/91234567`                  |
 
 [↑ Back to top](#2-table-of-contents)
 
