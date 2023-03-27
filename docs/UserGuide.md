@@ -164,10 +164,10 @@ _Details coming soon ..._
 
 Adds a book to the book records
 
-Format: `addBook t/TITLE a/AUTHOR i/ISBN bd/BORROW_DATE dd/DUE_DATE…​`
+Format: `addBook t/TITLE a/AUTHOR i/ISBN…​`
 
 Examples:
-* `addBook t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136 bd/22/03/2023 dd/29/03/2023`
+* `addBook t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
 
 ### Deleting a book : `deleteBook`
 
