@@ -26,14 +26,14 @@ public class UnlinkFlightToLocationCommand implements Command {
             "Unlinked %s from flight %s.";
 
     /**
-     * The id of the location
-     */
-    private final Map<FlightLocationType, Location> locations;
-
-    /**
-     * The id of the flight
+     * The flight to be unlinked.
      */
     private final Flight flight;
+
+    /**
+     * The locations to be unlinked from.
+     */
+    private final Map<FlightLocationType, Location> locations;
 
     /**
      * Creates a new unlink command.

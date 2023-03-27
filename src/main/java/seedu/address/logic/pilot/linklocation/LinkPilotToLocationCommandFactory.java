@@ -24,23 +24,20 @@ import seedu.address.model.pilot.Pilot;
  */
 public class LinkPilotToLocationCommandFactory implements CommandFactory<LinkPilotToLocationCommand> {
     private static final String COMMAND_WORD = "linklocation";
-    private static final String LOCATION_PREFIX = "/loc";
-    private static final String PILOT_PREFIX = "/pilot";
-
-    private static final String NO_PILOT_MESSAGE =
-            "No pilot has been entered. "
-                    + "Please enter /pilot followed by the pilot iD.";
+    private static final String LOCATION_PREFIX = "/lo";
+    private static final String PILOT_PREFIX = "/pi";
 
     private static final String NO_LOCATION_INPUT_MESSAGE =
             "No location has been entered. "
-                    + "Please enter /loc followed by the location ID.";
-
+                    + "Please enter /lo followed by the location ID.";
     private static final String NO_LOCATION_FOUND_MESSAGE =
             "No location has been found in the list. "
-                    + "Please enter /loc followed by the location ID.";
+                    + "Please enter /lo followed by the location ID.";
+    private static final String NO_PILOT_MESSAGE =
+            "No pilot has been entered. "
+                    + "Please enter /pi followed by the pilot ID.";
 
     private final Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy;
-
     private final Lazy<ReadOnlyItemManager<Location>> locationManagerLazy;
 
     /**
@@ -57,8 +54,8 @@ public class LinkPilotToLocationCommandFactory implements CommandFactory<LinkPil
      */
     public LinkPilotToLocationCommandFactory(Lazy<Model> modelLazy) {
         this(
-                modelLazy.map(Model::getPilotManager),
-                modelLazy.map(Model::getLocationManager)
+                modelLazy.map(Model::getLocationManager),
+                modelLazy.map(Model::getPilotManager)
         );
     }
 
@@ -66,31 +63,31 @@ public class LinkPilotToLocationCommandFactory implements CommandFactory<LinkPil
      * Creates a new link pilot command factory with the given pilot manager
      * lazy and the flight manager lazy.
      *
-     * @param pilotManagerLazy    the lazy instance of the pilot manager.
      * @param locationManagerLazy the lazy instance of the location manager.
+     * @param pilotManagerLazy    the lazy instance of the pilot manager.
      */
     public LinkPilotToLocationCommandFactory(
-            Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy,
-            Lazy<ReadOnlyItemManager<Location>> locationManagerLazy
+            Lazy<ReadOnlyItemManager<Location>> locationManagerLazy,
+            Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy
     ) {
-        this.pilotManagerLazy = pilotManagerLazy;
         this.locationManagerLazy = locationManagerLazy;
+        this.pilotManagerLazy = pilotManagerLazy;
     }
 
     /**
      * Creates a new link pilot command factory with the given pilot manager
      * and the location manager.
      *
-     * @param pilotManager    the pilot manager.
      * @param locationManager the flight manager.
+     * @param pilotManager    the pilot manager.
      */
     public LinkPilotToLocationCommandFactory(
-            ReadOnlyItemManager<Pilot> pilotManager,
-            ReadOnlyItemManager<Location> locationManager
+            ReadOnlyItemManager<Location> locationManager,
+            ReadOnlyItemManager<Pilot> pilotManager
     ) {
         this(
-                Lazy.of(pilotManager),
-                Lazy.of(locationManager)
+                Lazy.of(locationManager),
+                Lazy.of(pilotManager)
         );
     }
 
@@ -150,6 +147,7 @@ public class LinkPilotToLocationCommandFactory implements CommandFactory<LinkPil
         Optional<String> pilotIdOptional =
                 param.getNamedValues(PILOT_PREFIX);
 
+        Location location = getLocationOrThrow(locationIdOptional);
         Map<PilotLocationType, Pilot> pilot = new HashMap<>();
 
         boolean hasFoundPilot = addPilot(
@@ -162,7 +160,6 @@ public class LinkPilotToLocationCommandFactory implements CommandFactory<LinkPil
             throw new ParseException(NO_PILOT_MESSAGE);
         }
 
-        Location location = getLocationOrThrow(locationIdOptional);
-        return new LinkPilotToLocationCommand(pilot, location);
+        return new LinkPilotToLocationCommand(location, pilot);
     }
 }

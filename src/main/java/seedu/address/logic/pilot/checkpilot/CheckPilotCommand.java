@@ -6,7 +6,6 @@ import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.exception.IndexOutOfBoundException;
 
-
 /**
  * The command that checks a pilot's availability in the Wingman app.
  */

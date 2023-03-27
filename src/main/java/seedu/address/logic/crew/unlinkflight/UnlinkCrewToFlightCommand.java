@@ -24,14 +24,14 @@ public class UnlinkCrewToFlightCommand implements Command {
             "Unlinked %s from flight %s.";
 
     /**
+     * The flight to be unlinked from.
+     */
+    private final Flight flight;
+
+    /**
      * The id of the crews
      */
     private final Map<FlightCrewType, Crew> crews;
-
-    /**
-     * The id of the flight
-     */
-    private final Flight flight;
 
     /**
      * Creates a new unlink command.
@@ -39,9 +39,9 @@ public class UnlinkCrewToFlightCommand implements Command {
      * @param crews the id of the crews.
      * @param flight the id of the flight.
      */
-    public UnlinkCrewToFlightCommand(Map<FlightCrewType, Crew> crews, Flight flight) {
-        this.crews = crews;
+    public UnlinkCrewToFlightCommand(Flight flight, Map<FlightCrewType, Crew> crews) {
         this.flight = flight;
+        this.crews = crews;
     }
 
     @Override

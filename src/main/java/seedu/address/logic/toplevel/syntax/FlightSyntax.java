@@ -16,6 +16,7 @@ public abstract class FlightSyntax {
      * The prefix for code.
      */
     public static final String PREFIX_CODE = "/c";
+
     /**
      * The prefixes.
      */

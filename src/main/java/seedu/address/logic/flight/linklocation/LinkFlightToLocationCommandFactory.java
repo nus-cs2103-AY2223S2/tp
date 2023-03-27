@@ -21,18 +21,18 @@ import seedu.address.model.location.Location;
  * The factory that creates {@code LinkLocationCommand}.
  */
 public class LinkFlightToLocationCommandFactory implements CommandFactory<LinkFlightToLocationCommand> {
-    public static final String COMMAND_WORD = "link";
-    public static final String FLIGHT_PREFIX = "/flight";
+    public static final String COMMAND_WORD = "linklocation";
+    public static final String FLIGHT_PREFIX = "/fl";
     public static final String LOCATION_DEPARTURE_PREFIX = "/from";
     public static final String LOCATION_ARRIVAL_PREFIX = "/to";
+
+    private static final String NO_FLIGHT_MESSAGE =
+            "No flight has been entered. Please enter /fl for the flight.";
     private static final String NO_LOCATION_MESSAGE =
             "No location has been entered. Please enter /from for the departure location"
                     + " and /to for the arrival location.";
-    private static final String NO_FLIGHT_MESSAGE =
-            "No flight has been entered. Please enter /flight for the flight.";
 
     private final Lazy<ReadOnlyItemManager<Location>> locationManagerLazy;
-
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
 
     /**
@@ -131,13 +131,14 @@ public class LinkFlightToLocationCommandFactory implements CommandFactory<LinkFl
         return flightOptional.get();
     }
 
-
     @Override
     public LinkFlightToLocationCommand createCommand(CommandParam param) throws ParseException {
         Optional<String> locationDepartureIdOptional =
                 param.getNamedValues(LOCATION_DEPARTURE_PREFIX);
         Optional<String> locationArrivalIdOptional =
                 param.getNamedValues(LOCATION_ARRIVAL_PREFIX);
+
+        Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
         Map<FlightLocationType, Location> locations = new HashMap<>();
 
         boolean hasFoundLocation = addLocation(
@@ -154,7 +155,6 @@ public class LinkFlightToLocationCommandFactory implements CommandFactory<LinkFl
             throw new ParseException(NO_LOCATION_MESSAGE);
         }
 
-        Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
-        return new LinkFlightToLocationCommand(locations, flight);
+        return new LinkFlightToLocationCommand(flight, locations);
     }
 }

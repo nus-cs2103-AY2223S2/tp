@@ -13,7 +13,7 @@ import seedu.address.model.plane.FlightPlaneType;
 import seedu.address.model.plane.Plane;
 
 /**
- * The command that unlinks a plane from a flight
+ * The command that unlinks a plane from a flight.
  */
 public class UnlinkPlaneToFlightCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
@@ -24,24 +24,24 @@ public class UnlinkPlaneToFlightCommand implements Command {
             "Unlinked %s from flight %s.";
 
     /**
-     * The id of the plane
-     */
-    private final Map<FlightPlaneType, Plane> planes;
-
-    /**
      * The id of the flight
      */
     private final Flight flight;
 
     /**
+     * The id of the plane
+     */
+    private final Map<FlightPlaneType, Plane> planes;
+
+    /**
      * Creates a new link command.
      *
-     * @param planes the id of the planes.
      * @param flight the id of the flight.
+     * @param planes the id of the planes.
      */
-    public UnlinkPlaneToFlightCommand(Map<FlightPlaneType, Plane> planes, Flight flight) {
-        this.planes = planes;
+    public UnlinkPlaneToFlightCommand(Flight flight, Map<FlightPlaneType, Plane> planes) {
         this.flight = flight;
+        this.planes = planes;
     }
 
     @Override
@@ -66,6 +66,7 @@ public class UnlinkPlaneToFlightCommand implements Command {
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());
         }
+
         return new CommandResult(this.toString());
     }
 }

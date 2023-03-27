@@ -17,10 +17,12 @@ public abstract class CrewSyntax {
      * The prefix for name.
      */
     public static final String PREFIX_NAME = "/n";
+
     /**
      * The prefix for rank.
      */
     public static final String PREFIX_RANK = "/r";
+
     /**
      * The prefixes of a crew.
      */

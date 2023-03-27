@@ -18,16 +18,11 @@ import seedu.address.model.plane.Plane;
  */
 public class UnlinkPlaneToLocationCommand implements Command {
     private static final String PILOT_NOT_FOUND_EXCEPTION =
-            "plane with id [%s] is not found.";
+            "Plane with id [%s] is not found.";
     private static final String LOCATION_NOT_FOUND_EXCEPTION =
             "Location with id [%s] is not found.";
     private static final String DISPLAY_MESSAGE =
             "Unlinked plane [%s] from location [%s].";
-
-    /**
-     * The id of the plane
-     */
-    private final Map<PlaneLocationType, Plane> plane;
 
     /**
      * The id of the location
@@ -35,14 +30,19 @@ public class UnlinkPlaneToLocationCommand implements Command {
     private final Location location;
 
     /**
+     * The id of the plane
+     */
+    private final Map<PlaneLocationType, Plane> plane;
+
+    /**
      * Creates a new link command.
      *
-     * @param plane the id of the plane.
      * @param location the id of the location.
+     * @param plane the id of the plane.
      */
-    public UnlinkPlaneToLocationCommand(Map<PlaneLocationType, Plane> plane, Location location) {
-        this.plane = plane;
+    public UnlinkPlaneToLocationCommand(Location location, Map<PlaneLocationType, Plane> plane) {
         this.location = location;
+        this.plane = plane;
     }
 
     @Override
@@ -66,6 +66,7 @@ public class UnlinkPlaneToLocationCommand implements Command {
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());
         }
+
         return new CommandResult(this.toString());
     }
 }

@@ -17,17 +17,12 @@ import seedu.address.model.pilot.Pilot;
  * locations, where they reside.
  */
 public class UnlinkPilotToLocationCommand implements Command {
-    private static final String PILOT_NOT_FOUND_EXCEPTION =
-            "Pilot with id [%s] is not found.";
     private static final String LOCATION_NOT_FOUND_EXCEPTION =
             "Location with id [%s] is not found.";
+    private static final String PILOT_NOT_FOUND_EXCEPTION =
+            "Pilot with id [%s] is not found.";
     private static final String DISPLAY_MESSAGE =
             "Unlinked pilot [%s] from location [%s].";
-
-    /**
-     * The id of the pilot
-     */
-    private final Map<PilotLocationType, Pilot> pilot;
 
     /**
      * The id of the location
@@ -35,14 +30,19 @@ public class UnlinkPilotToLocationCommand implements Command {
     private final Location location;
 
     /**
+     * The id of the pilot
+     */
+    private final Map<PilotLocationType, Pilot> pilot;
+
+    /**
      * Creates a new link command.
      *
-     * @param pilot the id of the pilot.
      * @param location the id of the location.
+     * @param pilot the id of the pilot.
      */
-    public UnlinkPilotToLocationCommand(Map<PilotLocationType, Pilot> pilot, Location location) {
-        this.pilot = pilot;
+    public UnlinkPilotToLocationCommand(Location location, Map<PilotLocationType, Pilot> pilot) {
         this.location = location;
+        this.pilot = pilot;
     }
 
     @Override
@@ -66,6 +66,7 @@ public class UnlinkPilotToLocationCommand implements Command {
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());
         }
+
         return new CommandResult(this.toString());
     }
 }

@@ -1,6 +1,5 @@
 package seedu.address.logic.pilot.linklocation;
 
-
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -21,24 +20,24 @@ public class LinkPilotToLocationCommand implements Command {
             "Linked pilot [%s] to flight [%s].";
 
     /**
-     * The id of the pilot
-     */
-    private final Map<PilotLocationType, Pilot> pilot;
-
-    /**
      * The id of the location
      */
     private final Location location;
 
     /**
+     * The id of the pilot
+     */
+    private final Map<PilotLocationType, Pilot> pilot;
+
+    /**
      * Creates a new link command.
      *
-     * @param pilot the id of the pilot.
      * @param location the id of the location.
+     * @param pilot the id of the pilot.
      */
-    public LinkPilotToLocationCommand(Map<PilotLocationType, Pilot> pilot, Location location) {
-        this.pilot = pilot;
+    public LinkPilotToLocationCommand(Location location, Map<PilotLocationType, Pilot> pilot) {
         this.location = location;
+        this.pilot = pilot;
     }
 
     @Override
@@ -62,6 +61,7 @@ public class LinkPilotToLocationCommand implements Command {
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());
         }
+
         return new CommandResult(this.toString());
     }
 }

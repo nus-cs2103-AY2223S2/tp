@@ -20,24 +20,24 @@ public class LinkPlaneToLocationCommand implements Command {
             "Linked plane [%s] to flight [%s].";
 
     /**
-     * The id of the plane
-     */
-    private final Map<PlaneLocationType, Plane> plane;
-
-    /**
      * The id of the location
      */
     private final Location location;
 
     /**
+     * The id of the plane
+     */
+    private final Map<PlaneLocationType, Plane> plane;
+
+    /**
      * Creates a new link command.
      *
-     * @param plane the id of the plane.
      * @param location the id of the location.
+     * @param plane the id of the plane.
      */
-    public LinkPlaneToLocationCommand(Map<PlaneLocationType, Plane> plane, Location location) {
-        this.plane = plane;
+    public LinkPlaneToLocationCommand(Location location, Map<PlaneLocationType, Plane> plane) {
         this.location = location;
+        this.plane = plane;
     }
 
     @Override
@@ -61,6 +61,7 @@ public class LinkPlaneToLocationCommand implements Command {
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());
         }
+
         return new CommandResult(this.toString());
     }
 }

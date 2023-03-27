@@ -17,12 +17,17 @@ import seedu.address.model.location.Location;
  * locations, where they reside.
  */
 public class UnlinkCrewToLocationCommand implements Command {
-    private static final String CREW_NOT_FOUND_EXCEPTION =
-            "Crew with id %s is not found.";
     private static final String LOCATION_NOT_FOUND_EXCEPTION =
             "Location with id %s is not found.";
+    private static final String CREW_NOT_FOUND_EXCEPTION =
+            "Crew with id %s is not found.";
     private static final String DISPLAY_MESSAGE =
             "Unlinked crew %s from location %s.";
+
+    /**
+     * The location to be linked to.
+     */
+    private final Location location;
 
     /**
      * The id of the crews
@@ -30,19 +35,14 @@ public class UnlinkCrewToLocationCommand implements Command {
     private final Map<CrewLocationType, Crew> crews;
 
     /**
-     * The id of the location
-     */
-    private final Location location;
-
-    /**
      * Creates a new link command.
      *
      * @param crews the id of the crews.
      * @param location the id of the location.
      */
-    public UnlinkCrewToLocationCommand(Map<CrewLocationType, Crew> crews, Location location) {
-        this.crews = crews;
+    public UnlinkCrewToLocationCommand(Location location, Map<CrewLocationType, Crew> crews) {
         this.location = location;
+        this.crews = crews;
     }
 
     @Override
@@ -68,5 +68,4 @@ public class UnlinkCrewToLocationCommand implements Command {
         }
         return new CommandResult(this.toString());
     }
-
 }

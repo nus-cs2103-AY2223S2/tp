@@ -22,12 +22,13 @@ import seedu.address.model.flight.Flight;
  * The factory that creates {@code UnlinkCrewCommand}.
  */
 public class UnlinkCrewToFlightCommandFactory implements CommandFactory<UnlinkCrewToFlightCommand> {
-    private static final String COMMAND_WORD = "unlink";
+    private static final String COMMAND_WORD = "unlinkflight";
+    private static final String FLIGHT_PREFIX = "/fl";
     private static final String CABIN_SERVICE_DIRECTOR_PREFIX = "/csd";
     private static final String SENIOR_FLIGHT_ATTENDANT_PREFIX = "/sfa";
     private static final String FLIGHT_ATTENDANT_PREFIX = "/fa";
     private static final String TRAINEE_PREFIX = "/tr";
-    private static final String FLIGHT_PREFIX = "/fl";
+
     private static final String NO_CREW_MESSAGE =
             "No crew has been entered. Please enter /csd for the Cabin Service Director,"
                     + " /sfa for Senior Flight Attendants,"
@@ -36,7 +37,6 @@ public class UnlinkCrewToFlightCommandFactory implements CommandFactory<UnlinkCr
             "No flight has been entered. Please enter /fl for the flight.";
 
     private final Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy;
-
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
 
     /**
@@ -103,7 +103,6 @@ public class UnlinkCrewToFlightCommandFactory implements CommandFactory<UnlinkCr
         ));
     }
 
-
     private boolean addCrew(
             Optional<String> crewIdOptional,
             FlightCrewType type,
@@ -152,6 +151,8 @@ public class UnlinkCrewToFlightCommandFactory implements CommandFactory<UnlinkCr
                 param.getNamedValues(FLIGHT_ATTENDANT_PREFIX);
         Optional<String> traineeIdOptional =
                 param.getNamedValues(TRAINEE_PREFIX);
+
+        Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
         Map<FlightCrewType, Crew> crews = new HashMap<>();
 
         boolean hasFoundCrew = addCrew(
@@ -176,7 +177,6 @@ public class UnlinkCrewToFlightCommandFactory implements CommandFactory<UnlinkCr
             throw new ParseException(NO_CREW_MESSAGE);
         }
 
-        Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
-        return new UnlinkCrewToFlightCommand(crews, flight);
+        return new UnlinkCrewToFlightCommand(flight, crews);
     }
 }

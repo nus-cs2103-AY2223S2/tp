@@ -16,10 +16,12 @@ public abstract class PlaneSyntax {
      * The prefix for model.
      */
     public static final String PREFIX_MODEL = "/m";
+
     /**
      * The prefix for age.
      */
     public static final String PREFIX_AGE = "/a";
+
     /**
      * The prefixes.
      */

@@ -24,16 +24,15 @@ import seedu.address.model.location.Location;
  */
 public class LinkCrewToLocationCommandFactory implements CommandFactory<LinkCrewToLocationCommand> {
     private static final String COMMAND_WORD = "linklocation";
-    private static final String LOCATION_PREFIX = "/loc";
-    private static final String CREW_PREFIX = "/crew";
-
-    private static final String NO_CREW_MESSAGE =
-            "No crew has been entered. "
-                    + "Please enter /crew followed by the crew iD.";
+    private static final String LOCATION_PREFIX = "/lo";
+    private static final String CREW_PREFIX = "/cr";
 
     private static final String NO_LOCATION_MESSAGE =
             "No location has been entered. "
-                    + "Please enter /loc followed by the location ID.";
+                    + "Please enter /lo followed by the location ID.";
+    private static final String NO_CREW_MESSAGE =
+            "No crew has been entered. "
+                    + "Please enter /cr followed by the crew ID.";
 
     private final Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy;
 
@@ -146,6 +145,7 @@ public class LinkCrewToLocationCommandFactory implements CommandFactory<LinkCrew
         Optional<String> crewIdOptional =
                 param.getNamedValues(CREW_PREFIX);
 
+        Location location = getLocationOrThrow(locationIdOptional);
         Map<CrewLocationType, Crew> crews = new HashMap<>();
 
         boolean hasFoundCrew = addCrew(
@@ -158,7 +158,6 @@ public class LinkCrewToLocationCommandFactory implements CommandFactory<LinkCrew
             throw new ParseException(NO_CREW_MESSAGE);
         }
 
-        Location location = getLocationOrThrow(locationIdOptional);
-        return new LinkCrewToLocationCommand(crews, location);
+        return new LinkCrewToLocationCommand(location, crews);
     }
 }

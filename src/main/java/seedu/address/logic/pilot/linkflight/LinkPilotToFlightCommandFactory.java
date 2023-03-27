@@ -22,18 +22,18 @@ import seedu.address.model.pilot.Pilot;
  * <code>CommandFactory</code>.
  */
 public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilotToFlightCommand> {
-    private static final String COMMAND_WORD = "link";
+    private static final String COMMAND_WORD = "linkflight";
+    private static final String FLIGHT_PREFIX = "/fl";
     private static final String PILOT_FLYING_PREFIX = "/pf";
     private static final String PILOT_MONITORING_PREFIX = "/pm";
-    private static final String FLIGHT_PREFIX = "/fl";
+
+    private static final String NO_FLIGHT_MESSAGE =
+            "No flight has been entered. Please enter /fl for the flight.";
     private static final String NO_PILOT_MESSAGE =
             "No pilot has been entered. Please enter /pm for the pilot monitoring"
                     + " and /pf for the pilot flying.";
-    private static final String NO_FLIGHT_MESSAGE =
-            "No flight has been entered. Please enter /fl for the flight.";
 
     private final Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy;
-
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
 
     /**
@@ -50,8 +50,8 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
      */
     public LinkPilotToFlightCommandFactory(Lazy<Model> modelLazy) {
         this(
-                modelLazy.map(Model::getPilotManager),
-                modelLazy.map(Model::getFlightManager)
+                modelLazy.map(Model::getFlightManager),
+                modelLazy.map(Model::getPilotManager)
         );
     }
 
@@ -59,29 +59,31 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
      * Creates a new link pilot command factory with the given pilot manager
      * lazy and the flight manager lazy.
      *
-     * @param pilotManagerLazy  the lazy instance of the pilot manager.
      * @param flightManagerLazy the lazy instance of the flight manager.
+     * @param pilotManagerLazy  the lazy instance of the pilot manager.
      */
     public LinkPilotToFlightCommandFactory(
-            Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy,
-            Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy
+            Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy,
+            Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy
     ) {
-        this.pilotManagerLazy = pilotManagerLazy;
         this.flightManagerLazy = flightManagerLazy;
+        this.pilotManagerLazy = pilotManagerLazy;
     }
 
     /**
      * Creates a new link pilot command factory with the given pilot manager
      * and the flight manager.
      *
-     * @param pilotManager  the pilot manager.
      * @param flightManager the flight manager.
+     * @param pilotManager  the pilot manager.
      */
     public LinkPilotToFlightCommandFactory(
-            ReadOnlyItemManager<Pilot> pilotManager,
-            ReadOnlyItemManager<Flight> flightManager
+            ReadOnlyItemManager<Flight> flightManager,
+            ReadOnlyItemManager<Pilot> pilotManager
     ) {
-        this(Lazy.of(pilotManager), Lazy.of(flightManager));
+        this(
+                Lazy.of(flightManager),
+                Lazy.of(pilotManager));
     }
 
     @Override
@@ -92,8 +94,8 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
     @Override
     public Optional<Set<String>> getPrefixes() {
         return Optional.of(Set.of(
-                PILOT_FLYING_PREFIX,
                 FLIGHT_PREFIX,
+                PILOT_FLYING_PREFIX,
                 PILOT_MONITORING_PREFIX
         ));
     }
@@ -132,13 +134,14 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
         return flightOptional.get();
     }
 
-
     @Override
     public LinkPilotToFlightCommand createCommand(CommandParam param) throws ParseException, IndexOutOfBoundException {
         Optional<String> pilotFlyingIdOptional =
                 param.getNamedValues(PILOT_FLYING_PREFIX);
         Optional<String> pilotMonitoringIdOptional =
                 param.getNamedValues(PILOT_MONITORING_PREFIX);
+
+        Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
         Map<FlightPilotType, Pilot> pilots = new HashMap<>();
 
         boolean hasFoundPilot = addPilot(
@@ -155,7 +158,6 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
             throw new ParseException(NO_PILOT_MESSAGE);
         }
 
-        Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
-        return new LinkPilotToFlightCommand(pilots, flight);
+        return new LinkPilotToFlightCommand(flight, pilots);
     }
 }
