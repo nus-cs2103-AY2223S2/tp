@@ -468,7 +468,7 @@ What you should expect to find:
 
 ### 6.1 Applicant Commands
 
-#### 6.1.1 Create a new applicant: `add`
+#### 6.1.1 Create a new applicant:`add`
 
 **Format**: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`
 
