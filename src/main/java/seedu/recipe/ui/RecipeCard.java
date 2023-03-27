@@ -1,8 +1,6 @@
 package seedu.recipe.ui;
 
-import static seedu.recipe.model.util.IngredientUtil.ingredientKeyValuePairToString;
-
-import java.util.Comparator;
+//Core Java Imports
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -10,6 +8,7 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 
+//JavaFX libraries
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
@@ -17,10 +16,12 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+//Custom Imports
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientInformation;
+import seedu.recipe.model.tag.Tag;
 import seedu.recipe.model.util.IngredientUtil;
 import seedu.recipe.ui.CommandBox.CommandExecutor;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
@@ -69,6 +70,9 @@ public class RecipeCard extends UiPart<Region> {
     private FlowPane tags;
 
     @FXML
+    private FlowPane emptyTags;
+
+    @FXML
     private GridPane ingredients;
 
     @FXML
@@ -105,18 +109,13 @@ public class RecipeCard extends UiPart<Region> {
                         .orElse("Portion was not added."));
 
         //Ingredients
-        ingredientsTitle.setText("Ingredients:");
         setIngredients(recipe.getIngredients());
 
         //Steps
-        stepsTitle.setText("Steps:");
         setSteps(recipe.getSteps());
 
         //Tags
-        tagsTitle.setText("Steps:");
-        recipe.getTags().stream()
-            .sorted(Comparator.comparing(tag -> tag.tagName))
-            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        setTags(recipe.getTags());
 
         //Selector focus
         cardPane.setOnMouseEntered(event -> {
@@ -168,6 +167,10 @@ public class RecipeCard extends UiPart<Region> {
     }
 
     private void setIngredients(HashMap<Ingredient, IngredientInformation> ingredientsTable) {
+        if (ingredientsTable.size() == 0) {
+            ingredients.add(createLabel("No ingredients were added for this Recipe. Add some!"), 0, 0);
+            return;
+        }
         int count = 0;
         Iterator<Entry<Ingredient, IngredientInformation>> entries = ingredientsTable.entrySet().iterator();
         while (entries.hasNext() && count < 3) {
@@ -184,6 +187,10 @@ public class RecipeCard extends UiPart<Region> {
     }
 
     private void setSteps(List<Step> stepList) {
+        if (stepList.size() == 0) {
+            steps.add(createLabel("No steps were added for this recipe. Add some!"), 0, 0);
+            return;
+        }
         int count = 1;
         while (count < 4 && count <= stepList.size()) {
             steps.add(createOrderedListItem(count, stepList.get(count - 1).toString()), 0, count - 1);
@@ -192,6 +199,16 @@ public class RecipeCard extends UiPart<Region> {
         if (count == 4 && stepList.size() > 4) {
             steps.add(createLabel("... and " + (stepList.size() - count) + " more steps"), 0, count);
         }
+    }
+
+    private void setTags(Set<Tag> tagSet) {
+        if (tagSet.size() == 0) {
+            Label emptyLabel = createLabel("No Tags were added. Add some!");
+            emptyLabel.getStyleClass().add("empty-label");
+            emptyTags.getChildren().add(emptyLabel);
+            return;
+        }
+        tagSet.forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
@@ -210,27 +227,5 @@ public class RecipeCard extends UiPart<Region> {
         RecipeCard card = (RecipeCard) other;
         return id.getText().equals(card.id.getText())
                 && recipe.equals(card.recipe);
-    }
-
-    private static class GridManager {
-        private int count;
-
-        public GridManager() {
-            count = 0;
-        }
-
-        public GridManager(int startCount) {
-            assert startCount >= 0;
-            count = startCount;
-        }
-
-        public int getCount() {
-            int out = count;
-            count += 1;
-            return out;
-        }
-        public void reset() {
-            count = 0;
-        }
     }
 }

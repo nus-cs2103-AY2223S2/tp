@@ -36,6 +36,7 @@
       <GridPane fx:id="steps" vgap="0.5" maxHeight="100" VBox.vgrow="NEVER"/>
       <Label fx:id="tagsTitle" styleClass="cell_small_label" text="Tags: " />
       <FlowPane fx:id="tags" />
+      <FlowPane fx:id="emptyTags"/>
     </VBox>
   </GridPane>
 </HBox>

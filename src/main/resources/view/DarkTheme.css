@@ -182,6 +182,11 @@
     -fx-font-size: 10pt;
 }
 
+#emptyTags .label {
+    -fx-font-family: "IBM Plex Sans Light Italic";
+    -fx-font-size: 10pt;
+}
+
 .status-bar .label {
     -fx-font-family: "IBM Plex Sans Light";
     -fx-text-fill: -fx-ctr;
