@@ -350,7 +350,7 @@ have a default value based on the commands. These are documented in the [Command
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-The [Placeholder](#placeholders) section covers the restrictions for respective placeholders. For example, 
+The [Placeholder](#524-placeholders) section covers the restrictions for respective placeholders. For example, 
 the date format of PHONE, certain characters you cannot use and the limit and precision of numbers. 
 </div>
 
