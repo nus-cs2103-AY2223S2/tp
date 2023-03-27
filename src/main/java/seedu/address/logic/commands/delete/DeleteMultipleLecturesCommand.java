@@ -25,7 +25,7 @@ public class DeleteMultipleLecturesCommand extends DeleteCommand {
     private final ArrayList<LectureName> targetLectureNames;
 
     /**
-     * Creates an executble command that deletes multiple lectures of {@code lectureNames}
+     * Creates an executable command that deletes multiple lectures of {@code lectureNames}
      * @param moduleCode Module Code of module that all lectures to be deleted are within
      * @param lectureNames any number of lecture names to identify lectures to delete in a select module
      */
