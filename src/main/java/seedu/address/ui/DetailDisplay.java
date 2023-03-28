@@ -144,7 +144,8 @@ public class DetailDisplay extends UiPart<Region> {
                 hideUploadButton();
                 hideGenerateButton();
                 hideViewDisplay();
-                filesManager.generateMc("Dr Van", "very sick", 10);
+                AddMcInfo mcInfo = new AddMcInfo(new Stage(), filesManager);
+                mcInfo.showAddAppointmentWindow();
                 medicalCondition.setText("click the person again to see updated file list");
             }
         });
