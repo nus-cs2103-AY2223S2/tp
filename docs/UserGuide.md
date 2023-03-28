@@ -60,6 +60,20 @@ preferred use case.
 
 **TODO: add internal links for para above**
 
+
+## Glossary
+
+* Graphical User Interface (GUI): A form of user interface that allows users to interact 
+with electronic devices through graphical icons
+
+* User Interface (UI): The point of human-computer interaction and communication in a device. 
+This can include display screens, keyboards, a mouse and the appearance of a desktop. It is also 
+the way through which a user interacts with an application or a website.
+
+* Integrated Development Environment (IDE): A software application that helps programmers develop 
+software code efficiently. It increases developer productivity by combining capabilities such as 
+software editing, building, testing, and packaging in an easy-to-use application.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Main View - Projects and Clients
@@ -406,7 +420,7 @@ might wish to note:
 > We will refer to the left panel containing the project and client tabs as the **Entity panel** 
 > and the right panel containing the overdued projects and projects due soon as the **statistic panel**.
 
-HotKeys are keyboard short cuts supported by Mycelium to enable faster navigation and editing of commands with the keyboard. This allows for Mycelium to be fully keyboard driven. The following are the supported hotkeys:
+HotKeys are keyboard shortcuts supported by Mycelium to enable faster navigation and editing of commands with the keyboard. This allows for Mycelium to be fully keyboard driven. The following are the supported hotkeys:
 
 ### (F1) Help
 
@@ -437,7 +451,7 @@ The panel in focus will be highlighted with a blue header.
 
 This shortcut allows you to quickly switch between the tabs of panel that is currently in focus. 
 If the main panel is in focus, then the tabs will be the projects and clients tabs. 
-If the right statistic panel is in focus, then the tabs will be the overdued and due soon tabs.
+If the right statistic panel is in focus, then the tabs will be the overdue and due soon tabs.
 
 ### (CTRL+J) Select next
 
@@ -464,9 +478,12 @@ If you have a project or client selected, pressing ***Enter*** in **search mode*
 
 # Command summary
 
-Action | Format
---------|------------------
-**Create new client** | c -cn client_name -e email -y year_of_birth -src source -mn mobile_number <br> e.g., `c -cn 'Alice Baker' -e alice_baker@bakers.com -y 2000`
-**Delete an existing client** | dc -e email <br> e.g., `dc -e alice_baker@bakers.com`
-**Create a project** | p -pn project_name -e client_email -s status -src source -d description -ad accepted_date -dd deadline_date <br> e.g., `p -pn 'Mycelium Desktop' -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075`
-**Delete a project** | dp -pn project_name <br> `e.g., dp -pn Mycelium`
+Action | Format | Example 
+--------|------------------|------
+**Create new client** | c -cn client_name -e email -y year_of_birth -src source -mn mobile_number | `c -cn 'Alice Baker' -e alice_baker@bakers.com -y 2000`
+**Delete an existing client** | dc -e email | `dc -e alice_baker@bakers.com`
+**Update an existing client** | uc -e email [-cn client_name] [-y year_of_birth] [-src source] [-mn mobile_number] [-e2 new_email] | `uc -e alice_baker@bakers.com -y 2002 -mn 85090234`
+**Create a project** | p -pn project_name -e client_email -s status -src source -d description -ad accepted_date -dd deadline_date | `p -pn 'Mycelium Desktop' -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075`
+**Delete a project** | dp -pn project_name | `dp -pn Mycelium Desktop`
+**Update an existing project** | up -pn project_name [-e email] [-s status] [-src source] [-d description]  [-ad accepted_date] [-dd deadline_date] [-pn2 new_project_name] | `up -pn Mycelium Desktop -e alice_baker@bakers.com -dd 30/03/2024`
+**Fuzzy Search** | (CTRL + F) query | Press (CTRL + F) then enter Alice
