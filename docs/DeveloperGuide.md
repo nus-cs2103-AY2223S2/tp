@@ -4,12 +4,11 @@ title: Developer Guide
 ---
 DEVELOPER GUIDE FOR WIFE
 ---
-* Table of Contents
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 WIFE is a food inventory management system that aims to aid busy users in managing food items in their fridge. With its 
 inventory management system, users can easily edit their fridge's inventory and view it in a sleek and easy-to-read
-list. Users can also tag their food items according to their preferences.
+list. Users can also tag their food items according to their preferences. </br>
 
 This developer guide aims to provide detailed documentation for WIFE's design and implementation. This includes its 
 architecture, design choices as well outlines for all features of the software. This project is released under the MIT
@@ -29,6 +28,9 @@ Documentation dependencies:
 * [Jekyll](https://jekyllrb.com/) for conversion of .md files to .html files for rendering of website
 * [PlantUML](https://plantuml.com/) for UML diagrams
 
+--------------------------------------------------------------------------------------------------------------------
+* Table of Contents
+  {:toc} 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**

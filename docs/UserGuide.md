@@ -8,9 +8,9 @@ Enhance life with WIFE! Our product Well Informed Fridge Environment &lt;WIFE/&g
 their food items in the fridge, and never question her. With this, one never have to worry about
 optimizing storage and organization of food items in a refrigerator, thereby reducing waste and 
 improving the efficiency of grocery shopping.
-
-* Table of Contents <br/>
-*(coming soon...)*
+--------------------------------------------------------------------------------------------------------------------
+* Table of Contents
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 

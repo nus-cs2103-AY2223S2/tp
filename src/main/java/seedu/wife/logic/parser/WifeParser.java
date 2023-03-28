@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.wife.logic.commands.Command;
 import seedu.wife.logic.commands.foodcommands.AddCommand;
+import seedu.wife.logic.commands.foodcommands.DecreaseCommand;
 import seedu.wife.logic.commands.foodcommands.DeleteByTagCommand;
 import seedu.wife.logic.commands.foodcommands.DeleteCommand;
 import seedu.wife.logic.commands.foodcommands.EditCommand;
@@ -26,6 +27,7 @@ import seedu.wife.logic.commands.tagcommands.TagFoodCommand;
 import seedu.wife.logic.commands.tagcommands.UntagFoodCommand;
 import seedu.wife.logic.parser.exceptions.ParseException;
 import seedu.wife.logic.parser.foodcommandparser.AddCommandParser;
+import seedu.wife.logic.parser.foodcommandparser.DecreaseCommandParser;
 import seedu.wife.logic.parser.foodcommandparser.DeleteByTagCommandParser;
 import seedu.wife.logic.parser.foodcommandparser.DeleteCommandParser;
 import seedu.wife.logic.parser.foodcommandparser.EditCommandParser;
@@ -99,6 +101,8 @@ public class WifeParser {
             return new UntagFoodCommandParser().parse(arguments);
         case IncreaseCommand.COMMAND_WORD:
             return new IncreaseCommandParser().parse(arguments);
+        case DecreaseCommand.COMMAND_WORD:
+            return new DecreaseCommandParser().parse(arguments);
         case HelpCommand.COMMAND_WORD:
             return new HelpCommandParser().parse(arguments);
         default:
