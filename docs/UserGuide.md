@@ -246,7 +246,7 @@ You probably notice a list of contacts already into the database. How can I add 
 
 Let's say you got to know Bob in school and want to add him to CoDoc. You find out that **Bob**, is a **year 2** student,
 taking **Computer Science** and his email address is **e0823741@u.nus.edu**. Here is how you can use CoDoc's
-[Add command](#adding-a-person--add) to do so:
+[Add command](#2-adding-a-person--add) to do so:
 
 In the command box, enter the command `add n/Bob y/2 c/6 e/e0823741@u.nus.edu` and press the `enter` key.
 This will add a new person named Bob to our contact list.
@@ -269,7 +269,7 @@ have to type its _index_ as the parameter, which you can refer to the [**Course 
 
 If you want to, you can add additional details of the person such as _GitHub username_, _LinkedIn profile URL_, _modules_ and _skills_.
 
-Related: [Adding a person: `add`](#adding-a-person--add)
+Related: [Adding a person: `add`](#2-adding-a-person--add)
 
 
 **Note:** Profile pictures shown here might not be identical to yours as they are randomised.
@@ -320,14 +320,14 @@ contact information.
 To use CoDoc to its fullest potential, you can add Bob's **modules taken** or **skills possessed** to the database.
 
 Let's say you met Bob while taking _CS2101_ and _CS2103T_ modules. To update this information in the database, you can use
-CoDoc's [Edit command](#editing-a-person--edit).
+CoDoc's [Edit command](#4-editing-a-person--edit).
 
 First make sure that Bob is shown in the right panel using the View command. In this example, we can enter `view 8` to
 do so.
 
 >**Why is this step necessary?:** Editing only works on the person shown in the info panel. Make sure you are viewing
 > the correct person with the [View command](#viewing-a-personchanging-tabs--view) (or with a click) before you enter
-> the [Edit command](#editing-a-person--edit).
+> the [Edit command](#4-editing-a-person--edit).
 
 After you see Bob in the **Info Panel**, enter `edit m/ay2223s2 cs2101 m/ay2223s2 cs2103t` in the command box. 
 
@@ -341,14 +341,14 @@ You can now see that Bob's list of **modules taken** has been updated to contain
 > for you to edit **modules taken**!
 
 If you want to save the hassle of editing _modules_ only after adding a person, you can include them in the initial
-[Add command](#adding-a-person--add) to do so.
+[Add command](#2-adding-a-person--add) to do so.
 
-As the name suggests, [Edit command](#editing-a-person--edit) is capable of editing other details of the person such as
+As the name suggests, [Edit command](#4-editing-a-person--edit) is capable of editing other details of the person such as
 _name_, _year_, _GitHub username_, etc. Use this to fix your mistakes or update your database as you progress your studies!
 
-**Related:** [Adding a person: `add`](#adding-a-person--add),
+**Related:** [Adding a person: `add`](#2-adding-a-person--add),
 [Viewing a person: `view`](#viewing-a-personchanging-tabs--view),
-[Editing a person: `edit`](#editing-a-person--edit)
+[Editing a person: `edit`](#4-editing-a-person--edit)
 
 <br>
 
@@ -357,7 +357,7 @@ _name_, _year_, _GitHub username_, etc. Use this to fix your mistakes or update 
 You have been using CoDoc for months and have expanded the database greatly. You realize that finding a person in the
 contacts is getting increasingly difficult and wishes there is an easier way to do so.
 
-That is exactly what CoDoc's [Find command](#finding-a-person--find) is for! Use this to filter people in the contacts.
+That is exactly what CoDoc's [Find command](#5-finding-a-person--find) is for! Use this to filter people in the contacts.
 
 Let's try to find people that are taking/have taken CS2103T. To do so, we have to first clear existing filters if they
 have been applied. We can do this by entering `list` into the command box. This shows us all existing contacts in CoDoc. 
@@ -370,9 +370,9 @@ list. On successful execution, you will see something like below.
 If you tried the examples for previous commands, Bob would be shown as well.
 
 Our `find` command is pretty powerful; it works for other attributes, like _year_, _skills_, etc. and you can find by
-multiple attributes. To learn more about it, you can take a look at [Finding a person: `find`](#finding-a-person--find).
+multiple attributes. To learn more about it, you can take a look at [Finding a person: `find`](#5-finding-a-person--find).
 
-**Related docs:** [Finding a person: `find`](#finding-a-person--find), [Listing all persons/Resetting filters: `list`](#listing-all-personsresetting-filters--list)
+**Related docs:** [Finding a person: `find`](#5-finding-a-person--find), [Listing all persons/Resetting filters: `list`](#listing-all-personsresetting-filters--list)
 
 <br>
 
