@@ -90,8 +90,7 @@ public class ZoomView extends UiPart<Region> {
                 openLink(urlLink.getText());
             });
             rate(bookmark);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new AssertionError(e);
         }
 
@@ -104,8 +103,7 @@ public class ZoomView extends UiPart<Region> {
     public void openLink(String url) {
         try {
             Desktop.getDesktop().browse(new URI(url));
-        }
-        catch (IOException | URISyntaxException ex) {
+        } catch (IOException | URISyntaxException ex) {
             throw new AssertionError(ex);
         }
     }
