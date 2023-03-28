@@ -13,12 +13,13 @@ import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.ui.UiPart;
 import mycelium.mycelium.ui.entitypanel.EntityList;
+import mycelium.mycelium.ui.utils.TabsPanel;
 
 
 /**
  * The ui for the holder of all the tabs in Statistics Dashboard.
  */
-public class StatisticsPanel extends UiPart<TabPane> {
+public class StatisticsPanel extends UiPart<TabPane> implements TabsPanel {
     private static final String FXML = "EntityPanel.fxml";
     private static final String NO_DUE_PROJECT_MESSAGE = "No projects due soon";
     private static final String NO_OVERDUE_PROJECT_MESSAGE = "No overdue projects!";
@@ -63,19 +64,18 @@ public class StatisticsPanel extends UiPart<TabPane> {
         this.selectionModel.select(this.overdueProjectTab.getRoot());
     }
 
-    /**
-     * Switches to the next tab.
-     */
+    @Override
     public void nextTab() {
         int size = this.tabs.size();
+        if (size == 0) {
+            return;
+        }
+        assert size > 0;
         int i = this.selectionModel.getSelectedIndex();
         this.selectionModel.select((i + 1) % size);
     }
 
-    /**
-     * Selects and scroll to the next item in the current tab.
-     * If there is no next item, it will select and scroll to the first item.
-     */
+    @Override
     public void nextItem() {
         Tab item = this.selectionModel.getSelectedItem();
         switch (item.getText()) {
@@ -90,10 +90,7 @@ public class StatisticsPanel extends UiPart<TabPane> {
         }
     }
 
-    /**
-     * Selects and scroll to the previous item in the current tab.
-     * If there is no previous item, it will select and scroll to the last item.
-     */
+    @Override
     public void prevItem() {
         Tab tab = this.selectionModel.getSelectedItem();
         switch (tab.getText()) {
@@ -106,6 +103,22 @@ public class StatisticsPanel extends UiPart<TabPane> {
         default:
             break;
         }
+    }
+
+    @Override
+    public void highlight() {
+        ObservableList<String> styleClass = getRoot().getStyleClass();
+
+        if (styleClass.contains(HIGHLIGHTED_STYLE_CLASS)) {
+            return;
+        }
+
+        styleClass.add(HIGHLIGHTED_STYLE_CLASS);
+    }
+
+    @Override
+    public void unhighlight() {
+        getRoot().getStyleClass().remove(HIGHLIGHTED_STYLE_CLASS);
     }
 
     /**

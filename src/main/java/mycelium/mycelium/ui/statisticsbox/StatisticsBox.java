@@ -13,12 +13,13 @@ import mycelium.mycelium.commons.core.LogsCenter;
 import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.ui.UiPart;
+import mycelium.mycelium.ui.utils.TabsPanel;
 
 
 /**
  * An UI component that displays {@code Project} statistics.
  */
-public class StatisticsBox extends UiPart<Region> {
+public class StatisticsBox extends UiPart<Region> implements TabsPanel {
     private static final String FXML = "StatisticsBox.fxml";
     private StatisticsPanel statisticsPanel;
 
@@ -76,5 +77,30 @@ public class StatisticsBox extends UiPart<Region> {
                 }
             });
         }
+    }
+
+    @Override
+    public void nextItem() {
+        statisticsPanel.nextItem();
+    }
+
+    @Override
+    public void prevItem() {
+        statisticsPanel.prevItem();
+    }
+
+    @Override
+    public void nextTab() {
+        statisticsPanel.nextTab();
+    }
+
+    @Override
+    public void highlight() {
+        statisticsPanel.highlight();
+    }
+
+    @Override
+    public void unhighlight() {
+        statisticsPanel.unhighlight();
     }
 }

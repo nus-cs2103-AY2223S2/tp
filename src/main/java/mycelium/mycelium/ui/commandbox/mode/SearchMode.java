@@ -36,6 +36,7 @@ public class SearchMode extends Mode {
         logger.info("Setting up search mode, caching input: " + prevInput);
         cachedInput = prevInput;
         mainWindow.setCommandBoxStyleListening();
+        mainWindow.focusEntityPanel();
     }
 
     @Override

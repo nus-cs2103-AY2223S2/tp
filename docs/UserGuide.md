@@ -403,6 +403,9 @@ might wish to note:
 
 ## HotKeys
 
+> We will refer to the left panel containing the project and client tabs as the **Entity panel** 
+> and the right panel containing the overdued projects and projects due soon as the **statistic panel**.
+
 HotKeys are keyboard short cuts supported by Mycelium to enable faster navigation and editing of commands with the keyboard. This allows for Mycelium to be fully keyboard driven. The following are the supported hotkeys:
 
 ### (F1) Help
@@ -425,25 +428,29 @@ This shortcut allows you to quickly navigate to the end of the line in the comma
 
 This shortcut allows you to quickly clear the current line in the command box. The command also clears the command log found below the command box.
 
+### (CTRL+S) Switch Panels
+
+This shortcut allows you to quickly switch the focus between the main panel and the statistic panel. 
+The panel in focus will be highlighted with a blue header.
+
 ### (CTRL+L) Switch Tabs
 
-This shortcut allows you to quickly switch between the projects and clients tabs. 
+This shortcut allows you to quickly switch between the tabs of panel that is currently in focus. 
+If the main panel is in focus, then the tabs will be the projects and clients tabs. 
+If the right statistic panel is in focus, then the tabs will be the overdued and due soon tabs.
 
 ### (CTRL+J) Select next
 
-This shortcut allows you to quickly select the next item on the currently selected list in the command box. 
+This shortcut allows you to quickly select the next item on the currently selected list in the 
+currently selected panel, either the main panel or statistic panel.
 
-If you are on the projects tab, then the next item in the projects list will be selected. If there was no project originally selected, then the first project in the list will be selected.
-
-If you are on the clients tab, then the next item in the client list will be selected. If there was no client originally selected, then the first client in the list will be selected.
+Within the tab that is in focus, the next item in the list will be selected. If there was no item originally selected, then the first item in the list will be selected.
 
 ### (CTRL+K) Select previous
 
-This shortcut allows you to quickly select the previous item on the currently selected list in the command box.
+This shortcut allows you to quickly select the previous item on the currently selected list in the currently selected panel, either the main panel or statistic panel.
 
-If you are on the projects tab, then the previous item in the projects list will be selected. If there was no project originally selected, then the last project in the list will be selected.
-
-If you are on the clients tab, then the previous item in the client list will be selected. If there was no client originally selected, then the last client in the list will be selected.
+Within the tab that is in focus, the previous item in the list will be selected. If there was no item originally selected, then the last item in the list will be selected.
 
 ### (CTRL+F) Search
 
@@ -451,7 +458,7 @@ This shortcut allows you toggle the command box between **search mode** and **co
 
 In **command mode**, the input in the command box is used to execute the command. 
 
-In **search mode**, the command box is highlighted light blue and the input is used to *interactively* search for the closest matching project or client by name. *Interactively* would mean that the search results are updated in the projects and client list as you type.
+In **search mode**, the command box is highlighted light blue and the input is used to *interactively* search for the closest matching project or client by name in the **main panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the main panel will be put into focus automatically.
 
 If you have a project or client selected, pressing ***Enter*** in **search mode** switches back to **command mode** and appends the name or email of the selected project or client to the command box respectively. This is useful if you want to quickly reference a project or client in your command.
 
