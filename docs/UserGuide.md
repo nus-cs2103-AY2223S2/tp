@@ -69,7 +69,7 @@ ExpressLibrary is a **desktop app for managing library users and books, optimize
 
 ### Person Commands
 
-### Adding a user: `addPerson`
+#### Adding a user: `addPerson`
 
 Adds a person to the ExpressLibrary.
 
@@ -82,7 +82,7 @@ A person can have any number of tags (including 0)
 Examples:
 * `addPerson n/Bob Tan p/91112222 e/btan@mail.com a/ 313, Jurong East Street 32`
 
-### Deleting a person : `deletePerson`
+#### Deleting a person : `deletePerson`
 
 Deletes a person at the specified person list index.
 
@@ -95,7 +95,7 @@ Format: `deletePerson PERSON_INDEX`
 Examples:
 * `listPerson` followed by `deletePerson 2` deletes the 2nd person in the user records.
 
-### Editing a person : `editPerson`
+#### Editing a person : `editPerson`
 
 Edits an existing person in the ExpressLibrary.
 
@@ -121,13 +121,13 @@ Examples:
 *  `editPerson 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 
-### Listing all users : `listPerson`
+#### Listing all users : `listPerson`
 
 Shows a list of all users in the user records.
 
 Format: `listPerson`
 
-### Locating persons by name: `findPerson` 
+#### Locating persons by name: `findPerson` 
 
 Finds persons whose names contain any of the given keywords.
 
@@ -157,7 +157,7 @@ Examples:
 
 ### Book Commands
 
-### Adding a book: `addBook`
+#### Adding a book: `addBook`
 
 Adds a book to the book records.
 
@@ -166,7 +166,7 @@ Format: `addBook t/TITLE a/AUTHOR i/ISBN…​`
 Examples:
 * `addBook t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
 
-### Deleting a book : `deleteBook`
+#### Deleting a book : `deleteBook`
 
 Delete a book given an index in the book list.
 
@@ -179,7 +179,7 @@ Format: `deleteBook BOOK_INDEX`
 Examples:
 * `listBook` followed by `deleteBook 2` deletes the 2nd book in the user records.
 
-### Editing a book : `editBook`
+#### Editing a book : `editBook`
 
 Edits an existing book in the book records.
 
@@ -197,15 +197,13 @@ Examples:
 
 *  `editBook 2 bd/22/03/2023 dd/29/03/2023` Edits the borrow date and due date of the 2nd book to be `22/03/2023` and `29/03/2023`.
 
-
-
-### Listing all books : `listBook`
+#### Listing all books : `listBook`
 
 Shows a list of all books in the book records.
 
 Format: `listBook`
 
-### Locate book by title: `findBook`
+#### Locate book by title: `findBook`
 
 Find books whose titles contain any of the given keywords.
 
@@ -225,7 +223,7 @@ Examples:
 
 ### Common Functions
 
-### Borrowing a book : `borrow`
+#### Borrowing a book : `borrow`
 
 Lends a book to a person given a person index, book index and due date.
 
@@ -239,7 +237,7 @@ Format: `borrow PERSON_INDEX b/BOOK_INDEX d/DUE_DATE`
 Examples:
 * `listBook/listPerson` followed by `borrow 2 b/3 d/17/10/2024` lends the 3rd book in the book list to the 2nd person in the user records with a due date of Oct. 17, 2024.
 
-### Returning a book : `return`
+#### Returning a book : `return`
 
 Returns a person's borrowed book to the library given a person index and book index.
 
@@ -253,7 +251,7 @@ Format: `return PERSON_INDEX b/BOOK_INDEX`
 Examples:
 * `listBook/listPerson` followed by `return 1 b/2` returns the 2nd book in the book list from the 1st person in the user records.
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries from ExpressLibrary.
 
@@ -265,7 +263,7 @@ Exits the program.
 
 Format: `exit`
 
-### Viewing help : `help`
+#### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -287,7 +285,6 @@ If your changes to the data file makes its format invalid, ExpressLibrary will d
 
 </div>
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -308,7 +305,6 @@ Action | Format, Examples
 **EditPerson** | `editPerson INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`
 **FindPerson** | `findPerson KEYWORD [MORE_KEYWORDS]`<br> e.g., `findPerson James Jake`
 **ListPerson** | `listPerson`
-
 
 #### Book
 
