@@ -48,7 +48,7 @@ Vaccination Management System (VMS) is a **desktop app for managing vaccination 
   <pre>
   appointment add --p <var>PATIENT_ID</var> \
       --s <var>START_TIME</var> --e <var>END_TIME</var> \
-      --v <var>VAX_NAME</var> \
+      --v <var>VAX_NAME</var>
   </pre>
   would have the same meaning as this
   <pre>
@@ -396,6 +396,7 @@ Vaccinations are uniquely identified by their names. The following is a list of 
   * Default value = `empty list`.
 * **History requirements** - the list requirements of vaccination groups to take the vaccination.
   * Default value = `empty list`.
+  * Requirements need not be unique, ie. a requirement of 2 `ANY :: grp1, grp2` is allowed. This would mean that to take this vaccination, the patient will have to have taken at least 2 vaccinations that satisfies that requirement.
 
 #### `add` - Add a vaccination type
 
@@ -440,13 +441,15 @@ Output:<br>
 Updates the attributes of the specified vaccination to the attributes specified. If any of the optional arguments
 are omitted, they will be set to what they were before.
 
+##### Syntax
+
 <pre>
-vaccination add <var>VAX_NAME</var> [--n <var>NEW_NAME</var>] [--g ...<var>GROUP</var>...] \
+vaccination add <var>VACCINATION</var> [--n <var>NEW_NAME</var>] [--g ...<var>GROUP</var>...] \
     [--lal <var>MIN_AGE</var>] [--ual <var>MAX_AGE</var>] \
     [--a ...<var>INGREDIENT</var>...]... [--h <var>HISTORY_REQ</var>]...
 </pre>
 
-* <code><var>VAX_NAME</var></code> : `<group-name>`
+* <code><var>VACCINATION</var></code> : `<vax-retriever>`
 * <code><var>NEW_NAME</var></code> : `<group-name>`
 * <code><var>GROUP</var></code> : `<group-name>`
 * <code><var>MIN_AGE</var></code> : `<Age>`
@@ -462,7 +465,7 @@ After the vaccination add example,
 vaccination edit Pfizer (Dose 1) --n Pfizer (Dose 2) \
     --groups DOSE 1, PFIZER, VACCINATION \
     --a allergy1, allergy2, allergy3 \
-    --h NONE::DOES 2 --h ALL::DOSE 1, PFIZER \
+    --h NONE::DOES 2 --h ALL::DOSE 1, PFIZER
 ```
 
 Copy and paste:<br>
@@ -473,18 +476,20 @@ Output:<br>
 
 ##### Restrictions
 
-* <code><var>VAX_NAME</var></code> must exist in the system.
-* <code><var>NEW_NAME</var></code> must be a name that does not yet exist in the system unless it is the same as <code><var>VAX_NAME</var></code>.
+* <code><var>VACCINATION</var></code> must exist in the system.
+* <code><var>NEW_NAME</var></code> must be a name that does not yet exist in the system unless it is the same as the vaccination being updated.
 
 #### `delete` - Deletes a vaccination
 
 Deletes the vaccination with the specified name from the system.
 
+##### Syntax
+
 <pre>
-vaccination delete <var>VAX_NAME</var>
+vaccination delete <var>VACCINATION</var>
 </pre>
 
-* <code><var>VAX_NAME</var></code> : `<group-name>`
+* <code><var>VACCINATION</var></code> : `<vax-retriever>`
 
 ##### Example
 
@@ -493,6 +498,26 @@ After the vaccination add example,
 ```text
 vaccination delete Pfizer (Dose 1)
 ```
+
+Output:<br>
+{some ss}
+
+#### `clear` - Clears all vaccination data
+
+##### Syntax
+
+<pre>
+vaccination clear
+</pre>
+
+##### Example
+
+After start up with the default vaccination data,
+
+```text
+vaccination clear
+```
+
 Output:<br>
 {some ss}
 
