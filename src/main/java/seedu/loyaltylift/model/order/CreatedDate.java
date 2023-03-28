@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  * Represents an Order's created date in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidCreatedDate(String)}
  */
-public class CreatedDate {
+public class CreatedDate implements Comparable<CreatedDate> {
 
     public static final String MESSAGE_CONSTRAINTS = "CreatedDate can be any date not in the future";
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -51,6 +51,11 @@ public class CreatedDate {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(CreatedDate o) {
+        return value.compareTo(o.value);
     }
 
 }

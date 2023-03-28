@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.model.Model;
+import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.OrderNameContainsKeywordsPredicate;
 
 /**
@@ -28,6 +29,7 @@ public class FindOrderCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.sortFilteredOrderList(Order.SORT_NAME);
         model.updateFilteredOrderList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size()));

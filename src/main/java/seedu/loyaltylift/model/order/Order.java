@@ -3,6 +3,7 @@ package seedu.loyaltylift.model.order;
 import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.Objects;
 
 import seedu.loyaltylift.model.attribute.Address;
@@ -15,6 +16,13 @@ import seedu.loyaltylift.model.customer.Customer;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Order {
+
+    // Comparators
+    public static final Comparator<Order> SORT_CREATED_DATE = Comparator.comparing(Order::getCreatedDate);
+    public static final Comparator<Order> SORT_NAME = Comparator.comparing(Order::getName)
+            .thenComparing(SORT_CREATED_DATE);
+    public static final Comparator<Order> SORT_STATUS = Comparator.comparing(Order::getStatus)
+            .thenComparing(SORT_CREATED_DATE);
 
     private final Customer customer;
     private final Name name;

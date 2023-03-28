@@ -128,6 +128,12 @@ public interface Model {
      */
     void updateFilteredOrderList(Predicate<Order> predicate);
 
+    /**
+     * Sorts the filtered order list using the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortFilteredOrderList(Comparator<Order> comparator);
+
     /** Returns an unmodifiable view of the filtered customer's order list */
     ObservableList<Order> getFilteredCustomerOrderList();
 

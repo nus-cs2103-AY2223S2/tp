@@ -5,29 +5,29 @@ import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_SORT;
 import java.util.Comparator;
 import java.util.stream.Stream;
 
-import seedu.loyaltylift.logic.commands.ListCustomerCommand;
+import seedu.loyaltylift.logic.commands.ListOrderCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
-import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.order.Order;
 
 /**
- * Parses input arguments and creates a new ListCustomerCommand object
+ * Parses input arguments and creates a new ListOrderCommand object
  */
-public class ListCustomerCommandParser implements Parser<ListCustomerCommand> {
+public class ListOrderCommandParser implements Parser<ListOrderCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the ListCustomerCommand
-     * and returns a ListCustomerCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ListOrderCommand
+     * and returns a ListOrderCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public ListCustomerCommand parse(String args) throws ParseException {
+    public ListOrderCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SORT);
 
-        Comparator<Customer> comparator = Customer.SORT_NAME;
+        Comparator<Order> comparator = Order.SORT_CREATED_DATE;
         if (arePrefixesPresent(argMultimap, PREFIX_SORT)) {
-            comparator = ParserUtil.parseCustomerSortOption(argMultimap.getValue(PREFIX_SORT).orElse(""));
+            comparator = ParserUtil.parseOrderSortOption(argMultimap.getValue(PREFIX_SORT).orElse(""));
         }
 
-        return new ListCustomerCommand(comparator);
+        return new ListOrderCommand(comparator);
     }
 
     /**

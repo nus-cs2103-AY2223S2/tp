@@ -20,6 +20,7 @@ import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Phone;
+import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -41,6 +42,8 @@ public class ParserUtilTest {
     private static final String VALID_CUSTOMER_TYPE_ENT = "ent";
     private static final String VALID_SORT_OPTION_NAME = "name";
     private static final String VALID_SORT_OPTION_POINTS = "points";
+    private static final String VALID_SORT_OPTION_CREATED_DATE = "created";
+    private static final String VALID_SORT_OPTION_STATUS = "status";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -220,18 +223,35 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseSortOption_validSortOption() throws Exception {
-        assertEquals(ParserUtil.parseSortOption(VALID_SORT_OPTION_NAME), Customer.SORT_NAME);
-        assertEquals(ParserUtil.parseSortOption(VALID_SORT_OPTION_POINTS), Customer.SORT_POINTS);
+    public void parseCustomerSortOption_validSortOption() throws Exception {
+        assertEquals(ParserUtil.parseCustomerSortOption(VALID_SORT_OPTION_NAME), Customer.SORT_NAME);
+        assertEquals(ParserUtil.parseCustomerSortOption(VALID_SORT_OPTION_POINTS), Customer.SORT_POINTS);
     }
 
     @Test
-    public void parseSortOption_null_throwsNullPointerException() throws Exception {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseSortOption(null));
+    public void parseCustomerSortOption_null_throwsNullPointerException() throws Exception {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCustomerSortOption(null));
     }
 
     @Test
-    public void parseSortOption_invalidSortOption_throwsParseException() throws Exception {
-        assertThrows(ParseException.class, () -> ParserUtil.parseSortOption(INVALID_SORT_OPTION));
+    public void parseCustomerSortOption_invalidSortOption_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCustomerSortOption(INVALID_SORT_OPTION));
+    }
+
+    @Test
+    public void parseOrderSortOption_validSortOption() throws Exception {
+        assertEquals(ParserUtil.parseOrderSortOption(VALID_SORT_OPTION_CREATED_DATE), Order.SORT_CREATED_DATE);
+        assertEquals(ParserUtil.parseOrderSortOption(VALID_SORT_OPTION_NAME), Order.SORT_NAME);
+        assertEquals(ParserUtil.parseOrderSortOption(VALID_SORT_OPTION_STATUS), Order.SORT_STATUS);
+    }
+
+    @Test
+    public void parseOrderSortOption_null_throwsNullPointerException() throws Exception {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseOrderSortOption(null));
+    }
+
+    @Test
+    public void parseOrderSortOption_invalidSortOption_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrderSortOption(INVALID_SORT_OPTION));
     }
 }
