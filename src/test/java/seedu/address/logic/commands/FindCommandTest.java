@@ -12,7 +12,7 @@ import static seedu.address.testutil.TypicalPersons.FORD;
 import static seedu.address.testutil.TypicalPersons.ISAAC;
 import static seedu.address.testutil.TypicalPersons.JUKUN;
 import static seedu.address.testutil.TypicalPersons.KEVIN;
-import static seedu.address.testutil.TypicalPersons.LAVENDER;
+import static seedu.address.testutil.TypicalPersons.LAO;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.util.Arrays;
@@ -118,7 +118,7 @@ public class FindCommandTest {
         createMultipleKeywordsMultiplePersonsFound(
                 Prefix.PHONE,
                 "92463693 88032666 83340546",
-                Arrays.asList(EDWARD, FORD, LAVENDER),
+                Arrays.asList(EDWARD, FORD, LAO),
                 3
         );
         createMultipleKeywordsMultiplePersonsFound(

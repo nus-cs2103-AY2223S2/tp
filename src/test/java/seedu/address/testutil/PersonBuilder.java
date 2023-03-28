@@ -102,6 +102,15 @@ public class PersonBuilder {
     }
 
     /**
+     * Parses the {@code moduleTags} into a {@code Set<ModuleTag>}
+     * and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withModuleTags(Collection<? extends ModuleTag> moduleTags) {
+        this.moduleTags = new HashSet<>(moduleTags);
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
