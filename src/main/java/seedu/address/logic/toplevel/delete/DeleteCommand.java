@@ -5,7 +5,6 @@ import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.item.Item;
 
 /**

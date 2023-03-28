@@ -19,7 +19,7 @@ public class CrewListCell<Crew extends Item> extends ListCell<Crew> {
             setGraphic(null);
             setText(null);
         } else {
-            setGraphic(new CrewCard((seedu.address.model.crew.Crew) crew, getIndex() + 1 ).getRoot());
+            setGraphic(new CrewCard((seedu.address.model.crew.Crew) crew, getIndex() + 1).getRoot());
         }
     }
 }

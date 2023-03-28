@@ -1,14 +1,11 @@
 package seedu.address.logic.crew.checkcrew;
 
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
-import seedu.address.model.crew.Crew;
-import seedu.address.model.location.CrewLocationType;
 
 /**
  * The factory that's responsible for creating a {@code CheckCrewCommand}.

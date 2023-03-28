@@ -28,11 +28,6 @@ public class Flight implements Item {
     private final String code;
     private final String id;
 
-    private static final String CREW_STRING = "Crew";
-    private static final String LOCATIONS_STRING = "Locations";
-    private static final String PILOTS_STRING = "Pilots";
-    private static final String PLANE_STRING = "Plane";
-
     //TODO: Add exceptions to ensure departure and arrival locations are distinct
 
     /**
@@ -135,10 +130,10 @@ public class Flight implements Item {
     public List<String> getDisplayList() {
         return List.of(
                 String.format("%s", code),
-                String.format("%s: %s\n", PLANE_STRING, planeLink.toString()),
-                String.format("%s: %s\n", PILOTS_STRING, pilotLink.toString()),
-                String.format("%s: %s\n", CREW_STRING, crewLink.toString()),
-                String.format("%s: %s\n", LOCATIONS_STRING, locationLink.toString())
+                String.format("%s: %s\n", "Plane", planeLink.toString()),
+                String.format("%s: %s\n", "Pilots", pilotLink.toString()),
+                String.format("%s: %s\n", "Crew", crewLink.toString()),
+                String.format("%s: %s\n", "Locations", locationLink.toString())
         );
     }
 

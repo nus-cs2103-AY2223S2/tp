@@ -188,7 +188,7 @@ public class UnlinkPlaneToLocationCommandFactory implements CommandFactory<Unlin
                     PlaneLocationType.LOCATION_USING,
                     plane
             );
-        } catch (CommandException e){
+        } catch (CommandException e) {
             throw new ParseException(e.getMessage());
         }
 

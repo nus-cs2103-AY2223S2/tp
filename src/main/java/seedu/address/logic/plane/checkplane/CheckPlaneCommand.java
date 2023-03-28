@@ -27,7 +27,7 @@ public class CheckPlaneCommand implements Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         int index = Integer.parseInt(id);
-        if (index >=  model.getPlaneManager().size() || index < 0) {
+        if (index >= model.getPlaneManager().size() || index < 0) {
             throw new CommandException(String.format(
                     "Index %s is out of bounds."
                             + "Please enter a valid index.",

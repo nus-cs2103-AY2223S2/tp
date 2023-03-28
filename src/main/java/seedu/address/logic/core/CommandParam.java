@@ -290,8 +290,8 @@ public class CommandParam {
      */
     public int getNamedIntOrThrow(String prefix) throws ParseException {
         return getNamedIntOrThrow(prefix, String.format(
-                "Missing integer for prefix %s.\n" +
-                        "Please try entering an integer following %s.",
+                "Missing integer for prefix %s.\n"
+                        + "Please try entering an integer following %s.",
                 prefix,
                 prefix
         ));

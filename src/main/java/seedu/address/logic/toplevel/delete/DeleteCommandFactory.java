@@ -6,7 +6,6 @@ import java.util.Set;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
-import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.item.Item;
 
 /**

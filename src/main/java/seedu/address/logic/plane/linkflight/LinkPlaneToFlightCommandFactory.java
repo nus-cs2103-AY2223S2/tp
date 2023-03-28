@@ -7,7 +7,6 @@ import java.util.Set;
 
 import seedu.address.commons.fp.Lazy;
 import seedu.address.commons.util.GetUtil;
-import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.CommandException;
@@ -107,7 +106,7 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
     }
 
     private boolean addPlane(Optional<String> planeIdOptional, FlightPlaneType type, Map<FlightPlaneType, Plane> target)
-        throws CommandException {
+            throws CommandException {
         if (planeIdOptional.isEmpty()) {
             return false;
         }
