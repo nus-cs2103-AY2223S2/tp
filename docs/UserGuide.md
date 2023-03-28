@@ -17,20 +17,20 @@ meet instead of having to manually compare timetables with each other.
     * [Edit information about a person](#EditPerson)
     * [Find a person's information by his/her name](#FindPerson)
     * [Delete a person's information in WGT](#DeletePerson)
-  * [Group-related commands](#Group-related commands)
+  * [Group-related commands](#GroupRelatedCommands)
     * [Create a group in WGT](#CreateGroup)
     * [Delete a group created in WGT](#DeleteGroup)
     * [List all the groups created in WGT](#ListGroup)
     * [Find a group by the group's name](#FindGroup)
-  * [Event-related commands](#Event-related commands)
-    * [Create an event](#creating-an-event)
-    * [Delete an event](#deleting-an-event)
-    * [Edit information about an event](#editing-an-event)
-    * [List all the events created](#list-all-events-event-list--coming-soon)
-  * [Miscellaneous features](#Miscellaneous commands)
-    * [Clear all data stored in WGT](#clearing-all-entries--clear)
-    * [Exit the program](#exiting-the-program--exit)
-    * [Help](#viewing-help--help)
+  * [Event-related commands](#EventRelatedCommands)
+    * [Create an event](#CreateEvent)
+    * [Delete an event](#DeleteEvent)
+    * [Edit information about an event](#EditEvent)
+    * [List all the events created](#lListEvent)
+  * [Miscellaneous features](#MiscellaneousCommands)
+    * [Clear all data stored in WGT](#Clear)
+    * [Exit the program](#Exit)
+    * [Help](#Help)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start <a id="QuickStart" />
@@ -86,14 +86,6 @@ meet instead of having to manually compare timetables with each other.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
 
 ## Person-related commands <a id="PersonRelatedCommands" />
 
@@ -326,6 +318,14 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 ### Saving the data
 
