@@ -10,9 +10,9 @@ import javafx.collections.ObservableList;
  * Wraps all data at the Ammonia list within tank level
  * Duplicates will replace existing entry (readings of same dates are duplicates)
  */
-public class FullAmmoniaLevelList implements ReadOnlyAmmoniaLevelList {
+public class FullAmmoniaLevels implements ReadOnlyAmmoniaLevels {
 
-    private final UniqueFullAmmoniaLevelList ammoniaLevelLists;
+    private final UniqueFullAmmoniaLevels ammoniaLevelLists;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -22,15 +22,15 @@ public class FullAmmoniaLevelList implements ReadOnlyAmmoniaLevelList {
      *   among constructors.
      */
     {
-        ammoniaLevelLists = new UniqueFullAmmoniaLevelList();
+        ammoniaLevelLists = new UniqueFullAmmoniaLevels();
     }
 
-    public FullAmmoniaLevelList() {}
+    public FullAmmoniaLevels() {}
 
     /**
-     * Creates an FullAmmoniaLevelList using the AmmoniaLevels in the {@code toBeCopied}
+     * Creates an FullAmmoniaLevels using the AmmoniaLevels in the {@code toBeCopied}
      */
-    public FullAmmoniaLevelList(ReadOnlyAmmoniaLevelList toBeCopied) {
+    public FullAmmoniaLevels(ReadOnlyAmmoniaLevels toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -41,7 +41,7 @@ public class FullAmmoniaLevelList implements ReadOnlyAmmoniaLevelList {
      * Replaces the contents of the ammonia level list with {@code ammoniaLevelLists}.
      * {@code ammoniaLevelLists} must not contain duplicate ammoniaLevelLists.
      */
-    public void setAmmoniaLevelLists(List<UniqueIndividualAmmoniaLevelList> ammoniaLevelLists) {
+    public void setAmmoniaLevelLists(List<UniqueIndividualAmmoniaLevels> ammoniaLevelLists) {
         this.ammoniaLevelLists.setAmmoniaLevelLists(ammoniaLevelLists);
     }
 
@@ -49,7 +49,7 @@ public class FullAmmoniaLevelList implements ReadOnlyAmmoniaLevelList {
      * Resets the existing data of this {@code AmmoniaLevelLists} with {@code newData}.
      * @param newData
      */
-    public void resetData(ReadOnlyAmmoniaLevelList newData) {
+    public void resetData(ReadOnlyAmmoniaLevels newData) {
         requireNonNull(newData);
 
         setAmmoniaLevelLists(newData.getAmmoniaLevelLists());
@@ -58,38 +58,38 @@ public class FullAmmoniaLevelList implements ReadOnlyAmmoniaLevelList {
     //// ammoniaLevel-level operations
 
     /**
-     * Returns true if a ammoniaLevel with the same identity as {@code UniqueIndividualAmmoniaLevelList} exists
+     * Returns true if a ammoniaLevel with the same identity as {@code UniqueIndividualAmmoniaLevels} exists
      * in the ammonia level list.
      */
-    public boolean hasAmmoniaLevelList(UniqueIndividualAmmoniaLevelList ammoniaLevelList) {
+    public boolean hasAmmoniaLevelList(UniqueIndividualAmmoniaLevels ammoniaLevelList) {
         requireNonNull(ammoniaLevelList);
         return ammoniaLevelLists.containsSameDayReading(ammoniaLevelList);
     }
 
     /**
-     * Adds an ammonia level to the FullAmmoniaLevelList.
+     * Adds an ammonia level to the FullAmmoniaLevels.
      * Readings of the same day will replace the other one on the same day
      */
-    public void addAmmoniaLevelList(UniqueIndividualAmmoniaLevelList ammoniaLevelList) {
+    public void addAmmoniaLevelList(UniqueIndividualAmmoniaLevels ammoniaLevelList) {
         ammoniaLevelLists.add(ammoniaLevelList);
     }
 
     /**
      * Replaces the given ammonia level {@code target} in the list with {@code editedAmmoniaLevel}.
-     * {@code target} must exist in the FullAmmoniaLevelList.
+     * {@code target} must exist in the FullAmmoniaLevels.
      */
-    public void setAmmoniaLevelList(UniqueIndividualAmmoniaLevelList target,
-                                    UniqueIndividualAmmoniaLevelList editedAmmoniaLevel) {
+    public void setAmmoniaLevelList(UniqueIndividualAmmoniaLevels target,
+                                    UniqueIndividualAmmoniaLevels editedAmmoniaLevel) {
         requireNonNull(editedAmmoniaLevel);
 
         ammoniaLevelLists.setUniqueIndividualAmmoniaLevelList(target, editedAmmoniaLevel);
     }
 
     /**
-     * Removes {@code key} from this {@code FullAmmoniaLevelList}.
-     * {@code key} must exist in the FullAmmoniaLevelList.
+     * Removes {@code key} from this {@code FullAmmoniaLevels}.
+     * {@code key} must exist in the FullAmmoniaLevels.
      */
-    public void removeAmmoniaLevelList(UniqueIndividualAmmoniaLevelList key) {
+    public void removeAmmoniaLevelList(UniqueIndividualAmmoniaLevels key) {
         ammoniaLevelLists.remove(key);
     }
 
@@ -102,15 +102,15 @@ public class FullAmmoniaLevelList implements ReadOnlyAmmoniaLevelList {
     }
 
     @Override
-    public ObservableList<UniqueIndividualAmmoniaLevelList> getAmmoniaLevelLists() {
+    public ObservableList<UniqueIndividualAmmoniaLevels> getAmmoniaLevelLists() {
         return ammoniaLevelLists.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FullAmmoniaLevelList // instanceof handles nulls
-                && ammoniaLevelLists.equals(((FullAmmoniaLevelList) other).ammoniaLevelLists));
+                || (other instanceof FullAmmoniaLevels // instanceof handles nulls
+                && ammoniaLevelLists.equals(((FullAmmoniaLevels) other).ammoniaLevelLists));
     }
 
     @Override

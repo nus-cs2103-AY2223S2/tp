@@ -5,10 +5,10 @@ import javafx.collections.ObservableList;
 /**
  * Unmodifiable view of a list of ammonia readings
  */
-public interface ReadOnlyAmmoniaLevelList {
+public interface ReadOnlyAmmoniaLevels {
     /**
      * Returns an unmodifiable view of the Fishes list.
      * This list will not contain any duplicate Fishes.
      */
-    ObservableList<UniqueIndividualAmmoniaLevelList> getAmmoniaLevelLists();
+    ObservableList<UniqueIndividualAmmoniaLevels> getAmmoniaLevelLists();
 }
