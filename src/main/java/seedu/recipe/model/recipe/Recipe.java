@@ -25,8 +25,11 @@ public class Recipe {
     private final List<Step> steps;
     private final Set<Tag> tags;
 
+    private boolean isStar;
+
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null except for {@code isStar} which can be left blank.
+     * In this case, set it to false automatically.
      */
     public Recipe(Title title, Description desc, Set<Ingredient> ingredients, List<Step> steps,
                   Set<Tag> tags) {
@@ -36,6 +39,21 @@ public class Recipe {
         this.ingredients = ingredients;
         this.steps = steps;
         this.tags = tags;
+        this.isStar = false;
+    }
+
+    /**
+     * Every field is present and not null.
+     */
+    public Recipe(Title title, Description desc, Set<Ingredient> ingredients, List<Step> steps,
+                  Set<Tag> tags, boolean isStar) {
+        requireAllNonNull(title, desc, ingredients, steps, tags);
+        this.title = title;
+        this.desc = desc;
+        this.ingredients = ingredients;
+        this.steps = steps;
+        this.tags = tags;
+        this.isStar = isStar;
     }
 
     public Title getTitle() {
@@ -55,6 +73,24 @@ public class Recipe {
 
     public Set<Tag> getTags() {
         return this.tags;
+    }
+
+    public boolean isStarred() {
+        return this.isStar;
+    }
+
+    /**
+     * Stars the recipe.
+     */
+    public void star() {
+        this.isStar = true;
+    }
+
+    /**
+     * Unstars the recipe.
+     */
+    public void unstar() {
+        this.isStar = false;
     }
 
     /**
