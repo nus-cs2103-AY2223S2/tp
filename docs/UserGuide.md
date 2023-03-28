@@ -326,9 +326,9 @@ If `s` is specified, the tab on the right will switch to the **skills** that the
 >
 > **Examples:**
 > - `view` 2
-    > ![View Example](images/UiViewIndex.jpg)
+     ![View Example](images/UiViewIndex.jpg)
 > - `view` m
-    > ![View Example](images/UiViewModule.jpg)
+     ![View Example](images/UiViewModule.jpg)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
