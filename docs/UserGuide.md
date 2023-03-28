@@ -139,6 +139,7 @@ Ensure you have met the system requirements and installed EduMate properly on a 
 please see [System Requirements](#system-requirements) and [Installation Instructions](#installation-instructions)
 before continuing.
 <br>
+</div>
 
 Before we begin our journey through EduMate's many features, do choose whether you would like a guided or unguided experience.
 
