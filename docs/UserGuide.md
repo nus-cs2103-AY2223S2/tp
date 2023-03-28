@@ -5,7 +5,10 @@ title: User Guide
 
 ## Introduction
 
+<!-- Might want to make this Introduction more concise -->
 Welcome to Vimification, the ultimate task tracker for Vim enthusiasts! If you are a student at NUS, you know how hectic it can get to manage different deadlines and schedules for different classes and modules. With VimPlanner, you can now manage your tasks and deadlines with ease, using the powerful and efficient Vim-like commands that you already know and love.
+
+Vimification is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can get your task management tasks done faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, we also provide a Graphical User interface (GUI) to assist you.
 
 Vimification is designed to help you stay organized and productive by providing a simple and intuitive interface that allows you to keep track of all your tasks and deadlines in one place. Whether you are a seasoned Vim user or just starting out, you will find Vimification to be an easy and efficient way to manage your daily tasks.
 
@@ -29,8 +32,8 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
 
 1. Download the latest `vimification.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-3/tp/releases).
 
-2. # Save the file in your intended folder.
-   Vimification is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can get your task management tasks done faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, we also provide a Graphical User interface (GUI) to assist you.
+2. Save the file in your intended folder.
+
 
 ## Table of Contents
 
@@ -67,8 +70,6 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
    <img class="ui-img" src="images/Ui.png" alt="Ui Image" width="1203" height="599" title="Overall User Interface">
 
 ## Using the Command-Line Interface (CLI)
-
-=======
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -141,7 +142,8 @@ Examples:
 `:i todo CS2130T UG`
 
 **After**
-<img class="ui-img" src="images/ug-images/AddTaskCommandDemo.png" alt="Add Task Command Demo Image" width="1203" height="599" title="Add Task Command Demo">
+
+<img style="float:centre" class="ui-img" src="images/ug-images/AddTaskCommandDemo.png" alt="Add Task Command Demo Image" width="1203" height="599" title="Add Task Command Demo">
 
 ### Adding a task with deadline
 
@@ -159,7 +161,7 @@ Examples:
 `:i deadline CS2130T v1.3 /2022-03-31`
 
 **After**
-![](images/ug-images/AddDeadlineCommandDemo.png)
+
 <img class="ui-img" src="images/ug-images/AddDeadlineCommandDemo.png" alt="Add Deadline Command Demo Image" width="1203" height="599" title="Add Deadline Command Demo">
 
 ### Deleting a task
@@ -174,12 +176,16 @@ Format: `:d [TASK_INDEX]`
 - The index must not exceed the number of tasks in `TaskList`, otherwise Vimification will show an error message.
 
 Examples:
-
-**Before**
-<img class="ui-img" src="images/ug-images/deleteCommand/before.png" alt="Delete Command Before Image" width="1203" height="599" title="Before Delete Command">
-
-**After**
-<img class="ui-img" src="images/ug-images/deleteCommand/before.png" alt="Delete Command After Image" width="1203" height="599" title="After Delete Command">
+<table style="width:100%; border:none;">
+<tr>
+<td><strong>Before</strong></td>
+<td><strong>After</strong></td>
+</tr>
+<tr>
+<td><img class="ui-img" src="images/ug-images/deleteCommand/before.png" alt="Delete Command Before Image" width="601.5" height="299.5" title="Before Delete Command"></td>
+<td><img class="ui-img" src="images/ug-images/deleteCommand/after.png" alt="Delete Command After Image" width="601.5" height="299.5" title="After Delete Command"></td>
+</tr>
+</table>
 
 ### Exiting the program
 
@@ -188,6 +194,7 @@ Similar to Vim, we can use the `q` command with write `w` to exit the program.
 Format: `:wq!`, `:q!`,,`:wq`,`:q`
 
 Examples:
+
 <img class="ui-img" src="images/ug-images/quitCommand/quitExample1.png" alt="Quit Example 1 Image" width="1203" height="599" title="Quit Example 1">
 
 ### Saving the data
