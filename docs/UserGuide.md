@@ -227,7 +227,7 @@ Format:
 ```
 select <INDEX>
 ```
-- Selects group at index specified in <INDEX> and displays list of students in that group.
+- Selects group at index specified in `<INDEX>` and displays list of students in that group.
 
 Examples:
 - `select 1` will return a list of students from the 1st group.
