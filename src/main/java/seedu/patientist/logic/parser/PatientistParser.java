@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.patientist.logic.commands.AddPatientCommand;
+import seedu.patientist.logic.commands.AddPatientStatusCommand;
 import seedu.patientist.logic.commands.AddStaffCommand;
 import seedu.patientist.logic.commands.AddWardCommand;
 import seedu.patientist.logic.commands.ClearCommand;
@@ -99,6 +100,9 @@ public class PatientistParser {
 
         case DeleteWardCommand.COMMAND_WORD:
             return new DeleteWardCommandParser().parse(arguments);
+
+        case AddPatientStatusCommand.COMMAND_WORD:
+            return new AddPatientStatusCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
