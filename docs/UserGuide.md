@@ -153,7 +153,7 @@ Purposes of each GUI component
 |            Syntax            |                                                                      Explanation                                                                       |
 |:----------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |           `prefix/`           |           Prefixes that are used to separate the parameters supplied by the user. These are usually lower-case and are 1-2 characters long.            |
-|         `UPPER_CASE`         |  [Parameters](#glossary) to be specified by the user. These parameters are not optional, and will cause an error if they are left out of the command.  |
+|         `UPPER_CASE`         |            [Parameters](#glossary) to be specified by the user. These parameters are compulsory if they are not wrapped in square brackets.            |
 | `[Items in square brackets]` |                                       Optional parameters. The command will work fine if these are not included.                                       |
 |   `param...`/`[param]...`    | More than one of the parameter `param` is accepted. The first case allows for 1 or more `params`, while the second case allows for 0 or more `params`. |
 
@@ -205,44 +205,51 @@ Examples
 ### Assignments
 
 For assignments, you can make the following calls:
-* add
-* delete
+* add_asgn
+* delete_asgn
 * grade
 * ungrade
-* list
-* exit
+* list_asgn
 
-#### Add Assignment: `add`
-Adds an assignment with name, start_date, end_date, percent_weightage, total marks. All assignments will initially be ungraded.
+### Add Assignment: `add_asgn`
+Adds an assignment with name, total marks. 
+If total marks for the assignment is unspecified, a default value of 100 will be given.
+All assignments will initially be ungraded.
 <br>
-Format: `Format: add NAME START_DATE END_DATE PERCENT_WEIGHTAGE TOTAL_MARKS`<br>
+Format: `add_asgn n/NAME [m/TOTAL_MARKS]`<br>
 Example:
-* `add lab1 01-03-2023 15-03-2023 20 100`
+* `add_asgn n/Lab_1`
+* `add_asgn n/Lab_2 m/50`
 
-#### Delete Assignment: `delete`
-Deletes the assignment of assignment_id you provided.<br>
-Format: `delete ASSIGNMENT_ID`<br>
+### Delete Assignment: `delete_asgn`
+Deletes the assignment of assignment_name you provided. If the assignment is not found, returns an error.<br>
+Format: `delete n/ASSIGNMENT_ID`<br>
+
 Example:
-* `delete 1`
+* `delete_asgn n/Lab_1`
 
-#### Grade Assignment: `grade`
-Grades the assignment of assignment_id and student_id with a score you provide.<br>
-Format: `grade ASSIGNMENT_ID STUDENT_ID SCORE`<br>
+### Grade Assignment: `grade`
+Grades the submission of assignment_name and student_id with a score you provide. 
+You can also indicate whether a submission is late by using the "late/" flag at the end.
+<br>
+Format: `grade n/ASSIGNMENT_NAME i/STUDENT_ID m/SCORE [late/]`<br>
 Example:
-* `grade 1 2 20`
+* `grade n/Lab_1 i/2 m/20`
+* `grade n/Lab_1 i/3 m/30 late/`
 
-#### Ungrade Assignment: `ungrade`
-Removes the grade of the assignment of assignment_id and student_id.<br>
-Format: `ungrade ASSIGNMENT_ID STUDENT_ID`<br>
+### Ungrade Assignment: `ungrade`
+Resets the grade of the submission of assignment_name and student_id. It will also reset
+the late submission status of the submission, if the submission was marked as late.
+<br>
+Format: `ungrade n/ASSIGNMENT_ID i/STUDENT_ID`<br>
 Example:
-* `ungrade 1 2`
+* `ungrade n/Lab_1 i/2`
 
-#### List all assignments: `list_a` [coming soon]
-Lists all assignments and their respective information.
-Format: `list_a`
+### List all assignments: `list_asgn`
+Lists all assignments, submissions and their respective information.
+Format: `list_asgn`
 
-### Class List
-
+## Class List
 For class lists, you can call the following commands:
 - Create class list: `create`
 - (Random) Groupings: `rand_grp`
