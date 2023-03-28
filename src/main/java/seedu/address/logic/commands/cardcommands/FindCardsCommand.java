@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.cardcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.cardcommands.AddCommand.MESSAGE_NO_SELECTED_DECK;
+import static seedu.address.logic.commands.cardcommands.AddCardCommand.MESSAGE_NO_SELECTED_DECK;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,9 +19,9 @@ import seedu.address.model.deck.Deck;
  * Finds and lists all cards in the selected deck that contain any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FindCardCommand extends Command {
+public class FindCardsCommand extends Command {
 
-    public static final String COMMAND_WORD = "findCard";
+    public static final String COMMAND_WORD = "findCards";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all cards that contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -31,11 +31,11 @@ public class FindCardCommand extends Command {
     private final QuestionContainsKeywordsPredicate cardPredicate;
 
     /**
-     * Constructs a FindCardCommand with the given list of keywords.
+     * Constructs a FindCardsCommand with the given list of keywords.
      * The command will search for cards in the selected deck that contain any of the keywords.
      * @param keywords the list of keywords to search for
      */
-    public FindCardCommand(List<String> keywords) {
+    public FindCardsCommand(List<String> keywords) {
         this.cardPredicate = new QuestionContainsKeywordsPredicate(keywords);
     }
 
@@ -52,7 +52,7 @@ public class FindCardCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCardCommand // instanceof handles nulls
-                && cardPredicate.equals(((FindCardCommand) other).cardPredicate)); // state check
+                || (other instanceof FindCardsCommand // instanceof handles nulls
+                && cardPredicate.equals(((FindCardsCommand) other).cardPredicate)); // state check
     }
 }

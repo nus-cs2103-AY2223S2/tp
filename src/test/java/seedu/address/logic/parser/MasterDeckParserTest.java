@@ -19,8 +19,9 @@ public class MasterDeckParserTest {
     @Test
     public void parseCommand_add() throws Exception { // edit in the future as deck needs to be selected
         // Card card = new CardBuilder().build();
-        // AddCommand command = (AddCommand) parser.parseCommandWhenDeckNotSelected(CardUtil.getAddCommand(card));
-        // assertEquals(new AddCommand(card), command);
+        // AddCardCommand command = (AddCardCommand)
+        // parser.parseCommandWhenDeckNotSelected(CardUtil.getAddCommand(card));
+        // assertEquals(new AddCardCommand(card), command);
     }
 
     @Test
@@ -32,19 +33,20 @@ public class MasterDeckParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception { // edit in the future as deck needs to be selected
-        // DeleteCommand command = (DeleteCommand) parser.parseCommandWhenDeckNotSelected(
-        //        DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        // assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        // DeleteCardCommand command = (DeleteCardCommand) parser.parseCommandWhenDeckNotSelected(
+        //        DeleteCardCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        // assertEquals(new DeleteCardCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception { // edit in the future as deck needs to be selected
         // Card card = new CardBuilder().build();
         // EditCardDescriptor descriptor = new EditCardDescriptorBuilder(card).build();
-        // EditCommand command = (EditCommand) parser.parseCommandWhenDeckNotSelected(EditCommand.COMMAND_WORD
+        // EditCardCommand command =
+        // (EditCardCommand) parser.parseCommandWhenDeckNotSelected(EditCardCommand.COMMAND_WORD
         //        + " " + INDEX_FIRST_PERSON.getOneBased() + " "
         //        + CardUtil.getEditPersonDescriptorDetails(descriptor));
-        // assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        // assertEquals(new EditCardCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test

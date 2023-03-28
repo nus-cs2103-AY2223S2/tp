@@ -16,9 +16,9 @@ import seedu.address.testutil.AddCardDescriptorBuilder;
 import seedu.address.testutil.CardBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddCardCommand}.
  */
-public class AddCommandIntegrationTest {
+public class AddCardCommandIntegrationTest {
 
     private Model model;
 
@@ -31,22 +31,22 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_newCard_success() {
         Card validCard = new CardBuilder().build(); // Deck("Default") Tag("hard")
-        AddCommand.AddCardDescriptor cardDescriptor = new AddCardDescriptorBuilder(validCard).build();
+        AddCardCommand.AddCardDescriptor cardDescriptor = new AddCardDescriptorBuilder(validCard).build();
 
         Model expectedModel = new ModelManager(model.getMasterDeck(), new UserPrefs());
         expectedModel.selectDeck(Index.fromOneBased(1));
         cardDescriptor.setDeck(expectedModel.getSelectedDeck().get()); // Change Deck to selectedDeck
         expectedModel.addCard(cardDescriptor.buildCard());
 
-        assertCommandSuccess(new AddCommand(cardDescriptor), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validCard), expectedModel);
+        assertCommandSuccess(new AddCardCommand(cardDescriptor), model,
+                String.format(AddCardCommand.MESSAGE_SUCCESS, validCard), expectedModel);
     }
 
     @Test
     public void execute_duplicateCard_throwsCommandException() {
         Card cardInList = model.getMasterDeck().getCardList().get(0); // This card also belongs to the selectedDeck
-        AddCommand.AddCardDescriptor cardDescriptor = new AddCardDescriptorBuilder(cardInList).build();
-        assertCommandFailure(new AddCommand(cardDescriptor), model, AddCommand.MESSAGE_DUPLICATE_CARD);
+        AddCardCommand.AddCardDescriptor cardDescriptor = new AddCardDescriptorBuilder(cardInList).build();
+        assertCommandFailure(new AddCardCommand(cardDescriptor), model, AddCardCommand.MESSAGE_DUPLICATE_CARD);
     }
 
 }

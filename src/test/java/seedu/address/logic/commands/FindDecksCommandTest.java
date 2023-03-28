@@ -14,7 +14,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.deckcommands.FindDeckCommand;
+import seedu.address.logic.commands.deckcommands.FindDecksCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -23,20 +23,20 @@ import seedu.address.model.deck.DeckContainsKeywordsPredicate;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
-public class FindDeckCommandTest {
+public class FindDecksCommandTest {
     private Model model = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
 
     @Test
     public void equals() {
-        FindDeckCommand findFirstCommand = new FindDeckCommand(Collections.singletonList("first"));
-        FindDeckCommand findSecondCommand = new FindDeckCommand(Collections.singletonList("second"));
+        FindDecksCommand findFirstCommand = new FindDecksCommand(Collections.singletonList("first"));
+        FindDecksCommand findSecondCommand = new FindDecksCommand(Collections.singletonList("second"));
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindDeckCommand findFirstCommandCopy = new FindDeckCommand(Collections.singletonList("first"));
+        FindDecksCommand findFirstCommandCopy = new FindDecksCommand(Collections.singletonList("first"));
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -55,7 +55,7 @@ public class FindDeckCommandTest {
         String expectedMessage = String.format(MESSAGE_DECKS_LISTED_OVERVIEW, 0);
         DeckContainsKeywordsPredicate predicate = prepareDeckPredicate(userInput);
         List keywords = prepareKeywords(userInput);
-        FindDeckCommand command = new FindDeckCommand(keywords);
+        FindDecksCommand command = new FindDecksCommand(keywords);
         expectedModel.updateFilteredDeckList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredDeckList());
@@ -67,7 +67,7 @@ public class FindDeckCommandTest {
         String expectedMessage = String.format(MESSAGE_DECKS_LISTED_OVERVIEW, 1);
         DeckContainsKeywordsPredicate predicate = prepareDeckPredicate(userInput);
         List keywords = prepareKeywords(userInput);
-        FindDeckCommand command = new FindDeckCommand(keywords);
+        FindDecksCommand command = new FindDecksCommand(keywords);
         expectedModel.updateFilteredDeckList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(VALID_DECK_SCIENCE), model.getFilteredDeckList());

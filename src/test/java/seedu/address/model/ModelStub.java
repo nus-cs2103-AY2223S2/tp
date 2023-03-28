@@ -89,7 +89,7 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredCardList(Predicate<Card> predicate) {
-        return; // AddCommand does call updateFilteredCardList method
+        return; // AddCardCommand does call updateFilteredCardList method
     }
 
     @Override
