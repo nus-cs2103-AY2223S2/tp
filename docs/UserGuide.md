@@ -117,13 +117,13 @@ A tag is a generic description for a group of people.
 
 You may see the following icons throughout our user guide, which are styled differently according to their purpose.
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
+<div markdown="span" class="alert alert-info">:information_source: **Info**
 This provides some additional information that you are recommended to know.
 </div>
 
 ##### Tip Box
 
-<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="block" class="alert alert-primary">:bulb: **Tip**
 This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink.
 </div>
 
@@ -235,7 +235,7 @@ Examples:
 
 Adds a volunteer to FriendlyLink.
 
-Format: `add_volunteer vic/NRIC n/NAME bd/BIRTH_DATE [p/PHONE] [e/EMAIL] [a/ADDRESS] [re/REGION] [t/TAG]…​ [mt/MEDICAL_QUALIFICATIONS]… [dr/START_DATE, END_DATE]…​`
+Format: `add_volunteer vic/NRIC n/NAME bd/BIRTH_DATE [p/PHONE] [e/EMAIL] [a/ADDRESS] [re/REGION] [t/TAG]…​ [mt/MEDICAL_QUALIFICATIONS]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…​`
 
 * Every volunteer must have a unique `NRIC`.
 * Alphabets in `NRIC` are case-insensitive.
@@ -244,7 +244,7 @@ Format: `add_volunteer vic/NRIC n/NAME bd/BIRTH_DATE [p/PHONE] [e/EMAIL] [a/ADDR
 * For available dates, the start date should be before the end date.
 * Phone number specified can only be numeric characters, and must be at least 3 digits long.
 * The `MEDICAL_QUALIFICATION` takes the form `SKILL_NAME LEVEL`. The `LEVEL` can only take 3 values: `BASIC`, `INTERMEDIATE` or `HIGH`. Example: `CPR BASIC`, `AED INTERMEDIATE`.
-* `START_DATE, END_DATE` represents the start and end of the dates that the volunteer is available.
+* AVAILABLE_DATE_START, AVAILABLE_DATE_END` represents the start and end of the dates that the volunteer is available.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A volunteer can have any number of tags, medical qualifications and available dates. 
@@ -370,7 +370,7 @@ Examples:
 
 #### Editing a pair by index: `edit_pair` (COMING SOON)
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
+<div markdown="span" class="alert alert-info">:information_source: **Info**
 This feature has not been implemented yet.
 </div>
 
