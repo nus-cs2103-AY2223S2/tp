@@ -119,14 +119,6 @@ public class LogicTaskList {
         tasks.get(index).unmark();
     }
 
-    public void addTag(String newTag, Index index) {
-        tasks.get(index.getZeroBased()).addTag(newTag);
-    }
-
-    public void removeTag(String tag, Index index) {
-        tasks.get(index.getZeroBased()).removeTag(tag);
-    }
-
     //// util methods
 
     public LogicTaskList slice(int start, int end) {

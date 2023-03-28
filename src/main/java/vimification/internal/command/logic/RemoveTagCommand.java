@@ -30,14 +30,14 @@ public class RemoveTagCommand extends UndoableLogicCommand {
     @Override
     public CommandResult undo(LogicTaskList taskList) throws CommandException {
         requireNonNull(taskList);
-        taskList.addTag(deletedTag, targetIndex);
+        taskList.get(targetIndex.getZeroBased()).addTag(deletedTag);
         return new CommandResult(UNDO_MESSAGE);
     }
 
     @Override
     public CommandResult execute(LogicTaskList taskList) throws CommandException {
         requireNonNull(taskList);
-        taskList.removeTag(deletedTag, targetIndex);
+        taskList.get(targetIndex.getZeroBased()).removeTag(deletedTag);
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, deletedTag, targetIndex));
     }
 }

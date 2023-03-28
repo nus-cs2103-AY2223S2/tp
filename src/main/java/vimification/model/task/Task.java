@@ -47,7 +47,11 @@ public abstract class Task {
     }
 
     public void addTag(String newTag) {
+        requireNonNull(newTag);
         newTag = newTag.toLowerCase();
+        if (tags.contains(newTag)) {
+            throw new IllegalArgumentException("Tag already exists");
+        }
         tags.add(newTag);
     }
 
