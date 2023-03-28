@@ -21,9 +21,9 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the list of internship applications" +
-            "by ascending order. At most one parameter can be included. If none of the parameters is specified, "
-            + "it sorts by COMPANY_NAME\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the list of internship applications"
+            + "by ascending order. Exactly one parameter should be specified. "
+            + "If the value is not present, it will be placed at the end of the list.\n"
             + "Parameters: "
             + "[" + PREFIX_COMPANY_NAME + "COMPANY_NAME] "
             + "[" + PREFIX_JOB_TITLE + "JOB_TITLE] "

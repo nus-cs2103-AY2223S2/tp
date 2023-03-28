@@ -23,14 +23,12 @@ public class SortCommandParser implements Parser<SortCommand> {
      * Checks if the prefix p specified is valid.
      *
      * @param p The prefix to be verified
-     * @param validPrefixes All valid prefixes supported
-     * @return true if p is valid
-     * @throws ParseException
+     * @throws ParseException if none of the prefixes is matched
      */
-    private boolean verifySortCommandOptions(Prefix p, Prefix[] validPrefixes) throws ParseException {
-        for (Prefix i : validPrefixes) {
+    private void verifySortCommandOptions(Prefix p) throws ParseException {
+        for (Prefix i : SortCommand.PREFIXES_SUPPORTED) {
             if (p.equals(i)) {
-                return true;
+                return;
             }
         }
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -52,7 +50,7 @@ public class SortCommandParser implements Parser<SortCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
         Prefix prefix = new Prefix(prefixes[0]);
-        verifySortCommandOptions(prefix, SortCommand.PREFIXES_SUPPORTED);
+        verifySortCommandOptions(prefix);
         if (PREFIX_COMPANY_NAME.equals(prefix)) {
             return new SortCommand(new CompanyNameComparator());
         } else if (PREFIX_JOB_TITLE.equals(prefix)) {

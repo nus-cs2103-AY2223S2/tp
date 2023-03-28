@@ -266,7 +266,7 @@ public class ModelManager implements Model {
     @Override
     public void updateSortedFilteredInternshipList(Comparator<InternshipApplication> comparator) {
         requireNonNull(comparator);
-        sortedFilteredInternships.sort(comparator);
+        sortedFilteredInternships.setComparator(comparator);
     }
 
     @Override
