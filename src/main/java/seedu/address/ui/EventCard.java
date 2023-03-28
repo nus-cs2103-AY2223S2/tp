@@ -9,14 +9,17 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Note;
@@ -33,13 +36,10 @@ public class EventCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private HBox studentProfiles;
-
     @FXML
     private VBox noteBox;
-
     @FXML
     private BorderPane borderPane;
-
     @FXML
     private HBox details;
     @FXML

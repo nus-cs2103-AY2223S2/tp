@@ -2,8 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EVENT_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
 
 import java.util.stream.Stream;
 
@@ -24,7 +25,8 @@ public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
     public DeleteNoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NOTE_INDEX, PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_NOTE_INDEX, PREFIX_NOTE_EVENT_TYPE,
+                        PREFIX_NOTE_EVENT_NAME);
         if (arePrefixesAbsent(argMultimap, PREFIX_NOTE_INDEX)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteNoteCommand.MESSAGE_USAGE) + "\n"
@@ -52,7 +54,8 @@ public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
     }
 
     /**
-     * Returns true if none of the prefixes contains command to add students (cannot add student and tutorial
+     * Returns true if none of the prefixes contains command to add students (cannot add
+     * student and tutorial
      * using the same command.)
      * {@code ArgumentMultimap}.
      */

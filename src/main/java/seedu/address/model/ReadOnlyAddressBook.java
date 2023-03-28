@@ -1,10 +1,9 @@
 package seedu.address.model;
 
-import java.util.List;
 import javafx.collections.ObservableList;
+
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
-import seedu.address.model.event.NoteList;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 

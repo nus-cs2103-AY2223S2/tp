@@ -6,7 +6,13 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.event.*;
+import seedu.address.model.event.Consultation;
+import seedu.address.model.event.Lab;
+import seedu.address.model.event.Tutorial;
+import seedu.address.model.event.Note;
+import seedu.address.model.event.UniqueConsultationList;
+import seedu.address.model.event.UniqueLabList;
+import seedu.address.model.event.UniqueTutorialList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -285,7 +291,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds note to address book note list
+     * Adds note to address book tutorial note list
      * @param note The note to add.
      */
     public void addNoteToTutorial(Note note, String nameOfEvent) {
@@ -299,6 +305,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    /**
+     * Adds note to address book lab note list
+     * @param note The note to add.
+     */
     public void addNoteToLab(Note note, String nameOfEvent) {
         if (!(labs.containsEventName(nameOfEvent))) {
             return;
@@ -310,6 +320,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    /**
+     * Adds note to address book consultation note list
+     * @param note The note to add.
+     */
     public void addNoteToConsultation(Note note, String nameOfEvent) {
         if (!(consultations.containsEventName(nameOfEvent))) {
             return;
@@ -321,6 +335,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    /**
+     * Removes note from specific tutorial
+     * @param index Index of note to remove
+     * @param nameOfEvent Event name
+     */
     public void removeNoteFromTutorial(Index index, String nameOfEvent) {
         for (Tutorial tut : tutorials) {
             if (tut.hasMatchByName(nameOfEvent)) {
@@ -329,6 +348,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    /**
+     * Removes note from specific lab
+     * @param index Index of note to remove
+     * @param nameOfEvent Event name
+     */
     public void removeNoteFromLab(Index index, String nameOfEvent) {
         for (Lab lab : labs) {
             if (lab.hasMatchByName(nameOfEvent)) {
@@ -337,6 +361,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    /**
+     * Removes note from specific consult
+     * @param index Index of note to remove
+     * @param nameOfEvent Event name
+     */
     public void removeNoteFromConsultation(Index index, String nameOfEvent) {
         for (Consultation consultation : consultations) {
             if (consultation.hasMatchByName(nameOfEvent)) {
@@ -345,6 +374,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    /**
+     * Edits note from specific consult
+     * @param index Index of note to edit
+     * @param nameOfEvent Event name
+     */
     public void editNoteFromConsultation(Index index, Note note, String nameOfEvent) {
         for (Consultation consultation : consultations) {
             if (consultation.hasMatchByName(nameOfEvent)) {
@@ -353,6 +387,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    /**
+     * Removes note from specific lab
+     * @param index Index of note to edit
+     * @param nameOfEvent Event name
+     */
     public void editNoteFromLab(Index index, Note note, String nameOfEvent) {
         for (Lab lab : labs) {
             if (lab.hasMatchByName(nameOfEvent)) {
@@ -361,6 +400,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    /**
+     * Removes note from specific tutorial
+     * @param index Index of note to edit
+     * @param nameOfEvent Event name
+     */
     public void editNoteFromTutorial(Index index, Note note, String nameOfEvent) {
         for (Tutorial tutorial : tutorials) {
             if (tutorial.hasMatchByName(nameOfEvent)) {

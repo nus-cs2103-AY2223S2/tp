@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-
+/**
+ * List of notes class
+ */
 public class NoteList {
     private final List<Note> notes = new LinkedList<>();
 
@@ -72,7 +74,7 @@ public class NoteList {
     }
 
     /**
-     *
+     * Replaces the indexed note with a new {@code Note} object.
      * @param index
      */
     public void replace(Note note, int index) throws IndexOutOfBoundsException {
