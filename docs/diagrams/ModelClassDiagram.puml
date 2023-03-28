@@ -8,17 +8,21 @@ Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
+Class "{abstract}\nTask" as Task
 Class AddressBook
 Class ModelManager
 Class UserPrefs
 
 Class UniqueTaskList
-Class Task
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+'Class Name
+'Class Description
+Class UniqueSubtaskList
+'Class Effort
+'Class Tag
+Class Subtask
+Class SimpleTask
+Class Deadline
+Class Event
 
 }
 
@@ -36,15 +40,22 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueTaskList
 UniqueTaskList --> "~* all" Task
-Task *--> Name
-Task *--> Phone
-Task *--> Email
-Task *--> Address
-Task *--> "*" Tag
+'Task *--> Name
+'Task *--> Description
+'Task *--> Effort
+Task *--> "1" UniqueSubtaskList
+'Task *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+
+Deadline -right|> Task
+Event -left|> Task
+SimpleTask -up-|> Task
+
+
+
+UniqueSubtaskList --> "~* all" Subtask
+'Subtask *--> Name
+'Subtask *--> Description
 
 ModelManager -->"~* filtered" Task
 @enduml
