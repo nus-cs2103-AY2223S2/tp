@@ -83,7 +83,8 @@ Format: `add t/TITLE d/DESCRIPTION i/INGREDIENT s/STEP [t/TAG]`
 
 Examples:
 
-- `add t/Corndogs d/I love corndogs i/100g flour i/500ml oil i/half block string cheese i/100ml water i/Hotdog s/Mix flour and water until homogenous s/Poke hotdog and string cheese through a skewer s/Dip skewer into batter until fully coated i/Fry in oil until golden brown`
+- `add t/Corndogs d/I love corndogs i/100g flour i/500ml oil i/Half block of string cheese i/100ml water 
+  i/Hotdog s/Mix flour and water until homogenous s/Poke hotdog and string cheese through a skewer s/Dip skewer into batter until fully coated s/Fry in oil until golden brown`
 - `add t/Scrambled Eggs i/4 eggs i/1 tablespoon of butter i/100ml heavy cream s/Crack the eggs into a bowl, add the cream and whisk s/Heat the butter in the pan until sizzling s/Pour the eggs in and stir until cooked to desired doneness tag/easy tag/15min`
 
 ### Edit a recipe: `edit {recipe number}`
