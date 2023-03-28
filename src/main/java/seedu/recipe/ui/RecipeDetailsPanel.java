@@ -46,7 +46,7 @@ public class RecipeDetailsPanel extends UiPart<Region> {
     public void setRecipeDetails(Recipe recipe) {
         if (recipe != null) {
             if (recipe.isStarred()) {
-                recipeTitle.setText(recipe.getTitle().toString() + "★");
+                recipeTitle.setText(recipe.getTitle().toString() + " ★");
             } else {
                 recipeTitle.setText(recipe.getTitle().toString());
             }

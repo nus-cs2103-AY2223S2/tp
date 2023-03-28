@@ -45,7 +45,7 @@ public class RecipeCard extends UiPart<Region> {
         this.recipe = recipe;
         id.setText(displayedIndex + ". ");
         if (recipe.isStarred()) {
-            title.setText(recipe.getTitle().title + "★");
+            title.setText(recipe.getTitle().title + " ★");
         } else {
             title.setText(recipe.getTitle().title);
         }
