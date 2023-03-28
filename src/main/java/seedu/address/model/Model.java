@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -80,6 +81,11 @@ public interface Model {
      * existing patient in the address book.
      */
     void setPatient(Patient target, Patient editedPatient);
+
+    /**
+     * Sorts the list of patients by given {@code comparator}
+     */
+    void sortPatients(Comparator<Patient> comparator);
 
     /**
      * Returns true if a ward with the same identity as {@code ward} exists in the address book.
