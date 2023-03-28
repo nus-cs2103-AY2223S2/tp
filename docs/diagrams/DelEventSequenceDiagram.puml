@@ -34,7 +34,7 @@ create DelEventCommand
 DelEventCommandParser -> DelEventCommand
 activate DelEventCommand
 
-DelEventCommand --> DelEventCommandParser : d
+DelEventCommand --> DelEventCommandParser
 deactivate DelEventCommand
 
 DelEventCommandParser --> AddressBookParser : d
