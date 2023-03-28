@@ -562,59 +562,22 @@ After:
 
 ![deleteAfter](images/afterDelete.png)
 
-Examples:
+Example given:
 * `delete 2` deletes the second pet in the currently displayed pet list in your PetPal.
-
-#### Delete meetings : `deletemeeting`
-
-Deletes a meeting from your client in your FABook.
-
-You can use this command when:
-1. Your client or you cancels a meeting.
-   <br>
-
-**Constraints**
-* `INDEX` is the index of the client in the currently displayed list.
-* `MEETINGTIME` should be in the format `DD-MM-YYYY-HH:MM`.
-* If the given meeting time is not on the list, the client's meetings remain unchanged.
-
-Format: `deletemeeting INDEX mt/MEETINGTIME`
-
-Examples:
-* `deletemeeting 2 mt/09-10-2023-23:50` deletes the meeting at 9 October 2023 23:50 from the second client in the displayed list,
-  if such a meeting was scheduled.
-
-#### Remove past meetings : `sync`
-
-Removes every scheduled meeting time that has already passed.
-
-You can use this command when:
-1. You want an up to date list of meetings.
-   <br>
-
-**Constraints**
-* This uses your device's present local time as reference. All meetings scheduled to be earlier than the present time will removed.
-* Sync command does not refresh the meetings displayed on the person profile, you need to re-click on person card.
-
-Format: `sync`
-
-![sync](images/UserGuide/sync.png)
-
-<div markdown="block" class="alert alert-block alert-danger">
-
-:heavy_exclamation_mark: **Caution:**
-As this command syncs with your device's system clock, please make sure the current date, time, and timezone are correct before using this command.
-Please note that undo cannot undo this command!
-
-</div>
 
 #### Clearing all entries : `clear`
 
-Clears all entries from your FABook.
+Clears all entries from your PetPal.
 
 Format: `clear`
 
-![clear](images/UserGuide/clear.png)
+Before:
+
+![clearBefore](images/beforeDelete.png)
+
+After:
+
+![clearAfter](images/clearAfter.png)
 
 <div markdown="block" class="alert alert-block alert-warning">
 
