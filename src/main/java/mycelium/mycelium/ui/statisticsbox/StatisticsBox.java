@@ -33,7 +33,7 @@ public class StatisticsBox extends UiPart<Region> implements TabsPanel {
 
 
     /**
-     * Creates a {@code StatisticsBox} with the given {@code }.
+     * Creates a {@code StatisticsBox} with the given {@code Logic}.
      */
     public StatisticsBox(Logic logic) {
         super(FXML);

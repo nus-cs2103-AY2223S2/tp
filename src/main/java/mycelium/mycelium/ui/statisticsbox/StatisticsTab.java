@@ -32,7 +32,6 @@ public class StatisticsTab extends UiPart<Tab> {
      *
      * @param title   Title of the Tab
      * @param content Content the tab should be populated with
-     * @param message Message that the tab will display when content is empty
      */
     public StatisticsTab(String title, UiPart<? extends Node> content) {
         super(FXML);
