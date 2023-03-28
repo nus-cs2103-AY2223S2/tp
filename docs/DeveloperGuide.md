@@ -7,6 +7,27 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction to HMHero**
+
+HMHero is an Applicant Managing System designed to be used by human resource professionals, hiring managers, 
+and recruiters who want to streamline the recruitment process and make it more efficient, 
+helping their organizations manage job applications and hiring processes more effectively.
+
+This Developer Guide is a detailed documentation on HMHero's design and implementation, describing the architecture, 
+an outline of all parts of HMHero and how they work together, and specifications on
+feature implementation and considerations.
+
+This guide is intended to assist developers in maintaining, upgrading or evolving HMHero.
+
+--------------------------------------------------------------------------------------------------------------------
+## **How to use this Developer Guide**
+
+#### Person in place of Applicant
+
+In this Developer Guide, `Person` is used in place of Applicant. Take note that when mentioning `Person`, we are
+always talking about an Applicant in HMHero.
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
@@ -160,6 +181,13 @@ This section describes some noteworthy details on how certain features are imple
 
 The `add` command creates a new `Person`, which represents an Applicant in HMHero's Applicant Managing System.
 
+<div markdown="span" class="alert alert-info" role="alert">
+
+:information_source: <strong>Command Format:<strong> 
+`add n/NAME p/PHONE e/EMAIL a/ADDRESS [applied/APPLIEDDATETIME] [note/NOTE]...` <br>
+Refer to [Glossary](#glossary) for more information on Command format.
+</div>
+
 The activity diagram is as such:
 
 ![AddCommand activity diagram](diagrams/AddApplicantActivityDiagram.puml)
@@ -193,8 +221,14 @@ could introduce confusion to how `add` command is used.
 
 ##### Overview
 
-The `advance` command advances an `Person` in HMHero, which advances the `status` of an `Person`.
+The `advance` command advances an `Person` in HMHero, which advances the `status` of a `Person`.
 
+<div markdown="span" class="alert alert-info" role="alert">
+
+:information_source: <strong>Command Format:<strong>
+`advance n/NAME p/PHONE [d/INTERVIEWDATETIME]` <br>
+Refer to [Glossary](#glossary) for more information on Command format and applicant status.
+</div>
 
 The activity diagram is as such:
 
@@ -204,64 +238,63 @@ Here is the activity diagram showing the process of the `advance` command:
 [Add in later]()
 
 ##### Feature Details
-1. The user specifies an applicant name and phone that represents an `Person` to be advanced.
-1. If the name and phone is not provided, an error is thrown and the user is prompted to 
+1. The user specifies an applicant name and phone that represents a `Person` to be advanced.
+2. If the name and phone is not provided, an error is thrown and the user is prompted to 
 enter the command correctly via an error message.
-1. The applicant is cross-referenced in the `Model` to check if it exists.
-      If it does not, then an error is raised to inform the user.
-1. The status must be either Applied or Shortlisted. Else, then an error is raised to inform the user.
-1. If the interview datetime is not provided when the status is Applied, the user will be prompted to enter the command
+3. The name and phone are cross-referenced in the `Model` to check if 
+an applicant with the corresponding name and phone exists. If it does not, then an error is raised to inform the user.
+4. The status must be either Applied or Shortlisted. Else, then an error is raised to inform the user.
+5. If the interview datetime is not provided when the status is Applied, the user will be prompted to enter the command
 correctly via an error message.
-1. If the interview datetime provided exists in the `Model`, the user will be prompted to enter the command
+6. If the interview datetime provided exists in the `Model`, the user will be prompted to enter the command
 correctly via an error message.
-1. If the interview datetime is provided when the status is Shortlisted, the user will be prompted to enter the command
+7. If the interview datetime is provided when the status is Shortlisted, the user will be prompted to enter the command
 correctly via an error message.
-1. Finally, if the name and phone does not fully match the Applicant List is provided, an error is thrown and 
-the user is prompted to enter the command correctly via an error message.
+8. If step 7 is reached without any error message, HMHero advances the specified `Person`'s `status`.
 
 ##### Feature Considerations
 
-It should be noted that when checking for status in the `Person` inside the `Model`, Applicants cannot be in Accepted or
-Rejected status. This presents confusingly to the user, applicants ideally cannot be advanced with a rejected or 
-accepted status. For example, if an `Person` with the status `Accepted` or `Rejected`, then you cannot advance 
-an existing `Person` any further.
-
-When implementing this feature, we realised that it is common to advance just by one stage. We thus decided to provide
-a default behaviour when advancing an applicant's status.
+When implementing this feature, we realised that we could model HMHero to track hiring process in the real world 
+more effectively by enforcing the rule that the user can only advance applicants one stage at a time. 
+We thus decided to provide a default behaviour when advancing an applicant's status.
 
 
 #### Rejecting an Applicant
 
 ##### Overview
 
-The `reject` command rejects an `Person` in HMHero, which rejects the `status` of an `Person`.
+The `reject` command rejects a `Person` in HMHero, which changes the `status` of a `Person` to `REJECTED`.
 
+<div markdown="span" class="alert alert-info" role="alert">
+
+:information_source: <strong>Command Format:<strong>
+`reject n/NAME p/PHONE` <br>
+Refer to [Glossary](#glossary) for more information on Command format.
+</div>
 
 The activity diagram is as such:
 [Add in later]()
 
-Here is the activity diagram showing the process of the `advance` command:
+Here is the activity diagram showing the process of the `reject` command:
 [Add in later]()
 
 ##### Feature Details
 1. The user specifies an applicant name and phone that represents an `Person` to be rejected.
 2. If the name and phone is not provided, an error is thrown and the user is prompted to
 enter the command correctly via an error message.
-3. The status must be either Applied or Shortlisted or Accepted. Else, then an error is raised to inform the user.
-4. The applicant is cross-referenced in the `Model` to check if it exists.
-If it does not, then an error is raised to inform the user.
-5. Finally, if the name and phone does not fully match the Applicant List is provided, an error is thrown and
-the user is prompted to enter the command correctly via an error message.
-6. If step 5 completes without any exceptions, then the `Person` is successfully rejected.
+3. The name and phone are cross-referenced in the `Model` to check if
+    an applicant with the corresponding name and phone exists.
+    If it does not, then an error is raised to inform the user.
+4. HMHero confirms that the applicant's status is not already `REJECTED`. Else, an error is raised to inform the user.
+5. If step 4 completes without any exceptions, then the `Person` is successfully rejected.
 
 ##### Feature Considerations
 
-It should be noted that when checking for status in the `Person` inside the `Model`, Applicants cannot be in 
-Rejected status. This presents confusingly to the user, applicants ideally cannot be rejected with a rejected
-status. For example, if an `Person` with the status `Rejected`, then you cannot reject an existing `Person` any further.
-
-When implementing this feature, we realised that it is common to reject without removing. We thus decided to provide
-a default behaviour when rejecting an applicant's status.
+It is feasible to implement the reject feature to successfully executes when `reject` command executes on 
+applicants with `REJECTED` status. However, an absence of the error message provides little value to the user and 
+may present confusingly to the user. <br>
+Additionally, we realised that it is common for hiring managers to reject applicants without removing them. Thus, the
+`reject` command does not perform the same functionality as the `delete` command.
 
 #### Finding an Applicant
 
@@ -269,6 +302,14 @@ a default behaviour when rejecting an applicant's status.
 
 The `find` command filters applicants based on fields specified by the user. 
 Fields have to be denoted by flags. Allowed fields for filtering are `name` and `phone`.
+
+<div markdown="span" class="alert alert-info" role="alert">
+
+:information_source: <strong>Command Format:<strong>
+`find [n/NAME] [p/PHONE]` <br>
+Refer to [Glossary](#glossary) for more information on Command format.
+</div>
+
 
 The activity diagram is as such:
 
@@ -284,7 +325,7 @@ The UI displays a `FilteredList` obtained from an immutable applicant list.
 The `FindCommandParser` creates the `Predicate` used to filter the applicant list. When the `FindCommand` is executed,
 the `FilteredList` sets its `Predicate` field to the created `Predicate`. The UI shows the new `FilteredList`.
 
-Applicant fields required as an input is mandatory to reduce user confusion 
+Applicant fields are required as an input as it is helpful to reduce user confusion 
 and facilitate finding applicants based on multiple fields.
 
 
@@ -295,6 +336,13 @@ and facilitate finding applicants based on multiple fields.
 The `edit` feature edits the attached attributes of a specified `Person`,which is specified by the 
 one-indexed `personList` presented to the user.
 
+<div markdown="span" class="alert alert-info" role="alert">
+
+:information_source: <strong>Command Format:<strong>
+`edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEWDATETIME] [note/NOTE]...` <br>
+Refer to [Glossary](#glossary) for more information on Command format.
+</div>
+
 The activity diagram is as such:
 [add in later]()
 
@@ -304,16 +352,17 @@ Here is the activity diagram showing the process of the `edit` command:
 
 ##### Feature Details
 
-1. The user specifies an item index that represents an `Person` to be edited.
-1. If a negative or zero index is provided, an error is thrown and the user is prompted to enter the command correctly 
-via an error message.
-1. At least one field to be edited has to be provided. Else, the user will be prompted to enter the 
+1. The user can perform commands that modify the shown applicant list. (Eg. `find` and `interview` commands)
+2. The user specifies an index that represents a `Person` to be edited.
+3. If a non-zero unsigned integer index is not provided, an error is thrown and the user is prompted 
+    to enter the command correctly via an error message.
+4. At least one field to be edited has to be provided. Else, the user will be prompted to enter the 
 command correctly via an error message.
-1. The applicant is cross-referenced in the `Model` to check if it already exists. If it already does, 
-then an error is raised to inform the user.
-1. Finally, if an index that is not in the valid range of the Person List is provided, an error is thrown 
-and the user is prompted to enter the command correctly via an error message.
-1. If step 4 completes without any exceptions, then the new `Person` is successfully edited.
+5. If an index that is not in the valid range of the list is provided, an error is thrown 
+    and the user is prompted to enter the command correctly via an error message.
+6. The `edit` command creates a new applicant based on the given fields. The created applicant is cross-referenced 
+    in the `Model` to check if it already exists. If it already does, then an error is raised to inform the user.
+7. If step 6 completes without any exceptions, then the `Person` at the specified index is successfully edited.
 
 ##### Feature Considerations
 
@@ -338,7 +387,7 @@ The `list` command displays the full list by HMHero.
 
 ##### Feature Considerations
 
-The five statistics were chosen as a baseline and they are a good starting point for users to help 
+The five statistics were chosen as a baseline, and they are a good starting point for users to help 
 track the number of applicants. For example, the user can obtain the total number of applicants, and also provide 
 the total numbers of applicants for each status.
 
