@@ -77,6 +77,7 @@ public class AddScoreCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddScoreCommand // instanceof handles nulls
-                && toAdd.equals(((AddScoreCommand) other).toAdd));
+                && toAdd.equals(((AddScoreCommand) other).toAdd))
+                && index.equals(((AddScoreCommand) other).index); // state check;
     }
 }
