@@ -341,15 +341,6 @@ public interface Model {
 
     ObservableList<Crew> getFilteredCrewList();
 
-    // TODO: this is to be made for the delete function rather than to check rank
-    /**
-     * Checks whether a given index is in range of the
-     * @param index
-     * @return
-     */
-    boolean isIndexValid(int index);
-
-
     //=========== Plane methods ========================================================
 
     /**
@@ -505,4 +496,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null
      */
     void updateFilteredFlightList(Predicate<Flight> predicate);
+
+    //=========== Generic ========================================================
+
+    /**
+     * Checks whether a given index is in range of the current item list.
+     * @param index the index inputted.
+     * @return      a boolean determining whether the index is valid.
+     */
+    <T extends Item> boolean isIndexValid(int index, ReadOnlyItemManager<T> itemManager);
+
+
 }

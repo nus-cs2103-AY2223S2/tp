@@ -9,6 +9,7 @@ import seedu.address.commons.fp.Lazy;
 import seedu.address.commons.util.GetUtil;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
@@ -33,8 +34,16 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
     private static final String NO_PILOT_MESSAGE =
             "No pilot has been entered.\n"
                     + "Please enter at least 1 of the following:\n"
-                    + "     /pm for the Pilot Monitoring,"
+                    + "     /pm for the Pilot Monitoring, "
                     + "/pf for the Pilot Flying.";
+
+    private static final String INVALID_INDEX_VALUE_MESSAGE =
+            "%s is an invalid value.\n"
+                    + "Please try using an integer instead.";
+
+    private static final String INDEX_OUT_OF_BOUNDS_MESSAGE =
+            "Index %s is out of bounds.\n"
+                    + "Please enter a valid index.";
 
     private final Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy;
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
@@ -104,17 +113,30 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
     }
 
 
-    private boolean addPilot(
-            Optional<String> pilotIdOptional,
-            FlightPilotType type,
-            Map<FlightPilotType, Pilot> target
-    ) {
+    private boolean addPilot(Optional<String> pilotIdOptional, FlightPilotType type, Map<FlightPilotType, Pilot> target)
+            throws CommandException {
         if (pilotIdOptional.isEmpty()) {
             return false;
         }
-        int index = Integer.parseInt(pilotIdOptional.get());
-        Optional<Pilot> pilotOptional =
-                pilotManagerLazy.get().getItemOptional(index);
+
+        int pilotId;
+        try {
+            pilotId = Integer.parseInt(pilotIdOptional.get());
+        } catch (NumberFormatException e) {
+            throw new CommandException(String.format(
+                    INVALID_INDEX_VALUE_MESSAGE,
+                    pilotIdOptional.get()
+            ));
+        }
+
+        boolean isPilotIndexValid = (pilotId < pilotManagerLazy.get().size());
+        if (!isPilotIndexValid) {
+            throw new CommandException(String.format(
+                    INDEX_OUT_OF_BOUNDS_MESSAGE,
+                    pilotId));
+        }
+
+        Optional<Pilot> pilotOptional = pilotManagerLazy.get().getItemOptional(pilotId);
         if (pilotOptional.isEmpty()) {
             return false;
         }
@@ -122,18 +144,28 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
         return true;
     }
 
-    private Flight getFlightOrThrow(
-            Optional<String> flightIdOptional
-    ) throws ParseException {
+    private Flight getFlightOrThrow(Optional<String> flightIdOptional) throws ParseException {
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
-        int index = Integer.parseInt(flightIdOptional.get());
-        Optional<Flight> flightOptional =
-                flightManagerLazy.get().getItemOptional(index);
+
+        int flightId;
+        try {
+            flightId = Integer.parseInt(flightIdOptional.get());
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format(INVALID_INDEX_VALUE_MESSAGE, flightIdOptional.get()));
+        }
+
+        boolean isFlightIndexValid = (flightId < flightManagerLazy.get().size());
+        if (!isFlightIndexValid) {
+            throw new ParseException(String.format(INDEX_OUT_OF_BOUNDS_MESSAGE, flightId));
+        }
+
+        Optional<Flight> flightOptional = flightManagerLazy.get().getItemOptional(flightId);
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
+
         return flightOptional.get();
     }
 
@@ -147,15 +179,20 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
         Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
         Map<FlightPilotType, Pilot> pilots = new HashMap<>();
 
-        boolean hasFoundPilot = addPilot(
-                pilotFlyingIdOptional,
-                FlightPilotType.PILOT_FLYING,
-                pilots
-        ) || addPilot(
-                pilotMonitoringIdOptional,
-                FlightPilotType.PILOT_MONITORING,
-                pilots
-        );
+        boolean hasFoundPilot;
+        try {
+            hasFoundPilot = addPilot(
+                    pilotFlyingIdOptional,
+                    FlightPilotType.PILOT_FLYING,
+                    pilots
+            ) || addPilot(
+                    pilotMonitoringIdOptional,
+                    FlightPilotType.PILOT_MONITORING,
+                    pilots
+            );
+        } catch (CommandException e) {
+            throw new ParseException(e.getMessage());
+        }
 
         if (!hasFoundPilot) {
             throw new ParseException(NO_PILOT_MESSAGE);

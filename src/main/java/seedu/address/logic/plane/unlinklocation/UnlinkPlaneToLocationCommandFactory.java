@@ -9,6 +9,7 @@ import seedu.address.commons.fp.Lazy;
 import seedu.address.commons.util.GetUtil;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
@@ -32,6 +33,12 @@ public class UnlinkPlaneToLocationCommandFactory implements CommandFactory<Unlin
     private static final String NO_PLANE_MESSAGE =
             "No plane has been entered.\n"
                     + "Please enter /pl followed by the plane ID.";
+    private static final String INVALID_INDEX_VALUE_MESSAGE =
+            "%s is an invalid value.\n"
+                    + "Please try using an integer instead.";
+    private static final String INDEX_OUT_OF_BOUNDS_MESSAGE =
+            "Index %s is out of bounds.\n"
+                    + "Please enter a valid index.";
 
     private final Lazy<ReadOnlyItemManager<Location>> locationManagerLazy;
     private final Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy;
@@ -101,17 +108,32 @@ public class UnlinkPlaneToLocationCommandFactory implements CommandFactory<Unlin
     }
 
     private boolean addPlane(
-            Optional<String> pilotIdOptional,
+            Optional<String> planeIdOptional,
             PlaneLocationType type,
             Map<PlaneLocationType, Plane> target
-    ) {
-        if (pilotIdOptional.isEmpty()) {
+    ) throws CommandException {
+        if (planeIdOptional.isEmpty()) {
             return false;
         }
-        int indexOfPlane =
-                Integer.parseInt(pilotIdOptional.get());
-        Optional<Plane> planeOptional =
-                planeManagerLazy.get().getItemOptional(indexOfPlane);
+
+        int planeId;
+        try {
+            planeId = Integer.parseInt(planeIdOptional.get());
+        } catch (NumberFormatException e) {
+            throw new CommandException(String.format(
+                    INVALID_INDEX_VALUE_MESSAGE,
+                    planeIdOptional.get()
+            ));
+        }
+
+        boolean isPlaneIndexValid = (planeId < planeManagerLazy.get().size());
+        if (!isPlaneIndexValid) {
+            throw new CommandException(String.format(
+                    INDEX_OUT_OF_BOUNDS_MESSAGE,
+                    planeId));
+        }
+
+        Optional<Plane> planeOptional = planeManagerLazy.get().getItemOptional(planeId);
         if (planeOptional.isEmpty()) {
             return false;
         }
@@ -119,16 +141,29 @@ public class UnlinkPlaneToLocationCommandFactory implements CommandFactory<Unlin
         return true;
     }
 
-    private Location getLocationOrThrow(
-            Optional<String> locationIdOptional
-    ) throws ParseException {
+    private Location getLocationOrThrow(Optional<String> locationIdOptional) throws ParseException {
         if (locationIdOptional.isEmpty()) {
             throw new ParseException(NO_LOCATION_MESSAGE);
         }
-        int indexOfLocation =
-                Integer.parseInt(locationIdOptional.get());
-        Optional<Location> locationOptional =
-                locationManagerLazy.get().getItemOptional(indexOfLocation);
+
+        int locationId;
+        try {
+            locationId = Integer.parseInt(locationIdOptional.get());
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format(
+                    INVALID_INDEX_VALUE_MESSAGE,
+                    locationIdOptional.get()
+            ));
+        }
+
+        boolean isLocationIndexValid = (locationId < locationManagerLazy.get().size());
+        if (!isLocationIndexValid) {
+            throw new ParseException(String.format(
+                    INDEX_OUT_OF_BOUNDS_MESSAGE,
+                    locationId));
+        }
+
+        Optional<Location> locationOptional = locationManagerLazy.get().getItemOptional(locationId);
         if (locationOptional.isEmpty()) {
             throw new ParseException(NO_LOCATION_MESSAGE);
         }
@@ -146,11 +181,16 @@ public class UnlinkPlaneToLocationCommandFactory implements CommandFactory<Unlin
         Location location = getLocationOrThrow(locationIdOptional);
         Map<PlaneLocationType, Plane> plane = new HashMap<>();
 
-        boolean hasFoundPilot = addPlane(
-                pilotIdOptional,
-                PlaneLocationType.LOCATION_USING,
-                plane
-        );
+        boolean hasFoundPilot;
+        try {
+            hasFoundPilot = addPlane(
+                    pilotIdOptional,
+                    PlaneLocationType.LOCATION_USING,
+                    plane
+            );
+        } catch (CommandException e){
+            throw new ParseException(e.getMessage());
+        }
 
         if (!hasFoundPilot) {
             throw new ParseException(NO_PLANE_MESSAGE);

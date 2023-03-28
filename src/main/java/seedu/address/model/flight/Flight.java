@@ -127,6 +127,11 @@ public class Flight implements Item {
     }
 
     @Override
+    public String toString() {
+        return getCode();
+    }
+
+    @Override
     public List<String> getDisplayList() {
         return List.of(
                 String.format("%s", code),

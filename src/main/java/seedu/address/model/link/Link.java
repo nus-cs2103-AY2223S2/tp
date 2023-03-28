@@ -41,10 +41,6 @@ public class Link<K, T extends Item,
     private static final String CANNOT_PUT_MESSAGE =
             "Cannot put %d values into key %s which allows a maximum of %d values"
                     + " but already contains %d keys.";
-
-    private static final String DUPLICATE_FOUND_MESSAGE =
-            "Has found a duplicate in %s for %s.";
-
     private static final String DELETE_BROKEN_LINK_MESSAGE =
             "Deleted broken link %s from link %s";
 
@@ -269,9 +265,11 @@ public class Link<K, T extends Item,
     ) throws LinkDuplicateException {
         for (String cid : contents.get(key)) {
             if (id.equals(cid)) {
-                throw new LinkDuplicateException(
-                        String.format(DUPLICATE_FOUND_MESSAGE, key, cid)
-                );
+                throw new LinkDuplicateException(String.format(
+                        "A duplicate for %s has already been found.\n"
+                                + "Please try to link something else, or unlink the previous link first.",
+                        key
+                ));
             }
         }
     }

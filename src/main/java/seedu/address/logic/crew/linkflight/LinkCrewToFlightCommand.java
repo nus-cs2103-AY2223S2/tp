@@ -22,7 +22,7 @@ public class LinkCrewToFlightCommand implements Command {
     private static final String CREW_NOT_FOUND_EXCEPTION =
             "Crew with ID %s can't be found.";
     private static final String DISPLAY_MESSAGE =
-            "Linked %s to flight %s.";
+            "Linked %s to %s.";
 
     /**
      * The flight to be linked to.

@@ -21,7 +21,7 @@ public class UnlinkPlaneToFlightCommand implements Command {
     private static final String PLANE_NOT_FOUND_EXCEPTION =
             "Plane with ID %s can't be found.";
     private static final String DISPLAY_MESSAGE =
-            "Unlinked %s from flight %s.";
+            "Unlinked %s from %s.";
 
     /**
      * The id of the flight
@@ -49,9 +49,8 @@ public class UnlinkPlaneToFlightCommand implements Command {
         String result = planes.entrySet()
                 .stream()
                 .map((entry) -> String.format(
-                        "%s %s",
-                        entry.getKey(),
-                        entry.getValue().getModel()))
+                        "%s",
+                        entry.getValue().toString()))
                 .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());
     }

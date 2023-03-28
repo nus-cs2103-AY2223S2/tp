@@ -485,24 +485,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Crew> getFilteredCrewList() {
-        return filteredCrew;
-    }
-
-    @Override
     public void updateFilteredCrewList(Predicate<Crew> predicate) {
         requireNonNull(predicate);
         filteredCrew.setPredicate(predicate);
     }
 
-    // TODO: this is to be made for the delete function rather than to check rank
-    public boolean isIndexValid(int index) {
-        // change this logic once changed the indexing
-        return index < crewManager.size();
+    @Override
+    public ObservableList<Crew> getFilteredCrewList() {
+        return filteredCrew;
     }
 
-    //=========== Plane ========================================================
 
+    //=========== Plane ========================================================
     @Override
     public void setPlaneManager(ReadOnlyItemManager<Plane> planeManager) {
         this.planeManager.resetData(planeManager);
@@ -668,6 +662,7 @@ public class ModelManager implements Model {
         filteredFlights.setPredicate(predicate);
     }
 
+
     //=========== Generic ========================================================
 
     @Override
@@ -690,5 +685,11 @@ public class ModelManager implements Model {
                        && planeManager.equals(other.planeManager)
                        && flightManager.equals(other.flightManager)
                        && locationManager.equals(other.locationManager);
+    }
+
+    @Override
+    public <T extends Item> boolean isIndexValid(int index, ReadOnlyItemManager<T> itemManager) {
+        // TODO: change this logic once changed the indexing
+        return index < itemManager.size();
     }
 }

@@ -9,6 +9,7 @@ import seedu.address.commons.fp.Lazy;
 import seedu.address.commons.util.GetUtil;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
@@ -38,6 +39,12 @@ public class LinkCrewToFlightCommandFactory implements CommandFactory<LinkCrewTo
                     + "/sfa for the Senior Flight Attendants,\n"
                     + "     /fa for the Flight Attendants, "
                     + "/tr for the Trainees.";
+    private static final String INVALID_INDEX_VALUE_MESSAGE =
+                    "%s is an invalid value.\n"
+                            + "Please try using an integer instead.";
+    private static final String INDEX_OUT_OF_BOUNDS_MESSAGE =
+            "Index %s is out of bounds.\n"
+                    + "Please enter a valid index.";
 
     private final Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy;
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
@@ -106,18 +113,30 @@ public class LinkCrewToFlightCommandFactory implements CommandFactory<LinkCrewTo
         ));
     }
 
-    private boolean addCrew(
-            Optional<String> crewIdOptional,
-            FlightCrewType type,
-            Map<FlightCrewType, Crew> target
-    ) {
+    private boolean addCrew(Optional<String> crewIdOptional, FlightCrewType type, Map<FlightCrewType, Crew> target)
+            throws CommandException {
         if (crewIdOptional.isEmpty()) {
             return false;
         }
-        int indexOfCrew =
-                Integer.parseInt(crewIdOptional.get());
-        Optional<Crew> crewOptional =
-                crewManagerLazy.get().getItemOptional(indexOfCrew);
+
+        int crewId;
+        try {
+            crewId = Integer.parseInt(crewIdOptional.get());
+        } catch (NumberFormatException e) {
+            throw new CommandException(String.format(
+                    INVALID_INDEX_VALUE_MESSAGE,
+                    crewIdOptional.get()
+            ));
+        }
+
+        boolean isCrewIndexValid = (crewId < crewManagerLazy.get().size());
+        if (!isCrewIndexValid) {
+            throw new CommandException(String.format(
+                    INDEX_OUT_OF_BOUNDS_MESSAGE,
+                    crewId));
+        }
+
+        Optional<Crew> crewOptional = crewManagerLazy.get().getItemOptional(crewId);
         if (crewOptional.isEmpty()) {
             return false;
         }
@@ -125,16 +144,24 @@ public class LinkCrewToFlightCommandFactory implements CommandFactory<LinkCrewTo
         return true;
     }
 
-    private Flight getFlightOrThrow(
-            Optional<String> flightIdOptional
-    ) throws ParseException {
+    private Flight getFlightOrThrow(Optional<String> flightIdOptional) throws ParseException {
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
-        int indexOfFlight =
-                Integer.parseInt(flightIdOptional.get());
-        Optional<Flight> flightOptional =
-                flightManagerLazy.get().getItemOptional(indexOfFlight);
+
+        int flightId;
+        try {
+            flightId = Integer.parseInt(flightIdOptional.get());
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format(INVALID_INDEX_VALUE_MESSAGE, flightIdOptional.get()));
+        }
+
+        boolean isFlightIndexValid = (flightId < flightManagerLazy.get().size());
+        if (!isFlightIndexValid) {
+            throw new ParseException(String.format(INDEX_OUT_OF_BOUNDS_MESSAGE, flightId));
+        }
+
+        Optional<Flight> flightOptional = flightManagerLazy.get().getItemOptional(flightId);
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
@@ -156,23 +183,28 @@ public class LinkCrewToFlightCommandFactory implements CommandFactory<LinkCrewTo
         Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
         Map<FlightCrewType, Crew> crews = new HashMap<>();
 
-        boolean hasFoundCrew = addCrew(
-                cabinServiceDirectorIdOptional,
-                FlightCrewType.CABIN_SERVICE_DIRECTOR,
-                crews
-        ) || addCrew(
-                seniorFlightAttendantIdOptional,
-                FlightCrewType.SENIOR_FLIGHT_ATTENDANT,
-                crews
-        ) || addCrew(
-                flightAttendantIdOptional,
-                FlightCrewType.FLIGHT_ATTENDANT,
-                crews
-        ) || addCrew(
-                traineeIdOptional,
-                FlightCrewType.TRAINEE,
-                crews
-        );
+        boolean hasFoundCrew;
+        try {
+            hasFoundCrew = addCrew(
+                    cabinServiceDirectorIdOptional,
+                    FlightCrewType.CABIN_SERVICE_DIRECTOR,
+                    crews
+            ) || addCrew(
+                    seniorFlightAttendantIdOptional,
+                    FlightCrewType.SENIOR_FLIGHT_ATTENDANT,
+                    crews
+            ) || addCrew(
+                    flightAttendantIdOptional,
+                    FlightCrewType.FLIGHT_ATTENDANT,
+                    crews
+            ) || addCrew(
+                    traineeIdOptional,
+                    FlightCrewType.TRAINEE,
+                    crews
+            );
+        } catch (CommandException e) {
+            throw new ParseException(e.getMessage());
+        }
 
         if (!hasFoundCrew) {
             throw new ParseException(NO_CREW_MESSAGE);

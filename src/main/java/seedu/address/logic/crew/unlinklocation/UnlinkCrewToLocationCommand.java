@@ -50,9 +50,8 @@ public class UnlinkCrewToLocationCommand implements Command {
         String result = crews.entrySet()
                 .stream()
                 .map((entry) -> String.format(
-                        "%s %s",
-                        entry.getKey(),
-                        entry.getValue().getName()))
+                        "%s",
+                        entry.getValue().toString()))
                 .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, location.getName());
     }
