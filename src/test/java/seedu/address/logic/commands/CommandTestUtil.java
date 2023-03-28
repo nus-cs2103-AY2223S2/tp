@@ -38,11 +38,14 @@ public class CommandTestUtil {
     public static final String VALID_LECTURE_NAME_L2 = "lecture2";
     public static final String VALID_VIDEO_NAME_V1 = "video1";
     public static final String VALID_VIDEO_NAME_V2 = "video2";
+    public static final String VALID_TAG_HARD = "Hard";
+    public static final String VALID_TAG_EASY = "Easy";
 
     public static final String INVALID_MODULE_CODE = "404CS";
     public static final String INVALID_MODULE_NAME = "modu!e";
     public static final String INVALID_LECTURE_NAME = "l337ure!";
     public static final String INVALID_VIDEO_NAME = "v*deo";
+    public static final String INVALID_TAG = "Very Hard";
 
     public static final String VALID_BY_TAG_PREFIX = "" + PREFIX_BY_TAG;
     public static final String INVALID_BY_TAG_PREFIX = "/tagBy";
@@ -53,6 +56,9 @@ public class CommandTestUtil {
     public static final String MODULE_NAME_DESC_2040 = " " + PREFIX_NAME + " " + VALID_MODULE_NAME_2040;
     public static final String LECTURE_NAME_DESC_L1 = " " + PREFIX_LECTURE + " " + VALID_LECTURE_NAME_L1;
     public static final String LECTURE_NAME_DESC_L2 = " " + PREFIX_LECTURE + " " + VALID_LECTURE_NAME_L2;
+    public static final String TAG_DESC_EASY = " " + PREFIX_TAG + " " + VALID_TAG_EASY;
+    public static final String TAG_DESC_HARD = " " + PREFIX_TAG + " " + VALID_TAG_HARD;
+    public static final String TAG_DESC_MULTI = " " + PREFIX_TAG + " " + VALID_TAG_EASY + ", " + VALID_TAG_HARD;
 
     public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE + INVALID_MODULE_CODE;
     public static final String INVALID_MODULE_NAME_DESC = " " + PREFIX_NAME + INVALID_MODULE_NAME;
