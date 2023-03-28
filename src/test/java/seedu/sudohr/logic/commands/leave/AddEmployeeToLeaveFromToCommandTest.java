@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.sudohr.commons.core.GuiSettings;
+import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ReadOnlySudoHr;
@@ -65,6 +66,23 @@ public class AddEmployeeToLeaveFromToCommandTest {
                 VALID_END_LEAVE_DATE))))
                 .hasEmployee(TypicalEmployees.ALICE));
 
+    }
+
+    // handle adding non-existant employee
+
+    @Test
+    public void execute_addNonExistentEmployeeToLeave_throwsCommandException() throws CommandException {
+
+        ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
+
+        List<LeaveDate> dates = new ArrayList<LeaveDate>();
+        dates.add(new LeaveDate(LocalDate.parse(VALID_START_LEAVE_DATE)));
+        dates.add(new LeaveDate(LocalDate.parse(VALID_SECOND_DAY_LEAVE_DATE)));
+        dates.add(new LeaveDate(LocalDate.parse(VALID_THIRD_DAY_LEAVE_DATE)));
+        dates.add(new LeaveDate(LocalDate.parse(VALID_END_LEAVE_DATE)));
+
+        assertThrows(CommandException.class, Messages.MESSAGE_EMPLOYEE_NOT_FOUND, () ->
+                new AddEmployeeToLeaveFromToCommand(TypicalEmployees.ALICE_ID, dates).execute(modelStub));
     }
 
     // handle adding to leave objects that already exists

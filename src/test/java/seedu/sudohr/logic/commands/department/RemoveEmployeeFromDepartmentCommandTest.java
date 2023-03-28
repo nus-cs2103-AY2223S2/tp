@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.sudohr.commons.core.GuiSettings;
+import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
@@ -72,7 +73,7 @@ public class RemoveEmployeeFromDepartmentCommandTest {
         Department toAdd = new Department(TypicalDepartmentNames.DEPARTMENT_NAME_FIRST);
         modelStub.addDepartment(toAdd);
 
-        assertThrows(CommandException.class, RemoveEmployeeFromDepartmentCommand.MESSAGE_EMPLOYEE_NOT_FOUND, () ->
+        assertThrows(CommandException.class, Messages.MESSAGE_EMPLOYEE_NOT_FOUND, () ->
                 new RemoveEmployeeFromDepartmentCommand(new Id("101"), TypicalDepartmentNames.DEPARTMENT_NAME_FIRST)
                         .execute(modelStub));
     }

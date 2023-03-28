@@ -16,4 +16,5 @@ public class Messages {
     public static final String MESSAGE_DEPARTMENT_LISTED_OVERVIEW = "%1$d departments listed!";
 
     public static final String MESSAGE_DEPARTMENT_NOT_FOUND = "The department to edit does not exist in SudoHR.";
+    public static final String MESSAGE_EMPLOYEE_NOT_FOUND = "The given employee does not exist in SudoHR.";
 }
