@@ -14,11 +14,7 @@ Class ModelManager
 Class UserPrefs
 
 Class UniqueTaskList
-'Class Name
-'Class Description
 Class UniqueSubtaskList
-'Class Effort
-'Class Tag
 Class Subtask
 Class SimpleTask
 Class Deadline
@@ -40,11 +36,7 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueTaskList
 UniqueTaskList --> "~* all" Task
-'Task *--> Name
-'Task *--> Description
-'Task *--> Effort
 Task *--> "1" UniqueSubtaskList
-'Task *--> "*" Tag
 
 
 Deadline -right|> Task
@@ -54,8 +46,7 @@ SimpleTask -up-|> Task
 
 
 UniqueSubtaskList --> "~* all" Subtask
-'Subtask *--> Name
-'Subtask *--> Description
+
 
 ModelManager -->"~* filtered" Task
 @enduml
