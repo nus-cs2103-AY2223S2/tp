@@ -59,7 +59,7 @@ public class LectureUtil {
     public static String getEditCommand(ModuleCode moduleCode, LectureName lectureName,
             EditLectureDescriptor descriptor) {
 
-        return EditLectureCommand.COMMAND_WORD + getEditLectureDetails(moduleCode, lectureName, descriptor);
+        return EditLectureCommand.COMMAND_WORD + " " + getEditLectureDetails(moduleCode, lectureName, descriptor);
     }
 
     /**
