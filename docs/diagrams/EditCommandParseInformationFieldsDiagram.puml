@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+mainframe **ref** Parse Information Fields
+
+skinparam defaultFontSize 15
+skinparam titleFontSize 15
+
+box Logic LOGIC_COLOR_T1
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+end box
+box
+
+activate EditCommandParser
+
+EditCommandParser->ParserUtil:parseIndex(index)
+activate ParserUtil
+return index
+
+opt ifPrefixNamePresent
+EditCommandParser->ParserUtil:parseName(name)
+activate ParserUtil
+return name
+end
+opt ifPhonePrefixPresent
+    EditCommandParser->ParserUtil:parsePhone(phone)
+    activate ParserUtil
+    return phone
+end
+opt ifEmailPrefixPresent
+    EditCommandParser->ParserUtil:parseEmail(email)
+    activate ParserUtil
+    return email
+end
+opt ifAddressPrefixPresent
+    EditCommandParser->ParserUtil:parseAddress(address)
+    activate ParserUtil
+    return address
+end
+opt ifBirthdayPrefixPresent
+    EditCommandParser->ParserUtil:parseBirthday(birthday)
+    activate ParserUtil
+    return birthday
+end
+EditCommandParser->ParserUtil:parseSocialMedia(socialMedia)
+activate ParserUtil
+return socialMedia
+EditCommandParser->ParserUtil:parseTagsForEdit(tags)
+activate ParserUtil
+return tags
+EditCommandParser->ParserUtil:parseModulesForEdit(modules)
+activate ParserUtil
+return modules
+@enduml

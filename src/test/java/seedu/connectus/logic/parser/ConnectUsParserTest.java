@@ -23,7 +23,7 @@ import seedu.connectus.logic.commands.HelpCommand;
 import seedu.connectus.logic.commands.ListCommand;
 import seedu.connectus.logic.commands.SearchCommand;
 import seedu.connectus.logic.parser.exceptions.ParseException;
-import seedu.connectus.model.person.NameContainsKeywordsPredicate;
+import seedu.connectus.model.person.FieldsContainKeywordsPredicate;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.testutil.EditPersonDescriptorBuilder;
 import seedu.connectus.testutil.PersonBuilder;
@@ -73,7 +73,7 @@ public class ConnectUsParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         SearchCommand command = (SearchCommand) parser.parseCommand(
                 SearchCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new SearchCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new SearchCommand(new FieldsContainKeywordsPredicate(keywords)), command);
     }
 
     @Test

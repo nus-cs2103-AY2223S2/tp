@@ -216,7 +216,6 @@ public class EditCommand extends Command {
             setModules(toCopy.modules);
             setCcas(toCopy.ccas);
             setCcaPositions(toCopy.ccaPositions);
-
             setBirthday(toCopy.birthday);
         }
 

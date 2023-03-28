@@ -74,13 +74,13 @@ public class AddCommandParser implements Parser<AddCommand> {
             person.setAddress(address);
         }
 
-        {
-            person.setSocialMedia(ParserUtil.parseSocialMedia(argMultimap));
-        }
-
         if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
             Birthday birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get());
             person.setBirthday(birthday);
+        }
+
+        {
+            person.setSocialMedia(ParserUtil.parseSocialMedia(argMultimap));
         }
 
         return new AddCommand(person);
