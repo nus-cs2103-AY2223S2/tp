@@ -12,7 +12,27 @@ PetPal is your **furry and dependable assistant** who **reminds you of deadlines
 This user guide will help you get started and understand how PetPal can **seamlessly streamline your pet caring duties**.
 
 # Table of Contents
-  {:toc}
+
+1. [Quick Start](#quick-start)
+2. [Getting Familiar With Your User Interface](#getting-familiar-with-your-user-interface)
+3. [Legend](#legend)
+4. [Feature](#features)
+   1. [General](#general)
+      1. [Viewing help : `help`](#viewing-help--help)
+      2. [Listing your pets : `list`](#listing-your-pets--list)
+   2. [Add](#add)
+      1. [Adding a pet's information : `add`](#adding-a-pets-information--add)
+      2. [Filtering out reminders that are due soon : `remind`](#filtering-out-reminders-that-are-due-soon--remind)
+   3. [Retrieving](#retrieving)
+   4. [Updating](#updating)
+   5. [Deletion](#deletion)
+      1. [Deleting a pet : `delete`](#deleting-a-pet--delete)
+      2. [Clearing all entries : `clear`](#clearing-all-entries--clear)
+   6. [Command Flow](#command-flow)
+5. [FAQ](#faq)
+6. [Glossary](#glossary)
+7. [Command Summary](#command-summary)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -275,6 +295,10 @@ Example given `changecost 1 0.1 0.5`
 
 Deletes the specified pet from your PetPal.
 
+You can use this command when:
+1. You drop a pet.
+   <br>
+
 **Constraints**
 * `INDEX` is the index of the pet in the currently displayed list.
 * Deletes the pet with the specified index in your PetPal.
@@ -294,8 +318,6 @@ This command can be undone
 Format: `archive INDEX`
 
 ![archive](images/UG/archive.png)
-
-#### Clearing all entries : `clear`
 
 Clears all entries from PetPal.json.
 Format: `clear`
@@ -396,16 +418,16 @@ or raise an issue in our [github](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 
 ## Glossary
 
-| Term                     | Definition                                                                                                                                                                                                                                               |
-|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Alphanumeric             | Refers to characters that are the combined set of the 26 alphabetic characters, a to Z, both lowercase and uppercase, and the 10 Arabic numerals, 0 to 9.                                                                                                |
-| Command Line Interface   | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                                                                                           |
-| dd-MM-yyyy-hh:mm         | Date format whereby `dd` refers to the 2 digit days, `MM` refers to the 2 digit months, `yyyy` refers to the 4 digits years, `hh` refers to the 2 digits hours, `mm` refers to the 2 digits minutes. They are each separated by a hyphen: `-` character. |
-| Graphical User Interface | A graphical user interface (GUI) is an interface through which a user interacts with electronic devices such as computers and smartphones through the use of icons, menus and other visual indicators or representations (graphics).                     |
-| Index                    | The number that corresponds to the position of the pet in the list. The index must be a numeral above 0.                                                                                                                                                 |
-| Java                     | The programming language used for this application. Java is a general-purpose computer programming language designed to produce programs that will run on any computer system that has Java installed.                                                   |
-| JAR                      | JAR stands for Java ARchive. FABook uses JAR to deliver its distribution. JAR is a file format based on the popular ZIP file format and is used for aggregating many files into one.                                                                     |
-| JSON                     | JSON stands for JavaScript Object Notation. JSON is the format used to store your PetPal's data. JSON is a lightweight format for storing and transporting data.                                                                                         |
+| Term                     | Definition                                                                                                                                                                                                                                                                                                               |
+|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Alphanumeric             | Refers to characters that are the combined set of the 26 alphabetic characters, a to Z, both lowercase and uppercase, and the 10 Arabic numerals, 0 to 9.                                                                                                                                                                |
+| Command Line Interface   | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                                                                                                                                                           |
+| YYYY-MM-DD hh:mm:ss      | Date format whereby  `YYYY` refers to the 4 digits years, `MM` refers to the 2 digit months, `DD` refers to the 2 digit days, `hh` refers to the 2 digits hours, `mm` refers to the 2 digits minutes, 'ss' refers to the 2 digits seconds. They are each separated by a hyphen: `-` character for date and `:` for time. |
+| Graphical User Interface | A graphical user interface (GUI) is an interface through which a user interacts with electronic devices such as computers and smartphones through the use of icons, menus and other visual indicators or representations (graphics).                                                                                     |
+| Index                    | The number that corresponds to the position of the pet in the list. The index must be a numeral above 0.                                                                                                                                                                                                                 |
+| Java                     | The programming language used for this application. Java is a general-purpose computer programming language designed to produce programs that will run on any computer system that has Java installed.                                                                                                                   |
+| JAR                      | JAR stands for Java ARchive. FABook uses JAR to deliver its distribution. JAR is a file format based on the popular ZIP file format and is used for aggregating many files into one.                                                                                                                                     |
+| JSON                     | JSON stands for JavaScript Object Notation. JSON is the format used to store your PetPal's data. JSON is a lightweight format for storing and transporting data.                                                                                                                                                         |
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -413,7 +435,6 @@ or raise an issue in our [github](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 ## Command summary
 
 ======
-
 | Action          | Format, Examples                                                                                                                                                                                                                                                        | Shortcut       |
 |-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
 | **Help**        | `help`                                                                                                                                                                                                                                                                  | **PRESS** `F1` |
