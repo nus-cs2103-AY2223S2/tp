@@ -7,7 +7,7 @@ import seedu.internship.ui.UiPart;
 /**
  * This class represents UI component shown to the right of the InternshipList.
  */
-abstract public class Page extends UiPart<Region> {
+public abstract class Page extends UiPart<Region> {
 
     protected Page(String fxmlFileName) {
         super(fxmlFileName);
@@ -24,7 +24,6 @@ abstract public class Page extends UiPart<Region> {
 
         switch(commandResult.getResultType()) {
         case STATS:
-//            resultPage = new StatsPage(commandResult.getStatistics());
             break;
         case CLASH:
             resultPage = new ClashInfoPage(commandResult.getClashingEvents());

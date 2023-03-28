@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
-import seedu.internship.model.internship.Statistics;
+
 import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
+import seedu.internship.model.internship.Statistics;
+
 
 /**
  * Represents the result of a command execution.
@@ -23,16 +25,24 @@ public class CommandResult {
 
     private final ResultType resultType;
 
-    /** Instance of internship to be viewed **/
+    /**
+     * Instance of internship to be viewed
+     **/
     private final Internship internship;
 
-    /** Lists of Events to be viewed **/
+    /**
+     * Lists of Events to be viewed
+     **/
     private final ObservableList<Event> events;
 
-    /** Statistical data of current application progress **/
+    /**
+     * Statistical data of current application progress
+     **/
     private final Statistics statistics;
 
-    /** Hash map of event to a list of events **/
+    /**
+     * Hash map of event to a list of events
+     **/
     private HashMap<Event, List<Event>> hash = null;
 
     /**
@@ -96,6 +106,7 @@ public class CommandResult {
                          ObservableList<Event> events) {
         this(feedbackToUser, resultType, internship, events, EMPTY_STATISTICS);
     }
+
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value for Clash Function

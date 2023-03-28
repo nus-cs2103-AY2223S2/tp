@@ -5,6 +5,9 @@ import seedu.internship.model.Model;
 import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
 
+/**
+ * List all Events for Calendar to view
+ */
 public class CalendarCommand extends Command {
 
     public static final String COMMAND_WORD = "calendar";

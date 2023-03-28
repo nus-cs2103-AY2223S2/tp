@@ -1,7 +1,6 @@
 package seedu.internship.ui.pages;
 
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -84,9 +83,6 @@ public class InternshipInfoPage extends Page {
                 .map(event -> EventCard.of(event, true)
                         .getRoot())
                 .collect(Collectors.toList()));
-//        internship.getTags().stream()
-//                .sorted(Comparator.comparing(tag -> tag.tagName));
-        //.forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
 
