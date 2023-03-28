@@ -14,7 +14,7 @@ import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
 public class UndoMemory extends MemoryStack {
 
     public UndoMemory(ReadOnlyDengueHotspotTracker latest) {
-        super(latest);
+        super(latest.generateDeepCopy());
     }
 
     public UndoMemory() {

@@ -38,7 +38,8 @@ public class ModelManager implements Model {
         logger.fine("Initializing with Dengue Hotspot Tracker: " + dengueHotspotTracker
                 + " and user prefs " + userPrefs);
 
-        this.dengueHotspotTracker = new DengueHotspotTracker(dengueHotspotTracker);
+        this.dengueHotspotTracker = new DengueHotspotTracker(dengueHotspotTracker)
+                .generateDeepCopy();
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.dengueHotspotTracker.getPersonList());
         this.overview = new PostalOverview();

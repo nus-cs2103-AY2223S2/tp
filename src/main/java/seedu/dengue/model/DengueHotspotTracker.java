@@ -126,7 +126,7 @@ public class DengueHotspotTracker implements ReadOnlyDengueHotspotTracker {
     }
 
     @Override
-    public ReadOnlyDengueHotspotTracker generateDeepCopy() {
+    public DengueHotspotTracker generateDeepCopy() {
         DengueHotspotTracker copy = new DengueHotspotTracker();
         ObservableList<Person> personList = FXCollections.observableArrayList();
         for (Person p : this.getPersonList()) {
