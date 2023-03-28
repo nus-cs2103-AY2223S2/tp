@@ -16,14 +16,8 @@ public class LastFedDateTime {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Last Fed Date Time is a date time in the format of \"dd/MM/yyyy HH:mm\"";
-//    public static final String VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}\\s([01][0-9]|2[0-3]):([0-5][0-9])$";
-
-    //validation regex
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4} (?:[01]\\d|2[0-3]):[0-5]\\d$";
-
-//    public static final String VALIDATION_REGEX = "^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\\\\d{4}\\\\s([01][0-9]|2[0-3]):([0-5][0-9])$";
-
-//"^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$" original
+//"^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$"
 
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
@@ -38,7 +32,6 @@ public class LastFedDateTime {
      */
     public LastFedDateTime(String lastFedDateTime) {
         requireNonNull(lastFedDateTime);
-        System.out.println("LastFedDateTime: " + lastFedDateTime);
         checkArgument(isValidLastFedDateTime(lastFedDateTime), MESSAGE_CONSTRAINTS);
 
         value = lastFedDateTime;
@@ -50,7 +43,6 @@ public class LastFedDateTime {
      * Returns true if a given string is a valid last Fed Date number.
      */
     public static boolean isValidLastFedDateTime(String test) {
-        System.out.println(test.matches(VALIDATION_REGEX));
         return test.matches(VALIDATION_REGEX);
     }
 
