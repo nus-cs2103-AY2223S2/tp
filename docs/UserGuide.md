@@ -4,15 +4,8 @@ title: User Guide
 ---
 
 Calidr is a **time-management and scheduling calendar application** for university students, optimized for use via a
-Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
-
-Calidr helps you manage your time and tasks more effectively. With Calidr, you can:
-
-- Add, edit, and delete tasks such as assignments, exams, and other important events.
-- Keep track of their tasks in a flexible calendar view, making it easy to see what needs to be done and when.
-- Tag their classes as lectures, tutorials, and assignments, helping them stay organized by course.
-- Set priority levels for tasks, helping them focus on what's most important.
-- Search for tasks quickly and easily, by name, description, date, priority, or other criteria.
+Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). Calidr helps you
+manage your time and tasks more effectively.
 
 * Table of Contents
   {:toc}
@@ -47,14 +40,12 @@ Calidr helps you manage your time and tasks more effectively. With Calidr, you c
 🕮 This user guide uses a modifided version of the <a href="http://docopt.org/">docopt</a> command description language.
 </div>
 
-<details>
-
 1. We will use the word "**string**" to describe any general sequence of characters.
 1. We will use the word "**word**" to describe a sequence of characters terminated by a whitespace.
 1. Words ending with a backslash `/` are interpreted as _compulsory_, _position-independent_ **options**.
 
    `t/`,`by/`,`from/`,`to/`
-1. Words bracketed with "<" and ">", or uppercase words, denote the position of **arguments**.
+1. Uppercase words denote the position of **arguments**.
 1. All other words that do not follow the above conventions are interpreted as **commands** and **subcommands**.
 
    `help`
@@ -83,8 +74,6 @@ Calidr helps you manage your time and tasks more effectively. With Calidr, you c
    mutually-inclusive elements (if *one* element is present, then *another* one is required):
 
    `edit TASK_INDEX (OPTION <argument>)...`
-
-</details>
 
 ### Data terminology
 

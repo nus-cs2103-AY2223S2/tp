@@ -1,14 +1,11 @@
 ---
 layout: page
-title: Developer Guide
+title: :calendar: Developer Guide
 ---
-
 * Table of Contents
   {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
-# :calendar: Developer Guide
 
 Calidr is a **time-management and scheduling calendar application**, optimized for use via a Command Line Interface (
 CLI) while still having the benefits of a Graphical User Interface (GUI). This application uses the AddressBook-Level3
