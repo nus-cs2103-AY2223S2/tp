@@ -1,0 +1,29 @@
+!define typeName ""
+!define keyName ""
+!define refName ""
+
+@startuml
+!include ../style.puml
+participant ":UiEventManager" as UiEventManager UI_EVENT_COLOR
+participant "keyName:typeName" as Key KEY_COLOR_T3
+participant "event:KeyEvent" as Event UI_EVENT_COLOR_T3
+
+mainframe sd switch tabs
+create Key
+UiEventManager -> Key: typeName()
+activate Key
+Key --> UiEventManager: keyName
+deactivate Key
+
+UiEventManager -> Key : execute(logic,mainWindow)
+activate Key
+ref over Key: refName
+Key --> UiEventManager
+deactivate Key
+destroy Key
+UiEventManager -> Event : consume()
+activate Event
+Event --> UiEventManager
+deactivate Event
+@enduml
+

@@ -1,7 +1,9 @@
 @startuml
+!include ../../style.puml
+
 mainframe sd Switch tabs
-participant ":SwitchKey" as SwitchKey
-participant "mainWindow:MainWindow" as MainWindow
+participant ":SwitchKey" as SwitchKey MODEL_COLOR
+participant "mainWindow:MainWindow" as MainWindow LOGIC_COLOR
 participant "entityPanel:EntityPanel" as EntityPanel
 
 activate SwitchKey
