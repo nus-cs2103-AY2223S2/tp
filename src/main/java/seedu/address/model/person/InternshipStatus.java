@@ -4,15 +4,23 @@ package seedu.address.model.person;
  * Represents the possible statuses for an internship application.
  */
 public enum InternshipStatus {
-    NA,
-    PENDING,
-    RECEIVED,
-    REJECTED,
-    NO,
-    ARCHIVED;
+    PENDING("Pending reply", "#FDA50F"),
+    RECEIVED("Offer received", "#89CFF0"),
+    ACCEPTED("Offer accepted", "#32CD32"),
+    REJECTED("Offer rejected", "#808080"),
+    NO("Application rejected", "#D40E2F"),
+    ARCHIVED("Application archived", "#808080");
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Status can only be of one of the following five types: NA, PENDING, RECEIVED, REJECTED or NO";
+            "Status can only be of one of the following five types: PENDING, RECEIVED, ACCEPTED, REJECTED or NO";
+
+    public final String label;
+    public final String labelColour;
+
+    private InternshipStatus(String label, String labelColour) {
+        this.label = label;
+        this.labelColour = labelColour;
+    }
 
     /**
      * Checks whether the String passed is a valid application status

@@ -138,16 +138,15 @@ public class MainWindow extends UiPart<Stage> {
         commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        applicationListPanel = new ApplicationListPanel(logic.getFilteredInternshipList());
-        todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
-        noteListPanel = new NoteListPanel(logic.getFilteredNoteList());
-        mixedPanel = new MixedPanel(logic.getFilteredTodoList(), logic.getFilteredNoteList());
-
-        applicationListPanelPlaceholder.getChildren().addAll(todoListPanel.getRoot(), noteListPanel.getRoot(),
-                mixedPanel.getRoot(), applicationListPanel.getRoot());
-
         viewContentPanel = new ViewContentPanel();
         viewContentPanelPlaceholder.getChildren().add(viewContentPanel.getRoot());
+
+        applicationListPanel = new ApplicationListPanel(logic.getFilteredInternshipList(), viewContentPanel);
+        todoListPanel = new TodoListPanel(logic.getFilteredTodoList(), viewContentPanel);
+        noteListPanel = new NoteListPanel(logic.getFilteredNoteList(), viewContentPanel);
+        mixedPanel = new MixedPanel(logic.getFilteredTodoList(), logic.getFilteredNoteList(), viewContentPanel);
+        applicationListPanelPlaceholder.getChildren().addAll(todoListPanel.getRoot(), noteListPanel.getRoot(),
+                mixedPanel.getRoot(), applicationListPanel.getRoot());
 
         summaryPanel = new SummaryPanel();
         summaryPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
