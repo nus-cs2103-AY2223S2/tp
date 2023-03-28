@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WATCH;
 
 import seedu.address.logic.commands.Command;
 
@@ -33,11 +34,13 @@ public abstract class AddCommand extends Command {
             + "(3) Adds a video to a lecture. "
             + "Parameters: "
             + "{video_name} "
-            + "[" + PREFIX_MODULE + " {module_code} "
-            + PREFIX_LECTURE + " {lecture_name}] "
+            + "[" + PREFIX_MODULE + " {module_code}] "
+            + "[" + PREFIX_LECTURE + " {lecture_name}] "
+            + "[" + PREFIX_WATCH + "] "
             + "[" + PREFIX_TAG + " {tag_1}, [{tag_2}, ...]] "
             + "Example: " + COMMAND_WORD + " Video 1 "
             + PREFIX_MODULE + " CS2040S "
             + PREFIX_LECTURE + " Week 1 "
+            + PREFIX_WATCH + " "
             + PREFIX_TAG + " Intro, Short";
 }
