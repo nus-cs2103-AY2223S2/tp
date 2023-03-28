@@ -5,6 +5,6 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <Label fx:id="showNextLabel" text="Next Event" />
+   <Label fx:id="showNextLabel" text="Next 1 Event" />
     <ListView fx:id="showNextListView" VBox.vgrow="ALWAYS" />
 </VBox>
