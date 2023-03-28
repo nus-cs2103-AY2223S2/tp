@@ -34,7 +34,9 @@ public class ItemCost {
         return "$" + value;
     }
 
-    public String toJsonString() { return Float.toString(value); }
+    public String toJsonString() {
+        return Float.toString(value);
+    }
 
     public float getValue() {
         return value;

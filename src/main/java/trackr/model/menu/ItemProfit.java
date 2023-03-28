@@ -35,7 +35,9 @@ public class ItemProfit {
         return "$" + value;
     }
 
-    public String toJsonString() { return value; }
+    public String toJsonString() {
+        return value;
+    }
 
     @Override
     public boolean equals(Object other) {

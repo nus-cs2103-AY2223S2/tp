@@ -11,9 +11,9 @@ public class ItemName extends Name {
     /**
      * Constructs a {@code ItemName}.
      *
-     * @param ItemName A valid Item name.
+     * @param itemName A valid Item name.
      */
-    public ItemName(String ItemName) {
-        super(ItemName, "Item");
+    public ItemName(String itemName) {
+        super(itemName, "Item");
     }
 }

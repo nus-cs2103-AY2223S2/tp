@@ -9,7 +9,6 @@ import trackr.model.commons.Name;
 import trackr.model.menu.ItemCost;
 import trackr.model.menu.ItemName;
 import trackr.model.menu.ItemPrice;
-import trackr.model.menu.ItemProfit;
 import trackr.model.menu.MenuItem;
 
 /**
