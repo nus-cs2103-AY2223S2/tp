@@ -61,7 +61,7 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
 
 2. Open your Mac Terminal, and `cd` into the folder you put the jar file in.
 
-3. Run `java -jar Vimification.jar`.
+3. Run `java -jar vimification.jar`.
 
 4. The application should launch, and a GUI similar to the below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
