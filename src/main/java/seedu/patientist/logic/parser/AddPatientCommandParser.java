@@ -10,8 +10,9 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_WARD;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -53,19 +54,15 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = new HashSet<>(Arrays.asList(new Tag("Patient")));
+        ArrayList<PatientStatusDetails> details =
+                new ArrayList<>(ParserUtil.parseDetails(argMultimap.getAllValues(PREFIX_STATUS)));
+        Set<Tag> tagList = new HashSet<>(List.of(new Tag("Patient")));
         tagList.addAll(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
 
-        if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-            PatientStatusDetails patientStatusDetails =
-                    ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-            Patient patient = new Patient(idNumber, name, phone, email, address, patientStatusDetails, tagList);
+        Patient patient = new Patient(idNumber, name, phone, email, address, details, tagList);
 
-            return new AddPatientCommand(ward.getWardName(), patient);
-        }
-
-        Patient patient = new Patient(email, name, phone, idNumber, address, tagList);
         return new AddPatientCommand(ward.getWardName(), patient);
+
     }
 
     /**

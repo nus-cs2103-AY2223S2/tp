@@ -2,8 +2,10 @@ package seedu.patientist.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.patientist.commons.core.index.Index;
@@ -121,11 +123,23 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code status} is invalid.
      */
-    public static PatientStatusDetails parseStatus(String status) {
+    public static PatientStatusDetails parseDetail(String status) {
         requireNonNull(status);
         String trimmedStatus = status.trim();
 
         return new PatientStatusDetails(trimmedStatus);
+    }
+
+    /**
+     * Parses {@code Collection<String> details} into a {@code List<PatientStatusDetail>}.
+     */
+    public static List<PatientStatusDetails> parseDetails(Collection<String> details) {
+        requireNonNull(details);
+        final List<PatientStatusDetails> detailsList = new ArrayList<>();
+        for (String detail : details) {
+            detailsList.add(parseDetail(detail));
+        }
+        return detailsList;
     }
 
     /**

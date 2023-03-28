@@ -7,8 +7,8 @@
       "phone" : "87438807",
       "email" : "invalid@example!3e",
       "address" : "Blk 30 Geylang Street 29, #06-40",
-      "status" : "",
-      "tagged" : [ "Patient" ]
+      "tagged" : [ "Patient" ],
+      "details" : [ "Doing good" ]
     }],
     "staffs" : []
   }]

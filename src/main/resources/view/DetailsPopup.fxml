@@ -3,15 +3,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
-<ScrollPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" styleClass="background">
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane styleClass="background" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <content>
         <GridPane>
             <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
@@ -73,13 +73,19 @@
                 <HBox>
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status:  " />
-                        <Label fx:id="status" minHeight="-Infinity" minWidth="-Infinity" styleClass="cell_small_label" text="NA" />
+                        <VBox fx:id="status" minHeight="-Infinity" minWidth="-Infinity"  HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
                     </children>
                     <VBox.margin>
                         <Insets bottom="5.0" />
                     </VBox.margin>
                 </HBox>
             </VBox>
+         <columnConstraints>
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
         </GridPane>
     </content>
 </ScrollPane>

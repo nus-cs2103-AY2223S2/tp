@@ -1,6 +1,7 @@
 package seedu.patientist.model.util;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,7 @@ import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.patient.PatientStatusDetails;
 import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.tag.Tag;
 import seedu.patientist.model.ward.Ward;
@@ -82,7 +84,14 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
-
+    /**
+     * Returns a PatientStatusDetails list containing the list of strings given.
+     */
+    public static List<PatientStatusDetails> getDetailsList(String... strings) {
+        return Arrays.stream(strings)
+                .map(PatientStatusDetails::new)
+                .collect(Collectors.toList());
+    }
 
     /**
      * Returns a tag set containing the list of strings given.

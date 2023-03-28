@@ -32,13 +32,15 @@ public class PatientUtil {
      */
     public static String getPatientDetails(Patient patient) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + patient.getName().fullName + " ");
+        sb.append(PREFIX_NAME).append(patient.getName().fullName).append(" ");
         sb.append(PREFIX_PHONE + patient.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + patient.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + patient.getAddress().value + " ");
         sb.append(PREFIX_ID + patient.getIdNumber().toString() + " ");
-        sb.append(PREFIX_STATUS + patient.getPatientStatusDetails().getDetails() + " ");
-        sb.append(PREFIX_WARD + "Block A Ward 1" + " ");
+        sb.append(PREFIX_WARD).append("Block A Ward 1").append(" ");
+        patient.getPatientStatusDetails().stream().forEach(
+                s -> sb.append(PREFIX_STATUS).append(s.getDetails()).append(" ")
+        );
         patient.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
