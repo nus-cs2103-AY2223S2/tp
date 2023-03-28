@@ -39,8 +39,22 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_POSITION, PREFIX_COMPANY, PREFIX_EMAIL,
                         PREFIX_STATUS, PREFIX_REMARK, PREFIX_KEYDATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_POSITION, PREFIX_COMPANY, PREFIX_EMAIL, PREFIX_STATUS)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (arePrefixesAbsent(argMultimap, PREFIX_POSITION, PREFIX_COMPANY, PREFIX_EMAIL, PREFIX_STATUS)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+        if (!isCompanyPresent(argMultimap, PREFIX_COMPANY)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Company is missing\nExample: " + PREFIX_COMPANY + "Shopee "));
+        }
+        if (!isPositionPresent(argMultimap, PREFIX_POSITION)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Position is missing\nExample: " + PREFIX_POSITION + "Backend Developer "));
+        }
+        if (!isStatusPresent(argMultimap, PREFIX_STATUS)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Status is missing\nExample: " + PREFIX_STATUS + "APPLIED "));
+        }
+        if (!isEmailPresent(argMultimap, PREFIX_EMAIL)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Email is missing\nExample: " + PREFIX_EMAIL + "hr@shopee.com "));
+        }
+        if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -61,6 +75,22 @@ public class AddCommandParser implements Parser<AddCommand> {
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+    private static boolean arePrefixesAbsent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> !argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    private static boolean isPositionPresent(ArgumentMultimap argumentMultimap, Prefix prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+    private static boolean isCompanyPresent(ArgumentMultimap argumentMultimap, Prefix prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+    private static boolean isEmailPresent(ArgumentMultimap argumentMultimap, Prefix prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+    private static boolean isStatusPresent(ArgumentMultimap argumentMultimap, Prefix prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
