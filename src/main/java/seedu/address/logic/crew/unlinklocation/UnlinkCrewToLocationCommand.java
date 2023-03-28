@@ -18,11 +18,11 @@ import seedu.address.model.location.Location;
  */
 public class UnlinkCrewToLocationCommand implements Command {
     private static final String LOCATION_NOT_FOUND_EXCEPTION =
-            "Location with id %s is not found.";
+            "Location with ID %s can't be found.";
     private static final String CREW_NOT_FOUND_EXCEPTION =
-            "Crew with id %s is not found.";
+            "Crew with ID %s can't be found.";
     private static final String DISPLAY_MESSAGE =
-            "Unlinked crew %s from location %s.";
+            "Unlinked %s from %s.";
 
     /**
      * The location to be linked to.
@@ -50,9 +50,8 @@ public class UnlinkCrewToLocationCommand implements Command {
         String result = crews.entrySet()
                 .stream()
                 .map((entry) -> String.format(
-                        "%s: %s",
-                        entry.getKey(),
-                        entry.getValue().getName()))
+                        "%s",
+                        entry.getValue().toString()))
                 .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, location.getName());
     }

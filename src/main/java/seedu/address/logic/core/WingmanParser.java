@@ -18,8 +18,8 @@ import seedu.address.logic.flight.unlinklocation.UnlinkFlightToLocationCommandFa
 import seedu.address.logic.pilot.checkpilot.CheckPilotCommandFactory;
 import seedu.address.logic.pilot.linkflight.LinkPilotToFlightCommandFactory;
 import seedu.address.logic.pilot.linklocation.LinkPilotToLocationCommandFactory;
+import seedu.address.logic.pilot.unlinkflight.UnlinkPilotToFlightCommandFactory;
 import seedu.address.logic.pilot.unlinklocation.UnlinkPilotToLocationCommandFactory;
-import seedu.address.logic.pilot.unlinkpilot.UnlinkPilotToFlightCommandFactory;
 import seedu.address.logic.plane.checkplane.CheckPlaneCommandFactory;
 import seedu.address.logic.plane.linkflight.LinkPlaneToFlightCommandFactory;
 import seedu.address.logic.plane.linklocation.LinkPlaneToLocationCommandFactory;
@@ -80,7 +80,7 @@ public class WingmanParser extends FactoryParser {
             )),
             new CommandGroup(OperationMode.PLANE, List.of(
                     new AddCommandFactory<>(
-                            "Plane",
+                            "plane",
                             Optional.of(PlaneSyntax.PREFIXES),
                             PlaneSyntax::add,
                             PlaneSyntax::factory
@@ -97,7 +97,7 @@ public class WingmanParser extends FactoryParser {
             )),
             new CommandGroup(OperationMode.LOCATION, List.of(
                     new AddCommandFactory<>(
-                            "Plane",
+                            "location",
                             Optional.of(LocationSyntax.PREFIXES),
                             LocationSyntax::add,
                             LocationSyntax::factory
@@ -109,7 +109,7 @@ public class WingmanParser extends FactoryParser {
             )),
             new CommandGroup(OperationMode.FLIGHT, List.of(
                     new AddCommandFactory<>(
-                            "Flight",
+                            "flight",
                             Optional.of(FlightSyntax.PREFIXES),
                             FlightSyntax::add,
                             FlightSyntax::factory

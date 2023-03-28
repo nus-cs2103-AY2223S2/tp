@@ -28,9 +28,17 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
     private static final String PLANE_USING_PREFIX = "/pl";
 
     private static final String NO_FLIGHT_MESSAGE =
-            "No flight has been entered. Please enter /fl for the flight.";
+            "No flight has been entered.\n"
+                    + "Please enter /fl followed by the flight ID.";
     private static final String NO_PLANE_MESSAGE =
-            "No plane has been entered. Please enter /pl for the plane being used in this link.";
+            "No plane has been entered.\n"
+                    + "Please enter /pl followed by the plane ID.";
+    private static final String INVALID_INDEX_VALUE_MESSAGE =
+            "%s is an invalid value.\n"
+                    + "Please try using an integer instead.";
+    private static final String INDEX_OUT_OF_BOUNDS_MESSAGE =
+            "Index %s is out of bounds.\n"
+                    + "Please enter a valid index.";
 
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
     private final Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy;
@@ -98,19 +106,30 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
         ));
     }
 
-
-    private boolean addPlane(
-            Optional<String> planeIdOptional,
-            FlightPlaneType type,
-            Map<FlightPlaneType, Plane> target
-    ) throws CommandException {
+    private boolean addPlane(Optional<String> planeIdOptional, FlightPlaneType type, Map<FlightPlaneType, Plane> target)
+            throws CommandException {
         if (planeIdOptional.isEmpty()) {
             return false;
         }
-        int indexOfPlane =
-                Command.parseIntegerToZeroBasedIndex(planeIdOptional.get());
-        Optional<Plane> planeOptional =
-                planeManagerLazy.get().getItemOptional(indexOfPlane);
+
+        int planeId;
+        try {
+            planeId = Command.parseIntegerToZeroBasedIndex(planeIdOptional.get());
+        } catch (NumberFormatException e) {
+            throw new CommandException(String.format(
+                    INVALID_INDEX_VALUE_MESSAGE,
+                    planeIdOptional.get()
+            ));
+        }
+
+        boolean isCrewIndexValid = (planeId < planeManagerLazy.get().size());
+        if (!isCrewIndexValid) {
+            throw new CommandException(String.format(
+                    INDEX_OUT_OF_BOUNDS_MESSAGE,
+                    planeId + 1));
+        }
+
+        Optional<Plane> planeOptional = planeManagerLazy.get().getItemOptional(planeId);
         if (planeOptional.isEmpty()) {
             return false;
         }
@@ -124,16 +143,27 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
-        int indexOfFlight =
-                Command.parseIntegerToZeroBasedIndex(flightIdOptional.get());
-        Optional<Flight> flightOptional =
-                flightManagerLazy.get().getItemOptional(indexOfFlight);
+
+        int flightId;
+        try {
+            flightId = Command.parseIntegerToZeroBasedIndex(flightIdOptional.get());
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format(INVALID_INDEX_VALUE_MESSAGE, flightIdOptional.get()));
+        }
+
+        boolean isFlightIndexValid = (flightId < flightManagerLazy.get().size());
+        if (!isFlightIndexValid) {
+            throw new CommandException(String.format(
+                    INDEX_OUT_OF_BOUNDS_MESSAGE,
+                    flightId + 1));
+        }
+
+        Optional<Flight> flightOptional = flightManagerLazy.get().getItemOptional(flightId);
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
         return flightOptional.get();
     }
-
 
     @Override
     public LinkPlaneToFlightCommand createCommand(CommandParam param)
@@ -144,11 +174,16 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
         Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
         Map<FlightPlaneType, Plane> planes = new HashMap<>();
 
-        boolean hasFoundPlane = addPlane(
-                planeUsingIdOptional,
-                FlightPlaneType.PLANE_USING,
-                planes
-        );
+        boolean hasFoundPlane;
+        try {
+            hasFoundPlane = addPlane(
+                    planeUsingIdOptional,
+                    FlightPlaneType.PLANE_USING,
+                    planes
+            );
+        } catch (CommandException e) {
+            throw new ParseException(e.getMessage());
+        }
 
         if (!hasFoundPlane) {
             throw new ParseException(NO_PLANE_MESSAGE);

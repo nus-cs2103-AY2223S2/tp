@@ -6,7 +6,6 @@ import java.util.Set;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
-import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.item.Item;
 
 /**
@@ -58,17 +57,6 @@ public class DeleteCommandFactory<T extends Item> implements CommandFactory<Dele
     public DeleteCommand<T> createCommand(CommandParam param) throws ParseException {
         int index = param.getUnnamedIntOrThrow();
 
-        try {
-            return new DeleteCommand<>(
-                    index,
-                    getManagerFunction,
-                    deleteFunction
-            );
-        } catch (IndexOutOfBoundException e) {
-            throw new ParseException(String.format(
-                    "Please enter a valid index: %s",
-                    e.getMessage()
-            ));
-        }
+        return new DeleteCommand<>(index, getManagerFunction, deleteFunction);
     }
 }

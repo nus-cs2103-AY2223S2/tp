@@ -122,13 +122,18 @@ public class Flight implements Item {
     }
 
     @Override
+    public String toString() {
+        return getCode();
+    }
+
+    @Override
     public List<String> getDisplayList() {
         return List.of(
                 String.format("%s", code),
-                String.format("%s: %s", "Pilots", pilotLink.toString()),
-                String.format("%s: %s", "Crews", crewLink.toString()),
-                String.format("%s: %s", "Plane", planeLink.toString()),
-                String.format("%s: %s", "Locations", locationLink.toString())
+                String.format("%s: %s\n", "Plane", planeLink.toString()),
+                String.format("%s: %s\n", "Pilots", pilotLink.toString()),
+                String.format("%s: %s\n", "Crew", crewLink.toString()),
+                String.format("%s: %s\n", "Locations", locationLink.toString())
         );
     }
 

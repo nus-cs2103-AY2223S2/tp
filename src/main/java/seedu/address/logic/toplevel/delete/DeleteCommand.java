@@ -5,7 +5,6 @@ import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.exception.IndexOutOfBoundException;
 import seedu.address.model.item.Item;
 
 /**
@@ -47,17 +46,21 @@ public class DeleteCommand<T extends Item> implements Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         T toDelete;
-        try {
-            toDelete = getManagerFunction.get(model).getItem(itemIndex);
-        } catch (IndexOutOfBoundException e) {
+        boolean isValidIndex = model.isIndexValid(itemIndex, getManagerFunction.get(model));
+
+        if (!isValidIndex) {
             throw new CommandException(String.format(
-                    "Please enter a valid index: %s",
-                    e.getMessage()
+                    "Index %s is out of bounds.\n"
+                            + "Please enter a valid index.",
+                    itemIndex
             ));
+        } else {
+            toDelete = getManagerFunction.get(model).getItem(itemIndex);
         }
+
         deleteFunction.delete(model, toDelete);
         return new CommandResult(String.format(
-                "Deleted item: %s.",
+                "Deleted %s.",
                 toDelete.toString()
         ));
     }

@@ -472,9 +472,8 @@ public class ModelManager implements Model {
             throw new CrewNotFoundException();
         }
     }
-
     @Override
-    public boolean checkCrewByIndex(int index) throws IndexOutOfBoundException {
+    public boolean checkCrewByIndex(int index) throws CrewNotFoundException {
         Optional<Crew> crew = crewManager.getItemOptional(index);
 
         if (crew.isPresent()) {
@@ -486,19 +485,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Crew> getFilteredCrewList() {
-        return filteredCrew;
-    }
-
-    @Override
     public void updateFilteredCrewList(Predicate<Crew> predicate) {
         requireNonNull(predicate);
         filteredCrew.setPredicate(predicate);
     }
 
+    @Override
+    public ObservableList<Crew> getFilteredCrewList() {
+        return filteredCrew;
+    }
+
 
     //=========== Plane ========================================================
-
     @Override
     public void setPlaneManager(ReadOnlyItemManager<Plane> planeManager) {
         this.planeManager.resetData(planeManager);
@@ -664,6 +662,7 @@ public class ModelManager implements Model {
         filteredFlights.setPredicate(predicate);
     }
 
+
     //=========== Generic ========================================================
 
     @Override
@@ -686,5 +685,11 @@ public class ModelManager implements Model {
                        && planeManager.equals(other.planeManager)
                        && flightManager.equals(other.flightManager)
                        && locationManager.equals(other.locationManager);
+    }
+
+    @Override
+    public <T extends Item> boolean isIndexValid(int index, ReadOnlyItemManager<T> itemManager) {
+        // TODO: change this logic once changed the indexing
+        return index < itemManager.size();
     }
 }

@@ -76,5 +76,4 @@ public interface ReadOnlyItemManager<T extends Item> {
      * @return an unmodifiable view of the items list
      */
     ObservableList<T> getItemList();
-
 }

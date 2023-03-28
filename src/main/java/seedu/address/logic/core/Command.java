@@ -23,21 +23,11 @@ public interface Command {
      * @return a zero-based index integer
      */
     static int parseIntegerToZeroBasedIndex(String string) throws CommandException {
-        int parsedIndex;
-        try {
-            parsedIndex = Integer.parseInt(string);
-        } catch (NumberFormatException e) {
-            throw new CommandException(
-                    "NumberFormatException raised. Please input a valid one-based index. "
-                            + "You may refer to the display list for index. "
-            );
-        }
-
+        int parsedIndex = Integer.parseInt(string);
         if (parsedIndex <= 0) {
             throw new CommandException(
-                    "Input index must be positive. Please enter a one-based index. "
-                            + "You may refer to the display list for index. "
-            );
+                    "Input index must be positive.\n"
+                            + "Please enter a one-based index, refer to the display list for index.");
         }
 
         return parsedIndex - 1;

@@ -43,7 +43,8 @@ public class AddCommand<T extends Item> implements Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         addFunction.add(model, item);
-        return new CommandResult(String.format("Added %s: %s.", typeName,
+        return new CommandResult(String.format(
+                "Added %s.",
                 item.toString()
         ));
     }
