@@ -8,35 +8,34 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddNoteCommand;
+import seedu.address.logic.commands.AddNoteToEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Note;
 
 /**
  * Parser for notes from commands
  */
-public class AddNoteParser implements Parser<AddNoteCommand> {
+public class AddNoteParser implements Parser<AddNoteToEventCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddNote
      * and returns an AddNote object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddNoteCommand parse(String args) throws ParseException {
+    public AddNoteToEventCommand parse(String args) throws ParseException {
         requireNonNull(args);
         String newArgs = args.trim().replaceFirst("Note", "");
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NOTE_EXTERNAL, PREFIX_NOTE_CONTENT,
-                        PREFIX_TUTORIAL, PREFIX_LAB);
-
-        if (!arePrefixesAbsent(argMultimap, PREFIX_NOTE_CONTENT)) {
+                        PREFIX_NOTE_EVENT);
+        if (arePrefixesAbsent(argMultimap, PREFIX_NOTE_CONTENT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddNoteCommand.MESSAGE_USAGE));
+                    AddNoteToEventCommand.MESSAGE_USAGE));
         }
 
-        if ((!arePrefixesPresent(argMultimap, PREFIX_NOTE_CONTENT) || !argMultimap.getPreamble().isEmpty())) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddNoteCommand.MESSAGE_USAGE));
+                    AddNoteToEventCommand.MESSAGE_USAGE));
         }
 
         Optional<String> tutorialName = argMultimap.getValue(PREFIX_TUTORIAL);
@@ -47,7 +46,7 @@ public class AddNoteParser implements Parser<AddNoteCommand> {
         String name = ParserUtil.parseNoteContent(argMultimap.getValue(PREFIX_NOTE_CONTENT).get());
 
         Note note = new Note(name);
-        return new AddNoteCommand(note, eventName, eventType);
+        return new AddNoteToEventCommand(note, eventName, eventType);
     }
 
     /**
@@ -59,8 +58,7 @@ public class AddNoteParser implements Parser<AddNoteCommand> {
     }
 
     /**
-     * Returns true if none of the prefixes contains command to add students (cannot add student and lab
-     * using the same command.)
+     * Returns true if none of the prefixes contains command to add students
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesAbsent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

@@ -9,13 +9,13 @@ import seedu.address.model.event.Note;
 /**
  * Allows TA to add a note by checking if the command input matches add-note
  */
-public class AddNoteCommand extends Command {
+public class AddNoteToEventCommand extends Command {
     public static final String COMMAND_WORD = "add-note";
     public static final String MESSAGE_SUCCESS = "Note specified has been successfully added";
 
     public static final String MESSAGE_DUPLICATE_NOTE = "Note has been added before";
 
-    public static final String MESSAGE_USAGE = "Note/ -content add-your-note-here";
+    public static final String MESSAGE_USAGE = "Note/ -content add-your-note-here -event name-of-event";
 
     // JThh: below fields are temporarily not used due to code refactoring.
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
@@ -30,7 +30,7 @@ public class AddNoteCommand extends Command {
     /**
      * Creates an AddLab to add the specified {@code Lab}
      */
-    public AddNoteCommand(Note note, String name, String type) {
+    public AddNoteToEventCommand(Note note, String name, String type) {
         toAdd = note;
         eventName = name;
         eventType = type;
@@ -65,7 +65,7 @@ public class AddNoteCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddNoteCommand // instanceof handles nulls
-                && toAdd.equals(((AddNoteCommand) other).toAdd));
+                || (other instanceof AddNoteToEventCommand // instanceof handles nulls
+                && toAdd.equals(((AddNoteToEventCommand) other).toAdd));
     }
 }
