@@ -250,20 +250,6 @@ public class AddClientCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public int noOverdueProjects() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public int noDoneProjects() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public int noNotDoneProjects() {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
     /**

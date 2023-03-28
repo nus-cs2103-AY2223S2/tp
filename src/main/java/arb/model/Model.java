@@ -219,19 +219,4 @@ public interface Model {
      * Returns contents of list of project.
      */
     String getProjectsContent();
-
-    /**
-     * Returns number of Overdue projects.
-     */
-    int noOverdueProjects();
-
-    /**
-     * Returns number of Done projects.
-     */
-    int noDoneProjects();
-
-    /**
-     * Returns number of Not Done projects.
-     */
-    int noNotDoneProjects();
 }

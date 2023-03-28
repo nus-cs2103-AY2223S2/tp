@@ -197,6 +197,12 @@ public class ModelManager implements Model {
         addressBook.markProjectAsNotDone(project);
     }
 
+    @Override
+    public String getProjectsContent() {
+        return addressBook.getProjectsContent();
+    }
+
+
     //=========== Filtered Client List Accessors ============================================================
 
     /**
@@ -260,57 +266,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<TagMapping> getTagMappingList() {
         return tagMappings;
-    }
-
-    @Override
-    public int noOverdueProjects() {
-        int overdueProjects = 0;
-        int projectSize = this.filteredProjects.size();
-        ObservableList<Project> projectList = this.filteredProjects;
-        for (int i = 0; i < projectSize; i++) {
-            if (projectList.get(i).isOverdue()) {
-                overdueProjects++;
-            }
-        }
-        return overdueProjects;
-    }
-
-    @Override
-    public int noDoneProjects() {
-        int doneProjects = 0;
-        ObservableList<Project> projectList = this.filteredProjects;
-        int projectSize = this.filteredProjects.size();
-        for (int i = 0; i < projectSize; i++) {
-            if (projectList.get(i).getStatus().getStatus()) {
-                doneProjects++;
-            }
-        }
-        return doneProjects;
-    }
-
-    @Override
-    public int noNotDoneProjects() {
-        int projectSize = this.filteredProjects.size();
-        ObservableList<Project> projectList = this.filteredProjects;
-        int notDoneProjects = 0;
-        for (int i = 0; i < projectSize; i++) {
-            if (!projectList.get(i).getStatus().getStatus()) {
-                notDoneProjects++;
-            }
-        }
-        return notDoneProjects;
-    }
-    @Override
-    public String getProjectsContent() {
-        int projectSize = this.filteredProjects.size();
-        ObservableList<Project> projectList = this.filteredProjects;
-        int overdueProjects = noOverdueProjects();
-        int doneProjects = noDoneProjects();
-        int notDoneProjects = noNotDoneProjects();
-        return "Total number of Projects: " + projectSize + "\n"
-                + "Total number of Projects OVERDUE: " + overdueProjects + "\n"
-                + "Total number of Projects DONE: " + doneProjects + "\n"
-                + "Total number of Projects NOT DONE: " + notDoneProjects + "\n";
     }
 
     @Override
