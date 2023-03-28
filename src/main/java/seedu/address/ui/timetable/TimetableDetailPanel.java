@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.timetable;
 
 import java.time.LocalDate;
 import java.util.logging.Logger;
@@ -12,9 +12,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.ui.timetable.DayOfMonthPanel;
-import seedu.address.ui.timetable.DayOfWeekPanel;
-import seedu.address.ui.timetable.WeekJobListPanel;
+import seedu.address.ui.UiPart;
 
 /**
  * Controller for a timetable page

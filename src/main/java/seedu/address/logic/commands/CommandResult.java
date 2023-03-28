@@ -22,6 +22,11 @@ public class CommandResult {
     private final boolean showTimetable;
 
     /**
+     * List of unscheduled jobs should be shown to user.
+     */
+    private final boolean showUnschedule;
+
+    /**
      * Statistics information should be shown to the user.
      */
     private final boolean showStatistics;
@@ -40,11 +45,35 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
 
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean showTimetable, boolean showReminderList,
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showTimetable,
+                         boolean showUnschedule, boolean showReminderList,
                          boolean showStatistics, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTimetable = showTimetable;
+        this.showUnschedule = showUnschedule;
+        this.showReminderList = showReminderList;
+        this.showStatistics = showStatistics;
+        this.exit = exit;
+    }
+
+    /**
+     * Simplified constructor for CommandResult
+     * which does not show Unscheduled job window
+     * @param feedbackToUser
+     * @param showHelp
+     * @param showTimetable
+     * @param showReminderList
+     * @param showStatistics
+     * @param exit
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showTimetable,
+                         boolean showReminderList,
+                         boolean showStatistics, boolean exit) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.showTimetable = showTimetable;
+        this.showUnschedule = false;
         this.showReminderList = showReminderList;
         this.showStatistics = showStatistics;
         this.exit = exit;
@@ -68,6 +97,10 @@ public class CommandResult {
 
     public boolean isShowTimetable() {
         return showTimetable;
+    }
+
+    public boolean isShowUnschedule() {
+        return showUnschedule;
     }
 
 

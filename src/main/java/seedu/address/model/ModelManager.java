@@ -341,6 +341,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<DeliveryJob> getUnscheduledDeliveryJobList() {
+        FilteredList<DeliveryJob> unscheduledJobList = new FilteredList<>(this.deliveryJobSystem.getDeliveryJobList());
+        unscheduledJobList.setPredicate(job -> ((!job.isScheduled()) && (job.getDeliveredStatus())));
+        return FXCollections.observableArrayList(unscheduledJobList);
+    }
+
+    @Override
     public LocalDate getFocusDate() {
         return focusDate;
     }

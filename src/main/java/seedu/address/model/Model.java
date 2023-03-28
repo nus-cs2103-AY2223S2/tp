@@ -112,31 +112,110 @@ public interface Model {
      */
     void setDeliveryJobSystemFilePath(Path deliveryJobSystemFilePath);
 
+    /**
+     * Sets delivery job system
+     * @param jobSystem
+     */
     void setDeliveryJobSystem(ReadOnlyDeliveryJobSystem jobSystem);
 
+    /**
+     * Returns delivery job system
+     */
     ReadOnlyDeliveryJobSystem getDeliveryJobSystem();
 
+    /**
+     * Returns the filtered delivery job list
+     */
     ObservableList<DeliveryJob> getFilteredDeliveryJobList();
 
+    /**
+     * Checks if the job list has a certain job
+     * @param job job to find
+     */
     boolean hasDeliveryJob(DeliveryJob job);
 
+    /**
+     * Deletes delivery job in job list
+     * @param target job to delete
+     */
     void deleteDeliveryJob(DeliveryJob target);
 
+    /**
+     * Adds delivery job to job list
+     * @param job job to add
+     */
     void addDeliveryJob(DeliveryJob job);
 
+    /**
+     * Sets delivery job in job list to
+     * @param target job to edit/to be replaced
+     * @param editedJob new job to replace
+     */
     void setDeliveryJob(DeliveryJob target, DeliveryJob editedJob);
 
+    /**
+     * Returns job list
+     */
     ObservableList<DeliveryJob> getDeliveryJobList();
 
+    /**
+     * Updates filtered delivery job list based on new predicate
+     * @param predicate
+     */
     void updateFilteredDeliveryJobList(Predicate<DeliveryJob> predicate);
+
+    /**
+     * Updates sorted delivery job list based on new sorter
+     * @param sorter
+     */
     void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter);
+
+    /**
+     * Updates sorted delivery job list by date
+     */
     void updateSortedDeliveryJobListByDate();
+
+    /**
+     * Updates delivery job list in week containing given date
+     * @param date date to focus
+     */
     void updateWeekDeliveryJobList(LocalDate date);
+
+    /**
+     * Updates focus date
+     * @param jobDate
+     */
     void updateFocusDate(LocalDate jobDate);
+
+    /**
+     * Returns sorted delivery job list
+     */
     ObservableList<DeliveryJob> getSortedDeliveryJobList();
+
+    /**
+     * Returns sorted delivery job list by date
+     */
     Map<LocalDate, DeliveryList> getSortedDeliveryJobListByDate();
+
+    /**
+     * Returns job lis in the week
+     */
     Map<LocalDate, DeliveryList> getWeekDeliveryJobList();
+
+    /**
+     * Returns job list in a specific day of week
+     * @param dayOfWeek
+     */
     DeliveryList getDayOfWeekJob(int dayOfWeek);
+
+    /**
+     * Returns list of unscheduled jobs
+     */
+    ObservableList<DeliveryJob> getUnscheduledDeliveryJobList();
+
+    /**
+     * Returns focus date
+     */
     LocalDate getFocusDate();
 
 
