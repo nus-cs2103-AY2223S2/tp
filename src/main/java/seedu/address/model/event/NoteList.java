@@ -1,12 +1,14 @@
 package seedu.address.model.event;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 
 public class NoteList {
-    private List<Note> notes = new LinkedList<>();
+    private final List<Note> notes = new LinkedList<>();
 
     /**
      * Set notes with a predefined list of notes
@@ -60,10 +62,21 @@ public class NoteList {
     }
 
     /**
+     * Get the indexed position of note
+     * @param index The integer index
+     * @return Desired note at index position
+     */
+    public Note get(int index) throws IndexOutOfBoundsException {
+        requireNonNull(index);
+        return getNotes().get(index);
+    }
+
+    /**
      * Removes the specified note
      * @param note The note to remove from the list
      */
     public boolean remove(Note note) {
+        requireNonNull(note);
         return getNotes().remove(note);
     }
 
@@ -72,6 +85,7 @@ public class NoteList {
      * @param index Integer for index
      */
     public Note remove(int index) throws IndexOutOfBoundsException {
+        requireNonNull(index);
         return getNotes().remove(index);
     }
 
@@ -110,7 +124,6 @@ public class NoteList {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        int i = 0;
         getNotes().stream()
                 .map(note -> "\n Note #" + getNotes().indexOf(note) + ":\n" + note.toString())
                 .forEach(builder::append);

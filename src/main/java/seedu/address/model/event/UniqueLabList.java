@@ -38,6 +38,11 @@ public class UniqueLabList implements Iterable<Lab> {
         return internalList.stream().anyMatch(toCheck::isSameLab);
     }
 
+    public boolean containsEventName(String nameOfEvent) {
+        requireNonNull(nameOfEvent);
+        return internalList.stream().anyMatch(x -> x.hasMatchByName(nameOfEvent));
+    }
+
     public boolean containsNote(Note note) {
         requireNonNull(note);
         Optional<NoteList> mergedList = internalList.stream().map(Event::getNoteList).reduce(NoteList::merge);

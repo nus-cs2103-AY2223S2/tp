@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.*;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -288,6 +289,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param note The note to add.
      */
     public void addNoteToTutorial(Note note, String nameOfEvent) {
+        if (!(tutorials.containsEventName(nameOfEvent))) {
+            return;
+        }
         for (Tutorial tutorial : tutorials) {
             if (tutorial.hasMatchByName(nameOfEvent)) {
                 tutorial.addNote(note);
@@ -296,6 +300,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public void addNoteToLab(Note note, String nameOfEvent) {
+        if (!(labs.containsEventName(nameOfEvent))) {
+            return;
+        }
         for (Lab lab : labs) {
             if (lab.hasMatchByName(nameOfEvent)) {
                 lab.addNote(note);
@@ -304,9 +311,36 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public void addNoteToConsultation(Note note, String nameOfEvent) {
+        if (!(consultations.containsEventName(nameOfEvent))) {
+            return;
+        }
         for (Consultation consultation : consultations) {
             if (consultation.hasMatchByName(nameOfEvent)) {
                 consultation.addNote(note);
+            }
+        }
+    }
+
+    public void removeNoteFromTutorial(Index index, String nameOfEvent) {
+        for (Tutorial tut : tutorials) {
+            if (tut.hasMatchByName(nameOfEvent)) {
+                tut.removeNote(tut.getNoteList().get(index.getZeroBased()));
+            }
+        }
+    }
+
+    public void removeNoteFromLab(Index index, String nameOfEvent) {
+        for (Lab lab : labs) {
+            if (lab.hasMatchByName(nameOfEvent)) {
+                lab.removeNote(lab.getNoteList().get(index.getZeroBased()));
+            }
+        }
+    }
+
+    public void removeNoteFromConsultation(Index index, String nameOfEvent) {
+        for (Consultation consultation : consultations) {
+            if (consultation.hasMatchByName(nameOfEvent)) {
+                consultation.removeNote(consultation.getNoteList().get(index.getZeroBased()));
             }
         }
     }

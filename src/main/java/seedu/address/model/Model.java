@@ -221,6 +221,10 @@ public interface Model {
      */
     void updateFilteredConsultationList(Predicate<Consultation> predicate);
 
+    void removeNoteFromTutorial(Index index, String nameOfEvent);
+    void removeNoteFromLab(Index index, String nameOfEvent);
+    void removeNoteFromConsultation(Index index, String nameOfEvent);
+
     /**
      * Append notes to an existing tutorial note list
      * @param note The note to add

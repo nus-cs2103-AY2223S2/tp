@@ -236,6 +236,21 @@ public class ModelManager implements Model {
         addressBook.addNoteToConsultation(note, nameOfEvent);
     }
 
+    public void removeNoteFromTutorial(Index index, String nameOfEvent) {
+        requireNonNull(index);
+        addressBook.removeNoteFromTutorial(index, nameOfEvent);
+    }
+
+    public void removeNoteFromLab(Index index, String nameOfEvent) {
+        requireNonNull(index);
+        addressBook.removeNoteFromLab(index, nameOfEvent);
+    }
+
+    public void removeNoteFromConsultation(Index index, String nameOfEvent) {
+        requireNonNull(index);
+        addressBook.removeNoteFromConsultation(index, nameOfEvent);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

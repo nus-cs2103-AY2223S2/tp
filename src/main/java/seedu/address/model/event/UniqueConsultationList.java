@@ -38,6 +38,11 @@ public class UniqueConsultationList implements Iterable<Consultation> {
         return internalList.stream().anyMatch(toCheck::isSameConsultation);
     }
 
+    public boolean containsEventName(String nameOfEvent) {
+        requireNonNull(nameOfEvent);
+        return internalList.stream().anyMatch(x -> x.hasMatchByName(nameOfEvent));
+    }
+
     public boolean containsNote(Note note) {
         requireNonNull(note);
         Optional<NoteList> mergedList = internalList.stream().map(Event::getNoteList).reduce(NoteList::merge);
