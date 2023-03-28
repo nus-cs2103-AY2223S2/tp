@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.module.exceptions.DuplicateModuleException;
 import seedu.modtrek.model.module.exceptions.ModuleNotFoundException;
 import seedu.modtrek.testutil.ModuleBuilder;
@@ -29,18 +30,18 @@ public class UniqueModuleListTest {
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
+    public void contains_moduleNotInList_returnsFalse() {
         assertFalse(uniqueModuleList.contains(CS1101S));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
+    public void contains_moduleInList_returnsTrue() {
         uniqueModuleList.add(CS1101S);
         assertTrue(uniqueModuleList.contains(CS1101S));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_moduleWithSameIdentityFieldsInList_returnsTrue() {
         uniqueModuleList.add(CS1101S);
         Module editedAlice = new ModuleBuilder(CS1101S).withGrade(VALID_GRADE_MA2002)
                 .withTags(VALID_TAG_CS1101S).build();
@@ -115,7 +116,7 @@ public class UniqueModuleListTest {
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsModuleNotFoundException() {
+    public void remove_moduleDoesNotExist_throwsModuleNotFoundException() {
         assertThrows(ModuleNotFoundException.class, () -> uniqueModuleList.remove(CS1101S));
     }
 
@@ -149,8 +150,8 @@ public class UniqueModuleListTest {
     @Test
     public void setModules_list_replacesOwnListWithProvidedList() {
         uniqueModuleList.add(CS1101S);
-        List<Module> personList = Collections.singletonList(MA2002);
-        uniqueModuleList.setModules(personList);
+        List<Module> moduleList = Collections.singletonList(MA2002);
+        uniqueModuleList.setModules(moduleList);
         UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
         expectedUniqueModuleList.add(MA2002);
         assertEquals(expectedUniqueModuleList, uniqueModuleList);
@@ -166,5 +167,12 @@ public class UniqueModuleListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueModuleList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void testSortSuccess() {
+        assertEquals(uniqueModuleList.getSort(), "YEAR");
+        uniqueModuleList.sortByObject(SortCommand.Sort.GRADE);
+        assertEquals(uniqueModuleList.getSort(), "GRADE");
     }
 }

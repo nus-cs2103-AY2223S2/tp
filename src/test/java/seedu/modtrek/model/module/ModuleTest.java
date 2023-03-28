@@ -43,6 +43,12 @@ public class ModuleTest {
     }
 
     @Test
+    public void getPrefixTest() {
+        assertTrue(CS1101S.getCodePrefix().toString().equals("CS"));
+        assertTrue(MA2002.getCodePrefix().toString().equals("MA"));
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Module aliceCopy = new ModuleBuilder(CS1101S).build();
