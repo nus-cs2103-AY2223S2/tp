@@ -85,6 +85,9 @@ public class RecipeCard extends UiPart<Region> {
     @FXML
     private GridPane steps;
 
+    @FXML
+    private VBox borderContainer;
+
     private final CommandExecutor commandExecutor;
     /**
      * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display
@@ -93,6 +96,7 @@ public class RecipeCard extends UiPart<Region> {
      */
     public RecipeCard(Recipe recipe, int displayedIndex, CommandExecutor executor) {
         super(FXML);
+        borderContainer.minHeightProperty().bind(this.getRoot().heightProperty().multiply(0.8));
         this.recipe = recipe;
         this.commandExecutor = executor;
 

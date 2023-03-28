@@ -401,3 +401,8 @@
     -fx-padding: 0 5px 0 0;
     float: right;
 }
+
+.left-column {
+    -fx-border-color: #3a3a3a; 
+    -fx-border-width: 0 2px 0 0;
+}
