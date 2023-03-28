@@ -8,9 +8,29 @@ TeachMeSenpai is a **desktop app targeted at teaching assistants who have many s
 As a teaching assistant, you can easily view and edit your student's details on the go. Tailored to fast-typist, TeachMeSenpai is built around a **Command Line Interface (CLI)**, complete with an **autocomplete** feature
 to help you manage your students quicker than a traditional point-and-click interface can.
 
+## About this User Guide
 This user guide provides everything you need to know to get started with TeachMeSenpai and how to use its features.
 Head over to the [Quick Start](#quick-start) section to get started with setting up, or the [Features](#features) section
-to learn more about what TeachMeSenpai can do!
+to learn more about what TeachMeSenpai can do for you!
+
+### Navigating the User Guide
+**Note Box**
+<div markdown="block" class="alert alert-success">
+**:bulb: Note:** Provides information that is useful to know.
+</div>
+
+**Tip Box**
+<div markdown="block" class="alert alert-info">
+**:information_source: Tip:** Provides information that can help enhance the user experience but is not necessary to know.
+</div>
+
+**Warning Box**
+<div markdown="block" class="alert alert-danger">
+**:exclamation: Warning:** Important information to take note of to avoid any unintended effects!
+</div>
+
+[Links](#navigating-the-user-guide): Words highlighted in blue are clickable and will direct you to a relevant section within
+this user guide for more information, or to external websites to learn more!
 
 ---
 
@@ -33,7 +53,7 @@ to learn more about what TeachMeSenpai can do!
 
 ---
 
-## Features
+## Guide on using Features
 
 > <ins>:bulb: **Notes about the command format:**</ins>
 > 
@@ -55,9 +75,28 @@ to learn more about what TeachMeSenpai can do!
 > - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.  
 >   _(eg. if the command specifies `help 123`, it will be interpreted as `help`)_
 
+## What are parameters
+
+Here is an exhaustive table for you to refer to if you're unsure of what to input when using the various [features](#features) below this section!
+
+| Parameter         | Meaning                                                                       | Notes                                                                                                                                                                                                                                 |
+|-------------------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ADDRESS`         | Address of the student                                                        | Can contain numbers, symbols and multiple letters/words                                                                                                                                                                               |
+| `EDUCATION_LEVEL` | Education level of the student                                                | Can contains numbers and multiple letters/words.                                                                                                                                                                                      |
+| `EMAIL`           | Email address of the student                                                  | 1. Follow the format local-part@domain <br/> 2. Must contains `@` symbol <br/> 3. Must not start with a non-alphanumeric character (eg. . , ' " @) <br/> 4. Can contains letters and numbers <br/> 5. Should not contain any spacings |
+| `INDEX`           | The number next to the student entry upon using [`list`](#listing-all-entries) | Must be a positive number (eg. 1, 2, 3...)                                                                                                                                                                                            |
+| `KEYWORD`         | The word you would like to `find` by                                          | Can contain letters and/or numbers.                                                                                                                                                                                                   |
+| `PHONE_NUMBER`    | Phone number of the student                                                   | 1. Must only contains numbers <br/>  2. Must be at least 3 numbers long                                                                                                                                                               |
+| `REMARK`          | Your notes or remarks on the student                                          | Can contain any combination of words, numbers and special characters                                                                                                                                                                  |
+| `STUDENT_NAME`    | Name of the student                                                           | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the name will be removed by the app                                                                                                   |
+| `SUBJECT`         | The subject you're teaching the student                                       | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the subject will be removed by the app                                                                                                |
+| `TAG`             | Qualities of the student you'd like to be shown as a [tag](#adding-a-student) | Must be a single word containing alphanumeric characters                                                                                                                                                                              |
+
 [↑ Back to top](#table-of-contents)
 
 ---
+
+## Features
 
 ### Viewing help: `help`
 
@@ -100,6 +139,8 @@ Shows a list of the saved all students. Useful for resetting the list after usin
 Adds a student to the list, along with their education level and any student-specific notes.
 
 > Format: `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [r/REMARK] [t/TAG]... [s/SUBJECT]...`
+
+**:bulb: Note:** `EDUCATION_LEVEL`, `TAG`,  and  `SUBJECT` will be displayed as blue tags.
 
 Examples:
 
@@ -272,7 +313,7 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 
 ### Editing the data file
 
-> ❗ **Caution:** If your changes to the data file makes its format invalid, TeachMeSenpai will discard all data and start with an empty data file at the next run.
+**:exclamation: Warning:** If your changes to the data file makes its format invalid, TeachMeSenpai will discard all data and start with an empty data file at the next run.
 
 [↑ Back to top](#table-of-contents)
 
