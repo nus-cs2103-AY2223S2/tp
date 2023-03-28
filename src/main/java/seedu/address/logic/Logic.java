@@ -37,6 +37,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of groups */
     ObservableList<Group> getFilteredGroupList();
 
+    /** Returns an unmodifiable view of the filtered list of time slots */
+    ObservableList<String> getFilteredTimeSlotList();
+
     /**
      * Returns the user prefs' address book file path.
      */

@@ -15,6 +15,7 @@ import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.PersonAlreadyInGroupException;
 import seedu.address.model.group.exceptions.PersonNotInGroupException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.timeSlot.TimeMask;
 
 /**
  * Represents a Person in the address book.
@@ -33,10 +34,10 @@ public class Person {
     private final IsolatedEventList isolatedEventList = new IsolatedEventList();
     private final RecurringEventList recurringEventList = new RecurringEventList();
     private Set<Group> groups = new HashSet<>();
+
     /**
      * Every field must be present and not null.
      */
-
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Group> groups,
                   Set<IsolatedEvent> isolatedEvents, Set<RecurringEvent> recurringEvents) {
         requireAllNonNull(name, phone, email, address, tags, groups, isolatedEvents, recurringEvents);
@@ -100,7 +101,9 @@ public class Person {
     }
 
     public void addRecurringEvent(RecurringEvent event) {
+        // TODO: Should standardise Add/Delete in EventList or in Person
         recurringEventList.insert(event);
+        getRecurringMask().modifyOccupancy(event, true);
     }
 
     public RecurringEventList getRecurringEventList() {
@@ -121,6 +124,10 @@ public class Person {
      */
     public Set<Group> getGroups() {
         return Collections.unmodifiableSet(groups);
+    }
+
+    public TimeMask getRecurringMask() {
+        return recurringEventList.getRecurringMask();
     }
 
     /**
