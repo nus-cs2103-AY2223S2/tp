@@ -29,8 +29,6 @@ public class DeliverySlot {
 
     /**
      * Constructs an {@code DeliverySlot}.
-     *
-     * @param value A invalid slot.
      */
     private DeliverySlot() {
         this.value = "-1";
