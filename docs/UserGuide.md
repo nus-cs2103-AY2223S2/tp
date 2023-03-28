@@ -114,7 +114,7 @@ Exits the program.
 
 > Format: `exit`
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :bulb: **Note:** This is the same as closing the app via the top-right `x` button.
 
@@ -140,8 +140,11 @@ Adds a student to the list, along with their education level and any student-spe
 
 > Format: `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [r/REMARK] [t/TAG]... [s/SUBJECT]...`
 
-**:bulb: Note:** `EDUCATION_LEVEL`, `TAG`,  and  `SUBJECT` will be displayed as blue tags.
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Note:** `EDUCATION_LEVEL`, `TAG`,  and  `SUBJECT` will be displayed as blue tags.
 * You only the name ie. `n/` is compulsory. You can add details for other fields using commands that we will talk about later!
+</div>
 
 Examples:
 
@@ -171,7 +174,7 @@ Edits a student's info _(all info except remark)_. To remove a student's field, 
 
 > Format: `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [t/TAG]... [s/SUBJECT]...`
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :bulb: **Note:** `edit` command cannot edit the remark field of students. Use the [`remark`](#editing-remark-of-student-remark) command for editing remarks.
 
@@ -269,7 +272,7 @@ tags and subjects in full.
   * Tags: `t/`
   * Subjects: `s/`
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :bulb: **Note:** No input in the `FIELD` defaults to finding by name.
 
