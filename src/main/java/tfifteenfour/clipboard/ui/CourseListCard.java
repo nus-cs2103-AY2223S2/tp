@@ -14,7 +14,7 @@ import tfifteenfour.clipboard.model.course.Course;
  */
 public class CourseListCard extends UiPart<Region> {
 
-    private static final String FXML = "CourseListCard.fxml";
+    private static final String FXML = "ListCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**

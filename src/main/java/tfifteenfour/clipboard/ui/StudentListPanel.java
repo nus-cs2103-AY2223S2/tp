@@ -14,19 +14,19 @@ import tfifteenfour.clipboard.model.student.Student;
  * Panel containing the list of persons.
  */
 public class StudentListPanel extends UiPart<Region> {
-    private static final String FXML = "StudentListPanel.fxml";
+    private static final String FXML = "ListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
 
     @FXML
-    private ListView<Student> personListView;
+    private ListView<Student> listView;
 
     /**
      * Creates a {@code StudentListPanel} with the given {@code ObservableList}.
      */
     public StudentListPanel(ObservableList<Student> studentList) {
         super(FXML);
-        personListView.setItems(studentList);
-        personListView.setCellFactory(listView -> new StudentListViewCell());
+        listView.setItems(studentList);
+        listView.setCellFactory(listView -> new StudentListViewCell());
     }
 
     /**
@@ -47,7 +47,7 @@ public class StudentListPanel extends UiPart<Region> {
     }
 
     public void setPersonListView(ObservableList<Student> studentList) {
-        personListView.setItems(studentList);
+        listView.setItems(studentList);
     }
 
 }

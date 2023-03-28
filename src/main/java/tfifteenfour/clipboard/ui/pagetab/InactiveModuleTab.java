@@ -10,13 +10,17 @@ import tfifteenfour.clipboard.ui.UiPart;
  */
 public class InactiveModuleTab extends UiPart<Region> {
 
-    private static final String FXML = "InactiveModuleTab.fxml";
+    private static final String FXML = "InactiveTab.fxml";
 
     @FXML
     private Label name;
 
+    /**
+     * Creates an InactiveModuleTab
+     */
     public InactiveModuleTab() {
         super(FXML);
+        name.setText("Modules");
     }
 
 }
