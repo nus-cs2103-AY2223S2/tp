@@ -32,7 +32,7 @@ public class ModuleUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + module.getName().fullName + " ");
         sb.append(PREFIX_RESOURCE + module.getResource().value + " ");
-        sb.append(PREFIX_TIMESLOT + module.getTimeSlot().value + " ");
+        sb.append(PREFIX_TIMESLOT + module.getTimeSlot().value.toString() + " ");
         sb.append(PREFIX_ADDRESS + module.getAddress().value + " ");
         module.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
