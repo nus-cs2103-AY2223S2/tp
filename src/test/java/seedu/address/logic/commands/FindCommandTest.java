@@ -14,7 +14,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.logic.parser.Predicates.ContainsKeywordsPredicate;
+import seedu.address.logic.parser.predicates.ContainsKeywordsPredicate;
 import seedu.address.testutil.TypicalPersons;
 
 
