@@ -11,11 +11,22 @@ import seedu.dengue.model.Model;
 public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
     public static final String MESSAGE_SUCCESS = "Redo successful!";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + " performs a redo operation, where an optional argument \n"
+            + "can be provided to indicate the number of operations. \n"
+            + "eg. redo 2";
+
+    private final int numberOfRedos;
+    public RedoCommand(int numberOfRedos) {
+        this.numberOfRedos = numberOfRedos;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.redo();
+        for (int i = 0; i < this.numberOfRedos; i++) {
+            model.redo();
+        }
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

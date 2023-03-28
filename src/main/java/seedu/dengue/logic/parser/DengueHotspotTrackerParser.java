@@ -75,10 +75,10 @@ public class DengueHotspotTrackerParser {
             return new OverviewCommandParser().parse(arguments);
 
         case UndoCommand.COMMAND_WORD:
-            return new UndoCommand();
+            return new UndoCommandParser().parse(arguments);
 
         case RedoCommand.COMMAND_WORD:
-            return new RedoCommand();
+            return new RedoCommandParser().parse(arguments);
 
 
         default:
