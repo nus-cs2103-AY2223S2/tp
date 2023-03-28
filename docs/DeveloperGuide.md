@@ -716,7 +716,7 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
    2. 30 vaccination types, each with a limit of:
       1. 10 groups
       2. 30 ingredients
-      3. 300 requirements
+      3. 10 requirements
    3. 1000 appointments.
 3. On top of 2, should also be able to handle these names up to 30 characters without any noticeable sluggishness in performance on typical usage:
    1. Allergy
