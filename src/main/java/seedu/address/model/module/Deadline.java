@@ -49,19 +49,6 @@ public class Deadline implements Comparable<Deadline> {
         return LocalDateTime.parse(deadline, dateTimeFormatter);
     }
 
-    /**
-     * Returns String of desired display format
-     * @return Display format String
-     */
-    public String displayFormat() {
-        if (value == null) {
-            return EMPTY_INPUT;
-        }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, HH:mm");
-        return formatter.format(value);
-    }
-
-
     @Override
     public String toString() {
         if (value == null) {
@@ -81,6 +68,9 @@ public class Deadline implements Comparable<Deadline> {
 
     @Override
     public int hashCode() {
+        if (value == null) {
+            return EMPTY_INPUT.hashCode();
+        }
         return value.hashCode();
     }
 

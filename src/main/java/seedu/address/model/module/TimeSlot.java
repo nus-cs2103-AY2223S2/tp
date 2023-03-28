@@ -75,7 +75,8 @@ public class TimeSlot implements Comparable<TimeSlot> {
      * Returns String of desired display format
      * @return Display format String
      */
-    public String displayFormat() {
+    @Override
+    public String toString() {
         //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, hh:mm a");
         //return formatter.format(storedInputString);
         return storedInputString;
@@ -92,7 +93,7 @@ public class TimeSlot implements Comparable<TimeSlot> {
 
     @Override
     public int hashCode() {
-        return startTime.hashCode();
+        return storedInputString.hashCode();
     }
 
     public LocalDateTime getLocalDateTime() {
