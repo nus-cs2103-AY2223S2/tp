@@ -2,6 +2,8 @@ package seedu.address.model.expense;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.ParserUtil.Timespan.MONTH;
+import static seedu.address.logic.parser.ParserUtil.Timespan.WEEK;
 import static seedu.address.testutil.TypicalCategories.MISCCAT;
 
 import java.time.LocalDate;
@@ -20,14 +22,14 @@ public class ExpenseInTimespanPredicateTest {
         LocalDate firstPredicateDate = LocalDate.of(2023, 1, 1);
         LocalDate secondPredicateDate = LocalDate.of(2023, 3, 15);
 
-        ExpenseInTimespanPredicate firstPredicate = new ExpenseInTimespanPredicate(firstPredicateDate);
-        ExpenseInTimespanPredicate secondPredicate = new ExpenseInTimespanPredicate(secondPredicateDate);
+        ExpenseInTimespanPredicate firstPredicate = new ExpenseInTimespanPredicate(WEEK);
+        ExpenseInTimespanPredicate secondPredicate = new ExpenseInTimespanPredicate(MONTH);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        ExpenseInTimespanPredicate firstPredicateCopy = new ExpenseInTimespanPredicate(firstPredicateDate);
+        ExpenseInTimespanPredicate firstPredicateCopy = new ExpenseInTimespanPredicate(WEEK);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -45,18 +47,18 @@ public class ExpenseInTimespanPredicateTest {
         LocalDate now = LocalDate.of(2023, 3, 23);
 
         ExpenseInTimespanPredicate predicate =
-                new ExpenseInTimespanPredicate(LocalDate.of(2023, 3, 12));
+                new ExpenseInTimespanPredicate(WEEK);
         assertTrue(predicate.test(
                 new Expense("Apple", 1.5, now, MISCCAT)));
 
-        predicate = new ExpenseInTimespanPredicate(now);
+        predicate = new ExpenseInTimespanPredicate(MONTH);
         assertTrue(predicate.test(
-                new Expense("Hello", 1.0, now, MISCCAT)
+                new Expense("Hello", 1.0, now.withDayOfMonth(1), MISCCAT)
         ));
     }
 
     @Test
-    public void test_expenseNotInCategory_returnsFalse() {
+    public void test_expenseNotInTimespan_returnsFalse() {
         Category category1 = new UserDefinedCategory("Category1", "Description1");
         Category category2 = new UserDefinedCategory("Category2", "Description2");
         Category miscCat = new MiscellaneousCategory();
@@ -66,14 +68,10 @@ public class ExpenseInTimespanPredicateTest {
 
         // Wrong Category
         ExpenseInTimespanPredicate predicate =
-                new ExpenseInTimespanPredicate(LocalDate.of(2023, 2, 1));
+                new ExpenseInTimespanPredicate(MONTH);
         assertFalse(predicate.test(expense));
 
         expense = new Expense("test2", 2, LocalDate.of(2023, 1, 31), miscCat);
-        assertFalse(predicate.test(expense));
-
-        predicate = new ExpenseInTimespanPredicate(LocalDate.of(2024, 1, 1));
-        expense = new Expense("test3", 3, LocalDate.now(), category1);
         assertFalse(predicate.test(expense));
 
 

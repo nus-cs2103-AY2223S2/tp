@@ -73,6 +73,11 @@ public interface Model {
     void setExpense(int index, Expense expense);
 
     /**
+     * Delete all expense.
+     */
+    void clearExpense();
+
+    /**
      * Replaces the given expense {@code target} with {@code editedExpense}.
      * {@code target} must exist in the expense list
      */
@@ -102,6 +107,11 @@ public interface Model {
      * @param target the category to delete
      */
     void deleteCategory(Category target);
+
+    /**
+     * Delete all Category.
+     */
+    void clearCategory();
 
     /**
      * Adds the given category to the category list.

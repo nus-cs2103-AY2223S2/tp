@@ -150,6 +150,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearCategory() {
+        expenseTracker.clearCategory();
+    }
+
+    @Override
     public Category getCategoryInstance(Category category) {
         if (hasCategory(category)) {
             return expenseTracker.getCategoryInstance(category);
@@ -201,6 +206,11 @@ public class ModelManager implements Model {
     @Override
     public void setExpense(int index, Expense newExpense) {
         expenseTracker.setExpense(index, newExpense);
+    }
+    
+    @Override
+    public void clearExpense() {
+        expenseTracker.clearExpense();
     }
 
     /**
