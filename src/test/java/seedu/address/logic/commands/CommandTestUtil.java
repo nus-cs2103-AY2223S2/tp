@@ -84,7 +84,7 @@ public class CommandTestUtil {
         + PREFIX_DRUG_ALLERGY; // empty string not allowed for drug allergies
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "M"; // missing full spelling
     public static final String INVALID_GENDER_DESC_2 = " " + PREFIX_GENDER + "Male Female"; // missing full spelling
-    public static final String INVALID_DOCTOR_DESC = " " + PREFIX_DOCTOR+ "Alex&"; // '&' not allowed in doctor names
+    public static final String INVALID_DOCTOR_DESC = " " + PREFIX_DOCTOR + "Alex&"; // '&' not allowed in doctor names
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_MEDICINE_DESC = " " + PREFIX_MEDICINE + "$$"; // '$' not allowed in medicine
 
