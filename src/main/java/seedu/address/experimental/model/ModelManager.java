@@ -194,4 +194,19 @@ public class ModelManager implements Model {
     public void setCurrentSelectedEntity(Entity newSelection) {
         currentSelectedEntity = newSelection;
     }
+
+    @Override
+    public ObservableList<Entity> getListByClassification(String classification) {
+        requireNonNull(classification);
+        ObservableList<Entity> entities = null;
+        if (classification.equals("char")) {
+            entities = this.reroll.getCharList();
+        } else if (classification.equals("mob")) {
+            entities = this.reroll.getMobList();
+        } else if (classification.equals("item")) {
+            entities = this.reroll.getItemList();
+        }
+        requireNonNull(entities);
+        return entities;
+    }
 }

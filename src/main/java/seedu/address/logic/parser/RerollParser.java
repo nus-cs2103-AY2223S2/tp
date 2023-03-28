@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddEntityCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -16,6 +15,7 @@ import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MakeCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -46,8 +46,8 @@ public class RerollParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddEntityCommand.COMMAND_WORD:
-            return new AddEntityCommandParser().parse(userInput);
+        case MakeCommand.COMMAND_WORD:
+            return new MakeCommandParser().parse(userInput);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
