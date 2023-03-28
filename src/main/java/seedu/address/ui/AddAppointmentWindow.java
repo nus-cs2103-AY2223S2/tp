@@ -145,8 +145,8 @@ public class AddAppointmentWindow extends UiPart<Stage> {
         String addAppointmentCommand = AddAppointmentCommand.COMMAND_WORD + " ";
         int targetIndex = personListView.getSelectionModel().getSelectedIndex() + 1;
         addAppointmentCommand += targetIndex + " ";
-        addAppointmentCommand += "/from " + getFromTimeInput() + " ";
-        addAppointmentCommand += "/to " + getToTimeInput();
+        addAppointmentCommand += "/from " + getDateInput() + " " + getFromTimeInput() + " ";
+        addAppointmentCommand += "/to " + getDateInput() + " " + getToTimeInput();
 
         return addAppointmentCommand;
     }
