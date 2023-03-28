@@ -25,7 +25,7 @@ public class Deadline {
     public final LocalDateTime deadline;
 
     /**
-     * Constructs an {@code Deadline}.
+     * Constructs a {@code Deadline}.
      *
      * @param description A valid deadline description.
      * @param deadline A valid deadline.

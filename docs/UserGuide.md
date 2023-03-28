@@ -14,8 +14,6 @@ This user guide will help you get started and understand how PetPal can **seamle
 <div style="page-break-after: always;"></div>
 
 # Table of Contents
-
-* TOC
   {:toc}
 
 <div style="page-break-after: always;"></div>
@@ -26,7 +24,7 @@ This user guide will help you get started and understand how PetPal can **seamle
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `PetPal.jar` [here](https://github.com/AY2223S2-CS2103T-T14-2/tp/releases/tag/v1.3.trial).
+1. Download the latest `PetPal.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your PetPal.
 
@@ -725,6 +723,7 @@ If your changes to the data file makes its format invalid, FABook will discard a
 
 ## Command summary
 
+=======
 | Action                    | Format, Examples                                                                                                                                                            | Shortcut       |
 |---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
 | **Help**                  | `help`                                                                                                                                                                      | **PRESS** `F1` |
@@ -746,4 +745,3 @@ If your changes to the data file makes its format invalid, FABook will discard a
 | **Exit**                  | `exit`                                                                                                                                                                      | e              |
 
 [Return to Table of Contents](#table-of-contents)
-
