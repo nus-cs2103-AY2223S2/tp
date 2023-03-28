@@ -28,8 +28,7 @@ public class SortMeetingCommand extends Command {
     private static Comparator<Meeting> descriptorComparator = Comparator.comparing(m -> m.getDescription().toString());
     private static Comparator<Meeting> locationComparator = Comparator.comparing(m -> m.getLocation().toString());
     private static Comparator<Meeting> dateTimeComparator = Comparator.comparing((Meeting m) -> m.getDateTime()
-                                                                .get())
-                                                                .reversed();
+                                                                .get());
     private static final String MESSAGE_SUCCESS = "Sorted by %1$s";
     /**
      * Creates an SortMeetingCommand to get {@code ModelManage} class to sort with a specified attributes {@code Title},
