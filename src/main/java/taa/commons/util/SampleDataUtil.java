@@ -19,17 +19,23 @@ import taa.model.tag.Tag;
 public class SampleDataUtil {
     public static Student[] getSampleStudents() {
         return new Student[] {
-            new Student(new Name("Alex Yeoh"),
+            new Student(new Name("Alex Yeoh"), "0,0,0,0,0,0,0,0,0,0,0,0",
+                    "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
                 getTagSet("Tut_T01")),
-            new Student(new Name("Bernice Yu"),
+            new Student(new Name("Bernice Yu"),"0,0,0,0,0,0,0,0,0,0,0,0",
+                    "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
                 getTagSet("Tut_T01", "Lab_L01")),
-            new Student(new Name("Charlotte Oliveiro"),
+            new Student(new Name("Charlotte Oliveiro"),"0,0,0,0,0,0,0,0,0,0,0,0",
+                    "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
                 getTagSet("Tut_T02")),
-            new Student(new Name("David Li"),
+            new Student(new Name("David Li"),"0,0,0,0,0,0,0,0,0,0,0,0",
+                    "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
                 getTagSet("Lab_L02")),
-            new Student(new Name("Irfan Ibrahim"),
+            new Student(new Name("Irfan Ibrahim"),"0,0,0,0,0,0,0,0,0,0,0,0",
+                    "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
                 getTagSet("Rec_R03")),
-            new Student(new Name("Roy Balakrishnan"),
+            new Student(new Name("Roy Balakrishnan"),"0,0,0,0,0,0,0,0,0,0,0,0",
+                    "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
                 getTagSet("Lab_L12"))
         };
     }

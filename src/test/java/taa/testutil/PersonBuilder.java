@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import taa.commons.util.SampleDataUtil;
+import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
@@ -15,7 +16,13 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
 
+    public static final String DEFAULT_ATTENDANCE = "0,0,0,0,0,0,0,0,0,0,0,0";
+
+    public static final String DEFAULT_PP = "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1";
+
     private Name name;
+
+    private Attendance attendance;
     private Set<Tag> tags;
 
     /**
@@ -23,6 +30,7 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
+        attendance = new Attendance(DEFAULT_ATTENDANCE, DEFAULT_PP);
         tags = new HashSet<>();
     }
 
@@ -31,6 +39,7 @@ public class PersonBuilder {
      */
     public PersonBuilder(Student studentToCopy) {
         name = studentToCopy.getName();
+        attendance = studentToCopy.getAtd();
         tags = new HashSet<>(studentToCopy.getClassTags());
     }
 
@@ -50,8 +59,12 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder withAttendance(Attendance atd) {
+        this.attendance = atd;
+        return this;
+    }
     public Student build() {
-        return new Student(name, tags);
+        return new Student(name, attendance.atdStrorageStr(), attendance.partPointsStorageStr(), tags);
     }
 
 }

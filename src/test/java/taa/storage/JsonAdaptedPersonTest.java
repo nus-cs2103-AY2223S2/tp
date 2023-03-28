@@ -19,6 +19,10 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = TypicalPersons.BENSON.getName().toString();
+
+    private static final String VALID_ATTENDANCE = "0,0,0,0,0,0,0,0,0,0,0,0";
+
+    private static final String VALID_PART_POINTS = "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1";
     private static final List<JsonAdaptedTag> VALID_TAGS = TypicalPersons.BENSON.getClassTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -32,14 +36,15 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedStudent person =
-                new JsonAdaptedStudent(INVALID_NAME, VALID_TAGS);
+                new JsonAdaptedStudent(INVALID_NAME, VALID_ATTENDANCE, VALID_PART_POINTS, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedStudent person = new JsonAdaptedStudent(null, VALID_TAGS);
+        JsonAdaptedStudent person = new JsonAdaptedStudent(null, VALID_ATTENDANCE,
+                VALID_PART_POINTS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -49,7 +54,7 @@ public class JsonAdaptedPersonTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedStudent person =
-                new JsonAdaptedStudent(VALID_NAME, invalidTags);
+                new JsonAdaptedStudent(INVALID_NAME, VALID_ATTENDANCE, VALID_PART_POINTS, VALID_TAGS);
         Assert.assertThrows(IllegalValueException.class, person::toModelType);
     }
 

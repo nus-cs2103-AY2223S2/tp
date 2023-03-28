@@ -1,6 +1,7 @@
 package taa.model.student;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Attendance class, manages attendance and class participation points
@@ -8,6 +9,9 @@ import java.util.Arrays;
 public class Attendance {
     public static final String WEEK_ERROR_MSG = "Week number out of range, should be integer between 1-12";
     public static final String POINTS_ERROR_MSG = "Participation points should be integer between 0-700";
+    public static final String ORIGINAL_ATD = "0,0,0,0,0,0,0,0,0,0,0,0";
+
+    public static final String ORIGINAL_PP = "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,";
     private final boolean[] attendanceList = new boolean[12];
 
     private final int[] participationPoint = new int[12];
@@ -15,8 +19,15 @@ public class Attendance {
     /**
      * constructor for attendance class
      */
-    public Attendance() {
-        Arrays.fill(participationPoint, -1);
+    public Attendance(String atd, String pp) {
+        String[] atdArr = atd.split(",");
+        String[] ppArr = pp.split(",");
+        for (int i = 0; i < atdArr.length; i++) {
+            if (Objects.equals(atdArr[i], "1")) {
+                this.attendanceList[i] = true;
+            }
+            this.participationPoint[i] = Integer.parseInt(ppArr[i]);
+        }
     }
 
     /**
@@ -129,4 +140,25 @@ public class Attendance {
         }
         return (float) pt / weeks;
     }
+
+    public String atdStrorageStr() {
+        String res = "";
+        for (boolean atd : this.attendanceList) {
+            if (atd) {
+                res += "1,";
+            } else {
+                res += "0,";
+            }
+        }
+        return res.substring(0, 23);
+    }
+
+    public String partPointsStorageStr() {
+        String res = "";
+        for (int val : this.participationPoint) {
+            res += String.valueOf(val) + ",";
+        }
+        return res.substring(0, res.length() - 1);
+    }
+
 }
