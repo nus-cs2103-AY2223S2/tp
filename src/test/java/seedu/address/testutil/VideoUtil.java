@@ -3,6 +3,8 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WATCH;
 
 import seedu.address.logic.commands.add.AddVideoCommand;
 import seedu.address.logic.commands.edit.EditVideoCommand;
@@ -42,8 +44,14 @@ public class VideoUtil {
     public static String getVideoDetails(ModuleCode moduleCode, LectureName lectureName, Video video) {
         StringBuilder sb = new StringBuilder();
         sb.append(video.getName() + " ");
-        sb.append(PREFIX_MODULE + moduleCode.toString() + " ");
-        sb.append(PREFIX_LECTURE + lectureName.toString());
+        sb.append(PREFIX_MODULE + " " + moduleCode.toString() + " ");
+        sb.append(PREFIX_LECTURE + " " + lectureName.toString() + " ");
+
+        if (!video.getTags().isEmpty()) {
+            sb.append(PREFIX_TAG + " " + TagUtil.getTagsStr(video.getTags()) + " ");
+        }
+
+        sb.append(video.hasWatched() ? PREFIX_WATCH : "");
 
         return sb.toString();
     }
