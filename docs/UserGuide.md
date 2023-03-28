@@ -5,7 +5,10 @@ title: User Guide
 # CoDoc User Guide
 #### Welcome to CoDoc, a desktop app for students in SoC to connect with each other for the benefit of their course of study.
 CoDoc is optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a **Graphical User Interface (GUI)**. 
-If you can type fast, CoDoc can get your contact management tasks done **faster** than traditional GUI apps, **improving** your **networking experience**.
+If you can type fast, CoDoc can get your contact management tasks done **faster** than traditional GUI apps.
+
+CoDoc offers more than just a traditional contact management app. Save useful information such as **modules taken** or
+**skills possessed** by a person to greately improve your **networking experience**.
 
 You can spend **less time** _keeping track of your contacts_ and _searching through chats_, and spend **more time** making _meaningful connections_ and _accomplish your goals_.
 
@@ -141,7 +144,12 @@ As recommended in the introduction, we would like to direct you to read the [Qui
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
+---
+
 ## Quick Start
+
+First time using CoDoc? Welcome aboard! Follow the steps below to familiarize yourself with CoDoc.
+
 
 ### Download and Installation
 
@@ -149,26 +157,65 @@ Before you can use CoDoc, you need to download it. To do this, follow these step
 
 1. Ensure you have `Java 11` or above installed in your Computer. -> [How To Check Java Version](#how-to-check-java-version)
    * If not, you can download it from [here](https://www.oracle.com/java/technologies/downloads/#java11)
-2. Download the latest version of `codoc.jar` [here](https://github.com/AY2223S2-CS2103T-F12-2/tp/releases/tag/v1.3.trial).
+   
+   <br>
+2. Download the latest version of `codoc.jar` [here](https://github.com/AY2223S2-CS2103T-F12-2/tp/releases/), where you will be redirected
+to our GitHub Releases page. Find the latest release and download the latest version.
+
+    <br>
+
+    ![image](images/user-guide/download_codoc.PNG)
+
+    <br>
+
 3. Copy the file to the folder you want to use as the _home folder_ for CoDoc.<br>
    For example,
-   1. Create a new folder in your Desktop—this folder will then be the _home folder_.
+   1. Create a new folder where you want CoDoc to be (Desktop, My Documents...anywhere you wish)—this folder will then be the _home folder_.
    2. Place `codoc.jar` into the newly created folder.
-4. Open a command terminal -> [How to Open CoDoc](#how-to-open-codoc)
-   1. `cd` into the folder you put the jar file in.
-   2. `java -jar codoc.jar` to run the application.<br>
-   3. A window similar to the one below should appear in a few seconds.
+   
+    <br>
+   
+   Once you have completed these steps, it should look something like this:
 
-      <img src="images/Ui-minimised.png"/>
-      <br>
+    [placehodler for screenshot]
+
+    <br>
+   
+4. Launch CoDoc.
+
+   * For users familiar with command terminal:
+     1. `cd` into the folder you put the jar file in (_home folder_).
+     2. `java -jar codoc.jar` to launch the application.
+     3. CoDoc should launch in a few seconds.
+   
+   * For windows users who prefers clicking in folder to launch:
+     1. Create a .bat file in the folder you put the jar file in (_home folder_).
+     2. Write `java -jar codoc.jar` into the .bat file.
+     3. Click on the .bat file and CoDoc should launch in a few seconds.
+     
+   <br>
+   
+   For a more detailed guide with examples, refer to [How to Open CoDoc](#how-to-open-codoc).
+
+If you have managed to complete all steps, congratulations! You should be seeing CoDoc application 
+launched in its factory state as shown below.
+   
+<img src="images/Ui-minimised.png"/>
+        <br>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
+---
+
 ### Navigation
 
+If it's your first time using this program, the starting screen could seem a little overwhelming.
+
 Before we begin, let's familiarize ourselves with the different parts of the CoDoc interface.
-Maximise the screen to have a clearer view.
+We recommend **maximizing** the program window to have a clearer view.
 This way you can see more content as well.
+
+Below is the breakdown of the CoDoc screen:
 
 <img src="images/navigation.png"/>
 
@@ -181,91 +228,163 @@ This way you can see more content as well.
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Tutorial
+---
 
-Now that you know how to navigate CoDoc, let's start by adding a person to our contact list! To do this, follow these steps:
+### CoDoc Tutorial: Your first steps
+
+Now that you know how to navigate CoDoc, we recommend you try the following steps to familiarize with 
+available features of CoDoc.
+
+<br>
 
 #### 1. Adding a person
 
-Let's start by adding a person named Bob, a year 2 student taking Computer Science with the email e0823741@nus.edu. 
+You probably notice a list of contacts already into the database. How can I add one on my own?
 
-Enter the command `add n/Bob y/2 c/6 e/e0823741@nus.edu` into the command box. This will add a new person named Bob to our contact list. 
+Let's say you got to know Bob in school and want to add him to CoDoc. You find out that **Bob**, is a **year 2** student,
+taking **Computer Science** and his email address is **e0823741@u.nus.edu**. Here is how you can use CoDoc's
+[Add command](#adding-a-person--add) to do so:
+
+In the command box, enter the command `add n/Bob y/2 c/6 e/e0823741@u.nus.edu` and press the `enter` key.
+This will add a new person named Bob to our contact list.
+
+[placeholder for screenshot]
+
+After executing the command, we see that Bob has been added below the list.
 
 **Note:** You must specify minimally, the person's _name_, _email_, _year_ and _course_ when adding a person.
 
-As you can see, we first specify the `add` command followed by the _name prefix_ `n/` and the _name_ that we want to add i.e. `Bob`. Same goes for the _year_, _course_ and _email_. 
+> **:bulb: Tips for understanding commands**:
+> As you can see, we first specified the `add` command, followed by the _prefix_ `n/` and the _name_ that we want to add
+> i.e. `Bob`. Same goes for the _year_, _course_ and _email_. This `n/` and `Bob` pair, is the _prefix_ and _parameter_
+> pair that occurs frequently in other commands too. Refer to [Glossary](#glossary) for more info.
 
-**Note:** The person's _course_ corresponds to its index in the course list panel.
+Here, you may have noticed we entered `c/6` and wonder why the parameter for _course_ was `6` instead of `Computer Science`.
 
-Here we used `c/6`, because if you look at the course list panel on the left, Computer Science refers to index `6`. 
+To save time typing out the full course and also standardize formatting, we have coded the command so that you just
+have to type its _index_ as the parameter, which you can refer to the [**Course List Panel**](#navigation) to identify. 
 
-If you want to, you can add other details of the person such as his/her _GitHub username_, _LinkedIn profile URL_, _modules_ and _skills_.
+If you want to, you can add additional details of the person such as _GitHub username_, _LinkedIn profile URL_, _modules_ and _skills_.
 
-Related docs: [Adding a person: `add`](#adding-a-person--add)
+Related: [Adding a person: `add`](#adding-a-person--add)
 
-If you followed the steps above correctly, you would see Bob added at the bottom of the person list panel:
+
+**Note:** Profile pictures shown here might not be identical to yours as they are randomised.
+
+<br>
+
+#### 2. Viewing a person
+
+Now that you have added Bob into CoDoc, you can view his details by using the [View command](#viewing-a-personchanging-tabs--view).
+This will load Bob's details into the [**Info Panel**](#navigation).
+
+To do so, let's first identify Bob's _index_. From the [**Person List Panel**](#navigation), we can tell that Bob is
+numbered `8` in this example. This is his _index_.
+
+Now enter `view 8` into the command box.
+His _contact_ details will then be shown in the **Info Panel**.
 
 <img src="images/tutorial/adding-bob.png"/>
 
-**Note:** Your profile pictures and the profile pictures shown here might not be exactly the same as they are randomised.
+You may try loading other person's details by using different _index_ (e.g. `view 2`). 
 
-#### 2. Viewing a person's modules
+>**Tips**: CoDoc also supports GUI, so you can just click the person in the list to view his details.
 
-To view Bob in the right info panel, enter `view 8`.
-His _contact_ details will then be shown in the info panel, under the _contact_ tab. We use `8` here because Bob's index is 8 in the person list panel.
+<br>
 
-**Note:** The specified index used with the `view` command must correspond to the index of the person that you want to `view` in the person list panel.
+Remember that we said CoDoc offers more than just a traditional contact management app? So far, you have only viewed
+the _detailed contacts_ tab, showing basic contact details.
 
-Now let's change to his _modules_ tab: enter `view m` in the command box.
-As shown below, he does not have any _modules_ currently.
+Now let's try viewing other tabs in **Info Panel**. 
+To do so, enter `view m` in the command box. This will show Bob's **modules taken** under _detailed modules_ tab.
 
 <img src="images/tutorial/viewing-bobs-modules.png"/>
 
-You can enter `view s` as well if you want to see Bob's _skills_. You can also view other contacts by specifying the person's index in the list i.e. `view 2` would load Nicole Lee in the info panel.
+Note that you do not see anything of value, and that is because we have not added any modules Bob has taken so far
+(don't worry, we will show how you can add onto this list below).
 
-**Related docs:** [Viewing a person/Changing tabs: `view`](#viewing-a-personchanging-tabs--view)
+You can enter `view s` as well to view Bob's _skills_ to see a similar empty list, or enter `view c` to go back to Bob's
+contact information.
 
-#### 3. Editing a person's modules
+>**Tips**: CoDoc also supports GUI, so you can click on the name of different tabs to switch between tabs.
 
-To update Bob's module list to have let's say CS2101 and CS2103T, first make sure that Bob is shown in the right info panel, by entering `view 8`. 
+**Related:** [Viewing a person/Changing tabs: `view`](#viewing-a-personchanging-tabs--view)
 
-Then enter `edit m/ay2223s2 cs2101 m/ay2223s2 cs2103t` in the command box. 
+<br>
 
-**Note:** Editing only works on the person shown in the info panel. If the person you want to edit is not shown in the info panel, you have to use the `view` command first to view that person, then edit as you wish. Also, _modules_ must follow a certain format to be successfully added/edited.
+#### 3. Editing a person's details
 
-**Related docs:** [Viewing a person/Changing tabs: `view`](#viewing-a-personchanging-tabs--view), [Editing a person: `edit`](#editing-a-person--edit)
+To use CoDoc to its fullest potential, you can add Bob's **modules taken** or **skills possessed** to the database.
 
-Bob's updated module list (enter `view m` if you're not on the _modules_ tab) would look like this after you entered the `edit` command:
+Let's say you met Bob while taking _CS2101_ and _CS2103T_ modules. To update this information in the database, you can use
+CoDoc's [Edit command](#editing-a-person--edit).
+
+First make sure that Bob is shown in the right panel using the View command. In this example, we can enter `view 8` to
+do so.
+
+>**Why is this step necessary?:** Editing only works on the person shown in the info panel. Make sure you are viewing
+> the correct person with the [View command](#viewing-a-personchanging-tabs--view) (or with a click) before you enter
+> the [Edit command](#editing-a-person--edit).
+
+After you see Bob in the **Info Panel**, enter `edit m/ay2223s2 cs2101 m/ay2223s2 cs2103t` in the command box. 
 
 <img src="images/tutorial/editing-bobs-modules.png"/>
 
-You might be thinking why not we just add Bob's _modules_ in the first place when adding him? You can do that! But for this tutorial, we have separated it to show how you can use the `edit` command. 
+You can now see that Bob's list of **modules taken** has been updated to contain modules _CS2101_ and _CS2103T_
+(enter `view m` if you're not on the _modules_ tab).
 
-You can also edit other details of the person such as his/her _name_, _year_, _GitHub username_, etc., not just their _modules_.
+>**Tip**: You do not have to be on _modules_ tab to edit it as long as you are viewing the correct person (i.e. you
+> can be viewing Bob's contacts as you add modules). However, switching to _modules_ tab will definitely make it easy
+> for you to edit **modules taken**!
 
-**Related docs:** [Adding a person: `add`](#adding-a-person--add), [Editing a person: `edit`](#editing-a-person--edit)
+If you want to save the hassle of editing _modules_ only after adding a person, you can include them in the initial
+[Add command](#adding-a-person--add) to do so.
+
+As the name suggests, [Edit command](#editing-a-person--edit) is capable of editing other details of the person such as
+_name_, _year_, _GitHub username_, etc. Use this to fix your mistakes or update your database as you progress your studies!
+
+**Related:** [Adding a person: `add`](#adding-a-person--add),
+[Viewing a person: `view`](#viewing-a-personchanging-tabs--view),
+[Editing a person: `edit`](#editing-a-person--edit)
+
+<br>
 
 #### 4. Finding a person by their modules
 
-Let's try to find contacts that are taking/have taken CS2103T. First, let's reset all existing filters if they have been applied. We can do this by entering `list`. This shows us all the contacts in CoDoc. 
+You have been using CoDoc for months and have expanded the database greatly. You realize that finding a person in the
+contacts is getting increasingly difficult and wishes there is an easier way to do so.
 
-Then enter `find m/cs2103t`. This would show the contacts in the person list panel that have CS2103T in their module list:
+That is exactly what CoDoc's [Find command](#finding-a-person--find) is for! Use this to filter people in the contacts.
+
+Let's try to find people that are taking/have taken CS2103T. To do so, we have to first clear existing filters if they
+have been applied. We can do this by entering `list` into the command box. This shows us all existing contacts in CoDoc. 
+
+Then enter `find m/cs2103t`. This will make **Person List Panel** show only the people who have CS2103T in their module
+list. On successful execution, you will see something like below.
 
 <img src="images/tutorial/finding-cs2103t.png"/>
 
-Here, if you followed the previous steps correctly, Bob would be shown as well.
+If you tried the examples for previous commands, Bob would be shown as well.
 
-Our `find` command is pretty powerful; it works for other attributes, like _year_, _skills_, etc. and you can find by multiple attributes. To learn more about it, you can take a look at [Finding a person: `find`](#finding-a-person--find)
+Our `find` command is pretty powerful; it works for other attributes, like _year_, _skills_, etc. and you can find by
+multiple attributes. To learn more about it, you can take a look at [Finding a person: `find`](#finding-a-person--find).
 
 **Related docs:** [Finding a person: `find`](#finding-a-person--find), [Listing all persons/Resetting filters: `list`](#listing-all-personsresetting-filters--list)
 
-**Congrats! You have completed the tutorial 🎉** 
+<br>
 
-The pre-existing contacts are just some examples that you can play around with, but if you want to start with a fresh contact list, enter `clear` to clear all contacts. 
+### **Congrats! You have completed the tutorial 🎉** 
 
-Lastly, if you need more info on the usage of each command, you can refer to the relevant sections below. 
+The pre-existing contacts that come when you first launch are just some examples that you can play around with. 
+Now, you may enter `clear` in the command box to clear all contacts and start off with a fresh database.
+
+>**Tip**: Be careful not to accidentally enter the `clear` command, it will not ask twice before wiping your database!
+
+If you need more info on the usage of each command, you can refer to the relevant sections below. 
 
 [Scroll back to *Table of Contents*](#table-of-contents)
+
+<br>
 
 ## Commands
 
