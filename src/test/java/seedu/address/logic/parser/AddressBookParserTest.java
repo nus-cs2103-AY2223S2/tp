@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import jdk.jshell.spi.ExecutionControlProvider;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
@@ -62,8 +61,8 @@ public class AddressBookParserTest {
     public void parseCommand_addScore() throws Exception {
         Score score = new ScoreBuilder().build();
         AddScoreCommand command = (AddScoreCommand) parser.parseCommand(
-                AddScoreCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() +
-                        " " + PersonUtil.getAddScoreDetails(score));
+                AddScoreCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + PersonUtil.getAddScoreDetails(score));
         assertEquals(new AddScoreCommand(INDEX_FIRST_PERSON, score), command);
     }
 
@@ -71,8 +70,8 @@ public class AddressBookParserTest {
     public void parseCommand_addTask() throws Exception {
         Task task = new TaskBuilder().build();
         AddTaskCommand command = (AddTaskCommand) parser.parseCommand(
-                AddTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() +
-                        " " + PersonUtil.getAddTaskDetails(task));
+                AddTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + PersonUtil.getAddTaskDetails(task));
         assertEquals(new AddTaskCommand(INDEX_FIRST_PERSON, task), command);
     }
 
@@ -99,16 +98,16 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_deleteScore() throws Exception {
         DeleteScoreCommand command = (DeleteScoreCommand) parser.parseCommand(
-                DeleteScoreCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " " +
-                        INDEX_FIRST_SCORE.getOneBased());
+                DeleteScoreCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + INDEX_FIRST_SCORE.getOneBased());
         assertEquals(new DeleteScoreCommand(INDEX_FIRST_PERSON, INDEX_FIRST_SCORE), command);
     }
 
     @Test
     public void parseCommand_deleteTask() throws Exception {
         DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
-                DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " " +
-                INDEX_FIRST_TASK.getOneBased());
+                DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + INDEX_FIRST_TASK.getOneBased());
         assertEquals(new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK), command);
     }
 
@@ -158,24 +157,24 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_markTaskComplete() throws Exception {
         MarkTaskCompleteCommand command = (MarkTaskCompleteCommand) parser.parseCommand(
-                MarkTaskCompleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " " +
-                        INDEX_FIRST_TASK.getOneBased());
+                MarkTaskCompleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + INDEX_FIRST_TASK.getOneBased());
         assertEquals(new MarkTaskCompleteCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK), command);
     }
 
     @Test
     public void parseCommand_markTaskInProgress() throws Exception {
         MarkTaskInProgressCommand command = (MarkTaskInProgressCommand) parser.parseCommand(
-                MarkTaskInProgressCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " " +
-                        INDEX_FIRST_TASK.getOneBased());
+                MarkTaskInProgressCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + INDEX_FIRST_TASK.getOneBased());
         assertEquals(new MarkTaskInProgressCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK), command);
     }
 
     @Test
     public void parseCommand_markTaskLate() throws Exception {
         MarkTaskLateCommand command = (MarkTaskLateCommand) parser.parseCommand(
-                MarkTaskLateCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " " +
-                        INDEX_FIRST_TASK.getOneBased());
+                MarkTaskLateCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + INDEX_FIRST_TASK.getOneBased());
         assertEquals(new MarkTaskLateCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK), command);
     }
 
