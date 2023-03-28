@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.internship.logic.commands.AddCommand;
 import seedu.internship.logic.commands.ClearCommand;
-import seedu.internship.logic.commands.DeleteCommand;
+import seedu.internship.logic.commands.DeleteIndexCommand;
 import seedu.internship.logic.commands.EditCommand;
 import seedu.internship.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.internship.logic.commands.ExitCommand;
@@ -55,9 +55,9 @@ public class InternBuddyParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_INTERNSHIP.getOneBased());
-        assertEquals(new DeleteCommand(NON_EMPTY_INDEXLIST, EMPTY_PREDICATE), command);
+        DeleteIndexCommand command = (DeleteIndexCommand) parser.parseCommand(
+                DeleteIndexCommand.COMMAND_WORD + " " + INDEX_FIRST_INTERNSHIP.getOneBased());
+        assertEquals(new DeleteIndexCommand(NON_EMPTY_INDEXLIST), command);
     }
 
     @Test

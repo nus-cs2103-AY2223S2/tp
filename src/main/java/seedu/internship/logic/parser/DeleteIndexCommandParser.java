@@ -1,6 +1,7 @@
 package seedu.internship.logic.parser;
 
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.internship.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +22,9 @@ public class DeleteIndexCommandParser implements Parser<DeleteIndexCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteIndexCommand parse(String args) throws ParseException {
+        if (args.trim().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS, DeleteIndexCommand.MESSAGE_USAGE));
+        }
         try {
             List<Index> indexes = ParserUtil.parseIndexes(args);
             assert indexes != null;

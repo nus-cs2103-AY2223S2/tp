@@ -10,6 +10,7 @@ import static seedu.internship.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.internship.testutil.Assert.assertThrows;
 import static seedu.internship.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
+import static seedu.internship.testutil.TypicalIndexes.INDEX_SECOND_INTERNSHIP;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -78,10 +79,24 @@ public class CommandTestUtil {
             new InternshipContainsKeywordsPredicate(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
                     new ArrayList<>(), new ArrayList<>());
 
-    public static final InternshipContainsKeywordsPredicate NON_EMPTY_PREDICATE =
-            new InternshipContainsKeywordsPredicate(Arrays.asList("Google"), Arrays.asList("Software Developer"),
-                    Arrays.asList("applied"), Arrays.asList("2023-02-03"), Arrays.asList("frontend"));
+    public static final InternshipContainsKeywordsPredicate SIMPLE_PREDICATE =
+            new InternshipContainsKeywordsPredicate(Arrays.asList("Amazon"), new ArrayList<>(),
+                    new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
 
+    public static final InternshipContainsKeywordsPredicate ONE_FIELD_PREDICATE =
+            new InternshipContainsKeywordsPredicate(Arrays.asList("Amazon", "Goldman"), new ArrayList<>(),
+                    new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+
+    public static final InternshipContainsKeywordsPredicate MULTIPLE_FIELD_PREDICATE =
+            new InternshipContainsKeywordsPredicate(Arrays.asList("Amazon"), Arrays.asList("Cloud Architect"),
+                    new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+
+    public static final InternshipContainsKeywordsPredicate COMPLEX_PREDICATE =
+            new InternshipContainsKeywordsPredicate(Arrays.asList("Amazon", "Goldman"),
+                    Arrays.asList("Cloud Architect"), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+
+    public static final List<Index> MULTIPLE_INDEX_LIST = new ArrayList<>(Arrays.asList(INDEX_FIRST_INTERNSHIP,
+            INDEX_SECOND_INTERNSHIP));
     public static final List<Index> NON_EMPTY_INDEXLIST = new ArrayList<>(Arrays.asList(INDEX_FIRST_INTERNSHIP));
     public static final List<Index> EMPTY_INDEXLIST = new ArrayList<>();
 
