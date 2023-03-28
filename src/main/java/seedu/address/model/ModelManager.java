@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
@@ -21,7 +22,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Module> filteredModules;
+    private final FilteredList<Module> displayedModules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,7 +34,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredModules = new FilteredList<>(this.addressBook.getModuleList());
+        SortedList<Module> sortedModules = new SortedList(this.addressBook.getModuleList());
+        displayedModules = new FilteredList<>(sortedModules);
     }
 
     public ModelManager() {
@@ -119,13 +121,13 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Module> getFilteredModuleList() {
-        return filteredModules;
+        return displayedModules;
     }
 
     @Override
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
-        filteredModules.setPredicate(predicate);
+        displayedModules.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +146,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredModules.equals(other.filteredModules);
+                && displayedModules.equals(other.displayedModules);
     }
 
 }
