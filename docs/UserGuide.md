@@ -181,8 +181,8 @@ add group <GROUP>
   entering `add group T15` will display an error message.
 
 Examples:
-- `add group T15`
-- `add group T16`
+- `add group T15` will add a new group with group name `T15`
+- `add group T16` will add a new group with group name `T16`
 
 
 
