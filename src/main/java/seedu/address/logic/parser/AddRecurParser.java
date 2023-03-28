@@ -60,7 +60,6 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
      * @throws ParseException
      */
     public AddRecurCommand checkRecurDetails(String recurDetails) throws ParseException {
-        System.out.println(recurDetails);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeFirstPrefix(recurDetails,
                 PREFIX_TUTORIAL, PREFIX_LAB, PREFIX_CONSULTATION);
 
@@ -73,7 +72,6 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_TUTORIAL).isPresent()) {
-            System.out.println(recurDetails);
             return parseEvent(recurDetails, PREFIX_TUTORIAL);
         } else if (argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
             return parseEvent(recurDetails, PREFIX_CONSULTATION);

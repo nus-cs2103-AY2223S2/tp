@@ -25,7 +25,6 @@ public class AddNoteParser implements Parser<AddNoteCommand> {
         String newArgs = args.trim().replaceFirst("Note", "");
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NOTE_EXTERNAL);
-        System.out.println(argMultimap.getPreamble().isEmpty());
         //Make the user not create lab and students with the same command
         if (!arePrefixesAbsent(argMultimap, PREFIX_NOTE_CONTENT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

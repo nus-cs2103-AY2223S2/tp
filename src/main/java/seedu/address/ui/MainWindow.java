@@ -282,12 +282,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isStudentTab()) {
                 enterStudentTab();
-            }
-
-            if (commandResult.isEventTab()) {
+            } else if (commandResult.isEventTab()) {
                 enterEventTab();
             }
+
             fillInnerParts();
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
