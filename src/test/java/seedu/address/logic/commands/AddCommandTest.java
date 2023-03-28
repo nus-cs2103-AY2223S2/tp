@@ -208,6 +208,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<DeliveryJob> getUnscheduledDeliveryJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public LocalDate getFocusDate() {
             throw new AssertionError("This method should not be called.");
         }

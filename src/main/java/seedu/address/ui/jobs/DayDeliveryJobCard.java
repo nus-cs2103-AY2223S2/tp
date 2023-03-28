@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.Logic;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.ui.UiPart;
 
@@ -23,6 +25,7 @@ public class DayDeliveryJobCard extends UiPart<Region> {
      */
 
     private final DeliveryJob job;
+    private final Logic logic;
 
     @FXML
     private HBox cardPane;
@@ -34,45 +37,38 @@ public class DayDeliveryJobCard extends UiPart<Region> {
     private Label receipient;
     @FXML
     private Label address;
-    @FXML
-    private Label deliveryTimeDate;
-    @FXML
-    private Label deliveryTimeSlot;
+
     @FXML
     private Label earning;
-    @FXML
-    private Label completedStatus;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public DayDeliveryJobCard(DeliveryJob job, int displayedIndex) {
+    public DayDeliveryJobCard(Logic logic, DeliveryJob job, int displayedIndex) {
         super(FXML);
         this.job = job;
+        this.logic = logic;
+        ReadOnlyAddressBook addressBook = logic.getAddressBook();
+
         id.setText(displayedIndex + ". ");
         label.setText(job.getJobId());
-        receipient.setText(job.getRecipientId());
-        address.setText("Refine later");
-
-        job.getDeliveryDate().ifPresentOrElse(val -> {
-            deliveryTimeDate.setText(val.date);
+        if (job.getRecipientId() != null) {
+            receipient.setText("To: " + job.getRecipientId());
+        } else {
+            receipient.setText("To: N.A.");
+        }
+        addressBook.getPersonById(job.getRecipientId()).ifPresentOrElse(per -> {
+            address.setText("Dest: " + "\n" + per.getAddress().toString());
         }, () -> {
-            deliveryTimeDate.setText("N.A");
-        });
-
-        job.getDeliverySlot().ifPresentOrElse(val -> {
-            deliveryTimeSlot.setText(val.value);
-        }, () -> {
-            deliveryTimeSlot.setText("N.A");
+            address.setText("Dest: N.A.");
         });
 
         job.getEarning().ifPresentOrElse(val -> {
-            earning.setText(val.value);
+            earning.setText("Earning: $" + val.value);
         }, () -> {
-            earning.setText("N.A");
+            earning.setText("Earning: N.A");
         });
 
-        completedStatus.setText(String.valueOf(job.getDeliveredStatus()));
     }
 
     @Override

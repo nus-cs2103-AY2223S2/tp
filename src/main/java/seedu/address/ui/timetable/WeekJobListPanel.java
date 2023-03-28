@@ -101,7 +101,7 @@ public class WeekJobListPanel extends UiPart<Region> {
 
     private void addJobSlotsToPanel(StackPane panelPlaceholder, DeliveryList jobListInDay) {
         if (jobListInDay != null) {
-            DayJobListPanel jobListInDayPane = new DayJobListPanel(jobListInDay);
+            DayJobListPanel jobListInDayPane = new DayJobListPanel(logic, jobListInDay);
             panelPlaceholder.getChildren().add(jobListInDayPane.getRoot());
         }
     }

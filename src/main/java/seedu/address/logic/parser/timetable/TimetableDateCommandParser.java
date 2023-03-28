@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import java.time.LocalDate;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.TimetableDateCommand;
+import seedu.address.logic.commands.timetable.TimetableDateCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;

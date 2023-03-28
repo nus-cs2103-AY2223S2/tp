@@ -1,12 +1,9 @@
 package seedu.address.ui;
 
-import java.net.URL;
 import java.time.LocalDate;
-import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -20,11 +17,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
 import seedu.address.ui.main.StatusBarFooter;
+import seedu.address.ui.timetable.TimetableDetailPanel;
 
 /**
  * Controller for a timetable page
  */
-public class TimetableWindow extends UiPart<Stage> implements Initializable {
+public class TimetableWindow extends UiPart<Stage> {
 
     private static final String FXML = "TimetableWindow.fxml";
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -65,15 +63,12 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
         contentContainer.prefWidthProperty().bind(scene.widthProperty());
 
         this.logic = logic;
+        focusDate = LocalDate.now();
+        focusDayOfWeek = focusDate.getDayOfWeek().getValue();
+
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        focusDate = LocalDate.now();
-        focusDayOfWeek = focusDate.getDayOfWeek().getValue();
     }
 
     /**
@@ -124,13 +119,9 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
+    public void fillInnerParts() {
 
         updateTimetable();
-
-        timetablePlaceholder.getChildren().clear();
-        TimetableDetailPanel timetableDetail = new TimetableDetailPanel(focusDate, logic, primaryStage);
-        timetablePlaceholder.getChildren().add(timetableDetail.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -142,6 +133,9 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
+    /**
+     * Updates timetable with the updated job list
+     */
     void updateTimetable() {
         //Get year and month of week
         focusDate = logic.getFocusDate();

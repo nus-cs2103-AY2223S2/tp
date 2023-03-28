@@ -9,6 +9,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
 import seedu.address.ui.UiPart;
@@ -19,6 +20,7 @@ import seedu.address.ui.UiPart;
 public class DayJobListPanel extends UiPart<Region> {
     private static final String FXML = "DayJobListPane.fxml";
     private final Logger logger = LogsCenter.getLogger(DayJobListPanel.class);
+    private final Logic logic;
 
     @FXML
     private ListView<DeliveryJob> jobList1;
@@ -39,8 +41,10 @@ public class DayJobListPanel extends UiPart<Region> {
     /**
      * Creates a {@code DeliveryJobListPanel} with the given {@code ObservableList}.
      */
-    public DayJobListPanel(DeliveryList jobListInDay) {
+    public DayJobListPanel(Logic logic, DeliveryList jobListInDay) {
         super(FXML);
+        this.logic = logic;
+
         addJobListToSlot(jobList1, jobListInDay.get(0));
         addJobListToSlot(jobList2, jobListInDay.get(1));
         addJobListToSlot(jobList3, jobListInDay.get(2));
@@ -67,8 +71,15 @@ public class DayJobListPanel extends UiPart<Region> {
             if (empty || job == null) {
                 setGraphic(null);
                 setText(null);
+                setStyle("-fx-background-color: transparent;");
             } else {
-                setGraphic(new DayDeliveryJobCard(job, getIndex() + 1).getRoot());
+                setGraphic(new DayDeliveryJobCard(logic, job, getIndex() + 1).getRoot());
+            }
+
+            if (getIndex() % 2 == 1) {
+                setStyle("-fx-background-color: DARKCYAN;");
+            } else {
+                setStyle("-fx-background-color: lightgrey;");
             }
         }
     }
