@@ -515,7 +515,7 @@ save manually.
 
 ### Editing the data file
 
-FriendlyLink data are saved as a JSON file `[JAR file location]/data/elderly.json`, `[JAR file location]/data/volunteer.json` and `[JAR file location]/data/pair.json`. Advanced users are welcome to update data directly by editing that data file.
+FriendlyLink data are saved as a JSON file `JAR_FILE_LOCATION/data/elderly.json`, `JAR_FILE_LOCATION/data/volunteer.json` and `JAR_FILE_LOCATION/data/pair.json`. Advanced users are welcome to update data directly by editing that data file.
 
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
