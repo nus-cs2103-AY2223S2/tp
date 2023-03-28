@@ -225,6 +225,17 @@ Here is how `Menu` works:
 * The `MenuItem` object have its `List` called `Menu` and `UniqueList`.
 * The `MenuItem` is an attribute of `Order`
 
+**Aspect: Choice to provide a menu package:**
+
+* **Option 1 (our choice):** Separating it into a separate `menu` package.
+    * Advantage 1: Reduce the fuss of keying in the same name of the menu item repetitively.
+    * Advantage 2: Less repeated code
+    * Disadvantage: More time required to implement.
+
+* **Option 2:** Add item name as an attribute in the `Order` class.
+    * Advantage: Convenient to implement.
+    * Disadvantage: Higher chance of conflicts with another developer working on `Order` class.
+
 This is the class representation for the `Order` class.
 
 <p align ="center">
@@ -280,6 +291,11 @@ The following activity diagram summarizes what happens when the user executes th
      <img src="images/AddCommandActivityDiagram.svg">
  </p>
 
+#### Why is it implemented this way
+
+The `AddXYZCommand` is an improved version of the original AB3 `AddCommand` by implementing into a abstract class -`AddItemCommand`.
+This reduces repeated lines of code and improves ease of implementation for future commands that require adding an item to a list.
+
 ### DeleteXYZCommand
 
 The `delete` command removes an `XYZ` from internal `FilteredXYZList`.
@@ -293,6 +309,11 @@ The following activity diagram summarizes what happens when the user executes th
  <p align="center">
      <img src="images/DeleteCommandActivityDiagram.svg">
  </p>
+
+#### Why is it implemented this way
+
+The `DeleteXYZCommand` is an improved version of the original AB3 `DeleteCommand` by implementing into a abstract class -`DeleteItemCommand`.
+This reduces repeated lines of code and improves ease of implementation for future commands that require removing an item from a list.
 
 ### Edit feature
 
@@ -319,6 +340,12 @@ Lastly, Changes made are saved to local data and success message will be shown.
     <img src="images/EditCommandActivityDiagram.svg" width="900" />
 </p>
 
+#### Why is it implemented this way
+
+The `EditXYZCommand` is an improved version of the original AB3 `EditCommand` by implementing into a abstract class -`EditItemCommand`.
+This reduces repeated lines of code and improves ease of implementation for future commands that require editing an item in a list.
+
+
 ### FindXYZCommand
 
 The `find` command finds objects `XYZ` from the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
@@ -335,6 +362,12 @@ The following activity diagram summarizes what happens when the user executes th
 <p align="center">
     <img src="images/FindCommandActivityDiagram.svg">
 </p>
+
+#### Why is it implemented this way
+
+The `FindXYZCommand` is an improved version of the original AB3 `FindCommand` by implementing into a abstract class -`FindItemCommand`.
+This reduces repeated lines of code and improves ease of implementation for future commands that require finding an item in a list.
+The abstract class `ItemDescriptor` stores the details of an item. It provides easier implementation for `XYZContainsKeywordPredicate` classes.
 
 ### ListXYZCommand
 
