@@ -1190,8 +1190,9 @@ Documentation dependencies:
 > Admonition boxes (or simply “admonitions”) are coloured boxes containing highlighted pieces of text.
 > #### Applicant
 > The person who apply to the company for the job.
-> #### Application Stage
-> All applicants added are at the Applied status by default. From there, hiring managers can advance their application status to Shortlisted, then to Accepted. Applicants can be rejected at any stage excepted for Accepted.
+> #### Application Cycle
+> All applicants added are at the Applied status by default. From there, hiring managers can advance their application status to Shortlisted, then to Accepted. Applicants can be rejected at any stage.
+![Application Cycle](images/application_stage.png)
 
 ### C
 > #### COMMAND_WORD Placeholder

@@ -398,29 +398,30 @@ The following legend describes the symbols used in this section:
 </div>
 
 
-| Priority | As a …                   | I want to …                                                       | So that …                                                                            |
-|----------|--------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| `* * *`  | Hiring Manager           | List out all existing applicants                                  | I can have a glance of the status of the application cycle of all applicants.        |
-| `* * *`  | Hiring Manager           | View the number of applicants in each application stage           | I can have a glance of the status at each stage in the application cycle.            |
-| `* * *`  | Hiring Manager           | Advance the application stage of applicants                       | I can move an applicant into the next stage of the application cycle                 |
-| `* * *`  | Hiring Manager           | Add applicants into HMHero                                        | I can track applicants who have applied to the department.                           |
-| `* * *`  | Hiring Manager           | Delete single applicant                                           | I can remove applicants that I do not wish to track in the application anymore.      |
-| `* * *`  | Busy Hiring Manager      | Filter for applicants by name or phone or both                    | I can view filter down from the entire list of applicants.                           |
-| `* * * ` | Senior Hiring Manager    | Identify duplicate applications of the same applicant             | I can identify whether applicants are sending multiple applications                  |
-| `* * `   | Busy Hiring Manager      | View the dates of interviews for all shortlisted applicants       | I can better schedule my future working days                                         |
-| `* * `   | Hiring Manager           | Take down some additional notes for each applicant                | I can note down the skills that the particular applicant has.                        |
-| `* * `   | Forgetful Hiring Manager | Remind myself of interviews that coming up                        | I will not forget to attend any interview that I have scheduled                      |
-| `* * `   | Clumsy Hiring Manager    | Check whether there are any clashes in interview date and timings | I can prevent myself from scheduling more than 1 interview in the same date and time |
-| `* `     | Clumsy Hiring Manager    | Get a confirmation message when deleting an applicant             | I can prevent accidental deletions of applicants                                     |
-| `* `     | Old Hiring Manager       | Highlight and enlarge the keywords that I am looking for          | I can easily see the keywords that I am looking for                                  |
-| `* `     | Careless Hiring Manager  | Undo recent actions or commands                                   | I can reverse commands that I have mistakenly carried out                            |
-| `* `     | Picky Hiring Manager     | Rank my applicants                                                | It is easier for me to decide which applicant I want to hire most                    |
+| Priority | As a …                   | I want to …                                                          | So that …                                                                            |
+|----------|--------------------------|----------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| `* * *`  | Hiring Manager           | List out all existing applicants                                     | I can have a glance of the status of the application cycle of all applicants.        |
+| `* * *`  | Hiring Manager           | View the number of applicants in each stage of the application cycle | I can have a glance of the status at each stage in the application cycle.            |
+| `* * *`  | Hiring Manager           | Advance the status of applicants in the application cycle            | I can move an applicant into the next stage of the application cycle                 |
+| `* * *`  | Hiring Manager           | Add applicants into HMHero                                           | I can track applicants who have applied to the department.                           |
+| `* * *`  | Hiring Manager           | Delete single applicant                                              | I can remove applicants that I do not wish to track in the application anymore.      |
+| `* * *`  | Busy Hiring Manager      | Filter for applicants by name or phone or both                       | I can view filter down from the entire list of applicants.                           |
+| `* * * ` | Senior Hiring Manager    | Identify duplicate applications of the same applicant                | I can identify whether applicants are sending multiple applications                  |
+| `* * `   | Busy Hiring Manager      | View the dates of interviews for all shortlisted applicants          | I can better schedule my future working days                                         |
+| `* * `   | Hiring Manager           | Take down some additional notes for each applicant                   | I can note down the skills that the particular applicant has.                        |
+| `* * `   | Forgetful Hiring Manager | Remind myself of interviews that coming up                           | I will not forget to attend any interview that I have scheduled                      |
+| `* * `   | Clumsy Hiring Manager    | Check whether there are any clashes in interview date and timings    | I can prevent myself from scheduling more than 1 interview in the same date and time |
+| `* `     | Clumsy Hiring Manager    | Get a confirmation message when deleting an applicant                | I can prevent accidental deletions of applicants                                     |
+| `* `     | Old Hiring Manager       | Highlight and enlarge the keywords that I am looking for             | I can easily see the keywords that I am looking for                                  |
+| `* `     | Careless Hiring Manager  | Undo recent actions or commands                                      | I can reverse commands that I have mistakenly carried out                            |
+| `* `     | Picky Hiring Manager     | Rank my applicants                                                   | It is easier for me to decide which applicant I want to hire most                    |
 
 
 ### Use cases
 
 (For all use cases below, the **System** is the `HMHero` and the **Actor** is the `Hiring Manager`, unless specified otherwise)
 
+MSS refers to *Main Success Scenario*.
 
 **Use case: Add an applicant**
 
@@ -725,20 +726,144 @@ Precondition: There are applicants added into HMHero.
 8.  No database management system should be used.
 9.  The product is not required to handle the screening of resume for each applicant.
 
-
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Applicant**: An applicant is a person who applied to the user's department in the company.
-* **Application stage**:
-    1. Applied (default, when applicant is added into HMHero)
-    2. Shortlisted
-    3. Accepted
-    4. Rejected
-* **Application cycle**:
-    * All applicants added are at the Applied status by default. From there, hiring managers can advance their
-    application status to Shortlisted, then to Accepted. Applicants can be rejected at any stage excepted for Accepted.
+### Quick Reference
+- [ADDRESS (Placeholder)](#address-placeholder)
+- [Address](#address)
+- [Admonitions](#admonitions)
+- [Applicant](#applicant)
+- [Application Cycle](#application-cycle)
+- [COMMAND_WORD (Placeholder)](#commandword-placeholder)
+- [Command](#command)
+- [Command Line (CLI)](#command-line)
+- [Placeholder](#email-placeholder)
+- [Email](#email)
+- [Flags](#flags)
+- [Graphical User Interface(GUI)](#graphical-user-interface)
+- [Help Window](#help-window)
+- [Hiring Manager](#hiring-manager)
+- [Input](#input)
+- [INTERVIEW_DATE (Placeholder)](#interviewdate-placeholder)
+- [Interview Date](#interview-date)
+- [KEYWORD (Placeholder)](#keyword-placeholder)
+- [Main Operating System](#mainstream-os)
+- [Main Success Scenario](#main-success-scenario)
+- [NAME (Placeholder)](#name-placeholder)
+- [Name](#name)
+- [NOTES (Placeholder)](#notes-placeholder)
+- [Notes](#notes)
+- [Output](#output)
+- [Parameter](#parameter)
+- [PHONE_NUMBER (Placeholder)](#phonenumber-placeholder)
+- [Phone Number](#phone-number)
+- [Placeholder](#placeholder)
+- [STATUS (Placeholder)](#status-placeholder)
+- [Status](#status)
+- [Syntax](#syntax)
+- [URL](#url)
+- [Use Case](#use-case)
+- [User Story](#user-story)
+
+
+### A
+> #### ADDRESS Placeholder
+> The ADDRESS is a text representing the address of the applicants.
+> #### Address
+> The address of the applicant provided by the user.
+> #### Admonitions
+> Admonition boxes (or simply “admonitions”) are coloured boxes containing highlighted pieces of text.
+> #### Applicant
+> The person who apply to the company for the job.
+> #### Application Cycle
+> All applicants added are at the Applied status by default. From there, hiring managers can advance their application status to Shortlisted, then to Accepted. Applicants can be rejected at any stage.
 ![Application Cycle](images/application_stage.png)
+
+### C
+> #### COMMAND_WORD Placeholder
+> The COMMAND_WORD is a text indicating a command word of a command
+> #### Command
+> A feature or function that HMHero can perform.
+> #### Command Line
+> The typing interface that you use to interact with HMHero. It is represented as the box where you type in commands.
+
+### E
+> #### EMAIL Placeholder
+> The EMAIL is a text representing the email address of the applicants.
+> #### Email
+> The email address of the applicant provided by the user.
+
+### F
+> #### Flags
+> A marker to identify the type of input by the user. For instance, in `n/NAME`, `n/` is the flag.
+
+### G
+> #### Graphical User Interface
+> A Graphical User Interface is a graphics-based interface that uses icons, menus and a mouse (to click on the icon or pull down the menus) to manage interaction with the system. In HMHero, this presents as the window that appears when launching it.
+
+### H
+> #### Help Window
+> A pop-up window containing help information, shown only after calling a <kbd>help</kbd> command.
+> #### Hiring Manager
+> A person responsible for overseeing the recruitment process within an organization, from identifying staffing needs to making hiring decisions.
+
+### I
+> #### Input
+> The text that a user would enter into HMHero
+> #### INTERVIEW_DATE Placeholder
+> The INTERVIEW_DATE is the date indicating when the applicant is having his/her interview.
+> #### Interview Date
+> Date where applicants are going to have their interviews. Interview date is in the format "day-month-year hour:minute", represented in the "DD-MM-YYYY HH:MM" format.
+
+### K
+> #### KEYWORD Placeholder
+> The KEYWORD is the text we use search for an item. It can be `NAME` or `PHONE_NUMBER` of the applicant.
+
+### M
+> #### Mainstream OS
+> Mainstream Operating Systems (OS) refers to Windows, Linux, Unix, OS-X
+> #### Main Success Scenario
+> The Main Success Scenario (MSS) describes the most straightforward interaction for a given use case, assuming that nothing goes wrong.
+
+### N
+> #### NAME Placeholder
+> The NAME is a text representing the name of the applicants.
+> #### Name
+> The name of the applicant provided by the user.
+> #### NOTES Placeholder
+> The NOTES are some texts that use to represent the skill set of the applicants.
+> #### Notes
+> The skill set the applicant possesses provided by the user.
+
+### O
+> #### Output
+> The result after calling a Command. Results are displayed in the GUI.
+
+### P
+> #### Parameter
+> Values that are passed while calling the Commands. For instance, when calling `find n/NAME`, parameter here is `n/NAME`.
+> #### PHONE_NUMBER Placeholder
+> The PHONE_NUMBER is an integer representing the phone number of the applicant.
+> #### Phone Number
+> The phone number of the applicant provided by the user.
+> #### Placeholder
+> Placeholders in HMHero refers to the UPPER_CASE words that appear after the flags in commands that is provided by the user. For instance, `n/NAME`, `NAME` is a placeholder
+
+### S
+> #### STATUS Placeholder
+> The STATUS is a text that represent the current state of the applicant.
+> #### Status
+> Status has four stages, which are APPLIED, SHORTLISTED, ACCEPTED and REJECTED. Status can only be modified by using <kbd>advance</kbd> or <kbd>reject</kbd> command.
+> #### Syntax
+> The structure of statements/inputs users type into the Command Line.
+
+### U
+> #### URL
+> A hyperlink to a website.
+> #### Use Case
+> A use case describes an interaction between the user and the system for a specific functionality of the system.
+> #### User Story
+> User stories are short, simple descriptions of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system. It is typically in the format “As a {user type/role} I can {function} so that {benefit}”.
 
 --------------------------------------------------------------------------------------------------------------------
 
