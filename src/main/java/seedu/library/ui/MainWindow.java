@@ -142,9 +142,8 @@ public class MainWindow extends UiPart<Stage> {
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-        Boolean flag = bookmarkListPanel.isChangedSelect();
         zoomView = new ZoomView(bookmarkListPanel.getFirstItem());
-        if (!flag) {
+        if (bookmarkListPanel.isStartEmpty()) {
             zoomView.hideFields();
         }
         zoomViewPlaceholder.getChildren().add(zoomView.getRoot());

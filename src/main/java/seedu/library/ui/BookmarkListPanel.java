@@ -35,6 +35,7 @@ public class BookmarkListPanel extends UiPart<Region> {
 
     private ObservableList<Bookmark> bookmarks;
     private boolean flag;
+    private boolean isStartEmpty;
 
 
     /**
@@ -46,7 +47,7 @@ public class BookmarkListPanel extends UiPart<Region> {
         bookmarkListView.setItems(bookmarkList);
         bookmarkListView.setCellFactory(listView -> new BookmarkListViewCell());
         flag = false;
-
+        isStartEmpty = false;
         bookmarkListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Bookmark>() {
             @Override
             public void changed(ObservableValue<? extends Bookmark> observable, Bookmark oldValue, Bookmark newValue) {
@@ -73,8 +74,7 @@ public class BookmarkListPanel extends UiPart<Region> {
     }
 
     /**
-     * Return the flag which indicates if item selected has changed or if app started with
-     * an empty library
+     * Return the flag which indicates if item selected has changed
      */
     public boolean isChangedSelect() {
         return flag;
@@ -86,10 +86,11 @@ public class BookmarkListPanel extends UiPart<Region> {
     public Bookmark getFirstItem() {
         try {
             bookmarkListView.getSelectionModel().select(0);
+            flag = true;
             return bookmarks.get(0);
         } catch (IndexOutOfBoundsException e) {
             // just a default bookmark change
-            flag = true;
+            isStartEmpty = true;
             String[] sampleProgress = {"1", "32", "56"};
             return new Bookmark(new Title("Attack on Titans"), new Progress(sampleProgress), new Genre("Fantasy"),
                     new Author("Hajime Isayama"), new Rating("5"), new Url(""),
@@ -97,6 +98,12 @@ public class BookmarkListPanel extends UiPart<Region> {
 
         }
 
+    }
+    /**
+     * Return the flag which indicates if starting bookmarklistpanel is empty
+     */
+    public boolean isStartEmpty() {
+        return isStartEmpty;
     }
 
 
