@@ -137,12 +137,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code arg} is invalid.
      */
     public static Order parseSortOrder(String arg) throws ParseException {
-        switch (arg.toUpperCase()) {
-        case "ASC":
-            return Order.ASC;
-        case "DESC":
-            return Order.DESC;
-        default:
+        try {
+            return Order.valueOf(arg.toUpperCase());
+        } catch (IllegalArgumentException e) {
             throw new ParseException(SortCommand.MESSAGE_UNKNOWN_ORDER_KEYWORD);
         }
     }
@@ -153,17 +150,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code arg} is invalid.
      */
     public static Field parseSortType(String arg) throws ParseException {
-        switch (arg.toUpperCase()) {
-        case "NAME":
-            return Field.NAME;
-        case "STATUS":
-            return Field.STATUS;
-        case "WARD":
-            return Field.WARD;
-        case "DISCHARGE":
-            return Field.DISCHARGE;
-        default:
-            throw new ParseException(SortCommand.MESSAGE_UNKNOWN_TYPE_KEYWORD);
+        try {
+            return Field.valueOf(arg.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(SortCommand.MESSAGE_UNKNOWN_ORDER_KEYWORD);
         }
     }
 }

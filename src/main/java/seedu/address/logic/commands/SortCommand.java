@@ -21,7 +21,7 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_UNKNOWN_ORDER_KEYWORD =
-            "The order of Sort Command should be 'ASC' or 'DESC' or left empty.";
+            "The order of Sort Command should be 'ASC' or 'DESC'.";
     public static final String MESSAGE_UNKNOWN_TYPE_KEYWORD = "You may only sort by 'name', 'status', 'discharge date'"
             + "or 'ward name' "
             + "followed by 'asc' or 'desc' order.\n"
