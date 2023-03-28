@@ -44,6 +44,13 @@ public class StatusUpdate implements Comparable<StatusUpdate> {
         return new StatusUpdate(this.statusValue.nextValue(), date);
     }
 
+    public StatusUpdate cancelOrder(LocalDate date) {
+        if (this.statusValue.equals(StatusValue.COMPLETED)) {
+            throw new IllegalStateException();
+        }
+        return new StatusUpdate(this.statusValue.changeToCancelled(), date);
+    }
+
     /**
      * Returns a new {@code StatusUpdate} which StatusValue is the next logical stage
      * with the current date.
