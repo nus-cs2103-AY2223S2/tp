@@ -446,6 +446,7 @@ _Details coming soon ..._
 ## Command summary
 
 ### Customer
+
 |                       Action | Format, Examples                                                                                                                                                             |
 |-----------------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |             **Add Customer** | `addc [ct/{ind/ent}] n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addc n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
@@ -460,6 +461,7 @@ _Details coming soon ..._
 | **Append Note for Customer** | `appendnotec INDEX nt/NOTE` <br> e.g., `appendnotec 2 nt/Very friendly!`                                                                                                     |
 
 ### Rewards
+
 |              Action | Format, Examples                                                                       |
 |--------------------:|----------------------------------------------------------------------------------------|
 |      **Set Points** | `setpoints INDEX pt/POINTS` <br> e.g., `setpoints 2 pt/100`                            |
@@ -468,6 +470,7 @@ _Details coming soon ..._
 
 
 ### Order
+
 |                    Action | Format, Examples                                                                                   |
 |--------------------------:|----------------------------------------------------------------------------------------------------|
 |             **Add Order** | `addo CUSTOMER_INDEX n/NAME [q/QUANTITY] [a/ADDRESS]` <br> e.g., `addo 1 n/Banana Cake 1 q/2`      |
@@ -480,6 +483,7 @@ _Details coming soon ..._
 | **Append Note for Order** | `appendnoteo INDEX nt/NOTE` <br> e.g., `appendnoteo 2 nt/Very friendly!`                           |
 
 ### Miscellaneous
+
 |              Action | Format, Examples                                                                                                                                                             |
 |--------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |           **Clear** | `clear`                                                                                                                                                                      |
