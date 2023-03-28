@@ -45,6 +45,9 @@ public class PersonCard extends UiPart<Region> {
     private Label company;
 
     @FXML
+    private Label mark;
+
+    @FXML
     private Label priority;
 
     @FXML
@@ -63,6 +66,7 @@ public class PersonCard extends UiPart<Region> {
         email.setText("Email: " + person.getEmail().value);
         businessSize.setText("Potential Sale Value: " + person.getBusinessSize().value);
         company.setText("Company name: " + person.getCompany().value);
+        mark.setText("Need Follow-Up: " + person.getMark().toString());
         priority.setText("Priority Level: " + person.getPriority().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

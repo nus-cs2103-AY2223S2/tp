@@ -23,6 +23,8 @@ public class Person implements Comparable<Person> {
 
     private final Company company;
 
+    private final Mark mark;
+
     private final Priority priority;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -38,6 +40,7 @@ public class Person implements Comparable<Person> {
         this.address = address;
         this.businessSize = businessSize;
         this.company = company;
+        this.mark = new Mark("yes");
         this.priority = priority;
         this.tags.addAll(tags);
     }
@@ -68,6 +71,10 @@ public class Person implements Comparable<Person> {
 
     public Company getCompany() {
         return company;
+    }
+
+    public Mark getMark() {
+        return mark;
     }
 
     public Priority getPriority() {
