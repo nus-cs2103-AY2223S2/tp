@@ -16,6 +16,7 @@ import static trackr.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static trackr.logic.commands.EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
+import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
@@ -42,7 +43,7 @@ import trackr.testutil.OrderDescriptorBuilder;
 public class EditOrderCommandTest {
 
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
-            getTypicalOrderList(), new UserPrefs());
+            getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredOrderList_success() {
@@ -54,8 +55,8 @@ public class EditOrderCommandTest {
                 ModelEnum.ORDER.toString().toLowerCase(),
                 editedOrder);
 
-        Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
-                new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
+                model.getMenu(), model.getOrderList(), new UserPrefs());
 
         expectedModel.setItem(model.getFilteredOrderList().get(0), editedOrder, ModelEnum.ORDER);
 
@@ -91,8 +92,8 @@ public class EditOrderCommandTest {
                 ModelEnum.ORDER.toString().toLowerCase(),
                 editedOrder);
 
-        Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
-                new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
+                model.getMenu(), model.getOrderList(), new UserPrefs());
 
         expectedModel.setItem(lastOrder, editedOrder, ModelEnum.ORDER);
 
@@ -108,8 +109,8 @@ public class EditOrderCommandTest {
                 ModelEnum.ORDER.toString().toLowerCase(),
                 editedOrder);
 
-        Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
-                new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
+                model.getMenu(), model.getOrderList(), new UserPrefs());
 
         assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
     }
@@ -128,9 +129,8 @@ public class EditOrderCommandTest {
                 ModelEnum.ORDER.toString().toLowerCase(),
                 editedOrder);
 
-        Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
-                new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
-
+        ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
+                model.getMenu(), model.getOrderList(), new UserPrefs());
         expectedModel.setItem(model.getFilteredOrderList().get(0), editedOrder, ModelEnum.ORDER);
 
         assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
