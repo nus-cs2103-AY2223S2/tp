@@ -26,6 +26,16 @@ public class ListCustomerCommand extends Command {
 
     private final Comparator<Customer> comparator;
 
+    /**
+     * Constructs a default {@code ListCustomerCommand}
+     */
+    public ListCustomerCommand() {
+        this(Customer.SORT_NAME);
+    }
+
+    /**
+     * Constructs a {@code ListCustomerCommand} with the given {@code comparator}
+     */
     public ListCustomerCommand(Comparator<Customer> comparator) {
         this.comparator = comparator;
     }

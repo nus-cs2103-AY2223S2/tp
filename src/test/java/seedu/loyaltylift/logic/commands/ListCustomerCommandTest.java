@@ -31,24 +31,24 @@ public class ListCustomerCommandTest {
 
     @Test
     public void equals() {
-        ListCustomerCommand listSortNameCommand = new ListCustomerCommand(Customer.SORT_NAME);
+        ListCustomerCommand listCommand = new ListCustomerCommand();
         ListCustomerCommand listSortOrderCommand = new ListCustomerCommand(Customer.SORT_POINTS);
 
         // same object -> returns true
-        assertTrue(listSortNameCommand.equals(listSortNameCommand));
+        assertTrue(listCommand.equals(listCommand));
 
         // same comparator -> returns true
-        ListCustomerCommand listSortNameCommandCopy = new ListCustomerCommand(Customer.SORT_NAME);
-        assertTrue(listSortNameCommand.equals(listSortNameCommandCopy));
+        ListCustomerCommand listCommandCopy = new ListCustomerCommand();
+        assertTrue(listCommand.equals(listCommandCopy));
 
         // different types -> returns false
-        assertFalse(listSortNameCommand.equals(1));
+        assertFalse(listCommand.equals(1));
 
         // null -> returns false
-        assertFalse(listSortNameCommand.equals(null));
+        assertFalse(listCommand.equals(null));
 
         // different comparator -> returns false
-        assertFalse(listSortNameCommand.equals(listSortOrderCommand));
+        assertFalse(listCommand.equals(listSortOrderCommand));
     }
 
     @Test
