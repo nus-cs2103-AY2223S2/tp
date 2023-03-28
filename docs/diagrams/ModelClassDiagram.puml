@@ -5,46 +5,46 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyDegreeProgression" as ReadOnlyDegreeProgression
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class "<<interface>>\nModel" as Model1
+Class DegreeProgression
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
+Class UniqueModuleList
+Class Module
+Class Grade
+Class SemYear
+Class Code
+Class Credit
 Class Tag
 
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> Model1
 
-AddressBook .up.|> ReadOnlyAddressBook
+DegreeProgression .up.|> ReadOnlyDegreeProgression
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+ModelManager .up.|> Model1
+Model1 .right.> ReadOnlyUserPrefs
+Model1 .left.> ReadOnlyDegreeProgression
+ModelManager -left-> "1" DegreeProgression
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+DegreeProgression *--> "1" UniqueModuleList
+UniqueModuleList --> "~* all" Module
+Module *--> Code
+Module *--> Credit
+Module *--> SemYear
+Module *--> Grade
+Module *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Code -[hidden]right-> Credit
+Credit -[hidden]right-> Grade
+Grade -[hidden]right-> SemYear
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Module
 @enduml
