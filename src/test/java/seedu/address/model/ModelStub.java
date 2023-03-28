@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -12,6 +13,8 @@ import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Tag.TagName;
+
 
 /**
  * A default model stub that have all the methods failing.
@@ -148,6 +151,11 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
+    public int getDeckSizeFilteredTag(int deckIndex, List<TagName> difficulties) {
+        throw new AssertionError("This method should not be called.");
+    }
+
     /* ==================================== Review Operations ==================================== */
 
     @Override
@@ -161,7 +169,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void reviewDeck(Index deckIndex) {
+    public void reviewDeck(Index deckIndex, List<TagName> difficulties) {
         throw new AssertionError("This method should not be called.");
     }
 
