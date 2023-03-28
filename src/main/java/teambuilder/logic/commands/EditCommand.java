@@ -30,6 +30,7 @@ import teambuilder.model.person.Name;
 import teambuilder.model.person.Person;
 import teambuilder.model.person.Phone;
 import teambuilder.model.tag.Tag;
+import teambuilder.model.team.Team;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -58,6 +59,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_TEAM_NOT_FOUND = "The team does not exist in the address book";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -90,10 +92,28 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        // throw exception if team tags not from existing teams
+        List<Team> teamList = model.getTeamList();
+        Object[] teamTags = editedPerson.getTeams().toArray();
+        for (Object tag : teamTags) {
+            Tag castedTag = (Tag) tag;
+            boolean isPresent = false;
+            for (Team team : teamList) {
+                if (castedTag.getName().equals(team.toString())) {
+                    isPresent = true;
+                    break;
+                }
+            }
+            if (!isPresent) {
+                throw new CommandException(MESSAGE_TEAM_NOT_FOUND);
+            }
+        }
+
         Memento old = model.save();
         HistoryUtil.getInstance().storePast(old, COMMAND_WORD + " " + editedPerson);
 
         model.setPerson(personToEdit, editedPerson);
+        model.updatePersonInTeams(editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }

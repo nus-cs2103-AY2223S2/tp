@@ -33,6 +33,10 @@ public class Tag {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public String getName() {
+        return tagName;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

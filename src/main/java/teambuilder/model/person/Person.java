@@ -149,7 +149,7 @@ public class Person {
         Set<Tag> teams = getTeams();
         if (!teams.isEmpty()) {
             builder.append("; Teams: ");
-            tags.forEach(builder::append);
+            teams.forEach(builder::append);
         }
         return builder.toString();
     }

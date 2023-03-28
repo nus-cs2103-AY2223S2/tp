@@ -22,22 +22,23 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), Phone.of("87438807"), Email.of("alexyeoh@example.com"),
                 Address.of("Blk 30 Geylang Street 29, #06-40"), Major.of("Computer Science"),
-                getTagSet("friends"), getTagSet("Team A")),
+                getTagSet("friends"), getTagSet()),
             new Person(new Name("Bernice Yu"), Phone.of("99272758"), Email.of("berniceyu@example.com"),
                 Address.of("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), Major.of("Computer Science"),
-                getTagSet("colleagues", "friends"), getTagSet("Team A", "CS2103T G17")),
+                getTagSet("colleagues", "friends"), getTagSet()),
             new Person(new Name("Charlotte Oliveiro"), Phone.of("93210283"), Email.of("charlotte@example.com"),
                 Address.of("Blk 11 Ang Mo Kio Street 74, #11-04"), Major.of("Computer Science"),
-                getTagSet("neighbours"), getTagSet("Rh Rockers")),
+                getTagSet("neighbours"), getTagSet()),
             new Person(new Name("David Li"), Phone.of("91031282"), Email.of("lidavid@example.com"),
                 Address.of("Blk 436 Serangoon Gardens Street 26, #16-43"), Major.of("Computer Science"),
-                getTagSet("family"), getTagSet("Club penguin")),
+                getTagSet("family"), getTagSet()),
             new Person(new Name("Irfan Ibrahim"), Phone.of("92492021"), Email.of("irfan@example.com"),
                 Address.of("Blk 47 Tampines Street 20, #17-35"), Major.of("Computer Science"),
-                getTagSet("classmates"), getTagSet("RuneScapers")),
+                getTagSet("classmates"), getTagSet()),
             new Person(new Name("Roy Balakrishnan"), Phone.of("92624417"), Email.of("royb@example.com"),
                 Address.of("Blk 45 Aljunied Street 85, #11-31"), Major.of("Computer Science"),
-                getTagSet("colleagues"), getTagSet("Coding is fun club"))
+                getTagSet("colleagues"), getTagSet())
+
         };
     }
 
