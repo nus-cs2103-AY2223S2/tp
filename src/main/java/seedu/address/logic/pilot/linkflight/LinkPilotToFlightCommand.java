@@ -21,7 +21,7 @@ public class LinkPilotToFlightCommand implements Command {
     private static final String PILOT_NOT_FOUND_EXCEPTION =
         "Pilot with id %s is not found.";
     private static final String DISPLAY_MESSAGE =
-        "Linked %s to flight %s.";
+        "Linked pilot %s to flight %s.";
 
     /**
      * The id of the flight.

@@ -26,7 +26,7 @@ public class CheckPilotCommand implements Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        int index = Integer.parseInt(id);
+        int index = Command.parseIntegerToZeroBasedIndex(id);
         boolean isAvailable;
         try {
             isAvailable = model.checkPilotByIndex(index);

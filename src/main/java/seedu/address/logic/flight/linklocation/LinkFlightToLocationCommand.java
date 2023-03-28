@@ -21,7 +21,7 @@ public class LinkFlightToLocationCommand implements Command {
     private static final String LOCATION_NOT_FOUND_EXCEPTION =
             "Location with id %s is not found.";
     private static final String DISPLAY_MESSAGE =
-            "Linked %s to flight %s.";
+            "Linked location %s to flight %s.";
 
     /**
      * The flight to be linked.

@@ -15,6 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 
 @ExtendWith(MockitoExtension.class)
@@ -38,7 +39,7 @@ public class FactoryParserTest extends LogicCoreParserTestBase {
     }
 
     @Test
-    void parseFactory_invalidTokens_returnsEmpty() throws ParseException {
+    void parseFactory_invalidTokens_returnsEmpty() throws ParseException, CommandException {
         // set up
         ArrayDeque<String> tokens = new ArrayDeque<>(List.of("invalid"));
         CommandParam param = new CommandParam(Optional.empty(), Optional.empty());
@@ -51,7 +52,7 @@ public class FactoryParserTest extends LogicCoreParserTestBase {
     }
 
     @Test
-    void parseFactory_validTokens1_returnValidCommand() throws ParseException {
+    void parseFactory_validTokens1_returnValidCommand() throws ParseException, CommandException {
         // set up
         ArrayDeque<String> tokens = new ArrayDeque<>(List.of(COMMAND_WORD1, "arg1", "arg2"));
         CommandParam param = new CommandParam(Optional.of("arg1 arg2"),
@@ -66,7 +67,7 @@ public class FactoryParserTest extends LogicCoreParserTestBase {
     }
 
     @Test
-    void parseFactory_validTokens2_returnValidCommand() throws ParseException {
+    void parseFactory_validTokens2_returnValidCommand() throws ParseException, CommandException {
         // set up
         ArrayDeque<String> tokens = new ArrayDeque<>(List.of(COMMAND_WORD2, "arg1", "arg2"));
         CommandParam param = new CommandParam(Optional.of("arg1 arg2"),

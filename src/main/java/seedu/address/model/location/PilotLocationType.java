@@ -14,7 +14,7 @@ public enum PilotLocationType {
     public String toString() {
         switch (this) {
         case LOCATION_USING:
-            return "Location being used";
+            return "Pilot";
         default:
             return "Unknown";
         }

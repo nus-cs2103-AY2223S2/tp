@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.OperationMode;
 
@@ -33,7 +34,7 @@ public abstract class LogicCoreParserTestBase {
     protected CommandGroup commandGroup;
 
     @BeforeEach
-    void setUp() throws ParseException {
+    void setUp() throws ParseException, CommandException {
         Mockito
             .lenient()
             .when(commandFactory1.getCommandWord())

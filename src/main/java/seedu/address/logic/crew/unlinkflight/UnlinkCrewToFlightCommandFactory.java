@@ -7,8 +7,10 @@ import java.util.Set;
 
 import seedu.address.commons.fp.Lazy;
 import seedu.address.commons.util.GetUtil;
+import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
@@ -107,12 +109,12 @@ public class UnlinkCrewToFlightCommandFactory implements CommandFactory<UnlinkCr
             Optional<String> crewIdOptional,
             FlightCrewType type,
             Map<FlightCrewType, Crew> target
-    ) throws IndexOutOfBoundException {
+    ) throws IndexOutOfBoundException, CommandException {
         if (crewIdOptional.isEmpty()) {
             return false;
         }
         int indexOfCrew =
-                Integer.parseInt(crewIdOptional.get());
+                Command.parseIntegerToZeroBasedIndex(crewIdOptional.get());
         Optional<Crew> crewOptional =
                 crewManagerLazy.get().getItemOptional(indexOfCrew);
         if (crewOptional.isEmpty()) {
@@ -124,12 +126,12 @@ public class UnlinkCrewToFlightCommandFactory implements CommandFactory<UnlinkCr
 
     private Flight getFlightOrThrow(
             Optional<String> flightIdOptional
-    ) throws ParseException, IndexOutOfBoundException, NumberFormatException {
+    ) throws ParseException, IndexOutOfBoundException, CommandException {
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
         int indexOfFlight =
-                Integer.parseInt(flightIdOptional.get());
+                Command.parseIntegerToZeroBasedIndex(flightIdOptional.get());
         Optional<Flight> flightOptional =
                 flightManagerLazy.get().getItemOptional(indexOfFlight);
         if (flightOptional.isEmpty()) {
@@ -142,7 +144,7 @@ public class UnlinkCrewToFlightCommandFactory implements CommandFactory<UnlinkCr
 
     @Override
     public UnlinkCrewToFlightCommand createCommand(CommandParam param)
-            throws ParseException, IndexOutOfBoundException, NumberFormatException {
+            throws ParseException, IndexOutOfBoundException, CommandException {
         Optional<String> cabinServiceDirectorIdOptional =
                 param.getNamedValues(CABIN_SERVICE_DIRECTOR_PREFIX);
         Optional<String> seniorFlightAttendantIdOptional =

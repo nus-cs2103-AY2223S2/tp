@@ -7,8 +7,10 @@ import java.util.Set;
 
 import seedu.address.commons.fp.Lazy;
 import seedu.address.commons.util.GetUtil;
+import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
@@ -108,12 +110,12 @@ public class LinkPilotToLocationCommandFactory implements CommandFactory<LinkPil
             Optional<String> pilotIdOptional,
             PilotLocationType type,
             Map<PilotLocationType, Pilot> target
-    ) {
+    ) throws CommandException {
         if (pilotIdOptional.isEmpty()) {
             return false;
         }
         int indexOfPilot =
-                Integer.parseInt(pilotIdOptional.get());
+                Command.parseIntegerToZeroBasedIndex(pilotIdOptional.get());
         Optional<Pilot> pilotOptional =
                 pilotManagerLazy.get().getItemOptional(indexOfPilot);
         if (pilotOptional.isEmpty()) {
@@ -125,12 +127,12 @@ public class LinkPilotToLocationCommandFactory implements CommandFactory<LinkPil
 
     private Location getLocationOrThrow(
             Optional<String> locationIdOptional
-    ) throws ParseException {
+    ) throws ParseException, CommandException {
         if (locationIdOptional.isEmpty()) {
             throw new ParseException(NO_LOCATION_INPUT_MESSAGE);
         }
         int indexOfLocation =
-                Integer.parseInt(locationIdOptional.get());
+                Command.parseIntegerToZeroBasedIndex(locationIdOptional.get());
         Optional<Location> locationOptional =
                 locationManagerLazy.get().getItemOptional(indexOfLocation);
         if (locationOptional.isEmpty()) {
@@ -141,7 +143,8 @@ public class LinkPilotToLocationCommandFactory implements CommandFactory<LinkPil
     }
 
     @Override
-    public LinkPilotToLocationCommand createCommand(CommandParam param) throws ParseException {
+    public LinkPilotToLocationCommand createCommand(CommandParam param)
+            throws ParseException, CommandException {
         Optional<String> locationIdOptional =
                 param.getNamedValues(LOCATION_PREFIX);
         Optional<String> pilotIdOptional =

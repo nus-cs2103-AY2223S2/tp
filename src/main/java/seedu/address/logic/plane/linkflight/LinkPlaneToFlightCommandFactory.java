@@ -7,8 +7,10 @@ import java.util.Set;
 
 import seedu.address.commons.fp.Lazy;
 import seedu.address.commons.util.GetUtil;
+import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
@@ -28,7 +30,7 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
     private static final String NO_FLIGHT_MESSAGE =
             "No flight has been entered. Please enter /fl for the flight.";
     private static final String NO_PLANE_MESSAGE =
-            "No plane has been entered. Please enter /pu for the plane being used in this link.";
+            "No plane has been entered. Please enter /pl for the plane being used in this link.";
 
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
     private final Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy;
@@ -101,12 +103,12 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
             Optional<String> planeIdOptional,
             FlightPlaneType type,
             Map<FlightPlaneType, Plane> target
-    ) {
+    ) throws CommandException {
         if (planeIdOptional.isEmpty()) {
             return false;
         }
         int indexOfPlane =
-                Integer.parseInt(planeIdOptional.get());
+                Command.parseIntegerToZeroBasedIndex(planeIdOptional.get());
         Optional<Plane> planeOptional =
                 planeManagerLazy.get().getItemOptional(indexOfPlane);
         if (planeOptional.isEmpty()) {
@@ -118,12 +120,12 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
 
     private Flight getFlightOrThrow(
             Optional<String> flightIdOptional
-    ) throws ParseException {
+    ) throws ParseException, CommandException {
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
         int indexOfFlight =
-                Integer.parseInt(flightIdOptional.get());
+                Command.parseIntegerToZeroBasedIndex(flightIdOptional.get());
         Optional<Flight> flightOptional =
                 flightManagerLazy.get().getItemOptional(indexOfFlight);
         if (flightOptional.isEmpty()) {
@@ -134,7 +136,8 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
 
 
     @Override
-    public LinkPlaneToFlightCommand createCommand(CommandParam param) throws ParseException, IndexOutOfBoundException {
+    public LinkPlaneToFlightCommand createCommand(CommandParam param)
+            throws ParseException, IndexOutOfBoundException, CommandException {
         Optional<String> planeUsingIdOptional =
                 param.getNamedValues(PLANE_USING_PREFIX);
 

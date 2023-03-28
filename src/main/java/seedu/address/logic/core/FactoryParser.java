@@ -6,6 +6,7 @@ import java.util.Deque;
 import java.util.List;
 import java.util.Optional;
 
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 
 /**
@@ -29,7 +30,8 @@ public abstract class FactoryParser {
      * @return the command that matches the tokens.
      * @throws ParseException if the command is invalid.
      */
-    public Optional<Command> parseFactory(Deque<String> tokens) throws ParseException {
+    public Optional<Command> parseFactory(Deque<String> tokens)
+            throws ParseException, CommandException {
         requireNonNull(tokens);
         if (tokens.isEmpty()) {
             throw new ParseException("Tokens is empty");

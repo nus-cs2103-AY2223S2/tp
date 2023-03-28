@@ -7,8 +7,10 @@ import java.util.Set;
 
 import seedu.address.commons.fp.Lazy;
 import seedu.address.commons.util.GetUtil;
+import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
@@ -28,10 +30,10 @@ public class UnlinkCrewToLocationCommandFactory implements CommandFactory<Unlink
 
     private static final String NO_LOCATION_MESSAGE =
             "No location has been entered. "
-                    + "Please enter /loc followed by the location ID.";
+                    + "Please enter /lo followed by the location ID.";
     private static final String NO_CREW_MESSAGE =
             "No crew has been entered. "
-                    + "Please enter /crew followed by the crew ID.";
+                    + "Please enter /cr followed by the crew ID.";
 
     private final Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy;
     private final Lazy<ReadOnlyItemManager<Location>> locationManagerLazy;
@@ -104,12 +106,12 @@ public class UnlinkCrewToLocationCommandFactory implements CommandFactory<Unlink
             Optional<String> crewIdOptional,
             CrewLocationType type,
             Map<CrewLocationType, Crew> target
-    ) {
+    ) throws CommandException {
         if (crewIdOptional.isEmpty()) {
             return false;
         }
         int indexOfCrew =
-                Integer.parseInt(crewIdOptional.get());
+                Command.parseIntegerToZeroBasedIndex(crewIdOptional.get());
         Optional<Crew> crewOptional =
                 crewManagerLazy.get().getItemOptional(indexOfCrew);
         if (crewOptional.isEmpty()) {
@@ -121,12 +123,12 @@ public class UnlinkCrewToLocationCommandFactory implements CommandFactory<Unlink
 
     private Location getLocationOrThrow(
             Optional<String> locationIdOptional
-    ) throws ParseException {
+    ) throws ParseException, CommandException {
         if (locationIdOptional.isEmpty()) {
             throw new ParseException(NO_LOCATION_MESSAGE);
         }
         int indexOfLocation =
-                Integer.parseInt(locationIdOptional.get());
+                Command.parseIntegerToZeroBasedIndex(locationIdOptional.get());
         Optional<Location> locationOptional =
                 locationManagerLazy.get().getItemOptional(indexOfLocation);
         if (locationOptional.isEmpty()) {
@@ -137,7 +139,8 @@ public class UnlinkCrewToLocationCommandFactory implements CommandFactory<Unlink
     }
 
     @Override
-    public UnlinkCrewToLocationCommand createCommand(CommandParam param) throws ParseException {
+    public UnlinkCrewToLocationCommand createCommand(CommandParam param)
+            throws ParseException, CommandException {
         Optional<String> locationIdOptional =
                 param.getNamedValues(LOCATION_PREFIX);
         Optional<String> crewIdOptional =

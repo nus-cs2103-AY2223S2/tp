@@ -14,7 +14,7 @@ public enum FlightPlaneType {
     public String toString() {
         switch (this) {
         case PLANE_USING:
-            return "Plane being used";
+            return "Plane";
         default:
             return "Unknown";
         }

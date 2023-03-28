@@ -3,6 +3,7 @@ package seedu.address.logic.core;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 
 /**
@@ -37,5 +38,5 @@ public interface CommandFactory<T extends Command> {
      * @return the command created.
      * @throws ParseException if the parameters are invalid.
      */
-    T createCommand(CommandParam param) throws ParseException;
+    T createCommand(CommandParam param) throws ParseException, CommandException;
 }

@@ -6,6 +6,7 @@ import java.util.Deque;
 import java.util.List;
 import java.util.Optional;
 
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.OperationMode;
 
@@ -46,7 +47,7 @@ public class CommandGroup extends FactoryParser {
      *
      * @param tokens the tokens of the command.
      */
-    public Command parse(Deque<String> tokens) throws ParseException {
+    public Command parse(Deque<String> tokens) throws ParseException, CommandException {
         requireNonNull(tokens);
         if (tokens.isEmpty()) {
             throw new ParseException("Tokens is empty");

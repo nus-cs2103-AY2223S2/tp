@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.OperationMode;
 
@@ -35,7 +36,7 @@ public class WingmanParserTest extends LogicCoreParserTestBase {
     private WingmanParser parser;
 
     @BeforeEach
-    void setUpGroups() throws ParseException {
+    void setUpGroups() throws ParseException, CommandException {
         Mockito.lenient()
             .when(commandGroup1.getOperationMode())
             .thenReturn(GROUP1_MODE);
@@ -67,7 +68,7 @@ public class WingmanParserTest extends LogicCoreParserTestBase {
     }
 
     @Test
-    void parse_knownOperationMode_returnsCommand() throws ParseException {
+    void parse_knownOperationMode_returnsCommand() throws ParseException, CommandException {
         // setup
         final String input = "command";
 
@@ -80,7 +81,7 @@ public class WingmanParserTest extends LogicCoreParserTestBase {
     }
 
     @Test
-    void parse_topLevelCommand_returnsTopLevelCommandButNotGroupCommand() throws ParseException {
+    void parse_topLevelCommand_returnsTopLevelCommandButNotGroupCommand() throws ParseException, CommandException {
         // execute
         final Command result = parser.parse(GROUP1_MODE, COMMAND_WORD1);
         // verify

@@ -7,8 +7,10 @@ import java.util.Set;
 
 import seedu.address.commons.fp.Lazy;
 import seedu.address.commons.util.GetUtil;
+import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
@@ -105,11 +107,11 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
             Optional<String> pilotIdOptional,
             FlightPilotType type,
             Map<FlightPilotType, Pilot> target
-    ) {
+    ) throws CommandException {
         if (pilotIdOptional.isEmpty()) {
             return false;
         }
-        int index = Integer.parseInt(pilotIdOptional.get());
+        int index = Command.parseIntegerToZeroBasedIndex(pilotIdOptional.get());
         Optional<Pilot> pilotOptional =
                 pilotManagerLazy.get().getItemOptional(index);
         if (pilotOptional.isEmpty()) {
@@ -121,11 +123,11 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
 
     private Flight getFlightOrThrow(
             Optional<String> flightIdOptional
-    ) throws ParseException {
+    ) throws ParseException, CommandException {
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
-        int index = Integer.parseInt(flightIdOptional.get());
+        int index = Command.parseIntegerToZeroBasedIndex(flightIdOptional.get());
         Optional<Flight> flightOptional =
                 flightManagerLazy.get().getItemOptional(index);
         if (flightOptional.isEmpty()) {
@@ -135,7 +137,8 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
     }
 
     @Override
-    public LinkPilotToFlightCommand createCommand(CommandParam param) throws ParseException, IndexOutOfBoundException {
+    public LinkPilotToFlightCommand createCommand(CommandParam param)
+            throws ParseException, IndexOutOfBoundException, CommandException {
         Optional<String> pilotFlyingIdOptional =
                 param.getNamedValues(PILOT_FLYING_PREFIX);
         Optional<String> pilotMonitoringIdOptional =
