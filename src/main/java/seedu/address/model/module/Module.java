@@ -149,4 +149,12 @@ public class Module {
         return builder.toString();
     }
 
+    public int compareTimeSlot(Module otherModule) {
+        return this.timeSlot.compareTo(otherModule.timeSlot);
+    }
+
+    public int compareDeadline(Module otherModule) {
+        return this.deadline.compareTo(otherModule.deadline);
+    }
+
 }

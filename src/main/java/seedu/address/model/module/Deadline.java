@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents a Module's deadline.
  */
-public class Deadline {
+public class Deadline implements Comparable<Deadline> {
     public static final String MESSAGE_CONSTRAINTS =
             "Deadline should be of format \"ddMMyyyy HH:mm\" (Example: 230223 18:00)";
     public static final String VALIDATION_REGEX = "^[0-9]{6}\\s[0-9]{2}[:][0-9]{2}$";
@@ -79,5 +79,11 @@ public class Deadline {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+
+    @Override
+    public int compareTo(Deadline o) {
+        return 0;
     }
 }

@@ -105,24 +105,24 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Module> expectedFilteredList = new ArrayList<>(actualModel.getFilteredModuleList());
+        List<Module> expectedFilteredList = new ArrayList<>(actualModel.getDisplayedModuleList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredModuleList());
+        assertEquals(expectedFilteredList, actualModel.getDisplayedModuleList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the module at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showModuleAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getDisplayedModuleList().size());
 
-        Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
+        Module module = model.getDisplayedModuleList().get(targetIndex.getZeroBased());
         final String[] splitName = module.getName().fullName.split("\\s+");
         model.updateFilteredModuleList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredModuleList().size());
+        assertEquals(1, model.getDisplayedModuleList().size());
     }
 
 }

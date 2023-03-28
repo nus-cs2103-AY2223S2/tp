@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -19,9 +20,9 @@ import seedu.address.model.module.Module;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final SortedList<Module> sortedModules;
     private final FilteredList<Module> displayedModules;
 
     /**
@@ -34,7 +35,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        SortedList<Module> sortedModules = new SortedList(this.addressBook.getModuleList());
+        sortedModules = new SortedList(this.addressBook.getModuleList());
         displayedModules = new FilteredList<>(sortedModules);
     }
 
@@ -120,7 +121,7 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Module> getFilteredModuleList() {
+    public ObservableList<Module> getDisplayedModuleList() {
         return displayedModules;
     }
 
@@ -128,6 +129,12 @@ public class ModelManager implements Model {
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         displayedModules.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateSortedModuleList(Comparator<Module> comparator) {
+        requireNonNull(comparator);
+        sortedModules.setComparator(comparator);
     }
 
     @Override

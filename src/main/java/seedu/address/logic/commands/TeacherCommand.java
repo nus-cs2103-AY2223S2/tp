@@ -49,7 +49,7 @@ public class TeacherCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Module> lastShownList = model.getFilteredModuleList();
+        List<Module> lastShownList = model.getDisplayedModuleList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
