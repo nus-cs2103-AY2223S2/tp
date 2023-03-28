@@ -2,13 +2,18 @@
 layout: page
 title: User Guide
 ---
+# CoDoc User Guide
+#### Welcome to CoDoc, a desktop app for students in SoC to connect with each other for the benefit of their course of study.
+CoDoc is optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a **Graphical User Interface (GUI)**. 
+If you can type fast, CoDoc can get your contact management tasks done **faster** than traditional GUI apps, **improving** your **networking experience**.
 
-#### Welcome to CoDoc, a desktop app that allows students in SoC to connect with each other for the benefit of their course of study. CoDoc is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoDoc can get your contact management tasks done faster than traditional GUI apps and networking with people can be easily done.
+You can spend **less time** _keeping track of your contacts_ and _searching through chats_, and spend **more time** making _meaningful connections_ and _accomplish your goals_.
 
 <img src="images/Ui.png"/>
 --------------------------------------------------------------------------------------------------------------------
-
 # Table of Contents
+- [Navigating the user guide](#navigating-the-user-guide)
+- [Glossary](#glossary)
 - [Quick Start](#quick-start)
   - [Download and Installation](#download-and-installation)
   - [Navigation](#navigation)
@@ -36,6 +41,97 @@ title: User Guide
   - [How to Open CoDoc](#how-to-open-codoc)
 
 --------------------------------------------------------------------------------------------------------------------
+## Navigating the User Guide
+Before you start using CoDoc, you are recommended to read the
+[Glossary](#glossary), [Quick Start](#quick-start) as well as [Notes about the command format](#notes-about-the-command-format)
+sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
+User Guide and help you navigate it with ease.
+
+If you are first time users of CoDoc, we highly recommend that you read through the **entire user guide** in order to become 
+**familiar** with CoDoc and to gain the most out of your experience.
+
+We have provided a quick tutorial on how to [download and install](#download-and-installation) CoDoc, 
+how to make sense of the [interface](#navigation), as well as how to [properly use each command](#tutorial). 
+
+If you are proficient with the command types and are looking for a quick summary of our commands, you may jump to our [Command Summary](#command-summary) that contains relevant examples.
+
+If you are looking for a detailed explanation of each individual command, you may jump to the [Commands Section](#commands).
+Each command is complete with:
+1. What the command does
+2. The format of the command
+3. Examples of the command
+4. Picture of the command in action
+5. Any additional tips or warnings
+
+If you have questions regarding storing of information, you may proceed to our [Data Management Section](#data-management).
+
+Should you have more questions, you may proceed to our [FAQ](#faq). We hope it will be sufficient to clarify your doubts.
+
+Whenever you are in doubt, forget the command formats for any feature, need help troubleshooting
+or you simply want to maximise your use of this application, do remember to revisit this User Guide.
+Thank you for choosing CoDoc, and we hope you have a pleasant experience:thumbs-up:
+
+[Scroll back to *Table of Contents*](#table-of-contents)
+
+## Glossary
+<table>
+  <tr>
+    <th><strong>Terminology</strong></th>
+    <th><strong>Meaning / Purpose</strong></th>
+  </tr>
+  <tr>
+    <td><strong>Command Line Interface (CLI)</strong></td>
+    <td>
+      A text-based interface that is used to operate software (such as CoDoc) and operating systems. CLI
+      allows a user to perform tasks by entering commands. <br>
+      Users enter the specific command, press “Enter”, and then wait for a response.
+      After receiving the command, the CLI processes it accordingly and shows the output/result on the screen.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Graphical User Interface (GUI)</strong></td>
+    <td>
+      A system of interactive visual components for computer software. A GUI displays objects that convey information,
+      and represent actions that can be taken by the user. The objects change color, size, or visibility when the user
+      interacts with them.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Index</strong></td>
+    <td>
+      An identifier which is the number corresponding to order of which your contacts and courses are listed out, 
+      and used in conjunction with the commands to specify the contact with the given index. Each contact and course 
+      is identified with a unique index.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Parameter</strong></td>
+    <td>
+      An input that you as the user, will give to the command. These can be in the form of an integer, or a name, 
+      or an email.
+      Some commands take in a parameter after the prefix,
+      some commands take in a parameter without a prefix, and some commands don't take in parameters.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>:bulb: Tip</strong></td>
+    <td>
+      To provide you with suggestions on how to use the commands as well as address potential confusions when using
+      these commands, so you will be able to better understand how the commands work.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>:warning: Caution</strong></td>
+    <td>
+      To inform you of some unintended consequences that may occur when you use the commands, so you will be
+      able to use them appropriately.
+    </td>
+  </tr>
+</table>
+
+As recommended in the introduction, we would like to direct you to read the [Quick Start](#quick-start) section next.
+
+[Scroll back to *Table of Contents*](#table-of-contents)
 
 ## Quick Start
 
