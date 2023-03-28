@@ -87,7 +87,9 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 Tanks form the basis of *Fish Ahoy!*, as most, if not all our activities revolve around them. Aquarium tanks are the 
 first requirement of fish keeping. (Can't have a fish without a tank!) Similarly, *Fish Ahoy!* also requires you to add
 a tank first, before allowing you to add in any fishes. These tanks directly represent your tanks in real life, so 
-customize them with their own names and add in their respective fishes! <br>
+customize them with their own names and add in their respective fishes!
+In the list, each tank has an [index](#faq). Use these indexes to perform certain operations on them.
+<br>
 
 Currently, there are five operations around tanks:
 * [Adding a tank `tank add`](#adding-a-tank-tank-add)
@@ -112,11 +114,15 @@ Prefixes:
 
 Delete a tank entry from *Fish Ahoy!*
 
+Use this command to remove tanks from the system, if you happen to change your existing tanks.
+
 Format: `tank delete <TANK_INDEX>`
 
 ### Viewing a tank: `tank view`
 
 View a tank, which displays relevant attributes of the selected tank.
+
+Use this command to view a specific tank, and the fish contained inside! 
 
 Format: `tank view <TANK_INDEX>`
 
@@ -124,11 +130,15 @@ Format: `tank view <TANK_INDEX>`
 
 Lists all tanks created.
 
+This command will list all the existing tanks.
+
 Format: `list tanks`
 
 ### Feeding a tank: `tank feed`
 
 Feed a tank for the present day (i.e. today), which updates `lastFedDate` of all fishes in that tank to the present day.
+
+Use this command when you feed your fishes, so you can easily update their last fed date! 
 
 Format: `tank feed <TANK_INDEX>`
 
@@ -137,8 +147,7 @@ Format: `tank feed <TANK_INDEX>`
 Fishes are yet another core aspect of *Fish Ahoy!* This app is built around helping you keep these little guys healthy, 
 so many important details such as species, last fed date, feeding intervals are being recorded. *Fish Ahoy!* features 
 images for common species of fish currently, and aims to expand to include more fishes in the future!
-In the list, each fish
-has an [index](#faq). Use these indexes to perform certain operations on them.
+In the list, each fish has an [index](#faq). Use these indexes to perform certain operations on them.
 <br>
 
 Currently, there are five operations around fishes:
@@ -281,6 +290,11 @@ Format: `help`
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+
+**Q**: Whats a tank index?<br>
+**A**: Tank indexes are used to perform operations on certain fish. Below, highlighted in red, are the tank indexes.
+
+![help message](images/TankIndexUi.png)
 
 **Q**: Whats a fish index?<br>
 **A**: Fish indexes are used to perform operations on certain fish. Below, highlighted in red, are the fish indexes.
