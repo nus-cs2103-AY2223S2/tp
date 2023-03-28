@@ -128,7 +128,4 @@ public class Person {
     }
 
 
-    /*public List<CalendarEvent> getCalendarEvents() {
-        return Collections.singletonList(new CalendarEvent(this));
-    }*/
 }

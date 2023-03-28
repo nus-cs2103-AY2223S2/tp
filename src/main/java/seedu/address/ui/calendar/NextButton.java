@@ -1,4 +1,4 @@
-/*
+
 package seedu.address.ui.calendar;
 
 
@@ -8,12 +8,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import seedu.address.logic.CalendarLogic;
 
-*/
+
 /**
  * A button that displays the next month's CalendarEvents when interacted with.
  * The button extends {@code CalendarButton} which contains the common behaviour
  * of all buttons in the calendar.
- *//*
+ */
 
 public class NextButton extends CalendarButton {
     private static final String FXML = "NextButton.fxml";
@@ -21,12 +21,12 @@ public class NextButton extends CalendarButton {
     @FXML
     private Button nextButton;
 
-    */
+
 /**
      * Constructs a new {@code NextButton} with the given content and {@code CalendarLogic}.
      * @param content the text displayed on the button
      * @param calendarLogic the logic that manages the calendar
-     *//*
+     */
 
     public NextButton(String content, CalendarLogic calendarLogic) {
         super(FXML);
@@ -35,13 +35,13 @@ public class NextButton extends CalendarButton {
         nextButton.focusedProperty().addListener(this::handleFocusedEvent);
     }
 
-    */
+
 /**
      * Handles the button's focused event.
      * When the button is focused, it changes its border color to orange,
      * otherwise to grey.
      * @param observable an object representing the button's focus state
-     *//*
+     */
 
     @FXML
     protected void handleFocusedEvent(Observable observable) {
@@ -52,16 +52,16 @@ public class NextButton extends CalendarButton {
         }
     }
 
-    */
+
 /**
      * Handles the button's onAction event.
      * When the button is clicked, it moves the calendar to the next month.
      * @param event the event that triggered the method call
-     *//*
+     */
 
     @FXML
     protected void handleOnAction(ActionEvent event) {
         calendarLogic.next();
     }
 }
-*/
+

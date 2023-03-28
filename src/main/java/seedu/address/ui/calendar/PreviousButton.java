@@ -1,4 +1,4 @@
-/*
+
 package seedu.address.ui.calendar;
 
 
@@ -8,11 +8,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import seedu.address.logic.CalendarLogic;
 
-*/
+
 /**
  * A button that displays the previous month's CalendarEvents
  * when interacted with.
- *//*
+ */
 
 public class PreviousButton extends CalendarButton {
     private static final String FXML = "PreviousButton.fxml";
@@ -20,10 +20,10 @@ public class PreviousButton extends CalendarButton {
     @FXML
     private Button previousButton;
 
-    */
+
 /**
      * Creates a {@code PreviousButton} with the given {@code String} and {@code CalendarLogic}.
-     *//*
+     */
 
     public PreviousButton(String content, CalendarLogic calendarLogic) {
         super(FXML);
@@ -46,4 +46,4 @@ public class PreviousButton extends CalendarButton {
         calendarLogic.previous();
     }
 }
-*/
+
