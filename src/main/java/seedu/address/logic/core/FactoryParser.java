@@ -31,7 +31,7 @@ public abstract class FactoryParser {
      * @throws ParseException if the command is invalid.
      */
     public Optional<Command> parseFactory(Deque<String> tokens)
-            throws ParseException, CommandException, CommandException {
+            throws ParseException, CommandException {
         requireNonNull(tokens);
         if (tokens.isEmpty()) {
             throw new ParseException("Tokens is empty");
