@@ -13,6 +13,8 @@ import arb.commons.core.predicate.CombinedPredicate;
 import arb.logic.commands.project.FindProjectCommand;
 import arb.model.project.Deadline;
 import arb.model.project.Project;
+import arb.model.project.Status;
+import arb.model.project.predicates.IsOfStatusPredicate;
 import arb.model.project.predicates.LinkedClientNameContainsKeywordsPredicate;
 import arb.model.project.predicates.ProjectContainsTagsPredicate;
 import arb.model.project.predicates.ProjectWithinTimeframePredicate;
@@ -35,20 +37,23 @@ public class FindProjectCommandParserTest {
         List<String> expectedClientNames = Arrays.asList("Alice Wheeler");
         ProjectContainsTagsPredicate expectedTagsPredicate = new ProjectContainsTagsPredicate(expectedTags);
         TitleContainsKeywordsPredicate expectedTitlesPredicate = new TitleContainsKeywordsPredicate(expectedTitles);
+        IsOfStatusPredicate expectedStatusPredicate = new IsOfStatusPredicate(new Status(false));
         ProjectWithinTimeframePredicate expectedTimeframePredicate =
                 new ProjectWithinTimeframePredicate(new Deadline("3pm 2023-01-01"), null);
         LinkedClientNameContainsKeywordsPredicate expectedClientPredicate =
                 new LinkedClientNameContainsKeywordsPredicate(expectedClientNames);
         CombinedPredicate<Project> expectedCombinedPredicate =
                 new CombinedPredicate<>(Arrays.asList(
-                expectedTagsPredicate, expectedTitlesPredicate, expectedTimeframePredicate,
+                expectedTagsPredicate, expectedTitlesPredicate, expectedStatusPredicate, expectedTimeframePredicate,
                 expectedClientPredicate));
 
         FindProjectCommand expectedFindProjectCommand =
                 new FindProjectCommand(expectedCombinedPredicate);
-        assertParseSuccess(parser, " n/Sky Painting t/painting s/3pm 2023-01-01 c/Alice Wheeler",
+        assertParseSuccess(parser, " n/Sky Painting st/not done t/painting s/3pm 2023-01-01 c/Alice Wheeler",
                 expectedFindProjectCommand);
-        assertParseSuccess(parser, " \n n/Sky Painting \n \t t/painting  \t s/3pm 2023-01-01 \n c/Alice Wheeler \n",
+        // With whitespace
+        assertParseSuccess(parser, " \n n/Sky Painting \n \t st/not done \t t/painting  "
+                        + "\t s/3pm 2023-01-01 \n c/Alice Wheeler \n",
                 expectedFindProjectCommand);
     }
 

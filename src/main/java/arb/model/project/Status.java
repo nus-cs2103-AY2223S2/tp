@@ -1,9 +1,24 @@
 package arb.model.project;
 
+import java.util.List;
+
 /**
  * Represents a Project's completion status in the address book.
  */
 public class Status {
+
+    public static final String MESSAGE_CONSTRAINTS = "Status must be 'done' / 'd' or 'not done' / 'nd' "
+            + "(case-insensitive)."
+            + "\n Not done includes overdue status. Status must not be empty.";
+
+    /**
+     * List of possible string representations of "done" status.
+     */
+    public static final List<String> STATUS_DONE = List.of(new String[]{"DONE", "D"});
+    /**
+     * List of possible string representations of "not done" status.
+     */
+    public static final List<String> STATUS_NOT_DONE = List.of(new String[]{"NOT DONE", "ND"});
 
     private boolean isDone;
 
@@ -45,7 +60,7 @@ public class Status {
 
     @Override
     public String toString() {
-        return isDone ? "DONE" : "NOT DONE";
+        return isDone ? STATUS_DONE.get(0) : STATUS_NOT_DONE.get(0);
     }
 
     @Override
