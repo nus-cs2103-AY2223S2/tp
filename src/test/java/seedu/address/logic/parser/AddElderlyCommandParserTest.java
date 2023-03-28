@@ -56,6 +56,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddElderlyCommand;
 import seedu.address.model.person.Elderly;
+import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
@@ -195,6 +196,11 @@ public class AddElderlyCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
                 + NRIC_ELDERLY_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB + RISK_DESC_BOB
                 + TAG_DESC_SINGLE + TAG_DESC_STRONG + AVAILABLE_DATES_ONE, Email.MESSAGE_CONSTRAINTS);
+
+        // invalid address
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
+                + NRIC_ELDERLY_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB + RISK_DESC_BOB
+                + TAG_DESC_SINGLE + TAG_DESC_STRONG + AVAILABLE_DATES_ONE, Address.MESSAGE_CONSTRAINTS);
 
         // invalid nric
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB

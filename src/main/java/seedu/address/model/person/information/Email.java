@@ -2,6 +2,7 @@ package seedu.address.model.person.information;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.parser.Parser.FIELD_NOT_SPECIFIED;
 
 /**
  * Represents a Person's email in FriendlyLink.
@@ -52,7 +53,7 @@ public class Email {
      * @return True if {@code test} is a valid email and false otherwise.
      */
     public static boolean isValidEmail(String test) {
-        return test.equals("") || test.matches(VALIDATION_REGEX);
+        return test.equals(FIELD_NOT_SPECIFIED) || test.matches(VALIDATION_REGEX);
     }
 
     @Override
