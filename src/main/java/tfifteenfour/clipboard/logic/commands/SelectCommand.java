@@ -68,7 +68,9 @@ public class SelectCommand extends Command {
 
         case TASK_PAGE:
             Task selectedTask = handleSelectTask(model, currentSelection);
-            return new CommandResult(this, String.format("Viewing: %s", selectedTask), willModifyState);
+            return new CommandResult(this,
+                    String.format("[GRADES PAGE]\nViewing: grades for %s", selectedTask),
+                    willModifyState);
 
         default:
             throw new CommandException("Unable to select");
