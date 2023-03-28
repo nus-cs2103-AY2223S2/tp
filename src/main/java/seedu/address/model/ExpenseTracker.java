@@ -194,6 +194,17 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     }
 
     /**
+     * Delete all Expense.
+     */
+    public void clearExpense() {
+        expenses.clear();
+    }
+
+    public void clearCategory() {
+        categories.clear();
+    }
+
+    /**
      * Returns true if the given expense exists in the list.
      * @param expense The expense to check for existence in the list.
      * @return true if the expense exists in the list and false otherwise.

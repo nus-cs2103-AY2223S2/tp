@@ -84,6 +84,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void clearExpense() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void setExpense(Expense target, Expense editedExpense) {
         // set the expense in the list
         int index = expenses.indexOf(target);
@@ -118,6 +123,11 @@ public class ModelStub implements Model {
                 expense.setCategory(new MiscellaneousCategory());
             }
         }
+    }
+
+    @Override
+    public void clearCategory() {
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
