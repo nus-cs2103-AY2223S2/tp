@@ -161,7 +161,8 @@ the `execute("delete i/T0123456A T0124563B")` API call.
 
 ![Interactions Inside the Logic Component for the `delete i/T0123456A T0124563B` Command](images/BetterDeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div>br markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<br> [] refers to an ArrayList Object.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -403,8 +404,8 @@ Given below is an example usage scenario and how the delete command works at eac
 Step 1. The clinical/hospital administrator has been informed of death of 2 patients and their NRIC, T0123456A
 T0124563B.
 
-Step 2. The administrator executes `delete i/T0123456A T0124563B`. The `DeleteCommand` is executed and for each `NRIC`
-in the `ArrayList<NRIC>`, `Model#findPersonByNric()` is called and followed by a call to `Model#deletePerson()`
+Step 2. The administrator executes `delete i/T0123456A i/T0124563B`. The `DeleteCommand` is executed and for each `NRIC`
+in the `Set<NRIC>`, `Model#findPersonByNric()` is called and followed by a call to `Model#deletePerson()`
 which deletes the record in the system with the specified `NRIC`.
 
 The following sequence diagram shows how the delete command works:
