@@ -307,15 +307,16 @@ Examples:
 * addo 4 n/Strawberry ice cream
   * Adds the order 1 x Strawberry ice cream, tags it to customer 4, and sets status to "pending", address is the customer's address.
 
-### Listing all customers : `listo`
+### Listing all orders : `listo`
 
 Shows a list of all orders.
 
 Format: `listo [s/{created|name|status}] [f/STATUS]`
 
 * Lists all orders with the specified sorting option.
-* By default, orders are sorted by their created date
-* If `listo f/STATUS` then show only the given status
+* By default, orders are sorted by their created date.
+* If `f/STATUS` is provided, then show only the given status.
+* `STATUS` is case-insensitive and can be one of: pending, paid, shipped, completed, cancelled.
 
 Examples:
 * `listo` lists all orders sorted by created date.
