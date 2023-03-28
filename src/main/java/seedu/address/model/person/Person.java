@@ -291,9 +291,9 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getImmutableGroupTags().equals(getImmutableGroupTags())
+                && otherPerson.getGroupTags().equals(getGroupTags())
                 && otherPerson.getTelegramHandle().equals(getTelegramHandle())
-                && otherPerson.getImmutableModuleTags().equals(getImmutableModuleTags());
+                && otherPerson.getModuleTags().equals(getModuleTags());
     }
 
     @Override

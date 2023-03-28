@@ -411,7 +411,7 @@ public class TypicalModuleTag {
             .build();
 
     public static final ModuleTag MA1521_DZ = new ModuleTagBuilder()
-            .withModuleCode("MA121")
+            .withModuleCode("MA1521")
             .withLessons(MA1521_MON_8AM_1HR,
                     MA1521_WED_10AM_2HR,
                     MA1521_FRI_10AM_2HR)

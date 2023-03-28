@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.model.commitment.Lesson;
 import seedu.address.model.tag.ModuleTag;
 
 /**
@@ -113,10 +114,6 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      * Returns whether the tag can be removed.
      */
     public boolean canRemove(ModuleTag moduleTag) {
-//        System.out.println(moduleTag);
-//        System.out.println(modules.get(moduleTag.tagName));
-//        System.out.println(modules.containsKey(moduleTag.tagName)
-//                && modules.get(moduleTag.tagName).containsLessons(moduleTag.getImmutableLessons()));
         return modules.containsKey(moduleTag.tagName)
                 && modules.get(moduleTag.tagName).containsLessons(moduleTag.getImmutableLessons());
     }
@@ -212,7 +209,9 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
         }
 
         ModuleTagSet otherModuleTagSet = (ModuleTagSet) other;
-        return modules.equals(otherModuleTagSet.modules);
+
+        return modules.keySet().equals(otherModuleTagSet.modules.keySet())
+                && getLessons().equals(otherModuleTagSet.getLessons());
     }
 
     /**
@@ -226,5 +225,12 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
             result = result + "\n";
         }
         return result;
+    }
+
+    private Set<Lesson> getLessons() {
+        return modules.values()
+                .stream().map(ModuleTag::getImmutableLessons)
+                .flatMap(Set::stream)
+                .collect(Collectors.toSet());
     }
 }

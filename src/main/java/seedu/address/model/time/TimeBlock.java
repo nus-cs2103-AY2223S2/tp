@@ -47,11 +47,11 @@ public class TimeBlock extends TimePeriod {
         return Hours.hoursBetween(getStartTime(), getEndTime());
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s[%s, %s]",
-            getSchoolDay(),
-            TimeUtil.formatLocalTime(getStartTime()),
-            TimeUtil.formatLocalTime(getEndTime()));
-    }
+    //    @Override
+    //    public String toString() {
+    //        return String.format("%s[%s, %s]",
+    //            getSchoolDay(),
+    //            TimeUtil.formatLocalTime(getStartTime()),
+    //            TimeUtil.formatLocalTime(getEndTime()));
+    //    }
 }

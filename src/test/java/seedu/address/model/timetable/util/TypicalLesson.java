@@ -563,7 +563,7 @@ public class TypicalLesson {
     public static final Lesson CS2108_TUE_10AM_2HR = new LessonBuilder()
             .withModuleCode("CS2108")
             .withStartTime(10)
-            .withDuration(1)
+            .withDuration(2)
             .withDay(Day.TUESDAY)
             .build();
 

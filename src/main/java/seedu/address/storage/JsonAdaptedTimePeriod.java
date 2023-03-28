@@ -55,7 +55,6 @@ public class JsonAdaptedTimePeriod {
      */
     public TimePeriod toModelType() throws IllegalValueException {
         if (startHour < 0 || startHour > 23) {
-            System.out.println(startHour);
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalTime.class.getSimpleName()));
         }

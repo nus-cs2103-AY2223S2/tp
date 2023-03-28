@@ -80,8 +80,6 @@ public class TagCommand extends Command {
                 .map(ModuleTag::getImmutableLessons)
                 .flatMap(Set::stream)
                 .collect(Collectors.toSet()));
-
-        System.out.println(lessons.toString());
     }
 
     private void initializeGroups(Set<? extends Tag> tagsToAdd) {

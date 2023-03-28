@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BART;
+import static seedu.address.testutil.TypicalPersons.DONG;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +45,8 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedPerson user = new JsonAdaptedPerson(BART);
-        assertEquals(BART, user.toModelType());
+        JsonAdaptedPerson person = new JsonAdaptedPerson(DONG);
+        assertEquals(DONG, person.toModelType());
     }
 
     @Test

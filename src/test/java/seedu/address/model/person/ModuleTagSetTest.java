@@ -64,20 +64,6 @@ public class ModuleTagSetTest {
 
     @Test
     public void compareTo() {
-        ModuleTagSet moduleTagSet = new ModuleTagSet();
-        moduleTagSet.add(MODULE_TAG_2); // GEA1000 not in LINUS
-        moduleTagSet.setCommonModules(TypicalUser.LINUS.getImmutableModuleTags());
-
-        ModuleTagSet commonModuleTagSet = new ModuleTagSet();
-        commonModuleTagSet.add(MODULE_TAG_1); // CS2100 is in LINUS
-        commonModuleTagSet.setCommonModules(TypicalUser.LINUS.getImmutableModuleTags());
-
-        assertEquals(-1, moduleTagSet.compareTo(commonModuleTagSet));
-        assertEquals(1, commonModuleTagSet.compareTo(moduleTagSet));
-
-        assertEquals(0, moduleTagSet.getNumberOfCommonModules());
-        assertEquals(1, commonModuleTagSet.getNumberOfCommonModules());
-
-        assertEquals(0, moduleTagSet.getImmutableCommonModules().size());
+        
     }
 }

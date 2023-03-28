@@ -2,6 +2,7 @@ package seedu.address.model.time;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.joda.time.Hours;
 import org.joda.time.LocalTime;
@@ -117,10 +118,10 @@ public abstract class TimePeriod {
 
     @Override
     public String toString() {
-        return String.format("[%s] %s - %s",
+        return String.format("[%s] %d - %d",
             getSchoolDay(),
-            TimeUtil.formatLocalTime(getStartTime()),
-            TimeUtil.formatLocalTime(getEndTime()));
+            getStartTime().getHourOfDay(),
+            getEndTime().getHourOfDay());
     }
 
     @Override
@@ -135,5 +136,10 @@ public abstract class TimePeriod {
         return getStartTime().isEqual(that.getStartTime())
                 && getEndTime().isEqual(that.getEndTime())
                 && getSchoolDay().equals(that.getSchoolDay());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(startTime, endTime, schoolDay);
     }
 }

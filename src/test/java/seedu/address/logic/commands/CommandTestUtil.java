@@ -23,13 +23,6 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-    public static final HashMap<String, String> LINUS = new HashMap<>() {{
-            put("name", "Linus Richards");
-            put("phone", "90102030");
-            put("email", "linusrichards@gmail.com");
-            put("address", "National University of Singapore");
-            put("telegramHandle", "@linusrichards");
-        }};
 
     public static final String NAME_ALEX = "Alex Quinn";
     public static final String NAME_BEN = "Benjamin Khoo";
