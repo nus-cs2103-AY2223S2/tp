@@ -12,8 +12,8 @@ import seedu.address.model.tank.TankName;
 public class SampleTankUtil {
     public static Tank[] getSampleTanks() {
         return new Tank[] {
-            new Tank(new TankName("freshwater tank"), new AddressBook()),
-            new Tank(new TankName("saltwater tank"), new AddressBook())
+            new Tank(new TankName("freshwater tank"), new AddressBook(), ),
+            new Tank(new TankName("saltwater tank"), new AddressBook(), )
         };
     }
 

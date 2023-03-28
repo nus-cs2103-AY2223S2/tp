@@ -37,7 +37,7 @@ public class TankAddCommandParser {
 
         TankName tankName = ParserUtil.parseTankName(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
-        Tank tank = new Tank(tankName, new AddressBook());
+        Tank tank = new Tank(tankName, new AddressBook(), );
 
         return new TankAddCommand(tank);
     }

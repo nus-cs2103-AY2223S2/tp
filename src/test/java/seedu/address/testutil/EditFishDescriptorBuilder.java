@@ -79,7 +79,7 @@ public class EditFishDescriptorBuilder {
      * Sets the {@code Tank} of the {@code EditFishDescriptor} that we are building.
      */
     public EditFishDescriptorBuilder withTank(String tank) {
-        descriptor.setTank(new Tank(new TankName(tank), new AddressBook()));
+        descriptor.setTank(new Tank(new TankName(tank), new AddressBook(), ));
         return this;
     }
 

@@ -76,7 +76,7 @@ public class JsonAdaptedTask {
         Tank modelTank = null;
 
         if (this.tank != null) {
-            modelTank = new Tank(new TankName(this.tank), new AddressBook());
+            modelTank = new Tank(new TankName(this.tank), new AddressBook(), );
         }
 
         Priority modelPriority = null;

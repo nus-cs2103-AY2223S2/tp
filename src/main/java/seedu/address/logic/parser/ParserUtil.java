@@ -183,7 +183,7 @@ public class ParserUtil {
         if (!TankName.isValidTankName(trimmedTank)) {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return new Tank(new TankName(trimmedTank), new AddressBook());
+        return new Tank(new TankName(trimmedTank), new AddressBook(), );
 
     }
 }

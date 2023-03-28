@@ -10,7 +10,7 @@ import seedu.address.model.AddressBook;
  */
 public class UnassignedTank extends Tank {
     public UnassignedTank(TankName tankName, AddressBook fishList) {
-        super(tankName, fishList);
+        super(tankName, fishList, );
     }
 
     @Override

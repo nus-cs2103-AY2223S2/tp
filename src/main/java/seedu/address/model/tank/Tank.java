@@ -14,16 +14,18 @@ import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 public class Tank {
     private final TankName name;
     private final AddressBook fishList;
-    public final UniqueIndividualReadingLevels individualAmmoniaLevels;
+    public final UniqueIndividualReadingLevels readingLevels;
 
     /**
      * Creates a Tank.
      * @param tankName Name of tank.
      * @param fishList Fish in tank.
+     * @param readingLevels
      */
-    public Tank(TankName tankName, AddressBook fishList) {
+    public Tank(TankName tankName, AddressBook fishList, UniqueIndividualReadingLevels readingLevels) {
         this.name = tankName;
         this.fishList = fishList;
+        this.readingLevels = readingLevels;
     }
 
     public AddressBook getFishList() {

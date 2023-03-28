@@ -36,8 +36,8 @@ public class TypicalTanks {
     }
 
     public static List<Tank> getTypicalTanks() {
-        Tank tankOne = new Tank(new TankName(TYPICAL_TANK_1_STRING), new AddressBook());
-        Tank tankTwo = new Tank(new TankName(TYPICAL_TANK_2_STRING), new AddressBook());
+        Tank tankOne = new Tank(new TankName(TYPICAL_TANK_1_STRING), new AddressBook(), );
+        Tank tankTwo = new Tank(new TankName(TYPICAL_TANK_2_STRING), new AddressBook(), );
         return new ArrayList<>(Arrays.asList(tankOne, tankTwo));
     }
 

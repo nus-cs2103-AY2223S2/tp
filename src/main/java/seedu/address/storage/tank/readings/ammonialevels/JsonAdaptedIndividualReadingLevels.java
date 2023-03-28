@@ -86,7 +86,7 @@ public class JsonAdaptedIndividualReadingLevels {
             throw new IllegalValueException(TankName.MESSAGE_CONSTRAINTS);
         }
         final TankName modelTankName = new TankName(tankName);
-        Tank tank = new Tank(modelTankName, new AddressBook());
+        Tank tank = new Tank(modelTankName, new AddressBook(), );
 
         String[] valuesAmmonia = commaSeperatedValuesAmmonia.split(",");
         String[] datesAmmonia = commaSeperatedDatesAmmonia.split(",");

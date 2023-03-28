@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 /**
  * An Immutable {@code FullReadingLevels} that is serializable to JSON format.
  */
-@JsonRootName(value = "fullAmmoniaLevels")
+@JsonRootName(value = "fullReadingLevels")
 public class JsonSerializableFullReadingLevels {
     public static final String MESSAGE_DUPLICATE_TANK = "JsonSerializableFullReadingLevels contains " +
             "duplicate tank(s).";
@@ -42,7 +42,7 @@ public class JsonSerializableFullReadingLevels {
     }
 
     /**
-     * Converts this Full Ammonia Levels into the model's {@code FullReadingLevels} object.
+     * Converts this Full Reading Levels into the model's {@code FullReadingLevels} object.
      *
      * @throws IllegalValueException If there were any data constraints violated.
      */
@@ -50,9 +50,11 @@ public class JsonSerializableFullReadingLevels {
         FullReadingLevels fullReadingLevels = new FullReadingLevels();
 
         for (JsonAdaptedIndividualReadingLevels jsonAdaptedReadingList : readingLevels) {
-            UniqueIndividualReadingLevels individualAmmoniaLevels = jsonAdaptedReadingList.toModelType();
-            //TODO add dupe tank check
-            fullReadingLevels.addIndividualReadingLevel(individualAmmoniaLevels);
+            UniqueIndividualReadingLevels individualReadingLevels = jsonAdaptedReadingList.toModelType();
+            if (fullReadingLevels.hasIndividualReadingLevels(individualReadingLevels)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TANK);
+            }
+            fullReadingLevels.addIndividualReadingLevel(individualReadingLevels);
         }
         return fullReadingLevels;
     }

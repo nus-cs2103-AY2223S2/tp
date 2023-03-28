@@ -40,7 +40,7 @@ public class FishBuilder {
         lastFedDate = new LastFedDate(DEFAULT_LAST_FED_DATE);
         species = new Species(DEFAULT_SPECIES);
         feedingInterval = new FeedingInterval(DEFAULT_FEEDING_INTERVAL);
-        tank = new Tank(new TankName(DEFAULT_TANK), new AddressBook());
+        tank = new Tank(new TankName(DEFAULT_TANK), new AddressBook(), );
         tags = new HashSet<>();
     }
 
@@ -103,7 +103,7 @@ public class FishBuilder {
      * @return fishbuilder
      */
     public FishBuilder withTank(String tank) {
-        this.tank = new Tank(new TankName(tank), new AddressBook());
+        this.tank = new Tank(new TankName(tank), new AddressBook(), );
         return this;
     }
 

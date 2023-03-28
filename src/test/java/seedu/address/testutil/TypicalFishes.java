@@ -76,7 +76,7 @@ public class TypicalFishes {
         AddressBook ab = new AddressBook();
         for (Fish fish : getTypicalFishes()) {
             //For testing purposes, ensure the tanks of Typical Fish is not changed by other tests
-            fish.setTank(new Tank(new TankName(TYPICAL_TANK_1_STRING), new AddressBook()));
+            fish.setTank(new Tank(new TankName(TYPICAL_TANK_1_STRING), new AddressBook(), ));
             ab.addFish(fish);
         }
         return ab;

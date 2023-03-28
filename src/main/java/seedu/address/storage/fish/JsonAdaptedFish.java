@@ -120,7 +120,7 @@ public class JsonAdaptedFish {
         }
         //TODO: explore if it is possible to use the real Tank object instead of making new ones with same name
         //final Tank modelTankUnassigned = new UnassignedTank(null, null);
-        final Tank modelTankUnassigned = new Tank(new TankName(tank), new AddressBook());
+        final Tank modelTankUnassigned = new Tank(new TankName(tank), new AddressBook(), );
 
         final Set<Tag> modelTags = new HashSet<>(fishTags);
         return new Fish(modelName, modelLastFedDate, modelSpecies, modelFeedingInterval, modelTankUnassigned,
