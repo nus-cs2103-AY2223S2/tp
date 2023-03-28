@@ -28,7 +28,7 @@ public class LinkPlaneToFlightCommandFactory implements CommandFactory<LinkPlane
     private static final String NO_FLIGHT_MESSAGE =
             "No flight has been entered. Please enter /fl for the flight.";
     private static final String NO_PLANE_MESSAGE =
-            "No plane has been entered. Please enter /pu for the plane being used in this link.";
+            "No plane has been entered. Please enter /pl for the plane being used in this link.";
 
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
     private final Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy;

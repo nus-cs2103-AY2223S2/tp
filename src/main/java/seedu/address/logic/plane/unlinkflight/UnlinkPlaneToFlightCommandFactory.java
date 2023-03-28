@@ -29,7 +29,7 @@ public class UnlinkPlaneToFlightCommandFactory implements CommandFactory<UnlinkP
     private static final String NO_FLIGHT_MESSAGE =
             "No flight has been entered. Please enter /fl for the flight to be unlinked.";
     private static final String NO_PLANE_MESSAGE =
-            "No plane has been entered. Please enter /pu for the plane being unlinked.";
+            "No plane has been entered. Please enter /pl for the plane being unlinked.";
 
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
     private final Lazy<ReadOnlyItemManager<Plane>> planeManagerLazy;
