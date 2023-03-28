@@ -29,103 +29,6 @@ We suggest reading this guide in sequential order (or at least the whole of this
 
 ### How to Use FriendlyLink
 
-FriendlyLink is a command line based tool. This means that it is designed to mainly receive text commands by you, and show you the output after each command is carried out. 
-
-FriendlyLink stores the elderly, volunteers and pairings between the 2, which can be added, modified or removed by you using commands.
-
-#### Commands
-A command is an instruction given by you to FriendlyLink to perform a specific task. For example, `add_elderly n/John Doe ...` tells FriendlyLink to record the information of a new person in FriendlyLink. More details about each command is given in the **Features** section.
-
-#### Prefixes
-Prefixes are the characters appearing before a slash in a command. Prefixes describe the information that they represent. For example, the add elderly command `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate the NRIC of the elderly.
-* Prefixes should be entered in all lower case (E.g. n/Abdul instead of N/Abdul)
-* Fields after prefixes have leading and trailing whitespaces removed (e.g. `n/ Mary` is truncated to `n/Mary`)
-
-#### Entities
-An entity is a generic term for an object stored in FriendlyLink. It includes elderly, volunteers and pairs.
-
-#### Indexes
-Indexes are natural numbers (numbers used for counting) that are used for numbering purposes in a displayed list of entities.
-* An index must be a positive integer (E.g. 1, 2, 3, …​)
-
-#### Fields
-Fields are the information following the slash in a command.
-* For example, `add_elderly n/John Doe ic/...` has the prefix `n` followed by a slash, followed by the field `John Doe`. This tells FriendlyLink to record the newly added elderly with the name `John Doe`.
-* Use fields to provide appropriate information to FriendlyLink, such as indicating a volunteer's name, phone number, email and other information.
-* Fields can be entered in any order.
-    * If a command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-* If a field is expected only once in the command, but you specify it multiple times, only the last occurrence of the field will be taken.<br>
-    * If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-* Extraneous fields for commands that do not take in fields (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-    * If you specify `help 123`, it will be interpreted as `help`.
-
-FriendlyLink Fields are described below.
-
-#### NRIC
-NRIC is a unique identifier given to all Singaporeans.
-* NRIC is case-insensitive
-* The structure of the NRIC should be `@XXXXXXX#`, where:
-  * `@` is a letter that can be "S", "T", "F", "G", "M"
-  * `XXXXXXX` is a 7-digit serial number
-  * `#` is a letter from A to Z
-* There is no cross validation of birthdate against NRIC (There are no checks for the birth year in first 2 digits of NRIC)
-
-#### Phone number
-The phone number of a person.
-* Phone number is strictly numeric (digits from 0 to 9) and have more than 3 digits
-
-#### Email
-The email of a person
-* Email must be in the `local-part@domain.com` format, containing the `@`
-
-#### Date
-A date representing the timestamp of an event, in the format `YYYY-MM-DD`
-* Date must be in the format `YYYY-MM-DD`
-* Entering of dates before the current date is allowed
-* Past dates will not be removed
-* Where relevant, start date must occur before end date
-
-#### Region
-The general portion of area in Singapore.
-* Region must be one of the following value: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` and `EAST`.
-
-#### Risk Level
-The susceptibility level of an elderly to injury or sickness.
-* Risk level can only be one of the following value: `LOW`, `MEDIUM` or `HIGH`.
-* Specified for elderly only.
-
-#### Medical Qualification
-* Medical qualification must be in the format `SKILL_NAME LEVEL`.
-  * The `LEVEL` must be one of the following value: `BASIC`, `INTERMEDIATE` or `HIGH`.
-  * Example: `CPR BASIC`, `AED INTERMEDIATE`.
-* Specified for volunteers only.
-
-#### Tags
-A tag is a generic description for a group of people.
-* Only alphanumeric characters are allowed.
-
-#### Duplicate Entries
-* Person (Elderly and Volunteers)
-  * Two persons having the same NRIC are considered a duplicate entry in FriendlyLink, and is not allowed.
-  * Persons with identical `NRIC` are considered the same person.
-  * A person in FriendlyLink cannot be both an elderly and a volunteer at the same time.
-* Pair
-  * Two pairs having the same elderly and volunteer are considered a duplicate entry in FriendlyLink, and is not allowed.
-
-#### Code highlights
-
-*`Highlights` are used to denote specific terms, commands or output from the application. These are case-sensitive and may not give the correct results if you use different capitalisation or if you include additional space in them.
-
-* Highlighted commands consists special characters or capitalisation, which have special meaning.
-    * Words that are `CAPITALISED` are placeholders that should be replaced by you.<br>
-      e.g. in `add n/NAME`, `NAME` should be replaced with actual information `add n/John Doe`.
-
-    * Items in `[square brackets]` are optional.<br>
-      e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or just `n/John Doe`.
-
-    * Items with `[ellipsis]…` after them can be used 0 or more times.<br>
-      e.g. `add_elderly n/NAME [t/TAG]…` can be used as `add_elderly n/John Doe` (no tags included), `add_elderly n/John Doe t/friend` (1 tag), `add_elderly n/John Doe t/friend t/family` (2 tags) and more.
-
 #### Information Boxes
 
 You may see the following icons throughout our user guide, which are styled differently according to their purpose.
@@ -145,6 +48,106 @@ This provides some quick and convenient hacks that you can use to optimize your 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 Danger zone! Do pay attention to the information here carefully.
 </div>
+
+#### FriendlyLink
+FriendlyLink is a command line based tool. This means that it is mainly designed to receive your text commands, and show you the output after each command is carried out.
+
+FriendlyLink stores paired elderly and volunteers, which you can add, modify or remove.
+
+#### Commands
+A command is an instruction given by you to FriendlyLink to perform a specific task. For example, `add_elderly n/John Doe ...` tells FriendlyLink to record the information of a new person in FriendlyLink. More details about each command is given in the `Features` section.
+
+#### Prefixes
+Prefixes are the characters appearing before a slash in a command. Prefixes label the information that they represent. For example, the add elderly command `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.
+* Prefixes should be entered in all lower case (E.g. n/Abdul instead of N/Abdul)
+* Fields after prefixes have leading and trailing whitespaces removed (e.g. `n/ Mary` is truncated to `n/Mary`)
+
+#### Entities
+An entity is a generic term for an object stored in FriendlyLink. It includes elderly, volunteers and pairs.
+
+#### Indexes
+Indexes are natural numbers (numbers used for counting) that are used for numbering entities in a list.
+* An index must be a positive integer (E.g. 1, 2, 3, …​)
+
+#### Fields
+Fields are the information following the slash in a command, to provide appropriate information to FriendlyLink, such as indicating a volunteer's name, phone number, email and other information.
+* For example, `add_elderly n/John Doe ic/...` has the prefix `n` followed by a slash, followed by the field `John Doe`. This tells FriendlyLink to record the newly added elderly with the name `John Doe`.
+* Fields can be entered in any order.
+    * E.g. If a command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* If a field is expected only once in the command, but you specify it multiple times, only the last occurrence of the field will be taken.<br>
+    * E.g. If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* Extraneous fields for commands that do not take in fields (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+    * E.g. If you specify `help 123`, it will be interpreted as `help`.
+
+FriendlyLink fields are described below.
+
+#### NRIC
+NRIC is a unique identifier given to all Singaporeans.
+* NRIC is case-insensitive
+* The structure of the NRIC should be `@XXXXXXX#`, where:
+  * `@` is a letter that can be "S", "T", "F", "G", "M"
+  * `XXXXXXX` is a 7-digit serial number
+  * `#` is a letter from A to Z
+* There is no cross validation of birthdate against NRIC (There are no checks for the birth year in first 2 digits of NRIC)
+
+#### Phone number
+The phone number of a person.
+* Phone number is strictly numeric (digits from 0 to 9) and have more than 3 digits
+
+#### Email
+The email of a person
+* Email must be in the `local-part@domain.com` format, containing the `@`
+
+#### Date
+A date represents a point in time, such as aa birthdate or starting or ending days where someone is available for meet ups.
+* Date must be in the format `YYYY-MM-DD`
+* Entering dates that have already passed is allowed.
+* When a person's available dates have passed, it will not be removed.
+* Where relevant, start date must occur before end date
+
+<div markdown="block" class="alert alert-primary">:bulb: **Tip**
+You can enter a person's available date for record keeping purposes, even if the date has already passed
+</div>
+
+#### Region
+The general area in Singapore.
+* Region must be one of the following values: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` and `EAST`.
+
+#### Risk Level
+The susceptibility level of an elderly to injury or sickness.
+* Risk level can only be one of the following values: `LOW`, `MEDIUM` or `HIGH`.
+* Specified for elderly only.
+
+#### Medical Qualification
+* Medical qualification must be in the format `SKILL_NAME LEVEL`.
+  * The `LEVEL` must be one of the following value: `BASIC`, `INTERMEDIATE` or `HIGH`.
+  * Example: `CPR BASIC`, `AED INTERMEDIATE`.
+* Specified for volunteers only.
+
+#### Tags
+A tag is a generic description for a group of people.
+* Only alphanumeric characters are allowed.
+
+#### Duplicate Entries
+* Person (Elderly and Volunteers)
+  * Two persons having the same `NRIC` are considered the same person and therefore a duplicate entry in FriendlyLink, and is not allowed.
+  * The same person in FriendlyLink cannot be both an elderly and a volunteer at the same time.
+* Pair
+  * Two pairs having the same elderly and volunteer are considered a duplicate entry in FriendlyLink, and is not allowed.
+
+#### Code highlights
+
+*`Highlights` are used to denote specific terms, commands or output from the application. These are case-sensitive and may not give the correct results if you use different capitalisation or if you include additional space in them.
+
+* Highlighted commands consists special characters or capitalisation, which have special meaning.
+    * Words that are `CAPITALISED` are placeholders that should be replaced by you.<br>
+      e.g. in `add n/NAME`, `NAME` should be replaced with actual information `add n/John Doe`.
+
+    * Items in `[square brackets]` are optional.<br>
+      e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or just `n/John Doe`.
+
+    * Items with `[ellipsis]…` after them can be used 0 or more times.<br>
+      e.g. `add_elderly n/NAME [t/TAG]…` can be used as `add_elderly n/John Doe` (no tags included), `add_elderly n/John Doe t/friend` (1 tag), `add_elderly n/John Doe t/friend t/family` (2 tags) and more.
 
 ---
 
@@ -168,7 +171,7 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 | NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                                                                      |
 | Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly                                                            | 
 | Phone number          | The phone number of a person. Must be numeric and has more than 3 digits                                                                                    |
-| Prefixes              | Prefixes are the characters appearing before a slash in a command. Prefixes describe the attribute that they represent.                                     |
+| Prefixes              | Prefixes are the characters appearing before a slash in a command. Prefixes describe the field that they represent.                                         |
 | Region                | The general portion of area in Singapore. Must be one of the following values: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` or `EAST`                            |
 | Risk level            | The susceptibility level of an elderly to injury or sickness. Must be one of the following values: `LOW`, `MEDIUM` or `HIGH`                                |
 | Tag                   | A generic description for a group of people. Must contain only alphanumeric characters                                                                      |
@@ -187,7 +190,7 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
     * Open a terminal
       * On **Windows**: Click Start and search for `Command Prompt`
       * On **macOS**: Open Launchpad and search for `terminal`
-    * Move into the folder you are keeping FriendlyLink by entering `cd FILE/PATH/TO/FRIENDLYLINK` into the terminal (without the angled brackets)
+    * Move into the folder you are keeping FriendlyLink by entering `cd FILE/PATH/TO/FRIENDLYLINK` into the terminal
     * Open the app by entering `java -jar friendlylink.jar` into the terminal.
    
    The GUI should appear in a few seconds.
@@ -268,7 +271,7 @@ A volunteer can have any number of tags, medical qualifications and available da
 
 Examples:
 
-* `add_volunteer n/John Wick e/johnwick@example.com a/New yourk p/1234561 ic/T1254567D dr/2023-04-01,2023-04-15`
+* `add_volunteer n/John Wick bd/1990-11-05 e/johnwick@example.com a/New yourk p/1234561 ic/T1254567D dr/2023-04-01,2023-04-15`
 * `add_volunteer n/Sally White bd/1990-11-05 ic/S8457677H re/EAST`
 
 #### Pair volunteer and elderly: `pair`
@@ -285,12 +288,12 @@ Format: `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
 * Duplicate pairs will fail to be added to FriendlyLink.
 * Alphabets in NRIC are case-insensitive.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">:information_source: Notes pairing**<br>
+* A warning will be given when pairing if there are clashes in availability between the volunteer and elderly.
+</div>
 
-**:information_source: Notes pairing**<br>
-
-* A warning will be given if there are clashes in availability between the volunteer and elderly when pairing.
-
+<div markdown="block" class="alert alert-info">:information_source: Notes pairing**<br>
+* A warning will be given when pairing if the volunteer and elderly lives in different regions.
 </div>
 
 Examples:
@@ -341,7 +344,10 @@ Format: `edit_elderly INDEX [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [
 * Any combination of the optional fields is possible but **at least one** optional field must be specified. 
 * Existing values will be updated to the input values.
 * When editing fields allowing multiple inputs, the existing contents of the field will be removed. i.e. editing of tags or available dates will overwrite previous ones and are not cumulative.
-* You can remove all the elderly’s tags by typing `t/` without specifying any tags after it. Same for available dates by typing `dr/`.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can remove all the elderly’s tags by typing `t/` without specifying any tags after it. Same for available dates by typing `dr/`.
+</div>
 
 Examples:
 
@@ -358,7 +364,10 @@ Format: `edit_volunteer INDEX [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/A
 * Any combination of the optional fields is possible but **at least one** optional field must be specified.
 * Existing values will be updated to the input values.
 * When editing fields allowing multiple inputs, the existing contents of the field will be removed. i.e. editing of tags, medical qualifications or available dates will overwrite previous ones and are not cumulative.
-* You can remove all the volunteer’s tags by typing `t/` without specifying any tags after it. Same behavior as tags for available dates and medical qualifications by typing `dr/` and `mt/` respectively.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can remove all the volunteer’s tags by typing `t/` without specifying any tags after it. Same behavior as tags for available dates and medical qualifications by typing `dr/` and `mt/` respectively.
+</div>
 
 Examples:
 
@@ -375,19 +384,22 @@ Format: `edit NRIC [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_
 * Any combination of the optional fields is possible but **at least one** optional field must be specified.
 * Existing values will be updated to the input values.
 * When editing elderly or volunteer-specific fields, if such fields do not match the identity of the target person, the change will be ignored. Example: `edit S1234567A r/LOW` will ignore the change of `RISK_LEVEL` to be `LOW` if `S1234567A` identifies a volunteer 
-(as volunteers do not have a `RISK_LEVEL` attribute).
-* When editing fields allowing multiple inputs, the existing contents of the field will be removed. i.e. editing of tags, medical qualifications or available dates will overwrite previous ones and are not cumulative.
-* You can remove all the person's tags by typing `t/` without specifying any tags after it. Same behavior as tags for available dates and medical qualifications by typing `dr/` and `mt/` respectively.
+(as volunteers do not have a `RISK_LEVEL` field).
+* When editing fields allowing multiple inputs, the existing contents of the field will be removed. i.e. editing of tags, medical qualifications or available dates will overwrite previous ones and are not cumulative. 
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can remove all the person's tags by typing `t/` without specifying any tags after it. Same behavior as tags for available dates and medical qualifications by typing `dr/` and `mt/` respectively.
+</div>
 Examples:
 
 * `edit S2233556T p/91642345 re/NORTH` Edits the phone number of the person identified by `S2233556T` to be `91642345` and region to be `NORTH`.
 * `edit S8833657U re/CENTRAL r/HIGH` Edits the region of the person identified by `S8833657U` to be `CENTRAL` and risk level to be `HIGH`. However, if `S8833657U` identifies a volunteer, the risk level edit will be ignored.
+
 ------------------------------------------------
 
 ### Deleting records
 
-Delete the specific information of an existing elderly or volunteer in FriendlyLink, based on their NRIC.
+Delete the specific existing elderly or volunteer in FriendlyLink with the given NRIC.
 
 #### Deleting an elderly: `delete_elderly`
 
@@ -397,7 +409,7 @@ Format: `delete_elderly NRIC`
 
 * Deletes the elderly with the specified NRIC `NRIC`.
 * If no existing elderly matches the specified `NRIC`, FriendlyLink will inform the user that no such elderly exists.
-* If the deleted elderly has existing pairings, the corresponding pairing information will also be deleted.
+* If the deleted elderly has existing pairings, the corresponding volunteer will be unpaired.
 
 Examples:
 * `delete_elderly S8238657A` deletes an existing elderly with NRIC `S8238657A`, as well as all the pairings containing this elderly.
@@ -410,7 +422,7 @@ Format: `delete_volunteer NRIC`
 
 * Deletes the volunteer with the specified NRIC `NRIC`.
 * If no existing volunteer matches the specified `NRIC`, FriendlyLink will inform the user that no such volunteer exists.
-* If the deleted volunteer has existing pairings, the corresponding pairing information will also be deleted.
+* If the deleted volunteer has existing pairings, the corresponding elderly will be unpaired.
 
 Examples:
 * `delete_volunteer S8238658J` deletes an existing volunteer with NRIC `S8238658J`, as well as all the pairings containing this volunteer.
@@ -419,12 +431,11 @@ Examples:
 
 Unpairs an elderly from its assigned volunteer.
 
-This deletes the pair while still keeping the information of the elderly member and volunteer.
+This deletes the pair while still keeping the elderly and volunteer.
 
 Format `unpair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
 
-* After deletion, the pair is removed in the list of pairs in the window.
-* Alphabets in NRIC are case-insensitive.
+* After deletion, the pair is removed from the list of pairs in the window.
 
 Examples
 * `unpair eic/S2235243I vic/t0123423a` unpairs the elderly with NRIC S2235243I with the volunteer with NRIC T0123423A.
@@ -456,7 +467,6 @@ Format: `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRT
 
 * Fields can be in any order.
 * The fields are optional so any combination of them is possible but **at least one** field must be specified.
-* When multiple of the same field are specified, only the last one will be taken. e.g. `find n/jane n/john` will search for names that contain `john` only.
 * The search is case-insensitive for all fields. e.g. `jANe` will match `Jane`.
 * Specifying a certain portion of a field is possible except for `[r/RISK_LEVEL]`, `[mt/MEDICAL_QUALIFICATIONS]`, `[re/REGION]`, `[t/TAG]…` and `[dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` e.g. `Joh` for the `n/NAME` field will match `John` and `John Doe`.
 * For `[dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` date ranges that starts before or equal to `AVAILABLE_DATE_START` and ends after or equal to `AVAILABLE_DATE_END` will match.
@@ -472,7 +482,7 @@ Examples:
 
 Shows the statistics of FriendlyLink.
 
-This shows the total number of elderly, volunteers and pairs. It also shows the average number of elderly paired to volunteers and vice versa.
+This shows the total number of elderly, volunteers and pairs. It also shows the maximum number of elderly paired to each volunteer and vice versa.
 This command can be entered after the `find` command to show statistics on a subset of data (e.g. Find statistics of people in a particular region)
 
 Format `stats`
@@ -483,10 +493,10 @@ Examples
 * `stats` Display summary statistics on every person and pair.
 
 * ```
-  find n/alice
+  find re/NORTH
   stats
   ```
-  Display summary statistics for all persons (and associated pairs) with `alice` in their name.
+  Display summary statistics for all persons (and associated pairs) living in the north.
 
 -------------------------------------------
 
@@ -495,12 +505,6 @@ Examples
 Exits the program.
 
 Format: `exit`
-
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-Format: `help`
 
 ---------------------------------------------
 
@@ -513,8 +517,7 @@ save manually.
 
 ### Editing the data file
 
-FriendlyLink data are saved as a JSON file `JAR_FILE_LOCATION/data/elderly.json`, `JAR_FILE_LOCATION/data/volunteer.json` and `JAR_FILE_LOCATION/data/pair.json`. Advanced users are welcome to update data directly by editing that data file.
-
+FriendlyLink data are saved in the JSON files `JAR_FILE_LOCATION/data/elderly.json`, `JAR_FILE_LOCATION/data/volunteer.json` and `JAR_FILE_LOCATION/data/pair.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 If your changes to the data file makes its format invalid, FriendlyLink will discard all data and start with an empty data file at the next run.
@@ -524,32 +527,32 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 
 ### Auto-complete
 
-FriendlyLink provides auto-complete suggestions for the available commands, or attribute prefixes when adding new records of elderly or volunteers into the database.
+FriendlyLink provides auto-complete suggestions for the available commands, or a field prefixes when adding new records of elderly or volunteers into the database.
 
 Example:
 
 * Typing `add_e` will suggest `add_elderly`.
 * Typing `fi` will suggest `find`.
 
-For adding records, if the user has not input all the available attributes for the new input elderly or volunteer, the
-auto-complete feature will automatically suggests all the remaining attributes. No new suggestions will be given if all
-possible attributes has at least one value provided.
+For adding records, if the user has not input all the available fields for the new input elderly or volunteer, the
+auto-complete feature will automatically suggest all the remaining prefixes. No new suggestions will be given if all
+possible prefixes has at least one value provided.
 
 Example:
 
 * Typing `add_volunteer n/Harry p/12345686`, FriendlyLink will
   suggest `e/<email> a/<address> t/<tag> re/<region> mt/<medical_tags> bd/<birth_date> dr/<start_date,end_date>` as
-  these attributes have not been filled.
+  these fields have not been filled.
 *
 Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-01-01 vnr/S8959886I re/NORTH t/experienced mt/CPR ADVANCED dr/2023-06-03,2023-06-17`
-, FriendlyLink will not suggest anything as all possible attributes have at least one value.
+, FriendlyLink will not suggest anything as all possible fields have at least one value.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**<br>
 
-* Input validation merely validates the set of possible attributes. If the user specifies an attribute that is
-  not included in the list of accepted attributes, a warning will given. The user is free to continue typing, but an
+* Input validation merely validates the set of possible fields. If the user specifies an field that is
+  not included in the list of accepted fields, a warning will given. The user is free to continue typing, but an
   error will be thrown when the user confirms the command.
 * There is a known UI bug when the text in `commandTextField` overflows. To improve user experience, the recommendation
   engine is disabled once overflow is detected.

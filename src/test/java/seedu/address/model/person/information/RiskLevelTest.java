@@ -22,7 +22,7 @@ class RiskLevelTest {
     @Test
     public void isValidRisk() {
         // null address
-        assertThrows(NullPointerException.class, () -> RiskLevel.isValidRisk(null));
+        assertFalse(RiskLevel.isValidRisk(null));
 
         // invalid risk
         assertFalse(RiskLevel.isValidRisk("")); // empty string

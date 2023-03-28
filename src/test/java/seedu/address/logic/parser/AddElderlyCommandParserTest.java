@@ -56,6 +56,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddElderlyCommand;
 import seedu.address.model.person.Elderly;
+import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
@@ -165,15 +166,6 @@ public class AddElderlyCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_DESC_BOB + VALID_BIRTH_DATE_BOB + REGION_DESC_BOB + RISK_DESC_BOB, expectedMessage);
 
-        // missing region prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + VALID_REGION_BOB + RISK_DESC_BOB, expectedMessage);
-
-        // missing risk level prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB
-                + REGION_DESC_BOB + VALID_RISK_LEVEL_BOB, expectedMessage);
-
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB
                 + VALID_NRIC_BOB + VALID_BIRTH_DATE_BOB + VALID_REGION_BOB + VALID_RISK_LEVEL_BOB, expectedMessage);
@@ -195,6 +187,11 @@ public class AddElderlyCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
                 + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB + RISK_DESC_BOB
                 + TAG_DESC_SINGLE + TAG_DESC_STRONG + AVAILABLE_DATES_ONE, Email.MESSAGE_CONSTRAINTS);
+
+        // invalid address
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
+                + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB + RISK_DESC_BOB
+                + TAG_DESC_SINGLE + TAG_DESC_STRONG + AVAILABLE_DATES_ONE, Address.MESSAGE_CONSTRAINTS);
 
         // invalid nric
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB

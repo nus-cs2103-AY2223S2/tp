@@ -184,12 +184,10 @@ public class ParserUtil {
      */
     public static Region parseRegion(String region) throws ParseException {
         requireNonNull(region);
-        String trimmedRegion = region.trim();
-        String upperRegion = trimmedRegion.toUpperCase();
-        if (!Region.isValidRegion(upperRegion)) {
+        if (!Region.isValidRegion(region)) {
             throw new ParseException(Region.MESSAGE_CONSTRAINTS);
         }
-        return new Region(upperRegion);
+        return new Region(region);
     }
 
     /**
@@ -202,12 +200,10 @@ public class ParserUtil {
      */
     public static RiskLevel parseRiskLevel(String riskLevel) throws ParseException {
         requireNonNull(riskLevel);
-        String trimmedRisk = riskLevel.trim();
-        String upperRisk = trimmedRisk.toUpperCase();
-        if (!RiskLevel.isValidRisk(upperRisk)) {
+        if (!RiskLevel.isValidRisk(riskLevel)) {
             throw new ParseException(RiskLevel.MESSAGE_CONSTRAINTS);
         }
-        return new RiskLevel(upperRisk);
+        return new RiskLevel(riskLevel);
     }
 
     /**

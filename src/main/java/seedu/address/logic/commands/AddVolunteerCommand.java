@@ -50,7 +50,7 @@ public class AddVolunteerCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_NRIC + "NRIC "
             + PREFIX_BIRTH_DATE + "BIRTH DATE "
-            + PREFIX_REGION + "REGION "
+            + "[" + PREFIX_REGION + "REGION] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
