@@ -192,10 +192,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public CustomerListPanel getCustomerListPanel() {
-        return customerListPanel;
-    }
-
     /**
      * This recursive method aims to resolve the blurry contents in a ScrollPane. `ScrollPaneSkin` sets
      * cache to true manually, ignoring the property set in the FXML file.
@@ -231,8 +227,16 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isShowCustomerSelection() && commandResult.isShowOrderSelection()) {
+                throw new CommandException("Cannot display both customer and order at once!");
+            }
+
             if (commandResult.isShowCustomerSelection()) {
                 customerListPanel.getSelectionModel().select(commandResult.getCustomerIndex());
+            }
+
+            if (commandResult.isShowOrderSelection()) {
+                orderListPanel.getSelectionModel().select(commandResult.getOrderIndex());
             }
 
             return commandResult;
