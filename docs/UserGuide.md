@@ -506,12 +506,13 @@ At least one of the optional fields must be provided.
 >![View Example](images/UiEditSkills.png)
 > - `edit` m-/ay2223s2 cs3230 Displays an error message as the module does not exist.
 > ![View Example](images/UiEditError.png)
-> 
+
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### 5. Finding a person : `find`
 Find all persons that contains the given constraints. <br>
 - `find` supports continuous search by allowing constraints to stack, (refer to example below to find out more)
+- All constraints applied are shown in *Result Display*.
 - To remove all constraints, use `list`. 
 - At least one of the optional field must be provided.
 
@@ -532,9 +533,10 @@ Find all persons that contains the given constraints. <br>
 > 
 >
 > **Examples:**
-> - `find John` returns `john` and `John Doe`
-> - `find alex david` returns `Alex Yeoh`, `David Li`<br>
-    ![result for 'find alex david'](images/findAlexDavidResult.jpg)
+> - We shall start with an unfiltered list. <br> ![UiFind_01](images/UiFind_01.png)
+> - Next, we execute `find y/2` to find all persons from year 2. <br> ![UiFind_02](images/UiFind_02.png)
+> - Then, we proceed to execute `find n/cs1101 s/java c` to further narrow down the filtered list thereby **stacking the constraints.** <br> ![UiFind_03](images/UiFind_03.png)
+> - Finally, we shall clear all constraints by with `list`![UiFind_04](images/UiFind_04.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
