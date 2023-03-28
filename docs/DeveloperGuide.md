@@ -115,9 +115,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `HMHeroParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete n/John p/91234567")` API call.
 
@@ -314,6 +314,19 @@ Refer to [Glossary](#glossary) for more information on Command format.
 The activity diagram is as such:
 
 ![FindCommandActivityDiagram](diagrams/FindCommandActivityDiagram.puml)
+
+The sequence diagram for `find n/John` in HMHero is as such:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info" role="alert">
+
+:information_source: <strong>Note:<strong>
+The lifeline for `FindCommandParser` should end at the destroy marker (X) 
+but due to a limitation of <strong>PlantUML<strong>, the lifeline reaches the end of the diagram. 
+Additionally, take note that interactions with utility classes such as `ArgumentTokenizer`, `ArgumentMultimap`, 
+and `Messages` are excluded as including them would cause the UML diagram to be cluttered and too small to read.
+</div>
 
 #### Feature Details
 1. The user specifies one or more fields to filter through the applicant list.
