@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 # Welcome to PetPal!
-![Logo](images/logo.png)
+![Logo](images/UI/logo.png)
 
 PetPal is your **furry and dependable assistant** who **reminds you of deadlines** and **consolidates crucial information** like pet names, tags dietary needs all in an **aesthetically pleasing** GUI! You can now focus on spend quality time with your furry friends without having to worry about things accidentally slipping your mind.
 
@@ -29,7 +29,7 @@ This user guide will help you get started and understand how PetPal can **seamle
 3. Copy the file to the folder you want to use as the _home folder_ for your PetPal.
 
 4. Double-click the file to start the app. The GUI similar to below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UI/Ui.png)
 
 5. Type the command in the command line and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -50,7 +50,7 @@ This user guide will help you get started and understand how PetPal can **seamle
 
 ## Getting Familiar With Your User Interface
 
-![Ui Breakdown](images/UiHighlighted.png)
+![Ui Breakdown](images/UI/UiHighlighted.png)
 
 1. **Pet Cards**: Contain all the information of a pet. (Highlighted in red)
 2. **Command Line**: Type in your commands here. (Highlighted in yellow)
@@ -142,7 +142,7 @@ Shows a message explaining how you can access our user guide.
 
 Format: `help` or Press `F1`
 
-![help](images/Help.png)
+![help](images/UG/help.png)
 
 #### Listing your pets : `list`
 
@@ -150,7 +150,7 @@ Shows a list of all pets stored in your PetPal.
 
 Format: `list`
 
-![list](images/List.png)
+![list](images/UG/list.png)
 
 <div markdown="block" class="alert alert-block alert-info">
 
@@ -202,7 +202,7 @@ Figure 1 provides a summary of the parameters with their descriptions, prefixes 
 * Does not allow you to create a pet with the same name and phone number as a current pet in PetPal.
 * Allows you to create a pet with same name but different phone number or same number and different name as a current pet in PetPal.
 
-![create](images/add.png)
+![create](images/UG/add.png)
 
 Example given: `Example: add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua`
 
@@ -229,7 +229,7 @@ Get a filtered list of things you should do soon!.
 
 Format: `remind`
 
-![remind](images/remind.png)
+![remind](images/UG/remind.png)
 
 :bulb: **Note:**
 The pets highlighted in bright orange are reminders that are due within a day!<br>
@@ -247,21 +247,20 @@ You can replace `find` with `f` for convenience for all retrieving commands.
 
 #### Finding your client by name : `find`
 
-Find your clients whose name contain any of the given keywords.
-<br>
+Find your pets whose name contain any of the given keywords.
 
 **Constraints**
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched. e.g. `find n/Kent` won’t return clients living on Kent Ridge Road
+* The search is case-insensitive. e.g. `woofers` will match `Woofers`
+* The order of the keywords does not matter. e.g. `Ardent Tyrant` will match `Tyrant Ardent`
+* Only the name is searched. e.g. `find Alex` will not return owner names, addresses or emails with
 * Partial words will be matched. e.g. `Jack` will match `Jackson`.
 * Clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Format: `find n/NAME`
+Format: `find n/PET_NAME`
 
-![findname](images/UserGuide/findname.png)
-Example given: `find n/Bernice`
+![findname](images/UserGuide/find.png)
+Example given: `find n/Milo Charlie`
 
 Other examples:
 * `find n/John` returns `john` and `John Doe`
@@ -456,60 +455,6 @@ Format: `u INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION
 
 </div>
 
-#### Updating your client's description : `description`
-
-Updates your client's description data field.
-
-You can use this command when:
-1. You have a verbose change in client description.
-   <br>
-
-**Constraints**
-* `INDEX` is the index of the client in the currently displayed list.
-* Updating description of your client can also be done through the 'update' command. See [Update command](#updating-your-clients-information--update)
-
-Format: `description INDEX ds/DESCRIPTION`
-
-<div markdown="block" class="alert alert-block alert-success">
-
-:bulb: **Note:**
-You can remove the profiles description by inputting an empty description. E.g. `description 5 ds/`
-
-</div>
-
-![description](images/UserGuide/description.png)
-Example given: `description 5 ds/High Financial Literacy`
-
-<div markdown="block" class="alert alert-block alert-info">
-
-:white_check_mark: **Input Shortcut:**
-You can replace `description` with `desc` for convenience.
-Format: `desc INDEX ds/DESCRIPTION`
-
-</div>
-
-#### Updating meetings : `meeting`
-
-Updates one or more meeting times to your client in your FABook.
-
-You can use this command when:
-1. You have scheduled a new meeting with your client.
-   <br>
-
-**Constraints**
-* `INDEX` is the index of the client in the currently displayed list.
-* `MEETINGTIME` should be in the format `DD-MM-YYYY-HH:MM`.
-* mt/ should be put before each separate meeting time.
-* The client's existing meeting times remain unchanged.
-
-Format: `meeting INDEX mt/MEETINGTIME...`
-
-Examples:
-* `meeting 2 mt/09-10-2023-23:50 mt/28-02-2020-15:16` adds two meetings to the second client in the displayed list,
-  one at 9 October 2023 23:50, the other at 28 February 2020 15:16.
-
-<div style="page-break-after: always;"></div>
-
 ### Deletion
 
 #### Deleting a client : `delete`
@@ -526,10 +471,12 @@ You can use this command when:
 
 Format: `delete INDEX`
 
-![delete](images/UserGuide/delete.png)
+![delete](images/UG/delete.png)
 
 Examples:
-* `delete 2` deletes the second client in the currently displayed client list in your FABook.
+* `delete 2` deletes the second pet in the currently displayed pet list in the PetPal.
+
+
 
 #### Delete meetings : `deletemeeting`
 
@@ -576,7 +523,7 @@ Please note that undo cannot undo this command!
 
 #### Clearing all entries : `clear`
 
-Clears all entries from your FABook.
+Clears all entries from your PetPal.json.
 
 Format: `clear`
 
@@ -671,7 +618,7 @@ If your changes to the data file makes its format invalid, FABook will discard a
 **A**:   
 1. Find the save folder on the current computer. The save files can be found in the `data` folder created by the app, it should include both `PetPal.json` and `archive.json`
 2. Transfer the save file to your new computer.
-3. Install the latest release of PetPal from [here]() on your new computer.
+3. Download the latest release of PetPal from [here](https://github.com/AY2223S2-CS2103T-T14-2/tp/releases) on your new computer.
 4. Launch PetPal on your new computer and exit.
 5. You should see a new `data` folder containing a new `PetPal.json` with a sample. Replace this file with the save file copied over from your old computer.
 6. Launch FABook again. Your data should be there!
@@ -682,14 +629,10 @@ If your changes to the data file makes its format invalid, FABook will discard a
   If you wish to transfer only 1 of the files over, repeat the same steps, and replace the file you want to move, instead of the entire `data` folder
 </div>
 
-**Q**: Why can I not undo the `sync` command?<br>
-**A**: Meetings that have passed should not need to be undone and be shown again.
+**Q**: How do I view the entire pet list after a `find` command?<br>
+**A**: Run `list` or `l` to view the entire unfiltered list.
 
-**Q**: Why does the person profile GUI not refresh after an edit or clear command?<br>
-**A**: In order to refresh the person profile, you will have the re-click on the person card again.
-
-**Q**: Why can two clients have the same meeting time?<br>
-**A**: We are accounting for cases where perhaps two clients know each other, and they request to listen to a new product together.
+If you have additional questions that is not present in the User Guide, feel free to contact us via our email `contact@petpal.com`
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -697,43 +640,37 @@ If your changes to the data file makes its format invalid, FABook will discard a
 
 ## Glossary
 
-| Term                     | Definition                                                                                                                                                                                                                                                                           |
-|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Alphanumeric             | Refers to characters that are the combined set of the 26 alphabetic characters, a to Z, both lowercase and uppercase, and the 10 Arabic numerals, 0 to 9.                                                                                                                            |
-| Client                   | Any person who may be seeking financial products.                                                                                                                                                                                                                                    |
-| Command Line Interface   | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                                                                                                                       |
-| dd-MM-yyyy-hh:mm         | Date format whereby `dd` refers to the 2 digit days, `MM` refers to the 2 digit months, `yyyy` refers to the 4 digits years, `hh` refers to the 2 digits hours, `mm` refers to the 2 digits minutes. They are each separated by a hyphen: `-` character.                             |
-| Financial adviser        | A financial adviser or financial advisor is a professional who provides financial services to clients based on their financial situation. In many countries, financial advisors must complete specific training and be registered with a regulatory body in order to provide advice. |
-| Graphical User Interface | A graphical user interface (GUI) is an interface through which a user interacts with electronic devices such as computers and smartphones through the use of icons, menus and other visual indicators or representations (graphics).                                                 |
-| Index                    | The number that corresponds to the position of the client in the list. The index must be a numeral above 0.                                                                                                                                                                          |
-| Java                     | The programming language used for this application. Java is a general-purpose computer programming language designed to produce programs that will run on any computer system.                                                                                                       |
-| JAR                      | JAR stands for Java ARchive. FABook uses JAR to deliver its distribution. JAR is a file format based on the popular ZIP file format and is used for aggregating many files into one.                                                                                                 |
-| JSON                     | JSON stands for JavaScript Object Notation. JSON is the format used to store your FABook's data. JSON is a lightweight format for storing and transporting data.                                                                                                                     |
+| Term                     | Definition                                                                                                                                                                                                                                               |
+|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Alphanumeric             | Refers to characters that are the combined set of the 26 alphabetic characters, a to Z, both lowercase and uppercase, and the 10 Arabic numerals, 0 to 9.                                                                                                |
+| Command Line Interface   | A command-line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.                                                                                                           |
+| dd-MM-yyyy-hh:mm         | Date format whereby `dd` refers to the 2 digit days, `MM` refers to the 2 digit months, `yyyy` refers to the 4 digits years, `hh` refers to the 2 digits hours, `mm` refers to the 2 digits minutes. They are each separated by a hyphen: `-` character. |
+| Graphical User Interface | A graphical user interface (GUI) is an interface through which a user interacts with electronic devices such as computers and smartphones through the use of icons, menus and other visual indicators or representations (graphics).                     |
+| Index                    | The number that corresponds to the position of the pet in the list. The index must be a numeral above 0.                                                                                                                                                 |
+| Java                     | The programming language used for this application. Java is a general-purpose computer programming language designed to produce programs that will run on any computer system that has Java installed.                                                   |
+| JAR                      | JAR stands for Java ARchive. FABook uses JAR to deliver its distribution. JAR is a file format based on the popular ZIP file format and is used for aggregating many files into one.                                                                     |
+| JSON                     | JSON stands for JavaScript Object Notation. JSON is the format used to store your PetPal's data. JSON is a lightweight format for storing and transporting data.                                                                                         |
 
 [Return to Table of Contents](#table-of-contents)
 
 
 ## Command summary
 
-=======
-| Action                    | Format, Examples                                                                                                                                                            | Shortcut       |
-|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
-| **Help**                  | `help`                                                                                                                                                                      | **PRESS** `F1` |
-| **List**                  | `list`                                                                                                                                                                      | l              |
-| **Create**                | `create n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [mt/TIME] [t/TAG] `<br> e.g., `create n/Betsy Crowe a/Newgate Prison p/1234567`          | c              |
-| **Add a File**            | `filepath INDEX f/FILEPATH`<br/> e.g. `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`                                                                             |                |
-| **Add Meeting**           | `meeting INDEX mt/TIME` <br/> e.g. `meeting 5 mt/19-11-2022-19:00`                                                                                                          |                |
-| **Find**                  | `find n/NAME…` e.g. `find n/James Jake` <br/> `find p/NUMBER` e.g. `find p/09122222` <br/> `find a/ADDRESS` e.g. `find a/Jurong` <br/> `find t/TAG` e.g. `find t/POTENTIAL` | f              |
-| **Open File**             | `file INDEX`<br/> e.g. `file 2`                                                                                                                                             |                |
-| **Get Upcoming Meetings** |                                                                                                                                                                             | **PRESS** `F2` |
-| **Update**                | `update INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ds/DESCRIPTION] [nw/NETWORTH] [t/TAG]`<br> e.g.,`update 2 p/91234567 a/21 Lower Kent Ridge Rd`               | u              |
-| **Description**           | `description INDEX ds/DESCRIPTION` <br> e.g., `description 3 ds/Accident prone`                                                                                             | desc           |
-| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                         | d              |
-| **Delete Meeting**        | `deletemeeting INDEX mt/TIME` <br/> e.g. `deletemeeting 4 mt/15-12-2022-13:00`                                                                                              |                |
-| **Remove past meetings**  | `sync`                                                                                                                                                                      |                |
-| **Clear**                 | `clear`                                                                                                                                                                     | cl             |
-| **Undo**                  | `undo`                                                                                                                                                                      |                |
-| **Redo**                  | `redo`                                                                                                                                                                      |                |
-| **Exit**                  | `exit`                                                                                                                                                                      | e              |
+======
+
+| Action          | Format, Examples                                                                                                                                                                                                                                                        | Shortcut       |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
+| **Help**        | `help`                                                                                                                                                                                                                                                                  | **PRESS** `F1` |
+| **List**        | `list`                                                                                                                                                                                                                                                                  |                |
+| **Add**         | `add o/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ts/TIME_STAMP [d/DEADLINE] [t/TAG...]`<br> e.g `Example: add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua` | c              |
+| **Edit**        | `clear`                                                                                                                                                                                                                                                                 | cl             |
+| **Delete**      | `delete 1`                                                                                                                                                                                                                                                              |                |
+| **Remind**      | `remind`                                                                                                                                                                                                                                                                |                |
+| **Find**        | `find n/PET_NAME` e.g `find Milo`                                                                                                                                                                                                                                       |                |
+| **Undo**        | `undo`                                                                                                                                                                                                                                                                  |                |
+| **Change Cost** |
+| **Archive**     |
+| **Clear**       |
+| **Exit**        | `exit`                                                                                                                                                                                                                                                                  | e              |
 
 [Return to Table of Contents](#table-of-contents)
