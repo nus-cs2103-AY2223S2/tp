@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_2;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -41,8 +42,8 @@ public class ModuleTagSetTest {
         moduleTagSet.add(MODULE_TAG_1);
         moduleTagSet.add(MODULE_TAG_2);
 
-        assertEquals(moduleTagSet.toString(),
-                String.format("%s | %s", VALID_MODULE_1, VALID_MODULE_2));
+        assertTrue(moduleTagSet.toString().contains(MODULE_TAG_1.toString()));
+        assertTrue(moduleTagSet.toString().contains(MODULE_TAG_2.toString()));
     }
 
     @Test

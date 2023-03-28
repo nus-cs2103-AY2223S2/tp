@@ -5,7 +5,9 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -53,7 +55,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane userProfilePlaceholder;
 
     @FXML
-    private StackPane meetListPanelPlaceholder;
+    private VBox meetPlaceholder;
 
     @FXML
     private Label userName;
@@ -98,7 +100,12 @@ public class MainWindow extends UiPart<Stage> {
         userProfilePlaceholder.getChildren().add(userProfilePanel.getRoot());
 
         meetListPanel = new MeetListPanel(logic.getObservableRecommendationList());
-        meetListPanelPlaceholder.getChildren().add(meetListPanel.getRoot());
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(meetListPanel.getRoot());
+        scrollPane.setFitToHeight(true);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        meetPlaceholder.getChildren().add(scrollPane);
 
         scheduledMeetsListPanel = new ScheduledMeetsListPanel(logic.getObservableMeetUpList());
         scheduledMeetsPlaceholder.getChildren().add(scheduledMeetsListPanel.getRoot());

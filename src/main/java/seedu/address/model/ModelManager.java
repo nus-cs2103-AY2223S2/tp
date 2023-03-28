@@ -282,6 +282,10 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
+
+        logger.info("EduMate equality: "
+                + eduMate.equals(other.eduMate));
+
         return eduMate.equals(other.eduMate)
                 && userPrefs.equals(other.userPrefs)
                 && observablePersons.equals(other.observablePersons);

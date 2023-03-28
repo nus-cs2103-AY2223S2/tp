@@ -11,6 +11,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.logic.commands.results.ViewCommandResult;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
@@ -104,7 +105,7 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateObservablePersonList();
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new ViewCommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), editedPerson);
     }
 
     /**
@@ -123,7 +124,7 @@ public class EditCommand extends Command {
         model.getObservablePersonList().forEach(person -> person.setCommonModules(userModuleTags));
 
         model.setUser(editedUser);
-        return new CommandResult(String.format(MESSAGE_EDIT_USER_SUCCESS, editedUser));
+        return new ViewCommandResult(String.format(MESSAGE_EDIT_USER_SUCCESS, editedUser), editedUser);
     }
 
     /**

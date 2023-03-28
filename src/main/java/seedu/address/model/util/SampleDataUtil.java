@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -20,6 +22,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.EduMate;
 import seedu.address.model.ReadOnlyEduMate;
+import seedu.address.model.commitment.Lesson;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
@@ -91,29 +94,6 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a module tag set containing the list of strings given.
-     * Splits a string by space, and processes the tags as varargs.
-     */
-    public static Set<ModuleTag> getModuleTagSetFromUnsplitted(String unsplittedString) {
-        return getModuleTagSet(unsplittedString.split(" "));
-    }
-
-    /**
-     * Returns a sample User singleton object.
-     */
-    public static User getSampleUser() {
-        return new User(new Name("Linus Richards"),
-                new Phone("90102030"),
-                new Email("linusrichards@gmail.com"),
-                new Address("National University of Singapore"),
-                new TelegramHandle("@linusrichards"),
-                new ContactIndex(0),
-                getGroupTagSet(),
-                getModuleTagSetFromUnsplitted("CS2100 CS2101 CS2102 CS2103 CS2104 CS2105")
-        );
-    }
-
-    /**
      * Formats the data from the text file.
      * @param personData String representing the person data in the text file.
      * @param index The index to assign to the person.
@@ -135,23 +115,71 @@ public class SampleDataUtil {
         Address address = new Address(personDataList.get(3));
         TelegramHandle telegramHandle = new TelegramHandle(personDataList.get(4));
         Set<GroupTag> groupTagSet = getGroupTagSetFromUnsplitted(personDataList.get(5));
-        Set<ModuleTag> moduleTagSet = getModuleTagSetFromText(personDataList.get(6));
 
-        return new Person(name, phone, email, address,
-                telegramHandle, contactIndex, groupTagSet, moduleTagSet);
+        Person person = new Person(name, phone, email, address,
+                telegramHandle, contactIndex, groupTagSet, new HashSet<>());
+
+        Set<ModuleTag> moduleTagSet = getModuleTagSetFromLines(personDataList.get(6).split(","));
+
+        assignModuleTagsToPerson(person, moduleTagSet);
+
+        logger.info(String.format("Person parsed: %s", person));
+
+        return person;
     }
 
-    private static Set<ModuleTag> getModuleTagSetFromText(String text) {
-        String trimmedText = text.trim();
-        Set<ModuleTag> moduleTags = new HashSet<>();
-        for (String lessonAsStr : trimmedText.split(",")) {
-            try {
-                moduleTags.add(ParserUtil.parseModuleTag(lessonAsStr.trim()));
-            } catch (ParseException pe) {
-                continue;
-            }
+    /**
+     * Returns a sample User singleton object.
+     */
+    public static User getSampleUser() {
+        return new User(new Name("Linus Richards"),
+                new Phone("90102030"),
+                new Email("linusrichards@gmail.com"),
+                new Address("National University of Singapore"),
+                new TelegramHandle("@linusrichards"),
+                new ContactIndex(0),
+                getGroupTagSet(),
+                new HashSet<>() {{
+                    add(new ModuleTag("CS2100"));
+                    add(new ModuleTag("CS2101"));
+                    add(new ModuleTag("CS2102"));
+                    add(new ModuleTag("CS2103"));
+                    add(new ModuleTag("CS2104"));
+                    add(new ModuleTag("CS2105"));
+                    add(new ModuleTag("CS2106"));
+                }});
+    }
+
+    private static Optional<ModuleTag> getModuleTagFromLine(String tag) {
+        logger.info(String.format("Tag to be formatted: %s", tag));
+
+        try {
+            ModuleTag moduleTag = ParserUtil.parseModuleTag(tag);
+            logger.info(String.format("Module Tag parsed: %s", moduleTag));
+            return Optional.of(moduleTag);
+        } catch (ParseException pe) {
+            return Optional.empty();
         }
-        return moduleTags;
+    }
+
+    private static Set<ModuleTag> getModuleTagSetFromLines(String... lines) {
+        return Arrays.stream(lines)
+                .map(SampleDataUtil::getModuleTagFromLine)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toSet());
+    }
+
+    private static void assignModuleTagToPerson(Person person, ModuleTag moduleTag) {
+        Set<Lesson> lessons = moduleTag.getImmutableLessons();
+        if (person.canAddCommitments(lessons)) {
+            person.addModuleTags(moduleTag);
+        }
+    }
+
+    private static void assignModuleTagsToPerson(
+            Person person, Collection<? extends ModuleTag> moduleTags) {
+        moduleTags.forEach(mt -> assignModuleTagToPerson(person, mt));
     }
 
     /**

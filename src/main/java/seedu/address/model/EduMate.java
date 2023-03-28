@@ -2,9 +2,13 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.meetup.UniqueMeetUpList;
 import seedu.address.model.person.ContactIndex;
@@ -20,6 +24,8 @@ import seedu.address.model.util.SampleDataUtil;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class EduMate implements ReadOnlyEduMate {
+
+    private static final Logger logger = LogsCenter.getLogger(EduMate.class);
 
     private final UniquePersonList persons;
     private final UniqueMeetUpList meets; //todo check again before push
@@ -45,7 +51,7 @@ public class EduMate implements ReadOnlyEduMate {
     public EduMate() {}
 
     /**
-     * Creates an EduMate using the Persons in the {@code toBeCopied}.
+     * Creates an EduMate using the Persons in the {@code toBeCopied}
      */
     public EduMate(ReadOnlyEduMate toBeCopied) {
         this();
@@ -247,10 +253,23 @@ public class EduMate implements ReadOnlyEduMate {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof EduMate // instanceof handles nulls
-                && persons.equals(((EduMate) other).persons)
-                && user.equals(((EduMate) other).user));
+        if (this == other) {
+            return true;
+        }
+
+        if (!(other instanceof EduMate)) {
+            return false;
+        }
+
+        EduMate otherEduMate = (EduMate) other;
+
+        logger.info("Persons equality: "
+                + persons.equals(otherEduMate.persons));
+        logger.info("User equality: "
+                + user.equals(otherEduMate.user));
+
+        return persons.equals(otherEduMate.persons)
+                && user.equals(otherEduMate.user);
     }
 
     @Override
