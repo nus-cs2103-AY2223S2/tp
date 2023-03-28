@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,11 +9,12 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import org.joda.time.LocalTime;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.location.Location;
@@ -36,6 +36,8 @@ import seedu.address.model.timetable.Timetable;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    private static final Logger logger = LogsCenter.getLogger(ParserUtil.class);
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Index>}.
@@ -173,9 +175,9 @@ public class ParserUtil {
      */
     public static ArrayList<String> parseMoreModules(String tags) throws ParseException {
         String trimmedArgs = tags.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
-        }
+        //if (trimmedArgs.isEmpty()) {
+        //    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
+        //}
         // I can just set them as null and exceptions will be throw in TagCommand.
         return new ArrayList<String>(Arrays.asList(trimmedArgs.split("\\s+")));
     }
@@ -190,6 +192,8 @@ public class ParserUtil {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         ArrayList<String> args = parseMoreModules(trimmedTag);
+
+        logger.info(String.format("Parsing tag: %s with %d arguments", args, args.size()));
 
         if (args.size() == 1) {
             return parseModuleTagFromSingle(args.get(0));
@@ -206,6 +210,8 @@ public class ParserUtil {
         TimeBlock timeBlock = new TimeBlock(startTime, endTime, day);
 
         Lesson lesson = new Lesson(moduleCode, Location.NUS, timeBlock);
+
+        logger.info(String.format("Lesson parsed: %s", lesson));
 
         return new ModuleTag(moduleCode, lesson);
     }

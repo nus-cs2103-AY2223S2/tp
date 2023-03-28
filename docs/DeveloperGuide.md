@@ -147,7 +147,9 @@ Please refer to the [About Us](AboutUs.md) page for information about the develo
 ---
 
 ## **Getting Help**
-To be filled
+Should you require assistance in any form with regards to EduMate, please head over to our
+[Github](https://github.com/AY2223S2-CS2103T-W14-2/tp) page and file an issue with a tag *developer-assistance-required*.
+A member of our core team will attend to you as soon as possible.
 
 ---
 
@@ -414,7 +416,7 @@ objects which is then used elsewhere in the codebase.
 #### **Day**
 
 `Day` is an enumeration class in Java and it only contains the 5 weekdays: `MONDAY`,
-` TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`
+`TUESDAY`, `WEDNESDAY`, `THURSDAY`, `FRIDAY`.
 
 #### **HourBlock**
 
@@ -459,16 +461,18 @@ The `add` command allows users to create a new person and insert them into the a
 
 **Parsing the inputs** - When the user types an input, the parser will extract out the relevant arguments and [check whether they are valid](#model-component).
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
-:information_source: **Command Formats:**
+:information_source: **Command Formats:** <br>
+
 * `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`
 
 </div>
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The arguments for `AddCommand` are unordered, so the user can type them in any order. They are all handled in [Argument Multimap](#argument-multimap).
+:bulb: **Tip:** 
+The arguments for `AddCommand` are unordered, so the user can type them in any order. They are all handled in [Argument Multimap](#argument-multimap).
 
 </div>
 
@@ -484,7 +488,6 @@ The `add` command allows users to create a new person and insert them into the a
 <div markdown="span" class="alert alert-info">
 
 :information_source: **For Your Information**
-
 The User has the default `ContactIndex` of 0.
 </div>
 
@@ -503,10 +506,12 @@ The `edit` command allows the user to edit an existing contact in EduMate.
 
 **Parsing the inputs** - When the user types an input, the parser will extract out the relevant arguments and [check whether they are valid](#model-component).
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
-:information_source: **Command Formats:**
+:information_source: **Command Formats:** <br>
+
 * `edit z/FIELD`: Edits the user details.
+
 * `edit INDEX z/FIELD`: Edits the details of the contact at the specified `INDEX`.
 
 </div>
@@ -515,7 +520,8 @@ The `edit` command allows the user to edit an existing contact in EduMate.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** Similar to [`AddCommand`](#add-command), the arguments for `EditCommand` are unordered.
+:bulb: **Tip:**
+Similar to [`AddCommand`](#add-command), the arguments for `EditCommand` are unordered.
 
 </div>
 
@@ -523,7 +529,8 @@ The `edit` command allows the user to edit an existing contact in EduMate.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Info**: When editing a contact, we only need to update the common modules for **that person**. However, when editing the user, we need to update common modules for **every person** in EduMate.
+:information_source: **Info**:
+When editing a contact, we only need to update the common modules for **that person**. However, when editing the user, we need to update common modules for **every person** in EduMate.
 
 </div>
 
@@ -538,7 +545,8 @@ From these two sources of information, we can create a `descriptor` that keeps t
 
 <div markdown="span" class="alert alert-warning">
 
-:warning: **Warning**: If no fields have been changed, an exception is thrown. This is handled in the `EditCommandParser`.
+:warning: **Warning**:
+If no fields have been changed, an exception is thrown. This is handled in the `EditCommandParser`.
 
 </div>
 
@@ -561,7 +569,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+:information_source: **Note:**
+The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -573,11 +582,17 @@ The `tag` command allows user to tag a ModuleTag and Lessons to an existing cont
 
 **Parsing the inputs** - When the user types in an input, the parser will extract out the relevant arguments.
 
-:information_source: **Command Formats**:
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Command Formats**: <br>
 
 * `tag m/MODULE`: Tags a module to user.
+
 * `tag INDEX m/MODULE`: Tags a module to the contact at specified index.
+
 * `tag m/MODULE DAY START END`: Tags a lesson to the user with the specified parameters, and tags the module if not already done so.
+
+</div>
 
 **Distinguishing between contact and user** - As specified in the command formats, if the user wants to edit their own details, they can just leave out the index. On our end, the `ArgumentMultimap` has been modified to accept null as a valid index, which will handle such a use case.
 
@@ -597,12 +612,16 @@ The last viewed profile will remain displayed on the profile panel should there 
 
 </div>
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :information_source: **Command Formats** <br>
-- `view` : Displays user's profile on the display panel. <br>
-- `view n/XYZ` : Display XYZ's profile on the display panel. <br>
-- `view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
+
+* `view` : Displays user's profile on the display panel.
+
+* `view n/XYZ` : Display XYZ's profile on the display panel.
+
+* `view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
+
 </div>
 
 **Parsing the inputs** - When the user enters the input, the `ViewCommandParser` will first check if the arguments are empty.
@@ -628,22 +647,24 @@ Below is an Activity Diagram for the execution of the `ViewCommand`.
 
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/FindCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/FindCommandParser.java)
 
-The 'find' command allows users to search for their contacts with partial information. 
+The `find` command allows users to search for their contacts with partial information. 
 
 For example, if the user wants to search for a person but does not know the full name, they can simply search the name and get a list of people matching the name. This applies to all information a Person contains. Additionally, it can accept multiple keywords for the search but is limited to the same type of information.
 
 **Parsing the inputs** - When the user types an input, the parser will extract out the relevant arguments and check if there is only one type of information.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
-:information_source: **Command Formats:**
+:information_source: **Command Formats:** <br>
+
 * `find [z/FIELD MORE_FIELD]`: Finds the contacts matching the field found in the 'z' field.
 
 </div>
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** This command can be used before the other commands to return a list of contacts the user wants to work with. 
+:bulb: **Tip:**
+This command can be used before the other commands to return a list of contacts the user wants to work with. 
 
 </div>
 
@@ -667,19 +688,24 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 **Parsing the inputs** - When the user types an input, the parser will *scan* through the arguments. Then, it checks whether the field needs to be sorted in **ascending** or **descending** order. Finally, it combines all the comparators together so that we get a single comparator.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
-:information_source: **Command Formats:**
+:information_source: **Command Formats:** <br>
+
 * `sort`: Sorts the contacts by their index.
+
 * `sort [z/a]…ZWSP`: Sorts the contacts by the `z` field in **ascending** order.
+
 * `sort [z/d]…ZWSP`: Sorts the contacts by the `z` field in **descending** order.
+
 * `sort [z/]…ZWSP`: Sorts the contacts by the `z` field in their **default** order.
 
 </div>
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** Unlike the other commands, the ordering of the arguments **does matter**. For example, `sort g/d n/a` is different from `sort n/a g/d`.
+:bulb: **Tip:**
+Unlike the other commands, the ordering of the arguments **does matter**. For example, `sort g/d n/a` is different from `sort n/a g/d`.
 
 </div>
 
@@ -687,7 +713,8 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 <div markdown="span" class="alert alert-primary">
 
-:information_source: **Tips**: JavaFX works with `ObservableList` to populate the UI components. However, we can wrap this `ObservableList` inside a `SortedList` which accepts a `Comparator` as an argument. In this way, we only need to set this argument if we want to sort something in the UI.
+:bulb: **Tips**:
+JavaFX works with `ObservableList` to populate the UI components. However, we can wrap this `ObservableList` inside a `SortedList` which accepts a `Comparator` as an argument. In this way, we only need to set this argument if we want to sort something in the UI.
 
 </div>
 
@@ -697,9 +724,10 @@ Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/ma
 
 The `list` command will allow users to view all the contacts saved in `EduMate`.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
-:information_source: **Command Formats:**
+:information_source: **Command Formats:** <br>
+
 * `list`: lists all contacts in the EduMate Application.
 
 </div>
@@ -710,16 +738,18 @@ Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/ma
 
 The `exit` command allows users to exit the EduMate Application via the command line.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
-:information_source: **Command Formats:**
+:information_source: **Command Formats:** <br>
+
 * `exit`: Exits the EduMate Application.
 
 </div>
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Info**: Sets the `isExit` boolean in the `CommandResult` class to `true` which is passed through multiple classes to the `MainWindow` class to handle the exit.
+:information_source: **Info**:
+Sets the `isExit` boolean in the `CommandResult` class to `true` which is passed through multiple classes to the `MainWindow` class to handle the exit.
 
 </div>
 
@@ -727,31 +757,46 @@ The `exit` command allows users to exit the EduMate Application via the command 
 
 ### **Meet Command**
 
-<div markdown="span" class="alert alert-warning">
-    :construction: Integration works in the process.
-</div>
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/MeetCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/MeetCommandParser.java)
+
+The `meet` command allows users to get recommendations of optimal meeting timings and locations with their contacts.
 
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Sub-Commands** <br>
-The `meet` command has 3 different sub-commands : `eat`, `study` and generally `meet`.
-However, we will be referring to all 3 commands generally as `meet`. All 3 commands only differ in the location
-recommendations as certain locations are only appropriate for certain activities.
+The `meet` command has 2 different sub-commands : `eat`, `study`.
+However, we will be referring to all 3 commands generally as `meet`.
 </div>
+
+All 3 commands (`meet`, `study` and `eat`) only differ in the location
+recommendations as certain locations are only appropriate for certain activities.
+
+Running `meet` will recommend studying, eating locations and other general locations together with their recommended timings.
 
 This feature is utilises the [`Recommender`](#recommenders)
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Command Formats:** <br>
+
+* `meet 2 7 8 10`: Recommends a meeting time and location for all the participants with contact index of 2, 7, 8, 10 (including the user).
+
+* `eat 2 7 8 10` : Recommends a time and eating place where all participants with contact index of 2, 7, 8, 10 (including the user) can have a meal together.
+
+* `study 2 7 8 10` : Recommends a time and study spot where all participants with contact index of 2, 7, 8, 10 (including the user) can study together.
+
+</div>
 
 
 ### **Organise Command**
 
-<div markdown="span" class="alert alert-warning">
+<div markdown="span" class="alert alert-dark">
     :construction: Slated for release in v1.3b.
 </div>
 
 The `organise` command will set a meetup with the time and place for all participants and the user himself/herself.
 
-The `TimingRecommender` will check if the timing is a suitable for every participant to meet.
+The [`TimingRecommender`](#timing-recommender) will check if the timing is a suitable for every participant to meet.
 
 ## **Parsers**
 
@@ -810,8 +855,8 @@ will be free so that a meetup could be scheduled.
 <div markdown="span" class="alert alert-info">
 
 
-:information_source: **Very Important Re-emphasis** <br>
-The timingRecommender will always recommend timeslots and **rank them in descending time** duration that
+:information_source: **Very Important Re-emphasis**
+The `TimingRecommender` will always recommend timeslots and **ranks them in descending time** duration that
 the participants could meet up.
 </div>
 
@@ -919,7 +964,8 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** <br>
+The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -1170,7 +1216,9 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** <br>
+These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>

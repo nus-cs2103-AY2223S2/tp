@@ -64,6 +64,6 @@ public class ModuleTagTest {
 
     @Test
     public void toString_validTag_success() {
-        assertEquals(String.format("%s", MODULE_TAG_STRING), MODULE_TAG.toString());
+        assertTrue(MODULE_TAG.toString().contains(String.format("%s", MODULE_TAG_STRING)));
     }
 }

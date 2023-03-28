@@ -189,6 +189,20 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
                 otherModuleTagSet.getNumberOfCommonModules());
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+
+        if (!(other instanceof ModuleTagSet)) {
+            return false;
+        }
+
+        ModuleTagSet otherModuleTagSet = (ModuleTagSet) other;
+        return modules.equals(otherModuleTagSet.modules);
+    }
+
     /**
      * Alternative toString method to generate the Lessons as a String.
      * @return String of lessons.

@@ -2,20 +2,24 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.logic.commands.results.ViewCommandResult;
 import seedu.address.logic.parser.IndexHandler;
+import seedu.address.logic.parser.TagType;
 import seedu.address.model.Model;
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
+import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.time.TimePeriod;
 import seedu.address.model.time.util.TimeUtil;
 
@@ -26,38 +30,80 @@ public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "tag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a ModuleTag to a person. \n"
-            + "tag <index> m/<module> : Adds tags from the person of given index in displayed list. \n"
-            + "tag m/<module> : Adds tags to your own profile instead.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a ModuleTag or GroupTag to a person. \n"
+            + "tag <index> m/<module> : Adds modules to the person of given index. \n"
+            + "tag m/<module> : Adds modules to your own profile instead. \n"
+            + "tag <index> g/<group> : Adds groups to the person of given index \n"
+            + "tag g/<group> : Adds groups to your own profile instead. \n";
 
-    public static final String MESSAGE_TAG_PERSON_SUCCESS = "Module(s) tagged to Person! \n";
-    public static final String MESSAGE_TAG_USER_SUCCESS = "Module(s) tagged to User! \n";
-    public static final String MESSAGE_NO_TAGS = "At least one Module must be provided.";
-    public static final String MESSAGE_INCORRECT_INPUT_FOR_LESSON = "The wrong types of arguments has been provided.";
+    public static final String MESSAGE_MODULE_TAG_PERSON_SUCCESS = "Module(s) tagged to Person! \n";
+    public static final String MESSAGE_MODULE_TAG_USER_SUCCESS = "Module(s) tagged to User! \n";
+    public static final String MESSAGE_GROUP_TAG_PERSON_SUCCESS = "Group(s) tagged to Person! \n";
+    public static final String MESSAGE_GROUP_TAG_USER_SUCCESS = "Group(s) tagged to User! \n";
+    public static final String MESSAGE_NO_TAGS = "At least one Module/Group must be provided.\n";
+    public static final String MESSAGE_BOTH_TAGS_INPUTTED = "You can only tag groups or modules in the same command.\n";
 
     private final ContactIndex index;
-    private final Set<ModuleTag> moduleTags;
-    private final Set<Lesson> lessons;
+    private final Set<GroupTag> groupTags = new HashSet<>();
+    private final Set<ModuleTag> moduleTags = new HashSet<>();
+    private final Set<Lesson> lessons = new HashSet<>();
+    private final TagType tagType;
 
     /**
      * @param index of the person in the filtered person list to add modules.
-     * @param modulesToAdd modules to add to the person
+     * @param tagsToAdd set of tags to be added
      */
-    public TagCommand(ContactIndex index, Set<ModuleTag> modulesToAdd) {
-        requireNonNull(modulesToAdd);
+    public TagCommand(ContactIndex index, Set<? extends Tag> tagsToAdd, TagType tagType) {
+        requireNonNull(tagsToAdd);
 
         this.index = index;
-        this.moduleTags = modulesToAdd;
-        lessons = moduleTags.stream()
+        this.tagType = tagType;
+        switch (tagType) {
+        case MODULE:
+            initializeModules(tagsToAdd);
+            break;
+        case GROUP:
+            initializeGroups(tagsToAdd);
+            break;
+        default:
+            break;
+        }
+    }
+
+    private void initializeModules(Set<? extends Tag> tagsToAdd) {
+        for (Tag tag : tagsToAdd) {
+            assert(tag instanceof ModuleTag);
+            this.moduleTags.add((ModuleTag) tag);
+        }
+        this.lessons.addAll(moduleTags.stream()
                 .map(ModuleTag::getImmutableLessons)
                 .flatMap(Set::stream)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toSet()));
+    }
+
+    private void initializeGroups(Set<? extends Tag> tagsToAdd) {
+        for (Tag tag: tagsToAdd) {
+            assert(tag instanceof GroupTag);
+            this.groupTags.add((GroupTag) tag);
+        }
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public ViewCommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Person personToEdit = getPersonToEdit(model);
+
+        if (this.tagType == TagType.GROUP) {
+            personToEdit.addGroupTags(this.groupTags);
+            if (personToEdit instanceof User) {
+                return new ViewCommandResult(String.format(MESSAGE_GROUP_TAG_USER_SUCCESS
+                            + "Name: " + personToEdit.getName().toString() + '\n'
+                            + "Groups: " + personToEdit.getImmutableGroupTags().toString()), personToEdit);
+            }
+            return new ViewCommandResult(String.format(MESSAGE_GROUP_TAG_PERSON_SUCCESS
+                        + "Name: " + personToEdit.getName().toString() + '\n'
+                        + "Groups: " + personToEdit.getImmutableGroupTags().toString()), personToEdit);
+        }
 
         List<TimePeriod> timePeriods = lessons.stream().map(Lesson::getTimePeriod).collect(Collectors.toList());
 
@@ -88,18 +134,18 @@ public class TagCommand extends Command {
      * Add tags to person at given index.
      * @return feedback message of the operation result for display
      */
-    public CommandResult setPersonCommonModuleTags(Model model, Person personToEdit) {
+    public ViewCommandResult setPersonCommonModuleTags(Model model, Person personToEdit) {
         Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
 
         // caches the common modules in each ModuleTagSet as running set
         // intersection is expensive if we only use it in the compareTo method
         personToEdit.setCommonModules(userModuleTags);
 
-        return new CommandResult(String.format(MESSAGE_TAG_PERSON_SUCCESS
+        return new ViewCommandResult(String.format(MESSAGE_MODULE_TAG_PERSON_SUCCESS
                 + "Name: " + personToEdit.getName().toString() + '\n'
                 + "Modules: " + personToEdit.getImmutableModuleTags().toString() + '\n'
                 + "Module(s) in common: " + personToEdit.getImmutableCommonModuleTags().toString() + '\n'
-                + "Lessons: " + personToEdit.getLessonsAsStr()));
+                + "Lessons: " + personToEdit.getLessonsAsStr()), personToEdit);
     }
 
     /**
@@ -107,14 +153,14 @@ public class TagCommand extends Command {
      * @param model {@code Model} which the command should operate on.
      * @return feedback message of the operation result for display.
      */
-    public CommandResult setUserCommonModuleTags(Model model, User editedUser) {
+    public ViewCommandResult setUserCommonModuleTags(Model model, User editedUser) {
         model.getObservablePersonList().forEach(person ->
                 person.setCommonModules(editedUser.getImmutableModuleTags()));
 
-        return new CommandResult(String.format(MESSAGE_TAG_USER_SUCCESS
+        return new ViewCommandResult(String.format(MESSAGE_MODULE_TAG_USER_SUCCESS
                 + "Name: " + editedUser.getName().toString() + '\n'
                 + "Modules: " + editedUser.getImmutableModuleTags().toString() + '\n'
-                + "Lessons: " + editedUser.getLessonsAsStr()));
+                + "Lessons: " + editedUser.getLessonsAsStr()), editedUser);
 
     }
 

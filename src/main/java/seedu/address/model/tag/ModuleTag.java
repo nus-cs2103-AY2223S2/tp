@@ -156,7 +156,7 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
      * Format state as text for viewing.
      */
     public String toString() {
-        return tagName;
+        return String.format("%s: Lessons: %s", tagName, getLessonsAsStr());
     }
 
     @Override

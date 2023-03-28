@@ -12,9 +12,11 @@ friends. We built this personalised desktop app to help **YOU** do just that!
 If this is the first time you are using this user guide, we highly recommend you to read the [Overview](#overview) section. Otherwise,
 
 * If you are running EduMate for the first time, please take a look at our [Quick Start](#quick-start) guide.
-* If you want to learn to use EduMate, do check out our [Commands](#) section for a detailed guide.
+* If you want to learn to use EduMate, do check out our [Commands](#commands) section for a detailed guide.
+* If you want a more hands-on learning experience with EduMate, you start from our[Try-it-out](#try-it-out-recommended) section.
 * If you want to contribute to this project, please refer to our [Developer Guide](https://ay2223s2-cs2103t-w14-2.github.io/tp/DeveloperGuide.html).
 
+For **experienced users**, you may refer to the [Command Summary](#command-summary) for a summarised table of all the commands available. 
 ## Table of Contents
 1. [**Using this Guide**](#using-this-guide)
 2. [**Table of Contents**](#table-of-contents)
@@ -25,14 +27,15 @@ If this is the first time you are using this user guide, we highly recommend you
 4. [**Quick Start**](#quick-start)
     1. [**System Requirements**](#system-requirements)
     2. [**Installation Instructions**](#installation-instructions)
-    3. [**Try it out!**](#try-it-out-)
+    3. [**Try it out! (Recommended)**](#try-it-out-recommended)
     4. [**Getting Help**](#getting-help)
 5. [**User Interface**](#user-interface)
     1. [**Person List**](#person-list)
     2. [**Profile Panel**](#profile-panel)
     3. [**Command Box**](#command-box)
     4. [**Command Response**](#command-response)
-6. [**Commands**](#commands)
+6. [**Set Your Own Profile**](#set-your-own-profile)
+7. [**Commands**](#commands)
     1. [**How to interpret the command format**](#how-to-interpret-the-command-format)
     2. [**Arguments**](#arguments)
     3. [**Basic Commands**](#basic-commands)
@@ -53,12 +56,12 @@ If this is the first time you are using this user guide, we highly recommend you
             1. [**Suggest places to meet with your contacts `meet`**](#suggest-places-to-meet-with-your-contacts-meet)
     5. [**Other Commands**](#other-commands)
         1. [**Exit the application**](#exit-the-application)
-7. [**FAQ**](#faq)
-8. [**Summary**](#summary)
+8. [**FAQ**](#faq)
+9. [**Summary**](#summary)
     1. [**Prefixes**](#prefixes)
     2. [**Command Summary**](#command-summary)
-9. [**Troubleshooting**](#troubleshooting)
-    1. [**How to check your Java version**](#how-to-check-your-java-version)
+10. [**Troubleshooting**](#troubleshooting)
+     1. [**How to check your Java version**](#how-to-check-your-java-version)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -96,6 +99,10 @@ Here is a breakdown of the different symbols and colours we will use throughout 
 
 ### Glossary
 
+* **Command Line Interface (CLI)**: A text-based user interface (UI) used to run programs, manage computer files and interact with the computer
+* **Graphical User Interface (GUI)**: A form of user interface that allows users to interact with electronic devices through graphical icons
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+
 [Return to the top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -123,16 +130,30 @@ Do also ensure that you have Java `11` or above installed in your Computer. If y
    ![Ui](images/Ui.png)
    <br>
 
-### Try it out!
+### Try it out! (Recommended)
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Important:** <br>
+Ensure you have met the system requirements and installed EduMate properly on a computer. If you have not,
+please see [System Requirements](#system-requirements) and [Installation Instructions](#installation-instructions)
+before continuing.
+<br>
+</div>
 
 Before we begin our journey through EduMate's many features, do choose whether you would like a guided or unguided experience.
 
 1. For a guided experience, type `sample 100` in the command box located at the top left of the application. This will create 100 sample contacts in your EduMate to serve as your playground.
 2. If you want to start with a fresh EduMate, type `clear` in the same command box.
+3. Try your hands out whilst referring to [Commands](#commands)
 
 ### Getting help
 
 Should you get stuck at any point, it is likely that the solution can be found in the [Commands](#commands) section of this User Guide. Otherwise, type in the `help` command...
+
+If you need more assistance, do not hesitate to head over to our
+[Github](https://github.com/AY2223S2-CS2103T-W14-2/tp) page and file an issue with a tag *customer-assistance-required*.
+A member of our core team will attend to you as soon as possible.
 
 [Return to the top](#table-of-contents)
 
@@ -161,10 +182,50 @@ Should you get stuck at any point, it is likely that the solution can be found i
 [Return to the top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+## Set Your Own Profile
+
+After getting comfortable trying EduMate, you are now ready to start personalising it!
+
+**Step 1.** Run `java -jar eduMate.jar`. The application window will open and show you where you have left off
+(if you have tried out `sample` from earlier) <br>
+
+**Step 2.** On the Command Box, execute `edit n/[YOUR NAME] p/[YOUR CONTACT NUMBER] t/@[YOUR TELEGRAM HANDLE] 
+a/[NEAREST MRT STATION TO YOUR HOUSE] e/[YOUR EMAIL]`
+<br>
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** <br>
+You do not have to enter all your information at once! You can omit some of the information
+and **its corresponding prefix** and enter them in the future!
+<br>
+
+Moreover, eduMate will replace the missing fields with placeholders which you
+can then edit over later!
+
+</div>
+
+**Step 3.** To add the modules that you are studying as such :
+`tag m/[MODULE_CODE] DAY START_TIME END_TIME`
+<br>
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** <br>
+E.g `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
+
+</div>
+
+**Step 4.** To add group tags {Kenny Please} <br>
+
+**Step 5.** You are done! **ENJOY!** <br>
+
+
+[Return to the top](#table-of-contents)
+
+------------
 
 ## Commands
 
-{to be filled in}
+`EduMate` is an application that works with commands. Commands can be executed to carry out certain functionalities of the application.
 
 ### How to interpret the command format
 
@@ -175,7 +236,7 @@ Should you get stuck at any point, it is likely that the solution can be found i
 * The first word is the type of command that you are running.<br>
   e.g. for the command `delete 5`, we are running the `delete` command.
 
-* We use [Prefixes]() like `p/` and `g/` to label our arguments for the command. Additionally, we use numbers to specify the index of contacts in our list.<br>
+* We use [Prefixes](#prefixes) like `p/` and `g/` to label our arguments for the command. Additionally, we use numbers to specify the index of contacts in our list.<br>
   e.g. `edit 2 n/Steven Tan` runs the `edit` command with an index of 2 and an `n/` argument of Steven Tan.
 
 * Words in `UPPER_CASE` are arguments you are meant to fill in.<br>
@@ -217,7 +278,11 @@ Should you get stuck at any point, it is likely that the solution can be found i
 
 ## Arguments
 
-A contact's attributes can be categorised into two types: _single-valued_ and _multi-valued_. A contact may have only one of each single-valued attribute, such as name, phone number, email address, Telegram handle, and home address. Conversely, a contact may have any number of multi-valued attributes, such as groups and modules.
+A contact's attributes can be categorised into two types: _single-valued_ and _multi-valued_. 
+
+A contact may have only one of each single-valued attribute, such as name, phone number, email address, Telegram handle, and home address. 
+
+Conversely, a contact may have any number of multi-valued attributes, such as groups and modules.
 
 ### Name
 
@@ -276,7 +341,7 @@ Example: `m/CS2107`
 
 Adds a contact to the EduMate.
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`: {fill in}
 
 What you should see:<br>
@@ -305,7 +370,7 @@ You can use the view command to look up your details, or a contact's details on 
 
 </div>
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `view`: Views your profile.
 * `view INDEX`: Views the contact at index `INDEX`.
 * `view n/NAME`: Views the contact with name `NAME`.
@@ -322,7 +387,7 @@ Examples:
 
 Edits the profile of a contact. You can choose to edit as many fields as you'd like.
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `edit INDEX [z/FIELD]…​`: Edits the fields for the contact at index `INDEX`.
 * `edit [z/FIELD]…​`: Edits your user profile.
 
@@ -339,7 +404,7 @@ Examples:
 
 Removes a contact from EduMate.
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `delete INDEX`: Deletes the contact at index `INDEX`.
 
 What you should see:<br>
@@ -353,7 +418,7 @@ Examples:
 
 Adds module tag(s) to an existing contact.
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `tag CONTACT_INDEX m/MODULE_TAG`
 * `tag m/MODULE_TAG`
 
@@ -372,7 +437,7 @@ Module(s) in common: [CS2101, CS2103T]
 ```
 Description of outcome:
 
-CS2103T is added to John Doe's list of modules. Assuming the user also takes CS2101 and CS2103T, which are represented as the modules in common.
+CS2103T is added to John Doe's list of modules. Assuming you also take CS2101 and CS2103T, which are represented as the modules in common.
 
 Example of usage: tag m/CS2103T
 ```
@@ -394,7 +459,7 @@ CS2103T is added to John Doe's, the user, list of modules.
 
 Removes a module tag from an existing contact.
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `untag CONTACT_INDEX m/MODULE_TAG`
 * `untag m/MODULE_TAG`
 
@@ -451,7 +516,7 @@ Finds persons whose specified fields contain any of the given keywords limited t
 
 </div>
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `find z/KEYWORD [MORE_KEYWORDS]…​`
 
 What you should see:<br>
@@ -486,7 +551,7 @@ Sorts persons based on certain criteria. For example, you can sort the contacts 
 
 </div>
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `sort`: Sorts the contacts by their indices.
 * `sort z/a`: Sorts the contacts by their `z` attribute **in ascending order**
 * `sort z/d`: Sorts the contacts by their `z` attribute **in descending order**
@@ -532,7 +597,7 @@ The storage commands allow you to save and load your EduMate data into a file.
 
 Saves the EduMate into a file with a name of your choice.
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `save FILENAME`: Saves the EduMate into a file at `FILENAME.json`.
 
 What you should see:<br>
@@ -546,7 +611,7 @@ Examples:
 
 Loads the save data of an EduMate from a file.
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `load FILENAME`: Loads the EduMate from a file at `FILENAME.json`.
 
 What you should see:<br>
@@ -567,12 +632,11 @@ social, academic or other general meetings.
 
 You can use this command if:
 * You want to schedule a meetup for academic, social or other general purposes.
-* You find it difficult to agree on a timing and location that is suitable for all your friends to
-meet and you require a recommendation.
+* You find it difficult to agree on a timing and location that is suitable for all your friends to meet and you require a recommendation.
 
 </div>
 
-Formats:
+Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `meet 12 32 8 4` : Recommends a meeting time and location for a potential meetup with friends with the following indices `12, 32, 4, 8`.
 * `eat 5 2 8 1 3` : Recommends a meeting time and eating spot for friends with the following indices `5, 2, 8, 1, 3`
 * `study 6 2` : Recommends a meeting time and study spot for friends with the following indices `6 and 2`.
@@ -604,7 +668,7 @@ If you want to end the application, simply type `exit`, or click on the `Exit` b
 
 ### Command Summary
 
-| Action               | Format                                               | Examples                                     |
+| Action               | Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format))                                              | Examples                                     |
 |----------------------|------------------------------------------------------|----------------------------------------------|
 | **Add a contact**    | `add n/NAME p/PHONE...`                              | `add n/Wen Li...`                            |
 | **View a profile**   | `view`, `view INDEX`, `view n/NAME`                  | `view 5`, `view n/Wen Li`                    |
@@ -622,3 +686,14 @@ If you want to end the application, simply type `exit`, or click on the `Exit` b
 ## Troubleshooting
 
 ### How to check your Java version
+
+#### For **Windows** Users
+{Kenny and Sean pls}
+
+#### For **Mac** and **Linux** Users
+**Step 1** Open up Terminal.
+
+**Step 2** Run the command `java -version`
+
+**Step 3** Check the version number from the output.
+
