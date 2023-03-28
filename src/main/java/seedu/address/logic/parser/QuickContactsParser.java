@@ -32,7 +32,7 @@ import seedu.address.model.command.CommandHistory;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class QuickContactsParser {
     /**
      * Used for initial separation of command word and args.
      */

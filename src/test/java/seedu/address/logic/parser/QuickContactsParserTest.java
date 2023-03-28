@@ -39,9 +39,9 @@ import seedu.address.testutil.MeetingUtil;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class QuickContactsParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final QuickContactsParser parser = new QuickContactsParser();
 
     @Test
     public void parseCommand_add() throws Exception {

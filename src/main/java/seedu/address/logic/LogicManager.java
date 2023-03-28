@@ -11,7 +11,7 @@ import seedu.address.logic.commands.AutocompleteResult;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.QuickContactsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -28,7 +28,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final QuickContactsParser quickContactsParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -36,7 +36,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        quickContactsParser = new QuickContactsParser();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = quickContactsParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
@@ -58,7 +58,7 @@ public class LogicManager implements Logic {
 
     @Override
     public AutocompleteResult autocomplete(String commandText) {
-        return addressBookParser.getAutocompleteSuggestion(commandText);
+        return quickContactsParser.getAutocompleteSuggestion(commandText);
     }
 
     @Override
