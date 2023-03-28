@@ -72,6 +72,15 @@ public class NoteList {
     }
 
     /**
+     *
+     * @param index
+     */
+    public void replace(Note note, int index) throws IndexOutOfBoundsException {
+        requireNonNull(index);
+        getNotes().set(index, note);
+    }
+
+    /**
      * Removes the specified note
      * @param note The note to remove from the list
      */

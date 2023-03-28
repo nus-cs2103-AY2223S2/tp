@@ -345,6 +345,30 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    public void editNoteFromConsultation(Index index, Note note, String nameOfEvent) {
+        for (Consultation consultation : consultations) {
+            if (consultation.hasMatchByName(nameOfEvent)) {
+                consultation.setNote(note, index);
+            }
+        }
+    }
+
+    public void editNoteFromLab(Index index, Note note, String nameOfEvent) {
+        for (Lab lab : labs) {
+            if (lab.hasMatchByName(nameOfEvent)) {
+                lab.setNote(note, index);
+            }
+        }
+    }
+
+    public void editNoteFromTutorial(Index index, Note note, String nameOfEvent) {
+        for (Tutorial tutorial : tutorials) {
+            if (tutorial.hasMatchByName(nameOfEvent)) {
+                tutorial.setNote(note, index);
+            }
+        }
+    }
+
     //// util methods
     @Override
     public String toString() {

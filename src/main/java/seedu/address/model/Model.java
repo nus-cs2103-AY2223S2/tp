@@ -221,6 +221,10 @@ public interface Model {
      */
     void updateFilteredConsultationList(Predicate<Consultation> predicate);
 
+    void editNoteFromTutorial(Index index, Note note, String nameOfEvent);
+    void editNoteFromLab(Index index, Note note, String nameOfEvent);
+    void editNoteFromConsultation(Index index, Note note, String nameOfEvent);
+
     void removeNoteFromTutorial(Index index, String nameOfEvent);
     void removeNoteFromLab(Index index, String nameOfEvent);
     void removeNoteFromConsultation(Index index, String nameOfEvent);

@@ -10,6 +10,7 @@ public class DeleteNoteCommand extends Command {
     public static final String COMMAND_WORD = "rm-note";
 
     public static final String MESSAGE_USAGE = "Delete syntax: rm-note -index INDEX (must be a positive integer) -name name-of-event -type type-of-event";
+    public static final String MESSAGE_EXAMPLE = "rm-note -index 0 -name t1 -type tutorial";
 
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
             + "cannot be recognized!";
@@ -20,7 +21,6 @@ public class DeleteNoteCommand extends Command {
     public static final String CONSULTATION_STRING = "consultation";
 
     private final Index targetIndex;
-
     private final String eventName;
     private final String eventType;
 
@@ -56,7 +56,7 @@ public class DeleteNoteCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteNoteCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteNoteCommand) other).targetIndex)); // state check
     }
 }

@@ -115,6 +115,7 @@ public class Consultation extends Event {
         super.addNote(note);
     }
 
+
     public int countNotes() {
         return super.countNotes();
     }

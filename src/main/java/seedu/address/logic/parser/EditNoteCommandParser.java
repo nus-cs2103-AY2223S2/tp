@@ -10,37 +10,35 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Note;
 
 /**
- * Parses input arguments and creates a new DeleteEventCommand object
+ * Parses input arguments and creates a new EditEventCommand object
  */
-public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
+public class EditNoteCommandParser implements Parser<EditNoteCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteEventCommand
      * and returns a DeleteEventCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DeleteNoteCommand parse(String args) throws ParseException {
+    public EditNoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NOTE_INDEX, PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME);
-        if (arePrefixesAbsent(argMultimap, PREFIX_NOTE_INDEX)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteNoteCommand.MESSAGE_USAGE) + "\n"
-                    + DeleteNoteCommand.MESSAGE_EXAMPLE);
-        }
+                ArgumentTokenizer.tokenize(args, PREFIX_NOTE_CONTENT, PREFIX_NOTE_INDEX, PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME);
 
         // The case of adding note without event
-        if (!arePrefixesPresent(argMultimap, PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NOTE_CONTENT, PREFIX_NOTE_INDEX, PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteNoteCommand.MESSAGE_USAGE) + "\n"
-                    + DeleteNoteCommand.MESSAGE_EXAMPLE);
+                    EditNoteCommand.MESSAGE_USAGE) + "\n"
+                    + EditNoteCommand.MESSAGE_EXAMPLE);
         }
+        String content = argMultimap.getValue(PREFIX_NOTE_CONTENT).get();
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_NOTE_INDEX).get());
         String eventName = argMultimap.getValue(PREFIX_NOTE_EVENT_NAME).get();
         String eventType = argMultimap.getValue(PREFIX_NOTE_EVENT_TYPE).get();
-        return new DeleteNoteCommand(index, eventName, eventType);
+        Note note = new Note(content);
+        return new EditNoteCommand(index, note, eventName, eventType);
     }
 
     /**
@@ -50,15 +48,5 @@ public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
-    /**
-     * Returns true if none of the prefixes contains command to add students (cannot add student and tutorial
-     * using the same command.)
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesAbsent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).noneMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }
 

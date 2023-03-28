@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Photo;
 
@@ -229,6 +230,10 @@ public abstract class Event {
      **************************************************************************/
     public boolean hasNote(Note note) {
         return notes.contains(note);
+    }
+
+    public void setNote(Note note, Index index) {
+        notes.replace(note, index.getZeroBased());
     }
 
     public List<Note> getNotes() {

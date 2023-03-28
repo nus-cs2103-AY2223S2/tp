@@ -236,19 +236,41 @@ public class ModelManager implements Model {
         addressBook.addNoteToConsultation(note, nameOfEvent);
     }
 
+    @Override
     public void removeNoteFromTutorial(Index index, String nameOfEvent) {
         requireNonNull(index);
         addressBook.removeNoteFromTutorial(index, nameOfEvent);
     }
 
+    @Override
     public void removeNoteFromLab(Index index, String nameOfEvent) {
         requireNonNull(index);
         addressBook.removeNoteFromLab(index, nameOfEvent);
     }
 
+    @Override
     public void removeNoteFromConsultation(Index index, String nameOfEvent) {
         requireNonNull(index);
         addressBook.removeNoteFromConsultation(index, nameOfEvent);
+    }
+
+    @Override
+    public void editNoteFromTutorial(Index index, Note note, String nameOfEvent) {
+        requireNonNull(index);
+        requireNonNull(note);
+        addressBook.editNoteFromTutorial(index, note, nameOfEvent);
+    }
+    @Override
+    public void editNoteFromLab(Index index, Note note, String nameOfEvent) {
+        requireNonNull(index);
+        requireNonNull(note);
+        addressBook.editNoteFromLab(index, note, nameOfEvent);
+    }
+    @Override
+    public void editNoteFromConsultation(Index index, Note note, String nameOfEvent) {
+        requireNonNull(index);
+        requireNonNull(note);
+        addressBook.editNoteFromConsultation(index, note, nameOfEvent);
     }
 
     //=========== Filtered Person List Accessors =============================================================
