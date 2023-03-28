@@ -20,10 +20,10 @@ import seedu.address.model.person.Status;
 public class RejectCommand extends Command {
     public static final String COMMAND_WORD = "reject";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Reject an applicant in HMHero.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Reject an applicant in HMHero.\n\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE\n"
+            + PREFIX_PHONE + "PHONE\n\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432";

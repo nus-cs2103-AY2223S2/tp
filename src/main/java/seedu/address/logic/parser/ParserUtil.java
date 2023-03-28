@@ -106,12 +106,9 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code note} is invalid.
      */
-    public static Note parseTag(String tag) throws ParseException {
+    public static Note parseTag(String tag) {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Note.isValidNoteName(trimmedTag)) {
-            throw new ParseException(Note.MESSAGE_CONSTRAINTS);
-        }
         return new Note(trimmedTag);
     }
 

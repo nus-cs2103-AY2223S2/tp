@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -25,11 +26,12 @@ import seedu.address.model.person.Status;
 public class AdvanceCommand extends Command {
     public static final String COMMAND_WORD = "advance";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Advance an applicant in HMHero.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Advance an applicant in HMHero. "
+            + "If applicant's current status is APPLIED, please provide an interview date time\n\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
-            + "[" + PREFIX_DATETIME + "INTERVIEW DATETIME]\n"
+            + "[" + PREFIX_DATETIME + "INTERVIEW DATETIME]\n\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -92,10 +94,12 @@ public class AdvanceCommand extends Command {
 
         // interviewDateTime is only required if the applicant's status is Applied
         if (interviewDateTime.isPresent()) {
-            if (isValidForAdvanceWithDateTime(model, personToAdvance, interviewDateTime.get())) {
-                return true;
-            } else {
+            if (!isValidForAdvanceWithDateTime(model, personToAdvance, interviewDateTime.get())) {
                 throw new CommandException(Messages.MESSAGE_INTERVIEW_DATETIME_NOT_REQUIRED);
+            } else if (!isAfterApplicationDateTime(personToAdvance, interviewDateTime.get())) {
+                throw new CommandException(Messages.MESSAGE_INTERVIEW_BEFORE_APPLICATION);
+            } else {
+                return true;
             }
         } else {
             if (personToAdvance.getStatus() != Status.APPLIED) {
@@ -104,6 +108,17 @@ public class AdvanceCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INTERVIEW_DATETIME_IS_REQUIRED);
             }
         }
+    }
+
+    /**
+     * Checks whether applicant's interviewDateTIme is after applicationDateTime
+     * @param personToAdvance Applicant that user wants to advance to the next stage in application cycle
+     * @param interviewDateTime date and time of the interview for the applicant
+     * @return true if interviewDateTime is after applicationDateTime
+     */
+    private boolean isAfterApplicationDateTime(Person personToAdvance, InterviewDateTime interviewDateTime) {
+        LocalDateTime applicationDateTime = personToAdvance.getApplicationDateTime().getApplicationDateTime();
+        return interviewDateTime.getDateTime().isAfter(applicationDateTime);
     }
 
     /**
@@ -117,8 +132,8 @@ public class AdvanceCommand extends Command {
      */
     private boolean isValidForAdvanceWithDateTime(Model model, Person personToAdvance,
             InterviewDateTime interviewDateTime) throws CommandException {
-        return personToAdvance.getStatus() == Status.APPLIED && !isDuplicateDateTime(model,
-                personToAdvance, interviewDateTime);
+        return personToAdvance.getStatus() == Status.APPLIED
+                && !isDuplicateDateTime(model, personToAdvance, interviewDateTime);
     }
 
 

@@ -17,11 +17,11 @@ import seedu.address.model.util.SortByInterviewDate;
  */
 public class RemindCommand extends Command {
     public static final String COMMAND_WORD = "remind";
-    public static final String MESSAGE_SUCCESS_FORMAT_WITH_APPLICANTS = "Listed all applicants that going to have "
-            + "interview within three days!";
+    public static final String MESSAGE_SUCCESS_FORMAT_WITH_APPLICANTS = "Listed all applicants that are have an"
+            + "interview in the next three days!";
 
-    public static final String MESSAGE_SUCCESS_FORMAT_WITHOUT_APPLICANTS = "There is no applicant having interview "
-            + "within three days.";
+    public static final String MESSAGE_SUCCESS_FORMAT_WITHOUT_APPLICANTS = "There are no upcoming interviews "
+            + "in the next three days.";
     public static final Predicate<Person> INTERVIEW_IN_THREE_DAYS_PREDICATE =
             person -> (person.getStatus() == Status.SHORTLISTED
                     && person.getInterviewDateTime().get().isWithinThreeDays());

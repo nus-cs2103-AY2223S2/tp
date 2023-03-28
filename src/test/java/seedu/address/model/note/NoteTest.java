@@ -11,16 +11,4 @@ public class NoteTest {
         assertThrows(NullPointerException.class, () -> new Note(null));
     }
 
-    @Test
-    public void constructor_invalidNoteName_throwsIllegalArgumentException() {
-        String invalidNoteName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Note(invalidNoteName));
-    }
-
-    @Test
-    public void isValidNoteName() {
-        // null note name
-        assertThrows(NullPointerException.class, () -> Note.isValidNoteName(null));
-    }
-
 }

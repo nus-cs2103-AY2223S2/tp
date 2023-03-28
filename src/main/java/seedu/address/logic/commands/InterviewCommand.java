@@ -17,7 +17,8 @@ public class InterviewCommand extends Command {
 
     public static final Predicate<Person> SHORTLISTED_PREDICATE = person -> (person.getStatus() == Status.SHORTLISTED);
 
-    public static final String MESSAGE_SUCCESS_FORMAT = "Listed all shortlisted applicants!";
+    public static final String MESSAGE_SUCCESS_FORMAT = "Listed all shortlisted applicants and their corresponding "
+            + "interview date and times!";
 
     /**
      * Returns a filtered list of applicants with SHORTLISTED status and sorts by earliest interview date

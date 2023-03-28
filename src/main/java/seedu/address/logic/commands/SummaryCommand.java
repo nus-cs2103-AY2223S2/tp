@@ -17,12 +17,12 @@ import seedu.address.model.person.Person;
 public class SummaryCommand extends Command {
     public static final String COMMAND_WORD = "summary";
     public static final String MESSAGE_SUCCESS_FORMAT =
-            "Here are some summary statistics for your hiring cycle\n"
-            + "Average time-to-interview: %.2f days\n"
+            "Here are some summary statistics for your hiring cycle\n\n"
+            + "Average days-to-interview (rounded down nearest day): %.2f days\n"
             + "Percentage of applicants with interview: %.1f";
 
     public static final String MESSAGE_NO_INTERVIEW =
-            "No applicant is scheduled for an interview at the moment";
+            "No summary statistic is available at the moment because there has been no scheduled interviews!";
 
 
     /**
@@ -51,8 +51,8 @@ public class SummaryCommand extends Command {
         for (Person applicant : applicants) {
             if (applicant.getInterviewDateTime().isEmpty() != true) {
                 LocalDateTime interviewDateTime = applicant.getInterviewDateTime().get().getDateTime();
-                Duration duration = Duration.between(interviewDateTime,
-                        applicant.getApplicationDateTime().getApplicationDateTime());
+                Duration duration = Duration.between(applicant.getApplicationDateTime().getApplicationDateTime(),
+                        interviewDateTime);
                 sumTimeTaken += duration.toDays();
                 numApplicantsWithInterview++;
             }

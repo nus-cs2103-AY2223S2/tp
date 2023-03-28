@@ -227,26 +227,25 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("\n\nPhone: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("\nEmail: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("\nAddress: ")
                 .append(getAddress())
-                .append("; Status: ")
+                .append("\nStatus: ")
                 .append(getStatus())
-                .append("; Application Date:")
-                .append(getApplicationDateTimeString())
-                .append("; Interview DateTime")
-                .append(getInterviewDateTimeString());
+                .append("\nApplication Date: ")
+                .append(getApplicationDateTimeString());
+
         if (interviewDateTime.isPresent()) {
-            builder.append("; InterviewDateTime: ")
+            builder.append("\nInterviewDateTime: ")
                     .append(interviewDateTime.get());
         }
 
         Set<Note> notes = getNotes();
         if (!notes.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("\n\nNotes: ");
             notes.forEach(builder::append);
         }
         return builder.toString();
