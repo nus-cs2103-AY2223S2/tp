@@ -1,5 +1,9 @@
 package seedu.connectus.testutil;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import seedu.connectus.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.connectus.model.person.Address;
 import seedu.connectus.model.person.Email;
@@ -7,6 +11,8 @@ import seedu.connectus.model.person.Name;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.socialmedia.SocialMedia;
+import seedu.connectus.model.tag.Module;
+import seedu.connectus.model.tag.Remark;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -33,6 +39,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail().get());
         descriptor.setAddress(person.getAddress().get());
         descriptor.setSocialMedia(person.getSocialMedia().orElse(SocialMedia.create()));
+        descriptor.setRemarks(person.getRemarks());
+        descriptor.setModules(person.getModules());
     }
 
     /**
@@ -64,6 +72,26 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withTags(String... tags) {
+        Set<Remark> tagSet = Stream.of(tags).map(Remark::new).collect(Collectors.toSet());
+        descriptor.setRemarks(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code modules} into a {@code Set<Module>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withModules(String... modules) {
+        Set<Module> moduleSet = Stream.of(modules).map(Module::new).collect(Collectors.toSet());
+        descriptor.setModules(moduleSet);
         return this;
     }
 
