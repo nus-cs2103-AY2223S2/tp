@@ -3,7 +3,9 @@ package seedu.task.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.logic.commands.CommandTestUtil.DESC_AMY;
+import static seedu.task.logic.commands.CommandTestUtil.DESC_AMY_EVENT;
 import static seedu.task.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.task.logic.commands.CommandTestUtil.VALID_DATE;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_EFFORT;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -53,6 +55,24 @@ public class EditTaskDescriptorTest {
                 .withEffort(5)
                 .build();
         assertTrue(customDesc.isAnyFieldEdited());
+
+        // edit only to date -> return True
+        customDesc = new EditTaskDescriptorBuilder()
+                .withFrom("2023-03-30 2359")
+                .build();
+        assertTrue(customDesc.isAnyFieldEdited());
+
+        // edit only from date -> return True
+        customDesc = new EditTaskDescriptorBuilder()
+                .withTo("2023-03-30 2359")
+                .build();
+        assertTrue(customDesc.isAnyFieldEdited());
+
+        // edit only deadline -> return True
+        customDesc = new EditTaskDescriptorBuilder()
+                .withDeadline("2023-03-30 2359")
+                .build();
+        assertTrue(customDesc.isAnyFieldEdited());
     }
 
     @Test
@@ -87,6 +107,18 @@ public class EditTaskDescriptorTest {
 
         // different effort -> returns false
         editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withEffort(VALID_EFFORT).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different from date -> returns false
+        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY_EVENT).withFrom(VALID_DATE).build();
+        assertFalse(DESC_AMY_EVENT.equals(editedAmy));
+
+        // different to date -> returns false
+        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY_EVENT).withTo(VALID_DATE).build();
+        assertFalse(DESC_AMY_EVENT.equals(editedAmy));
+
+        // different deadline -> returns false
+        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDeadline(VALID_DATE).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

@@ -18,7 +18,6 @@ import seedu.task.commons.core.Messages;
 import seedu.task.commons.core.index.Index;
 import seedu.task.commons.util.CollectionUtil;
 import seedu.task.logic.commands.exceptions.CommandException;
-import seedu.task.logic.parser.exceptions.ParseException;
 import seedu.task.model.Model;
 import seedu.task.model.tag.Tag;
 import seedu.task.model.task.Date;
@@ -93,7 +92,7 @@ public class EditCommand extends Command {
      * edited with {@code editTaskDescriptor}.
      */
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) throws
-        CommandException{
+            CommandException {
 
         assert taskToEdit != null;
 
@@ -104,13 +103,11 @@ public class EditCommand extends Command {
         ObservableList<Subtask> subtaskList = taskToEdit.getSubtasks();
         if (taskToEdit instanceof SimpleTask) {
             return new SimpleTask(updatedName, updatedDescription, updatedTags, updatedEffort, subtaskList);
-        }
-        else if (taskToEdit instanceof Deadline) {
+        } else if (taskToEdit instanceof Deadline) {
             Date updatedDeadline = editTaskDescriptor.getDeadline().orElse(((Deadline) taskToEdit).getDeadline());
             return new Deadline(updatedName, updatedDescription, updatedTags, updatedDeadline, updatedEffort,
                 subtaskList);
-        }
-        else {
+        } else {
             Date updatedFrom = editTaskDescriptor.getFrom().orElse(((Event) taskToEdit).getFrom());
             Date updatedTo = editTaskDescriptor.getTo().orElse(((Event) taskToEdit).getTo());
             if (!updatedFrom.isValidEvent(updatedTo)) {

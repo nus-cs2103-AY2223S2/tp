@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.task.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.task.model.tag.Tag;
+import seedu.task.model.task.Date;
 import seedu.task.model.task.Description;
 import seedu.task.model.task.Effort;
 import seedu.task.model.task.Name;
@@ -70,6 +71,32 @@ public class EditTaskDescriptorBuilder {
         descriptor.setEffort(new Effort(e));
         return this;
     }
+
+    /**
+     * Sets the {@code from} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withFrom(String date) {
+        descriptor.setFrom(new Date(date));
+        return this;
+    }
+
+    /**
+     * Sets the {@code to} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withTo(String to) {
+        descriptor.setTo(new Date(to));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Effort} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withDeadline(String deadline) {
+        descriptor.setDeadline(new Date(deadline));
+        return this;
+    }
+
+
 
     public EditTaskDescriptor build() {
         return descriptor;

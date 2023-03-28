@@ -74,6 +74,14 @@ public class CommandTestUtil {
     public static final EditCommand.EditTaskDescriptor DESC_AMY;
     public static final EditCommand.EditTaskDescriptor DESC_BOB;
 
+    public static final EditCommand.EditTaskDescriptor DESC_AMY_EVENT;
+
+    public static final String VALID_DATE = "2023-03-30 2359";
+
+    public static final String VALID_FROM = "2023-03-25 2359";
+
+    public static final String VALID_TO = "2023-03-26 2359";
+
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withDescription(VALID_DESCRIPTION_AMY)
@@ -81,6 +89,11 @@ public class CommandTestUtil {
         DESC_BOB = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withDescription(VALID_DESCRIPTION_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_AMY_EVENT = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withDescription(VALID_DESCRIPTION_AMY)
+                .withTags(VALID_TAG_FRIEND)
+                .withFrom(VALID_FROM)
+                .withTo(VALID_TO).build();
     }
 
     /**
