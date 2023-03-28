@@ -1,12 +1,15 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 
 import java.util.*;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
 
@@ -87,8 +90,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.setPersons(sortedOldList);
     }
 
-
-
     //// person-level operations
 
     /**
@@ -124,6 +125,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     *
+     */
+    public void markPerson(Index index, Mark mark) {
+        requireAllNonNull(index, mark);
+        persons.markPerson(index, mark);
     }
 
     /**
