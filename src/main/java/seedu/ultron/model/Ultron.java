@@ -99,7 +99,6 @@ public class Ultron implements ReadOnlyUltron {
     @Override
     public String toString() {
         return openings.asUnmodifiableObservableList().size() + " openings";
-        // TODO: refine later
     }
 
     @Override

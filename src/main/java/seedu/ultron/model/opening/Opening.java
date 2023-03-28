@@ -34,7 +34,7 @@ public class Opening {
         this.status = status;
         this.remark = remark;
         this.dates.addAll(dates);
-        this.dates.sort(new DateComparator());
+        this.dates.sort(null);
     }
 
     public Position getPosition() {
