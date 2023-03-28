@@ -7,9 +7,11 @@ import trackr.commons.core.GuiSettings;
 import trackr.logic.commands.CommandResult;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.exceptions.ParseException;
+import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
+import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
 import trackr.model.task.Task;
@@ -53,6 +55,16 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Returns the Menu.
+     *
+     * @see trackr.model.Model#getMenu()
+     */
+    ReadOnlyMenu getMenu();
+
+    /** Returns an unmodifiable view of the filtered list of menu items */
+    ObservableList<MenuItem> getFilteredMenu();
 
     /** Returns an unmodifiable view of the filtered list of orders */
     ObservableList<Order> getFilteredOrderList();

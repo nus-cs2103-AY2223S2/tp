@@ -9,6 +9,7 @@ import trackr.model.commons.Name;
 import trackr.model.menu.ItemCost;
 import trackr.model.menu.ItemName;
 import trackr.model.menu.ItemPrice;
+import trackr.model.menu.ItemProfit;
 import trackr.model.menu.MenuItem;
 
 /**
@@ -21,6 +22,7 @@ class JsonAdaptedMenuItem {
     private final String itemName;
     private final String itemCost;
     private final String itemPrice;
+    private final String itemProfit;
 
     /**
      * Constructs a {@code JsonAdaptedMenuItem} with the given menu item details.
@@ -28,10 +30,12 @@ class JsonAdaptedMenuItem {
     @JsonCreator
     public JsonAdaptedMenuItem(@JsonProperty("itemName") String itemName,
                                @JsonProperty("itemCost") String itemCost,
-                               @JsonProperty("itemPrice") String itemPrice) {
+                               @JsonProperty("itemPrice") String itemPrice,
+                               @JsonProperty("itemProfit") String itemProfit) {
         this.itemName = itemName;
         this.itemCost = itemCost;
         this.itemPrice = itemPrice;
+        this.itemProfit = itemProfit;
     }
 
     /**
@@ -41,6 +45,7 @@ class JsonAdaptedMenuItem {
         itemName = source.getItemName().getName();
         itemCost = source.getItemCost().toJsonString();
         itemPrice = source.getItemPrice().toJsonString();
+        itemProfit = source.getItemProfit().toJsonString();
     }
 
     /**

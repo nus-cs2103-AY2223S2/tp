@@ -13,9 +13,11 @@ import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.TrackrParser;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
+import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
+import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
 import trackr.model.task.Task;
@@ -75,6 +77,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return model.getFilteredTaskList();
+    }
+
+    @Override
+    public ReadOnlyMenu getMenu() {
+        return model.getMenu();
+    }
+
+    @Override
+    public ObservableList<MenuItem> getFilteredMenu() {
+        return model.getFilteredMenu();
     }
 
     @Override
