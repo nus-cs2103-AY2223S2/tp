@@ -7,9 +7,9 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javax.swing.SwingUtilities;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.UniqueInternshipList;
-import javax.swing.SwingUtilities;
 
 /**
  * Wraps all data at the address-book level
@@ -79,7 +79,7 @@ public class InternBuddy implements ReadOnlyInternBuddy {
 
     /**
      * Replaces the given internship {@code target} in the list with {@code editedInternship}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the intern buddy.
      * The internship identity of {@code editedInternship} must not be the same as another existing internship
      * in the address book.
      */
@@ -106,6 +106,12 @@ public class InternBuddy implements ReadOnlyInternBuddy {
         internships.view(key);
     }
 
+
+    /**
+     * Copies the content of the specific internship to the clipboard
+     * Gets {@code key} from this {@code InternBuddy}.
+     * {@code key} must exist in InternBuddy.
+     */
     public void copyInternship(Internship key) {
         String content = key.toString();
         SwingUtilities.invokeLater(new Runnable() {
