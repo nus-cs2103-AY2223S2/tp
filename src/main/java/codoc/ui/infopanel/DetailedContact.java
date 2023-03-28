@@ -24,6 +24,9 @@ public class DetailedContact extends DetailedInfo {
     private Label linkedin;
 
     @FXML
+    private Button copyEmailButton;
+
+    @FXML
     private Button copyGithubButton;
 
     @FXML
@@ -46,6 +49,13 @@ public class DetailedContact extends DetailedInfo {
         linkedin.setText(protagonist.getLinkedin().value == null ? "Not Added" : protagonist.getLinkedin().value);
 
 
+    }
+    @FXML
+    private void copyEmailUrl() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent url = new ClipboardContent();
+        url.putString(protagonist.getEmail().value);
+        clipboard.setContent(url);
     }
     @FXML
     private void copyGithubUrl() {
