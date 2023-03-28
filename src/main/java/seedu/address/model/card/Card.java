@@ -77,7 +77,7 @@ public class Card {
     }
 
     /**
-     * Returns true if both cards have the same question.
+     * Returns true if both cards have the same question, answer and deck.
      * This defines a weaker notion of equality between two cards.
      */
     public boolean isSameCard(Card otherCard) {

@@ -2,7 +2,6 @@ package seedu.address.testutil;
 
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
-import seedu.address.model.card.CardTest;
 import seedu.address.model.card.Question;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
@@ -80,11 +79,18 @@ public class CardBuilder {
         return this;
     }
 
+    /**
+     * Sets the flip attribute of the card we are building.
+     */
     public CardBuilder withFlipAttribute(boolean isFlipped) {
         this.isFlipped = isFlipped;
         return this;
     }
 
+    /**
+     * Builds the card.
+     * @return the card built.
+     */
     public Card build() {
         Card toBuild = new Card(question, answer, tag, deck);
         return new Card(toBuild, isFlipped);
