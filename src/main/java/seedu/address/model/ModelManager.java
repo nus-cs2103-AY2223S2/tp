@@ -236,11 +236,13 @@ public class ModelManager implements Model {
     @Override
     public void addPersonToSession(Person person, Session session) {
         addressBook.addPersonToSession(person, session);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
     }
 
     @Override
     public void removePersonFromSession(Person person, Session session) {
         addressBook.removePersonFromSession(person, session);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
     }
 
     @Override

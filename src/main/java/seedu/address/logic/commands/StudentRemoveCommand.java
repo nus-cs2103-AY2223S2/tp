@@ -24,7 +24,7 @@ public class StudentRemoveCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "hall";
 
-    public static final String SESSION_REMOVE_PERSON_SUCCESS = "Added Person: %1$s to Session: %2$s";
+    public static final String SESSION_REMOVE_PERSON_SUCCESS = "Removed Person: %1$s to Session: %2$s";
     public static final String SESSION_NOT_FOUND_FAILURE = "Session: %1$s cannot be found. "
             + "Here are the list of existing sessions: %2$s";
     public static final String STUDENT_NOT_FOUND_FAILURE = "Student not found";
@@ -51,7 +51,7 @@ public class StudentRemoveCommand extends Command {
 
         //Find session
         Session session = model.getSessionFromName(sessionName);
-        model.addPersonToSession(studentToRemove, session);
+        model.removePersonFromSession(studentToRemove, session);
         model.commitAddressBook();
         return new CommandResult(String.format(SESSION_REMOVE_PERSON_SUCCESS, studentToRemove.getName(), session));
     }

@@ -111,6 +111,7 @@ public class Session implements Comparable<Session> {
      */
     public void markStudentPresent(String name) {
         attendanceMap.put(name, true);
+        System.out.println(this.toString());
     }
 
     /**
@@ -119,6 +120,7 @@ public class Session implements Comparable<Session> {
      */
     public void markStudentAbsent(String name) {
         attendanceMap.put(name, false);
+        System.out.println(this.toString());
     }
 
     /**
@@ -383,5 +385,14 @@ public class Session implements Comparable<Session> {
 
     public HashMap<String, Boolean> getHashMap() {
         return attendanceMap;
+    }
+
+    public Session copy() {
+        return new Session(this.startDateTime,
+                this.endDateTime,
+                this.name,
+                this.location,
+                this.id,
+                this.getMap());
     }
 }
