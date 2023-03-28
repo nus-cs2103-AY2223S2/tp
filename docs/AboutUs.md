@@ -13,7 +13,7 @@ Darius Ng - `darius-ng@live.com`
 
 Kalaris Ng - `to be added`
 
-Jia Hui Liao - `e0775484@nus.edu.sg`
+JiaHui Liao - `e0775484@nus.edu.sg`
 
 
 ## Project team
@@ -38,7 +38,7 @@ Jia Hui Liao - `e0775484@nus.edu.sg`
 * Role: Documentation
 * Responsibilities: Code quality, Dev ops, Documentation checking
 
-### Jia Hui Liao
+### JiaHui Liao
 
 <img src="images/oliviajhl.png" width="200px">
 

@@ -2,8 +2,13 @@
 layout: page
 title: User Guide
 ---
+<img src="images/FitBookBanner.png" width="1200" />
 
+##<span style="color:#f9963f">About FitBook</span>
+
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
 FitBook is a **desktop app for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Fitbook can get your client management tasks done faster than traditional GUI apps.
+</div>
 
 This User Guide provides brief documentation on how you can install the application and describes how each feature should be used. Start by looking at the [quick start](#quick-start) guide to get you started.
 * Table of Contents
@@ -11,16 +16,16 @@ This User Guide provides brief documentation on how you can install the applicat
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+##<span style="color:#f9963f">Quick start</span>
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have **Java** `11` or above installed in your Computer.
 
-1. Download the latest `fitbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-2/tp/releases).
+1. **Download** the latest `fitbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-2/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your FitBook.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar fitbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A **GUI** similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -28,7 +33,7 @@ This User Guide provides brief documentation on how you can install the applicat
 
    * `listClients` : Lists all Clients.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the FitBook.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 w/50 g/M` : Adds a contact named `John Doe` to the FitBook.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -47,11 +52,12 @@ This User Guide provides brief documentation on how you can install the applicat
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+##<span style="color:#f9963f">Features</span>
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
+<div style="border: 2px solid #fee7d3; border-radius:5px; padding:20px 0;">
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -71,55 +77,69 @@ This User Guide provides brief documentation on how you can install the applicat
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Client list can be found in the Client panel. Routine list can be found in the Routine Panel of the `Routine` tab.
 </div>
 
-### Viewing help : `help`
+###<span style="color:#faac69">Viewing help : `help`</span>
 
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
 Shows a message explaning how to access the help page.
 
 ![help message](images/helpImage.png)
 
 Format: `help`
+</div>
 
+###<span style="color:#faac69">Adding a client: `add`</span>
 
-### Adding a client: `add`
-
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
 Adds a client to the FitBook.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT
-[cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/Routines] [g/gender] [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER
+[cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE_NAME]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have any number of tags, appointments and exercise routines (including 0)
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
+
+* A client can have any number of `tags`, `appointments` and `exercise routines` (including 0).
+* A user cannot add an exercise routine to client that does not exist in the exercise routine list in the `Exercise` tab.
+* Gender should be either M or F (not case-sensitive).
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-* `add n/Betsy Crowe app/12-12-2030 cal/2300 g/Female  e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 w/50 g/M r/Cardio`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/93125841 t/John's Friend w/55 g/F`
+* `add n/Betsy Crowe app/12-12-2030 cal/2300 g/F e/betsycrowe@example.com a/Newgate Prison p/93125841 t/Friend r/Cardio`
 
-### Listing all clients : `listClients`
+Using `add n/Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 w/50 g/M r/Cardio` in the command input box will look like this:
+<img src="images/AddClientUG.png"/>
+</div>
 
-Displays a list of all clients in the FitBook.
+###<span style="color:#faac69">Listing all clients : `listClients`</span>
+
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+Displays a list of all clients in the FitBook under the Client panel.
 
 Format: `listClients`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** To list all clients in the client panel after using find.</div>
+
 * Initiate the command with 'listClients'
 * All clients in FitBook has been listed once again!
+</div>
 
-### Editing a client : `edit`
+###<span style="color:#faac69">Editing a client : `edit`</span>
 
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
 Edits an existing client in the FitBook.
 
-Format: `edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT
-[cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/Routines] [g/gender] [app/APPOINTMENT_TIME] [t/TAG]…​`
+Format: `edit CLIENT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER
+[cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE_NAME]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
 
-* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the client at the specified `CLIENT_INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
-* You can remove all the client’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing `tags`,`appointments` and `routines`, the existing `tags`,`appointments` and `routines` of the client will be removed i.e adding of `tags`,`appointments` and `routines` are not cumulative.
+* You can remove all the client’s tags by typing `t/` without specifying any tags after it. (same for `appointments` with `/app` prefix and `routines` with `/r`)
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
@@ -127,16 +147,21 @@ Examples:
 *  `edit 3 w/23.0` Edits the weight of the 3rd client to `23.0`.
 *  `edit 4 w/25.0 g/m` Edits the weight and gender of the 4th client to `25.0` and `m`.
 
-### Locating clients by name: `find`
+Using `edit 1 p/91234567 e/johndoe@example.com` in the command input box will look like this:
+<img src="images/EditClientUG.png"/>
+</div>
 
-Finds Clients in Fitbook whose details contain any of the given keywords.
+###<span style="color:#faac69">Locating clients by fields: `find`</span>
+
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+Finds Clients in FitBook whose details contain any of the given keywords.
 
 Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [w/WEIGHT] [g/GENDER] [cal/CALORIE] [t/TAG]
-[app/APPOINTMENT]…​`
+[app/APPOINTMENT]`
 
-* Prefix must be included, or there will be an exception. Multiple prefixes are allowed per command.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
+
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`
 * Details containing the keyword will also be matched, even if both do not match exactly.
   e.g. `Han` will match `Hans`, `John` will match `John Li` and `John Tan`,
   `19` will match `1900` and `0190`
@@ -155,13 +180,14 @@ Available Prefixes:
 
 Examples:
 * `find n/Alex` returns every client with 'Alex' in their name.
-* `find p/91234567` returns every client with phone numbers that matches or contains '91234567'.
-* `find n/Alex p/91234567` returns every client with 'Alex' in their name OR with phone numbers that matches or contains
+* `find p/91234567` returns every client with phone numbers that match or contains '91234567'.
+* `find n/Alex p/91234567` returns every client with 'Alex' in their name OR with phone numbers that match or contain
 '91234567'
-* `find alex david` will throw an exception, since there is a missing prefix in the command.
+</div>
 
-### Deleting a client : `delete`
+###<span style="color:#faac69">Deleting a client : `delete`</span>
 
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
 Deletes the specified client from the FitBook.
 
 Format: `delete INDEX`
@@ -173,63 +199,112 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the FitBook.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+</div>
 
-### Clearing all entries : `clear`
+###<span style="color:#faac69">Clearing all entries : `clear`</span>
 
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
 Clears all entries from the FitBook.
 
 Format: `clear`
+</div>
 
-### Export Client details : `export`
+###<span style="color:#faac69">Export Client details : `export`</span>
 
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
 Exports the client details locally into a csv file.
 
 Format: `export`
+</div>
 
-### Listing all Routines in FitBook : `listRoutines`
+###<span style="color:#faac69">Adding a routine: `addRoutine`</span>
 
-List all Routines in FitBook.
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+Adds a routine to the FitBook.
+
+Format: `addRoutine r/ROUTINE_NAME [ex/EXERCISE]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
+
+* A client can have any number of `Exercise` (including 0).
+
+Examples:
+* `add r/Cardio`
+* `add r/HIIT ex/3x10sets of Jumping ropes`
+
+</div>
+
+###<span style="color:#faac69">Editing a routine : `editRoutine`</span>
+
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+Edits an existing routine in the FitBook.
+
+Format: `editRoutine ROUTINE_INDEX r/ROUTINE_NAME` or `editRoutine INDEX exno/EXERCISE_INDEX ex/EXERCISE`
+
+* Edits the routine at the specified `ROUTINE_INDEX`. The index refers to the index number shown in the displayed routine list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the two types should be used. No mixture of the two types is not allowed.
+* This command only allows the editing existing Routine's name or existing Exercise's name.
+
+Examples:
+*  `edit 1 r/Cardio` Edits the routine name of the 1st routine to be `Cardio` respectively.
+*  `edit 2 exno/1 ex/3x10sets dumbbells` Edits the exercise of the 2nd routine to be `3x10sets dumbbells`.
+</div>
+
+###<span style="color:#faac69">Listing all Routines in FitBook : `listRoutines`</span>
+
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+List all Routines in FitBook under Exercise tab.
 
 Format: `listRoutines`
 
 * Initiate the command with 'listRoutines'
 * All Routines in FitBook has been listed once again!
+</div>
 
-### Locating Routines by name: `findRoutine`
+###<span style="color:#faac69">Locating Routines by name: `findRoutine`</span>
 
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
 Finds Routines in FitBook whose Routine name contains any of the given keywords.
 
-Format: `findRoutine KEYWORD ​`
+Format: `findRoutine KEYWORD`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
 
 * The search is case-insensitive. e.g `cardio` will match `Cardio`.
 * The order of the keywords does not matter. e.g. `Fun swimming` will match `Swimming fun`.
 
 Examples:
 * `findRoutine Cardio`
+</div>
 
-### Clearing all Routine entries : `clearRoutines`
+###<span style="color:#faac69">Clearing all Routine entries : `clearRoutines`</span>
 
-Clears all Routine entries in FitBook.
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+Clears all Routine entries in FitBook under the `Exercise` Tab.
 
 Format: `clearRoutines`
+</div>
 
-### Deleting a routine : `deleteRoutine`
+###<span style="color:#faac69">Deleting a routine : `deleteRoutine`</span>
 
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
 Deletes the specified Routine from the FitBook.
 
 Format: `deleteRoutine ROUTINE_INDEX`
 
 * Deletes the routine at the specified `ROUTINE_INDEX`.
-* The index refers to the index number shown in the displayed Routine list in the exercise panel.
+* The index refers to the index number shown in the displayed Routine list in the `Exercise panel`.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `listRoutines` followed by `deleteRoutine 2` deletes the 2nd Routine in FitBook.
 * `findRoutine Cardio` followed by `deleteRoutine 1` deletes the 1st Routine in the results of the `findRoutine` command.
+</div>
 
-### Adding an Exercise : `addExercise`
+###<span style="color:#faac69">Adding an Exercise : `addExercise`</span>
 
-Adds an exercise to a current Routine in FitBook
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+Adds an exercise to a current Routine in FitBook.
 
 Format: `addExercise ROUTINE_INDEX ex/EXERCISE_NAME`
 
@@ -239,9 +314,11 @@ Format: `addExercise ROUTINE_INDEX ex/EXERCISE_NAME`
 
 Examples:
 * `listRoutines` followed by `addExercise 1 ex/push ups` adds the exercise `push ups` to the first Routine in the exercise list in FitBook.
+</div>
 
-### Deleting an Exercise : `deleteExercise`
+###<span style="color:#faac69">Deleting an Exercise : `deleteExercise`</span>
 
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
 Deletes an exercise from a Routine in FitBook.
 
 Format: `deleteExercise ROUTINE_INDEX EXERCISE_INDEX`
@@ -254,24 +331,29 @@ Format: `deleteExercise ROUTINE_INDEX EXERCISE_INDEX`
 Examples:
 * `listRoutines` followed by `deleteExercise 1 2` deletes the exercise specified at index `2` from the Routine specified at index `1` in the Routine list in FitBook.
 * `findRoutine Cardio` followed `deleteExercise 1 1` deletes the exercise specified at index `1` from the Routine specified at index `1` in the results of the `findRoutineCardio` command.
+</div>
 
-### Export Routine details : `exportRoutines`
+###<span style="color:#faac69">Export Routine details : `exportRoutines`</span>
 
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
 Exports the routine details locally into a csv file.
 
 Format: `exportRoutines`
+</div>
 
-### Exiting the program : `exit`
+###<span style="color:#faac69">Exiting the program : `exit`</span>
 
+<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
 Exits the program.
 
 Format: `exit`
+</div>
 
-### Saving the data
+###<span style="color:#faac69">Saving the data</span>
 
 FitBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+###<span style="color:#faac69">Editing the data file</span>
 
 FitBook data are saved as a JSON file `[JAR file location]/data/fitbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -279,7 +361,7 @@ FitBook data are saved as a JSON file `[JAR file location]/data/fitbook.json`. A
 If your changes to the data file makes its format invalid, FitBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+###<span style="color:#faac69">Archiving data files `[coming in v2.0]`</span>
 
 _Details coming soon ..._
 ///PLACE HOLDER OUR ACTUAL FEATURE LIST////
@@ -393,14 +475,14 @@ Example:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+##<span style="color:#f9963f">FAQ</span>
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FitBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+##<span style="color:#f9963f">Command summary</span>
 
 
 | Action                           | Format, Examples                                                                                                                                                      |
