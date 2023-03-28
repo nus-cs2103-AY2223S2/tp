@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -15,6 +16,7 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Review;
 
 /**
  * Archives an internship application identified using it's displayed index from the list of internship applications.
@@ -70,10 +72,12 @@ public class ArchiveCommand extends Command {
 
         CompanyName companyName = internshipApplication.getCompanyName();
         JobTitle jobTitle = internshipApplication.getJobTitle();
+        Set<Review> reviews = internshipApplication.getReviews();
         Contact contact = internshipApplication.getContact();
         InterviewDate interviewDate = internshipApplication.getInterviewDate();
 
-        return new InternshipApplication(companyName, jobTitle, contact, InternshipStatus.ARCHIVED, interviewDate);
+        return new InternshipApplication(companyName, jobTitle, reviews,
+                                        contact, InternshipStatus.ARCHIVED, interviewDate);
     }
 
     @Override

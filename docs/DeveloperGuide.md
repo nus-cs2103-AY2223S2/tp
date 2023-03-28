@@ -233,6 +233,74 @@ adding a new internship application. This prevents the `AddCommand` from getting
     * Pros: Easier than implement.
     * Cons: More conflicts will occur if someone else is working on the `InternshipApplication` class at the same time.
 
+
+### Find feature
+
+The `find` command allows user to find all `InternshipApplication` whose 
+1. `CompanyName` and `JobTitle` contain the specified keyword, or
+2. `Internship status` contain the specified status, or
+3. `InterviewDate` is before, after, or between specified date(s).
+
+>**NOTE:**
+> The matching of keyword in `CompanyName` and `JobTitle` is case-insensitive. As long as one word within CompanyName` 
+> and `JobTitle` matches any of the KEYWORDS, it will be shown in result.
+
+#### How is the feature implemented
+
+The sequence diagram below describes the interaction between classes when find command entered.
+![FindSequenceDiagram](./images/FindSequenceDiagram.png)
+
+Step 1. Parsing
+
+If the command word matches the word "find", `FindCommandParser#parse()` will be called to parse 
+the argument of find. The parsing logic is further divided into three cases below:
+- Case 1: If the prefix `s/` is specified, the argument that follows the prefix immediately is 
+deemed as `InternshipStatus`. A `FindStatusCommand` with `StatusPredicate` is created to be executed. 
+- Case 2: If one of the following prefixes `before/`, `after/`, OR `from/` and `to/` is specified, the argument
+that follows immediately is deemed as `InterviewDate`. A `FindDateCommand` with appropriate subclasses of
+`DatePredicate` is created to be executed. 
+- Case 3: If none of the prefix among `s/`, `before/`, `after/`, `from/`, `to/` is specified 
+in the argument. `FindCommandParser` constructs a `FindCommand` object and treat all arguments that follow as `KEYWORD`
+
+Step 2. Execution
+
+The corresponding command is then invoked. Within each command's `execute` method, 
+`Model#updateFilteredInternshipList()` is invoked by passing in the predicate. For Cases 1 and 2, 
+only those `InternshipApplication`'s with matching `ApplicationStatus` or `InterviewDate` are added to the Model's
+`filteredInternships` whereas for Case 3, if any word within the `CompanyName` or `JobTitle` matches one of the 
+`KEYWORD`(s), then that application is added to the Model's `filteredInternships`.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command 
+is created and returned to `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` 
+displaying the returned message for 2.5 seconds.
+
+
+#### Why is it implemented this way
+
+The class diagram below shows current structure of classes related to `find` command.
+![FindFeatureClassDiagram](./images/FindFeatureClassDiagram.png)
+
+It is designed and implemented in this way to make the find command more extensible to further enhancement to be made.
+For example, developer may want to enable more prefixes that be searched using the search command. By the 
+use of inheritance, one can easily modify the behaviour of `find` command through overrding of the `execute` command
+and rely on polymorphism.
+
+#### Alternatives considered
+
+**Syntax of `find` command**
+
+* **Alternative 1 (current choice):** Now to find attribute in `InternshipApplication`, the command syntax used is
+by using its prefix, i.e. in this form `find s/PENDING`. 
+  * Pros: shorter command
+  * Cons: Parser logic is harder to maintain as compared to Alternative 2
+
+* **Alternative 2:** We can also make it in such format find_<Attribute>, e.g. find_status. 
+  * Pros: Easy parser to implement
+  * Cons: Longer command which takes longer time to type
+
+
 ### Clear_by feature
 This section elaborated the `clear_by` feature by its functionality and the path of execution together with the `ClearByCommand` implementation. Uml diagrams are used to aid this description.
 
@@ -290,9 +358,61 @@ For the ease of implementation and avoid ambiguity, constructor `ClearByCommand:
 The other implementation aspects of `clear_by` feature follow the convention of `InternEase`.
 _{more aspects and alternatives to be added}_
 
+### Add Interview Date feature 
+
+#### How is the feature implemented
+
+The `add_date` command allows users to add an interview date to an internship application. The implementation of the `add_date` command is facilitated by the `AddInterviewDateCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method.
+The parsing process meanwhile involves the `AddressBookParser#parse#` and the `AddInterviewDateCommandParser#parse` methods.
+
+The constructor of the class `AddInterviewDateCommand` requires 2 arguments, a valid positive `Integer` index and a `InterviewDate` object, both of which are obtained after the parsing process mentioned above.
+
+The relevant operations from the `Model` interface are `Model#getFilteredInternshipList`, `Model#setApplication` and `Model#updateFilteredInternshipList`.
+
+Given below is an explanation on the `add_contact` command's behaviours.
+
+Step 1. Parsing
+
+The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parser`.
+The method `AddInterviewDateCommandParser#parse` is invoked only if the command word matches `AddInterviewDateCommand.COMMAND_WORD`.
+
+Step 2. Execution
+
+The `AddInterviewDateCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getFilteredInternshipList`.
+The internship application where the interview date is to be added is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
+immutable, a new `InternshipApplication` object is created with the interview date. The `Model#setApplication` method is then invoked to update the specified application in the list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 2.5 seconds.
+
+>**NOTE:**
+> Error handling: Any error message returned in the midst of execution will be displayed as a `ResultDialog` and the current command executed terminates immediately.
+
+#### Why is it implemented this way
+
+The `AddInterviewDateCommand` provides enhancement to the existing `AddCommand` by separating the process of adding the interview date for an application from the initial process of
+adding a new internship application. This prevents the `AddCommand` from getting cluttered with large amount of arguments that may become difficult for the user to remember.
+
+**Aspect: Where to save the contact details:**
+
+* **Alternative 1 (current choice):** Separating it into a separate `InterviewDate` class.
+    * Pros: Flexibility to add more details to the contact if needed in the future.
+    * Cons: More time required to implement.
+
+* **Alternative 2:** Adding interview date as an attribute in the `InternshipApplication` class.
+    * Pros: Easier than implement.
+    * Cons: More conflicts will occur if someone else is working on the `InternshipApplication` class at the same time.
+  
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+### \[Proposed\] Upcoming Interview reminder 
+
+_{Explain here how the data archiving feature will be implemented}_
+
 
 
 --------------------------------------------------------------------------------------------------------------------
