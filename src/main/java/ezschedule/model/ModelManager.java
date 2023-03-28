@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import ezschedule.commons.core.GuiSettings;
 import ezschedule.commons.core.LogsCenter;
 import ezschedule.model.event.Event;
+import ezschedule.model.event.UpcomingEventPredicate;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -17,11 +18,15 @@ import javafx.collections.transformation.FilteredList;
  * Represents the in-memory model of the scheduler data.
  */
 public class ModelManager implements Model {
+
+    public static final int DISPLAY_UPCOMING_COUNT = 1;
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Scheduler scheduler;
     private final UserPrefs userPrefs;
     private final FilteredList<Event> filteredEvents;
+    private final FilteredList<Event> upcomingEvents;
+
 
     /**
      * Initializes a ModelManager with the given scheduler and userPrefs.
@@ -34,6 +39,7 @@ public class ModelManager implements Model {
         this.scheduler = new Scheduler(scheduler);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEvents = new FilteredList<>(this.scheduler.getEventList());
+        upcomingEvents = new FilteredList<>(this.scheduler.getEventList());
     }
 
     public ModelManager() {
@@ -123,15 +129,6 @@ public class ModelManager implements Model {
      * {@code scheduler}
      */
     @Override
-    public ObservableList<Event> getUpcomingEventList() {
-        return scheduler.getUpcomingEvents();
-    }
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
-     * {@code scheduler}
-     */
-    @Override
     public ObservableList<Event> getEventList() {
         return scheduler.getEventList();
     }
@@ -142,9 +139,22 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Event> getUpcomingEventList() {
+        UpcomingEventPredicate predicate = new UpcomingEventPredicate(DISPLAY_UPCOMING_COUNT);
+        upcomingEvents.setPredicate(predicate);
+        return upcomingEvents;
+    }
+
+    @Override
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateUpcomingEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        upcomingEvents.setPredicate(predicate);
     }
 
     @Override

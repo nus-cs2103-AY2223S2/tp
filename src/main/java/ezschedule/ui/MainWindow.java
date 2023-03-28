@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private EventListPanel eventListPanel;
+    private ShowNextPanel showNextPanel;
     private ResultDisplay resultDisplay;
 
     @FXML
@@ -45,6 +46,8 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
     @FXML
     private StackPane statusbarPlaceholder;
+    @FXML
+    private StackPane showNextPlaceholder;
     @FXML
     private StackPane calendarPlaceholder;
 
@@ -121,6 +124,9 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        showNextPanel = new ShowNextPanel(logic.getUpcomingEventList());
+        showNextPlaceholder.getChildren().add(showNextPanel.getRoot());
+
         Calendar calendar = new Calendar(logic.getEventList(), logic::updateFilteredEventList);
         calendarPlaceholder.getChildren().add(calendar.getRoot());
     }
@@ -167,6 +173,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public EventListPanel getEventListPanel() {
         return eventListPanel;
+    }
+
+    public ShowNextPanel getShowPanel() {
+        return showNextPanel;
     }
 
     /**
