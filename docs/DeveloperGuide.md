@@ -1,9 +1,10 @@
+---
 layout: page
 title: Developer Guide
 ---
 DEVELOPER GUIDE FOR WIFE
 ---
-* Table of Contents (to be implemented)
+* Table of Contents
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 WIFE is a food inventory management system that aims to aid busy users in managing food items in their fridge. With its 
