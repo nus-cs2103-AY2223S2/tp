@@ -2,9 +2,10 @@ package seedu.address.model.person;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import static seedu.address.testutil.Assert.assertThrows;
 
 public class EmailTest {
