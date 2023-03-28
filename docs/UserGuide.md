@@ -33,11 +33,11 @@ This User Guide provides brief documentation on how you can install the applicat
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
-   
+
    * `export` : Exports all Client's details in FitBook into a csv file.
-   
+
    * `exportRoutine` : Exports all Routine details in FitBook into a csv file.
-   
+
    * `addRoutine r/Cardio ex/3x5 1km Jog ex/3x10 Jumping Jacks` : Adds a new routine named `Cardio` with 2 exercises `3x5 1km Jog` and `3x10 Jumping Jacks`.
 
    * `exit` : Exits the app.
