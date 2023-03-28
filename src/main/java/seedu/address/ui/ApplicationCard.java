@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InterviewDate;
@@ -33,6 +34,8 @@ public class ApplicationCard extends UiPart<Region> {
     @FXML
     private Label jobTitle;
     @FXML
+    private VBox reviews;
+    @FXML
     private Label name;
     @FXML
     private Label id;
@@ -58,6 +61,8 @@ public class ApplicationCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         companyName.setText(application.getCompanyName().fullName);
         jobTitle.setText(application.getJobTitle().fullName);
+        application.getReviews().stream()
+                .forEach(review -> reviews.getChildren().add(new Label(review.value)));
         internshipStatus.setText(application.getStatus().name());
         Contact companyContact = application.getContact();
         if (companyContact != null) {

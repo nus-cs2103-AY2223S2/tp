@@ -3,7 +3,9 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REVIEW;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -11,6 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Review;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -24,7 +27,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY_NAME, PREFIX_JOB_TITLE);
+                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY_NAME, PREFIX_JOB_TITLE, PREFIX_REVIEW);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY_NAME, PREFIX_JOB_TITLE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -34,8 +37,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         CompanyName companyName = ParserUtil.parseCompanyName(
                                                     argMultimap.getValue(PREFIX_COMPANY_NAME).orElse(null));
         JobTitle jobTitle = ParserUtil.parseJobTitle(argMultimap.getValue(PREFIX_JOB_TITLE).orElse(null));
+        Set<Review> reviewList = ParserUtil.parseReviews(argMultimap.getAllValues(PREFIX_REVIEW));
 
-        InternshipApplication application = new InternshipApplication(companyName, jobTitle);
+        InternshipApplication application = new InternshipApplication(companyName, jobTitle, reviewList);
 
         return new AddCommand(application);
     }
