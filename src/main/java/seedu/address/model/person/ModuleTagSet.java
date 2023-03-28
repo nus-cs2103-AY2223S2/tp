@@ -85,6 +85,13 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
     }
 
     /**
+     * Removes the module code from the set of modules.
+     */
+    public void remove(String moduleCode) {
+        modules.remove(moduleCode);
+    }
+
+    /**
      * Removes all module tags from the set of modules.
      * Gives access from outside classes to this set.
      */
