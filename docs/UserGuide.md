@@ -12,9 +12,11 @@ friends. We built this personalised desktop app to help **YOU** do just that!
 If this is the first time you are using this user guide, we highly recommend you to read the [Overview](#overview) section. Otherwise,
 
 * If you are running EduMate for the first time, please take a look at our [Quick Start](#quick-start) guide.
-* If you want to learn to use EduMate, do check out our [Commands](#) section for a detailed guide.
+* If you want to learn to use EduMate, do check out our [Commands](#commands) section for a detailed guide.
+* If you want a more hands-on learning experience with EduMate, you start from our[Try-it-out](#try-it-out-recommended) section.
 * If you want to contribute to this project, please refer to our [Developer Guide](https://ay2223s2-cs2103t-w14-2.github.io/tp/DeveloperGuide.html).
 
+For **experienced users**, you may refer to the [Command Summary](#command-summary) for a summarised table of all the commands available. 
 ## Table of Contents
 1. [**Using this Guide**](#using-this-guide)
 2. [**Table of Contents**](#table-of-contents)
@@ -25,7 +27,7 @@ If this is the first time you are using this user guide, we highly recommend you
 4. [**Quick Start**](#quick-start)
     1. [**System Requirements**](#system-requirements)
     2. [**Installation Instructions**](#installation-instructions)
-    3. [**Try it out! (Recommended)**](#try-it-out-)
+    3. [**Try it out! (Recommended)**](#try-it-out-recommended)
     4. [**Getting Help**](#getting-help)
 5. [**User Interface**](#user-interface)
     1. [**Person List**](#person-list)
@@ -97,6 +99,10 @@ Here is a breakdown of the different symbols and colours we will use throughout 
 
 ### Glossary
 
+* **Command Line Interface (CLI)**: A text-based user interface (UI) used to run programs, manage computer files and interact with the computer
+* **Graphical User Interface (GUI)**: A form of user interface that allows users to interact with electronic devices through graphical icons
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+
 [Return to the top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -126,14 +132,28 @@ Do also ensure that you have Java `11` or above installed in your Computer. If y
 
 ### Try it out! (Recommended)
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Important:** <br>
+Ensure you have met the system requirements and installed EduMate properly on a computer. If you have not,
+please see [System Requirements](#system-requirements) and [Installation Instructions](#installation-instructions)
+before continuing.
+<br>
+</div>
+
 Before we begin our journey through EduMate's many features, do choose whether you would like a guided or unguided experience.
 
 1. For a guided experience, type `sample 100` in the command box located at the top left of the application. This will create 100 sample contacts in your EduMate to serve as your playground.
 2. If you want to start with a fresh EduMate, type `clear` in the same command box.
+3. Try your hands out whilst referring to [Commands](#commands)
 
 ### Getting help
 
 Should you get stuck at any point, it is likely that the solution can be found in the [Commands](#commands) section of this User Guide. Otherwise, type in the `help` command...
+
+If you need more assistance, do not hesitate to head over to our
+[Github](https://github.com/AY2223S2-CS2103T-W14-2/tp) page and file an issue with a tag *customer-assistance-required*.
+A member of our core team will attend to you as soon as possible.
 
 [Return to the top](#table-of-contents)
 
@@ -166,10 +186,10 @@ Should you get stuck at any point, it is likely that the solution can be found i
 
 After getting comfortable trying EduMate, you are now ready to start personalising it!
 
-Step 1. Run `java -jar eduMate.jar`. The application window will open and show you where you have left off
+**Step 1.** Run `java -jar eduMate.jar`. The application window will open and show you where you have left off
 (if you have tried out `sample` from earlier) <br>
 
-Step 2. On the Command Box, execute `edit n/[YOUR NAME] p/[YOUR CONTACT NUMBER] t/@[YOUR TELEGRAM HANDLE] 
+**Step 2.** On the Command Box, execute `edit n/[YOUR NAME] p/[YOUR CONTACT NUMBER] t/@[YOUR TELEGRAM HANDLE] 
 a/[NEAREST MRT STATION TO YOUR HOUSE] e/[YOUR EMAIL]`
 <br>
 <div markdown="span" class="alert alert-primary">
@@ -184,7 +204,7 @@ can then edit over later!
 
 </div>
 
-Step 3. To add the modules that you are studying as such :
+**Step 3.** To add the modules that you are studying as such :
 `tag m/[MODULE_CODE] DAY START_TIME END_TIME`
 <br>
 <div markdown="span" class="alert alert-primary">
@@ -194,9 +214,9 @@ E.g `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
 
 </div>
 
-Step 4. To add group tags {Kenny Please} <br>
+**Step 4.** To add group tags {Kenny Please} <br>
 
-Step 5. You are done! **ENJOY!** <br>
+**Step 5.** You are done! **ENJOY!** <br>
 
 
 [Return to the top](#table-of-contents)
@@ -205,7 +225,7 @@ Step 5. You are done! **ENJOY!** <br>
 
 ## Commands
 
-{to be filled in}
+`EduMate` is an application that works with commands. Commands can be executed to carry out certain functionalities of the application.
 
 ### How to interpret the command format
 
@@ -216,7 +236,7 @@ Step 5. You are done! **ENJOY!** <br>
 * The first word is the type of command that you are running.<br>
   e.g. for the command `delete 5`, we are running the `delete` command.
 
-* We use [Prefixes]() like `p/` and `g/` to label our arguments for the command. Additionally, we use numbers to specify the index of contacts in our list.<br>
+* We use [Prefixes](#prefixes) like `p/` and `g/` to label our arguments for the command. Additionally, we use numbers to specify the index of contacts in our list.<br>
   e.g. `edit 2 n/Steven Tan` runs the `edit` command with an index of 2 and an `n/` argument of Steven Tan.
 
 * Words in `UPPER_CASE` are arguments you are meant to fill in.<br>
@@ -258,7 +278,11 @@ Step 5. You are done! **ENJOY!** <br>
 
 ## Arguments
 
-A contact's attributes can be categorised into two types: _single-valued_ and _multi-valued_. A contact may have only one of each single-valued attribute, such as name, phone number, email address, Telegram handle, and home address. Conversely, a contact may have any number of multi-valued attributes, such as groups and modules.
+A contact's attributes can be categorised into two types: _single-valued_ and _multi-valued_. 
+
+A contact may have only one of each single-valued attribute, such as name, phone number, email address, Telegram handle, and home address. 
+
+Conversely, a contact may have any number of multi-valued attributes, such as groups and modules.
 
 ### Name
 
@@ -413,7 +437,7 @@ Module(s) in common: [CS2101, CS2103T]
 ```
 Description of outcome:
 
-CS2103T is added to John Doe's list of modules. Assuming the user also takes CS2101 and CS2103T, which are represented as the modules in common.
+CS2103T is added to John Doe's list of modules. Assuming you also take CS2101 and CS2103T, which are represented as the modules in common.
 
 Example of usage: tag m/CS2103T
 ```
@@ -608,8 +632,7 @@ social, academic or other general meetings.
 
 You can use this command if:
 * You want to schedule a meetup for academic, social or other general purposes.
-* You find it difficult to agree on a timing and location that is suitable for all your friends to
-meet and you require a recommendation.
+* You find it difficult to agree on a timing and location that is suitable for all your friends to meet and you require a recommendation.
 
 </div>
 
@@ -663,3 +686,14 @@ If you want to end the application, simply type `exit`, or click on the `Exit` b
 ## Troubleshooting
 
 ### How to check your Java version
+
+#### For **Windows** Users
+{Kenny and Sean pls}
+
+#### For **Mac** and **Linux** Users
+**Step 1** Open up Terminal.
+
+**Step 2** Run the command `java -version`
+
+**Step 3** Check the version number from the output.
+
