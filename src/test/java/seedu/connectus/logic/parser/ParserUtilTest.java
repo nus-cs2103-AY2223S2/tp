@@ -205,8 +205,8 @@ public class ParserUtilTest {
     @Test
     public void parseRemarks_collectionWithValidRemarks_returnsRemarkSet() throws Exception {
         Set<Remark> actualRemarkSet = ParserUtil.parseRemarks(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Remark> expectedRemarkSet = new HashSet<Remark>(Arrays.asList(new Remark(VALID_TAG_1), new Remark(VALID_TAG_2)));
-
+        Set<Remark> expectedRemarkSet = new HashSet<Remark>(Arrays.asList(new Remark(VALID_TAG_1),
+                new Remark(VALID_TAG_2)));
         assertEquals(expectedRemarkSet, actualRemarkSet);
     }
 

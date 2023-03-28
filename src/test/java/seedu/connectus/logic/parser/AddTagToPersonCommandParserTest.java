@@ -24,7 +24,8 @@ public class AddTagToPersonCommandParserTest {
         var modules = new HashSet<Module>();
         modules.add(new Module("MOD1234"));
         assertParseSuccess(parser, "1 r/tagg mod/MOD1234",
-            new AddTagToPersonCommand(INDEX_FIRST_PERSON, new AddTagToPersonCommand.AddTagDescriptor(remarks, modules)));
+            new AddTagToPersonCommand(INDEX_FIRST_PERSON,
+                    new AddTagToPersonCommand.AddTagDescriptor(remarks, modules)));
     }
 
     @Test
