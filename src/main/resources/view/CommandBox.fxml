@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Text?>
 
-<StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane alignment="CENTER_RIGHT" styleClass="stack-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <HBox fx:id="suggestionsBox" visible="false" alignment="CENTER_RIGHT" style="-fx-padding: 0 20 0 0;">
+    <Text text="TAB" style="-fx-font-weight: bold; -fx-fill: grey;"/>
+    <Text text=" to cycle through suggestions" style="-fx-fill: grey;"/>
+  </HBox>
   <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..."/>
 </StackPane>
 

@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.logic.autocompletion.Autocompletion;
 import seedu.address.logic.commands.CommandResult;
@@ -26,6 +27,9 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private TextField commandTextField;
 
+    @FXML
+    private HBox suggestionsBox;
+
     private List<String> suggestions;
 
     /**
@@ -35,6 +39,7 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandExecutor = commandExecutor;
         this.suggestions = new ArrayList<>();
+        suggestionsBox.setVisible(false);
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, oldValue, newValue) -> {
                 handleInputUpdated();
@@ -67,10 +72,7 @@ public class CommandBox extends UiPart<Region> {
             suggestions.add(input + suggestionToAppend);
         }
 
-        for (String suggestion : suggestions) {
-            System.out.println(suggestion);
-        }
-        System.out.println("-------------------------");
+        suggestionsBox.setVisible(suggestions.size() > 1);
     }
 
     private void cycleSuggestions() {
