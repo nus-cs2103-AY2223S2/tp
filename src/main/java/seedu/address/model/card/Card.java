@@ -52,6 +52,21 @@ public class Card {
         this.isFlipped = isFlipped;
     }
 
+    /**
+     * Overloaded constructor to instantiate a card with a different tag.
+     *
+     * @param toUpdate Cards to copy.
+     * @param tag New tag.
+     */
+    public Card(Card toUpdate, Tag tag) {
+        requireAllNonNull(toUpdate, tag);
+        this.question = toUpdate.question;
+        this.answer = toUpdate.answer;
+        this.deck = toUpdate.deck;
+        this.isFlipped = toUpdate.isFlipped;
+        this.tag = tag;
+    }
+
     public Question getQuestion() {
         return question;
     }
@@ -125,6 +140,13 @@ public class Card {
     }
 
     /**
+     * Builds a new card of similar attributes but with a different tag
+     */
+    public Card buildCardWithtag(Tag tag) {
+        return new Card(this, tag);
+    }
+
+    /**
      * Returns true if both cards have the same identity and data fields.
      * This defines a stronger notion of equality between two cards.
      */
@@ -143,7 +165,7 @@ public class Card {
                 && otherCard.getAnswer().equals(getAnswer())
                 && otherCard.getTag().equals(getTag())
                 && otherCard.getDeck().equals(getDeck())
-                && otherCard.isFlipped == isFlipped();
+                && otherCard.isFlipped == isFlipped;
     }
 
     @Override

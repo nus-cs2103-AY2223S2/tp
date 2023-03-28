@@ -15,6 +15,7 @@ import seedu.address.model.card.Card;
 import seedu.address.model.card.IsSameCardPredicate;
 import seedu.address.model.card.UniqueCardList;
 import seedu.address.model.deck.Deck;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Review session that is currently underway.
@@ -57,6 +58,7 @@ public class Review {
 
         // initialize review stats
         reviewStatsList = FXCollections.observableList(new ArrayList<>());
+        updateReviewStatsList();
     }
 
     /**
@@ -94,13 +96,25 @@ public class Review {
         this.uniqueReviewCardList.setCard(card, card.buildFlippedCard());
     }
 
+    /**
+     * Updates the current card whenever the current card is modified in the Review card list.
+     */
+    private void updateCurrCard() {
+        int indexInReview = orderOfCards.get(currCardIndex);
+        currCard = this.unmodifiableReviewCardList.get(indexInReview);
+    }
+
+    /**
+     * Flips the current card in review.
+     */
     public void flipCurrCard() {
         if (currCard.isFlipped()) {
             unflipCard(currCard);
         } else {
             flipCard(currCard);
         }
-        currCard = unmodifiableReviewCardList.get(orderOfCards.get(currCardIndex));
+
+        updateCurrCard();
     }
 
     /**
@@ -150,8 +164,28 @@ public class Review {
         return true;
     }
 
-    public ObservableList<Pair<String, String>> getReviewStatsList() {
+    /**
+     * Returns the current card in the review.
+     * Card is always flipped to be consistent with the cards in MasterDeck.
+     *
+     * @return the current card flipped.
+     */
+    public Card getCurrCard() {
+        return currCard.buildFlippedCard();
+    }
+
+    /**
+     * Tags the current card in review as easy/medium/hard
+     *
+     * @param tag the tag to add to current card.
+     */
+    public void tagCurrentCard(Tag tag) {
+        uniqueReviewCardList.setCard(currCard, currCard.buildCardWithtag(tag));
+        updateCurrCard();
         updateReviewStatsList();
+    }
+
+    public ObservableList<Pair<String, String>> getReviewStatsList() {
         return reviewStatsList;
     }
 
@@ -169,10 +203,6 @@ public class Review {
 
     public int getNoOfUntagged() {
         return (int) unmodifiableReviewCardList.stream().filter(card -> card.getTagName().equals("untagged")).count();
-    }
-
-    public void tagCard() {
-        updateReviewStatsList();
     }
 
     public ObservableList<Pair<String, String> > getReviewDeckNameList() {

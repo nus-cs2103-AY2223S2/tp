@@ -96,8 +96,14 @@ public class MasterDeck implements ReadOnlyMasterDeck {
         cards.setCard(target, editedCard);
     }
 
+    /**
+     * Tags the given card in the list with the new tag.
+     *
+     * @param target Card to be tagged.
+     * @param tag New tag.
+     */
     public void tagCard(Card target, Tag tag) {
-        cards.tagCard(target, tag);
+        setCard(target, target.buildCardWithtag(tag));
     }
 
     /**
