@@ -15,7 +15,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
-import seedu.address.model.event.Note;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 
@@ -34,7 +33,6 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedConsultation> consultations = new ArrayList<>();
     private final List<JsonAdaptedTutorial> tutorials = new ArrayList<>();
     private final List<JsonAdaptedLab> labs = new ArrayList<>();
-    private final List<JsonAdaptedNote> notes = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
@@ -43,13 +41,11 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                        @JsonProperty("tutorials") List<JsonAdaptedTutorial> tutorials,
                                        @JsonProperty("labs") List<JsonAdaptedLab> labs,
-                                       @JsonProperty("consultations") List<JsonAdaptedConsultation> consultations,
-                                       @JsonProperty("notes") List<JsonAdaptedNote> notes) {
+                                       @JsonProperty("consultations") List<JsonAdaptedConsultation> consultations) {
         this.persons.addAll(persons);
         this.consultations.addAll(consultations);
         this.tutorials.addAll(tutorials);
         this.labs.addAll(labs);
-        this.notes.addAll(notes);
     }
 
     /**
@@ -65,7 +61,6 @@ class JsonSerializableAddressBook {
                 .collect(Collectors.toList()));
         tutorials.addAll(source.getTutorialList().stream().map(JsonAdaptedTutorial::new).collect(Collectors.toList()));
         labs.addAll(source.getLabList().stream().map(JsonAdaptedLab::new).collect(Collectors.toList()));
-        notes.addAll(source.getGeneralNoteList().getNotes().stream().map(JsonAdaptedNote::new).collect(Collectors.toList()));
     }
 
     /**
@@ -106,13 +101,6 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CONSULTATION);
             }
             addressBook.addConsultation(consultation);
-        }
-        for (JsonAdaptedNote jsonAdaptedNote : notes) {
-            Note note = jsonAdaptedNote.toModelType();
-            if (addressBook.hasNote(note)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_CONSULTATION);
-            }
-            addressBook.addNote(note);
         }
         return addressBook;
     }

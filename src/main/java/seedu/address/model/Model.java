@@ -222,19 +222,6 @@ public interface Model {
     void updateFilteredConsultationList(Predicate<Consultation> predicate);
 
     /**
-     * Checks whether a note has been added before
-     * @param note The note to check against
-     * @return A boolean indicating whether it has been added
-     */
-    boolean hasNote(Note note);
-
-    /**
-     * Add notes to the existing note list
-     * @param note The note to add
-     */
-    void addNote(Note note);
-
-    /**
      * Append notes to an existing tutorial note list
      * @param note The note to add
      */

@@ -29,24 +29,20 @@ public class AddNoteParser implements Parser<AddNoteToEventCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(newArgs, PREFIX_NOTE_EXTERNAL, PREFIX_NOTE_CONTENT,
                         PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME);
-        if (!arePrefixesPresent(argMultimap, PREFIX_NOTE_CONTENT)) {
+        if (arePrefixesAbsent(argMultimap, PREFIX_NOTE_CONTENT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddNoteToEventCommand.MESSAGE_USAGE));
         }
 
-        String name = ParserUtil.parseNoteContent(argMultimap.getValue(PREFIX_NOTE_CONTENT).get());
-        Note note = new Note(name);
-
         // The case of adding note without event
-        if (arePrefixesAbsent(argMultimap, PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME)) {
-            return new AddNoteToEventCommand(note);
-        }
         if (!arePrefixesPresent(argMultimap, PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddNoteToEventCommand.MESSAGE_USAGE));
         }
+        String name = ParserUtil.parseNoteContent(argMultimap.getValue(PREFIX_NOTE_CONTENT).get());
         String eventName = argMultimap.getValue(PREFIX_NOTE_EVENT_NAME).get();
         String eventType = argMultimap.getValue(PREFIX_NOTE_EVENT_TYPE).get();
+        Note note = new Note(name);
         return new AddNoteToEventCommand(note, eventName, eventType);
     }
 

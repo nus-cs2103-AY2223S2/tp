@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +36,12 @@ public class UniqueTutorialList implements Iterable<Tutorial> {
     public boolean contains(Tutorial toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameTutorial);
+    }
+
+    public boolean containsNote(Note note) {
+        requireNonNull(note);
+        Optional<NoteList> mergedList = internalList.stream().map(Event::getNoteList).reduce(NoteList::merge);
+        return mergedList.map(noteList -> noteList.getNotes().stream().anyMatch(note::equals)).orElse(false);
     }
 
     // todo: probably try remove get and size methods to preserve abstraction barrier

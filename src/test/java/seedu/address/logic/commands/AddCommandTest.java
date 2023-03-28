@@ -259,16 +259,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasNote(Note note) {
-            return false;
-        }
-
-        @Override
-        public void addNote(Note note) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addNoteToTutorial(Note note, String nameOfEvent) {
             throw new AssertionError("This method should not be called.");
         }

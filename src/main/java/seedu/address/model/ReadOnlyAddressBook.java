@@ -36,15 +36,4 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate labs.
      */
     ObservableList<Consultation> getConsultationList();
-
-    /**
-     * Returns the general note list.
-     */
-    NoteList getGeneralNoteList();
-
-
-    /**
-     * Returns the stash event note list.
-     */
-    NoteList getStashEventNoteList();
 }

@@ -20,8 +20,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueTutorialList tutorials;
     private final UniqueLabList labs;
     private final UniqueConsultationList consultations;
-    private final NoteList stashEventNotes;
-    private final NoteList generalNotes;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -35,8 +33,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         tutorials = new UniqueTutorialList();
         labs = new UniqueLabList();
         consultations = new UniqueConsultationList();
-        stashEventNotes = new NoteList();
-        generalNotes = new NoteList();
     }
 
     public AddressBook() {}
@@ -135,7 +131,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         setTutorials(newData.getTutorialList());
         setLabs(newData.getLabList());
         setConsultations(newData.getConsultationList());
-        setNotes(newData.getGeneralNoteList(), newData.getStashEventNoteList());
     }
 
     //// person-level operations
@@ -239,7 +234,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setLab(Lab target, Lab editedLab) {
         requireNonNull(editedLab);
-
         labs.setLab(target, editedLab);
     }
 
@@ -290,28 +284,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a note with the same identity as {@code note} exists in the address book.
-     */
-    public boolean hasNote(Note note) {
-        requireNonNull(note);
-        return generalNotes.contains(note) || stashEventNotes.contains(note);
-    }
-
-    /**
-     * Returns true if a note with the same identity as {@code note} exists in the address book.
-     */
-    public void addNote(Note note) {
-        requireNonNull(note);
-        generalNotes.add(note);
-    }
-
-
-    /**
      * Adds note to address book note list
      * @param note The note to add.
      */
     public void addNoteToTutorial(Note note, String nameOfEvent) {
-        stashEventNotes.add(note);
         for (Tutorial tutorial : tutorials) {
             if (tutorial.hasMatchByName(nameOfEvent)) {
                 tutorial.addNote(note);
@@ -320,7 +296,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public void addNoteToLab(Note note, String nameOfEvent) {
-        stashEventNotes.add(note);
         for (Lab lab : labs) {
             if (lab.hasMatchByName(nameOfEvent)) {
                 lab.addNote(note);
@@ -329,19 +304,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public void addNoteToConsultation(Note note, String nameOfEvent) {
-        stashEventNotes.add(note);
         for (Consultation consultation : consultations) {
             if (consultation.hasMatchByName(nameOfEvent)) {
                 consultation.addNote(note);
             }
         }
-    }
-
-    public void setNotes(NoteList newGeneralNotes, NoteList newStashEventNotes) {
-        generalNotes.clear();
-        stashEventNotes.clear();
-        generalNotes.addAll(newGeneralNotes);
-        stashEventNotes.addAll(newStashEventNotes);
     }
 
     //// util methods
@@ -372,16 +339,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Consultation> getConsultationList() {
         return consultations.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public NoteList getGeneralNoteList() {
-        return generalNotes.copy();
-    }
-
-    @Override
-    public NoteList getStashEventNoteList() {
-        return stashEventNotes.copy();
     }
 
     @Override

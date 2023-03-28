@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,7 +38,13 @@ public class UniqueLabList implements Iterable<Lab> {
         return internalList.stream().anyMatch(toCheck::isSameLab);
     }
 
-    // todo: probably try remove get and size methods to preserve abstraction barrier
+    public boolean containsNote(Note note) {
+        requireNonNull(note);
+        Optional<NoteList> mergedList = internalList.stream().map(Event::getNoteList).reduce(NoteList::merge);
+        return mergedList.map(noteList -> noteList.getNotes().stream().anyMatch(note::equals)).orElse(false);
+    }
+
+    // todo: probably try to remove get and size methods to preserve abstraction barrier
     public Lab get(int index) {
         return this.internalList.get(index);
     }
