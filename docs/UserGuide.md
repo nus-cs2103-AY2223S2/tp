@@ -1,6 +1,7 @@
 ---
 layout: page
 title: User Guide
+show-toc: true
 ---
 USER GUIDE FOR WIFE
 ---
