@@ -36,7 +36,7 @@ public class UniqueApplicationList implements Iterable<Application> {
     }
 
     /**
-     * Adds an Application to the list.
+     * Adds an Application to the top of the list.
      * The Application must not already exist in the list.
      */
     public void add(Application toAdd) {

@@ -60,6 +60,10 @@ public class ApplicationSampleDataUtil {
         return sampleApplications;
     }
 
+    /**
+     * Creates a new internship book populated with sample data.
+     * @return the new internship book with sample data.
+     */
     public static ReadOnlyInternshipBook getSampleInternshipBook() {
         InternshipBook sampleIb = new InternshipBook();
         sampleIb.setApplications(getSampleApplications());

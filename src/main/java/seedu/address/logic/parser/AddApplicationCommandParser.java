@@ -20,14 +20,14 @@ import seedu.address.model.application.Status;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddApplicationCommand object
+ * Parses input arguments and creates a new AddApplicationCommand object.
  */
 public class AddApplicationCommandParser implements ApplicationParser<AddApplicationCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddApplicationCommand
      * and returns an AddApplicationCommand object for execution.
-     * @throws ParseException if the user input does not conform to the expected format
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public AddApplicationCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

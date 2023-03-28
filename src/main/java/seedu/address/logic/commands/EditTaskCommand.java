@@ -42,7 +42,7 @@ public class EditTaskCommand extends ApplicationCommand {
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
-     * Creates an EditTaskCommand to edit the specified {@code Task} in an application
+     * Creates an EditTaskCommand to edit the specified {@code Task} in an application.
      */
     public EditTaskCommand(Index targetIndex, EditTaskDescriptor editTaskDescriptor) {
         requireNonNull(targetIndex);

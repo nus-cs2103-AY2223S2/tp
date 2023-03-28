@@ -131,5 +131,10 @@ public interface ApplicationModel {
      */
     boolean applicationHasTask(Application application);
 
+    /**
+     * Creates a new Application with the Task we want to add.
+     * @param target the application to add the task to.
+     * @param editedApplication the new application with task added.
+     */
     void addTaskToApplication(Application target, Application editedApplication);
 }

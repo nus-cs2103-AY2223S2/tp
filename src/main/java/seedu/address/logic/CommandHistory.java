@@ -47,7 +47,7 @@ public class CommandHistory {
     }
 
     /**
-     * Set the last command in CommandHistory as modify, i.e. it's execution
+     * Set the last command in CommandHistory as modify, i.e. its execution
      * modified the internship book.
      */
     public void setLastCommandAsModify() {
@@ -61,7 +61,7 @@ public class CommandHistory {
     /**
      * Return the previous command in CommandHistory that has modified the internship book.
      *
-     * @return the previous modify command in CommandHistory
+     * @return the previous modify command in CommandHistory.
      */
     public String getPreviousModifyCommand() {
         assert currentStatePointer > 0;
@@ -75,7 +75,7 @@ public class CommandHistory {
     /**
      * Returns the next command in CommandHistory that has modified the internship book.
      *
-     * @return the next modify command in CommandHistory
+     * @return the next modify command in CommandHistory.
      */
     public String getNextModifyCommand() {
         assert currentStatePointer < modifyCommandIndexes.size() - 1;

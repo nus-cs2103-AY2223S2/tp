@@ -9,7 +9,7 @@ import seedu.address.model.application.Application;
 import seedu.address.model.application.Status;
 
 /**
- * A class representing the logic for the statistics pie chart.
+ * A class representing the logic for the application statistics to be displayed on the GUI.
  */
 public class Statistic {
     private final HashMap<Status, Integer> statsMap = new HashMap<>();

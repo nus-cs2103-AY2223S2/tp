@@ -130,7 +130,7 @@ public class ApplicationModelManager implements ApplicationModel {
 
     /**
      * Returns an unmodifiable view of the list of {@code Application} backed by the internal list of
-     * {@code versionedInternshipBook}
+     * {@code versionedInternshipBook}.
      */
     @Override
     public ObservableList<Application> getFilteredApplicationList() {
@@ -145,7 +145,7 @@ public class ApplicationModelManager implements ApplicationModel {
 
     /**
      * Returns an unmodifiable view of the sorted list of {@code Application} backed by the internal list of
-     * {@code versionedInternshipBook}
+     * {@code versionedInternshipBook}.
      */
     @Override
     public ObservableList<Application> getSortedApplicationList() {
