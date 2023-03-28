@@ -22,7 +22,7 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
         - [Clear specific internship applications : `clear_by`](#clear-internship-application-entries-with-keyword-clear_by)
     - [Revert delete or clear](#revert-recent-deleted-an-internship-application--revert)
         - [Revert the most recent delete command : `revert`](#revert-recent-deleted-an-internship-application--revert)
-        - [Revert all delete and clear commands : `revert_all](#revert-recent-deleted-or-cleared-internship-applications--revert_all)
+        - [Revert all delete and clear commands : `revert_all`](#revert-recent-deleted-or-cleared-internship-applications--revert_all)
     - [Exit InternEase : `exit`](#exiting-the-program--exit)
   
 - [Side Features](#side-features-planning-to-apply-internships)
