@@ -2,7 +2,9 @@ package seedu.recipe.ui;
 
 import java.util.logging.Logger;
 import java.io.File;
+import java.io.IOException;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -14,10 +16,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.recipe.commons.core.GuiSettings;
 import seedu.recipe.commons.core.LogsCenter;
+import seedu.recipe.commons.exceptions.DataConversionException;
+import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.logic.Logic;
 import seedu.recipe.logic.commands.CommandResult;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.logic.parser.exceptions.ParseException;
+import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.storage.ImportManager;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
 
 /**
@@ -115,8 +121,23 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    // Alson import method - Crashes the app, needs fixing
     @FXML
     private void handleImport() {
+        ImportManager importManager = new ImportManager();
+        try {
+            ObservableList<Recipe> importedRecipes = importManager.execute();
+            for (Recipe recipe : importedRecipes) {
+                System.out.println("Recipe: " + recipe.toString());
+            }
+        } catch (DataConversionException | IOException | IllegalValueException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // My test import method
+    @FXML
+    private void newHandleImport() {
         FileChooser fileChooser = new FileChooser();
 
         // Set the file extension filter for JSON files
@@ -125,10 +146,16 @@ public class MainWindow extends UiPart<Stage> {
 
         // Show open file dialog
         File selectedFile = fileChooser.showOpenDialog(primaryStage);
-
-        if (selectedFile != null) {
-            // The selectedFile variable now contains the selected JSON file
-            // We can now pass this file to your import handling method
+        try {
+            if (selectedFile != null) {
+                ImportManager importManager = new ImportManager();
+                ObservableList<Recipe> importedRecipes = importManager.importRecipes(selectedFile);
+                for (Recipe recipe : importedRecipes) {
+                    System.out.println("Recipe: " + recipe.toString());
+                }
+            }
+        } catch (DataConversionException e) {
+            return;
         }
     }
 
