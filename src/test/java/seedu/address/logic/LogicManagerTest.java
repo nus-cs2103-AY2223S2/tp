@@ -62,7 +62,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete i/S1111111B";
-        assertCommandException(deleteCommand, MESSAGE_NRIC_DOES_NOT_EXIST);
+        assertCommandException(deleteCommand, String.format(MESSAGE_NRIC_DOES_NOT_EXIST, "S1111111B"));
     }
 
     @Test

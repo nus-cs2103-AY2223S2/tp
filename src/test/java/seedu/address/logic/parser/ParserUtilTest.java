@@ -32,7 +32,8 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#Diabetic";
 
 
-    private static final String VALID_NRIC = "T0123456A";
+    private static final String VALID_NRIC_1 = "T0123456A";
+    private static final String VALID_NRIC_2 = "S2345678B";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
@@ -51,10 +52,10 @@ public class ParserUtilTest {
     @Test
     public void parseNric_validNric_success() throws Exception {
         // No whitespaces
-        assertEquals(new Nric(VALID_NRIC), ParserUtil.parseNric(VALID_NRIC));
+        assertEquals(new Nric(VALID_NRIC_1), ParserUtil.parseNric(VALID_NRIC_1));
 
         // Leading and trailing whitespaces
-        assertEquals(new Nric(VALID_NRIC), ParserUtil.parseNric("  " + VALID_NRIC + "  "));
+        assertEquals(new Nric(VALID_NRIC_1), ParserUtil.parseNric("  " + VALID_NRIC_1 + "  "));
     }
 
     @Test
@@ -236,5 +237,27 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+    @Test
+    public void parseNrics_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseNrics(null));
+    }
+
+    @Test
+    public void parseNrics_collectionWithInvalidTags_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseNrics(Arrays.asList(VALID_NRIC_1, INVALID_NRIC)));
+    }
+
+    @Test
+    public void parseNrics_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseNrics_collectionWithValidNrics_returnsNricSet() throws Exception {
+        Set<Nric> actualNricSet = ParserUtil.parseNrics(Arrays.asList(VALID_NRIC_1, VALID_NRIC_2));
+        Set<Nric> expectedNricSet = new HashSet<Nric>(Arrays.asList(new Nric(VALID_NRIC_1), new Nric(VALID_NRIC_2)));
+
+        assertEquals(expectedNricSet, actualNricSet);
     }
 }

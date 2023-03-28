@@ -7,7 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,20 +28,20 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_nricDoesNotExist_throwsCommandException() {
-        ArrayList<Nric> nricList = new ArrayList<>();
+        Set<Nric> nricList = new HashSet<>();
         Nric nric = new Nric("T0000000A");
         nricList.add(nric);
         DeleteCommand deleteCommand = new DeleteCommand(nricList);
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NRIC_DOES_NOT_EXIST);
+        assertCommandFailure(deleteCommand, model, String.format(Messages.MESSAGE_NRIC_DOES_NOT_EXIST, "T0000000A"));
     }
 
     @Test
     public void execute_nricExist_success() {
-        ArrayList<Nric> nricList = new ArrayList<>();
+        Set<Nric> nricList = new HashSet<>();
         Nric nric = new Nric("S1234567A");
         nricList.add(nric);
         DeleteCommand deleteCommand = new DeleteCommand(nricList);
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, 1);
+        String expectedMessage = DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS + "S1234567A\n";
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(ALICE);
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -48,10 +49,10 @@ public class DeleteCommandTest {
 
     @Test
     public void equals() {
-        ArrayList<Nric> nricListOne = new ArrayList<>();
+        Set<Nric> nricListOne = new HashSet<>();
         nricListOne.add(new Nric("T0123456A"));
 
-        ArrayList<Nric> nricListTwo = new ArrayList<>();
+        Set<Nric> nricListTwo = new HashSet<>();
         nricListTwo.add(new Nric("T0654321Z"));
         DeleteCommand deleteFirstCommand = new DeleteCommand(nricListOne);
         DeleteCommand deleteSecondCommand = new DeleteCommand(nricListTwo);
@@ -60,7 +61,7 @@ public class DeleteCommandTest {
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        ArrayList<Nric> nricListOneCopy = new ArrayList<>();
+        Set<Nric> nricListOneCopy = new HashSet<>();
         nricListOneCopy.add(new Nric("T0123456A"));
         DeleteCommand deleteFirstCommandCopy = new DeleteCommand(nricListOneCopy);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
