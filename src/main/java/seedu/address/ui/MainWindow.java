@@ -21,7 +21,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-//import seedu.address.ui.calendar.CalendarDisplay;
+import seedu.address.ui.calendar.CalendarDisplay;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -40,7 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private SessionListPanel sessionListPanel;
     private ResultDisplay resultDisplay;
-    //private CalendarDisplay calendarDisplay;
+    private CalendarDisplay calendarDisplay;
     private HelpWindow helpWindow;
     private TextField commandTextField;
 
@@ -169,8 +169,8 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        //calendarDisplay = new CalendarDisplay(logic, primaryStage);
-        //calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
+        calendarDisplay = new CalendarDisplay(logic, primaryStage);
+        calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
         registerCalendarNavigationForCalendarTab();
 
         sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());

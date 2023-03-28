@@ -1,70 +1,67 @@
-/*
+
 package seedu.address.model.calendar;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.session.Session;
 
 
-*/
 /**
  * Represents a CalendarEvent in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
- *//*
+ */
 
 public class CalendarEvent implements Comparable<CalendarEvent> {
 
-    private final Person person;
+    private final Session session;
 
-    */
+
 /**
      * Creates a CalendarEvent with the given name and appointment.
-     *//*
+     */
 
-    public CalendarEvent(Person person) {
-        requireAllNonNull(person);
+    public CalendarEvent(Session session) {
+        requireAllNonNull(session);
 
-        this.person = person;
+        this.session = session;
     }
 
-    public Person getPerson() {
-        return person;
+    public Session getSession() {
+        return session;
     }
 
-    public Name getName() {
-        return person.getName();
+    public String getName() {
+        return session.getName();
     }
 
-    public Address getAddress() {
-        return person.getAddress();
+    public String getAddress() {
+        return session.getLocation();
     }
 
     public String getDate() {
-        return person.getSession().toString();
+        return session.getDate();
     }
 
     public int getDay() {
-        return this.person.getSession().getDay();
+        return this.session.getDay();
     }
 
     public int getMonth() {
-        return this.person.getSession().getMonth();
+        return this.session.getMonth();
     }
 
     public int getYear() {
-        return this.person.getSession().getYear();
+        return this.session.getYear();
     }
 
     public String getTimeFormat() {
-        return this.person.getSession().getTimeFormat();
+        return this.session.getTimeFormat();
     }
 
     public String getDuration() {
-        return this.person.getSession().getSessionDuration().toString().substring(2);
+        return this.session.getSessionDuration().toString().substring(2);
     }
 
     @Override
@@ -77,25 +74,25 @@ public class CalendarEvent implements Comparable<CalendarEvent> {
             return false;
         }
         CalendarEvent otherEvent = (CalendarEvent) other;
-        return person.getName().equals(otherEvent.getPerson().getName())
-                && person.getSession().equals(otherEvent.getPerson().getSession()); // state check
+        return session.getName().equals(otherEvent.getSession().getName())
+                && session.equals(otherEvent.getSession()); // state check
     }
 
     @Override
     public String toString() {
-        return String.format("%s, %s", getTimeFormat(), this.person.getName());
+        return String.format("%s, %s", getTimeFormat(), this.session.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(person.getName(), person.getSession());
+        return Objects.hash(session.getName(), session);
     }
 
     @Override
     public int compareTo(CalendarEvent other) {
-        return person.getSession().compareTo(other.person.getSession());
+        return session.compareTo(other.getSession());
     }
 
 
 }
-*/
+

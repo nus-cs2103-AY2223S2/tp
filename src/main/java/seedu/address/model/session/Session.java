@@ -6,13 +6,16 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 
+import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Name;
 
 /**
@@ -394,5 +397,8 @@ public class Session implements Comparable<Session> {
                 this.location,
                 this.id,
                 this.getMap());
+                
+    public List<CalendarEvent> getCalendarEvents() {
+        return Collections.singletonList(new CalendarEvent(this));
     }
 }
