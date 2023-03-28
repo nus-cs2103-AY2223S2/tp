@@ -3,6 +3,10 @@ layout: page
 title: User Guide
 ---
 
+<!---
+images with the path images/johndoe.png
+are placeholder images to be changed.
+-->
 
 ## Welcome to ConnectUS!
 
@@ -28,16 +32,19 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
   - [3.3 Command Format](#33-command-format)
   - [3.4 How to Use the CLI](#34-how-to-use-the-cli)
 - [4. Features](#4-features)
-  - [4.1 Viewing help: `help`](#41-viewing-help--help)
-  - [4.2 Adding a contact: `add`](#42-adding-a-contact-add)
-  - [4.3 Listing all contacts : `list`](#43-listing-all-contacts--list)
-  - [4.4 Editing a contact : `edit`](#44-editing-a-contact--edit)
-  - [4.5 Deleting a contact : `delete`](#45-deleting-a-contact--delete)
-  - [4.6 Searching for contact information : `search`](#46-searching-for-contact-information--search)
-  - [4.7 Clearing all entries : `clear`](#47-clearing-all-entries--clear)
-  - [4.8 Exiting the program : `exit`](#48-exiting-the-program--exit)
-  - [4.9 Saving the data](#49-saving-the-data)
-  - [4.10 Editing the data file](#410-editing-the-data-file)
+  - [4.1 Viewing help: `help`](#41-viewing-help-help)
+  - [4.2 Listing all contacts: `list`](#42-listing-all-contacts-list)
+  - [4.3 Clearing all entries: `clear`](#43-clearing-all-entries-clear)
+  - [4.4 Adding a contact: `add`](#44-adding-a-contact-add)
+  - [4.5 Editing a contact: `edit`](#45-editing-a-contact-edit)
+  - [4.6 Adding additional tags to a contact: `addt`](#46-adding-additional-tags-to-a-contact-addt)
+  - [4.7 Deleting tags from a contact: `deletet`](#47-deleting-tags-from-a-contact-deletet)
+  - [4.8 Deleting a contact: `delete`](#48-deleting-a-contact-delete)
+  - [4.9 Searching for contact information: `search`](#49-searching-for-contact-information-search)
+  - [4.10 Opening a social media platform: `open`](#410-opening-a-social-media-platform-open)
+  - [4.11 Exiting the program: `exit`](#411-exiting-the-program-exit)
+  - [4.12 Saving the data](#412-saving-the-data)
+  - [4.13 Editing the data file](#413-editing-the-data-file)
 - [5. Information Fields & Prefixes](#5-information-fields--prefixes)
   - [5.1 Name: `n/`](#51-name-n)
   - [5.2 Phone: `p/`](#52-phone-p)
@@ -69,7 +76,6 @@ Some special notations are used throughout this guide:
 
 - [Links in blue](#11-notation) will help you navigate through this document, or take you to places on the Internet.
 - **Bolded words** are phrases that you should pay attention to.
-- <u>Underlined words</u> are commonly used terms in ConnectUS, and can be found in the [glossary](#9-glossary).
 
 ### 1.2 Navigation
 
@@ -121,22 +127,22 @@ Congratulations! You have successfully set up ConnectUS.
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the information fields (referred to as *parameters*) to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [b/BIRTHDAY]` can be used as `n/John Doe b/14/02/2000` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[mod/MODULE_CODE]…​` can be used as ` ` (i.e. 0 times), `mod/CS2103T`, `mod/CS2103T mod/CS2107` etc.
+  e.g. `[mod/MODULE_CODE]…​` can be used as ` ` (i.e. 0 times), `mod/CS2103T` (i.e. 1 time), `mod/CS2103T mod/CS2107` (i.e. 2 times) etc.
 
 * Information fields can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If an information field is expected only once in the command, but you specify it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specify it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous information fields for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameter for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 * Commands are case-sensitive!<br>
@@ -170,82 +176,118 @@ Refer to the [Features](#4-features) below for details of each command.
 
 ## 4. Features
 
-- [4.1 Viewing help: `help`](#41-viewing-help--help)
-- [4.2 Adding a contact: `add`](#42-adding-a-contact-add)
-- [4.3 Listing all contacts : `list`](#43-listing-all-contacts--list)
-- [4.4 Editing a contact : `edit`](#44-editing-a-contact--edit)
-- [4.5 Deleting a contact : `delete`](#45-deleting-a-contact--delete)
-- [4.6 Searching for contact information : `search`](#46-searching-for-contact-information--search)
-- [4.7 Clearing all entries : `clear`](#47-clearing-all-entries--clear)
-- [4.8 Exiting the program : `exit`](#48-exiting-the-program--exit)
-- [4.9 Saving the data](#49-saving-the-data)
-- [4.10 Editing the data file](#410-editing-the-data-file)
+- [4.1 Viewing help: `help`](#41-viewing-help-help)
+- [4.2 Listing all contacts: `list`](#42-listing-all-contacts-list)
+- [4.3 Clearing all entries: `clear`](#43-clearing-all-entries-clear)
+- [4.4 Adding a contact: `add`](#44-adding-a-contact-add)
+- [4.5 Editing a contact: `edit`](#45-editing-a-contact-edit)
+- [4.6 Adding additional tags to a contact: `addt`](#46-adding-additional-tags-to-a-contact-addt)
+- [4.7 Deleting tags from a contact: `deletet`](#47-deleting-tags-from-a-contact-deletet)
+- [4.8 Deleting a contact: `delete`](#48-deleting-a-contact-delete)
+- [4.9 Searching for contact information: `search`](#49-searching-for-contact-information-search)
+- [4.10 Opening a social media platform: `open`](#410-opening-a-social-media-platform-open)
+- [4.11 Exiting the program: `exit`](#411-exiting-the-program-exit)
+- [4.12 Saving the data](#412-saving-the-data)
+- [4.13 Editing the data file](#413-editing-the-data-file)
 
-### 4.1 Viewing help : `help`
+### 4.1 Viewing help: `help`
 
-If you are lost while using ConnectUS, simply use the `help` command!
+Format: `help [COMMAND]`
 
-Using the `help` command alone will show a message explaining how to access this User Guide.
+> Opens up the help window, or returns the usage instructions of a specific command.
+
+If you are lost while using ConnectUS, simply use the `help` command! Using the `help` command alone will show a message explaining how to access this User Guide.
 
 ![help message](images/helpMessage.png)
 
 If you want to know the usage instructions of a specific command, simply use `help [COMMAND]`, where `[COMMAND]` is the command that you need help with.
 
-Format: `help [COMMAND]`
-
 Examples: `help`, `help add`, `help list`
 
 [↑ Back to feature list](#4-features)
 
-### 4.2 Adding a contact: `add`
+### 4.2 Listing all contacts: `list`
 
-Adds a contact to the ConnectUS app.
+Format: `list`
 
-Format: `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_CODE]…​ [cca/CCA]…​ [ccapos/POSITION]…​ [t/TAG]…​`
+> Shows a list of all contact in the ConnectUS app.
+
+Use `list` when you need to view a list of *all* the contacts in your ConnectUS. The `list` command can be used directly without any additional parameters.
+
+[↑ Back to feature list](#4-features)
+
+### 4.3 Clearing all entries: `clear`
+
+Format: `clear`
+
+> Clears all contacts from the ConnectUS app.
+
+ConnectUS comes with a set of default contacts. If you want to remove all default contacts, or you want to restart your ConnectUS contact list, you can use the `clear` command without any additional parameters.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Once the contact data in ConnectUS is cleared, it cannot be retrieved. Do proceed with caution!
+</div>
+
+### 4.4 Adding a contact: `add`
+
+Format: `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/TELEGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_CODE]…​ [cca/CCA]…​ [t/TAG]…​`
+
+>Adds a contact to the ConnectUS app.
+ 
+You can add a contact using the `add` command followed by the parameters (as shown in the format above). While the `NAME` is mandatory, the rest of the fields (i.e. `ADDRESS`, `TELEGRAM`, `MODULE_CODE` etc.) are optional. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags, modules and CCAs! (including 0)
 </div>
 
-Examples:
-* `add n/James` would create a contact named James without any other contact information.
-* `add n/James p/12345678` would create a contact named James with a phone number 12345678.
-* `add n/James e/james@example.com ig/itsjameshere b/01/01/2000` would create a contact named James with an email james@example.com, an Instagram of `itsjameshere` and a birthday of January 1st, 2000.
-* `add n/James tg/itsjameshere mod/CS2103T mod/CS2101 cca/NUS Hackers` would create a contact named James with Telegram `itsjameshere`, the module tags of CS2103T and CS2101, and the CCA of NUS Hackers.
+Example 1:
 
-Please refer to **[this section](#5-information-fields--prefixes)** for details on how to use each information field prefix.
+Input in Command Box: `add n/James`
 
-[↑ Back to feature list](#4-features)
+Result:<br>![AddContactExample1](images/johndoe.png)
 
-### 4.3 Listing all contacts : `list`
+Example 2:
 
-Shows a list of all contact in the ConnectUS app.
+Input in Command Box: `add n/James e/james@example.com ig/itsjameshere tg/itsjameshere mod/CS2103T mod/CS2101 cca/NUS Hackers t/Year 2 b/01/01/2000`
 
-Format: `list`
+Result:<br>![AddContactExample2](images/johndoe.png)
+
+Please refer to [this section](#5-information-fields--prefixes) for details on how to use each parameter prefix.
 
 [↑ Back to feature list](#4-features)
 
-### 4.4 Editing a contact : `edit`
+### 4.5 Editing a contact: `edit`
 
-Edits an existing contact in the ConnectUS app.
+Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/TELEGRAM] [wa/WHATSAPP] [b/BIRTHDAY]`
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [t/TAG]…​`
+>Edits an existing contact in the ConnectUS app.
+
+If you accidentally added the wrong information when [adding a contact](#44-adding-a-contact-add), or if you want to update your contacts' information, you use the `edit`  command to update contact information. 
+
+:bulb: **Tip:** If you want to edit a contact's tags, refer to these guides on [adding additional tags](#46-adding-additional-tags-to-a-contact-addt) or  [deleting a tag](#47-deleting-tags-from-a-contact-deletet) instead!
+
+The `edit` command:
 
 * Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
-* At least one of the optional fields must be provided.
+* At least one of the optional fields must be provided (e.g. `n/NAME`, `tg/TELEGRAM`).
 * Existing values will be updated to the input values.
-* You can remove all the contact’s tags by typing `edit -t` without specifying any tags after it.
 
-Examples:
-* `edit 1 p/12345678 e/james@example.com` Edits the phone number and email address of the 1st contact to be `12345678` and `james@example.com` respectively.
-* `edit 2 n/Betsy Crower -t` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+Example:
 
-Please refer to **[this section](#5-information-fields--prefixes)** for details on how to use each information field prefix.
+Input in Command Box: `edit 1 p/12345678 e/james@example.com` 
+
+Result:<br>![EditContactExample](images/johndoe.png)
+
+Please refer to [this section](#5-information-fields--prefixes) for details on how to use each parameter prefix.
 
 [↑ Back to feature list](#4-features)
 
-### 4.5 Deleting a contact : `delete`
+### 4.6 Adding additional tags to a contact: `addt`
+
+### 4.7 Deleting tags from a contact: `deletet`
+
+### 4.8 Deleting a contact: `delete`
 
 Deletes the specified contact from the ConnectUS app.
 
@@ -261,7 +303,7 @@ Examples:
 
 [↑ Back to feature list](#4-features)
 
-### 4.6 Searching for contact information : `search`
+### 4.9 Searching for contact information: `search`
 
 Finds all contacts whose information fields and tags contain any of the given keywords.
 
@@ -275,15 +317,13 @@ Examples:
 
 [↑ Back to feature list](#4-features)
 
-### 4.7 Clearing all entries : `clear`
+### 4.10 Opening a social media platform: `open`
 
-Clears all contacts from the ConnectUS app.
-
-Format: `clear`
+You can directly open supported social media platforms (i.e. Instagram, Telegram, WhatsApp) from the CLI.
 
 [↑ Back to feature list](#4-features)
 
-### 4.8 Exiting the program : `exit`
+### 4.11 Exiting the program: `exit`
 
 Exits the program.
 
@@ -291,13 +331,13 @@ Format: `exit`
 
 [↑ Back to feature list](#4-features)
 
-### 4.9 Saving the data
+### 4.12 Saving the data
 
 ConnectUS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 [↑ Back to feature list](#4-features)
 
-### 4.10 Editing the data file
+### 4.13 Editing the data file
 
 ConnectUS data is saved as a JSON file `[JAR file location]/data/ConnectUS.json`. Advanced users are welcome to update data directly by editing that data file.
 
