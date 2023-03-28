@@ -1,6 +1,5 @@
----
-layout: page
-title: Developer Guide
+  ---
+layout: page title: Developer Guide
 ---
 
 # Table of Contents:
@@ -35,6 +34,7 @@ title: Developer Guide
     - [Launch and shutdown](#launch-and-shutdown)
     - [Deleting a person](#deleting-a-person)
     - [Saving data](#saving-data)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -112,6 +112,7 @@ implementation of a component), as illustrated in the (partial) class diagram be
 The sections below give more details of each component.
 
 <sub>[return to table of contents](#table-of-contents-)</sub>
+
 ### UI component
 
 The **API** of this component is specified
@@ -155,8 +156,8 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete i/T0123456A T0124563B")` API
-call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for
+the `execute("delete i/T0123456A T0124563B")` API call.
 
 ![Interactions Inside the Logic Component for the `delete i/T0123456A T0124563B` Command](images/BetterDeleteSequenceDiagram.png)
 
@@ -235,11 +236,24 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Backup/Load feature
 
-The backup feature is facilitated by BackupCommand.
+The backup feature is facilitated by BackupCommand. Upon execution, it creates a new Storage object. The current state
+of the address book, accessed via the model object, is then saved onto the hard disk via the storage object to a
+specified location (default: data/backup/...)
+
+Steps of its execution are as follows:
+
+* `BackupCommandParser` parses user input and creates a new BackupCommand with a specified`index` and `description`
+* `BackupCommand` is then executed with `execute()`
+    * A new `Storage` object is created with the path of the backup file specified.
+    * The current Addressbook data, retrieved via `Model.getAddressBook()`, is now saved to the specified location via `
+      storage.saveAddressBook()`
+    * A `BackupDataStorage` object is retrieved from the model using a getter method. The details of the backup are then
+      saved into the hard disk using `BackupDataStorage.saveBackupData()`
 
 <img src="images/BackupSequenceDiagram.png" />
 
 <sub>[return to table of contents](#table-of-contents-)</sub>
+
 ### Undo/redo feature
 
 #### Proposed Implementation
@@ -321,32 +335,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-<sub>[return to table of contents](#table-of-contents-)</sub>
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Add patient feature
 
 #### Implementation
 
-The implemented add mechanism is facilitated by `AddCommandParser`. It extends `AddressBookParser` and implements
-the following operations:
+The implemented add mechanism is facilitated by `AddCommandParser`. It extends `AddressBookParser` and implements the
+following operations:
 
 * `AddCommandParser#parse()` — Parses user input into `Person` and creates an `AddCommand` object
 
@@ -355,10 +349,12 @@ These operations are exposed in the Model interface as methods with the same nam
 
 Given below is an example usage scenario and how the add command works at each step
 
-Step 1. A new patient visits the clinic/hospital and the clinic administrator registers the new patient in the patient records system.
+Step 1. A new patient visits the clinic/hospital and the clinic administrator registers the new patient in the patient
+records system.
 
-Step 2. The administrator executes `add i/T0012345A n/John Doe p/98765432 a/John street, block 123, #01-01 d/NKDA g/Male e/johnd@example.com t/Diabetic`.
-The `AddCommand` is executed and `Model#hasPerson` is called and followed by a call to `Model#addPerson()`
+Step 2. The administrator
+executes `add i/T0012345A n/John Doe p/98765432 a/John street, block 123, #01-01 d/NKDA g/Male e/johnd@example.com t/Diabetic`
+. The `AddCommand` is executed and `Model#hasPerson` is called and followed by a call to `Model#addPerson()`
 which adds the record into the patient records system if the record does not already exist in the system.
 
 <sub>[return to table of contents](#table-of-contents-)</sub>
@@ -367,21 +363,25 @@ which adds the record into the patient records system if the record does not alr
 
 #### Implementation
 
-The implemented edit mechanism is facilitated by `EditCommandParser`. It extends `AddressBookParser` and implements
-the following operations:
+The implemented edit mechanism is facilitated by `EditCommandParser`. It extends `AddressBookParser` and implements the
+following operations:
 
-* `EditCommandParser#parse()` — Parses user input into `INDEX` and `editPersonDescriptor` and creates an `EditCommand` object
+* `EditCommandParser#parse()` — Parses user input into `INDEX` and `editPersonDescriptor` and creates an `EditCommand`
+  object
 
 These operations are exposed in the Model interface as methods with the same name e.g.
 `Model#setPerson()`.
 
 Given below is an example usage scenario and how the add command works at each step
 
-Step 1. A patient visits the clinic/hospital and the clinic administrator registers the patient. The patient mentions that he has changed his phone number to 987654321.
+Step 1. A patient visits the clinic/hospital and the clinic administrator registers the patient. The patient mentions
+that he has changed his phone number to 987654321.
 
-Step 2. The administrator executes `edit 1 p/987654321`. The `EditCommand` is executed and `Model#getFilteredPersonList` is called, then the parsed index is checked for validity
-followed by getting the patient record specified by the index. Next, `EditCommand#createEditedPerson` is called, followed by
-calls to both `Person#isSamePerson` and `Model#hasPerson()` to check for possible duplicates. `Model#setPerson` is called followed by `Model#updateFilteredPersonList()`
+Step 2. The administrator executes `edit 1 p/987654321`. The `EditCommand` is executed and `Model#getFilteredPersonList`
+is called, then the parsed index is checked for validity followed by getting the patient record specified by the index.
+Next, `EditCommand#createEditedPerson` is called, followed by calls to both `Person#isSamePerson`
+and `Model#hasPerson()` to check for possible duplicates. `Model#setPerson` is called followed
+by `Model#updateFilteredPersonList()`
 which adds the record into the patient records system if the record does not already exist in the system.
 
 <sub>[return to table of contents](#table-of-contents-)</sub>
@@ -400,7 +400,8 @@ These operations are exposed in the Model interface as methods with the same nam
 
 Given below is an example usage scenario and how the delete command works at each step
 
-Step 1. The clinical/hospital administrator has been informed of death of 2 patients and their NRIC, T0123456A T0124563B.
+Step 1. The clinical/hospital administrator has been informed of death of 2 patients and their NRIC, T0123456A
+T0124563B.
 
 Step 2. The administrator executes `delete i/T0123456A T0124563B`. The `DeleteCommand` is executed and for each `NRIC`
 in the `ArrayList<NRIC>`, `Model#findPersonByNric()` is called and followed by a call to `Model#deletePerson()`
@@ -429,17 +430,19 @@ The following sequence diagram shows how the delete command works:
 ### Find patient record by NRIC, Health conditions, Medicine feature
 
 #### Implementation
+
 The implemented delete mechanism is facilitated by `FindCommandParser`. It extends `AddressBookParser` and implements
 the following operations:
 
-* `FindCommandParser#parse()` — Parses user input into a `Predicate` object according to the `Prefix` used. It then creates a `FindCommand` object
-  and passes the `Predicate` into `FindCommand` object.
+* `FindCommandParser#parse()` — Parses user input into a `Predicate` object according to the `Prefix` used. It then
+  creates a `FindCommand` object and passes the `Predicate` into `FindCommand` object.
 
 These operations are exposed in the Model interface as Model#updateFilteredPersonList.
 
 Given below is an example usage scenario and how the find command works at each step
 
-Step 1. The clinical/hospital administrator has been informed of death of 2 patients and their NRIC, T0123456A T0124563B.
+Step 1. The clinical/hospital administrator has been informed of death of 2 patients and their NRIC, T0123456A
+T0124563B.
 
 Step 2. The administrator executes `find i/T0123456A T0124563B`. The `FindCommand` is executed and for each `NRIC`
 in the `ArrayList<NRIC>`, `Model#findPersonByNric()` is called, the model then filters the list of person to reflect
@@ -459,9 +462,10 @@ The following sequence diagram shows how the delete command works:
         * Allows clinical administrator to filter for frequently used `Medicine` and stock up relevant supplies
         * Allows clinical administrator to filter for common health conditions of patients at the clinic.
     * Cons:
-        * Might be less convenient for clinical administrator to type out `NRIC` as compared to INDEX especially for
-          the top few records displayed.
-        * clinical administrator might need to type more since the `Attributes` to find by are generally longer in spelling.
+        * Might be less convenient for clinical administrator to type out `NRIC` as compared to INDEX especially for the
+          top few records displayed.
+        * clinical administrator might need to type more since the `Attributes` to find by are generally longer in
+          spelling.
 
 
 * **Alternative 2:** Find by any `Attribute`. Eg. `Address`, `Phone` etc.
@@ -546,8 +550,8 @@ The proposed implementation of separate `Conditions` object to encapsulate healt
 
 E.g., Diabetic, Dyslexic, Osteporotic.
 
-The addition of this field will allow staff to quickly filter by conditions, or quickly glance at a patient to
-identify what known conditions he/she has.
+The addition of this field will allow staff to quickly filter by conditions, or quickly glance at a patient to identify
+what known conditions he/she has.
 
 #### Design considerations:
 
@@ -555,16 +559,16 @@ identify what known conditions he/she has.
 
 * **Alternative 1 (current choice):** Convert `Tag` objects to health conditions.
     * Pros: The `Tag` object originally implemented in AB3 currently does not have much meaning in the context of
-            HospiSearch. The highlighting of the tags can be repurposed to show a quick view of known conditions
-            a patient has.
-    * Cons: If a patient has many pre-existing conditions, this may end up as visual clutter. Furthermore, we may
-            wish for other details to be highlighted instead of health conditions.
+      HospiSearch. The highlighting of the tags can be repurposed to show a quick view of known conditions a patient
+      has.
+    * Cons: If a patient has many pre-existing conditions, this may end up as visual clutter. Furthermore, we may wish
+      for other details to be highlighted instead of health conditions.
 
 * **Alternative 2:** Implement `Conditions` as a separate object
-    * Pros: We can still tag a patient with details other than health conditions. The functionality of `Tag` will
-            not be deprecated.
+    * Pros: We can still tag a patient with details other than health conditions. The functionality of `Tag` will not be
+      deprecated.
     * Cons: This will require more restructuring of the codebase, the location to display health conditions may not be
-            as obvious as well compared to the current display of tags.
+      as obvious as well compared to the current display of tags.
 
 --------------------------------------------------------------------------------------------------------------------
 <sub>[return to table of contents](#table-of-contents-)</sub>
@@ -605,12 +609,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | access a help menu          | know about all commands                             |
 | `* * *`  | admin                                      | add patients’ records       | keep track of their information                     |
 | `* * *`  | admin                                      | edit patients’ records      | update their information                            |
-| `* * *`  | admin                                      | delete patients’ records    | free up space for other patient records			          |
+| `* * *`  | admin                                      | delete patients’ records    | free up space for other patient records                      |
 | `* *`    | admin                              | list all patients           | have an overview                                    |
 | `* *`    | admin                              | search for a patient record | find the needed information quickly                 |
 | `**`     | admin                              | backup data                  | recover data in the event of a primary data failure |
 | `*`      | admin                              | clear data                  | start the database from scratch                     |
-
 
 *{More to be added}*
 
@@ -699,8 +702,8 @@ otherwise)
 
 *{More to be added}*
 
-
 <sub>[return to table of contents](#table-of-contents-)</sub>
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -718,6 +721,7 @@ otherwise)
 
 --------------------------------------------------------------------------------------------------------------------
 <sub>[return to table of contents](#table-of-contents-)</sub>
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -745,6 +749,24 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a person
+
+1. Adding a person to HospiSearch
+    1. Prerequisites: Current person (identified by `Nric`) does not exist in the database
+    2. Test
+       case: `add i/S1234567A n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/Male d/NKDA` <br>
+       Expected: person above is added to HospiSearch, provided another entry does not have the same `nric`. Timestamp
+       in the status bar is updated.
+    3. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/Male d/NKDA` <br>
+       Expected: No person is added. Error details shown in the status message. Status bar remains the same.
+    4. Test case: `add i/S1234567A p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 g/Male d/NKDA` <br>
+       Expected: No person is added. Error details shown in the status message. Status bar remains the same.
+    5. Test case: `add S1234567A 98765432 johnd@example.com 311, Clementi Ave 2, #02-25 Male NKDA` <br>
+       Expected: No person is added. Error details shown in the status message. Status bar remains the same.
+    6. Other incorrect add commands to try: `add`, `add x/...`, `...` (where x is some invalid tag)
+
+2. _{ more test cases …​ }_
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -752,11 +774,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
     1. Test case: `delete i/S1234567A`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
-
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: Patient record with the specified NRIC will be removed.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
@@ -771,28 +789,30 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `find i/S1234567A`<br>
        Person with the exact matching NRIC will be shown. It is case-insensitive.
-   
+
     3. Test case: `find n/JAMES`<br>
        Persons with names containing the string 'james' will be shown. It is case-insensitive.
-   
+
     4. Test case: `find t/diabetic`<br>
-       Persons with `diabetic` tags will be shown. It is case-insensitive. 
-   
+       Persons with `diabetic` tags will be shown. It is case-insensitive.
+
     5. Test case: `find m/panadol`<br>
        Persons that have been prescribed `panadol` will be shown. It is case-insensitive.
 
     6. Test case: `find n/`<br>
-       Expected: No particular string has been input after the given prefix. Error details shown in the status message. Status bar remains the same.
-   
+       Expected: No particular string has been input after the given prefix. Error details shown in the status message.
+       Status bar remains the same.
+
     7. Test case: `find n/ t/`<br>
-          Expected: Multiple attributes have been input. Error details shown in the status message. Status bar remains the same.
+       Expected: Multiple attributes have been input. Error details shown in the status message. Status bar remains the
+       same.
 
     8. Other incorrect delete commands to try: `find`, `find x`(no prefix have been given),<br />
-   , `find n/ i/`,  `find n/ m/ i/` `...` <br>
+       , `find n/ i/`,  `find n/ m/ i/` `...` <br>
        Expected: Similar to previous wrong commands.
 
 2. Returning to the full list of persons
-   1. List all persons using the `list` command to return back to the full list of persons in the database.
+    1. List all persons using the `list` command to return back to the full list of persons in the database.
 
 ### Saving data
 

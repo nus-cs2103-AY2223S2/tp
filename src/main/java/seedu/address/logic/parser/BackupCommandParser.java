@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BACKUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESC;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -22,18 +22,19 @@ public class BackupCommandParser implements Parser<BackupCommand> {
      */
     public BackupCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BACKUP);
-
         Index index;
+        String desc;
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DESC);
         try {
-            index = ParserUtil.parseIndex(args);
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            desc = argMultimap.getValue(PREFIX_DESC).orElse("");
             checkArgument(isValidIndex(index));
         } catch (IllegalValueException | IllegalArgumentException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BackupCommand.MESSAGE_USAGE), ive);
         }
 
 
-        return new BackupCommand(index);
+        return new BackupCommand(index, desc);
     }
 
     /**

@@ -15,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ViewCommand;
@@ -33,10 +34,13 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
+    private boolean isShowBackup = false;
+
     private Stage primaryStage;
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private BackupListPanel backupListPanel;
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -87,6 +91,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -134,6 +139,16 @@ public class MainWindow extends UiPart<Stage> {
         applyTheme(Theme.DEFAULT_THEME);
     }
 
+    void newFillInnerParts() {
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    }
+
+    void fillInnerPartsBackup() throws IllegalValueException {
+        backupListPanel = new BackupListPanel(logic.getBackupList());
+        personListPanelPlaceholder.getChildren().add(backupListPanel.getRoot());
+    }
+
     /**
      * Sets the default size based on {@code guiSettings}.
      */
@@ -179,7 +194,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException,
+            ParseException, IllegalValueException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -193,8 +209,21 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isShowLight()) {
-                applyLightTheme();
+            if (commandResult.isShowBackups()) {
+                fillInnerPartsBackup();
+                isShowBackup = true;
+            } else {
+                if (isShowBackup) {
+                    newFillInnerParts();
+                    isShowBackup = false;
+                }
+                if (commandResult.isShowLight()) {
+                    applyLightTheme();
+                }
+
+                if (commandResult.isShowDark()) {
+                    applyDarkTheme();
+                }
             }
 
             if (commandResult.isShowDark()) {
@@ -238,14 +267,18 @@ public class MainWindow extends UiPart<Stage> {
         viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
     }
 
-    /** Sets theme to Light Theme. */
+    /**
+     * Sets theme to Light Theme.
+     */
     @FXML
     public void applyLightTheme() {
         applyTheme(Theme.LIGHT);
         resultDisplay.setFeedbackToUser("Switched to light mode!");
     }
 
-    /** Sets theme to Dark Theme. */
+    /**
+     * Sets theme to Dark Theme.
+     */
     @FXML
     public void applyDarkTheme() {
         applyTheme(Theme.DARK);

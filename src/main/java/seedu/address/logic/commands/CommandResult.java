@@ -20,8 +20,15 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
-    /** The application should exit. */
+    /**
+     * The application should exit.
+     */
     private final boolean exit;
+
+    /**
+     * The application should show backups.
+     */
+    private final boolean showBackups;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -30,8 +37,22 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showBackups = false;
         this.showDark = showDark;
         this.showLight = showLight;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields,
+     * including showBackup.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showBackups) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.showBackups = showBackups;
+        this.showDark = false;
+        this.showLight = false;
     }
 
     /**
@@ -52,6 +73,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowBackups() {
+        return showBackups;
     }
 
     @Override

@@ -1,11 +1,7 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -33,63 +29,21 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.testutil.AddressBookBuilder;
 
-
-public class BackupCommandTest {
+public class DeleteBackupCommandTest {
 
     @Test
     public void constructor_noIndex_throwsCommandException() {
-        assertThrows(NullPointerException.class, () -> new BackupCommand(null, null));
+        assertThrows(NullPointerException.class, () -> new DeleteBackupCommand(null));
     }
 
     @Test
-    public void constructor_invalidIndex_throwsIllegalArgumentException() throws Exception {
+    public void execute_invalidIndex_throwsCommandException() {
         Index invalidIndex = Index.fromOneBased(11);
+        DeleteBackupCommand deleteBackupCommand = new DeleteBackupCommand(invalidIndex);
         ModelStub modelStub = new ModelStubWithBackupFunctionalities();
 
-        assertThrows(IllegalArgumentException.class, () -> new BackupCommand(invalidIndex, null));
-    }
-
-    @Test
-    public void execute_backupSuccessful() throws CommandException {
-        Index validIndex = Index.fromOneBased(10);
-        String validDesc = "test";
-        String filePath = "data/backup/addressbookBackup10.json";
-        ModelStub modelStub = new ModelStubWithBackupFunctionalities();
-
-        CommandResult commandResult = new BackupCommand(validIndex, validDesc).execute(modelStub);
-
-        assertEquals(String.format(BackupCommand.MESSAGE_SUCCESS, validIndex.getOneBased()),
-            commandResult.getFeedbackToUser());
-        cleanUp(filePath);
-    }
-
-    @Test
-    public void equals() {
-        Index one = Index.fromOneBased(1);
-        Index two = Index.fromOneBased(2);
-        BackupCommand backupCommandOne = new BackupCommand(one, null);
-        BackupCommand backupCommandOneCopy = new BackupCommand(one, null);
-        BackupCommand backupCommandTwo = new BackupCommand(two, null);
-
-        // same object -> returns true
-        assertTrue(backupCommandOne.equals(backupCommandOne));
-
-        // same values -> returns true
-        assertTrue(backupCommandOne.equals(backupCommandOneCopy));
-
-        // different types -> returns false
-        assertFalse(backupCommandOne.equals(1));
-
-        // null -> returns false
-        assertFalse(backupCommandOne.equals(null));
-
-        // different person -> returns false
-        assertFalse(backupCommandOne.equals(backupCommandTwo));
-    }
-
-    private void cleanUp(String path) {
-        File toCleanup = new File(path);
-        toCleanup.delete();
+        assertThrows(CommandException.class,
+            DeleteBackupCommand.DELETE_ERROR, () -> deleteBackupCommand.execute(modelStub));
     }
 
     /**
@@ -258,6 +212,10 @@ public class BackupCommandTest {
         @Override
         public BackupDataStorage getBackupDataStorage() {
             return new BackupDataStorageStub();
+        }
+
+        @Override
+        public void removeBackupFromBackupData(String index) {
         }
     }
 
