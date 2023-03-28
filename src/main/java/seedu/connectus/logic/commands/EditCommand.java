@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
@@ -11,8 +12,11 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
 import static seedu.connectus.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.connectus.commons.core.Messages;
 import seedu.connectus.commons.core.index.Index;
@@ -26,6 +30,8 @@ import seedu.connectus.model.person.Name;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.socialmedia.SocialMedia;
+import seedu.connectus.model.tag.Module;
+import seedu.connectus.model.tag.Remark;
 
 /**
  * Edits the details of an existing person in the ConnectUS.
@@ -127,7 +133,7 @@ public class EditCommand extends Command {
 
         if (editPersonDescriptor.getSocialMedia().isPresent()) {
             p.setSocialMedia(personToEdit.getSocialMedia().orElse(SocialMedia.create())
-                .updateWith(editPersonDescriptor.getSocialMedia().get()));
+                    .updateWith(editPersonDescriptor.getSocialMedia().get()));
         } else {
             if (personToEdit.getSocialMedia().isPresent()) {
                 p.setSocialMedia(personToEdit.getSocialMedia().get());
@@ -139,6 +145,22 @@ public class EditCommand extends Command {
         } else {
             if (personToEdit.getBirthday().isPresent()) {
                 p.setBirthday(personToEdit.getBirthday().get());
+            }
+        }
+
+        if (editPersonDescriptor.getRemarks().isPresent()) {
+            p.setRemarks(editPersonDescriptor.getRemarks().get());
+        } else {
+            if (!personToEdit.getRemarks().isEmpty()) {
+                p.setRemarks(personToEdit.getRemarks());
+            }
+        }
+
+        if (editPersonDescriptor.getModules().isPresent()) {
+            p.setModules(editPersonDescriptor.getModules().get());
+        } else {
+            if (!personToEdit.getModules().isEmpty()) {
+                p.setModules(personToEdit.getModules());
             }
         }
 
@@ -174,7 +196,9 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private SocialMedia socialMedia;
+        private Set<Remark> remarks;
         private Birthday birthday;
+        private Set<Module> modules;
 
         public EditPersonDescriptor() {
         }
@@ -189,6 +213,8 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setSocialMedia(toCopy.socialMedia);
+            setRemarks(toCopy.remarks);
+            setModules(toCopy.modules);
             setBirthday(toCopy.birthday);
         }
 
@@ -249,6 +275,42 @@ public class EditCommand extends Command {
             return Optional.ofNullable(socialMedia);
         }
 
+        /**
+         * Sets {@code remarks} to this object's {@code remarks}.
+         * A defensive copy of {@code remarks} is used internally.
+         */
+        public void setRemarks(Set<Remark> remarks) {
+            this.remarks = (remarks != null) ? new HashSet<>(remarks) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code remarks} is null.
+         */
+        public Optional<Set<Remark>> getRemarks() {
+            return (remarks != null) ? Optional.of(Collections.unmodifiableSet(remarks)) : Optional.empty();
+        }
+
+
+        /**
+         * Sets {@code modules} to this object's {@code modules}.
+         * A defensive copy of {@code modules} is used internally.
+         */
+        public void setModules(Set<Module> modules) {
+            this.modules = (modules != null) ? new HashSet<>(modules) : null;
+        }
+
+        /**
+         * Returns an unmodifiable modules set, which throws
+         * {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code modules} is null.
+         */
+        public Optional<Set<Module>> getModules() {
+            return (modules != null) ? Optional.of(Collections.unmodifiableSet(modules)) : Optional.empty();
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -268,7 +330,8 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress());
+                    && getAddress().equals(e.getAddress())
+                    && getRemarks().equals(e.getRemarks());
         }
     }
 }
