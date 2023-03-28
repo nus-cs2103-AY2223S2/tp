@@ -10,6 +10,7 @@ public class Meeting implements Comparable<Meeting> {
     protected String description;
     protected LocalDateTime start;
     protected LocalDateTime end;
+    private DateTimeFormatter customFormat = DateTimeFormatter.ofPattern("eeee MMMM d u HH:mm");
 
     /**
      * Constructor for Meeting
@@ -96,7 +97,6 @@ public class Meeting implements Comparable<Meeting> {
             return "No Meeting!";
         }
 
-        DateTimeFormatter customFormat = DateTimeFormatter.ofPattern("eeee MMMM d u HH:mm");
         String startDnT = start.format(customFormat);
         String endDnT = end.format(customFormat);
         return "Meeting: " + this.description + ", Begins at: " + startDnT + ", Ends at: " + endDnT;
@@ -122,6 +122,15 @@ public class Meeting implements Comparable<Meeting> {
         return end;
     }
 
+
+    public String getStartString() {
+        return start.format(customFormat);
+    }
+
+    public String getEndString() {
+        return end.format(customFormat);
+    }
+
     public void setEnd(LocalDateTime end) {
         this.end = end;
     }
@@ -132,5 +141,6 @@ public class Meeting implements Comparable<Meeting> {
 
     public void setDescription(String desc) {
         this.description = desc;
+
     }
 }
