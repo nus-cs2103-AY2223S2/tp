@@ -22,6 +22,7 @@ public class ListProjectCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all projects";
 
+    public static final String MESSAGE_PROJECTS_CONTENT = "%s";
     private static final String MAIN_COMMAND_WORD = "list-project";
     private static final String ALIAS_COMMAND_WORD = "lp";
     private static final Set<String> COMMAND_WORDS =
@@ -32,7 +33,9 @@ public class ListProjectCommand extends Command {
         requireNonNull(model);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
-        return new CommandResult(MESSAGE_SUCCESS, ListType.PROJECT);
+        String copy = model.getProjectsContent();
+        String message = String.format(MESSAGE_PROJECTS_CONTENT, copy);
+        return new CommandResult(MESSAGE_SUCCESS + "\n" + message, ListType.PROJECT);
     }
 
     public static boolean isCommandWord(String commandWord) {
@@ -42,4 +45,5 @@ public class ListProjectCommand extends Command {
     public static List<String> getCommandWords() {
         return new ArrayList<>(COMMAND_WORDS);
     }
+
 }

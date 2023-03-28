@@ -168,6 +168,28 @@ public class UniqueProjectList implements Iterable<Project> {
         setProject(project, project);
     }
 
+    public String getProjectsContent() {
+        int projectSize = this.internalList.size();
+        ObservableList<Project> projectList = this.internalList;
+        int overdueProjects = 0;
+        int doneProjects = 0;
+        int notDoneProjects = 0;
+        for (int i = 0; i < projectSize; i++) {
+            if (projectList.get(i).isOverdue()) {
+                overdueProjects++;
+            }
+            if (projectList.get(i).getStatus().getStatus()) {
+                doneProjects++;
+            } else {
+                notDoneProjects++;
+            }
+        }
+        return "Total number of Projects: " + projectSize + "\n"
+                + "Total number of Projects OVERDUE: " + overdueProjects + "\n"
+                + "Total number of Projects DONE: " + doneProjects + "\n"
+                + "Total number of Projects NOT DONE: " + notDoneProjects + "\n";
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

@@ -37,6 +37,7 @@ public class PriceTest {
         assertFalse(Price.isValidPrice("0003")); // number with padded zeroes
         assertFalse(Price.isValidPrice("3.000")); // number with trailing decimals of zero
 
+
         // valid prices
         assertTrue(Price.isValidPrice("3")); // number only
         assertTrue(Price.isValidPrice("3.15")); // number with decimals

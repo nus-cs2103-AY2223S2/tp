@@ -214,4 +214,24 @@ public interface Model {
 
     /** Returns an unmodifiable view of the tag mapping list */
     ObservableList<TagMapping> getTagMappingList();
+
+    /**
+     * Returns contents of list of project.
+     */
+    String getProjectsContent();
+
+    /**
+     * Returns number of Overdue projects.
+     */
+    int noOverdueProjects();
+
+    /**
+     * Returns number of Done projects.
+     */
+    int noDoneProjects();
+
+    /**
+     * Returns number of Not Done projects.
+     */
+    int noNotDoneProjects();
 }
