@@ -9,5 +9,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_QUESTION = new Prefix("q\\");
     public static final Prefix PREFIX_ANSWER = new Prefix("a\\");
     public static final Prefix PREFIX_TAG = new Prefix("t\\");
-    public static final Prefix PREFIX_DECK_NAME = new Prefix("d\\");
+    public static final Prefix PREFIX_EASY_TAG = new Prefix("e\\");
+    public static final Prefix PREFIX_MEDIUM_TAG = new Prefix("m\\");
+    public static final Prefix PREFIX_HARD_TAG = new Prefix("h\\");
 }

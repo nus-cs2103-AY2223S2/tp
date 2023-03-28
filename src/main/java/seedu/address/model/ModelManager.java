@@ -16,10 +16,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
+import seedu.address.model.card.CardHasTagPredicate;
 import seedu.address.model.card.CardInDeckPredicate;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Tag.TagName;
 
 /**
  * Represents the in-memory model of the master deck data.
@@ -236,12 +238,14 @@ public class ModelManager implements Model {
      * @param deckIndex Index of the deck
      */
     @Override
-    public void reviewDeck(Index deckIndex) {
+    public void reviewDeck(Index deckIndex, List<TagName> difficulties) {
         int zeroBasesIdx = deckIndex.getZeroBased();
         Deck deckToReview = filteredDecks.get(zeroBasesIdx);
 
         List<Card> cardsToReview =
-                new FilteredList<>(masterDeck.getCardList(), new CardInDeckPredicate(deckToReview));
+                new FilteredList<>(masterDeck.getCardList(),
+                        new CardInDeckPredicate(deckToReview)
+                                .and(new CardHasTagPredicate(difficulties)));
 
         currReview = new Review(deckToReview, cardsToReview, numCardsPerReview);
     }

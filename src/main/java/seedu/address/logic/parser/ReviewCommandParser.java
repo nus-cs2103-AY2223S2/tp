@@ -2,13 +2,23 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EASY_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HARD_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDIUM_TAG;
+import static seedu.address.model.tag.Tag.TagName.EASY;
+import static seedu.address.model.tag.Tag.TagName.HARD;
+import static seedu.address.model.tag.Tag.TagName.MEDIUM;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.reviewcommands.ReviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.Tag.TagName;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Parses input arguments and creates a new SelectDeck object
+ * Parses input arguments and creates a new ReviewCommand object
  */
 public class ReviewCommandParser implements Parser<ReviewCommand> {
 
@@ -19,8 +29,10 @@ public class ReviewCommandParser implements Parser<ReviewCommand> {
      */
     public ReviewCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_EASY_TAG, PREFIX_MEDIUM_TAG, PREFIX_HARD_TAG);
 
+        List<TagName> difficulties = new ArrayList<>();
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -29,6 +41,18 @@ public class ReviewCommandParser implements Parser<ReviewCommand> {
                     ReviewCommand.MESSAGE_USAGE), pe);
         }
 
-        return new ReviewCommand(index);
+        if (argMultimap.getValue(PREFIX_EASY_TAG).isPresent()) {
+            difficulties.add(EASY);
+        }
+
+        if (argMultimap.getValue(PREFIX_MEDIUM_TAG).isPresent()) {
+            difficulties.add(MEDIUM);
+        }
+
+        if (argMultimap.getValue(PREFIX_HARD_TAG).isPresent()) {
+            difficulties.add(HARD);
+        }
+
+        return new ReviewCommand(index, difficulties);
     }
 }

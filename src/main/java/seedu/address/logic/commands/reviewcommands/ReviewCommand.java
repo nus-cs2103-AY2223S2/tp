@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.reviewcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.deck.Deck;
+import seedu.address.model.tag.Tag.TagName;
 
 
 /**
@@ -27,13 +29,15 @@ public class ReviewCommand extends Command {
     public static final String MESSAGE_INVALID_DECK_DISPLAYED_INDEX = "Deck index provided is invalid";
     public static final String MESSAGE_EMPTY_DECK = "The deck you chose to review is empty";
     private final Index deckIndex;
+    private final List<TagName> difficulties;
 
     /**
      * Creates a ReviewCommand with the specified index of the deck.
      */
-    public ReviewCommand(Index idx) {
-        requireNonNull(idx);
+    public ReviewCommand(Index idx, List<TagName> difficulties) {
+        requireAllNonNull(idx, difficulties);
         this.deckIndex = idx;
+        this.difficulties = difficulties;
     }
 
     @Override
@@ -48,7 +52,7 @@ public class ReviewCommand extends Command {
             throw new CommandException(MESSAGE_EMPTY_DECK);
         }
 
-        model.reviewDeck(deckIndex);
+        model.reviewDeck(deckIndex, difficulties);
 
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, model.getReviewDeckName()),
