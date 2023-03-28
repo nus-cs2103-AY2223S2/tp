@@ -29,6 +29,7 @@
 	    <Label fx:id="nric" styleClass="cell_big_label" text="\$nric" />
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
         <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
+        <Label fx:id="doctor" styleClass="doctor" text="\$doctor" />
       </HBox>
       <FlowPane fx:id="tags">
             <padding>
@@ -48,7 +49,7 @@
          </GridPane.margin>
         </VBox>
         <rowConstraints>
-            <RowConstraints/>
+            <RowConstraints />
         </rowConstraints>
     </GridPane>
 </HBox>
