@@ -140,8 +140,7 @@ public class Patient extends Person {
                 && otherPatient.getDiagnosis().equals(getDiagnosis())
                 && otherPatient.getStatus().equals(getStatus())
                 && otherPatient.getRemark().equals(getRemark())
-                && otherPatient.getTags().equals(getTags())
-                && otherPatient.getDoctors().equals(getDoctors());
+                && otherPatient.getTags().equals(getTags());
     }
 
     @Override
