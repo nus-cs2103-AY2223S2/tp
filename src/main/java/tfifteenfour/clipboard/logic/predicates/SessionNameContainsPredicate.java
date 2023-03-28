@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-import tfifteenfour.clipboard.commons.util.StringUtil;
 import tfifteenfour.clipboard.model.course.Session;
 
 /**
@@ -20,7 +19,7 @@ public class SessionNameContainsPredicate implements Predicate<Session> {
     @Override
     public boolean test(Session session) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(session.getSessionName(), keyword));
+                .anyMatch(keyword -> session.getSessionName().toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override

@@ -61,12 +61,14 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     public String[] parseFindKeywords(String args) throws ParseException {
         String[] tokens = ArgumentTokenizer.tokenizeString(args);
-        if (tokens.length != 3) {
+
+        if (tokens.length < 2) {
+            System.out.println("token length " + tokens.length);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCourseCommand.MESSAGE_USAGE));
         }
-        String[] result = new String[tokens.length - 2];
-        for (int i = 0; i < tokens.length - 2; i++) {
-            result[i] = tokens[i + 2];
+        String[] result = new String[tokens.length - 1];
+        for (int i = 0; i < tokens.length - 1; i++) {
+            result[i] = tokens[i + 1];
         }
         return result;
     }

@@ -20,7 +20,7 @@ public class StudentNameContainsPredicate implements Predicate<Student> {
     @Override
     public boolean test(Student student) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getName().toString(), keyword));
+                .anyMatch(keyword -> student.getName().toString().toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override

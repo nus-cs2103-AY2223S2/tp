@@ -20,7 +20,7 @@ public class TaskNameContainsPredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(task.getTaskName(), keyword));
+                .anyMatch(keyword -> task.getTaskName().toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override

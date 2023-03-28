@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-import tfifteenfour.clipboard.commons.util.StringUtil;
 import tfifteenfour.clipboard.model.course.Group;
 
 /**
@@ -20,7 +19,7 @@ public class GroupNameContainsPredicate implements Predicate<Group> {
     @Override
     public boolean test(Group group) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(group.getGroupName(), keyword));
+                .anyMatch(keyword -> group.getGroupName().toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override

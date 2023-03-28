@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-import tfifteenfour.clipboard.commons.util.StringUtil;
 import tfifteenfour.clipboard.model.course.Course;
 
 /**
@@ -20,7 +19,7 @@ public class CourseNameContainsPredicate implements Predicate<Course> {
     @Override
     public boolean test(Course course) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(course.getCourseCode(), keyword));
+                .anyMatch(keyword -> course.getCourseCode().toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override
