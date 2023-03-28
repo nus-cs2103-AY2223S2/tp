@@ -282,8 +282,8 @@ add n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID> [t/<TAG>]
     - For example, if a student with a student ID of `A0123456X` already exists in CLIpboard, entering `add n/Tom p/99887766 e/tom@example.com sid/A0123456X m/CS2105` will display an error message.
 
 Examples:
-- `add n/John Doe p/98765432 e/johnd@example.com sid/A1234567X m/CS2103T`
-- `add n/Roy Balakrishnan p/92624417 e/royb@example.com sid/A7356561X m/CS2105 t/T06`
+- `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X`
+- `add student n/Roy Balakrishnan p/92624417 e/royb@example.com sid/A7356561X`
 
 
 
