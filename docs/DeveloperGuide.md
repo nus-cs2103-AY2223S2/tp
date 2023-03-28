@@ -289,7 +289,7 @@ Given below is an example usage scenario when a user enter `patient edit 5 --n J
     5. `ParserUtil#parseBloodType` will be called to create a BloodType object using "B+".
     6. `ParserUtil#parseGroups` will be called to create GroupName[] object named allergies using ["catfur", "pollen"].
     7. `ParserUtil#parseGroups` will be called to create GroupName[] object named vaccines using ["covax"].
-4. After successfully parsing the args, `EditCommandParser` will create an editPatientDescriptor using the new Name, Phone, Dob, BloodType, Allergies<GroupName>, Vaccines<GroupName>. Then it will create an `EditCommand` with the new editPatientDescriptor object with the index.
+4. After successfully parsing the args, `EditCommandParser` will create an editPatientDescriptor using the new Name, Phone, Dob, BloodType, Allergies `<GroupName>`, Vaccines `<GroupName>`. Then it will create an `EditCommand` with the new editPatientDescriptor object with the index.
 5. When `EditCommand#execute` is called, the following will happen.
     1. It will ensure that the Index given is within the list, else it will throw a CommandExeception
     2. It will edit the patient by creating a new patient with the new values from the Parser as Patients are Immuttable
