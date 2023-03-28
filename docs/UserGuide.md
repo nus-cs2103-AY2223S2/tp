@@ -311,6 +311,7 @@ Action | Format, Examples
 
 
 #### Book
+
 Action | Format, Examples
 --------|------------------
 **AddBook** | `addBook t/TITLE a/AUTHOR i/ISBN…​` <br> e.g., `addBook t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
@@ -320,6 +321,7 @@ Action | Format, Examples
 **ListBook** | `listBook`
 
 #### General
+
 Action | Format, Examples
 --------|------------------
 **Borrow** | `borrow PERSON_INDEX b/BOOK_INDEX d/DUE_DATE` <br> e.g., `borrow 1 b/2 d/23/09/2024`
