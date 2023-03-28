@@ -498,7 +498,7 @@ Examples:
 
 ### Marking selected students as present: `mark`
 
-Marks selected students' attendance as present.
+Marks selected students' attendance as present for current session.
 
 Format:
 ```
