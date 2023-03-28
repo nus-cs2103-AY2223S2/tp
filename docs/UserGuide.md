@@ -355,7 +355,7 @@ Select a particular student and display his / her particulars.
 
 Format:
 ```
-view <INDEX>
+select <INDEX>
 ```
 
 Examples:
