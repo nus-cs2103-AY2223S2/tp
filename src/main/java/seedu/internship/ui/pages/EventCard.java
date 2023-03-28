@@ -1,10 +1,16 @@
-package seedu.internship.ui;
+package seedu.internship.ui.pages;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import seedu.internship.model.event.Event;
+import seedu.internship.ui.UiPart;
 
 
 /**
@@ -19,6 +25,10 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private HBox eventCard;
     @FXML
+    private Circle circle;
+    @FXML
+    private Separator separator;
+    @FXML
     private Label description;
     @FXML
     private Label start;
@@ -30,14 +40,35 @@ public class EventCard extends UiPart<Region> {
     private Label endLabel;
     @FXML
     private Label title;
+    @FXML
+    private VBox timelineContainer;
+    @FXML
+    private VBox cardContent;
 
     /**
      * Creates a {@code InternshipCard} with the given {@code Internship} and index to display.
      */
-    public EventCard(Event event) {
+    private EventCard(Event event) {
         super(FXML);
         this.event = event;
         setEventCardContent();
+    }
+
+    public static EventCard of(Event event, boolean withTimeline) {
+        EventCard eventCard = new EventCard(event);
+        if (withTimeline) {
+            eventCard.cardContent.setPadding(new Insets(10,0,10,0));
+        } else {
+            eventCard.circle.setManaged(false);
+            eventCard.circle.setVisible(false);
+            eventCard.separator.setManaged(false);
+            eventCard.timelineContainer.setManaged(false);
+            eventCard.eventCard.setStyle(
+                    "-fx-background-color: derive(#9bd2ec, 60%);" + "-fx-padding: 10 10 10 10;");
+            eventCard.eventCard.setPrefWidth(300);
+            eventCard.eventCard.setPrefHeight(200);
+        }
+        return eventCard;
     }
 
     public void setEventCardContent() {

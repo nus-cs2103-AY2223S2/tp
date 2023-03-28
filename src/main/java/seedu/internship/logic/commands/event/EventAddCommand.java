@@ -9,6 +9,7 @@ import static seedu.internship.logic.parser.CliSyntax.PREFIX_EVENT_START;
 import javafx.collections.ObservableList;
 import seedu.internship.logic.commands.CommandResult;
 import seedu.internship.logic.commands.exceptions.CommandException;
+import seedu.internship.logic.commands.ResultType;
 import seedu.internship.model.Model;
 import seedu.internship.model.event.Event;
 import seedu.internship.model.event.EventByInternship;
@@ -73,7 +74,8 @@ public class EventAddCommand extends EventCommand {
         model.updateFilteredEventList(new EventByInternship(selectedIntern));
         ObservableList<Event> events = model.getFilteredEventList();
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, eventToAdd) , selectedIntern, events);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, eventToAdd), ResultType.SHOW_INFO,
+                selectedIntern, events);
     }
 
     @Override
