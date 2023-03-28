@@ -510,14 +510,26 @@ At least one of the optional fields must be provided.
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### 5. Finding a person : `find`
+Find all persons that contains the given constraints. <br>
+- `find` supports continuous search by allowing constraints to stack, (refer to example below to find out more)
+- To remove all constraints, use `list`. 
+- At least one of the optional field must be provided.
+
 `find [OPTIONAL/PARAMETER]...`<br>
->> find KEYWORD [MORE_KEYWORDS]
-> * The search is case-insensitive. e.g `hans` will match `Hans`
-> * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-> * Only the name is searched.
-> * Only full words will be matched e.g. `Han` will not match `Hans`
-> * Persons matching at least one keyword will be returned (i.e. `OR` search).
-    e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+> **Acceptable Parameters used as Constraints**
+> * n/NAME (e.g. n/Jo will load all person name that contains Jo such as Jo, John, Joleen.
+> * y/YEAR (e.g. y/2 will load all person who are in year 2)
+> * c/COURSE (e.g. c/Computer will load all person enrolled in Computer Engineering and Computer Science)
+>   * [Why is it **find** c/COURSE and not c/COURSE_INDEX like **add** and **edit**?](#why-is-it-find-ccourse-and-not-ccourseindex-like-add-and-edit-)
+> * m/MODULES (e.g. m/CS2103 will load all person with CS2103 including CS2103T and CS2103R)
+>   * m/ACADEMIC_YEAR MODULES (e.g. m/AY2223S1 CS2103 will load all person with AY2223S1 CS2103 including AY2223S1 CS2103T and AY2223S1 CS2103R in their module list)
+>   * 💡 **Tip:** You can input as many MODULES and ACADEMIC_YEAR MODULES as you want. <br> For example,  m/`cs1101 cs1231` `AY2223S1 cs2040` `AY2223S2 cs2090 cs3230` will load all person that have taken
+>     * cs1101, cs1231 regardless of academic year
+>     * cs2040 in AY2223S1
+>     * cs2090, cs3230 in AY2223S2
+> * s/SKILLS (e.g. s/java will load all person that contains java in their skill list such as java and javascript)
+>   * 💡 **Tip:** Similar to m/MODULES you can add in as many skills as you want separated by a space.
+> 
 >
 > **Examples:**
 > - `find John` returns `john` and `John Doe`
@@ -592,6 +604,8 @@ Equivalent to clicking the close button via the GUI. <br>
 ---
 
 ## FAQ
+
+### Why is it `find c/COURSE` and not `c/COURSE_INDEX` like `add` and `edit`?
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
