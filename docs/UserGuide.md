@@ -198,7 +198,7 @@ Updates an *existing* client contact.
 
 At least one of the following arguments must be provided:
 - **`-cn client_name`**
-  - The client’s name.
+  - The client’s new name.
   - **Default:** *null*
 - **`-e2 new email`**
   - THe client's new email. Must be unique in Mycelium. Case sensitive.
