@@ -23,16 +23,9 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" styleClass="person-card-upper-box-element" text="\$first" wrapText="true">
-                    <font>
-                        <Font name="System Bold" size="15.0" />
-                    </font></Label>
+                <Label fx:id="loc" text="\$location" wrapText="true"></Label>
+                <Label fx:id="time" text="\$time" wrapText="true"></Label>
             </HBox>
-            <FlowPane fx:id="allTags">
-                <VBox.margin>
-                    <Insets bottom="5.0" top="5.0" />
-                </VBox.margin>
-            </FlowPane>
         </VBox>
         <rowConstraints>
             <RowConstraints />

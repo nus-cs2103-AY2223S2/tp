@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.person.Person;
 
 /**
@@ -18,30 +19,30 @@ public class ScheduledMeetsListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ScheduledMeetsListPanel.class);
 
     @FXML
-    private ListView<Person> scheduledMeetsListView;
+    private ListView<MeetUp> scheduledMeetsListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public ScheduledMeetsListPanel(ObservableList<Person> personList) {
+    public ScheduledMeetsListPanel(ObservableList<MeetUp> meetUps) {
         super(FXML);
-        scheduledMeetsListView.setItems(personList);
+        scheduledMeetsListView.setItems(meetUps);
         scheduledMeetsListView.setCellFactory(listView -> new ScheduledMeetsListPanel.ScheduledMeetsListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class ScheduledMeetsListViewCell extends ListCell<Person> {
+    class ScheduledMeetsListViewCell extends ListCell<MeetUp> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(MeetUp meetUp, boolean empty) {
+            super.updateItem(meetUp, empty);
 
-            if (empty || person == null) {
+            if (empty || meetUp == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person).getRoot());
+                setGraphic(new ScheduledMeetsCard(meetUp).getRoot());
             }
         }
     }

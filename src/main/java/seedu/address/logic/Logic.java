@@ -8,6 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyEduMate;
+import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 import seedu.address.model.recommendation.Recommendation;
@@ -39,6 +40,8 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of recommendations */
     ObservableList<Recommendation> getObservableRecommendationList();
+
+    ObservableList<MeetUp> getObservableMeetUpList();
 
     /**
      * Returns the user prefs' address book file path.

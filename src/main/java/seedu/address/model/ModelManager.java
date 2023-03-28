@@ -305,7 +305,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public List<MeetUp> getObservableMeetUpList() {
+    public ObservableList<MeetUp> getObservableMeetUpList() {
         return observableMeetUps;
     }
 

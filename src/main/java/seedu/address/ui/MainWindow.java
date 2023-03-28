@@ -100,8 +100,8 @@ public class MainWindow extends UiPart<Stage> {
         meetListPanel = new MeetListPanel(logic.getObservableRecommendationList());
         meetListPanelPlaceholder.getChildren().add(meetListPanel.getRoot());
 
-        // scheduledMeetsListPanel = new ScheduledMeetsListPanel(logic.getObservablePersonList());
-        // scheduledMeetsPlaceholder.getChildren().add(scheduledMeetsListPanel.getRoot());
+        scheduledMeetsListPanel = new ScheduledMeetsListPanel(logic.getObservableMeetUpList());
+        scheduledMeetsPlaceholder.getChildren().add(scheduledMeetsListPanel.getRoot());
 
         setUserName(logic.getUser());
     }

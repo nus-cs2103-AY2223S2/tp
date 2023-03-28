@@ -78,6 +78,8 @@ public class EduMate implements ReadOnlyEduMate {
         meets.add(meetUp);
     }
 
+    //todo add remove meetup
+
     public Participants getParticipantList() {
         return participants;
     }
@@ -136,6 +138,8 @@ public class EduMate implements ReadOnlyEduMate {
         setPersons(newData.getPersonList());
         setRecommendations(newData.getRecommendationList());
         setUser(newData.getUser());
+        setParticipants(newData.getParticipantList());
+        setMeetUps(newData.getMeetUpList());
     }
 
     //// person-level operations

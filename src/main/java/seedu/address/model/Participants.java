@@ -16,7 +16,9 @@ public class Participants {
         participants = contactIndexSet;
     }
 
-    public Participants() {};
+    public Participants() {
+        participants = new HashSet<>();
+    };
 
     public Participants(List<Integer> contactIndexList) {
         //todo may need to rename this
@@ -30,6 +32,5 @@ public class Participants {
     public Set<ContactIndex> getParticipants() {
         return this.participants;
     }
-
 
 }

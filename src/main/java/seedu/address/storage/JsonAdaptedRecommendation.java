@@ -61,9 +61,11 @@ public class JsonAdaptedRecommendation {
         final Location modelLocation = location.toModelType();
 
         if (timePeriod == null) {
+            System.out.println("TIMEPERIOD IS NULL");
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, TimePeriod.class.getSimpleName()));
         }
+
         final TimePeriod modelTimePeriod = timePeriod.toModelType();
 
         final ContactIndex modelContactIndex = new ContactIndex(index);

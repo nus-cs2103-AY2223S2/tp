@@ -88,11 +88,13 @@ class JsonSerializableEduMate {
         EduMate eduMate = new EduMate();
 
         User userModel = user.toModelType();
+        System.out.println("HERE 1");
         Set<ModuleTag> userModuleTags = userModel.getImmutableModuleTags();
 
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (eduMate.hasPerson(person)) {
+                System.out.println("HERE 2");
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             person.setCommonModules(userModuleTags);
@@ -100,19 +102,33 @@ class JsonSerializableEduMate {
         }
 
         for (JsonAdaptedRecommendation jsonAdaptedRecommendation : recommendations) {
-            Recommendation recommendation = jsonAdaptedRecommendation.toModelType();
-            if (eduMate.hasRecommendation(recommendation)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_RECOMMENDATION);
+            try {
+                Recommendation recommendation = jsonAdaptedRecommendation.toModelType();
+                if (eduMate.hasRecommendation(recommendation)) {
+                    System.out.println("HERE 3");
+                    throw new IllegalValueException(MESSAGE_DUPLICATE_RECOMMENDATION);
+                }
+                eduMate.addRecommendation(recommendation);
+            } catch (Exception e) {
+                System.out.println("HERE HERE "+ e.toString());
+                throw new IllegalValueException("ITS THE reCCCS");
             }
-            eduMate.addRecommendation(recommendation);
         }
 
         for (JsonAdaptedMeetUp jsonAdaptedMeetUp : meetUps) {
-            MeetUp meetUp = jsonAdaptedMeetUp.toModelType();
-            if (eduMate.hasMeetUp(meetUp)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_MEETUP);
+
+            try {
+                MeetUp meetUp = jsonAdaptedMeetUp.toModelType();
+                if (eduMate.hasMeetUp(meetUp)) {
+                    System.out.println("HERE 4");
+                    throw new IllegalValueException(MESSAGE_DUPLICATE_MEETUP);
+                }
+                eduMate.addMeetUp(meetUp);
+            } catch (Exception e) {
+                System.out.println("HERE HERE "+ e.toString());
+                throw new IllegalValueException("ITS THE MEETUPS");
             }
-            eduMate.addMeetUp(meetUp);
+
         }
 
         Participants modelParticipants = participantList.toModelType();

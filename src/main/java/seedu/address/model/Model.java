@@ -183,7 +183,7 @@ public interface Model {
 
     ContactIndex getMeetUpIndex();
 
-    List<MeetUp> getObservableMeetUpList();
+    ObservableList<MeetUp> getObservableMeetUpList();
 
     //todo do i need this??
     //void updateObservableMeetUpList();
