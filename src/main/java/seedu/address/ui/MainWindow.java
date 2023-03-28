@@ -18,6 +18,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.theme.Theme;
@@ -43,6 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ViewPane viewPane;
     private Theme theme;
 
     @FXML
@@ -53,6 +55,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane viewPanePlaceHolder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -119,20 +124,23 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), this);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(0));
+        viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
+
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        applyTheme(Theme.DARK);
+        applyTheme(Theme.DEFAULT_THEME);
     }
 
     void newFillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), this);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
@@ -181,10 +189,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -194,7 +198,6 @@ public class MainWindow extends UiPart<Stage> {
             ParseException, IllegalValueException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            System.out.println(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -209,25 +212,31 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowBackups()) {
                 fillInnerPartsBackup();
                 isShowBackup = true;
-            } else {
-                if (isShowBackup) {
-                    newFillInnerParts();
-                    isShowBackup = false;
-                }
-                if (commandResult.isShowLight()) {
-                    applyLightTheme();
-                }
-
-                if (commandResult.isShowDark()) {
-                    applyDarkTheme();
-                }
             }
+
+            if (isShowBackup) {
+                newFillInnerParts();
+                isShowBackup = false;
+            }
+
+            if (commandResult.isShowDark()) {
+                applyDarkTheme();
+            }
+
+            if (commandResult.getFeedbackToUser().equals(ViewCommand.MESSAGE_VIEW_PERSON_SUCCESS)) {
+                applyView();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    public CommandResult execute(String commandText) throws CommandException, IllegalValueException {
+        return executeCommand(commandText);
     }
 
     private void applyTheme(Theme newTheme) {
@@ -242,6 +251,14 @@ public class MainWindow extends UiPart<Stage> {
         } catch (ThemeException e) {
             logger.info(e.getMessage());
         }
+    }
+
+    private void applyView() {
+        personListPanel = new PersonListPanel(logic.getAddressBook().getPersonList(), this);
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        viewPanePlaceHolder.getChildren().clear();
+        viewPane = new ViewPane(logic.getFilteredPersonList().get(0));
+        viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
     }
 
     /**

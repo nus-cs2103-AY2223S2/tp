@@ -2,11 +2,15 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 
 /**
@@ -24,9 +28,9 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final MainWindow mainWindow;
 
-    private final String drugAllergies = "Allergies: ";
+    public final Person person;
 
     @FXML
     private HBox cardPane;
@@ -41,37 +45,41 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label email;
-    @FXML
     private Label gender;
     @FXML
-    private Label drugAllergy;
-    @FXML
     private FlowPane tags;
-    @FXML
-    private FlowPane medicines;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, MainWindow mainWindow) {
         super(FXML);
         this.person = person;
+        this.mainWindow = mainWindow;
+        cardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, viewPerson());
         id.setText(displayedIndex + ". ");
         nric.setText(person.getNric().fullNric);
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         gender.setText(person.getGender().gender);
-        drugAllergy.setText(drugAllergies + person.getDrugAllergy().value);
-        email.setText(person.getEmail().value);
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        person.getMedicines().stream()
-            .sorted(Comparator.comparing(medicine -> medicine.medicineName))
-            .forEach(medicine -> medicines.getChildren().add(new Label(medicine.medicineName)));
     }
+
+    private EventHandler<MouseEvent> viewPerson() {
+        return new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent clickEvent) {
+                try {
+                    mainWindow.execute("view i/" + person.getNric().fullNric);
+                } catch (CommandException | IllegalValueException e) {
+                    e.printStackTrace();
+                }
+            };
+        };
+    };
 
     @Override
     public boolean equals(Object other) {
