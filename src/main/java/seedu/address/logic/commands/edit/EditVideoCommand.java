@@ -120,6 +120,7 @@ public class EditVideoCommand extends EditCommand {
      */
     public static class EditVideoDescriptor {
         private VideoName name;
+        private Boolean hasWatched;
         private Set<Tag> tags;
 
         public EditVideoDescriptor() {}
@@ -140,7 +141,7 @@ public class EditVideoCommand extends EditCommand {
          * @return True if at least one field is edited. Otherwise, false.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, tags);
+            return CollectionUtil.isAnyNonNull(name, hasWatched, tags);
         }
 
         public Optional<VideoName> getName() {
@@ -149,6 +150,14 @@ public class EditVideoCommand extends EditCommand {
 
         public void setName(VideoName name) {
             this.name = name;
+        }
+
+        public Optional<Boolean> hasWatched() {
+            return Optional.ofNullable(hasWatched);
+        }
+
+        public void setWatched(boolean hasWatched) {
+            this.hasWatched = hasWatched;
         }
 
         /**
@@ -186,6 +195,7 @@ public class EditVideoCommand extends EditCommand {
             EditVideoDescriptor descriptor = (EditVideoDescriptor) other;
 
             return getName().equals(descriptor.getName())
+                    && hasWatched().equals(descriptor.hasWatched())
                     && getTags().equals(descriptor.getTags());
         }
     }
