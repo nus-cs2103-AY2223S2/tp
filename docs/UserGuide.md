@@ -152,7 +152,7 @@ Creates a new client contact.
 - **`-cn client_name`**
     - The client’s name.
 - **`-e email`**
-    - The client’s email. Must be unique in Mycelium.
+    - The client’s email. Must be unique in Mycelium. Case sensitive.
 
 **Optional Arguments**
 
@@ -160,7 +160,7 @@ Creates a new client contact.
     - The client’s year of birth.
     - **Default**: *null*
 - **`-src source`**
-    - The client’s digital service platform, e.g. Fiverr.
+    - The platform the client is sourced from, such as Fiverr. This can be any arbitrary non-empty string.
     - **Default:** *null*
 - **`-mn mobile_number`**
     - The client’s mobile number.
@@ -171,12 +171,23 @@ Creates a new client contact.
 The following command creates a new client with name *Alice Baker*, whose email is *alice_baker@bakers.com*, born in the year *2000*.
 
 ```bash
-c -cn 'Alice Baker' -e alice_baker@bakers.com -y 2000
+c -cn Alice Baker -e alice_baker@bakers.com -y 2000
+```
+You should see the following output if the client is created successfully.
+
+```bash
+New client added: Alice Baker (alice_baker@bakers.com)
 ```
 
 ### Deleting a client contact: `dc`
 
 Deletes an *existing* client contact.
+
+**Notes**
+
+- You should not add any quotation marks around any of the attributes.
+- An error message will be shown with an attempt to create a client with an existing email
+in Mycelium.
 
 **Compulsory Arguments**
 
@@ -187,6 +198,46 @@ Deletes an *existing* client contact.
 
 The command `dc -e alice_baker@bakers.com`  deletes the contact with the corresponding email.
 
+Expected output:
+```bash
+Deleted Client: Alice Baker (alice_baker@bakers.com)
+```
+
+### Updating a client: `uc`
+
+Updates an *existing* client contact.
+
+**Compulsory Arguments**
+- **`-e email`**
+  - Email of the client to update.
+
+**Optional Arguments**
+
+At least one of the following arguments must be provided:
+- **`-cn client_name`**
+  - The client’s new name.
+  - **Default:** *null*
+- **`-e2 new email`**
+  - THe client's new email. Must be unique in Mycelium. Case sensitive.
+  - **Default:** *null*
+- **`-y year_of_birth`**
+  - The client’s new year of birth.
+  - **Default:** *null*
+- **`-src source`**
+  - The client’s new digital service platform, e.g. Fiverr.
+  - **Default:** *null*
+- **`-mn mobile_number`**
+  - The client’s new mobile number.
+  - **Default:** *null*
+
+**Examples**
+
+The command `uc -e alice_bakers@bakers.com -cn Bobby Baker` updates the client with email *alice_bakers@bakers.com* to have the name *Bobby Baker*.
+
+**Expected output:**
+```bash
+Updated Client: Bobby Baker (alice_baker@bakers.com)
+```
 --------------------------------------------------------------------------------------------------------------------
 
 ## Managing Projects
