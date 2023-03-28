@@ -72,12 +72,10 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 }
             }
 
-        } catch (ParseException pe) {
+        } catch (ParseException | IllegalArgumentException e) {
             throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
-        } catch (IllegalArgumentException iae) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    iae.getMessage() + "\n" + DeleteCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()
+                        + "\n" + DeleteCommand.MESSAGE_USAGE), e);
         }
 
     }
