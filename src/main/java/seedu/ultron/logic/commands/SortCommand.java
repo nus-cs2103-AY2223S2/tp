@@ -1,13 +1,11 @@
 package seedu.ultron.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.ultron.model.Model.PREDICATE_SHOW_ALL_OPENINGS;
 
 import seedu.ultron.commons.core.Messages;
 import seedu.ultron.model.Model;
 import seedu.ultron.model.opening.ContainsKeydatePredicate;
 import seedu.ultron.model.opening.KeydateSort;
-import seedu.ultron.model.opening.Opening;
 
 
 /**

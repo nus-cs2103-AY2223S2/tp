@@ -18,7 +18,6 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        System.out.println(model.getFilteredOpeningList().size());
         model.updateFilteredOpeningList(PREDICATE_SHOW_ALL_OPENINGS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
