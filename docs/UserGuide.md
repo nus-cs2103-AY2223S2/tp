@@ -469,6 +469,13 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+**Q**: Why are orders deleted or missing after deleting a customer with `deletec`? <br>
+**A**: Orders are closely tied to a customer in LoyaltyLift. Once a customer has been removed, all of his/her orders needs to be cleared. 
+If this is not ideal, we recommend to avoid deleting any customers.
+
+**Q**: Can my orders have a different address than the customer's address? <br>
+**A**: Yes! When you create an order using `addo`, you can specify the new address with the parameter `a/`. If this is not specified, the customer's address is used instead for your convenience.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
