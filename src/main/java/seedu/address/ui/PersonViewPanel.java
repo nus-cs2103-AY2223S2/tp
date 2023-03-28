@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
-//import com.sun.javafx.collections.ObservableListWrapper;
-
+import com.sun.javafx.collections.ObservableListWrapper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,6 +14,7 @@ import seedu.address.model.person.Person;
 
 import java.util.logging.Logger;
 
+//code reuse https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/112/files
 public class PersonViewPanel extends UiPart<Region> {
     private static final String FXML = "PersonViewPanel.fxml";
 
@@ -67,8 +67,10 @@ public class PersonViewPanel extends UiPart<Region> {
         /*if (person.getMedications().size() > 0) {
             medications.getChildren().add(new Label(person.getMedicationString()));
         }
+         */
+        setAppointmentDetails();
     }
-    /*
+
     private void setAppointmentDetails() {
         ObservableList<Appointment> appointmentsObservableList =
                 new ObservableListWrapper<>(person.getPatientAppointments());
@@ -85,10 +87,8 @@ public class PersonViewPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new AppointmentCard(pastAppointment, getIndex() + 1).getRoot());
+                setGraphic(new AppointmentCard(appointment, getIndex() + 1).getRoot());
             }
         }
     }
-
-     */
 }
