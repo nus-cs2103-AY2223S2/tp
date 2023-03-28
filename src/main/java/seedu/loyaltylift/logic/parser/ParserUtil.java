@@ -17,7 +17,6 @@ import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.order.Quantity;
-import seedu.loyaltylift.model.order.Status;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -152,19 +151,6 @@ public class ParserUtil {
             throw new ParseException(CustomerType.MESSAGE_FAIL_CONVERSION);
         }
         return type;
-    }
-    /**
-     * Parses {@code String status} into a {@code Status}.
-     */
-    public static Status parseStatus(String statusString) throws ParseException {
-        requireNonNull(statusString);
-        Status status;
-        try {
-            status = Status.fromString(statusString);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(Status.MESSAGE_FAIL_CONVERSION);
-        }
-        return status;
     }
 
     /**

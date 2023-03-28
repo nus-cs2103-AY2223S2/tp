@@ -3,41 +3,30 @@ package seedu.loyaltylift.model.order;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 public class StatusTest {
 
     @Test
-    public void fromString_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> Status.fromString(null));
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Status(null));
     }
 
     @Test
-    public void fromString_invalidString_throwsIllegalArgumentException() {
-        String invalidString = "";
-        assertThrows(IllegalArgumentException.class, () -> Status.fromString(invalidString));
+    public void constructor_emptyUpdates_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, Status.MESSAGE_CONSTRAINTS, () -> new Status(List.of()));
     }
 
     @Test
-    public void fromString_validString() {
-        assertEquals(Status.fromString("PENDING"), Status.PENDING);
-        assertEquals(Status.fromString("Pending"), Status.PENDING);
-        assertEquals(Status.fromString("pending"), Status.PENDING);
+    public void constructor_badlySortedUpdates_updatesSorted() {
+        Status status = new Status(List.of(
+                new StatusUpdate(StatusValue.PAID, LocalDate.of(2020, 1, 2)),
+                new StatusUpdate(StatusValue.PENDING, LocalDate.of(2019, 3, 15))
+        ));
 
-        assertEquals(Status.fromString("PAID"), Status.PAID);
-        assertEquals(Status.fromString("Paid"), Status.PAID);
-        assertEquals(Status.fromString("paid"), Status.PAID);
-
-        assertEquals(Status.fromString("SHIPPED"), Status.SHIPPED);
-        assertEquals(Status.fromString("Shipped"), Status.SHIPPED);
-        assertEquals(Status.fromString("shipped"), Status.SHIPPED);
-
-        assertEquals(Status.fromString("COMPLETED"), Status.COMPLETED);
-        assertEquals(Status.fromString("Completed"), Status.COMPLETED);
-        assertEquals(Status.fromString("completed"), Status.COMPLETED);
-
-        assertEquals(Status.fromString("CANCELLED"), Status.CANCELLED);
-        assertEquals(Status.fromString("Cancelled"), Status.CANCELLED);
-        assertEquals(Status.fromString("cancelled"), Status.CANCELLED);
+        assertEquals(status.getLatestStatus().statusValue, StatusValue.PAID);
     }
 }

@@ -105,32 +105,53 @@
     "customerId": "Alice Pauline",
     "name": "Strawberry Shortcake",
     "quantity": 5,
+    "statusUpdates": [{
+      "statusValue" : "Pending",
+      "date" : "2022/01/09"
+    }, {
+      "statusValue" : "Paid",
+      "date" : "2022/03/26"
+    } ],
     "address": "10 Summer Drive, Singapore 3098812",
-    "status": "PENDING",
     "createdDate": "2023/01/09",
     "note": ""
   }, {
     "customerId": "Alice Pauline",
     "name": "Banana Split",
     "quantity": 2,
+    "statusUpdates": [{
+      "statusValue" : "Pending",
+      "date" : "2023/02/09"
+    }],
     "address": "11 Fabordrive, Singapore 3001298",
-    "status": "PAID",
     "createdDate": "2022/12/20",
     "note": ""
   }, {
     "customerId": "Alice Pauline",
     "name": "Melon Cookie",
     "quantity": 50,
+    "statusUpdates": [{
+      "statusValue" : "Pending",
+      "date" : "2022/12/09"
+    }, {
+      "statusValue" : "Paid",
+      "date" : "2023/02/02"
+    }, {
+      "statusValue" : "Shipped",
+      "date" : "2023/02/15"
+    } ],
     "address": "9 Bishan Rd, Singapore 310909",
-    "status": "SHIPPED",
     "createdDate": "2022/12/20",
     "note": ""
   }, {
     "customerId": "Alice Pauline",
     "name": "Strawberry Shortcake",
     "quantity": 3,
+    "statusUpdates": [{
+      "statusValue" : "Pending",
+      "date" : "2022/10/11"
+    } ],
     "address": "9 Bishan Rd, Singapore 310909",
-    "status": "COMPLETED",
     "createdDate": "2022/12/12",
     "note": ""
   } ]
