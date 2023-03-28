@@ -33,7 +33,7 @@ public class JsonDengueHotspotTrackerStorageTest {
 
     private java.util.Optional<ReadOnlyDengueHotspotTracker> readDengueHotspotTracker(String filePath)
             throws Exception {
-        return new CsvDengueHotspotStorage(Paths.get(filePath))
+        return new JsonDengueHotspotStorage(Paths.get(filePath))
                 .readDengueHotspotTracker(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -70,7 +70,7 @@ public class JsonDengueHotspotTrackerStorageTest {
     public void readAndSaveDengueHotspotTracker_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempDengueHotspotTracker.json");
         DengueHotspotTracker original = getTypicalDengueHotspotTracker();
-        CsvDengueHotspotStorage jsonDengueHotspotStorage = new CsvDengueHotspotStorage(filePath);
+        JsonDengueHotspotStorage jsonDengueHotspotStorage = new JsonDengueHotspotStorage(filePath);
 
         // Save in new file and read back
         jsonDengueHotspotStorage.saveDengueHotspotTracker(original, filePath);
@@ -103,7 +103,7 @@ public class JsonDengueHotspotTrackerStorageTest {
      */
     private void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker, String filePath) {
         try {
-            new CsvDengueHotspotStorage(Paths.get(filePath))
+            new JsonDengueHotspotStorage(Paths.get(filePath))
                     .saveDengueHotspotTracker(dengueHotspotTracker, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);

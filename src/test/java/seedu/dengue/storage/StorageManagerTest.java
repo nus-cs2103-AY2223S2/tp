@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        CsvDengueHotspotStorage dengueHotspotTrackerStorage = new CsvDengueHotspotStorage(getTempFilePath("ab"));
+        JsonDengueHotspotStorage dengueHotspotTrackerStorage = new JsonDengueHotspotStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(dengueHotspotTrackerStorage, userPrefsStorage);
     }

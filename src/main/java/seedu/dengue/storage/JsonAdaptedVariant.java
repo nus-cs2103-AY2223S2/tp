@@ -9,22 +9,22 @@ import seedu.dengue.model.variant.Variant;
 /**
  * Jackson-friendly version of {@link Variant}.
  */
-class CsvAdaptedVariant {
+class JsonAdaptedVariant {
 
     private final String variantName;
 
     /**
-     * Constructs a {@code CsvAdaptedVariant} with the given {@code variantName}.
+     * Constructs a {@code JsonAdaptedVariant} with the given {@code variantName}.
      */
     @JsonCreator
-    public CsvAdaptedVariant(String variantName) {
+    public JsonAdaptedVariant(String variantName) {
         this.variantName = variantName;
     }
 
     /**
      * Converts a given {@code Variant} into this class for Jackson use.
      */
-    public CsvAdaptedVariant(Variant source) {
+    public JsonAdaptedVariant(Variant source) {
         variantName = source.variantName.toString();
     }
 
@@ -34,7 +34,7 @@ class CsvAdaptedVariant {
     }
 
     /**
-     * Converts this Csv adapted variant object into the model's {@code Variant} object.
+     * Converts this Jackson-friendly adapted variant object into the model's {@code Variant} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted dengue variant.
      */
