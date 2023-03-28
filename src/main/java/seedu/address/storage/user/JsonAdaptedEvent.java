@@ -1,5 +1,11 @@
 package seedu.address.storage.user;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,16 +17,21 @@ import seedu.address.model.event.fields.DateTime;
 import seedu.address.model.event.fields.Description;
 import seedu.address.model.event.fields.Recurrence;
 import seedu.address.model.person.Person;
+import seedu.address.storage.addressbook.JsonAdaptedPerson;
 
 /**
  * Jackson-friendly version of {@link Person}.
  */
+@SuppressWarnings("checkstyle:OneStatementPerLine")
 public class JsonAdaptedEvent {
 
     private final String description;
     private final String startDateTime;
     private final String endDateTime;
     private final String recurrence;
+    private final List<JsonAdaptedPerson> taggedPeople =
+            new ArrayList<>();;
+
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -29,11 +40,15 @@ public class JsonAdaptedEvent {
     public JsonAdaptedEvent(@JsonProperty("description") String description,
                             @JsonProperty("startDateTime") String startDateTime,
                             @JsonProperty("endDateTime") String endDateTime,
-                            @JsonProperty("recurrence") String recurrence) {
+                            @JsonProperty("recurrence") String recurrence,
+                            @JsonProperty("taggedPeople") List<JsonAdaptedPerson> taggedPeople) {
         this.description = description;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.recurrence = recurrence;
+        if (taggedPeople != null) {
+            this.taggedPeople.addAll(taggedPeople);
+        }
     }
 
     /**
@@ -44,6 +59,10 @@ public class JsonAdaptedEvent {
         this.startDateTime = source.getStartDateTime().toString();
         this.endDateTime = source.getEndDateTime().toString();
         this.recurrence = source.getRecurrence().interval.getValue();
+        if (source.getTaggedPeople() != null) {
+            this.taggedPeople.addAll(
+                    source.getTaggedPeople().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        }
     }
 
     /**
@@ -68,6 +87,10 @@ public class JsonAdaptedEvent {
         }
         DateTime modelEndDateTime = new DateTime(this.endDateTime);
 
+        Set<Person> taggedPeople = new HashSet<>();
+        for (JsonAdaptedPerson person: this.taggedPeople) {
+            taggedPeople.add(person.toModelType());
+        }
 
         if (!Recurrence.isValidRecurrence(this.recurrence)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
@@ -75,9 +98,10 @@ public class JsonAdaptedEvent {
         Recurrence modelRecurrence = new Recurrence(this.recurrence);
 
         if (this.recurrence.equals(Recurrence.NONE_CASE)) {
-            return new OneTimeEvent(modelDescription, modelStartDateTime, modelEndDateTime);
+            return new OneTimeEvent(modelDescription, modelStartDateTime, modelEndDateTime, taggedPeople);
         } else {
-            return new RecurringEvent(modelDescription, modelStartDateTime, modelEndDateTime, modelRecurrence);
+            return new RecurringEvent(modelDescription, modelStartDateTime,
+                    modelEndDateTime, modelRecurrence, taggedPeople);
         }
     }
 

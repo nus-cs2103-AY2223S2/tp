@@ -87,6 +87,9 @@ public class UserData implements ReadOnlyUserData {
         return this.user.getValue().isPersonTaggedToEvent(index, p);
     }
 
+    public void editPersonForAllEvents(Person personToEdit, Person editedPerson) {
+        this.user.getValue().editPersonForAllEvents(personToEdit, editedPerson);
+    }
 
     //// util methods
 
