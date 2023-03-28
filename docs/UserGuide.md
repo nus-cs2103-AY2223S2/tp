@@ -496,7 +496,7 @@ Examples:
 
 ## Students by Session Commands
 
-### Marking attendance of a selected students: `mark`
+### Marking selected students as present: `mark`
 
 Marks selected students' attendance as present.
 
