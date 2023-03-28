@@ -34,7 +34,11 @@ public class Calorie {
 
     @Override
     public String toString() {
-        return value;
+        if (value.equals("0000")) {
+            return "client has not added a calorie";
+        } else {
+            return value;
+        }
     }
 
     @Override
