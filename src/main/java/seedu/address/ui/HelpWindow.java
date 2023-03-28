@@ -16,7 +16,8 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t11-4.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide for more in-depth information: FK" + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "Refer to the user guide for more in-depth information: "
+                                                + USERGUIDE_URL;
 
     public static final String UNDO_COMMAND_MESSAGE = "1) Reverts the patient records to the state"
                                                         + " before the previous command was executed:\n"
@@ -28,7 +29,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String ADD_COMMAND_MESSAGE = "3) Add a person to the patient records:\n"
                                                         + "Format: add n/NAME i/NRIC p/PHONE_NUMBER a/ADDRESS"
-                                                        +  " d/DRUG ALLERGIES g/GENDER"
+                                                        + " d/DRUG ALLERGIES g/GENDER"
                                                         + " [e/EMAIL] [t/TAG] [m/MEDICINE]";
 
     public static final String EDIT_COMMAND_MESSAGE = "4) Edit an existing person in patient records:\n"
