@@ -3,8 +3,6 @@ package seedu.address.model.person.information;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.Parser.FIELD_NOT_SPECIFIED;
 
-import java.util.Arrays;
-
 /**
  * Represents a Person's region in FriendlyLink.
  * Guarantees: immutable; is valid as declared in {@link #isValidRegion(String)}

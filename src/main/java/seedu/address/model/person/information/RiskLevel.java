@@ -3,10 +3,6 @@ package seedu.address.model.person.information;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.Parser.FIELD_NOT_SPECIFIED;
 
-import java.text.BreakIterator;
-import java.util.Arrays;
-import java.util.HashSet;
-
 /**
  * Represents an Elderly's risk level in FriendlyLink.
  * Guarantees: immutable; is valid as declared in {@link #isValidRisk(String)}
