@@ -114,6 +114,12 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses a String {@code userInput} and returns an empty string if input is empty. Leading and trailing whitespaces
+     * will be trimmed.
+     *
+     * @throws ParseException if the user input contains any characters (excluding whitespaces)
+     */
     public static String parseEmptyInput(String userInput) throws ParseException {
         String trimmedUserInput = userInput.trim();
         if (trimmedUserInput.isEmpty()) {
