@@ -129,6 +129,7 @@ public class Meeting implements Comparable<Meeting> {
 
     public String getEndString() {
         return end.format(customFormat);
+    }
 
     public void setEnd(LocalDateTime end) {
         this.end = end;

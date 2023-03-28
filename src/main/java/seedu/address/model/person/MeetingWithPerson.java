@@ -9,7 +9,7 @@ public class MeetingWithPerson extends Meeting {
     private final Person personToMeet;
 
     public MeetingWithPerson(Meeting meeting, Person personToMeet) {
-        super(meeting.start, meeting.end);
+        super(meeting.description, meeting.start, meeting.end);
         this.personToMeet = personToMeet;
     }
 
