@@ -36,9 +36,13 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private ResultPersonListPanel resultPersonlistPanel;
     private HelpWindow helpWindow;
+    private RemarkWindow remarkWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
+
+    @FXML
+    private StackPane remarkBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -74,6 +78,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        remarkWindow = new RemarkWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -200,11 +205,21 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isRemark()) {
+                // commandText = remark INDEX
+                return executeCommand(commandText + " r/" +
+                        getRemarksFromRemarkBox(commandResult.getRemark()));
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private String getRemarksFromRemarkBox(String existingRemarks) {
+        return remarkWindow.showAndGetText(existingRemarks);
     }
 }

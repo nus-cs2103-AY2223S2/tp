@@ -32,7 +32,6 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-
     public Person(Name name, Phone phone, Email email, Address address, Education education, Remark remark,
             Set<Subject> subjects, Set<Tag> tags) {
         requireAllNonNull(name);
