@@ -4,10 +4,9 @@ Greetings! Welcome to PowerConnect! <br>
 
 Looking for a simple and all in one solution for your teaching needs? Look no further. <br>
 
-PowerConnect is a fully customized platform for tuition teachers and school teachers with the primary focus on 
-tuition teachers now as we are still working to scale our features. School teachers, do still give us a try. While our 
-features are limited at this stage, we are working hard to scale them to better compete with other Learning Managment
-System (LMS) tools currently in the market. <br>
+
+PowerConnect is a fully customized offline application for tuition and school teachers to manage students' and parents' administrative details. We are still working to scale our features so we mainly target tuition teachers currently. However, school teachers, do still give us a try. While our 
+features are limited at this stage, we are working hard to scale them and be a useful tool in conjunction with Learning Managment System (LMS) tools currently in the market. <br>
 
 We aim to make PowerConnect as simple as possible for you to use with a focus on command line interface where you don't
 have to navigate complex user menus to access the features you need, especially if you can type fast. <br>
@@ -58,7 +57,7 @@ Without further ado, let's get started!
 
 3. Copy the file to the folder you want to use as the _home folder_ for PowerConnect.
 
-4. In the same folder, create a new folder named “image” and store all images to be used for the program in this folder. eg student image and parent image. For the student image, it should be named <STUDENT_NAME><CLASS><INDEX NUMBER>.png. For the parent image, it should be named <PARENT_NAME>.
+4. In the same folder, create a new folder named “image” and store all images to be used for the program in this folder. eg student image and parent image. For the student image, it should be named `<STUDENT_NAME><CLASS><INDEX NUMBER>.png`. For the parent image, it should be named `<PARENT_NAME>.png`
 
 5. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar PowerConnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
