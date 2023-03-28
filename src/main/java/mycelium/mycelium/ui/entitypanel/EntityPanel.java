@@ -13,11 +13,12 @@ import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.ui.UiPart;
+import mycelium.mycelium.ui.utils.TabsPanel;
 
 /**
  * The ui for the holder of all the tabs.
  */
-public class EntityPanel extends UiPart<TabPane> {
+public class EntityPanel extends UiPart<TabPane> implements TabsPanel {
     private static final String FXML = "EntityPanel.fxml";
     private Logger logger = LogsCenter.getLogger(getClass());
     private EntityList<Client> clientListPanel;
@@ -57,19 +58,18 @@ public class EntityPanel extends UiPart<TabPane> {
         this.selectionModel.select(this.projectTab.getRoot());
     }
 
-    /**
-     * Switches to the next tab.
-     */
+    @Override
     public void nextTab() {
         int size = this.tabs.size();
+        if (size == 0) {
+            return;
+        }
+        assert size > 0;
         int i = this.selectionModel.getSelectedIndex();
         this.selectionModel.select((i + 1) % size);
     }
 
-    /**
-     * Selects and scroll to the next item in the current tab.
-     * If there is no next item, it will select and scroll to the first item.
-     */
+    @Override
     public void nextItem() {
         Tab item = this.selectionModel.getSelectedItem();
         switch (item.getText()) {
@@ -84,10 +84,7 @@ public class EntityPanel extends UiPart<TabPane> {
         }
     }
 
-    /**
-     * Selects and scroll to the previous item in the current tab.
-     * If there is no previous item, it will select and scroll to the last item.
-     */
+    @Override
     public void prevItem() {
         Tab tab = this.selectionModel.getSelectedItem();
         switch (tab.getText()) {
@@ -100,6 +97,21 @@ public class EntityPanel extends UiPart<TabPane> {
         default:
             break;
         }
+    }
+
+    @Override
+    public void highlight() {
+        ObservableList<String> styleClass = getRoot().getStyleClass();
+        if (styleClass.contains(HIGHLIGHTED_STYLE_CLASS)) {
+            return;
+        }
+
+        styleClass.add(HIGHLIGHTED_STYLE_CLASS);
+    }
+
+    @Override
+    public void unhighlight() {
+        getRoot().getStyleClass().remove(HIGHLIGHTED_STYLE_CLASS);
     }
 
     /**
@@ -120,7 +132,7 @@ public class EntityPanel extends UiPart<TabPane> {
     /**
      * Returns the selected entity identifier.
      * If there is no selected entity, it will return an empty optional.
-     * The identifier for projects witll be the project name.
+     * The identifier for projects will be the project name.
      * The identifier for clients will be the client email.
      *
      * @return the selected entity identifier.

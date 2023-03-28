@@ -26,6 +26,7 @@ import mycelium.mycelium.ui.entitypanel.EntityPanel;
 import mycelium.mycelium.ui.helpwindow.HelpWindow;
 import mycelium.mycelium.ui.statisticsbox.StatisticsBox;
 import mycelium.mycelium.ui.statusbarfooter.StatusBarFooter;
+import mycelium.mycelium.ui.utils.TabsPanelList;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -47,6 +48,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private EntityPanel entityPanel;
     private StatisticsBox statisticsBox;
+    private TabsPanelList tabsPanelList;
 
     private StatusBarFooter statusBarFooter;
 
@@ -116,6 +118,8 @@ public class MainWindow extends UiPart<Stage> {
 
         statisticsBox = new StatisticsBox(logic);
         statisticsBoxPlaceholder.getChildren().add(statisticsBox.getRoot());
+
+        tabsPanelList = new TabsPanelList(entityPanel, statisticsBox);
 
         statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -294,16 +298,52 @@ public class MainWindow extends UiPart<Stage> {
         commandLog.setFeedbackToUser(feedback);
     }
 
-    // EntityPanel methods =====================================================
+    // TabsPanelList methods =====================================================
+    /**
+     * Switches between the statistic panel and the entity panel.
+     *
+     * @see TabsPanelList#switchPanel()
+     */
+    public void nextTabPanel() {
+        tabsPanelList.nextTabPanel();
+    }
+
     /**
      * Sets the entity panel to the next tab.
      *
      * @see EntityPanel#nextTab()
      */
     public void nextTab() {
-        entityPanel.nextTab();
+        tabsPanelList.nextTab();
     }
 
+    /**
+     * Selects the next item in the current entity panel.
+     *
+     * @see TabsPanelList#nextItem()
+     */
+    public void nextItem() {
+        tabsPanelList.nextItem();
+    }
+
+    /**
+     * Selects the previous item in the current entity panel.
+     *
+     * @see tabsPanelList#prevItem()
+     */
+    public void prevItem() {
+        tabsPanelList.prevItem();
+    }
+
+    /**
+     * Focus the entity panel.
+     */
+    public void focusEntityPanel() {
+        assert tabsPanelList.get(0) instanceof EntityPanel;
+        tabsPanelList.focusTabPanel(0);
+    }
+
+    // EntityPanel methods ======================================================
     /**
      * Selects the client tab.
      *
@@ -321,7 +361,6 @@ public class MainWindow extends UiPart<Stage> {
     public void selectProjectTab() {
         entityPanel.selectProjectTab();
     }
-
 
     /**
      * Sets the projects to be displayed in the entity panel.
@@ -341,24 +380,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void setClients(ObservableList<Client> clientList) {
         entityPanel.setClients(clientList);
-    }
-
-    /**
-     * Selects the next item in the current entity panel.
-     *
-     * @see EntityPanel#nextItem()
-     */
-    public void nextItem() {
-        entityPanel.nextItem();
-    }
-
-    /**
-     * Selects the previous item in the current entity panel.
-     *
-     * @see EntityPanel#prevItem()
-     */
-    public void prevItem() {
-        entityPanel.prevItem();
     }
 
     /**

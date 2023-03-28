@@ -23,7 +23,7 @@ public class EntityTab extends UiPart<Tab> {
      * Initialises a {@code TabPage} with a given title.
      *
      * @param title   Title of the Tab
-     * @param content Content the tab should be poulated with
+     * @param content Content the tab should be populated with
      */
     public EntityTab(String title, UiPart<? extends Node> content) {
         super(FXML);

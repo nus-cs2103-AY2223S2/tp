@@ -38,7 +38,7 @@ public class EntityList<T> extends UiPart<Region> {
      * Creates a {@code ListPanel} with the given {@code list} after transforming with {@code biMap}
      *
      * @param list  ObservableList of items
-     * @param biMap BiFunction that transform the list to the approproate {@code UiPart}
+     * @param biMap BiFunction that transforms the list to the appropriate {@code UiPart}
      */
     public EntityList(
         ObservableList<T> list,
@@ -67,6 +67,10 @@ public class EntityList<T> extends UiPart<Region> {
      */
     public void nextItem() {
         int size = listView.getItems().size();
+        if (size <= 0) {
+            return;
+        }
+        assert size > 0;
         int nextIndex = (listView.getSelectionModel().getSelectedIndex() + 1) % size;
         listView.getSelectionModel().select(nextIndex);
         listView.scrollTo(listView.getSelectionModel().getSelectedItem());
@@ -77,6 +81,10 @@ public class EntityList<T> extends UiPart<Region> {
      */
     public void prevItem() {
         int size = listView.getItems().size();
+        if (size <= 0) {
+            return;
+        }
+        assert size > 0;
         int prevIndex = (listView.getSelectionModel().getSelectedIndex() - 1 + size) % size;
         listView.getSelectionModel().select(prevIndex);
         listView.scrollTo(listView.getSelectionModel().getSelectedItem());

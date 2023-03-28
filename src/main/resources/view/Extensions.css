@@ -7,6 +7,10 @@
     -fx-background-color: #2a9d8f !important;
 }
 
+.highlighted .tab-header-area .tab-header-background {
+    -fx-background-color: #475ee2dd !important;
+}
+
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
     -fx-background: #383838;

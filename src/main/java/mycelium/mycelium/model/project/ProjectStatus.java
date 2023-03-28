@@ -40,7 +40,6 @@ public enum ProjectStatus {
      * Checks if a string represents a valid project status.
      */
     public static boolean isValidProjectStatus(String test) {
-        // TODO add a note in UG about this - that the case doesn't matter
         test = test.toLowerCase();
         return test.equals("not_started") || test.equals("in_progress") || test.equals("done");
     }

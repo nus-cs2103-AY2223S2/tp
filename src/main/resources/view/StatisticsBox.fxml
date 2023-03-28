@@ -1,48 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
-
-<?import java.net.URL?>
-
-<?import javafx.scene.control.Label?>
-<?import javafx.geometry.Insets?>
 
 <VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@StatisticsBox.css" />
     </stylesheets>
-    <padding>
-        <Insets bottom="5" left="15" right="5" top="5" />
-    </padding>
 
-    <StackPane maxHeight="20" prefHeight="20">
-        <Label text="Due soon" alignment="CENTER" styleClass="chart-title"/>
-    </StackPane>
+    <StackPane fx:id="statisticsPanelPlaceholder" minWidth="150.0" VBox.vgrow="ALWAYS" />
 
-    <StackPane fx:id="messageBox" maxHeight="10" prefHeight="10" styleClass="message-box-bg">
-        <Label fx:id="noDueProjectLabel" alignment="CENTER" styleClass="no-due-project"/>
-    </StackPane>
-
-    <StackPane fx:id="listView" styleClass="stack-pane" maxHeight="200">
-        <ListView fx:id="dueProjectPanel"/>
-    </StackPane>
-
-    <StackPane maxHeight="20" prefHeight="20">
-        <Label text="Overdue" alignment="CENTER" styleClass="chart-title"/>
-    </StackPane>
-
-    <StackPane fx:id="overdueMessageBox" maxHeight="10" prefHeight="10" styleClass="message-box-bg">
-        <Label fx:id="noOverdueProjectLabel" alignment="CENTER" styleClass="no-due-project"/>
-    </StackPane>
-
-    <StackPane fx:id="overdueListView" styleClass="stack-pane" maxHeight="200">
-        <ListView fx:id="overdueProjectPanel"/>
-    </StackPane>
-
-    <StackPane fx:id="pies" styleClass="stack-pane">
-        <PieChart fx:id="progressOverview" legendSide="RIGHT" title="Deadline statistics" startAngle="90"/>
+    <StackPane fx:id="pies" prefHeight="400.0" styleClass="stack-pane" VBox.vgrow="SOMETIMES">
+        <PieChart fx:id="progressOverview" legendSide="RIGHT" legendVisible="false" startAngle="90" />
     </StackPane>
 </VBox>
