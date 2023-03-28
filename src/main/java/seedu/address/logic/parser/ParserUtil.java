@@ -226,6 +226,13 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses a string to a LocalDateTime object using the acceptable date time formats defined
+     *
+     * @param date The date string to be parsed
+     * @return The parsed LocalDate object
+     * @throws ParseException if the string does not match any supported date formats
+     */
     public static LocalDate parseDate(String date) throws ParseException {
         //throw new ParseException("test");
         LocalDate res;
