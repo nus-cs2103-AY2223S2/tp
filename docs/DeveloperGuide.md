@@ -15,6 +15,23 @@ title: Developer Guide
 
 ## How to use this guide
 
+### Icons and conventions
+
+Throughout this guide, you might encounter certain boxes which like the ones
+below. Here is what each of them means.
+
+<div markdown="span" class="alert alert-success">
+:bulb: This box signifies a tip or suggestion.
+</div>
+
+<div markdown="span" class="alert alert-info">
+:information_source: This box signifies a general note.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+:warning: This box indicates a warning or caution.
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
