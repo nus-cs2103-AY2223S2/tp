@@ -76,10 +76,19 @@ public class ContactDisplay extends UiPart<Region> {
 
     /**
      * Updates the enlarged info card placeholder to show the
-     * enlarged information of either the doctor or patient.
+     * appropriate enlarged information.
      *
+     * This information is either that of a doctor or a patient.
+     *
+     * @param hasGuiInteraction true if command entered is a GUI interaction.
      */
-    public void setFeedbackToUser() {
+    public void setFeedbackToUser(boolean hasGuiInteraction) {
+        // If command does not need GUI Interaction, function call ends.
+        if (!hasGuiInteraction) {
+            logger.info("Command did not result in GUI Interaction");
+            return;
+        }
+        // If app reaches here, then command should be select-doc or select-ptn
         enlargedPersonInfoCardPlaceholder.getChildren().clear();
         if (infoCardDisplayController.shouldDisplayDoctorInfoCard()) {
             enlargedPersonInfoCardPlaceholder.getChildren().add(enlargedDoctorInfoCard.getRoot());
@@ -100,7 +109,7 @@ public class ContactDisplay extends UiPart<Region> {
     public void showSelectedDoctor(Doctor doctor) {
         enlargedDoctorInfoCard.updateSelectedDoctorOptional(Optional.ofNullable(doctor));
         infoCardDisplayController.displayDoctor();
-        setFeedbackToUser();
+        setFeedbackToUser(true);
     }
 
     /**
@@ -112,7 +121,7 @@ public class ContactDisplay extends UiPart<Region> {
     public void showSelectedPatient(Patient patient) {
         enlargedPatientInfoCard.updateSelectedPatientOptional(Optional.ofNullable(patient));
         infoCardDisplayController.displayPatient();
-        setFeedbackToUser();
+        setFeedbackToUser(true);
     }
 
     /**
