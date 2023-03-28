@@ -273,6 +273,11 @@ Lastly, if you need more info on the usage of each command, you can refer to the
 
 ### Adding a person : `add`
 
+Adds a new contact into your CoDoc application. 
+
+There are **compulsory** parameters that must be specified to create the new contact.
+Once the person has been created, the result display will show a confirmation message and the person can be seen at the bottom of the person list panel.
+
 `add n/NAME e/EMAIL y/YEAR c/COURSE_INDEX [OPTIONAL/PARAMETER]...`<br>
 >
 > **Compulsory parameters:**
@@ -297,7 +302,33 @@ Lastly, if you need more info on the usage of each command, you can refer to the
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### Viewing a person/Changing tabs : `view`
+
+Controls the what is displayed in the right panel. 
+
+If an `integer` is specified, the person displayed on the right will be the person in the person list that has the **same index** as the integer given.
+
+If `c` is specified, the tab on the right will switch to the **contact information**.
+
+If `m` is specified, the tab on the right will switch to the **modules taken**.
+
+If `s` is specified, the tab on the right will switch to the **skills** that the person has.
+
 `view <PARAMETERS>`<br>
+
+> 
+> **Acceptable parameters:**
+> - Any index number within the length of the person list
+> - c 
+> - m
+> - s
+>
+> 💡 **Tip:** If the right panel is showing a person's module, changing the person by typing `view 3` for example, will result in the right panel displaying the module tab of the person at index 3. The same applies for skills.
+>
+> **Examples:**
+> - `view` 2
+    > ![View Example](images/UiViewIndex.jpg)
+> - `view` m
+    > ![View Example](images/UiViewModule.jpg)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
