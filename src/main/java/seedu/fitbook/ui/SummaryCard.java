@@ -13,15 +13,11 @@ import javafx.scene.layout.Region;
 import seedu.fitbook.AppParameters;
 import seedu.fitbook.commons.core.LogsCenter;
 import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.routines.Routine;
 
-/**
- * A UI component that displays information of a {@code Client}.
- */
-public class ClientCard extends UiPart<Region> {
-
-    private static final String FXML = "ClientListCard.fxml";
+public class SummaryCard extends UiPart<Region> {
+    private static final String FXML = "SummaryCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
-
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -33,7 +29,7 @@ public class ClientCard extends UiPart<Region> {
 
     public final Client client;
 
-    @FXML
+    @javafx.fxml.FXML
     private HBox cardPane;
     @FXML
     private Label name;
@@ -49,6 +45,10 @@ public class ClientCard extends UiPart<Region> {
     private Label weight;
     @FXML
     private Label gender;
+    @FXML
+    private Label routines;
+    @FXML
+    private Label exercises;
     @FXML
     private FlowPane appointments;
     @FXML
@@ -73,15 +73,16 @@ public class ClientCard extends UiPart<Region> {
     private ImageView goalIcon;
     @FXML
     private ImageView caloriesIcon;
+    @FXML
+    private ImageView routineIcon;
 
 
     /**
      * Creates a {@code ClientCode} with the given {@code Client} and index to display.
      */
-    public ClientCard(Client client, int displayedIndex) {
+    public SummaryCard(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
-        //this.routine = routine;
         String genderText;
         if (client.getGender().value.equals("M") || client.getGender().value.equals("m")) {
             genderText = "maleIcon";
@@ -96,6 +97,7 @@ public class ClientCard extends UiPart<Region> {
         weight.setText(client.getWeight().value + " Kg");
         setGoalCondition(client, goal);
         setCalorieCondition(client, calorie);
+        setRoutineCondition(client, routines);
         client.getAppointments().stream()
                 .sorted(Comparator.comparing(appointment -> appointment.appointmentTime))
                 .forEach(appointment -> appointments.getChildren().add(new Label(appointment.appointmentTime)));
@@ -105,7 +107,7 @@ public class ClientCard extends UiPart<Region> {
         genderList.setImage(
                 new Image(this.getClass().getResourceAsStream("/images/genderList/" + genderText + ".png")));
         phoneIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/phoneIcon.png")));
-        addressIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/AddressIcon.png")));
+        addressIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/addressIcon.png")));
         emailIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/emailIcon.png")));
         weightIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/weightIcon.png")));
     }
@@ -128,6 +130,30 @@ public class ClientCard extends UiPart<Region> {
     }
 
     /**
+     * Sets the goal to be displayed.
+     * If goal value is "client has not added a goal" , remove display.
+     *
+     * @param client The current client.
+     * @param routines The client's goal.
+     */
+    private void setRoutineCondition(Client client, Label routines) {
+        if (!client.getRoutines().isEmpty()) {
+            StringBuilder str = new StringBuilder();
+            for (Routine routine : client.getRoutines()) {
+                str.append(routine.getRoutineName());
+                str.append("\n");
+                str.append(routine.exerciseListToString() + "\n");
+            }
+            routines.setText(str.toString());
+            routineIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/routineIcon.png")));
+        } else {
+            routines.setManaged(false);
+            exercises.setManaged(false);
+            routineIcon.setManaged(false);
+        }
+    }
+
+    /**
      * Sets the calorie to be displayed.
      * If calorie value is 0000, remove display.
      *
@@ -136,10 +162,10 @@ public class ClientCard extends UiPart<Region> {
      */
     private void setCalorieCondition(Client client, Label calorie) {
         if (!client.getCalorie().value.equals("0000")) {
+            logger.info("The calorie is invalid.");
             calorie.setText(client.getCalorie().value + " cal");
             caloriesIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/caloriesIcon.png")));
         } else {
-            logger.info("The calorie is invalid.");
             calorie.setManaged(false);
             caloriesIcon.setManaged(false);
         }
@@ -158,7 +184,7 @@ public class ClientCard extends UiPart<Region> {
         }
 
         // state check
-        ClientCard card = (ClientCard) other;
+        SummaryCard card = (SummaryCard) other;
         return id.getText().equals(card.id.getText())
                 && client.equals(card.client);
     }
