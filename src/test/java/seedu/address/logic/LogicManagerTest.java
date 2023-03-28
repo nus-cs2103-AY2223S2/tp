@@ -22,7 +22,7 @@ import seedu.address.experimental.model.UserPrefs;
 import seedu.address.experimental.storage.JsonRerollStorage;
 import seedu.address.experimental.storage.JsonUserPrefsStorage;
 import seedu.address.experimental.storage.StorageManager;
-import seedu.address.logic.commands.AddEntityCommand;
+import seedu.address.logic.commands.MakeCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -77,7 +77,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddEntityCommand.COMMAND_WORD + " " + CHAR.label +  NAME_DESC_AMY;
+        String addCommand = MakeCommand.COMMAND_WORD + " " + CHAR.label +  NAME_DESC_AMY;
         Entity expectedEntity = new EntityBuilder(AMY).buildChar();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addEntity(expectedEntity);

@@ -23,11 +23,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.entity.Entity;
 import seedu.address.testutil.EntityBuilder;
 
-public class AddEntityCommandTest {
+public class MakeCommandTest {
 
     @Test
     public void constructor_nullEntity_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddEntityCommand(null));
+        assertThrows(NullPointerException.class, () -> new MakeCommand(null));
     }
 
     @Test
@@ -35,34 +35,34 @@ public class AddEntityCommandTest {
         ModelStubAcceptingEntityAdded modelStub = new ModelStubAcceptingEntityAdded();
         Entity validEntity = new EntityBuilder().buildChar();
 
-        CommandResult commandResult = new AddEntityCommand(validEntity).execute(modelStub);
+        CommandResult commandResult = new MakeCommand(validEntity).execute(modelStub);
 
-        assertEquals(String.format(AddEntityCommand.MESSAGE_SUCCESS, validEntity), commandResult.getFeedbackToUser());
+        assertEquals(String.format(MakeCommand.MESSAGE_SUCCESS, validEntity), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validEntity), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicateEntity_throwsCommandException() {
         Entity validEntity = new EntityBuilder().buildChar();
-        AddEntityCommand addEntityCommand = new AddEntityCommand(validEntity);
+        MakeCommand makeCommand = new MakeCommand(validEntity);
         ModelStub modelStub = new ModelStubWithEntity(validEntity);
 
-        assertThrows(CommandException.class, AddEntityCommand.MESSAGE_DUPLICATE_ENTITY, () ->
-                                                                            addEntityCommand.execute(modelStub));
+        assertThrows(CommandException.class, MakeCommand.MESSAGE_DUPLICATE_ENTITY, () ->
+                                                                            makeCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Entity alice = new EntityBuilder().withName("Alice").buildChar();
         Entity bob = new EntityBuilder().withName("Bob").buildChar();
-        AddEntityCommand addAliceCommand = new AddEntityCommand(alice);
-        AddEntityCommand addBobCommand = new AddEntityCommand(bob);
+        MakeCommand addAliceCommand = new MakeCommand(alice);
+        MakeCommand addBobCommand = new MakeCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddEntityCommand addAliceCommandCopy = new AddEntityCommand(alice);
+        MakeCommand addAliceCommandCopy = new MakeCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -181,6 +181,11 @@ public class AddEntityCommandTest {
 
         @Override
         public Entity getCurrentSelectedEntity() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Entity> getListByClassification(String classification) {
             throw new AssertionError("This method should not be called.");
         }
     }

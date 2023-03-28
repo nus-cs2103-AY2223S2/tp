@@ -35,11 +35,11 @@ public class MakeCommandParser implements Parser<MakeCommand> {
             boolean hasCommandKeyword = Pattern.matches("^make\\s+.*", args.trim());
             boolean hasRightFields = Pattern.matches(".*((\\s+[\\w]+)+)$", args.trim());
             if (!hasCommandKeyword) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEntityCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeCommand.MESSAGE_USAGE));
             } else if (!hasRightFields) {
                 throw new ParseException(Name.MESSAGE_CONSTRAINTS);
             } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEntityCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeCommand.MESSAGE_USAGE));
             }
         }
         String[] split = args.trim().split("\\s+", 3);

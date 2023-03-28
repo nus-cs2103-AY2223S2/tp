@@ -16,7 +16,7 @@ import seedu.address.testutil.EntityBuilder;
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
-public class AddEntityCommandIntegrationTest {
+public class MakeCommandIntegrationTest {
 
     private Model model;
 
@@ -32,14 +32,14 @@ public class AddEntityCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getReroll(), new UserPrefs());
         expectedModel.addEntity(validEntity);
 
-        assertCommandSuccess(new AddEntityCommand(validEntity), model,
-                String.format(AddEntityCommand.MESSAGE_SUCCESS, validEntity), expectedModel);
+        assertCommandSuccess(new MakeCommand(validEntity), model,
+                String.format(MakeCommand.MESSAGE_SUCCESS, validEntity), expectedModel);
     }
 
     @Test
     public void execute_duplicateCharacter_throwsCommandException() {
         Entity entityInList = model.getReroll().getEntities().getEntityList().get(0);
-        assertCommandFailure(new AddEntityCommand(entityInList), model, AddEntityCommand.MESSAGE_DUPLICATE_ENTITY);
+        assertCommandFailure(new MakeCommand(entityInList), model, MakeCommand.MESSAGE_DUPLICATE_ENTITY);
     }
 
 }
