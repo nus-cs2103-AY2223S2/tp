@@ -59,6 +59,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Attendance} of the {@code Student} that we are building.
+     */
     public PersonBuilder withAttendance(Attendance atd) {
         this.attendance = atd;
         return this;

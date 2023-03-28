@@ -23,10 +23,10 @@ public class TypicalPersons {
             .withTags("friends").build();
     public static final Student BENSON = new PersonBuilder().withName("Benson Meier").withAttendance(atd)
             .withTags("owesMoney", "friends").build();
-    public static final Student CARL = new PersonBuilder().withName("Carl Kurz").
-            withAttendance(atd).build();
-    public static final Student DANIEL = new PersonBuilder().withName("Daniel Meier").withAttendance(atd).
-            withTags("friends").build();
+    public static final Student CARL = new PersonBuilder().withName("Carl Kurz")
+                    .withAttendance(atd).build();
+    public static final Student DANIEL = new PersonBuilder().withName("Daniel Meier").withAttendance(atd)
+                    .withTags("friends").build();
     public static final Student ELLE = new PersonBuilder().withName("Elle Meyer").withAttendance(atd).build();
     public static final Student FIONA = new PersonBuilder().withName("Fiona Kunz").withAttendance(atd).build();
     public static final Student GEORGE = new PersonBuilder().withName("George Best").withAttendance(atd).build();
@@ -36,8 +36,9 @@ public class TypicalPersons {
     public static final Student IDA = new PersonBuilder().withName("Ida Mueller").withAttendance(atd).build();
 
     // Manually added - Student's details found in {@code CommandTestUtil}
-    public static final Student AMY = new PersonBuilder().withName(VALID_NAME_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Student BOB = new PersonBuilder().withName(VALID_NAME_BOB)
+    public static final Student AMY = new PersonBuilder().withName(VALID_NAME_AMY)
+            .withAttendance(atd).withTags(VALID_TAG_FRIEND).build();
+    public static final Student BOB = new PersonBuilder().withName(VALID_NAME_BOB).withAttendance(atd)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
