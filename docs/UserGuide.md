@@ -25,6 +25,12 @@ to assist you in managing your resources.
 We have also included a handy [command summary](#command-summary) where you can view all the commands at a glance.
 Refer to the next section to see how you can get started in just a few steps!
 
+For the description of commands, `resource_index` (e.g. `plane_index`) acts a placeholder in the command format where a 
+plane's index would be inputted. The index of any resource can be found as the number next to it in the list. Please 
+refer to the image below for clarity.
+
+<img src = "images/UG-index-reference.png" width="2032" alt="Wingman home page">
+
 ## Getting Started
 
 You can get started with Wingman in just 3 simple steps:
@@ -65,7 +71,7 @@ To switch between different modes simply enter the following command:
 ```
 mode XYZ
 ```
-where XYZ can be any of the 5 mode names specified above.
+where XYZ can be any of the modes as described above (i.e. `crew`, `flight`, `location`, `pilot`, `plane`).
 
 <img src="images/ModeCrewLanding.jpg" width="2032" alt="Switching to mode crew">
 
@@ -85,38 +91,75 @@ The commands in this section are available across ALL 5 modes.
 
 Use this command when you wish to add a new resource entity (e.g. a new plane that has been added to your fleet)
 to Wingman, for you to manage the resource. 
+
 ```
 add /prefix_A value_A /prefix_B value_B
 ```
+
 This commands adds an entity of the current resource mode to Wingman's database. For example,
-if you are currently in the `plane` mode, then this command will add a new
-`plane` to the database. It shall be noted, however, that the parameters that are specified in different modes are different. 
+if you are currently in the `plane` mode, then this command will add a new `plane` to the database. It should be noted, 
+however, that the prefixes specified in different modes are different. 
 
 Here are some examples of how the command works in each mode:
 
-##### Crew mode: `add /n Bob /r 1`
-Parameters:
+##### Crew mode: `add /n name /r rank`
+
+Prefixes:
 - `/n`: the name of the crew.
 - `/r`: the rank of the crew.
+  - `0`: Cabin Service Director,
+  - `1`: Senior Flight Attendant,
+  - `2`: Flight Attendant,
+  - `3`: Trainee.
 
-##### Flight mode: `add /c SQ324`
-Parameter:
+Example:
+```
+Input:
+add /n John Smith /r 0
+
+Output: 
+Added Cabin Service Director John Smith.
+```
+
+##### Flight mode: `add /c code`
+
+Prefix:
 - `/c` : the code for the flight.
 
-##### Location mode: `add /n Singapore`
-Parameter:
+Example:
+```
+Input:
+add /c SQ230
+
+Output: 
+Added flight SQ230.
+```
+
+##### Location mode: `add /n name`
+
+Prefix:
 - `/n`: name of the location.
 
-##### Pilot mode: `add /n Bob /r 1 /a 32 /g 0 /fh 20100`
-Parameters:
+Example:
+```
+Input:
+add /n Tokyo
+
+Output: 
+Added Tokyo.
+```
+
+##### Pilot mode: `add /n name /r rank /a age /g gender /fh flight_hours`
+
+Prefixes:
 - `/n`: the name of the pilot.
 - `/r`: the rank of the pilot. Possible values:
-  - `1`: Training Captain,
-  - `2`: Captain,
-  - `3`: Senior,
-  - `4`: First Officer,
-  - `5`: Second Officer,
-  - `6`: Cadet.
+  - `0`: Training Captain,
+  - `1`: Captain,
+  - `2`: Senior First Officer,
+  - `3`: First Officer,
+  - `4`: Second Officer,
+  - `5`: Cadet.
 - `/a`: the age of the captain.
 - `/g`: the gender of the pilot. Possible values:
   - `0`: male
@@ -124,10 +167,29 @@ Parameters:
   - `2`: other
 - `/fh`: the flight hours of the pilot.
 
-##### Plane mode: `add /m A380 /a 12`
-Parameters:
+Example:
+```
+Input:
+add /n Amelia Earhart /r 5 /a 34 /g 1 /fh 1000
+
+Output: 
+Added Cadet Amelia Earhart.
+```
+
+##### Plane mode: `add /m model /a age`
+
+Prefixes:
 - `/m`: model of the plane.
 - `/a`: age of the plane.
+
+Example:
+```
+Input:
+add /m A380 /a 10
+
+Output: 
+Added A380.
+```
 
 If the command is valid, upon pressing enter, your application window will be updated as shown below.
 The response box describes the addition that was made and the new entity should be displayed in the left list.
@@ -145,21 +207,29 @@ from Wingman, to keep your database of resources up to date.
 delete index_number
 ```
 This commands deletes an entity of the current resource mode from Wingman's database. For example,
-if you are currently in the `plane` mode, then this command will delete the specified
-`plane` from the database.
+if you are currently in the `plane` mode, then this command will delete the specified `plane` from the database.
 
 This command has no variations across modes:
 
 ##### All modes: `delete 3`
-Parameter:
+Prefix:
 - `index_number`: the index number of the resource entity you wish to delete. Note that the indexing starts from 0.
 
-You can obtain the index number of an entity from its position in the displayed list.
-For instance, Flight Attendant Mary will have an index number of 1 in the image below.
+The index number of an entity can be obtained from its position in the displayed list.
+
+Example (in `plane` mode):
+```
+Input:
+delete 0
+
+Output: 
+Deleted A380.
+```
+
+For instance, Flight Attendant Mary will have an index number of 1 in the image below. 
 (The index number will be displayed in future updates)
 
 <img src="images/ModeCrewLanding.jpg" width="2032" alt="Mode crew page">
-
 
 <div style="page-break-after: always;"></div>
 
@@ -179,34 +249,73 @@ linklocation /lo location_index /resource_prefix resource_index
 This command is ONLY available in the following modes: `crew`, `flight`, `pilot` and `plane`.
 
 This commands links an entity of the current resource mode to a specified location entity in Wingman's database.
-For example, if you are currently in the `plane` mode, then this command will link a `plane` 
-to a specified location entity in the database. It shall be noted, however,
-that the parameters that are specified in different modes are different.
+For example, if you are currently in the `plane` mode, then this command will link a `plane` to a specified location 
+entity in the database. It shall be noted, however, that the prefixes specified in different modes are different.
 
-Note that the indexing for `location_index` and `resource_index` starts from 0.
+Note: Indexing for `location_index` and `resource_index` starts from 0.
 
 Here are some examples of how the command works in each mode:
 
-##### Crew mode: `linklocation /lo 0 /cr 1`
-Parameters:
+##### Crew mode: `linklocation /lo location_index /cr crew_index`
+
+Prefixes:
 - `/lo`: the index of the location to which the crew is to be linked to.
 - `/cr`: the index of the crew to be linked.
 
-##### Flight mode: `linklocation /fl 0 /from 1 /to 2`
-Parameter:
+Example:
+```
+Input:
+linklocation /lo 0 /cr 1
+
+Output: 
+Linked Cabin Service Director John Smith to Tokyo.
+```
+
+##### Flight mode: `linklocation /fl flight_index /from location_index /to location_index`
+
+Prefixes:
 - `/fl`: the index of the flight to be linked.
 - `/from`: the index of the location to which the flight is to be linked as departing from.
 - `/to`: the index of the location to which the flight is to be linked as arriving at.
 
-##### Pilot mode: `linklocation /lo 0 /pi 1`
-Parameters:
+Example:
+```
+Input:
+linklocation /fl 0 /from 0 /to 1
+
+Output: 
+Linked flight SQ230 departing from Tokyo, arriving in Paris.
+```
+
+##### Pilot mode: `linklocation /lo location_index /pi pilot_index`
+
+Prefixes:
 - `/lo`: the index of the location to which the pilot is to be linked to.
 - `/pi`: the index of the pilot to be linked.
 
-##### Plane mode: `linklocation /lo 0 /pl 1`
-Parameters:
+Example:
+```
+Input:
+linklocation /lo 0 /pi 1
+
+Output: 
+Linked Cadet Amelia Earhart to Tokyo.
+```
+
+##### Plane mode: `linklocation /lo location_index /pl plane_index`
+
+Prefixes:
 - `/lo`: the index of the location to which the plane is to be linked to.
 - `/pl`: the index of the plane to be linked.
+
+Example:
+```
+Input:
+linklocation /lo 0 /pl 1
+
+Output: 
+Linked A380 to Tokyo.
+```
 
 If the command is valid, Wingman will return a response describing the link that has been made, as shown below:
 
@@ -227,33 +336,72 @@ This command is ONLY available in the following modes: `crew`, `flight`, `pilot`
 This commands unlinks an entity of the current resource mode to a specified location entity in Wingman's database.
 For example, if you are currently in the `plane` mode, then this command will unlink a `plane`
 from the specified location entity in the database. It shall be noted, however,
-that the parameters that are specified in different modes are different.
+that the prefixes that are specified in different modes are different.
 
-Note that the indexing for `location_index` and `resource_index` starts from 0.
+Note: Indexing for `location_index` and `resource_index` starts from 0.
 
 Here are some examples of how the command works in each mode:
 
-##### Crew mode: `unlinklocation /lo 0 /cr 1`
-Parameters:
+##### Crew mode: `unlinklocation /lo location_index /cr crew_index`
+
+Prefixes:
 - `/lo`: the index of the location from which the crew is to be unlinked from.
 - `/cr`: the index of the crew to be unlinked.
 
-##### Flight mode: `unlinklocation /fl 0 /from 1 /to 2`
-Parameter:
+Example:
+```
+Input:
+unlinklocation /lo 0 /cr 1
+
+Output: 
+Unlinked Cabin Service Director John Smith from Tokyo.
+```
+
+##### Flight mode: `unlinklocation /fl flight_index /from departure_index /to arrival_index`
+
+Prefixes:
 - `/fl`: the index of the flight to be unlinked.
 - `/from`: the index of the departure location from which the flight is to be unlinked.
 - `/to`: the index of the arrival location from which the flight is to be unlinked.
 
-##### Pilot mode: `unlinklocation /lo 0 /pi 1`
-Parameters:
+Example:
+```
+Input:
+unlinklocation /fl 0 /from 0 /to 1
+
+Output: 
+Unlinked flight SQ230 from Tokyo and Paris.
+```
+
+##### Pilot mode: `unlinklocation /lo location_index /pi pilot_index`
+
+Prefixes:
 - `/lo`: the index of the location from which the pilot is to be unlinked from. 
 - `/pi`: the index of the pilot to be unlinked.
 
-##### Plane mode: `unlinklocation /lo 0 /pl 1`
-Parameters:
+Example:
+```
+Input:
+unlinklocation /lo 0 /pi 1
+
+Output: 
+Unlinked Cadet Amelia Earhart from Tokyo.
+```
+
+##### Plane mode: `unlinklocation /lo location_index /pl plane_index`
+
+Prefixes:
 - `/lo`: the index of the location from which the plane is to be unlinked from.
 - `/pl`: the index of the plane to be unlinked.
 
+Example:
+```
+Input:
+unlinklocation /lo 0 /pl 1
+
+Output: 
+Unlinked A380 from Tokyo.
+```
 
 <div style="page-break-after: always;"></div>
 
@@ -265,40 +413,70 @@ you can use this command to link each pilot to a flight).
 linkflight /fl flight_index /resource_prefix resource_index
 ```
 This command is ONLY available in the following modes: `crew`, `pilot` and `plane`. 
-(Note that locations are linked to flights through the `flight` mode,
-using the `linklocation` command described [above](#1-linking-a-resource-to-a-location))
+(Note: Locations are linked to flights through the `flight` mode, using the `linklocation` command described 
+[above](#1-linking-a-resource-to-a-location))
 
 This commands links an entity of the current resource mode to a specified flight in Wingman's database. For example,
-if you are currently in the `plane` mode, then this command will link a `plane`
-to a specified flight in the database. It shall be noted, however, that the parameters that are specified in different modes are different.
+if you are currently in the `plane` mode, then this command will link a `plane` to a specified flight in the database. 
+It shall be noted, however, that the indexes specified in different modes are different.
 
-Note that the indexing for `flight_index` and `resource_index` starts from 0.
+Note: Indexing for `flight_index` and `resource_index` starts from 0.
 
 Here are some examples of how the command works in each mode:
 
-##### Crew mode: `linkflight /fl 0 /csd 1 /sfa 2 /fa 3 /tr 4`
-Parameters:
+##### Crew mode: 
+`linkflight /fl flight_index /csd crew_index /sfa crew_index /fa crew_index /tr crew_index`
+
+Prefixes:
 - `/fl`: the flight to which the specified crew is to be linked to.
-- `/csd`: the index of the crew to be linked as cabin service director for this flight.
-- `/sfa`: the index of the crew to be linked as senior flight attendant for this flight.
-- `/fa`: the index of the crew to be linked as flight attendant for this flight.
-- `/tr`: the index of the crew to be linked as trainee for this flight.
+- `/csd`: the index of the crew to be linked as Cabin Service Director (CSD) for this flight.
+- `/sfa`: the index of the crew to be linked as Senior Flight Attendant (SFA) for this flight.
+- `/fa`: the index of the crew to be linked as Flight Attendant (FA) for this flight.
+- `/tr`: the index of the crew to be linked as Trainee (TR) for this flight.
 
-Note: In each command, you only need to fill up **at least** 1 crew related parameter.
+Note: In each `linkflight` command under crew mode, you only need to fill up **at least** 1 crew related prefix.
 
-##### Pilot mode: `linkflight /fl 0 /pf 1 /pm 2`
-Parameters:
+Example:
+```
+Input:
+linkflight /fl 0 /csd 1
+
+Output: 
+Linked Cabin Service Director John Smith to SQ230.
+```
+
+##### Pilot mode: `linkflight /fl flight_index /pf pilot_index /pm pilot_index`
+
+Prefixes:
 - `/fl`: the flight to which the specified pilots are to be linked to.
 - `/pf`: the index of the flying pilot to be linked to the flight.
 - `/pm`: the index of the monitoring pilot to be linked to the flight.
 
-Note: In each command, you only need to fill up **at least** 1 pilot related parameter.
+Note: In each `linkflight` command under pilot mode, you only need to fill up **at least** 1 pilot related prefix.
 
-##### Plane mode: `linkflight /fl 0 /pl 1`
-Parameters:
+Example:
+```
+Input:
+linkflight /fl 0 /csd 1
+
+Output: 
+Linked Cadet Amelia Earhart to SQ230.
+```
+
+##### Plane mode: `linkflight /fl flight_index /pl plane_index`
+
+Prefixes:
 - `/fl`: the flight to which the specified plane is to be linked to.
 - `/pl`: the index of the plane to be linked as being used for the flight.
 
+Example:
+```
+Input:
+linkflight /fl 0 /pl 1
+
+Output: 
+Linked A380 to SQ230.
+```
 
 <div style="page-break-after: always;"></div>
 
@@ -310,40 +488,70 @@ you can use this command to unlink the crew members from the flight).
 unlinkflight /fl flight_index /resource_prefix resource_index 
 ```
 This command is ONLY available in the following modes: `crew`, `pilot` and `plane`.
-(Note that locations are unlinked from flights through the `flight` mode,
-using the `unlinklocation` command described [above](#2-unlinking-a-resource-from-a-location))
+(Note: Locations are unlinked from flights through the `flight` mode, using the `unlinklocation` command described 
+[above](#2-unlinking-a-resource-from-a-location))
 
 This command unlinks an entity of the current resource mode from a specified flight in Wingman's database. For example,
-if you are currently in the `plane` mode, then this command will unlink a `plane`
-from a specified flight in the database. It shall be noted, however,
-that the parameters that are specified in different modes are different.
+if you are currently in the `plane` mode, then this command will unlink a `plane` from a specified flight in the 
+database. It shall be noted, however, that the prefixes specified in different modes are different.
 
-Note that the indexing for `flight_index` and `resource_index` starts from 0.
+Note: Indexing for `flight_index` and `resource_index` starts from 0.
 
 Here are some examples of how the command works in each mode:
 
-##### Crew mode: `unlinkflight /fl 0 /csd 1 /sfa 2 /fa 3 /tr 4`
-Parameters:
+##### Crew mode: 
+`unlinkflight /fl flight_index /csd crew_index /sfa crew_index /fa crew_index /tr crew_index`
+
+Prefixes:
 - `/fl`: the flight from which the specified crew is to be unlinked from.
-- `/csd`: the index of the crew to be unlinked as cabin service director for this flight.
-- `/sfa`: the index of the crew to be unlinked as senior flight attendant for this flight.
-- `/fa`: the index of the crew to be unlinked as flight attendant for this flight.
-- `/tr`: the index of the crew to be unlinked as trainee for this flight.
+- `/csd`: the index of the crew to be unlinked as Cabin Service Director (CSD) for this flight.
+- `/sfa`: the index of the crew to be unlinked as Senior Flight Attendant (SFA) for this flight.
+- `/fa`: the index of the crew to be unlinked as Flight Attendant (FA) for this flight.
+- `/tr`: the index of the crew to be unlinked as Trainee (TR) for this flight.
 
-Note: In each command, you only need to fill up **at least** 1 crew related parameter.
+Note: In each `unlinkflight` command in crew mode, you only need to fill up **at least** 1 crew related prefix.
 
-##### Pilot mode: `unlink /fl 0 /pf 1 /pm 2`
-Parameters:
+Example:
+```
+Input:
+unlinkflight /fl 0 /csd 1
+
+Output: 
+Unlinked Cabin Service Director John Smith from SQ230.
+```
+
+##### Pilot mode: `unlinkflight /fl flight_index /pf pilot_index /pm pilot_index`
+
+Prefixes:
 - `/fl`: the flight from which the specified pilots are to be linked from.
 - `/pf`: the index of the flying pilot to be unlinked from the flight.
 - `/pm`: the index of the monitoring pilot to be unlinked from the flight.
 
-Note: In each command, you only need to fill up **at least** 1 pilot related parameter.
+Note: In each `unlinkflight` command in pilot mode, you only need to fill up **at least** 1 pilot related prefix.
 
-##### Plane mode: `unlink /fl 0 /pl 1`
-Parameters:
+Example:
+```
+Input:
+unlinkflight /fl 0 /csd 1
+
+Output: 
+Unlinked Cadet Amelia Earhart from SQ230.
+```
+
+##### Plane mode: `unlink /fl flight_index /pl plane_index`
+
+Prefixes:
 - `/fl`: the flight from which the specified plane is to be linked from.
 - `/pl`: the index of the plane to be unlinked as being used for the flight.
+
+Example:
+```
+Input:
+unlinkflight /fl 0 /pl 1
+
+Output: 
+Unlinked A380 from SQ230.
+```
 
 If the command is valid, Wingman will return a response describing how the specified link has been removed.
 Wingman will also update the lists in your window, to remove the specified link.
@@ -365,8 +573,16 @@ to any flights or not and indicate its availability.
 
 This command is the same across `crew`, `pilot`, and `plane`.
 
-Note that the indexing for `resource_index` starts from 0.
+Note: Indexing for `resource_index` starts from 0.
 
+Example (in `plane` mode):
+```
+Input:
+check /id 0
+
+Output: 
+A380 is available.
+```
 
 <div style="page-break-after: always;"></div>
 
@@ -378,6 +594,36 @@ exit
 ```
 This will close the application window and exit the program. 
 All your changes to your resources will be saved for you to get back to when you reopen the application.
+
+<div style="page-break-after: always;"></div>
+
+## Prefix Summary
+
+| **Action** | **Meaning**               | **Followed by**                  |
+|------------|---------------------------|----------------------------------|
+| /n         | `name`                    | Name of crew, location, or pilot |
+| /r         | `rank`                    | Rank of crew, or pilot           |
+| /c         | `code`                    | Code of flight                   |
+| /a         | `age`                     | Age of pilot, or plane           |
+| /g         | `gender`                  | Gender of pilot                  |
+| /fh        | `flight hour`             | Flight hours of pilot            |
+| /m         | `model`                   | Model of plane                   |
+| /cr        | `crew`                    |                                  |
+| /fl        | `flight`                  |                                  |
+| /lo        | `location`                |                                  |
+| /pi        | `pilot`                   |                                  |
+| /pl        | `plane`                   |                                  |
+| /from      | `departure location`      | Index of departure location      |
+| /to        | `arrival location`        | Index of arrival location        |
+| /csd       | `cabin service director`  | Index of cabin service director  |
+| /sfa       | `senior flight attendant` | Index of senior flight attendant |
+| /fa        | `flight attendant`        | Index of flight attendant        |
+| /tr        | `trainee`                 | Index of trainee                 |
+| /pf        | `pilot flying`            | Index of pilot flying            |
+| /pm        | `pilot monitoring`        | Index of pilot monitoring        |
+| /id        | `index`                   | Index of an entity               |
+
+<div style="page-break-after: always;"></div>
 
 ## Command Summary
 
@@ -402,4 +648,3 @@ All your changes to your resources will be saved for you to get back to when you
 Navigate to the directory where you downloaded the application file and run the same command again. 
 
 ## Other information
-
