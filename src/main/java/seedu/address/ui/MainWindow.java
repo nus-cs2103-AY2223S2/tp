@@ -1,9 +1,12 @@
 package seedu.address.ui;
 
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -184,10 +187,18 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Executes the command and returns the result.
      *
-     * @see seedu.address.logic.Logic#execute(String)
+     * @see Logic#execute(String)
      */
     protected CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            String commandWord = commandText.trim().split("\\s+")[0].toLowerCase();
+            if (Arrays.asList("clear", "delete", "deletes").contains(commandWord)) {
+                boolean proceedWithCommand = showWarningDialog(commandWord);
+                if (!proceedWithCommand) {
+                    return new CommandResult("Operation cancelled.");
+                }
+            }
+
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
@@ -244,5 +255,31 @@ public class MainWindow extends UiPart<Stage> {
 
     public DetailDisplay getDetailDisplay() {
         return detailDisplay;
+    }
+
+    private boolean showWarningDialog(String command) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+        if (command.equalsIgnoreCase("clear")) {
+            alert.setTitle("Warning");
+            alert.setHeaderText("Clear Address Book");
+            alert.setContentText("This operation will clear the address book. Are you sure you want to proceed?");
+        } else if (command.equalsIgnoreCase("delete")) {
+            alert.setTitle("Warning");
+            alert.setHeaderText("Delete Entry");
+            alert.setContentText("This operation will delete the selected entry. Are you sure you want to proceed?");
+        } else if (command.equalsIgnoreCase("deletes")) {
+            alert.setTitle("Warning");
+            alert.setHeaderText("Delete Multiple Entries");
+            alert.setContentText("This operation will delete multiple entries. Are you sure you want to proceed?");
+        } else {
+            //If the command is not clear, delete, or deletes, proceed without showing a warning
+            return true;
+        }
+        //Show the alert and wait for user's response
+        alert.showAndWait();
+
+        //Return true if the user confirms the operation, false otherwise
+        return alert.getResult() == ButtonType.OK;
     }
 }

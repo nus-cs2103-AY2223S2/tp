@@ -176,6 +176,15 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFindAppointment(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        persons.setAll(addressBook.getPersonList());
+        filteredPersons.setPredicate(predicate);
+        SortedList<Person> newSortedList = new SortedList<>(filteredPersons, new TimeComparator());
+        persons.setAll(newSortedList);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

@@ -28,7 +28,6 @@ import seedu.address.model.tag.Tag;
  * Jackson-friendly version of {@link Person}.
  */
 class JsonAdaptedPerson {
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
@@ -41,11 +40,6 @@ class JsonAdaptedPerson {
     private LocalDateTime time = null;
     private String appointment;
     private String nric;
-    private Optional<LocalDateTime> optionalTime;
-    private Optional<String> optionalAge;
-    private Optional<String> optionalMedicalCond;
-    private Optional<String> optionalAppointment;
-    private Optional<String> optionalNric;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -154,7 +148,7 @@ class JsonAdaptedPerson {
             medicalCondition = source.getMedicalCondition().getValue();
         }
         if (source.hasAppointment()) {
-            appointment = source.getAppointment().toString();
+            appointment = source.getAppointment().saveToAddressbook();
         }
         if (source.getNric() != null) {
             nric = source.getNric().getNumber();
@@ -222,11 +216,11 @@ class JsonAdaptedPerson {
         if (!MedicalCondition.isValidCondition(medicalCondition)) {
             throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
         }
-        optionalTime = Optional.ofNullable(time);
-        optionalAge = Optional.ofNullable(age);
-        optionalMedicalCond = Optional.ofNullable(medicalCondition);
-        optionalAppointment = Optional.ofNullable(appointment);
-        optionalNric = Optional.ofNullable(nric);
+        Optional<LocalDateTime> optionalTime = Optional.ofNullable(time);
+        Optional<String> optionalAge = Optional.ofNullable(age);
+        Optional<String> optionalMedicalCond = Optional.ofNullable(medicalCondition);
+        Optional<String> optionalAppointment = Optional.ofNullable(appointment);
+        Optional<String> optionalNric = Optional.ofNullable(nric);
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Age modelAge = optionalAge != null && optionalAge.isPresent() ? new Age(optionalAge.get()) : new Age("");
         final MedicalCondition modelMedical = optionalMedicalCond != null && optionalMedicalCond.isPresent()
