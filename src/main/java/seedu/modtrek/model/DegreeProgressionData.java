@@ -96,7 +96,7 @@ public class DegreeProgressionData {
         return result;
     }
 
-    public int getOverallPercentage() {;
+    public int getOverallPercentage() {
         return overallPercentage;
     }
 
