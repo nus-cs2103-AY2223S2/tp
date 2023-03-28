@@ -30,4 +30,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_NOTE_CONTENT = new Prefix("-content ");
     public static final Prefix PREFIX_NOTE_EVENT_TYPE = new Prefix("-name ");
     public static final Prefix PREFIX_NOTE_EVENT_NAME = new Prefix("-type ");
+    public static final Prefix PREFIX_NOTE_INDEX = new Prefix("-index ");
 }
