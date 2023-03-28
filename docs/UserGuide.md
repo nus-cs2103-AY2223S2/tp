@@ -348,6 +348,7 @@ An error message that prompts users to re-generate a plan will be shown if the e
 
 </details>
 
+
 :warning: Valid `D/SHORTDATE` are 30-days from the day plan was generated. Re-scheduling plans multiple times would not make an invalid date become valid.
 
 Examples:
