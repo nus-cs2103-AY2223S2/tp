@@ -18,8 +18,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_REGION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NRIC_PERSON_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NRIC_PERSON_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.REGION_DESC_AMY;
@@ -143,7 +143,7 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Nric targetNric = new Nric(VALID_NRIC_BOB);
         String userInput = VALID_NRIC_BOB + PHONE_DESC_BOB + TAG_DESC_SINGLE
-                + NRIC_PERSON_DESC_AMY + EMAIL_DESC_AMY + BIRTH_DATE_DESC_AMY + ADDRESS_DESC_AMY
+                + NRIC_DESC_AMY + EMAIL_DESC_AMY + BIRTH_DATE_DESC_AMY + ADDRESS_DESC_AMY
                 + NAME_DESC_AMY + REGION_DESC_AMY + TAG_DESC_STRONG;
 
         EditDescriptor descriptor = new EditDescriptorBuilder()
@@ -197,7 +197,7 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // nric
-        userInput = VALID_NRIC_BOB + NRIC_PERSON_DESC_AMY;
+        userInput = VALID_NRIC_BOB + NRIC_DESC_AMY;
         descriptor = new EditDescriptorBuilder().withNric(VALID_NRIC_AMY).build();
         expectedCommand = new EditCommand(targetNric, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -226,7 +226,7 @@ public class EditCommandParserTest {
         Nric targetNric = new Nric(VALID_NRIC_BOB);
         String userInput = VALID_NRIC_BOB + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_STRONG + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_STRONG
-                + NRIC_PERSON_DESC_AMY + NRIC_PERSON_DESC_BOB + BIRTH_DATE_DESC_AMY + BIRTH_DATE_DESC_BOB
+                + NRIC_DESC_AMY + NRIC_DESC_BOB + BIRTH_DATE_DESC_AMY + BIRTH_DATE_DESC_BOB
                 + REGION_DESC_AMY + REGION_DESC_BOB
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_SINGLE;
 

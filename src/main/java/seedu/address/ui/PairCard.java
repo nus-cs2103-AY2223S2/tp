@@ -83,7 +83,7 @@ public class PairCard extends UiPart<Region> {
         // Set the popover to hide when the user clicks outside of it
         popover.setAutoHide(true);
 
-        cardPane.setOnMousePressed(event -> {
+        cardPane.setOnMouseEntered(event -> {
             // Show the popover anchored to the position of the HBox
             Bounds bounds = cardPane.localToScreen(cardPane.getBoundsInLocal());
 
@@ -99,7 +99,7 @@ public class PairCard extends UiPart<Region> {
             if (y + popupHeight >= bounds.getMaxY()) {
                 y = bounds.getMaxY() - popupHeight - 10;
             }
-            popover.show(cardPane, x, y);
+            popover.show(cardPane, x, y - 50);
         });
 
         cardPane.setOnMouseExited(event -> popover.hide());

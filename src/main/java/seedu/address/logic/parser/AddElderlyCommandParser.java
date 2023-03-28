@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
@@ -42,15 +42,16 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
      *
      * @param args Arguments.
      * @return {@code AddElderlyCommand} for execution.
-     * @throws ParseException If the user input does not conform the expected format.
+     * @throws ParseException If the user input does not conform the expected
+     *                        format.
      */
     public AddElderlyCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-            PREFIX_ADDRESS, PREFIX_NRIC_ELDERLY,
+        Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_NRIC, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
             PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_RISK, PREFIX_AVAILABILITY, PREFIX_TAG};
-        Prefix[] compulsoryPrefixes = {PREFIX_NAME, PREFIX_NRIC_ELDERLY, PREFIX_BIRTH_DATE};
+        Prefix[] compulsoryPrefixes = { PREFIX_NAME, PREFIX_NRIC, PREFIX_BIRTH_DATE,
+            PREFIX_REGION, PREFIX_RISK };
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, availablePrefixes);
 
@@ -60,7 +61,7 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC_ELDERLY).get());
+        Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
         BirthDate birthDate = ParserUtil.parseBirthDate(argMultimap.getValue(PREFIX_BIRTH_DATE).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(FIELD_NOT_SPECIFIED));
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(FIELD_NOT_SPECIFIED));
@@ -76,7 +77,8 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
     }
 
     /**
-     * Validates the given ArgumentMultimap by checking that it fulfils certain criteria.
+     * Validates the given ArgumentMultimap by checking that it fulfils certain
+     * criteria.
      *
      * @param map the ArgumentMultimap to be validated.
      * @return true if the ArgumentMultimap is valid, false otherwise.

@@ -2,11 +2,17 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Volunteer;
 
@@ -20,6 +26,11 @@ public class VolunteerListPanel extends UiPart<Region> {
     @FXML
     private ListView<Volunteer> volunteerListView;
 
+    @FXML
+    private VBox volunteerListBox;
+
+    private final VBox emptyBox = new VBox();
+
     /**
      * Creates a {@code VolunteerListPanel} with the given {@code ObservableList}.
      *
@@ -27,8 +38,45 @@ public class VolunteerListPanel extends UiPart<Region> {
      */
     public VolunteerListPanel(ObservableList<Volunteer> volunteerList) {
         super(FXML);
+
+        ImageView imageView = new ImageView();
+        Image image = new Image("/images/empty.png");
+        imageView.setFitHeight(100);
+        imageView.setPickOnBounds(true);
+        imageView.setPreserveRatio(true);
+        imageView.setImage(image);
+
+        emptyBox.getChildren().add(imageView);
+        Label label = new Label("Add a volunteer to see something here!");
+        emptyBox.getChildren().add(label);
+
+        emptyBox.setAlignment(Pos.CENTER);
+        emptyBox.setMaxHeight(Region.USE_COMPUTED_SIZE);
+        emptyBox.setMinHeight(400);
+
+        label.setStyle(
+                "-fx-text-fill: whitesmoke; -fx-font-size: 23; -fx-label-padding: 10"
+        );
+
+        if (volunteerList.size() == 0) {
+            volunteerListView.setMaxHeight(0);
+            volunteerListBox.getChildren().add(emptyBox);
+        } else {
+            volunteerListBox.getChildren().remove(emptyBox);
+            volunteerListView.setMaxHeight(Region.USE_COMPUTED_SIZE);
+        }
+
         volunteerListView.setItems(volunteerList);
-        volunteerListView.setCellFactory(listView -> new VolunteerListViewCell());
+        volunteerListView.setCellFactory(listView -> new VolunteerListPanel.VolunteerListViewCell());
+        volunteerList.addListener((ListChangeListener<? super Volunteer>) c -> {
+            if (c.getList().size() == 0) {
+                volunteerListView.setMaxHeight(0);
+                volunteerListBox.getChildren().add(emptyBox);
+            } else {
+                volunteerListBox.getChildren().remove(emptyBox);
+                volunteerListView.setMaxHeight(Region.USE_COMPUTED_SIZE);
+            }
+        });
     }
 
     /**

@@ -4,7 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
@@ -36,7 +36,7 @@ public class ElderlyUtil {
         sb.append(PREFIX_PHONE).append(elderly.getPhone().value).append(" ");
         sb.append(PREFIX_EMAIL).append(elderly.getEmail().value).append(" ");
         sb.append(PREFIX_ADDRESS).append(elderly.getAddress().value).append(" ");
-        sb.append(PREFIX_NRIC_ELDERLY).append(elderly.getNric().value).append(" ");
+        sb.append(PREFIX_NRIC).append(elderly.getNric().value).append(" ");
         sb.append(PREFIX_BIRTH_DATE).append(elderly.getBirthDate().birthDate.toString()).append(" ");
         sb.append(PREFIX_REGION).append(elderly.getRegion()).append(" ");
         sb.append(PREFIX_RISK).append(elderly.getRiskLevel()).append(" ");

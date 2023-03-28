@@ -13,6 +13,7 @@ import seedu.address.logic.parser.AddPairCommandParser;
 import seedu.address.logic.parser.AddVolunteerCommandParser;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.AutoPairCommandParser;
 import seedu.address.logic.parser.ClearCommandParser;
 import seedu.address.logic.parser.DeleteElderlyCommandParser;
 import seedu.address.logic.parser.DeletePairCommandParser;
@@ -100,6 +101,11 @@ public class CommandRecommendationEngine {
                 StatsCommand.COMMAND_WORD,
                 StatsCommand.COMMAND_PROMPTS,
                 StatsCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                AutoPairCommand.COMMAND_WORD,
+                AutoPairCommand.COMMAND_PROMPTS,
+                AutoPairCommandParser::validate
+        ));
     }
 
     /**
@@ -127,7 +133,8 @@ public class CommandRecommendationEngine {
 
         // not a complete command
         if (commandIndex == -1) {
-            commandInfo = findMatchingCommandInfo(userInput);
+            //  Checking only for prefix matching since the command is incomplete
+            commandInfo = findMatchingCommandInfo(userInput, false);
             if (commandInfo == null) {
                 throw new CommandException(INVALID_COMMAND_MESSAGE);
             }
@@ -137,7 +144,8 @@ public class CommandRecommendationEngine {
         // complete command
         commandWord = userInput.substring(0, commandIndex);
         String parsedArgs = userInput.substring(commandIndex);
-        commandInfo = findMatchingCommandInfo(commandWord);
+        // Forcing exact matching since the command must be complete
+        commandInfo = findMatchingCommandInfo(commandWord, true);
 
         if (commandInfo == null || !commandWord.equals(commandInfo.getCmdWord())) {
             throw new CommandException(INVALID_COMMAND_MESSAGE);
@@ -174,10 +182,11 @@ public class CommandRecommendationEngine {
         return userInput.contains(delimiter);
     }
 
-    private CommandInfo findMatchingCommandInfo(String commandWord) {
+    private CommandInfo findMatchingCommandInfo(String commandWord, boolean isExactMatching) {
         return COMMAND_INFO_MAP.keySet()
                 .stream()
-                .filter(command -> command.startsWith(commandWord))
+                .filter(command -> isExactMatching ? command.equals(commandWord) : command.startsWith(commandWord))
+                .sorted()
                 .map(COMMAND_INFO_MAP::get)
                 .findFirst()
                 .orElse(null);

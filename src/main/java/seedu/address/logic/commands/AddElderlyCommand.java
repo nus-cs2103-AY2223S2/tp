@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
@@ -35,21 +35,21 @@ public class AddElderlyCommand extends Command {
 
     static {
         COMMAND_PROMPTS.put(PREFIX_NAME, "<name>");
-        COMMAND_PROMPTS.put(PREFIX_NRIC_ELDERLY, "<nric>");
+        COMMAND_PROMPTS.put(PREFIX_NRIC, "<nric>");
+        COMMAND_PROMPTS.put(PREFIX_BIRTH_DATE, "<birth_date>");
+        COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
+        COMMAND_PROMPTS.put(PREFIX_RISK, "<risk>");
         COMMAND_PROMPTS.put(PREFIX_ADDRESS, "<address>");
         COMMAND_PROMPTS.put(PREFIX_PHONE, "<phone>");
         COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
-        COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
-        COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
-        COMMAND_PROMPTS.put(PREFIX_BIRTH_DATE, "<birth_date>");
-        COMMAND_PROMPTS.put(PREFIX_RISK, "<risk>");
         COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "<start_date,end_date>");
+        COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
     }
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an elderly to the database.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_NRIC_ELDERLY + "NRIC "
+            + PREFIX_NRIC + "NRIC "
             + PREFIX_BIRTH_DATE + "BIRTH DATE "
             + PREFIX_REGION + "REGION "
             + PREFIX_RISK + "MEDICAL RISK (LOW, MEDIUM or HIGH) "
@@ -63,7 +63,7 @@ public class AddElderlyCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_NRIC_ELDERLY + "S1234567A "
+            + PREFIX_NRIC + "S1234567A "
             + PREFIX_BIRTH_DATE + "1954-01-01 "
             + PREFIX_REGION + "WEST "
             + PREFIX_RISK + "LOW "
