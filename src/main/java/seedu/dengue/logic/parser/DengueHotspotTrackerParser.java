@@ -16,6 +16,8 @@ import seedu.dengue.logic.commands.FindCommand;
 import seedu.dengue.logic.commands.HelpCommand;
 import seedu.dengue.logic.commands.ListCommand;
 import seedu.dengue.logic.commands.OverviewCommand;
+import seedu.dengue.logic.commands.RedoCommand;
+import seedu.dengue.logic.commands.UndoCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 
 /**
@@ -71,6 +73,12 @@ public class DengueHotspotTrackerParser {
 
         case OverviewCommand.COMMAND_WORD:
             return new OverviewCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
 
         default:
