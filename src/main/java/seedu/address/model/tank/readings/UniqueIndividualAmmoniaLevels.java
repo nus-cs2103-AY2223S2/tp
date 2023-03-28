@@ -134,6 +134,42 @@ public class UniqueIndividualAmmoniaLevels implements Iterable<AmmoniaLevel> {
         return this.tank;
     }
 
+    /**
+     * Returns string for Json individual ammonia levels
+     * @return string for Json individual ammonia levels
+     */
+    public String getCommaSeperatedValuesString() {
+        String ret = "";
+        int ind = 0;
+        for (AmmoniaLevel a : internalList) {
+            String val = Double.toString(a.getValue());
+            ret += val;
+            if (ind != size() - 1) {
+                ret += ",";
+            }
+            ind++;
+        }
+        return ret;
+    }
+
+    /**
+     * Returns string for Json individual ammonia levels
+     * @return string for Json individual ammonia levels
+     */
+    public String getCommaSeperatedDatesString() {
+        String ret = "";
+        int ind = 0;
+        for (AmmoniaLevel a : internalList) {
+            String date = a.dateString;
+            ret += date;
+            if (ind != size() - 1) {
+                ret += ",";
+            }
+            ind++;
+        }
+        return ret;
+    }
+
     @Override
     public Iterator<AmmoniaLevel> iterator() {
         return internalList.iterator();

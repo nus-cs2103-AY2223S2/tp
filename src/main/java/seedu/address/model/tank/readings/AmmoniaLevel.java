@@ -19,7 +19,7 @@ public class AmmoniaLevel extends Reading {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "^-?\\d+(\\.\\d+)?$";
-    private int value;
+    private double value;
 
     /**
      * Constructs a {@code AmmoniaLevel}.
@@ -31,14 +31,14 @@ public class AmmoniaLevel extends Reading {
         super(date, tank);
         requireNonNull(value);
         checkArgument(isValidAmmoniaLevel(value), MESSAGE_CONSTRAINTS);
-        this.value = Integer.parseInt(value);
+        this.value = Double.parseDouble(value);
     }
 
     public boolean isValidAmmoniaLevel(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public int getValue() {
+    public double getValue() {
         return this.value;
     }
 
