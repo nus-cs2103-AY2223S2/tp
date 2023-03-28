@@ -1,11 +1,14 @@
 package tfifteenfour.clipboard.ui;
 
+import java.io.File;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
@@ -99,6 +102,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private HBox navigationBarPlaceholder;
+
+    @FXML
+    private ImageView logoPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -450,6 +456,20 @@ public class MainWindow extends UiPart<Stage> {
         //handleUndo();
     }
 
+    private void showClippySuccess() {
+        String imageUrl = "docs/Images/CommandSuccess.GIF";
+        File file = new File(imageUrl);
+        Image newImage = new Image(file.toURI().toString());
+        logoPlaceholder.setImage(newImage);
+    }
+
+    private void showClippyFailure() {
+        String imageUrl = "docs/Images/CommandFail.GIF";
+        File file = new File(imageUrl);
+        Image newImage = new Image(file.toURI().toString());
+        logoPlaceholder.setImage(newImage);
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -462,11 +482,14 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             handleSpecialCommandConsiderations(commandResult);
+            showClippySuccess();
 
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+
+            showClippyFailure();
             throw e;
         }
     }
