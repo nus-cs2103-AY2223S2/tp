@@ -11,8 +11,8 @@ import seedu.wife.logic.commands.exceptions.CommandException;
  */
 public class Quantity {
     public static final String MESSAGE_CONSTRAINTS = "Quantity must be a value larger than 0";
-    public static final String DECREASE_CONSTRAINTS = "Quantity to decrease cannot be greater than or equal to the " +
-            "current quantity!";
+    public static final String DECREASE_CONSTRAINTS = "Quantity to decrease cannot be greater than or equal to the "
+            + "current quantity!";
     public static final String VALIDATION_REGEX = "-?\\d+(\\.\\d+)?";
     private Integer quantity;
 
