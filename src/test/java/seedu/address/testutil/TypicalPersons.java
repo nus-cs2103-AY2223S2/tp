@@ -29,22 +29,63 @@ import static seedu.address.model.location.util.TypicalLocation.MAYFLOWER;
 import static seedu.address.model.location.util.TypicalLocation.NEWTON;
 import static seedu.address.model.location.util.TypicalLocation.NICOLL_HIGHWAY;
 import static seedu.address.model.location.util.TypicalLocation.REDHILL;
-import static seedu.address.model.tag.util.TypicalModuleTag.MODULE_TAG_SET_1;
-import static seedu.address.model.tag.util.TypicalModuleTag.MODULE_TAG_SET_10;
-import static seedu.address.model.tag.util.TypicalModuleTag.MODULE_TAG_SET_11;
-import static seedu.address.model.tag.util.TypicalModuleTag.MODULE_TAG_SET_12;
-import static seedu.address.model.tag.util.TypicalModuleTag.MODULE_TAG_SET_13;
-import static seedu.address.model.tag.util.TypicalModuleTag.MODULE_TAG_SET_14;
-import static seedu.address.model.tag.util.TypicalModuleTag.MODULE_TAG_SET_15;
-import static seedu.address.model.tag.util.TypicalModuleTag.MODULE_TAG_SET_2;
-import static seedu.address.model.tag.util.TypicalModuleTag.MODULE_TAG_SET_3;
-import static seedu.address.model.tag.util.TypicalModuleTag.MODULE_TAG_SET_4;
-import static seedu.address.model.tag.util.TypicalModuleTag.MODULE_TAG_SET_5;
-import static seedu.address.model.tag.util.TypicalModuleTag.MODULE_TAG_SET_6;
-import static seedu.address.model.tag.util.TypicalModuleTag.MODULE_TAG_SET_7;
-import static seedu.address.model.tag.util.TypicalModuleTag.MODULE_TAG_SET_8;
-import static seedu.address.model.tag.util.TypicalModuleTag.MODULE_TAG_SET_9;
-import static seedu.address.model.tag.util.TypicalModuleTag.MODULE_TAG_SET_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.BT1101_V3;
+import static seedu.address.model.tag.util.TypicalModuleTag.BT2102_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS1010J_V3;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS1101S_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS1101S_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS1231S_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2030S_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2030S_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2030S_V2;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2040S_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2040S_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2040S_V2;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2100_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2100_V2;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_V1_1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_V1_2;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2102_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2103T_V1_1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2103T_V1_2;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2105_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2106_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2106_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2108_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2109S_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2109S_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2109S_V2_1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS3223_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS3223_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS3230_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS3230_V2;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS3245_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS3245_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS4225_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.ES2660_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.ES2660_V2_1;
+import static seedu.address.model.tag.util.TypicalModuleTag.ES2660_V2_2;
+import static seedu.address.model.tag.util.TypicalModuleTag.GEA1000_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.GEC1030_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.GEN2050_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.GESS1019_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.IS1108_V3;
+import static seedu.address.model.tag.util.TypicalModuleTag.IS2218_V3;
+import static seedu.address.model.tag.util.TypicalModuleTag.LAJ1201_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA1521_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA1521_V3;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA2001_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA2001_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA2101_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA2104_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA2104_V2_1;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA2104_V2_2;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA2108_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA2108_V2;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA3252_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA3252_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.ST2131_V2;
+import static seedu.address.model.tag.util.TypicalModuleTag.ST2334_V1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -65,7 +106,8 @@ public class TypicalPersons {
             .withPhone("89760441")
             .withTelegramHandle("@albertpark")
             .withGroupTags("TA")
-            .withModuleTags(MODULE_TAG_SET_1)
+            .withModuleTags(CS2103T_V1_1, CS2101_V1_1, CS2109S_V1,
+                    CS2108_V1, MA2104_V1, MA3252_V1)
             .build();
 
     public static final Person ANG = new PersonBuilder().withName("Ang Mei Hua")
@@ -73,7 +115,7 @@ public class TypicalPersons {
             .withEmail("angmeihua@gmail.com")
             .withPhone("86203169").withTelegramHandle("@angmeihua")
             .withGroupTags("Study")
-            .withModuleTags(MODULE_TAG_SET_2)
+            .withModuleTags(MA2108_V1, MA2101_V1, CS3230_V1, CS2102_V1, CS2100_V1)
             .build();
 
     public static final Person BART = new PersonBuilder().withName("Bart Lee")
@@ -82,7 +124,7 @@ public class TypicalPersons {
             .withPhone("82630347")
             .withTelegramHandle("@bartlee")
             .withGroupTags("CCA")
-            .withModuleTags(MODULE_TAG_SET_3)
+            .withModuleTags(GEC1030_V1, GEA1000_V1, ST2334_V1, CS2030S_V1, CS2040S_V1)
             .build();
 
     public static final Person CLARK = new PersonBuilder().withName("Clark Kee")
@@ -90,7 +132,7 @@ public class TypicalPersons {
             .withEmail("clarkkee@gmail.com")
             .withPhone("81342028").withTelegramHandle("@clarkkee")
             .withGroupTags("NUS")
-            .withModuleTags(MODULE_TAG_SET_4)
+            .withModuleTags(CS1101S_V1, GESS1019_V1, CS1231S_V1, MA2001_V1, MA1521_V1)
             .build();
 
     public static final Person DONG = new PersonBuilder().withName("Dong Yu Lang")
@@ -99,7 +141,8 @@ public class TypicalPersons {
             .withPhone("86263617")
             .withTelegramHandle("@dongyulang")
             .withGroupTags("Groupmate")
-            .withModuleTags(MODULE_TAG_SET_5)
+            .withModuleTags(CS2030S_V2, CS2040S_V2, ES2660_V2_1,
+                    MA2104_V2_1, ST2131_V2, CS2109S_V2_1)
             .build();
 
     public static final Person EDWARD = new PersonBuilder().withName("Edward Richards")
@@ -108,7 +151,7 @@ public class TypicalPersons {
             .withPhone("92463693")
             .withTelegramHandle("@edwardrichards")
             .withGroupTags("CCA")
-            .withModuleTags(MODULE_TAG_SET_6)
+            .withModuleTags(BT1101_V3, IS1108_V3, IS2218_V3, MA1521_V3, CS1010J_V3)
             .build();
 
     public static final Person FORD = new PersonBuilder().withName("Ford Canning")
@@ -117,7 +160,7 @@ public class TypicalPersons {
             .withPhone("88032666")
             .withTelegramHandle("@fordcanning")
             .withGroupTags("TA")
-            .withModuleTags(MODULE_TAG_SET_7)
+            .withModuleTags(MA2104_V2_2, CS3230_V2, CS2100_V2, MA2108_V2, ES2660_V2_2)
             .build();
 
     public static final Person GEORGE = new PersonBuilder().withName("George Richards")
@@ -126,7 +169,8 @@ public class TypicalPersons {
             .withPhone("98796811")
             .withTelegramHandle("@georgerichards")
             .withGroupTags("CCA")
-            .withModuleTags(MODULE_TAG_SET_8).build();
+            .withModuleTags(CS2108_V1, CS3223_V1, CS3245_V1, CS2103T_V1_2, CS2101_V1_2, CS4225_V1)
+            .build();
 
     public static final Person HONG = new PersonBuilder().withName("Hong Shan")
             .withAddress(REDHILL)
@@ -134,10 +178,26 @@ public class TypicalPersons {
             .withPhone("91345682")
             .withTelegramHandle("@hongshan")
             .withGroupTags("Groupmate")
-            .withModuleTags(MODULE_TAG_SET_9)
+            .withModuleTags(CS2108_V1, CS2106_V1, CS3245_V1, CS2103T_V1_2, CS2101_V1_2)
             .build();
 
     // ISAAC onwards have the same module tag set as OWEN.
+
+    // https://nusmods.com/timetable/sem-2/share?
+    // BT2102=LAB:03,LEC:1&
+    // CS1101S=REC:03,TUT:04,LEC:1&
+    // CS2030S=LAB:14A,REC:16,LEC:1&
+    // CS2040S=TUT:08,REC:02,LEC:1&
+    // CS2101=&CS2105=LEC:1,TUT:03&
+    // CS2106=LAB:13,TUT:14,LEC:1&
+    // CS2109S=LEC:1,TUT:10&
+    // CS3223=TUT:6,LEC:1&
+    // CS3245=TUT:3,LEC:1&
+    // ES2660=SEC:G12&
+    // GEN2050=TUT:04&
+    // LAJ1201=TUT:A9,TUT2:B8,LEC:3&
+    // MA2001=TUT:19,LEC:1&
+    // MA3252=TUT:2,LEC:1
 
     public static final Person ISAAC = new PersonBuilder().withName("Isaac Newton")
             .withAddress(NEWTON)
@@ -145,7 +205,7 @@ public class TypicalPersons {
             .withPhone("93175044")
             .withTelegramHandle("@isaacnewton")
             .withGroupTags("TA", "NS")
-            .withModuleTags(MODULE_TAG_SET_10)
+            .withModuleTags(MA2001_F, LAJ1201_F, CS1101S_F, MA3252_F, CS2106_F)
             .build();
 
     public static final Person JUKUN = new PersonBuilder().withName("Ju Kun")
@@ -154,7 +214,8 @@ public class TypicalPersons {
             .withPhone("84709651")
             .withTelegramHandle("@jukun")
             .withGroupTags("Groupmate")
-            .withModuleTags(MODULE_TAG_SET_11)
+            .withModuleTags(CS2040S_F, CS2106_F, CS2109S_F,
+                    CS3245_F, CS3223_F, CS2105_F)
             .build();
 
     public static final Person KEVIN = new PersonBuilder().withName("Kevin Ho")
@@ -163,7 +224,8 @@ public class TypicalPersons {
             .withPhone("99997496")
             .withTelegramHandle("@kevinho")
             .withGroupTags("NUS")
-            .withModuleTags(MODULE_TAG_SET_12)
+            .withModuleTags(GEN2050_F, CS3245_F, CS3223_F,
+                    MA3252_F, LAJ1201_F, MA2001_F)
             .build();
 
     public static final Person LAO = new PersonBuilder().withName("Lao Ming Da")
@@ -172,7 +234,8 @@ public class TypicalPersons {
             .withPhone("83340546")
             .withTelegramHandle("@laomingda")
             .withGroupTags("Groupmate")
-            .withModuleTags(MODULE_TAG_SET_13)
+            .withModuleTags(ES2660_F, CS1101S_F, CS3245_F,
+                    CS2106_F, MA3252_F, CS2040S_F)
             .build();
 
     public static final Person MARY = new PersonBuilder().withName("Mary Meng")
@@ -181,7 +244,8 @@ public class TypicalPersons {
             .withPhone("93816073")
             .withTelegramHandle("@marymeng")
             .withGroupTags("CCA")
-            .withModuleTags(MODULE_TAG_SET_14)
+            .withModuleTags(MA2001_F, LAJ1201_F, CS1101S_F,
+                    MA3252_F, CS2106_F, ES2660_F)
             .build();
 
     public static final Person NICOLE = new PersonBuilder().withName("Nicole Hai Wei Ting")
@@ -190,7 +254,8 @@ public class TypicalPersons {
             .withPhone("92574283")
             .withTelegramHandle("@nicolehaiweiting")
             .withGroupTags("CCA")
-            .withModuleTags(MODULE_TAG_SET_15)
+            .withModuleTags(MA3252_F, CS3223_F, BT2102_F,
+                    CS2030S_F, CS1101S_F, ES2660_F)
             .build();
 
     public static final Person OWEN = new PersonBuilder().withName("Owen Farrer")
@@ -199,7 +264,10 @@ public class TypicalPersons {
             .withPhone("97561235")
             .withTelegramHandle("@owenfarrer")
             .withGroupTags("CCA")
-            .withModuleTags(MODULE_TAG_SET_F)
+            .withModuleTags(MA2001_F, BT2102_F, CS2030S_F, CS2105_F,
+                    CS2040S_F, LAJ1201_F, ES2660_F, CS1101S_F,
+                    MA3252_F, CS2106_F, CS2109S_F, CS3245_F,
+                    CS3223_F, GEN2050_F)
             .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
@@ -222,9 +290,7 @@ public class TypicalPersons {
         EduMate ab = new EduMate();
         int index = 1;
         for (Person person : getTypicalPersons()) {
-            Person copiedPerson = new PersonBuilder(person).build();
-            copiedPerson.setContactIndex(new ContactIndex(index));
-            System.out.println(copiedPerson.toString());
+            Person copiedPerson = person.setContactIndex(new ContactIndex(index));
             ab.addPerson(copiedPerson);
             index += 1;
         }
@@ -238,6 +304,10 @@ public class TypicalPersons {
                 DONG, EDWARD, FORD, GEORGE,
                 HONG, ISAAC, JUKUN, KEVIN,
                 LAO, MARY, NICOLE, OWEN));
+    }
+
+    public static ContactIndex getContactIndexOfPerson(Person person) {
+        return new ContactIndex(getTypicalPersons().indexOf(person) + 1);
     }
 
 }
