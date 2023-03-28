@@ -1,6 +1,7 @@
 package seedu.modtrek.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
@@ -31,7 +32,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         } else if (prefix.equals("/t")) {
             return new SortCommand("tag");
         } else {
-            throw new ParseException("Invalid format!");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
     }

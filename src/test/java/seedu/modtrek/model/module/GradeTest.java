@@ -33,4 +33,11 @@ public class GradeTest {
         assertTrue(Grade.isValidGrade("S")); // one character
         assertTrue(Grade.isValidGrade("B-")); // long address
     }
+
+    @Test
+    public void testCompareTo() {
+        assertTrue(new Grade("A+").compareTo(new Grade("A")) < 0);
+        assertTrue(new Grade("B+").compareTo(new Grade("A")) > 0);
+        assertTrue(new Grade("B+").compareTo(new Grade("B+")) == 0);
+    }
 }

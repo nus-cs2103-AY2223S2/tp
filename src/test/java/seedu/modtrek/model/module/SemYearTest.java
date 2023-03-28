@@ -43,4 +43,11 @@ public class SemYearTest {
         assertTrue(SemYear.isValidSemYear("Y4S2"));
         assertTrue(SemYear.isValidSemYear("Y2S1"));
     }
+
+    @Test
+    public void testCompareTo() {
+        assertTrue(new SemYear("Y2S2").compareTo(new SemYear("Y1S1")) < 0);
+        assertTrue(new SemYear("Y1S1").compareTo(new SemYear("Y1S2")) > 0);
+        assertTrue(new SemYear("Y1S1").compareTo(new SemYear("Y1S1")) == 0);
+    }
 }
