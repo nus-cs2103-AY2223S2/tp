@@ -64,7 +64,10 @@ FriendlyLink Fields are described below.
 #### NRIC
 NRIC is a unique identifier given to all Singaporeans.
 * NRIC is case-insensitive
-* All input NRIC should conform to the ICA-specified format, i.e. one single letter followed by seven digits followed by one letter.
+* The structure of the NRIC should be `@XXXXXXX#`, where:
+  * `@` is a letter that can be "S", "T", "F", "G", "M"
+  * `XXXXXXX` is a 7-digit serial number
+  * `#` is a letter from A to Z
 * There is no cross validation of birthdate against NRIC (There are no checks for the birth year in first 2 digits of NRIC)
 
 #### Phone number
@@ -226,7 +229,7 @@ Adds an elderly to FriendlyLink.
 
 Format: `add_elderly n/NAME ic/NRIC bd/BIRTH_DATE [re/REGION] [r/RISK_LEVEL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
 
-* Every elderly must have a unique `NRIC`, which is 9-alphabets long, and conforms to the format `1 letter - 7 numbers - 1 letter`.
+* Every elderly must have a unique `NRIC`. Refer to the [NRIC section](#nric) for the required format for NRIC.
 * Alphabets in `NRIC` are case-insensitive.
 * The `REGION` can only take 5 values: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` or `EAST`.
 * The `RISK_LEVEL` can only takes 3 values: `LOW`, `MEDIUM` or `HIGH`.
@@ -250,7 +253,7 @@ Adds a volunteer to FriendlyLink.
 
 Format: `add_volunteer ic/NRIC n/NAME bd/BIRTH_DATE [re/REGION] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [mt/MEDICAL_QUALIFICATIONS]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…​`
 
-* Every volunteer must have a unique `NRIC`, which is 9-alphabets long, and conforms to the format `1 letter - 7 numbers - 1 letter`.
+* Every volunteer must have a unique `NRIC`. Refer to the [NRIC section](#nric) for the required format for NRIC.
 * Alphabets in `NRIC` are case-insensitive.
 * The `REGION` can only take 5 values: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` or `EAST`.
 * Dates specified should follow the format `YYYY-MM-DD`. 
