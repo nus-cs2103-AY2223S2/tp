@@ -33,7 +33,7 @@
           </Menu>
         </MenuBar>
         <TextFlow fx:id="titlePanel" />
-        <SplitPane fx:id="cardList" dividerPositions="0.2z" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <SplitPane fx:id="cardList" dividerPositions="0.2" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <items>
             <VBox prefHeight="0.0" prefWidth="0.0">
               <children>
