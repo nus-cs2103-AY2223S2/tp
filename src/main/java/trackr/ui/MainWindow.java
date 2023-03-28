@@ -37,7 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
-    private VBox tabPanelPlaceholder;
+    private StackPane tabPanelPlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
