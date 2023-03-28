@@ -1,4 +1,4 @@
-package seedu.address.logic.pilot.unlinkpilot;
+package seedu.address.logic.pilot.unlinkflight;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -17,11 +17,11 @@ import seedu.address.model.pilot.Pilot;
  */
 public class UnlinkPilotToFlightCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
-            "Flight with id %s is not found.";
+            "Flight with ID %s can't be found.";
     private static final String PILOT_NOT_FOUND_EXCEPTION =
-            "Pilot with id %s is not found.";
+            "Pilot with ID %s can't be found.";
     private static final String DISPLAY_MESSAGE =
-            "Unlinked pilot %s from flight %s.";
+            "Unlinked %s from %s.";
 
     /**
      * The id of the flight
@@ -49,9 +49,8 @@ public class UnlinkPilotToFlightCommand implements Command {
         String result = pilots.entrySet()
                 .stream()
                 .map((entry) -> String.format(
-                        "%s: %s",
-                        entry.getKey(),
-                        entry.getValue().getName()))
+                        "%s",
+                        entry.getValue().toString()))
                 .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());
     }

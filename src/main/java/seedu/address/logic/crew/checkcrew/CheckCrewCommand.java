@@ -4,13 +4,20 @@ import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.exception.IndexOutOfBoundException;
-
+import seedu.address.model.crew.Crew;
 
 /**
  * The command that checks a crew's availability in the Wingman app.
  */
 public class CheckCrewCommand implements Command {
+    private static final String INDEX_OUT_OF_BOUNDS_MESSAGE =
+            "Index %s is out of bounds.\n"
+                    + "Please enter a valid index.";
+
+    private static final String INVALID_INDEX_VALUE_MESSAGE =
+            "%s is an invalid value.\n"
+                    + "Please try using an integer instead.";
+
     /**
      * The UUID of the crew whose availability is to be checked.
      */
@@ -28,19 +35,39 @@ public class CheckCrewCommand implements Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         boolean isAvailable;
+
+        // checking if its a valid integer
+        int crewId;
         try {
-            isAvailable = model.checkCrewByIndex(
-                    Command.parseIntegerToZeroBasedIndex(id)
-            );
-        } catch (IndexOutOfBoundException e) {
-            return new CommandResult(
-                    String.format("Error: %s", e.getMessage())
-            );
+            crewId = Command.parseIntegerToZeroBasedIndex(id);
+        } catch (NumberFormatException e) {
+            throw new CommandException(String.format(
+                    INVALID_INDEX_VALUE_MESSAGE,
+                    id
+            ));
         }
+
+        // checking if its a vaid index
+        boolean isCrewIndexValid = (crewId < model.getCrewManager().size());
+        if (!isCrewIndexValid) {
+            throw new CommandException(String.format(
+                    INDEX_OUT_OF_BOUNDS_MESSAGE,
+                    crewId + 1));
+        }
+
+        isAvailable = model.checkCrewByIndex(crewId);
+
+        Crew crew = model.getCrewManager().getItem(crewId);
         if (isAvailable) {
-            return new CommandResult("This crew is available.");
+            return new CommandResult(String.format(
+                    "%s is available.",
+                    crew.toString()
+            ));
         } else {
-            return new CommandResult("This crew is unavailable.");
+            return new CommandResult(String.format(
+                    "%s is unavailable.",
+                    crew.toString()
+            ));
         }
     }
 }

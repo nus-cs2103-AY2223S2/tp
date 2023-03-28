@@ -17,11 +17,11 @@ import seedu.address.model.link.exceptions.LinkException;
  */
 public class UnlinkCrewToFlightCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
-            "Flight with id %s is not found.";
+            "Flight with ID %s can't be found.";
     private static final String CREW_NOT_FOUND_EXCEPTION =
-            "Crew with id %s is not found.";
+            "Crew with ID %s can't be found.";
     private static final String DISPLAY_MESSAGE =
-            "Unlinked crew %s from flight %s.";
+            "Unlinked %s from %s.";
 
     /**
      * The flight to be unlinked from.
@@ -49,9 +49,8 @@ public class UnlinkCrewToFlightCommand implements Command {
         String result = crews.entrySet()
                 .stream()
                 .map((entry) -> String.format(
-                        "%s: %s",
-                        entry.getKey(),
-                        entry.getValue().getName()))
+                        "%s",
+                        entry.getValue().toString()))
                 .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());
     }
@@ -66,6 +65,7 @@ public class UnlinkCrewToFlightCommand implements Command {
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());
         }
+
         return new CommandResult(this.toString());
     }
 }

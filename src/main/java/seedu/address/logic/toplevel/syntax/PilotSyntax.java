@@ -1,6 +1,7 @@
 package seedu.address.logic.toplevel.syntax;
 
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
@@ -17,7 +18,7 @@ public abstract class PilotSyntax {
     /**
      * The type name.
      */
-    public static final String TYPE_NAME = "Pilot";
+    public static final String TYPE_NAME = "pilot";
 
     /**
      * The prefix for getting the name of the pilot.
@@ -44,6 +45,15 @@ public abstract class PilotSyntax {
      */
     public static final String PREFIX_FLIGHT_HOUR = "/fh";
 
+    private static final String INVALID_PILOT_RANK_MESSAGE =
+            "%s is an invalid pilot rank.\n"
+                    + "Please try 0 for a Training Captain, "
+                    + "1 for a Captain, "
+                    + "2 for a Senior First Officer,\n"
+                    + "3 for a First Officer, "
+                    + "4 for a Second Officer, "
+                    + "or 5 for a Cadet.";
+
     /**
      * The set of all prefixes of a pilot.
      */
@@ -65,11 +75,21 @@ public abstract class PilotSyntax {
     public static Pilot factory(CommandParam param) throws ParseException {
         final String name = param.getNamedValuesOrThrow(PREFIX_NAME);
         final int rankId = param.getNamedIntOrThrow(PREFIX_RANK);
+
+        if (!(Stream.of(0, 1, 2, 3, 4, 5)
+                .anyMatch(validRank -> validRank.equals(rankId)))) {
+            throw new ParseException(String.format(
+                    INVALID_PILOT_RANK_MESSAGE,
+                    rankId
+            ));
+        }
+
         final PilotRank rank = PilotRank.fromIndex(rankId);
         final int age = param.getNamedIntOrThrow(PREFIX_AGE);
-        final int genderIdx = param.getNamedIntOrThrow(PREFIX_GENDER);
-        final Gender gender = Gender.fromIndex(genderIdx);
+        final int genderId = param.getNamedIntOrThrow(PREFIX_GENDER);
+        final Gender gender = Gender.fromIndex(genderId);
         final int flightHour = param.getNamedIntOrThrow(PREFIX_FLIGHT_HOUR);
+
         return new Pilot(name, age, gender, rank, flightHour);
     }
 

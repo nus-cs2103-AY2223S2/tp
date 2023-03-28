@@ -17,7 +17,7 @@ import seedu.address.model.plane.Plane;
  */
 public class LinkPlaneToLocationCommand implements Command {
     private static final String DISPLAY_MESSAGE =
-            "Linked plane [%s] to location [%s].";
+            "Linked %s to %s.";
 
     /**
      * The id of the location
@@ -45,9 +45,8 @@ public class LinkPlaneToLocationCommand implements Command {
         String result = plane.entrySet()
                 .stream()
                 .map((entry) -> String.format(
-                        "%s: %s",
-                        entry.getKey(),
-                        entry.getValue().getModel()))
+                        "%s",
+                        entry.getValue().toString()))
                 .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, location.getName());
     }

@@ -163,7 +163,6 @@ public class CommandParam {
         return namedValues;
     }
 
-
     /**
      * Returns the unnamed token of the command, which is the part right after
      * command word and before the first prefix.
@@ -191,7 +190,7 @@ public class CommandParam {
      * @throws CommandException if the unnamed token is not present.
      */
     public String getUnnamedValueOrThrow() throws ParseException {
-        return getUnnamedValueOrThrow("Missing unnamed value");
+        return getUnnamedValueOrThrow("Missing unnamed value.");
     }
 
     /**
@@ -232,7 +231,12 @@ public class CommandParam {
      * @see #getNamedValuesOrThrow(String, String)
      */
     public String getNamedValuesOrThrow(String prefix) throws ParseException {
-        return getNamedValuesOrThrow(prefix, "Missing value for prefix " + prefix);
+        return getNamedValuesOrThrow(prefix, String.format(
+                "Missing value for prefix %s.\n"
+                        + "Please try entering a value following %s.",
+                prefix,
+                prefix
+        ));
     }
 
     /**
@@ -244,8 +248,11 @@ public class CommandParam {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            throw new ParseException("Invalid value for unnamed token: cannot "
-                                         + "parse " + value + " as integer: " + e.getMessage());
+            throw new ParseException(String.format(
+                    "%s is an invalid value.\n"
+                            + "Please try using an integer instead.",
+                    value
+            ));
         }
     }
 
@@ -254,9 +261,10 @@ public class CommandParam {
      * else throws a {@code ParseException} with the given message.
      */
     public int getUnnamedIntOrThrow() throws ParseException {
-        return getUnnamedIntOrThrow("Missing unnamed value");
+        return getUnnamedIntOrThrow(
+                "Missing integer.\n"
+                        + "Please try entering an integer.");
     }
-
 
     /**
      * Gets the integer value of the named token with the given prefix or throws an exception.
@@ -266,8 +274,12 @@ public class CommandParam {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            throw new ParseException("Invalid value for prefix " + prefix + ": cannot "
-                                         + "parse " + value + " as integer: " + e.getMessage());
+            throw new ParseException(String.format(
+                    "%s is an invalid value for prefix %s.\n"
+                            + "Please try using an integer instead.",
+                    value,
+                    prefix
+            ));
         }
     }
 
@@ -277,7 +289,12 @@ public class CommandParam {
      * @see #getNamedIntOrThrow(String, String)
      */
     public int getNamedIntOrThrow(String prefix) throws ParseException {
-        return getNamedIntOrThrow(prefix, "Missing value for prefix " + prefix);
+        return getNamedIntOrThrow(prefix, String.format(
+                "Missing integer for prefix %s.\n"
+                        + "Please try entering an integer following %s.",
+                prefix,
+                prefix
+        ));
     }
 
     @Override
