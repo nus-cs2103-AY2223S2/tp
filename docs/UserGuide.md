@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-#Welcome to PetPal!
+# Welcome to PetPal!
 ![Logo](images/logo.png)
 
 PetPal is your **furry and dependable assistant** who **reminds you of deadlines** and **consolidates crucial information** like pet names, tags dietary needs all in an **aesthetically pleasing** GUI! You can now focus on spend quality time with your furry friends without having to worry about things accidentally slipping your mind.
@@ -14,7 +14,25 @@ This user guide will help you get started and understand how PetPal can **seamle
 <div style="page-break-after: always;"></div>
 
 # Table of Contents
-  {:toc}
+
+1. [Quick Start](#quick-start)
+2. [Getting Familiar With Your User Interface](#getting-familiar-with-your-user-interface)
+3. [Legend](#legend)
+4. [Feature](#features)
+   1. [General](#general)
+      1. [Viewing help : `help`](#viewing-help--help)
+      2. [Listing your pets : `list`](#listing-your-pets--list)
+   2. [Add](#add)
+      1. [Adding a pet's information : `add`](#adding-a-pets-information--add)
+      2. [Filtering out reminders that are due soon : `remind`](#filtering-out-reminders-that-are-due-soon--remind)
+   3. [Retrieving](#retrieving)
+   4. [Updating](#updating)
+   5. [Deletion](#deletion)
+   6. [Command Flow](#command-flow)
+5. [FAQ](#faq)
+6. [Glossary](#glossary)
+7. [Command Summary](#command-summary)
+
 
 <div style="page-break-after: always;"></div>
 
@@ -522,24 +540,30 @@ Examples:
 
 ### Deletion
 
-#### Deleting a client : `delete`
+#### Deleting a pet : `delete`
 
-Deletes the specified client from your FABook.
+Deletes the specified pet from your PetPal.
 
 You can use this command when:
-1. You drop a client.
+1. You drop a pet.
    <br>
 
 **Constraints**
-* `INDEX` is the index of the client in the currently displayed list.
-* Deletes the client with the specified index in your FABook.
+* `INDEX` is the index of the pet in the currently displayed list.
+* Deletes the pet with the specified index in your PetPal.
 
 Format: `delete INDEX`
 
-![delete](images/UserGuide/delete.png)
+Before:
+
+![deleteBefore](images/beforeDelete.png)
+
+After:
+
+![deleteAfter](images/afterDelete.png)
 
 Examples:
-* `delete 2` deletes the second client in the currently displayed client list in your FABook.
+* `delete 2` deletes the second pet in the currently displayed pet list in your PetPal.
 
 #### Delete meetings : `deletemeeting`
 
