@@ -18,7 +18,8 @@ public class UnstarCommand extends Command {
     public static final String COMMAND_WORD = "unstar";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the recipe as out of favorites identified by the index number used in the displayed recipe list.\n"
+            + ": Marks the recipe as out of favorites"
+            + "identified by the index number used in the displayed recipe list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

@@ -28,7 +28,8 @@ public class Recipe {
     private boolean isStar;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null except for {@code isStar} which can be left blank.
+     * In this case, set it to false automatically.
      */
     public Recipe(Title title, Description desc, Set<Ingredient> ingredients, List<Step> steps,
                   Set<Tag> tags) {
@@ -41,6 +42,9 @@ public class Recipe {
         this.isStar = false;
     }
 
+    /**
+     * Every field is present and not null.
+     */
     public Recipe(Title title, Description desc, Set<Ingredient> ingredients, List<Step> steps,
                   Set<Tag> tags, boolean isStar) {
         requireAllNonNull(title, desc, ingredients, steps, tags);

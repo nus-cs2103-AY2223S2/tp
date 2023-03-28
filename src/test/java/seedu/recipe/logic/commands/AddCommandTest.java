@@ -137,6 +137,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void starRecipe(Recipe target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unstarRecipe(Recipe target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Recipe> getFilteredRecipeList() {
             throw new AssertionError("This method should not be called.");
         }
