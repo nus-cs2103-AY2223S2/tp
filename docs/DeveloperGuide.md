@@ -3,14 +3,21 @@ layout: page
 title: Developer Guide
 ---
 
-- Table of Contents
-  {:toc}
+## **Table of Contents**
+
+- [Acknowledgements](#acknowledgements)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+- [Implementation](#implementation)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 ---
 
 ## **Acknowledgements**
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+<!-- - {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well} -->
 
 ---
 
@@ -61,7 +68,7 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 - defines its _API_ in an `interface` with the same name as the Component.
-- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -75,14 +82,15 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainScreen` that is made up of parts e.g.`CommandInput`, `TaskListPanel`, `TaskDetailPanel` etc. All these, including the `MainScreen`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The `UI` consists of a `MainScreen` that is made up of parts e.g.`CommandInput`, `TaskDetailPanel`, `TaskListPanel`, `CommandInput` etc. All these, including the `MainScreen`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainScreen`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/MainScreen.java) is specified in [`MainScreen.fxml`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainScreen.fxml)
+The `UI` component uses the JavaFx UI framework but is modeled to mimic after the structure of the `React.js` framework as closely as possible. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainScreen`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/java/vimification/taskui/MainScreen.java) is specified in [`MainScreen.fxml`](https://github.com/AY2223S2-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainScreen.fxml)
 
 The `UI` component,
 
-- communicates with back-end via a single-entry point `Logic` component.
+- communicates with back-end via a single-entry point `Logic` component to exectue user commands.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands and to display the list of tasks.
+- updates the UI every time a command is executed.
 
 ### Logic component
 
@@ -94,26 +102,28 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `VimificationParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a task).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+<!-- The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call. -->
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<!-- ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses.png" width="600"/> -->
 
 How the parsing works:
 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+- Each command has a dedicated parser, `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) to parse it.
+- The main entry point of the parser, `VimificationParser` , combines the command parsers together.
+- When called upon to parse a user command, the `VimificationParser` class tries to parse different prefixes. Each prefixes maps to a single `XYZCommandParser` which parses the remaining user input and create a `XYZCommand` object (e.g., `AddCommand`) which the `VimificationParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `CommandParser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
@@ -123,8 +133,8 @@ How the parsing works:
 
 The `Model` component,
 
-- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the data i.e., all `Task` objects.
+- stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -142,8 +152,8 @@ The `Model` component,
 
 The `Storage` component,
 
-- can save both address book data and user preference data in json format, and read them back into corresponding objects.
-- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- can save both task data and user preference data in json format, and read them back into corresponding objects.
+- inherits from both `TaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 - depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -186,6 +196,22 @@ A class implementing `CommandParser` must provide an implementation for `Command
 Notice the signature of `CommandParser#getInternalParser()`: this method returns an `ApplicativeParser<ApplicativeParser<LogicCommand>>`. The nested `ApplicativeParser` is necessary in this case - the first level will parse the command prefix, and returns a combinator dedicated to parse the particular command identified by the prefix. The remaining input is then piped to the second level (the combinator returned before) to construct the command.
 
 This implementation allows us to fail early and report errors if the prefix does not represent any command, or quickly parse the command without having to try multiple alternatives.
+
+### Storage
+
+#### Represent inheritance relationship
+
+`Task` and its subclasses have can be converted from and to JSON format using `JsonAdoptedXYZ` (`XYZ` is a placeholder for the specific task name e.g., `Todo`).
+
+We need to translate the inheritance relationship between `Task` and its subclasses from and to JSON. The current implementation uses 2 annotations (from the Jackson library), `@JsonTypeInfo` and `@JsonSubTypes` to solve this.
+
+One downside of this implementation is that `JsonAdoptedTask` must know all of its subclasses, which increases coupling. However, after considering another alternative (manually setup the json parser), this seems to be the most suitable implementation for the current scale of the project. The increase in coupling is compensated by the ease of implementation.
+
+### \[Proposed\] Modification compared to AB3
+
+AB3 uses the **Model–view–controller (MVC)** design pattern. One detail we observed is that the `Model` uses `ObservableList` to carry application data, however, we argued that this is not the optimal design, since `ObservableList` should be used for `view`. AB3 implementation makes the view and bussiness logic bundled together, hinder our development speed.
+
+Therefore, we wish to improve the current design of the application. \<The design will be finalized soon\>.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -302,45 +328,274 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                  | I want to …​                 | So that I can…​                                                      |
-| -------- | ---------------------------------------- | ---------------------------- | -------------------------------------------------------------------- |
-| `* * *`  | new user                                 | see usage instructions       | refer to instructions when I forget how to use the App               |
-| `* * *`  | user                                     | add a new task               |                                                                      |
-| `* * *`  | user                                     | delete a task                | remove entries that I no longer need                                 |
-| `* * *`  | user                                     | find a task by name          | locate details of tasks without having to go through the entire list |
-| `* *`    | user                                     | hide private contact details | minimize chance of someone else seeing them by accident              |
-| `*`      | user with many tasks in the address book | sort tasks by name           | locate a task easily                                                 |
-
-_{More to be added}_
+| Priority | As a …​                   | I want to …​                                                     | So that I can…​                                                                                         |
+| -------- | ------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | --- |
+| `* * *`  | SoC Student who knows Vim | use my task planner fast and efficiently                         | reduce time spent on editing the task planner                                                           |
+| `* * *`  | SoC Student who knows Vim | list down all the tasks on my to do list                         | get an overview of all the things I need to do at one glance                                            |
+| `* * *`  | SoC Student who knows Vim | add entries of task for the things to do into the task planner   | keep track of things to do                                                                              |
+| `* * *`  | SoC Student who knows Vim | add priority to a task                                           | give higher priority to more important tasks which should be completed first                            |
+| `* * *`  | SoC Student who knows Vim | add tag to a task                                                | categorize the tasks                                                                                    |
+| `* * *`  | SoC Student who knows Vim | add deadline to a task                                           | keep track of the date that to complete the task                                                        |
+| `* * *`  | SoC Student who knows Vim | mark a task as completed                                         | keep track of tasks to is completed                                                                     |
+| `* * *`  | SoC Student who knows Vim | unmark a task as not completed                                   | change the status of the task to be not completed                                                       |
+| `* *`    | SoC Student who knows Vim | add recurrence to a task                                         | save time as I do not need to repeatedly create the same entries of tasks                               |
+| `* *`    | SoC Student who knows Vim | undo an action                                                   | revert to the previous state if something is done wrongly                                               |
+| `* *`    | SoC Student who knows Vim | edit a task’s description, tag, priority, or deadline            | change the details if added wrongly                                                                     |
+| `* * *`  | SoC Student who knows Vim | delete a task                                                    | remove tasks that I no longer want to track                                                             |
+| `* * *`  | SoC Student who knows Vim | delete a task’s description, tag, priority, or deadline          | delete the details if no longer needed                                                                  |     |
+| `* * *`  | SoC Student who knows Vim | delete all completed task                                        | remove tasks that are completed to save memory                                                          |
+| `* * *`  | SoC Student who knows Vim | search for tasks which the descriptions contain certain keywords | find all task with the same keyword                                                                     |
+| `* * *`  | SoC Student who knows Vim | search for a task based on the specified priority level          | identify tasks with higher priority to complete them first                                              |
+| `* * *`  | SoC Student who knows Vim | search for tasks based on a specified list of tags               | find all the tasks in the specified categories                                                          |
+| `* * *`  | SoC Student who knows Vim | search for all tasks that are not completed                      | identify tasks to are not completed                                                                     |
+| `* * *`  | SoC Student who knows Vim | search for tasks by deadlines before a certain date and time     | find all tasks that need to be done before a certain date and time                                      |
+| `* * *`  | SoC Student who knows Vim | search for tasks by deadlines after a certain date and time      | find all tasks that need to be done after a certain date and time                                       |
+| `* * *`  | SoC Student who knows Vim | search for tasks by deadlines within a specified period of time  | find all tasks that need to be done within that specified period of time                                |
+| `* * *`  | SoC Student who knows Vim | sort tasks by upcoming deadlines                                 | view all the tasks in the order of upcoming deadlines and know which tasks I should be completing first |
+| `* * *`  | SoC Student who knows Vim | sort tasks by priorities in descending order                     | see which are the more important tasks I should focus on completing first                               |
+| `* *`    | SoC Student who knows Vim | config the storage location of the file                          | customize the location to my own preference for easy reference                                          |
+| `* * *`  | SoC Student who knows Vim | view tasks with priorities in different color                    | visualize the important tasks more easily                                                               |
+| `* * *`  | New user                  | I can use :help                                                  | to access a brief user guide of all the commands and intended use cases of each command                 |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Vimification` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a task**
+**Use case 1: Create a new task**
 
 **MSS**
 
-1.  User requests to list tasks
-2.  AddressBook shows a list of tasks
-3.  User requests to delete a specific task in the list
-4.  AddressBook deletes the task
+1.  User specifies entries of the new task with the description, priority level (optional), tags (optional) and deadline (optional).
+2.  Vimification uses these entries to create a new task.
+3.  Vimification adds the new task to the end of the current list of tasks.
 
     Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 1a. The command format is invalid.
+
+  - 1a1. Vimification shows an error message.
+
+    Use case ends.
+
+- 1b. The description is empty.
+
+  - 1b1. Vimification shows an error message.
+
+    Use case ends.
+
+- 1c. The priority level is invalid.
+
+  - 1c1. Vimification shows an error message.
+
+    Use case ends.
+
+- 1d. The deadline is invalid.
+
+  - 1d1. Vimification shows an error message.
+
+    Use case ends.
+
+**Use case 2: Delete a task**
+
+**MSS**
+
+1.  User indicates which task he wants to delete by specifying the index of the task.
+2.  Vimification uses this index to remove the chosen task from the current list of tasks.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. The command format is invalid.
+
+  - 1a1. Vimification shows an error message.
 
   Use case ends.
 
-- 3a. The given index is invalid.
+- 1b. The index is invalid.
 
-  - 3a1. AddressBook shows an error message.
+  - 1b1. Vimification shows an error message.
 
-    Use case resumes at step 2.
+  Use case ends.
 
-_{More to be added}_
+**Use case 3: Mark a task as done**
+
+**MSS**
+
+1.  User indicates which task he wants to mark by specifying the index of the task.
+2.  Vimification uses the specified index to locate the chosen task.
+3.  Vimification uses this index to mark the chosen task as done.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. The command format is invalid.
+
+  - 1a1. Vimification shows an error message.
+
+  Use case ends.
+
+- 1b. The index is invalid.
+
+  - 1b1. Vimification shows an error message.
+
+  Use case ends.
+
+- 1c. The task is already marked/completed.
+
+  - 1c1. Vimification shows an error message.
+
+  Use case ends.
+
+**Use case 4: Add some tags to a task**
+
+**MSS**
+
+1.  User indicates which task he wants to add the tags to by specifying the index of the task.
+2.  User adds a list of additional tags that he wants to add.
+3.  Vimification uses the specified index to locate the chosen task.
+4.  Vimification adds the list of additional tags to the existing tag set of the chosen task.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. The command format is invalid.
+
+  - 1a1. Vimification shows an error message.
+
+  Use case ends.
+
+- 1b. The index is invalid.
+
+  - 1b1. Vimification shows an error message.
+
+  Use case ends.
+
+**Use case 5: Filter or search for tasks based on certain conditions**
+
+**MSS**
+
+1.  User specifies the attribute and the conditions for the search. The attribute can be either description, priority levels, tags, completion status or a specified range of date and time.
+2.  Vimification converts the conditions into a predicate.
+3.  Vimification uses this predicate to filter and search for the tasks that satisfy the specified conditions.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. The command format is invalid.
+
+  - 1a1. Vimification shows an error message.
+
+  Use case ends.
+
+- 1b. The attribute is invalid.
+
+  - 1b1. Vimification shows an error message.
+
+  Use case ends.
+
+- 1c. The attribute is is empty.
+
+  - 1c1. Vimification shows an error message.
+
+  Use case ends.
+
+- 1d. The condition is invalid.
+
+  - 1d1. Vimification shows an error message.
+
+  Use case ends.
+
+- 1e. The condition is empty.
+
+  - 1e1. Vimification shows an error message.
+
+    Use case ends.
+
+**Use case 6: Edit certain attribute of an existing task**
+
+**MSS**
+
+1.  User indicates which task he wants to edit by specifying the index of the task.
+2.  User specifies which attribute of the task he wants to edit.
+3.  User inputs the new value of the attribute.
+4.  Vimification uses the specified index to locate the chosen task.
+5.  Vimification updates the specified attribute to the new value.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. The command format is invalid.
+
+  - 1a1. Vimification shows an error message.
+
+    Use case ends.
+
+- 1b. The index is invalid.
+
+  - 1b1. Vimification shows an error message.
+
+  Use case ends.
+
+- 1c. The attribute is invalid.
+
+  - 1c1. Vimification shows an error message.
+
+  Use case ends.
+
+- 1d. The attribute is empty.
+
+  - 1d1. Vimification shows an error message.
+
+  Use case ends.
+
+- 1e. The new value is empty.
+
+  - 1e1. Vimification shows an error message.
+
+  Use case ends.
+
+- 1f. The new value is invalid.
+
+  - 1f1. Vimification shows an error message.
+
+  Use case ends.
+
+**Use case 7: Sort the tasks based on certain attribute**
+
+**MSS**
+
+1.  User specifies which attribute he wants to sort the tasks on. The attribute can be either description, priority levels, tags, completion status or deadline.
+2.  Vimification sorts the task list by the attribute.
+3.  Vimification displays the sorted list to the user.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a The command format is invalid.
+
+  - 1a1 Vimification shows an error message.
+
+    Use case ends.
+
+- 1b The attribute is invalid.
+
+  - 1b1 Vimification shows an error message.
+
+    Use case ends.
+
+- 1c The attribute is empty.
+
+  - 1c1 Vimification shows an error message.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 

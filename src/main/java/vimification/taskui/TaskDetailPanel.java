@@ -1,11 +1,10 @@
 package vimification.taskui;
 
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXML;
 import vimification.model.task.Task;
-import vimification.model.task.Todo;
 
 
 /**
@@ -17,11 +16,17 @@ public class TaskDetailPanel extends UiPart<VBox> {
     private Task task;
 
     @FXML
-    private ListView<Task> taskListView;
+    private Label typeField;
     @FXML
-    private Label descriptionText;
+    private Label descriptionField;
+
     @FXML
-    private Label typeText;
+    private Label statusField;
+    @FXML
+    private Label priorityField;
+
+    @FXML
+    private HBox durationComponent;
 
     /**
      * Creates a {@code TaskDetailPanel}.
@@ -32,19 +37,26 @@ public class TaskDetailPanel extends UiPart<VBox> {
         setup();
     }
 
-    public void setup() {
-        descriptionText.setText(task.getDescription());
-
+    private void setup() {
         String taskType = getTaskType(task);
-        typeText.setText(taskType);
+        typeField.setText(taskType);
+
+        descriptionField.setText(task.getDescription());
+        statusField.setText(task.isDone() ? "Completed" : "Incomplete");
+        priorityField.setText(task.getPriority().toString());
+
+        boolean isTaskDeadline = taskType.equals("Deadline");
+        durationComponent.setVisible(isTaskDeadline);
     }
 
-    public String getTaskType(Task task) {
-        if (task instanceof Todo) {
-            return "Todo";
-        }
-
-        return "Deadline";
+    /**
+     * Get the String of the Task instance.
+     *
+     * @param task
+     * @return {@code Deadline} or {@code Todo}
+     */
+    private String getTaskType(Task task) {
+        return task.getClass().getSimpleName();
     }
 
 }

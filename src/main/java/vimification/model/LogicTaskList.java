@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import vimification.commons.core.Index;
+import vimification.model.task.Priority;
 import vimification.model.task.Task;
 
 /**
@@ -117,6 +118,18 @@ public class LogicTaskList {
      */
     public void unmark(int index) {
         tasks.get(index).unmark();
+    }
+
+    public void setPriority(int index, int newLevel) {
+        tasks.get(index).setPriority(newLevel);
+    }
+
+    public void setPriority(int index, Priority newPriority) {
+        tasks.get(index).setPriority(newPriority);
+    }
+
+    public Priority getPriority(int index) {
+        return tasks.get(index).getPriority();
     }
 
     //// util methods

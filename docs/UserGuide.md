@@ -3,41 +3,97 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+## Introduction
 
-* Table of Contents
-{:toc}
+Welcome to Vimification, the ultimate task tracker for Vim enthusiasts! If you are a student at NUS, you know how hectic it can get to manage different deadlines and schedules for different classes and modules. With VimPlanner, you can now manage your tasks and deadlines with ease, using the powerful and efficient Vim-like commands that you already know and love.
 
---------------------------------------------------------------------------------------------------------------------
+Vimification is designed to help you stay organized and productive by providing a simple and intuitive interface that allows you to keep track of all your tasks and deadlines in one place. Whether you are a seasoned Vim user or just starting out, you will find Vimification to be an easy and efficient way to manage your daily tasks.
 
-## Quick start
+With Vimification, you can quickly and easily create new tasks, set due dates, prioritize your work, and track your progress. Whether you are working on a group project, studying for an exam, or just trying to stay on top of your assignments, VimPlanner has everything you need to stay organized and focused.
 
-1. Ensure you have Java `11` or above installed in your Computer.
+So why waste time fumbling around with a mouse and keyboard? Try Vimification today and experience the power of Vim-like productivity for yourself!
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+## Purpose of User Guide
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+The purpose of this user guide is to provide you with a comprehensive resource that will guide you through the various features and functionality of the app, so that you can efficiently manage your tasks and deadlines using VimPlanner's powerful and intuitive interface.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+The guide will walk you through the process of creating and managing tasks, setting due dates, prioritizing work, and tracking progress, among other topics. It will provide you with clear and concise instructions that are easy to follow, whether you are a new Vim user or an experienced Vim enthusiast.
+
+Additionally, it will offer troubleshooting tips and solutions to common issues that you may encounter while using VimPlanner, and provide you with a comprehensive resource that will help you optimize your productivity and stay on top of your tasks and deadlines.
+
+Overall, we hope to empower you to streamline your daily workflows and increase your productivity. So, let's get started!
+
+---
+
+## Installation
+
+1. Download the latest `Vimification.jar` from [here](https://github.com/AY2122S2-CS2103T-W11-4/tp/releases).
+
+2. # Save the file in your intended folder.
+   Vimification is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can get your task management tasks done faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, we also provide a Graphical User interface (GUI) to assist you.
+
+## Table of Contents
+
+- [Quick Start](#quick-start)
+- [Features](#features)
+  - [Viewing help](#viewing-help)
+  - [Adding a todo task](#adding-a-todo-task)
+  - [Adding a task with deadline](#adding-a-task-with-deadline)
+  - [Deleting a task](#deleting-a-task)
+  - [Exiting the program](#exiting-the-program)
+  - [Saving the data](#saving-the-data)
+
+---
+
+## Quick Start
+
+### For Windows
+
+1. Ensure that you have Java `11` or above installed in your Computer.
+
+2. Double-click the file to start the app.
+
+3. The application should launch, and a GUI similar to the below should appear in a few seconds. <br>
+
+### For Mac (M1 Chip)
+
+1. Ensure that you have Java `11` Zulu SDK installed in your Computer.
+
+2. Open your Mac Terminal, and `cd` into the folder you put the jar file in.
+
+3. Run `java -jar Vimification.jar`.
+
+4. The application should launch, and a GUI similar to the below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
+
+## Using the Command-Line Interface (CLI)
+
+=======
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   - `:i todo CS2130T UG` : Adds a todo task with description `CS2130T UG` to Vimification.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   - `:i deadline CS2130T tp /2023-04-01` : Adds a todo task with description `CS2130T tp` and deadline '2023-04-01' to Vimification.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   - `:d 2` : Deletes the 2nd task shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   - `:wq` : Exits the app.
 
-   * `exit` : Exits the app.
+2. Refer to the [Features](#features) below for details of each command.
 
-1. Refer to the [Features](#features) below for details of each command.
+---
 
---------------------------------------------------------------------------------------------------------------------
+## Navigating Vimification
+
+Vimification is designed to mimic Vim as closely as possible. Navigate Vimification as you would in Vim by using `h`,`j,`,`k`,`l` to move to the left, down, up, right respectively.
+
+## Using commands
+
+Similar to Vim, you can bring up the command input by pressing the `:` key on your keyboard.
+e.g:
+![](images/ug-images/showCommand/commandExample.png)
 
 ## Features
 
@@ -45,149 +101,124 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+- Words in UPPER_CASE are the parameters to be supprised by the users.<br>
+  e.g. `:i todo DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `:i todo quiz`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+- Words in square brackets are compulsory parameters to be supplied by the user.<br>
+  e.g. in `:i todo [DESCRIPTION]`, `DESCRIPTION` is a parameter must be provided.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+- Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[-t TAG]…​` can be used as ` ` (i.e. 0 times), `-t cs2103t`, `-t cs2103t -t groupwork` etc.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+- Parameters can be in any order.<br>
+  e.g. if the command specifies `-p PRIORITY -t TAG`, `-t TAG -p PRIORITY` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Viewing help : `help`
+### Viewing help
 
 Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Format: `:help`
 
+### Adding a todo task
 
-### Adding a person: `add`
+Adds a to-do to Vimification.
 
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `:i todo [DESCRIPTION]`
+| parameter | description | examples |
+| ------------- | ----------------------------------------------- | ------------ |
+| `description` | description of the task. | `CS2103T UG` |
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+`:i todo CS2130T UG`
 
-Shows a list of all persons in the address book.
+**After**
+![](images/ug-images/AddTaskCommandDemo.png)
 
-Format: `list`
+### Adding a task with deadline
 
-### Editing a person : `edit`
+Adds a task with `deadline` to Vimification.
 
-Edits an existing person in the address book.
+Format: `:i deadline [DESCRIPTION] /[DEADLINE]`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+| parameter     | description                                     | examples     |
+| ------------- | ----------------------------------------------- | ------------ |
+| `description` | description of the task.                        | `CS2103T UG` |
+| `deadline`    | The deadline of the task in `YYYY-MM-DD` format | `2023-03-31` |
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+`:i deadline CS2130T v1.3 /2022-03-31`
 
-Finds persons whose names contain any of the given keywords.
+**After**
+![](images/ug-images/AddDeadlineCommandDemo.png)
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
+### Deleting a task
 
 Deletes the specified person from the address book.
 
-Format: `delete INDEX`
+Format: `:d [TASK_INDEX]`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+- Deletes the task at the specified `task_index`.
+- The index refers to the index number shown in the displayed `TaskList`.
+- The index **must be a positive integer**, i.e 1, 2, 3, …​
+- The index must not exceed the number of tasks in `TaskList`, otherwise Vimification will show an error message.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+**Before**
+![](images/ug-images/deleteCommand/before.png)
 
-Clears all entries from the address book.
+**After**
+![](images/ug-images/deleteCommand/after.png)
 
-Format: `clear`
+### Exiting the program
 
-### Exiting the program : `exit`
+Similar to Vim, we can use the `q` command with write `w` to exit the program.
 
-Exits the program.
+Format: `:wq!`, `:q!`,,`:wq`,`:q`
 
-Format: `exit`
+Examples:
+![](images/ug-images/quitCommand/quitExample1.png)
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Vimification data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Vimification data are saved as a JSON file `[JAR file location]/data/tasklist.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Vimification will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Vimification home folder.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action           | Format, Examples                                                                         |
+| ---------------- | ---------------------------------------------------------------------------------------- | --- |
+| **Add To-do**    | `:i todo [description]` <br> e.g., `i todo CS2103T UG`                                   |
+| **Add Deadline** | `:i deadline [description] /[deadline]` <br> e.g., `i deadline CS2103T v1.3 /2022-03-31` |     |
+| **Delete**       | `:d [index]`<br> e.g., `:d 3`                                                            |
+| **Exit**         | `:wq!`, `:q!`,,`:wq`,`:q`                                                                |
+| **Help**         | `:help`                                                                                  |

@@ -31,25 +31,4 @@ public class TaskCard extends UiPart<HBox> {
         description.setText(task.getDescription());
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof TaskCard)) {
-            return false;
-        }
-
-        // state check
-        // TODO: FIX CLASH WITH JIAYUE
-        // TaskCard card = (TaskCard) other;
-        // return id.getText().equals(card.id.getText())
-        // && task.equals(card.task);
-
-        // TODO: REMOVE THIS AFTER FIX ABOVE
-        return false;
-    }
 }
