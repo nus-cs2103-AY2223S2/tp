@@ -15,7 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.CompanyNameComparator;
+import seedu.address.model.person.comparator.CompanyNameComparator;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.InternshipTodo;
@@ -253,15 +253,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<InternshipApplication> getSortedFilteredInternshipList() {
+        return sortedFilteredInternships;
+    }
+
+    @Override
     public void updateFilteredInternshipList(Predicate<InternshipApplication> predicate) {
         requireNonNull(predicate);
         filteredInternships.setPredicate(predicate);
     }
 
     @Override
-    public void sortFilteredInternshipList(Comparator<InternshipApplication> comparator) {
+    public void updateSortedFilteredInternshipList(Comparator<InternshipApplication> comparator) {
         requireNonNull(comparator);
-        filteredInternships.sort(comparator);
+        sortedFilteredInternships.sort(comparator);
     }
 
     @Override

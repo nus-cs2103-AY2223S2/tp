@@ -6,9 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
+import java.util.Comparator;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
+import seedu.address.model.person.InternshipApplication;
 
 /**
  * Sorts and lists all internship application by any one of the following attributes: CompanyName,
@@ -28,29 +31,27 @@ public class SortCommand extends Command {
             + "[" + PREFIX_DATE + "INTERVIEW_DATE]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_DATE;
 
-    private final Prefix prefix;
+    private final Comparator<InternshipApplication> comparator;
 
-    public SortCommand(Prefix prefix) {
-        requireNonNull(prefix);
-        this.prefix = prefix;
+    public SortCommand(Comparator<InternshipApplication> comparator) {
+        requireNonNull(comparator);
+        this.comparator = comparator;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        // model.updateFilteredInternshipList(predicate);
+        model.updateSortedFilteredInternshipList(comparator);
         return new CommandResult(
-                String.format(Messages.MESSAGE_APPLICATION_LISTED_OVERVIEW, model.getFilteredInternshipList().size()));
+                String.format(Messages.MESSAGE_APPLICATION_LISTED_OVERVIEW,
+                        model.getSortedFilteredInternshipList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
-        /*
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
-    */
-        return true;
+                || (other instanceof SortCommand // instanceof handles nulls
+                && comparator.equals(((SortCommand) other).comparator)); // state check
     }
 }
 
