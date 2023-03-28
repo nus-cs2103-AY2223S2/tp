@@ -25,6 +25,18 @@ public class Deadline extends Task {
         this.deadline = deadline;
     }
 
+    public boolean isDeadline() {
+        return true;
+    }
+
+    public boolean isDateBefore(LocalDateTime date) {
+        return deadline.isBefore(date) || deadline.isEqual(date);
+    }
+
+    public boolean isDateAfter(LocalDateTime date) {
+        return deadline.isAfter(date) || deadline.isEqual(date);
+    }
+
     @Override
     public Deadline clone() {
         return new Deadline(getDescription(), isDone(), deadline);

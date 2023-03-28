@@ -12,10 +12,11 @@ public class SetPriorityCommand extends UndoableLogicCommand {
     public static final String COMMAND_WORD = "-p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds priority level to the task identified by the index number used in the displayed task list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + ": PRIORITY LEVEL (must be either 1, 2 or 3) "
-            + "Example: " + COMMAND_WORD + " 1" + " 1";
+            + ": Adds priority level to a task.\n"
+            + "Parameters: INDEX (index number of the target task in the displayed task list)\n"
+            + "          : PRIORITY LEVEL (high, med or low)\n"
+            + "Conditions: Index must be positive integer and cannot exceed total number of tasks.\n"
+            + "Example: " + COMMAND_WORD + " high" + " 1";
 
     public static final String SUCCESS_MESSAGE_FORMAT =
             "Priority of task %1$s updated.";

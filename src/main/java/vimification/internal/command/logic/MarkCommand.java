@@ -8,10 +8,12 @@ import vimification.model.LogicTaskList;
 import static java.util.Objects.requireNonNull;
 
 public class MarkCommand extends UndoableLogicCommand {
-    public static final String COMMAND_WORD = "m";
+    public static final String COMMAND_WORD = "mark";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": mark the task identified by the index number used in the displayed task list as completed.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": mark the task as completed.\n"
+            + "Parameters: INDEX (index number of the target task in the displayed task list)\n"
+            + "Conditions: Index must be positive integer and cannot exceed total number of tasks.\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String SUCCESS_MESSAGE_FORMAT = "Task %1$s marked as completed";

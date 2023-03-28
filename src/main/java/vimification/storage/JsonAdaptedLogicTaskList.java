@@ -42,12 +42,10 @@ public class JsonAdaptedLogicTaskList {
     }
 
     private JsonAdaptedTask toJsonAdaptedTask(Task task) {
-        if (task instanceof Todo) {
-            return new JsonAdaptedTodo((Todo) task);
-        } else if (task instanceof Deadline) {
+        if (task.isDeadline()) {
             return new JsonAdaptedDeadline((Deadline) task);
         } else {
-            return new JsonAdaptedEvent((Event) task);
+            return new JsonAdaptedTodo((Todo) task);
         }
     }
 

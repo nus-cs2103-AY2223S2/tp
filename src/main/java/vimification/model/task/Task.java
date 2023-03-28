@@ -1,5 +1,9 @@
 package vimification.model.task;
 
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
 import static java.util.Objects.requireNonNull;
 import static vimification.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -8,6 +12,7 @@ public abstract class Task {
     private String description;
     private boolean isDone;
     private Priority priority;
+    private Set<String> tags;
 
     /**
      * Every field must be present and not null.
@@ -17,6 +22,7 @@ public abstract class Task {
         this.description = description;
         this.isDone = isDone;
         this.priority = priority;
+        this.tags = new HashSet<>();
     }
 
     Task(String description, boolean isDone) {
@@ -66,13 +72,19 @@ public abstract class Task {
         return description.contains(keyword);
     }
 
-    public boolean checkPriority(Priority priority) {
+    public boolean containsTag(String tag) {
+        return tags.contains(tag);
+    }
+
+    public boolean isSamePriority(Priority priority) {
         return this.priority.equals(priority);
     }
 
-    public boolean checkPriority(int level) {
-        return checkPriority(Priority.fromInt(level));
+    public boolean isSamePriority(int level) {
+        return isSamePriority(Priority.fromInt(level));
     }
+
+    public abstract boolean isDeadline();
 
     public abstract Task clone();
 

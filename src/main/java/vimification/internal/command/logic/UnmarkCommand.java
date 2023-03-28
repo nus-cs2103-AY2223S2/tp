@@ -9,10 +9,13 @@ import static java.util.Objects.requireNonNull;
 
 public class UnmarkCommand extends UndoableLogicCommand {
     public static final String COMMAND_WORD = "unmark";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": unmark the task identified by the index number used in the displayed task list as not completed.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": unmark task as not completed.\n"
+            + "Parameters: INDEX (index number of the target task in the displayed task list)\n"
+            + "Conditions: Index must be positive integer and cannot exceed total number of tasks.\n"
             + "Example: " + COMMAND_WORD + " 1";
+
     public static final String SUCCESS_MESSAGE_FORMAT = "Task %1$s marked as not completed";
     public static final String UNDO_MESSAGE = "The command has been undone. The task is now completed.";
 

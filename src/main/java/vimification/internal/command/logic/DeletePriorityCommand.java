@@ -13,8 +13,9 @@ public class DeletePriorityCommand extends UndoableLogicCommand{
     public static final String COMMAND_WORD = "d -p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the priority of the task identified by the index number used in the displayed task list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": deletes the priority of the task.\n"
+            + "Parameters: INDEX (index number of the target task in the displayed task list)\n"
+            + "Conditions: Index must be positive integer and cannot exceed total number of tasks.\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String SUCCESS_MESSAGE_FORMAT =

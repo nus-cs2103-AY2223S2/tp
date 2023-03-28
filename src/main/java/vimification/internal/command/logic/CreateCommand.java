@@ -13,8 +13,9 @@ import vimification.model.task.Task;
 public class CreateCommand extends UndoableLogicCommand {
     public static final String COMMAND_WORD = "i";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a task to the displayed task list.\n"
-            + "Parameters: DESCRIPTION (must not be empty)\n"
+            + ": adds a task to the displayed task list.\n"
+            + "Parameters: DESCRIPTION (description of the task to be added)\n"
+            + "Conditions: Description cannot be empty.\n"
             + "Example: " + COMMAND_WORD + " quiz";
 
     public static final String SUCCESS_MESSAGE_FORMAT = "Task %1$s created";

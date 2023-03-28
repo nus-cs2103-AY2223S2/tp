@@ -137,7 +137,7 @@ public class LogicTaskList {
 
     public List<Task> removeAllDone() {
         Predicate<Task> pred = Task::isDone;
-        List<Task> tasksDone = tasks.stream()
+        List<Task> tasksDone = stream()
                 .filter(pred)
                 .collect(Collectors.toCollection(ArrayList::new));
         tasks.removeAll(tasksDone);

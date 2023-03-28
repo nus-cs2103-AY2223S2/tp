@@ -1,5 +1,7 @@
 package vimification.model.task;
 
+import java.time.LocalDateTime;
+
 public class Todo extends Task {
 
     public Todo(String description, boolean isDone) {
@@ -13,6 +15,11 @@ public class Todo extends Task {
     @Override
     public Todo clone() {
         return new Todo(getDescription(), isDone());
+    }
+
+    @Override
+    public boolean isDeadline() {
+        return false;
     }
 
     public String toString() {
