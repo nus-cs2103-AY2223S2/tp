@@ -303,7 +303,8 @@ Format: `edit_content INDEX c/NOTE_CONTENT`
 - The index refers to the index number shown in the displayed todo list.
 - The index must be a positive integer 1, 2, 3, …​
 - **Note content is an optional field for todo applications**
-- Note content is empty (null) in default.
+- `NOTE_CONTENT` is empty (null) in default.
+- `NOTE_CONTENT` can take 1 to 55 characters.
 
 Examples:
 * `edit_content 2 c/Venue changed` Changes the status of the 2nd todo application in the todo list to `Venue changed`.
@@ -317,7 +318,7 @@ Format: `delete_todo INDEX`
 * Deletes the todo application at the specified `INDEX`.
 * The index refers to the index number shown in the displayed todo list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* **Note that the action is irreversible**
+* **Note that this action is irreversible**
 
 Examples:
 * `delete_todo 2` Deletes the 2nd todo application in the todo list.
@@ -327,7 +328,7 @@ Examples:
 Clears all todo application entries from the todo applications list
 
 Format: `clear_todo`
-**Note that the action is irreversible**
+**Note that this action is irreversible**
 
 ### Display list of short note :`list_note`
 
@@ -344,6 +345,7 @@ Examples:
 Adds a note to the note list.
 
 Format: `add_note c/NOTE_CONTENT`
+- `NOTE_CONTENT` can take 1 to 55 characters.
 
 Examples:
 * `add_note c/Focus on software engineering jobs!` adds a note with content `Focus on software engineering jobs!` into the note list.
@@ -357,7 +359,7 @@ Format: `delete_note INDEX`
 * Deletes the note at the specified `INDEX`.
 * The index refers to the index number shown in the displayed note list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* **Note that the action is irreversible**
+* **Note that this action is irreversible**
 
 Examples:
 * `delete 2` Deletes the 2nd note in the list of notes.
@@ -367,7 +369,7 @@ Examples:
 Clears all notes from the note.
 
 Format: `clear_note`
-**Note that the action is irreversible**
+**Note that this action is irreversible**
 
 ### Exiting the program : `exit`
 
