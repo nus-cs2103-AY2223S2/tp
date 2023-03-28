@@ -74,15 +74,9 @@ Let's get started!
 
 </div>
 
-### Viewing help : `help`
+### Customer
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-### Adding a customer : `addc`
+#### Adding a customer : `addc`
 
 Adds a customer to the current list.
 
@@ -99,7 +93,7 @@ Examples:
 * `addc ct/ent n/The Potato Farm e/thepotatofarm@example.com a/South street, block 983, #02-01 p/1234567`
 * `addc n/Mary Jane p/93130151 e/maryjane@example.com a/Mary Lamb Street, block 23, #01-12`
 
-### Listing all customers : `listc`
+#### Listing all customers : `listc`
 
 Shows a list of all customers.
 
@@ -115,7 +109,26 @@ Examples:
 * `listc s/points` lists all customers sorted by points
 * `listc f/marked` lists all bookmarked customers. 
 
-### View a customer : `viewc`
+#### Locating customers by name: `findc`
+
+Finds customers whose names contain any of the given keywords.
+
+Format: `findc KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `findc John` returns `john` and `John Doe`
+* `findc alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'findc alex david'](images/findAlexDavidResult.png)
+
+
+#### View a customer : `viewc`
 
 Display a customer's information in the information panel.
 
@@ -133,110 +146,7 @@ Examples:
 * `listc` and `viewc 2` opens `Bernice Yu` on the information panel on the right
   ![result for 'viewc 2'](images/viewcBerniceYuResult.png)
 
-
-### Deleting a customer : `deletec`
-
-Delete a customer from the list.
-
-Format: `deletec INDEX`
-
-* Deletes the customer at the specified `INDEX`.
-* The index refers to the index number shown in the displayed customer list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `listc` followed by `deletec 2` deletes the 2nd person in the address book.
-* `findc Betsy` followed by `deletec 1` deletes the 1st person in the results of the `findc` command.
-
-### Marking a person: `markc`
-
-Bookmarks a customer from the list of customers.
-
-Format: `markc INDEX`
-
-* Bookmarks the customer at the specified `INDEX`.
-* The index refers to the index number shown in the displayed customer list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `listc` followed by `markc 2` bookmarks the 2nd person in the address book.
-* `findc Betsy` followed by `markc 1` bookmarks the 1st person in the results of the `findc` command.
-
-### Unmarking a person: `unmarkc`
-
-Un-bookmarks a customer from the list of customers.
-
-Format: `unmarkc INDEX`
-
-* Un-bookmarks the customer at the specified `INDEX`.
-* The index refers to the index number shown in the displayed customer list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `listc` followed by `unmarkc 2` un-bookmarks the 2nd person in the address book.
-* `findc Betsy` followed by `unmarkc 1` bookmarks the 1st person in the results of the `findc` command.
-
-### Setting reward points for a customer : `setpoints`
-
-Sets a customer's reward points.
-
-Format: `setpoints INDEX pt/POINTS`
-
-* Sets the points of the customer at the specified `INDEX` to `POINTS`.
-* Customers by default, have 0 points initially.
-* The index refers to the index number shown in the displayed customer list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The points refers to the reward points of the customer
-* The points **must be a positive integer** 1, 2, 3, ​​…
-* The points can only range from 0 to 999999
-* Setting points will also set cumulative points to the same amount, if you wish to keep the current cumulative points,
-use the `addpoints` command instead.
-
-Examples:
-* `listc` followed by `setpoints 2 pt/100` sets the 2nd customer points as 100.
-* `findc Betsy` followed by `setpoints 1 pt/300` sets the 1st customer points as 300 in the results of the `findc` command.
-
-### Adding points for a customer / Removing points from a customer : `addpoints`
-
-Edits a customer's reward points by adding or removing from it.
-
-Format: `addpoints INDEX pt/[+/-]POINTS`
-
-* Add or subtract the points of the customer at the specified `INDEX` to `POINTS`.
-* If the points subtracted is greater than what the user has, the command will not be executed
-* If + or - is not explictly stated, the command will default to an addition of `POINTS`.
-* The index refers to the index number shown in the displayed customer list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The +/- refers to whether you wish to add or subtract from the reward points of the customer, + to add, - to subtract
-* The points refers to how much you wish to add or subtract the reward points of the customer
-* The points **must be a positive integer** 1, 2, 3, ​​…
-* Addition will also result in an addition of cumulative points, subtraction will not change cumulative points.
-
-Examples:
-* `listc` followed by `addpoints 2 pt/100` adds 100 reward points to the 2nd customer.
-* `findc Betsy` followed by `addpoints 1 pt/-300` deducts 300 reward points from
-the 1st customer in the results of the `findc` command.
-
-### Setting tiers for your reward system : `settier`
-
-Sets a tier for your reward system with a point threshold. Customers above the point threshold are automatically in this tier, and the tiers below it.
-
-Format: `settier TIER_NUM POINT_THRESHOLD`
-
-* There are 3 tiers by default, tiers 1, 2 and 3 will be initially set to 999997 999998 and 999999 respectively.
-* The points threshold of tiers must go in the following order, 1 < 2 < 3
-* The tier_num refers to the particular tier that you want to set the point_threshold
-* The tier_num **must be 1, 2 or 3**
-* The point_threshold refers to how much points you want a customer to accmulate before he is in the tier, tier_num
-* The points **must be a positive integer** 1, 2, 3, ​​…
-
-Examples:
-* `settier 1 500` Sets tier 1 with a point threshold of 500, any customer above 500 points will automatically be
-in tier 1.
-* `settier 1 500` followed by `settier 2 450` will not be allowed as tier 1 must have a lower point threshold
-than tier 2.
-
-### Editing a person : `editc`
+#### Editing a customer : `editc`
 
 Edits an existing customer in the address book.
 
@@ -250,7 +160,49 @@ Examples:
 *  `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `editc 2 ct/ind n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Setting a customer's note : `setnotec`
+#### Deleting a customer : `deletec`
+
+Delete a customer from the list.
+
+Format: `deletec INDEX`
+
+* Deletes the customer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listc` followed by `deletec 2` deletes the 2nd person in the address book.
+* `findc Betsy` followed by `deletec 1` deletes the 1st person in the results of the `findc` command.
+
+#### Marking a person: `markc`
+
+Bookmarks a customer from the list of customers.
+
+Format: `markc INDEX`
+
+* Bookmarks the customer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listc` followed by `markc 2` bookmarks the 2nd person in the address book.
+* `findc Betsy` followed by `markc 1` bookmarks the 1st person in the results of the `findc` command.
+
+#### Unmarking a person: `unmarkc`
+
+Un-bookmarks a customer from the list of customers.
+
+Format: `unmarkc INDEX`
+
+* Un-bookmarks the customer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listc` followed by `unmarkc 2` un-bookmarks the 2nd person in the address book.
+* `findc Betsy` followed by `unmarkc 1` bookmarks the 1st person in the results of the `findc` command.
+
+#### Setting a customer's note : `setnotec`
 
 Sets a customer's note.
 
@@ -269,7 +221,7 @@ Examples:
 * `listc` followed by `setnotec 2 nt/` removes the 2nd customer's note.
 * `findc Betsy` followed by `setnotec 1 nt/Vegetarian` sets the 1st customer's note as "Vegetarian" in the results of the `findc` command.
 
-### Appending a customer's note : `appendnotec`
+#### Appending a customer's note : `appendnotec`
 
 Adds more text to a customer's note.
 
@@ -284,25 +236,71 @@ Examples:
 * `listc` followed by `appendnotec 2 nt/Very friendly!` will add "Very friendly!" to the 2nd customer's existing note.
 * `findc Betsy` followed by `appendnotec 1 nt/Vegetarian` adds "Vegetarian" to the note of the 1st customer in the results of the `findc` command.
 
-### Locating persons by name: `findc`
+### Rewards
 
-Finds persons whose names contain any of the given keywords.
+#### Setting reward points for a customer : `setpoints`
 
-Format: `findc KEYWORD [MORE_KEYWORDS]`
+Sets a customer's reward points.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Format: `setpoints INDEX pt/POINTS`
+
+* Sets the points of the customer at the specified `INDEX` to `POINTS`.
+* Customers by default, have 0 points initially.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The points refers to the reward points of the customer
+* The points **must be a positive integer** 1, 2, 3, ​​…
+* The points can only range from 0 to 999999
+* Setting points will also set cumulative points to the same amount, if you wish to keep the current cumulative points,
+  use the `addpoints` command instead.
 
 Examples:
-* `findc John` returns `john` and `John Doe`
-* `findc alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'findc alex david'](images/findAlexDavidResult.png)
+* `listc` followed by `setpoints 2 pt/100` sets the 2nd customer points as 100.
+* `findc Betsy` followed by `setpoints 1 pt/300` sets the 1st customer points as 300 in the results of the `findc` command.
 
-### Adding an order : `addo`
+#### Adding points for a customer / Removing points from a customer : `addpoints`
+
+Edits a customer's reward points by adding or removing from it.
+
+Format: `addpoints INDEX pt/[+/-]POINTS`
+
+* Add or subtract the points of the customer at the specified `INDEX` to `POINTS`.
+* If the points subtracted is greater than what the user has, the command will not be executed
+* If + or - is not explictly stated, the command will default to an addition of `POINTS`.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The +/- refers to whether you wish to add or subtract from the reward points of the customer, + to add, - to subtract
+* The points refers to how much you wish to add or subtract the reward points of the customer
+* The points **must be a positive integer** 1, 2, 3, ​​…
+* Addition will also result in an addition of cumulative points, subtraction will not change cumulative points.
+
+Examples:
+* `listc` followed by `addpoints 2 pt/100` adds 100 reward points to the 2nd customer.
+* `findc Betsy` followed by `addpoints 1 pt/-300` deducts 300 reward points from
+  the 1st customer in the results of the `findc` command.
+
+#### Setting tiers for your reward system : `settier`
+
+Sets a tier for your reward system with a point threshold. Customers above the point threshold are automatically in this tier, and the tiers below it.
+
+Format: `settier TIER_NUM POINT_THRESHOLD`
+
+* There are 3 tiers by default, tiers 1, 2 and 3 will be initially set to 999997 999998 and 999999 respectively.
+* The points threshold of tiers must go in the following order, 1 < 2 < 3
+* The tier_num refers to the particular tier that you want to set the point_threshold
+* The tier_num **must be 1, 2 or 3**
+* The point_threshold refers to how much points you want a customer to accmulate before he is in the tier, tier_num
+* The points **must be a positive integer** 1, 2, 3, ​​…
+
+Examples:
+* `settier 1 500` Sets tier 1 with a point threshold of 500, any customer above 500 points will automatically be
+  in tier 1.
+* `settier 1 500` followed by `settier 2 450` will not be allowed as tier 1 must have a lower point threshold
+  than tier 2.
+
+### Orders
+
+#### Adding an order : `addo`
 
 Adds an order tagged to a customer, to the list of orders.
 
@@ -314,12 +312,12 @@ Format: `addo CUSTOMER_INDEX n/NAME [q/QUANTITY] [a/ADDRESS]`
 * QUANTITY is optional and will be set to 1 by default. Otherwise, it must be a positive integer 1, 2, 3...
 
 Examples:
-* addo 1 n/Banana Cake 1 q/2
+* `addo 1 n/Banana Cake 1 q/2`
   * Adds the order, 2 x Banana cakes to the list, tags it to customer 1, and status is "pending", address is the customer's address.
-* addo 4 n/Strawberry ice cream
+* `addo 4 n/Strawberry ice cream`
   * Adds the order 1 x Strawberry ice cream, tags it to customer 4, and sets status to "pending", address is the customer's address.
 
-### Listing all customers : `listo`
+#### Listing all customers : `listo`
 
 Shows a list of all orders.
 
@@ -335,57 +333,9 @@ Examples:
 * `listo s/status` lists all orders sorted by status.
 * `listo f/pending` lists all orders with "pending" status.
 
-### Editing an order : `edito`
+#### Locating orders by name: `findo`
 
-Edits an existing order in LoyaltyLift.
-
-Format: `edito ORDER_INDEX [n/PRODUCT_NAME] [q/QUANTITY] [a/ADDRESS]`
-
-* Edits the order at the specified `ORDER_INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-
-Examples:
-*  `edito 1 s/paid` Edits order of id 1, and changes the status to "paid".
-*  `edito 2 n/Brownies q/10` Edits the name of the 2nd order to be `Brownies` and the quantity to 10.
-
-### Setting an order's note : `setnoteo`
-
-Sets an order's note.
-
-Format: `setnoteo INDEX nt/NOTE`
-
-* Sets the note of the order at the specified `INDEX` to `NOTE`.
-* Orders, by default, have a blank note.
-* The index refers to the index number shown in the displayed order list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The note refers to the order's new note.
-* Any existing note will be overwritten.
-* An order's note can be removed by setting an empty note.
-
-Examples:
-* `listo` followed by `setnoteo 2 nt/Keep cool` sets the 2nd order's note as "Keep cool".
-* `listc` followed by `setnoteo 2 nt/` removes the 2nd order's note.
-* `findo Brownies` followed by `setnoteo 1 nt/Vegan-friendly` sets the 1st order's note as "Vegan-friendly" in the results of the `findo` command.
-
-### Appending an order's note : `appendnoteo`
-
-Adds more text to an order's note.
-
-Format: `appendnoteo INDEX nt/NOTE`
-
-* Adds `NOTE` to any existing note of the order at the specified `INDEX`.
-* The index refers to the index number shown in the displayed order list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The note refers to the new text that will be added to the end of the order's existing note.
-
-Examples:
-* `listo` followed by `appendnoteo 2 nt/Keep cool` will add "Keep cool" to the 2nd order's existing note.
-* `findo Brownies` followed by `appendnoteo 1 nt/Vegan-friendly` adds "Vegan-friendly" to the note of the 1st order in the results of the `findo` command.
-
-### Locating orders by name: `findo`
-
-Finds orders whose names contain any of the given keywords.
+Find orders whose names contain any of the given keywords.
 
 Format: `findo KEYWORD [MORE_KEYWORDS]`
 
@@ -400,7 +350,35 @@ Examples:
 * `findo chocolate` returns `chocolate cake` and `chocolate muffin`
 * `findo banana muffin` returns `banana cake`, `chocolate muffin`<br>
 
-### Deleting an order : `deleteo`
+#### View an order : `viewo`
+
+Display an order's information in the information panel.
+
+Format: `viewo INDEX`
+
+* Displays the order's information at the specified `INDEX`.
+* * The index refers to the index number shown in the displayed order list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can click on the order in the table directly for the same effect!
+</div>
+
+#### Editing an order : `edito`
+
+Edits an existing order in LoyaltyLift.
+
+Format: `edito ORDER_INDEX [n/PRODUCT_NAME] [q/QUANTITY] [a/ADDRESS]`
+
+* Edits the order at the specified `ORDER_INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+*  `edito 1 s/paid` Edits order of id 1, and changes the status to "paid".
+*  `edito 2 n/Brownies q/10` Edits the name of the 2nd order to be `Brownies` and the quantity to 10.
+
+#### Deleting an order : `deleteo`
 
 Deletes the specified person from the address book.
 
@@ -414,18 +392,61 @@ Examples:
 * `listo` followed by `delete 2` deletes the 2nd order on the displayed order list.
 * `findo chocolate` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+#### Setting an order's note : `setnoteo`
 
-### Clearing all entries : `clear`
+Sets an order's note.
+
+Format: `setnoteo INDEX nt/NOTE`
+
+* Sets the note of the order at the specified `INDEX` to `NOTE`.
+* Orders, by default, have a blank note.F
+* The index refers to the index number shown in the displayed order list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The note refers to the order's new note.
+* Any existing note will be overwritten.
+* An order's note can be removed by setting an empty note.
+
+Examples:
+* `listo` followed by `setnoteo 2 nt/Keep cool` sets the 2nd order's note as "Keep cool".
+* `listc` followed by `setnoteo 2 nt/` removes the 2nd order's note.
+* `findo Brownies` followed by `setnoteo 1 nt/Vegan-friendly` sets the 1st order's note as "Vegan-friendly" in the results of the `findo` command.
+
+#### Appending an order's note : `appendnoteo`
+
+Adds more text to an order's note.
+
+Format: `appendnoteo INDEX nt/NOTE`
+
+* Adds `NOTE` to any existing note of the order at the specified `INDEX`.
+* The index refers to the index number shown in the displayed order list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The note refers to the new text that will be added to the end of the order's existing note.
+
+Examples:
+* `listo` followed by `appendnoteo 2 nt/Keep cool` will add "Keep cool" to the 2nd order's existing note.
+* `findo Brownies` followed by `appendnoteo 1 nt/Vegan-friendly` adds "Vegan-friendly" to the note of the 1st order in the results of the `findo` command.
+
+### Miscellaneous
+
+#### Clearing all entries : `clear`
 
 Clears all customers and orders from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+#### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 ### Saving the data
 
