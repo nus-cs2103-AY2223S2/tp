@@ -13,22 +13,21 @@ title: User Guide
     * [Tanks](#tanks)
       * [Adding a tank `tank add`](#adding-a-tank-tank-add)
       * [Deleting a tank `tank delete`](#deleting-a-tank-tank-delete)
-      * [Listing tanks `list tanks`](#listing-tanks-list-tanks)
-      * [Listing tanks `list tanks`](#listing-tanks-list-tanks)
       * [Feeding a tank `tank feed`](#feeding-a-tank-tank-feed)
+      * [Viewing a tank `tank view`](#viewing-a-tank-tank-view)
+      * [Listing tanks `list tanks`](#listing-tanks-list-tanks)
     * [Fishes](#fishes)
       * [Adding a fish `fish add`](#adding-a-fish-fish-add)
       * [Deleting a fish `fish delete`](#deleting-a-fish-fish-delete)
-      * [Listing fishes `list fishes`](#listing-fishes-list-fishes)
-      * [Viewing fishes `fish view`](#viewing-a-fish-fish-view)
       * [Sorting fishes `fish sort`](#sorting-fishes-fish-sort)
+      * [Viewing fishes `fish view`](#viewing-a-fish-fish-view)
+      * [Listing fishes `list fishes`](#listing-fishes-list-fishes)
     * [Tasks](#tasks)
       * [Adding a task `task add`](#adding-a-task-task-add)
       * [Deleting a task `task delete`](#deleting-a-task-task-delete)
       * [Listing tasks `list task`](#listing-tasks-list-task)
     * [Storage](#storage)
     * [Help](#help)
-        * [Fish Index](#fish-index)
   * [FAQ](#faq)
   * [Summary](#command-summary)
 
@@ -94,9 +93,9 @@ In the list, each tank has an [index](#faq). Use these indexes to perform certai
 Currently, there are five operations around tanks:
 * [Adding a tank `tank add`](#adding-a-tank-tank-add)
 * [Deleting a tank `tank delete`](#deleting-a-tank-tank-delete)
+* [Feeding a tank `tank feed`](#feeding-a-tank-tank-feed)
 * [Viewing a tank `tank view`](#viewing-a-tank-tank-view)
 * [Listing tanks `list tanks`](#listing-tanks-list-tanks)
-* [Feeding a tank `tank feed`](#feeding-a-tank-tank-feed)
 
 ### Adding a tank: `tank add`
 
@@ -118,6 +117,14 @@ Use this command to remove tanks from the system, if you happen to change your e
 
 Format: `tank delete <TANK_INDEX>`
 
+### Feeding a tank: `tank feed`
+
+Feed a tank for the present day (i.e. today), which updates `lastFedDate` of all fishes in that tank to the present day.
+
+Use this command when you feed your fishes, so you can easily update their last fed date!
+
+Format: `tank feed <TANK_INDEX>`
+
 ### Viewing a tank: `tank view`
 
 View a tank, which displays relevant attributes of the selected tank.
@@ -134,14 +141,6 @@ This command will list all the existing tanks.
 
 Format: `list tanks`
 
-### Feeding a tank: `tank feed`
-
-Feed a tank for the present day (i.e. today), which updates `lastFedDate` of all fishes in that tank to the present day.
-
-Use this command when you feed your fishes, so you can easily update their last fed date! 
-
-Format: `tank feed <TANK_INDEX>`
-
 ## Fishes
 
 Fishes are yet another core aspect of *Fish Ahoy!* This app is built around helping you keep these little guys healthy, 
@@ -153,9 +152,9 @@ In the list, each fish has an [index](#faq). Use these indexes to perform certai
 Currently, there are five operations around fishes:
 * [Adding a fish `fish add`](#adding-a-fish-fish-add)
 * [Deleting a fish `fish delete`](#deleting-a-fish-fish-delete)
-* [Listing fishes `list fishes`](#listing-fishes-list-fishes)
-* [Viewing fishes `fish view`](#viewing-a-fish-fish-view)
 * [Sorting fishes `fish sort`](#sorting-fishes-fish-sort)
+* [Viewing fishes `fish view`](#viewing-a-fish-fish-view)
+* [Listing fishes `list fishes`](#listing-fishes-list-fishes)
 
 ### Adding a fish: `fish add`
 
@@ -188,22 +187,6 @@ Use this command when you want to move a fish from one tank to another, or remov
 
 Format: `fish delete <FISH_INDEX>`
 
-### Listing fishes: `list fishes`
-
-Lists all fishes owned.
-
-Use this command to see all the fishes you own across all tanks.
-
-Format: `list fishes`
-
-### Viewing a fish: `fish view`
-
-View a fish, which displays relevant attributes of the selected fish.
-
-This command will only display a single fish, making it easier for you to see it's information.
-
-Format: `fish view <FISH_INDEX>`
-
 ### Sorting fishes: `fish sort`
 
 Sorts fishes by attributes and displays the results. This does not affect the data permanently. <br>
@@ -226,8 +209,22 @@ Optional Prefixes:
 * `tk/` - If added, will display a sorting by tank. For example, `fish sort by/n` will sort **all** the fishes by name 
   and display the results. In comparison,`fish sort by/n tk/2` will **only** sort the fishes in the 2nd tank by name and 
   display the results.
-  
 
+### Viewing a fish: `fish view`
+
+View a fish, which displays relevant attributes of the selected fish.
+
+This command will only display a single fish, making it easier for you to see it's information.
+
+Format: `fish view <FISH_INDEX>`
+
+### Listing fishes: `list fishes`
+
+Lists all fishes owned.
+
+Use this command to see all the fishes you own across all tanks.
+
+Format: `list fishes`
 
 ## Tasks
 These are the routine tasks that all fish keepers have to undertake to keep their fish bright and healthy. Create tasks 
@@ -240,7 +237,6 @@ Currently, there are three operations around tasks:
 * [Adding a task `task add`](#adding-a-task-task-add)
 * [Deleting a task `task delete`](#deleting-a-task-task-delete)
 * [Listing tasks `list task`](#listing-tasks-list-task)
-
 
 ### Adding a task: `task add`
 
