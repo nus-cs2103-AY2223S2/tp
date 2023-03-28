@@ -2,6 +2,7 @@ package seedu.address.files;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -52,8 +53,8 @@ public class FileGenerator {
     public void createMcForm(String filename) {
         try {
             //Load the original PDF form
-            PDDocument pdfDocument = PDDocument.load(new File("lib/MC.pdf"));
-
+            InputStream inputStream = getClass().getResourceAsStream("/MC.pdf");
+            PDDocument pdfDocument = PDDocument.load(inputStream);
             //Get the PDF form fields
             PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
             PDAcroForm acroForm = docCatalog.getAcroForm();
