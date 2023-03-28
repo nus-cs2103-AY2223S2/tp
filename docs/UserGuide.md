@@ -210,7 +210,7 @@ At least one of the following arguments must be provided:
   - The client’s digital service platform, e.g. Fiverr.
   - **Default:** *null*
 - **`-mn mobile_number`**
-  - The client’s mobile number.
+  - The client’s new mobile number.
   - **Default:** *null*
 
 **Examples**
