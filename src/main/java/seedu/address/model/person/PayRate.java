@@ -38,6 +38,10 @@ public class PayRate {
         return value;
     }
 
+    public int toInt() {
+        return Integer.parseInt(value);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

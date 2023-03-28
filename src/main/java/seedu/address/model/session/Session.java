@@ -14,6 +14,7 @@ import java.util.Objects;
 //import java.util.stream.Collectors;
 
 //import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.AddressBook;
 import seedu.address.model.person.Name;
 
 /**
@@ -303,6 +304,44 @@ public class Session implements Comparable<Session> {
         return toStringOutput;
     }
 
+    /**
+     * Calculates the total pay for a session based on the pay rates of the attendees in the given address book
+     * and the duration of the session.
+     *
+     * @param addressBook the address book containing the details of the attendees
+     * @return the total pay for the session
+     */
+    public float getTotalPay(AddressBook addressBook) {
+        float totalPay = 0;
+        long durationInMins = getSessionDuration().toMinutes();
+
+        for (Map.Entry<String, Boolean> entry : attendanceMap.entrySet()) {
+            if (entry.getValue()) {
+                float indivPay = addressBook.getPayRateFromName(entry.getKey());
+                totalPay += indivPay/60 * durationInMins;
+            }
+        }
+        return totalPay;
+    }
+
+    /**
+     * Returns a string representation of the attendance count for the session.
+     *
+     * @return a string of the format "X/Y", where X is the number of attendees present and Y is the total number of attendees
+     */
+    public String getAttendanceCount() {
+        int totalCount = 0;
+        int presentCount = 0;
+        for (Map.Entry<String, Boolean> entry : attendanceMap.entrySet()) {
+            if (entry.getValue()) {
+                presentCount++;
+            }
+            totalCount++;
+        }
+
+        return String.format("%d/%d", presentCount, totalCount);
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -398,6 +437,7 @@ public class Session implements Comparable<Session> {
     public HashMap<String, Boolean> getHashMap() {
         return attendanceMap;
     }
+
     /**
      * Returns a new Session object that is a copy of this session.
      * @return A new Session object that is a copy of this session.

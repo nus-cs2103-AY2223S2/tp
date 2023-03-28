@@ -285,6 +285,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
         throw new SessionNotFoundException();
     }
+
     /**
      * Returns true if there is a session with the same name as {@code name} in the address book.
      * @param name The name of the session to be checked for existence.
@@ -298,5 +299,19 @@ public class AddressBook implements ReadOnlyAddressBook {
             }
         }
         return false;
+    }
+
+    /**
+     * Returns pay rate per hour of specified person {@code name} in the address book.
+     * @param name
+     * @return Non-negative integer if a person with the same name as {@code name} exists in the address book, -1 otherwise.
+     */
+    public int getPayRateFromName(String name) {
+        for (Person person: persons) {
+            if (name.equals(person.getName().toString())) {
+                return person.getPayRate().toInt();
+            }
+        }
+        return -1;
     }
 }
