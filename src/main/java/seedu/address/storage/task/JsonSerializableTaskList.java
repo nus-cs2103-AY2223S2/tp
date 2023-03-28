@@ -12,7 +12,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.TaskList;
 import seedu.address.model.task.Task;
-import seedu.address.storage.task.JsonAdaptedTask;
 
 /**
  * An Immutable {@code TaskList} that is serializable to JSON format.

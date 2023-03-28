@@ -10,5 +10,5 @@ public interface ReadOnlyAmmoniaLevelList {
      * Returns an unmodifiable view of the Fishes list.
      * This list will not contain any duplicate Fishes.
      */
-    ObservableList<AmmoniaLevel> getAmmoniaLevelList();
+    ObservableList<UniqueIndividualAmmoniaLevelList> getAmmoniaLevelLists();
 }

@@ -1,26 +1,37 @@
 package seedu.address.model.tank.readings;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.tank.readings.exceptions.DuplicateReadingException;
-import seedu.address.model.tank.readings.exceptions.ReadingNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.tank.Tank;
+import seedu.address.model.tank.readings.exceptions.DuplicateReadingException;
+import seedu.address.model.tank.readings.exceptions.ReadingNotFoundException;
 
 /**
- * A list of Ammonia Readings
+ * A list of Ammonia Readings of one tank
  *
  * Supports a minimal set of list operations.
  */
-public class UniqueAmmoniaLevelList implements Iterable<AmmoniaLevel> {
+public class UniqueIndividualAmmoniaLevelList implements Iterable<AmmoniaLevel> {
     public final ObservableList<AmmoniaLevel> internalList = FXCollections.observableArrayList();
 
     private final ObservableList<AmmoniaLevel> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
+    private Tank tank;
+
+    /**
+     * Constructor for an ammonia level list for a single tank
+     * @param t Tank this list is associated to
+     */
+    public UniqueIndividualAmmoniaLevelList(Tank t) {
+        this.tank = t;
+    }
 
     /**
      * Returns true if the list contains an equivalent reading as the given argument.
@@ -68,7 +79,7 @@ public class UniqueAmmoniaLevelList implements Iterable<AmmoniaLevel> {
         }
     }
 
-    public void setAmmoniaLevels(UniqueAmmoniaLevelList replacement) {
+    public void setAmmoniaLevels(UniqueIndividualAmmoniaLevelList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -107,6 +118,22 @@ public class UniqueAmmoniaLevelList implements Iterable<AmmoniaLevel> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Setter for tank
+     * @param t Tank to be set to
+     */
+    public void setTank(Tank t) {
+        this.tank = t;
+    }
+
+    /**
+     * Getter for tank
+     * @return tank of this list
+     */
+    public Tank getTank() {
+        return this.tank;
+    }
+
     @Override
     public Iterator<AmmoniaLevel> iterator() {
         return internalList.iterator();
@@ -115,8 +142,8 @@ public class UniqueAmmoniaLevelList implements Iterable<AmmoniaLevel> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueAmmoniaLevelList // instanceof handles nulls
-                && internalList.equals(((UniqueAmmoniaLevelList) other).internalList));
+                || (other instanceof UniqueIndividualAmmoniaLevelList // instanceof handles nulls
+                && tank.equals(((UniqueIndividualAmmoniaLevelList) other).tank));
     }
 
     @Override
