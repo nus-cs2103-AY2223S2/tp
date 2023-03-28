@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete i/T0123456A T0124563B")
+[-> LogicManager : execute("delete i/T0123456A i/T0124563B")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete i/T0123456A T0124563B")
+LogicManager -> AddressBookParser : parseCommand("delete i/T0123456A i/T0124563B")
 activate AddressBookParser
 
 create DeleteCommandParser
@@ -26,7 +26,7 @@ activate DeleteCommandParser
 DeleteCommandParser --> AddressBookParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("T0123456A T0124563B")
+AddressBookParser -> DeleteCommandParser : parse(["T0123456A", "T0124563B"])
 activate DeleteCommandParser
 
 create DeleteCommand
