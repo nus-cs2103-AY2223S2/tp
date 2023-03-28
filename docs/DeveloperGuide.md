@@ -25,7 +25,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in [here](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -62,7 +62,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -290,7 +290,7 @@ The ```find``` command allows users to easily filter and locate the relevant eld
 The results of the ```find``` command are displayed as the filtered version of the elderly, volunteers and pairs lists, 
 together with the number of entities listed being shown in the command result box.
 
-Volunteers and elderly who match all of the provided attributes are filtered out and displayed in their respective list.
+Volunteers and elderly who match all the provided attributes are filtered out and displayed in their respective list.
 For each filtered person, Any pairing that they are involve in would be filtered and displayed in the pair list.
 
 Arguments for the ```find``` command involves at least one of the attributes belonging to an elderly or a volunteer.
@@ -357,7 +357,7 @@ Elderly, volunteers and pairs are stored in separate files to reduces the impact
 #### Persons
 
 Persons saved contains all their attributes such as name, NRIC, in JSON format.
-* Single value attributes are stored as key value pairs, such as name and Nric.
+* Single value attributes are stored as key value pairs, such as name and NRIC.
 * Multiple value attributes such as tag and available date sets are stored as JSON lists.
 
 #### Pairs
@@ -419,7 +419,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | single administrator of a VWO                                                         | add a new elderly member to the system                                                            | track and manage new elderly                                                      |
 | `* * *`  | single administrator of a VWO                                                         | remove an existing elderly member from the system                                                 | stop tracking elderly that have left                                              |
 | `* * *`  | single administrator of a VWO                                                         | edit the particulars of an elderly, such as names or addresses                                    | keep their information up to date and rectify any error                           |
-| `* * *`  | single administrator of a VWO                                                         | find a particular volunteer or elderly by nric                                                    | uniquely identify and access their information                                    |
+| `* * *`  | single administrator of a VWO                                                         | find a particular volunteer or elderly by NRIC                                                    | uniquely identify and access their information                                    |
 | `* * *`  | single administrator of a VWO                                                         | remove pairings that elderly and volunteers are involved in when they are removed from the system | maintain accurate and error-free records of pairings                              |
 | `* * *`  | single administrator of a VWO                                                         | add a pair of a volunteer and an elderly                                                          | track and manage pairings of volunteer and elderly                                |
 | `* * *`  | single administrator of a VWO                                                         | find and list unpaired volunteers and elderly                                                     | prioritise pairing volunteers and elderly who are unpaired                        |
