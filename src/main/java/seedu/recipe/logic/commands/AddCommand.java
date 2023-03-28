@@ -1,6 +1,9 @@
 package seedu.recipe.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.recipe.logic.commands.exceptions.CommandException;
@@ -16,7 +19,10 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to recipe book. "
             + "Parameters: "
-            + PREFIX_TITLE + "TITLE";
+            + PREFIX_TITLE + "TITLE "
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + "[" + PREFIX_INGREDIENT + "INGREDIENT] "
+            + "[" + PREFIX_STEP + "STEP] \n";
 
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in recipe book";

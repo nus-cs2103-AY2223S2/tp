@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.recipe.model.Model;
 import seedu.recipe.model.ModelManager;
 import seedu.recipe.model.UserPrefs;
-import seedu.recipe.model.recipe.TitleContainsKeywordsPredicate;
+import seedu.recipe.model.recipe.RecipeContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -28,19 +28,19 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        TitleContainsKeywordsPredicate firstPredicate =
-                new TitleContainsKeywordsPredicate(Collections.singletonList("first"));
-        TitleContainsKeywordsPredicate secondPredicate =
-                new TitleContainsKeywordsPredicate(Collections.singletonList("second"));
+        RecipeContainsKeywordsPredicate firstPredicate =
+                new RecipeContainsKeywordsPredicate(Collections.singletonList("first"));
+        RecipeContainsKeywordsPredicate secondPredicate =
+                new RecipeContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindRecipeCommand findFirstCommand = new FindRecipeCommand(firstPredicate);
+        FindRecipeCommand findSecondCommand = new FindRecipeCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindRecipeCommand findFirstCommandCopy = new FindRecipeCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -56,8 +56,8 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noRecipeFound() {
         String expectedMessage = String.format(MESSAGE_RECIPES_LISTED_OVERVIEW, 0);
-        TitleContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        RecipeContainsKeywordsPredicate predicate = preparePredicate(" ");
+        FindRecipeCommand command = new FindRecipeCommand(predicate);
         expectedModel.updateFilteredRecipeList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredRecipeList());
@@ -66,8 +66,8 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleRecipesFound() {
         String expectedMessage = String.format(MESSAGE_RECIPES_LISTED_OVERVIEW, 2);
-        TitleContainsKeywordsPredicate predicate = preparePredicate("Corndogs Soup");
-        FindCommand command = new FindCommand(predicate);
+        RecipeContainsKeywordsPredicate predicate = preparePredicate("Corndogs Soup");
+        FindRecipeCommand command = new FindRecipeCommand(predicate);
         expectedModel.updateFilteredRecipeList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CORNDOGS, SOUP), model.getFilteredRecipeList());
@@ -76,7 +76,7 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private TitleContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new TitleContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private RecipeContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new RecipeContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

@@ -12,9 +12,11 @@ import seedu.recipe.logic.commands.Command;
 import seedu.recipe.logic.commands.DeleteCommand;
 import seedu.recipe.logic.commands.EditCommand;
 import seedu.recipe.logic.commands.ExitCommand;
-import seedu.recipe.logic.commands.FindCommand;
+import seedu.recipe.logic.commands.FindRecipeCommand;
+import seedu.recipe.logic.commands.FindTitleCommand;
 import seedu.recipe.logic.commands.HelpCommand;
 import seedu.recipe.logic.commands.ListCommand;
+import seedu.recipe.logic.commands.SearchCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 
 /**
@@ -56,15 +58,16 @@ public class CookHubParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
+        case FindRecipeCommand.COMMAND_WORD:
+            return new FindRecipeCommandParser().parse(arguments);
+        case FindTitleCommand.COMMAND_WORD:
+            return new FindTitleCommandParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-
+        case SearchCommand.COMMAND_WORD:
+            return new SearchCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
-
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
