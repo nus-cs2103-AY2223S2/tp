@@ -1,162 +1,195 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="329px" preserveAspectRatio="none" style="width:563px;height:329px;background:#FFFFFF;" version="1.1" viewBox="0 0 563 329" width="563px" zoomAndPan="magnify"><defs/><g><!--MD5=[44a1b4afaef76c16e6c9ec4990ad0c8d]
-class Item--><g id="elem_Item"><rect codeLine="9" fill="#9D0012" height="42.1973" id="Item" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="67" x="355" y="7"/><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="61" x="358" y="25.1318">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="28" x="374.5" y="41.2305">Item</text></g><!--MD5=[53f6a92bd21ca2f2960392a061f3a1c6]
-class Name--><g id="elem_Name"><rect codeLine="10" fill="#9D0012" height="42.1973" id="Name" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="67" x="487" y="281"/><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="61" x="490" y="299.1318">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="38" x="501.5" y="315.2305">Name</text></g><!--MD5=[0413c2967cbcbb9b55cfe9d1f30bae3b]
-class UniqueItemList--><g id="elem_UniqueItemList"><rect codeLine="11" fill="#9D0012" height="26.0986" id="UniqueItemList" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="130" x="189.5" y="15"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="120" x="192.5" y="33.1318">UniqueItemList&lt;T&gt;</text></g><!--MD5=[a7724e71618d3dacaca1ec2d24889dc2]
-class ItemList--><g id="elem_ItemList"><rect codeLine="12" fill="#9D0012" height="26.0986" id="ItemList" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="147" x="7" y="15"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="50" x="10" y="33.1318">ItemList</text><rect fill="#FFFFFF" height="16.1328" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" width="89" x="68" y="12"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="87" x="69" y="24.6016">T extends Item</text></g><!--MD5=[27eb0c30e65d8b262e52e99e862b6c6e]
-class MenuItem--><g id="elem_MenuItem"><rect codeLine="15" fill="#9D0012" height="26.0986" id="MenuItem" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="70" x="353.5" y="109"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="64" x="356.5" y="127.1318">MenuItem</text></g><!--MD5=[f2b754cb406138a691b0a92760c16c3d]
-class ItemPrice--><g id="elem_ItemPrice"><rect codeLine="16" fill="#9D0012" height="26.0986" id="ItemPrice" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="66" x="240.5" y="289"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="60" x="243.5" y="307.1318">ItemPrice</text></g><!--MD5=[b69496c65f41c32e01d9c6b8a041c2c4]
-class ItemCost--><g id="elem_ItemCost"><rect codeLine="17" fill="#9D0012" height="26.0986" id="ItemCost" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="63" x="373" y="289"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="57" x="376" y="307.1318">ItemCost</text></g><!--MD5=[5c2f687bfb1bffdc24db74a639703f1f]
-class ItemName--><g id="elem_ItemName"><rect codeLine="18" fill="#9D0012" height="26.0986" id="ItemName" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="72" x="484.5" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="66" x="487.5" y="213.1318">ItemName</text></g><!--MD5=[f0268dd29ee89052933f031546cb1cab]
-class Menu--><g id="elem_Menu"><rect codeLine="19" fill="#9D0012" height="26.0986" id="Menu" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="50" x="75.5" y="109"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="36" x="82.5" y="127.1318">Menu</text></g><!--MD5=[cb138f61d904eca326558c805b3e3197]
-class UniqueMenuItemList--><g id="elem_UniqueMenuItemList"><rect codeLine="20" fill="#9D0012" height="26.0986" id="UniqueMenuItemList" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="137" x="181" y="109"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="131" x="184" y="127.1318">UniqueMenuItemList</text></g><!--MD5=[169e249786b12d4cb6fbbbd9573003c8]
-class ItemProfit--><g id="elem_ItemProfit"><rect fill="#9D0012" height="26.0986" id="ItemProfit" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="67" x="311" y="195"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="314" y="213.1318">ItemProfit</text></g><!--MD5=[6507b60a4344792f1097f877aaeafac1]
-reverse link ItemList to Menu--><g id="link_ItemList_Menu"><path d="M87.71,62.17 C91.24,78.39 95.27,96.93 97.85,108.79 " fill="none" id="ItemList-backto-Menu" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="80.93,63.92,83.52,42.89,94.61,60.94,80.93,63.92" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[609090082eea7186b225aa8a6a41ea26]
-reverse link UniqueItemList to UniqueMenuItemList--><g id="link_UniqueItemList_UniqueMenuItemList"><path d="M252.67,62.73 C251.79,78.82 250.8,97.07 250.16,108.79 " fill="none" id="UniqueItemList-backto-UniqueMenuItemList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="245.67,62.51,253.74,42.92,259.65,63.27,245.67,62.51" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[4e7777d310d747d2c1947315482d4a2c]
-link ItemList to UniqueItemList--><g id="link_ItemList_UniqueItemList"><path codeLine="22" d="M167.76,28 C167.76,28 172.72,28 174.74,28 " fill="none" id="ItemList-UniqueItemList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="187.59,28,178.59,24,182.59,28,178.59,32,187.59,28" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="182.59" x2="174.59" y1="28" y2="28"/><polygon fill="#9D0012" points="155.76,28,161.76,32,167.76,28,161.76,24,155.76,28" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="173.5094" y="24.7596">1</text></g><!--MD5=[be517f24292d6b5fd6945ff9c04a4f08]
-link UniqueItemList to Item--><g id="link_UniqueItemList_Item"><path codeLine="23" d="M319.93,28 C329.45,28 338.97,28 348.49,28 " fill="none" id="UniqueItemList-to-Item" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="353.24,28,344.24,24,348.24,28,344.24,32,353.24,28" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="6" x="341.1703" y="24.0332">*</text></g><!--MD5=[379cad8fe7fdefbfd53eed3f6bbb5751]
-link Menu to UniqueMenuItemList--><g id="link_Menu_UniqueMenuItemList"><path codeLine="25" d="M139.33,122 C139.33,122 157.69,122 166.52,122 " fill="none" id="Menu-UniqueMenuItemList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="179.38,122,170.38,118,174.38,122,170.38,126,179.38,122" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="174.38" x2="166.38" y1="122" y2="122"/><polygon fill="#9D0012" points="127.33,122,133.33,126,139.33,122,133.33,118,127.33,122" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="161.2069" y="118.8058">1</text></g><!--MD5=[410582d0ebd18a798591fcc3a7dd4758]
-link UniqueMenuItemList to MenuItem--><g id="link_UniqueMenuItemList_MenuItem"><path codeLine="26" d="M318.46,122 C327.96,122 337.46,122 346.96,122 " fill="none" id="UniqueMenuItemList-to-MenuItem" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="351.69,122,342.69,118,346.69,122,342.69,126,351.69,122" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="6" x="339.3006" y="118.0433">*</text></g><!--MD5=[5007d20cad0ceb89f48512510ac8cc3c]
-link MenuItem to ItemName--><g id="link_MenuItem_ItemName"><path codeLine="27" d="M419.3783,142.6457 C419.3783,142.6457 468.12,173.67 488.92,186.91 " fill="none" id="MenuItem-ItemName" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="499.67,193.74,494.219,185.5371,495.4499,191.0585,489.9286,192.2893,499.67,193.74" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="495.4499" x2="488.7" y1="191.0585" y2="186.76"/><polygon fill="#9D0012" points="409.25,136.21,412.1689,142.8039,419.3783,142.6457,416.4594,136.0517,409.25,136.21" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="483.9578" y="184.1716">1</text></g><!--MD5=[f372eb7725cabbeda6c252bc733ff022]
-link MenuItem to ItemPrice--><g id="link_MenuItem_ItemPrice"><path codeLine="28" d="M351.5637,142.0504 C351.5637,142.0504 307.33,172.67 293.5,195 C278.67,218.96 274.36,251.38 273.33,274.03 " fill="none" id="MenuItem-ItemPrice" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="273.09,287.03,277.2574,278.1063,273.1834,282.0309,269.2588,277.9569,273.09,287.03" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="273.1834" x2="273.33" y1="282.0309" y2="274.025"/><polygon fill="#9D0012" points="361.95,136.04,354.7534,135.5831,351.5637,142.0504,358.7603,142.5073,361.95,136.04" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="258.6047" y="278.1578">1</text></g><!--MD5=[76f8c93340352728a69c78a2ebb3345b]
-link MenuItem to ItemCost--><g id="link_MenuItem_ItemCost"><path codeLine="29" d="M391.1106,148.9298 C391.1106,148.9298 394.13,179.99 395.5,195 C397.96,221.97 400.55,252.82 402.32,274.25 " fill="none" id="MenuItem-ItemCost" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="403.37,287.08,406.6249,277.7845,402.9634,282.0966,398.6514,278.4351,403.37,287.08" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="402.9634" x2="402.305" y1="282.0966" y2="274.13"/><polygon fill="#9D0012" points="389.91,136.99,386.5304,143.3601,391.1106,148.9298,394.4902,142.5597,389.91,136.99" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="388.8313" y="278.2268">1</text></g><!--MD5=[05efcbb34af1c5d1c19394681411c6fa]
-link MenuItem to ItemProfit--><g id="link_MenuItem_ItemProfit"><path codeLine="30" d="M375.7439,147.371 C375.7439,147.371 363.26,171.19 357.68,181.84 " fill="none" id="MenuItem-ItemProfit" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="351.72,193.21,359.4383,187.0921,354.0392,188.7804,352.3509,183.3814,351.72,193.21" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="354.0392" x2="357.75" y1="188.7804" y2="181.7"/><polygon fill="#9D0012" points="381.31,136.74,374.9833,140.2001,375.7439,147.371,382.0706,143.9109,381.31,136.74" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="339.2182" y="184.1716">1</text></g><!--MD5=[c99db0a5dcdb061892b1582b15bca1ae]
-link ItemProfit to ItemPrice--><g id="link_ItemProfit_ItemPrice"><path codeLine="31" d="M326.6656,232.1077 C326.6656,232.1077 302.33,263.65 291.73,277.37 " fill="none" id="ItemProfit-ItemPrice" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="283.85,287.59,292.5167,282.9115,286.906,283.6326,286.1849,278.0219,283.85,287.59" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="286.906" x2="291.79" y1="283.6326" y2="277.3"/><polygon fill="#9D0012" points="334,222.61,327.1669,224.9141,326.6656,232.1077,333.4987,229.8037,334,222.61" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="288.9916" y="278.2455">1</text></g><!--MD5=[1e6451bda8a983f1a53521c3749249df]
-link ItemProfit to ItemCost--><g id="link_ItemProfit_ItemCost"><path codeLine="32" d="M359.9756,232.7311 C359.9756,232.7311 379.96,263.37 388.67,276.72 " fill="none" id="ItemProfit-ItemCost" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="395.71,287.52,394.1436,277.7965,392.9785,283.3321,387.4429,282.1669,395.71,287.52" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="392.9785" x2="388.61" y1="283.3321" y2="276.635"/><polygon fill="#9D0012" points="353.42,222.68,353.3475,229.8907,359.9756,232.7311,360.0482,225.5203,353.42,222.68" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="379.0433" y="278.2455">1</text></g><!--MD5=[d4e0402bab5270c61b711b3d4f545b8c]
-reverse link Item to MenuItem--><g id="link_Item_MenuItem"><path codeLine="35" d="M388.5,70.59 C388.5,84.38 388.5,98.71 388.5,108.55 " fill="none" id="Item-backto-MenuItem" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="381.5,70.93,388.5,50.93,395.5,70.93,381.5,70.93" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[3b071cdf177de05bcb07dfe6af0e434e]
-link ItemName to Name--><g id="link_ItemName_Name"><path codeLine="37" d="M520.5,221.41 C520.5,231.21 520.5,245.48 520.5,259.24 " fill="none" id="ItemName-to-Name" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="527.5,259.2,520.5,279.2,513.5,259.2,527.5,259.2" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[3de6293b2736c55217bcbde0d858b964]
-@startuml
-!include style.puml
-skinparam arrowThickness 1.1
-skinparam arrowColor MODEL_COLOR
-skinparam classBackgroundColor MODEL_COLOR
-skinparam groupInheritance 1
-
-top to bottom direction
-
-Abstract Class "{abstract}\nItem" as Item
-Abstract Class "{abstract}\nName" as Name
-Class "UniqueItemList<T> " as UniqueItemList
-Class ItemList<T extends Item>
-
-
-Class MenuItem
-Class ItemPrice
-Class ItemCost
-Class ItemName
-Class Menu extends ItemList
-Class UniqueMenuItemList extends UniqueItemList
-
-ItemList *- -r> "1" UniqueItemList
-UniqueItemList -r>"*" Item
-
-Menu *- -r> "1 " UniqueMenuItemList
-UniqueMenuItemList -r>"*" MenuItem
-MenuItem *- -> "1" ItemName
-MenuItem *- -> "1 " ItemPrice
-MenuItem *- -> "1 " ItemCost
-MenuItem *- -> "1 " ItemProfit
-ItemProfit *- -> "1 " ItemPrice
-ItemProfit *- -> "1 " ItemCost
-
-
-MenuItem -u|> Item
-
-ItemName - -|> Name
-
-@enduml
-
-@startuml
-
-
-
-
-
-
-
-
-
-skinparam BackgroundColor #FFFFFFF
-
-skinparam Shadowing false
-
-skinparam Class {
-    FontColor #FFFFFF
-    BorderThickness 0
-    FontName Arial
-}
-
-skinparam Actor {
-    BorderColor #000000
-    Color #000000
-    FontName Arial
-}
-
-skinparam Sequence {
-    MessageAlign center
-    BoxFontSize 15
-    BoxPadding 0
-    BoxFontColor #FFFFFF
-    FontName Arial
-}
-
-skinparam Participant {
-    FontColor #FFFFFFF
-    Padding 20
-}
-
-skinparam MinClassWidth 50
-skinparam ParticipantPadding 10
-skinparam Shadowing false
-skinparam DefaultTextAlignment center
-skinparam packageStyle Rectangle
-
-hide footbox
-hide members
-hide circle
-skinparam arrowThickness 1.1
-skinparam arrowColor #9D0012
-skinparam classBackgroundColor #9D0012
-skinparam groupInheritance 1
-
-top to bottom direction
-
-Abstract Class "{abstract}\nItem" as Item
-Abstract Class "{abstract}\nName" as Name
-Class "UniqueItemList<T> " as UniqueItemList
-Class ItemList<T extends Item>
-
-
-Class MenuItem
-Class ItemPrice
-Class ItemCost
-Class ItemName
-Class Menu extends ItemList
-Class UniqueMenuItemList extends UniqueItemList
-
-ItemList *- -r> "1" UniqueItemList
-UniqueItemList -r>"*" Item
-
-Menu *- -r> "1 " UniqueMenuItemList
-UniqueMenuItemList -r>"*" MenuItem
-MenuItem *- -> "1" ItemName
-MenuItem *- -> "1 " ItemPrice
-MenuItem *- -> "1 " ItemCost
-MenuItem *- -> "1 " ItemProfit
-ItemProfit *- -> "1 " ItemPrice
-ItemProfit *- -> "1 " ItemCost
-
-
-MenuItem -u|> Item
-
-ItemName - -|> Name
-
-@enduml
-
-PlantUML version 1.2022.12(Mon Oct 24 02:12:26 SGT 2022)
-(GPL source distribution)
-Java Runtime: OpenJDK Runtime Environment
-JVM: OpenJDK 64-Bit Server VM
-Default Encoding: UTF-8
-Language: en
-Country: US
---></g></svg>
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" height="327px" preserveAspectRatio="none"
+     style="width:517px;height:327px;background:#FFFFFF;" version="1.1" viewBox="0 0 517 327" width="517px"
+     zoomAndPan="magnify">
+    <defs/>
+    <g><!--class Item-->
+        <g id="elem_Item">
+            <rect codeLine="9" fill="#9D0012" height="41.2813" id="Item" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="343" y="7"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="61" x="346" y="24.6738">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="27" x="363" y="40.3145">Item
+            </text>
+        </g><!--class Name-->
+        <g id="elem_Name">
+            <rect codeLine="10" fill="#9D0012" height="41.2813" id="Name" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="443" y="280"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="61" x="446" y="297.6738">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" font-style="italic" lengthAdjust="spacing"
+                  textLength="37" x="458" y="313.3145">Name
+            </text>
+        </g><!--class UniqueItemList-->
+        <g id="elem_UniqueItemList">
+            <rect codeLine="11" fill="#9D0012" height="25.6406" id="UniqueItemList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="127" x="181" y="14.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="117" x="184"
+                  y="32.1738">UniqueItemList&lt;T&gt;
+            </text>
+        </g><!--class ItemList-->
+        <g id="elem_ItemList">
+            <rect codeLine="12" fill="#9D0012" height="25.6406" id="ItemList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="139" x="7" y="14.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="48" x="10"
+                  y="32.1738">ItemList
+            </text>
+            <rect fill="#FFFFFF" height="17.9609" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="83" x="66" y="11.5"/>
+            <text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="81" x="67" y="25.4492">T extends Item
+            </text>
+        </g><!--class MenuItem-->
+        <g id="elem_MenuItem">
+            <rect codeLine="15" fill="#9D0012" height="25.6406" id="MenuItem" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="343" y="108"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="346"
+                  y="125.6738">MenuItem
+            </text>
+        </g><!--class ItemPrice-->
+        <g id="elem_ItemPrice">
+            <rect codeLine="16" fill="#9D0012" height="25.6406" id="ItemPrice" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="64" x="246.5" y="194"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="58" x="249.5"
+                  y="211.6738">ItemPrice
+            </text>
+        </g><!--class ItemCost-->
+        <g id="elem_ItemCost">
+            <rect codeLine="17" fill="#9D0012" height="25.6406" id="ItemCost" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="61" x="346" y="194"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="55" x="349"
+                  y="211.6738">ItemCost
+            </text>
+        </g><!--class ItemName-->
+        <g id="elem_ItemName">
+            <rect codeLine="18" fill="#9D0012" height="25.6406" id="ItemName" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="68" x="442.5" y="194"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="62" x="445.5"
+                  y="211.6738">ItemName
+            </text>
+        </g><!--class Menu-->
+        <g id="elem_Menu">
+            <rect codeLine="19" fill="#9D0012" height="25.6406" id="Menu" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="50" x="70.5" y="108"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="35" x="78"
+                  y="125.6738">Menu
+            </text>
+        </g><!--class UniqueMenuItemList-->
+        <g id="elem_UniqueMenuItemList">
+            <rect codeLine="20" fill="#9D0012" height="25.6406" id="UniqueMenuItemList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="133" x="175" y="108"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="127" x="178"
+                  y="125.6738">UniqueMenuItemList
+            </text>
+        </g><!--reverse link ItemList to Menu-->
+        <g id="link_ItemList_Menu">
+            <path d="M83.38,61.64 C86.7,77.6 90.47,95.79 92.92,107.56 " fill="none" id="ItemList-backto-Menu"
+                  style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="76.58,63.33,79.37,42.32,90.29,60.48,76.58,63.33"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--reverse link UniqueItemList to UniqueMenuItemList-->
+        <g id="link_UniqueItemList_UniqueMenuItemList">
+            <path d="M243.4,62.19 C242.88,78.03 242.29,95.93 241.91,107.56 " fill="none"
+                  id="UniqueItemList-backto-UniqueMenuItemList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="236.39,62.11,244.05,42.35,250.39,62.57,236.39,62.11"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link ItemList to UniqueItemList-->
+        <g id="link_ItemList_UniqueItemList">
+            <path codeLine="22" d="M160.67,27.5 C162.67,27.5 164.67,27.5 166.67,27.5 " fill="none"
+                  id="ItemList-UniqueItemList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="147.9,27.5,153.9,31.5,159.9,27.5,153.9,23.5,147.9,27.5"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="179.37,27.5,170.37,23.5,174.37,27.5,170.37,31.5,179.37,27.5"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="174.37" x2="166.37" y1="27.5" y2="27.5"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="166.1193" y="23.5831">1
+            </text>
+        </g><!--link UniqueItemList to Item-->
+        <g id="link_UniqueItemList_Item">
+            <path codeLine="23" d="M308.44,27.5 C317.73,27.5 327.02,27.5 336.3,27.5 " fill="none"
+                  id="UniqueItemList-to-Item" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="341.22,27.5,332.22,23.5,336.22,27.5,332.22,31.5,341.22,27.5"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="329.7959" y="22.67">*
+            </text>
+        </g><!--link Menu to UniqueMenuItemList-->
+        <g id="link_Menu_UniqueMenuItemList">
+            <path codeLine="25" d="M135.15,121 C143.47,121 151.79,121 160.11,121 " fill="none"
+                  id="Menu-UniqueMenuItemList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="122.39,121,128.39,125,134.39,121,128.39,117,122.39,121"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="173.08,121,164.08,117,168.08,121,164.08,125,173.08,121"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="168.08" x2="160.08" y1="121" y2="121"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="156.1227" y="117.1853">1
+            </text>
+        </g><!--link UniqueMenuItemList to MenuItem-->
+        <g id="link_UniqueMenuItemList_MenuItem">
+            <path codeLine="26" d="M308.47,121 C317.76,121 327.04,121 336.32,121 " fill="none"
+                  id="UniqueMenuItemList-to-MenuItem" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="341.24,121,332.24,117,336.24,121,332.24,125,341.24,121"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="329.8203" y="116.2401">*
+            </text>
+        </g><!--link MenuItem to ItemName-->
+        <g id="link_MenuItem_ItemName">
+            <path codeLine="27" d="M402.35,143.71 C417.22,156.2 435.85,171.85 450.71,184.34 " fill="none"
+                  id="MenuItem-ItemName" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="392.41,135.37,394.4294,142.2926,401.5961,143.0911,399.5768,136.1685,392.41,135.37"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="460.53,192.58,456.2216,183.7235,456.7052,189.3597,451.069,189.8433,460.53,192.58"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="456.7052" x2="450.57" y1="189.3597" y2="184.22"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="447.9245" y="182.6042">1
+            </text>
+        </g><!--link MenuItem to ItemPrice-->
+        <g id="link_MenuItem_ItemPrice">
+            <path codeLine="28" d="M351.17,143.71 C336.59,156.2 318.34,171.85 303.77,184.34 " fill="none"
+                  id="MenuItem-ItemPrice" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="360.89,135.38,353.7317,136.2511,351.7826,143.1938,358.9409,142.3227,360.89,135.38"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="294.17,192.57,303.6071,189.7522,297.9671,189.3169,298.4023,183.6769,294.17,192.57"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="297.9671" x2="304.04" y1="189.3169" y2="184.105"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="285.3461" y="182.6042">1
+            </text>
+        </g><!--link MenuItem to ItemCost-->
+        <g id="link_MenuItem_ItemCost">
+            <path codeLine="29" d="M376.5,148.58 C376.5,158.34 376.5,169.39 376.5,179.17 " fill="none"
+                  id="MenuItem-ItemCost" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="376.5,135.91,372.5,141.91,376.5,147.91,380.5,141.91,376.5,135.91"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="376.5,192.04,380.5,183.04,376.5,187.04,372.5,183.04,376.5,192.04"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="376.5" x2="376.5" y1="187.04" y2="179.04"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="363.4719" y="182.6042">1
+            </text>
+        </g><!--reverse link Item to MenuItem-->
+        <g id="link_Item_MenuItem">
+            <path codeLine="30" d="M376.5,69.83 C376.5,83.63 376.5,97.96 376.5,107.76 " fill="none"
+                  id="Item-backto-MenuItem" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="369.5,69.87,376.5,49.87,383.5,69.87,369.5,69.87"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link ItemName to Name-->
+        <g id="link_ItemName_Name">
+            <path codeLine="32" d="M476.5,220.34 C476.5,230.15 476.5,244.46 476.5,258.23 " fill="none"
+                  id="ItemName-to-Name" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="483.5,258.15,476.5,278.15,469.5,258.15,483.5,258.15"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--SRC=[VP1DIyGm48Rl-HLZZWjTw5qAMZqiTAt8UXCacmvkQ9lKVA2Y_dStQTfjoxgt-NZcdNVcIaZUk0h1sAy6rvrh6s9g8JkcMGjCQ_MnEmXUIpG6qdMwREQgKHgsvTrzyPgNHVaq0NZ3ZBbbl7xJoidg4kg9RYCFg8LbaYEaX5ZLWLMmLzQg5YgXaLkX924tUsCrunPolm3eDuk5tnUviTXIO0PyS95yO2q6qWSa0izIl3lqiuKmzdgNGK3cvGYVAC1FYxBgInaX4TYYTC76YN_KWkCapzLCRcB53yzq9vjxEuEyRupamYaPWLMIwECrALqYynIE55tH_dqac1WcWPvPJCvuYHBZ-KFWbNeBuwtB5j39c_vfXf-DlSJzPD7je0f9Sgm5_Jy0]-->
+    </g>
+</svg>
