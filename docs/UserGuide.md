@@ -376,14 +376,14 @@ John von Neumann,
 #### Import data in CSV format: `import` [in dev]
 Import data in CSV format from file.
 
-Format: `import [flag] [file path]`
+Format: `import [FLAG] FILE_PATH`
 * Flag -force overwrites records of existing students.
 * Nothing is changed if file does not exist or file access denied.
 
 #### Export data in CSV format: `export` [coming soon]
 Export data in CSV format to file.
 
-Format: `export [flag] [file path]`
+Format: `export [FLAG] FILE_PATH`
 * If file exists, export is blocked unless -force flag is used. Otherwise, create file and export.
 * Flag -force overwrites existing file.
 * Nothing is changed if file access denied.
