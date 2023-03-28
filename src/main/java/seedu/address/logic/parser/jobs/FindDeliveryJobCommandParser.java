@@ -56,13 +56,14 @@ public class FindDeliveryJobCommandParser implements Parser<FindDeliveryJobComma
 
         DeliveryJob.Builder toFind = new DeliveryJob.Builder();
 
-        argMultimap.getValue(PREFIX_JOB_ID).ifPresent(val -> toFind.jobId(val));
-        argMultimap.getValue(PREFIX_SENDER_ID).ifPresent(val -> toFind.sender(val));
-        argMultimap.getValue(PREFIX_RECIPIENT_ID).ifPresent(val -> toFind.recipient(val));
-        argMultimap.getValue(PREFIX_DELIVERY_DATE).ifPresent(val -> toFind.deliveryDate(val));
-        argMultimap.getValue(PREFIX_DELIVERY_SLOT).ifPresent(val -> toFind.deliverySlot(val));
-        argMultimap.getValue(PREFIX_EARNING).ifPresent(val -> toFind.earning(val));
-        argMultimap.getValue(PREFIX_IS_DELIVERED).ifPresent(val -> toFind.isDelivered(Boolean.parseBoolean(val)));
+        argMultimap.getValue(PREFIX_JOB_ID).ifPresent(val -> toFind.setJobId(val));
+        argMultimap.getValue(PREFIX_SENDER_ID).ifPresent(val -> toFind.setSender(val));
+        argMultimap.getValue(PREFIX_RECIPIENT_ID).ifPresent(val -> toFind.setRecipient(val));
+        argMultimap.getValue(PREFIX_DELIVERY_DATE).ifPresent(val -> toFind.setDeliveryDate(val));
+        argMultimap.getValue(PREFIX_DELIVERY_SLOT).ifPresent(val -> toFind.setDeliverySlot(val));
+        argMultimap.getValue(PREFIX_EARNING).ifPresent(val -> toFind.setEarning(val));
+        argMultimap.getValue(PREFIX_IS_DELIVERED).ifPresent(val ->
+                toFind.setDeliveredStatus(Boolean.parseBoolean(val)));
 
         return new FindDeliveryJobCommand(new DeliveryJobContainsKeywordsPredicate(toFind.build()));
     }

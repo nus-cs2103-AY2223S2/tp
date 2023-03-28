@@ -1,5 +1,7 @@
 package seedu.address.model.jobs;
 
+import java.util.Comparator;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -7,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Delivery's earning in the delivery jobs book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEarning(String)}
  */
-public class Earning {
+public class Earning implements Comparable<Earning> {
 
     public static final String MESSAGE_CONSTRAINTS = "Earning should only contain double, and it should not be blank";
 
@@ -38,6 +40,10 @@ public class Earning {
         }
     }
 
+    public double getEarning() {
+        return Double.parseDouble(value);
+    }
+
     public static Earning placeholder() {
         return new Earning("0.00");
     }
@@ -64,6 +70,16 @@ public class Earning {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(Earning other) {
+        if (this.getEarning() - other.getEarning() < 0) {
+            return 1;
+        } else if (this.getEarning() - other.getEarning() > 0) {
+            return -1;
+        }
+        return 0;
     }
 
 }

@@ -49,7 +49,7 @@ public class CompleteDeliveryJobCommand extends Command {
 
         if (deliveryJobToEdit.isPresent()) {
             DeliveryJob.Builder toEdit = new DeliveryJob.Builder().copy(deliveryJobToEdit.get());
-            toEdit.isDelivered(setDelivered);
+            toEdit.setDeliveredStatus(setDelivered);
             model.setDeliveryJob(deliveryJobToEdit.get(), toEdit.build());
             return new CommandResult(String.format(MESSAGE_SUCCESS, setDelivered ? "completed" : "not completed"));
         } else {
