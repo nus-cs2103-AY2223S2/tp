@@ -201,6 +201,10 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setEvent(Event target, Event editedEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public ObservableList<Event> getEvents() {
             throw new AssertionError("This method should not be called.");
         }
