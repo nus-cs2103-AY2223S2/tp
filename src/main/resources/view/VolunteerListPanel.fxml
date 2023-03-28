@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<VBox styleClass="listView" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<VBox styleClass="listView" fx:id="volunteerListBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <Label styleClass="listLabel" VBox.vgrow="ALWAYS" prefWidth="248.0" text="Volunteer">
         <font>
             <Font/>

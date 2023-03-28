@@ -140,6 +140,8 @@
     -fx-graphic-text-gap: 0;
     -fx-text-fill: black;
     -fx-label-padding: 5;
+    -fx-border-width: 1;
+
 }
 
 .list-cell:filled:even {
@@ -154,7 +156,6 @@
     -fx-border-color: -fx-morning-green;
     -fx-background-color: -fx-medium-green;
     -fx-label-padding: 5;
-    -fx-border-width: 1;
 }
 
 .list-cell .label {
