@@ -240,4 +240,10 @@ public class ModelManager implements Model {
     public Person getPersonView() {
         return filteredPersons.get(0); // todo change placeholder
     }
+
+    @Override
+    public void deleteAppointment(Appointment appointment) {
+        addressBook.deleteAppointment(appointment);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
 }

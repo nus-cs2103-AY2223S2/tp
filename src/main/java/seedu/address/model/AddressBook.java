@@ -202,6 +202,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         appointments.bookAppointment(appointment);
     }
 
+    /**
+     * Deletes appointment.
+     * @param appointment
+     */
+    public void deleteAppointment(Appointment appointment) {
+        appointments.deleteAppointment(appointment);
+    }
+
     //// util methods
 
     @Override
