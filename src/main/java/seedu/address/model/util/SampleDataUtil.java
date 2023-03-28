@@ -14,6 +14,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Priority;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.TransactionCount;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,28 +25,30 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), new BusinessSize("23"),
-                    new Company("suckDick"), new Priority("HIGH"),
+                    new Company("suckDick"), new Priority("HIGH"), new TransactionCount("9"),
                 getTagSet("friends")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new BusinessSize("0"),
                     new Company("SE is literally not even CS - djikstra"), new Priority("HIGH"),
+                    new TransactionCount("9"),
                 getTagSet("colleagues", "friends")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                     new BusinessSize("10000"),
                     new Company("software engineering is for ppl who cant think -jikstra"),
-                    new Priority("LOW"), getTagSet("neighbours")),
+                    new Priority("LOW"), new TransactionCount("9"),getTagSet("neighbours")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new BusinessSize("500"),
-                new Company("bruh"), new Priority("LOW"), getTagSet("family")),
+                new Company("bruh"), new Priority("LOW"), new TransactionCount("9"),
+                    getTagSet("family")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"), new BusinessSize("483"),
                 new Company("id rather take 3230 midterms 5 times"),
-                    new Priority("LOW"), getTagSet("classmates")),
+                    new Priority("LOW"), new TransactionCount("9"), getTagSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), new BusinessSize("420"),
                 new Company("this is more tedious than calc"),
-                    new Priority("LOW"), getTagSet("colleagues"))
+                    new Priority("LOW"), new TransactionCount("9"),getTagSet("colleagues"))
         };
     }
 

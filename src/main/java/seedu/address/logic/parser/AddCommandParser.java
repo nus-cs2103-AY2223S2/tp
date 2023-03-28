@@ -16,6 +16,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
+import seedu.address.model.person.TransactionCount;
+
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,10 +33,11 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_BUSINESS_SIZE, PREFIX_COMPANY, PREFIX_PRIORITY, PREFIX_TAG);
+                        PREFIX_BUSINESS_SIZE, PREFIX_COMPANY, PREFIX_PRIORITY,
+                        PREFIX_TRANSACTION_COUNT, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_BUSINESS_SIZE, PREFIX_COMPANY, PREFIX_PRIORITY)
+                PREFIX_BUSINESS_SIZE, PREFIX_COMPANY, PREFIX_PRIORITY, PREFIX_TRANSACTION_COUNT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -46,11 +49,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         BusinessSize businessSize = ParserUtil.parseBusinessSize(argMultimap.getValue(PREFIX_BUSINESS_SIZE).get());
         Company company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
         Priority priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
+        TransactionCount transactionCount = ParserUtil
+                .parseTransactionCount(argMultimap.getValue(PREFIX_TRANSACTION_COUNT).get());
+
 
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, businessSize, company, priority, tagList);
+        Person person = new Person(name, phone, email, address, businessSize, company, priority,
+                transactionCount, tagList);
 
         return new AddCommand(person);
     }

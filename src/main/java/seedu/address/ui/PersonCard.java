@@ -49,6 +49,8 @@ public class PersonCard extends UiPart<Region> {
 
     @FXML
     private Label priority;
+    @FXML
+    private Label transactionCount;
 
     @FXML
     private FlowPane tags;
@@ -68,6 +70,7 @@ public class PersonCard extends UiPart<Region> {
         company.setText("Company name: " + person.getCompany().value);
         mark.setText("Need Follow-Up: " + person.getMark().toString());
         priority.setText("Priority Level: " + person.getPriority().value);
+        transactionCount.setText("Past Transaction Count: " + person.getTransactionCount().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
