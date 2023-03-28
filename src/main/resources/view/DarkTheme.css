@@ -144,9 +144,18 @@
   -fx-font-size: 11;
 }
 
+.label.card-attribute-label,
+.label.card-attribute-title-label {
+  -fx-text-fill: #707070;
+}
+
 .label.card-attribute-label {
   -fx-font-size: 11;
-  -fx-text-fill: #707070;
+}
+
+.label.card-attribute-title-label {
+  -fx-font-size: 13;
+  -fx-font-weight: bold;
 }
 
 .detailed-view-card {
