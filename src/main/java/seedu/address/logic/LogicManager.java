@@ -48,6 +48,10 @@ public class LogicManager implements Logic {
         timetableParser = new TimetableParser();
     }
 
+    public Model getModel() {
+        return this.model;
+    }
+
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");

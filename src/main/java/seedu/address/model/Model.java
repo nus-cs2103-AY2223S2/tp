@@ -238,4 +238,9 @@ public interface Model {
      */
     ObservableList<Reminder> getReminderList();
 
+    /**
+     * Indicate that a reminder has already been shown for this app's runtime
+     */
+    void setHasShown(int i, boolean b);
+
 }

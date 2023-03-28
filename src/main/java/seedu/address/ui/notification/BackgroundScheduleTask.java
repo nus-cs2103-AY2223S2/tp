@@ -5,16 +5,16 @@ import java.util.TimerTask;
 import javafx.application.Platform;
 
 /**
- * Runs a {@code TimerTask} to notify the user of upcoming reminders
+ * Runs a {@code TimerTask} to notify the user of upcoming schedules
  */
-public class BackgroundReminderTask extends TimerTask {
+public class BackgroundScheduleTask extends TimerTask {
     private NotificationManager notificationManager;
 
     /**
-     * Creates a {@code BackgroundReminderTask} with the given {@code NotificationManager}.
+     * Creates a {@code BackgroundScheduleTask} with the given {@code NotificationManager}.
      * @param notificationManager
      */
-    public BackgroundReminderTask(NotificationManager notificationManager) {
+    public BackgroundScheduleTask(NotificationManager notificationManager) {
         this.notificationManager = notificationManager;
     }
 
@@ -27,7 +27,7 @@ public class BackgroundReminderTask extends TimerTask {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                notificationManager.checkReminderList();
+                notificationManager.checkNextSchedule();
             }
         });
     }
