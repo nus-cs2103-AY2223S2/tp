@@ -274,7 +274,7 @@ Adds a student to the student roster.
 
 Format:
 ```
-add n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID> [t/<TAG>]
+add student n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID>
 ```
 
 - `t/<TAG>` field is optional.
