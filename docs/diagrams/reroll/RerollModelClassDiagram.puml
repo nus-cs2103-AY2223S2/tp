@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+package "Model"{
+Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nReadOnlyReroll" as ReadOnlyReroll
+Class "<<interface>>\nModel" as model
+
+Class UserPrefs
+Class ModelManager
+Class Reroll
+
+Class ReadOnlyEntities
+Class RerollAllEntities
+Class UniqueEntityList
+Class Entity
+}
+
+Class HiddenOutside #FFFFFF
+Class HiddenOutside2 #FFFFFF
+
+HiddenOutside ..> model
+model .R.> ReadOnlyReroll
+model .L.> ReadOnlyUserPrefs
+
+UserPrefs .U-|> ReadOnlyUserPrefs
+ModelManager -L-> "1" UserPrefs
+ModelManager -R-> "1" Reroll
+ModelManager .u-|> model
+Reroll .u-|> ReadOnlyReroll
+
+ReadOnlyReroll .D.> ReadOnlyEntities
+Reroll -D-> RerollAllEntities
+RerollAllEntities .R.|> ReadOnlyEntities
+RerollAllEntities *-D-> "1" UniqueEntityList
+
+ModelManager -D->"*filtered" Entity
+
+UniqueEntityList -> "*all" Entity
+HiddenOutside2 -U-> Entity
+@enduml

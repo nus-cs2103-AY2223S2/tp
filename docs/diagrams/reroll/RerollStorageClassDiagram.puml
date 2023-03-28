@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
+package "Reroll Storage"{
+    Class "<<interface>>\nRerollStorage" as RerollStorage
+    Class JsonRerollStorage
+    Class JsonSerializableReroll
+    Class JsonAdaptedItem
+    Class JsonAdaptedMob
+    Class JsonAdaptedCharacter
+    Class JsonAdaptedStats
+    Class JsonAdaptedTag
+}
+package "UserPrefs Storage" {
+    Class JsonUserPrefsStorage
+    Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
+
+}
+
+Class "<<interface>>\nStorage" as storage
+Class StorageManager
+
+Class HiddenOutside #FFFFFF
+
+HiddenOutside .D.> storage
+StorageManager .U.|> storage
+
+storage -R-|> UserPrefsStorage
+StorageManager -> "1" UserPrefsStorage
+JsonUserPrefsStorage .U.|> UserPrefsStorage
+
+storage -L-|> RerollStorage
+StorageManager -U> "1" RerollStorage
+JsonRerollStorage .U.> RerollStorage
+JsonRerollStorage .D.> JsonSerializableReroll
+JsonSerializableReroll -D-> "0..*" JsonAdaptedItem
+JsonSerializableReroll -D-> "0..*" JsonAdaptedMob
+JsonSerializableReroll -D-> "0..*" JsonAdaptedCharacter
+
+JsonAdaptedTag "0..*" <-U- JsonAdaptedItem
+JsonAdaptedTag "0..*" <-U- JsonAdaptedMob
+JsonAdaptedTag "0..*" <-U- JsonAdaptedCharacter
+
+JsonAdaptedStats "1" <-U- JsonAdaptedMob
+JsonAdaptedStats "1" <-U- JsonAdaptedCharacter
+
+@enduml

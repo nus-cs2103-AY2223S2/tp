@@ -1,15 +1,17 @@
+<img src="images/Reroll_Banner.png" />
 ---
-layout: page
-title: Developer Guide
+layout: page title: Developer Guide
+
 ---
-* Table of Contents
-{:toc}
+
+* Table of Contents {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
+  original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -18,13 +20,6 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
-
-## **Design**
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-</div>
 
 ### Architecture
 
@@ -36,7 +31,11 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes
+called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -49,19 +48,24 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
+the command `list`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/RerollArchitectureSequenceDiagram.png" width="1000" />
+<img src="images/RerollStorageSequenceDiagram.png" width="550" />
 
-Each of the four main components (also shown in the diagram above),
+Each of the main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
+  API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
+the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
+through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the
+implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -69,36 +73,59 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified
+in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/RerollUiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ViewModePanel`
+, `EditModePanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart`
+class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+are in the `src/main/resources/view` folder. For example, the layout of
+the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified
+in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Entity` objects residing in the `Model`.
+
+The `ListModePanel` and `ViewModePanel` are UI elements that contain the necessary components to display the regular
+operating mode and the view / edit mode of Reroll respectively. Upon being triggered by the appropriate
+`CommandResult`, the `UI` switches modes through `SwitchUiMode`, unparenting the previous (`ListModePanel` by default),
+and parenting the alternative panel to `MainWindow`.
+
+![Sequence flow of switching to Edit Mode](images/RerollEditModeSequenceDiagram.png)
+
+This is to create a seamless transition for the user and to free up screen real estate when not in view / edit mode.
+`ViewModePanel` contains a `EntityDetailsPanel`, which fetches entity data from `Model` after every command executed in
+edit mode to ensure that the user is kept up to date with changes.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**
+API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+
+1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` or `EditModeParser` class to parse
+   the user command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
+   executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a entity).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
+call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -110,39 +137,68 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a
+  placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
+  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as
+  a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
+  interface so that they can be treated similarly where possible e.g, during testing.
+
+<img src="images/RerollLogicActivityDiagram.png" width="600"/>
+
+`Logic` keeps a boolean `isInEditMode` as runtime state that determines which of `AddressBookParser`
+and `EditModeParser`
+to use for incoming commands. `EditModeParser` differs in that it treats all user input as a `EditValueCommand`, which
+allows us to simplify the syntax for that command to simply `<FIELD> <VALUE>` as opposed to `<COMMAND> <FIELD> <VALUE>`.
+This is done to smoothen the experience for the end user, who might need to edit many fields in a short period of time.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+**
+API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T15-1/tp/blob/master/src/main/java/seedu/address/experimental/model/Model.java)
+
+<img src="images/RerollModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* stores Reroll data i.e., all `Entity` objects (which are contained in a `UniqueEntityList` object).
+* stores the currently 'selected' `Entity` objects (e.g., results of a search query) as a separate _filtered_ list which
+  is exposed to outsiders as an unmodifiable `ObservableList<Entity>` that can be 'observed' e.g. the UI can be bound to
+  this list so that the UI automatically updates when the data in the list change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
+  a `ReadOnlyUserPref` objects.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
+  should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
+**Note:** `RerollAllEntities`, the class which stores all entities, is abstracted from `Reroll`, to support future
+functionality outside of entity list manipulation.
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**
+API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T15-1/tp/blob/master/src/main/java/seedu/address/experimental/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/RerollStorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+* can save both Reroll data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `RerollStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the
+  functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
+  that belong to the `Model`)
+
+### Entities
+
+![Entities in Reroll](images/RerollEntityClassDiagram.png)
+
+In order to facilitate operations and management of various aspects of user data, we have split entities into 3 classes
+implementing the `Entity` interface.
+
+Each class holds their own the classification-specific fields while exposing the data for the `Ui` thru the interface
+method `getFields`.
 
 ### Common classes
 
@@ -154,29 +210,64 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Make entity feature
+
+#### Design considerations
+
+In Reroll, there are 3 different entity classes (`Character`, `Mob`, `Item`) that users can keep track of. Each class
+has a set of unique fields to keep track of, resulting in a combined number of ~15 fields to keep track of. Thus, it is
+important to minimize mental load on the user during the creation of new entities.
+
+#### Alternative approaches
+
+1. **Current design**: Minimal make command with new syntax \
+   Sample command: `make char King Arthur` - makes a new Character that has the name _King Arthur_ \
+   This approach only allows users to create an entity with a given name, all other fields can only be filled in using
+   the `edit` command. This allows users to create entities quickly by eliminating the need to input prefixes.
+2. Alternative: Reuse AB3 syntax, allow user to enter all fields at once \
+   Sample command: `make char n/King Arthur str/10 dex/5 int/3 ...` - makes a new Character with all the specified
+   fields\
+   This approach allows users to create detailed entities with just one command. However, usage of prefixes such as `n/`
+   increases the mental load on the user to keep track of all the different prefixes, and increases their chance of
+   making mistakes while inputting commands.
+
+#### [Proposed extension]
+
+Allow short-form syntax like `m c King Arthur`
+
+#### To add: UML Diagrams
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
+history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
+following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()`
+and `Model#redoAddressBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
+initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th entity in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th entity in the address book. The `delete` command
+calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
+to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
+state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new entity. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new entity. The `add` command also calls `Model#commitAddressBook()`
+, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -184,7 +275,9 @@ Step 3. The user executes `add n/David …​` to add a new entity. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the entity was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the entity was a mistake, and decides to undo that action by executing
+the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
+once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -201,17 +294,23 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once
+to the right, pointing to the previously undone state, and restores the address book to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such
+as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`.
+Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
+pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be
+purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
+desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -224,13 +323,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the entity being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** Individual command knows how to undo/redo by itself.
+    * Pros: Will use less memory (e.g. for `delete`, just save the entity being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -257,17 +355,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-Our key target user group is Table-Top Role Playing Game(TTRPG) players looking for a powerful entity management system for their gameplay.
+Our key target user group is Table-Top Role Playing Game(TTRPG) players looking for a powerful entity management system
+for their gameplay.
 
 The people in our user group who would benefit most from this product generally would have the following qualities:
+
 * Need or struggle to store large repository of past ideas, including story, characters, monsters and items
 * Type fast and prefer CLI
 * Need inspiration for character, item and monster creation that a randomizer would help address
 
 **Value proposition**:
 
-Our product is a more expansive and well-organized system capable of managing TTRPG entities better than a traditional pen and paper format.
-
+Our product is a more expansive and well-organized system capable of managing TTRPG entities better than a traditional
+pen and paper format.
 
 ### User stories
 
@@ -315,54 +415,48 @@ The user stories are not limited to those in this list. More can be added in the
 
 **MSS**
 
-1. User requests to list entities based on classification
-2. Reroll shows a list of entities
-3. User enters edit mode for specified entity
-4. User requests to replace specified field with new value
-5. Reroll edits the specified entity and display it
+1. User request to enter edit mode for specified entity
+2. Reroll enters edit mode
+3. User requests to replace specified field with new value
+4. Reroll edits the specified entity and display it
 
-   Steps 4-5 are repeated for as many fields as required.
-6. User exits edit mode
+   Steps 3-4 are repeated for as many fields as required.
+5. User exits edit mode
 
-    Use case ends
+   Use case ends
 
 **Extensions**
 
-* 2a.The list is empty.
+* 2a. The specifications of the entity are invalid
+    * 2a1. Reroll shows an error message.
 
-    Use case ends
-* 3a. The given name is invalid
-  * 3a1. Reroll shows an error message.
+      Use case resumes at step 1
+* 3a. The given fields are invalid
+    * 3a.1 Reroll shows an error message and exits edit mode
 
-    Use case resumes at step 2
-* 4a. The given fields are invalid
-  * 4a.1 Reroll shows an error message and exits edit mode
+      Use case resumes at step 1
 
-    Use case resumes at step 2
-
-
-**Use case: Delete an entity**
+**Use case: Add item to inventory of entity**
 
 **MSS**
 
-1.  User requests to list entities based on classification
-2.  Reroll shows a list of entities
-3.  User requests to delete a specific entity in the list by name
-4.  Reroll deletes the entity
+1. User request to enter edit mode for specified entity
+2. Reroll enters edit mode
+3. User request to add specified item
+4. Reroll adds specified item to entity's inventory
 
-    Use case ends.
+   Use case ends
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The specifications of the entity are invalid
+    * 2a1. Reroll shows an error message.
 
-  Use case ends.
+      Use case resumes at step 1
+* 3a. Item does not exist in Reroll
+    * 3a1. Reroll shows an error message and exits edit mode
 
-* 3a. The given name is invalid.
-
-    * 3a1. Reroll shows an error message.
-
-      Use case resumes at step 2.
+      Use case resumes at step 1
 
 *{More to be added}*
 
@@ -370,7 +464,8 @@ The user stories are not limited to those in this list. More can be added in the
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 500 _entities_ without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
+   able to accomplish most of the tasks faster using commands than using the mouse.
 4. The application is not required to be compatible with any existing tracking applications.
 5. The application should be usable by new players not familiar with RPG trackers.
 
@@ -381,6 +476,7 @@ The user stories are not limited to those in this list. More can be added in the
 * **Characters**: Characters, typically humans, that are controlled by players participating in a table-top RPG game
 * **Mobs**: Non-player characters (NPCS) that are typically monsters
 * **Items**: Weapons, armor or tools that players can keep and use
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -396,15 +492,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 3. _{ more test cases …​ }_
@@ -413,16 +509,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a entity while all entities are being shown
 
-   1. Prerequisites: List all entities using the `list` command. Multiple entities in the list.
+    1. Prerequisites: List all entities using the `list` command. Multiple entities in the list.
 
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    2. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   3. Test case: `delete 0`<br>
-      Expected: No entity is deleted. Error details shown in the status message. Status bar remains the same.
+    3. Test case: `delete 0`<br>
+       Expected: No entity is deleted. Error details shown in the status message. Status bar remains the same.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 2. _{ more test cases …​ }_
 
@@ -430,6 +526,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_

@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class "<<interface>>\nUi" as Ui
+Class UiManager
+Class MainWindow
+Class HelpWindow
+Class ResultDisplay
+Class EntityListPanel
+Class EntityCard
+Class StatusBarFooter
+Class CommandBox
+Class ViewModePanel
+Class ListModePanel
+Class EntityDetailsPanel
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+package Logic <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Ui
+
+UiManager .up.|> Ui
+UiManager --> "1" MainWindow
+MainWindow *-down->  "1" CommandBox
+MainWindow *-down-> "1" ResultDisplay
+MainWindow -down-> "2" EntityListPanel
+MainWindow *-down-> "1" StatusBarFooter
+MainWindow --> "0..1" HelpWindow
+ViewModePanel *--> "1" EntityListPanel
+ViewModePanel *--> "1" EntityDetailsPanel
+ListModePanel *--> "1" EntityListPanel
+
+EntityListPanel -down-> "*" EntityCard
+
+
+
+EntityDetailsPanel ..> Model
+EntityCard ..> Model
+UiManager -right-> Logic
+
+
+EntityListPanel -[hidden]left- HelpWindow
+HelpWindow -[hidden]left- CommandBox
+CommandBox -[hidden]left- ResultDisplay
+ResultDisplay -[hidden]left- StatusBarFooter
+
+@enduml

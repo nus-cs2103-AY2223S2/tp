@@ -61,7 +61,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Troy Tim
 
-<img src="images/Troy_Tim.png" width="200px">
+<img src="images/roultitude.png" width="200px">
 
 [[github](https://github.com/roultitude)]
 [[portfolio](team/roultitude.md)]

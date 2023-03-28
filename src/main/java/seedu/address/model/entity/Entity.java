@@ -2,11 +2,13 @@ package seedu.address.model.entity;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
+import java.util.List;
 import java.util.Set;
 
+import javafx.util.Pair;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,6 +38,8 @@ public abstract class Entity {
         requireAllNonNull(name);
         this.name = name;
     }
+
+    public abstract List<Pair<String, String>> getFields();
 
     public Name getName() {
         return name;
@@ -89,18 +93,16 @@ public abstract class Entity {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, tags);
+        return Arrays.hashCode(getFields().toArray());
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        List<Pair<String, String>> fields = getFields();
+        for (Pair<String, String> p : fields) {
+            String field = String.format("%s: %s\n", p.getKey(), p.getValue());
+            builder.append(field);
         }
         return builder.toString();
     }

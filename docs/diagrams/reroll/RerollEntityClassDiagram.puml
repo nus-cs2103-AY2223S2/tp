@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor ENTITY_COLOR
+skinparam classBackgroundColor ENTITY_COLOR
+
+Class "<<interface>>\nEntity" as Entity
+Class Name
+Class Tags
+Class Item
+Class Mob
+Class Character
+Class Stats
+
+Entity -R->"1" Name
+Entity -R->"..*" Tags
+
+Item .U.|> Entity
+Mob .U.|> Entity
+Character .U.|> Entity
+
+Mob -D-> Stats
+Character -D-> Stats
+@enduml

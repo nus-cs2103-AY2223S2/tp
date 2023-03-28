@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+
+!define JSON_REROLL_STORAGE_COLOR #5A5A5A
+
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+Participant ":Storage" as storage STORAGE_COLOR
+Participant ":JsonRerollStorage" as jsonrerollstorage JSON_REROLL_STORAGE_COLOR
+
+mainframe **sd**  Storage
+logic ++ LOGIC_COLOR
+logic -[LOGIC_COLOR]> model++ MODEL_COLOR: GetReroll()
+logic <-[MODEL_COLOR]- model-- : ReadOnlyReroll
+
+logic-[LOGIC_COLOR]> storage : saveReroll(ReadOnlyReroll)
+activate storage STORAGE_COLOR
+
+storage -[STORAGE_COLOR]> storage : saveReroll
+activate storage STORAGE_COLOR_T1
+
+storage -[JSON_REROLL_STORAGE_COLOR]> jsonrerollstorage++ JSON_REROLL_STORAGE_COLOR: saveReroll(reroll, filePath)
+return
+
+storage --
+return
+deactivate storage
+@enduml

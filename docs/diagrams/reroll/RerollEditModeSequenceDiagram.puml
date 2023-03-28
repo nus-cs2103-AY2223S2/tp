@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+
+Actor User as user
+Participant "UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Parser" as parser PARSER_COLOR
+Participant ":Command" as command COMMAND_COLOR
+Participant ":Model" as model MODEL_COLOR
+
+user -[USER_COLOR]> ui : "edit char Leeroy"
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> logic : parseCommand("edit char Leeroy")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> parser** : EditCommandParser()
+
+parser++ PARSER_COLOR
+logic <-[PARSER_COLOR]- parser --
+
+logic -[LOGIC_COLOR]> parser++ PARSER_COLOR : parse("char Leeroy")
+parser -[PARSER_COLOR]> command** : EditCommand(Leeroy:Entity)
+command ++ COMMAND_COLOR
+parser <-[COMMAND_COLOR]- command --
+logic <-[PARSER_COLOR]- parser--
+
+logic -[LOGIC_COLOR]> command ++ COMMAND_COLOR: execute(model)
+command -[COMMAND_COLOR]> model++ MODEL_COLOR : setCurrentSelectedEntity(Leeroy:Entity)
+command <-[MODEL_COLOR]- model --
+logic <-[COMMAND_COLOR]- command -- : CommandResult
+
+logic --[LOGIC_COLOR]> ui : CommandResult
+deactivate logic
+
+ui--[UI_COLOR]> ui : SwitchDisplayMode(isViewMode)
+
+ui--[UI_COLOR]> user
+deactivate ui
+
+@enduml

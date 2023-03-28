@@ -2,6 +2,44 @@
 layout: page
 title: User Guide
 ---
+> A Desktop App for managing TTRPGs
+
+<br />
+<div align="center">
+  <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp">
+    <img alt="Banner" src="images/Reroll_Banner.png" alt="Logo" width="1000">
+  </a>
+<h3 align="center">Manage your TTRPGs easily.</h3>
+  <p align="center">
+    A simple yet powerful way to manage your next playthrough
+    <br />
+    <a href="https://nus-cs2103-ay2223s2.github.io/tp/"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="#tasks">Features</a>
+    ·
+    <a href="#summary">Commands</a>
+    ·
+    <a href="#FAQ">FAQ</a>
+    ·
+    <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/blob/master/docs/AboutUs.md">Meet the Team</a>
+    <br />
+    🎉 Version 1.2.1 is out. Check out the latest release
+    <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/releases/">here</a>.
+    <br />
+    <br />
+    <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/releases/">
+    <img src="https://img.shields.io/github/v/release/AY2223S2-CS2103T-T15-1/tp" alt="Logo">
+    </a>
+    <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/releases/">
+    <img src="https://img.shields.io/github/watchers/AY2223S2-CS2103T-T15-1/tp?style=social" alt="Logo">
+    </a>
+    <a href="https://github.com/AY2223S2-CS2103T-T15-1/tp/releases/">
+    <img src="https://img.shields.io/github/stars/AY2223S2-CS2103T-T15-1/tp?style=social" alt="Logo">
+    </a>
+  </p>
+</div>
+
 
 Reroll is a **desktop app for managing tabletop RPG character, monster and item sheets, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Reroll can get your entity management tasks done faster than traditional GUI apps.
 
@@ -14,7 +52,7 @@ Reroll is a **desktop app for managing tabletop RPG character, monster and item 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `reroll.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `reroll.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-1/tp/releases/).
 
 1. Copy the file to the folder you want to use as the _home folder_ for Reroll.
 
@@ -38,6 +76,7 @@ Reroll is a **desktop app for managing tabletop RPG character, monster and item 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<h2 id="tasks"></h2>
 
 ## Features
 
@@ -160,6 +199,7 @@ If your changes to the data file makes its format invalid, Reroll will discard a
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
+<h2 id="FAQ"></h2>
 
 ## FAQ
 
@@ -167,7 +207,31 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Reroll home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+<h2 id="summary"></h2>
 
+## Entity classifications
+There are 3 different entity classifications in Reroll, each with their own set of fields to track.
+
+`Character` or `char` in short refers to characters whose actions are controlled by players instead of the game master.
+
+`Mob` refers to hostile non-playable characters which are controlled by the game master, 
+meant to be defeated by player characters.
+
+`Item` refers to equipment such as armour, and miscellaneous tools. These are mainly dropped by mobs and 
+can be used by the player characters.
+
+The definitive list of the different values each entity has:
+
+| Character    | Mob              | Item   |
+|--------------|------------------|--------|
+| Name         | Name             | Name   | 
+| Strength     | Strength         | Cost   |
+| Dexterity    | Dexterity        | Weight | 
+| Intelligence | Intelligence     | Tags   |
+| Level        | Challenge Rating |        |
+| XP           | Legendary        |        |
+| Tags         | Tags             |        |
+--------------------------------------------------------------------------------------------------------------------
 ## Command summary
 
 | Action                        | Format, Examples                                                  |
