@@ -18,10 +18,9 @@ import seedu.patientist.model.ward.Ward;
  * A utility class containing a list of {@code Ward} objects to be used in tests.
  */
 public class TypicalWards {
+    public static final String VALID_WARD_NAME = "Block A Ward 1";
 
     private TypicalWards() {}
-
-    public static String VALID_WARD_NAME = "Block A Ward 1";
 
     public static List<Ward> getTypicalWards() {
         return new ArrayList<>(Arrays.asList(getBlockAWard1(), getBlockAWard2()));
