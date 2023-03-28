@@ -25,6 +25,7 @@ import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Remark;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentId;
+import tfifteenfour.clipboard.model.task.Task;
 
 /**
  * Edits the information of a student.
@@ -74,6 +75,7 @@ public class EditStudentCommand extends EditCommand {
         Group selectedGroup = currentSelection.getSelectedGroup();
         List<Student> lastShownList = selectedGroup.getModifiableStudentlist();
         List<Session> sessions = selectedGroup.getModifiableSessionList();
+        List<Task> tasks = selectedGroup.getModifiableTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -89,6 +91,10 @@ public class EditStudentCommand extends EditCommand {
 
         for (Session session : sessions) {
             session.replaceStudent(studentToEdit, editedStudent);
+        }
+
+        for (Task task : tasks) {
+            task.replaceStudent(studentToEdit, editedStudent);
         }
 
         lastShownList.set(index.getZeroBased(), editedStudent);
