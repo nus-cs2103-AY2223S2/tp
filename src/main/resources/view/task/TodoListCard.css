@@ -7,15 +7,16 @@
 
 #createDate {
     -fx-font-style: italic;
-    -fx-font-fill: #7F787E;
+    -fx-text-fill: #3d3c38;
     -fx-font-family: courier;
     -fx-font-size: 10px;
 }
 
 #cardPane {
-    -fx-background-color: #C44049;
+    -fx-background-color: #eb505a;
     -fx-background-radius: 8;
     -fx-effect: dropshadow(gaussian, rgba(128, 30, 30, 1.0), 0, 0, 5, 5);
+    -fx-text-fill: #dbd8d0;
 }
 
 #id, #companyName {
@@ -30,6 +31,7 @@
 }
 
 #cardPane : hover {
-    -fx-background-color: #983138;
+    -fx-background-color: #bf2a34;
     -fx-background-radius: 8;
+    -fx-text-fill: whitesmoke;
 }

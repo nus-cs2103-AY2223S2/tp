@@ -20,7 +20,7 @@ public class ListTaskCommand extends Command {
     public static final String COMMAND_WORD = "list_task";
 
     public static final String MESSAGE_SUCCESS = "Listed all todos and notes";
-    public static final String MESSAGE_NO_APPLICATIONS = "No tasks (todos or notes) at the moment";
+    public static final String MESSAGE_NO_APPLICATIONS = "No task (todo and note) at the moment";
 
     private static final TodoType type = TodoType.BOTH;
 
