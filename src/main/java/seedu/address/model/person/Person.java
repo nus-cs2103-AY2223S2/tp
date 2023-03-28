@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -195,5 +196,17 @@ public class Person {
             groups.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    public void removeExpiredEvent() {
+        int len = isolatedEventList.getSize();
+        LocalDateTime now = LocalDateTime.now();
+
+        for (int i = 0; i < len; i++) {
+            IsolatedEvent event = isolatedEventList.getIsolatedEvent(i);
+            if (event.getStartDate().isBefore(now)) {
+                isolatedEventList.deleteIsolatedEvent(event);
+            }
+        }
     }
 }

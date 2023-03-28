@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.UniqueGroupList;
@@ -241,5 +242,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
 
-
+    public void deleteExpiredEvent() {
+        for (Person p : persons) {
+            p.removeExpiredEvent();
+        }
+    }
 }

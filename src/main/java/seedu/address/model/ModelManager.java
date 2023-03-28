@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.logging.Filter;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -112,6 +111,10 @@ public class ModelManager implements Model {
         addressBook.removePerson(target);
     }
 
+    public void deleteExpiredEvent() {
+        addressBook.deleteExpiredEvent();
+    }
+
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
@@ -127,7 +130,6 @@ public class ModelManager implements Model {
     public void setIsolatedEvent(Person person, IsolatedEvent originalEvent, IsolatedEvent editedEvent) {
         requireAllNonNull(person, originalEvent, editedEvent);
         addressBook.setIsolatedEvent(person, originalEvent, editedEvent);
-
     }
 
     @Override
