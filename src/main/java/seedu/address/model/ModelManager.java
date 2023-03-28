@@ -207,7 +207,7 @@ public class ModelManager implements Model {
     public void setExpense(int index, Expense newExpense) {
         expenseTracker.setExpense(index, newExpense);
     }
-    
+
     @Override
     public void clearExpense() {
         expenseTracker.clearExpense();
