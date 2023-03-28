@@ -17,7 +17,6 @@ import seedu.address.model.person.Photo;
 public abstract class Event {
 
     public static final String MESSAGE_CONSTRAINTS = "Repetition for recur must be a number between 0 and 10";
-
     private String name;
     private LocalDateTime eventDate;
     private final List<Person> students;
@@ -228,9 +227,16 @@ public abstract class Event {
      * Methods to manipulate notes in an event                                 *
      *                                                                         *
      **************************************************************************/
+    public boolean hasNote(Note note) {
+        return notes.contains(note);
+    }
 
     public List<Note> getNotes() {
         return notes.getNotes();
+    }
+
+    public NoteList getNoteList() {
+        return notes.copy();
     }
 
     public int countNotes() {

@@ -1,12 +1,10 @@
 package seedu.address.model.event;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 
-/**
- * Encapsulates a list of notes for each event
- */
 public class NoteList {
     private List<Note> notes = new LinkedList<>();
 
@@ -16,14 +14,6 @@ public class NoteList {
      */
     public NoteList(List<Note> notes) {
         this.notes.addAll(notes);
-    }
-
-    /**
-     * Initialize a note list with a single note
-     * @param singleNote A single {@code Note} object
-     */
-    public NoteList(Note singleNote) {
-        notes.add(singleNote);
     }
 
     /**
@@ -107,6 +97,14 @@ public class NoteList {
      */
     public int len() {
         return getNotes().size();
+    }
+
+    /**
+     * Copy the original list to avoid conflicts
+     * @return A new list with the same notes
+     */
+    public NoteList copy() {
+        return new NoteList(new ArrayList<>(getNotes()));
     }
 
     @Override

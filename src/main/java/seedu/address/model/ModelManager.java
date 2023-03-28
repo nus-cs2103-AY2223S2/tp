@@ -225,6 +225,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addNote(Note note) {
+        requireNonNull(note);
+        addressBook.addNote(note);
+    }
+
+    @Override
     public void addNoteToTutorial(Note note, String nameOfEvent) {
         requireNonNull(note);
         addressBook.addNoteToTutorial(note, nameOfEvent);

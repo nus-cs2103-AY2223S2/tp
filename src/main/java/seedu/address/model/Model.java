@@ -229,19 +229,25 @@ public interface Model {
     boolean hasNote(Note note);
 
     /**
-     * Append notes to the existing event list
+     * Add notes to the existing note list
+     * @param note The note to add
+     */
+    void addNote(Note note);
+
+    /**
+     * Append notes to an existing tutorial note list
      * @param note The note to add
      */
     void addNoteToTutorial(Note note, String nameOfEvent);
 
     /**
-     * Append notes to the existing event list
+     * Append notes to an existing lab note list
      * @param note The note to add
      */
     void addNoteToLab(Note note, String nameOfEvent);
 
     /**
-     * Append notes to the existing event list
+     * Append notes to an existing consultation note list
      * @param note The note to add
      */
     void addNoteToConsultation(Note note, String nameOfEvent);

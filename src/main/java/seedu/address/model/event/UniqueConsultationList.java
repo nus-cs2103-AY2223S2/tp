@@ -37,6 +37,12 @@ public class UniqueConsultationList implements Iterable<Consultation> {
         return internalList.stream().anyMatch(toCheck::isSameConsultation);
     }
 
+    public boolean containsNote(Note note) {
+        requireNonNull(note);
+        NoteList emptyList = new NoteList();
+        return internalList.stream().map(x -> x.getNoteList()).;
+    }
+
     // todo: probably try remove get and size methods to preserve abstraction barrier
     public Consultation get(int index) {
         return this.internalList.get(index);

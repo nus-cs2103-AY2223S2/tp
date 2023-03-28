@@ -1,8 +1,10 @@
 package seedu.address.model;
 
+import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
+import seedu.address.model.event.NoteList;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 
@@ -34,4 +36,15 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate labs.
      */
     ObservableList<Consultation> getConsultationList();
+
+    /**
+     * Returns the general note list.
+     */
+    NoteList getGeneralNoteList();
+
+
+    /**
+     * Returns the stash event note list.
+     */
+    NoteList getStashEventNoteList();
 }

@@ -23,17 +23,28 @@ public class AddNoteToEventCommand extends Command {
     public static final String TUTORIAL_STRING = "tutorial";
     public static final String LAB_STRING = "lab";
     public static final String CONSULTATION_STRING = "consultation";
+    private boolean attachToEvent = false;
     private Note toAdd;
     private String eventName;
     private String eventType;
 
     /**
-     * Creates an AddLab to add the specified {@code Lab}
+     * Creates an AddNote to add the specified {@code Lab}
      */
     public AddNoteToEventCommand(Note note, String name, String type) {
         toAdd = note;
         eventName = name;
         eventType = type;
+        attachToEvent = true;
+    }
+
+    /**
+     * Creates an AddNote to add the specified {@code Lab}
+     */
+    public AddNoteToEventCommand(Note note) {
+        toAdd = note;
+        eventName = null;
+        eventType = null;
     }
 
     /**
@@ -50,14 +61,23 @@ public class AddNoteToEventCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_NOTE);
         }
 
-        if (this.eventType.equals(TUTORIAL_STRING)) {
-            model.addNoteToTutorial(toAdd, eventName);
-        } else if (this.eventType.equals(LAB_STRING)) {
-            model.addNoteToLab(toAdd, this.eventName);
-        } else if (this.eventType.equals(CONSULTATION_STRING)) {
-            model.addNoteToConsultation(toAdd, this.eventName);
-        } else {
-            throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
+        if (!(attachToEvent)) {
+            model.addNote(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS), false, false, false, false);
+        }
+
+        switch (eventType) {
+            case TUTORIAL_STRING:
+                model.addNoteToTutorial(toAdd, eventName);
+                break;
+            case LAB_STRING:
+                model.addNoteToLab(toAdd, this.eventName);
+                break;
+            case CONSULTATION_STRING:
+                model.addNoteToConsultation(toAdd, this.eventName);
+                break;
+            default:
+                throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS), false, false, false, true);
     }

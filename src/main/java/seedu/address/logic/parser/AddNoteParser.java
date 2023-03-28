@@ -2,10 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_CONTENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EVENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EVENT_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EXTERNAL;
 
-import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddNoteToEventCommand;
@@ -13,7 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Note;
 
 /**
- * Parser for notes from commands
+ * Parser notes from commands
  */
 public class AddNoteParser implements Parser<AddNoteToEventCommand> {
 
@@ -26,26 +27,26 @@ public class AddNoteParser implements Parser<AddNoteToEventCommand> {
         requireNonNull(args);
         String newArgs = args.trim().replaceFirst("Note", "");
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NOTE_EXTERNAL, PREFIX_NOTE_CONTENT,
-                        PREFIX_NOTE_EVENT);
-        if (arePrefixesAbsent(argMultimap, PREFIX_NOTE_CONTENT)) {
+                ArgumentTokenizer.tokenize(newArgs, PREFIX_NOTE_EXTERNAL, PREFIX_NOTE_CONTENT,
+                        PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME);
+        if (!arePrefixesPresent(argMultimap, PREFIX_NOTE_CONTENT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddNoteToEventCommand.MESSAGE_USAGE));
         }
 
+        String name = ParserUtil.parseNoteContent(argMultimap.getValue(PREFIX_NOTE_CONTENT).get());
+        Note note = new Note(name);
+
+        // The case of adding note without event
+        if (arePrefixesAbsent(argMultimap, PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME)) {
+            return new AddNoteToEventCommand(note);
+        }
         if (!arePrefixesPresent(argMultimap, PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddNoteToEventCommand.MESSAGE_USAGE));
         }
-
-        Optional<String> tutorialName = argMultimap.getValue(PREFIX_TUTORIAL);
-        Optional<String> labName = argMultimap.getValue(PREFIX_LAB);
-        String eventName = !tutorialName.isEmpty() ? tutorialName.get() : labName.get();
-        String eventType = !tutorialName.isEmpty() ? "tutorial" : "lab";
-
-        String name = ParserUtil.parseNoteContent(argMultimap.getValue(PREFIX_NOTE_CONTENT).get());
-
-        Note note = new Note(name);
+        String eventName = argMultimap.getValue(PREFIX_NOTE_EVENT_NAME).get();
+        String eventType = argMultimap.getValue(PREFIX_NOTE_EVENT_TYPE).get();
         return new AddNoteToEventCommand(note, eventName, eventType);
     }
 
@@ -58,7 +59,7 @@ public class AddNoteParser implements Parser<AddNoteToEventCommand> {
     }
 
     /**
-     * Returns true if none of the prefixes contains command to add students
+     * Returns true if none of the prefixes is contained in the string
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesAbsent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
