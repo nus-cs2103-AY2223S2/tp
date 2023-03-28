@@ -30,6 +30,5 @@ public class BackgroundScheduleTask extends TimerTask {
                 notificationManager.checkNextSchedule();
             }
         });
-
     }
 }

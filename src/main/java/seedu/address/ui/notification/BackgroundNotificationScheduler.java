@@ -27,7 +27,6 @@ public class BackgroundNotificationScheduler extends Timer {
         now.set(Calendar.SECOND, 0);
 
         new Timer().schedule(new BackgroundReminderTask(notificationManager), now.getTime(), 1000 * 60);
-        //new Timer().schedule(new BackgroundReminderTask(notificationManager), now.getTime(), 1000*5);
     }
 
     /**
@@ -37,13 +36,13 @@ public class BackgroundNotificationScheduler extends Timer {
      */
     public void backgroundSchedule() {
         Calendar now = Calendar.getInstance();
+        if (now.get(Calendar.MINUTE) >= 40) {
+            now.add(Calendar.HOUR_OF_DAY, 1);
+        }
         now.set(Calendar.MINUTE, 40);
         now.set(Calendar.SECOND, 0);
-        if (now.get(Calendar.MINUTE) > 40) {
-            now.add(Calendar.HOUR, 1);
-        }
+
         new Timer().schedule(new BackgroundScheduleTask(notificationManager), now.getTime(), 1000 * 60 * 60);
-        //new Timer().schedule(new BackgroundScheduleTask(notificationManager), now.getTime(), 1000*5);
     }
 
     /**
@@ -53,7 +52,7 @@ public class BackgroundNotificationScheduler extends Timer {
      */
     public void run() {
         backgroundReminder();
-        //backgroundSchedule();
+        backgroundSchedule();
     }
 
 }

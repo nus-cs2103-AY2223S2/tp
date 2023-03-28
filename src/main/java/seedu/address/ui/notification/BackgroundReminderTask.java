@@ -30,6 +30,5 @@ public class BackgroundReminderTask extends TimerTask {
                 notificationManager.checkReminderList();
             }
         });
-
     }
 }

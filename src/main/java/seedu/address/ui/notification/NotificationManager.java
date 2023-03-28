@@ -7,12 +7,14 @@ import java.util.List;
 
 import org.controlsfx.control.Notifications;
 
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.util.Duration;
 import seedu.address.logic.Logic;
 import seedu.address.model.Model;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
+import seedu.address.model.jobs.sorters.SortbyTime;
 import seedu.address.model.reminder.Reminder;
 
 /**
@@ -70,17 +72,34 @@ public class NotificationManager {
                     String des = (i + 1) + ". " + r.getDescription();
                     String remind = "Remind at: " + r.reminderDateTimeToString();
                     this.model.setHasShown(i, true);
-                    show(des, remind, Pos.TOP_RIGHT);
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            show(des, remind, Pos.TOP_RIGHT);
+                        }
+                    });
                 }
             }
         }
     }
 
+    private DeliveryList getDeliveryList() {
+        this.model.updateFocusDate(LocalDate.now());
+        this.model.updateSortedDeliveryJobList(new SortbyTime());
+        this.model.updateSortedDeliveryJobListByDate();
+        this.model.updateWeekDeliveryJobList(LocalDate.now());
+        return this.model.getSortedDeliveryJobListByDate().get(LocalDate.now());
+    }
+
+    /**
+     * Method to check the current schedule in the timetable for any ongoing jobs. Creates a notification should a job
+     * exists.
+     */
     public void checkNowSchedule() {
-        DeliveryList deliveryList = this.model.getSortedDeliveryJobListByDate().get(LocalDate.now());
-        List<DeliveryJob> jobList = null;
+        DeliveryList deliveryList = getDeliveryList();
+        List<DeliveryJob> jobList;
         Calendar now = Calendar.getInstance();
-        int hour = now.get(Calendar.HOUR);
+        int hour = now.get(Calendar.HOUR_OF_DAY);
         switch (hour) {
         case 10:
             jobList = deliveryList.get(0);
@@ -109,14 +128,15 @@ public class NotificationManager {
         }
     }
 
+    /**
+     * Method to check if there are any upcoming jobs in the next scheduled slot in the timetable. Creates a
+     * notification should an upcoming job exists.
+     */
     public void checkNextSchedule() {
-        DeliveryList deliveryList = this.model.getSortedDeliveryJobListByDate().get(LocalDate.now());
-        List<DeliveryJob> jobList = null;
+        DeliveryList deliveryList = getDeliveryList();
+        List<DeliveryJob> jobList;
         Calendar now = Calendar.getInstance();
-        int hour = now.get(Calendar.HOUR);
-        if (hour < 10) {
-            jobList = deliveryList.get(0);
-        }
+        int hour = now.get(Calendar.HOUR_OF_DAY);
         switch (hour) {
         case 10:
             jobList = deliveryList.get(1);
@@ -134,7 +154,11 @@ public class NotificationManager {
             //nothing scheduled at the moment
             jobList = null;
         }
+        if (hour < 10) {
+            jobList = deliveryList.get(0);
+        }
         if (jobList != null) {
+            System.out.println(jobList.size());
             for (DeliveryJob d: jobList) {
                 String des = d.toString();
                 show("Upcoming Job(s)!", des, Pos.TOP_LEFT);
@@ -156,6 +180,4 @@ public class NotificationManager {
                 .position(pos);
         notificationBuilder.showConfirm();
     }
-
-
 }
