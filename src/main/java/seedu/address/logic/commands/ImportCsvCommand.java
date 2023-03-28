@@ -2,13 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
+import javafx.util.Pair;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonUtil;
 
 /**
  * Adds persons from a given CSV file to the address book.
@@ -38,15 +38,14 @@ public class ImportCsvCommand extends Command {
     }
 
     private static void requireNoDuplicates(List<Person> personList) throws CommandException {
-        HashMap<Person, Integer> hm = new HashMap<>();
-        for (int i = 0; i < personList.size(); i++) {
-            Optional<Integer> duplicateEntry = Optional.ofNullable(hm.put(personList.get(i), i));
-            if (duplicateEntry.isPresent()) {
-                int duplicated = duplicateEntry.get();
-                throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON_CSV,
-                        duplicated + HEADER_AND_ZERO_INDEX_OFFSET, i + HEADER_AND_ZERO_INDEX_OFFSET,
-                        personList.get(duplicated).getName()));
-            }
+        Pair<Integer, Integer> pairOfDuplicates = PersonUtil.findDuplicates(personList);
+
+        if (!pairOfDuplicates.equals(PersonUtil.NO_DUPLICATES_PAIR)) {
+            String duplicatedFieldString = PersonUtil.findDuplicateFieldString(
+                    personList.get(pairOfDuplicates.getKey()), personList.get(pairOfDuplicates.getValue()));
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON_CSV,
+                    pairOfDuplicates.getKey() + HEADER_AND_ZERO_INDEX_OFFSET, pairOfDuplicates.getValue()
+                    + HEADER_AND_ZERO_INDEX_OFFSET, duplicatedFieldString));
         }
     }
 

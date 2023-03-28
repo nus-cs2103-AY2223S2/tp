@@ -93,6 +93,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns the duplicated field that was found between {@code duplicatedPerson} and the address book.
+     */
+    public String getDuplicateString(Person duplicatedPerson) {
+        return persons.getDuplicatedString(duplicatedPerson);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */

@@ -69,10 +69,16 @@ public interface Model {
     boolean hasPersons(List<Person> persons);
 
     /**
-     * Returns the index of the first duplicate found between the given {@code persons} and the address book.
+     * Returns the index of the first duplicate found between the given {@code person}s and the address book.
      * Returns -1 if no duplicates are found.
      */
     int findDuplicateIndex(List<Person> persons);
+
+    /**
+     * Returns the {@code String} representation of the duplicate field found between the given {@code person} and the address
+     * book. Returns empty {@code String} if no duplicates are found.
+     */
+    String getDuplicateString(Person duplicatePerson);
 
     /**
      * Deletes the given person.
@@ -129,4 +135,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
 }

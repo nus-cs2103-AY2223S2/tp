@@ -107,6 +107,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public String getDuplicateString(Person person) {
+        requireNonNull(person);
+        return addressBook.getDuplicateString(person);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }

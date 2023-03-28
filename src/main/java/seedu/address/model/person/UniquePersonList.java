@@ -3,7 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,27 +46,50 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Returns true if the list shares at least one common person with the given argument.
+     * Returns true if any of the {@code Person}s in the internal list are considered duplicates of any single one of
+     * the {@code Person}s in the given list.
      */
     public boolean containsAny(List<Person> toCheck) {
         requireAllNonNull(toCheck);
-        HashSet<Person> existingPersons = internalList.stream().collect(Collectors.toCollection(HashSet::new));
-        return !toCheck.stream().allMatch(p -> existingPersons.add(p));
+
+        assert !PersonUtil.hasDuplicates(internalList) : "internal list should not contain duplicates";
+        assert !PersonUtil.hasDuplicates(toCheck) : "given list should not contain duplicates";
+
+        List<Person> combinedList = new ArrayList<>(List.copyOf(internalList));
+        combinedList.addAll(toCheck);
+        return PersonUtil.hasDuplicates(combinedList);
     }
 
     /**
-     * Returns the index of the first duplicate found between {@code newPersons} and the list.
+     * Returns the index of the first duplicate found between {@code newPersons} and
+     * the list. Given {@code newPersons} should not contain any duplicates.
      * Returns -1 if none are found.
      */
     public int findDuplicateIndex(List<Person> newPersons) {
         requireAllNonNull(newPersons);
-        HashSet<Person> existingPersons = internalList.stream().collect(Collectors.toCollection(HashSet::new));
-        for (int i = 0; i < newPersons.size(); i++) {
-            if (!existingPersons.add(newPersons.get(i))) {
-                return i;
+
+        assert !PersonUtil.hasDuplicates(internalList) : "internal list should not contain duplicates";
+        assert !PersonUtil.hasDuplicates(newPersons) : "given list should not contain duplicates";
+
+        List<Person> combinedList = new ArrayList<>(List.copyOf(internalList));
+        combinedList.addAll(newPersons);
+        int index = PersonUtil.findDuplicates(newPersons).getValue();
+        return index == -1 ? index : index - internalList.size();
+    }
+
+    /**
+     * Returns the String representing the duplicate field found between {@code newPerson} and the list.
+     * Gives an empty String if none are found.
+     */
+    public String getDuplicatedString(Person duplicatedPerson) {
+        requireNonNull(duplicatedPerson);
+
+        for (int i = 0; i < internalList.size(); i++) {
+            if (internalList.get(i).isSamePerson(duplicatedPerson)) {
+                return PersonUtil.findDuplicateFieldString(duplicatedPerson, internalList.get(i));
             }
         }
-        return -1;
+        return "";
     }
 
     /**
@@ -169,18 +192,12 @@ public class UniquePersonList implements Iterable<Person> {
      * Returns true if {@code persons} contains only unique persons.
      */
     private boolean personsAreUnique(List<Person> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePerson(persons.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return !PersonUtil.hasDuplicates(persons);
     }
 
     @Override
     public String toString() {
         return internalList.stream().map(Object::toString).collect(Collectors.joining(", "));
     }
+
 }
