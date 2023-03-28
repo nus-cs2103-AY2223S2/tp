@@ -2,21 +2,20 @@ package seedu.address.model;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.awt.*;
+import java.awt.Color;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
-import org.apache.pdfbox.pdmodel.graphics.color.PDColor;
+import javafx.collections.ObservableList;
 import seedu.address.AppParameters;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -188,7 +187,10 @@ public class PdfConverter {
             converted = "Complete";
             break;
         case "LATE":
-            converted =  "Late";
+            converted = "Late";
+            break;
+        default:
+            converted = "";
             break;
         }
         return converted;
