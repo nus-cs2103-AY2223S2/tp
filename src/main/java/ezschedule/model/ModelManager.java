@@ -1,6 +1,7 @@
 package ezschedule.model;
 
 import static ezschedule.commons.util.CollectionUtil.requireAllNonNull;
+import static ezschedule.logic.commands.ShowNextCommand.SHOW_UPCOMING_COUNT_ONE;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
@@ -38,7 +39,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEvents = new FilteredList<>(this.scheduler.getEventList());
         upcomingEvents = new FilteredList<>(this.scheduler.getEventList());
-        updateUpcomingEventList(PREDICATE_SHOW_NEXT_FIRST_EVENT);
+        updateUpcomingEventList(new UpcomingEventPredicate(SHOW_UPCOMING_COUNT_ONE));
     }
 
     public ModelManager() {
