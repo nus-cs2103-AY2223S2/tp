@@ -145,7 +145,22 @@ The responsibilities of `Model` component,
 
 ### Vaccination component
 
-<!-- TODO -->
+Vaccinations are represented as `VaxType` objects and stored within `VaxTypeManager`.
+
+#### VaxType
+
+To represent a vaccination, `VaxType` contains the following attributes:
+
+* A name represented as a `GroupName` object.
+* A set of groups which the vaccination classifies under as a set of `GroupName` objects.
+* A minimum age as an `Age` object.
+* A maximum age as an `Age` object.
+* A set ingredients of the vaccination as a set of `GroupName` objects.
+* A list of requirements of vaccination groups that will have to be taken before this vaccination can be taken as a list of `Requirement` objects.
+
+#### VaxTypeManager
+
+On top of storing `VaxType` objects, `VaxTypeManager` ensures the uniqueness of `VaxType`. It also ensures that there are at most 30 `VaxType` objects stored.
 
 ### Appointment component
 
