@@ -136,9 +136,14 @@ public class ParserUtil {
      */
     public static Email parseEmail(String email) throws ParseException {
         if (email == null) {
-            return new Email(null);
+            return new Email("-");
         }
+
         String trimmedEmail = email.trim();
+        if (trimmedEmail.equals("-")) {
+            return new Email("-");
+        }
+
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
