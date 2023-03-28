@@ -27,6 +27,15 @@ import seedu.address.model.util.CommandUtility;
  */
 public class ParserUtil {
 
+    /**
+     * Enumerates possibilities for timespans indicated: week, month, year.
+     */
+    public enum Timespan {
+        WEEK,
+        MONTH,
+        YEAR
+    }
+
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
@@ -207,20 +216,40 @@ public class ParserUtil {
     /**
      * Parses {@code String timespan} into a {@code LocalDate}.
      */
-    public static LocalDate parseTimespan(String timespan) throws ParseException {
+    public static Timespan parseTimespan(String timespan) throws ParseException {
         assert timespan != null : "input should not be null";
         requireNonNull(timespan);
         String trimmedTimespan = timespan.trim();
         LocalDate now = LocalDate.now();
         if (trimmedTimespan.equals("week") || trimmedTimespan.equals("w")) {
-            return now.with(DayOfWeek.MONDAY);
+            return Timespan.WEEK;
         }
         if (trimmedTimespan.equals("month") || trimmedTimespan.equals("m")) {
-            return now.withDayOfMonth(1);
+            return Timespan.MONTH;
         }
         if (trimmedTimespan.equals("year") || trimmedTimespan.equals("y")) {
-            return now.withDayOfYear(1);
+            return Timespan.YEAR;
         }
         throw new ParseException("Not a valid date format (week, month, year)");
+    }
+
+    /**
+     * Get earliest {@code LocalDate} within the given {@code Timespan}.
+     * @param t {@code Timespan} of week, month or year
+     * @return LocalDate of the earliest date in this timespan
+     */
+    public static LocalDate getDateByTimespan(Timespan t) {
+        switch (t) {
+        case WEEK:
+            return LocalDate.now().with(DayOfWeek.MONDAY);
+        case MONTH:
+            return LocalDate.now().withDayOfMonth(1);
+        case YEAR:
+            return LocalDate.now().withDayOfYear(1);
+        default:
+            break;
+        }
+        assert false : "Line should not be reached";
+        return null;
     }
 }
