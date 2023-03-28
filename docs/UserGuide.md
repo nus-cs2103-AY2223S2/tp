@@ -75,9 +75,9 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 
 ### Add
 
-- `add {module_code} [/name {module_name}]`: Adds a module to Le Tracker
-- `add {lecture_name} [/mod {module_code}]`: Adds a lecture to a module
-- `add {video_name} [/mod {module_code}] [/lec {lecture_name}]`: Adds a video to a lecture
+- `add {module_code} [/name {module_name}] [/tags {tag_1}, [{tag_2}, ...]]`: Adds a module to Le Tracker
+- `add {lecture_name} [/mod {module_code}] [/tags {tag_1}, [{tag_2}, ...]]`: Adds a lecture to a module
+- `add {video_name} [/mod {module_code}] [/lec {lecture_name}] [/watch] [/tags {tag_1}, [{tag_2}, ...]]`: Adds a video to a lecture
 
 ### Edit
 
@@ -215,36 +215,40 @@ _\* Both commands lists videos that belongs to lecture `Week 1` in module `CS204
 
 > Adds a module to Le Tracker.
 
-Format: `add {module_code} [/name {module_name}]`
+Format: `add {module_code} [/name {module_name}] [/tags {tag_1}, [{tag_2}, ...]]`
 
 - `module_code` must be unique among the module codes of the modules in Le Tracker
 - `module_code` must be a valid module code
 - `module_name` must be a valid module name
+- `tag_1`, `tag_2`, ... must be valid tags
+- `tag_1`, `tag_2`, ... if it contains repeated tags, the repeats will be ignored
 
 Examples:
 
-- `add CS2040 /name Data Structures and Algorithms`
+- `add CS2040 /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
 
 ### Add a Lecture
 
 > Adds a lecture to a module.
 
-Format: `add {lecture_name} [/mod {module_code}]`
+Format: `add {lecture_name} [/mod {module_code}] [/tags {tag_1}, [{tag_2}, ...]]`
 
 - `lecture_name` must be a valid lecture name
 - `lecture_name` must be unique among the names of the lectures belonging to the module specified in `module_code`
 - `module_code` must belong to an existing module
 - `module_code` if not specified, defaults to the module code of the module in the current context (if any)
+- `tag_1`, `tag_2`, ... must be valid tags
+- `tag_1`, `tag_2`, ... if it contains repeated tags, the repeats will be ignored
 
 Examples:
 
-- `add Lecture 01 Introduction /module CS2040`
+- `add Week 1 /module CS2040S /tags Intro, Important`
 
 ### Add a Video
 
 > Adds a video to a lecture.
 
-Format: `add {video_name} [/mod {module_code}] [/lec {lecture_name}]`
+Format: `add {video_name} [/mod {module_code}] [/lec {lecture_name}] [/watch] [/tags {tag_1}, [{tag_2}, ...]]`
 
 - `video_name` must be a valid video name
 - `video_name` must be unique among the names of the videos belonging to the lecture specified in `lecture_name`
@@ -252,10 +256,13 @@ Format: `add {video_name} [/mod {module_code}] [/lec {lecture_name}]`
 - `module_code` if not specified, defaults to the module code of the module in the current context (if any)
 - `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
 - `lecture_name` if not specified, defaults to the name of the lecture in the current context (if any)
+- `watch` is a flag that when specified will mark the video as watched
+- `tag_1`, `tag_2`, ... must be valid tags
+- `tag_1`, `tag_2`, ... if it contains repeated tags, the repeats will be ignored
 
 Examples:
 
-- `add-video /module CS2040 /lecture 1 /video lecture-01-part-1`
+- `add Video 1 /mod CS2040S /lec Week 1 /watch /tags Intro, Short`
 
 ### Edit a Module
 

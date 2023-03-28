@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.add.AddLectureCommand;
 import seedu.address.logic.commands.edit.EditLectureCommand;
@@ -36,7 +37,11 @@ public class LectureUtil {
     public static String getLectureDetails(ModuleCode moduleCode, Lecture lecture) {
         StringBuilder sb = new StringBuilder();
         sb.append(lecture.getName() + " ");
-        sb.append(PREFIX_MODULE + moduleCode.toString());
+        sb.append(PREFIX_MODULE + " " + moduleCode.toString() + " ");
+
+        if (!lecture.getTags().isEmpty()) {
+            sb.append(PREFIX_TAG + " " + TagUtil.getTagsStr(lecture.getTags()) + " ");
+        }
 
         return sb.toString();
     }

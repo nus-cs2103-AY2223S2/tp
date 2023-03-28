@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.add.AddModuleCommand;
 import seedu.address.logic.commands.edit.EditModuleCommand;
@@ -33,7 +34,11 @@ public class ModuleUtil {
     public static String getModuleDetails(Module module) {
         StringBuilder sb = new StringBuilder();
         sb.append(module.getCode() + " ");
-        sb.append(PREFIX_NAME + module.getName().name);
+        sb.append(PREFIX_NAME + " " + module.getName().name + " ");
+
+        if (!module.getTags().isEmpty()) {
+            sb.append(PREFIX_TAG + " " + TagUtil.getTagsStr(module.getTags()));
+        }
 
         return sb.toString();
     }

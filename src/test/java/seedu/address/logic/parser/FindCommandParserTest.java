@@ -1,14 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_BY_TAG_PREFIX;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LECTURE_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG;
 import static seedu.address.logic.commands.CommandTestUtil.LECTURE_NAME_DESC_L1;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_2103;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BY_TAG_PREFIX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -45,13 +45,13 @@ public class FindCommandParserTest {
 
         // Find by valid tag
         assertParseSuccess(parser,
-                String.format("%s, %s, %s", modA, modB, VALID_TAG),
+                String.format("%s, %s, %s", modA, modB, VALID_BY_TAG_PREFIX),
                 new FindCommand(Arrays.asList(modA, modB), true));
 
         // Find by invalid tag: Treated as a keyword
         assertParseSuccess(parser,
-                String.format("%s, %s, %s", modA, modB, INVALID_TAG),
-                new FindCommand(Arrays.asList(modA, modB, INVALID_TAG), false));
+                String.format("%s, %s, %s", modA, modB, INVALID_BY_TAG_PREFIX),
+                new FindCommand(Arrays.asList(modA, modB, INVALID_BY_TAG_PREFIX), false));
     }
 
     @Test
@@ -66,13 +66,13 @@ public class FindCommandParserTest {
 
         // Find by valid tag
         assertParseSuccess(parser,
-                String.format("%s, %s, %s", lecA, lecB, VALID_TAG) + MODULE_CODE_DESC_2103,
+                String.format("%s, %s, %s", lecA, lecB, VALID_BY_TAG_PREFIX) + MODULE_CODE_DESC_2103,
                 new FindCommand(Arrays.asList(lecA, lecB), true));
 
         // Find by invalid tag
         assertParseSuccess(parser,
-                String.format("%s, %s, %s", lecA, lecB, INVALID_TAG) + MODULE_CODE_DESC_2103,
-                new FindCommand(Arrays.asList(lecA, lecB, INVALID_TAG), false));
+                String.format("%s, %s, %s", lecA, lecB, INVALID_BY_TAG_PREFIX) + MODULE_CODE_DESC_2103,
+                new FindCommand(Arrays.asList(lecA, lecB, INVALID_BY_TAG_PREFIX), false));
     }
 
     @Test
@@ -88,15 +88,15 @@ public class FindCommandParserTest {
 
         // Find by valid tag
         assertParseSuccess(parser,
-                String.format("%s, %s, %s", vidA, vidB, VALID_TAG)
+                String.format("%s, %s, %s", vidA, vidB, VALID_BY_TAG_PREFIX)
                 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1,
                     new FindCommand(Arrays.asList(vidA, vidB), true));
 
         // Find by invalid tag
         assertParseSuccess(parser,
-                String.format("%s, %s, %s", vidA, vidB, INVALID_TAG)
+                String.format("%s, %s, %s", vidA, vidB, INVALID_BY_TAG_PREFIX)
                 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1,
-                    new FindCommand(Arrays.asList(vidA, vidB, INVALID_TAG), false));
+                    new FindCommand(Arrays.asList(vidA, vidB, INVALID_BY_TAG_PREFIX), false));
     }
 
     @Test
