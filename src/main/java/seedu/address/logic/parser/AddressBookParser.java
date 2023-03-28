@@ -84,6 +84,12 @@ public class AddressBookParser {
         case DeleteEventCommand.COMMAND_WORD:
             return new DeleteEventCommandParser().parse(arguments);
 
+        case TagEventCommand.COMMAND_WORD:
+            return new TagEventCommandParser().parse(arguments);
+
+        case UnTagEventCommand.COMMAND_WORD:
+            return new UnTagEventCommandParser().parse(arguments);
+
         case FavoriteCommand.COMMAND_WORD:
             return new FavoriteCommandParser().parse(arguments);
 
@@ -95,7 +101,6 @@ public class AddressBookParser {
 
         case TabCommand.COMMAND_WORD:
             return new TabCommandParser().parse(arguments);
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

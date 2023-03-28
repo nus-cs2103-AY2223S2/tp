@@ -118,6 +118,10 @@ public class UniqueEventList implements Iterable<Event> {
         }
     }
 
+    public void editPersonForAllEvents(Person personToEdit) {
+        System.out.println(this.internalList.toString());
+    }
+
     /**
      * Tags person to event.
      */

@@ -2,10 +2,12 @@ package seedu.address.model.event;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Set;
 
 import seedu.address.model.event.fields.DateTime;
 import seedu.address.model.event.fields.Description;
 import seedu.address.model.event.fields.Recurrence;
+import seedu.address.model.person.Person;
 
 /**
  * Creates a Recurring Event for the Calendar.
@@ -13,8 +15,8 @@ import seedu.address.model.event.fields.Recurrence;
 public class RecurringEvent extends Event {
 
     public RecurringEvent(Description description, DateTime startDateTime,
-                          DateTime endDateTime, Recurrence recurrence) {
-        super(description, startDateTime, endDateTime, recurrence);
+                          DateTime endDateTime, Recurrence recurrence, Set<Person> taggedPeople) {
+        super(description, startDateTime, endDateTime, recurrence, taggedPeople);
     }
 
     /**

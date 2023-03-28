@@ -19,19 +19,20 @@ public abstract class Event {
     protected final DateTime startDateTime;
     protected final DateTime endDateTime;
     protected final Recurrence recurrence;
-    protected final Set<Person> taggedPeople;
+    protected final Set<Person> taggedPeople = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      * One Time Events will be handled by a None Recurrence Enum.
      */
-    public Event(Description description, DateTime startDateTime, DateTime endDateTime, Recurrence recurrence) {
-        requireAllNonNull(description, startDateTime, endDateTime, recurrence);
+    public Event(Description description, DateTime startDateTime, DateTime endDateTime, Recurrence recurrence,
+                 Set<Person> taggedPeople) {
+        requireAllNonNull(description, startDateTime, endDateTime, recurrence, taggedPeople);
         this.description = description;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.recurrence = recurrence;
-        this.taggedPeople = new HashSet<>();
+        this.taggedPeople.addAll(taggedPeople);
     }
 
     public Description getDescription() {

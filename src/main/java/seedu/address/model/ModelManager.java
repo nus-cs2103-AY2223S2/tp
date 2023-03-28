@@ -183,6 +183,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void editPersonForAllEvents(Person personToEdit) {
+        this.userData.editPersonForAllEvents(personToEdit);
+    }
+
+    @Override
     public void tagPersonToEvent(Index index, Person p) {
         this.userData.tagPersonToEvent(index, p);
     }
@@ -191,11 +196,11 @@ public class ModelManager implements Model {
     public void untagPersonFromEvent(Index index, Person p) {
         this.userData.untagPersonFromEvent(index, p);
     }
-
     @Override
     public boolean isPersonTaggedToEvent(Index index, Person p) {
         return this.userData.isPersonTaggedToEvent(index, p);
     }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
