@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UNWATCH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WATCH;
 
 import seedu.address.logic.commands.add.AddVideoCommand;
@@ -87,6 +88,8 @@ public class VideoUtil {
     public static String getEditLectureDescriptorDetails(EditVideoDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(" " + name.name).append(" "));
+        descriptor.hasWatched().ifPresent(hasWatched -> sb.append(hasWatched ? PREFIX_WATCH : PREFIX_UNWATCH)
+                .append(" "));
         descriptor.getTags().ifPresent(tags -> sb.append(PREFIX_TAG).append(" " + TagUtil.getTagsStr(tags))
                 .append(" "));
         return sb.toString();
