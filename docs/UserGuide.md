@@ -1,10 +1,17 @@
-Wingman is a **modal** manager for managing crew, flights, locations, pilots, and planes.
-It seeks to provide a highly efficient way of resource management for airline managers.
+Wingman is a **modal** manager for managing (e.g. adding/deleting/linking/unlinking) crew, flights, locations, pilots, 
+and planes via a Command Line Interface(CLI) while still having the benefits of a Graphical User Interface (GUI). It seeks to provide a highly efficient way of resource management for airline managers.
+
+This guide is to guide you on how to use Wingman to efficiently manage the various aspects of airline operations,
+such as flight scheduling and management of crew, pilot, plane and location.
 
 ## Table of Contents
 - **[How to use this guide?](#how-to-use-this-guide)**
 - **[Getting Started](#getting-started)**
 - **[Features](#features)**
+   - **[Modal Editing](#modal-editing)**
+   - **[Shared Commands](#shared-commands)**
+   - **[Mode-specific Commands](#mode-specific-commands)**
+   - **[Application Commands](#application-commands)**
 - **[Command summary](#command-summary)**
 - **[FAQ](#faq)**
 - **[Other information](#other-information)**
@@ -26,6 +33,12 @@ You can get started with Wingman in just 3 simple steps:
 3. Run the following command: `java -jar Wingman.jar` in your terminal
 
 You should now be in the Wingman application. 
+
+A GUI similar to the below should appear in a few seconds. 
+Note how the app contains some sample data.
+
+<img src="images/WingmanUI.jpg" width="2032">
+
 If that is not the case, head over to our [FAQ](#faq) section to troubleshoot
 
 
@@ -357,9 +370,9 @@ Note that the indexing for `resource_index` starts from 0.
 
 <div style="page-break-after: always;"></div>
 
-## Application Commands
+### Application Commands
 
-### 1. Exiting from Wingman
+#### 1. Exiting from Wingman
 ```
 exit
 ```
