@@ -639,6 +639,24 @@ _Details coming soon ..._
 ### How To Check Java Version
 [Scroll back to *Downloading CoDoc*](#downloading-codoc)
 ### How to Open CoDoc
+
+Batch file method for Windows uers:
+1. Right-click the empty space in the _home folder_ and create new _text file_.
+
+    [image]
+
+2. Open the _text file_ with any text editor (notepad is fine) and write in `java -jar codoc.jar`. Save and close the file.
+
+    [image]
+
+3. Rename the file to `start.bat`. Make sure that file extension gets changed too, if you do not know how see the file 
+extension, see [here](https://www.howtogeek.com/205086/beginner-how-to-make-windows-show-file-extensions/).
+    
+    [image]
+
+4. If done correctly, you should now see a file with an icon similar to below. Double-click the renamed batch file `start.bat` to launch CoDoc.
+
+
 [Scroll back to *Downloading CoDoc*](#downloading-codoc)
 
 --------------------------------------------------------------------------------------------------------------------
