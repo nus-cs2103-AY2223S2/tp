@@ -98,6 +98,7 @@ Examples:
 - `add t/Orange juice d/Yummy i/Orange s/Juice the orange` is valid
 - `add t/Orange juice d/Yummy i/Orange` is not valid because `s/` is compulsory
 - `add t/Orange juice d/Yummy i/Orange i/Sugar s/Juice the orange` is valid because we can have multiple `i/` flags
+
 ### Edit a recipe: `edit {recipe number}`
 Edits a recipe in the recipe book.
 
