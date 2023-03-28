@@ -221,6 +221,8 @@ Other examples:
 :white_check_mark: **Input Shortcut:**
 Format: `f n/NAME`
 
+</div>
+
 ### Updating
 
 #### Updating your pet information : `edit`
@@ -284,13 +286,21 @@ Format: `delete INDEX`
 Examples:
 * `delete 2` deletes the second pet in the currently displayed pet list in the PetPal.
 
+#### Archiving a pet: `archive`
+
+Archives the specified pet into the `archive.json` file in the `data` folder
+This command can be undone
+
+Format: `archive INDEX`
+
+![archive](images/UG/archive.png)
 
 #### Clearing all entries : `clear`
 
 Clears all entries from PetPal.json.
 Format: `clear`
 
-![clear](images/UserGuide/clear.png)
+![clear](images/UG/clear.png)
 
 <div markdown="block" class="alert alert-block alert-warning">
 
@@ -314,22 +324,15 @@ You can use this command when:
 
 Format: `undo`
 
-![undo](images/UserGuide/undo.png)
+![undo](images/UG/undo.png)
 
 <div markdown="block" class="alert alert-block alert-warning">
 
 :heavy_exclamation_mark: **Important**
-You can undo a [`redo` command](#redoing-a-previous-command--redo).
+You can `undo` an `undo` command 
 
 </div>
 
-#### Redoing a previous command : `redo`
-
-Redos your last undone command.
-
-Format: `redo`
-
-![redo](images/UserGuide/redo.png)
 
 ### Exiting the program : `exit`
 
@@ -377,7 +380,8 @@ If your changes to the data file makes its format invalid, FABook will discard a
 <div markdown="block" class="alert alert-block alert-success">
 
 * :bulb: **Note:**
-  If you wish to transfer only 1 of the files over, repeat the same steps, and replace the file you want to move, instead of the entire `data` folder
+If you wish to transfer only 1 of the files over, repeat the same steps, and replace the file you want to move, instead of the entire `data` folder
+
 </div>
 
 **Q**: How do I view the entire pet list after a `find` command?<br>
