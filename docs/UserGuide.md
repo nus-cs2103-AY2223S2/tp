@@ -43,6 +43,9 @@ Line Interface** (CLI) while still having the benefits of a Graphical User Inter
 *Fish Ahoy!* **simplifies** the fish keeping experience by helping you keep track of your many **fishes**, **tanks** and 
 **weekly tasks**, such as feeding and cleaning. 
 
+*Fish Ahoy!* **abstracts** commands to revolve around **fish**, **tank** and **task**. When you want to, for example,
+perform an action on **tanks**, the commands all begin with `tank`.
+
 Choose a feature from our table of contents above to find answers and get step-by-step instructions on how to make 
 *Fish Ahoy!* work for you! Else, follow our [Quick Start Guide](#quick-start) below to get started.
 
