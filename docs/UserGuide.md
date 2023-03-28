@@ -176,6 +176,8 @@ Refer to the [Features](#4-features) below for details of each command.
 
 ## 4. Features
 
+ConnectUS has a list of features to assist you in your contact management needs!
+
 - [4.1 Viewing help: `help`](#41-viewing-help-help)
 - [4.2 Listing all contacts: `list`](#42-listing-all-contacts-list)
 - [4.3 Clearing all entries: `clear`](#43-clearing-all-entries-clear)
@@ -359,9 +361,9 @@ The `delete` command:
 
 ### 4.9 Searching for contact information: `search`
 
-Finds all contacts whose information fields and tags contain any of the given keywords.
-
 Format: `search KEYWORD`
+
+> Finds all contacts whose information fields and tags contain any of the given keywords.
 
 Examples:
 * `search january` returns all contacts whose information fields contain the keyword `january`.
@@ -369,34 +371,58 @@ Examples:
 
 * The keywords are case-insensitive! This means that `search january`, `search JANUARY` and `search jAnUaRy` will all return the contacts whose information fields contain the keyword `january`.
 
+**Example:**
+
+**Input in Command Box:** `search january`
+
+**Result:**<br>![SearchContactExample](images/johndoe.png)
+
 [↑ Back to feature list](#4-features)
 
 ### 4.10 Opening a social media platform: `open`
 
-You can directly open supported social media platforms (i.e. Instagram, Telegram, WhatsApp) from the CLI.
+Format: `open INDEX [tg/] [wa/] [ig/]`
+
+> Opens the respective social media platform of an existing contact.
+
+If you want to send a message to a contact, you can directly open supported social media platforms (i.e. Instagram, Telegram, WhatsApp) from the CLI.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You'll need to download the desktop applications for <a href="https://desktop.telegram.org/" class="alert-link">Telegram</a> and <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> respectively if you want to use these features!
+</div>
+
+**Example:**
+
+**Input in Command Box:** `open 1 tg/`
+
+**Result:**<br>![OpenContactExample](images/johndoe.png)
 
 [↑ Back to feature list](#4-features)
 
 ### 4.11 Exiting the program: `exit`
 
-Exits the program.
-
 Format: `exit`
+
+> Exits the program.
+
+When you are done with your contact management needs, you can exit ConnectUS with the `exit` command.
 
 [↑ Back to feature list](#4-features)
 
 ### 4.12 Saving the data
 
-ConnectUS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+You won't ever need to worry about losing your contacts. ConnectUS automatically saves your data in the hard disk after any command that changes the data. There is no need to save manually.
 
 [↑ Back to feature list](#4-features)
 
 ### 4.13 Editing the data file
 
-ConnectUS data is saved as a JSON file `[JAR file location]/data/ConnectUS.json`. Advanced users are welcome to update data directly by editing that data file.
+If you are an advanced user, you are welcome to update data directly by editing the data file.
+
+ConnectUS data is saved as a JSON file `[JAR file location]/data/ConnectUS.json`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, ConnectUS will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, ConnectUS will discard all data and start with an empty data file at the next run. Do remember to keep a backup of your data before attempting any changes in this manner!
 </div>
 
 [↑ Back to feature list](#4-features)
@@ -404,6 +430,8 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 [↑ Back to table of contents](#table-of-contents)
 
 ## 5. Information Fields & Prefixes
+
+Here is a list of prefixes that ConnectUS uses when taking paramters.
 
 - [5.1 Name: `n/`](#51-name-n)
 - [5.2 Phone: `p/`](#52-phone-p)
