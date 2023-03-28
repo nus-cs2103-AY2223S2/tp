@@ -521,6 +521,89 @@ vaccination clear
 Output:<br>
 {some ss}
 
+#### `find` - Finds a vaccination
+
+Given a `<string>`, search and filter out only vaccination whose names contains the character sequence of the given `<string>` in the given order. Whitespace characters within the given `<string>` are ignored and taken to be that any number of characters may between the two character sequences that the whitespace separates. The search is case-insensitive.
+
+For example, if given `Dose Dose 1`, the following will match:
+
+* `Dose Dose 1`
+* `Dose abc dose abc 1`
+
+However, the following will not:
+
+* `Dose 1` - Missing a `dose`.
+* `1 Dose Dose` - Wrong order.
+* `Dose dose` - Missing `1`.
+
+Providing blank `<string>`, a character sequence that contains only whitespace characters, is the equivalent to the [list](#list---lists-all-vaccination) command.
+
+##### Syntax
+
+<pre>
+vaccination find <var>VAX_NAME</var>
+</pre>
+
+* <code><var>VAX_NAME</var></code> : `<string>` - the character sequence in the vaccination to search for.
+
+##### Example
+
+```text
+vaccination find dose 1
+```
+
+Output:<br>
+{some ss}
+
+#### `list` - Lists all vaccination
+
+Clears previously set filters and list all vaccinations in the list view.
+
+##### Syntax
+
+<pre>
+vaccination list
+</pre>
+
+##### Example
+
+```text
+vaccination list
+```
+
+Output:<br>
+{some ss}
+
+#### `detail` - Displays the detail of a vaccination
+
+##### Syntax
+
+<pre>
+vaccination detail <var>VACCINATION</var>
+</pre>
+
+* <code><var>VACCINATION</var></code> : `<vax-retriever>`
+
+##### Example
+
+```text
+vaccination detail Dose 1 (Moderna)
+```
+
+Output:<br>
+{some ss}
+
+```text
+vaccination detail 1
+```
+
+Output:<br>
+{some ss}
+
+##### Restrictions
+
+* <code><var>VACCINATION</var></code> must exist in the system.
+
 ## Advance
 
 VMS data are saved as a JSON file. Advanced users are welcome to update data directly by editing that data file.
