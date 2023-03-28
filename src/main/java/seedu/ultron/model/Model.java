@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.ultron.commons.core.GuiSettings;
+import seedu.ultron.model.opening.KeydateSort;
 import seedu.ultron.model.opening.Opening;
 
 /**
@@ -85,4 +86,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredOpeningList(Predicate<Opening> predicate);
+
+    /**
+     * Sorts the filter of the filtered opening list in the given {@code direction}
+     * @param direction
+     */
+    public void sortFilteredOpeningList(KeydateSort direction);
 }
