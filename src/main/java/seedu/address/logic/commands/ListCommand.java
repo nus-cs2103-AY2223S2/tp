@@ -48,11 +48,9 @@ public class ListCommand extends Command {
 
         if (categoryPredicate.isPresent() && timespanPredicate.isPresent()) {
             model.updateFilteredExpensesList(categoryPredicate.get().and(timespanPredicate.get()));
-        }
-        else if (categoryPredicate.isPresent()) {
+        } else if (categoryPredicate.isPresent()) {
             model.updateFilteredExpensesList(categoryPredicate.get());
-        }
-        else if (timespanPredicate.isPresent()) {
+        } else if (timespanPredicate.isPresent()) {
             model.updateFilteredExpensesList(timespanPredicate.get());
         }
 
