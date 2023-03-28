@@ -3,6 +3,36 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
-    <ListView fx:id="sessionListView" VBox.vgrow="ALWAYS" />
-</VBox>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.chart.PieChart?>
+<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+    <ListView fx:id="sessionListView" HBox.hgrow="ALWAYS"/>
+    <ScrollPane fx:id="sessionDetailDisplay" prefWidth="300" hvalue="1.0" hbarPolicy="NEVER" GridPane.columnIndex="0"
+                xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: #252745;">
+        <padding>
+            <Insets top="5" right="5" bottom="5" left="15"/>
+        </padding>
+        <VBox fx:id="sessionDetailContainer" maxWidth="400" prefWidth="265" prefHeight="700" style="-fx-background-color: #252745;">
+            <VBox>
+                <Label fx:id="selectedName" maxHeight="Infinity" text="Please select a session"
+                       style="-fx-text-fill: white;"/>
+            </VBox>
+            <VBox>
+                <Label fx:id="dateField" styleClass="field_label"/>
+                <Label fx:id="selectedDate" maxHeight="Infinity" style="-fx-text-fill: white;"/>
+            </VBox>
+            <VBox>
+                <Label fx:id="locationField" styleClass="field_label"/>
+                <Label fx:id="selectedLocation" maxHeight="Infinity" style="-fx-text-fill: white;"/>
+            </VBox>
+            <VBox>
+                <Label fx:id="studentsField" styleClass="field_label"/>
+                <PieChart fx:id="attendanceChart" prefHeight="200" prefWidth="200" />
+            </VBox>
+        </VBox>
+    </ScrollPane>
+</HBox>
