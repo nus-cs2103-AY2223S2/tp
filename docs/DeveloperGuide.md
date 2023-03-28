@@ -11,6 +11,7 @@ title: Developer Guide
 
 * Undo/redo feature implementation concept from original [_AddressBook 3 Developer Guide_](https://nus-cs2103-ay2223s2.github.io/tp/DeveloperGuide.html).
 * Calendar feature implementation adapted from this [_JavaFX guide_](http://www.java2s.com/ref/java/javafx-gridpane-layout-calendar.html).
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -263,21 +264,21 @@ The following activity diagram summarizes what happens when a Coach executes a n
 #### Introduction:
 The grouping feature enables the addition and deletion of groups in the AddressBook. It provides two commands — `group` and `groupmod` that can be used to add, delete or modify the contents of groups in the `AddressBook`.
 
-####Architecture:
+#### Architecture:
 The grouping feature is supported by two classes — the `Group` class and the `UniqueGroupList` class. The `Group` class consists of two attributes a `UniquePersonList` (similar to that present in the `Addressbook`) and a `Tag`,
 While  the `UniqueGroupList` is essentially a list of unique groups. The class diagram below  illustrates the relationship between the two classes.
 
 ![GroupListClassDiagram](images/GroupListclassdiagram.png)
 
 To allow coaches to take full advantage of the grouping functionality, two commands are required.
-###GroupCommand
+### GroupCommand
 This command is used to add or delete groups from the AddressBook.<br>`group m/MODIFICATION g/GROUPNAME` where:<br>
 1. `m/`: flag to indicate the type of modification.
     1. `add`: adds an athlete to an existing group.
     2. `remove`: deletes an athlete from an existing group.
 2. `g/`: flag to indicate the group name.<br>
 
-#####Adding a group
+##### Adding a group
 To add a new `Group` with the `Tag` “Hall”, the coach can execute the following command:
 
 `group m/add g/Hall`
@@ -288,7 +289,7 @@ The object diagram shown depicts such an instance.
 
 ![GroupObject](images/GroupObject.png)
 
-#####Deleting a group
+##### Deleting a group
 To delete an existing group with the name “Hall”, the coach can execute the following command:
 `group m/delete g/Hall`
 
@@ -296,7 +297,7 @@ This will trigger method `deleteGroup()` in `ModelManager` that will call the me
 During this method, the group cannot merely be deleted. It must first iterate through every athlete on the list and remove the "Hall"
 `Tag` for every athlete. Only after removing all "Hall" tags in the AddressBook can we delete the specified group.
 
-###GroupModifyCommand
+### GroupModifyCommand
 After enabling the creation and deletion of groups, the next step is to allow the addition and removal of
 athletes to / from groups. The `groupmod` command allows for such a function.
 
@@ -308,7 +309,7 @@ athletes to / from groups. The `groupmod` command allows for such a function.
    2. `remove`: deletes an athlete from an existing group.
 3. `g/`: flag to indicate the group name.
 
-####Adding an athlete to a group:
+#### Adding an athlete to a group:
 1. To add an athlete named “John” (at index 1) to an existing group named “Hall”, the coach can execute:
 `groupmod 1 m/add g/Hall`.
 
@@ -316,11 +317,11 @@ In such a scenario, two key things occur.
 1. The athlete "John" will be added to the `Group` with a `Tag` "Hall".
 2. The `Tag` "Hall" will be added to the list of tags in John's attribute.
 
-#####Removing an athlete from a group
+##### Removing an athlete from a group
 To remove an athlete named “John” from an existing group named “Hall”, the coach can execute the following command:
 `groupmod 1 m/delete g/Hall`
 
-####Sequence Of Events:
+#### Sequence Of Events:
 1. When the command is called, the parser finds the athlete at index 1 and creates a` Group` of name "Hall"
 2. A `GroupModifyCommand` is created.
 3. Once the `execute()` method is called on the `GroupModifyCommand` object, `removePersonFromGroup(John)` is called in the `Model`.
@@ -328,7 +329,7 @@ To remove an athlete named “John” from an existing group named “Hall”, t
 5. If it does, "John" will be removed from the "Hall" group.
 6. John's "Hall" group tag will also be removed.
 
-###Conclusion:
+### Conclusion:
 The grouping feature provides a way to add, delete and modify the contents of groups in the AddressBook. It is built on top of the `UniqueGroupList` data structure and provides two commands - `group` and `groupmod` - to perform the desired operations.
 Although the overall design of the `GroupList` may seem like an inefficient use of space, since we store duplicate copies of an athlete, an athlete belongs to every existing `Group`. It makes implementation simpler, allowing more operations to be implemented in the future.
 
@@ -427,7 +428,11 @@ Priorities:<br>**High (must have)** - `* * *`<br>Medium (nice to have) - `* *`<b
 
 * 2a. The list is empty.
 
-  Use case ends.
+    * 2a1. SportSync shows an error message.
+
+      Use case resumes at step 1.
+
+   Use case ends.
 
 #### Use case: Edit an athlete
 

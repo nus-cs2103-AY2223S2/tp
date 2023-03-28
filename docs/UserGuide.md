@@ -2,11 +2,9 @@
 layout: page
 title: User Guide
 ---
-
 SportSync is a **desktop app for managing training sessions and athletes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SportSync can get your training management tasks done faster than traditional GUI apps.
-
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,7 +12,7 @@ SportSync is a **desktop app for managing training sessions and athletes, optimi
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `sportsync.jar` from [here](https://github.com/se-edu/SportSync/releases).
+2. Download the latest `sportsync.jar` from [here](https://github.com/AY2223S2-CS2103T-W13-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your SportSync.
 
@@ -23,7 +21,7 @@ SportSync is a **desktop app for managing training sessions and athletes, optimi
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * `list` : Lists all athletes.
@@ -36,7 +34,7 @@ SportSync is a **desktop app for managing training sessions and athletes, optimi
 
     * `exit` : Exits the app.
 
-7. Refer to the [Features](#features) below for details of each command.
+Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -47,7 +45,7 @@ SportSync is a **desktop app for managing training sessions and athletes, optimi
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the coach.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe…​`.
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -84,8 +82,8 @@ Undoes a previously entered command.
 
 Format: `undo`
 
-* Returns the state of the athlete list to the state before the last entered coach command.
-* Cannot be used if no coach commands have been entered yet.
+* Returns the state of the athlete list to the state before the last entered command.
+* Cannot be used if no commands have been entered yet.
 
 ### Redoing a previous command : `redo`
 
@@ -94,10 +92,10 @@ Redoes a previously entered command.
 Format: `redo`
 
 * Returns the state of the athlete list to the state before undoing the last entered command.
-* Cannot be used if no coach commands have been entered yet.
+* Cannot be used if no commands have been entered yet.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If the athlete list is changed after an undo command, a redo command cannot be done.
+If the athlete list is changed after an undo command, a redo cannot be done.
 </div>
 
 ### Adding an athlete: `add`
@@ -107,7 +105,7 @@ Adds an athlete to SportSync.
 Format: `add n/NAME p/PHONE_NUMBER a/ADDRESS r/PAY_RATE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-an athlete can have any number of tags (including 0)
+An athlete can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -129,7 +127,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`
 * Edits the athlete at the specified `INDEX`. The index refers to the index number shown in the displayed athlete list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the athlete will be removed i.e. adding of tags is not cumulative.
+* When editing tags, the existing tags of the athlete will be removed. <br>(i.e. adding of tags is not cumulative)
 * You can remove all the athlete’s tags by typing `t/` without
   specifying any tags after it.
 
@@ -152,7 +150,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find carl alice` returns `Alice Pauline`, `Carl Kurz`<br>
+* `find carl alice` returns `Alice Pauline`, `Carl Kurz`<br><br>
   ![result for 'find alex david'](images/findCarlAliceResult.png)
 
 ### Deleting an athlete : `delete`
@@ -273,7 +271,7 @@ If your changes to the data file makes its format invalid, SportSync will discar
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SportSync home folder.
 
-### Glossary
+## Glossary
 
 * **Pay rate**: The amount of fees paid by the athlete per training session.
 --------------------------------------------------------------------------------------------------------------------
@@ -285,7 +283,7 @@ If your changes to the data file makes its format invalid, SportSync will discar
 | **Add**       | `add n/NAME p/PHONE_NUMBER r/PAY_RATE a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 r/7 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Clear**     | `clear`                                                                                                                                                |
 | **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                    |
-| **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee r/3`                                            |
+| **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`<br> e.g., `edit 2 n/James Lee r/3`                                           |
 | **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                             |
 | **List**      | `list`                                                                                                                                                 |
 | **Help**      | `help`                                                                                                                                                 |
