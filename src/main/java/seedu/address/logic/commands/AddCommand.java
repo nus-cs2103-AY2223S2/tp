@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.logic.commands.results.ViewCommandResult;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -47,7 +47,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public ViewCommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
@@ -62,7 +62,8 @@ public class AddCommand extends Command {
 
         Person indexedPerson = model.addPerson(candidatePerson);
         model.updateObservablePersonList();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, indexedPerson));
+        return new ViewCommandResult(
+                String.format(MESSAGE_SUCCESS, indexedPerson), indexedPerson);
     }
 
     @Override

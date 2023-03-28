@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ContactIndex;
+import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
 /**
@@ -23,7 +24,7 @@ public class TagCommandParser implements Parser<TagCommand> {
      */
     public TagCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, Prefix.MODULE_TAG);
+        ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, Prefix.MODULE_TAG, Prefix.GROUP_TAG);
 
         ContactIndex contactIndex;
 
@@ -36,10 +37,21 @@ public class TagCommandParser implements Parser<TagCommand> {
         Optional<Set<ModuleTag>> modulesToAdd =
                 ParserUtil.parseModuleTagsForCommands(argMultiMap.getAllValues(Prefix.MODULE_TAG));
 
-        if (modulesToAdd.isEmpty()) {
+        Optional<Set<GroupTag>> groupsToAdd =
+                ParserUtil.parseGroupTagsForCommands(argMultiMap.getAllValues(Prefix.GROUP_TAG));
+
+        if (modulesToAdd.isEmpty() && groupsToAdd.isEmpty()) {
             throw new ParseException(TagCommand.MESSAGE_NO_TAGS);
         }
 
-        return new TagCommand(contactIndex, modulesToAdd.get());
+        if (modulesToAdd.isPresent() && groupsToAdd.isPresent()) {
+            throw new ParseException(TagCommand.MESSAGE_BOTH_TAGS_INPUTTED);
+        }
+
+        if (groupsToAdd.isPresent()) {
+            return new TagCommand(contactIndex, groupsToAdd.get(), TagType.GROUP);
+        }
+
+        return new TagCommand(contactIndex, modulesToAdd.get(), TagType.MODULE);
     }
 }

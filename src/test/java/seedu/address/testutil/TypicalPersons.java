@@ -163,7 +163,8 @@ public class TypicalPersons {
             .withPhone("99997496")
             .withTelegramHandle("@kevinho")
             .withGroupTags("NUS")
-            .withModuleTags(MODULE_TAG_SET_12).build();
+            .withModuleTags(MODULE_TAG_SET_12)
+            .build();
 
     public static final Person LAO = new PersonBuilder().withName("Lao Ming Da")
             .withAddress(LAVENDER)
