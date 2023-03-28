@@ -231,6 +231,57 @@ We settled on just a **set** and **append** command as deleting a note can be do
   We can then provide an additional command to view all the notes with a specific tag, along with their associated customer/order.  
 
 
+### Order Status
+
+An order's `status` attribute represents the stage of an order, which can be one of these:
+* Pending
+* Paid
+* Shipped
+* Completed
+* Cancelled
+
+**Note:** Other than the `Cancelled` stage, an order is expected to start from `Pending` and proceed along the order as mentioned above.
+
+For the implementation, we introduce a few classes. Firstly, `StatusValue` is an enumeration whose values are the stages mentioned above.
+Next, a `StatusUpdate` class encapsulates a `StatusValue` and a date. 
+Finally, a `Status` class serves as the attribute of an Order that has many `StatusUpdate`.
+
+A `StatusUpdate` represents the information of when the `Order` transitions into the stage of `StatusValue` it has. 
+Thus, an order's `Status` has an association with many `StatusUpdate` to represent the history of how an order progresses from one stage to another.
+
+#### Alternative Approaches
+
+We also considered implementing the status attribute as an array of dates with a size of 5. 
+Each entry of this array would correspond to each possible stage of the order.
+
+However, this design would not be extensible for including other information such as a note or comment for each stage.
+Furthermore, this design assumes that the order's status can only move forward in progress and cannot revert without losing information.
+E.g. An order may return from `Shipped` to `Paid` again if the shipping fails to succeed for the business owner.
+
+With the current implemented approach, `StatusUpdate` can encapsulate other information such as the comment or note. 
+Furthermore, `Status` class which has many `StatusUpdate` which does not assume the size of it or any other information.
+Hence, this potentially allows subsequent `StatusUpdate` to have a stage that is before the previous entry of `StatusUpdate`.
+More details are explained in **Potential Enhancements**.
+
+
+#### Potential Enhancements
+
+* **Improvement in Reverting Order Progress**
+
+  Currently, the implementation reverts an order's status by deleting the latest `StatusUpdate`. 
+  Hence, information is lost that an order was once in that state before returning back.
+  Furthermore, `Status` sorts `StatusUpdate` by its `StatusValue` so that the assumption that the latest entry is the latest is always true.
+
+  In the future, it may be useful that the information are preserved and not deleted from the system. 
+  A potential implementation is by appending new `StatusUpdate` into `Status` instead of deleting the latest entry.
+  However, do note that the sorting logic must be updated.
+
+* **More Status Information**
+
+  In the future, the user may find it useful to provide additional information when updating its order status.
+  Eg. Add notes about the shipping details when the order updates from `Paid` to `Shipped`.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

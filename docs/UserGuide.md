@@ -25,13 +25,13 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+   * `listc` : Lists all customers.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `addc n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a customer named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all customers and orders.
 
    * `exit` : Exits the app.
 
@@ -60,7 +60,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `listc`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -80,6 +80,7 @@ Adds a customer to the current list.
 Format: `addc [ct/{ind/ent}] n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Customers are 'Individiuals' by default!
 ind - Individuals
 ent - Enterprise
 </div>
@@ -87,12 +88,32 @@ ent - Enterprise
 Examples:
 * `addc ct/ind n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addc ct/ent n/The Potato Farm e/thepotatofarm@example.com a/South street, block 983, #02-01 p/1234567`
+* `addc n/Mary Jane p/93130151 e/maryjane@example.com a/Mary Lamb Street, block 23, #01-12`
 
 ### Listing all customers : `listc`
 
 Shows a list of all customers.
 
 Format: `listc`
+
+### View a customer : `viewc`
+
+Display a customer's information in the information panel.
+
+Format: `viewc INDEX`
+
+* Displays the customer's information at the specified `INDEX`.
+* * The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can click on the customer in the table directly for the same effect!
+</div>
+
+Examples:
+* `listc` and `viewc 2` opens `Bernice Yu` on the information panel on the right
+  ![result for 'viewc 2'](images/viewcBerniceYuResult.png)
+
 
 ### Deleting a customer : `deletec`
 
@@ -106,7 +127,7 @@ Format: `deletec INDEX`
 
 Examples:
 * `listc` followed by `deletec 2` deletes the 2nd person in the address book.
-* `findc Betsy` followed by `delete 1` deletes the 1st person in the results of the `findc` command.
+* `findc Betsy` followed by `deletec 1` deletes the 1st person in the results of the `findc` command.
 
 ### Marking a person: `markc`
 
@@ -207,8 +228,8 @@ Format: `editc INDEX [ct/{ind|env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 ct/ind n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `editc 2 ct/ind n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Setting a customer's note : `setnotec`
 
@@ -241,14 +262,14 @@ Format: `appendnotec INDEX nt/NOTE`
 * The note refers to the new text that will be added to the end of the customer's existing note.
 
 Examples:
-* `listc` followed by `setnotec 2 nt/Very friendly!` will add "Very friendly!" to the 2nd customer's existing note.
-* `findc Betsy` followed by `setnotec 1 nt/Vegetarian` adds "Vegetarian" to the note of the 1st customer in the results of the `findc` command.
+* `listc` followed by `appendnotec 2 nt/Very friendly!` will add "Very friendly!" to the 2nd customer's existing note.
+* `findc Betsy` followed by `appendnotec 1 nt/Vegetarian` adds "Vegetarian" to the note of the 1st customer in the results of the `findc` command.
 
-### Locating persons by name: `find`
+### Locating persons by name: `findc`
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findc KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -258,41 +279,26 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `findc John` returns `john` and `John Doe`
+* `findc alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'findc alex david'](images/findAlexDavidResult.png)
 
 ### Adding an order : `addo`
 
 Adds an order tagged to a customer, to the list of orders.
 
-Format: `addo CUSTOMER_INDEX n/NAME [q/QUANTITY] [a/ADDRESS] [s/status]`
+Format: `addo CUSTOMER_INDEX n/NAME [q/QUANTITY] [a/ADDRESS]`
 
 * Adds an order, tagged to CUSTOMER_INDEX.
 * ADDRESS is optional and will be set to the customer's address by default
 * The index **must be a valid integer** (i.e. if there is 1 customer, CUSTOMER_INDEX can only be 1)
 * QUANTITY is optional and will be set to 1 by default. Otherwise, it must be a positive integer 1, 2, 3...
-* STATUS is optional and will be set to a default of "pending".
 
 Examples:
-* addo n/Banana Cake 1 q/2 s/paid
-  * Adds the order, 2 x Banana cakes to the list, tags it to customer 1, and status is "paid", address is the customer's address.
-* addo n/Strawberry ice cream 4
-  * Adds the order 1 x Strawberry ice cream, tags it to customer 4, and sets status to "pending"
+* addo 1 n/Banana Cake 1 q/2
+  * Adds the order, 2 x Banana cakes to the list, tags it to customer 1, and status is "pending", address is the customer's address.
+* addo 4 n/Strawberry ice cream
+  * Adds the order 1 x Strawberry ice cream, tags it to customer 4, and sets status to "pending", address is the customer's address.
 
 ### Listing all customers : `listo`
 
@@ -312,12 +318,11 @@ Examples:
 
 Edits an existing order in LoyaltyLift.
 
-Format: `edito ORDER_INDEX [n/PRODUCT_NAME] [q/QUANTITY] [a/ADDRESS] [s/STATUS]`
+Format: `edito ORDER_INDEX [n/PRODUCT_NAME] [q/QUANTITY] [a/ADDRESS]`
 
 * Edits the order at the specified `ORDER_INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 
 Examples:
 *  `edito 1 s/paid` Edits order of id 1, and changes the status to "paid".
@@ -339,7 +344,7 @@ Format: `setnoteo INDEX nt/NOTE`
 
 Examples:
 * `listo` followed by `setnoteo 2 nt/Keep cool` sets the 2nd order's note as "Keep cool".
-* `listc` followed by `setnotec 2 nt/` removes the 2nd order's note.
+* `listc` followed by `setnoteo 2 nt/` removes the 2nd order's note.
 * `findo Brownies` followed by `setnoteo 1 nt/Vegan-friendly` sets the 1st order's note as "Vegan-friendly" in the results of the `findo` command.
 
 ### Appending an order's note : `appendnoteo`
@@ -354,8 +359,8 @@ Format: `appendnoteo INDEX nt/NOTE`
 * The note refers to the new text that will be added to the end of the order's existing note.
 
 Examples:
-* `listo` followed by `setnoteo 2 nt/Keep cool` will add "Keep cool" to the 2nd order's existing note.
-* `findo Brownies` followed by `setnoteo 1 nt/Vegan-friendly` adds "Vegan-friendly" to the note of the 1st order in the results of the `findo` command.
+* `listo` followed by `appendnoteo 2 nt/Keep cool` will add "Keep cool" to the 2nd order's existing note.
+* `findo Brownies` followed by `appendnoteo 1 nt/Vegan-friendly` adds "Vegan-friendly" to the note of the 1st order in the results of the `findo` command.
 
 ### Locating orders by name: `findo`
 
@@ -389,11 +394,11 @@ Examples:
 * `findo chocolate` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 
-### Clearing all entries : `clearo`
+### Clearing all entries : `clear`
 
-Clears all order entries from the address book.
+Clears all customers and orders from the address book.
 
-Format: `clearo`
+Format: `clear`
 
 ### Exiting the program : `exit`
 
@@ -428,12 +433,42 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
+### Customer
+|                       Action | Format, Examples                                                                                                                                                             |
+|-----------------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|             **Add Customer** | `addc [ct/{ind/ent}] n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addc n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+|            **List Customer** | `listc` <br>                                                                                                                                                                 |
+|            **Find Customer** | `findc KEYWORD [MORE_KEYWORDS]` <br> e.g., `findc Hans Bo`                                                                                                                   |
+|            **View Customer** | `viewc INDEX` <br> e.g. `viewc 2`                                                                                                                                            |
+|            **Edit Customer** | `editc INDEX [ct/{ind&#124;env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]` <br> e.g. `editc 1 p/91234567 e/johndoe@example.com`                                              |
+|          **Delete Customer** | `deletec INDEX`<br> e.g., `deletec 3`                                                                                                                                        |
+|            **Mark Customer** | `markc INDEX` <br> e.g., `markc 1`                                                                                                                                           |
+|          **Unmark Customer** | `unmarkc INDEX` <br> e.g., `unmarkc 1`                                                                                                                                       |                                                                                                                                      |
+|    **Set Note for Customer** | `setnotec INDEX nt/NOTE` <br> e.g., `setnotec 2 nt/Very friendly!`                                                                                                           |
+| **Append Note for Customer** | `appendnotec INDEX nt/NOTE` <br> e.g., `appendnotec 2 nt/Very friendly!`                                                                                                     |
+
+### Rewards
+|              Action | Format, Examples                                                                       |
+|--------------------:|----------------------------------------------------------------------------------------|
+|      **Set Points** | `setpoints INDEX pt/POINTS` <br> e.g., `setpoints 2 pt/100`                            |
+|      **Add Points** | `addpoints INDEX pt/[+/-]POINTS` <br> e.g., `addpoints 2 pt/100`, `addpoints 1 pt/-50` |
+| **Set Reward Tier** | `settier TIER_NUM POINT_THRESHOLD` <br> e.g., `settier 1 500`                          |
+
+
+### Order
+|                    Action | Format, Examples                                                                                   |
+|--------------------------:|----------------------------------------------------------------------------------------------------|
+|             **Add Order** | `addo CUSTOMER_INDEX n/NAME [q/QUANTITY] [a/ADDRESS]` <br> e.g., `addo 1 n/Banana Cake 1 q/2`      |
+|            **List Order** | `listo` <br>                                                                                       |
+|            **Find Order** | `findo KEYWORD [MORE_KEYWORDS]` <br> e.g., `findo banana muffin`                                   |
+|            **View Order** | `viewo INDEX` <br> e.g. `viewo 2`                                                                  |
+|            **Edit Order** | `edito ORDER_INDEX [n/PRODUCT_NAME] [q/QUANTITY] [a/ADDRESS]` <br> e.g., `edito 2 n/Brownies q/10` |
+|          **Delete Order** | `deleteo INDEX`<br> e.g., `deletec 3`                                                              |                                                                                                                                     |
+|    **Set Note for Order** | `setnoteo INDEX nt/NOTE` <br> e.g., `setnoteo 2 nt/Very friendly!`                                 |
+| **Append Note for Order** | `appendnoteo INDEX nt/NOTE` <br> e.g., `appendnoteo 2 nt/Very friendly!`                           |
+
+### Miscellaneous
+|              Action | Format, Examples                                                                                                                                                             |
+|--------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|           **Clear** | `clear`                                                                                                                                                                      |
+|            **Help** | `help`                                                                                                                                                                       |
