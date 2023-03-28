@@ -210,6 +210,19 @@ The following diagram summarises how the activities unfold after the user types 
 
 ### 3.2 Clear Feature
 
+Replaces the current taskBook to be a completely new TaskBook with no tasks.
+
+Given below is an example usage scenario and how clear is executed.
+
+Step 1. The user inputs `clear` command. The parser recognises the command word and calls `ClearCommand`.
+
+Step 2. `ClearCommand` is executed, and a fresh new TaskBook replaces the current TaskBook.
+
+Step 3. Results are shown immediately on UI.
+
+The following diagram summarises the sequence of events happening during the execution. 
+![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
+
 ### 3.3 Delete Feature
 Deletes a task based on index(es) of tasks from the list currently being shown to users.
 In the previous iteration of AB3, deletion of task must be done 1 index at a time, but this feature is extended to support deletion at multiple indices in Clock-Work to improve the efficiency of the program.
