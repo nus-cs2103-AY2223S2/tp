@@ -173,6 +173,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteEvent(Event event) {
+        this.userData.deleteEvent(event);
+    }
+
+    @Override
     public ObservableList<Event> getEvents() {
         return this.userData.getData().getValue().getEvents().asUnmodifiableObservableList();
     }
@@ -185,6 +190,11 @@ public class ModelManager implements Model {
     @Override
     public void untagPersonFromEvent(Index index, Person p) {
         this.userData.untagPersonFromEvent(index, p);
+    }
+
+    @Override
+    public boolean isPersonTaggedToEvent(Index index, Person p) {
+        return this.userData.isPersonTaggedToEvent(index, p);
     }
     //=========== Filtered Person List Accessors =============================================================
 

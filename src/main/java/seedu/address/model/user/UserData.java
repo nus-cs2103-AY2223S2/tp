@@ -15,7 +15,7 @@ import seedu.address.model.person.Person;
  */
 public class UserData implements ReadOnlyUserData {
 
-    private ReadOnlyObjectWrapper<User> user;
+    private final ReadOnlyObjectWrapper<User> user;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -63,21 +63,31 @@ public class UserData implements ReadOnlyUserData {
         this.user.getValue().addEvent(e);
     }
 
+    public void deleteEvent(Event event) {
+        this.user.getValue().deleteEvent(event);
+    }
+
     public boolean hasEvent(Event e) {
         return this.user.getValue().hasEvent(e);
     }
 
     public void deletePersonFromAllEvents(Person target) {
-        this.user.get().deletePersonFromAllEvents(target);
+        this.user.getValue().deletePersonFromAllEvents(target);
     }
 
     public void tagPersonToEvent(Index index, Person p) {
-        this.user.get().tagPersonToEvent(index, p);
+        this.user.getValue().tagPersonToEvent(index, p);
     }
 
     public void untagPersonFromEvent(Index index, Person p) {
-        this.user.get().untagPersonFromEvent(index, p);
+        this.user.getValue().untagPersonFromEvent(index, p);
     }
+
+    public boolean isPersonTaggedToEvent(Index index, Person p) {
+        return this.user.getValue().isPersonTaggedToEvent(index, p);
+    }
+
+
     //// util methods
 
     @Override

@@ -201,11 +201,20 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Event> getEvents() {
             throw new AssertionError("This method should not be called.");
         }
 
         public void tagPersonToEvent(Index index, Person p) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public boolean isPersonTaggedToEvent(Index index, Person p) {
             throw new AssertionError("This method should not be called.");
         }
 
