@@ -45,6 +45,7 @@ public class EditPatientDescriptorBuilder {
         descriptor.setStatus(patient.getStatus());
         descriptor.setRemark(patient.getRemark());
         descriptor.setTags(patient.getTags());
+        descriptor.setDoctors(patient.getDoctors());
     }
 
     /**

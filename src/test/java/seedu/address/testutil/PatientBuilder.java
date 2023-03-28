@@ -7,6 +7,7 @@ import java.util.Set;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Diagnosis;
 import seedu.address.model.person.patient.Height;
 import seedu.address.model.person.patient.Patient;
@@ -40,6 +41,7 @@ public class PatientBuilder {
     private Status status;
     private Remark remark;
     private Set<Tag> tags;
+    private Set<Doctor> doctors;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -54,6 +56,7 @@ public class PatientBuilder {
         status = new Status(DEFAULT_STATUS);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
+        doctors = new HashSet<>();
     }
 
     /**
@@ -69,6 +72,7 @@ public class PatientBuilder {
         status = patientToCopy.getStatus();
         remark = patientToCopy.getRemark();
         tags = new HashSet<>(patientToCopy.getTags());
+        doctors = new HashSet<>(patientToCopy.getDoctors());
     }
 
     /**
@@ -150,7 +154,7 @@ public class PatientBuilder {
      */
     public Patient build() {
         return new Patient(name, phone, email, height,
-                weight, diagnosis, status, remark, tags);
+                weight, diagnosis, status, remark, tags, doctors);
     }
 
 }
