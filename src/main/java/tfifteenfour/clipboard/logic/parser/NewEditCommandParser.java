@@ -45,15 +45,15 @@ public class NewEditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         Index index;
-        CommandTargetType addCommandType;
+        CommandTargetType editCommandType;
         try {
-            addCommandType = CommandTargetType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
+            editCommandType = CommandTargetType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ParseException("Edit type missing! Please enter a valid edit command. \n"
                     + "Available edit commands are: edit course, edit group, edit session, edit student");
         }
 
-        switch (addCommandType) {
+        switch (editCommandType) {
         case MODULE:
             Course newCourse = parseCourseInfo(args);
             index = parseIndex(args);
