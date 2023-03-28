@@ -63,7 +63,7 @@ public class FishCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         String nameLabelToBeSet = NAME_HEADER + fish.getName().fullName;
         name.setText(nameLabelToBeSet);
-        String lastFedDateLabelToBeSet = LAST_FED_DATE_HEADER + fish.getLastFedDate().value;
+        String lastFedDateLabelToBeSet = LAST_FED_DATE_HEADER + fish.getLastFedDateTime().value;
         lastFedDate.setText(lastFedDateLabelToBeSet);
         String speciesLabelToBeSet = SPECIES_HEADER + fish.getSpecies().species;
         species.setText(speciesLabelToBeSet);

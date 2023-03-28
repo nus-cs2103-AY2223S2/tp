@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.fish.FeedingInterval;
-import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.LastFedDateTime;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
@@ -91,14 +91,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseLastFedDate_validValueWithoutWhitespace_returnsLastFedDate() throws Exception {
-        LastFedDate expectedLastFedDate = new LastFedDate(VALID_LAST_FED_DATE);
+        LastFedDateTime expectedLastFedDate = new LastFedDateTime(VALID_LAST_FED_DATE);
         assertEquals(expectedLastFedDate, ParserUtil.parseLastFedDate(VALID_LAST_FED_DATE));
     }
 
     @Test
     public void parseLastFedDate_validValueWithWhitespace_returnsTrimmedLastFedDate() throws Exception {
         String lastFedDateWithWhitespace = WHITESPACE + VALID_LAST_FED_DATE + WHITESPACE;
-        LastFedDate expectedLastFedDate = new LastFedDate(VALID_LAST_FED_DATE);
+        LastFedDateTime expectedLastFedDate = new LastFedDateTime(VALID_LAST_FED_DATE);
         assertEquals(expectedLastFedDate, ParserUtil.parseLastFedDate(lastFedDateWithWhitespace));
     }
 

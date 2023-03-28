@@ -103,7 +103,7 @@ public class UniqueFishList implements Iterable<Fish> {
      */
     public void setLastFedDateFishes(String newDate) {
         requireNonNull(newDate);
-        internalList.stream().forEach(fish -> fish.setLastFedDate(newDate));
+        internalList.stream().forEach(fish -> fish.setLastFedDateTime(newDate));
     }
 
     /**

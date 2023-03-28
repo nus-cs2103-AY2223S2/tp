@@ -40,7 +40,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.Fish;
-import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.LastFedDateTime;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
@@ -145,7 +145,7 @@ public class AddCommandParserTest {
         // invalid LastFedDate
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_LAST_FED_DATE_DESC + SPECIES_DESC_BOB
                 + FEEDING_INTERVAL_DESC_BOB + TANK_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                LastFedDate.MESSAGE_CONSTRAINTS);
+                LastFedDateTime.MESSAGE_CONSTRAINTS);
 
         // invalid species
         assertParseFailure(parser, NAME_DESC_BOB + LAST_FED_DATE_DESC_BOB + INVALID_SPECIES_DESC

@@ -20,7 +20,7 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.Fish;
-import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.LastFedDateTime;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
@@ -50,7 +50,7 @@ public class FishAddCommandParser {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        LastFedDate lastFedDate = ParserUtil.parseLastFedDate(argMultimap.getValue(PREFIX_LAST_FED_DATE).get());
+        LastFedDateTime lastFedDate = ParserUtil.parseLastFedDate(argMultimap.getValue(PREFIX_LAST_FED_DATE).get());
         Species species = ParserUtil.parseSpecies(argMultimap.getValue(PREFIX_SPECIES).get());
         FeedingInterval feedingInterval = ParserUtil.parseFeedingInterval(argMultimap.getValue(PREFIX_FEEDING_INTERVAL)
                 .get());

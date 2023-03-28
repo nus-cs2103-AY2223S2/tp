@@ -42,7 +42,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditFishDescriptor;
 import seedu.address.model.fish.FeedingInterval;
-import seedu.address.model.fish.LastFedDate;
+import seedu.address.model.fish.LastFedDateTime;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
@@ -89,7 +89,7 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_LAST_FED_DATE_DESC,
-                LastFedDate.MESSAGE_CONSTRAINTS); // invalid lastFedDate
+                LastFedDateTime.MESSAGE_CONSTRAINTS); // invalid lastFedDate
         assertParseFailure(parser, "1" + INVALID_SPECIES_DESC, Species.MESSAGE_CONSTRAINTS); // invalid species
         // invalid feeding interval
         assertParseFailure(parser, "1" + INVALID_FEEDING_INTERVAL_DESC, FeedingInterval.MESSAGE_CONSTRAINTS);
@@ -98,13 +98,13 @@ public class EditCommandParserTest {
 
         // invalid lastFedDate followed by valid species
         assertParseFailure(parser, "1" + INVALID_LAST_FED_DATE_DESC + SPECIES_DESC_AMY,
-                LastFedDate.MESSAGE_CONSTRAINTS);
+                LastFedDateTime.MESSAGE_CONSTRAINTS);
 
         // valid lastFedDate followed by invalid lastFedDate. The test case for invalid lastFedDate followed by valid
         // lastFedDate
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + LAST_FED_DATE_DESC_BOB + INVALID_LAST_FED_DATE_DESC,
-                LastFedDate.MESSAGE_CONSTRAINTS);
+                LastFedDateTime.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Fish} being edited,
         // parsing it together with a valid tag results in error
