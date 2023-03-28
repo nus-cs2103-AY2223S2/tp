@@ -107,18 +107,18 @@ Clock-Work provides some flexibility regarding the types of inputs it accepts. T
 2. Words in ≈ are the parameters to be supplied by the user.<br>
 
 3. Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/important`, `tag/important t/urgent` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/important`, `t/important t/urgent` etc.
 
 4. Parameters can be in any order.<br>
-  e.g. if the command specifies `t/Task A d/A's sample description`, `d/A's sample description t/Task A` is also acceptable.
+  e.g. if the command specifies `n/Task A d/A's sample description`, `d/A's sample description n/Task A` is also acceptable.
 
-5. If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+5. If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `d/do it fast d/do it slow`, only `d/do it slow` will be taken.
 
 6. Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-### Basic Infomation about Tasks
+### Basic Information about Tasks
 * A Task can be:
     * A <span style="color:#4285F4">simpleTask</span>, which does not have a _long date_ attached to it. ([What is a Date?](#q2-what-is-a-valid-date))
     * A <span style="color:#34A853">deadline</span>, which has a _long date_ known as `deadline`.
@@ -148,11 +148,11 @@ A Task must have a description.([What is a valid Description?](#q4-what-is-a-val
 
 Format:
 
-* <span style="color:#4285F4">SimpleTask</span>: `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
+* <span style="color:#4285F4">SimpleTask</span>: `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
 
-* <span style="color:#34A853">Deadline</span>: `add n/TASKNAME D/DEADLINE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
+* <span style="color:#34A853">Deadline</span>: `add n/TASKNAME D/DEADLINE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
 
-* <span style="color:#FBBC05">Event</span>: `add n/TASKNAME F/FROMDATE T/TODATE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
+* <span style="color:#FBBC05">Event</span>: `add n/TASKNAME F/FROMDATE T/TODATE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
 
 Examples:
 * `add n/Read Book d/Make sure to take notes t/Leisure`
@@ -160,19 +160,21 @@ Examples:
 
 You can add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION [t/TAGS]…​`
 
-:bulb: **PRO TIP**: You can add multiple Events and Deadlines as well! However, they have to share the same timings. Use this to add tasks that occur at the same time!
+:bulb: **PRO TIP**: You can add multiple <span style="color:#FBBC05">Events</span> and <span style="color:#34A853">Deadlines</span> as well! However, they have to share the same timings. Use this to add tasks that occur at the same time!
 
 :bulb: **PRO TIP**: Parameters that comes after the command can be in any order!
 
-:bulb: **PRO TIP**: A task can have any number of tags (including 0)
+:bulb: **PRO TIP**: A task can have any number of tags (including 0). Each tag will be automatically assigned a color.
 
-:warning: You are unable to add any tasks (<span style="color:#4285F4">simpleTask</span>, Deadline, Event) of the same name.
+:warning: You are unable to add any tasks (<span style="color:#4285F4">simpleTask</span>, <span style="color:#34A853">Deadline</span>, <span style="color:#FBBC05">Event</span>) of the same name.
 
-:warning: Adding multiple tags of the same tag name will only result in one tag!
+:warning: Adding multiple **Tags** of the same tag name will only result in one tag!
+
+:warning: Adding more than 1 **Description** or **Effort** is accepted but only the last instance will be processed 
 
 e.g. `add n/SampleTask t/CS2102 t/CS2102` will only register t/CS2102 once!
 
-:warning: There are reserved CLI syntax like `n/`, `d/`, `t/`, `D/`, `F/`, `T/`, `all/`, `E/`, `I/`, `D/`. Input fields will have unexpected behaviour when it contains these characters.
+:warning: There are reserved CLI syntax like `n/`, `d/`, `t/`, `D/`, `F/`, `T/`, `all/`, `E/`, `I/`. Input fields will have unexpected behaviour when it contains these characters.
 
 e.g. `add n/Sample d/Why can't I add n/?`
 
@@ -262,28 +264,30 @@ Format: `sort`
 
 :man_technologist: Oops! Are you unable to locate a task? Try find.
 
-Find tasks whose attribute best match the user input string.
+Find **Tasks** whose attribute best match the user input string.
 
 Format: `find n/NAME` OR `find d/DESCRIPTION` OR `find t/TAG...`
 
-* The search is case-insensitive. e.g `book` will match `Book`
-* Substrings will be matched e.g. `book` will match `Books`
+* The search is **case-insensitive**. e.g `book` will match `Book`
+* **Substrings** will be matched e.g. `book` will match `Books`
+* For <span style="color:#34A853">Deadline</span>, you can only use a valid date(without the time input) such as `2023-03-10` to search for deadlines on that day.
+    * e.g. `find D/2023-03-10` will give you all the deadlines on 2023-01-01.
+* For <span style="color:#FBBC05">Event</span>, you may either use `F/` or `T/` prefix(without the time input as well) to search for event that starts or ends on a certain date.
+    * e.g. `find F/2023-03-10` will give you all the events starting from 2023-03-10.
+    * e.g. `find T/2023-03-10` will give you all the event ending on 2023-03-10.
+
+Examples:
+* `find n/book` finds **Tasks** with name `read book` and `return books`
+
+:bulb: Here are some **PRO TIPS**: 
 * For names and descriptions, you may use the `all/` prefix to search for a task that contains all of your inputs
     * e.g. `find all/ n/do n/homework` will match a task with a name called "do math homework.
 * For tags, if you do not specify the `all/` prefix, as long as one tag matches with one of the tags you are searching for, it will be considered matched.
   However, adding `all/` means that a task which contains all your tag inputs will be displayed.
     * e.g. `find t/very urgent t/important` will match with tags `t/very very urgent t/math t/hard` since it has `very urgent`.
     * e.g. `find all/ t/very urgent t/important` will match with tags `t/very urgent t/important` since it has both tags.
-* For <span style="color:#34A853">deadline</span>, you can only use a valid date(without the time input) such as `2023-03-10` to search for deadlines on that day.
-    * e.g. `find D/2023-03-10` will give you all the deadlines on 2023-01-01.
-* For <span style="color:#FBBC05">event</span>, you may either use `F/` or `T/` prefix(without the time input as well) to search for event that starts or ends on a certain date.
-    * e.g. `find F/2023-03-10` will give you all the events starting from 2023-03-10.
-    * e.g. `find T/2023-03-10` will give you all the event ending on 2023-03-10.
 
-Examples:
-* `find n/book` returns `read book` and `return books`
-
-:warning: When searching for a description `find d/Description`, Tasks without user's input description will not show up!
+:warning: When searching for a description `find d/DESCRIPTION`, Tasks without user's input description will not show up!
 
 e.g. `add n/Homework` and `add n/Project d/No Description` followed by `find d/No Description` will return only a list with the latter task.
 
@@ -302,7 +306,7 @@ Format: `stats`
 :man_technologist: Beep! Beep! Well, not really, but alert is here to warn you about tasks which are due soon!
 
 Displays in another window the tasks that fall within the window specified. If not supplied, assumed to be 24 hours.
-On opening of app, the alert window will open to show tasks which have deadlines within the latest window specified.
+On opening of app, the **alert window** will open to show **Tasks** which have deadlines within the **latest** window specified.
 Have to specify `ALERT WINDOW` in hours and only integers.
 
 Examples:
@@ -432,24 +436,27 @@ _Details coming soon ..._
 ### Q4 What is a valid Description?
 **A**: A valid Description is a text input that has at least one character.
 
+### Q5 Why does two different tags have the same tag color??
+**A**: There are currently 20 available color codes for tags. By the birthday paradox, the chances of collisions do rise as more tags exists. More colors will be added in future iterations.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. Command summary
 
-| Action     | Format, Examples                                                                                                   |
-|------------|--------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT]` <br> e.g., `add n/read book d/Lord of the Flies t/leisure E/5` |
-| **Clear**  | `clear`                                                                                                            |
-| **Delete** | `delete INDEX(S)`<br> e.g., `delete 3`                                                                             |
-| **Edit**   | `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`<br> e.g.,`edit 2 n/study d/CS2103T`                 |
-| **Find**   | `find n/NAME` or `find d/DESCRIPTION`<br> e.g., `find n/read book`                                                 |
-| **List**   | `list`                                                                                                             |
-| **Help**   | `help`                                                                                                             |
-| **Stats**  | `stats`                                                                                                            |
-| **sort**   | `sort`                                                                                                             |
-| **alert**  | `alert ALERT_WINDOW`                                                                                               |
-| **plan**   | `plan EFFORT`                                                                                                      |
+| Action       | Format, Examples                                                                                                    |
+|--------------|---------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT]` <br> e.g., `add n/read book d/Lord of the Flies t/leisure E/5` |
+| **Clear**    | `clear`                                                                                                             |
+| **Delete**   | `delete INDEX(S)`<br> e.g., `delete 3`                                                                              |
+| **Edit**     | `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`<br> e.g.,`edit 2 n/study d/CS2103T`                  |
+| **Find**     | `find n/NAME` or `find d/DESCRIPTION`<br> e.g., `find n/read book`                                                  |
+| **List**     | `list`                                                                                                              |
+| **Help**     | `help`                                                                                                              |
+| **Stats**    | `stats`                                                                                                             |
+| **sort**     | `sort`                                                                                                              |
+| **alert**    | `alert [ALERT_WINDOW]`                                                                                              |
+| **schedule** | `schedule D/SHORTDATE [E/EFFORT]`                                                                                   |
 
 --------------------------------------------------------------------------------------------------------------------
 ## 6. Glossary

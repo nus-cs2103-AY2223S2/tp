@@ -206,7 +206,7 @@ You can find the specific implementation in the 'AddCommandParser' class and the
 
 Given below is a scenario of how the add command is used and behaves.
 
-Step 1. The user inputs an 'add' Command with parameters 'n/CS2109S n/CS2103T n/homework'.
+Step 1. The user inputs an `add` Command with parameters `n/CS2109S n/CS2103T n/homework`.
 
 Step 2. The AddCommandParser recognises that the input command has two names and one description as the parameters. Since there is no deadline prefix 'D' and event prefixes 'f' and 't', the parser will create tasks that are simple tasks. The tasks will have the same description but different names
 
@@ -225,6 +225,19 @@ The following diagram summarises how the activities unfold after the user types 
 ![SortCommandSequenceDiagram](images/AddActivityDiagram.png)
 
 ### 3.2 Clear Feature
+
+Replaces the current taskBook to be a completely new TaskBook with no tasks.
+
+Given below is an example usage scenario and how clear is executed.
+
+Step 1. The user inputs `clear` command. The parser recognises the command word and calls `ClearCommand`.
+
+Step 2. `ClearCommand` is executed, and a fresh new TaskBook replaces the current TaskBook.
+
+Step 3. Results are shown immediately on UI.
+
+The following diagram summarises the sequence of events happening during the execution. 
+![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
 
 ### 3.3 Delete Feature
 Deletes a task based on index(es) of tasks from the list currently being shown to users.
@@ -324,7 +337,32 @@ Cons: More complicated to implement and unwieldy for users.
 
 ### 3.6 List Feature
 
+The list feature shows every task and its associated fields to the user. In scenarios whereby the user has used commands like `sort` or `find`, The user will use `list` to get back to the original page.
+
+Given below is an example usage scenario for the `list` command.
+
+Step 1. The user inputs `list` command. The parser recognises the command word and calls `listCommand`.
+
+Step 2. `listCommand` is executed. A full list of all tasks are displayed.
+
+Step 3. Results are shown immediately on UI.
+
+![ListCommandSequenceDiagram](images/ListCommandSequenceDiagram.png)
+
 ### 3.7 Help Feature
+
+In a scenario whereby the user does not know how to proceed, `help` is intended to assist the user by giving them the link to the User Guide for the project.
+
+Given below is an example usage scenario for the `help` command.
+
+Step 1. The user inputs `help` command. The parser recognises the command word and calls `HelpCommand`.
+
+Step 2. `HelpCommand` is executed. A pop-up with the link to our User Guide is shown.
+
+Step 3. Results are shown immediately on UI.
+
+The sequence diagram below summarizes what happens during this usage scenario:
+![HelpCommandSequenceDiagram](images/HelpCommandSequenceDiagram.png)
 
 ### 3.8 Stats Feature
 Statistics is a useful way for users to get an overview of all open tasks in the TaskBook. Currently, `stats` supports 1 view - categorise by tags. 
@@ -420,6 +458,30 @@ Pros: Able to see the Events happening close to date.
 Cons: Have to scroll down to see SimpleTasks.
 
 ### 3.10 Alert Feature
+The `alert` feature is a new feature that when called will display tasks which fall within the specified **alert window**.  
+You can find the specific implementation in the `AlertCommandParser` class and the `AlertCommand` class.  
+:bulb: Note: The addition of the `alert` feature includes a new attribute to all tasks `alertWindow`.
+
+Given below is an example usage scenario and how the find mechanism behaves.
+
+Step 1. The user inputs a `alert` command with parameter `48`. The parser recognises the command word and calls the AlertCommandParser.
+
+Step 2. The `AlertCommandParser` processes the parameter and notices it is not empty.
+
+Step 3. `AlertCommandParser` calls `AlertCommand` with the timeframe specified.
+
+Step 4. `AlertCommand` is executed and model filters the `AlertTaskList` with the predicate `TaskWithinTimelinePredicate(timeframe)`.
+
+Step 5. The result of the filtered list is passed back to the UI.
+
+The following sequence diagram summarizes what happens in this example usage scenario:
+
+![SortCommandSequenceDiagram](images/AlertSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new `alert` command:
+
+![SortCommandSequenceDiagram](images/AlertActivityDiagram.png)
+
 
 ### 3.11 Schedule Feature
 
@@ -527,6 +589,16 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![ScheduleCommandActivityDiagram](images/ScheduleCommandActivityDiagram.png)
 
+### 3.12 Tag color codes
+
+Color coded tags are a new feature aimed at providing a better User experience such that users are able to identify similar tags easily.
+
+It is important to note that there are currently only 20 colors available and colors are assigned by the program (within TaskCard.java) and not the user.
+
+The color is decided by calculating the hashcode of the tag's name then module 20 (the current size of the available colors).
+
+The color of this tag is then decided by looking up the result in an array of colors and taking its corresponding color.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. **Documentation, logging, testing, configuration, dev-ops**
@@ -588,7 +660,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Clock-Work` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a task**
+
+**MSS**
+
+1. User requests to add a task 
+2. TaskBook adds a task based on parameters supplied.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The input syntax is invalid
+
+    * 1a1. TaskBook shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The supplied name already exists in the TaskBook. 
+
+    * 3a2. TaskBook shows an error message
+
+      Use case resumes at step 1.
+
 
 **Use case: Delete a task**
 
@@ -641,7 +737,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a2. TaskBook shows an error message
 
     Use case resumes at step 2.
-    
 
 ### Non-Functional Requirements
 
