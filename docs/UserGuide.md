@@ -502,6 +502,7 @@ Marks selected students' attendance as present for current session.
 
 Format:
 ```
+mark <INDEX>
 mark <INDEX>, <INDEX>, ...
 ```
 
