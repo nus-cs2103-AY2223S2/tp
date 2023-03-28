@@ -15,7 +15,7 @@ import seedu.address.model.task.Note;
  */
 public class AddNoteCommand extends Command {
 
-    public static final String COMMAND_WORD = "note";
+    public static final String COMMAND_WORD = "add_note";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a note.\n"
             + "Parameters: "
