@@ -3,6 +3,8 @@ package tfifteenfour.clipboard.logic.parser;
 import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import tfifteenfour.clipboard.logic.CurrentSelection;
+import tfifteenfour.clipboard.logic.PageType;
+import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.commands.findcommand.FindCommand;
 import tfifteenfour.clipboard.logic.commands.findcommand.FindCourseCommand;
 import tfifteenfour.clipboard.logic.commands.findcommand.FindGroupCommand;
@@ -18,8 +20,10 @@ import tfifteenfour.clipboard.logic.predicates.StudentNameContainsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
+    private static String WRONG_PAGE_MESSAGE = "Wrong page. Navigate to %1$s page to find %1$s";
 
     private final CurrentSelection currentSelection;
+
 
     public FindCommandParser(CurrentSelection currentSelection) {
         this.currentSelection = currentSelection;
@@ -30,7 +34,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FindCommand parse(String args) throws ParseException {
+    public FindCommand parse(String args) throws ParseException, CommandException {
         CommandTargetType findCommandType;
         try {
             findCommandType = CommandTargetType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
@@ -46,17 +50,29 @@ public class FindCommandParser implements Parser<FindCommand> {
         String[] keywords = parseFindKeywords(trimmedArgs);
 
         switch (findCommandType) {
-            case MODULE:
-                return new FindCourseCommand(new CourseNameContainsPredicate(keywords));
-            case GROUP:
-                return new FindGroupCommand(new GroupNameContainsPredicate(keywords), currentSelection);
-            case SESSION:
-                return new FindSessionCommand(new SessionNameContainsPredicate(keywords), currentSelection);
-            case STUDENT:
-                return new FindStudentCommand(new StudentNameContainsPredicate(keywords), currentSelection);
-            default:
-                throw new ParseException("Invalid type for edit command");
+        case MODULE:
+            if (currentSelection.getCurrentPage() != PageType.COURSE_PAGE) {
+                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "course"));
             }
+            return new FindCourseCommand(new CourseNameContainsPredicate(keywords));
+        case GROUP:
+            if (currentSelection.getCurrentPage() != PageType.GROUP_PAGE) {
+                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "group"));
+            }
+            return new FindGroupCommand(new GroupNameContainsPredicate(keywords), currentSelection);
+        case SESSION:
+            if (currentSelection.getCurrentPage() != PageType.SESSION_PAGE) {
+                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "session"));
+            }
+            return new FindSessionCommand(new SessionNameContainsPredicate(keywords), currentSelection);
+        case STUDENT:
+            if (currentSelection.getCurrentPage() != PageType.COURSE_PAGE) {
+                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "student"));
+            }
+            return new FindStudentCommand(new StudentNameContainsPredicate(keywords), currentSelection);
+        default:
+            throw new ParseException("Invalid type for edit command");
+        }
     }
 
     public String[] parseFindKeywords(String args) throws ParseException {

@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-import tfifteenfour.clipboard.commons.util.StringUtil;
 import tfifteenfour.clipboard.model.student.Student;
 
 /**

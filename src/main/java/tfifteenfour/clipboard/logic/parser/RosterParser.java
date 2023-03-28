@@ -26,7 +26,6 @@ import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.commands.findcommand.FindCommand;
-import tfifteenfour.clipboard.logic.commands.studentcommands.FindCommand;
 import tfifteenfour.clipboard.logic.commands.studentcommands.RemarkCommand;
 import tfifteenfour.clipboard.logic.commands.studentcommands.SortCommand;
 import tfifteenfour.clipboard.logic.commands.taskcommand.AssignCommand;
