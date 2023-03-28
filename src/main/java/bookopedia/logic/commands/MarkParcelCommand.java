@@ -99,7 +99,8 @@ public class MarkParcelCommand extends Command {
         model.setPerson(targetPerson, updatedPerson);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS,
-                updatedPerson.getName(), targetParcelName[0], newStatus.toString()));
+                updatedPerson.getName(), targetParcelName[0], newStatus.toString()),
+                true, updatedPerson, model.getIndexOf(updatedPerson));
     }
 
     @Override

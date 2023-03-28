@@ -115,6 +115,16 @@ public class ModelManager implements Model {
         addressBook.sort();
     }
 
+    /**
+     * Returns the index of person of interest.
+     * @param person Person of interest.
+     * @return Index of said person.
+     */
+    @Override
+    public int getIndexOf(Person person) {
+        return filteredPersons.lastIndexOf(person);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

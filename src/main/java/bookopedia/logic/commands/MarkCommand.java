@@ -58,7 +58,8 @@ public class MarkCommand extends Command {
 
         model.setPerson(personToMark, updatedPersonToMark);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedPersonToMark.getName(), newStatus.toString()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedPersonToMark.getName(), newStatus.toString()),
+                true, updatedPersonToMark, model.getIndexOf(updatedPersonToMark));
     }
 
     @Override
