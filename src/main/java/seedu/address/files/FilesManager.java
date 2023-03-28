@@ -120,6 +120,9 @@ public class FilesManager {
         create = new FileGenerator(person,
                 doctorName, description, days);
         create.createMcForm(Integer.toString(nextMcNumber(path2)));
+        //Update the files and fileNames lists
+        setAllFiles();
+        setFileNames();
     }
 
     /**
