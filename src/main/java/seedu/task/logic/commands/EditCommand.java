@@ -126,7 +126,7 @@ public class EditCommand extends Command {
         private Description description;
         private Effort effort;
         private Set<Tag> tags;
-        private Subtask subtaskList;
+
 
         public EditTaskDescriptor() {}
 

@@ -1,0 +1,18 @@
+@startuml
+start
+:User executes edit command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:Extracts all the parameters from the command;
+
+:Gets the task at the corresponding index in the task list;
+
+:Creates a new task with updated parameters;
+
+:Set the old task in the task list with the new task;
+
+:Update UI to show the added task(s);
+stop
+@enduml
