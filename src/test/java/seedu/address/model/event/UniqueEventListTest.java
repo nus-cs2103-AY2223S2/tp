@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_CARN
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_TIME_CARNIVAL;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.CARNIVAL;
+import static seedu.address.testutil.TypicalEvents.SPORTS_DAY;
 import static seedu.address.testutil.TypicalEvents.WEDDING_DINNER;
 
 import java.util.ArrayList;
@@ -154,5 +155,17 @@ public class UniqueEventListTest {
     public void eventsAreUnique_uniqueEvents_returnsTrue() {
         List<Event> events = new ArrayList<>(Arrays.asList(CARNIVAL, WEDDING_DINNER));
         assertTrue(uniqueEventList.eventsAreUnique(events));
+    }
+
+    @Test
+    public void setEvent_targetEventNotInList_throwsEventNotFoundException() {
+        assertThrows(EventNotFoundException.class, () -> uniqueEventList.setEvent(CARNIVAL, CARNIVAL));
+    }
+
+    @Test
+    public void setEvent_editedEventHasNonUniqueIdentity_throwsDuplicateEventException() {
+        uniqueEventList.add(CARNIVAL);
+        uniqueEventList.add(SPORTS_DAY);
+        assertThrows(DuplicateEventException.class, () -> uniqueEventList.setEvent(CARNIVAL, SPORTS_DAY));
     }
 }

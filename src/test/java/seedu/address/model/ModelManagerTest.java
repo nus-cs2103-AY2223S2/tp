@@ -18,6 +18,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.parser.SortEventType;
 import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -144,6 +145,15 @@ public class ModelManagerTest {
         modelManager.deleteEvent(WEDDING_DINNER);
         ModelManager expectedModelManager = new ModelManager();
         expectedModelManager.addEvent(CARNIVAL);
+        assertEquals(expectedModelManager, modelManager);
+    }
+
+    @Test
+    public void sortEventList_sortMultipleTimes_sortByFinalSort() {
+        modelManager.sortEventList(SortEventType.SORT_BY_NAME_ASC);
+        modelManager.sortEventList(SortEventType.SORT_BY_START_DATE_TIME);
+        ModelManager expectedModelManager = new ModelManager();
+        expectedModelManager.sortEventList(SortEventType.SORT_BY_START_DATE_TIME);
         assertEquals(expectedModelManager, modelManager);
     }
 
