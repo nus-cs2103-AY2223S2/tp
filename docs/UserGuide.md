@@ -215,8 +215,7 @@ At least one of the following arguments must be provided:
 
 **Examples**
 
-The command `uc -e alice_bakers@bakers.com -cn Bobby Baker` updates the respective client's name 
-found by the client's email address to Bobby Baker.
+The command `uc -e alice_bakers@bakers.com -cn Bobby Baker` updates the client with email *alice_bakers@bakers.com* to have the name *Bobby Baker*.
 
 **Expected output:**
 ```bash
