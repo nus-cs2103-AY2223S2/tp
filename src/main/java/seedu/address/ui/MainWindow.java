@@ -244,7 +244,7 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredCardList(), true);
+        personListPanel = new PersonListPanel(logic.getFilteredCardList(), false);
         rightPanelPlaceholder.getChildren().clear();
         rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
