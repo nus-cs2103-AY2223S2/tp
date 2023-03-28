@@ -132,7 +132,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         //fileList = new FileList(logic.getFilteredPersonList(), this);
-        detailDisplay = new DetailDisplay();
+        detailDisplay = new DetailDisplay(this::executeCommand, personListPanel.getPersonListView());
         detailDisplayPlaceholder.getChildren().add(detailDisplay.getRoot());
 
     }

@@ -223,6 +223,10 @@ public class Person {
         return this.age.getAge() != "";
     }
 
+    public boolean hasNric() {
+        return this.nric.getNumber() != "";
+    }
+
     public boolean hasMedicalCondition() {
         return this.medicalCondition.getValue() != "";
     }
