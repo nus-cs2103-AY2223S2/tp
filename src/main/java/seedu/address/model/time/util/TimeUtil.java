@@ -19,6 +19,10 @@ import seedu.address.model.timetable.Timetable;
  * Contains utils functions for Timetable related jobs.
  */
 public class TimeUtil {
+
+    public static final Integer FIRST_HOUR = 0;
+    public static final Integer LAST_HOUR = 23;
+
     /**
      * Gets a list of free intervals for which a participant is free for the specific school day.
      */
