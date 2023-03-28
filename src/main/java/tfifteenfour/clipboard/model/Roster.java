@@ -41,7 +41,7 @@ public class Roster implements ReadOnlyRoster {
     //// list overwrite operations
 
     public void setCourses(List<Course> courses) {
-        this.courses.setCourses(courses);
+        this.courses.setInternalList(courses);
     }
 
     /**
