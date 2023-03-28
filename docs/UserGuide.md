@@ -112,8 +112,8 @@ add course <COURSE>
     - For example, if a course with module code 'CS2103T' already exists in CLIpboard, entering `add course CS2103T` will display an error message.
 
 Examples:
-- `add course CS2103T`
-- `add course CS2105`
+- `add course CS2103T` will add a new course with module code `CS2103T`
+- `add course CS2105` will add a new course with module code `CS2105`
 
 
 
