@@ -177,6 +177,7 @@ public class TagCommand extends Command {
         if (other == this) {
             return true;
         }
+
         if (other instanceof TagCommand) {
             TagCommand otherCommand = (TagCommand) other;
             return otherCommand.getIndex().equals(getIndex())

@@ -41,6 +41,8 @@ import seedu.address.model.tag.ModuleTag;
 public class TagCommandTest {
     private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
     private final IndexHandler indexHandler = new IndexHandler(model);
+    private final TagCommand tagCommand =
+            new TagCommand(new ContactIndex(1), Set.of(CS2040S_F), TagType.MODULE);
 
     @Test
     public void execute_addNewNonClashingModuleTags_success() {
@@ -296,4 +298,20 @@ public class TagCommandTest {
 
     }
 
+    @Test
+    void equals_sameObject_true() {
+        assertEquals(tagCommand, tagCommand);
+    }
+
+    @Test
+    void equals_sameValues_true() {
+        TagCommand other = new TagCommand(new ContactIndex(1),
+                Set.of(CS2040S_F), TagType.MODULE);
+        assertEquals(tagCommand, other);
+    }
+
+    @Test
+    void getLessons() {
+        assertEquals(tagCommand.getLessons(), CS2040S_F.getImmutableLessons());
+    }
 }
