@@ -42,13 +42,15 @@ public class Review {
         requireAllNonNull(deck, cardsInDeck, userSetNum);
 
         this.deck = deck;
-        totalNumCards = userSetNum < 0 ? cardsInDeck.size() : userSetNum;
+        totalNumCards = userSetNum < 0
+                ? cardsInDeck.size()
+                : Integer.min(userSetNum, cardsInDeck.size());
 
         initReviewCardList(cardsInDeck);
         this.unmodifiableReviewCardList = uniqueReviewCardList.asUnmodifiableObservableList();
         filteredReviewCardList = new FilteredList<>(this.unmodifiableReviewCardList);
 
-        // Randomise order of cards based on the deck size
+        // Randomise order of cards based on the total number of cards allowed in review
         orderOfCards = new Random().ints(0, cardsInDeck.size())
                 .distinct().limit(totalNumCards).boxed().collect(Collectors.toList());
 

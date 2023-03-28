@@ -3,20 +3,20 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.logic.commands.reviewcommands.SetNumCardsPerReviewCommand;
+import seedu.address.logic.commands.reviewcommands.SetReviewLimitCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new SetLimitCommand object
  */
-public class SetNumCardsPerReviewCommandParser implements Parser<SetNumCardsPerReviewCommand> {
+public class SetReviewLimitCommandParser implements Parser<SetReviewLimitCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the SetLimitCommand
      * and returns an SetLimitCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public SetNumCardsPerReviewCommand parse(String args) throws ParseException {
+    public SetReviewLimitCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
@@ -25,9 +25,9 @@ public class SetNumCardsPerReviewCommandParser implements Parser<SetNumCardsPerR
             reviewLimit = ParserUtil.parseNumCardsPerReview(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    SetNumCardsPerReviewCommand.MESSAGE_USAGE), pe);
+                    SetReviewLimitCommand.MESSAGE_USAGE), pe);
         }
 
-        return new SetNumCardsPerReviewCommand(reviewLimit);
+        return new SetReviewLimitCommand(reviewLimit);
     }
 }

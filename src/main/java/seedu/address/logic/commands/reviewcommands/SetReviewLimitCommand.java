@@ -10,8 +10,8 @@ import seedu.address.model.Model;
 /**
  * Sets the number of cards tested per review session.
  */
-public class SetNumCardsPerReviewCommand extends Command {
-    public static final String COMMAND_WORD = "setNumCardsPerReview";
+public class SetReviewLimitCommand extends Command {
+    public static final String COMMAND_WORD = "setLimit";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Limit the number of cards tested per review session.\n"
             + "Parameter: Integer (must be positive) or 'all'.\n"
             + "Example: " + COMMAND_WORD + " 30";
@@ -22,9 +22,9 @@ public class SetNumCardsPerReviewCommand extends Command {
     private final int numCardsPerReview;
 
     /**
-     * Creates a SetNumCardsPerReviewCommand with the given number of cards.
+     * Creates a SetReviewLimitCommand with the given number of cards.
      */
-    public SetNumCardsPerReviewCommand(int numCardsPerReview) {
+    public SetReviewLimitCommand(int numCardsPerReview) {
         requireNonNull(numCardsPerReview);
         this.numCardsPerReview = numCardsPerReview;
     }
@@ -44,8 +44,8 @@ public class SetNumCardsPerReviewCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof SetNumCardsPerReviewCommand // instanceof handles nulls
-                && numCardsPerReview == (((SetNumCardsPerReviewCommand) other).numCardsPerReview));
+                || (other instanceof SetReviewLimitCommand // instanceof handles nulls
+                && numCardsPerReview == (((SetReviewLimitCommand) other).numCardsPerReview));
     }
 
 }

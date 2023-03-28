@@ -31,7 +31,7 @@ import seedu.address.logic.commands.reviewcommands.FlipCardCommand;
 import seedu.address.logic.commands.reviewcommands.NextCardCommand;
 import seedu.address.logic.commands.reviewcommands.PreviousCardCommand;
 import seedu.address.logic.commands.reviewcommands.ReviewCommand;
-import seedu.address.logic.commands.reviewcommands.SetNumCardsPerReviewCommand;
+import seedu.address.logic.commands.reviewcommands.SetReviewLimitCommand;
 import seedu.address.logic.commands.reviewcommands.TagEasyCommand;
 import seedu.address.logic.commands.reviewcommands.TagHardCommand;
 import seedu.address.logic.commands.reviewcommands.TagMediumCommand;
@@ -119,8 +119,8 @@ public class MasterDeckParser {
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommandParser().parse(arguments);
 
-        case SetNumCardsPerReviewCommand.COMMAND_WORD:
-            return new SetNumCardsPerReviewCommandParser().parse(arguments);
+        case SetReviewLimitCommand.COMMAND_WORD:
+            return new SetReviewLimitCommandParser().parse(arguments);
 
         case FlipCardCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, FlipCardCommand.COMMAND_WORD));
@@ -212,8 +212,8 @@ public class MasterDeckParser {
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommandParser().parse(arguments);
 
-        case SetNumCardsPerReviewCommand.COMMAND_WORD:
-            return new SetNumCardsPerReviewCommandParser().parse(arguments);
+        case SetReviewLimitCommand.COMMAND_WORD:
+            return new SetReviewLimitCommandParser().parse(arguments);
 
         case FlipCardCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_NOT_IN_REVIEW, FlipCardCommand.COMMAND_WORD));
@@ -305,8 +305,8 @@ public class MasterDeckParser {
         case ReviewCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_IN_REVIEW, ReviewCommand.COMMAND_WORD));
 
-        case SetNumCardsPerReviewCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_IN_REVIEW, SetNumCardsPerReviewCommand.COMMAND_WORD));
+        case SetReviewLimitCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, SetReviewLimitCommand.COMMAND_WORD));
 
         case FlipCardCommand.COMMAND_WORD:
             return new FlipCardCommand();
