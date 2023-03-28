@@ -100,6 +100,10 @@ public class Module {
         return grade.isGradeable();
     }
 
+    public boolean isSatisfactory() {
+        return grade.isSatisfactory();
+    }
+
     /**
      * Checks if the module is the same based on its code only.
      *
