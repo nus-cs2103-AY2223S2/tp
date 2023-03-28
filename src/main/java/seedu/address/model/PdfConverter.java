@@ -319,7 +319,9 @@ public class PdfConverter {
             }
             float yPrev = this.y;
             if (lengthUsed > wrap) {
-                if (count != 0) this.y -= textHeight(font, fontSize, this.margin / 2);
+                if (count != 0) {
+                    this.y -= textHeight(font, fontSize, this.margin / 2);
+                }
                 this.x = xPosition;
                 lengthUsed = textLength(curString, font, fontSize);
             }
