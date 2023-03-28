@@ -48,6 +48,80 @@ Are you excited yet? Let's get started!
 
 --------------------------------------------------------------------------------------------------------------------
 
+
+## Add your first customer and order
+
+In this tutorial, you will learn how to add your first customer _Lyndon Edwards_ and his order which is 2 of his favourite _Banana Cake_.
+Finally, you will learn to remove a customer and observe that **all orders belonging to a customer will be removed as well**.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you have not done so, use the `clear` command to remove the sample data!
+</div>
+
+#### Your first customer, Lyndon Edwards
+{: .no_toc}
+
+Adding your first customer is effortless on LoyaltyLift using [`addc`](#adding-a-customer--addc). 
+Enter the following command to insert a new customer _Lyndon Edwards_ along with some basic contact information.
+
+    addc n/Lyndon Edwards p/93015612 e/lyndon@example.com a/Loyalty Street 103, block 122, #01-20
+
+The application should already have your customer displayed by this step.
+Nonetheless, you can always type the following commands to list all customers and view the first customer in our address book, which correspond to _Lyndon Edwards_.
+
+    listc
+    viewc 1
+
+#### Your first order, 2 of Banana Cakes
+{: .no_toc}
+
+Now that _Lyndon Edwards_ is in our address book, we can proceed to add an order for him.
+This can be with the [`addo`](#adding-an-order--addo) command like the following.
+
+    addo 1 n/Banana Cake q/2 
+
+Likewise, the application should have the order opened. 
+Nonetheless, to do this manually, you can list all your orders and view the first order's information by performing the following commands.  
+
+    listo
+    viewo 1
+
+![result after adding customer and order](images/addingFirstCustomerOrderResult.png)
+
+#### Clear application data again
+{: .no_toc}
+
+Before ending this tutorial, let us clear our application data by removing both _Lyndon Edwards_ and his _Banana Cake_ order.
+
+While [`clear`](#clearing-all-entries--clear) command achieves this easily, we can also simply remove _Lyndon Edwards_ from our address book with the [`deletec`](#deleting-a-customer--deletec) command.
+
+    deletec 1
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Note that in addition to removing `Lyndon Edwards` from the application, all of his orders are removed as well!
+</div>
+
+Hence, you will notice that the order list is now empty and our application is back to a clean slate.
+
+    listo
+
+![result after deleting lyndon edwards](images/addingFirstCustomerOrderClearResult.png)
+
+#### Extra remarks
+{: .no_toc}
+
+While this tutorial covers a simplfied situation of adding a customer and order, 
+you may find yourself in need of more complexed control / tasks and LoyaltyLift is ready for it!
+
+Here are some recommended features to explore after this tutorial.
+
+* Editing a customer or order's information with [`editc`](#editing-a-customer--editc) or [`edito`](#editing-an-order--edito)
+* Assigning a customer as an individual or enterprise with [`addc`](#adding-a-customer--addc) or [`editc`](#editing-a-customer--editc)
+* Advancing or reverting an order's progress with [`advo`]() or [`reverto`]()
+* Set or adding rewards points for the customer with [`setpoints`](#setting-reward-points-for-a-customer--setpoints) or [`addpoints`](#adding-points-for-a-customer--removing-points-from-a-customer--addpoints)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
