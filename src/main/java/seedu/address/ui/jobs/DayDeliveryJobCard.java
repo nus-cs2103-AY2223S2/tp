@@ -58,7 +58,7 @@ public class DayDeliveryJobCard extends UiPart<Region> {
             receipient.setText("To: N.A.");
         }
         addressBook.getPersonById(job.getRecipientId()).ifPresentOrElse(per -> {
-            address.setText("Dest: " + "\n" + per.getAddress().toString());
+            address.setText("@" + per.getAddress().toString());
         }, () -> {
             address.setText("Dest: N.A.");
         });

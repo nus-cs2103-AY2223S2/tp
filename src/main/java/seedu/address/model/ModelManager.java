@@ -267,7 +267,11 @@ public class ModelManager implements Model {
                     if (jobsInCurrentSlot.size() == 0) {
                         jobsInCurrentSlot = createEmptyDayJobList();
                     }
-                    jobsInCurrentSlot.get(slotIndex).add(toAdd);
+                    if (slotIndex > 4) {
+                        jobsInCurrentSlot.get(5).add(toAdd);
+                    } else {
+                        jobsInCurrentSlot.get(slotIndex).add(toAdd);
+                    }
                     jobListGroupedByDate.put(jobDate, jobsInCurrentSlot);
                 } else {
                     DeliveryList newDateJobList = createEmptyDayJobList();
@@ -317,7 +321,7 @@ public class ModelManager implements Model {
 
     private DeliveryList createEmptyDayJobList() {
         ArrayList<ArrayList<DeliveryJob>> newEmptyArr = new ArrayList<ArrayList<DeliveryJob>>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             newEmptyArr.add(new ArrayList<DeliveryJob>());
         }
         return new DeliveryList(newEmptyArr);
@@ -343,7 +347,16 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<DeliveryJob> getUnscheduledDeliveryJobList() {
         FilteredList<DeliveryJob> unscheduledJobList = new FilteredList<>(this.deliveryJobSystem.getDeliveryJobList());
-        unscheduledJobList.setPredicate(job -> ((!job.isScheduled()) && (job.getDeliveredStatus())));
+        unscheduledJobList.setPredicate(job -> (!job.isValidScheduled()));
+        return FXCollections.observableArrayList(unscheduledJobList);
+    }
+
+    @Override
+    public ObservableList<DeliveryJob> getCompletedDeliveryJobList() {
+        updateSortedDeliveryJobList(SORTER_BY_DATE);
+        FilteredList<DeliveryJob> unscheduledJobList =
+                new FilteredList<>(FXCollections.observableArrayList(sortedDeliveryJobs));
+        unscheduledJobList.setPredicate(job -> (job.getDeliveredStatus()));
         return FXCollections.observableArrayList(unscheduledJobList);
     }
 

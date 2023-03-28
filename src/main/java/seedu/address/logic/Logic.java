@@ -81,6 +81,10 @@ public interface Logic {
      */
     ObservableList<DeliveryJob> getUnscheduledDeliveryJobList();
 
+    /**
+     * Returns an unmodifiable view of the list of completed delivery jobs
+     */
+    ObservableList<DeliveryJob> getCompletedDeliveryJobList();
 
     double getTotalEarnings(ObservableList<DeliveryJob> list);
 

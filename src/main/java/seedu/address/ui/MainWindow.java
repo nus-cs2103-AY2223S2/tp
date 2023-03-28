@@ -29,6 +29,7 @@ import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
 import seedu.address.ui.main.StatusBarFooter;
 import seedu.address.ui.person.AddressBookWindow;
+import seedu.address.ui.timetable.CompleteWindow;
 import seedu.address.ui.timetable.UnscheduleWindow;
 
 /**
@@ -48,6 +49,7 @@ public class MainWindow extends UiPart<Stage> {
     // private PersonListPanel personListPanel;
     private AddressBookWindow addressBookWindow;
     private AddDeliveryJobWindow addDeliveryJobWindow;
+    private CompleteWindow completeWindow;
     private DeliveryJobListPanel deliveryJobListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -140,6 +142,7 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
         timetableWindow = new TimetableWindow(new Stage(), logic);
         unscheduleWindow = new UnscheduleWindow(new Stage(), logic);
+        completeWindow = new CompleteWindow(new Stage(), logic);
         reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
         addressBookWindow = new AddressBookWindow(new Stage(), logic);
@@ -283,6 +286,20 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opends completed jobs window
+     */
+    @FXML
+    private void handleCompletedTimetable() {
+        if (!completeWindow.isShowing()) {
+            logger.info("Opened window of completed jobs.");
+            completeWindow.show();
+            completeWindow.fillInnerParts();
+        } else {
+            completeWindow.focus();
+        }
+    }
+
+    /**
      * Opens Reminder List window.
      */
     @FXML
@@ -382,6 +399,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowUnschedule()) {
                 handleUnscheduledTimetable();
+            }
+
+            if (commandResult.isShowComplete()) {
+                handleCompletedTimetable();
             }
 
             if (commandResult.isShowStatistics()) {

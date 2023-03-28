@@ -15,7 +15,10 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.jobs.DeliveryDate;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.DeliverySlot;
+import seedu.address.model.jobs.Earning;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -53,6 +56,28 @@ public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand
         String ded = argMultimap.getValue(PREFIX_DELIVERY_DATE).get();
         String des = argMultimap.getValue(PREFIX_DELIVERY_SLOT).get();
         String ear = argMultimap.getValue(PREFIX_EARNING).get();
+
+        if (sid.equals("")) {
+            throw new ParseException(AddDeliveryJobCommand.MESSAGE_SENDER_CONSTRAINT);
+        }
+
+        if (rid.equals("")) {
+            throw new ParseException(AddDeliveryJobCommand.MESSAGE_RECIPIENT_CONSTRAINT);
+        }
+
+        if (ded.equals("")) {
+            throw new ParseException(DeliveryDate.MESSAGE_CONSTRAINTS);
+        }
+
+        if (des.equals("")) {
+            throw new ParseException(DeliverySlot.MESSAGE_CONSTRAINTS);
+        } else if (Integer.parseInt(des) < 1) {
+            throw new ParseException(DeliverySlot.MESSAGE_CONSTRAINTS);
+        }
+
+        if (ear.equals("")) {
+            throw new ParseException(Earning.MESSAGE_CONSTRAINTS);
+        }
 
         DeliveryJob job = new DeliveryJob(rid, sid, ded, des, ear, "");
         return new AddDeliveryJobCommand(job);

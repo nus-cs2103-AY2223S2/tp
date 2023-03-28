@@ -20,6 +20,15 @@ public class AddDeliveryJobCommand extends Command {
 
     public static final String COMMAND_WORD = "add_job";
 
+    public static final String MESSAGE_SENDER_CONSTRAINT = "Sender ID should contain "
+            + "numeric and alphabetical characters."
+            + "\nAnd it should not be blank.";
+
+    public static final String MESSAGE_RECIPIENT_CONSTRAINT = "Recipient ID should contain numeric"
+            + "and alphabetical characters"
+            + "\nand it should not be blank.";
+
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a job to the delivery job system. "
             + "Parameters: "
             + PREFIX_SENDER_ID + "SENDER ID "
@@ -29,6 +38,15 @@ public class AddDeliveryJobCommand extends Command {
             + PREFIX_EARNING + "Earning ";
 
     public static final String MESSAGE_SUCCESS = "New job added: %1$s";
+    public static final String MESSAGE_SUCCESS_WITH_NO_DATE = "New job added: %1$s"
+            + "\nHowever, delivery date is not specified";
+    public static final String MESSAGE_SUCCESS_WITH_NO_SLOT = "New job added: %1$s"
+            + "\nHowever, delivery slot is not specified";
+    public static final String MESSAGE_SUCCESS_UNSCHEDULED = "New job added: %1$s"
+            + "\nHowever, delivery date and slot are not specified";
+    public static final String MESSAGE_SUCCESS_LATE_SLOT = "New job added: %1$s"
+            + "\nHowever, slot is outside working hours"
+            + "\nValid slot should only be in the range [1,5]";
     public static final String MESSAGE_DUPLICATE_JOB = "This job already exists in the delivery job system";
     public static final String MESSAGE_INVALID_SENDER = "Sender not found.";
     public static final String MESSAGE_INVALID_RECIPIENT = "Recipient not found.";
@@ -69,6 +87,19 @@ public class AddDeliveryJobCommand extends Command {
         }
 
         model.addDeliveryJob(toAdd);
+
+        if (!toAdd.isScheduled()) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS_UNSCHEDULED, toAdd));
+        }
+        if (!toAdd.hasDate()) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS_WITH_NO_DATE, toAdd));
+        }
+        if (!toAdd.hasSlot()) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS_WITH_NO_SLOT, toAdd));
+        }
+        if (!toAdd.isValidScheduled()) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS_LATE_SLOT, toAdd));
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

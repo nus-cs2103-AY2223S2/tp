@@ -39,6 +39,7 @@
                      <Menu mnemonicParsing="false" text="Timetable">
                         <MenuItem fx:id="timetableMenuItem" mnemonicParsing="false" onAction="#handleTimetable" text="Scheduled Jobs" />
                          <MenuItem fx:id="timetableUnscheduledItem" mnemonicParsing="false" onAction="#handleUnscheduledTimetable" text="Unscheduled Jobs" />
+                         <MenuItem fx:id="timetableCompletedItem" mnemonicParsing="false" onAction="#handleCompletedTimetable" text="Completed Jobs" />
                      </Menu>
                      <Menu mnemonicParsing="false" text="Statistics">
                         <items>

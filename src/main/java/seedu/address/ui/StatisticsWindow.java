@@ -170,6 +170,7 @@ public class StatisticsWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            //resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }

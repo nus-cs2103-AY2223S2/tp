@@ -10,19 +10,19 @@ import seedu.address.model.Model;
 /**
  * Finds and lists unscheduled jobs - those with invalid slot/date
  */
-public class TimetableUnscheduleCommand extends Command {
-    public static final String COMMAND_WORD = "timetable_unschedule";
+public class TimetableCompletedCommand extends Command {
+    public static final String COMMAND_WORD = "timetable_complete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lists unscheduled jobs with invalid slot/date";
-    public static final String MESSAGE_SUCCESS = "Listed all unscheduled jobs with invalid slot/date";
+            + ": Lists completed jobs";
+    public static final String MESSAGE_SUCCESS = "Listed all completed jobs";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
 
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false, false, false, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, false, true, false, false, false);
     }
 
 }

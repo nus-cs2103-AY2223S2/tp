@@ -27,6 +27,11 @@ public class CommandResult {
     private final boolean showUnschedule;
 
     /**
+     * List of completed jobs should be shown to user.
+     */
+    private final boolean showComplete;
+
+    /**
      * Statistics information should be shown to the user.
      */
     private final boolean showStatistics;
@@ -46,12 +51,13 @@ public class CommandResult {
      */
 
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showTimetable,
-                         boolean showUnschedule, boolean showReminderList,
+                         boolean showUnschedule, boolean showComplete, boolean showReminderList,
                          boolean showStatistics, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTimetable = showTimetable;
         this.showUnschedule = showUnschedule;
+        this.showComplete = showComplete;
         this.showReminderList = showReminderList;
         this.showStatistics = showStatistics;
         this.exit = exit;
@@ -74,6 +80,7 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.showTimetable = showTimetable;
         this.showUnschedule = false;
+        this.showComplete = false;
         this.showReminderList = showReminderList;
         this.showStatistics = showStatistics;
         this.exit = exit;
@@ -102,7 +109,9 @@ public class CommandResult {
     public boolean isShowUnschedule() {
         return showUnschedule;
     }
-
+    public boolean isShowComplete() {
+        return showComplete;
+    }
 
     public boolean isShowStatistics() {
         return showStatistics;
