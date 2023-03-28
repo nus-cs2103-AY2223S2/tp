@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.medicine.Medicine;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -25,6 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_GENDER = "Male";
+    public static final String DEFAULT_DOCTOR = "Ben";
     public static final String DEFAULT_DRUG_ALLERGY = "NKDA";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
@@ -35,6 +37,7 @@ public class PersonBuilder {
     private Address address;
     private DrugAllergy drugAllergy;
     private Gender gender;
+    private Doctor doctor;
     private Set<Tag> tags;
     private Set<Medicine> medicines;
 
@@ -49,6 +52,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         drugAllergy = new DrugAllergy(DEFAULT_DRUG_ALLERGY);
         gender = new Gender(DEFAULT_GENDER);
+        doctor = new Doctor(DEFAULT_DOCTOR);
         tags = new HashSet<>();
         medicines = new HashSet<>();
     }
@@ -64,6 +68,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         drugAllergy = personToCopy.getDrugAllergy();
         gender = personToCopy.getGender();
+        doctor = personToCopy.getDoctor();
         tags = new HashSet<>(personToCopy.getTags());
         medicines = new HashSet<>(personToCopy.getMedicines());
     }
@@ -97,6 +102,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withGender(String gender) {
         this.gender = new Gender(gender);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Doctor} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDoctor(String doctor) {
+        this.doctor = new Doctor(doctor);
         return this;
     }
 
@@ -141,7 +154,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(nric, name, phone, email, address, drugAllergy, gender, tags, medicines);
+        return new Person(nric, name, phone, email, address, drugAllergy, gender, doctor, tags, medicines);
     }
 
 }

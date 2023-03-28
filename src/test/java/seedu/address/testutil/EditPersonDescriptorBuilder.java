@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.medicine.Medicine;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -42,6 +43,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setDrugAllergy(person.getDrugAllergy());
         descriptor.setGender(person.getGender());
+        descriptor.setDoctor(person.getDoctor());
         descriptor.setTags(person.getTags());
     }
 
@@ -92,6 +94,15 @@ public class EditPersonDescriptorBuilder {
         descriptor.setGender(new Gender(gender));
         return this;
     }
+
+    /**
+     * Sets the {@code doctor} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDoctor(String doctor) {
+        descriptor.setDoctor(new Doctor(doctor));
+        return this;
+    }
+
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
