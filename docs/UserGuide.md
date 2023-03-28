@@ -10,6 +10,7 @@ If you can type fast, CoDoc can get your contact management tasks done **faster*
 You can spend **less time** _keeping track of your contacts_ and _searching through chats_, and spend **more time** making _meaningful connections_ and _accomplish your goals_.
 
 <img src="images/Ui.png"/>
+
 --------------------------------------------------------------------------------------------------------------------
 
 # Table of Contents
