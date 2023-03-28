@@ -100,7 +100,7 @@ public class RecipeForm extends UiPart<Region> {
         saveButton.setOnAction(event -> saveRecipe());
         cancelButton.setOnAction(event -> closeForm());
     }
-    
+
     /**
      * Saves the changes made to the recipe and closes the form.
      * If any fields have been modified, the new values are stored
@@ -196,8 +196,7 @@ public class RecipeForm extends UiPart<Region> {
     }
 
     /*----------------------------------------------------------------------------------------------------------- */
-    // The following functions are helper functions used in the main code above. 
-
+    // The following functions are helper functions used in the main code above.
     /**
      * Stores the initial values of the form fields in a HashMap.
      * This is used for comparison when saving the recipe to determine
@@ -290,7 +289,7 @@ public class RecipeForm extends UiPart<Region> {
             commands.append(" d/");
             commands.append(changedValues.get("duration"));
         }
-        
+
         // Check if the portion has been changed and append the portion prefix and value.
         if (changedValues.containsKey("portion")) {
             commands.append(" p/");
@@ -326,18 +325,17 @@ public class RecipeForm extends UiPart<Region> {
         return commands;
     }
 
-       /**
+    /**
      * Handles the add recipe event by adding the recipe with the changed values.
      *
      * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
      */
     private void handleAddRecipeEvent(Map<String, String> changedValues) {
         try {
-        StringBuilder commands = new StringBuilder();
-        commands = collectFields(commands, changedValues);
-        String commandText = "add " + commands.toString(); 
-        executeCommand(commandText);
-
+            StringBuilder commands = new StringBuilder();
+            commands = collectFields(commands, changedValues);
+            String commandText = "add " + commands.toString();
+            executeCommand(commandText);
         } catch (CommandException | ParseException e) {
             logger.info("Failed to edit recipe: ");
         }
@@ -346,7 +344,7 @@ public class RecipeForm extends UiPart<Region> {
     /**
      * Handles the edit recipe event by updating the recipe with the changed values.
      *
-     * @param index        The index of the recipe to be edited.
+     * @param index The index of the recipe to be edited.
      * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
      */
     private void handleEditRecipeEvent(int index, Map<String, String> changedValues) {
@@ -356,7 +354,8 @@ public class RecipeForm extends UiPart<Region> {
             // Add the index of the item to edit.
             commands.append(index);
             commands = collectFields(commands, changedValues);
-            String commandText = "edit " + commands.toString(); 
+            String commandText = "edit " + commands.toString();
+
             executeCommand(commandText);
         } catch (CommandException | ParseException e) {
             logger.info("Failed to edit recipe: " + index);
@@ -403,7 +402,9 @@ public class RecipeForm extends UiPart<Region> {
             if (event.getCode() == KeyCode.UP) {
                 // Condition 1: UP key pressed
                 if (currentIndex > 0) {
-                    TextField prevField = (TextField) ((VBox) textField.getParent()).getChildren().get(currentIndex - 1);
+                    TextField prevField = (TextField) ((VBox) textField.getParent())
+                                                                       .getChildren()
+                                                                       .get(currentIndex - 1);
                     prevField.requestFocus();
                 }
             } else if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.TAB) {
@@ -468,7 +469,8 @@ public class RecipeForm extends UiPart<Region> {
 
         return textField;
     }
-        /**
+
+    /**
      * Executes the command based on the given {@code commandText} and returns the result.
      * Updates the UI components based on the command result.
      *
