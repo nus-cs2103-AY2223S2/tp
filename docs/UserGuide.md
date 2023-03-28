@@ -52,7 +52,7 @@ To switch between different modes simply enter the following command:
 ```
 mode XYZ
 ```
-where XYZ can be any of the 5 mode names specified above.
+where XYZ can be any of the modes as described above (i.e. `crew`, `flight`, `location`, `pilot`, `plane`).
 
 <img src="images/ModeCrewLanding.jpg" width="2032" alt="Switching to mode crew">
 
@@ -72,38 +72,75 @@ The commands in this section are available across ALL 5 modes.
 
 Use this command when you wish to add a new resource entity (e.g. a new plane that has been added to your fleet)
 to Wingman, for you to manage the resource. 
+
 ```
 add /prefix_A value_A /prefix_B value_B
 ```
+
 This commands adds an entity of the current resource mode to Wingman's database. For example,
-if you are currently in the `plane` mode, then this command will add a new
-`plane` to the database. It shall be noted, however, that the parameters that are specified in different modes are different. 
+if you are currently in the `plane` mode, then this command will add a new `plane` to the database. It should be noted, 
+however, that the prefixes specified in different modes are different. 
 
 Here are some examples of how the command works in each mode:
 
-##### Crew mode: `add /n Bob /r 1`
-Parameters:
+##### Crew mode: `add /n name /r rank`
+
+Prefixes:
 - `/n`: the name of the crew.
 - `/r`: the rank of the crew.
+  - `0`: Cabin Service Director,
+  - `1`: Senior Flight Attendant,
+  - `2`: Flight Attendant,
+  - `3`: Trainee.
 
-##### Flight mode: `add /c SQ324`
-Parameter:
+Example:
+```
+Input:
+add /n John Smith /r 0
+
+Output: 
+Added Cabin Service Director John Smith.
+```
+
+##### Flight mode: `add /c code`
+
+Prefix:
 - `/c` : the code for the flight.
 
-##### Location mode: `add /n Singapore`
-Parameter:
+Example:
+```
+Input:
+add /c SQ230
+
+Output: 
+Added flight SQ230.
+```
+
+##### Location mode: `add /n name`
+
+Prefix:
 - `/n`: name of the location.
 
-##### Pilot mode: `add /n Bob /r 1 /a 32 /g 0 /fh 20100`
-Parameters:
+Example:
+```
+Input:
+add /n Tokyo
+
+Output: 
+Added Tokyo.
+```
+
+##### Pilot mode: `add /n name /r rank /a age /g gender /fh flight_hours`
+
+Prefixes:
 - `/n`: the name of the pilot.
 - `/r`: the rank of the pilot. Possible values:
-  - `1`: Training Captain,
-  - `2`: Captain,
-  - `3`: Senior,
-  - `4`: First Officer,
-  - `5`: Second Officer,
-  - `6`: Cadet.
+  - `0`: Training Captain,
+  - `1`: Captain,
+  - `2`: Senior First Officer,
+  - `3`: First Officer,
+  - `4`: Second Officer,
+  - `5`: Cadet.
 - `/a`: the age of the captain.
 - `/g`: the gender of the pilot. Possible values:
   - `0`: male
@@ -111,10 +148,29 @@ Parameters:
   - `2`: other
 - `/fh`: the flight hours of the pilot.
 
-##### Plane mode: `add /m A380 /a 12`
-Parameters:
+Example:
+```
+Input:
+add /n Amelia Earhart /r 5 /a 34 /g 1 /fh 1000
+
+Output: 
+Added Cadet Amelia Earhart.
+```
+
+##### Plane mode: `add /m model /a age`
+
+Prefixes:
 - `/m`: model of the plane.
 - `/a`: age of the plane.
+
+Example:
+```
+Input:
+add /m A380 /a 10
+
+Output: 
+Added A380.
+```
 
 If the command is valid, upon pressing enter, your application window will be updated as shown below.
 The response box describes the addition that was made and the new entity should be displayed in the left list.
@@ -132,8 +188,7 @@ from Wingman, to keep your database of resources up to date.
 delete index_number
 ```
 This commands deletes an entity of the current resource mode from Wingman's database. For example,
-if you are currently in the `plane` mode, then this command will delete the specified
-`plane` from the database.
+if you are currently in the `plane` mode, then this command will delete the specified `plane` from the database.
 
 This command has no variations across modes:
 
@@ -141,9 +196,8 @@ This command has no variations across modes:
 Parameter:
 - `index_number`: the index number of the resource entity you wish to delete. Note that the indexing starts from 0.
 
-You can obtain the index number of an entity from its position in the displayed list.
-For instance, Flight Attendant Mary will have an index number of 1 in the image below.
-(The index number will be displayed in future updates)
+You can obtain the index number of an entity from its position in the displayed list.  For instance, Flight Attendant 
+Mary will have an index number of 1 in the image below. (The index number will be displayed in future updates)
 
 <img src="images/ModeCrewLanding.jpg" width="2032" alt="Mode crew page">
 
@@ -166,34 +220,73 @@ linklocation /lo location_index /resource_prefix resource_index
 This command is ONLY available in the following modes: `crew`, `flight`, `pilot` and `plane`.
 
 This commands links an entity of the current resource mode to a specified location entity in Wingman's database.
-For example, if you are currently in the `plane` mode, then this command will link a `plane` 
-to a specified location entity in the database. It shall be noted, however,
-that the parameters that are specified in different modes are different.
+For example, if you are currently in the `plane` mode, then this command will link a `plane` to a specified location 
+entity in the database. It shall be noted, however, that the prefixes specified in different modes are different.
 
 Note that the indexing for `location_index` and `resource_index` starts from 0.
 
 Here are some examples of how the command works in each mode:
 
-##### Crew mode: `linklocation /lo 0 /cr 1`
+##### Crew mode: `linklocation /lo location_index /cr crew_index`
+
 Parameters:
 - `/lo`: the index of the location to which the crew is to be linked to.
 - `/cr`: the index of the crew to be linked.
 
-##### Flight mode: `linklocation /fl 0 /from 1 /to 2`
+Example:
+```
+Input:
+linklocation /lo 0 /cr 1
+
+Output: 
+Linked Cabin Service Director John Smith to Tokyo.
+```
+
+##### Flight mode: `linklocation /fl flight_index /from location_index /to location_index`
+
 Parameter:
 - `/fl`: the index of the flight to be linked.
 - `/from`: the index of the location to which the flight is to be linked as departing from.
 - `/to`: the index of the location to which the flight is to be linked as arriving at.
 
-##### Pilot mode: `linklocation /lo 0 /pi 1`
+Example:
+```
+Input:
+linklocation /fl 0 /from 0 /to 1
+
+Output: 
+Linked flight SQ230 departing from Tokyo, arriving in Paris.
+```
+
+##### Pilot mode: `linklocation /lo location_index /pi pilot_index`
+
 Parameters:
 - `/lo`: the index of the location to which the pilot is to be linked to.
 - `/pi`: the index of the pilot to be linked.
 
-##### Plane mode: `linklocation /lo 0 /pl 1`
+Example:
+```
+Input:
+linklocation /lo 0 /pi 1
+
+Output: 
+Linked Cadet Amelia Earhart to Tokyo.
+```
+
+##### Plane mode: `linklocation /lo location_index /pl plane_index`
+
 Parameters:
 - `/lo`: the index of the location to which the plane is to be linked to.
 - `/pl`: the index of the plane to be linked.
+
+Example:
+```
+Input:
+linklocation /lo 0 /pl 1
+
+Output: 
+Linked A380 to Tokyo.
+```
 
 If the command is valid, Wingman will return a response describing the link that has been made, as shown below:
 
@@ -214,7 +307,7 @@ This command is ONLY available in the following modes: `crew`, `flight`, `pilot`
 This commands unlinks an entity of the current resource mode to a specified location entity in Wingman's database.
 For example, if you are currently in the `plane` mode, then this command will unlink a `plane`
 from the specified location entity in the database. It shall be noted, however,
-that the parameters that are specified in different modes are different.
+that the prefixes that are specified in different modes are different.
 
 Note that the indexing for `location_index` and `resource_index` starts from 0.
 
