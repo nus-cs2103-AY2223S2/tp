@@ -395,37 +395,41 @@ The following legend describes the symbols used in this section:
 | High     | `* * *` | Must have        | 
 | Medium   | `* *`   | Nice to have     | 
 | Low      | `*`     | Unlikely to have | 
+</div>
 
 
-| Priority | As a …                                | I want to …                                                       | So that …                                                                            |
-|----------|---------------------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| `* * *`  | Hiring Manager                        | List out all existing applicants                                  | I can have a glance of the status of the application cycle of all applicants.        |
-| `* * *`  | Hiring Manager                        | View the number of applicants in each application stage           | I can have a glance of the status at each stage in the application cycle.            |
-| `* * *`  | Hiring Manager                        | Advance the application stage of applicants                       | I can move an applicant into the next stage of the application cycle                 |
-| `* * *`  | Hiring Manager                        | Add applicants into HMHero                                        | I can quickly add users who have applied to the department.                          |
-| `* * *`  | Hiring Manager                        | Delete single applicant                                           | I can delete applicants that I do not wish to track in the application anymore.      |
-| `* * *`  | Busy Hiring Manager                   | Search for applicants                                             | I can view details of specific applicants                                            |
-| `* * * ` | Senior Hiring Manager                 | Identify duplicate applications from the same applicant           | I can prevent applicants from sending multiple applications                          |
-| `* * `   | Busy Hiring Manager                   | View the dates of interviews for all shortlisted applicants       | I can better schedule future working days                                            |
-| `* * `   | Hiring Manager                        | Take down some additional notes for each applicant                | I can note down additional details of an applicant, for future reference             |
-| `* * `   | Forgetful Hiring Manager              | Remind myself of interviews that coming up                        | I will not forget to attend any interview that I have scheduled                      |
-| `* * `   | Clumsy Hiring Manager                 | Check whether there are any clashes in interview date and timings | I can prevent myself from scheduling more than 1 interview in the same date and time |
-| `* `     | Clumsy Hiring Manager                 | Get a confirmation message when deleting an applicant             | I can prevent accidental deletions of applicants                                     |
-| `* `     | Old Hiring Manager                    | Highlight and enlarge the keywords that I am looking for          | I can easily see the keywords that I am looking for                                  |
-| `* `     | Careless Hiring Manager               | Undo recent actions or commands                                   | I can reverse commands that I have mistakenly carried out                            |
-| `* `     | Hiring Manager for multiple positions | Create jobs with required skill sets for each job                 | I can keep track of skill-sets needed for each job to match applicants               |
+| Priority | As a …                   | I want to …                                                       | So that …                                                                            |
+|----------|--------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| `* * *`  | Hiring Manager           | List out all existing applicants                                  | I can have a glance of the status of the application cycle of all applicants.        |
+| `* * *`  | Hiring Manager           | View the number of applicants in each application stage           | I can have a glance of the status at each stage in the application cycle.            |
+| `* * *`  | Hiring Manager           | Advance the application stage of applicants                       | I can move an applicant into the next stage of the application cycle                 |
+| `* * *`  | Hiring Manager           | Add applicants into HMHero                                        | I can track applicants who have applied to the department.                           |
+| `* * *`  | Hiring Manager           | Delete single applicant                                           | I can remove applicants that I do not wish to track in the application anymore.      |
+| `* * *`  | Busy Hiring Manager      | Filter for applicants by name or phone or both                    | I can view filter down from the entire list of applicants.                           |
+| `* * * ` | Senior Hiring Manager    | Identify duplicate applications of the same applicant             | I can identify whether applicants are sending multiple applications                  |
+| `* * `   | Busy Hiring Manager      | View the dates of interviews for all shortlisted applicants       | I can better schedule my future working days                                         |
+| `* * `   | Hiring Manager           | Take down some additional notes for each applicant                | I can note down the skills that the particular applicant has.                        |
+| `* * `   | Forgetful Hiring Manager | Remind myself of interviews that coming up                        | I will not forget to attend any interview that I have scheduled                      |
+| `* * `   | Clumsy Hiring Manager    | Check whether there are any clashes in interview date and timings | I can prevent myself from scheduling more than 1 interview in the same date and time |
+| `* `     | Clumsy Hiring Manager    | Get a confirmation message when deleting an applicant             | I can prevent accidental deletions of applicants                                     |
+| `* `     | Old Hiring Manager       | Highlight and enlarge the keywords that I am looking for          | I can easily see the keywords that I am looking for                                  |
+| `* `     | Careless Hiring Manager  | Undo recent actions or commands                                   | I can reverse commands that I have mistakenly carried out                            |
+| `* `     | Picky Hiring Manager     | Rank my applicants                                                | It is easier for me to decide which applicant I want to hire most                    |
+
 
 ### Use cases
 
 (For all use cases below, the **System** is the `HMHero` and the **Actor** is the `Hiring Manager`, unless specified otherwise)
 
 
-**Use case: Add a applicant**
+**Use case: Add an applicant**
+
+Precondition: Applicant does not exist in HMHero yet.
 
 **MSS**
 
-1.  User requests to add a specific applicant in the list
-2.  HMHero adds the applicant
+1.  User requests to add a specific applicant in the list.
+2.  HMHero adds the applicant.
 
     Use case ends.
 
@@ -446,12 +450,14 @@ The following legend describes the symbols used in this section:
 
 **Use case: Delete an applicant**
 
+Precondition: Applicant to delete exists in HMHero.
+
 **MSS**
 
-1.  User requests to list all applicants
-2.  HMHero shows a list of applicants
-3.  User enters the command to delete a specific applicant in the list
-4.  HMHero deletes the applicant
+1.  User requests to list all applicants.
+2.  HMHero shows a list of applicants.
+3.  User enters the command to delete a specific applicant in the list.
+4.  HMHero deletes the applicant.
 
     Use case ends.
 
@@ -475,7 +481,8 @@ The following legend describes the symbols used in this section:
 
       Use case resumes at step 3.
 
-* 3c. The given applicant's name and corresponding phone number combination does not exist.
+
+* 3c. The given applicant's name and corresponding phone number combination for an applicant does not exist.
 
     * 3c1. HMHero shows an error message.
 
@@ -483,11 +490,13 @@ The following legend describes the symbols used in this section:
 
 **Use case: Advance an applicant’s status**
 
+Precondition: Status of Applicant to advance is not `ACCEPTED` or `REJECTED`.
+
 **MSS**
 
-1.  User requests to list applicants
-2.  HMHero shows a list of applicants
-3.  User enters the command to advance the status of a specific applicant in the list
+1.  User requests to list applicants.
+2.  HMHero shows a list of applicants.
+3.  User enters the command to advance the status of a specific applicant in the list.
 4.  HMHero advances the applicant’s status.
 
     Use case ends.
@@ -543,11 +552,13 @@ The following legend describes the symbols used in this section:
 
 **Use case: Reject an applicant’s status**
 
+Precondition: Status of Applicant to reject is not `REJECTED`.
+
 **MSS**
 
-1.  User requests to list applicants
-2.  HMHero shows a list of applicants
-3.  User enters the command to reject a specific applicant in the list
+1.  User requests to list applicants.
+2.  HMHero shows a list of applicants.
+3.  User enters the command to reject a specific applicant in the list.
 4.  HMHero sets the applicant’s status as `REJECTED`.
 
     Use case ends.
@@ -581,23 +592,65 @@ The following legend describes the symbols used in this section:
       Use case resumes at step 3.
 
 
-**Use case: Viewing help**
+**Use case: Finding applicants**
+
+Precondition: Applicant to find exists in HMHero.
 
 **MSS**
 
-1.  User enters the command to show for the commands available.
-2.  HMHero shows the table of commands.
+1.  User requests to list applicants.
+2.  HMHero shows a list of applicants.
+3.  User enters the command to find an applicant.
+4.  HMHero shows all applicants that matches the given parameters.
 
     Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+
+* 3a. HMHero detects that the command entered is of invalid formatting.
+    * 3a1. HMHero shows an error message
+  
+      Use case resumes at step 3.
+
+
+**Use case: Finding applicants with specific skills**
+
+**MSS**
+
+1.  User requests to list applicants.
+2.  HMHero shows a list of applicants.
+3.  User enters the command to find applicants that match specific skills.
+4.  HMHero shows all applicants with notes that match the given skills.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+
+* 3a. HMHero detects that the command entered is of invalid formatting.
+    * 3a1. HMHero shows an error message
+
+      Use case resumes at step 3.
 
 
 **Use case: Remind upcoming interviews**
 
+Precondition: There are shortlisted applicants in HMHero.
+
 **MSS**
 
-1.  User requests to list applicants
-2.  HMHero shows a list of applicants
-3.  User enters the command to remind himself/herself of the upcoming interviews
+1.  User requests to list applicants.
+2.  HMHero shows a list of applicants.
+3.  User enters the command to remind himself/herself of the upcoming interviews.
 4.  HMHero shows all applicants with interview dates within the next three days.
 
     Use case ends.
@@ -609,22 +662,20 @@ The following legend describes the symbols used in this section:
   Use case ends.
 
 
-* 3a. There are no `SHORTLISTED` applicants
+* 3a. HMHero detects that the command entered is of invalid formatting.
+    * 3a1. HMHero shows an error message
 
-  Use case ends.
-
-
-* 3b. There are no interview dates within the next three days.
-    
-  Use case ends.
+      Use case resumes at step 3.
 
 
 **Use case: View all interview dates**
 
+Precondition: There are shortlisted applicants in HMHero.
+
 **MSS**
 
-1.  User requests to list applicants
-2.  HMHero shows a list of applicants
+1.  User requests to list applicants.
+2.  HMHero shows a list of applicants.
 3.  User enters the command to view interview dates and times of all `SHORTLISTED` applicants.
 4.  HMHero shows the interview date and times of all `SHORTLISTED` applicants, sorted from earliest to latest.
 
@@ -637,9 +688,29 @@ The following legend describes the symbols used in this section:
   Use case ends.
 
 
-* 3a. There are no `SHORTLISTED` applicants
+* 3a. HMHero detects that the command entered is of invalid formatting.
+    * 3a1. HMHero shows an error message
 
-  Use case ends.
+      Use case resumes at step 3.
+
+
+**Use case: View summary statistics of hiring cycle**
+
+Precondition: There are applicants added into HMHero.
+
+**MSS**
+
+1. User enters the command to view summary statistics.
+2. HMHero shows summary statistics.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. HMHero detects that the command entered is of invalid formatting.
+    * 1a1. HMHero shows an error message
+
+      Use case resumes at step 1.
 
 
 ### Non-Functional Requirements
@@ -679,44 +750,160 @@ Given below are instructions to test the app manually.
 These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 </div>
 
-### Launch and shutdown
+### Launch
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the `hmhero.jar` file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file <br>
+   Expected: Shows the GUI with a set of sample applicants.
+   <br></br>
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   2. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a person
+
+Prerequisites: An applicant with the name Fred and phone number 999 does not exist in HMHero yet.
+
+Test case: `add n/Fred p/999 e/test@gmail.com a/12345`<br>
+Expected: Applicant named Fred and with phone number 999 is added to the list.
+Details of the added applicant shown in the output box.
+Application date follows the current date and time.
+
+Test case: `add n/Fred p/999 e/test@gmail.com a/12345 applied/01-01-2023 18:00`<br>
+Expected: Applicant named Fred and with phone number 999 is added to the list.
+Details of the added applicant shown in the output box.
+Application date is `01-01-2023 18:00`.
+
+Test case: `add n/Fred p/999`<br>
+Expected: No applicant is added. Error message for invalid command format.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+Prerequisites: An applicant with the name Fred and phone number 999 exists in HMHero.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+Test case: `delete n/Fred p/999`<br>
+Expected: Applicant named Fred and with phone number 999 is deleted from the list. 
+Details of the deleted applicant shown in the output box.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+Test case: `delete n/Fred p/000`<br>
+Expected: No applicant is deleted. Error message for not finding any applicant.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+Test case: `delete n/Fred`<br>
+Expected: No applicant is deleted. Error message for invalid command format.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Advancing an applicant
 
-### Saving data
+Prerequisites: There are two applicants: 
+1. Applicant with the name Fred, phone number 999 and status `APPLIED`. 
+2. Applicant with the name Freddy, phone number 000, status `SHORTLISTED` and interview date time `05-05-2023 18:00`.
 
-1. Dealing with missing/corrupted data files
+Test case: `advance n/Fred p/999 d/04-04-2023 18:00`<br>
+Expected: Applicant named `Fred` and with phone number 999 is advanced to `SHORTLISTED`.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+Test case: `advance n/Fred p/999 d/05-05-2023 18:00`<br>
+Expected: Applicant is not advanced. Error message for clashing interview date time with Freddy
 
-1. _{ more test cases …​ }_
+Test case: `advance n/Fred p/999`<br>
+Expected: Applicant is not advanced. Error message for no interview date time given.
+
+Test case: `advance n/Freddy p/000 d/05-05-2023 18:00`<br>
+Expected: Applicant is not advanced. Error message for no interview date time is needed.
+
+Test case: `advance n/Fred`<br>
+Expected: Applicant is not advanced. Error message for invalid command format.
+
+### Rejecting an applicant
+
+Prerequisites: There are two applicants:
+1. Applicant with the name Fred, phone number 999 and status `APPLIED`.
+2. Applicant with the name Freddy, phone number 000, status `REJECTED`.
+
+Test case: `reject n/Fred p/999`<br>
+Expected: Applicant named Fred and with phone number 999 is rejected.
+
+Test case: `reject n/Freddy p/999`<br>
+Expected: Applicant is not rejected. Error message for applicant is already rejected.
+
+Test case: `reject n/Fred`<br>
+Expected: Applicant is not rejected. Error message for invalid command format.
+
+### Finding applicants
+
+Prerequisite: Applicants to find exist in HMHero
+
+Test case: `find n/Fred`<br>
+Expected: All applicants with name `Fred` listed.
+
+Test case: `find p/999`<br>
+Expected: All applicants with phone number `999` listed.
+
+Test case: `find n/Fred p/999`<br>
+Expected: Applicant with name `Fred` and phone number `999` listed.
+
+Test case: `find n/`<br>
+Expected: Error message for invalid command format.
+
+
+### Finding applicants with specific skills
+
+Test case: `skill java`<br>
+Expected: All applicants with `java` written in `notes`
+
+Test case: `skill`<br>
+Expected: Error message for invalid command format.
+
+
+### Remind upcoming interviews
+
+Prerequisite: There are shortlisted applicants with scheduled interviews in the next 3 days. 
+
+Test case: `remind`<br>
+Expected: All applicants with interviews coming up in the next 3 days are listed (if any).
+
+
+### View all interviews
+
+Prerequisite: There are shortlisted applicants with scheduled interviews
+
+Test case: `interview`<br>
+Expected: All shortlisted applicants are listed, sorted by their interview dates from earliest
+to latest.
+
+
+### View summary statistics
+
+Precondition: There are applicants added into HMHero.
+
+Test case: `summary`<br>
+Expected: Statistic of overall hiring process is shown in output box.
+
+
+### Help
+
+Test case: `help`<br>
+Expected: The Help Window pops up and shows a general help message.
+
+### Clear
+
+Test case: `clear`<br>
+Expected: All applicants in HMHero are deleted.
+
+### Exit
+
+Test case: `exit`<br>
+Expected: HMHero application closes.
+
+## Effort
+
+It was not easy to develop HMHero. Our team struggled with ways to make our product unique and stand out from existing products in the market,
+while at the same time ensuring that this product could be completed in the short span of time given.
+
+

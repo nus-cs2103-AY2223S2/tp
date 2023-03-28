@@ -52,8 +52,8 @@ public class CommandTestUtil {
     public static final String VALID_STATUS_BOB = "APPLIED";
     public static final String VALID_STATUS_JOE = "REJECTED";
 
-    public static final String VALID_APPLICATIONDATE_AMY = "03-05-2023 13:00";
-    public static final String VALID_APPLICATIONDATE_BOB = "04-06-2023 19:30";
+    public static final String VALID_APPLICATIONDATE_AMY = "03-01-2023 13:00";
+    public static final String VALID_APPLICATIONDATE_BOB = "04-01-2023 19:30";
 
     public static final String VALID_NOTE_HUSBAND = "husband";
     public static final String VALID_NOTE_FRIEND = "friends";
