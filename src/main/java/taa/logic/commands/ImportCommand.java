@@ -71,17 +71,17 @@ public class ImportCommand extends Command {
             throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + Name.MESSAGE_CONSTRAINTS);
         }
 
-        if (!record.isMapped(CsvUtil.KW_Attendance)) {
+        if (!record.isMapped(CsvUtil.KW_ATTENDANCE)) {
             throw new CommandException(MSG_ENTRY_FMT_ERR + '\"'
-                    + record + "\". " + mkMsgNoColumn(CsvUtil.KW_Attendance));
+                    + record + "\". " + mkMsgNoColumn(CsvUtil.KW_ATTENDANCE));
         }
-        final String atd = record.get(CsvUtil.KW_Attendance).trim();
+        final String atd = record.get(CsvUtil.KW_ATTENDANCE).trim();
 
         if (!record.isMapped(CsvUtil.KW_PP)) {
             throw new CommandException(MSG_ENTRY_FMT_ERR + '\"'
                     + record + "\". " + mkMsgNoColumn(CsvUtil.KW_PP));
         }
-        final String pp = record.get(CsvUtil.KW_Attendance).trim();
+        final String pp = record.get(CsvUtil.KW_ATTENDANCE).trim();
 
         if (!record.isMapped(CsvUtil.KW_TAGS)) {
             throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + mkMsgNoColumn(CsvUtil.KW_TAGS));
