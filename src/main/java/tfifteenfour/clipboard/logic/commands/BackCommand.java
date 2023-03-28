@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
+import tfifteenfour.clipboard.logic.predicates.ShowAllListedPredicate;
 import tfifteenfour.clipboard.model.Model;
 
 /**
@@ -39,15 +40,18 @@ public class BackCommand extends Command {
 
         case GROUP_PAGE:
             // if you are on group page now, go back to course page
+            ShowAllListedPredicate.resetGroupsFilter(currentSelection);
             currentSelection.navigateBackFromGroupPage();
             return new CommandResult(this, String.format("Back to course page"), willModifyState);
 
         case STUDENT_PAGE:
+            ShowAllListedPredicate.resetStudentsFilter(currentSelection);
             currentSelection.navigateBackFromStudentPage();
             return new CommandResult(this, String.format("Back to group page of %s",
                     currentSelection.getSelectedCourse()), willModifyState);
 
         case SESSION_PAGE:
+            ShowAllListedPredicate.resetSessionsFilter(currentSelection);
             currentSelection.navigateBackFromSessionPage();
             return new CommandResult(this, String.format("Back to group page of %s",
                     currentSelection.getSelectedCourse()), willModifyState);
@@ -58,6 +62,7 @@ public class BackCommand extends Command {
                     currentSelection.getSelectedGroup()), willModifyState);
 
         case TASK_PAGE:
+            ShowAllListedPredicate.resetTasksFilter(currentSelection);
             currentSelection.navigateBackFromTaskPage();
             return new CommandResult(this, String.format("Back to group page of %s",
                     currentSelection.getSelectedCourse()), willModifyState);

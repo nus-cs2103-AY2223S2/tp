@@ -8,6 +8,7 @@ import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
+import tfifteenfour.clipboard.logic.predicates.ShowAllListedPredicate;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
@@ -40,34 +41,37 @@ public class SelectCommand extends Command {
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
         requireNonNull(model);
 
-
-
         switch (currentSelection.getCurrentPage()) {
         case COURSE_PAGE:
             // if you are on course page now, means you can only select a course
             Course selectedCourse = handleSelectCourse(model, currentSelection);
+            ShowAllListedPredicate.resetCoursesFilter(model);
             return new CommandResult(this,
                     String.format("[GROUP PAGE]\nViewing: groups for course %s", selectedCourse), willModifyState);
 
         case GROUP_PAGE:
             // if you are on group page now, means you can only select a group
             Group selectedGroup = handleSelectGroup(model, currentSelection);
+            ShowAllListedPredicate.resetGroupsFilter(currentSelection);
             return new CommandResult(this,
                     String.format("[STUDENT PAGE]\nViewing: students in group %s of %s", selectedGroup,
                     currentSelection.getSelectedCourse()), willModifyState);
 
         case STUDENT_PAGE:
             Student selectedStudent = handleSelectStudent(model, currentSelection);
+            ShowAllListedPredicate.resetStudentsFilter(currentSelection);
             return new CommandResult(this, String.format("Viewing: %s", selectedStudent), willModifyState);
 
         case SESSION_PAGE:
             Session selectedSession = handleSelectSession(model, currentSelection);
+            ShowAllListedPredicate.resetSessionsFilter(currentSelection);
             return new CommandResult(this,
                     String.format("[ATTENDANCE PAGE]\nViewing: session attendance for %s", selectedSession),
                     willModifyState);
 
         case TASK_PAGE:
             Task selectedTask = handleSelectTask(model, currentSelection);
+            ShowAllListedPredicate.resetTasksFilter(currentSelection);
             return new CommandResult(this,
                     String.format("[GRADES PAGE]\nViewing: grades for %s", selectedTask),
                     willModifyState);
