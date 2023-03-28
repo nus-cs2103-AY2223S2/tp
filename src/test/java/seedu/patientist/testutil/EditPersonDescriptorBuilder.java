@@ -4,8 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.patientist.logic.commands.EditPatientCommand;
-import seedu.patientist.logic.commands.EditPatientCommand.EditPatientDescriptor;
+import seedu.patientist.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
 import seedu.patientist.model.person.Name;
@@ -18,21 +17,21 @@ import seedu.patientist.model.tag.Tag;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditPatientCommand.EditPatientDescriptor descriptor;
+    private EditPersonDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditPatientDescriptor();
+        descriptor = new EditPersonDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPatientDescriptor descriptor) {
-        this.descriptor = new EditPatientDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
+        this.descriptor = new EditPersonDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Person person) {
-        descriptor = new EditPatientDescriptor();
+        descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
@@ -82,7 +81,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditPatientCommand.EditPatientDescriptor build() {
+    public EditPersonDescriptor build() {
         return descriptor;
     }
 }

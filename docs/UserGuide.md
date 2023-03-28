@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 # Patientist User Guide
-Patientist is a desktop app used for managing patients and staff within a medical facility. This application is optimised
-for use via a Command Line Interface (CLI), while still having a Graphical User Interface (GUI) for users to fall back
-on. If you are a strong typist and are familiar with the system, Patientist can get your tasks done faster and more
+Patientist is a desktop app used for managing patients and staff within a medical facility. This application is optimised 
+for use via a Command Line Interface (CLI), while still having a Graphical User Interface (GUI) for users to fall back 
+on. If you are a strong typist and are familiar with the system, Patientist can get your tasks done faster and more 
 reliably than traditional GUI based apps.
 
 ![MainScreen](../docs/images/Ui.png)
@@ -281,21 +281,21 @@ Exits the program.
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary
 
-| Action                           | Format, Examples                                                                                                                                                                                                           |
+| Action                           | Format, Examples                                                                                                                                                                                                           |                                                                                                                                                                           
 |----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add patient**                  | `addpat n/PATIENT_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME [t/TAG]...` <br> e.g., `addpat n/John Doe id/A12345B w/Block B Ward 2 p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends` |
-| **Add prescription**             | `addpresc id/ID_NUMBER p/PRESCRIPTION_OR_INSTRUCTION` <br> e.g., `addpresc id/A0123456789B p/paracetamol 500mg`                                                                                                            |
-| **Add staff**                    | `addstf n/STAFF_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME`<br> e.g., `addstf n/Dr. Mallory Wong id/A987654321H p/97365482 e/mwong@example.com a/390 Geylang Rd w/block B ward 2`                          |
-| **Add ward**                     | `addward n/WARD_NAME`<br> e.g.,`addward n/block B ward 2`                                                                                                                                                                  |
-| **List Patients**                | `lspat [w/WARD_NAME]`<br> e.g., `lspat block B ward 2`, `lspat`                                                                                                                                                            |
-| **List patient's prescriptions** | `lspresc id/ID_NUMBER`<br> e.g., `lspresc id/A0123456789B`                                                                                                                                                                 |
-| **List staff members**           | `lsstf [w/WARD_NAME]`<br> e.g., `lsstf w/block A ward 1`, `lsstf`                                                                                                                                                          |
-| **List all ward names**          | `lsward`<br>                                                                                                                                                                                                               |
-| **Edit patient particulars**     | `editpat id/ID_NUMBER [n/PATIENT_NAME] [w/WARD_NAME] [t/TAG] [p/PHONE_NUMBER] [kn/NOK_NAME] [kp/NOK_PHONE_NUMBER] [a/ADDRESS]`<br> e.g., `editpat id/A0123456789B w/block B ward 2 p/81234567`                             |
+| **Add patient**                  | `addpat n/PATIENT_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME [t/TAG]...` <br> e.g., `addpat n/John Doe id/A12345B w/Block B Ward 2 p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends` |                 
+| **Add prescription**             | `addpresc id/ID_NUMBER p/PRESCRIPTION_OR_INSTRUCTION` <br> e.g., `addpresc id/A0123456789B p/paracetamol 500mg`                                                                                                            |                     
+| **Add staff**                    | `addstf n/STAFF_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME`<br> e.g., `addstf n/Dr. Mallory Wong id/A987654321H p/97365482 e/mwong@example.com a/390 Geylang Rd w/block B ward 2`                          |             
+| **Add ward**                     | `addward n/WARD_NAME`<br> e.g.,`addward n/block B ward 2`                                                                                                                                                                  |           
+| **List Patients**                | `lspat [w/WARD_NAME]`<br> e.g., `lspat block B ward 2`, `lspat`                                                                                                                                                            |                        
+| **List patient's prescriptions** | `lspresc id/ID_NUMBER`<br> e.g., `lspresc id/A0123456789B`                                                                                                                                                                 |                             
+| **List staff members**           | `lsstf [w/WARD_NAME]`<br> e.g., `lsstf w/block A ward 1`, `lsstf`                                                                                                                                                          |                  
+| **List all ward names**          | `lsward`<br>                                                                                                                                                                                                               |                  
+| **Edit patient particulars**     | `editpat id/ID_NUMBER [n/PATIENT_NAME] [w/WARD_NAME] [t/TAG] [p/PHONE_NUMBER] [kn/NOK_NAME] [kp/NOK_PHONE_NUMBER] [a/ADDRESS]`<br> e.g., `editpat id/A0123456789B w/block B ward 2 p/81234567`                             | 
 | **Deleting ward**                | `delward n/WARD_NAME`<br> e.g., `delward n/block B ward 2`                                                                                                                                                                 |
-| **Deleting staff member**        | `delstf n/STAFF_NAME w/WARD_NAME`<br> e.g., `delstf n/Dr. Mallory Wong w/block B ward 2`                                                                                                                                   |
-| **Deleting prescription entry**  | `delpresc id/ID_NUMBER idx/INDEX`<br> e.g., `delpresc id/A0123456789B idx/1`                                                                                                                                               |
-| **Deleting patient from system** | `delpat id/ID_NUMBER`<br> e.g., `delpat id/A0123456789B`                                                                                                                                                                   |
+| **Deleting staff member**        | `delstf n/STAFF_NAME w/WARD_NAME`<br> e.g., `delstf n/Dr. Mallory Wong w/block B ward 2`                                                                                                                                   |       
+| **Deleting prescription entry**  | `delpresc id/ID_NUMBER idx/INDEX`<br> e.g., `delpresc id/A0123456789B idx/1`                                                                                                                                               |            
+| **Deleting patient from system** | `delpat id/ID_NUMBER`<br> e.g., `delpat id/A0123456789B`                                                                                                                                                                   |            
 | **Exit**                         | `exit`<br>                                                                                                                                                                                                                 |
 
 [Go back to [Table of Contents](#table-of-contents)]
