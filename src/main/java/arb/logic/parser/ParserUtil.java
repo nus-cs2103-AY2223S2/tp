@@ -154,24 +154,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Price}.
-     * Leading and trailing whitespace will be trimmed.
-     *
-     * @throws ParseException if the given {@code price} is invalid.
-     */
-    public static Price parsePrice(String price) throws ParseException {
-        requireNonNull(price);
-        String trimmedPrice = price.trim();
-        if (trimmedPrice.isEmpty()) {
-            return null;
-        }
-        if (!Price.isValidPrice(trimmedPrice)) {
-            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
-        }
-        return new Price(trimmedPrice);
-    }
-
-    /**
      * Parses a {@code String status} into a {@code Status}.
      * Leading and trailing whitespace will be trimmed.
      *
@@ -191,6 +173,24 @@ public class ParserUtil {
         } else {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Price}.
+     * Leading and trailing whitespace will be trimmed.
+     *
+     * @throws ParseException if the given {@code price} is invalid.
+     */
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (trimmedPrice.isEmpty()) {
+            return null;
+        }
+        if (!Price.isValidPrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+        return new Price(trimmedPrice);
     }
 
     /**
