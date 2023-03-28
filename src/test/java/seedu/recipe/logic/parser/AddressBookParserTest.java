@@ -19,17 +19,17 @@ import seedu.recipe.logic.commands.DeleteCommand;
 import seedu.recipe.logic.commands.EditCommand;
 import seedu.recipe.logic.commands.EditCommand.EditRecipeDescriptor;
 import seedu.recipe.logic.commands.ExitCommand;
-import seedu.recipe.logic.commands.FindRecipeCommand;
+import seedu.recipe.logic.commands.FindCommand;
 import seedu.recipe.logic.commands.HelpCommand;
 import seedu.recipe.logic.commands.ListCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Recipe;
-import seedu.recipe.model.recipe.RecipeContainsKeywordsPredicate;
+import seedu.recipe.model.recipe.TitleContainsKeywordsPredicate;
 import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 import seedu.recipe.testutil.RecipeBuilder;
 import seedu.recipe.testutil.RecipeUtil;
 
-public class CookHubParserTest {
+public class AddressBookParserTest {
 
     private final CookHubParser parser = new CookHubParser();
 
@@ -71,9 +71,9 @@ public class CookHubParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindRecipeCommand command = (FindRecipeCommand) parser.parseCommand(
-                FindRecipeCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindRecipeCommand(new RecipeContainsKeywordsPredicate(keywords)), command);
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCommand(new TitleContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

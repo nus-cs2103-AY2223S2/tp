@@ -7,22 +7,21 @@ import seedu.recipe.model.Model;
 import seedu.recipe.model.recipe.TitleContainsKeywordsPredicate;
 
 /**
- * Finds and lists all recipes in recipe book whose title,
- * contains any of the argument keywords.
+ * Finds and lists all recipes in recipe book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindTitleCommand extends Command {
+public class FindCommand extends Command {
 
-    public static final String COMMAND_WORD = "findt";
+    public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all recipes whose title contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all recipes whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n";
 
 
     private final TitleContainsKeywordsPredicate predicate;
 
-    public FindTitleCommand(TitleContainsKeywordsPredicate predicate) {
+    public FindCommand(TitleContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -37,7 +36,7 @@ public class FindTitleCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindTitleCommand // instanceof handles nulls
-                && predicate.equals(((FindTitleCommand) other).predicate)); // state check
+                || (other instanceof FindCommand // instanceof handles nulls
+                && predicate.equals(((FindCommand) other).predicate)); // state check
     }
 }
