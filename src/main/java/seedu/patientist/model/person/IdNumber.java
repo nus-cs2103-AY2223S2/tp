@@ -29,7 +29,7 @@ public class IdNumber {
      * Returns true if a given string is a valid patient id.
      */
     public static boolean isValidPid(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.length() != 0 && test.matches(VALIDATION_REGEX);
     }
 
     @Override
