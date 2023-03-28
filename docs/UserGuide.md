@@ -3,10 +3,35 @@ layout: page
 title: User Guide
 ---
 
-MyLib is a **desktop app for managing bookmarks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, MyLib can get your bookmark management tasks done faster than traditional GUI apps.
-
 * Table of Contents
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+
+MyLib is a **desktop app for managing bookmarks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).If you are a fast typer who is seeking for a one-stop platform to organise your bookmarks, then MyLib is the assistant you can ask for.
+
+
+--------------------------------------------------------------------------------------------------------------------
+## **About User Guide**
+
+### Objectives of the User Guide
+
+This User Guide provides an in-depth documentation, so you can easily use and integrate MyLib into your everyday bookmarking tasks. It covers how to launch MyLib, core  features and commands used.
+
+### How to use User Guide
+
+The user guide contains certain visuals to aid in conveying information more effectively
+
+:information_source: **Info** - Useful supplementary information
+
+:bulb: **Tip** - Suggestions on how to enhance your experience
+
+:exclamation: **Warning**  - Warning  of a potentially dangerous action that you should be aware of
+
+### Get Started
+Head over to [Quick start](#quick-start) to get started!
+If you are an experienced user, you can refer to [Command Summary](#command-summary) for a quick overview of MyLib's commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -39,11 +64,12 @@ MyLib is a **desktop app for managing bookmarks, optimized for use via a Command
    
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command. 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
 
 <div markdown="block" class="alert alert-info">
 
@@ -67,6 +93,14 @@ MyLib is a **desktop app for managing bookmarks, optimized for use via a Command
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* List of prefixes used in commands :
+  * `n/` - TITLE
+  * `a/` - AUTHOR
+  * `p/` - PROGRESS
+  * `g/` - GENRE
+  * `u/` - URL
+  * `t/` - TAGS
+
 </div>
 
 ### Viewing help : `help`
@@ -82,7 +116,7 @@ Format: `help`
 
 Adds a bookmark to the library.
 
-Format: `add n/TITLE a/AUTHOR p/PROGRESS g/GENRE [t/TAG]…​`
+Format: `add n/TITLE a/AUTHOR p/PROGRESS g/GENRE [u/URL] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A bookmark can have any number of tags (including 0)
@@ -102,15 +136,14 @@ Format: `list`
 
 Edits an existing bookmark in the library.
 
-Format: `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [t/TAG]…​`
+Format: `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [u/URL] [t/TAG]…​`
 
 * Edits the bookmark at the specified `INDEX`. The index refers to the index number shown in the displayed bookmark list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * The genre and tags provided must be in the list of existing genre and tags respectively.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 *  `edit 1 n/Hobbit a/J. R. R. Tolkien` Edits the title and author of the 1st bookmark to be `Hobbit` and `J. R. R. Tolkien` respectively.
