@@ -78,7 +78,7 @@ public class Item extends Entity {
     @Override
     public boolean isSameEntity(Entity otherEntity) {
         return otherEntity == this
-        || (otherEntity instanceof Item
+                || (otherEntity instanceof Item
                 && otherEntity.getName().equals(getName()));
     }
 }
