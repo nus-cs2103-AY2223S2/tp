@@ -93,7 +93,7 @@ public class PersonCard extends UiPart<Region> {
             }
         }
         if (person.getNric() == null) {
-            nric.setText("");
+            nric.setText("NRIC:" + "");
         } else {
             String s = person.getNric().toString();
             nric.setText(s);
