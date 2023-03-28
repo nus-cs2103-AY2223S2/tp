@@ -65,6 +65,7 @@ List of commands:
     - [Copying a student's email: ](#copying-a-students-email--copy) `copy`
     - [Finding students by name: ](#finding-students-by-name--find) `find`
     - [View a student's information: ](#view-a-students-information--view) `view`
+    - [Displays a student's information:  ](#displays-a-students-information--view) `select`
     - [Adding or deleting a remark: ](#adding-or-deleting-a-remark--remark) `remark`
     - [Upload a student's photo: ](#uploading-a-students-photo--upload) `upload`
     - [Sorting list of students: ](#sorting-list-of-students--sort) `sort`
