@@ -9,5 +9,5 @@ else ([else])
     :Create contact;
     :Display new contact created;
 endif
-end
+stop
 @enduml
