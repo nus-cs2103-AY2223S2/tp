@@ -163,7 +163,7 @@ Each entity uses different methods, which they inherit from `ClientModel` and
 Moreover, each entity is also stored in a `UniqueList`, which ensures that the
 list do not contain duplicates. `UniqueList` from each entity is then stored in
 `AddressBook`, which contains the overarching methods for handling each type of
-list.
+list. 
 
 ### Storage component
 
@@ -190,36 +190,36 @@ Classes used by multiple components are in the `mycelium.mycelium.commons` packa
 
 ### Statistics Dashboard
 
-Statistics Dashboard displays statistics regarding Projects. There are three
+Statistics Dashboard displays statistics regarding Projects. There are three 
 main statistics: projects that are due within one week, projects that are overdue
-and a pie chart showing progress overview. The goal of this feature is to provide users
+and a pie chart showing progress overview. The goal of this feature is to provide users 
 with useful information related to productivity to make adjustments accordingly.
 
-For projects that are due within one week, only top three projects that match the
-condition will be displayed to ensure that users can focus on the most urgent projects.
+For projects that are due within one week, only top three projects that match the 
+condition will be displayed to ensure that users can focus on the most urgent projects. 
 
-For overdue list, all overdue projects will be displayed to make sure that users can
-keep track of all the deadlines they have missed.
+For overdue list, all overdue projects will be displayed to make sure that users can 
+keep track of all the deadlines they have missed. 
 
-For progress overview pie chart, there will be at most three segments. The three segments
+For progress overview pie chart, there will be at most three segments. The three segments 
 will correspond to three project statuses, which are `not_started`, `done` and `in_progress`.
 The size of each segment is proportional to the number of projects with its corresponding segment
-label.
+label. 
 
 #### Updating the UI
 
-For due project lists, overdue project lists and pie chart, `FilteredList` retrieved by
-using `Logic#getFilteredProjectList` cannot be used because it will affect the UI. Besides,
-all the statistics need filtering out, making it not possible to use `FilteredList#setPredicate`.
-Thus, for the dashboard to update accordingly as changes are made to project list, a `ListChangeListener`
-will be attached to the original list of projects. Whenever there is a change in the project list (e.g.
+For due project lists, overdue project lists and pie chart, `FilteredList` retrieved by 
+using `Logic#getFilteredProjectList` cannot be used because it will affect the UI. Besides, 
+all the statistics need filtering out, making it not possible to use `FilteredList#setPredicate`. 
+Thus, for the dashboard to update accordingly as changes are made to project list, a `ListChangeListener` 
+will be attached to the original list of projects. Whenever there is a change in the project list (e.g. 
 a new project is added), all the statistics will be updated as well.
 Moreover, when there are no projects available, there will be messages displayed.
 
 
-This diagram above shows us that the MainWindow is responsible for instantiating the StatisticsBox.
+This diagram above shows us that the MainWindow is responsible for instantiating the StatisticsBox. 
 The fillInnerParts() method is part of the UI's initialization routine. The `ObservableList<Project>#addListener()`
-will be called to listen for changes in project list. The remaining methods are not important in this discussion.
+will be called to listen for changes in project list. The remaining methods are not important in this discussion. 
 ![StatisticsBoxActivityDiagram](images/StatisticsBoxActivityDiagram.png)
 {TODO update diagram}
 

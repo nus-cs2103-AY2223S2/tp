@@ -66,7 +66,7 @@ java -jar mycelium.jar
 
 If you see a window like the one shown below, then you have successfully
 installed and launched Mycelium! Notice that some mock data has been populated
-to help you get a feel for the application. Feel free to delete them later.
+to help you get a feel for the application. Feel free to delete them later. 
 
 <img src="images/OnStartupScreenshot.png" />
 
@@ -123,7 +123,7 @@ separated tokens.
 As an example, the command below creates a new project with the name *Mycelium
 Desktop*, for client *Spiderman*, and sourced from *fiverr.com*. (Don't worry
 about what the arguments mean for now, this example is just meant to
-demonstrate the layout.)
+demonstrate the layout.) 
 
 ```bash
 p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com
@@ -133,7 +133,7 @@ You will also discover that all command names in Mycelium are at most two
 characters long. This terseness is *intentional* to allow for faster
 keystrokes.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-info"> 
 :information_source: **A note on dates:** some arguments are in the form of
 dates. For these, Mycelium only accepts input of the format dd/MM/yyyy. For
 example, "14/03/2023" is okay, but "14/3/2023", or "14-03-2023" are not okay.
