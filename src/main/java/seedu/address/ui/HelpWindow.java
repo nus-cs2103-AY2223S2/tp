@@ -15,8 +15,26 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-w10-1.github.io/tp/UserGuide.html";
+    public static final String FEATURE_AVAILABLE = "\n\nFeatures:\n";
+    public static final String PARAMETERS_COMPULSORY = "/nMODULE_NAME t/TAG (Lecture, Tutorial, Lab) ";
+    public static final String PARAMETERS_OPTIONAL = "[e/TIMESLOT] [a/VENUE] [c/RESOURCE] "
+            + "[s/TEACHER] [d/DEADLINES] [r/REMARKS]\n";
+
+    public static final String ADD = "1. Adding a module.\n" + "Parameters: " + PARAMETERS_COMPULSORY
+            + PARAMETERS_OPTIONAL + "Example: add n/CS2103T t/Lecture a/COM3";
+    public static final String DELETE = "\n\n2. Deleting a module.\n" + "Parameters: INDEX (positive integer)"
+            + "\nExample: delete 1";
+    public static final String EDIT = "\n\n3. Editing a module.\n" + "Parameters: INDEX (positive integer)"
+            + "[/nMODULE_NAME] [t/TAG]" + PARAMETERS_OPTIONAL + "Example: edit 2 t/Lecture r/Hybrid lectures";
+    public static final String FIND = "\n\n4. Finding a module.\n" + "Parameters: KEYWORDS [MORE KEYWORDS]"
+            + "\nExample: find Tutorial\nExample: find CS2103T";
+    public static final String CLEAR = "\n\n5. Clear all entries.\n" + "No Parameters\nExample: clear";
+    public static final String LIST = "\n\n6. List all entries.\n" + "No Parameters\nExample: list";
+    public static final String EXIT = "\n\n7. Exit the application.\n" + "No Parameters\nExample: exit";
+    public static final String HELP = "\n\n8. Getting help.\n" + "No Parameters\nExample: help";
+    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL + FEATURE_AVAILABLE
+            + ADD + DELETE + EDIT + FIND + CLEAR + LIST + EXIT + HELP;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
