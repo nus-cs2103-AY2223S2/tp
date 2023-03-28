@@ -160,11 +160,4 @@ public class StatisticsPanel extends UiPart<Region> {
                 && budgetPercentage.getText().equals(statistics.budgetPercentage.getText());
     }
 
-    /**
-     * Refreshes the list of expenses and its related data.
-     */
-    public void refreshList() {
-        monthlyRemaining.requestLayout();
-    }
-
 }
