@@ -100,11 +100,11 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different ccas -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_CCA_NES).build();
+        editedAlice = new PersonBuilder(ALICE).withRemarks(VALID_CCA_NES).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different ccaPositions -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_CCA_POSITION_PRESIDENT).build();
+        editedAlice = new PersonBuilder(ALICE).withRemarks(VALID_CCA_POSITION_PRESIDENT).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

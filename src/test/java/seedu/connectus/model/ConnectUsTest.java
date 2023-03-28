@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_ICS;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_DIRECTOR;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2101;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_REMARK_HUSBAND;
 import static seedu.connectus.testutil.Assert.assertThrows;
 import static seedu.connectus.testutil.TypicalPersons.ALICE;
 import static seedu.connectus.testutil.TypicalPersons.getTypicalConnectUs;
@@ -45,7 +49,7 @@ public class ConnectUsTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withRemarks(VALID_REMARK_HUSBAND)
                 .withModules(VALID_MODULE_CS2101).withCcas(VALID_CCA_ICS)
                 .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
@@ -73,7 +77,7 @@ public class ConnectUsTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         connectUs.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withRemarks(VALID_REMARK_HUSBAND)
                 .withModules(VALID_MODULE_CS2101).withCcas(VALID_CCA_ICS)
                 .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
         assertTrue(connectUs.hasPerson(editedAlice));

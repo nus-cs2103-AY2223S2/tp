@@ -3,8 +3,6 @@ package seedu.connectus.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -107,6 +105,7 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+        Person p = new Person(updatedName);
 
         if (editPersonDescriptor.getPhone().isPresent()) {
             p.setPhone(editPersonDescriptor.getPhone().get());
@@ -164,16 +163,16 @@ public class EditCommand extends Command {
                 p.setModules(personToEdit.getModules());
             }
         }
-      
-      if (editPersonDescriptor.getCcas().isPresent()) {
+
+        if (editPersonDescriptor.getCcas().isPresent()) {
             p.setCcas(editPersonDescriptor.getCcas().get());
         } else {
             if (!personToEdit.getCcas().isEmpty()) {
                 p.setCcas(personToEdit.getCcas());
             }
         }
-      
-      if (editPersonDescriptor.getCcaPositions().isPresent()) {
+
+        if (editPersonDescriptor.getCcaPositions().isPresent()) {
             p.setCcaPositions(editPersonDescriptor.getCcaPositions().get());
         } else {
             if (!personToEdit.getCcaPositions().isEmpty()) {

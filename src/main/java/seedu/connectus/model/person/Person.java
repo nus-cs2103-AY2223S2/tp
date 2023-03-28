@@ -42,7 +42,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name) {
-        requireAllNonNull(name, tags, modules, ccas, ccaPositions);
+        requireAllNonNull(name, remarks, modules, ccas, ccaPositions);
         this.name = name;
         this.phone = Optional.empty();
         this.email = Optional.empty();
@@ -96,6 +96,14 @@ public class Person {
 
     public void setModules(Set<Module> modules) {
         this.modules = modules;
+    }
+
+    public void setCcas(Set<Cca> ccas) {
+        this.ccas = ccas;
+    }
+
+    public void setCcaPositions(Set<CcaPosition> ccaPositions) {
+        this.ccaPositions = ccaPositions;
     }
 
     public Name getName() {
@@ -196,7 +204,7 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getRemarks().equals(getRemarks())
-                && otherPerson.getModules().equals(getModules());
+                && otherPerson.getModules().equals(getModules())
                 && otherPerson.getCcas().equals(getCcas())
                 && otherPerson.getCcaPositions().equals(getCcaPositions());
     }
@@ -232,12 +240,12 @@ public class Person {
             builder.append("; Modules: ");
             modules.forEach(builder::append);
         }
-        Set<Tag> ccas = getTags();
+        Set<Cca> ccas = getCcas();
         if (!ccas.isEmpty()) {
             builder.append("; Ccas: ");
             ccas.forEach(builder::append);
         }
-        Set<Tag> ccaPositions = getTags();
+        Set<CcaPosition> ccaPositions = getCcaPositions();
         if (!ccaPositions.isEmpty()) {
             builder.append("; CcaPositions: ");
             ccaPositions.forEach(builder::append);

@@ -41,7 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail().get());
         descriptor.setAddress(person.getAddress().get());
         descriptor.setSocialMedia(person.getSocialMedia().orElse(SocialMedia.create()));
-        descriptor.setRemarks(person.getRemarks()););
+        descriptor.setRemarks(person.getRemarks());
         descriptor.setCcas(person.getCcas());
         descriptor.setCcaPositions(person.getCcaPositions());
         descriptor.setModules(person.getModules());

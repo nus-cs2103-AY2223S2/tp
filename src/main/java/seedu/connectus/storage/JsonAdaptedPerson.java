@@ -210,14 +210,14 @@ class JsonAdaptedPerson {
                 p.setModules(modelModules);
             }
         }
-      
+
         if (ccas != null) {
             Set<Cca> modelCcas = new HashSet<>(personCcas);
             if (!modelCcas.isEmpty()) {
                 p.setCcas(modelCcas);
             }
         }
-      
+
         if (ccaPositions != null) {
             Set<CcaPosition> modelCcaPositions = new HashSet<>(personCcaPositions);
             if (!modelCcaPositions.isEmpty()) {

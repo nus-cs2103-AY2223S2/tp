@@ -42,6 +42,7 @@ public class SampleDataUtil {
 
 
         // Sample person 2
+        Person p2 = new Person(new Name("Bernice Yu"));
         p2.setPhone(new Phone("99272758"));
         p2.setEmail(new Email("berniceyu@example.com"));
         p2.setAddress(new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"));

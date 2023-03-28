@@ -85,11 +85,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
         if (argMultimap.getValue(PREFIX_CCA).isPresent()) {
             Set<Cca> ccaList = ParserUtil.parseCcas(argMultimap.getAllValues(PREFIX_CCA));
-            person.setCca(ccaList);
+            person.setCcas(ccaList);
         }
         if (argMultimap.getValue(PREFIX_CCA_POSITION).isPresent()) {
-            Set<CcaPosition> ccaPositionList = ParserUtil.parseCcaPositions(argMultimap.getAllValues(PREFIX_CCA_POSITION));
-            person.setCcaPosition(ccaPositionList);
+            Set<CcaPosition> ccaPositionList = ParserUtil.parseCcaPositions(argMultimap
+                    .getAllValues(PREFIX_CCA_POSITION));
+            person.setCcaPositions(ccaPositionList);
         }
 
         {
