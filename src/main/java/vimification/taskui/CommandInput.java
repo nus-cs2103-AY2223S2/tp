@@ -143,11 +143,14 @@ public class CommandInput extends UiPart<HBox> {
         inputField.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean wasFocused,
-                    Boolean isFocused) {
-                if (!isFocused) {
+                    Boolean isCommandInputFocused) {
+
+                // bottomComponent may be displaying CommandResult.
+                boolean isCommandInputLingering =
+                        mainScreen.bottomComponent.getChildren().contains(getRoot());
+                if (!isCommandInputFocused && isCommandInputLingering) {
                     mainScreen.clearBottomComponent();
                 }
-
             }
         });
     }
