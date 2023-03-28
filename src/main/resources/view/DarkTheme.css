@@ -403,6 +403,6 @@
 }
 
 .left-column {
-    -fx-border-color: #3a3a3a; 
+    -fx-border-color: #999999; 
     -fx-border-width: 0 2px 0 0;
 }

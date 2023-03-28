@@ -4,6 +4,7 @@ import static seedu.recipe.model.util.IngredientUtil.ingredientKeyValuePairToStr
 
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -22,7 +23,7 @@ import seedu.recipe.model.recipe.Recipe;
  * Represents the UI component that pops up and displays the detailed view of a Recipe.
  */
 public class RecipePopup extends UiPart<Region> {
-    private static final String FXML = "RecipeListCard.fxml";
+    private static final String FXML = "RecipePopup.fxml";
 
     public final Recipe recipe;
 
@@ -40,13 +41,13 @@ public class RecipePopup extends UiPart<Region> {
     private Label portion;
 
     @FXML
+    private VBox ingredients;
+
+    @FXML
+    private VBox steps;
+
+    @FXML
     private FlowPane tags;
-
-    @FXML
-    private FlowPane ingredients;
-
-    @FXML
-    private FlowPane steps;
 
     /**
      * Generates and returns the UI instance for this Recipe card.
@@ -72,22 +73,30 @@ public class RecipePopup extends UiPart<Region> {
                         .map(Object::toString)
                         .orElse("Portion was not added."));
 
+        // Ingredients
+        AtomicInteger ingredientIndex = new AtomicInteger(1); // Initialize AtomicInteger for ingredients
+        recipe.getIngredients()
+            .forEach((ingredient, information) -> {
+                Label ingredientLabel = new Label(ingredientIndex.getAndIncrement() + ". " + ingredientKeyValuePairToString(ingredient, information));
+                ingredientLabel.setWrapText(true);
+                ingredientLabel.setMaxWidth(500);
+                ingredients.getChildren().add(ingredientLabel);
+            });
+
+        // Steps
+        AtomicInteger stepIndex = new AtomicInteger(1); // Initialize AtomicInteger for steps
+        recipe.getSteps()
+            .forEach(step -> {
+                Label stepLabel = new Label(stepIndex.getAndIncrement() + ". " + step.toString());
+                stepLabel.setWrapText(true);
+                stepLabel.setMaxWidth(500);
+                steps.getChildren().add(stepLabel);
+            });
+
         //Tags
         recipe.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-        //Ingredients
-        recipe.getIngredients()
-            .forEach((ingredient, information) -> ingredients
-                .getChildren()
-                .add(
-                    new Label(ingredientKeyValuePairToString(ingredient, information))
-                )
-            );
-        //Steps
-        recipe.getSteps()
-                .forEach(step -> steps.getChildren().add(new Label(step.toString())));
     }
 
     /**
@@ -100,6 +109,7 @@ public class RecipePopup extends UiPart<Region> {
         window.setTitle("Recipe Details");
         window.setMinWidth(500);
         window.setMinHeight(300);
+        window.setMaxHeight(700);
         VBox vbox = new VBox(getRoot());
         Scene scene = new Scene(vbox);
         scene.setOnKeyPressed(event -> {
