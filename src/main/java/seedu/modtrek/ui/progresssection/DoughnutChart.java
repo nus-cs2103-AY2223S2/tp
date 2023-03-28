@@ -63,7 +63,7 @@ public class DoughnutChart extends PieChart {
         List<String> tags = ValidTag.getTags();
         for (String tag : tags) {
             String shortFormTag = ValidTag.getShortForm(tag).toString();
-            int completeCredits = completeCreditsMap.get(shortFormTag);
+            int completeCredits = Math.min(completeCreditsMap.get(shortFormTag), totalCreditsMap.get(shortFormTag));
             int incompleteCredits = totalCreditsMap.get(shortFormTag) - completeCredits;
             doughnutData.add(new PieChart.Data(tag, completeCredits));
             doughnutData.add(new PieChart.Data(tag, incompleteCredits));
@@ -112,6 +112,7 @@ public class DoughnutChart extends PieChart {
         percent.getStyleClass().add("h2");
 
         // TODO: update this
+        System.out.println("completed: " + degreeProgressionData.getCompletedCredit());
         Text totalMc = new Text(degreeProgressionData.getCompletedCredit() + "/"
                 + DegreeProgressionData.TOTALCREDIT + " MCs");
         totalMc.setStyle("-fx-fill: -white;");
