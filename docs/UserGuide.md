@@ -10,9 +10,13 @@ If you can type fast, CoDoc can get your contact management tasks done **faster*
 CoDoc offers more than just a traditional contact management app. Save useful information such as **modules taken** or
 **skills possessed** by a person to greately improve your **networking experience**.
 
-You can spend **less time** _keeping track of your contacts_ and _searching through chats_, and spend **more time** making _meaningful connections_ and _accomplish your goals_.
+Spend **less time** _keeping track of your contacts_ and _searching through chats_, and **more time** making _meaningful
+connections_ and _accomplish your goals_!
 
 <img src="images/Ui.png"/>
+
+**For first-time users, we heavily recommend going through the [Quick Start](#quick-start) to familiarize your self with
+CoDoc.** 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -22,11 +26,11 @@ You can spend **less time** _keeping track of your contacts_ and _searching thro
 - [Quick Start](#quick-start)
   - [Download and Installation](#download-and-installation)
   - [Navigation](#navigation)
-  - [Tutorial](#tutorial)
+  - [Tutorial](#codoc-tutorial--your-first-steps)
     - [Adding a person](#1-adding-a-person)
-    - [Viewing a person's modules](#2-viewing-a-persons-modules)
-    - [Editing a person's modules](#3-editing-a-persons-modules)
-    - [Finding a person by their modules](#4-finding-a-person-by-their-modules)
+    - [Viewing a person's modules](#2-viewing-a-person)
+    - [Editing a person's modules](#3-editing-a-persons-details)
+    - [Finding a person by their modules](#4-finding-a-person)
 - [Commands](#commands)
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a person : `add`](#adding-a-person--add)
@@ -349,7 +353,7 @@ _name_, _year_, _GitHub username_, etc. Use this to fix your mistakes or update 
 
 <br>
 
-#### 4. Finding a person by their modules
+#### 4. Finding a person
 
 You have been using CoDoc for months and have expanded the database greatly. You realize that finding a person in the
 contacts is getting increasingly difficult and wishes there is an easier way to do so.
