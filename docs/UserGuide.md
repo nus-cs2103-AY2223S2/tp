@@ -240,17 +240,17 @@ You can add a contact using the `add` command followed by the parameters (as sho
 A contact can have any number of tags, modules and CCAs! (including 0)
 </div>
 
-Example 1:
+**Example 1:**
 
-Input in Command Box: `add n/James`
+**Input in Command Box:** `add n/James`
 
-Result:<br>![AddContactExample1](images/johndoe.png)
+**Result:**<br>![AddContactExample1](images/johndoe.png)
 
-Example 2:
+**Example 2:**
 
-Input in Command Box: `add n/James e/james@example.com ig/itsjameshere tg/itsjameshere mod/CS2103T mod/CS2101 cca/NUS Hackers t/Year 2 b/01/01/2000`
+**Input in Command Box:** `add n/James e/james@example.com ig/itsjameshere tg/itsjameshere mod/CS2103T mod/CS2101 cca/NUS Hackers t/Year 2 b/01/01/2000`
 
-Result:<br>![AddContactExample2](images/johndoe.png)
+**Result:**<br>![AddContactExample2](images/johndoe.png)
 
 Please refer to [this section](#5-information-fields--prefixes) for details on how to use each parameter prefix.
 
@@ -268,7 +268,6 @@ If you accidentally added the wrong information when [adding a contact](#44-addi
 If you want to edit a contact's tags, refer to these guides on <a href="#46-adding-additional-tags-to-a-contact-addt" class="alert-link">adding additional tags</a> or <a href="#47-deleting-tags-from-a-contact-deletet" class="alert-link">deleting a tag</a> instead!
 </div>
 
-
 The `edit` command:
 
 * Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list.
@@ -276,11 +275,11 @@ The `edit` command:
 * At least one of the optional fields must be provided (e.g. `n/NAME`, `tg/TELEGRAM`).
 * Existing values will be updated to the input values.
 
-Example:
+**Example:**
 
-Input in Command Box: `edit 1 p/12345678 e/james@example.com` 
+**Input in Command Box:** `edit 1 p/12345678 e/james@example.com` 
 
-Result:<br>![EditContactExample](images/johndoe.png)
+**Result:**<br>![EditContactExample](images/johndoe.png)
 
 Please refer to [this section](#5-information-fields--prefixes) for details on how to use each parameter prefix.
 
@@ -288,21 +287,73 @@ Please refer to [this section](#5-information-fields--prefixes) for details on h
 
 ### 4.6 Adding additional tags to a contact: `addt`
 
+Format: `addt INDEX [t/TAG_NAME] [mod/MODULE_NAME] [cca/CCA]`
+
+> Adds a tag to an existing contact.
+
+If you want to add a new tag to a contact, you can use the `addt` command.
+
+The `addt` command:
+* Adds a tag to the contact at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** e.g. 1, 2, 3, …​
+* At least one of the optional fields must be provided (e.g. `t/TAG_NAME`, `mod/MODULE_NAME`).
+* A new tag will be created and assigned to the person specified at the `INDEX`.
+
+**Example:**
+
+**Input in Command Box:** `addt 1 t/friends mod/CS2103T`
+
+**Result:**<br>![AddTagToContactExample](images/johndoe.png)
+
 ### 4.7 Deleting tags from a contact: `deletet`
+
+Format: `deletet PERSON_INDEX [t/TAG_INDEX] [mod/MODULE_INDEX] [cca/CCA_INDEX]`
+
+> Deletes an existing tag from an existing contact.
+
+If you want to delete an existing tag from a contact, you can use the `deletet` command.
+
+The `deletet` command:
+* Deletes a tag from the contact at the specified `PERSON_INDEX`. The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
+* The `TAG_INDEX`, `MODULE_INDEX` and `CCA_INDEX` refer to the index of the tag shown in the respective tag types, from left to right, starting from index 1.
+
+![DeleteTagIndexContactExample](images/johndoe.png)
+
+* All indexes (i.e. `PERSON_INDEX`, `TAG_INDEX`, `MODULE_INDEX`, `CCA_INDEX`) **must be a positive integer** e.g. 1, 2, 3, …​
+* At least one of the optional fields must be provided (i.e. `t/TAG_INDEX`, `mod/MODULE_INDEX`, `cca/CCA_INDEX`).
+* The specified tag will be deleted from the person specified at the `PEROSN_INDEX`.
+
+**Example:**
+
+**Input in Command Box:** `deletet 1 mod/1`
+
+**Result:**<br>![DeleteTagFromContactExample](images/johndoe.png)
 
 ### 4.8 Deleting a contact: `delete`
 
-Deletes the specified contact from the ConnectUS app.
-
 Format: `delete INDEX`
+
+> Deletes the specified contact from the ConnectUS app.
+
+If you wish to remove a contact, use the `delete` command.
+
+The `delete` command:
 
 * Deletes the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd contact in the ConnectUS app.
-* `search Betsy` followed by `delete 1` deletes the 1st contact in the results of the `search` command.
+**Example 1:**
+
+`list` followed by `delete 2` deletes the 2nd contact in the ConnectUS app.
+
+**Result:**<br>![DeleteContactExample1](images/johndoe.png)
+
+**Example 2:**
+
+`search Betsy` followed by `delete 1` deletes the 1st contact in the results of the `search` command.
+
+**Result:**<br>![DeleteContactExample2](images/johndoe.png)
 
 [↑ Back to feature list](#4-features)
 
