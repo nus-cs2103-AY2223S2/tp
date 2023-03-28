@@ -113,6 +113,10 @@ Cautions are in place to warn you of potential pitfalls new users may encounter.
 an optional argument.
 </div>
 
+* Command words and prefixes are case-sensitive.<br>
+  e.g. `UNDO` will not be recognised as a valid command for the undo operation. Similarly, `bY/` (instead of `by/`) 
+  will not be recognised as a valid prefix for the `add-task` command. 
+
 * Parameters can be in any order.<br>
   e.g. if the command specifies `r/ROLE c/COMPANY_NAME`, `c/COMPANY_NAME r/ROLE` is also acceptable.
 
