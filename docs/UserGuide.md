@@ -215,7 +215,7 @@ edit group <INDEX> <NEW GROUP NAME>
 
 
 Examples:
-- `edit group 1 T16` will replace the group name of the first group listed to 'T16'.
+- `edit group 1 T16` will rename the first group listed in the group list to 'T16'.
 
 
 
