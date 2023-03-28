@@ -59,6 +59,7 @@ public class ModuleContainsKeywordsPredicate implements Predicate<Person> {
     }
     @Override
     public String toString() {
-        return PREFIX_MOD + keywords.stream().reduce("", String::concat);
+        return PREFIX_MOD + keywords.stream().reduce("", (combine, s) ->
+                combine.concat(" ").concat(s)).trim();
     }
 }

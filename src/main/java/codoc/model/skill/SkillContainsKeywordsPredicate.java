@@ -42,7 +42,8 @@ public class SkillContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public String toString() {
-        return PREFIX_SKILL + keywords.stream().reduce("", String::concat);
+        return PREFIX_SKILL + keywords.stream().reduce("", (combine, s) ->
+                combine.concat(" ").concat(s)).trim();
     }
 }
 

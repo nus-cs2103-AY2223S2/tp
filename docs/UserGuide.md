@@ -4,13 +4,13 @@ title: User Guide
 ---
 # CoDoc User Guide
 #### Welcome to CoDoc, a desktop app for students in SoC to connect with each other for the benefit of their course of study.
-CoDoc is optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a **Graphical User Interface (GUI)**. 
-If you can type fast, CoDoc can get your contact management tasks done **faster** than traditional GUI apps.
+CoDoc is **optimized for** use via a **Command Line Interface (CLI)** while still having the **benefits of** a **Graphical User Interface (GUI)**. 
+If you can type fast, CoDoc can get your **contact management** tasks **done faster** than traditional GUI apps.
 
-CoDoc offers more than just a traditional contact management app. Save useful information such as **modules taken** or
-**skills possessed** by a person to greately improve your **networking experience**.
+CoDoc is more than just a traditional contact management app. Save useful information such as **modules taken** or
+**skills possessed** by a person to greatly improve your **networking experience**.
 
-Spend **less time** _keeping track of your contacts_ and _searching through chats_, and **more time** making _meaningful
+**Spend less time** _keeping track of your contacts_ or _searching through chats_, and **more time** making _meaningful
 connections_ and _accomplish your goals_!
 
 <img src="images/Ui.png"/>
@@ -21,7 +21,6 @@ CoDoc.**
 --------------------------------------------------------------------------------------------------------------------
 
 # Table of Contents
-- [Navigating the user guide](#navigating-the-user-guide)
 - [Glossary](#glossary)
 - [Quick Start](#quick-start)
   - [Download and Installation](#download-and-installation)
@@ -32,15 +31,15 @@ CoDoc.**
     - [Editing a person's modules](#3-editing-a-persons-details)
     - [Finding a person by their modules](#4-finding-a-person)
 - [Commands](#commands)
-  - [Viewing help : `help`](#viewing-help--help)
-  - [Adding a person : `add`](#adding-a-person--add)
-  - [Viewing a person/Changing tabs : `view`](#viewing-a-personchanging-tabs--view)
-  - [Editing a person : `edit`](#editing-a-person--edit)
-  - [Finding a person : `find`](#finding-a-person--find)
-  - [Lising all persons/Resetting filters : `list`](#listing-all-personsresetting-filters--list)
-  - [Deleting a person : `delete`](#deleting-a-person--delete)
-  - [Clearing all entries : `clear`](#clearing-all-entries--clear)
-  - [Exiting the program : `exit`](#exiting-the-program--exit)
+  - [Viewing help : `help`](#1-viewing-help--help)
+  - [Adding a person : `add`](#2-adding-a-person--add)
+  - [Viewing a person/Changing tabs : `view`](#3-viewing-a-personchanging-tabs--view)
+  - [Editing a person : `edit`](#4-editing-a-person--edit)
+  - [Finding a person : `find`](#5-finding-a-person--find)
+  - [Listing all persons/Resetting filters : `list`](#6-listing-all-personsresetting-filters--list)
+  - [Deleting a person : `delete`](#7-deleting-a-person--delete)
+  - [Clearing all entries : `clear`](#8-clearing-all-entries--clear)
+  - [Exiting the program : `exit`](#9-exiting-the-program--exit)
 - [Data Management](#data-management)
 - [FAQ](#faq)
 - [Upcoming Features](#upcoming-features)
@@ -60,7 +59,7 @@ If you are first time users of CoDoc, we highly recommend that you read through 
 **familiar** with CoDoc and to gain the most out of your experience.
 
 We have provided a quick tutorial on how to [download and install](#download-and-installation) CoDoc, 
-how to make sense of the [interface](#navigation), as well as how to [properly use each command](#tutorial). 
+how to make sense of the [interface](#navigation), as well as how to [properly use each command](#codoc-tutorial--your-first-steps). 
 
 If you are proficient with the command types and are looking for a quick summary of our commands, you may jump to our [Command Summary](#command-summary) that contains relevant examples.
 
@@ -247,7 +246,7 @@ You probably notice a list of contacts already into the database. How can I add 
 
 Let's say you got to know Bob in school and want to add him to CoDoc. You find out that **Bob**, is a **year 2** student,
 taking **Computer Science** and his email address is **e0823741@u.nus.edu**. Here is how you can use CoDoc's
-[Add command](#adding-a-person--add) to do so:
+[Add command](#2-adding-a-person--add) to do so:
 
 In the command box, enter the command `add n/Bob y/2 c/6 e/e0823741@u.nus.edu` and press the `enter` key.
 This will add a new person named Bob to our contact list.
@@ -270,7 +269,7 @@ have to type its _index_ as the parameter, which you can refer to the [**Course 
 
 If you want to, you can add additional details of the person such as _GitHub username_, _LinkedIn profile URL_, _modules_ and _skills_.
 
-Related: [Adding a person: `add`](#adding-a-person--add)
+Related: [Adding a person: `add`](#2-adding-a-person--add)
 
 
 **Note:** Profile pictures shown here might not be identical to yours as they are randomised.
@@ -279,7 +278,7 @@ Related: [Adding a person: `add`](#adding-a-person--add)
 
 #### 2. Viewing a person
 
-Now that you have added Bob into CoDoc, you can view his details by using the [View command](#viewing-a-personchanging-tabs--view).
+Now that you have added Bob into CoDoc, you can view his details by using the [View command](#2-viewing-a-person).
 This will load Bob's details into the [**Info Panel**](#navigation).
 
 To do so, let's first identify Bob's _index_. From the [**Person List Panel**](#navigation), we can tell that Bob is
@@ -312,7 +311,7 @@ contact information.
 
 >💡 **Tips**: CoDoc also supports GUI, so you can click on the name of different tabs to switch between tabs.
 
-**Related:** [Viewing a person/Changing tabs: `view`](#viewing-a-personchanging-tabs--view)
+**Related:** [Viewing a person/Changing tabs: `view`](#2-viewing-a-person)
 
 <br>
 
@@ -321,14 +320,14 @@ contact information.
 To use CoDoc to its fullest potential, you can add Bob's **modules taken** or **skills possessed** to the database.
 
 Let's say you met Bob while taking _CS2101_ and _CS2103T_ modules. To update this information in the database, you can use
-CoDoc's [Edit command](#editing-a-person--edit).
+CoDoc's [Edit command](#4-editing-a-person--edit).
 
 First make sure that Bob is shown in the right panel using the View command. In this example, we can enter `view 8` to
 do so.
 
 >**Why is this step necessary?:** Editing only works on the person shown in the info panel. Make sure you are viewing
-> the correct person with the [View command](#viewing-a-personchanging-tabs--view) (or with a click) before you enter
-> the [Edit command](#editing-a-person--edit).
+> the correct person with the [View command](#2-viewing-a-person) (or with a click) before you enter
+> the [Edit command](#4-editing-a-person--edit).
 
 After you see Bob in the **Info Panel**, enter `edit m/ay2223s2 cs2101 m/ay2223s2 cs2103t` in the command box. 
 
@@ -342,14 +341,14 @@ You can now see that Bob's list of **modules taken** has been updated to contain
 > for you to edit **modules taken**!
 
 If you want to save the hassle of editing _modules_ only after adding a person, you can include them in the initial
-[Add command](#adding-a-person--add) to do so.
+[Add command](#2-adding-a-person--add) to do so.
 
-As the name suggests, [Edit command](#editing-a-person--edit) is capable of editing other details of the person such as
+As the name suggests, [Edit command](#4-editing-a-person--edit) is capable of editing other details of the person such as
 _name_, _year_, _GitHub username_, etc. Use this to fix your mistakes or update your database as you progress your studies!
 
-**Related:** [Adding a person: `add`](#adding-a-person--add),
-[Viewing a person: `view`](#viewing-a-personchanging-tabs--view),
-[Editing a person: `edit`](#editing-a-person--edit)
+**Related:** [Adding a person: `add`](#2-adding-a-person--add),
+[Viewing a person: `view`](#2-viewing-a-person),
+[Editing a person: `edit`](#4-editing-a-person--edit)
 
 <br>
 
@@ -358,7 +357,7 @@ _name_, _year_, _GitHub username_, etc. Use this to fix your mistakes or update 
 You have been using CoDoc for months and have expanded the database greatly. You realize that finding a person in the
 contacts is getting increasingly difficult and wishes there is an easier way to do so.
 
-That is exactly what CoDoc's [Find command](#finding-a-person--find) is for! Use this to filter people in the contacts.
+That is exactly what CoDoc's [Find command](#5-finding-a-person--find) is for! Use this to filter people in the contacts.
 
 Let's try to find people that are taking/have taken CS2103T. To do so, we have to first clear existing filters if they
 have been applied. We can do this by entering `list` into the command box. This shows us all existing contacts in CoDoc. 
@@ -371,9 +370,9 @@ list. On successful execution, you will see something like below.
 If you tried the examples for previous commands, Bob would be shown as well.
 
 Our `find` command is pretty powerful; it works for other attributes, like _year_, _skills_, etc. and you can find by
-multiple attributes. To learn more about it, you can take a look at [Finding a person: `find`](#finding-a-person--find).
+multiple attributes. To learn more about it, you can take a look at [Finding a person: `find`](#5-finding-a-person--find).
 
-**Related docs:** [Finding a person: `find`](#finding-a-person--find), [Listing all persons/Resetting filters: `list`](#listing-all-personsresetting-filters--list)
+**Related docs:** [Finding a person: `find`](#5-finding-a-person--find), [Listing all persons/Resetting filters: `list`](#6-listing-all-personsresetting-filters--list)
 
 <br>
 
@@ -400,10 +399,10 @@ Here is a list of available commands and its details.
 
 ### 1. Viewing help : `help`
 
+Opens help menu <br>
+Equivalent to clicking Help > Help F1 via the GUI <br>
 `help`<br>
 > <img src="images/UiHelpMenu.png"/>
-> * Opens help menu <br>
-> * Equivalent to clicking Help > Help F1 via the GUI <br>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -507,23 +506,38 @@ At least one of the optional fields must be provided.
 >![View Example](images/UiEditSkills.png)
 > - `edit` m-/ay2223s2 cs3230 Displays an error message as the module does not exist.
 > ![View Example](images/UiEditError.png)
-> 
+
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### 5. Finding a person : `find`
+Find all persons that contains the given constraints. <br>
+- `find` supports continuous search by allowing constraints to stack, (refer to example below to find out more)
+- All constraints applied are shown in *Result Display*.
+- To remove all constraints, use `list`. 
+- At least one of the optional field must be provided.
+- All constraints are case-insensitive.
+
 `find [OPTIONAL/PARAMETER]...`<br>
->> find KEYWORD [MORE_KEYWORDS]
-> * The search is case-insensitive. e.g `hans` will match `Hans`
-> * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-> * Only the name is searched.
-> * Only full words will be matched e.g. `Han` will not match `Hans`
-> * Persons matching at least one keyword will be returned (i.e. `OR` search).
-    e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+> **Acceptable Parameters used as Constraints**
+> * n/NAME (e.g. n/Jo will load all person name that contains Jo such as Jo, John, Joleen.
+> * y/YEAR (e.g. y/2 will load all person who are in year 2)
+> * c/COURSE (e.g. c/Computer will load all person enrolled in Computer Engineering and Computer Science)
+>   * [Why is it **find** c/COURSE and not c/COURSE_INDEX like **add** and **edit**?](#why-is-it-find-ccourse-and-not-ccourseindex-like-add-and-edit-)
+> * m/MODULES (e.g. m/CS2103 will load all person with CS2103 including CS2103T and CS2103R)
+>   * m/ACADEMIC_YEAR MODULES (e.g. m/AY2223S1 CS2103 will load all person with AY2223S1 CS2103 including AY2223S1 CS2103T and AY2223S1 CS2103R in their module list)
+>   * 💡 **Tip:** You can input as many MODULES and ACADEMIC_YEAR MODULES as you want. <br> For example,  m/`cs1101 cs1231` `AY2223S1 cs2040` `AY2223S2 cs2090 cs3230` will load all person that have taken
+>     * cs1101, cs1231 regardless of academic year
+>     * cs2040 in AY2223S1
+>     * cs2090, cs3230 in AY2223S2
+> * s/SKILLS (e.g. s/java will load all person that contains java in their skill list such as java and javascript)
+>   * 💡 **Tip:** Similar to m/MODULES you can add in as many skills as you want separated by a space.
+> 
 >
 > **Examples:**
-> - `find John` returns `john` and `John Doe`
-> - `find alex david` returns `Alex Yeoh`, `David Li`<br>
-    ![result for 'find alex david'](images/findAlexDavidResult.jpg)
+> - We shall start with an unfiltered list. <br> ![UiFind_01](images/UiFind_01.png)
+> - Next, we execute `find y/2` to find all persons from year 2. <br> ![UiFind_02](images/UiFind_02.png)
+> - Then, we proceed to execute `find n/cs1101 s/java c` to further narrow down the filtered list thereby **stacking the constraints.** <br> ![UiFind_03](images/UiFind_03.png)
+> - Finally, we shall clear all constraints by with `list`![UiFind_04](images/UiFind_04.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -615,6 +629,12 @@ and view the correct person you want to edit before entering the command.
 
 <br>
 
+**Q: Why is it `find c/COURSE` and not `c/COURSE_INDEX` like `add` and `edit`?**
+
+A: This is done as it speeds up the adding and editing process since there is no need for you to manually keep track of how courses are inputed—CS vs Computer Science.
+Also, this avoids clashing acronym such as CS which could be interpreted as Chinese Studies too.
+
+
 **Q: My find command is not showing correct list of people**
 
 A: This could be because there are existing list of filters before you entered the [Find command](#5-finding-a-person--find).
@@ -673,7 +693,7 @@ _Details coming soon ..._
 
 ## Additional Resources
 ### How To Check Java Version
-[Scroll back to *Downloading CoDoc*](#downloading-codoc)
+[Scroll back to *Downloading CoDoc*](#download-and-installation)
 ### How to Open CoDoc
 
 Batch file method for Windows uers:
@@ -701,7 +721,7 @@ extension, see [here](https://www.howtogeek.com/205086/beginner-how-to-make-wind
     ![open_done](images/user-guide/open_done.PNG)
 
 
-[Scroll back to *Downloading CoDoc*](#downloading-codoc)
+[Scroll back to *Downloading CoDoc*](#download-and-installation)
 
 --------------------------------------------------------------------------------------------------------------------
 [Scroll back to *Table of Contents*](#table-of-contents)
