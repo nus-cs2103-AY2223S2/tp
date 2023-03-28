@@ -61,16 +61,7 @@
     </VBox>
       <VBox alignment="TOP_RIGHT" GridPane.columnIndex="1">
          <children>
-             <HBox alignment="TOP_RIGHT">
-                 <children>
-                     <HBox fx:id="pointsPlaceholder" alignment="TOP_RIGHT" />
-                     <HBox fx:id="customerTypePlaceholder" alignment="TOP_RIGHT">
-                         <HBox.margin>
-                             <Insets left="10.0"/>
-                         </HBox.margin>
-                     </HBox>
-                 </children>
-             </HBox>
+            <HBox fx:id="customerTypePlaceholder" alignment="TOP_RIGHT" spacing="5.0" />
             <Separator orientation="VERTICAL" visible="false" VBox.vgrow="ALWAYS" />
             <Label text="Last Ordered: " />
          </children>
