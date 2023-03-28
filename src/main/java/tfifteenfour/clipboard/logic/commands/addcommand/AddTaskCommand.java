@@ -15,7 +15,7 @@ import tfifteenfour.clipboard.model.task.Task;
  */
 public class AddTaskCommand extends AddCommand {
     public static final String COMMAND_TYPE_WORD = "task";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_TYPE_WORD
             + ": Adds a task to the selected group. "
             + "Parameters: "
             + "TASK_NAME\n"
@@ -56,7 +56,6 @@ public class AddTaskCommand extends AddCommand {
         }
 
         targetGroup.addTask(taskToAdd);
-        System.out.println(targetGroup.getUnmodifiableTaskList());
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, targetGroup, taskToAdd), willModifyState);
     }
 
