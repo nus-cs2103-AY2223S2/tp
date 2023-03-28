@@ -2,8 +2,8 @@ package seedu.address.model.application;
 
 import java.util.Comparator;
 
-import seedu.address.model.task.Task;
 import seedu.address.logic.parser.SortApplicationCommandParser.SortingSequence;
+import seedu.address.model.task.Task;
 
 /**
  * Compares two applications based on the deadline of their upcoming task.
@@ -13,10 +13,18 @@ public class DeadlineComparator implements Comparator<Application> {
 
     private final SortingSequence sortingSequence;
 
-     public DeadlineComparator(SortingSequence sortingSequence) {
-         this.sortingSequence = sortingSequence;
-     }
+    public DeadlineComparator(SortingSequence sortingSequence) {
+        this.sortingSequence = sortingSequence;
+    }
 
+    /**
+     * Compares two applications such that the application with an earlier task
+     * deadline will be considered smaller than the other application.
+     * @param appOne the first application to be compared.
+     * @param appTwo the second application, to be compared to the first one.
+     * @return an integer that represents whether the first application is smaller
+     *      than the second.
+     */
     public int compareAscending(Application appOne, Application appTwo) {
         if (appOne.hasTask() && appTwo.hasTask()) {
             Task taskOne = appOne.getTask();
@@ -38,10 +46,10 @@ public class DeadlineComparator implements Comparator<Application> {
 
     @Override
     public int compare(Application appOne, Application appTwo) {
-         if (sortingSequence.equals(SortingSequence.ASCENDING)) {
-             return compareAscending(appOne, appTwo);
-         } else {
-             return -compareAscending(appOne, appTwo);
-         }
+        if (sortingSequence.equals(SortingSequence.ASCENDING)) {
+            return compareAscending(appOne, appTwo);
+        } else {
+            return -compareAscending(appOne, appTwo);
+        }
     }
 }

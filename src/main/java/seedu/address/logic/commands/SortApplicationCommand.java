@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Comparator;
 
@@ -30,7 +29,8 @@ public class SortApplicationCommand extends ApplicationCommand {
             + COMMAND_WORD
             + " d alphabetical: Sorts applications in descending alphabetical order (Z to A).\n"
             + COMMAND_WORD
-            + " a deadline: Sorts applications in order of deadline of their upcoming task, with earlier deadlines being shown first.";
+            + " a deadline: Sorts applications in order of deadline of their upcoming task, with earlier deadlines"
+            + " being shown first.";
 
     public static final String MESSAGE_CONSTRAINTS = "You can only sort alphabetically or by deadline.\n"
             + "You also need to specify whether to sort in ascending or descending order.";
