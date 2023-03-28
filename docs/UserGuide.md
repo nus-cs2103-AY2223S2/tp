@@ -85,7 +85,7 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 | `EDUCATION_LEVEL` | Education level of the student                                                       | Can contains numbers and multiple letters/words.                                                                                                                                                                                      |
 | `EMAIL`           | Email address of the student                                                         | 1. Follow the format local-part@domain <br/> 2. Must contains `@` symbol <br/> 3. Must not start with a non-alphanumeric character (eg. . , ' " @) <br/> 4. Can contains letters and numbers <br/> 5. Should not contain any spacings |
 | `INDEX`           | The number next to the student entry upon using [`list`](#listing-all-students-list) | Must be a positive number (eg. 1, 2, 3...)                                                                                                                                                                                            |
-| `KEYWORD`         | The word you would like to `find` by                                                 | Can contain letters and/or numbers.                                                                                                                                                                                                   |
+| `KEYWORD`         | The word you would like to [`find`](#findfilter-students-find) by                    | Can contain letters and/or numbers.                                                                                                                                                                                                   |
 | `PHONE_NUMBER`    | Phone number of the student                                                          | 1. Must only contains numbers <br/>  2. Must be at least 3 numbers long                                                                                                                                                               |
 | `REMARK`          | Your notes or remarks on the student                                                 | Can contain any combination of words, numbers and special characters                                                                                                                                                                  |
 | `STUDENT_NAME`    | Name of the student                                                                  | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the name will be removed by the app                                                                                                   |
@@ -116,7 +116,7 @@ Exits the program.
 
 <div markdown="span" class="alert alert-info">
 
->:bulb: **Note:** This is the same as closing the app via the top-right `x` button.
+:bulb: **Note:** This is the same as closing the app via the top-right `x` button.
 
 </div>
 
@@ -173,7 +173,7 @@ Edits a student's info _(all info except remark)_. To remove a student's field, 
 
 <div markdown="span" class="alert alert-info">
 
->:bulb: **Note:** `edit` command cannot edit the remark field of students. Use the [`remark`](#editing-remark-of-student-remark) command for editing remarks.
+:bulb: **Note:** `edit` command cannot edit the remark field of students. Use the [`remark`](#editing-remark-of-student-remark) command for editing remarks.
 
 </div>
 
@@ -271,7 +271,7 @@ tags and subjects in full.
 
 <div markdown="span" class="alert alert-info">
 
->:bulb: **Note:** No input in the `FIELD` defaults to finding by name.
+:bulb: **Note:** No input in the `FIELD` defaults to finding by name.
 
 </div>
 
@@ -320,10 +320,11 @@ Examples:
     <br><i><b>Above:</b> After entering <code>delete</code> command</i>
 </p>
 
-> :slightly_smiling_face: **Tip:** You can combine `find` and `delete` when you have a 
-> very long list of students. <br>
-> For instance, you can `find` the student(s) you want gone, and then `delete`
-> using the index from the list displayed!
+<div markdown="block" class="alert alert-info">
+**:information_source: Tip:** 
+You can combine `find` and `delete` when you have a very long list of students. <br>
+For instance, you can `find` the student(s) you want gone, and then `delete` using the index from the list displayed!
+</div>
 
 [↑ Back to top](#table-of-contents)
 
