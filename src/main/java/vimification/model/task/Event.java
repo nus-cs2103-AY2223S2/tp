@@ -57,6 +57,11 @@ public class Event extends Task {
     }
 
     @Override
+    public boolean isDeadline() {
+        return false;
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
