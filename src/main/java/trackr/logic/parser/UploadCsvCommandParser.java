@@ -1,6 +1,6 @@
 package trackr.logic.parser;
 
-import static trackr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static trackr.commons.core.Messages.MESSAGE_INVALID_CSV_FILE;
 import static trackr.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static trackr.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -36,6 +36,8 @@ public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
                 listOfCommands.addAll(parseTasks(Arrays.copyOfRange(components, i + 1, components.length)));
             } else if (components[i].equals("Suppliers")) {
                 listOfCommands.addAll(parseSuppliers(Arrays.copyOfRange(components, i + 1, components.length)));
+            } else {
+                throw new ParseException(MESSAGE_INVALID_CSV_FILE);
             }
         }
         return new UploadCsvCommand(listOfCommands);
@@ -68,7 +70,7 @@ public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
                 pattern.add(PREFIX_ADDRESS.getPrefix());
                 break;
             default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+                throw new ParseException(MESSAGE_INVALID_CSV_FILE);
             }
         }
 
@@ -102,7 +104,7 @@ public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
                 pattern.add(PREFIX_STATUS.getPrefix());
                 break;
             default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+                throw new ParseException(MESSAGE_INVALID_CSV_FILE);
             }
         }
 
@@ -142,7 +144,7 @@ public class UploadCsvCommandParser implements Parser<UploadCsvCommand> {
                 pattern.add(PREFIX_TAG.getPrefix());
                 break;
             default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+                throw new ParseException(MESSAGE_INVALID_CSV_FILE);
             }
         }
 
