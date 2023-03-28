@@ -1,13 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ELDERLY;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_VOLUNTEER;
-import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_ELDERLY;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
 import static seedu.address.commons.core.Messages.MESSAGE_NRIC_NOT_EXIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
@@ -44,7 +44,7 @@ public class EditCommand extends Command {
         COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
         COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
         COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
-        COMMAND_PROMPTS.put(PREFIX_AGE, "<age>");
+        COMMAND_PROMPTS.put(PREFIX_BIRTH_DATE, "<birth_date>");
         COMMAND_PROMPTS.put(PREFIX_RISK, "<risk>");
         COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "<start_date,end_date>");
     }
@@ -58,14 +58,14 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_AGE + "AGE] "
+            + "[" + PREFIX_BIRTH_DATE + "BIRTH DATE] "
             + "[" + PREFIX_REGION + "REGION] "
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_AVAILABILITY + "START_DATE,END_DATE]...\n"
             + "Example: " + COMMAND_WORD + " S4263131J "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com"
-            + PREFIX_AGE + "73 ";
+            + PREFIX_BIRTH_DATE + "1945-05-03 ";
 
     private final Nric nric;
     private final EditDescriptor editDescriptor;
@@ -87,7 +87,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (!editDescriptor.isAnyFieldEdited()) {
-            throw new CommandException(MESSAGE_NOT_EDITED);
+            throw new CommandException(MESSAGE_NO_FIELD_PROVIDED);
         }
         requireNonNull(model);
 
@@ -104,8 +104,12 @@ public class EditCommand extends Command {
         Elderly elderlyToEdit = model.getElderly(nric);
         Elderly editedElderly = EditDescriptor.createEditedElderly(
                 elderlyToEdit, editDescriptor);
-        if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedElderly)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ELDERLY);
+        Nric editedNric = editedElderly.getNric();
+        if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedNric)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_ELDERLY);
+        }
+        if (model.hasVolunteer(editedNric)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS);
         }
 
         model.setElderly(elderlyToEdit, editedElderly);
@@ -118,9 +122,14 @@ public class EditCommand extends Command {
         Volunteer volunteerToEdit = model.getVolunteer(nric);
         Volunteer editedVolunteer = EditDescriptor.createEditedVolunteer(
                 volunteerToEdit, editDescriptor);
-        if (!volunteerToEdit.isSamePerson(editedVolunteer) && model.hasVolunteer(editedVolunteer)) {
-            throw new CommandException(MESSAGE_DUPLICATE_VOLUNTEER);
+        Nric editedNric = editedVolunteer.getNric();
+        if (!volunteerToEdit.isSamePerson(editedVolunteer) && model.hasVolunteer(editedNric)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS);
         }
+        if (model.hasElderly(editedNric)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_ELDERLY);
+        }
+
         model.setVolunteer(volunteerToEdit, editedVolunteer);
         model.refreshAllFilteredLists();
         return new CommandResult(String.format(

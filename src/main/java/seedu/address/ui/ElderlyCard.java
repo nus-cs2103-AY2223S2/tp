@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Elderly;
+import seedu.address.model.person.information.AvailableDate;
 
 /**
  * An UI component that displays information of a {@code Elderly}.
@@ -39,9 +40,13 @@ public class ElderlyCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
+    private Label availability;
+    @FXML
     private Label age;
     @FXML
     private Label email;
+    @FXML
+    private HBox tagsBox;
     @FXML
     private FlowPane riskLevel;
     @FXML
@@ -63,8 +68,20 @@ public class ElderlyCard extends UiPart<Region> {
         nric.setText(elderly.getNric().value);
         phone.setText(elderly.getPhone().value);
         address.setText(elderly.getAddress().value);
-        age.setText(elderly.getAge().value);
+        age.setText(String.valueOf(elderly.getBirthDate().getAge()));
         email.setText(elderly.getEmail().value);
+
+        StringBuilder available = new StringBuilder();
+        if (elderly.getAvailableDates().size() != 0) {
+            for (AvailableDate dates : elderly.getAvailableDates()) {
+                boolean b = !(available.toString().isEmpty());
+                if (b) {
+                    available.append(", ");
+                }
+                available.append(dates.toString());
+            }
+        }
+        availability.setText(available.toString());
         region.getChildren().add(
                 new Label(elderly.getRegion().region.name())
         );
@@ -75,6 +92,16 @@ public class ElderlyCard extends UiPart<Region> {
         elderly.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        if (elderly.getTags().isEmpty()) {
+            tagsBox.getChildren().removeAll(tagsBox.getChildren());
+        }
+        if (available.toString().isEmpty()) {
+            availability.setVisible(false);
+        }
+        if (displayedIndex == 0) {
+            id.setVisible(false);
+        }
     }
 
     @Override

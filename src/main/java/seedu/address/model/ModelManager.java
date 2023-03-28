@@ -117,12 +117,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasElderly(Elderly elderly) {
-        requireNonNull(elderly);
-        return friendlyLink.hasElderly(elderly);
-    }
-
-    @Override
     public void deleteElderly(Elderly target) {
         friendlyLink.removeElderly(target);
         refreshAllFilteredLists();
@@ -164,12 +158,6 @@ public class ModelManager implements Model {
     public boolean hasVolunteer(Nric nric) {
         requireNonNull(nric);
         return friendlyLink.hasVolunteer(nric);
-    }
-
-    @Override
-    public boolean hasVolunteer(Volunteer volunteer) {
-        requireNonNull(volunteer);
-        return friendlyLink.hasVolunteer(volunteer);
     }
 
     @Override
@@ -297,6 +285,14 @@ public class ModelManager implements Model {
         updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
         updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
         updateFilteredPairList((Predicate<Pair>) PREDICATE_SHOW_ALL);
+    }
+
+    @Override
+    public void updateAllFilteredLists(Predicate<Elderly> elderlyPredicate,
+            Predicate<Volunteer> volunteerPredicate, Predicate<Pair> pairPredicate) {
+        updateFilteredElderlyList(elderlyPredicate);
+        updateFilteredVolunteerList(volunteerPredicate);
+        updateFilteredPairList(pairPredicate);
     }
 
     @Override

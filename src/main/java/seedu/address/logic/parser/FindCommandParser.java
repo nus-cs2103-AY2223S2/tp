@@ -1,14 +1,17 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
 import static seedu.address.logic.commands.FindCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -21,14 +24,20 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.predicates.AddressContainsKeywordPredicate;
-import seedu.address.model.person.predicates.AgeIsEqualPredicate;
+import seedu.address.model.person.predicates.AvailableDatesWithinRangePredicate;
+import seedu.address.model.person.predicates.BirthDateEqualPredicate;
 import seedu.address.model.person.predicates.EmailContainsKeywordPredicate;
+import seedu.address.model.person.predicates.MedicalQualificationContainsKeywordPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
 import seedu.address.model.person.predicates.NricContainsKeywordPredicate;
 import seedu.address.model.person.predicates.PhoneContainsDigitsPredicate;
+import seedu.address.model.person.predicates.RegionIsEqualPredicate;
 import seedu.address.model.person.predicates.RiskLevelIsEqualPredicate;
+import seedu.address.model.person.predicates.SkillLevelIsEqualPredicate;
 import seedu.address.model.person.predicates.TagIsEqualPredicate;
+import seedu.address.model.tag.MedicalQualificationTag;
 
 /**
  * Parses input arguments and creates a new FindCommand object.
@@ -47,15 +56,15 @@ public class FindCommandParser implements Parser<FindCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_NRIC, PREFIX_AGE, PREFIX_RISK, PREFIX_TAG);
+                        PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_RISK, PREFIX_REGION, PREFIX_MEDICAL_TAG,
+                        PREFIX_AVAILABILITY, PREFIX_TAG);
 
         List<Predicate<Person>> sharedfilterList = parseSharedPredicates(argMultimap);
         List<Predicate<Elderly>> elderlyOnlyfilterList = parseElderlyOnlyPredicates(argMultimap);
         List<Predicate<Volunteer>> volunteerOnlyfilterList = parseVolunteerOnlyPredicates(argMultimap);
 
         if ((sharedfilterList.size() + elderlyOnlyfilterList.size() + volunteerOnlyfilterList.size()) == 0) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+            throw new ParseException(MESSAGE_NO_FIELD_PROVIDED + "\n" + MESSAGE_USAGE);
         }
 
         return new FindCommand(sharedfilterList, elderlyOnlyfilterList, volunteerOnlyfilterList);
@@ -74,31 +83,40 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             sharedFilterList.add(new NameContainsKeywordPredicate<>(
-                    ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()).fullName));
+                    argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             sharedFilterList.add(new AddressContainsKeywordPredicate<>(
-                    ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()).value));
+                    argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_NRIC).isPresent()) {
             sharedFilterList.add(new NricContainsKeywordPredicate<>(
-                    ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get()).value));
+                    argMultimap.getValue(PREFIX_NRIC).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             sharedFilterList.add(new PhoneContainsDigitsPredicate<>(
-                    ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()).value));
+                    argMultimap.getValue(PREFIX_PHONE).get()));
         }
-        if (argMultimap.getValue(PREFIX_AGE).isPresent()) {
-            sharedFilterList.add(new AgeIsEqualPredicate<>(
-                    ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get()).value));
+        if (argMultimap.getValue(PREFIX_BIRTH_DATE).isPresent()) {
+            sharedFilterList.add(new BirthDateEqualPredicate<>(
+                    ParserUtil.parseBirthDate(argMultimap.getValue(PREFIX_BIRTH_DATE).get()).birthDate.toString()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             sharedFilterList.add(new EmailContainsKeywordPredicate<>(
-                    ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()).value));
+                    argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_REGION).isPresent()) {
+            sharedFilterList.add(new RegionIsEqualPredicate<>(
+                    ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).get()).region));
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             sharedFilterList.add(new TagIsEqualPredicate<>(
                     ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()).tagName));
+        }
+        if (argMultimap.getValue(PREFIX_AVAILABILITY).isPresent()) {
+            AvailableDate dateRange = ParserUtil.parseDateRange(argMultimap.getValue(PREFIX_AVAILABILITY).get());
+            sharedFilterList.add(new AvailableDatesWithinRangePredicate<>(
+                    dateRange.getStartDate(), dateRange.getEndDate()));
         }
         return sharedFilterList;
     }
@@ -119,8 +137,6 @@ public class FindCommandParser implements Parser<FindCommand> {
                     ParserUtil.parseRiskLevel(argMultimap.getValue(PREFIX_RISK).get()).riskStatus));
         }
 
-        // TODO: Medical conditions filter
-
         return elderlyOnlyFilterList;
     }
 
@@ -135,7 +151,12 @@ public class FindCommandParser implements Parser<FindCommand> {
             throws ParseException {
         List<Predicate<Volunteer>> volunteerOnlyFilterList = new ArrayList<>();
 
-        // TODO: Medical qualifications filter
+        if (argMultimap.getValue(PREFIX_MEDICAL_TAG).isPresent()) {
+            MedicalQualificationTag medicalTag =
+                    ParserUtil.parseMedicalTag(argMultimap.getValue(PREFIX_MEDICAL_TAG).get());
+            volunteerOnlyFilterList.add(new MedicalQualificationContainsKeywordPredicate<>(medicalTag.tagName));
+            volunteerOnlyFilterList.add(new SkillLevelIsEqualPredicate<>(medicalTag.getQualificationLevel()));
+        }
 
         return volunteerOnlyFilterList;
     }

@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+
 * Table of Contents
 {:toc}
 
@@ -10,8 +11,10 @@ title: Developer Guide
 ## **Acknowledgements**
 
 [//]: # (list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well)
+
 * AddressBook Level-3 [documentation](https://se-education.org/addressbook-level3/)
 * AddressBook Level-3 [code](https://github.com/nus-cs2103-AY2223S2/tp)
+* Agolia [Documentation](https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -201,18 +204,6 @@ Our implementation strategy involves utilizing an event listener to provide imme
 correctness of the attributes specified, instead of depending on the parser for this purpose. For example, if the
 `AddElderlyCommand` does not accept any arguments without a prefix but the user specifies anyhow, a **warning** will
 be given.
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes:**<br>
-
-* Input validation merely validates the set of possible attributes. If the user specifies an attribute that is
-  not included in the list of accepted attributes, a warning will given. The user is free to continue typing, but an error will be thrown when the user confirms the command.
-* There is a known UI bug regarding the recommendation engine when the text in `commandTextField` overflows. To improve
-  user experience, the recommendation engine is disabled once overflow is detected.
-
-</div>
-
 
 ### Add and Delete Elderly and Volunteer
 

@@ -2,31 +2,45 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" minWidth="10" prefWidth="150" />
+      <ColumnConstraints hgrow="ALWAYS" prefWidth="340"/>
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="25" GridPane.columnIndex="0">
+    <HBox alignment="CENTER_LEFT" minHeight="25" HBox.hgrow="ALWAYS">
       <padding>
-        <Insets top="5" right="5" bottom="5" left="5" />
+        <Insets top="5" right="5" bottom="5" left="5"/>
       </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
+      <VBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" minWidth="190" maxWidth="190">
+        <Label fx:id="elderlyName" text="\$first" styleClass="cell_big_label"/>
+        <Label fx:id="elderlyNric" styleClass="cell_small_label" text="\$nric" minWidth="-Infinity"
+               HBox.hgrow="ALWAYS">
+          <graphic>
+            <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
+              <Image url="@/images/nric.png"/>
+            </ImageView>
+          </graphic>
         </Label>
-        <Label fx:id="elderlyName" text="\$first" styleClass="cell_big_label" />
-        <Label styleClass="cell_small_label" text="paired with volunteer:" />
-        <Label fx:id="volunteerName" text="\$first" styleClass="cell_big_label" />
-      </HBox>
-    </VBox>
+      </VBox>
+      <ImageView fitHeight="25" pickOnBounds="true" preserveRatio="true" style="-fx-padding: 10">
+        <Image url="@/images/paired.png"/>
+      </ImageView>
+      <VBox HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT" minWidth="190" maxWidth="190">
+        <Label fx:id="volunteerName" text="\$first" styleClass="cell_big_label"/>
+        <Label fx:id="volunteerNric" styleClass="cell_small_label" text="\$nric" minWidth="-Infinity">
+          <graphic>
+            <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
+              <Image url="@/images/nric.png"/>
+            </ImageView>
+          </graphic>
+        </Label>
+      </VBox>
+    </HBox>
   </GridPane>
 </HBox>

@@ -1,13 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ELDERLY;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_ELDERLY;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ELDERLY_DISPLAYED_INDEX;
-import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
@@ -28,6 +29,7 @@ import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
+import seedu.address.model.person.information.Nric;
 
 /**
  * Edits the details of an existing elderly in FriendlyLink.
@@ -45,7 +47,7 @@ public class EditElderlyCommand extends Command {
         COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
         COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
         COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
-        COMMAND_PROMPTS.put(PREFIX_AGE, "<age>");
+        COMMAND_PROMPTS.put(PREFIX_BIRTH_DATE, "<birth_date>");
         COMMAND_PROMPTS.put(PREFIX_RISK, "<risk>");
         COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "<start_date,end_date>");
     }
@@ -59,7 +61,7 @@ public class EditElderlyCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_NRIC + "NRIC] "
-            + "[" + PREFIX_AGE + "AGE] "
+            + "[" + PREFIX_BIRTH_DATE + "BIRTH DATE] "
             + "[" + PREFIX_REGION + "REGION] "
             + "[" + PREFIX_RISK + "RISK] "
             + "[" + PREFIX_TAG + "TAG]... "
@@ -67,7 +69,7 @@ public class EditElderlyCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com"
-            + PREFIX_AGE + "73 ";
+            + PREFIX_BIRTH_DATE + "1945-05-01 ";
 
     public static final String MESSAGE_EDIT_ELDERLY_SUCCESS = "Edited Elderly: %1$s";
 
@@ -89,7 +91,7 @@ public class EditElderlyCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (!editDescriptor.isAnyFieldEdited()) {
-            throw new CommandException(MESSAGE_NOT_EDITED);
+            throw new CommandException(MESSAGE_NO_FIELD_PROVIDED);
         }
 
         requireNonNull(model);
@@ -103,8 +105,12 @@ public class EditElderlyCommand extends Command {
         Elderly elderlyToEdit = lastShownList.get(index.getZeroBased());
         Elderly editedElderly = EditDescriptor.createEditedElderly(elderlyToEdit, editDescriptor);
 
-        if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedElderly)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ELDERLY);
+        Nric editedNric = editedElderly.getNric();
+        if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedNric)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_ELDERLY);
+        }
+        if (model.hasVolunteer(editedNric)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS);
         }
 
         model.setElderly(elderlyToEdit, editedElderly);

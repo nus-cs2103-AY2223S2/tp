@@ -26,4 +26,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_MEDICAL_TAG = new Prefix("mt/");
 
     public static final Prefix PREFIX_AVAILABILITY = new Prefix("dr/");
+    public static final Prefix PREFIX_BIRTH_DATE = new Prefix("bd/");
 }

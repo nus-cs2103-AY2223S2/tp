@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_AGE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTH_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -22,6 +22,7 @@ import static seedu.address.testutil.TypicalVolunteers.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TypicalElderly;
+import seedu.address.testutil.TypicalVolunteers;
 import seedu.address.testutil.VolunteerBuilder;
 
 public class VolunteerTest {
@@ -51,18 +52,31 @@ public class VolunteerTest {
                 .withNric(VALID_NRIC_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
-        // different name, all other attributes same -> returns false
+        // different name, all other attributes same -> returns true
         editedAlice = new VolunteerBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSamePerson(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Person editedBob = new VolunteerBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertTrue(BOB.isSamePerson(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
+        // name has trailing spaces, all other attributes same -> returns true
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new VolunteerBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertTrue(BOB.isSamePerson(editedBob));
+
+        // different nric, all other attributes same -> returns false
+        editedAlice = new VolunteerBuilder(TypicalVolunteers.ALICE).withNric(VALID_NRIC_BOB).build();
+        assertFalse(TypicalVolunteers.ALICE.isSamePerson(editedAlice));
+
+        // nric differs in case, all other attributes same -> returns true
+        editedBob = new VolunteerBuilder(TypicalVolunteers.BOB).withNric(VALID_NRIC_BOB.toLowerCase()).build();
+        assertTrue(TypicalVolunteers.BOB.isSamePerson(editedBob));
+
+        // nric has trailing spaces, all other attributes same -> returns true
+        String nricWithTrailingSpaces = VALID_NRIC_BOB + " ";
+        editedBob = new VolunteerBuilder(TypicalVolunteers.BOB).withName(nricWithTrailingSpaces).build();
+        assertTrue(TypicalVolunteers.BOB.isSamePerson(editedBob));
     }
 
     @Test
@@ -100,7 +114,7 @@ public class VolunteerTest {
         assertNotEquals(ALICE, editedAlice);
 
         // different age -> returns false
-        editedAlice = new VolunteerBuilder(ALICE).withAge(VALID_AGE_BOB).build();
+        editedAlice = new VolunteerBuilder(ALICE).withBirthDate(VALID_BIRTH_DATE_BOB).build();
         assertNotEquals(ALICE, editedAlice);
 
         // different nric -> returns false

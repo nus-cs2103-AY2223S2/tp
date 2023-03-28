@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_VOLUNTEER;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TestUtil.getTypicalModelManager;
@@ -42,7 +42,7 @@ public class AddVolunteerCommandIntegrationTest {
     public void execute_duplicateVolunteer_throwsCommandException() {
         Volunteer volunteerInList = model.getFriendlyLink().getVolunteerList().get(0);
         assertCommandFailure(new AddVolunteerCommand(volunteerInList), model,
-                MESSAGE_DUPLICATE_VOLUNTEER);
+                MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS);
     }
 
 }

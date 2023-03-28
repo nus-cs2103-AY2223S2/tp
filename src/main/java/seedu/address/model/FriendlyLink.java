@@ -309,20 +309,10 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
             issueWarning = false;
         }
 
-        // no restrictions
-        if (elderlyAvailableDates.isEmpty() || volunteerAvailableDates.isEmpty()) {
+        // Checks if the availableDates are compatible between the elderly and volunteer
+        if (AvailableDate.isAvailableDatesIntersecting(elderlyAvailableDates, volunteerAvailableDates)) {
             pairs.add(new Pair(elderly, volunteer));
             return issueWarning;
-        }
-
-        // find first matching dates
-        for (AvailableDate date : elderlyAvailableDates) {
-            for (AvailableDate availableDate : volunteerAvailableDates) {
-                if (date.isIntersect(availableDate.getStartDate(), availableDate.getEndDate())) {
-                    pairs.add(new Pair(elderly, volunteer));
-                    return issueWarning;
-                }
-            }
         }
 
         throw new IllegalArgumentException("The elderly cannot be paired with the volunteer "

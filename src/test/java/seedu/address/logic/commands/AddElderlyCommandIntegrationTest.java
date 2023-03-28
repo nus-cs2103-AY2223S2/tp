@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ELDERLY;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_ELDERLY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TestUtil.getTypicalModelManager;
@@ -42,7 +42,7 @@ public class AddElderlyCommandIntegrationTest {
     public void execute_duplicateElderly_throwsCommandException() {
         Elderly elderlyInList = model.getFriendlyLink().getElderlyList().get(0);
         assertCommandFailure(new AddElderlyCommand(elderlyInList), model,
-                MESSAGE_DUPLICATE_ELDERLY);
+                MESSAGE_DUPLICATE_PERSON_IN_ELDERLY);
     }
 
 }

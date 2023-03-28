@@ -1,33 +1,10 @@
-# FriendlyLink - User Guide
+---
+layout: page
+title: User Guide
+---
 
-By: `Team CS2103T-W12-1` Since `Jan 2023` Licence: `MIT`
-
-1. [Introduction](#introduction)
-2. [Quick Start](#quick-start)
-3. [Features](#features)
-    1. [Viewing help: `help`](#viewing-help--help)
-    2. [Adding records](#adding-records)
-        1. [Adding an elderly: `add_elderly`](#adding-an-elderly-add_elderly)
-        2. [Adding a volunteer: `add_volunteer`](#adding-a-volunteer-add_volunteer)
-        3. [Pair volunteer and elderly: `add_pair`](#pair-volunteer-and-elderly-add_pair)
-    3. [Editing records](#editing-records)
-        1. [Editing an elderly by index : `edit_elderly`](#editing-an-elderly-by-index--edit_elderly)
-        2. [Editing a volunteer by index : `edit_volunteer`](#editing-a-volunteer-by-index--edit_volunteer)
-        3. [Editing a person by NRIC: `edit`](#editing-a-person-by-nric-edit)
-    4. [Deleting records](#deleting-records)
-        1. [Deleting an elderly : `delete_elderly`](#deleting-an-elderly--delete_elderly)
-        2. [Deleting a volunteer : `delete_volunteer`](#deleting-a-volunteer--delete_volunteer)
-        3. [Unpair volunteer and elderly: `delete_pair`](#unpair-volunteer-and-elderly-delete_pair)
-    5. [Finding people and their related pairs: `find`](#finding-people-and-their-related-pairs-find)
-    6. [Show Summary Statistics: `stats`](#show-summary-statistics-stats)
-    7. [Exiting the program : `exit`](#exiting-the-program--exit)
-    8. [Saving the data](#saving-the-data)
-    9. [Editing the data file](#editing-the-data-file)
-    10. [Auto-complete](#auto-complete)
-4. [Advanced Details](#advanced-details)
-5. [Shortcuts](#shortcuts)
-6. [FAQ](#faq)
-7. [Command summary](#command-summary)
+* Table of Contents
+{:toc}
 
 ----------------------------------------------------
 
@@ -204,7 +181,7 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * `add_elderly n/John Doe eic/S1234567A bd/1999-09-09` : Adds an elderly named `John Doe`with NRIC `S0312312A` to FriendlyLink.
+    * `add_elderly n/John Doe eic/S1234567A bd/1999-09-09` : Adds an elderly named `John Doe`with NRIC `S1234567A` to FriendlyLink.
 
     * `delete_elderly S1234567A` : Deletes the elderly with NRIC `S1234567A`.
 
@@ -223,6 +200,7 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
 --------------------------------------------------
 
 ### Adding records
@@ -242,7 +220,7 @@ Format: `add_elderly n/NAME eic/NRIC bd/BIRTH_DATE [p/PHONE] [e/EMAIL] [a/ADDRES
 * Dates specified should follow the format `YYYY-MM-DD`. 
 * For available dates, the start date should be before the end date.
 * Phone number specified can only be numeric characters, and must be at least 3 digits long.
-* `AVAILABLE_DATE_START, AVAILABLE_DATE_END` represents the start and end of the dates that the elderly is available.
+* `START_DATE, END_DATE` represents the start and end of the dates that the elderly is available.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An elderly can have any number of tags and available dates.
@@ -487,8 +465,6 @@ Format: `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRT
 
 Examples:
 
-* `find n/John Doe`
-* `find re/CENTRAL`
 * `find t/experienced p/1234567 e/betsycrowe@example.com a/Newgate Estate`
 * `find n/John Wick e/johnwick@example.com a/New York p/1234561 ic/T1254567D re/north r/low, t/funny dr/2023-04-01,2023-04-15`
 
@@ -522,11 +498,18 @@ Exits the program.
 
 Format: `exit`
 
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+Format: `help`
+
 ---------------------------------------------
 
 ### Saving the data
 
-FriendlyLink data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FriendlyLink data are saved in the hard disk automatically after any command that changes the data. There is no need to
+save manually.
 
 --------------------------------------------
 
@@ -551,7 +534,7 @@ Example:
 * Typing `fi` will suggest `find`.
 
 For adding records, if the user has not input all the available attributes for the new input elderly or volunteer, the
-auto-complete feature will automatically suggest all the remaining attributes. No new suggestions will be given if all
+auto-complete feature will automatically suggests all the remaining attributes. No new suggestions will be given if all
 possible attributes has at least one value provided.
 
 Example:
@@ -577,7 +560,7 @@ Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-0
 
 --------------------------------------------------
 
-## ShortCuts
+## Shortcuts
 
 * `CTRL+A`: Select all the text
 * `CTRL+C`: Copy the text
@@ -601,7 +584,6 @@ Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-0
 | **Add Volunteer**    | `add_volunteer vic/NRIC n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [t/TAG]… [mt/MEDICAL_QUALIFICATIONS]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g.,`add_volunteer n/Doe p/98765432 e/johnd@example.com a/block 123 bd/1998-02-01 vic/S8457677H re/WEST t/graduate mt/CPR BASIC`    |
 | **Add Pair**         | `add_pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`<br> <br> e.g., `add_pair eic/S2235243I vic/t0123423a`                                                                                                                                                                                                                            |
 | **Auto Pair**        | `auto_pair`                                                                                                                                                                                                                                                                                                                     |
-| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> <br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                                 |
 | **Edit Elderly**     | `edit_elderly INDEX [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g., `edit_elderly 1 p/91234567 e/johndoe@example.com`                                                                                    |
 | **Edit Volunteer**   | `edit_volunteer INDEX [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g., `edit_volunteer 2 n/Betsy Crower mt/`                                                                         |
 | **Edit Person**      | `edit NRIC [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g., `edit S1234567A p/12334455`                                                                                      |
@@ -612,3 +594,4 @@ Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-0
 | **Summarise Data**   | `stats`                                                                                                                                                                                                                                                                                                                         |
 | **Help**             | `help`                                                                                                                                                                                                                                                                                                                          |
 | **Exit Program**     | `exit`                                                                                                                                                                                                                                                                                                                          |
+                                                                                                                                                                                                                                                                                                                      |

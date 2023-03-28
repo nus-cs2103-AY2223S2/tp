@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.information.Address;
-import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.AvailableDate;
+import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -30,24 +30,24 @@ public abstract class Person {
     // Data fields
     private final Address address;
     private final Nric nric;
-    private final Age age;
+    private final BirthDate birthDate;
     private final Region region;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<AvailableDate> availableDates = new HashSet<>();
 
     /**
+     * Constructs a new person.
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address,
-                  Nric nric, Age age, Region region, Set<Tag> tags, Set<AvailableDate> availableDates) {
-
-        requireAllNonNull(name, phone, email, address, tags, availableDates);
+    public Person(Name name, Phone phone, Email email, Address address, Nric nric,
+                  BirthDate birthDate, Region region, Set<Tag> tags, Set<AvailableDate> availableDates) {
+        requireAllNonNull(name, phone, email, address, nric, birthDate, region, tags, availableDates);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.nric = nric;
-        this.age = age;
+        this.birthDate = birthDate;
         this.region = region;
         this.tags.addAll(tags);
         this.availableDates.addAll(availableDates);
@@ -73,8 +73,8 @@ public abstract class Person {
         return nric;
     }
 
-    public Age getAge() {
-        return age;
+    public BirthDate getBirthDate() {
+        return birthDate;
     }
 
     public Region getRegion() {
@@ -93,18 +93,17 @@ public abstract class Person {
     }
 
     /**
-     * Returns true if both persons have the same name and nric.
+     * Returns true if both persons have the same nric.
      * This defines a weaker notion of equality between two persons.
      *
      * @param otherPerson Person to be compared to.
-     * @return True if both persons have the same name and nric and false otherwise.
+     * @return True if both persons have the same nric and false otherwise.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
             return true;
         }
         return otherPerson != null
-                && otherPerson.getName().equals(name)
                 && otherPerson.getNric().equals(nric);
     }
 
@@ -128,7 +127,7 @@ public abstract class Person {
                 && otherPerson.getEmail().equals(email)
                 && otherPerson.getAddress().equals(address)
                 && otherPerson.getNric().equals(nric)
-                && otherPerson.getAge().equals(age)
+                && otherPerson.getBirthDate().equals(birthDate)
                 && otherPerson.getRegion().equals(region)
                 && otherPerson.getTags().equals(tags)
                 && otherPerson.getAvailableDates().equals(availableDates);

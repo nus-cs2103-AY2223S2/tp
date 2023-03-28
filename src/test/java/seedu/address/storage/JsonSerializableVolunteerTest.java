@@ -29,7 +29,6 @@ public class JsonSerializableVolunteerTest {
         FriendlyLink appTestCache = new FriendlyLink();
         JsonSerializableVolunteer dataFromFile = JsonUtil.readJsonFile(TYPICAL_VOLUNTEERS_FILE,
                 JsonSerializableVolunteer.class).get();
-        System.out.println(dataFromFile);
         FriendlyLink friendlyLinkFromFile = dataFromFile.toModelType(appTestCache); /////
         List<Volunteer> typicalVolunteers = getTypicalFriendlyLink().getVolunteerList();
         assertEquals(typicalVolunteers, friendlyLinkFromFile.getVolunteerList());

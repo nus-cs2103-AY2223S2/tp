@@ -1,13 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ELDERLY;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_ELDERLY;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+//import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
@@ -21,6 +23,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
+import seedu.address.model.person.information.Nric;
 
 /**
  * Adds an elderly to the database.
@@ -32,27 +35,27 @@ public class AddElderlyCommand extends Command {
 
     static {
         COMMAND_PROMPTS.put(PREFIX_NAME, "<name>");
-        COMMAND_PROMPTS.put(PREFIX_NRIC_ELDERLY, "<nric>");
+        COMMAND_PROMPTS.put(PREFIX_NRIC, "<nric>");
+        COMMAND_PROMPTS.put(PREFIX_BIRTH_DATE, "<birth_date>");
+        COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
+        COMMAND_PROMPTS.put(PREFIX_RISK, "<risk>");
         COMMAND_PROMPTS.put(PREFIX_ADDRESS, "<address>");
         COMMAND_PROMPTS.put(PREFIX_PHONE, "<phone>");
         COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
-        COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
-        COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
-        COMMAND_PROMPTS.put(PREFIX_AGE, "<age>");
-        COMMAND_PROMPTS.put(PREFIX_RISK, "<risk>");
         COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "<start_date,end_date>");
+        COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
     }
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an elderly to the database.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_NRIC_ELDERLY + "NRIC "
-            + PREFIX_AGE + "AGE "
+            + PREFIX_NRIC + "NRIC "
+            + PREFIX_BIRTH_DATE + "BIRTH DATE "
             + PREFIX_REGION + "REGION "
             + PREFIX_RISK + "MEDICAL RISK (LOW, MEDIUM or HIGH) "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_AVAILABILITY + "START_DATE,END_DATE]...\n"
             + "Example: " + COMMAND_WORD + " "
@@ -60,8 +63,8 @@ public class AddElderlyCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_NRIC_ELDERLY + "S1234567A "
-            + PREFIX_AGE + "69 "
+            + PREFIX_NRIC + "S1234567A "
+            + PREFIX_BIRTH_DATE + "1954-01-01 "
             + PREFIX_REGION + "WEST "
             + PREFIX_RISK + "LOW "
             + PREFIX_TAG + "diabetes "
@@ -86,10 +89,12 @@ public class AddElderlyCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // hasPerson makes the judgement based on if same name
-        // in Elderly, criteria is same name and age
-        if (model.hasElderly(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ELDERLY);
+        Nric newNric = toAdd.getNric();
+        if (model.hasElderly(newNric)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_ELDERLY);
+        }
+        if (model.hasVolunteer(newNric)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS);
         }
 
         model.addElderly(toAdd);

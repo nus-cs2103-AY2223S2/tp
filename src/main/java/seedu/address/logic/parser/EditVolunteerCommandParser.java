@@ -2,10 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -37,7 +37,8 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_NRIC, PREFIX_AGE, PREFIX_REGION, PREFIX_TAG, PREFIX_MEDICAL_TAG, PREFIX_AVAILABILITY);
+                        PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_REGION,
+                        PREFIX_TAG, PREFIX_MEDICAL_TAG, PREFIX_AVAILABILITY);
 
         Index index;
 
@@ -69,9 +70,9 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
             editDescriptor.setNric(
                     ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get()));
         }
-        if (argMultimap.getValue(PREFIX_AGE).isPresent()) {
-            editDescriptor.setAge(
-                    ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get()));
+        if (argMultimap.getValue(PREFIX_BIRTH_DATE).isPresent()) {
+            editDescriptor.setBirthDate(
+                    ParserUtil.parseBirthDate(argMultimap.getValue(PREFIX_BIRTH_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_REGION).isPresent()) {
             editDescriptor.setRegion(
@@ -87,7 +88,7 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
                 .ifPresent(editDescriptor::setMedicalTags);
 
         if (!editDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(MESSAGE_NOT_EDITED);
+            throw new ParseException(MESSAGE_NO_FIELD_PROVIDED);
         }
 
         return new EditVolunteerCommand(index, editDescriptor);

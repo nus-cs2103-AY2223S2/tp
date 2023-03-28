@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_AGE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTH_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
@@ -66,7 +66,7 @@ public class EditDescriptorTest {
 
         // different age -> returns false
         editedAmy = new EditDescriptorBuilder(DESC_AMY)
-                .withAge(VALID_AGE_BOB).build();
+                .withBirthDate(VALID_BIRTH_DATE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different region -> returns false

@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddElderlyCommand;
 import seedu.address.logic.commands.AddPairCommand;
 import seedu.address.logic.commands.AddVolunteerCommand;
+import seedu.address.logic.commands.AutoPairCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteElderlyCommand;
 import seedu.address.logic.commands.DeleteVolunteerCommand;
@@ -107,6 +108,12 @@ public class FriendlyLinkParserTest {
     }
 
     @Test
+    public void parseCommand_autoPair() throws Exception {
+        assertTrue(parser.parseCommand(AutoPairCommand.COMMAND_WORD) instanceof AutoPairCommand);
+        assertTrue(parser.parseCommand(AutoPairCommand.COMMAND_WORD + " 3") instanceof AutoPairCommand);
+    }
+
+    @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
@@ -121,7 +128,10 @@ public class FriendlyLinkParserTest {
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(
+                ListCommand.COMMAND_WORD + " paired") instanceof ListCommand);
+        assertTrue(parser.parseCommand(
+                ListCommand.COMMAND_WORD + " unpaired") instanceof ListCommand);
     }
 
     @Test
