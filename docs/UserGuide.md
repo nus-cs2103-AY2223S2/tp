@@ -18,7 +18,7 @@ FAid is a **desktop app for managing contacts, optimized for use via a Command L
 
 1. Copy the file to the folder you want to use as the _home folder_ for your FAid application.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar faid.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -147,35 +147,39 @@ Examples:
 
 ### Add meeting : `meetingAdd`
 
-Add a meeting to the address book
+Adds a meeting to the address book.
 
-Format: `meetingAdd PERSON_INDEX DATE START END`
+Format: `meetingAdd PERSON_INDEX md/ DESC ms/ START DATE&TIME me/ END DATE&TIME`
 
 Required Information:
-* Date (dd-mm-yyyy)
-* Start and end time in 24HR format (HH:mm)
-* Index of a person in address book
+* `PERSON_INDEX`: Index of a person in address book
+* `DESC`: Description of the meeting to add
+* `START DATE&TIME`: Start date and time (Format: dd-mm-yyyy HH:MM)
+* `END DATE&TIME`: End date and time (Format: dd-mm-yyyy HH:MM)
 
-Examples:
-* `meetingAdd 3 02-12-2023 1240 2359` adds a meeting on 2nd December 2023 from 12.40pm to 11.59pm, with John (index 3)
+Example:
+* `meetingAdd 3 md/Meeting with Charlotte ms/30-03-2020 12:30 me/30-03-2020 13:30` adds a meeting on 30th March 2020 from 12.30pm to 13.30pm, with Charlotte Oliveiro (index 3),
+with the description "Meeting with Charlotte".
+
+![result for 'meetingAdd 3 Meeting with Charlotte 30-03-2020 12:30 30-03-2020 13:30`](images/meetingAddCharlotte.PNG)
 
 Notes:
-* Meeting must not conflict in timing with a previous meeting
-* Index must be a positive integer (1,2,3,...)
+* Meeting must not conflict in timing with other meetings scheduled for the day.
+* Index must be a positive integer (1,2,3,...).
 
 ### Remove meeting : `meetingRemove`
 
-Removes meeting from the address book
+Removes meeting from the address book.
 
 Format: `meetingRemove PERSON_INDEX MEETING_INDEX`
 
 Required Information:
-* Index of a person already in address book
-* Meeting ID
+* `PERSON_INDEX`: Index of a person already in address book
+* `MEETING_INDEX`: Meeting ID
 
 Examples:
-* `meetingRemove 3 2` Deletes a meeting with index 2 from a person with index 3
-* `meetingRemove 20 6` Deletes a meeting with index 6 from a person with index 20
+* `meetingRemove 3 2` Deletes a meeting with index 2 from a person with index 3.
+* `meetingRemove 20 6` Deletes a meeting with index 6 from a person with index 20.
 
 ### Updating a meeting : `meetingUpdate`
 
@@ -265,17 +269,17 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
-**Add Meeting** | `meeting add DATE START END PERSON_INDEX`
-**Remove Meeting** | `meeting delete PERSON_INDEX MEETING_INDEX`
-**Find Meeting** | ` meeting find DATE [PERSON_INDEX]`
-**List all meetings** | `meeting list`
-**List all in Region** | `region find REGION [PERSON_INDEX]`
+| Action                 | Format, Examples                                                                                                                                                      |
+|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**              | `clear`                                                                                                                                                               |
+| **Delete**             | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**               | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**               | `list`                                                                                                                                                                |
+| **Help**               | `help`                                                                                                                                                                |
+| **Add Meeting**        | `meetingAdd PERSON_INDEX /md DESC /ms START DATE&TIME /md END DATE&TIME`                                                                                              |
+| **Remove Meeting**     | `meetingRemove PERSON_INDEX MEETING_INDEX`                                                                                                                            |
+| **Find Meeting**       | ` meeting find DATE [PERSON_INDEX]`                                                                                                                                   |
+| **List all meetings**  | `meeting list`                                                                                                                                                        |
+| **List all in Region** | `region find REGION [PERSON_INDEX]`                                                                                                                                   |

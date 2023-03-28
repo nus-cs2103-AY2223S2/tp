@@ -201,6 +201,26 @@ Internally, the `Region` class has a list of all major town names in Singapore, 
 
 ![RegionSequenceDiagram](images/RegionSequenceDiagram.png)
 
+### 4. Update Meeting Feature
+
+The find meeting feature is handled by the following classes:
+* `FindMeetingCommandParser` - Checks that the command is in the right format, then
+  parses the input to extract PersonID, MeetingID and updated Meeting details.
+    * `FindMeetingCommandParser#parse()` is called and returns an
+      `FindMeetingCommand` object with the extracted PersonID, MeetingID
+* `FindMeetingCommand` - The update Meeting command that will be executed by FAid
+    * The `FindMeetingCommand` extends the `Command` interface and implements the `Command#execute()` method.
+
+Just like other commands, the `Command#execute()` method of `FindMeetingCommand` is handled by
+`Logic` component. Please refer to the 'Logic component' under 'Design' for more
+information on how the `Logic` component handles a command.
+
+The parsing and execution of FindMeeting command can be shown with the following
+sequence diagram:
+
+### 5. Find Meeting Feature
+![FindMeetingSequenceDiagram](images/FindMeetingSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -320,8 +340,7 @@ sequence diagram:
 ### Product scope
 
 **Target user profile**:
-
-* has a need to manage a significant number of contacts
+* Financial advisors who has to manage a significant number of contacts and meetings
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -335,24 +354,24 @@ sequence diagram:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | financial advisor | see all my meetings for today | plan and prepare for my meetings today effectively                 |
-| `* * *`  | financial advisor | add a new meeting|keep track of a meeting with a client using this app|
-| `* * *`  | financial advisor | filter my meetings | find clients based on some condition|
-| `* * *`  | financial advisor | remove a meeting from my schedule | remove meetings that are no longer relevant |
-| `* * *`    | financial advisor who has to travel to meet their client physically | set which region of singapore my client is in | keep track of the general location of my client
-| `* * *` | financial advisor who prefers physical meetings with clients | see all meetings in a specific region of singapore| minimize travel time by meeting all clients that live close to each other|
-| `* *` | financial advisor | know when the last meeting with a client was | avoid losing a client if they find me too annoying |
-| `* *` | financial advisor | classify my meetings into different types | organise my meetings better
-| `* ` | financial advisor | record my meetings | look back to reflect and improve on my skills |
-| `* *` | financial advisor | add notes about a client | keep track of things that are important to a client |
+| Priority | As a …​                                                             | I want to …​                                       | So that I can…​                                                           |
+|----------|---------------------------------------------------------------------|----------------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | financial advisor                                                   | see all my meetings for today                      | plan and prepare for my meetings today effectively                        |
+| `* * *`  | financial advisor                                                   | add a new meeting                                  | keep track of a meeting with a client using this app                      |
+| `* * *`  | financial advisor                                                   | filter my meetings                                 | find clients based on some condition                                      |
+| `* * *`  | financial advisor                                                   | remove a meeting from my schedule                  | remove meetings that are no longer relevant                               |
+| `* * *`  | financial advisor who has to travel to meet their client physically | set which region of singapore my client is in      | keep track of the general location of my client                           |
+| `* * *`  | financial advisor who prefers physical meetings with clients        | see all meetings in a specific region of singapore | minimize travel time by meeting all clients that live close to each other |
+| `* *`    | financial advisor                                                   | know when the last meeting with a client was       | avoid losing a client if they find me too annoying                        |
+| `* *`    | financial advisor                                                   | classify my meetings into different types          | organise my meetings better                                               |
+| `* `     | financial advisor                                                   | record my meetings                                 | look back to reflect and improve on my skills                             |
+| `* *`    | financial advisor                                                   | add notes about a client                           | keep track of things that are important to a client                       |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FAid` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: *UC01 Delete a person***
 
@@ -361,9 +380,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  FAid shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  FAid deletes the person
 
     Use case ends.
 
@@ -435,7 +454,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a.  FAid cannot find the specified region entered
   * 3a1. User enters new region name
-  * 3a2. Steps 31-3a1 are repeated until region name entered is valid
+  * 3a2. Steps 3a1 and 3a are repeated until a valid region name is provided
 
     Use case resumes from step 3
 
@@ -485,7 +504,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Town** - An area defined by the National Environment Agency
 * **Meeting** - An appointment with the user’s client starting and ending at stipulated times
 * **Day** - Spans from 00:00 to 23:59. Not by conventional office hours.
-* **Client** - potential or actual buyers of insurance sold by the use
+* **Client** - Potential or actual buyers of insurance sold by the use
 
 
 --------------------------------------------------------------------------------------------------------------------
