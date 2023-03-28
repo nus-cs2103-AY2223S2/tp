@@ -1,7 +1,44 @@
 package seedu.connectus.logic.parser;
 
 import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.connectus.logic.commands.CommandTestUtil.*;
+import static seedu.connectus.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.connectus.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.connectus.logic.commands.CommandTestUtil.CCA_DESC_ICS;
+import static seedu.connectus.logic.commands.CommandTestUtil.CCA_DESC_NES;
+import static seedu.connectus.logic.commands.CommandTestUtil.CCA_POSITION_DESC_DIRECTOR;
+import static seedu.connectus.logic.commands.CommandTestUtil.CCA_POSITION_DESC_PRESIDENT;
+import static seedu.connectus.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.connectus.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_CCA_DESC;
+import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_CCA_POSITION_DESC;
+import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_MODULE_DESC;
+import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.connectus.logic.commands.CommandTestUtil.MODULE_DESC_CS2101;
+import static seedu.connectus.logic.commands.CommandTestUtil.MODULE_DESC_CS2103T;
+import static seedu.connectus.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.connectus.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.connectus.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.connectus.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.connectus.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.connectus.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.connectus.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.connectus.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_ICS;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_NES;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_DIRECTOR;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_PRESIDENT;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2101;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2103T;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.connectus.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.connectus.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.connectus.testutil.TypicalPersons.AMY;
@@ -82,7 +119,7 @@ public class AddCommandParserTest {
                         + CCA_DESC_NES + CCA_DESC_ICS + CCA_POSITION_DESC_DIRECTOR,
                 new AddCommand(expectedPersonMultipleCcas));
 
-       // multiple ccaPosition - all accepted
+        // multiple ccaPosition - all accepted
         Person expectedPersonMultipleCcaPositions = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND)
                 .withModules(VALID_MODULE_CS2103T).withCcas(VALID_CCA_NES)
                 .withCcaPositions(VALID_CCA_POSITION_DIRECTOR, VALID_CCA_POSITION_PRESIDENT).build();
