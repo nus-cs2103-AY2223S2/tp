@@ -53,7 +53,6 @@ public class CheckPlaneCommand implements Command {
         }
 
         isAvailable = model.checkPlaneByIndex(planeId);
-
         Plane plane = model.getPlaneManager().getItem(planeId);
         if (isAvailable) {
             return new CommandResult(String.format(
