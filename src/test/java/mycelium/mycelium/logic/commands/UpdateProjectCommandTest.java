@@ -119,4 +119,30 @@ public class UpdateProjectCommandTest {
         var got2 = model.getUniqueProject(p -> p.isSame(BING));
         assertFalse(got2.isPresent());
     }
+
+    @Test
+    public void execute_nameRemainsTheSame_throwsCommandException() {
+        var cmd = new UpdateProjectCommand(BING.getName(),
+            new UpdateProjectDescriptorBuilder().withName(BING.getName()).build());
+        model.addProject(BING);
+        assertThrows(CommandException.class, UpdateProjectCommand.MESSAGE_NOT_UPDATED, () -> cmd.execute(model));
+    }
+
+    @Test
+    public void execute_allFieldsRemainTheSame_throwsCommandException() {
+        var cmd = new UpdateProjectCommand(BING.getName(), new UpdateProjectDescriptorBuilder(BING).build());
+        model.addProject(BING);
+        assertThrows(CommandException.class, UpdateProjectCommand.MESSAGE_NOT_UPDATED, () -> cmd.execute(model));
+    }
+
+    @Test
+    public void execute_allFieldsSameExceptName_success() throws CommandException {
+        var cmd = new UpdateProjectCommand(BING.getName(),
+            new UpdateProjectDescriptorBuilder(BING).withName(BARD.getName()).build());
+        model.addProject(BING);
+        cmd.execute(model);
+
+        assertFalse(model.hasProject(BING)); // BING should not be in the model
+        assertTrue(model.hasProject(BARD)); // BARD should be in the model
+    }
 }

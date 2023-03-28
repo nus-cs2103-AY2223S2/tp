@@ -69,16 +69,17 @@ public class UpdateProjectCommand extends Command {
     }
 
     /**
-     * Creates an updated project from the given project and descriptor.
+     * Creates an updated project from the given project and descriptor. Returns Optional.empty() if no fields are
+     * changed, and the updated project otherwise.
      *
      * @param project project to update
      * @param desc    descriptor of the updated project
-     * @return updated project
+     * @return updated project, or Optional.empty() if no fields are changed
      */
-    private static Project createUpdatedProject(Project project, UpdateProjectDescriptor desc) {
+    private static Optional<Project> createUpdatedProject(Project project, UpdateProjectDescriptor desc) {
         requireAllNonNull(project, desc);
         if (!desc.isAnyFieldUpdated()) {
-            return project;
+            return Optional.empty();
         }
 
         NonEmptyString updatedName = desc.getName().orElse(project.getName());
@@ -89,8 +90,19 @@ public class UpdateProjectCommand extends Command {
         LocalDate updatedAcceptedOn = desc.getAcceptedOn().orElse(project.getAcceptedOn());
         Optional<LocalDate> updatedDeadline = desc.getDeadline().or(project::getDeadline);
 
-        return new Project(updatedName, updatedStatus, updatedClientEmail, updatedSource, updatedDescription,
-            updatedAcceptedOn, updatedDeadline);
+        Project updatedProject = new Project(updatedName,
+            updatedStatus,
+            updatedClientEmail,
+            updatedSource,
+            updatedDescription,
+            updatedAcceptedOn,
+            updatedDeadline);
+
+        if (project.equals(updatedProject)) {
+            return Optional.empty();
+        }
+
+        return Optional.of(updatedProject);
     }
 
     @Override
@@ -119,18 +131,15 @@ public class UpdateProjectCommand extends Command {
                 new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
         }
 
-        // NOTE: we perform this check after checking if the project is found, simply because it seems to make more
-        // sense
-        if (!desc.isAnyFieldUpdated()) {
+        Optional<Project> updatedProject = createUpdatedProject(target.get(), desc);
+        if (updatedProject.isEmpty()) {
             throw new CommandException(MESSAGE_NOT_UPDATED, new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
         }
-
-        Project updatedProject = createUpdatedProject(target.get(), desc);
-        if (desc.name.isPresent() && model.hasProject(updatedProject)) {
+        if (desc.name.isPresent() && model.hasProject(updatedProject.get())) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT,
                 new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
         }
-        model.setProject(target.get(), updatedProject);
+        model.setProject(target.get(), updatedProject.get());
         return new CommandResult(String.format(MESSAGE_UPDATE_PROJECT_SUCCESS, updatedProject),
             new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
     }
