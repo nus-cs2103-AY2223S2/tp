@@ -61,6 +61,4 @@ public class CalendarPopOver extends UiPart<Region> {
             end.setText(event.getEnd().toString());
         }
     }
-
-
 }
