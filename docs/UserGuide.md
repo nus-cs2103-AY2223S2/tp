@@ -149,17 +149,9 @@ There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 
 # 7. Commands
 
-## 7.1. Viewing help : `help`
+## 7.1. Employee Commands
 
-Shows a message explaining how to access the help page for SudoHR.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-## 7.2. Employee Commands
-
-### 7.2.1. Adding an employee: `add`
+### 7.1.1. Adding an employee: `add`
 
 Adds an employee to SudoHR.
 
@@ -173,13 +165,13 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### 7.2.2. Listing all employees : `list`
+### 7.1.2. Listing all employees : `list`
 
 Shows a list of all employees in SudoHR.
 
 Format: `list`
 
-### 7.2.3. Editing an employee : `edit`
+### 7.1.3. Editing an employee : `edit`
 
 Edits an existing employee in SudoHR.
 
@@ -196,7 +188,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
 
-### 7.2.4. Find employees by name: `find`
+### 7.1.4. Find employees by name: `find`
 
 Finds employees whose names contain any of the given keywords.
 
@@ -214,7 +206,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### 7.2.5. Deleting an employee : `delete`
+### 7.1.5. Deleting an employee : `delete`
 
 Deletes the specified employee from SudoHR.
 
@@ -228,9 +220,9 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd employee in SudoHR.
 * `find Betsy` followed by `delete 1` deletes the 1st employee in the results of the `find` command.
 
-## 7.3. Department Commands
+## 7.2. Department Commands
 
-### 7.3.1. Adding a department: `adep`
+### 7.2.1. Adding a department: `adep`
 
 Adds a department by name.
 
@@ -245,7 +237,7 @@ Examples:
 * `adep n/Software Engineering`
 * `adep n/Marketing`
 
-### 7.3.2. Editing a department: `edep`
+### 7.2.2. Editing a department: `edep`
 
 Edits an existing department.
 
@@ -255,7 +247,7 @@ Examples:
 * `edep Software Engineering n/Software Development`
 * `edep Marketing n/Sales`
 
-### 7.3.3. Find departments by name: `fdep`
+### 7.2.3. Find departments by name: `fdep`
 
 Finds departments whose names contain any of the given keywords.
 
@@ -272,7 +264,7 @@ Examples:
 * `fdep Engineering` returns `Engineering` and `Software Engineering`
 * `fdep software engineering` returns `Software Development`, `Data Engineering`<br>
 
-### 7.3.4. Deleting a department: `ddep`
+### 7.2.4. Deleting a department: `ddep`
 
 Deletes an existing department.
 
@@ -282,13 +274,13 @@ Examples:
 * `ddep n/Software Engineering`
 * `ddep n/Sales`
 
-### 7.3.5. Listing all departments: `ldep`
+### 7.2.5. Listing all departments: `ldep`
 
 Lists all existing departments.
 
 Format: `ldep`
 
-### 7.3.6. Add employee to a department: `aetd`
+### 7.2.6. Add employee to a department: `aetd`
 
 Adds an employee to a department using his ID.
 
@@ -302,7 +294,7 @@ Examples:
 * `aetd eid/1 n/Software Engineering`
 * `aetd eid/100 n/Sales`
 
-### 7.3.7. Remove employee from a department: `refd`
+### 7.2.7. Remove employee from a department: `refd`
 
 Removes an employee from a department using his ID.
 
@@ -312,7 +304,7 @@ Examples:
 * `refd eid/1 n/Software Engineering`
 * `refd eid/100 n/Sales`
 
-### 7.3.8. List an employee's departments: `led`
+### 7.2.8. List an employee's departments: `led`
 
 List all departments and employee is in.
 
@@ -321,7 +313,7 @@ Format: `led eid/EMPLOYEE_ID`
 Examples:
 * `leid eid/100`
 
-### 7.3.9. List all employees in a department: `leid`
+### 7.2.9. List all employees in a department: `leid`
 
 List all employees in a department.
 
@@ -331,7 +323,7 @@ Examples:
 * `leid n/Software Engineering`
 * `leid n/Sales`
 
-## 7.4. Leave Commands
+## 7.3. Leave Commands
 
 ### Adding a leave: `andre`
 
@@ -403,25 +395,35 @@ Examples:
 * `ls_on_leave d/2023-03-05`
 * `ls_on_leave d/2023-03-05~2023-05-7`
 
-## 7.5. General Commands
+## 7.4. General Commands
 
-### 7.5.1. Clearing all entries : `clear`
+### 7.4.1. Viewing help : `help`
+
+Shows a message explaining how to access the help page for SudoHR.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+### 7.4.2. Clearing all entries : `clear`
 
 Clears all entries from SudoHR.
 
 Format: `clear`
 
-### 7.5.2. Exiting the program : `exit`
+### 7.4.3. Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+## 7.5. Data Storage
+
+### 7.5.1. Saving the data
 
 SudoHR data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### 7.5.2 Editing the data file
 
 SudoHR data are saved as a JSON file `[JAR file location]/data/sudohr.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -429,20 +431,7 @@ SudoHR data are saved as a JSON file `[JAR file location]/data/sudohr.json`. Adv
 If your changes to the data file makes its format invalid, SudoHR will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SudoHR home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
+## 7.6. Command summary
 
 | Action                                 | Format                                                           |
 |----------------------------------------|------------------------------------------------------------------|
@@ -460,3 +449,22 @@ _Details coming soon ..._
 | **Remove employee from department**    | `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                         |
 | **List an employee's department**      | `led eid/EMPLOYEE_ID`                                            |
 | **List all employees in a department** | `leid n/DEPARTMENT_NAME`                                         |
+
+[//]: # (Andre, Jer En, Kwang Joo, please add accordingly)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 8. FAQ
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SudoHR home folder.
+
+[//]: # (Please add anything you think might be helpful)
+
+## 9. Acknowledgements
+
+[//]: # (To be added before Week 13)
+
+## 10. Glossary
+
+[//]: # (To be added before Week 13)
