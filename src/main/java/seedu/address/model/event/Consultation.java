@@ -83,6 +83,10 @@ public class Consultation extends Event {
         return super.countStudents();
     }
 
+    public List<String> getStudentProfiles() {
+        return super.getStudentProfiles();
+    }
+
     /**
      * Gets the date of the event
      *
@@ -133,6 +137,12 @@ public class Consultation extends Event {
         return otherConsultation != null
                 && otherConsultation.getName().equals(getName())
                 && otherConsultation.getDate().equals(getDate());
+    }
+
+    //Get copy of tutorial
+    @Override
+    public Consultation copy() {
+        return new Consultation(getName(), getStudents(), getNotes(), getDate());
     }
 
     /**

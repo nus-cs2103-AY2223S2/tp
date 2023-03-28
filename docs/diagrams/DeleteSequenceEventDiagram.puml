@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteEventCommandParser" as DeleteEventCommandParser LOGIC_COLOR
+participant "d:DeleteEventCommand" as DeleteEventCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("rm Tutorial/Dijkstra")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("rm Tutorial/Dijkstra")
+activate AddressBookParser
+
+create DeleteEventCommandParser
+AddressBookParser -> DeleteEventCommandParser
+activate DeleteEventCommandParser
+
+DeleteEventCommandParser --> AddressBookParser
+deactivate DeleteEventCommandParser
+
+AddressBookParser -> DeleteEventCommandParser : parse("Tutorial/Dijkstra")
+activate DeleteEventCommandParser
+
+create DeleteEventCommand
+DeleteEventCommandParser -> DeleteEventCommand
+activate DeleteEventCommand
+
+DeleteEventCommand --> DeleteEventCommandParser : d
+deactivate DeleteEventCommand
+
+DeleteEventCommandParser --> AddressBookParser : d
+deactivate DeleteEventCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteEventCommandParser -[hidden]-> AddressBookParser
+destroy DeleteEventCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> DeleteEventCommand : execute()
+activate DeleteEventCommand
+
+DeleteEventCommand -> Model : deleteTutorial("Dijkstra")
+activate Model
+
+Model --> DeleteEventCommand
+deactivate Model
+
+create CommandResult
+DeleteEventCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteEventCommand
+deactivate CommandResult
+
+DeleteEventCommand --> LogicManager : result
+deactivate DeleteEventCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
+import seedu.address.model.event.Note;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -254,6 +255,16 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredConsultationList(Predicate<Consultation> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasNote(Note note) {
+            return false;
+        }
+
+        @Override
+        public void addNote(Note note) {
             throw new AssertionError("This method should not be called.");
         }
     }

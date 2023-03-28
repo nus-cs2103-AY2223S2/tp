@@ -11,7 +11,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Performance;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Photo;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,7 +37,6 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setPerformance(person.getPerformance());
-        descriptor.setPhoto(person.getPhoto());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
     }
@@ -72,14 +70,6 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withPerformance(String performance) {
         descriptor.setPerformance(new Performance(performance));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Photo} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withPhoto(String photo) {
-        descriptor.setPhoto(new Photo(photo));
         return this;
     }
 

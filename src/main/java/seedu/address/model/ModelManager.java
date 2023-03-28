@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
+import seedu.address.model.event.Note;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 
@@ -208,6 +209,18 @@ public class ModelManager implements Model {
     public void addStudentToConsultation(Index toAdd, String consultationName) {
         Person toAddPerson = this.getFilteredPersonList().get(toAdd.getZeroBased());
         addressBook.addStudentToConsultation(toAddPerson, consultationName);
+    }
+
+    @Override
+    public boolean hasNote(Note note) {
+        requireNonNull(note);
+        return addressBook.hasNote(note);
+    }
+
+    @Override
+    public void addNote(Note note) {
+        requireNonNull(note);
+        addressBook.addNote(note);
     }
 
     //=========== Filtered Person List Accessors =============================================================

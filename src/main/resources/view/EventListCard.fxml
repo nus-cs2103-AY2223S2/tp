@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
 
 <HBox id="cardPane" fx:id="cardPane" spacing="20" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane style="-fx-background-radius: 16; -fx-background-color: C4C4C4;" HBox.hgrow="ALWAYS">
@@ -19,20 +20,25 @@
             <padding>
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
+            <HBox fx:id="studentProfiles" alignment="TOP_RIGHT">
+            </HBox>
             <HBox alignment="CENTER_LEFT" spacing="5">
+                <Label fx:id="id" styleClass="cell_big_label"/>
                 <Label fx:id="name" styleClass="cell_big_label" text="\$eventName" />
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
+                <minWidth>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
             </HBox>
             <HBox prefHeight="13.0" prefWidth="130.0">
                 <children>
                 </children>
             </HBox>
-         <ProgressBar prefHeight="15.0" prefWidth="91.0" progress="0.35" style="-fx-accent: #643FDB;" />
+         <HBox fx:id="details" alignment="CENTER_LEFT" spacing="5">
+             <ProgressBar prefHeight="15.0" prefWidth="91.0" progress="0.35" style="-fx-accent: #643FDB;" />
+             <Label fx:id="date" styleClass="cell_big_label"/>
+             <ImageView fx:id="attachmentLogo"></ImageView>
+         </HBox>
         </VBox>
       <HBox prefHeight="81.0" prefWidth="150.0" />
         <rowConstraints>

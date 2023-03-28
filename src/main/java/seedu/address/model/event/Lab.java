@@ -88,6 +88,10 @@ public class Lab extends Event {
         return super.countStudents();
     }
 
+    public List<String> getStudentProfiles() {
+        return super.getStudentProfiles();
+    }
+
     /**
      * Gets the date of the event
      *
@@ -152,6 +156,12 @@ public class Lab extends Event {
         return otherLab != null
                 && otherLab.getName().equals(getName())
                 && otherLab.getDate().equals(getDate());
+    }
+
+    //Get copy of tutorial
+    @Override
+    public Lab copy() {
+        return new Lab(getName(), getDate(), getStudents(), getAttachments(), getNotes());
     }
 
     /**

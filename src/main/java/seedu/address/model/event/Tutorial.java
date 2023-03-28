@@ -88,6 +88,10 @@ public class Tutorial extends Event {
         return super.countStudents();
     }
 
+    public List<String> getStudentProfiles() {
+        return super.getStudentProfiles();
+    }
+
     /**
      * Gets the date of the event
      *
@@ -152,6 +156,12 @@ public class Tutorial extends Event {
         return otherTutorial != null
                 && otherTutorial.getName().equals(getName())
                 && otherTutorial.getDate().equals(getDate());
+    }
+
+    //Get copy of tutorial
+    @Override
+    public Tutorial copy() {
+        return new Tutorial(getName(), getDate(), getStudents(), getAttachments(), getNotes());
     }
 
     /**

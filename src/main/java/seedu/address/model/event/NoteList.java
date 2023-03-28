@@ -27,6 +27,13 @@ public class NoteList {
     }
 
     /**
+     * Initialize an empty list
+     */
+    public NoteList() {
+        return;
+    }
+
+    /**
      * Gets the list notes saved in this object
      * @return A list of {@code Note} objects
      */
@@ -58,6 +65,7 @@ public class NoteList {
      * @param noteList The {@code NoteList} to add
      */
     public void addAll(NoteList noteList) {
+        assert len() + noteList.len() <= 20 : "upper limit of adding notes is 20";
         getNotes().addAll(noteList.getNotes());
     }
 
@@ -75,6 +83,15 @@ public class NoteList {
      */
     public Note remove(int index) throws IndexOutOfBoundsException {
         return getNotes().remove(index);
+    }
+
+    /**
+     * Contains a note or not
+     * @param note The note to check against
+     * @return A boolean response
+     */
+    public boolean contains(Note note) {
+        return getNotes().contains(note);
     }
 
     /**

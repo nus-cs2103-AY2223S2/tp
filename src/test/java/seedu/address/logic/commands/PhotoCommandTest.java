@@ -69,7 +69,8 @@ public class PhotoCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        PhotoCommand remarkCommand = new PhotoCommand(outOfBoundIndex, new Photo(VALID_PHOTO_BOB));
+        PhotoCommand remarkCommand = new PhotoCommand(outOfBoundIndex,
+                new Photo("/images/studentProfiles/student_1.png"));
 
         assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }

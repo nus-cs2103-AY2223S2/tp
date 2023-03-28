@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
+import seedu.address.model.event.Note;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 
@@ -17,6 +18,10 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Tutorial> PREDICATE_SHOW_ALL_TUTORIALS = unused -> true;
+    Predicate<Consultation> PREDICATE_SHOW_ALL_CONSULTATIONS = unused -> true;
+    Predicate<Lab> PREDICATE_SHOW_ALL_LABS = unused -> true;
+
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -214,4 +219,17 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredConsultationList(Predicate<Consultation> predicate);
+
+    /**
+     * Checks whether a note has been added before
+     * @param note The note to check against
+     * @return A boolean indicating whether it has been added
+     */
+    boolean hasNote(Note note);
+
+    /**
+     * Append notes to the existing note list
+     * @param note The note to add
+     */
+    void addNote(Note note);
 }
