@@ -31,13 +31,22 @@ We suggest reading this guide in sequential order (or at least the whole of this
 
 FriendlyLink is a command line based tool. This means that it is designed to mainly receive text commands by you, and show you the output after each command is carried out. 
 
+FriendlyLink stores the elderly, volunteers and pairings between the 2, which can be added, modified or removed by you using commands.
+
 #### Commands
-A command is an instruction given by you to FriendlyLink to perform a specific task. For example, `add_elderly n/John Doe ...` tells FriendlyLink to record the information of a new person in FriendlyLink. More details about each command is given in the **Features** section
+A command is an instruction given by you to FriendlyLink to perform a specific task. For example, `add_elderly n/John Doe ...` tells FriendlyLink to record the information of a new person in FriendlyLink. More details about each command is given in the **Features** section.
 
 #### Prefixes
 Prefixes are the characters appearing before a slash in a command. Prefixes describe the information that they represent. For example, the add elderly command `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate the NRIC of the elderly.
 * Prefixes should be entered in all lower case (E.g. n/Abdul instead of N/Abdul)
 * Fields after prefixes have leading and trailing whitespaces removed (e.g. `n/ Mary` is truncated to `n/Mary`)
+
+#### Entities
+An entity is a generic term for an object stored in FriendlyLink. It includes elderly, volunteers and pairs.
+
+#### Indexes
+Indexes are natural numbers (numbers used for counting) that are used for numbering purposes in a displayed list of entities.
+* An index must be a positive integer (E.g. 1, 2, 3, …​)
 
 #### Fields
 Fields are the information following the slash in a command.
@@ -147,8 +156,10 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 | Duplicate Persons     | Two persons having the same NRIC are considered a duplicate entry in FriendlyLink                                                                           |
 | Elderly               | Elderly are people under the care of your VWO                                                                                                               |
 | Email                 | The email of a person, in the `localPart@domain` format, containing the `@`                                                                                 |
+| Entity                | A generic term to describe an object stored in FriendlyLink, such as elderly, volunteer and pairs                                                           |
 | FriendlyLink          | The name of our application                                                                                                                                 |
 | Field                 | A field is the information following the slash in a command.                                                                                                |
+| Index                 | An index is an integer used for numbering purposes in a displayed list of entities. It must be a positive integer.                                          |
 | Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the type of skill (E.g. CP, AED) and a skill level (`BASIC`, `INTERMEDIATE` or `HIGH`) |
 | NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                                                                      |
 | Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly                                                            | 
@@ -321,7 +332,7 @@ Edits an existing elderly based on their index in the elderly list.
 
 Format: `edit_elderly INDEX [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
 
-* Edits the elderly at the specified `INDEX`. The index refers to the index number shown in the displayed elderly list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the elderly at the specified `INDEX` in the displayed elderly list.
 * Any combination of the optional fields is possible but **at least one** optional field must be specified. 
 * Existing values will be updated to the input values.
 * When editing fields allowing multiple inputs, the existing contents of the field will be removed. i.e. editing of tags or available dates will overwrite previous ones and are not cumulative.
@@ -338,7 +349,7 @@ Edits an existing volunteer based on their index in the volunteers list.
 
 Format: `edit_volunteer INDEX [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
 
-* Edits the volunteer at the specified `INDEX`. The index refers to the index number shown in the displayed volunteers list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the volunteer at the specified `INDEX` in the displayed volunteer list. 
 * Any combination of the optional fields is possible but **at least one** optional field must be specified.
 * Existing values will be updated to the input values.
 * When editing fields allowing multiple inputs, the existing contents of the field will be removed. i.e. editing of tags, medical qualifications or available dates will overwrite previous ones and are not cumulative.
@@ -378,7 +389,7 @@ Edits an existing pair based on their index in the pairs list.
 
 Format: `edit_pair INDEX [eic/ELDERLY_NRIC] [vic/VOLUNTEER_NRIC]`
 
-* Edits the pair at the specified `INDEX`. The index refers to the index number shown in the displayed pairs list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the pair at the specified `INDEX` in the displayed pair list.
 * Any combination of the optional fields is possible but **at least one** optional field must be specified.
 * Existing values will be updated to the input values.
 
