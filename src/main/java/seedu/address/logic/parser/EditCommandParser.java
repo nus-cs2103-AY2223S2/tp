@@ -155,7 +155,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         VideoName updatedName = updatedNameStr == null ? null : ParserUtil.parseVideoName(updatedNameStr);
         Set<Tag> updatedTags = updatedTagsStr == null ? null : ParserUtil.parseMultiTags(updatedTagsStr);
-        Boolean hasWatchedUpdated = !hasWatchFlag && !hasUnwatchFlag ? null : hasWatchFlag;
+        Boolean hasWatchedUpdated = (!hasWatchFlag && !hasUnwatchFlag) ? null : hasWatchFlag;
 
         EditVideoDescriptor descriptor = new EditVideoDescriptor();
         descriptor.setName(updatedName);
