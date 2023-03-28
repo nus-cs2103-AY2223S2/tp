@@ -79,6 +79,17 @@ public class ModelManager implements Model, Undoable {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public String getCssFilePath() {
+        return userPrefs.getCssFilePath();
+    }
+
+    @Override
+    public void setCssFilePath(String cssFilePath) {
+        requireNonNull(cssFilePath);
+        userPrefs.setCssFilePath(cssFilePath);
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override
