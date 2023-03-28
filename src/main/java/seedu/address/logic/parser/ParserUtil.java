@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -226,6 +227,14 @@ public class ParserUtil {
     }
 
     public static LocalDate parseDate(String date) throws ParseException {
-        return LocalDate.parse(date);
+        //throw new ParseException("test");
+        LocalDate res;
+        try {
+            res = LocalDate.parse(date);
+        }
+        catch (DateTimeParseException e) {
+            throw new ParseException("Invalid date format!", e);
+        }
+        return res;
     }
 }
