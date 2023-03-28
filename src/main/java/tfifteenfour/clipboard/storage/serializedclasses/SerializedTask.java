@@ -19,14 +19,14 @@ public class SerializedTask {
 
 
     /**
-     * Constructs a {@code SerializedTask} with the given session.
+     * Constructs a {@code SerializedTask} with the given task.
      */
     public SerializedTask(Task task) {
         this.taskName = task.getTaskName();
-        Map<Student, Integer> studentWithGrades = task.getGrades();
-        for (Student student : studentWithGrades.keySet()) {
+        Map<Student, Integer> taskGrades = task.getGrades();
+        for (Student student : taskGrades.keySet()) {
             keys.add(new SerializedStudent(student));
-            values.add(studentWithGrades.get(student));
+            values.add(taskGrades.get(student));
         }
 
     }
@@ -37,7 +37,7 @@ public class SerializedTask {
     public SerializedTask() {}
 
     @JsonProperty("taskName")
-    public String getSessionName() {
+    public String getTaskName() {
         return taskName;
     }
 
