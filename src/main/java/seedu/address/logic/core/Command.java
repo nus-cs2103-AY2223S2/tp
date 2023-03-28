@@ -28,7 +28,7 @@ public interface Command {
             parsedIndex = Integer.parseInt(string);
         } catch (NumberFormatException e) {
             throw new CommandException(
-                    "NumberFormatException raised. Please input a valid one-based index."
+                    "NumberFormatException raised. Please input a valid one-based index. "
                             + "You may refer to the display list for index. "
             );
         }
