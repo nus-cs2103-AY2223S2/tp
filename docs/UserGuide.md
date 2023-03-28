@@ -11,6 +11,7 @@ You can spend **less time** _keeping track of your contacts_ and _searching thro
 
 <img src="images/Ui.png"/>
 --------------------------------------------------------------------------------------------------------------------
+
 # Table of Contents
 - [Navigating the user guide](#navigating-the-user-guide)
 - [Glossary](#glossary)
