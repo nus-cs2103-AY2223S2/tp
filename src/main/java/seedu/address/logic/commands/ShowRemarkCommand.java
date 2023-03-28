@@ -10,9 +10,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.Model;
+import seedu.address.model.person.FullNamePredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
-
 
 /**
  * Shows the remark of an existing person in the address book.
@@ -28,7 +28,6 @@ public class ShowRemarkCommand extends Command {
     public static final String MESSAGE_SHOWN_REMARK_EMPTY = "No remarks yet...";
 
     private final Index index;
-    //private final Remark remark;
 
     /**
      * Constructor for ShowRemarkCommand command
@@ -50,9 +49,7 @@ public class ShowRemarkCommand extends Command {
 
         Person personToShow = lastShownList.get(index.getZeroBased());
         assert (personToShow != null);
-        List<String> personToShowNamePredicate = Arrays.asList(personToShow.getName().toString().split(" "));
-        assert (personToShowNamePredicate != null);
-        model.updateShowPerson(new NameContainsKeywordsPredicate(personToShowNamePredicate));
+        model.updateShowPerson(new FullNamePredicate(personToShow.getName().toString()));
         Remark toBeShown = personToShow.getOptionalRemark().orElse(new Remark(""));
         String message = !toBeShown.value.isEmpty() ? MESSAGE_SHOWN_REMARK_SUCCESS : MESSAGE_SHOWN_REMARK_EMPTY;
         return new CommandResult(String.format(message, toBeShown));

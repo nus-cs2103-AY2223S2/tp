@@ -19,10 +19,9 @@ import seedu.address.model.person.Remark;
  * Card containing a person
  */
 public class ResultPersonCard extends UiPart<Region> {
-    private final Logger logger = LogsCenter.getLogger(ResultPersonCard.class);
     private static final String FXML = "ResultPersonCard.fxml";
-
     public final Person person;
+    private final Logger logger = LogsCenter.getLogger(ResultPersonCard.class);
 
     @FXML
     private HBox cardPane;
