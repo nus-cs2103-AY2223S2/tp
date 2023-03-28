@@ -1,21 +1,16 @@
 package seedu.address.model.person.fields;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Locale;
 import java.util.Objects;
-
-import seedu.address.model.person.fields.enums.Genders;
 
 /**
  * Represents a Person's gender in the address book.
  */
-public class Gender {
+public class Gender extends Field {
 
-    public static final String MESSAGE_CONSTRAINTS = "Gender must be either: "
-            + "Male, Female or DNS (i.e. Did not specify)";
-    public final Genders gender;
-
+    public static final String MESSAGE_CONSTRAINTS = "Gender must be alphanumeric.";
+    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]+$";
 
     /**
      * Constructs a {@code Gender}.
@@ -23,47 +18,25 @@ public class Gender {
      * @param gender A valid name.
      */
     public Gender(String gender) {
-        requireNonNull(gender);
-        switch (gender.toLowerCase(Locale.ROOT)) {
-        case "male":
-            this.gender = Genders.MALE;
-            break;
-        case "female":
-            this.gender = Genders.FEMALE;
-            break;
-        case "dns":
-        case "":
-            this.gender = Genders.DNS;
-            break;
-        default:
-            throw new IllegalArgumentException(Gender.MESSAGE_CONSTRAINTS + " " + gender);
-        }
+        super(gender);
+        checkArgument(isValidGender(gender), MESSAGE_CONSTRAINTS);
     }
 
     /**
      * Returns if a given string is a valid gender.
      */
     public static boolean isValidGender(String trimmedGender) {
-        String lowerCaseGender = trimmedGender.toLowerCase(Locale.ROOT);
-        return Objects.equals(lowerCaseGender, "male") || Objects.equals(lowerCaseGender, "female")
-                || Objects.equals(lowerCaseGender, "dns") || Objects.equals(lowerCaseGender, "");
-    }
-
-    @Override
-    public String toString() {
-        return gender.toString();
+        if (Objects.equals(trimmedGender, "")) {
+            return true;
+        }
+        return trimmedGender.matches(VALIDATION_REGEX);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Gender // instanceof handles nulls
-                && this.gender.equals(((Gender) other).gender)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return this.gender.hashCode();
+                && this.value.equals(((Gender) other).value)); // state check
     }
 
 }

@@ -1,7 +1,6 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
-import java.util.Set;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;
@@ -14,7 +13,7 @@ import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
-import seedu.address.model.person.fields.subfields.Tag;
+import seedu.address.model.person.fields.Tags;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -37,7 +36,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Tags tags;
     private Gender gender;
     private Major major;
     private Modules modules;
@@ -54,7 +53,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        tags = new Tags(new HashSet<>());
         this.gender = new Gender(DEFAULT_GENDER);
         this.major = new Major(DEFAULT_MAJOR);
         this.modules = new Modules(new HashSet<>());
@@ -71,7 +70,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        tags = personToCopy.getTags();
         this.gender = personToCopy.getGender();
         this.major = personToCopy.getMajor();
         this.modules = personToCopy.getModules();
@@ -92,7 +91,7 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.tags = new Tags(SampleDataUtil.getTagSet(tags));
         return this;
     }
 

@@ -25,4 +25,9 @@ public class Description {
     public static boolean isValidDescription(String description) {
         return !description.equals(VALIDATION);
     }
+
+    @Override
+    public String toString() {
+        return this.description;
+    }
 }

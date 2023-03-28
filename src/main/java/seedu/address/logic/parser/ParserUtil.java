@@ -23,6 +23,7 @@ import seedu.address.model.person.fields.Modules;
 import seedu.address.model.person.fields.Name;
 import seedu.address.model.person.fields.Phone;
 import seedu.address.model.person.fields.Race;
+import seedu.address.model.person.fields.Tags;
 import seedu.address.model.person.fields.subfields.NusMod;
 import seedu.address.model.person.fields.subfields.Tag;
 
@@ -159,17 +160,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> tags} into {@code Tags}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Tags parseTags(Collection<String> tags) throws ParseException {
         if (tags.isEmpty()) {
-            return new HashSet<>();
+            return new Tags(new HashSet<>());
         }
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
         }
-        return tagSet;
+        return new Tags(tagSet);
     }
 
     //    public static Favorite parseFavorite(String favorite) throws ParseException{

@@ -33,6 +33,8 @@ Apart from being your all-encompassing address book, AddressBook Neo also has a 
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
+   *  `edit 3 n/pierce` : Edits the 3rd contact's name on the current list to pierce
+   
    * `clear` : Deletes all contacts.
 
    * `exit` : Exits the app.
@@ -44,7 +46,7 @@ Apart from being your all-encompassing address book, AddressBook Neo also has a 
 
 1. Use these tabs to toggle between the Address Book and Calendar!
 
-![highlightTabs](images/userguide/highlightTabs.png)
+![highlightTabs](images/userguide/highlightTab.png)
 
 ### UI Breakdown For `Address Book`
 
@@ -122,7 +124,7 @@ Here are all the specifiers that can be used:
 
 | Specifier | Name of Field                   | Optional? |
 |-----------|---------------------------------|-----------|
-| n         | name                            | No        |
+| n         | Name                            | No        |
 | e         | Email address                   | Yes       |
 | a         | Address                         | Yes       |
 | m         | Major                           | Yes       |
@@ -132,6 +134,7 @@ Here are all the specifiers that can be used:
 | g         | Gender                          | Yes       |
 | t         | Tags                            | Yes       |
 | c         | Preferred Communication Channel | Yes       |
+| f         | Faculty                         | Yes       |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and modules taken(including 0).

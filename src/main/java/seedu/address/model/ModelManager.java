@@ -118,7 +118,8 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        this.addressBook.removePerson(target);
+        this.userData.deletePersonFromAllEvents(target);
     }
 
     @Override
@@ -142,6 +143,15 @@ public class ModelManager implements Model {
     public void setSelectedPerson(Index index) {
         Person selectedPerson = filteredPersons.get(index.getZeroBased());
         addressBook.setSelectedPerson(selectedPerson);
+    }
+
+    public Person getPersonWithName(String name) {
+        return this.addressBook.getPersonWithName(name);
+    }
+
+    @Override
+    public boolean hasPersonWithName(String name) {
+        return this.addressBook.hasPersonWithName(name);
     }
 
     //=========== UserData ================================================================================
@@ -172,11 +182,29 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteEvent(Event event) {
+        this.userData.deleteEvent(event);
+    }
+
+    @Override
     public ObservableList<Event> getEvents() {
         return this.userData.getData().getValue().getEvents().asUnmodifiableObservableList();
     }
 
+    @Override
+    public void tagPersonToEvent(Index index, Person p) {
+        this.userData.tagPersonToEvent(index, p);
+    }
 
+    @Override
+    public void untagPersonFromEvent(Index index, Person p) {
+        this.userData.untagPersonFromEvent(index, p);
+    }
+
+    @Override
+    public boolean isPersonTaggedToEvent(Index index, Person p) {
+        return this.userData.isPersonTaggedToEvent(index, p);
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**

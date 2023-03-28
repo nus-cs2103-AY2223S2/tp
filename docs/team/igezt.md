@@ -10,6 +10,8 @@ AddressBook - Level 3 is a desktop address book application used for teaching So
 Given below are my contributions to the project.
 
 * **New Feature**:
+  * Added new User class and storage.
+
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=igezt&breakdown=true)
 
@@ -18,6 +20,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Changed AddCommand and EditCommand to account for the new fields for the Person class.
+  * Changed FindCommand to work for multiple fields.
   * `to be added soon`
 
 * **Documentation**:
@@ -32,4 +35,3 @@ Given below are my contributions to the project.
 * **Tools**:
   * `to be added soon`
 
-* _{you can add/remove categories in the list above}_

@@ -8,8 +8,11 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 
 /**
@@ -91,6 +94,82 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
+     * Returns true if {@code events} contains only unique events.
+     */
+    private boolean eventsAreUnique(List<Event> events) {
+        for (int i = 0; i < events.size() - 1; i++) {
+            for (int j = i + 1; j < events.size(); j++) {
+                if (events.get(i).isSameEvent(events.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Removes person from all events in the event list.
+     */
+    public void deletePersonFromAllEvents(Person target) {
+        for (Event event: this.internalList) {
+            if (event.hasTaggedPerson(target)) {
+                event.deleteTaggedPerson(target);
+            }
+        }
+    }
+
+    /**
+     * Tags person to event.
+     */
+    public void tagPersonToEvent(Index index, Person p) {
+        requireAllNonNull(index, p);
+
+        int zeroBasedIndex = index.getZeroBased();
+
+        if (zeroBasedIndex > this.internalList.size() - 1 || zeroBasedIndex < 0) {
+            throw new PersonNotFoundException();
+        }
+
+        Event eventToBeAddedTo = this.internalList.get(zeroBasedIndex);
+
+        eventToBeAddedTo.addTaggedPerson(p);
+    }
+
+    /**
+     * Untags a person from an event.
+     */
+    public void untagPersonFromEvent(Index index, Person p) {
+        requireAllNonNull(index, p);
+
+        int zeroBasedIndex = index.getZeroBased();
+
+        if (zeroBasedIndex > this.internalList.size() - 1 || zeroBasedIndex < 0) {
+            throw new PersonNotFoundException();
+        }
+
+        Event eventToBeRemovedFrom = this.internalList.get(zeroBasedIndex);
+
+        eventToBeRemovedFrom.deleteTaggedPerson(p);
+    }
+
+    /**
+     * Checks if a person is tagged to an event.
+     */
+    public boolean isPersonTaggedToEvent(Index index, Person p) {
+        requireAllNonNull(index, p);
+
+        int zeroBasedIndex = index.getZeroBased();
+
+        if (zeroBasedIndex > this.internalList.size() - 1 || zeroBasedIndex < 0) {
+            throw new PersonNotFoundException();
+        }
+
+        Event eventToTagged = this.internalList.get(zeroBasedIndex);
+
+        return eventToTagged.hasTaggedPerson(p);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Event> asUnmodifiableObservableList() {
@@ -112,19 +191,5 @@ public class UniqueEventList implements Iterable<Event> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
-    }
-
-    /**
-     * Returns true if {@code events} contains only unique events.
-     */
-    private boolean eventsAreUnique(List<Event> events) {
-        for (int i = 0; i < events.size() - 1; i++) {
-            for (int j = i + 1; j < events.size(); j++) {
-                if (events.get(i).isSameEvent(events.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }
