@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.ClassificationTerms.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.ClassificationTerms.CHAR;
+import static seedu.address.logic.parser.ClassificationTerms.ITEM;
+import static seedu.address.logic.parser.ClassificationTerms.MOB;
 
 import seedu.address.logic.commands.MakeCommand;
 import seedu.address.model.entity.Character;
