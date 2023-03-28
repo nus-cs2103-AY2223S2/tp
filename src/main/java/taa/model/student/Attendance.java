@@ -1,6 +1,5 @@
 package taa.model.student;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -141,6 +140,9 @@ public class Attendance {
         return (float) pt / weeks;
     }
 
+    /**
+     * @return string version of attendancelist to be stored in json file
+     */
     public String atdStrorageStr() {
         String res = "";
         for (boolean atd : this.attendanceList) {
@@ -153,6 +155,10 @@ public class Attendance {
         return res.substring(0, 23);
     }
 
+    /**
+     * @return returns string version of participation points to be stored in
+     * json file
+     */
     public String partPointsStorageStr() {
         String res = "";
         for (int val : this.participationPoint) {

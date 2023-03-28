@@ -72,14 +72,14 @@ public class ImportCommand extends Command {
         }
 
         if (!record.isMapped(CsvUtil.KW_Attendance)) {
-            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' +
-                    record + "\". " + mkMsgNoColumn(CsvUtil.KW_Attendance));
+            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"'
+                    + record + "\". " + mkMsgNoColumn(CsvUtil.KW_Attendance));
         }
         final String atd = record.get(CsvUtil.KW_Attendance).trim();
 
         if (!record.isMapped(CsvUtil.KW_PP)) {
-            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' +
-                    record + "\". " + mkMsgNoColumn(CsvUtil.KW_PP));
+            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"'
+                    + record + "\". " + mkMsgNoColumn(CsvUtil.KW_PP));
         }
         final String pp = record.get(CsvUtil.KW_Attendance).trim();
 

@@ -9,9 +9,9 @@ import java.util.stream.Stream;
 import taa.commons.core.Messages;
 import taa.logic.commands.AddStudentCommand;
 import taa.logic.parser.exceptions.ParseException;
+import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
-import taa.model.student.Attendance;
 import taa.model.tag.Tag;
 
 /**
