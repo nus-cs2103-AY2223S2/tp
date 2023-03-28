@@ -103,7 +103,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     private Task parseTaskInfo(String args) throws ParseException {
         String[] tokens = ArgumentTokenizer.tokenizeString(args);
         if (tokens.length < 3) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSessionCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
         String taskName = args.split(" ",2)[1].split(" ", 2)[1];
