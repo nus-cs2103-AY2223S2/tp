@@ -40,6 +40,8 @@ public class CommandTestUtil {
     public static final String VALID_VIDEO_NAME_V2 = "video2";
     public static final String VALID_TAG_HARD = "Hard";
     public static final String VALID_TAG_EASY = "Easy";
+    public static final String VALID_TAG_MATH = "Math";
+    public static final String VALID_TAG_CONTENT = "Content";
 
     public static final String INVALID_MODULE_CODE = "404CS";
     public static final String INVALID_MODULE_NAME = "modu!e";
@@ -58,6 +60,8 @@ public class CommandTestUtil {
     public static final String LECTURE_NAME_DESC_L2 = " " + PREFIX_LECTURE + " " + VALID_LECTURE_NAME_L2;
     public static final String TAG_DESC_EASY = " " + PREFIX_TAG + " " + VALID_TAG_EASY;
     public static final String TAG_DESC_HARD = " " + PREFIX_TAG + " " + VALID_TAG_HARD;
+    public static final String TAG_DESC_MATH = " " + PREFIX_TAG + " " + VALID_TAG_MATH;
+    public static final String TAG_DESC_CONTENT = " " + PREFIX_TAG + " " + VALID_TAG_CONTENT;
     public static final String TAG_DESC_MULTI = " " + PREFIX_TAG + " " + VALID_TAG_EASY + ", " + VALID_TAG_HARD;
 
     public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE + INVALID_MODULE_CODE;
@@ -79,19 +83,20 @@ public class CommandTestUtil {
     public static final String INVALID_EDIT_VIDEO_NAME_DESC = " " + PREFIX_NAME + " " + INVALID_VIDEO_NAME;
 
     public static final EditModuleDescriptor EDIT_MODULE_DESC_CS2103 = new EditModuleDescriptorBuilder()
-            .withCode(VALID_MODULE_CODE_2103).withName(VALID_MODULE_NAME_2103).build();
+            .withCode(VALID_MODULE_CODE_2103).withName(VALID_MODULE_NAME_2103).withTags(VALID_TAG_CONTENT).build();
     public static final EditModuleDescriptor EDIT_MODULE_DESC_CS2040S = new EditModuleDescriptorBuilder()
-            .withCode(VALID_MODULE_CODE_2040).withName(VALID_MODULE_NAME_2040).build();
+            .withCode(VALID_MODULE_CODE_2040).withName(VALID_MODULE_NAME_2040)
+            .withTags(VALID_TAG_HARD, VALID_TAG_MATH).build();
 
     public static final EditLectureDescriptor EDIT_LECTURE_DESC_L1 = new EditLectureDescriptorBuilder()
-            .withName(VALID_LECTURE_NAME_L1).build();
+            .withName(VALID_LECTURE_NAME_L1).withTags(VALID_TAG_CONTENT).build();
     public static final EditLectureDescriptor EDIT_LECTURE_DESC_L2 = new EditLectureDescriptorBuilder()
-            .withName(VALID_LECTURE_NAME_L2).build();
+            .withName(VALID_LECTURE_NAME_L2).withTags(VALID_TAG_HARD, VALID_TAG_MATH).build();
 
     public static final EditVideoDescriptor EDIT_VIDEO_DESC_V1 = new EditVideoDescriptorBuilder()
-            .withName(VALID_VIDEO_NAME_V1).build();
+            .withName(VALID_VIDEO_NAME_V1).withTags(VALID_TAG_CONTENT).build();
     public static final EditVideoDescriptor EDIT_VIDEO_DESC_V2 = new EditVideoDescriptorBuilder()
-            .withName(VALID_VIDEO_NAME_V2).build();
+            .withName(VALID_VIDEO_NAME_V2).withTags(VALID_TAG_HARD, VALID_TAG_MATH).build();
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
