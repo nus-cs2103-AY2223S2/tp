@@ -481,17 +481,17 @@ public class Link<K, T extends Item,
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+        builder.append("\n");
         for (K key : getUnmodifiableKeys()) {
             if (contents.get(key).isEmpty()) {
                 continue;
             }
-            builder.append(key).append(": ");
             try {
                 final List<T> items = getValid(key);
                 builder.append(items
-                                       .stream()
-                                       .map(Object::toString)
-                                       .collect(Collectors.joining(", ")));
+                        .stream()
+                        .map(Object::toString)
+                        .collect(Collectors.joining(", ")));
             } catch (LinkException e) {
                 builder.append("Failed to load: ").append(e.getMessage());
             }

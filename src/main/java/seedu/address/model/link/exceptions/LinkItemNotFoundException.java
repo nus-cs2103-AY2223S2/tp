@@ -5,7 +5,7 @@ package seedu.address.model.link.exceptions;
  */
 public class LinkItemNotFoundException extends LinkException {
     private static final String MESSAGE =
-        "Item of type %s with id %s not found.";
+        "Item of type %s with ID %s not found.";
 
     /**
      * Creates a link exception.

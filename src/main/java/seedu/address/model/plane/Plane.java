@@ -131,6 +131,6 @@ public class Plane implements Item {
 
     @Override
     public String toString() {
-        return String.format("%s (%s: %s)", model, AGE_STRING, age);
+        return getModel();
     }
 }
