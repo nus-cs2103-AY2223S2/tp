@@ -9,11 +9,11 @@ title: Developer Guide
 
 ## **Introduction to HMHero**
 
-HMHero is an Applicant Managing System designed to be used by human resource professionals, hiring managers, 
-and recruiters who want to streamline the recruitment process and make it more efficient, 
+HMHero is an Applicant Managing System designed to be used by human resource professionals, hiring managers,
+and recruiters who want to streamline the recruitment process and make it more efficient,
 helping their organizations manage job applications and hiring processes more effectively.
 
-This Developer Guide is a detailed documentation on HMHero's design and implementation, describing the architecture, 
+This Developer Guide is a detailed documentation on HMHero's design and implementation, describing the architecture,
 an outline of all parts of HMHero and how they work together, and specifications on
 feature implementation and considerations.
 
@@ -80,7 +80,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -183,7 +183,7 @@ The `add` command creates a new `Person`, which represents an Applicant in HMHer
 
 <div markdown="span" class="alert alert-info" role="alert">
 
-:information_source: <strong>Command Format:<strong> 
+:information_source: <strong>Command Format:<strong>
 `add n/NAME p/PHONE e/EMAIL a/ADDRESS [applied/APPLIEDDATETIME] [note/NOTE]...` <br>
 Refer to [Glossary](#glossary) for more information on Command format.
 </div>
@@ -208,7 +208,7 @@ to inform the user.
 #### Feature Considerations
 
 When checking for duplicates in the `UniquePersonList` inside `Model`, any `Person` cannot have the same name and phone
-as another. While it is unlikely applicants have the same full name, it is still possible in reality. However, it is 
+as another. While it is unlikely applicants have the same full name, it is still possible in reality. However, it is
 impossible for unique applicants to share the same number. Thus, HMHero checks name and phone number when checking for
 duplicates.
 
@@ -239,10 +239,9 @@ Here is the activity diagram showing the process of the `advance` command:
 
 ##### Feature Details
 1. The user specifies an applicant name and phone that represents a `Person` to be advanced.
-2. If the name and phone is not provided, an error is thrown and the user is prompted to 
+2. If the name and phone is not provided, an error is thrown and the user is prompted to
 enter the command correctly via an error message.
-3. The name and phone are cross-referenced in the `Model` to check if 
-an applicant with the corresponding name and phone exists. If it does not, then an error is raised to inform the user.
+3. The name and phone are cross-referenced in the `Model` to check if an applicant with the corresponding name and phone exists. If it does not, then an error is raised to inform the user.
 4. The status must be either Applied or Shortlisted. Else, then an error is raised to inform the user.
 5. If the interview datetime is not provided when the status is Applied, the user will be prompted to enter the command
 correctly via an error message.
@@ -282,8 +281,7 @@ Here is the activity diagram showing the process of the `reject` command:
 1. The user specifies an applicant name and phone that represents an `Person` to be rejected.
 2. If the name and phone is not provided, an error is thrown and the user is prompted to
 enter the command correctly via an error message.
-3. The name and phone are cross-referenced in the `Model` to check if
-    an applicant with the corresponding name and phone exists.
+3. The name and phone are cross-referenced in the `Model` to check if an applicant with the corresponding name and phone exists.
     If it does not, then an error is raised to inform the user.
 4. HMHero confirms that the applicant's status is not already `REJECTED`. Else, an error is raised to inform the user.
 5. If step 4 completes without any exceptions, then the `Person` is successfully rejected.
@@ -322,10 +320,8 @@ The sequence diagram for `find n/John` in HMHero is as such:
 <div markdown="span" class="alert alert-info" role="alert">
 
 :information_source: <strong>Note:<strong>
-The lifeline for `FindCommandParser` should end at the destroy marker (X) 
-but due to a limitation of <strong>PlantUML<strong>, the lifeline reaches the end of the diagram. 
-Additionally, take note that interactions with utility classes such as `ArgumentTokenizer`, `ArgumentMultimap`, 
-and `Messages` are excluded as including them would cause the UML diagram to be cluttered and too small to read.
+The lifeline for `FindCommandParser` should end at the destroy marker (X) but due to a limitation of <strong>PlantUML<strong>, the lifeline reaches the end of the diagram.
+Additionally, take note that interactions with utility classes such as `ArgumentTokenizer`, `ArgumentMultimap`, and `Messages` are excluded as including them would cause the UML diagram to be cluttered and too small to read.
 </div>
 
 #### Feature Details
@@ -338,16 +334,14 @@ The UI displays a `FilteredList` obtained from an immutable applicant list.
 The `FindCommandParser` creates the `Predicate` used to filter the applicant list. When the `FindCommand` is executed,
 the `FilteredList` sets its `Predicate` field to the created `Predicate`. The UI shows the new `FilteredList`.
 
-Applicant fields are required as an input as it is helpful to reduce user confusion 
-and facilitate finding applicants based on multiple fields.
+Applicant fields are required as an input as it is helpful to reduce user confusion and facilitate finding applicants based on multiple fields.
 
 
 #### Editing an Applicant
 
 ##### Overview
 
-The `edit` feature edits the attached attributes of a specified `Person`,which is specified by the 
-one-indexed `personList` presented to the user.
+The `edit` feature edits the attached attributes of a specified `Person`,which is specified by the one-indexed `personList` presented to the user.
 
 <div markdown="span" class="alert alert-info" role="alert">
 
@@ -367,24 +361,20 @@ Here is the activity diagram showing the process of the `edit` command:
 
 1. The user can perform commands that modify the shown applicant list. (Eg. `find` and `interview` commands)
 2. The user specifies an index that represents a `Person` to be edited.
-3. If a non-zero unsigned integer index is not provided, an error is thrown and the user is prompted 
-    to enter the command correctly via an error message.
-4. At least one field to be edited has to be provided. Else, the user will be prompted to enter the 
-command correctly via an error message.
-5. If an index that is not in the valid range of the list is provided, an error is thrown 
-    and the user is prompted to enter the command correctly via an error message.
-6. The `edit` command creates a new applicant based on the given fields. The created applicant is cross-referenced 
-    in the `Model` to check if it already exists. If it already does, then an error is raised to inform the user.
+3. If a non-zero unsigned integer index is not provided, an error is thrown and the user is prompted to enter the command correctly via an error message.
+4. At least one field to be edited has to be provided. Else, the user will be prompted to enter the command correctly via an error message.
+5. If an index that is not in the valid range of the list is provided, an error is thrown and the user is prompted to enter the command correctly via an error message.
+6. The `edit` command creates a new applicant based on the given fields. The created applicant is cross-referenced in the `Model` to check if it already exists. If it already does, then an error is raised to inform the user.
 7. If step 6 completes without any exceptions, then the `Person` at the specified index is successfully edited.
 
 ##### Feature Considerations
 
-Similar to the `new` command, it should be noted that when checking for duplicates in the `UniquePersonList` inside the 
-`Model`, Applicants cannot have the same name and phone number. For example, if a `Person` with the name `Thomas` and 
-`91823452` already exists inside the list, then you cannot edit an existing `Person` to have the name `Thomas` and 
+Similar to the `new` command, it should be noted that when checking for duplicates in the `UniquePersonList` inside the
+`Model`, Applicants cannot have the same name and phone number. For example, if a `Person` with the name `Thomas` and
+`91823452` already exists inside the list, then you cannot edit an existing `Person` to have the name `Thomas` and
 `91823452`.
 
-When providing multiple arguments with the same delimiter, 
+When providing multiple arguments with the same delimiter,
 the last instance of the repeat delimiter is taken during the `parse` command.
 
 
@@ -400,8 +390,8 @@ The `list` command displays the full list by HMHero.
 
 ##### Feature Considerations
 
-The five statistics were chosen as a baseline, and they are a good starting point for users to help 
-track the number of applicants. For example, the user can obtain the total number of applicants, and also provide 
+The five statistics were chosen as a baseline, and they are a good starting point for users to help
+track the number of applicants. For example, the user can obtain the total number of applicants, and also provide
 the total numbers of applicants for each status.
 
 #### Showing all shortlisted applicants
