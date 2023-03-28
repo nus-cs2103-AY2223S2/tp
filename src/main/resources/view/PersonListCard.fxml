@@ -32,12 +32,12 @@
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
           </children>
         </VBox>
-        <VBox maxWidth="1.7976931348623157E308" prefHeight="68.0" prefWidth="182.0" HBox.hgrow="ALWAYS">
+        <VBox maxWidth="1.7976931348623157E308"  prefWidth="182.0" HBox.hgrow="ALWAYS">
           <children>
             <Label fx:id="isolatedEventList" text="\$isolatedEventList" textOverrun="CLIP" wrapText="true"/>
           </children>
         </VBox>
-        <VBox maxWidth="1.7976931348623157E308" prefHeight="68.0" prefWidth="182.0" HBox.hgrow="ALWAYS">
+        <VBox maxWidth="1.7976931348623157E308" prefWidth="182.0" HBox.hgrow="ALWAYS">
           <children>
             <Label fx:id="recurringEventList" text="\$recurringEventList" textOverrun="CLIP" wrapText="true"/>
           </children>
