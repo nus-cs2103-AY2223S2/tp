@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import javax.swing.JOptionPane;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -69,7 +70,10 @@ public class FileCard extends UiPart<Region> {
                                 JOptionPane.WARNING_MESSAGE);
                     if (response == JOptionPane.YES_OPTION) {
                         filesManager.deleteFile(file.getFileName());
-                        file.delete();
+                        // Perform the UI update on the JavaFX Application Thread
+                        Platform.runLater(() -> {
+                            file.delete();
+                        });
                     }
                 };
                 Thread thread = new Thread(runnable);
