@@ -44,7 +44,7 @@ public class SampleDataUtil {
 
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns a date set containing the list of arraylist of string given.
      */
     public static List<Date> getDateList(Date... dates) {
         return Arrays.stream(dates)

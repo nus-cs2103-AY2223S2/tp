@@ -4,13 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.ultron.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Iterator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.ultron.commons.core.GuiSettings;
 import seedu.ultron.commons.core.LogsCenter;
+import seedu.ultron.model.opening.DateComparator;
+import seedu.ultron.model.opening.KeydateSort;
 import seedu.ultron.model.opening.Opening;
 
 /**
@@ -21,7 +24,7 @@ public class ModelManager implements Model {
 
     private final Ultron ultron;
     private final UserPrefs userPrefs;
-    private final FilteredList<Opening> filteredOpenings;
+    private ObservableList<Opening> filteredOpenings;
 
     /**
      * Initializes a ModelManager with the given ultron and userPrefs.
@@ -33,7 +36,7 @@ public class ModelManager implements Model {
 
         this.ultron = new Ultron(ultron);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredOpenings = new FilteredList<>(this.ultron.getOpeningList());
+        filteredOpenings = FXCollections.observableArrayList(this.ultron.getOpeningList());
     }
 
     public ModelManager() {
@@ -125,7 +128,23 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredOpeningList(Predicate<Opening> predicate) {
         requireNonNull(predicate);
-        filteredOpenings.setPredicate(predicate);
+        filteredOpenings.clear();
+        filteredOpenings.addAll(this.ultron.getOpeningList());
+        for (Iterator<Opening> iterator = filteredOpenings.iterator(); iterator.hasNext();) {
+            Opening opening = iterator.next();
+            if (!predicate.test(opening)) {
+                iterator.remove();
+            }
+        }
+    }
+
+    @Override
+    public void sortFilteredOpeningList(KeydateSort direction) {
+        if (direction.getDirection().equals("ASC")) {
+            FXCollections.sort(filteredOpenings, new DateComparator());
+        } else if (direction.getDirection().equals("DESC")) {
+            FXCollections.sort(filteredOpenings, new DateComparator().reversed());
+        }
     }
 
     @Override
