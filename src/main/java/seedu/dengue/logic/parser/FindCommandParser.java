@@ -33,17 +33,17 @@ public class FindCommandParser implements Parser<FindCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
-     * @throws seedu.dengue.logic.parser.exceptions.ParseException if the user input does not conform the expected format
+     *
+     * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_POSTAL,
-                        PREFIX_DATE, PREFIX_AGE, PREFIX_VARIANT, PREFIX_ENDDATE
-                        , PREFIX_STARTDATE, PREFIX_STARTAGE, PREFIX_ENDAGE);
-
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_POSTAL, PREFIX_DATE,
+                        PREFIX_AGE, PREFIX_VARIANT, PREFIX_ENDDATE, PREFIX_STARTDATE,
+                        PREFIX_STARTAGE, PREFIX_ENDAGE);
         if (!isValidFormat(argMultimap)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT
-                    , AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddCommand.MESSAGE_USAGE));
         }
 
         Optional<Name> name = ParserUtil.parseOptionalName(argMultimap.getValue(PREFIX_NAME));
@@ -95,8 +95,8 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     private static boolean isValidFormat(ArgumentMultimap argumentMultimap) {
         boolean isCommandNonEmpty = isAPrefixPresent(argumentMultimap, PREFIX_NAME, PREFIX_POSTAL,
-                PREFIX_DATE, PREFIX_AGE, PREFIX_VARIANT, PREFIX_ENDDATE
-                , PREFIX_STARTDATE, PREFIX_STARTAGE, PREFIX_ENDAGE);
+                PREFIX_DATE, PREFIX_AGE, PREFIX_VARIANT, PREFIX_ENDDATE,
+                PREFIX_STARTDATE, PREFIX_STARTAGE, PREFIX_ENDAGE);
         boolean isPreambleEmpty = argumentMultimap.getPreamble().isEmpty();
         boolean areAgePrefixesNotMixed = !hasMixedAges(argumentMultimap);
         boolean areDatePrefixesNotMixed = !hasMixedDates(argumentMultimap);

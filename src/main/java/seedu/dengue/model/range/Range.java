@@ -1,5 +1,9 @@
 package seedu.dengue.model.range;
 
+/**
+ * Represents a range which can be used to signify age ranges, or date ranges to be used in predicates
+ * to filter out people in the person list in the Dengue Hotspot Tracker.
+ */
 public class Range<T> {
 
     public final Start<T> start;

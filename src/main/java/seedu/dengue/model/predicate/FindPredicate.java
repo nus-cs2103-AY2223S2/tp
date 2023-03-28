@@ -8,7 +8,6 @@ import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
-import seedu.dengue.model.person.Postal;
 import seedu.dengue.model.person.SubPostal;
 import seedu.dengue.model.variant.Variant;
 
@@ -22,8 +21,18 @@ public class FindPredicate implements Predicate<Person> {
     private final Optional<Date> date;
     private final Set<Variant> variants;
 
-    public FindPredicate(Optional<Name> name, Optional<SubPostal> subPostal, Optional<Age> age, Optional<Date> date
-            , Set<Variant> variants) {
+    /**
+     * A class that represents the predicate which is used to filter through the persons list to test for whether
+     * the person belongs to the filtered list.
+     *
+     * @param name
+     * @param subPostal
+     * @param age
+     * @param date
+     * @param variants
+     */
+    public FindPredicate(Optional<Name> name, Optional<SubPostal> subPostal, Optional<Age> age, Optional<Date> date,
+                         Set<Variant> variants) {
         this.name = name;
         this.subPostal = subPostal;
         this.age = age;

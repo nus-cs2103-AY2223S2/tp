@@ -40,18 +40,33 @@ public class DeleteCommand extends Command {
 
     // possibly separate into three different commands? index, date, range
 
+    /**
+     * Deletes the person at the target {@code targetIndex} in the Dengue Hotspot Tracker
+     *
+     * @param targetIndex
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = Optional.of(targetIndex);
         this.date = Optional.empty();
         this.range = Optional.empty();
     }
 
+    /**
+     * Deletes people at the target {@code date} in the Dengue Hotspot Tracker
+     *
+     * @param date
+     */
     public DeleteCommand(Date date) {
         this.targetIndex = Optional.empty();
         this.date = Optional.of(date);
         this.range = Optional.empty();
     }
 
+    /**
+     * Deletes people within the {@code range} dates in the Dengue Hotspot Tracker
+     *
+     * @param range
+     */
     public DeleteCommand(Range<Date> range) {
         this.targetIndex = Optional.empty();
         this.date = Optional.empty();
@@ -76,7 +91,7 @@ public class DeleteCommand extends Command {
         }
     }
 
-    public CommandResult executeIndex(Model model, List<Person> lastShownList) throws CommandException {
+    private CommandResult executeIndex(Model model, List<Person> lastShownList) throws CommandException {
         assert targetIndex.isPresent();
         // TODO: update for multiple indexes
         if (targetIndex.get().getZeroBased() >= lastShownList.size()) {
@@ -88,7 +103,7 @@ public class DeleteCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
-    public CommandResult executeDate(Model model, List<Person> lastShownList) {
+    private CommandResult executeDate(Model model, List<Person> lastShownList) {
         assert date.isPresent();
         List<Person> referenceCopy = new ArrayList<>(lastShownList);
         int numDeleted = 0;
@@ -102,7 +117,7 @@ public class DeleteCommand extends Command {
         return new CommandResult(String.format(MESSAGE_DELETE_DATE_SUCCESS, numDeleted, date.get()));
     }
 
-    public CommandResult executeRange(Model model, List<Person> lastShownList) {
+    private CommandResult executeRange(Model model, List<Person> lastShownList) {
         assert range.isPresent();
         List<Person> referenceCopy = new ArrayList<>(lastShownList);
         int numDeleted = 0;

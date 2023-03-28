@@ -9,7 +9,8 @@ public interface Parser<T extends Command> {
 
     /**
      * Parses {@code userInput} into a command and returns it.
-     * @throws seedu.dengue.logic.parser.exceptions.ParseException if {@code userInput} does not conform the expected format
+     *
+     * @throws seedu.dengue.logic.parser.exceptions.ParseException if {@code userInput} is not formatted
      */
     T parse(String userInput) throws seedu.dengue.logic.parser.exceptions.ParseException;
 }

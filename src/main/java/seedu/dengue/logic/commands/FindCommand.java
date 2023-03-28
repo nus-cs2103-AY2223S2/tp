@@ -4,11 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.dengue.commons.core.Messages;
 import seedu.dengue.model.Model;
-import seedu.dengue.model.person.Date;
 import seedu.dengue.model.predicate.FindPredicate;
-import seedu.dengue.model.range.Range;
-
-import java.util.Optional;
 
 /**
  * Finds and lists all persons in Dengue Hotspot Tracker whose name contains any of the argument keywords.

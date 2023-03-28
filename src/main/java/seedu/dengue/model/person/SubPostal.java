@@ -3,6 +3,10 @@ package seedu.dengue.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.dengue.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's subpostal number in the Dengue Hotspot Tracker.
+ * The subpostal number is a valid substring of a postal number.
+ */
 public class SubPostal {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -27,6 +31,11 @@ public class SubPostal {
         return test.matches(VALIDATION_REGEX_FOR_SUB_POSTAL);
     }
 
+    /**
+     * Formats the subpostal such that it also contains the s.
+     * @param string
+     * @return
+     */
     public String formatSubPostal(String string) {
         boolean hasStart = string.substring(0, 1).toUpperCase().equals("S");
         if (hasStart) {

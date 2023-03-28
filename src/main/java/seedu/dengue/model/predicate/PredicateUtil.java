@@ -34,6 +34,10 @@ public class PredicateUtil {
         return Postal.isValidPostal(trimmedPostal);
     }
 
+    /**
+     * Checks for whether the {@code String subPostal} is valid.
+     * Leading and trailing whitespaces will be trimmed from the {@code String subPostal}.
+     */
     public static boolean isSubPostalValid(String subPostal) {
         requireNonNull(subPostal);
         String trimmedSubPostal = subPostal.trim();
@@ -45,7 +49,7 @@ public class PredicateUtil {
      * Checks for whether the {@code String age} is valid.
      * Leading and trailing whitespaces will be trimmed from the {@code String age}.
      */
-    public static boolean isAgeValid(String age){
+    public static boolean isAgeValid(String age) {
         requireNonNull(age);
         String trimmedAge = age.trim();
         return Age.isValidAge(trimmedAge);

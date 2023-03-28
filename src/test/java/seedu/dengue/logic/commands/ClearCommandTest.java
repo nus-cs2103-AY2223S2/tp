@@ -5,8 +5,10 @@ import static seedu.dengue.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.dengue.testutil.TypicalPersons.getTypicalDengueHotspotTracker;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +16,13 @@ import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.ModelManager;
 import seedu.dengue.model.UserPrefs;
-import seedu.dengue.model.predicate.FindPredicate;
+import seedu.dengue.model.person.Age;
+import seedu.dengue.model.person.Date;
+import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
+import seedu.dengue.model.person.SubPostal;
+import seedu.dengue.model.predicate.FindPredicate;
+import seedu.dengue.model.variant.Variant;
 
 
 public class ClearCommandTest {
@@ -51,7 +58,13 @@ public class ClearCommandTest {
         Model model = new ModelManager(getTypicalDengueHotspotTracker(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalDengueHotspotTracker(), new UserPrefs());
 
-        FindPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        Optional<SubPostal> emptySubPostal = Optional.empty();
+        Optional<Name> testName = Optional.of(new Name("Kurz"));
+        Optional<Age> emptyAge = Optional.empty();
+        Optional<Date> emptyDate = Optional.empty();
+        Set<Variant> emptyVariants = new HashSet<>();
+        FindPredicate predicate = new FindPredicate(
+                testName, emptySubPostal, emptyAge, emptyDate, emptyVariants);
         model.updateFilteredPersonList(predicate);
         expectedModel.updateFilteredPersonList(predicate);
 
@@ -74,12 +87,4 @@ public class ClearCommandTest {
 
         assertTrue(model.getFilteredPersonList().isEmpty());
     }
-
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private FindPredicate preparePredicate(String userInput) {
-        return new FindPredicate(Arrays.asList(userInput.split("\\s+")));
-    }
-
 }

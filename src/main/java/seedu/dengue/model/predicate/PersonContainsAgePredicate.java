@@ -3,10 +3,13 @@ package seedu.dengue.model.predicate;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import seedu.dengue.commons.util.StringUtil;
 import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Person;
 
+/**
+ * Represents the predicate which tests for whether the person in the persons list is of the age based
+ * on the user input.
+ */
 public class PersonContainsAgePredicate implements Predicate<Person> {
 
     private final Optional<Age> age;
