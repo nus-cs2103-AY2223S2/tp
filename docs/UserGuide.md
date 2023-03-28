@@ -55,10 +55,11 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
   - [5.6 Telegram: `tg/`](#56-telegram-tg)
   - [5.7 WhatsApp: `wa/`](#57-whatsapp-wa)
   - [5.8 Birthday: `b/`](#58-birthday-b)
-  - [5.9 Module: `mod/`](#59-module-mod)
-  - [5.10 Major: `major/`](#510-major-major)
-  - [5.11 CCA: `cca/`](#511-cca-cca)
-  - [5.12 Tag: `t/`](#512-tag-t)
+  - [5.9 Tags](#59-tags)
+    - [5.9.1 Module Tag: `mod/`](#591-module-tags-mod)
+    - [5.9.2 Major Tag: `major/`](#592-major-tags-major)
+    - [5.9.3 CCA Tag: `cca/`](#593-cca-tags-cca)
+    - [5.9.3 Remark Tag: `t/`](#594-remark-tags-r)
 - [6. FAQ](#6-faq)
 - [7. Command Summary](#7-command-summary)
 - [8. Prefix Summary](#8-prefix-summary)
@@ -462,10 +463,11 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 - [5.6 Telegram: `tg/`](#56-telegram-tg)
 - [5.7 WhatsApp: `wa/`](#57-whatsapp-wa)
 - [5.8 Birthday: `b/`](#58-birthday-b)
-- [5.9 Module: `mod/`](#59-module-mod)
-- [5.10 Major: `major/`](#510-major-major)
-- [5.11 CCA: `cca/`](#511-cca-cca)
-- [5.12 Tag: `t/`](#512-tag-t)
+- [5.9 Tags](#59-tags)
+  - [5.9.1 Module Tag: `mod/`](#591-module-tags-mod)
+  - [5.9.2 Major Tag: `major/`](#592-major-tags-major)
+  - [5.9.3 CCA Tag: `cca/`](#593-cca-tags-cca)
+  - [5.9.3 Remark Tag: `t/`](#594-remark-tags-r)
 
 ### 5.1 Name: `n/`
 * Name is a *compulsory* field, i.e. a contact cannot exist if it does not have a name.
@@ -539,7 +541,11 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.9 Module: `mod/`
+### 5.9 Tags
+
+There are four kinds of tags in ConnectUS.
+
+### 5.9.1 Module Tags: `mod/`
 * Module is an *optional* field, i.e. a contact can exist even if it does not have a module.
 * The prefix for a module is `mod/`.
 * Module names should be alphanumeric.
@@ -547,7 +553,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.10 Major: `major/`
+### 5.9.2 Major Tags: `major/`
 * Major is an *optional* field, i.e. a contact can exist even if it does not have a major.
 * The prefix for a module is `major/`.
 * Major names should be alphanumeric.
@@ -555,7 +561,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.11 CCA: `cca/`
+### 5.9.3 CCA Tags: `cca/`
 * CCA is an *optional* field, i.e. a contact can exist even if it does not have a CCA.
 * The prefix for a CCA is `cca/`.
 * CCA names should be alphanumeric.
@@ -563,12 +569,12 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.12 Tag: `t/`
-* Tag is an *optional* field, i.e. a contact can exist even if it does not have a tag.
-* The prefix for a tag is `t/`.
-* Tag names should be alphanumeric.
-* A contact can have any number of tags assigned to it.
-* Tags are used for assigning other information to a contact, e.g. their Year of Study, Faculty, Company etc.
+### 5.9.4 Remark Tags: `r/`
+* Remark is an *optional* field, i.e. a contact can exist even if it does not have a remark.
+* The prefix for a remark is `r/`.
+* Remark names should be alphanumeric.
+* A contact can have any number of remarks assigned to it.
+* Remarks are used for assigning other information to a contact, e.g. their Year of Study, Faculty, Company etc.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
