@@ -109,7 +109,7 @@ Examples:
 * `listc s/points` lists all customers sorted by points
 * `listc f/marked` lists all bookmarked customers. 
 
-#### Locating customers by name: `findc`
+#### Locating customers by name : `findc`
 
 Finds customers whose names contain any of the given keywords.
 
@@ -125,6 +125,8 @@ Format: `findc KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findc John` returns `john` and `John Doe`
 * `findc alex david` returns `Alex Yeoh`, `David Li`<br>
+
+
   ![result for 'findc alex david'](images/findAlexDavidResult.png)
 
 
@@ -174,7 +176,7 @@ Examples:
 * `listc` followed by `deletec 2` deletes the 2nd person in the address book.
 * `findc Betsy` followed by `deletec 1` deletes the 1st person in the results of the `findc` command.
 
-#### Marking a person: `markc`
+#### Marking a person : `markc`
 
 Bookmarks a customer from the list of customers.
 
@@ -188,7 +190,7 @@ Examples:
 * `listc` followed by `markc 2` bookmarks the 2nd person in the address book.
 * `findc Betsy` followed by `markc 1` bookmarks the 1st person in the results of the `findc` command.
 
-#### Unmarking a person: `unmarkc`
+#### Unmarking a person : `unmarkc`
 
 Un-bookmarks a customer from the list of customers.
 
@@ -333,7 +335,7 @@ Examples:
 * `listo s/status` lists all orders sorted by status.
 * `listo f/pending` lists all orders with "pending" status.
 
-#### Locating orders by name: `findo`
+#### Locating orders by name : `findo`
 
 Find orders whose names contain any of the given keywords.
 
