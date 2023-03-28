@@ -32,6 +32,8 @@ class JsonAdaptedRecipe {
     private final List<JsonAdaptedStep> steps = new ArrayList<>();
     private final Set<JsonAdaptedTag> tags = new HashSet<>();
 
+    private final boolean isStar;
+
     /**
      * Constructs a {@code JsonAdaptedRecipe} with the given recipe details.
      */
@@ -40,7 +42,8 @@ class JsonAdaptedRecipe {
                              @JsonProperty("desc") String desc,
                              @JsonProperty("ingredients") Set<JsonAdaptedIngredient> ingredients,
                              @JsonProperty("steps") List<JsonAdaptedStep> steps,
-                             @JsonProperty("tags") Set<JsonAdaptedTag> tags) {
+                             @JsonProperty("tags") Set<JsonAdaptedTag> tags,
+                             @JsonProperty("isStar") boolean isStar) {
         this.title = title;
         this.desc = desc;
         if (ingredients != null) {
@@ -52,6 +55,7 @@ class JsonAdaptedRecipe {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.isStar = isStar;
     }
 
     /**
@@ -70,12 +74,13 @@ class JsonAdaptedRecipe {
         tags.addAll(source.getTags().stream()
                     .map(JsonAdaptedTag::new)
                     .collect(Collectors.toList()));
+        isStar = source.isStarred();
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Recipe} object.
+     * Converts this Jackson-friendly adapted recipe object into the model's {@code Recipe} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted recipe.
      */
     public Recipe toModelType() throws IllegalValueException {
         final List<Ingredient> recipeIngredients = new ArrayList<>();
@@ -110,7 +115,8 @@ class JsonAdaptedRecipe {
         final Description modelDesc = new Description(desc);
         final Set<Ingredient> modelIngredients = new HashSet<>(recipeIngredients);
         final Set<Tag> modelTags = new HashSet<>(recipeTags);
-        return new Recipe(modelTitle, modelDesc, modelIngredients, modelSteps, modelTags);
+        final boolean modelIsStar = isStar;
+        return new Recipe(modelTitle, modelDesc, modelIngredients, modelSteps, modelTags, modelIsStar);
     }
 
 }

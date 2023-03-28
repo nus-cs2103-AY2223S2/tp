@@ -46,7 +46,7 @@ public class JsonAdaptedRecipeTest {
     @Test
     public void toModelType_invalidTitle_throwsIllegalValueException() {
         JsonAdaptedRecipe recipe =
-                new JsonAdaptedRecipe(INVALID_TITLE, VALID_DESC, VALID_INGREDIENTS, VALID_STEPS, VALID_TAG);
+                new JsonAdaptedRecipe(INVALID_TITLE, VALID_DESC, VALID_INGREDIENTS, VALID_STEPS, VALID_TAG, false);
         String expectedMessage = Title.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
@@ -54,7 +54,7 @@ public class JsonAdaptedRecipeTest {
     @Test
     public void toModelType_nullTitle_throwsIllegalValueException() {
         JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(null, VALID_DESC, VALID_INGREDIENTS, VALID_STEPS,
-                VALID_TAG);
+                VALID_TAG, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
@@ -62,7 +62,7 @@ public class JsonAdaptedRecipeTest {
     @Test
     public void toModelType_invalidDesc_throwsIllegalValueException() {
         JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_TITLE, INVALID_DESC, VALID_INGREDIENTS,
-                VALID_STEPS, VALID_TAG);
+                VALID_STEPS, VALID_TAG, false);
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
@@ -70,7 +70,7 @@ public class JsonAdaptedRecipeTest {
     @Test
     public void toModelType_nullDesc_throwsIllegalValueException() {
         JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_TITLE, null, VALID_INGREDIENTS, VALID_STEPS,
-                VALID_TAG);
+                VALID_TAG, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
@@ -80,7 +80,7 @@ public class JsonAdaptedRecipeTest {
         Set<JsonAdaptedIngredient> invalidIngredients = new HashSet<>(VALID_INGREDIENTS);
         invalidIngredients.add(new JsonAdaptedIngredient(INVALID_INGREDIENT));
         JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_TITLE, VALID_DESC, invalidIngredients,
-                VALID_STEPS, VALID_TAG);
+                VALID_STEPS, VALID_TAG, false);
         assertThrows(IllegalValueException.class, recipe::toModelType);
     }
 
@@ -89,7 +89,7 @@ public class JsonAdaptedRecipeTest {
         List<JsonAdaptedStep> invalidSteps = new ArrayList<>(VALID_STEPS);
         invalidSteps.add(new JsonAdaptedStep(INVALID_STEP));
         JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_TITLE, VALID_DESC, VALID_INGREDIENTS,
-                invalidSteps, VALID_TAG);
+                invalidSteps, VALID_TAG, false);
         assertThrows(IllegalValueException.class, recipe::toModelType);
     }
 
@@ -98,7 +98,7 @@ public class JsonAdaptedRecipeTest {
         Set<JsonAdaptedTag> invalidTags = new HashSet<>(VALID_TAG);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_TITLE, VALID_DESC, VALID_INGREDIENTS,
-                VALID_STEPS, invalidTags);
+                VALID_STEPS, invalidTags, false);
         assertThrows(IllegalValueException.class, recipe::toModelType);
     }
 }

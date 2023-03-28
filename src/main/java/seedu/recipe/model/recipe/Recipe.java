@@ -41,6 +41,17 @@ public class Recipe {
         this.isStar = false;
     }
 
+    public Recipe(Title title, Description desc, Set<Ingredient> ingredients, List<Step> steps,
+                  Set<Tag> tags, boolean isStar) {
+        requireAllNonNull(title, desc, ingredients, steps, tags);
+        this.title = title;
+        this.desc = desc;
+        this.ingredients = ingredients;
+        this.steps = steps;
+        this.tags = tags;
+        this.isStar = isStar;
+    }
+
     public Title getTitle() {
         return this.title;
     }
