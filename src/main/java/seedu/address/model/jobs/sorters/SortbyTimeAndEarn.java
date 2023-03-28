@@ -29,7 +29,7 @@ public class SortbyTimeAndEarn implements Comparator<DeliveryJob> {
                 return -1;
             } else if ((b.hasDateOrSlot()) && (!a.hasDateOrSlot())) {
                 return 1;
-            } else if (a.hasEarning() && b.hasEarning()){
+            } else if (a.hasEarning() && b.hasEarning()) {
                 return a.getEarning().get().compareTo(b.getEarning().get());
             } else if (b.hasEarning()) {
                 return 1;
