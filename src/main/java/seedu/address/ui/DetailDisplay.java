@@ -11,6 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 import seedu.address.files.FilesManager;
 import seedu.address.model.person.Person;
 
@@ -34,6 +35,8 @@ public class DetailDisplay extends UiPart<Region> {
     private Person person;
 
     private FileList filelist;
+    private AddAppointmentWindow addAppointmentWindow;
+    private ListView<Person> personListView;
 
     @FXML
     private Label name;
@@ -48,9 +51,11 @@ public class DetailDisplay extends UiPart<Region> {
     @FXML
     private Label medicalCondition;
     @FXML
-    private Label time;
+    private Label nric;
     @FXML
     private Label age;
+    @FXML
+    private Label appointment;
     @FXML
     private Button appointmentButton;
     @FXML
@@ -60,8 +65,14 @@ public class DetailDisplay extends UiPart<Region> {
     @FXML
     private ListView<UiFile> viewDisplay;
 
-    public DetailDisplay() {
+    /**
+     * Constructor for DetailDisplay.
+     * @param commandExecutor Executor for the input commands.
+     * @param personListView List of Patients for view.
+     */
+    public DetailDisplay(CommandBox.CommandExecutor commandExecutor, ListView<Person> personListView) {
         super(FXML);
+        this.addAppointmentWindow = new AddAppointmentWindow(commandExecutor, new Stage(), personListView);
     }
 
     /**
@@ -76,10 +87,10 @@ public class DetailDisplay extends UiPart<Region> {
         email.setText("Email: " + person.getEmail().value);
         address.setText("Address: " + person.getAddress().value);
 
-        if (person.hasTime()) {
-            time.setText("Time: " + person.getTime().toString());
+        if (person.hasNric()) {
+            nric.setText(person.getNric().toString());
         } else {
-            time.setText("Time: " + "N.A.");
+            nric.setText("NRIC: " + "N.A.");
         }
 
         if (person.hasAge()) {
@@ -92,6 +103,12 @@ public class DetailDisplay extends UiPart<Region> {
             medicalCondition.setText("Medical Condition: " + person.getMedicalCondition().getValue());
         } else {
             medicalCondition.setText("Medical Condition: " + "N.A.");
+        }
+
+        if (person.hasAppointment()) {
+            appointment.setText(person.getAppointment().toString());
+        } else {
+            appointment.setText("No appointment yet");
         }
 
         //@@author lxz333-reused
@@ -133,6 +150,18 @@ public class DetailDisplay extends UiPart<Region> {
     }
 
     /**
+     * Show the AddAppointmentWindow or requests that this AddPatientWindow get the input focus.
+     */
+    @FXML
+    private void showAddAppointmentWindow() {
+        if (!addAppointmentWindow.isShowing()) {
+            addAppointmentWindow.showAddAppointmentWindow();
+        } else {
+            addAppointmentWindow.requestFocus();
+        }
+    }
+
+    /**
      * Clears all the inforamtion of the current displayed patient.
      */
     public void clearDetailDisplay() {
@@ -141,9 +170,10 @@ public class DetailDisplay extends UiPart<Region> {
         phone.setText(null);
         email.setText(null);
         tags.getChildren().clear();
-        time.setText(null);
+        nric.setText(null);
         address.setText(null);
         medicalCondition.setText(null);
+        appointment.setText(null);
     }
 
     /**
