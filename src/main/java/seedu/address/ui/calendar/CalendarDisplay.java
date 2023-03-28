@@ -45,7 +45,7 @@ public class CalendarDisplay extends UiPart<Region> {
     private NextButton nextButton;
 
 
-/**
+    /**
      * Creates a CalendarDisplay object with the given {@link Logic} object and {@link Stage} object.
      * @param logic the Logic object to be used.
      * @param primaryStage the Stage object to be used.
@@ -66,7 +66,7 @@ public class CalendarDisplay extends UiPart<Region> {
     }
 
 
-/**
+    /**
      * Handles the {@code KeyEvent} and toggles either the next or previous Calendar month.
      * @param event the KeyEvent to be handled.
      */
@@ -84,7 +84,7 @@ public class CalendarDisplay extends UiPart<Region> {
 
 
 
-/**
+    /**
      * Draws the Ui for the Calendar.
      */
 
@@ -94,7 +94,7 @@ public class CalendarDisplay extends UiPart<Region> {
     }
 
 
-/**
+    /**
      * Resets the margin for the given node.
      * @param node the node to have its margin reset.
      */
@@ -104,7 +104,7 @@ public class CalendarDisplay extends UiPart<Region> {
     }
 
 
-/**
+    /**
      * Resets the calendarGrid.
      */
 
@@ -116,7 +116,7 @@ public class CalendarDisplay extends UiPart<Region> {
     }
 
 
-/**
+    /**
      * Resets the calendarGrid's body.
      */
 
@@ -134,7 +134,7 @@ public class CalendarDisplay extends UiPart<Region> {
     }
 
 
-/**
+    /**
      * Adds the node to be contained within the calendarGrid at the given column and row index.
      * @param node the node to be added.
      * @param columnIndex the column index for the node.

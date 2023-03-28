@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Name;
 import seedu.address.model.session.NameBooleanPair;
@@ -29,8 +30,8 @@ public class JsonAdaptedNameBooleanPair {
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedNameBooleanPair(NameBooleanPair source) {
-        this.studentName = source.name;
-        this.isPresent = String.valueOf(source.isPresent);
+        this.studentName = source.getName();
+        this.isPresent = String.valueOf(source.isPresent());
 
     }
 

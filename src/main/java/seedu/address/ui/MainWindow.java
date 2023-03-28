@@ -21,6 +21,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.session.Session;
 import seedu.address.ui.calendar.CalendarDisplay;
 
 /**
@@ -103,6 +104,14 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
 
+    /**
+     * Display details of session in sessionListPanel
+     * @param selectedSession the session input by user
+     */
+    void showSelectedSession(Session selectedSession) {
+        sessionListPanel.updateDisplay(selectedSession);
+    }
+
     private void registerShortcutsForTabs() {
         tabPane.getStyleClass().add("floating");
         registerShortcut(tabPane, contactsTab, new KeyCodeCombination(KeyCode.DIGIT1,
@@ -169,11 +178,11 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-//        calendarDisplay = new CalendarDisplay(logic, primaryStage);
-//        calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
-//        registerCalendarNavigationForCalendarTab();
+        calendarDisplay = new CalendarDisplay(logic, primaryStage);
+        calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
+        registerCalendarNavigationForCalendarTab();
 
-        sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
+        sessionListPanel = new SessionListPanel(logic.getFilteredSessionList(), logic);
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
 
 

@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -167,12 +166,18 @@ public class ParserUtil {
             throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
 
-        String start_time = startDateAndTime[0].trim() + " " + startDateAndTime[1].trim();
-        String end_time = endDateAndTime[0].trim() + " " + endDateAndTime[1].trim();
+        String startTime = startDateAndTime[0].trim() + " " + startDateAndTime[1].trim();
+        String endTime = endDateAndTime[0].trim() + " " + endDateAndTime[1].trim();
 
-        return new ArrayList<String>(Arrays.asList(start_time, end_time));
+        return new ArrayList<String>(Arrays.asList(startTime, endTime));
     }
-
+    /**
+     * Parses the given {@code String} location and returns a {@code Location} object.
+     * @param location A string representing the location to be parsed.
+     * @return A {@code Location} object.
+     * @throws ParseException if the given location string does not conform to the expected format.
+     * @throws NullPointerException if the given location string is null.
+     */
     public static Location parseLocation(String location) throws ParseException {
         requireNonNull(location);
         String trimmedLocation = location.trim();

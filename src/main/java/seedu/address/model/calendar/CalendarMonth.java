@@ -23,7 +23,7 @@ public class CalendarMonth {
     private ObservableList<CalendarEvent> calendarEvents;
 
 
-/**
+    /**
      * Every field must be present and not null.
      */
 
@@ -33,10 +33,9 @@ public class CalendarMonth {
     }
 
 
-/**
+    /**
      * Returns a mutable list of CalendarEvents.
      */
-
     public ObservableList<CalendarEvent> getCalendarEvents() {
         return calendarEvents;
     }
@@ -51,7 +50,7 @@ public class CalendarMonth {
     }
 
 
-/**
+    /**
      * Returns true if both calendar month data field.
      * This defines a stronger notion of equality between two calendar month.
      */

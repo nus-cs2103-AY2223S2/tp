@@ -1,16 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.StudentRemoveCommand.STUDENT_NOT_FOUND_FAILURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionName;
 
@@ -32,7 +31,11 @@ public class StudentAddCommand extends Command {
 
     private SessionName sessionName;
     private Index index;
-
+    /**
+     * Creates a new {@code StudentAddCommand} to add a student to a session.
+     * @param index Index of the student in the student list to add.
+     * @param sessionName Name of the session to add the student to.
+     */
     public StudentAddCommand(Index index, SessionName sessionName) {
         this.index = index;
         this.sessionName = sessionName;

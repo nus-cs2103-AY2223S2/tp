@@ -18,10 +18,9 @@ public class CalendarEvent implements Comparable<CalendarEvent> {
     private final Session session;
 
 
-/**
+    /**
      * Creates a CalendarEvent with the given name and appointment.
      */
-
     public CalendarEvent(Session session) {
         requireAllNonNull(session);
 

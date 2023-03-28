@@ -176,7 +176,16 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         sessions.setSession(target, editedSession);
     }
-
+    /**
+     * Adds the specified {@code Person} to the given {@code Session}.
+     * The {@code Person} and {@code Session} must not be null.
+     * The {@code Session} must already exist in the address book,
+     * otherwise a {@code SessionNotFoundException} is thrown.
+     * If the person is already in the session, nothing is done.
+     * @param person The person to add to the session.
+     * @param session The session to add the person to.
+     * @throws SessionNotFoundException If the specified session does not exist in the address book.
+     */
     public void addPersonToSession(Person person, Session session) {
         requireAllNonNull(person, session);
         Session newSession = session;
@@ -188,7 +197,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         newSession.addPersonToSession(name);
         sessions.setSession(session, newSession);
     }
-
+    /**
+     * Removes the specified {@code Person} from the given {@code Session}.
+     * The {@code Person} and {@code Session} must not be null.
+     * The {@code Session} must already exist in the address book,
+     * otherwise a {@code SessionNotFoundException} is thrown.
+     * If the person is not in the session,
+     * a {@code PersonNotFoundException} is thrown.
+     * @param person The person to remove from the session.
+     * @param session The session to remove the person from.
+     * @throws SessionNotFoundException If the specified session does not exist in the address book.
+     * @throws PersonNotFoundException If the specified person is not in the session.
+     */
     public void removePersonFromSession(Person person, Session session) {
         requireAllNonNull(person, session);
         String name = person.getName().toString();
@@ -258,17 +278,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public Session getSessionFromName(SessionName name) throws PersonNotFoundException {
-        for(Session session: sessions) {
+        for (Session session: sessions) {
             if (name.sessionName.equals(session.getName().toString())) {
                 return session;
             }
         }
         throw new SessionNotFoundException();
     }
-
+    /**
+     * Returns true if there is a session with the same name as {@code name} in the address book.
+     * @param name The name of the session to be checked for existence.
+     * @return True if a session with the same name as {@code name} exists in the address book, false otherwise.
+     */
     public boolean hasSessionName(SessionName name) {
 
-        for(Session session: sessions) {
+        for (Session session: sessions) {
             if (name.sessionName.equals(session.getName().toString())) {
                 return true;
             }

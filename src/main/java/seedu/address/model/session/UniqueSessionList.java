@@ -3,7 +3,6 @@ package seedu.address.model.session;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -14,9 +13,11 @@ import seedu.address.model.session.exceptions.SessionNotFoundException;
 
 /**
  * A list of sessions that enforces uniqueness between its elements and does not allow nulls.
- * A session is considered unique by comparing using {@code Session#isSameSession(Session)}. As such, adding and updating of
+ * A session is considered unique by comparing using
+ * {@code Session#isSameSession(Session)}. As such, adding and updating of
  * sessions uses Session#isSameSession(Session) for equality so as to ensure that the session being added or updated is
- * unique in terms of identity in the UniqueSessionList. However, the removal of a session uses Session#equals(Object) so
+ * unique in terms of identity in the UniqueSessionList.
+ * However, the removal of a session uses Session#equals(Object) so
  * as to ensure that the session with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -136,18 +137,19 @@ public class UniqueSessionList implements Iterable<Session> {
         return true;
     }
 
-//    /**
-//     * Sorts the list of sessions according to the given attribute.
-//     * @param attribute the attribute to sort by. 1 indicates sorting by name, and 2 indicates sorting by pay rate.
-//     * @throws NumberFormatException if the pay rate is not in a valid format
-//     */
-//    public void sort(int attribute) {
-//        if (attribute == 1) {
-//            // Sort by name
-//            internalList.sort(Comparator.comparing(person -> person.getName().toString()));
-//        } else if (attribute == 2) {
-//            // Sort by pay rate
-//            internalList.sort(Comparator.comparing(person -> Integer.parseInt(person.getPayRate().toString())));
-//        }
-//    }
+    //    /**
+    //     * Sorts the list of sessions according to the given attribute.
+    //     * @param attribute the attribute to sort by. 1 indicates sorting by name,
+    //     and 2 indicates sorting by pay rate.
+    //     * @throws NumberFormatException if the pay rate is not in a valid format
+    //     */
+    //    public void sort(int attribute) {
+    //        if (attribute == 1) {
+    //            // Sort by name
+    //            internalList.sort(Comparator.comparing(person -> person.getName().toString()));
+    //        } else if (attribute == 2) {
+    //            // Sort by pay rate
+    //            internalList.sort(Comparator.comparing(person -> Integer.parseInt(person.getPayRate().toString())));
+    //        }
+    //    }
 }

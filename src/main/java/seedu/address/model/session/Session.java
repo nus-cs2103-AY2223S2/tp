@@ -6,14 +6,12 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
-
 
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Name;
@@ -54,6 +52,15 @@ public class Session implements Comparable<Session> {
         }
     }
 
+    /**
+     * Constructs a {@code Session}.
+     * @param startDateTime A valid start date and time.
+     * @param endDateTime A valid end date and time.
+     * @param name A valid session name.
+     * @param location A valid location.
+     * @param id A valid id.
+     * @throws IllegalArgumentException If any of the constraints are violated.
+     */
     public Session(String startDateTime, String endDateTime, SessionName name, Location location, int id) {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
@@ -68,8 +75,12 @@ public class Session implements Comparable<Session> {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
     }
-
-    public Session(String startDateTime, String endDateTime, SessionName name, Location location, int id, List<NameBooleanPair> NameBooleanPairs) {
+    /**
+     * Represents a session in the sports tracker.
+     * Guarantees: details are present and not null, field values are validated, immutable.
+     */
+    public Session(String startDateTime, String endDateTime, SessionName name,
+                   Location location, int id, List<NameBooleanPair> nameBooleanPairs) {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.name = name;
@@ -78,8 +89,8 @@ public class Session implements Comparable<Session> {
 
         attendanceMap = new HashMap<>();
 
-        for (NameBooleanPair pair : NameBooleanPairs) {
-            attendanceMap.put(pair.name, pair.isPresent);
+        for (NameBooleanPair pair : nameBooleanPairs) {
+            attendanceMap.put(pair.getName(), pair.isPresent());
         }
 
         this.attendanceMap = attendanceMap;
@@ -132,28 +143,28 @@ public class Session implements Comparable<Session> {
         return attendanceMap.containsKey(name);
     }
 
-//    /**
-//     * Represents a session that a person can have.
-//     * A session consists of a start date time and an end date time.
-//     * @param sessionString
-//     * @throws IllegalValueException
-//     */
-//    public Session(String sessionString) throws IllegalValueException {
-//        String[] parts = sessionString.split(" to ");
-//        if (parts.length != 2) {
-//            throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
-//        }
-//
-//        String startDateTime = parts[0];
-//        String endDateTime = parts[1];
-//
-//        if (!Session.isValidDateTimeFormat(startDateTime) || !Session.isValidDateTimeFormat(endDateTime)) {
-//            throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
-//        }
-//
-//        this.startDateTime = startDateTime;
-//        this.endDateTime = endDateTime;
-//    }
+    //    /**
+    //     * Represents a session that a person can have.
+    //     * A session consists of a start date time and an end date time.
+    //     * @param sessionString
+    //     * @throws IllegalValueException
+    //     */
+    //    public Session(String sessionString) throws IllegalValueException {
+    //        String[] parts = sessionString.split(" to ");
+    //        if (parts.length != 2) {
+    //            throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
+    //        }
+    //
+    //        String startDateTime = parts[0];
+    //        String endDateTime = parts[1];
+    //
+    //        if (!Session.isValidDateTimeFormat(startDateTime) || !Session.isValidDateTimeFormat(endDateTime)) {
+    //            throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
+    //        }
+    //
+    //        this.startDateTime = startDateTime;
+    //        this.endDateTime = endDateTime;
+    //    }
 
     /**
      * Returns true if the given string is a valid date format.
@@ -373,8 +384,8 @@ public class Session implements Comparable<Session> {
 
     public ArrayList<NameBooleanPair> getMap() {
         ArrayList<NameBooleanPair> map = new ArrayList<>();
-        for (Map.Entry<String, Boolean> set :
-                attendanceMap.entrySet()) {
+        for (Map.Entry<String, Boolean> set
+                : attendanceMap.entrySet()) {
             NameBooleanPair toAdd =
                     new NameBooleanPair(
                             set.getKey(),
@@ -387,7 +398,10 @@ public class Session implements Comparable<Session> {
     public HashMap<String, Boolean> getHashMap() {
         return attendanceMap;
     }
-
+    /**
+     * Returns a new Session object that is a copy of this session.
+     * @return A new Session object that is a copy of this session.
+     */
     public Session copy() {
         return new Session(this.startDateTime,
                 this.endDateTime,
@@ -396,8 +410,12 @@ public class Session implements Comparable<Session> {
                 this.id,
                 this.getMap());
     }
-                
-//    public List<CalendarEvent> getCalendarEvents() {
-//        return Collections.singletonList(new CalendarEvent(this));
-//    }
+
+    public HashMap<String, Boolean> getAttendanceMap() {
+        return attendanceMap;
+    }
+
+    public List<CalendarEvent> getCalendarEvents() {
+        return Collections.singletonList(new CalendarEvent(this));
+    }
 }
