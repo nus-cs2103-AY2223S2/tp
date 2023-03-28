@@ -151,7 +151,7 @@ public class DegreeProgressionData {
                     completedRequirementCredits.get(shortFormTag),
                     tag.equals("UE") ? tagTotal + duplicatedCredits : tagTotal));
         }
-        details.append(String.format("\nCurrent GPA: %.2f\n", getGpa()))
+        details.append(String.format("\nCurrent CAP: %.2f\n", getGpa()))
                 .append("OVERALL PROGRESS\n")
                 .append(String.format("> Completed: %1$d\n", completedCredit))
                 .append(String.format("> Planned:   %1$d\n", plannedCredit))
