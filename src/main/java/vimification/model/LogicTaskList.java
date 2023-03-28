@@ -125,6 +125,9 @@ public class LogicTaskList {
     }
      **/
 
+    public Priority getPriority(int index) {
+        return tasks.get(index).getPriority();
+    }
     public void setPriority(int index, int newLevel) {
         tasks.get(index).setPriority(newLevel);
     }
@@ -133,20 +136,12 @@ public class LogicTaskList {
         tasks.get(index).setPriority(newPriority);
     }
 
-    public void deletePriority(int index) {
-        tasks.get(index).deletePriority();
+    public String getTitle(int index) {
+        return tasks.get(index).getTitle();
     }
 
-    public Priority getPriority(int index) {
-        return tasks.get(index).getPriority();
-    }
-
-    public String getDescription(int index) {
-        return tasks.get(index).getDescription();
-    }
-
-    public void setDescription(int index, String newDescription) {
-        tasks.get(index).setDescription(newDescription);
+    public void setTitle(int index, String newDescription) {
+        tasks.get(index).setTitle(newDescription);
     }
 
     public Status getStatus(int index) {
@@ -164,6 +159,12 @@ public class LogicTaskList {
     public void setDeadline(int index, LocalDateTime newDate) {
         tasks.get(index).setDeadline(newDate);
     }
+
+    public void deleteDeadline(int index) {
+        tasks.get(index).deleteDeadline();
+    }
+
+    /**
     public List<Task> removeAllDone() {
         Predicate<Task> pred = Task::isDone;
         List<Task> tasksDone = stream()
@@ -172,9 +173,14 @@ public class LogicTaskList {
         tasks.removeAll(tasksDone);
         return tasksDone;
     }
+     */
 
     public void addAll(List<Task> tasks) {
         this.tasks.addAll(tasks);
+    }
+
+    public void clear() {
+        this.tasks.clear();
     }
 
     //// util methods

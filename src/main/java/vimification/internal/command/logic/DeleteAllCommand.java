@@ -9,21 +9,21 @@ import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
-public class DeleteCompletedCommand extends UndoableLogicCommand{
+public class DeleteAllCommand extends UndoableLogicCommand{
 
-    public static final String COMMAND_WORD = "d a";
+    public static final String COMMAND_WORD = "clear";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes all completed tasks in the displayed task list.\n"
+            + ": Deletes all tasks in the displayed task list.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String SUCCESS_MESSAGE_FORMAT = "Deleted all completed task: %1$s";
+    public static final String SUCCESS_MESSAGE_FORMAT = "Deleted all task: %1$s";
     public static final String UNDO_MESSAGE =
-            "The command has been undone. The deleted tasks has been added back.";
+            "The command has been undone. The tasks has been added back.";
 
     public List<Task> deletedTasks;
 
-    public DeleteCompletedCommand() {
+    public DeleteAllCommand() {
         deletedTasks = null;
     };
 
@@ -32,7 +32,8 @@ public class DeleteCompletedCommand extends UndoableLogicCommand{
     public CommandResult execute(LogicTaskList taskList)
             throws IndexOutOfBoundsException, CommandException {
         requireNonNull(taskList);
-        deletedTasks = taskList.removeAllDone();
+        deletedTasks = taskList.getInternalList();
+        taskList.clear();
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT));
     }
 

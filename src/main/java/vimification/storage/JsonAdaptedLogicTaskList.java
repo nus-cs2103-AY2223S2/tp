@@ -11,10 +11,11 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 // import vimification.commons.core.LogsCenter;
 import vimification.commons.exceptions.IllegalValueException;
 import vimification.model.LogicTaskList;
-import vimification.model.task.Deadline;
-import vimification.model.task.Event;
+import vimification.model.oldcode.Deadline;
 import vimification.model.task.Task;
-import vimification.model.task.Todo;
+import vimification.model.oldcode.Todo;
+import vimification.storage.oldcode.JsonAdaptedDeadline;
+import vimification.storage.oldcode.JsonAdaptedTodo;
 
 /**
  * An Immutable TaskPlanner that is serializable to JSON format.
@@ -38,16 +39,9 @@ public class JsonAdaptedLogicTaskList {
      *        {@code JsonSerializableAddressBook}.
      */
     public JsonAdaptedLogicTaskList(LogicTaskList source) {
-        tasks = source.stream().map(this::toJsonAdaptedTask).collect(Collectors.toList());
+        tasks = source.stream().map(JsonAdaptedTask::new).collect(Collectors.toList());
     }
 
-    private JsonAdaptedTask toJsonAdaptedTask(Task task) {
-        if (task.isDeadline()) {
-            return new JsonAdaptedDeadline((Deadline) task);
-        } else {
-            return new JsonAdaptedTodo((Todo) task);
-        }
-    }
 
     /**
      * Converts this address book into the model's {@code TaskPlanner} object.

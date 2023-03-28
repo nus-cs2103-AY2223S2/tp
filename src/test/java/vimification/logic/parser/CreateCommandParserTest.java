@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import vimification.internal.command.logic.CreateCommand;
+import vimification.internal.command.logic.AddCommand;
 import vimification.internal.parser.CreateCommandParser;
 import vimification.internal.parser.ParserException;
 
@@ -33,11 +33,11 @@ public class CreateCommandParserTest {
     @Test
     public void validCommand_shouldSuccess() {
         String input1 = "i todo play Touhou 7";
-        CreateCommand cmd1 = CreateCommandParser.getInstance().parse(input1);
+        AddCommand cmd1 = CreateCommandParser.getInstance().parse(input1);
         assertTrue(cmd1 != null);
 
         String input2 = "i deadline to play Touhou 8 /<datetime>";
-        CreateCommand cmd2 = CreateCommandParser.getInstance().parse(input2);
+        AddCommand cmd2 = CreateCommandParser.getInstance().parse(input2);
         assertTrue(cmd2 != null);
     }
 }

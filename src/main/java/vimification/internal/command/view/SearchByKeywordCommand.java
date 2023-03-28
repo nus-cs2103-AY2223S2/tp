@@ -8,10 +8,10 @@ import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 
 public class SearchByKeywordCommand extends SearchCommand {
-    public static final String COMMAND_WORD = "s -d";
+    public static final String COMMAND_WORD = "s -t";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": search for tasks that has description matching with input keyword.\n"
+            + ": search for tasks that has title matching with input keyword.\n"
             + "Parameters: KEYWORD\n"
             + "Conditions: Keyword cannot be empty.\n"
             + "Example: " + COMMAND_WORD + " quiz";

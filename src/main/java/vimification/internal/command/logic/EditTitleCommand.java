@@ -9,31 +9,32 @@ import java.time.LocalDateTime;
 
 import static java.util.Objects.requireNonNull;
 
-public class EditDeadlineCommand extends UndoableLogicCommand{
-    public static final String COMMAND_WORD = "e -d";
+
+public class EditTitleCommand extends UndoableLogicCommand{
+    public static final String COMMAND_WORD = "e -t";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edit the deadline of a task.\n"
-            + "Parameters: INDEX (index number of the target task in the displayed task list)\n"
-            + "          : DEADLINE\n"
+            + ": Edit the title of a task.\n"
+            + "Parameters: Index (index number of the target task in the displayed task list)\n"
+            + "          : Title\n"
             + "Conditions: Index must be positive integer and cannot exceed total number of tasks.\n"
-            + "          : Date time must be valid in the format of YYYY-MM-DD.\n"
+            + "          : Title must not be empty.\n"
             + "Example: " + COMMAND_WORD + " 1" + " 2023-01-01";
 
     public static final String SUCCESS_MESSAGE_FORMAT =
-            "Deadline of task %1$s updated.";
+            "Title of task %1$s updated.";
     public static final String UNDO_MESSAGE =
-            "The command has been undone. The deadline of the task has been changed back.";
+            "The command has been undone. The title of the task has been changed back.";
 
     private final Index targetIndex;
-    private final LocalDateTime newDate;
-    private LocalDateTime oldDate;
+    private final String newTitle;
+    private String oldTitle;
 
 
-    public EditDeadlineCommand(Index targetIndex, LocalDateTime newDate) {
+    public EditTitleCommand(Index targetIndex, String newTitle) {
         this.targetIndex = targetIndex;
-        this.newDate = newDate;
-        this.oldDate = null;
+        this.newTitle = newTitle;
+        this.oldTitle = null;
     }
 
     @Override
@@ -41,8 +42,8 @@ public class EditDeadlineCommand extends UndoableLogicCommand{
             throws IndexOutOfBoundsException, CommandException {
         requireNonNull(taskList);
         int zero_based_index = targetIndex.getZeroBased();
-        oldDate = taskList.getDeadline(zero_based_index);
-        taskList.setDeadline(zero_based_index, newDate);
+        oldTitle = taskList.getTitle(zero_based_index);
+        taskList.setTitle(zero_based_index, newTitle);
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
     }
 
@@ -51,7 +52,7 @@ public class EditDeadlineCommand extends UndoableLogicCommand{
             throws IndexOutOfBoundsException, CommandException {
         requireNonNull(taskList);
         int zero_based_index = targetIndex.getZeroBased();
-        taskList.setDeadline(zero_based_index, oldDate);
+        taskList.setTitle(zero_based_index, newTitle);
         return new CommandResult(UNDO_MESSAGE);
     }
 }

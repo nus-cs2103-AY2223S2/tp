@@ -1,11 +1,11 @@
 package vimification.internal.command.view;
 
-        import javafx.collections.FXCollections;
-        import javafx.collections.ObservableList;
-        import vimification.internal.command.CommandException;
-        import vimification.internal.command.CommandResult;
-        import vimification.model.LogicTaskList;
-        import vimification.model.task.Task;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import vimification.internal.command.CommandException;
+import vimification.internal.command.CommandResult;
+import vimification.model.LogicTaskList;
+import vimification.model.task.Task;
 
 public class SearchByTag extends SearchCommand {
     public static final String COMMAND_WORD = "s -t";
@@ -16,7 +16,7 @@ public class SearchByTag extends SearchCommand {
             + "Example: " + COMMAND_WORD + " meeting";
 
     public SearchByTag(String tag) {
-        super(task -> task.containsTag(tag));
+        super(task -> true); //task.containsTag(tag));
     }
 
     @Override

@@ -7,46 +7,41 @@ import java.util.Set;
 import static java.util.Objects.requireNonNull;
 import static vimification.commons.util.CollectionUtil.requireAllNonNull;
 
-public abstract class Task {
+public class Task {
 
-    private String description;
+    private String title;
+    private LocalDateTime deadline;
     private Status status;
     private Priority priority;
-    private Set<String> tags;
 
     /**
      * Every field must be present and not null.
      */
-    Task(String description, Status status, Priority priority) {  //used when converting from storage
-        requireAllNonNull(description, priority);
-        this.description = description;
+    public Task(String title, LocalDateTime deadline, Status status, Priority priority) {  //used when converting from storage
+        requireAllNonNull(title, priority);
+        this.title = title;
+        this.deadline = deadline;
         this.status = status;
         this.priority = priority;
-        this.tags = new HashSet<>();
     }
-    Task(String description) {     //used when creating new tasks
-        this(description, Status.NOT_DONE, Priority.UNKNOWN);
-    }
-
-    public String getDescription() {
-        return description;
+    public Task(String title) {     //used when creating new tasks
+        this(title, null, Status.NOT_DONE, Priority.UNKNOWN);
     }
 
+    Task(String title, LocalDateTime deadline) {
+        this(title, deadline, Status.NOT_DONE, Priority.UNKNOWN);
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        requireNonNull(title);
+        this.title = title;
+    }
     public Priority getPriority() {
         return priority;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public boolean isDone() {
-        return status.equals(Status.COMPLETED);
-    }
-
-    public void setDescription(String description) {
-        requireNonNull(description);
-        this.description = description;
     }
 
     public void setPriority(Priority priority) {
@@ -54,13 +49,12 @@ public abstract class Task {
         this.priority = priority;
     }
 
-    public void deletePriority() {
-        requireNonNull(priority);
-        this.priority = Priority.UNKNOWN;
-    }
-
     public void setPriority(int level) {
         this.priority = Priority.fromInt(level);
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     public void setStatus(Status status) {
@@ -68,19 +62,30 @@ public abstract class Task {
         this.status = status;
     }
 
-    public abstract void setDeadline(LocalDateTime date);
-    public abstract LocalDateTime getDeadline();
     public void setStatus(int level) {
         this.status = Status.fromInt(level);
     }
+    public LocalDateTime getDeadline() {
+        return deadline;
+    };
+    public void setDeadline(LocalDateTime deadline) {
+        requireNonNull(deadline);
+        this.deadline = deadline;
+    }
+
+    public void deleteDeadline() {
+        this.deadline = null;
+    }
 
     public boolean containsKeyword(String keyword) {
-        return description.contains(keyword);
+        return title.contains(keyword);
     }
 
-    public boolean containsTag(String tag) {
-        return tags.contains(tag);
+    /**
+    public boolean containsLabel(String label) {
+        return labels.contains(label);
     }
+     */
 
     public boolean isSamePriority(Priority priority) {
         return this.priority.equals(priority);
@@ -90,15 +95,27 @@ public abstract class Task {
         return isSamePriority(Priority.fromInt(level));
     }
 
-    public abstract boolean isDeadline();
+    public boolean isDateBefore(LocalDateTime date) {
+        return deadline != null && (deadline.isBefore(date) || deadline.isEqual(date));
+    }
 
-    public abstract Task clone();
+    public boolean isDateAfter(LocalDateTime date) {
+        return deadline != null && (deadline.isAfter(date) || deadline.isEqual(date));
+    }
+
+
+    public Task clone() {
+        return new Task(getTitle(), getDeadline(), getStatus(), getPriority());
+    };
 
     public boolean isSameTask(Task otherTask) {
         if (otherTask == this) {
             return true;
         }
-        return otherTask.description.equals(description);
+        boolean isSame =  otherTask.title.equals(title) && otherTask.deadline.equals(deadline)
+                && otherTask.status.equals(status) && otherTask.priority.equals(priority);
+                //&& otherTask.labels.equals(labels);
+        return isSame;
     }
 
     /**
@@ -114,14 +131,14 @@ public abstract class Task {
             return false;
         }
         Task otherTask = (Task) other;
-        return otherTask.description.equals(description) && otherTask.status.equals(status);
+        return otherTask.title.equals(title) && otherTask.status.equals(status);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("description: ")
-                .append(description)
+        builder.append("title: ")
+                .append(title)
                 .append("; status: ")
                 .append(status.toString())
                 .append("; priority: ")

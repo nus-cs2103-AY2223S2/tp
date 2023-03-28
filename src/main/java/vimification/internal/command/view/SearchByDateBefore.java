@@ -6,13 +6,13 @@ import javafx.collections.ObservableList;
 import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.model.LogicTaskList;
-import vimification.model.task.Deadline;
+import vimification.model.oldcode.Deadline;
 import vimification.model.task.Task;
 
 import java.time.LocalDateTime;
 
 public class SearchByDateBefore extends SearchCommand {
-    public static final String COMMAND_WORD = "s -d bef";
+    public static final String COMMAND_WORD = "s -d -before";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": search for tasks that have deadline before (inclusive) the input date.\n"
@@ -21,7 +21,7 @@ public class SearchByDateBefore extends SearchCommand {
             + "Example: " + COMMAND_WORD + " 2023-01-01";
 
     public SearchByDateBefore(LocalDateTime date) {
-        super(task -> task.isDeadline() && ((Deadline)task).isDateBefore(date));
+        super(task -> task.isDateBefore(date));
     }
 
     @Override
