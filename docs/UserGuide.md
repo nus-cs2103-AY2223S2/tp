@@ -325,12 +325,13 @@ Format: `help`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `fish add` etc.
+**Add** | `fish add` `tank add` `task add`
 **Clear** | `clear` **Coming soon**
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Delete** | `fish delete INDEX` `tank delete INDEX` `task delete INDEX`<br> e.g., `tank delete 3`
 **Edit** | **Coming soon**
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> **Coming soon**
-**List** | `list`
+**Sort** | `fish sort KEYWORD [TANK]`<br> e.g., `fish sort by/n tk/2`
+**List** | `list tanks` `list fishes`
 **Help** | `help`
 
 []: #listing-tanks-list-tank
