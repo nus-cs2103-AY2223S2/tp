@@ -329,7 +329,7 @@ Sequence Diagram:
 
 After that, the command result is returned.
 
-#### Listing an employee's department
+#### Listing an employee's departments
 
 The `led` command
 
