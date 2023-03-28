@@ -33,8 +33,7 @@ public class ListProjectCommand extends Command {
         requireNonNull(model);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
-        String copy = model.getProjectsContent();
-        String message = String.format(MESSAGE_PROJECTS_CONTENT, copy);
+        String message = String.format(MESSAGE_PROJECTS_CONTENT, model.getProjectsContent());
         return new CommandResult(MESSAGE_SUCCESS + "\n" + message, ListType.PROJECT);
     }
 
