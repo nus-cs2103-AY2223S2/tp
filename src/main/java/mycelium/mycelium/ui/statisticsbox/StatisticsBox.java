@@ -53,13 +53,13 @@ public class StatisticsBox extends UiPart<Region> implements TabsPanel {
         });
 
         setPieChartData(logic);
-        progressOverview.setData(pieChartData);
         setProjectData(logic);
     }
 
     private void setProjectData(Logic logic) {
         statisticsPanel = new StatisticsPanel(logic.getDueProjectList(), logic.getOverdueProjectList());
         statisticsPanelPlaceholder.getChildren().add(statisticsPanel.getRoot());
+        statisticsPanel.onChanged(logic);
     }
 
     private void setPieChartData(Logic logic) {
@@ -71,6 +71,7 @@ public class StatisticsBox extends UiPart<Region> implements TabsPanel {
                 }
             });
         }
+        progressOverview.setData(pieChartData);
     }
 
     @Override
