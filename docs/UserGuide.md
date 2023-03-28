@@ -277,7 +277,6 @@ Format:
 add student n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID>
 ```
 
-- `t/<TAG>` field is optional.
 - Adding a student with the same student ID is not allowed.
     - For example, if a student with a student ID of `A0123456X` already exists in CLIpboard, entering `add n/Tom p/99887766 e/tom@example.com sid/A0123456X m/CS2105` will display an error message.
 
