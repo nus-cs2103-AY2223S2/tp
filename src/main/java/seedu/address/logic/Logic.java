@@ -48,5 +48,5 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    Person getPersonView();
+    Person getPersonDisplay();
 }

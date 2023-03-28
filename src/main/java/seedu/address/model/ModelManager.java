@@ -26,7 +26,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private Person viewPerson;
+    private Person displayedPerson;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,7 +40,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
-        viewPerson = null;
+        displayedPerson = filteredPersons.get(0);
+        //todo handle null
     }
 
     public ModelManager() {
@@ -128,8 +129,8 @@ public class ModelManager implements Model {
     public void deletePerson(Person target) {
 
         addressBook.removePerson(target);
-        if (target.isSamePerson(viewPerson)) {
-            viewPerson = null;
+        if (target.isSamePerson(displayedPerson)) {
+            displayedPerson = null;
         }
     }
 
@@ -157,8 +158,8 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
         // reused https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/112/files#diff-7bd09b3a54ed83a93060f9d5e74302f5affc224dd83cb8ae73eafa10a999930d
-        if (target.isSamePerson(viewPerson)) {
-            viewPerson = editedPerson;
+        if (target.isSamePerson(displayedPerson)) {
+            displayedPerson = editedPerson;
         }
     }
 
@@ -168,7 +169,7 @@ public class ModelManager implements Model {
 
         addressBook.setDoctor(doctor, editedDoctor);
         if (doctor.isSameDoctor(editedDoctor)) {
-            viewPerson = editedDoctor;
+            displayedPerson = editedDoctor;
         }
     }
 
@@ -178,7 +179,7 @@ public class ModelManager implements Model {
 
         addressBook.setPatient(patient, editedPatient);
         if (patient.isSamePatient(editedPatient)) {
-            viewPerson = editedPatient;
+            displayedPerson = editedPatient;
         }
     }
 
@@ -202,7 +203,7 @@ public class ModelManager implements Model {
     @Override
     public void updatePersonView(Person updatedPerson) {
         requireNonNull(updatedPerson);
-        viewPerson = updatedPerson;
+        displayedPerson = updatedPerson;
     }
 
     @Override
@@ -237,8 +238,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Person getPersonView() {
-        return filteredPersons.get(0); // todo change placeholder
+    public Person getPersonDisplay() {
+        return displayedPerson;
     }
 
     @Override

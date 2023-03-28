@@ -80,7 +80,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Person getPersonView() {
-        return model.getPersonView();
+    public Person getPersonDisplay() {
+        return model.getPersonDisplay();
     }
 }

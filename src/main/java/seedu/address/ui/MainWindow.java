@@ -118,7 +118,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         //handleView();
-        personViewPanel = new PersonViewPanel(logic.getPersonView());
+        personViewPanel = new PersonViewPanel(logic.getPersonDisplay());
         personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -146,7 +146,7 @@ public class MainWindow extends UiPart<Stage> {
     // reused https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/112/files
     @FXML
     public void handleView() {
-        PersonViewPanel personViewPanel = new PersonViewPanel(logic.getPersonView());
+        PersonViewPanel personViewPanel = new PersonViewPanel(logic.getPersonDisplay());
         personViewPanelPlaceholder.getChildren().clear();
         personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
         //personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
