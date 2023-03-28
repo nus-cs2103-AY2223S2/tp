@@ -2,7 +2,11 @@
 'https://plantuml.com/sequence-diagram
 !include style.puml
 
-autonumber
+participant ":BackupCommand" as BackupCommand LOGIC_COLOR
+participant ":BackupCommandParser" as BackupCommandParser LOGIC_COLOR
+participant ":Model" as Model MODEL_COLOR
+participant ":Storage" as Storage STORAGE_COLOR
+participant ":BackupDataStorage" as BackupDataStorage STORAGE_COLOR
 
 create BackupCommand
 BackupCommandParser -> BackupCommand
