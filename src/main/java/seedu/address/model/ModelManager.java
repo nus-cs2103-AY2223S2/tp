@@ -26,6 +26,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private final PdfConverter pdfConverter;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -37,6 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.pdfConverter = new PdfConverter();
     }
 
     public ModelManager() {
@@ -122,7 +125,7 @@ public class ModelManager implements Model {
     @Override
     public void exportProgress(Person target, String completePath) throws IOException {
         requireAllNonNull(target, completePath);
-        PDDocument document = addressBook.exportProgress(target);
+        PDDocument document = pdfConverter.exportProgress(target);
         document.save(completePath);
         document.close();
     }
