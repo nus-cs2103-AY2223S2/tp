@@ -54,6 +54,10 @@ public class InterviewDateTime {
                 && yearsFromNow == 0;
     }
 
+    public int compareTo(InterviewDateTime other) {
+        return this.dateTime.compareTo(other.getDateTime());
+    }
+
     @Override
     public String toString() {
         return DateTimeParser.datetimeFormatter(dateTime);
