@@ -13,12 +13,13 @@ public class Age {
 
     public static final String MESSAGE_CONSTRAINTS = "Age must be an integer between 0 and 199 inclusive.";
 
-    protected static final AgeComparator AGE_COMPARATOR = new AgeComparator();
+
     /*
      * The first character of the age must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "(^[01]\\d{0,2}$|^\\d{1,2}$)";
+    protected static final AgeComparator AGE_COMPARATOR = new AgeComparator();
 
     public final String value;
 

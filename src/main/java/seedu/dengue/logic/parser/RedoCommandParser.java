@@ -5,6 +5,9 @@ import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import seedu.dengue.logic.commands.RedoCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 
+/**
+ * A parser for the arguments of the redo command.
+ */
 public class RedoCommandParser implements Parser<RedoCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the RedoCommand

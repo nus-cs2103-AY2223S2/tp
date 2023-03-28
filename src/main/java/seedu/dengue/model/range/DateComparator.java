@@ -1,6 +1,7 @@
 package seedu.dengue.model.range;
 
 import java.time.LocalDate;
+
 import seedu.dengue.model.person.Date;
 
 /**

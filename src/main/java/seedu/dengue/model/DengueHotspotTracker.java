@@ -3,8 +3,8 @@ package seedu.dengue.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-
 import java.util.stream.Collectors;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.dengue.model.person.Person;
