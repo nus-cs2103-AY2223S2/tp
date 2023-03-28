@@ -1,13 +1,18 @@
 package seedu.address.model;
 
+import java.util.Comparator;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.ward.Ward;
+
 
 /**
  * Unmodifiable view of an address book
  */
 public interface ReadOnlyAddressBook {
+
+    void sortPatients(Comparator<Patient> comparator);
 
     /**
      * Returns an unmodifiable view of the patients list.

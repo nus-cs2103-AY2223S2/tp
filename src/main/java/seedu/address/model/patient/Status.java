@@ -79,4 +79,22 @@ public class Status {
             return "UNKNOWN";
         }
     }
+
+    /**
+     * Returns the numeric value of each status.
+     *
+     * @return Numeric value of each status.
+     */
+    public Integer getValue() {
+        switch ((value)) {
+        case "GREEN":
+            return 1;
+        case "YELLOW":
+            return 2;
+        case "RED":
+            return 3;
+        default:
+            return 0;
+        }
+    }
 }

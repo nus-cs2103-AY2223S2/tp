@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -119,6 +120,13 @@ public class ModelManager implements Model {
     public void setPatient(Patient target, Patient editedPatient) {
         requireAllNonNull(target, editedPatient);
         addressBook.setPatient(target, editedPatient);
+    }
+
+    @Override
+    public void sortPatients(Comparator<Patient> comparator) {
+        requireNonNull(comparator);
+        addressBook.sortPatients(comparator);
+
     }
 
     //// Ward methods =====================================================================================
