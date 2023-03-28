@@ -12,6 +12,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import javafx.fxml.FXML;
 import seedu.address.MainApp;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class UiPartTest {
 
@@ -84,7 +85,8 @@ public class UiPartTest {
 
     /**
      * UiPart used for testing.
-     * It should only be used with invalid FXML files or the valid file located at {@link VALID_FILE_PATH}.
+     * It should only be used with invalid FXML files or the valid file located at *for some reason
+     * VALID_FILE_PATH is NOT a valid file path*.
      */
     private static class TestUiPart<T> extends UiPart<T> {
 

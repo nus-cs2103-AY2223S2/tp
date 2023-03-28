@@ -1,10 +1,14 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.ClassificationTerms.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.AddEntityCommand;
+import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Item;
+import seedu.address.model.entity.Mob;
 
 
 /**
@@ -24,10 +28,19 @@ public class EntityUtil {
      */
     public static String getEntityDetails(Entity entity) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + entity.getName().fullName + " ");
+        if (entity instanceof Character) {
+            sb.append(CHAR.label).append(" ");
+        } else if (entity instanceof Item) {
+            sb.append(ITEM.label).append(" ");
+        } else if (entity instanceof Mob) {
+            sb.append(MOB.label).append(" ");
+        }
+        sb.append(entity.getName().fullName).append(" ");
+        /*
         entity.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+         */
         return sb.toString();
     }
 

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,7 +31,16 @@ public class AddEntityCommandParser implements Parser<AddEntityCommand> {
     public AddEntityCommand parse(String args) throws ParseException {
         boolean isValidCommand = Pattern.matches("^make\\s+(char|item|mob)(\\s+[\\w]+)+$", args.trim());
         if (!isValidCommand) {
-            throw new ParseException("Invalid command!");
+            // Check what kind of invalid command it is
+            boolean hasCommandKeyword = Pattern.matches("^make\\s+.*", args.trim());
+            boolean hasRightFields = Pattern.matches(".*((\\s+[\\w]+)+)$", args.trim());
+            if (!hasCommandKeyword) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEntityCommand.MESSAGE_USAGE));
+            } else if (!hasRightFields) {
+                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEntityCommand.MESSAGE_USAGE));
+            }
         }
         String[] split = args.trim().split("\\s+", 3);
         Name name = ParserUtil.parseName(split[2]);

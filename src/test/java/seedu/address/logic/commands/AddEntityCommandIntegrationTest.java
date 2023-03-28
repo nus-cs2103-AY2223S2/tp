@@ -38,7 +38,7 @@ public class AddEntityCommandIntegrationTest {
 
     @Test
     public void execute_duplicateCharacter_throwsCommandException() {
-        Entity entityInList = model.getReroll().getCharacters().getEntityList().get(0);
+        Entity entityInList = model.getReroll().getEntities().getEntityList().get(0);
         assertCommandFailure(new AddEntityCommand(entityInList), model, AddEntityCommand.MESSAGE_DUPLICATE_ENTITY);
     }
 

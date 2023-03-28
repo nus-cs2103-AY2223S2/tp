@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.ClassificationTerms.CHAR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -28,12 +29,13 @@ import seedu.address.testutil.EntityUtil;
 
 public class RerollParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final RerollParser parser = new RerollParser();
 
     @Test
     public void parseCommand_add() throws Exception {
         Entity entity = new EntityBuilder().buildChar();
         AddEntityCommand command = (AddEntityCommand) parser.parseCommand(EntityUtil.getAddEntityCommand(entity));
+
         assertEquals(new AddEntityCommand(entity), command);
     }
 
@@ -84,8 +86,8 @@ public class RerollParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        String inputCommand = ListCommand.COMMAND_WORD + " " + CHAR.label;
+        assertTrue(parser.parseCommand(inputCommand) instanceof ListCommand);
     }
 
     @Test
