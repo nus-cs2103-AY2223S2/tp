@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddScoreCommand;
 import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.logic.commands.CheckCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteScoreCommand;
@@ -26,13 +27,19 @@ import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkTaskCompleteCommand;
+import seedu.address.logic.commands.MarkTaskInProgressCommand;
+import seedu.address.logic.commands.MarkTaskLateCommand;
+import seedu.address.logic.commands.SwitchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.score.Score;
+import seedu.address.model.tag.TagContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -67,6 +74,13 @@ public class AddressBookParserTest {
                 AddTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() +
                         " " + PersonUtil.getAddTaskDetails(task));
         assertEquals(new AddTaskCommand(INDEX_FIRST_PERSON, task), command);
+    }
+
+    @Test
+    public void parseCommand_check() throws Exception {
+        CheckCommand command = (CheckCommand) parser.parseCommand(
+                CheckCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new CheckCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
@@ -122,6 +136,14 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_filter() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FilterCommand command = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new TagContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
@@ -131,6 +153,36 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_markTaskComplete() throws Exception {
+        MarkTaskCompleteCommand command = (MarkTaskCompleteCommand) parser.parseCommand(
+                MarkTaskCompleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " " +
+                        INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new MarkTaskCompleteCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK), command);
+    }
+
+    @Test
+    public void parseCommand_markTaskInProgress() throws Exception {
+        MarkTaskInProgressCommand command = (MarkTaskInProgressCommand) parser.parseCommand(
+                MarkTaskInProgressCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " " +
+                        INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new MarkTaskInProgressCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK), command);
+    }
+
+    @Test
+    public void parseCommand_markTaskLate() throws Exception {
+        MarkTaskLateCommand command = (MarkTaskLateCommand) parser.parseCommand(
+                MarkTaskLateCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " " +
+                        INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new MarkTaskLateCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK), command);
+    }
+
+    @Test
+    public void parseCommand_switch() throws Exception {
+        assertTrue(parser.parseCommand(SwitchCommand.COMMAND_WORD) instanceof SwitchCommand);
+        assertTrue(parser.parseCommand(SwitchCommand.COMMAND_WORD + " 3") instanceof SwitchCommand);
     }
 
     @Test
