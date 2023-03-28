@@ -482,15 +482,15 @@ The table below summarizes the layout of all the commands in Mycelium. You may
 read the statement `q -a foo [-b bar]` like so:
 
 * `q` is the command,
-* `-a foo` indicates a compulsory argument;
+* `-a foo` indicates a compulsory argument,
 * `[-b bar]` indicates an optional argument.
+
 
 Action | Format | Example 
 --------|------------------|------
-**Create new client** | `c -cn client_name -e email [-y year_of_birth] [-src source] [-mn mobile_number]` | `c -cn Alice Baker -e alice_baker@bakers.com -y 2000`
-**Delete an existing client** | dc -e email | `dc -e alice_baker@bakers.com`
+[**Create new client**](#creating-a-client-contact--c) | `c -cn client_name -e email [-y year_of_birth] [-src source] [-mn mobile_number]` | `c -cn Alice Baker -e alice_baker@bakers.com -y 2000`
+[**Delete an existing client** ](#deleting-a-client-contact--dc)| dc -e email | `dc -e alice_baker@bakers.com`
 **Update an existing client** | uc -e email [-cn client_name] [-y year_of_birth] [-src source] [-mn mobile_number] [-e2 new_email] | `uc -e alice_baker@bakers.com -y 2002 -mn 85090234`
-**Create a project** | `p -pn project_name -e client_email [-s status] [-src source] [-d description] [-ad accepted_date] [-dd deadline_date]` | `p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075`
-**Delete a project** | `dp -pn project_name` | `dp -pn Mycelium Desktop`
-**Update an existing project** | `up -pn project_name [-e email] [-s status] [-src source] [-d description]  [-ad accepted_date] [-dd deadline_date] [-pn2 new_project_name]` | `up -pn Mycelium Desktop -e alice_baker@bakers.com -dd 30/03/2024`
-**Fuzzy Search** | (CTRL + F) query | Press (CTRL + F) then enter Alice
+[**Create a project**](#creating-a-project--p)| `p -pn project_name -e client_email [-s status] [-src source] [-d description] [-ad accepted_date] [-dd deadline_date]` | `p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075`
+[**Delete a project**](#deleting-a-project--dp) | `dp -pn project_name` | `dp -pn Mycelium Desktop`
+[**Update an existing project**](#updating-a-project--up) | `up -pn project_name [-e email] [-s status] [-src source] [-d description]  [-ad accepted_date] [-dd deadline_date] [-pn2 new_project_name]` | `up -pn Mycelium Desktop -e alice_baker@bakers.com -dd 30/03/2024`
