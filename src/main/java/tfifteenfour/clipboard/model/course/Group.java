@@ -2,6 +2,8 @@ package tfifteenfour.clipboard.model.course;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.UniqueStudentList;
@@ -90,6 +92,18 @@ public class Group {
      */
     public ObservableList<Task> getModifiableTaskList() {
         return tasks.asModifiableObservableList();
+    }
+
+    public void updateFilteredSessions(Predicate<Session> predicate) {
+        sessions.updateFilterPredicate(predicate);
+    }
+
+    public void updateFilteredTasks(Predicate<Task> predicate) {
+        tasks.updateFilterPredicate(predicate);
+    }
+
+    public void updateFilteredStudents(Predicate<Student> predicate) {
+        students.updateFilterPredicate(predicate);
     }
 
 

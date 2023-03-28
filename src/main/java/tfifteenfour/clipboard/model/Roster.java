@@ -3,6 +3,7 @@ package tfifteenfour.clipboard.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.model.course.Course;
@@ -42,6 +43,10 @@ public class Roster implements ReadOnlyRoster {
 
     public void setCourses(List<Course> courses) {
         this.courses.setInternalList(courses);
+    }
+
+    public void updateFilteredCourses(Predicate<Course> predicate) {
+        this.courses.updateFilterPredicate(predicate);
     }
 
     /**

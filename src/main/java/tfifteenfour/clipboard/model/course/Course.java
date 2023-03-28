@@ -3,6 +3,8 @@ package tfifteenfour.clipboard.model.course;
 import static java.util.Objects.requireNonNull;
 import static tfifteenfour.clipboard.commons.util.AppUtil.checkArgument;
 
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 
 /**
@@ -49,6 +51,10 @@ public class Course {
 
     public ObservableList<Group> getUnmodifiableFilteredGroupList() {
         return groups.asUnmodifiableFilteredList();
+    }
+
+    public void updateFilteredGroups(Predicate<Group> predicate) {
+        this.groups.updateFilterPredicate(predicate);
     }
 
 
