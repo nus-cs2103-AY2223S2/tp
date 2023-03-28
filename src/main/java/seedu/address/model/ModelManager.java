@@ -19,7 +19,7 @@ import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
-import seedu.address.model.timeSlot.TimeMask;
+import seedu.address.model.timeslot.TimeMask;
 
 /**
  * Represents the in-memory model of the address book data.

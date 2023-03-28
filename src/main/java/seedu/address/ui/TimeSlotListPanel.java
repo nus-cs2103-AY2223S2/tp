@@ -45,5 +45,4 @@ public class TimeSlotListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

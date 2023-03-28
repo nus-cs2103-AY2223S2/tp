@@ -1,6 +1,5 @@
 package seedu.address.model.event;
 
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

@@ -1,4 +1,4 @@
-package seedu.address.model.timeSlot;
+package seedu.address.model.timeslot;
 
 import java.time.DayOfWeek;
 import java.util.ArrayList;
@@ -10,6 +10,9 @@ import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
 
+/**
+ * Class to generate the bit masking for the events.
+ */
 public class TimeMask {
     // One day 24 hours -> 24 bits
     // If 0.5 hour granularity is desired, required to split into two separate ints
@@ -32,16 +35,24 @@ public class TimeMask {
         weeklyOccupancy[dayIndex] = weeklyOccupancy[dayIndex] | dayOccupancy;
     }
 
+    /**
+     * Compare the base time mask with a time mask and update accordingly.
+     * @param other TimeMask object
+     */
     public void mergeMask(TimeMask other) {
         if (other == null) {
             // TODO: refactor
             throw new RuntimeException("Empty time mask!");
         }
-        for (int i =0; i < WINDOW_RANGE; i++) {
+        for (int i = 0; i < WINDOW_RANGE; i++) {
             mergeSingleDay(i, other.weeklyOccupancy[i]);
         }
     }
 
+    /**
+     * Compare the time mask with the isolated events and update the time mask.
+     * @param isolatedEventList IsolatedEventList
+     */
     public void mergeIsolatedEvents(IsolatedEventList isolatedEventList) {
         for (int i = 0; i < isolatedEventList.getSize(); i++) {
             IsolatedEvent event = isolatedEventList.getIsolatedEvent(i);
@@ -96,6 +107,11 @@ public class TimeMask {
         }
     }
 
+    /**
+     * Update the bits in the TimeMask object according to the recurring event.
+     * @param recurringEvent RecurringEvent
+     * @param toOccupy boolean
+     */
     public void modifyOccupancy(RecurringEvent recurringEvent, boolean toOccupy) {
         int dayIndex = recurringEvent.getDayValue();
         int startHourIndex = recurringEvent.getStartTime().getHour();

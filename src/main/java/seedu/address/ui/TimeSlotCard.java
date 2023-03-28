@@ -1,14 +1,13 @@
 package seedu.address.ui;
 
-import java.sql.Time;
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
+/**
+ * An UI component that displays free timeslot of a {@code Person}.
+ */
 public class TimeSlotCard extends UiPart<Region> {
 
     private static final String FXML = "TimeSlotListCard.fxml";
