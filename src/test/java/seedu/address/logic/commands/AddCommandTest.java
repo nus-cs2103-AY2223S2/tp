@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyShop;
@@ -24,6 +23,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
+import seedu.address.model.entity.shop.Shop;
 import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
@@ -121,6 +121,11 @@ public class AddCommandTest {
 
         @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setShop(ReadOnlyShop shop) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -396,10 +401,9 @@ public class AddCommandTest {
             requireNonNull(person);
             personsAdded.add(person);
         }
-
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyShop getShop() {
+            return new Shop();
         }
     }
 
