@@ -73,6 +73,8 @@ public class LectureUtil {
     public static String getEditLectureDescriptorDetails(EditLectureDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(" " + name.name).append(" "));
+        descriptor.getTags().ifPresent(tags -> sb.append(PREFIX_TAG).append(" " + TagUtil.getTagsStr(tags))
+                .append(" "));
         return sb.toString();
     }
 

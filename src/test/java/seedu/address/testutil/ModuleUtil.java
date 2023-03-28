@@ -67,6 +67,8 @@ public class ModuleUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getCode().ifPresent(code -> sb.append(PREFIX_CODE).append(" " + code.code).append(" "));
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(" " + name.name).append(" "));
+        descriptor.getTags().ifPresent(tags -> sb.append(PREFIX_TAG).append(" " + TagUtil.getTagsStr(tags))
+                .append(" "));
         return sb.toString();
     }
 
