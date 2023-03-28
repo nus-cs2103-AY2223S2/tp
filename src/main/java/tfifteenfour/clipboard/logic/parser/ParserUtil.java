@@ -191,6 +191,9 @@ public class ParserUtil {
     public static Task parseTask(String taskName) throws ParseException {
         requireNonNull(taskName);
         String trimmedTask = taskName.trim();
+        if (!Task.isValidTaskName(trimmedTask)) {
+            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+        }
         return new Task(trimmedTask);
     }
 
