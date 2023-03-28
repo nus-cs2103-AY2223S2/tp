@@ -59,8 +59,7 @@ public class ZoomView extends UiPart<Region> {
             InputStream image = new FileInputStream("src/main/resources/images/default-avatar.png");
             avatar.setImage(new Image(image));
             hideFields();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("IO error");
         }
 
@@ -135,24 +134,19 @@ public class ZoomView extends UiPart<Region> {
             if (rating.equals("1")) {
                 ratingStar.setImage(new Image(rating1));
                 ratingStar.setVisible(true);
-            }
-            else if (rating.equals("2")) {
+            } else if (rating.equals("2")) {
                 ratingStar.setImage(new Image(rating2));
                 ratingStar.setVisible(true);
-            }
-            else if (rating.equals("3")) {
+            } else if (rating.equals("3")) {
                 ratingStar.setImage(new Image(rating3));
                 ratingStar.setVisible(true);
-            }
-            else if (rating.equals("4")) {
+            } else if (rating.equals("4")) {
                 ratingStar.setImage(new Image(rating4));
                 ratingStar.setVisible(true);
-            }
-            else if (rating.equals("5")) {
+            } else if (rating.equals("5")) {
                 ratingStar.setImage(new Image(rating5));
                 ratingStar.setVisible(true);
-            }
-            else {
+            } else {
                 ratingStar.setVisible(false);
             }
 

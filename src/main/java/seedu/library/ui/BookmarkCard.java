@@ -129,17 +129,13 @@ public class BookmarkCard extends UiPart<Region> {
 
         if (rating.equals("1")) {
             ratingI.setImage(new Image(rating1));
-        }
-        else if (rating.equals("2")) {
+        } else if (rating.equals("2")) {
             ratingI.setImage(new Image(rating2));
-        }
-        else if (rating.equals("3")) {
+        } else if (rating.equals("3")) {
             ratingI.setImage(new Image(rating3));
-        }
-        else if (rating.equals("4")) {
+        } else if (rating.equals("4")) {
             ratingI.setImage(new Image(rating4));
-        }
-        else if (rating.equals("5")) {
+        } else if (rating.equals("5")) {
             ratingI.setImage(new Image(rating5));
         }
 
