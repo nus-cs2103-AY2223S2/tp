@@ -11,6 +11,18 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 ## Table of Contents
 
 1. [Implementation](#implementation)
+   1.  [Design](#design) 
+   2. [Architecture](#architecture)
+      1. [UI](#ui-component)
+      2. [Logic](#logic-component)
+      3. [Model](#model-component)
+      4. [Storage](#storage-component)
+   3. [Feature Implementation](#implementation-a-nameimplementation-a)
+      1. [Add module](#add-module-feature)
+      2. [Find module](#find-module-feature)
+      3. [Delete module](#delete-module-feature)
+      4. [Sort modules](#sort-modules-feature)
+      5. [View Progress/View modules](#view-progress--modules-feature)
 2. [Appendix: Requirements](#appendix)
    1. [Product Scope](#product-scope)
         1. Target User Profile
