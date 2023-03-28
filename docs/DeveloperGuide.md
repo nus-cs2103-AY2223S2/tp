@@ -275,6 +275,23 @@ the NRIC `S1234567I` belongs to an existing **volunteer**:
 
 :information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
+
+### Editing a pair by index: `edit_pair` (PROPOSED FEATURE)
+
+Proposed usage: Edits an existing pair based on their index in the pairs list.
+
+Currently, editing a pair by index has not been implemented. This feature can increase the efficiency of using FriendlyLink.
+
+Proposed format: `edit_pair INDEX [eic/ELDERLY_NRIC] [vic/VOLUNTEER_NRIC]`
+
+Proposed behaviour:
+* Edits the pair at the specified `INDEX` in the displayed pair list.
+* Any combination of the optional fields is possible but **at least one** optional field must be specified.
+* Existing values will be updated to the input values.
+
+Examples:
+* `edit_pair 1 eic/T0245267I` Edits the 1st pair so that the volunteer is paired to the elderly with NRIC `T0245267I` instead.
+
 ### Find by keyword
 
 The ```find``` command allows users to easily filter and locate the relevant elderly and volunteers, together with their related parings.
