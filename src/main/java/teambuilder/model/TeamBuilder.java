@@ -93,6 +93,18 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
         persons.setPerson(target, editedPerson);
     }
 
+    public void addTeam(Team t) {
+        teams.add(t);
+    }
+
+    /**
+     * Returns true if a team with the same identity as {@code team} exists in the address book.
+     */
+    public boolean hasTeam(Team team) {
+        requireNonNull(team);
+        return teams.contains(team);
+    }
+
     public void setTeam(Team target, Team editedteam) {
         requireNonNull(editedteam);
         teams.setTeam(target, editedteam);
