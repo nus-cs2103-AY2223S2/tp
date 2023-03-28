@@ -5,7 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Mark;
 
 /**
  * The API of the Model component.
@@ -68,6 +70,12 @@ public interface Model {
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
+    /**
+     * Marks the given person.
+     * {@code mark) must be different from {@code person}'s current marking.
+     */
+    void markPerson(Index index, Mark mark);
 
     /**
      * Return the size of list.
