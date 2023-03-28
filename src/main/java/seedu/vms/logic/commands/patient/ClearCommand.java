@@ -18,7 +18,7 @@ import seedu.vms.model.Model;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Patient List has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Patients successfully cleared";
 
     private final boolean isForce;
 
@@ -68,6 +68,6 @@ public class ClearCommand extends Command {
             throw new CommandException(errMessage);
         }
 
-        return new CommandMessage("Patients successfully cleared");
+        return new CommandMessage(MESSAGE_SUCCESS);
     }
 }
