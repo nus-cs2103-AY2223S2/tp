@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
-import java.util.ArrayList;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.DeleteCommand;
@@ -27,12 +27,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_NRIC)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
-        String[] all = argMultimap.getValue(PREFIX_NRIC).get().split(" ");
-        ArrayList<Nric> nricList = new ArrayList<>();
-        for (String individual: all) {
-            Nric nric = ParserUtil.parseNric(individual);
-            nricList.add(nric);
-        }
+        Set<Nric> nricList = ParserUtil.parseNrics(argMultimap.getAllValues(PREFIX_NRIC));
         return new DeleteCommand(nricList);
     }
 

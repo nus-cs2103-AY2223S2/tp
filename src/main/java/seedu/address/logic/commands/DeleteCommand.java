@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
-import java.util.ArrayList;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -24,26 +24,35 @@ public class DeleteCommand extends Command {
             + "Parameters: " + PREFIX_NRIC + "NRIC\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NRIC + "S1234567A";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person Count: %d";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Persons: \n";
 
-    private final ArrayList<Nric> nricList;
+    private final Set<Nric> nricList;
 
-    public DeleteCommand(ArrayList<Nric> nricList) {
+    public DeleteCommand(Set<Nric> nricList) {
         this.nricList = nricList;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        boolean throwException = false;
+        String errorMessage = "";
+        String deletedPersonMessage = MESSAGE_DELETE_PERSON_SUCCESS;
         requireNonNull(model);
 
         for (Nric nric: nricList) {
             Person personToDelete = model.findPersonByNric(nric);
             if (personToDelete == null) {
-                throw new CommandException(Messages.MESSAGE_NRIC_DOES_NOT_EXIST);
+                throwException = true;
+                errorMessage += String.format(Messages.MESSAGE_NRIC_DOES_NOT_EXIST, nric);
+            } else {
+                model.deletePerson(personToDelete);
+                deletedPersonMessage += String.format("%s\n", nric);
             }
-            model.deletePerson(personToDelete);
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, nricList.size()));
+        if (throwException) {
+            throw new CommandException(errorMessage);
+        }
+        return new CommandResult(deletedPersonMessage);
     }
 
     @Override

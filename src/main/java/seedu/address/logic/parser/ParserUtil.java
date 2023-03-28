@@ -55,6 +55,18 @@ public class ParserUtil {
         return new Nric(trimmedNric);
     }
 
+    /**
+     * Parses {@code Collection<Nric> tags} into a {@code Set<Nric>}.
+     */
+    public static Set<Nric> parseNrics(Collection<String> nrics) throws ParseException {
+        requireNonNull(nrics);
+        final Set<Nric> nricSet = new HashSet<>();
+        for (String nric : nrics) {
+            nricSet.add(parseNric(nric));
+        }
+        return nricSet;
+    }
+
 
     /**
      * Parses a {@code String name} into a {@code Name}.
