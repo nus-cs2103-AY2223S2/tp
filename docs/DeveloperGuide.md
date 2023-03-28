@@ -59,7 +59,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name} Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -75,7 +75,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -135,7 +135,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -162,7 +162,7 @@ The `add` command creates a new `Person`, which represents an Applicant in HMHer
 
 The activity diagram is as such:
 
-![AddCommand activity diagram](diagrams/AddApplicantActivityDiagram.puml)
+![AddCommand activity diagram](images/AddApplicantActivityDiagram.png)
 
 #### Feature Details
 
@@ -195,13 +195,8 @@ could introduce confusion to how `add` command is used.
 
 The `advance` command advances an `Person` in HMHero, which advances the `status` of an `Person`.
 
-
-The activity diagram is as such:
-
-![Advance activity diagram](diagrams/AdvanceActivityDiagram.puml)
-
 Here is the activity diagram showing the process of the `advance` command:
-[Add in later]()
+![Advance activity diagram](images/AdvanceActivityDiagram.png)
 
 ##### Feature Details
 1. The user specifies an applicant name and phone that represents an `Person` to be advanced.
@@ -236,12 +231,8 @@ a default behaviour when advancing an applicant's status.
 
 The `reject` command rejects an `Person` in HMHero, which rejects the `status` of an `Person`.
 
-
-The activity diagram is as such:
-[Add in later]()
-
-Here is the activity diagram showing the process of the `advance` command:
-[Add in later]()
+Here is the activity diagram showing the process of the `reject` command:
+![RejectApplicantActivityDiagram](images/RejectApplicantActivityDiagram.png)
 
 ##### Feature Details
 1. The user specifies an applicant name and phone that represents an `Person` to be rejected.
@@ -270,9 +261,9 @@ a default behaviour when rejecting an applicant's status.
 The `find` command filters applicants based on fields specified by the user. 
 Fields have to be denoted by flags. Allowed fields for filtering are `name` and `phone`.
 
-The activity diagram is as such:
+Here is the activity diagram showing the process of the `find` command:
 
-![FindCommandActivityDiagram](diagrams/FindCommandActivityDiagram.puml)
+![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
 
 #### Feature Details
 1. The user specifies one or more fields to filter through the applicant list.
@@ -295,11 +286,8 @@ and facilitate finding applicants based on multiple fields.
 The `edit` feature edits the attached attributes of a specified `Person`,which is specified by the 
 one-indexed `personList` presented to the user.
 
-The activity diagram is as such:
-[add in later]()
-
 Here is the activity diagram showing the process of the `edit` command:
-[add in later]()
+[EditApplicantActivityDiagram]()
 
 
 ##### Feature Details
@@ -330,6 +318,10 @@ the last instance of the repeat delimiter is taken during the `parse` command.
 
 ##### Overview
 The `list` command displays the full list by HMHero.
+
+Here is the activity diagram showing the process of the `list` command:
+
+![ListActivityDiagram](images/ListActivityDiagram.png)
 
 ##### Feature Details
 
@@ -398,24 +390,23 @@ The following legend describes the symbols used in this section:
 </div>
 
 
-| Priority | As a …                   | I want to …                                                          | So that …                                                                            |
-|----------|--------------------------|----------------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| `* * *`  | Hiring Manager           | List out all existing applicants                                     | I can have a glance of the status of the application cycle of all applicants.        |
-| `* * *`  | Hiring Manager           | View the number of applicants in each stage of the application cycle | I can have a glance of the status at each stage in the application cycle.            |
-| `* * *`  | Hiring Manager           | Advance the status of applicants in the application cycle            | I can move an applicant into the next stage of the application cycle                 |
-| `* * *`  | Hiring Manager           | Add applicants into HMHero                                           | I can track applicants who have applied to the department.                           |
-| `* * *`  | Hiring Manager           | Delete single applicant                                              | I can remove applicants that I do not wish to track in the application anymore.      |
-| `* * *`  | Busy Hiring Manager      | Filter for applicants by name or phone or both                       | I can view filter down from the entire list of applicants.                           |
-| `* * * ` | Senior Hiring Manager    | Identify duplicate applications of the same applicant                | I can identify whether applicants are sending multiple applications                  |
-| `* * `   | Busy Hiring Manager      | View the dates of interviews for all shortlisted applicants          | I can better schedule my future working days                                         |
-| `* * `   | Hiring Manager           | Take down some additional notes for each applicant                   | I can note down the skills that the particular applicant has.                        |
-| `* * `   | Forgetful Hiring Manager | Remind myself of interviews that coming up                           | I will not forget to attend any interview that I have scheduled                      |
-| `* * `   | Clumsy Hiring Manager    | Check whether there are any clashes in interview date and timings    | I can prevent myself from scheduling more than 1 interview in the same date and time |
-| `* `     | Clumsy Hiring Manager    | Get a confirmation message when deleting an applicant                | I can prevent accidental deletions of applicants                                     |
-| `* `     | Old Hiring Manager       | Highlight and enlarge the keywords that I am looking for             | I can easily see the keywords that I am looking for                                  |
-| `* `     | Careless Hiring Manager  | Undo recent actions or commands                                      | I can reverse commands that I have mistakenly carried out                            |
-| `* `     | Picky Hiring Manager     | Rank my applicants                                                   | It is easier for me to decide which applicant I want to hire most                    |
-
+| Priority | As a …                                | I want to …                                                       | So that …                                                                            |
+|:---------|---------------------------------------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| `* * *`  | Hiring Manager                        | List out all existing applicants                                  | I can have a glance of the status of the application cycle of all applicants.        |
+| `* * *`  | Hiring Manager                        | View the number of applicants in each application stage           | I can have a glance of the status at each stage in the application cycle.            |
+| `* * *`  | Hiring Manager                        | Advance the application stage of applicants                       | I can move an applicant into the next stage of the application cycle                 |
+| `* * *`  | Hiring Manager                        | Add applicants into HMHero                                        | I can quickly add users who have applied to the department.                          |
+| `* * *`  | Hiring Manager                        | Delete single applicant                                           | I can delete applicants that I do not wish to track in the application anymore.      |
+| `* * *`  | Busy Hiring Manager                   | Search for applicants                                             | I can view details of specific applicants                                            |
+| `* * * ` | Senior Hiring Manager                 | Identify duplicate applications from the same applicant           | I can prevent applicants from sending multiple applications                          |
+| `* * `   | Busy Hiring Manager                   | View the dates of interviews for all shortlisted applicants       | I can better schedule future working days                                            |
+| `* * `   | Hiring Manager                        | Take down some additional notes for each applicant                | I can note down additional details of an applicant, for future reference             |
+| `* * `   | Forgetful Hiring Manager              | Remind myself of interviews that coming up                        | I will not forget to attend any interview that I have scheduled                      |
+| `* * `   | Clumsy Hiring Manager                 | Check whether there are any clashes in interview date and timings | I can prevent myself from scheduling more than 1 interview in the same date and time |
+| `* `     | Clumsy Hiring Manager                 | Get a confirmation message when deleting an applicant             | I can prevent accidental deletions of applicants                                     |
+| `* `     | Old Hiring Manager                    | Highlight and enlarge the keywords that I am looking for          | I can easily see the keywords that I am looking for                                  |
+| `* `     | Careless Hiring Manager               | Undo recent actions or commands                                   | I can reverse commands that I have mistakenly carried out                            |
+| `* `     | Hiring Manager for multiple positions | Create jobs with required skill sets for each job                 | I can keep track of skill-sets needed for each job to match applicants               |
 
 ### Use cases
 
