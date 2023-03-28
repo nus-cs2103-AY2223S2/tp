@@ -480,7 +480,7 @@ If you have a project or client selected, pressing ***Enter*** in **search mode*
 
 Action | Format | Example 
 --------|------------------|------
-**Create new client** | c -cn client_name -e email -y year_of_birth -src source -mn mobile_number | `c -cn 'Alice Baker' -e alice_baker@bakers.com -y 2000`
+**Create new client** | `c -cn client_name -e email [-y year_of_birth] [-src source] [-mn mobile_number]` | `c -cn Alice Baker -e alice_baker@bakers.com -y 2000`
 **Delete an existing client** | dc -e email | `dc -e alice_baker@bakers.com`
 **Update an existing client** | uc -e email [-cn client_name] [-y year_of_birth] [-src source] [-mn mobile_number] [-e2 new_email] | `uc -e alice_baker@bakers.com -y 2002 -mn 85090234`
 **Create a project** | `p -pn project_name -e client_email [-s status] [-src source] [-d description] [-ad accepted_date] [-dd deadline_date]` | `p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075`
