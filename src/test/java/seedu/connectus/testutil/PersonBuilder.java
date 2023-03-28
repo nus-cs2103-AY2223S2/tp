@@ -195,12 +195,12 @@ public class PersonBuilder {
         }
 
         if (ccas != null) {
-            p.setModules(modules);
+            p.setCcas(ccas);
 
         }
 
         if (ccaPositions != null) {
-            p.setModules(modules);
+            p.setCcaPositions(ccaPositions);
 
         }
 
