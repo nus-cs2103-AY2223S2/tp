@@ -86,11 +86,6 @@ public interface Model {
     void setEvent(Event target, Event editedEvent);
 
     /**
-     * Returns an unmodifiable view of the upcoming event list
-     */
-    ObservableList<Event> getUpcomingEventList();
-
-    /**
      * Returns an unmodifiable view of the event list
      */
     ObservableList<Event> getEventList();
@@ -102,9 +97,21 @@ public interface Model {
     ObservableList<Event> getFilteredEventList();
 
     /**
+     * Returns an unmodifiable view of the upcoming event list
+     */
+    ObservableList<Event> getUpcomingEventList();
+
+    /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
+    /**
+     * Updates the filter of the upcoming event list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateUpcomingEventList(Predicate<Event> predicate);
 }

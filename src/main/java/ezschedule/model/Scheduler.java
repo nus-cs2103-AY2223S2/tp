@@ -6,21 +6,15 @@ import java.util.List;
 
 import ezschedule.model.event.Event;
 import ezschedule.model.event.UniqueEventList;
-import ezschedule.model.event.UpcomingEventPredicate;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 
 /**
  * Wraps all data at the scheduler level
  * Duplicates are not allowed (by .isSameEvent comparison)
  */
 public class Scheduler implements ReadOnlyScheduler {
-    private static final int DISPLAY_UPCOMING_COUNT = 1;
-    private static final UpcomingEventPredicate predicate = new UpcomingEventPredicate(DISPLAY_UPCOMING_COUNT);
 
     private final UniqueEventList events;
-
-    private FilteredList<Event> upcomingEvents;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -38,7 +32,6 @@ public class Scheduler implements ReadOnlyScheduler {
      * Listeners are attached in here.
      */
     public Scheduler() {
-        upcomingEvents = new FilteredList<>(getEventList());
 
         // Attach a listener to auto-sort events in chronological order
         events.addListChangeListener(c -> {
@@ -48,12 +41,6 @@ public class Scheduler implements ReadOnlyScheduler {
                 }
             }
         });
-
-        events.addListChangeListener(c -> {
-            while (c.next()) { /* Do nothing */ }
-            upcomingEvents.setPredicate(predicate);
-        });
-
     }
 
     /**
@@ -126,17 +113,7 @@ public class Scheduler implements ReadOnlyScheduler {
         events.remove(key);
     }
 
-    /**
-     * Returns the list of upcoming {@code Event}
-     *
-     * @return
-     */
-    public FilteredList<Event> getUpcomingEvents() {
-        return upcomingEvents;
-    }
-
     //// util methods
-
     @Override
     public String toString() {
         return events.asUnmodifiableObservableList().size() + " events";

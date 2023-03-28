@@ -14,6 +14,7 @@ import ezschedule.model.event.UpcomingEventPredicate;
 public class ShowNextCommand extends Command {
 
     public static final String COMMAND_WORD = "next";
+    public static final int SHOW_UPCOMING_COUNT_ONE = 1;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display upcoming events."
             + "\nCan be used without any parameters."
@@ -29,9 +30,9 @@ public class ShowNextCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredEventList(predicate);
+        model.updateUpcomingEventList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()));
+                String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getUpcomingEventList().size()));
     }
 
     @Override

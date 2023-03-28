@@ -8,10 +8,22 @@ import java.util.function.Predicate;
  */
 public class UpcomingEventPredicate implements Predicate<Event> {
 
-    private int upcomingCount;
+    private static int upcomingCount;
+    private int count;
 
+    /**
+     * Constructor for UpcomingEventPredicate to reuse the given count.
+     */
+    public UpcomingEventPredicate() {
+        count = upcomingCount;
+    }
+
+    /**
+     * Constructor for UpcomingEventPredicate with given count.
+     */
     public UpcomingEventPredicate(int count) {
         upcomingCount = count;
+        this.count = count;
     }
 
     // Events should be in chronological order
@@ -21,13 +33,13 @@ public class UpcomingEventPredicate implements Predicate<Event> {
             return false;
         }
 
-        return upcomingCount-- > 0;
+        return count-- > 0;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UpcomingEventPredicate // instanceof handles nulls
-                && upcomingCount == ((UpcomingEventPredicate) other).upcomingCount); // state check
+                && count == ((UpcomingEventPredicate) other).count); // state check
     }
 }

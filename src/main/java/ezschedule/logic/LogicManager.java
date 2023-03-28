@@ -61,11 +61,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Event> getUpcomingEventList() {
-        return model.getUpcomingEventList();
-    }
-
-    @Override
     public ObservableList<Event> getEventList() {
         return model.getEventList();
     }
@@ -73,6 +68,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return model.getFilteredEventList();
+    }
+
+    @Override
+    public ObservableList<Event> getUpcomingEventList() {
+        return model.getUpcomingEventList();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package ezschedule.logic.parser;
 
+import static ezschedule.logic.commands.ShowNextCommand.SHOW_UPCOMING_COUNT_ONE;
+
 import ezschedule.commons.core.Messages;
 import ezschedule.logic.commands.ShowNextCommand;
 import ezschedule.logic.parser.exceptions.ParseException;
@@ -20,7 +22,7 @@ public class ShowNextCommandParser implements Parser<ShowNextCommand> {
     public ShowNextCommand parse(String userInput) throws ParseException {
         // No argument provided, just show the next one
         if (userInput.isBlank()) {
-            return new ShowNextCommand(new UpcomingEventPredicate(1));
+            return new ShowNextCommand(new UpcomingEventPredicate(SHOW_UPCOMING_COUNT_ONE));
         }
 
         try {

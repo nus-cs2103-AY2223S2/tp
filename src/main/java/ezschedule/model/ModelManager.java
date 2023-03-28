@@ -1,6 +1,7 @@
 package ezschedule.model;
 
 import static ezschedule.commons.util.CollectionUtil.requireAllNonNull;
+import static ezschedule.logic.commands.ShowNextCommand.SHOW_UPCOMING_COUNT_ONE;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
@@ -10,6 +11,7 @@ import java.util.logging.Logger;
 import ezschedule.commons.core.GuiSettings;
 import ezschedule.commons.core.LogsCenter;
 import ezschedule.model.event.Event;
+import ezschedule.model.event.UpcomingEventPredicate;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -17,11 +19,13 @@ import javafx.collections.transformation.FilteredList;
  * Represents the in-memory model of the scheduler data.
  */
 public class ModelManager implements Model {
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Scheduler scheduler;
     private final UserPrefs userPrefs;
     private final FilteredList<Event> filteredEvents;
+    private final FilteredList<Event> upcomingEvents;
 
     /**
      * Initializes a ModelManager with the given scheduler and userPrefs.
@@ -34,6 +38,8 @@ public class ModelManager implements Model {
         this.scheduler = new Scheduler(scheduler);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEvents = new FilteredList<>(this.scheduler.getEventList());
+        upcomingEvents = new FilteredList<>(this.scheduler.getEventList());
+        updateUpcomingEventList(new UpcomingEventPredicate(SHOW_UPCOMING_COUNT_ONE));
     }
 
     public ModelManager() {
@@ -102,30 +108,24 @@ public class ModelManager implements Model {
     @Override
     public void deleteEvent(Event target) {
         scheduler.removeEvent(target);
+        updateUpcomingEventList(new UpcomingEventPredicate());
     }
 
     @Override
     public void addEvent(Event event) {
         scheduler.addEvent(event);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+        updateUpcomingEventList(new UpcomingEventPredicate());
     }
 
     @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
         scheduler.setEvent(target, editedEvent);
+        updateUpcomingEventList(new UpcomingEventPredicate());
     }
 
     //=========== Event List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
-     * {@code scheduler}
-     */
-    @Override
-    public ObservableList<Event> getUpcomingEventList() {
-        return scheduler.getUpcomingEvents();
-    }
 
     /**
      * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
@@ -142,9 +142,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Event> getUpcomingEventList() {
+        return upcomingEvents;
+    }
+
+    @Override
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateUpcomingEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        upcomingEvents.setPredicate(predicate);
     }
 
     @Override
