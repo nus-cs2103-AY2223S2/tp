@@ -74,7 +74,7 @@ List of commands:
     - [Deleting a session: ](#deleting-a-session--delete-session) `delete session`
     - [Editing a session: ](#editing-a-session--edit-session) `edit session`
     - [Selecting a session to start attendance-taking: ](#selecting-a-session-to-start-attendance-taking--select) `select`
-- [Students by Session Commands: ](#students-by-session-commands)
+- [Students under Session Commands: ](#students-under-session-page-commands)
     - [Marking attendance of a selected students: ](#marking-attendance-of-a-selected-students--mark) `mark`
     - [Unmarkikng attendance of a selected students: ](#unmarkikng-attendance-of-a-selected-students--unmark) `unmark`
     - [View the overall attendance of the session: ](#view-the-overall-attendance-of-the-session--attendance) `attendance`
