@@ -5,6 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_LECTURE_DOES_NOT_EXIST
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -109,6 +111,7 @@ public class EditLectureCommand extends EditCommand {
      */
     public static class EditLectureDescriptor {
         private LectureName name;
+        private Set<Tag> tags;
 
         public EditLectureDescriptor() {}
 
@@ -119,6 +122,7 @@ public class EditLectureCommand extends EditCommand {
          */
         public EditLectureDescriptor(EditLectureDescriptor toCopy) {
             setName(toCopy.name);
+            setTags(toCopy.tags);
         }
 
         /**
@@ -127,7 +131,7 @@ public class EditLectureCommand extends EditCommand {
          * @return True if at least one field is edited. Otherwise, false.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name);
+            return CollectionUtil.isAnyNonNull(name, tags);
         }
 
         public Optional<LectureName> getName() {
@@ -136,6 +140,28 @@ public class EditLectureCommand extends EditCommand {
 
         public void setName(LectureName name) {
             this.name = name;
+        }
+
+        /**
+         * If {@code tags} is non-null, returns an {@code Optional} containing an immutable tag set, which throws
+         * {@code UnsupportedOperationException} if modification is attempted.<p>
+         *
+         * Else, returns an {@code Optional#empty()}.
+         *
+         * @return An {@code Optional} containing an immutable tag set if {@code tags} is non-null. Otherwise,
+         *         {@code Optional#empty()}.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return tags == null ? Optional.empty() : Optional.of(Collections.unmodifiableSet(tags));
+        }
+
+        /**
+         * Replace the elements in this object's {@code tags} with the elements in {@code newTags}.
+         *
+         * @param newTags The new tags.
+         */
+        public void setTags(Set<Tag> newTags) {
+            this.tags = newTags == null ? null : new HashSet<>(newTags);
         }
 
         @Override
@@ -150,7 +176,8 @@ public class EditLectureCommand extends EditCommand {
 
             EditLectureDescriptor descriptor = (EditLectureDescriptor) other;
 
-            return getName().equals(descriptor.getName());
+            return getName().equals(descriptor.getName())
+                    && getTags().equals(descriptor.getTags());
         }
     }
 }
