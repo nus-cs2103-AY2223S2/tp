@@ -26,6 +26,11 @@
             <Insets left="10.0" right="10.0" top="5.0" />
          </padding>
       </Label>
+      <Label fx:id="nric" styleClass="label-bright" text="nric">
+         <padding>
+            <Insets left="10.0" right="10.0" top="5.0" />
+         </padding>
+      </Label>
         <Label fx:id="phone" styleClass="label-bright" text="phone">
             <padding>
                 <Insets bottom="0" left="10" right="10" top="5" />
@@ -38,7 +43,7 @@
         </FlowPane>
         <Label fx:id="email" styleClass="label-bright" text="email">
             <padding>
-                <Insets bottom="0" left="10" right="10" top="20" />
+                <Insets left="10.0" right="10.0" top="5.0" />
             </padding>
         </Label>
         <Label fx:id="address" styleClass="label-bright" text="address">
@@ -46,24 +51,24 @@
                 <Insets left="10.0" right="10.0" top="5.0" />
             </padding>
         </Label>
-      <Label fx:id="time" styleClass="label-bright" text="time">
+        <Label fx:id="medicalCondition" styleClass="label-bright" text="medical condition">
+            <padding>
+                <Insets left="10.0" right="10.0" top="5.0" />
+            </padding>
+        </Label>
+      <Label fx:id="appointment" styleClass="label-bright" text="appointment">
          <padding>
             <Insets left="10.0" right="10.0" top="5.0" />
          </padding>
       </Label>
-        <Label fx:id="medicalCondition" styleClass="label-bright" text="medical condition">
-            <padding>
-                <Insets bottom="0" left="10" right="10" top="20" />
-            </padding>
-        </Label>
       <HBox alignment="BOTTOM_CENTER" prefHeight="44.0" prefWidth="420.0">
          <children>
             <Button fx:id="generateButton" mnemonicParsing="false" text="generate" />
-            <Button fx:id="appointmentButton" mnemonicParsing="false" text="Appointment" />
+            <Button fx:id="appointmentButton" mnemonicParsing="false" onAction="#showAddAppointmentWindow" text="Appointment" />
             <Button fx:id="uploadButton" mnemonicParsing="false" text="upload" />
          </children>
       </HBox>
-      <ListView fx:id="viewDisplay" prefHeight="261.0" prefWidth="210.0" style="-fx-background-color: grey;">
+      <ListView fx:id="viewDisplay" prefHeight="261.0" prefWidth="210.0">
          <VBox.margin>
             <Insets right="8.0" top="20.0" />
          </VBox.margin>

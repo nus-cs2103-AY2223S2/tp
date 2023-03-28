@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane prefHeight="68.0" prefWidth="309.0" HBox.hgrow="ALWAYS">
+    <GridPane prefHeight="68.0" prefWidth="393.0" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="40.0" minWidth="-Infinity" prefHeight="68.0" prefWidth="308.0" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="40.0" minWidth="-Infinity" prefHeight="68.0" prefWidth="329.0" GridPane.columnIndex="0">
             <padding>
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
@@ -27,7 +27,7 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-               <Label fx:id="fileName" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="70.0" styleClass="cell_small_label" text="\$time" />
+               <Label fx:id="fileName" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="177.0" styleClass="cell_small_label" text="\$time" />
             <Button fx:id="view" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="23.0" prefWidth="93.0" text="view" textFill="#fdfafa" wrapText="true" />
             <Button fx:id="delete" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="24.0" prefWidth="89.0" text="delete" textFill="WHITE" />
             </HBox>

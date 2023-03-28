@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Age {
     public static final String MESSAGE_CONSTRAINTS =
-            "Person's age should be integer (non-integer not allowed for this version)";
+            "Person's age should be integer (non-integer not allowed for this version)\n"
+                    + "Person's age should not exceed 120";
 
     // treat age also as a string
     private String age;
@@ -35,8 +36,8 @@ public class Age {
         requireNonNull(age);
         // check if valid age
         try {
-            Integer.parseInt(age);
-            return true;
+            int ageInt = Integer.parseInt(age);
+            return ageInt <= 120;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -46,7 +47,7 @@ public class Age {
     }
     @Override
     public String toString() {
-        return age == "" ? "" : age;
+        return age == "" ? "" : "(Age: " + age + ")";
     }
 
     @Override

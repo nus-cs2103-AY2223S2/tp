@@ -95,7 +95,7 @@ class FileGeneratorTest {
                         assertEquals(doctorName, field.getValueAsString());
                         break;
                     default:
-                        assertEquals(Integer.toString(FileGenerator.getFormId()), field.getValueAsString());
+                        assertEquals(fileGenerator.getFormId(), field.getValueAsString());
                         break;
                     }
                 }

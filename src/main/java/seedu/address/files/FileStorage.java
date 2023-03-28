@@ -1,5 +1,6 @@
 package seedu.address.files;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -7,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -16,6 +18,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class FileStorage {
 
+    private static final Logger logger = Logger.getLogger(FilesManager.class.getName());
     private static final long DEFAULT_FILE_SIZE = 10 * 1024 * 1024;
     private String username;
 
@@ -157,10 +160,17 @@ public class FileStorage {
                 || extension.equalsIgnoreCase("png");
     }
 
+    /**
+     * Copies selected files to user's directory path.
+     * Only files with allowed file types and within the specified maximum file size are copied.
+     * @param selectedFiles array of files to be copied
+     * @param userDirPath path of the user's directory to copy files to
+     * @param maxSize maximum file size allowed in bytes
+     */
     private void copySelectedFiles(File[] selectedFiles, String userDirPath, long maxSize) {
 
         for (File selectedFile : selectedFiles) { // loop through each selected file
-            String fileName = selectedFile.getName();
+            String fileName = selectedFile.getName().toLowerCase();
             String extension = getFileExtension(fileName);
 
             if (isAllowedFileType(extension)) {
@@ -174,13 +184,13 @@ public class FileStorage {
                     if (fileSize <= maxSize) {
                         Files.copy(srcPath, destPath, StandardCopyOption.REPLACE_EXISTING);
                     } else {
-                        System.out.println("File size exceeds 10 MB limit");
+                        logger.warning("File size exceeds 10 MB limit");
                     }
                 } catch (IOException e) {
-                    System.out.println("Error copying file");
+                    logger.warning("Error copying file");
                 }
             } else {
-                System.out.println("Wrong File type");
+                logger.warning("Wrong file type");
             }
         }
     }

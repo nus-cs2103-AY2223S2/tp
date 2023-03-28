@@ -16,6 +16,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
     public static final String ENDTIME_BEFORE_STATRTIME = "endTime can not be before startTime";
     public static final String DIFFERENT_START_AND_END_DATE = "startTime and endTime should be at the same date";
 
+    public static final String STARTTIME_BEFORE_NOW = "startTime should not be before current time";
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddAppointmentCommand
      * and returns an AddAppointmentCommand object for execution.
@@ -34,13 +36,18 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         Index index = ParserUtil.parseIndex(indexStr);
         LocalDateTime startTime = ParserUtil.parseTime(startTimeStr);
         LocalDateTime endTime = ParserUtil.parseTime(endTimeStr);
-        if (endTime.isBefore(startTime)) {
-            throw new ParseException(ENDTIME_BEFORE_STATRTIME);
-        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime nowTime = LocalDateTime.now();
+        if (startTime.isBefore(nowTime)) {
+            throw new ParseException(STARTTIME_BEFORE_NOW);
+        }
         if (!startTime.format(formatter).equals(endTime.format(formatter))) {
             throw new ParseException(DIFFERENT_START_AND_END_DATE);
         }
+        if (endTime.isBefore(startTime)) {
+            throw new ParseException(ENDTIME_BEFORE_STATRTIME);
+        }
+
         return new AddAppointmentCommand(index, new Appointment(startTime, endTime));
     }
 }

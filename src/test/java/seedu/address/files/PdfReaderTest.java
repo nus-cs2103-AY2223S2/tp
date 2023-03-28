@@ -1,6 +1,5 @@
 package seedu.address.files;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -9,10 +8,10 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-//import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDDocument;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.api.io.TempDir;
 
 
 
@@ -46,7 +45,7 @@ class PdfReaderTest {
         assertEquals("MC.pdf", fileName);
     }
 
-    /*
+
     @Test
     void loadFile_invalidPath(@TempDir Path tempDir) {
         Path nonExistentPath = tempDir.resolve("nonexistent.pdf");
@@ -54,7 +53,7 @@ class PdfReaderTest {
 
         assertNotNull(emptyDoc);
         assertEquals(0, emptyDoc.getNumberOfPages());
-    } */
+    }
 
     @Test
     void loadFile_nullPath_throwsNullPointerException() {

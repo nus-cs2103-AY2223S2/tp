@@ -22,10 +22,10 @@
             </stylesheets>
 
             <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="450" maxWidth="720" styleClass="edge-to-edge">
-                <BorderPane fx:id="customerContainer" style="-fx-background-color: #3C424B;">
+                <BorderPane fx:id="patientContainer" style="-fx-background-color: #3C424B;">
                     <top>
                         <HBox style="-fx-background-color: #1E2229;">
-                            <Label fx:id="customerWindowHeader" style="-fx-font-size: 24px; -fx-text-fill: #E8E8E8; -fx-font-family: Arial;                                -fx-font-weight: bold;" text="Patient Info" wrapText="true" />
+                            <Label fx:id="addPatientWindowHeader" style="-fx-font-size: 24px; -fx-text-fill: #E8E8E8; -fx-font-family: Arial;                                -fx-font-weight: bold;" text="Patient Info" wrapText="true" />
                             <padding>
                                 <Insets bottom="16" left="36" right="36" top="16" />
                             </padding>
@@ -64,12 +64,12 @@
                            </HBox>
                            <HBox>
                               <children>
-                                 <Label maxWidth="65" minWidth="65" styleClass="label-bright" text="time">
+                                 <Label maxWidth="65" minWidth="65" styleClass="label-bright" text="NRIC">
                                     <HBox.margin>
                                        <Insets top="5.0" />
                                     </HBox.margin>
                                  </Label>
-                                 <TextField fx:id="time" maxWidth="200" minWidth="200" />
+                                 <TextField fx:id="nric" maxWidth="200" minWidth="200" />
                               </children>
                            </HBox>
                         </children>

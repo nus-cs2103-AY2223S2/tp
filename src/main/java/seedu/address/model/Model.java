@@ -98,4 +98,6 @@ public interface Model {
 
     void updateSearchAppointmentDate(Predicate<Person> predicate);
 
+    void updateFindAppointment(Predicate<Person> predicate);
+
 }

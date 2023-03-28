@@ -1,11 +1,18 @@
 package seedu.address.ui;
 
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -132,7 +139,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         //fileList = new FileList(logic.getFilteredPersonList(), this);
-        detailDisplay = new DetailDisplay();
+        detailDisplay = new DetailDisplay(this::executeCommand, personListPanel.getPersonListView());
         detailDisplayPlaceholder.getChildren().add(detailDisplay.getRoot());
 
     }
@@ -184,21 +191,32 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Executes the command and returns the result.
      *
-     * @see seedu.address.logic.Logic#execute(String)
+     * @see Logic#execute(String)
      */
     protected CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            String commandWord = commandText.trim().split("\\s+")[0].toLowerCase();
+            if (Arrays.asList("clear", "delete", "deletes", "deletefile").contains(commandWord)) {
+                boolean proceedWithCommand = showWarningDialog(commandWord);
+                if (!proceedWithCommand) {
+                    return new CommandResult("Operation cancelled.");
+                }
+            }
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            //@@author lxz333-reused
-            //Reused from https://github.com/AY2223S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui
-            // with minor modifications
-            detailDisplay.clearDetailDisplay();
-            detailDisplay.hideAppointmentButton();
-            detailDisplay.hideUploadButton();
-            detailDisplay.hideGenerateButton();
-            detailDisplay.hideViewDisplay();
+
+            //added to avoid clearing when doing view operations
+            if (!commandWord.contains("view")) {
+                //@@author lxz333-reused
+                //Reused from https://github.com/AY2223S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui
+                // with minor modifications
+                detailDisplay.clearDetailDisplay();
+                detailDisplay.hideAppointmentButton();
+                detailDisplay.hideUploadButton();
+                detailDisplay.hideGenerateButton();
+                detailDisplay.hideViewDisplay();
+            }
 
             if (commandResult.hasPersonToShow()) {
                 Person personToShow = commandResult.getPersonToShow();
@@ -244,5 +262,59 @@ public class MainWindow extends UiPart<Stage> {
 
     public DetailDisplay getDetailDisplay() {
         return detailDisplay;
+    }
+
+    private boolean showWarningDialog(String command) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+        //Create the OK and Cancel buttons with the event filter
+        ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButtonType = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(okButtonType, cancelButtonType);
+
+        Button okButton = (Button) alert.getDialogPane().lookupButton(okButtonType);
+        Button cancelButton = (Button) alert.getDialogPane().lookupButton(cancelButtonType);
+
+        //Consume the Enter key event when the focus is on the OK or Cancel buttons
+        okButton.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                event.consume();
+                alert.setResult(okButtonType);
+                alert.hide();
+            }
+        });
+
+        cancelButton.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                event.consume();
+                alert.setResult(cancelButtonType);
+                alert.hide();
+            }
+        });
+        if (command.equalsIgnoreCase("clear")) {
+            alert.setTitle("Warning");
+            alert.setHeaderText("Clear Address Book");
+            alert.setContentText("This operation will clear the address book. Are you sure you want to proceed?");
+        } else if (command.equalsIgnoreCase("delete")) {
+            alert.setTitle("Warning");
+            alert.setHeaderText("Delete Entry");
+            alert.setContentText("This operation will delete the selected entry. Are you sure you want to proceed?");
+        } else if (command.equalsIgnoreCase("deletes")) {
+            alert.setTitle("Warning");
+            alert.setHeaderText("Delete Multiple Entries");
+            alert.setContentText("This operation will delete multiple entries. Are you sure you want to proceed?");
+        } else if (command.equalsIgnoreCase("deletefile")) {
+            alert.setTitle("Warning");
+            alert.setHeaderText("Delete File");
+            alert.setContentText("This operation will delete selected file. Are you sure you want to proceed?");
+        } else {
+            return true;
+        }
+
+        //Show the alert and wait for user's response
+        Optional<ButtonType> result = alert.showAndWait();
+
+        //Return true if the user confirms the operation, false otherwise
+        return result.orElse(cancelButtonType) == okButtonType;
     }
 }

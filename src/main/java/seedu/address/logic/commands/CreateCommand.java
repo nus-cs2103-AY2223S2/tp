@@ -29,14 +29,20 @@ public class CreateCommand extends Command {
     public static final String MESSAGE_CREATE_MC_SUCCESS = "Generated Person: %1$s";
 
     private final Index targetIndex;
+    private final String doctorName;
+    private final String description;
     private final int days;
 
     /**
      * @param targetIndex
+     * @param doctorName
+     * @param description
      * @param days
      */
-    public CreateCommand(Index targetIndex, int days) {
+    public CreateCommand(Index targetIndex, String doctorName, String description, int days) {
         this.targetIndex = targetIndex;
+        this.doctorName = doctorName;
+        this.description = description;
         this.days = days;
     }
 
@@ -50,7 +56,7 @@ public class CreateCommand extends Command {
         }
         Person persontoGenerate = lastShownList.get(targetIndex.getZeroBased());
         FilesManager filesManager = new FilesManager(persontoGenerate);
-        filesManager.generateMc("Dr Van", "Very SIck", days);
+        filesManager.generateMc(doctorName, description, days);
         //default values for days and doctor parser will separate out information
         //changes still needed for FileManager to fully Integrate with UI
         return new CommandResult(String.format(MESSAGE_CREATE_MC_SUCCESS, persontoGenerate));
@@ -60,6 +66,9 @@ public class CreateCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof CreateCommand // instanceof handles nulls
-                && targetIndex.equals(((CreateCommand) other).targetIndex)); // state check
+                && targetIndex.equals(((CreateCommand) other).targetIndex)
+                && doctorName.equals(((CreateCommand) other).doctorName)
+                && description.equals(((CreateCommand) other).description)
+                && days == ((CreateCommand) other).days); // state check
     }
 }

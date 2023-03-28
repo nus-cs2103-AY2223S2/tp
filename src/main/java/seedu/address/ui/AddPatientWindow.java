@@ -5,8 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashSet;
@@ -29,7 +29,7 @@ import seedu.address.model.tag.Tag;
 
 
 /**
- * A pop-up window that handles the add function.
+ * A pop-up window that handles the add patient function.
  */
 public class AddPatientWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(AddPatientWindow.class);
@@ -67,7 +67,7 @@ public class AddPatientWindow extends UiPart<Stage> {
     @FXML
     private TextField age;
     @FXML
-    private TextField time;
+    private TextField nric;
 
 
     /**
@@ -167,7 +167,7 @@ public class AddPatientWindow extends UiPart<Stage> {
         name.clear();
         age.clear();
         medicalCondition.clear();
-        time.clear();
+        nric.clear();
         phone.clear();
         email.clear();
         address.clear();
@@ -239,12 +239,12 @@ public class AddPatientWindow extends UiPart<Stage> {
     }
 
     /**
-     * Get the new patient's time.
+     * Get the new patient's NRIC.
      *
-     * @return New patient's time.
+     * @return New patient's NRIC.
      */
-    String getPatientTimeInput() {
-        return time.getText();
+    String getPatientNricInput() {
+        return nric.getText();
     }
 
     /**
@@ -270,7 +270,7 @@ public class AddPatientWindow extends UiPart<Stage> {
      *
      * @return New patient's tags.
      */
-    HashSet<String> getCustomerTagsInput() {
+    HashSet<String> getPatientTagsInput() {
         return getTags();
     }
 
@@ -287,14 +287,14 @@ public class AddPatientWindow extends UiPart<Stage> {
         addPatientCommandInput += PREFIX_ADDRESS + getPatientAddressInput() + " ";
 
 
-        HashSet<String> uniqueTags = getCustomerTagsInput();
+        HashSet<String> uniqueTags = getPatientTagsInput();
 
         for (String tag : uniqueTags) {
             addPatientCommandInput += PREFIX_TAG + tag + " ";
         }
 
-        if (!getPatientTimeInput().isBlank()) {
-            addPatientCommandInput += PREFIX_SCHEDULE + getPatientTimeInput() + " ";
+        if (!getPatientNricInput().isBlank()) {
+            addPatientCommandInput += PREFIX_NRIC + getPatientNricInput() + " ";
         }
         if (!getPatientMedicalConditionInput().isBlank()) {
             addPatientCommandInput += PREFIX_MEDICAL + getPatientMedicalConditionInput() + " ";

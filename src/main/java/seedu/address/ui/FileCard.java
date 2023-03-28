@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import javax.swing.JOptionPane;
+
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,6 +12,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.files.FilesManager;
+
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -58,8 +62,23 @@ public class FileCard extends UiPart<Region> {
         delete.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                filesManager.deleteFile(file.getFileName());
-                file.delete();
+                Runnable runnable = () -> {
+                    int response = JOptionPane.showConfirmDialog(null,
+                                "Are you sure you want to delete this file?",
+                                "Confirm Delete",
+                                JOptionPane.YES_NO_OPTION,
+                                JOptionPane.WARNING_MESSAGE);
+                    if (response == JOptionPane.YES_OPTION) {
+                        filesManager.deleteFile(file.getFileName());
+                        // Perform the UI update on the JavaFX Application Thread
+                        Platform.runLater(() -> {
+                            file.delete();
+                        });
+                    }
+                };
+                Thread thread = new Thread(runnable);
+                thread.start();
+
             }
         });
     }

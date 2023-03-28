@@ -21,11 +21,10 @@ import seedu.address.model.person.Person;
  */
 public class FileGenerator {
 
-    //store this field at Json
-    private static int formId = 0;
     private Person person;
     private String doctorName;
     private String description;
+    private String formId;
     private int days;
 
     /**
@@ -41,10 +40,9 @@ public class FileGenerator {
         this.doctorName = doctorName;
         this.description = description;
         this.days = days;
-        formId++;
     }
 
-    public static int getFormId() {
+    public String getFormId() {
         return formId;
     }
 
@@ -53,15 +51,16 @@ public class FileGenerator {
      */
     public void createMcForm(String filename) {
         try {
-            // Load the original PDF form
+            //Load the original PDF form
             PDDocument pdfDocument = PDDocument.load(new File("lib/MC.pdf"));
 
-            // Get the PDF form fields
+            //Get the PDF form fields
             PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
             PDAcroForm acroForm = docCatalog.getAcroForm();
 
-            //Get all fields
 
+            formId = filename.replace(".pdf", "");
+            //Get all fields
             List<PDField> fieldList = acroForm.getFields();
 
             for (PDField field: fieldList) {
@@ -91,7 +90,7 @@ public class FileGenerator {
                         field.setValue(doctorName);
                         break;
                     default:
-                        field.setValue(Integer.toString(formId));
+                        field.setValue(formId);
                         break;
                     }
                 }
