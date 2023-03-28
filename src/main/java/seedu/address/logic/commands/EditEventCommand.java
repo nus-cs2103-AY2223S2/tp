@@ -85,7 +85,6 @@ public class EditEventCommand extends Command {
         }
 
         model.setEvent(eventToEdit, editedEvent);
-        // model.updateEventList (Need to do)
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 
