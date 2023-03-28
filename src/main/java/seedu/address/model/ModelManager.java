@@ -53,7 +53,7 @@ public class ModelManager implements Model {
         this.todoList = new TodoList(todoList);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredInternships = new FilteredList<>(this.addressBook.getInternshipList());
-        sortedFilteredInternships = new SortedList<>(filteredInternships, new CompanyNameComparator());
+        sortedFilteredInternships = new SortedList<>(filteredInternships);
         filteredTodo = new FilteredList<>(this.todoList.getTodoList());
         filteredNote = new FilteredList<>(this.noteList.getNoteList());
         cachedInternshipList = new ArrayList<>();

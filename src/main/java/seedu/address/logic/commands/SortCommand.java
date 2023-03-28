@@ -31,6 +31,9 @@ public class SortCommand extends Command {
             + "[" + PREFIX_DATE + "INTERVIEW_DATE]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_DATE;
 
+    public static final Prefix[] PREFIXES_SUPPORTED =
+            {PREFIX_COMPANY_NAME, PREFIX_JOB_TITLE, PREFIX_STATUS, PREFIX_DATE};
+
     private final Comparator<InternshipApplication> comparator;
 
     public SortCommand(Comparator<InternshipApplication> comparator) {

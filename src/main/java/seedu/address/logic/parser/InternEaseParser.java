@@ -23,6 +23,7 @@ import seedu.address.logic.commands.ListArchivedCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RevertAllCommand;
 import seedu.address.logic.commands.RevertCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.task.FindTaskCommand;
 import seedu.address.logic.commands.task.ListTaskCommand;
 import seedu.address.logic.commands.task.note.AddNoteCommand;
@@ -41,7 +42,7 @@ import seedu.address.logic.parser.task.TaskParser;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class InternEaseParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -52,7 +53,7 @@ public class AddressBookParser {
     /**
      * Creates a TaskParser instance for every InternEase parser object.
      */
-    public AddressBookParser() {
+    public InternEaseParser() {
         taskParser = new TaskParser();
     }
 
@@ -87,6 +88,9 @@ public class AddressBookParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
