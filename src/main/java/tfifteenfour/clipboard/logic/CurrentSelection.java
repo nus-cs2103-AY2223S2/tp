@@ -9,6 +9,7 @@ import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Remark;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentId;
+import tfifteenfour.clipboard.model.task.Task;
 
 /**
  * Class to keep track of current selections.
@@ -19,6 +20,7 @@ public class CurrentSelection {
     private static final Course NON_EXISTENT_COURSE = new Course("NONEXISTENTCOURSE");
     private static final Group NON_EXISTENT_GROUP = new Group("NONEXISTENTGROUP");
     private static final Session NON_EXISTENT_SESSION = new Session("NONEXISTENTSESSION");
+    private static final Task NON_EXISTENT_TASK = new Task("NONEXISTENTTASK");
 
     private PageType currentPage;
 
@@ -26,6 +28,7 @@ public class CurrentSelection {
     private Group selectedGroup = NON_EXISTENT_GROUP;
     private Student selectedStudent = NON_EXISTENT_STUDENT;
     private Session selectedSession = NON_EXISTENT_SESSION;
+    private Task selectedTask = NON_EXISTENT_TASK;
 
     public CurrentSelection() {
         this.currentPage = PageType.COURSE_PAGE;
@@ -73,6 +76,15 @@ public class CurrentSelection {
         this.currentPage = PageType.SESSION_STUDENT_PAGE;
     }
 
+    /**
+     * Setter for selectedTask.
+     * @param task to be set.
+     */
+    public void selectTask(Task task) {
+        this.selectedTask = task;
+        this.currentPage = PageType.TASK_STUDENT_PAGE;
+    }
+
     public void selectStudent(Student student) {
         this.selectedStudent = student;
     }
@@ -95,6 +107,10 @@ public class CurrentSelection {
 
     public Session getSelectedSession() {
         return this.selectedSession;
+    }
+
+    public Task getSelectedTask() {
+        return this.selectedTask;
     }
 
     /**
@@ -128,6 +144,23 @@ public class CurrentSelection {
         this.selectedSession = NON_EXISTENT_SESSION;
         this.currentPage = PageType.SESSION_PAGE;
     }
+
+    /**
+     * Navigates current page from task page to group page.
+     */
+    public void navigateBackFromTaskPage() {
+        this.selectedGroup = NON_EXISTENT_GROUP;
+        this.currentPage = PageType.GROUP_PAGE;
+    }
+
+    /**
+     * Navigates current page from task student page to task page.
+     */
+    public void navigateBackFromTaskStudentPage() {
+        this.selectedSession = NON_EXISTENT_SESSION;
+        this.currentPage = PageType.TASK_PAGE;
+    }
+
     /**
      * Resets current selected page to main course page.
      */
