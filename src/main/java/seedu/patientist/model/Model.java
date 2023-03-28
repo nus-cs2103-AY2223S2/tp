@@ -1,6 +1,7 @@
 package seedu.patientist.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -157,6 +158,11 @@ public interface Model {
      * @param editedWard
      */
     void setWard(Ward target, Ward editedWard);
+
+    /**
+     * Returns {@code List} of ward names in the model.
+     */
+    List<String> getWardNames();
 
     /**
      * Returns the Ward object with the associated name in the Patientist, if it exists.

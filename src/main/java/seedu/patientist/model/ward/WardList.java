@@ -3,6 +3,7 @@ package seedu.patientist.model.ward;
 import static seedu.patientist.commons.util.AppUtil.checkArgument;
 import static seedu.patientist.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,6 +25,17 @@ public class WardList implements Iterable<Ward> {
     private final ObservableList<Ward> internalList = FXCollections.observableArrayList();
     private final ObservableList<Ward> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
+    /**
+     * Returns a List of Strings of ward names of all wards in the WardList.
+     */
+    public List<String> getWardNameList() {
+        List<String> result = new ArrayList<>();
+        for (Ward ward : internalList) {
+            result.add(ward.getWardName());
+        }
+        return result;
+    }
 
     /**
      * Sets internal wardlist as {@code wards}.

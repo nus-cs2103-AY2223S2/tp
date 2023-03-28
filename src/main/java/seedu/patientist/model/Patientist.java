@@ -210,6 +210,13 @@ public class Patientist implements ReadOnlyPatientist {
     //// ward level methods
 
     /**
+     * Returns {@code List} of ward names in this patientist.
+     */
+    public List<String> getWardNames() {
+        return this.wards.getWardNameList();
+    }
+
+    /**
      * Returns true if this Patientist contains a ward with the same name as the target.
      */
     public boolean hasWard(Ward ward) {

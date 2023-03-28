@@ -28,11 +28,14 @@ import static seedu.patientist.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.patientist.logic.commands.CommandTestUtil.VALID_PID_BOB;
 import static seedu.patientist.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.patientist.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.patientist.logic.commands.CommandTestUtil.VALID_WARD_AMY;
+import static seedu.patientist.logic.commands.CommandTestUtil.VALID_WARD_BOB;
+import static seedu.patientist.logic.commands.CommandTestUtil.WARD_DESC_AMY;
+import static seedu.patientist.logic.commands.CommandTestUtil.WARD_DESC_BOB;
 import static seedu.patientist.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.patientist.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.patientist.testutil.TypicalStaff.AMY;
 import static seedu.patientist.testutil.TypicalStaff.BOB;
-import static seedu.patientist.testutil.TypicalWards.VALID_WARD_NAME;
 
 import org.junit.jupiter.api.Test;
 
@@ -56,35 +59,35 @@ public class AddStaffCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB,
-                new AddStaffCommand(VALID_WARD_NAME, expectedStaff));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB + WARD_DESC_BOB,
+                new AddStaffCommand(VALID_WARD_BOB, expectedStaff));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB,
-                new AddStaffCommand(VALID_WARD_NAME, expectedStaff));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB + WARD_DESC_BOB,
+                new AddStaffCommand(VALID_WARD_BOB, expectedStaff));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB,
-                new AddStaffCommand(VALID_WARD_NAME, expectedStaff));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB + WARD_DESC_BOB,
+                new AddStaffCommand(VALID_WARD_BOB, expectedStaff));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB,
-                new AddStaffCommand(VALID_WARD_NAME, expectedStaff));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB + WARD_DESC_BOB,
+                new AddStaffCommand(VALID_WARD_BOB, expectedStaff));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB,
-                new AddStaffCommand(VALID_WARD_NAME, expectedStaff));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB + WARD_DESC_BOB,
+                new AddStaffCommand(VALID_WARD_BOB, expectedStaff));
 
         // multiple tags - all accepted
         Staff expectedStaffMultipleTags = new StaffBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND, staffTag)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB,
-                        new AddStaffCommand(VALID_WARD_NAME, expectedStaffMultipleTags));
+                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB + WARD_DESC_BOB,
+                        new AddStaffCommand(VALID_WARD_BOB, expectedStaffMultipleTags));
     }
 
     @Test
@@ -92,7 +95,7 @@ public class AddStaffCommandParserTest {
         // zero tags
         Staff expectedStaff = new StaffBuilder(AMY).withTags(staffTag).build();
         assertParseSuccess(parser, NAME_DESC_AMY + PID_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY, new AddStaffCommand(VALID_WARD_NAME, expectedStaff));
+                + ADDRESS_DESC_AMY + WARD_DESC_AMY, new AddStaffCommand(VALID_WARD_AMY, expectedStaff));
     }
 
     @Test
@@ -128,35 +131,35 @@ public class AddStaffCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB + WARD_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB, Phone.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB + WARD_DESC_BOB, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB, Email.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB + WARD_DESC_BOB, Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB, Address.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB + WARD_DESC_BOB, Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND + PID_DESC_BOB, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_TAG_DESC + VALID_TAG_FRIEND + PID_DESC_BOB + WARD_DESC_BOB, Tag.MESSAGE_CONSTRAINTS);
 
         // invalid pid
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_PID_DESC + TAG_DESC_HUSBAND + VALID_TAG_FRIEND, IdNumber.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_PID_DESC
+                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + WARD_DESC_BOB, IdNumber.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + PID_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+                + PID_DESC_BOB + WARD_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB,
+                        + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB + WARD_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE));
     }
 }
