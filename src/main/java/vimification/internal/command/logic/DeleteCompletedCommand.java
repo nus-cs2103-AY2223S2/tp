@@ -46,7 +46,7 @@ public class DeleteCompletedCommand extends UndoableLogicCommand{
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || other instanceof DeleteCommand;
+                || other instanceof DeleteTaskCommand;
     }
 
 }

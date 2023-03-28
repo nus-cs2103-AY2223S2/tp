@@ -10,23 +10,22 @@ import static vimification.commons.util.CollectionUtil.requireAllNonNull;
 public abstract class Task {
 
     private String description;
-    private boolean isDone;
+    private Status status;
     private Priority priority;
     private Set<String> tags;
 
     /**
      * Every field must be present and not null.
      */
-    Task(String description, boolean isDone, Priority priority) {
+    Task(String description, Status status, Priority priority) {  //used when converting from storage
         requireAllNonNull(description, priority);
         this.description = description;
-        this.isDone = isDone;
+        this.status = status;
         this.priority = priority;
         this.tags = new HashSet<>();
     }
-
-    Task(String description, boolean isDone) {
-        this(description, isDone, Priority.UNKNOWN);
+    Task(String description) {     //used when creating new tasks
+        this(description, Status.NOT_DONE, Priority.UNKNOWN);
     }
 
     public String getDescription() {
@@ -37,8 +36,12 @@ public abstract class Task {
         return priority;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
     public boolean isDone() {
-        return isDone;
+        return status.equals(Status.COMPLETED);
     }
 
     public void setDescription(String description) {
@@ -60,12 +63,13 @@ public abstract class Task {
         this.priority = Priority.fromInt(level);
     }
 
-    public void mark() {
-        isDone = true;
+    public void setStatus(Status status) {
+        requireNonNull(status);
+        this.status = status;
     }
 
-    public void unmark() {
-        isDone = false;
+    public void setStatus(int level) {
+        this.status = Status.fromInt(level);
     }
 
     public boolean containsKeyword(String keyword) {
@@ -108,7 +112,7 @@ public abstract class Task {
             return false;
         }
         Task otherTask = (Task) other;
-        return otherTask.description.equals(description) && otherTask.isDone == isDone;
+        return otherTask.description.equals(description) && otherTask.status.equals(status);
     }
 
     @Override
@@ -117,7 +121,9 @@ public abstract class Task {
         builder.append("description: ")
                 .append(description)
                 .append("; status: ")
-                .append(isDone ? "done" : "not done");
+                .append(status.toString())
+                .append("; priority: ")
+                .append(priority.toString());
         return builder.toString();
     }
 }

@@ -15,21 +15,11 @@ public class JsonAdaptedEvent extends JsonAdaptedTask {
     private final LocalDateTime startDateTime;
     private final LocalDateTime endDateTime;
 
-    @JsonCreator
-    public JsonAdaptedEvent(
-            @JsonProperty("description") String description,
-            @JsonProperty("isDone") boolean isDone,
-            @JsonProperty("startDateTime") LocalDateTime startDateTime,
-            @JsonProperty("startEndTime") LocalDateTime endDateTime) {
-        super(description, isDone);
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
-    }
 
-    public JsonAdaptedEvent(Event task) {
-        super(task);
-        startDateTime = task.getStartDateTime();
-        endDateTime = task.getEndDateTime();
+    public JsonAdaptedEvent(Event event) {
+        super(event.getDescription(), event.getStatus(), event.getPriority());
+        startDateTime = event.getStartDateTime();
+        endDateTime = event.getEndDateTime();
     }
 
     /**
@@ -56,6 +46,6 @@ public class JsonAdaptedEvent extends JsonAdaptedTask {
          * IllegalValueException(Description.MESSAGE_CONSTRAINTS); } final DateTime modelStartDate =
          * new DateTime(startDate); final DateTime modelEndDate = new DateTime(endDate);
          */
-        return new Event(description, isDone, startDateTime, endDateTime);
+        return new Event(description, status, priority, startDateTime, endDateTime);
     }
 }

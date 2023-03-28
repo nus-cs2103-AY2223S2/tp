@@ -108,16 +108,20 @@ public class LogicTaskList {
     /**
      * Marks the task with the specified index as done.
      */
+    /**
     public void mark(int index) {
         tasks.get(index).mark();
     }
+     **/
 
     /**
      * Unmarks the task with the specified index as not done.
      */
+    /**
     public void unmark(int index) {
         tasks.get(index).unmark();
     }
+     **/
 
     public void setPriority(int index, int newLevel) {
         tasks.get(index).setPriority(newLevel);
@@ -133,6 +137,14 @@ public class LogicTaskList {
 
     public Priority getPriority(int index) {
         return tasks.get(index).getPriority();
+    }
+
+    public String getDescription(int index) {
+        return tasks.get(index).getDescription();
+    }
+
+    public void setDescription(int index, String newDescription) {
+        tasks.get(index).setDescription(newDescription);
     }
 
     public List<Task> removeAllDone() {

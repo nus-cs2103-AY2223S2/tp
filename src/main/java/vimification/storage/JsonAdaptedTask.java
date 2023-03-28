@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import vimification.commons.exceptions.IllegalValueException;
+import vimification.model.task.Deadline;
+import vimification.model.task.Priority;
+import vimification.model.task.Status;
 import vimification.model.task.Task;
 
 /**
@@ -22,23 +25,29 @@ public abstract class JsonAdaptedTask {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
     final String description;
-    final boolean isDone;
+    final Status status;
+    final Priority priority;
 
     @JsonCreator
     public JsonAdaptedTask(
             @JsonProperty("description") String description,
-            @JsonProperty("isDone") boolean isDone) {
+            @JsonProperty("status") Status status,
+            @JsonProperty("priority") Priority priority) {
         this.description = description;
-        this.isDone = isDone;
+        this.status = status;
+        this.priority = priority;
     }
+
 
     /**
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task task) {
         description = task.getDescription();
-        isDone = task.isDone();
+        status = task.getStatus();
+        priority = task.getPriority();
     }
+
 
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.

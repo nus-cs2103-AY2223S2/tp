@@ -30,7 +30,7 @@ public class UnmarkCommand extends UndoableLogicCommand {
     public CommandResult execute(LogicTaskList taskList) throws IndexOutOfBoundsException, CommandException {
         requireNonNull(taskList);
         int zero_based_index = targetIndex.getZeroBased();
-        taskList.unmark(zero_based_index);
+        //taskList.unmark(zero_based_index);
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
     }
 
@@ -38,7 +38,7 @@ public class UnmarkCommand extends UndoableLogicCommand {
     public CommandResult undo(LogicTaskList taskList) throws CommandException {
         requireNonNull(taskList);
         int zero_based_index = targetIndex.getZeroBased();
-        taskList.mark(zero_based_index);
+        //taskList.mark(zero_based_index);
         return new CommandResult(UNDO_MESSAGE);
     }
 

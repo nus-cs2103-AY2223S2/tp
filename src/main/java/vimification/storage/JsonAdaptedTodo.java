@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import vimification.commons.exceptions.IllegalValueException;
+import vimification.model.task.Priority;
+import vimification.model.task.Status;
 import vimification.model.task.Task;
 import vimification.model.task.Todo;
 
@@ -15,13 +17,16 @@ public class JsonAdaptedTodo extends JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTodo(
             @JsonProperty("description") String description,
-            @JsonProperty("isDone") boolean isDone) {
-        super(description, isDone);
+            @JsonProperty("status") Status status,
+            @JsonProperty("priority") Priority priority) {
+        super(description, status, priority);
     }
 
-    public JsonAdaptedTodo(Todo task) {
-        super(task);
+    @JsonCreator
+    public JsonAdaptedTodo(Todo todo) {
+        super(todo);
     }
+
 
     public Task toModelType() throws IllegalValueException {
         // TODO: add input validation
@@ -36,7 +41,7 @@ public class JsonAdaptedTodo extends JsonAdaptedTask {
          * (!Type.isValidType(type)) { // throw new IllegalValueException(Type.MESSAGE_CONSTRAINTS);
          * // } // final Type modelType = new Type(type);
          */
-        return new Todo(description, isDone);
+        return new Todo(description, status, priority);
     }
 }
 

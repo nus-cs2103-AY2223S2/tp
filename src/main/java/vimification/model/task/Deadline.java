@@ -7,14 +7,16 @@ public class Deadline extends Task {
 
     private LocalDateTime deadline;
 
-    public Deadline(String description, boolean isDone, LocalDateTime deadline) {
-        super(description, isDone);
+    public Deadline(String description, Status status, Priority priority, LocalDateTime deadline) {
+        super(description, status, priority);
         requireNonNull(deadline);
         this.deadline = deadline;
     }
 
     public Deadline(String description, LocalDateTime deadline) {
-        this(description, false, deadline);
+        super(description);
+        requireNonNull(deadline);
+        this.deadline = deadline;
     }
 
     public LocalDateTime getDeadline() {
@@ -39,7 +41,7 @@ public class Deadline extends Task {
 
     @Override
     public Deadline clone() {
-        return new Deadline(getDescription(), isDone(), deadline);
+        return new Deadline(getDescription(), getStatus(), getPriority(), deadline);
     }
 
     @Override
@@ -67,10 +69,8 @@ public class Deadline extends Task {
     }
 
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("Deadline ")
-                .append(super.toString())
-                .append("; by: ")
+        final StringBuilder builder = new StringBuilder(super.toString());
+        builder.append("; by: ")
                 .append(getDeadline());
         return builder.toString();
     }

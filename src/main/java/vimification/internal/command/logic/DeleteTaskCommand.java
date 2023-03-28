@@ -11,7 +11,7 @@ import vimification.model.task.Task;
 /**
  * Deletes a task identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends UndoableLogicCommand {
+public class DeleteTaskCommand extends UndoableLogicCommand {
 
     public static final String COMMAND_WORD = "d";
 
@@ -29,7 +29,7 @@ public class DeleteCommand extends UndoableLogicCommand {
     private final Index targetIndex;
     private Task deletedTask;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         this.deletedTask = null;
     }
@@ -52,7 +52,7 @@ public class DeleteCommand extends UndoableLogicCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex));
+                || (other instanceof DeleteTaskCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteTaskCommand) other).targetIndex));
     }
 }

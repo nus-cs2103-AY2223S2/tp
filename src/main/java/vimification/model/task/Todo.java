@@ -4,17 +4,18 @@ import java.time.LocalDateTime;
 
 public class Todo extends Task {
 
-    public Todo(String description, boolean isDone) {
-        super(description, isDone);
+    public Todo(String description, Status status, Priority priority) {
+        super(description, status, priority);
     }
 
     public Todo(String description) {
-        this(description, false);
+        super(description);
     }
+
 
     @Override
     public Todo clone() {
-        return new Todo(getDescription(), isDone());
+        return new Todo(getDescription(), getStatus(), getPriority());
     }
 
     @Override

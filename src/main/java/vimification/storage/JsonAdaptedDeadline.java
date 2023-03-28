@@ -7,7 +7,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import vimification.commons.exceptions.IllegalValueException;
 import vimification.model.task.Deadline;
+import vimification.model.task.Priority;
+import vimification.model.task.Status;
 import vimification.model.task.Task;
+import vimification.model.task.Todo;
 
 public class JsonAdaptedDeadline extends JsonAdaptedTask {
 
@@ -16,15 +19,17 @@ public class JsonAdaptedDeadline extends JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedDeadline(
             @JsonProperty("description") String description,
-            @JsonProperty("isDone") boolean isDone,
+            @JsonProperty("status") Status status,
+            @JsonProperty("priority") Priority priority,
             @JsonProperty("deadline") LocalDateTime deadline) {
-        super(description, isDone);
+        super(description, status, priority);
         this.deadline = deadline;
     }
 
-    public JsonAdaptedDeadline(Deadline task) {
-        super(task);
-        deadline = task.getDeadline();
+    @JsonCreator
+    public JsonAdaptedDeadline(Deadline deadline) {
+        super(deadline);
+        this.deadline = deadline.getDeadline();
     }
 
     public Task toModelType() throws IllegalValueException {
@@ -45,6 +50,6 @@ public class JsonAdaptedDeadline extends JsonAdaptedTask {
          * IllegalValueException(Description.MESSAGE_CONSTRAINTS); } final DateTime modelDate = new
          * DateTime(deadline);
          */
-        return new Deadline(description, isDone, deadline);
+        return new Deadline(description, status, priority, deadline);
     }
 }

@@ -8,17 +8,19 @@ public class Event extends Task {
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
 
-    public Event(String description, boolean isDone,
+    public Event(String description, Status status, Priority priority,
             LocalDateTime startDateTime,
             LocalDateTime endDateTime) {
-        super(description, isDone);
+        super(description, status, priority);
         requireAllNonNull(startDateTime, endDateTime);
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
     }
 
     public Event(String description, LocalDateTime startDateTime, LocalDateTime endDateTime) {
-        this(description, false, startDateTime, endDateTime);
+        super(description);
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
     }
 
     public LocalDateTime getStartDateTime() {
@@ -39,7 +41,7 @@ public class Event extends Task {
 
     @Override
     public Event clone() {
-        return new Event(getDescription(), isDone(), startDateTime, endDateTime);
+        return new Event(getDescription(), getStatus(), getPriority(), startDateTime, endDateTime);
     }
 
     @Override
