@@ -26,7 +26,7 @@ public class ReviewCommand extends Command {
             + "Parameter: INDEX (must be a positive integer).\n"
             + "Flags: -e -m -h for EASY, MEDIUM, HARD tags\n"
             + "Example (to test all cards in deck 1): " + COMMAND_WORD + " 1\n"
-            + "Example (to test MEDIUM and HARD cards in deck 1): " + COMMAND_WORD + " 1 -m -h"
+            + "Example (to test MEDIUM and HARD cards in deck 1): " + COMMAND_WORD + " 1 -m -h\n"
             + "No other input is allowed between the flags.";
 
     public static final String MESSAGE_SUCCESS = "Deck to be reviewed: %1$s\nReviewing cards of %2$s";
