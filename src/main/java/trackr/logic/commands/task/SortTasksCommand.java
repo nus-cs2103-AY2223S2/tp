@@ -1,12 +1,12 @@
 package trackr.logic.commands.task;
 
+import static java.util.Objects.requireNonNull;
+
 import trackr.commons.core.Messages;
 import trackr.logic.commands.Command;
 import trackr.logic.commands.CommandResult;
 import trackr.model.Model;
 import trackr.model.task.SortTasksComparator;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Sorts all task in task list by their statuses and deadlines.

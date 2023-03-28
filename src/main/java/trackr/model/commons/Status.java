@@ -1,7 +1,5 @@
 package trackr.model.commons;
 
-import trackr.model.task.TaskStatus;
-
 import static trackr.commons.util.AppUtil.checkArgument;
 import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 
