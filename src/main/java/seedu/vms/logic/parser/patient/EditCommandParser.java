@@ -22,6 +22,7 @@ import seedu.vms.logic.parser.CommandParser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.GroupName;
+import seedu.vms.model.patient.Patient;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -64,6 +65,12 @@ public class EditCommandParser implements CommandParser {
 
         if (!editPatientDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+
+        Optional<String> errMessage = Patient.validateParams(editPatientDescriptor.getAllergies(),
+                editPatientDescriptor.getVaccines());
+        if (errMessage.isPresent()) {
+            throw new ParseException(errMessage.get());
         }
 
         return new EditCommand(index, editPatientDescriptor);

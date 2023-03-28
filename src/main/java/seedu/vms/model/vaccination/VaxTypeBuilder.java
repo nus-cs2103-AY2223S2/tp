@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.commons.util.AppUtil;
+import seedu.vms.commons.util.StringUtil;
 import seedu.vms.model.Age;
 import seedu.vms.model.GroupName;
 
@@ -15,7 +17,6 @@ import seedu.vms.model.GroupName;
  */
 public class VaxTypeBuilder {
     private static final String FORMAT_IVE_MESSAGE = "The following vaccination constraints have been violated\n%s";
-    private static final String FORMAT_CONSTRAINTS = "- %s\n";
 
     private final Optional<GroupName> setName;
     private final Optional<HashSet<GroupName>> setGrps;
@@ -144,33 +145,22 @@ public class VaxTypeBuilder {
                 List<Requirement> historyReq) {
         ArrayList<String> errMessages = new ArrayList<>();
 
-        if (!VaxType.isValidGroups(groups)) {
+        if (!AppUtil.isWithinLimit(groups, VaxType.LIMIT_GROUPS)) {
             errMessages.add(VaxType.MESSAGE_GROUPS_CONSTRAINTS);
         }
         if (!VaxType.isValidRange(minAge, maxAge)) {
             errMessages.add(VaxType.MESSAGE_AGE_CONSTRAINTS);
         }
-        if (!VaxType.isValidIngredients(ingredients)) {
+        if (!AppUtil.isWithinLimit(ingredients, VaxType.LIMIT_INGREDIENTS)) {
             errMessages.add(VaxType.MESSAGE_INGREDIENTS_CONSTRAINTS);
         }
-        if (!VaxType.isValidHistoryReq(historyReq)) {
+        if (!AppUtil.isWithinLimit(historyReq, VaxType.LIMIT_HISTORY_REQ)) {
             errMessages.add(VaxType.MESSAGE_HISTORY_REQ_CONSTRAINTS);
         }
 
         if (errMessages.isEmpty()) {
             return Optional.empty();
         }
-        return Optional.ofNullable(formatErrorMessage(errMessages));
-    }
-
-
-    private String formatErrorMessage(List<String> errMessages) {
-        StringBuilder builder = new StringBuilder();
-
-        for (String message : errMessages) {
-            builder.append(String.format(FORMAT_CONSTRAINTS, message));
-        }
-
-        return String.format(FORMAT_IVE_MESSAGE, builder.toString());
+        return Optional.ofNullable(StringUtil.formatErrorMessage(errMessages, FORMAT_IVE_MESSAGE));
     }
 }

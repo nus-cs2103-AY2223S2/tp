@@ -710,7 +710,9 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to handle the following limits without any noticeable sluggishness in performance on typical usage:
-   1. 1000 patients.
+   1. 1000 patients, each with a limit of:
+      1. 100 allergies
+      2. 30 vaccines
    2. 30 vaccination types, each with a limit of:
       1. 10 groups
       2. 30 ingredients

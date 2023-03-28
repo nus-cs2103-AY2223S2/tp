@@ -2,11 +2,15 @@ package seedu.vms.model.patient;
 
 import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+import seedu.vms.commons.util.AppUtil;
+import seedu.vms.commons.util.StringUtil;
 import seedu.vms.model.GroupName;
 
 /**
@@ -16,6 +20,15 @@ import seedu.vms.model.GroupName;
  * immutable.
  */
 public class Patient {
+    public static final int LIMIT_ALLERGIES = 100;
+    public static final int LIMIT_VACCINES = 30;
+
+    private static final String FORMAT_IVE_MESSAGE = "The following patient constraints have been violated\n%s";
+
+    public static final String MESSAGE_ALLERGIES_CONSTRAINTS = String
+            .format("Only a maximum of %d allergies are allowed", LIMIT_ALLERGIES);
+    public static final String MESSAGE_VACCINES_CONSTRAINTS = String
+            .format("Only a maximum of %d vaccines are allowed", LIMIT_VACCINES);
 
     // Identity fields
     private final Name name;
@@ -33,6 +46,9 @@ public class Patient {
     public Patient(Name name, Phone phone, Dob dob, BloodType bloodType, Set<GroupName> allergies,
             Set<GroupName> vaccines) {
         requireAllNonNull(name, phone, dob, bloodType, allergies, vaccines);
+
+        AppUtil.checkArgument(AppUtil.isWithinLimit(allergies, LIMIT_ALLERGIES), MESSAGE_ALLERGIES_CONSTRAINTS);
+        AppUtil.checkArgument(AppUtil.isWithinLimit(vaccines, LIMIT_VACCINES), MESSAGE_VACCINES_CONSTRAINTS);
         this.name = name;
         this.phone = phone;
         this.dateOfBirth = dob;
@@ -112,6 +128,30 @@ public class Patient {
 
         return otherPatient != null
                 && otherPatient.getName().equals(getName());
+    }
+
+    /**
+     * Validates the parameters and returns the error message if there are any violations
+     *
+     * @param allergies
+     * @param vaccines
+     * @return Optional String that contains the errors
+     */
+    public static Optional<String> validateParams(Optional<Set<GroupName>> allergies,
+            Optional<Set<GroupName>> vaccines) {
+        ArrayList<String> errMessages = new ArrayList<>();
+
+        if (allergies.isPresent() && !AppUtil.isWithinLimit(allergies.get(), Patient.LIMIT_ALLERGIES)) {
+            errMessages.add(Patient.MESSAGE_ALLERGIES_CONSTRAINTS);
+        }
+        if (vaccines.isPresent() && !AppUtil.isWithinLimit(vaccines.get(), Patient.LIMIT_VACCINES)) {
+            errMessages.add(Patient.MESSAGE_VACCINES_CONSTRAINTS);
+        }
+
+        if (errMessages.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(StringUtil.formatErrorMessage(errMessages, FORMAT_IVE_MESSAGE));
     }
 
     /**
