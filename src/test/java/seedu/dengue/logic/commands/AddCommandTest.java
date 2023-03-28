@@ -88,6 +88,7 @@ public class AddCommandTest {
 
         @Override
         public void setPersons(List<Person> persons) {
+            throw new RuntimeException();
         }
         @Override
         public void updateFromMemoryStack() {
