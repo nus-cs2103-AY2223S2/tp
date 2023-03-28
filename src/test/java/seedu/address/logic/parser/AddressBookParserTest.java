@@ -24,6 +24,8 @@ import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.ShortcutCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -117,6 +119,17 @@ public class AddressBookParserTest {
         String tagWord = "friend";
         Tag tag = new Tag(tagWord);
         assertEquals(new TagCommand(INDEX_FIRST_PERSON, tag), command);
+    }
+
+    @Test
+    public void parseCommand_shortcut() throws Exception {
+        String shortForm = "rd";
+        ShortcutCommand command = (ShortcutCommand) parser.parseCommand(
+                ShortcutCommand.commandWords.get(0) + " " + RedoCommand.commandWords.get(0) + " " + shortForm
+        );
+        ShortcutCommandParser.CommandType redoType = ShortcutCommandParser.CommandType.REDO;
+
+        assertEquals(new ShortcutCommand(redoType, shortForm), command);
     }
 
     @Test
