@@ -147,7 +147,9 @@ Please refer to the [About Us](AboutUs.md) page for information about the develo
 ---
 
 ## **Getting Help**
-To be filled
+Should you require assistance in any form with regards to EduMate, please head over to our
+[Github](https://github.com/AY2223S2-CS2103T-W14-2/tp) page and file an issue with a tag *developer-assistance-required*.
+A member of our core team will attend to you as soon as possible.
 
 ---
 
@@ -469,7 +471,7 @@ The `add` command allows users to create a new person and insert them into the a
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** <br>
+:bulb: **Tip:** 
 The arguments for `AddCommand` are unordered, so the user can type them in any order. They are all handled in [Argument Multimap](#argument-multimap).
 
 </div>
@@ -485,8 +487,7 @@ The arguments for `AddCommand` are unordered, so the user can type them in any o
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **For Your Information** <br>
-
+:information_source: **For Your Information**
 The User has the default `ContactIndex` of 0.
 </div>
 
@@ -519,7 +520,7 @@ The `edit` command allows the user to edit an existing contact in EduMate.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** <br>
+:bulb: **Tip:**
 Similar to [`AddCommand`](#add-command), the arguments for `EditCommand` are unordered.
 
 </div>
@@ -528,7 +529,7 @@ Similar to [`AddCommand`](#add-command), the arguments for `EditCommand` are uno
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Info**: <br>
+:information_source: **Info**:
 When editing a contact, we only need to update the common modules for **that person**. However, when editing the user, we need to update common modules for **every person** in EduMate.
 
 </div>
@@ -544,7 +545,7 @@ From these two sources of information, we can create a `descriptor` that keeps t
 
 <div markdown="span" class="alert alert-warning">
 
-:warning: **Warning**: <br>
+:warning: **Warning**:
 If no fields have been changed, an exception is thrown. This is handled in the `EditCommandParser`.
 
 </div>
@@ -568,7 +569,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** <br>
+:information_source: **Note:**
 The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
@@ -606,7 +607,7 @@ a contact's information appending their assigned `ContactIndex` or by adding `n/
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **For Your Information** <br>
+:information_source: **For Your Information**
 The last viewed profile will remain displayed on the profile panel should there be any exceptions thrown during the parsing process.
 
 </div>
@@ -662,7 +663,7 @@ For example, if the user wants to search for a person but does not know the full
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** <br>
+:bulb: **Tip:**
 This command can be used before the other commands to return a list of contacts the user wants to work with. 
 
 </div>
@@ -703,7 +704,7 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** <br>
+:bulb: **Tip:**
 Unlike the other commands, the ordering of the arguments **does matter**. For example, `sort g/d n/a` is different from `sort n/a g/d`.
 
 </div>
@@ -712,7 +713,7 @@ Unlike the other commands, the ordering of the arguments **does matter**. For ex
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tips**: <br>
+:bulb: **Tips**:
 JavaFX works with `ObservableList` to populate the UI components. However, we can wrap this `ObservableList` inside a `SortedList` which accepts a `Comparator` as an argument. In this way, we only need to set this argument if we want to sort something in the UI.
 
 </div>
@@ -737,7 +738,7 @@ Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/ma
 
 The `exit` command allows users to exit the EduMate Application via the command line.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :information_source: **Command Formats:** <br>
 
@@ -747,7 +748,7 @@ The `exit` command allows users to exit the EduMate Application via the command 
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Info**: <br>
+:information_source: **Info**:
 Sets the `isExit` boolean in the `CommandResult` class to `true` which is passed through multiple classes to the `MainWindow` class to handle the exit.
 
 </div>
@@ -763,9 +764,11 @@ Sets the `isExit` boolean in the `CommandResult` class to `true` which is passed
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Sub-Commands** <br>
-The `meet` command has 3 different sub-commands : `eat`, `study` and generally `meet`.
+The `meet` command has 2 different sub-commands : `eat`, `study`.
 However, we will be referring to all 3 commands generally as `meet`. All 3 commands only differ in the location
 recommendations as certain locations are only appropriate for certain activities.
+
+Running `meet` will recommend studying, eating locations and other general locations together with their recommended timings.
 </div>
 
 This feature is utilises the [`Recommender`](#recommenders)
@@ -791,7 +794,7 @@ This feature is utilises the [`Recommender`](#recommenders)
 
 The `organise` command will set a meetup with the time and place for all participants and the user himself/herself.
 
-The `TimingRecommender` will check if the timing is a suitable for every participant to meet.
+The [`TimingRecommender`](#timing-recommender) will check if the timing is a suitable for every participant to meet.
 
 ## **Parsers**
 
@@ -851,7 +854,7 @@ will be free so that a meetup could be scheduled.
 
 
 :information_source: **Very Important Re-emphasis** <br>
-The timingRecommender will always recommend timeslots and **rank them in descending time** duration that
+The `TimingRecommender` will always recommend timeslots and **ranks them in descending time** duration that
 the participants could meet up.
 </div>
 
