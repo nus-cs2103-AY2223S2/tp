@@ -679,7 +679,7 @@ If your changes to the data file makes its format invalid, FABook will discard a
 <div markdown="block" class="alert alert-block alert-success">
 
 * :bulb: **Note:**
-  If you wish to transfer only 1 file over, repeat the same steps, and replace the file you want to move, instead of the entire `data` folder
+  If you wish to transfer only 1 of the files over, repeat the same steps, and replace the file you want to move, instead of the entire `data` folder
 </div>
 
 **Q**: Why can I not undo the `sync` command?<br>
