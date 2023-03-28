@@ -27,6 +27,8 @@ import seedu.address.logic.parser.exceptions.UiInputRequiredException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String darkTheme = "view/DarkTheme.css";
+    private static final String lightTheme = "view/LightTheme.css";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -62,6 +64,9 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+
+        //Set up CSS
+        this.primaryStage.getScene().getStylesheets().add(logic.getCssFilePath());
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -150,6 +155,23 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Changes the theme based on the user command
+     */
+    @FXML
+    public void handleTheme(boolean isDarkTheme) {
+        if (isDarkTheme == true) {
+            this.primaryStage.getScene().getStylesheets().remove(lightTheme);
+            this.primaryStage.getScene().getStylesheets().add(darkTheme);
+            logic.setCssFilePath(darkTheme);
+        } else {
+            this.primaryStage.getScene().getStylesheets().remove(darkTheme);
+            this.primaryStage.getScene().getStylesheets().add(lightTheme);
+            logic.setCssFilePath(lightTheme);
+
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -203,6 +225,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isDarkTheme() != null) {
+                handleTheme(commandResult.isDarkTheme());
             }
 
             if (commandResult.isExit()) {
