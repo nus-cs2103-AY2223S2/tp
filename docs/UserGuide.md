@@ -52,7 +52,7 @@ Adds a new opening to the list.
 
 Format: `add p/POSITION c/COMPANY e/EMAIL s/STATUS [d/KEYDATE]…​`
 
-* `KEYDATE` must be in the form `KEY@DATE`, where `KEY` is a stage or event in the application process and `DATE` is the date of the stage in `YYYYMMDD` format.
+* `KEYDATE` must be in the form `KEY@DATE`, where `KEY` is a stage or event in the application process and `DATE` is the date of the stage in `YYYY-MM-DD` format.
 * `STATUS` **must be of either found, applied, interviewing, offered, accepted or rejected**.
 
 Examples:

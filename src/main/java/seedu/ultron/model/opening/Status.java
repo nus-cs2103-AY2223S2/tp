@@ -26,6 +26,7 @@ public class Status {
      */
     public Status(String status) {
         requireNonNull(status);
+        status = status.toUpperCase();
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
         fullStatus = status;
     }
