@@ -117,7 +117,7 @@ If you are stuck, please refer to the section on [Troubleshooting](#8-troublesho
 You can also refer to the [Glossary](#11-glossary) for definitions of commonly used terminologies in HMHero.
 
 <div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
-To aid in your navigation, we have included the a [Back to Table of Contents](#table-of-contents) link in every
+To aid in your navigation, we have included the a <a href="#hmhero-user-guide">Back to Table of Contents<a/> link in every
 sub-section in this User Guide so that it is easy for you to jump across different sections!
 </div>
 
@@ -204,15 +204,15 @@ When you launch HMHero, HMHero appears on your screen as a Graphical User Interf
 layout of the different components of HMHero.
 
 HMHero's GUI consists of a single main window consisting of 3 main sections.
-1. Command Input Box
-2. Command Result Box
-3. Applicant List Box
+1. [Command Input Box](#command-input-box)
+2. [Command Result Box](#command-output-box)
+3. [Applicant List Box](#applicant-list-box)
 
 The following picture of the main window shows the three components, numbered accordingly:
 ![components.png](images%2Fcomponents.png)
 
 Besides the main window, HMHero also has the Help Window. It is not part of the main GUI and is only
-shown after a [Help Command](#631-receive-help-during-usage--help) is run.
+shown after a [Help Command](#631-receive-help-during-usage-help) is run.
 
 The Help Window looks like the following:
 
@@ -271,8 +271,7 @@ Flags are delimiters that enable HMHero to distinguish different parameters with
 You could put in the corresponding [Placeholder](#524-placeholders) immediately after each flag.
 
 <div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
-You may find the following image taken from the subsequent <a href> Command Format </a> section helpful:
-<img src="/Users/merrick/Documents/NUS/Y2S2/CS2103T/tp/docs/images/CommandExample.png">
+You may find the following image taken from the subsequent <a href="#53-command-format"> Command Format </a> section helpful
 </div>
 
 Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
@@ -321,9 +320,9 @@ Before you delve into the different commands in Commands, let’s learn what a c
 Here is an example:
 ![CommandExample.png](images%2FCommandExample.png)
 A command consists of:
-Command Word: Tells HMHero what action you wish to execute. These actions are covered in [Commands](#6-commands).
-[Flags](#523-flags): Distinguishes between inputs. A flag is usually followed by a placeholder.
-[Placeholders](#524-placeholders): Represents data that you wish to input. Replace this with valid data.
+Command Word: Tells HMHero what action you wish to execute. These actions are covered in [Commands](#6-commands).<br>
+[Flags](#523-flags): Distinguishes between inputs. A flag is usually followed by a placeholder.<br>
+[Placeholders](#524-placeholders): Represents data that you wish to input. Replace this with valid data.<br>
 For example, `NAME` in `n/NAME` can be replaced with `n/John`.
 
 [Back to Table of Contents](#hmhero-user-guide)
@@ -533,7 +532,7 @@ Address: 6 Sims Drive (s)543230; Status: APPLIED
 
 <div class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
 <ul>
-    <li> You can use the [List Command](#List) in the next section to display all applicants again!</li> 
+    <li> You can use the <a href="#613-list-all-applicants-list">List Command</a> in the next section to display all applicants again!</li> 
 </ul> </div>
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
@@ -569,10 +568,9 @@ find n/Thomas p/98765432
 **Command Output Box:**
 
 ```
-2 persons listed
+1 persons listed
 
 1. Thomas, REJECTED, 98765432, thomas@gmail.com, 6 Sims Drive (s)543230
-2. Marry, APPLIED, 98765432, marry@gmail.com, 5 Sims Drive (s)542333
 ```
 
 [Back to Table of Contents](#hmhero-user-guide)
@@ -587,7 +585,7 @@ find n/Thomas p/98765432
 > List all applicants in HMHero
 
 **Info**
-* This command is useful to view all applicants again after using the [Find Command](#612-search-for-an-applicant--find).
+* This command is useful to view all applicants again after using the [Find Command](#612-search-for-an-applicant-find).
 
 
 **Example:**
@@ -794,7 +792,7 @@ Rejected Applicant: Thomas
 
 **Info**
 * This command is useful to view all the applicants' interview dates again after
-  using the [Advance Command](#615-advance-an-applicant--advance).
+  using the [Advance Command](#615-advance-an-applicant-advance).
 
 
 **Example:**
@@ -1078,7 +1076,7 @@ Unable to exit/save HMHero to data file
 
 1. This error is due to `hmhero.jar` being started in a protected folder. (Examples of write-protected folders include`C:\WINDOWS\System32` in windows and the `/etc` dir in linux) <br> Please move the `hmhero.jar` file into another folder in your computer and start HMHero application from that folder.
    
-[Back to Table of Contents](#table-of-contents)
+
 
 [Back to Table of Contents](#hmhero-user-guide)
 
@@ -1126,10 +1124,13 @@ Documentation dependencies:
 - [Address](#address)
 - [Admonitions](#admonitions)
 - [Applicant](#applicant)
+- [Applicant List Box](#applicant-list-box)
 - [Application Stage](#application-stage)
 - [COMMAND_WORD (Placeholder)](#commandword-placeholder)
 - [Command](#command)
+- [Command Input Box](#command-input-box)
 - [Command Line (CLI)](#command-line)
+- [Command Output Box](#command-output-box)
 - [Placeholder](#email-placeholder)
 - [Email](#email)
 - [Flags](#flags)
@@ -1161,26 +1162,39 @@ Documentation dependencies:
 ### A
 > #### ADDRESS Placeholder
 > The ADDRESS is a text representing the address of the applicants.
+> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
 > #### Address
 > The address of the applicant provided by the user.
 > #### Admonitions
 > Admonition boxes (or simply “admonitions”) are coloured boxes containing highlighted pieces of text.
+> <br>For details on various type of admonitions used in HMHero, refer to the [Admonitions Boxes](#31-admonition-boxes) section of the User Guide
 > #### Applicant
 > The person who apply to the company for the job.
+> #### Applicant List Box
+> The region located at the bottom left of the HMHero's main window.<br>
+> To view more information, refer to the [User Interface](#51-user-interface) section of the User Guide
 > #### Application Stage
 > All applicants added are at the Applied status by default. From there, hiring managers can advance their application status to Shortlisted, then to Accepted. Applicants can be rejected at any stage excepted for Accepted.
 
 ### C
 > #### COMMAND_WORD Placeholder
 > The COMMAND_WORD is a text indicating a command word of a command
+> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
 > #### Command
 > A feature or function that HMHero can perform.
+> #### Command Input Box
+> The region located at the top left of the HMHero's main window.<br>
+> To view more information, refer to the [User Interface](#51-user-interface) section of the User Guide
 > #### Command Line 
 > The typing interface that you use to interact with HMHero. It is represented as the box where you type in commands.
+> #### Command Output Box
+> The region located at the right half of the HMHero's main window. <br>
+> To view more information, refer to the [User Interface](#51-user-interface) section of the User Guide
 
 ### E
 > #### EMAIL Placeholder
 > The EMAIL is a text representing the email address of the applicants.
+> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
 > #### Email
 > The email address of the applicant provided by the user.
 
@@ -1194,7 +1208,8 @@ Documentation dependencies:
 
 ### H
 > #### Help Window
-> A pop-up window containing help information, shown only after calling a <kbd>help</kbd> command.
+> A pop-up window containing help information, shown only after calling a <kbd>help</kbd> command.<br>
+> To view more information, refer to the [User Interface](#51-user-interface) section of the User Guide
 > #### Hiring Manager
 > A person responsible for overseeing the recruitment process within an organization, from identifying staffing needs to making hiring decisions.
 
@@ -1203,6 +1218,7 @@ Documentation dependencies:
 > The text that a user would enter into HMHero
 > #### INTERVIEW_DATE Placeholder
 > The INTERVIEW_DATE is the date indicating when the applicant is having his/her interview.
+> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
 > #### Interview Date
 > Date where applicants are going to have their interviews. Interview date is in the format "day-month-year hour:minute", represented in the "DD-MM-YYYY HH:MM" format.
 
@@ -1210,13 +1226,16 @@ Documentation dependencies:
 > #### KEYWORD Placeholder
 > The KEYWORD is the text we use search for an item. It can be `NAME` or `PHONE_NUMBER` of the applicant.
 
+
 ### N
 > #### NAME Placeholder
 > The NAME is a text representing the name of the applicants.
+> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
 > #### Name
 > The name of the applicant provided by the user.
 > #### NOTES Placeholder
 > The NOTES are some texts that use to represent the skill set of the applicants.
+> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
 > #### Notes
 > The skill set the applicant possesses provided by the user.
 
@@ -1231,6 +1250,7 @@ Documentation dependencies:
 > Values that are passed while calling the Commands. For instance, when calling `find n/NAME`, parameter here is `n/NAME`.
 > #### PHONE_NUMBER Placeholder
 > The PHONE_NUMBER is an integer representing the phone number of the applicant.
+> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
 > #### Phone Number
 > The phone number of the applicant provided by the user.
 > #### Placeholder
@@ -1239,6 +1259,7 @@ Documentation dependencies:
 ### S
 > #### STATUS Placeholder
 > The STATUS is a text that represent the current state of the applicant.
+> <br>To view more information (limitations, examples, etc.), refer to the [Placeholder](#524-placeholders) table.
 > #### Status
 > Status has four stages, which are APPLIED, SHORTLISTED, ACCEPTED and REJECTED. Status can only be modified by using <kbd>advance</kbd> or <kbd>reject</kbd> command.
 > #### Syntax
