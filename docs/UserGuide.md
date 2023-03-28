@@ -14,7 +14,7 @@ Teaching Assistant Assistant (TAA) is a **desktop app for managing teaching assi
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-4/tp/releases).
+1. Download the latest `TAA.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your TAA.
 
@@ -73,46 +73,50 @@ Examples
 
 ## Assignments
 
-Directs you to the assignment system. Within the assignment system, you can call:
-* add
-* delete
+For assignments, you can make the following calls:
+* add_asgn
+* delete_asgn
 * grade
 * ungrade
-* list
-* exit
+* list_asgn
 
-### Add Assignment: `add`
-Adds an assignment with name, start_date, end_date, percent_weightage, total marks. All assignments will initially be ungraded.
+### Add Assignment: `add_asgn`
+Adds an assignment with name, total marks. 
+If total marks for the assignment is unspecified, a default value of 100 will be given.
+All assignments will initially be ungraded.
 <br>
-Format: `Format: add {name} {start_date} {end_date} {percent_weightage} {total_marks}`<br>
+Format: `Format: add_asgn n/{name} (optional: m/{total_marks})`<br>
 Example:
-* `add lab1 01-03-2023 15-03-2023 20 100`
+* `add_asgn n/Lab_1`
+* `add_asgn n/Lab_2 m/50`
 
-### Delete Assignment: `delete`
-Deletes the assignment of assignment_id you provided.<br>
-Format: `delete {assignment_id}`<br>
+### Delete Assignment: `delete_asgn`
+Deletes the assignment of assignment_name you provided. If the assignment is not found, returns an error.<br>
+Format: `delete n/{assignment_name}`<br>
 Example:
-* `delete 1`
+* `delete_asgn n/Lab_1`
 
 ### Grade Assignment: `grade`
-Grades the assignment of assignment_id and student_id with a score you provide.<br>
-Format: `grade {assignment_id} {student_id} {score}`<br>
+Grades the submission of assignment_name and student_id with a score you provide. 
+You can also indicate whether a submission is late by using the "late/" flag at the end.
+<br>
+Format: `grade n/{assignment_name} i/{student_id} m/{score} (optional: late/)`<br>
 Example:
-* `grade 1 2 20`
+* `grade n/Lab_1 i/2 m/20`
+* `grade n/Lab_1 i/3 m/30 late/`
 
 ### Ungrade Assignment: `ungrade`
-Removes the grade of the assignment of assignment_id and student_id.<br>
-Format: `ungrade {assignment_id} {student_id}`<br>
+Resets the grade of the submission of assignment_name and student_id. It will also reset
+the late submission status of the submission, if the submission was marked as late.
+<br>
+Format: `ungrade n/{assignment_name} i/{student_id}`<br>
 Example:
-* `ungrade 1 2`
+* `ungrade n/Lab_1 i/2`
 
-### List all assignments: `list`
-Lists all assignments and their respective information.
-Format: `list`
+### List all assignments: `list_asgn`
+Lists all assignments, submissions and their respective information.
+Format: `list_asgn`
 
-### Exit assignment system: `exit`
-Exits the assignment system.<br>
-Format: `exit`
 
 ## Class List
 `class_list`
