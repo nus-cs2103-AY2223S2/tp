@@ -27,8 +27,8 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 **Acknowledgements**
 
-- Libraries used:
-  -
+* Libraries used:
+  *
   AB3: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
-  -
+  *
   Calidr: [CalendarFX](https://github.com/dlsc-software-consulting-gmbh/CalendarFX), [ical4j](https://github.com/ical4j/ical4j)

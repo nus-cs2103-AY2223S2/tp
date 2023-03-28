@@ -8,7 +8,7 @@ Command Line Interface (CLI) while still having the benefits of a Graphical User
 manage your time and tasks more effectively.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
