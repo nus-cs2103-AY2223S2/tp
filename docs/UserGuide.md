@@ -34,7 +34,7 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 1. Ensure you have Java 11 or above installed in your Computer.
 1. Download `modtrek.jar` here. (To be inserted)
 1. Copy the file to the folder you want to use as the _home folder_ for ModTrek
-1. Open a command terminal, `cd` to the folder you put your jar file in, and use `java -jar modtrek.jar` to run the application
+1. Open a command terminal, `cd` to the folder you put your jar file in, and use<br>`java -jar modtrek.jar` to run the application
 1. A GUI similar to the below should appear in a few seconds.
 1. Type commands within the command line interface (CLI) and press enter to execute it. For a list of executable commands, refer to the [Features / Commands Section](#features).
 ![Ui QuickStart](images/Ui-quickstart.png)
@@ -45,7 +45,7 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 <div markdown="block" class="alert alert-info">
 
-### Notes about command format:<br>
+**Notes about command format:**<br>
 - Words enclosed by `<>` are the parameters to be supplied by the user.<br>
    - E.g. in `add /m <code> /c <credits> /y <year-semester> /g <grade> /t <tag>...`, `<code>`, `<credits>`, `<year-semester>`, `<grade>`, `<tag>` are parameters which can be used as `add /m CS2103T /c 4 /y Y2S2 /g A+ /t University Level Requirements /t Computer Science Foundation`
 - Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `delete all`) will be ignored.
@@ -60,6 +60,19 @@ Adds a module to the module list. Modules must be distinct.
 
 Command syntax: `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`
 
+Additional details:
+* `<code>` refers to the module code
+* `<credits>` refers to the module's modular credits
+* `<year-semester>` refers to the year and semester the module is taken. E.g y1s2, y3st1
+* `<grade>` refers to the grade obtained for the module. Range from A+ to U.
+* `<tag>` refers to the requirement the modules fulfils.<br> This includes:
+   * `ULR` University Level Requirements
+   * `CSF` Computer Science Foundations
+   * `CSBD` Computer Science Breadth & Depth
+   * `UE` Unrestricted Electives
+   * `ITP` IT Professionalism
+   * `MS` Math & Science
+   
 :exclamation: For `...`, specify one or more tags to be added, separated by space (' ').
 
 Example: `add /m CS2103T /c 4 /y y2s2 /g A /t University Level Requirements`
@@ -76,7 +89,14 @@ Example: `delete /m CS2100 /m CS2040S`
 
 Edits an existing module in the module list.
 
-Command syntax: `edit <code> ...`<br><br>_Specify one or more parameters in `...` :_<br>- `/m <new code>`<br>- `/c <credits>`<br>- `/y <year-semester>`<br>- `/g <grade>`<br>- `/t <tag>`
+Command syntax: `edit <code> ...`
+
+_Specify one or more parameters in_ `...` :
+* `/m <new code>`
+* `/c <credits>`
+* `/y <year-semester>`
+* `/g <grade>`
+* `/t <tag>`
 
 Example: `edit ES2660 /m CS2101 /g B+`
 
@@ -84,13 +104,18 @@ Example: `edit ES2660 /m CS2101 /g B+`
 
 #### 2.4 Tag a Module : `tag` <a name="tag-module"></a>
 
-Tags a module to include or remove one or more degree requirements (e.g. University Level Requirements, Computer Science Foundation etc) that the module fulfils.
+Tags a module to include or remove one or more degree requirements (e.g. University Level Requirements, Computer Science Foundation etc) that the module fulfils.<br>
+Refer to [2.1 Add a module](#add-module) for the available tags.
 
-Command syntax:<br><br>_To include tags:_ `tag /m <code> include <tag1> (<tag2>) ...` <br><br>_To remove tags:_ `tag /m <code> remove <tag1> (<tag2>) ...` <br><br>:exclamation: For `...`, specify one or more tags to be included or removed, separated by space (' ').
+Command syntax:
+* _To include tags:_ `tag /m <code> include <tag1> (<tag2>) ...`
+* _To remove tags:_ `tag /m <code> remove <tag1> (<tag2>) ...`
+
+:exclamation: For `...`, specify one or more tags to be included or removed, separated by space (' ').
 
 Example:
-* `tag CS2030S include cs_foundation`
-* `tag ES2660 remove university_level it_professionalism`
+* `tag CS2030S include CSF`
+* `tag ES2660 remove ULR ITP`
 
 #### 2.5 Find modules by keyword : `find` <a name="find-module"></a>
 
@@ -101,6 +126,7 @@ Command syntax: `find (/m <code>) (/c <credits>) (/y <year-semester>) (/g <grade
 Example:
 * `find /c 4 /g A+`
 * `find /y y2s2`
+* `find /m cs /g A+` ![Ui Find](images/Ui-find.png)
 
 #### 2.6 Sort all modules : `sort` <a name="sort-module"></a>
 
@@ -115,15 +141,16 @@ Categories that modules can be sorted by are:
 * `/g` to sort by grade
 * `/t` to sort by tag
 
-Example: `sort /m`
+Example: `sort /g`
+![Ui Sort](images/Ui-sort.png)
 
 #### 2.7 Toggle screens : `view` <a name="change-view"></a>
 
 Toggles between the display of module progress or module lists.
 
 Command syntax:
-* To view module progression: `view progress`
-* To view module list: `view modules`
+* _To view module progression:_ `view progress` ![Ui progress](images/Ui-viewprogress.png)
+* _To view module list:_ `view modules` ![Ui modules](images/Ui-viewmodules.png)
 
 #### 2.8 Exit MODTrek : `exit` <a name="exit-app"></a>
 
@@ -141,7 +168,7 @@ ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Adva
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Frequently Asked Questions (FAQ) <a name="faq"></a>
+## 3. Frequently Asked Questions (FAQ) <a name="faq"></a>
 
 **Q**: Why is it that I can add in modules not offered in NUS<br>
 **A**: Unfortunately we do not have a database to store all the available modules in NUS.
@@ -153,19 +180,19 @@ are provided only by NUS.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command Summary <a name="command_summary"></a>
+## 4. Command Summary <a name="command_summary"></a>
 
 
-| Action                   | Format, Examples                                                                                                                                                                                  |
-|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                  | `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)` <br> e.g., `add /m CS2103T /c 4 /y y2s2 /g A /t University Level Requirements`                                         |
-| **Delete**               | `delete /m <code1> (/m <code2>) ...` or `delete all` <br> e.g. `delete /m CS2100 /m CS2040S`                                                                                                      |
-| **Edit**                 | `edit <existing code> (/m <new code>) (/c <credits>) (/y <year-semester>) (/g <grade>) (/t <tag>...)` <br> e.g., `edit ES2660 /m CS2101`                                                          |
-| **Tag**                  | `tag /m <code> include <tag1> (<tag2>) ...` or `tag /m <code> remove <tag1> (<tag2>) ...` <br> e.g., `tag CS2030S include cs_foundation`, `tag ES2660 remove university_level it_professionalism` |
-| **Find**                 | `find (/m <code>) (/c <credits>) (/y <year-semester>) (/g <grade>)` <br> e.g., `find A+`                                                                                                          |
-| **Sort**                 | `sort <category>` e.g. `sort /m`                                                                                                                                                                   |
-| **View Degree Progress** | `view progress` or `view modules`                                                                                                                                                                 |
-| **Exit**                 | `exit`                                                                                                                                                                                            |
+| Action                   | Format, Examples                                                                                                                                            |
+|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                  | `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)` <br> e.g., `add /m CS2103T /c 4 /y y2s2 /g A /t ULR`                             |
+| **Delete**               | `delete /m <code1> (/m <code2>) ...` or `delete all` <br> e.g. `delete /m CS2100 /m CS2040S`                                                                |
+| **Edit**                 | `edit <existing code> (/m <new code>) (/c <credits>) (/y <year-semester>) (/g <grade>) (/t <tag>...)` <br> e.g., `edit ES2660 /m CS2101`                    |
+| **Tag**                  | `tag /m <code> include <tag1> (<tag2>) ...` or `tag /m <code> remove <tag1> (<tag2>) ...` <br> e.g., `tag CS2030S include CSF`, `tag ES2660 remove ULR ITP` |
+| **Find**                 | `find (/m <code>) (/c <credits>) (/y <year-semester>) (/g <grade>)` <br> e.g., `find A+`                                                                    |
+| **Sort**                 | `sort <category>` e.g. `sort /m`                                                                                                                            |
+| **View Degree Progress** | `view progress` or `view modules`                                                                                                                           |
+| **Exit**                 | `exit`                                                                                                                                                      |
 
 
 <br>**Notes:**
