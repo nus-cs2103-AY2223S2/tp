@@ -170,7 +170,7 @@ public class FileStorage {
     private void copySelectedFiles(File[] selectedFiles, String userDirPath, long maxSize) {
 
         for (File selectedFile : selectedFiles) { // loop through each selected file
-            String fileName = selectedFile.getName();
+            String fileName = selectedFile.getName().toLowerCase();
             String extension = getFileExtension(fileName);
 
             if (isAllowedFileType(extension)) {
