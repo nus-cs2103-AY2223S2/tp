@@ -115,7 +115,7 @@ public class Lab extends Event {
     }
 
     public int countAttachments() {
-        return super.countNotes();
+        return super.countAttachments();
     }
 
     public void addAttachment(File file) {

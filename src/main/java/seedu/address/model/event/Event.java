@@ -22,7 +22,7 @@ public abstract class Event {
     private LocalDateTime eventDate;
     private final List<Person> students;
     private final List<File> attachments;
-    private final List<Note> notes;
+    private final NoteList notes;
 
     /**
      * Constructor with name parameter only. The time of the event will be
@@ -34,7 +34,7 @@ public abstract class Event {
         eventDate = LocalDateTime.now();
         students = new ArrayList<>();
         attachments = new ArrayList<>();
-        notes = new ArrayList<>();
+        notes = new NoteList();
     }
 
     /**
@@ -48,7 +48,7 @@ public abstract class Event {
         this.eventDate = LocalDateTime.now();
         this.students = students;
         attachments = new ArrayList<>();
-        notes = new ArrayList<>();
+        notes = new NoteList();
     }
 
     /**
@@ -63,7 +63,7 @@ public abstract class Event {
         this.eventDate = eventDate;
         this.students = students;
         attachments = new ArrayList<>();
-        notes = new ArrayList<>();
+        notes = new NoteList();
     }
 
     /**
@@ -79,7 +79,7 @@ public abstract class Event {
         this.eventDate = eventDate;
         this.students = students;
         this.attachments = attachments;
-        notes = new ArrayList<>();
+        notes = new NoteList();
     }
 
     /**
@@ -96,7 +96,7 @@ public abstract class Event {
         this.students = students;
         //Ensures the list of attachments is kept at zero instead of null
         this.attachments = Arrays.asList(new File[0]);;
-        this.notes = notes;
+        this.notes = new NoteList(notes);
     }
 
     /**
@@ -113,7 +113,7 @@ public abstract class Event {
         this.eventDate = eventDate;
         this.students = students;
         this.attachments = attachments;
-        this.notes = notes;
+        this.notes = new NoteList(notes);
     }
 
     public String getName() {
@@ -230,11 +230,11 @@ public abstract class Event {
      **************************************************************************/
 
     public List<Note> getNotes() {
-        return notes;
+        return notes.getNotes();
     }
 
     public int countNotes() {
-        return notes.size();
+        return notes.len();
     }
 
     public void addNote(Note note) {
