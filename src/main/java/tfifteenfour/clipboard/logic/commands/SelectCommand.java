@@ -13,6 +13,7 @@ import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.Student;
+import tfifteenfour.clipboard.model.task.Task;
 
 /**
  * Views a student in the student list.
@@ -61,6 +62,10 @@ public class SelectCommand extends Command {
         case SESSION_PAGE:
             Session selectedSession = handleSelectSession(model, currentSelection);
             return new CommandResult(this, String.format("Viewing: %s", selectedSession), willModifyState);
+
+        case TASK_PAGE:
+            Task selectedTask = handleSelectTask(model, currentSelection);
+            return new CommandResult(this, String.format("Viewing: %s", selectedTask), willModifyState);
 
         default:
             throw new CommandException("Unable to select");
@@ -112,6 +117,18 @@ public class SelectCommand extends Command {
         currentSelection.selectSession(selectedSession);
         // end of navigation, no longer need to call setters of currentSelection
         return selectedSession;
+    }
+
+    private Task handleSelectTask(Model model, CurrentSelection currentSelection) throws CommandException {
+        List<Task> taskList = currentSelection.getSelectedGroup().getUnmodifiableTaskList();
+        if (targetIndex.getZeroBased() >= taskList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
+        }
+        Task selectedTask = taskList.get(targetIndex.getZeroBased());
+
+        currentSelection.selectTask(selectedTask);
+        // end of navigation, no longer need to call setters of currentSelection
+        return selectedTask;
     }
 
     @Override
