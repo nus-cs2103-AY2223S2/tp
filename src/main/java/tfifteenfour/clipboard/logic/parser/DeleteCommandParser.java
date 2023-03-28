@@ -19,6 +19,7 @@ import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteCourseCommand;
 import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteGroupCommand;
 import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteSessionCommand;
 import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteStudentCommand;
+import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteTaskCommand;
 import tfifteenfour.clipboard.logic.commands.studentcommands.ViewCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
@@ -48,7 +49,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             deleteCommandType = CommandTargetType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ParseException("Delete type missing. \n"
-                    + "Available option: delete course, delete group, delete session, delete student");
+                    + "Available option: delete course, delete group, delete session, delete task, delete student");
         }
 
         Index index;
@@ -66,10 +67,12 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             return new DeleteGroupCommand(index);
         case SESSION:
             return new DeleteSessionCommand(index);
+        case TASK:
+            return new DeleteTaskCommand(index);
         case STUDENT:
             return new DeleteStudentCommand(index);
         default:
-            throw new ParseException("Invalid argument for add command");
+            throw new ParseException("Invalid argument for delete command");
         }
     }
 

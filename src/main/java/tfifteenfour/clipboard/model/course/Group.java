@@ -122,6 +122,14 @@ public class Group {
     }
 
     /**
+     * Deletes the given task from this group.
+     * @param task Task to be deleted.
+     */
+    public void deleteTask(Task task) {
+        this.tasks.remove(task);
+    }
+
+    /**
      * Deletes the given student from this group.
      * @param student Student to be deleted.
      */
