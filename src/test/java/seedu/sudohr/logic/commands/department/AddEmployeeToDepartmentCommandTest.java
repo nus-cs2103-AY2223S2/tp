@@ -369,5 +369,15 @@ public class AddEmployeeToDepartmentCommandTest {
         public ReadOnlySudoHr getSudoHr() {
             return sudoHr;
         }
+
+        @Override
+        public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
+
+        }
+
+        @Override
+        public void updateFilteredDepartmentList(Predicate<Department> predicate) {
+
+        }
     }
 }

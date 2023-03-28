@@ -365,5 +365,15 @@ public class RemoveEmployeeFromDepartmentCommandTest {
         public ReadOnlySudoHr getSudoHr() {
             return sudoHr;
         }
+
+        @Override
+        public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
+
+        }
+
+        @Override
+        public void updateFilteredDepartmentList(Predicate<Department> predicate) {
+
+        }
     }
 }
