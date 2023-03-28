@@ -55,7 +55,7 @@
                 <RowConstraints percentHeight="97" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
-             <StackPane fx:id="personListPanelPlaceholder" alignment="TOP_CENTER" AnchorPane.bottomAnchor="3" VBox.vgrow="ALWAYS" />
+             <StackPane fx:id="applicationListPanelPlaceholder" alignment="TOP_CENTER" AnchorPane.bottomAnchor="3" VBox.vgrow="ALWAYS" />
              <VBox fx:id="mainContainer" spacing="20" styleClass="pane-with-border" GridPane.columnIndex="2">
                      <children>
                         <StackPane fx:id="viewContentPanelPlaceholder" alignment="TOP_CENTER" AnchorPane.bottomAnchor="3" VBox.vgrow="ALWAYS" />

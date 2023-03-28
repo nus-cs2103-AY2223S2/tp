@@ -37,7 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ApplicationListPanel applicationListPanel;
     private QuickAccessToolbar quickAccessToolbar;
     private HelpWindow helpWindow;
     private TodoListPanel todoListPanel;
@@ -51,7 +51,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane applicationListPanelPlaceholder;
 
     @FXML
     private StackPane viewContentPanelPlaceholder;
@@ -138,13 +138,13 @@ public class MainWindow extends UiPart<Stage> {
         commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredInternshipList());
+        applicationListPanel = new ApplicationListPanel(logic.getFilteredInternshipList());
         todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
         noteListPanel = new NoteListPanel(logic.getFilteredNoteList());
         mixedPanel = new MixedPanel(logic.getFilteredTodoList(), logic.getFilteredNoteList());
 
-        personListPanelPlaceholder.getChildren().addAll(todoListPanel.getRoot(), noteListPanel.getRoot(),
-                mixedPanel.getRoot(), personListPanel.getRoot());
+        applicationListPanelPlaceholder.getChildren().addAll(todoListPanel.getRoot(), noteListPanel.getRoot(),
+                mixedPanel.getRoot(), applicationListPanel.getRoot());
 
         viewContentPanel = new ViewContentPanel();
         viewContentPanelPlaceholder.getChildren().add(viewContentPanel.getRoot());
@@ -156,7 +156,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void setHeightConstraints() {
-        personListPanel.getContainer().maxHeightProperty().bind(primaryStage.heightProperty().multiply(0.9));
+        applicationListPanel.getContainer().maxHeightProperty().bind(primaryStage.heightProperty().multiply(0.9));
         todoListPanel.getContainer().maxHeightProperty().bind(primaryStage.heightProperty().multiply(0.9));
         noteListPanel.getContainer().maxHeightProperty().bind(primaryStage.heightProperty().multiply(0.9));
         mixedPanel.getContainer().maxHeightProperty().bind(primaryStage.heightProperty().multiply(0.9));
@@ -172,7 +172,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void changePanelPlaceholder(MainWindow m, TodoType type) {
-        m.getPersonListPanel().getRoot().setVisible(type == TodoType.NONE);
+        m.getApplicationListPanel().getRoot().setVisible(type == TodoType.NONE);
         m.getTodoListPanel().getRoot().setVisible(type == TodoType.TODO);
         m.getNoteListPanel().getRoot().setVisible(type == TodoType.NOTE);
         m.getMixedPanel().getRoot().setVisible(type == TodoType.BOTH);
@@ -218,8 +218,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ApplicationListPanel getApplicationListPanel() {
+        return applicationListPanel;
     }
 
     public TodoListPanel getTodoListPanel() {
