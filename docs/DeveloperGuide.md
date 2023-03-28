@@ -1,7 +1,8 @@
 ---
 layout: page
 title: Developer Guide
-show-toc: true
+* Table of Contents
+  {:toc}
 ---
 DEVELOPER GUIDE FOR WIFE
 ---
