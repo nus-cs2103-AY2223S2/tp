@@ -12,11 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.Model;
 import seedu.address.model.tutee.fields.FieldContainsKeywordsPredicate;
-
-import java.util.*;
 
 /**
  * Filters and lists all tutees in address book whose field matches
@@ -29,15 +26,15 @@ public class FilterCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters through all persons in the tutee managing system, "
             + "showing only the tutees that matches the parameters that have been provided\n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME] "
-            + PREFIX_PHONE + "PHONE] "
-            + PREFIX_EMAIL + "EMAIL] "
-            + PREFIX_ADDRESS + "ADDRESS] "
-            + PREFIX_SUBJECT + "SUBJECT] "
-            + PREFIX_SCHEDULE + "SCHEDULE] "
-            + PREFIX_STARTTIME + "START TIME] "
-            + PREFIX_ENDTIME + "END TIME] "
-            + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_SUBJECT + "SUBJECT "
+            + PREFIX_SCHEDULE + "SCHEDULE "
+            + PREFIX_STARTTIME + "START TIME "
+            + PREFIX_ENDTIME + "END TIME "
+            + PREFIX_TAG + "TAG \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John "
             + PREFIX_PHONE + "98765432"
@@ -190,6 +187,5 @@ public class FilterCommand extends Command {
         public String getTagToFilter() {
             return tagToFilter;
         }
-
     }
 }
