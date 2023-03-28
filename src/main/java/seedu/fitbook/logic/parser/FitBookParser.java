@@ -109,6 +109,12 @@ public class FitBookParser {
         case DeleteExerciseCommand.COMMAND_WORD:
             return new DeleteExerciseCommandParser().parse(arguments);
 
+        case AddWeightCommand.COMMAND_WORD:
+            return new AddWeightCommandParser().parse(arguments);
+
+        case GraphCommand.COMMAND_WORD:
+            return new GraphCommandParser().parse(arguments);
+
         case ViewDetailCommand.COMMAND_WORD:
             return new ViewDetailCommandParser().parse(arguments);
 
