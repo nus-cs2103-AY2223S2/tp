@@ -8,6 +8,7 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -49,6 +50,11 @@ public class AddCommandParser implements CommandParser {
         Set<GroupName> allergies = ParserUtil.parseGroups(argsMap.getAllValues(PREFIX_ALLERGY));
         Set<GroupName> vaccines = ParserUtil.parseGroups(argsMap.getAllValues(PREFIX_VACCINATION));
 
+        Optional<String> errMessage = Patient.validateParams(Optional.of(allergies), Optional.of(vaccines));
+        if (errMessage.isPresent()) {
+            throw new ParseException(errMessage.get());
+        }
+
         Patient patient = new Patient(name, phone, dateOfBirth, bloodType, allergies, vaccines);
 
         return new AddCommand(patient);
@@ -61,5 +67,4 @@ public class AddCommandParser implements CommandParser {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }
