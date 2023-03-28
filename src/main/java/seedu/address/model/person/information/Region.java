@@ -49,7 +49,7 @@ public class Region {
         if (region == null) {
             return false;
         } else if (region.equals(FIELD_NOT_SPECIFIED)) {
-            return region.equals(FIELD_NOT_SPECIFIED);
+            return true;
         }
         try {
             Place.valueOf(region.toUpperCase());
@@ -59,8 +59,16 @@ public class Region {
         }
     }
 
+    /**
+     * Checks whether this region mathces with another region.
+     * Two regions match if they are equal or if one of the region is unspecified.
+     *
+     * @param anotherRegion Other region.
+     * @return True if the 2 regions match, false otherwise.
+     */
     public boolean isMatch(Region anotherRegion) {
-        return region.equals(anotherRegion.region);
+        return region.equals(Place.NOT_SPECIFIED) || anotherRegion.region.equals(Place.NOT_SPECIFIED)
+                || region.equals(anotherRegion.region);
     }
 
     @Override
