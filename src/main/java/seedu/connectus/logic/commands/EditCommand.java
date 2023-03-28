@@ -4,20 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.connectus.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.connectus.commons.core.Messages;
 import seedu.connectus.commons.core.index.Index;
@@ -31,8 +26,6 @@ import seedu.connectus.model.person.Name;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.socialmedia.SocialMedia;
-import seedu.connectus.model.tag.Module;
-import seedu.connectus.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the ConnectUS.
@@ -52,9 +45,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_SOCMED_INSTAGRAM + "INSTAGRAM] "
             + "[" + PREFIX_SOCMED_TELEGRAM + "TELEGRAM] "
             + "[" + PREFIX_SOCMED_WHATSAPP + "WHATSAPP] "
-            + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
-            + "[" + PREFIX_MODULE + "MODULE]... "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_BIRTHDAY + "BIRTHDAY]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -107,10 +98,8 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Set<Module> updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
 
-        Person p = new Person(updatedName, updatedTags, updatedModules);
+        Person p = new Person(updatedName);
 
         if (editPersonDescriptor.getPhone().isPresent()) {
             p.setPhone(editPersonDescriptor.getPhone().get());
@@ -185,9 +174,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private SocialMedia socialMedia;
-        private Set<Tag> tags;
         private Birthday birthday;
-        private Set<Module> modules;
 
         public EditPersonDescriptor() {
         }
@@ -202,8 +189,6 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setSocialMedia(toCopy.socialMedia);
-            setTags(toCopy.tags);
-            setModules(toCopy.modules);
             setBirthday(toCopy.birthday);
         }
 
@@ -211,7 +196,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, socialMedia, tags, birthday, modules);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, socialMedia, birthday);
         }
 
         public void setName(Name name) {
@@ -264,42 +249,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(socialMedia);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws
-         * {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
-
-        /**
-         * Sets {@code modules} to this object's {@code modules}.
-         * A defensive copy of {@code modules} is used internally.
-         */
-        public void setModules(Set<Module> modules) {
-            this.modules = (modules != null) ? new HashSet<>(modules) : null;
-        }
-
-        /**
-         * Returns an unmodifiable modules set, which throws
-         * {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code modules} is null.
-         */
-        public Optional<Set<Module>> getModules() {
-            return (modules != null) ? Optional.of(Collections.unmodifiableSet(modules)) : Optional.empty();
-        }
 
         @Override
         public boolean equals(Object other) {
@@ -319,8 +268,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getAddress().equals(e.getAddress());
         }
     }
 }

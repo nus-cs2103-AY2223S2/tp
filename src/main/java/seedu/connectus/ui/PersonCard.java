@@ -94,9 +94,10 @@ public class PersonCard extends UiPart<Region> {
             socialMediaContainer.setVisible(false);
             socialMediaContainer.managedProperty().bind(socialMediaContainer.visibleProperty());
         }
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        person.getRemarks().stream()
+                .sorted(Comparator.comparing(remark -> remark.tagName))
+                .forEach(remark -> tags.getChildren().add(new Label(remark.tagName)));
         person.getModules().stream()
                 .sorted(Comparator.comparing(module -> module.tagName))
                 .forEach(module -> tags.getChildren().add(new Label(module.tagName)));

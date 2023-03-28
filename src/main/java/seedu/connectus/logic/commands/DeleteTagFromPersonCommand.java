@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.connectus.logic.commands.CommandUtil.convertSetToList;
 import static seedu.connectus.logic.commands.CommandUtil.isIndexValid;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.connectus.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
@@ -17,7 +17,7 @@ import seedu.connectus.logic.commands.exceptions.CommandException;
 import seedu.connectus.model.Model;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.tag.Module;
-import seedu.connectus.model.tag.Tag;
+import seedu.connectus.model.tag.Remark;
 
 /**
  * Deletes a tag from a person using their displayed indexes from ConnectUS.
@@ -27,28 +27,28 @@ public class DeleteTagFromPersonCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete a tag from the person identified"
         + "by the index number used in the displayed person list. \n"
         + "Parameters: PERSON_INDEX (must be a positive integer) "
-        + "[" + PREFIX_TAG + "TAG_INDEX] "
+        + "[" + PREFIX_REMARK + "TAG_INDEX] "
         + "[" + PREFIX_MODULE + "MODULE_INDEX]"
         + "\n"
         + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_TAG + "1 "
+        + PREFIX_REMARK + "1 "
         + PREFIX_MODULE + "1";
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag from Person: %1$s";
 
     private final Index personIndex;
-    private final Index tagIndex;
+    private final Index remarkIndex;
     private final Index moduleIndex;
 
     /**
      * @param personIndex            of the person in the filtered person list to edit
-     * @param tagIndex         of the tag in the tag list to delete
+     * @param remarkIndex         of the remark in the remark list to delete
      * @param moduleIndex      of the module in the module list to delete
      */
-    public DeleteTagFromPersonCommand(Index personIndex, Index tagIndex, Index moduleIndex) {
+    public DeleteTagFromPersonCommand(Index personIndex, Index remarkIndex, Index moduleIndex) {
         requireNonNull(personIndex);
         this.personIndex = personIndex;
-        this.tagIndex = tagIndex;
+        this.remarkIndex = remarkIndex;
         this.moduleIndex = moduleIndex;
     }
 
@@ -63,15 +63,15 @@ public class DeleteTagFromPersonCommand extends Command {
 
         var personToEdit = lastShownList.get(personIndex.getZeroBased());
 
-        Set<Tag> editedTags = personToEdit.getTags();
+        Set<Remark> editedRemarks = personToEdit.getRemarks();
         Set<Module> editedModules = personToEdit.getModules();
 
-        if (tagIndex != null) {
-            var originalTags = convertSetToList(personToEdit.getTags());
-            if (!isIndexValid(tagIndex, originalTags)) {
+        if (remarkIndex != null) {
+            var originalTags = convertSetToList(personToEdit.getRemarks());
+            if (!isIndexValid(remarkIndex, originalTags)) {
                 throw new CommandException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX, "tag"));
             }
-            editedTags = createEditedTagList(originalTags, tagIndex);
+            editedRemarks = createEditedTagList(originalTags, remarkIndex);
         }
 
         if (moduleIndex != null) {
@@ -83,7 +83,7 @@ public class DeleteTagFromPersonCommand extends Command {
         }
 
 
-        var editedPerson = new Person(personToEdit, editedTags, editedModules);
+        var editedPerson = new Person(personToEdit, editedRemarks, editedModules);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -110,7 +110,7 @@ public class DeleteTagFromPersonCommand extends Command {
         // state check
         var e = (DeleteTagFromPersonCommand) other;
         return personIndex.equals(e.personIndex)
-            && tagIndex.equals(e.tagIndex)
+            && remarkIndex.equals(e.remarkIndex)
             && moduleIndex.equals(e.moduleIndex);
     }
 }
