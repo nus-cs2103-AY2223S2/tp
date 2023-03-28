@@ -26,7 +26,7 @@ import seedu.address.model.module.LectureNameContainsKeywordsPredicate;
 import seedu.address.model.module.LectureTagContainsKeywordsPredicate;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleContainsKeywordsPredicate;
 import seedu.address.model.module.ModuleTagContainsKeywordsPredicate;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.module.VideoNameContainsKeywordsPredicate;
@@ -90,8 +90,8 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noModulesFound() {
         String expectedMessage = String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 0);
         boolean hasByTag = false;
-        ModuleCodeContainsKeywordsPredicate predicate =
-                (ModuleCodeContainsKeywordsPredicate) preparePredicate(" ", Level.MODULE, hasByTag);
+        ModuleContainsKeywordsPredicate predicate =
+                (ModuleContainsKeywordsPredicate) preparePredicate(" ", Level.MODULE, hasByTag);
         FindCommand command = new FindCommand(Collections.emptyList(), hasByTag);
         expectedModel.updateFilteredModuleList(predicate);
 
@@ -172,12 +172,25 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multipleModulesFound() {
+    public void execute_multipleCodeKeywords_multipleModulesFound() {
         String expectedMessage = String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 2);
-        String input = "CS2040S, ST2334";
+        String input = "CS2, ST2";
         boolean hasByTag = false;
-        ModuleCodeContainsKeywordsPredicate predicate =
-                (ModuleCodeContainsKeywordsPredicate) preparePredicate(input, Level.MODULE, hasByTag);
+        ModuleContainsKeywordsPredicate predicate =
+                (ModuleContainsKeywordsPredicate) preparePredicate(input, Level.MODULE, hasByTag);
+        FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input), hasByTag);
+        expectedModel.updateFilteredModuleList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CS2040S, ST2334), model.getFilteredModuleList());
+    }
+
+    @Test
+    public void execute_multipleNameKeywords_multipleModulesFound() {
+        String expectedMessage = String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, 2);
+        String input = "data, probability";
+        boolean hasByTag = false;
+        ModuleContainsKeywordsPredicate predicate =
+                (ModuleContainsKeywordsPredicate) preparePredicate(input, Level.MODULE, hasByTag);
         FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input), hasByTag);
         expectedModel.updateFilteredModuleList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -292,16 +305,16 @@ public class FindCommandTest {
         }
         if (level == Level.MODULE) {
             return hasByTag
-                ? new ModuleTagContainsKeywordsPredicate(keywords)
-                : new ModuleCodeContainsKeywordsPredicate(keywords);
+                        ? new ModuleTagContainsKeywordsPredicate(keywords)
+                        : new ModuleContainsKeywordsPredicate(keywords);
         }
         if (level == Level.LECTURE) {
             return hasByTag
-                ? new LectureTagContainsKeywordsPredicate(keywords)
-                : new LectureNameContainsKeywordsPredicate(keywords);
+                        ? new LectureTagContainsKeywordsPredicate(keywords)
+                        : new LectureNameContainsKeywordsPredicate(keywords);
         }
         return hasByTag
-            ? new VideoTagContainsKeywordsPredicate(keywords)
-            : new VideoNameContainsKeywordsPredicate(keywords);
+                    ? new VideoTagContainsKeywordsPredicate(keywords)
+                    : new VideoNameContainsKeywordsPredicate(keywords);
     }
 }

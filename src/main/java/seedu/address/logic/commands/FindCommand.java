@@ -12,7 +12,7 @@ import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.LectureNameContainsKeywordsPredicate;
 import seedu.address.model.module.LectureTagContainsKeywordsPredicate;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleContainsKeywordsPredicate;
 import seedu.address.model.module.ModuleTagContainsKeywordsPredicate;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.module.VideoNameContainsKeywordsPredicate;
@@ -122,7 +122,7 @@ public class FindCommand extends Command {
     private CommandResult filterByModuleList(Model model) {
         Predicate<ReadOnlyModule> modulePredicate = hasByTag
                 ? new ModuleTagContainsKeywordsPredicate(keywords)
-                : new ModuleCodeContainsKeywordsPredicate(keywords);
+                : new ModuleContainsKeywordsPredicate(keywords);
         model.updateFilteredModuleList(modulePredicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()));
