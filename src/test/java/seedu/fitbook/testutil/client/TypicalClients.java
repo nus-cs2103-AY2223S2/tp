@@ -36,29 +36,29 @@ public class TypicalClients {
     public static final Client ALICE = new ClientBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withAppointments("13-02-1999 18:30").withWeight("50.0").withGender("M")
-            .withGoal("lose-weight").withTags("friends").withCalorie("2310").build();
+            .withGoal("lose-weight").withTags("friends").withCalorie("2310").withRoutines().build();
     public static final Client BENSON = new ClientBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withWeight("50.0").withGender("M")
             .withGoal("lose-weight").withTags("owesMoney", "friends")
-            .withAppointments("13-02-2020 18:30", "14-01-2021 18:30").withCalorie("2424").build();
+            .withAppointments("13-02-2020 18:30", "14-01-2021 18:30").withCalorie("2424").withRoutines().build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
-            .withWeight("50.0").withGender("M").withGoal("lose-weight").withCalorie("2111").build();
+            .withWeight("50.0").withGender("M").withGoal("lose-weight").withCalorie("2111").withRoutines().build();
     public static final Client DANIEL = new ClientBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
             .withWeight("50.0").withGender("M").withAppointments("12-12-2020 18:30")
-            .withGoal("lose-weight").withTags("friends").withCalorie("2103").build();
+            .withGoal("lose-weight").withTags("friends").withCalorie("2103").withRoutines().build();
 
     public static final Client ELLE = new ClientBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
             .withWeight("50.0").withGender("M").withGoal("lose-weight").withCalorie("0000").build();
     public static final Client FIONA = new ClientBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
-            .withWeight("50.0").withGender("M").withGoal("lose-weight").withCalorie("2154").build();
+            .withWeight("50.0").withGender("M").withGoal("lose-weight").withCalorie("2154").withRoutines().build();
     public static final Client GEORGE = new ClientBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
-            .withWeight("50.0").withGender("M").withGoal("lose-weight").withCalorie("3432").build();
+            .withWeight("50.0").withGender("M").withGoal("lose-weight").withCalorie("3432").withRoutines().build();
 
     // Manually added
     public static final Client HOON = new ClientBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -89,6 +89,18 @@ public class TypicalClients {
     public static FitBook getTypicalFitBook() {
         FitBook ab = new FitBook();
         for (Client client : getTypicalClients()) {
+            ab.addClient(client);
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code FitBook} with no routines.
+     */
+    public static FitBook getTypicalFitBookWithNoRoutines() {
+        FitBook ab = new FitBook();
+        for (Client client : getTypicalClients()) {
+            client.clearRoutines();
             ab.addClient(client);
         }
         return ab;

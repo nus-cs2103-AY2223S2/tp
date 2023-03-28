@@ -8,6 +8,7 @@ import seedu.fitbook.commons.core.Messages;
 import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.model.FitBookModel;
+import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
 
@@ -52,8 +53,16 @@ public class DeleteExerciseCommand extends Command {
         Routine routineToDelete = lastShownList.get(targetRoutine.getZeroBased());
         Exercise exercise1 = routine.getExercises().get(targetExercise.getZeroBased());
         model.removeExercise(routineToDelete, targetExercise.getZeroBased());
-
+        updateClientExercise(routineToDelete, model);
         return new CommandResult(String.format(MESSAGE_DELETE_ROUTINE_SUCCESS, exercise1, routineToDelete));
+    }
+
+    /**
+     * Updates the {@code clients} with the updated {@code Routine} object with removal of {@Exercise} object.
+     */
+    private void updateClientExercise(Routine routine, FitBookModel model) {
+        List<Client> clientList = model.getFitBook().getClientList();
+        clientList.forEach(client -> client.changeExerciseIfRoutineNameMatch(routine));
     }
 
     @Override

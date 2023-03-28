@@ -8,6 +8,7 @@ import seedu.fitbook.commons.core.Messages;
 import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.model.FitBookModel;
+import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
 
@@ -48,10 +49,17 @@ public class AddExerciseCommand extends Command {
         Routine routine = lastShownList.get(targetRoutine.getZeroBased());
 
         model.addExercise(routine, exerciseToAdd);
-
+        updateClientExercise(routine, model);
         return new CommandResult(String.format(MESSAGE_ADD_EXERCISE_SUCCESS, exerciseToAdd, routine));
     }
 
+    /**
+     * Updates the {@code clients} with the updated {@code Routine} object with new addition of {@Exercise} object.
+     */
+    private void updateClientExercise(Routine routine, FitBookModel model) {
+        List<Client> clientList = model.getFitBook().getClientList();
+        clientList.forEach(client -> client.changeExerciseIfRoutineNameMatch(routine));
+    }
 
     @Override
     public boolean equals(Object other) {

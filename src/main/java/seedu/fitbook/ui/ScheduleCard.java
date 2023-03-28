@@ -86,6 +86,7 @@ public class ScheduleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(client.getName().fullName);
         personIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/personIcon.png")));
+
     }
 
     @Override

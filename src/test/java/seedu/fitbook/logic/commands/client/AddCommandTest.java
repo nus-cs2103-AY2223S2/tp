@@ -20,6 +20,7 @@ import seedu.fitbook.logic.commands.AddCommand;
 import seedu.fitbook.logic.commands.CommandResult;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.model.FitBook;
+import seedu.fitbook.model.FitBookExerciseRoutine;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.ReadOnlyFitBook;
 import seedu.fitbook.model.ReadOnlyFitBookExerciseRoutine;
@@ -224,6 +225,11 @@ public class AddCommandTest {
             requireNonNull(client);
             return this.client.isSameClient(client);
         }
+
+        @Override
+        public ReadOnlyFitBookExerciseRoutine getFitBookExerciseRoutine() {
+            return new FitBookExerciseRoutine();
+        }
     }
 
     /**
@@ -247,6 +253,11 @@ public class AddCommandTest {
         @Override
         public ReadOnlyFitBook getFitBook() {
             return new FitBook();
+        }
+
+        @Override
+        public ReadOnlyFitBookExerciseRoutine getFitBookExerciseRoutine() {
+            return new FitBookExerciseRoutine();
         }
     }
 

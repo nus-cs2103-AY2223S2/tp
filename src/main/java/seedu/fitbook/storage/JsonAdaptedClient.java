@@ -20,6 +20,9 @@ import seedu.fitbook.model.client.Goal;
 import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.client.Weight;
+import seedu.fitbook.model.routines.Exercise;
+import seedu.fitbook.model.routines.Routine;
+import seedu.fitbook.model.routines.RoutineName;
 import seedu.fitbook.model.tag.Tag;
 
 /**
@@ -40,6 +43,8 @@ class JsonAdaptedClient {
 
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedRoutineName> routinesRoutineName = new ArrayList<>();
+    private final List<JsonAdaptedExerciseClient> exercises = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -50,7 +55,9 @@ class JsonAdaptedClient {
             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
             @JsonProperty("weight") String weight, @JsonProperty("gender") String gender,
             @JsonProperty("goal") String goal, @JsonProperty("calorie") String calorie,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("routines_names") List<JsonAdaptedRoutineName> routinesRoutineName,
+            @JsonProperty("exercises") List<JsonAdaptedExerciseClient> exercises) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -64,6 +71,12 @@ class JsonAdaptedClient {
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (routinesRoutineName != null) {
+            this.routinesRoutineName.addAll(routinesRoutineName);
+        }
+        if (exercises != null) {
+            this.exercises.addAll(exercises);
         }
     }
 
@@ -85,6 +98,12 @@ class JsonAdaptedClient {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        routinesRoutineName.addAll(source.getRoutinesName().stream()
+                .map(JsonAdaptedRoutineName::new)
+                .collect(Collectors.toList()));
+        exercises.addAll(source.getExercisesStringForRoutines().stream()
+                .map(JsonAdaptedExerciseClient::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -95,8 +114,24 @@ class JsonAdaptedClient {
     public Client toFitBookModelType() throws IllegalValueException {
         final List<Tag> clientTags = new ArrayList<>();
         final List<Appointment> clientAppointments = new ArrayList<>();
+        final List<Routine> clientRoutines = new ArrayList<>();
+        final List<List<Exercise>> routineExercises = new ArrayList<>();
         for (JsonAdaptedAppointment appointment : appointments) {
             clientAppointments.add(appointment.toFitBookModelType());
+        }
+        for (JsonAdaptedExerciseClient currExercise : exercises) {
+            routineExercises.add(currExercise.toFitBookModelType());
+        }
+        int routineCount = 0;
+        for (JsonAdaptedRoutineName currRoutineName : routinesRoutineName) {
+            RoutineName routineName = currRoutineName.toFitBookModelType();
+            try {
+                clientRoutines.add(new Routine(routineName, routineExercises.get(routineCount)));
+            } catch (IndexOutOfBoundsException e) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        Exercise.class.getSimpleName()));
+            }
+            routineCount++;
         }
         for (JsonAdaptedTag tag : tagged) {
             clientTags.add(tag.toFitBookModelType());
@@ -164,9 +199,10 @@ class JsonAdaptedClient {
         final Goal modelGoal = new Goal(goal);
         final Set<Appointment> modelAppointment = new HashSet<>(clientAppointments);
         final Set<Tag> modelTags = new HashSet<>(clientTags);
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelAppointment,
-                modelWeight, modelGender, modelCalorie, modelGoal, modelTags);
+        final Set<Routine> modelRoutine = new HashSet<>(clientRoutines);
 
+        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelAppointment,
+                modelWeight, modelGender, modelCalorie, modelGoal, modelTags, modelRoutine);
     }
 
 }

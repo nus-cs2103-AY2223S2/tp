@@ -21,6 +21,7 @@ import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.client.Weight;
 import seedu.fitbook.model.routines.Exercise;
+import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.routines.RoutineName;
 import seedu.fitbook.model.tag.Tag;
 
@@ -179,6 +180,9 @@ public class ParserUtil {
         if (!Appointment.isValidDate(trimmedAppointment)) {
             throw new ParseException(Appointment.MESSAGE_DATE_CONSTRAINTS);
         }
+        if (Appointment.isDatePassed(trimmedAppointment)) {
+            throw new ParseException(Appointment.DATE_CONSTRAINTS);
+        }
         return new Appointment(trimmedAppointment);
     }
 
@@ -261,5 +265,32 @@ public class ParserUtil {
             exerciseList.add(parseExercise(exerciseName));
         }
         return exerciseList;
+    }
+
+    /**
+     * Parses a {@code String routine} into an {@code Routine}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code routine} is invalid.
+     */
+    public static Routine parseRoutine(String routine) throws ParseException {
+        requireNonNull(routine);
+        String trimmedRoutine = routine.trim();
+        if (!RoutineName.isValidRoutineName(trimmedRoutine)) {
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        }
+        return new Routine(new RoutineName(trimmedRoutine), new ArrayList<>());
+    }
+
+    /**
+     * Parses {@code Collection<String> appointments} into a {@code Set<Appointment>}.
+     */
+    public static Set<Routine> parseRoutines(Collection<String> routines) throws ParseException {
+        requireNonNull(routines);
+        final Set<Routine> routineSet = new HashSet<>();
+        for (String routineName : routines) {
+            routineSet.add(parseRoutine(routineName));
+        }
+        return routineSet;
     }
 }

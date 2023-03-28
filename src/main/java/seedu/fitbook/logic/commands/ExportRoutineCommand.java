@@ -42,15 +42,14 @@ public class ExportRoutineCommand extends Command {
      */
     public static String writeToCsvFile(FitBookModel model) throws CommandException {
         List<Routine> routines = model.getFilteredRoutineList().stream().collect(Collectors.toList());
-        try {
-            File csv = new File(FILE_NAME_ROUTINE + CSV_EXTENSION);
-            PrintWriter pw = new PrintWriter(csv);
+        try (PrintWriter pw = new PrintWriter(new File(FILE_NAME_ROUTINE + CSV_EXTENSION))) {
             writeHeaderRow(pw);
             writeRoutineRows(pw, routines);
+            pw.close();
+            return ExportRoutineCommand.MESSAGE_SUCCESS;
         } catch (FileNotFoundException e) {
             throw new CommandException(MESSAGE_FAILURE);
         }
-        return ExportRoutineCommand.MESSAGE_SUCCESS;
     }
 
     /**
@@ -67,16 +66,17 @@ public class ExportRoutineCommand extends Command {
      * @param routines List of routines stored in FitBook.
      */
     public static void writeRoutineRows(PrintWriter pw, List<Routine> routines) {
-        StringBuilder s = new StringBuilder("");
+        StringBuilder s = new StringBuilder();
         for (Routine routine : routines) {
-            s.append(routine.getRoutineName().toString() + COMMA_SEPARATOR);
+            s.append(routine.getRoutineName().toString()).append(COMMA_SEPARATOR);
             for (Exercise exercise : routine.getExercises()) {
-                s.append(exercise.exerciseName + WHITE_SPACE);
+                if (exercise.exerciseName != null) {
+                    s.append(exercise.exerciseName).append(WHITE_SPACE);
+                }
             }
             s.append(NEW_LINE);
         }
         pw.print(s);
-        pw.close();
     }
 
 }
