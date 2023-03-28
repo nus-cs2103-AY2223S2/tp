@@ -42,7 +42,7 @@ public class MainScreen extends UiPart<VBox> {
     private VBox rightComponent;
 
     @FXML
-    private HBox bottomComponent;
+    protected HBox bottomComponent;
 
     /**
      * Creates a {@code MainWindow} with {@code Logic}.
@@ -123,17 +123,17 @@ public class MainScreen extends UiPart<VBox> {
         taskCreationPanel.requestFocus();
     }
 
-    private void loadCommandInputComponent() {
+    protected void loadCommandInputComponent() {
         loadBottomComponent(commandInput);
         commandInput.requestFocus();
     }
 
-    public void loadCommandResultComponent(CommandResult result) {
+    protected void loadCommandResultComponent(CommandResult result) {
         CommandResultPanel resultPanel = new CommandResultPanel(this);
         resultPanel.display(result);
     }
 
-    public void loadDetailedTaskComponent(Task task) {
+    protected void loadDetailedTaskComponent(Task task) {
         TaskDetailPanel detailTask = new TaskDetailPanel(task);
         loadRightComponent(detailTask);
     }
@@ -161,7 +161,7 @@ public class MainScreen extends UiPart<VBox> {
         component.getRoot().prefHeightProperty().bind(topComponentHeight);
     }
 
-    public <T extends Pane> void loadBottomComponent(UiPart<T> component) {
+    protected <T extends Pane> void loadBottomComponent(UiPart<T> component) {
         bottomComponent.getChildren().clear();
         bottomComponent.getChildren().add(component.getRoot());
         component.getRoot().prefHeightProperty().bind(bottomComponentHeight);
