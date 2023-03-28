@@ -84,4 +84,18 @@ public class GroupTagSet implements Comparable<GroupTagSet> {
     public int compareTo(GroupTagSet otherGroupTagSet) {
         return Integer.compare(groups.size(), otherGroupTagSet.groups.size());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+
+        if (!(other instanceof GroupTagSet)) {
+            return false;
+        }
+
+        GroupTagSet otherGroupTagSet = (GroupTagSet) other;
+        return groups.equals(otherGroupTagSet.groups);
+    }
 }
