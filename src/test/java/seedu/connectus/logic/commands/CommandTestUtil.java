@@ -60,8 +60,8 @@ public class CommandTestUtil {
     public static final String MODULE_DESC_CS2101 = " " + PREFIX_MODULE + VALID_MODULE_CS2101;
     public static final String CCA_DESC_ICS = " " + PREFIX_CCA + VALID_CCA_ICS;
     public static final String CCA_DESC_NES = " " + PREFIX_CCA + VALID_CCA_NES;
-    public static final String CCA_POSITION_DESC_DIRECTOR = " " + PREFIX_CCA + VALID_CCA_POSITION_DIRECTOR;
-    public static final String CCA_POSITION_DESC_PRESIDENT = " " + PREFIX_CCA + VALID_CCA_POSITION_PRESIDENT;
+    public static final String CCA_POSITION_DESC_DIRECTOR = " " + PREFIX_CCA_POSITION + VALID_CCA_POSITION_DIRECTOR;
+    public static final String CCA_POSITION_DESC_PRESIDENT = " " + PREFIX_CCA_POSITION + VALID_CCA_POSITION_PRESIDENT;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
