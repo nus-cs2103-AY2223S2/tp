@@ -275,7 +275,11 @@ public class ModelManager implements Model {
                     jobListGroupedByDate.put(jobDate, jobsInCurrentSlot);
                 } else {
                     DeliveryList newDateJobList = createEmptyDayJobList();
-                    newDateJobList.get(slotIndex).add(toAdd);
+                    if (slotIndex > 4) {
+                        newDateJobList.get(5).add(toAdd);
+                    } else {
+                        newDateJobList.get(slotIndex).add(toAdd);
+                    }
                     jobListGroupedByDate.put(jobDate, newDateJobList);
                 }
             }
