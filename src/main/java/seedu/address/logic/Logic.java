@@ -71,6 +71,8 @@ public interface Logic {
 
     DeliveryList getDayofWeekJob(int dayOfWeek);
 
+    double getTotalEarnings(ObservableList<DeliveryJob> list);
+
     /**
      * Returns the user prefs' address book file path.
      */
