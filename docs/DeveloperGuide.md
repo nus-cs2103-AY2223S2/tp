@@ -387,15 +387,13 @@ The `interview` command displays the list of all shortlisted applicants, sorted 
 
 ### User stories
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-The following legend describes the symbols used in this section:
+**Note:** The following legend describes the symbols used in this section:
 
 | Priority | Symbol  | Meaning          | 
 |----------|---------|------------------|
 | High     | `* * *` | Must have        | 
 | Medium   | `* *`   | Nice to have     | 
 | Low      | `*`     | Unlikely to have | 
-</div>
 
 
 | Priority | As a …                   | I want to …                                                          | So that …                                                                            |
