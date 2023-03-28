@@ -26,7 +26,7 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Set<ModuleTag> moduleTags = new HashSet<>();
 
-    private boolean hidden = true;
+    private boolean hidden;
 
     /**
      * Every field must be present and not null.
@@ -39,6 +39,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.moduleTags.addAll(moduleTags);
+        this.hidden = true;
     }
 
     public Name getName() {

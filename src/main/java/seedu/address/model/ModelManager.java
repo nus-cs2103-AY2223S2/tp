@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -145,6 +146,16 @@ public class ModelManager implements Model, Undoable {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void resetPersonHiddenStatus() {
+        List<Person> personlist = getFilteredPersonList();
+        personlist.stream().forEach(x -> {
+            if (!x.getHidden()) {
+                x.toggleHidden();
+            }
+        });
     }
 
     //=========== Undo management =============================================================================

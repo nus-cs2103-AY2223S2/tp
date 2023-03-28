@@ -28,6 +28,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Set<ModuleTag> moduleTags;
+    private boolean hidden;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -39,6 +40,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         moduleTags = new HashSet<>();
+        hidden = true;
     }
 
     /**
@@ -51,6 +53,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         moduleTags = new HashSet<>(personToCopy.getModuleTags());
+        hidden = personToCopy.getHidden();
     }
 
     /**

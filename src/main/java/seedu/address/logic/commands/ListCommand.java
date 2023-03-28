@@ -21,12 +21,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        List<Person> personlist = model.getFilteredPersonList();
-        personlist.stream().forEach(x -> {
-            if (!x.getHidden()) {
-                x.toggleHidden();
-            }
-        });
+        model.resetPersonHiddenStatus();
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);
     }

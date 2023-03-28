@@ -23,6 +23,7 @@ public class UndoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.resetPersonHiddenStatus();
         if (model instanceof Undoable) {
             Undoable undoableModel = (Undoable) model;
             if (!undoableModel.hasUndoableCommand()) {

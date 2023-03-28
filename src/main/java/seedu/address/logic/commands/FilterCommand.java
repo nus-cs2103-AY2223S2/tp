@@ -53,12 +53,7 @@ public class FilterCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> personlist = model.getFilteredPersonList();
-        personlist.stream().forEach(x -> {
-            if (!x.getHidden()) {
-                x.toggleHidden();
-            }
-        });
+        model.resetPersonHiddenStatus();
         model.updateFilteredPersonList(this.predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
