@@ -654,7 +654,7 @@ extension, see [here](https://www.howtogeek.com/205086/beginner-how-to-make-wind
     
     [image]
 
-4. Double-click the renamed batch file `start.bat` to launch CoDoc.
+4. If done correctly, you should now see a file with an icon similar to below. Double-click the renamed batch file `start.bat` to launch CoDoc.
 
 
 [Scroll back to *Downloading CoDoc*](#downloading-codoc)
