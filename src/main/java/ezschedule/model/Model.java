@@ -86,9 +86,15 @@ public interface Model {
     void setEvent(Event target, Event editedEvent);
 
     /**
+     * Returns an unmodifiable view of the upcoming event list
+     */
+    ObservableList<Event> getUpcomingEventList();
+
+    /**
      * Returns an unmodifiable view of the event list
      */
     ObservableList<Event> getEventList();
+
 
     /**
      * Returns an unmodifiable view of the filtered event list

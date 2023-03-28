@@ -31,21 +31,6 @@ public class UniqueEventList implements Iterable<Event> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Constructor of UniqueEventList.
-     * Attaches a listener to sort the list of events in chronological order whenever its changed.
-     */
-    public UniqueEventList() {
-        // Auto-sort whenever a list is changed
-        internalList.addListener((ListChangeListener<Event>) c -> {
-            while (c.next()) {
-                if (!c.wasPermutated()) {
-                    FXCollections.sort(internalList);
-                }
-            }
-        });
-    }
-
-    /**
      * Returns true if the list contains an equivalent event as the given argument.
      */
     public boolean contains(Event toCheck) {
@@ -59,6 +44,22 @@ public class UniqueEventList implements Iterable<Event> {
     public boolean existsAtTime(Event toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isEventOverlap);
+    }
+
+    /**
+     * Attach {@code listener}, which is called whenever internalList is changed.
+     *
+     * @param listener A ListChangeListener to be called.
+     */
+    public void addListChangeListener(ListChangeListener<Event> listener) {
+        internalList.addListener(listener);
+    }
+
+    /**
+     * Sorts all events in chronological order.
+     */
+    public void sortByChronologicalOrder() {
+        FXCollections.sort(internalList);
     }
 
     /**

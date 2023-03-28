@@ -34,6 +34,11 @@ public interface Logic {
     ReadOnlyScheduler getScheduler();
 
     /**
+     * Returns an unmodifiable view of the upcoming list of events
+     */
+    ObservableList<Event> getUpcomingEventList();
+
+    /**
      * Returns an unmodifiable view of the list of events
      */
     ObservableList<Event> getEventList();

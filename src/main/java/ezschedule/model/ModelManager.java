@@ -24,7 +24,7 @@ public class ModelManager implements Model {
     private final FilteredList<Event> filteredEvents;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given scheduler and userPrefs.
      */
     public ModelManager(ReadOnlyScheduler scheduler, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(scheduler, userPrefs);
@@ -120,7 +120,16 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
-     * {@code versionedScheduler}
+     * {@code scheduler}
+     */
+    @Override
+    public ObservableList<Event> getUpcomingEventList() {
+        return scheduler.getUpcomingEvents();
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
+     * {@code scheduler}
      */
     @Override
     public ObservableList<Event> getEventList() {
