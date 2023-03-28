@@ -107,6 +107,11 @@ public abstract class Entity {
         return builder.toString();
     }
 
+    /**
+     * Checks if two entities are the same.
+     * @param other the entity to check against
+     * @return if the two entities are equal
+     */
     public boolean isSameEntity(Entity other) {
         if (other == this) {
             return true;
