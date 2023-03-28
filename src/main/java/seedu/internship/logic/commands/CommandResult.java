@@ -96,7 +96,6 @@ public class CommandResult {
                          ObservableList<Event> events) {
         this(feedbackToUser, resultType, internship, events, EMPTY_STATISTICS);
     }
-    
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value for Clash Function
