@@ -35,6 +35,10 @@ public class OrderListPanel extends UiPart<Region> {
 
         orderListView.getSelectionModel().selectedItemProperty().addListener(e -> {
             Order order = orderListView.getSelectionModel().getSelectedItem();
+            if (order == null) {
+                return;
+            }
+
             handler.orderInfoOnClick(order);
         });
     }

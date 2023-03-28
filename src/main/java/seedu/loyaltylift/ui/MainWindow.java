@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -49,6 +51,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private TabPane tableTabPane;
+
+    @FXML
+    private Tab customerTab;
+
+    @FXML
+    private Tab orderTab;
 
     @FXML
     private StackPane customerListPanelPlaceholder;
@@ -232,10 +243,12 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowCustomerSelection()) {
+                tableTabPane.getSelectionModel().select(customerTab);
                 customerListPanel.getSelectionModel().select(commandResult.getCustomerIndex());
             }
 
             if (commandResult.isShowOrderSelection()) {
+                tableTabPane.getSelectionModel().select(orderTab);
                 orderListPanel.getSelectionModel().select(commandResult.getOrderIndex());
             }
 
@@ -252,6 +265,8 @@ public class MainWindow extends UiPart<Stage> {
      * @param customer The customer to be displayed on the information pane.
      */
     private void showCustomerInfo(Customer customer) {
+        // ensure order table cell is selectable again
+        orderListPanel.getSelectionModel().clearSelection();
         infoPane.getChildren().clear();
 
         logic.updateFilteredCustomerOrderList(customer);
@@ -260,10 +275,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Handles the event where a OrderCard is clicked and the customer info needs to be shown.
+     * Handles the event where a OrderCard is clicked and the order info needs to be shown.
      * @param order The order to be displayed on the information pane.
      */
     private void showOrderInfo(Order order) {
+        // ensure customer table cell is selectable again
+        customerListPanel.getSelectionModel().clearSelection();
         infoPane.getChildren().clear();
 
         OrderInfo orderInfo = new OrderInfo(order);
