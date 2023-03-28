@@ -79,7 +79,7 @@ public class Group {
     /**
      * Returns a modifiable view of the list of tasks in this group.
      */
-    public ObservableList<Task> getModifiableTasklist() {
+    public ObservableList<Task> getModifiableTaskList() {
         return tasks.asModifiableObservableList();
     }
 
