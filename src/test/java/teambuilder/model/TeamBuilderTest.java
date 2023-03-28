@@ -89,6 +89,7 @@ public class TeamBuilderTest {
      */
     private static class AddressBookStub implements ReadOnlyTeamBuilder {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Team> teams = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -102,6 +103,7 @@ public class TeamBuilderTest {
         @Override
         public ObservableList<Team> getTeamList() {
             throw new AssertionError("This method should not be called.");
+
         }
     }
 

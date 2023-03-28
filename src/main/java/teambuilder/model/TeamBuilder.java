@@ -17,6 +17,7 @@ import teambuilder.model.team.UniqueTeamList;
 public class TeamBuilder implements ReadOnlyTeamBuilder {
 
     private final UniquePersonList persons;
+    private final UniqueTeamList teams;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -27,6 +28,7 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
      */
     {
         persons = new UniquePersonList();
+        teams = new UniqueTeamList();
     }
 
     private final UniqueTeamList teams;
@@ -62,13 +64,18 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
         this.persons.setPersons(persons);
     }
 
+    public void setTeams(List<Team> teams) {
+        this.teams.setTeams(teams);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyTeamBuilder newData) {
         requireNonNull(newData);
-
+        //TODO:
         setPersons(newData.getPersonList());
+        setTeams(newData.getTeamList());
     }
 
     //// person-level operations
@@ -96,8 +103,24 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
+    }
+
+    public void addTeam(Team t) {
+        teams.add(t);
+    }
+
+    /**
+     * Returns true if a team with the same identity as {@code team} exists in the address book.
+     */
+    public boolean hasTeam(Team team) {
+        requireNonNull(team);
+        return teams.contains(team);
+    }
+
+    public void setTeam(Team target, Team editedteam) {
+        requireNonNull(editedteam);
+        teams.setTeam(target, editedteam);
     }
 
     /**
@@ -108,28 +131,6 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
         persons.remove(key);
     }
 
-    //// team-level operations
-
-    /**
-     * Returns true if a team with the same identity as {@code team} exists in the address book.
-     */
-    public boolean hasTeam(Team team) {
-        requireNonNull(team);
-        return teams.contains(team);
-    }
-
-    /**
-     * Adds a team to the address book.
-     * The person must not already exist in the address book.
-     */
-    public void addTeam(Team team) {
-        teams.add(team);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
     public void removeTeam(Team key) {
         teams.remove(key);
     }
@@ -162,9 +163,16 @@ public class TeamBuilder implements ReadOnlyTeamBuilder {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof TeamBuilder // instanceof handles nulls
-                && persons.equals(((TeamBuilder) other).persons));
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof TeamBuilder)) {
+            return false;
+        }
+        if (!persons.equals(((TeamBuilder) other).persons)) {
+            return false;
+        }
+        return teams.equals(((TeamBuilder) other).teams);
     }
 
     @Override

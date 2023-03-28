@@ -83,5 +83,34 @@ public class Team {
                 && teamName.equals(((Team) other).teamName)); // state check
     }
 
+    /**
+     * Getter method for the team name of team instance.
+     *
+     * @return TeamName of Team instance.
+     */
+    public TeamName getTeamName() {
+        return teamName;
+    }
+
+    public Desc getTeamDesc() {
+        return teamDesc;
+    }
+
+    public Set<Tag> getSkillTags() {
+        return skillTags;
+    }
+
+    /**
+     * Returns true if both teams have the same name.
+     */
+    public boolean isSameTeam(Team otherTeam) {
+        if (otherTeam == this) {
+            return true;
+        }
+
+        return otherTeam != null
+                && otherTeam.getTeamName().equals(getTeamName());
+    }
+
 
 }

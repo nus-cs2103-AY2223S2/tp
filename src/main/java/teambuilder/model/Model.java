@@ -16,6 +16,7 @@ import teambuilder.model.team.Team;
 public interface Model extends Originator {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Team> PREDICATE_SHOW_ALL_TEAMS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -50,10 +51,10 @@ public interface Model extends Originator {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyTeamBuilder addressBook);
+    void setTeamBuilder(ReadOnlyTeamBuilder teamBuilder);
 
     /** Returns the AddressBook */
-    ReadOnlyTeamBuilder getAddressBook();
+    ReadOnlyTeamBuilder getTeamBuilder();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -118,9 +119,14 @@ public interface Model extends Originator {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    void updateFilteredTeamList(Predicate<Team> predicate);
+
     /**
      * Updates the comparator of the sorted person list to sort by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
-    void updateSort(Comparator<Person> comparator);
+    void updateSortPerson(Comparator<Person> comparator);
+
+    void updateSortTeam(Comparator<Team> comparator);
+
 }
