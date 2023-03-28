@@ -1,7 +1,9 @@
 package seedu.address.logic.commands.delete;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Set;
@@ -64,6 +66,37 @@ public class DeleteLectureCommandTest {
             TypicalModules.getCs2040s().getCode(),
             TypicalLectures.getCs2040sWeek7().getName()
                                             ).execute(new ModelStubNoLecture()));
+    }
+
+    @Test
+    public void equals() {
+        ModuleCode modCs2040s = TypicalModules.getCs2040s().getCode();
+        ModuleCode modSt2334 = TypicalModules.getSt2334().getCode();
+
+        LectureName lecCs2040sWeek1 = TypicalLectures.getCs2040sWeek1().getName();
+        LectureName lecCs2040sWeek2 = TypicalLectures.getCs2040sWeek2().getName();
+        LectureName lecSt2334Topic1 = TypicalLectures.getSt2334Topic1().getName();
+
+        DeleteLectureCommand deleteCs2040sWeek1 = new DeleteLectureCommand(modCs2040s, lecCs2040sWeek1);
+        DeleteLectureCommand deleteCs2040sWeek2 = new DeleteLectureCommand(modCs2040s, lecCs2040sWeek2);
+        DeleteLectureCommand deleteSt2334Topic1 = new DeleteLectureCommand(modSt2334, lecSt2334Topic1);
+
+        // same object -> returns true
+        assertTrue(deleteCs2040sWeek1.equals(deleteCs2040sWeek1));
+
+        // same value -> returns true
+        DeleteLectureCommand deleteCs2040sWeek2Dup = new DeleteLectureCommand(modCs2040s, lecCs2040sWeek2);
+        assertTrue(deleteCs2040sWeek2.equals(deleteCs2040sWeek2Dup));
+
+        // different values -> returns false
+        assertFalse(deleteCs2040sWeek1.equals(deleteCs2040sWeek2)); // different lecture
+        assertFalse(deleteCs2040sWeek1.equals(deleteSt2334Topic1)); // different mod
+
+        // different typies -> returns false
+        assertFalse(deleteCs2040sWeek1.equals("command"));
+
+        // null -> returns false
+        assertFalse(deleteSt2334Topic1.equals(null));
     }
 
     private class ModelStubNoLecture extends ModelStub {
