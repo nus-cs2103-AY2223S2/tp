@@ -4,8 +4,10 @@ import java.util.logging.Logger;
 
 import ezschedule.commons.core.LogsCenter;
 import ezschedule.model.event.Event;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -19,6 +21,8 @@ public class ShowNextPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ShowNextPanel.class);
 
     @FXML
+    private Label showNextLabel;
+    @FXML
     private ListView<Event> showNextListView;
 
     /**
@@ -26,6 +30,8 @@ public class ShowNextPanel extends UiPart<Region> {
      */
     public ShowNextPanel(ObservableList<Event> eventList) {
         super(FXML);
+        eventList.addListener(
+                (ListChangeListener<Event>) c -> showNextLabel.setText("Next " + eventList.size() + " Event"));
         showNextListView.setItems(eventList);
         showNextListView.setCellFactory(listView -> new ShowNextPanel.ShowNextViewCell());
     }
