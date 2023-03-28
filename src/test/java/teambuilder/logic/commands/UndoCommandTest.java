@@ -19,6 +19,7 @@ import teambuilder.model.Model;
 import teambuilder.model.ReadOnlyTeamBuilder;
 import teambuilder.model.ReadOnlyUserPrefs;
 import teambuilder.model.person.Person;
+import teambuilder.model.team.Team;
 
 public class UndoCommandTest {
     @Test
@@ -173,6 +174,31 @@ public class UndoCommandTest {
         }
 
         @Override
+        public boolean hasTeam(Team team) {
+            throw new AssertionError("Unimplemented method 'hasTeam'");
+        }
+
+        @Override
+        public void deleteTeam(Team target) {
+            throw new AssertionError("Unimplemented method 'deleteTeam'");
+        }
+
+        @Override
+        public void addTeam(Team team) {
+            throw new AssertionError("Unimplemented method 'addTeam'");
+        }
+
+        @Override
+        public void updatePersonInTeams(Person person) {
+            throw new AssertionError("Unimplemented method 'updatePersonInTeams'");
+        }
+
+        @Override
+        public void removeFromAllTeams(Person person) {
+            throw new AssertionError("Unimplemented method 'removeFromAllTeams'");
+        }
+
+        @Override
         public ObservableList<Person> getSortedPersonList() {
 
             throw new UnsupportedOperationException("Unimplemented method 'getSortedPersonList'");
@@ -180,13 +206,17 @@ public class UndoCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
-
             throw new UnsupportedOperationException("Unimplemented method 'updateFilteredPersonList'");
         }
 
         @Override
         public void updateSort(Comparator<Person> comparator) {
             throw new UnsupportedOperationException("Unimplemented method 'updateSort'");
+        }
+
+        @Override
+        public ObservableList<Team> getTeamList() {
+            throw new AssertionError("Unimplemented method 'getTeamList'");
         }
 
     }

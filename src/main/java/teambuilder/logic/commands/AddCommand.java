@@ -8,11 +8,15 @@ import static teambuilder.logic.parser.CliSyntax.PREFIX_NAME;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_PHONE;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
+
 import teambuilder.commons.core.Memento;
 import teambuilder.commons.util.HistoryUtil;
 import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
 import teambuilder.model.person.Person;
+import teambuilder.model.tag.Tag;
+import teambuilder.model.team.Team;
 
 /**
  * Adds a person to the address book.
@@ -41,6 +45,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_TEAM_NOT_FOUND = "The team does not exist in the address book";
 
     private final Person toAdd;
 
@@ -60,10 +65,28 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        // throw exception if team tags not from existing teams
+        List<Team> teamList = model.getTeamList();
+        Object[] teamTags = toAdd.getTeams().toArray();
+        for (Object tag : teamTags) {
+            Tag castedTag = (Tag) tag;
+            boolean isPresent = false;
+            for (Team team : teamList) {
+                if (castedTag.getName().equals(team.toString())) {
+                    isPresent = true;
+                    break;
+                }
+            }
+            if (!isPresent) {
+                throw new CommandException(MESSAGE_TEAM_NOT_FOUND);
+            }
+        }
+
         Memento old = model.save();
         HistoryUtil.getInstance().storePast(old, COMMAND_WORD + " " + toAdd);
 
         model.addPerson(toAdd);
+        model.updatePersonInTeams(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

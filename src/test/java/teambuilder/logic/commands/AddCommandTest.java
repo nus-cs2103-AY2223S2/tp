@@ -14,7 +14,9 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import teambuilder.commons.core.GuiSettings;
 import teambuilder.commons.core.Memento;
 import teambuilder.logic.commands.exceptions.CommandException;
@@ -23,6 +25,7 @@ import teambuilder.model.ReadOnlyTeamBuilder;
 import teambuilder.model.ReadOnlyUserPrefs;
 import teambuilder.model.TeamBuilder;
 import teambuilder.model.person.Person;
+import teambuilder.model.team.Team;
 import teambuilder.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -156,10 +159,39 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasTeam(Team team) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTeam(Team target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTeam(Team team) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updatePersonInTeams(Person person) {
+            return;
+        }
+
+        @Override
+        public void removeFromAllTeams(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getSortedPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public ObservableList<Team> getTeamList() {
+            return new FilteredList<>(FXCollections.unmodifiableObservableList(FXCollections.observableArrayList()));
+        }
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
