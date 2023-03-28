@@ -5,7 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Delivery's Delivery Slot in the delivery jobs book.
- * Guarantees: immutable; is valid as declared in {@link #isValidDeliverySlot(String)}
+ * Guarantees: immutable; is valid as declared in
+ * {@link #isValidDeliverySlot(String)}
  */
 public class DeliverySlot {
 
@@ -56,7 +57,7 @@ public class DeliverySlot {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeliverySlot // instanceof handles nulls
-                && value.equals(((DeliverySlot) other).value)); // state check
+                        && value.equals(((DeliverySlot) other).value)); // state check
     }
 
     @Override
@@ -66,6 +67,23 @@ public class DeliverySlot {
 
     public static DeliverySlot placeholder() {
         return new DeliverySlot();
+    }
+
+    public String getDescription() {
+        switch (value) {
+        case "1":
+            return "10am - 11am";
+        case "2":
+            return "11am - 12pm";
+        case "3":
+            return "1pm  - 2pm ";
+        case "4":
+            return "2pm  - 3pm ";
+        case "5":
+            return "3pm  - 4pm ";
+        default:
+            return "N.A";
+        }
     }
 
 }

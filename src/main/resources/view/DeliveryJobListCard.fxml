@@ -2,40 +2,96 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
-    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-    </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-      <padding>
-        <Insets bottom="5" left="15" right="5" top="5" />
-      </padding>
-      <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="label" styleClass="cell_big_label" text="\$job_label" />
-      </HBox>
-      <Label fx:id="receipient" styleClass="cell_small_label" text="\$receipient" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-         <Label fx:id="deliveryTimeDate" styleClass="cell_small_label" text="\$delivery_time_date" />
-         <Label fx:id="deliveryTimeSlot" styleClass="cell_small_label" text="\$delivery_time_slot" />
-      <Label fx:id="earning" styleClass="cell_small_label" text="\$earning" />
-         <Label fx:id="completedStatus" styleClass="cell_small_label" text="\$completed_status" />
-    </VBox>
-      <rowConstraints>
-         <RowConstraints />
-      </rowConstraints>
-  </GridPane>
-</HBox>
+<BorderPane fx:id="cardPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER_LEFT" minHeight="-Infinity" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="5">
+               <children>
+                  <Label fx:id="id" styleClass="cell_big_label">
+                     <minWidth>
+                        <Region fx:constant="USE_PREF_SIZE" />
+                     </minWidth>
+                  </Label>
+                  <Label fx:id="label" styleClass="cell_big_label" text="\$job_label" />
+               </children>
+            </HBox>
+            <Label contentDisplay="RIGHT" styleClass="cell_small_label" text="Recipient:">
+               <graphic>
+                  <Label fx:id="receipient" styleClass="cell_small_label" text="\$receipient" />
+               </graphic>
+            </Label>
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address" visible="false" />
+            <HBox spacing="2.0">
+               <children>
+                  <Label fx:id="deliveryTimeDate" styleClass="cell_small_label" text="\$delivery_time_date" />
+                  <Label fx:id="deliveryTimeSlot" styleClass="cell_small_label" text="\$delivery_time_slot" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <padding>
+      <Insets bottom="5.0" top="5.0" />
+   </padding>
+   <left>
+      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <StackPane alignment="TOP_CENTER" onMouseClicked="#handleChecked" style="-fx-background-color: #00000000; -fx-border-color: #1d1d1d5d; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-radius: 10;">
+               <children>
+                  <ImageView fx:id="checkmarkIcon" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/checkmark.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </left>
+   <right>
+      <VBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+         <children>
+            <Label id="job_earning_dollar" fx:id="earningDollar" alignment="CENTER" text="\$dollar">
+               <graphic>
+                  <Label fx:id="earning" text="\$">
+                     <font>
+                        <Font name="System Italic" size="24.0" />
+                     </font>
+                  </Label>
+               </graphic>
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <padding>
+                  <Insets bottom="-10.0" right="8.0" />
+               </padding>
+            </Label>
+            <Label id="job_earning_cent" fx:id="earningCent" graphicTextGap="0.0" text="\$cent">
+               <graphic>
+                  <Label fx:id="earning1" text=".">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                  </Label>
+               </graphic>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+   </right>
+</BorderPane>

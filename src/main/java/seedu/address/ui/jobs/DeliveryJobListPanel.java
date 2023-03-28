@@ -27,6 +27,7 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(DeliveryJobListPanel.class);
 
     private BiConsumer<Integer, DeliveryJob> onSelectHandler;
+    private Consumer<DeliveryJob> onCheckHandler;
 
     @FXML
     private ListView<DeliveryJob> deliveryJobListView;
@@ -36,6 +37,7 @@ public class DeliveryJobListPanel extends UiPart<Region> {
      */
     public DeliveryJobListPanel(ObservableList<DeliveryJob> jobList,
             BiConsumer<Integer, DeliveryJob> selectHandler,
+            Consumer<DeliveryJob> checkHandler,
             Consumer<DeliveryJob> deleteHandler) {
         super(FXML);
         deliveryJobListView.setItems(jobList);
@@ -70,6 +72,8 @@ public class DeliveryJobListPanel extends UiPart<Region> {
             }
 
         });
+
+        onCheckHandler = checkHandler;
     }
 
     /**
@@ -77,7 +81,7 @@ public class DeliveryJobListPanel extends UiPart<Region> {
      * without any event handler.
      */
     public DeliveryJobListPanel(ObservableList<DeliveryJob> jobList) {
-        this(jobList, (job, idx) -> {}, (job) -> {});
+        this(jobList, (job, idx) -> {}, (job) -> {}, (job) -> {});
     }
 
     /**
@@ -88,11 +92,21 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     public void selectItem(int idx) {
         if (deliveryJobListView.getItems().size() > 0) {
             logger.info("Delivery selected:" + deliveryJobListView.getSelectionModel().getSelectedIndex());
+            if (idx < 0) {
+                idx = 0;
+            }
             deliveryJobListView.getSelectionModel().select(idx);
             onSelectHandler.accept(idx + 1, deliveryJobListView.getSelectionModel().getSelectedItem());
         } else {
             onSelectHandler.accept(-1, null);
         }
+    }
+
+    /**
+     * selectPrevious.
+     */
+    public void selectPrevious() {
+        deliveryJobListView.getSelectionModel().selectPrevious();
     }
 
     /**
@@ -108,7 +122,9 @@ public class DeliveryJobListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new DeliveryJobCard(job, getIndex() + 1).getRoot());
+                setGraphic(new DeliveryJobCard(job, getIndex() + 1, check -> {
+                    onCheckHandler.accept(check);
+                }).getRoot());
             }
         }
     }
@@ -125,5 +141,12 @@ public class DeliveryJobListPanel extends UiPart<Region> {
      */
     public int size() {
         return deliveryJobListView.getItems().size();
+    }
+
+    /**
+     * Triggers update event for child elemets.
+     */
+    public void refresh() {
+        selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());
     }
 }

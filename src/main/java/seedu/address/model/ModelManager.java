@@ -287,8 +287,6 @@ public class ModelManager implements Model {
         weekJobListGroupedByDate.clear();
         this.focusDate = date;
 
-        LocalDate lastWeek = date.minusWeeks(1);
-        LocalDate nextWeek = date.plusWeeks(1);
         int focusDayOfWeek = date.getDayOfWeek().getValue();
         int dayOfWeekTracker = 1;
 

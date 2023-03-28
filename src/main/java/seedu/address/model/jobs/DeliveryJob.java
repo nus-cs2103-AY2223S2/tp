@@ -21,6 +21,7 @@ public class DeliveryJob {
     private final Optional<DeliverySlot> deliverySlot;
     private final Optional<Earning> earning;
     private final Boolean isDelivered;
+    private final String description;
 
     /**
      * Constructs a job entity.
@@ -29,9 +30,9 @@ public class DeliveryJob {
      * @param sender
      * @param earning
      */
-    public DeliveryJob(String recipient, String sender, String earning) {
+    public DeliveryJob(String recipient, String sender, String earning, String description) {
         this(genJobId(recipient, sender), recipient, sender, Optional.empty(), Optional.empty(),
-                Optional.of(new Earning(earning)), false);
+                Optional.of(new Earning(earning)), false, description);
     }
 
     /**
@@ -43,9 +44,10 @@ public class DeliveryJob {
      * @param deliverySlot
      * @param earning
      */
-    public DeliveryJob(String recipient, String sender, String deliveryDate, String deliverySlot, String earning) {
+    public DeliveryJob(String recipient, String sender, String deliveryDate, String deliverySlot, String earning,
+            String description) {
         this(genJobId(recipient, sender), recipient, sender, Optional.of(new DeliveryDate(deliveryDate)),
-                Optional.of(new DeliverySlot(deliverySlot)), Optional.of(new Earning(earning)), false);
+                Optional.of(new DeliverySlot(deliverySlot)), Optional.of(new Earning(earning)), false, description);
     }
 
     /**
@@ -61,7 +63,7 @@ public class DeliveryJob {
     public DeliveryJob(String jobId, String recipient, String sender, Optional<DeliveryDate> deliveryDate,
             Optional<DeliverySlot> deliverySlot,
             Optional<Earning> earning,
-            Boolean isDelivered) {
+            Boolean isDelivered, String description) {
         this.jobId = jobId;
         this.recipient = recipient;
         this.sender = sender;
@@ -69,6 +71,7 @@ public class DeliveryJob {
         this.deliverySlot = deliverySlot;
         this.earning = earning;
         this.isDelivered = isDelivered;
+        this.description = description;
     }
 
     private static String genJobId(String recipient, String sender) {
@@ -113,6 +116,13 @@ public class DeliveryJob {
 
     public int getSlot() throws NoSuchElementException {
         return deliverySlot.get().getSlot();
+    }
+
+    public String getDescription() {
+        if (description == null) {
+            return "";
+        }
+        return description;
     }
 
     /**
@@ -174,6 +184,7 @@ public class DeliveryJob {
         private Optional<DeliverySlot> deliverySlot = Optional.empty();
         private Optional<Earning> earning = Optional.empty();
         private Boolean isDelivered;
+        private String description;
 
         /**
          * Copys from an existing job.
@@ -189,6 +200,7 @@ public class DeliveryJob {
             this.deliverySlot = job.getDeliverySlot();
             this.earning = job.getEarning();
             this.isDelivered = job.getDeliveredStatus();
+            this.description = job.getDescription();
             return this;
         }
 
@@ -270,12 +282,23 @@ public class DeliveryJob {
         }
 
         /**
+         * Sets description.
+         *
+         * @param description
+         * @return
+         */
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        /**
          * Builds DeliveryJob.
          */
         public DeliveryJob build() {
             return new DeliveryJob(jobId, recipient, sender,
                     deliveryDate,
-                    deliverySlot, earning, isDelivered);
+                    deliverySlot, earning, isDelivered, description);
         }
     }
 }

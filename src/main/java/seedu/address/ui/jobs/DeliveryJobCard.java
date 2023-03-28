@@ -1,8 +1,11 @@
 package seedu.address.ui.jobs;
 
+import java.util.function.Consumer;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.ui.UiPart;
@@ -21,11 +24,11 @@ public class DeliveryJobCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-
     private final DeliveryJob job;
+    private Consumer<DeliveryJob> onCheckHandler;
 
     @FXML
-    private HBox cardPane;
+    private BorderPane cardPane;
     @FXML
     private Label label;
     @FXML
@@ -41,12 +44,16 @@ public class DeliveryJobCard extends UiPart<Region> {
     @FXML
     private Label earning;
     @FXML
-    private Label completedStatus;
+    private Label earningDollar;
+    @FXML
+    private Label earningCent;
+    @FXML
+    private ImageView checkmarkIcon;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public DeliveryJobCard(DeliveryJob job, int displayedIndex) {
+    public DeliveryJobCard(DeliveryJob job, int displayedIndex, Consumer<DeliveryJob> onCheckHandler) {
         super(FXML);
         this.job = job;
         id.setText(displayedIndex + ". ");
@@ -61,18 +68,21 @@ public class DeliveryJobCard extends UiPart<Region> {
         });
 
         job.getDeliverySlot().ifPresentOrElse(val -> {
-            deliveryTimeSlot.setText(val.value);
+            deliveryTimeSlot.setText(val.getDescription());
         }, () -> {
             deliveryTimeSlot.setText("N.A");
         });
 
         job.getEarning().ifPresentOrElse(val -> {
-            earning.setText(val.value);
+            earningDollar.setText(val.dollar);
+            earningCent.setText(val.cent);
         }, () -> {
-            earning.setText("N.A");
+            earningDollar.setText("0");
+            earningCent.setText("00");
         });
 
-        completedStatus.setText(String.valueOf(job.getDeliveredStatus()));
+        checkmarkIcon.setVisible(job.getDeliveredStatus());
+        this.onCheckHandler = onCheckHandler;
     }
 
     @Override
@@ -91,5 +101,10 @@ public class DeliveryJobCard extends UiPart<Region> {
         DeliveryJobCard card = (DeliveryJobCard) other;
         return id.getText().equals(card.id.getText())
                 && job.equals(card.job);
+    }
+
+    @FXML
+    private void handleChecked() {
+        onCheckHandler.accept(job);
     }
 }

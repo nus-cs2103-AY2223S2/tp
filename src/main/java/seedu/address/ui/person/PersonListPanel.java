@@ -4,6 +4,7 @@ import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -30,16 +31,24 @@ public class PersonListPanel extends UiPart<Region> {
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public PersonListPanel(ObservableList<Person> personList) {
-        this(personList, (personIndex) -> {});
+        this(personList, (person) -> {}, (personIndex) -> {});
     }
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList} with a delete handler.
      */
-    public PersonListPanel(ObservableList<Person> personList, Consumer<Index> deleteHandler) {
+    public PersonListPanel(ObservableList<Person> personList, Consumer<Person> selectHandler,
+            Consumer<Index> deleteHandler) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+
+        personListView.setOnMouseClicked(new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+                selectHandler.accept(personListView.getSelectionModel().getSelectedItem());
+            }
+        });
 
         personListView.setOnKeyPressed(new EventHandler<KeyEvent>() {
 

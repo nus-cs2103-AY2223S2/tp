@@ -22,6 +22,7 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
     private final String deliverySlot;
     private final String earning;
     private final boolean isDelivered;
+    private final String description;
 
     /**
      * JsonAdaptedDeliveryJob
@@ -39,7 +40,8 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
             @JsonProperty("date") String deliveryDate,
             @JsonProperty("slot") String deliverySlot,
             @JsonProperty("earning") String earning,
-            @JsonProperty("isDelivered") boolean isDelivered) {
+            @JsonProperty("isDelivered") boolean isDelivered,
+            @JsonProperty("description") String description) {
         this.jobId = jobId;
         this.recipient = recipient;
         this.sender = sender;
@@ -47,6 +49,7 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
         this.deliverySlot = deliverySlot;
         this.earning = earning;
         this.isDelivered = isDelivered;
+        this.description = description;
     }
 
     /**
@@ -62,6 +65,7 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
         this.deliverySlot = source.getDeliverySlot().orElseGet(() -> DeliverySlot.placeholder()).value;
         this.earning = source.getEarning().orElseGet(() -> Earning.placeholder()).value;
         this.isDelivered = source.getDeliveredStatus();
+        this.description = source.getDescription();
     }
 
     @Override
@@ -70,11 +74,11 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
                 || deliverySlot.equals(DeliverySlot.placeholder().value)) {
             return new DeliveryJob(jobId, recipient, sender, Optional.empty(),
                     Optional.empty(),
-                    Optional.of(new Earning(earning)), isDelivered);
+                    Optional.of(new Earning(earning)), isDelivered, description);
         }
         return new DeliveryJob(jobId, recipient, sender, Optional.of(new DeliveryDate(deliveryDate)),
                 Optional.of(new DeliverySlot(deliverySlot)),
-                Optional.of(new Earning(earning)), isDelivered);
+                Optional.of(new Earning(earning)), isDelivered, description);
     }
 
 }

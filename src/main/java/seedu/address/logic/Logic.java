@@ -88,14 +88,28 @@ public interface Logic {
     GuiSettings getGuiSettings();
 
     /**
-     * Set the user prefs' GUI settings.
+     * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    /**
+     * Set focus date
+     * @param focusDate
+     */
     void setWeekDeliveryJobList(LocalDate focusDate);
 
     /**
-     * Get user input focus date
+     * Updates sorted delivery job list by date
+     */
+    void updateSortedDeliveryJobListByDate();
+
+    /**
+     * Updates week delivery job list to the week that contains focus date
+     */
+    void updateWeekDeliveryJobList(LocalDate focusDate);
+
+    /**
+     * Gets user input focus date
      * @return focus date
      */
     LocalDate getFocusDate();

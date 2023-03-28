@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.collections.ListChangeListener;
@@ -16,9 +18,11 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.jobs.CompleteDeliveryJobCommand;
 import seedu.address.logic.commands.jobs.DeleteDeliveryJobCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.ui.jobs.AddDeliveryJobWindow;
 import seedu.address.ui.jobs.DeliveryJobDetailPane;
 import seedu.address.ui.jobs.DeliveryJobListPanel;
 import seedu.address.ui.main.CommandBox;
@@ -48,16 +52,14 @@ public class MainWindow extends UiPart<Stage> {
     private ReminderListWindow reminderListWindow;
     private StatisticsWindow statsWindow;
     private AddressBookWindow addressBookWindow;
+    private AddDeliveryJobWindow addDeliveryJobWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
-
     @FXML
     private StackPane deliveryJobDetailPlaceholder;
-
     @FXML
     private MenuItem helpMenuItem;
-
     @FXML
     private MenuItem timetableMenuItem;
     @FXML
@@ -66,18 +68,57 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem statsItem;
     @FXML
     private MenuItem addressBookMenuItem;
-
     @FXML
     private StackPane deliveryJobListPanelPlaceholder;
-
     @FXML
     private StackPane emptyDeliveryJobListPanelPlaceholder;
-
     @FXML
     private StackPane resultDisplayPlaceholder;
-
     @FXML
     private StackPane statusbarPlaceholder;
+
+
+    private Consumer<DeliveryJob> completeDeliveryJobHandler = (job) -> {
+        try {
+            logic.execute(new CompleteDeliveryJobCommand(job.getJobId(), !job.getDeliveredStatus()));
+            refreshDeliveryJobDetailPane();
+        } catch (ParseException | CommandException e) {
+            logger.warning(e.getMessage());
+        }
+    };
+
+    private Consumer<DeliveryJob> eidtDeliveryJobHandler = (job) -> {
+        addDeliveryJobWindow = new AddDeliveryJobWindow(new Stage(), logic, job, () -> {
+            refreshDeliveryJobDetailPane();
+        });
+        addDeliveryJobWindow.show();
+        addDeliveryJobWindow.fillInnerParts();
+    };
+
+    private BiConsumer<Integer, DeliveryJob> selectDeliveryJobHandler = (idx, job) -> {
+        logger.info("[JobListView] select: " + idx);
+        deliveryJobDetailPlaceholder.getChildren().clear();
+
+        if (idx >= 0) {
+            DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(job);
+            detailPane.fillInnerParts(logic.getAddressBook());
+            deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
+            detailPane.setCompleteHandler(completeDeliveryJobHandler);
+            detailPane.setEditHandler(eidtDeliveryJobHandler);
+            return;
+        }
+
+        emptyDeliveryJobListPanelPlaceholder.setVisible(true);
+    };
+
+    private Consumer<DeliveryJob> deleteDeliveryJobHandler = job -> {
+        try {
+            deliveryJobListPanel.selectPrevious();
+            logic.execute(new DeleteDeliveryJobCommand(job.getJobId()));
+        } catch (ParseException | CommandException e) {
+            logger.warning(e.getMessage());
+        }
+    };
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -99,7 +140,6 @@ public class MainWindow extends UiPart<Stage> {
         reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
         addressBookWindow = new AddressBookWindow(new Stage(), logic);
-
     }
 
     public Stage getPrimaryStage() {
@@ -141,15 +181,19 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
-    void refreshDeliveryJobListView() {
-        logger.info("[JobListView] Refresh: " + deliveryJobListPanel.size());
+    private void refreshDeliveryJobListView() {
+        logger.info("[JobListView] Refresh List: " + deliveryJobListPanel.size());
         if (deliveryJobListPanel.size() > 0) {
             emptyDeliveryJobListPanelPlaceholder.setVisible(false);
-            deliveryJobListPanel.selectItem(0);
         } else {
             deliveryJobDetailPlaceholder.getChildren().clear();
             emptyDeliveryJobListPanelPlaceholder.setVisible(true);
         }
+    }
+
+    private void refreshDeliveryJobDetailPane() {
+        logger.info("[JobListView] Refresh Detail");
+        deliveryJobListPanel.refresh();
     }
 
     /**
@@ -157,23 +201,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // Append views
-        deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList(), (idx, job) -> {
-            logger.info("[JobListView] select: " + idx);
-            deliveryJobDetailPlaceholder.getChildren().clear();
-            if (idx >= 0) {
-                DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(job, idx);
-                detailPane.fillInnerParts(logic.getAddressBook());
-                deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
-            } else {
-                emptyDeliveryJobListPanelPlaceholder.setVisible(true);
-            }
-        }, job -> {
-            try {
-                logic.execute(new DeleteDeliveryJobCommand(job.getJobId()));
-            } catch (ParseException | CommandException e) {
-                logger.warning(e.getMessage());
-            }
-        });
+        deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList(), selectDeliveryJobHandler,
+                completeDeliveryJobHandler,
+                deleteDeliveryJobHandler);
 
         deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
         deliveryJobListPanel.selectItem(0);
@@ -215,6 +245,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
+            logger.info("Opened help window.");
         } else {
             helpWindow.focus();
         }
@@ -226,6 +257,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleTimetable() {
         if (!timetableWindow.isShowing()) {
+            logger.info("Opened timetable window of current week.");
             timetableWindow.show();
             timetableWindow.fillInnerParts();
         } else {
@@ -241,6 +273,7 @@ public class MainWindow extends UiPart<Stage> {
         if (!reminderListWindow.isShowing()) {
             reminderListWindow.show();
             reminderListWindow.fillInnerParts();
+            logger.info("Opened reminder window.");
         } else {
             reminderListWindow.focus();
         }
@@ -254,6 +287,7 @@ public class MainWindow extends UiPart<Stage> {
         if (!statsWindow.isShowing()) {
             statsWindow.show();
             statsWindow.fillInnerParts();
+            logger.info("Opened statistics window");
         } else {
             statsWindow.focus();
         }
@@ -267,6 +301,7 @@ public class MainWindow extends UiPart<Stage> {
         if (!addressBookWindow.isShowing()) {
             addressBookWindow.show();
             addressBookWindow.fillInnerParts();
+            logger.info("Opened address book window.");
         } else {
             addressBookWindow.focus();
         }
@@ -274,6 +309,16 @@ public class MainWindow extends UiPart<Stage> {
 
     public DeliveryJobListPanel getDeliveryJobListPanel() {
         return deliveryJobListPanel;
+    }
+
+    /**
+     * Handles create job ui.
+     */
+    @FXML
+    private void handleDeliveryJobSystemCreateAction() {
+        addDeliveryJobWindow = new AddDeliveryJobWindow(new Stage(), logic);
+        addDeliveryJobWindow.show();
+        addDeliveryJobWindow.fillInnerParts();
     }
 
     void show() {
@@ -292,6 +337,9 @@ public class MainWindow extends UiPart<Stage> {
         timetableWindow.hide();
         statsWindow.hide();
         addressBookWindow.hide();
+        if (addDeliveryJobWindow != null) {
+            addDeliveryJobWindow.hide();
+        }
         primaryStage.hide();
     }
 
