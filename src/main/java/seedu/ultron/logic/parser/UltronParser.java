@@ -6,8 +6,19 @@ import static seedu.ultron.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.ultron.logic.commands.*;
+import seedu.ultron.logic.commands.AddCommand;
+import seedu.ultron.logic.commands.Command;
+import seedu.ultron.logic.commands.ClearCommand;
+import seedu.ultron.logic.commands.DeleteCommand;
+import seedu.ultron.logic.commands.EditCommand;
+import seedu.ultron.logic.commands.ExitCommand;
+import seedu.ultron.logic.commands.FindCommand;
+import seedu.ultron.logic.commands.HelpCommand;
+import seedu.ultron.logic.commands.ListCommand;
+import seedu.ultron.logic.commands.RemarkCommand;
+import seedu.ultron.logic.commands.UpcomingCommand;
 import seedu.ultron.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses user input.

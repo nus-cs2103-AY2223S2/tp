@@ -20,9 +20,4 @@ public class UpcomingCommandParser implements Parser<UpcomingCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpcomingCommand.MESSAGE_USAGE), pe);
         }
     }
-
-    public static LocalDate getTime(String str) {
-        LocalDate date = LocalDate.parse(str, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        return date;
-    }
 }
