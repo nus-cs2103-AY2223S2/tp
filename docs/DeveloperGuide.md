@@ -162,35 +162,200 @@ The attributes of an Employee are:
 
 ### Department-related features
 
-The `Department` object represents a department in the company. They are all stored in a `UniqueDepartmentList`.
+![DepartmentModelClassDiagram](./images/commands/department/DepartmentModelClassDiagram.png)
 
-
+The `Department` object represents a department in the company. They are all stored in a `UniqueDepartmentList` managed by SudoHr.
 
 The attributes of a department are:
-* `name`: The name of the department, which is also the unique identifier for a department.
-* `employees`: The employees in a department, the list must not contain duplicate employees. It is implemented by reusing the `UniqueEmployeeList` datatype.
+* `DepartmentName`: The name of the department, which is also the unique identifier for a department.
+* `UniqueEmployeeList`: The employees in a department, the list must not contain duplicate employees.
 
-### Adding a department
+The uniqueness of each department in `UniqueDepartmentList` is enforced by checking against the `DepartmentName`. This will be explained in the _Adding a department_ section.
+
+#### Adding a department
+
+The `adep` command adds a new `Department` in SudoHr.
+
+Activity Diagram:
+
+![AddDepartmentCommand](./images/commands/department/AddDepartmentActivityDiagram.png)
+
+Sequence Diagram:
 
 ![AddDepartmentCommand](./images/commands/department/AddDepartmentSequenceDiagram.png)
 
-The call stack is the same as a typical command during parsing. It requires the department name prefix: `n/`.
+##### Flow
 
-Upon execution, it first checks if the department contains the employee being added. This is done to prevent the addition of duplicates. After the check is done, the model adds the employee to the department. 
+1. The user enters the command, eg. `adep n/Sales`
+2. The parser will instantiate a new `DepartmentName` object constructed from the input of the argument `/n` which represents the department name.
+3. A `Department` object is constructed from the `DepartmentName` and handed over to the `AddDepartmentCommand`.
+4. The command is executed. It first checks if the department contains the employee being added. This is done to prevent the addition of duplicate
+employees in the same department.
+5. If there is no duplicate, the model adds the department to SudoHR. 
 
-After that, it returns the command result.
+After that, the command result is returned.
 
-### Listing all departments
+##### Feature considerations
+
+When checking for duplicates in the `UniqueDepartmentList`, the `DepartmentName` of the department is used to uniquely
+identify each department. This is because it is illogical to have 2 departments with the same name, as the application
+is meant for use by a single company.
+
+If duplicate arguments are present in the same command, the last instance of the duplicated argument is taken in by the parser.
+
+#### Editing a department
+
+The `edep` command edits the department-level details of an existing `Department` in SudoHr. Currently, you can only
+edit the department name field as it is the only existing department-level detail.
+
+Activity Diagram:
+
+![EditDepartmentCommand](./images/commands/department/EditDepartmentActivityDiagram.png)
+
+Sequence Diagram:
+
+![EditDepartmentCommand](./images/commands/department/EditDepartmentSequenceDiagram.png)
+
+##### Flow
+
+1. The user enters the command, eg. `edep Marketing n/Sales`. Marketing is the new department name and Sales is the old department name.
+2. The parser will instantiate a new `DepartmentName` object constructed from the input of the argument `/n` which represents the new department name.
+3. A `EditDepartmentDescriptor` object is constructed from the `DepartmentName` and handed over to the `EditDepartmentCommand`.
+4. The command is executed. It first tries to find the department called Marketing.
+5. If the Marketing department exists, the command will then create the new department called Sales using the EditDepartmentDescriptor.
+The non-edited attributes from Marketing will be passed down to Sales.
+6. The command then checks if the edited department exists in SudoHR.
+8. If there is no duplicate, the model adds the department to SudoHR.
+
+After that, the command result is returned.
+
+##### Feature considerations
+
+The `EditDepartmentDescriptor` is used to store the details to be edited. This abstraction is used as not all fields
+may be edited for the `EditDepartmentCommand`, hence we use this class to figure out what to pass down during the
+construction of the new edited department. As of now, this class may be trivial but will prove more useful in the future
+when more department-level details are added (e.g. creation date, director, work type, etc.).
+
+It is also important to check if the name of the newly edited department clashes with any existing departments in
+SudoHR, as the name is the unique identifier for a department.
+
+#### Deleting a department
+
+The `deldep` command deletes an existing `Department` in SudoHR.
+
+Activity Diagram:
+
+![DeleteDepartmentCommand](./images/commands/department/DeleteDepartmentActivityDiagram.png)
+
+Sequence Diagram:
+
+![DeleteDepartmentCommand](./images/commands/department/DeleteDepartmentSequenceDiagram.png)
+
+##### Flow
+
+1. The user enters the command, eg. `deldep n/Sales`. Sales is the department to be deleted. 
+2. The parser will instantiate a new `DepartmentName` object constructed from the input of the argument `/n` which represents the new department name.
+3. The `DepartmentName` is passed down to the command.
+4. The command is executed. It first tries to find the department called Sales.
+5. If the Sales department exists, it will be deleted from SudoHR.
+
+After that, the command result is returned.
+
+#### Listing all departments
+
+The `listdep` command lists all the departments in SudoHR.
 
 ![ListDepartmentCommand](./images/commands/department/ListDepartmentSequenceDiagram.png)
 
 The call stack is the same as a typical command except that it has no specified parser. Instead, `SudoHrParser` directly returns the command containing the required predicate.
 
-Upon execution, it updates the department view.
+Upon execution, it updates the `filteredDepartmentList` in SudoHR.
 
-After that, it returns the command result.
+After that, the command result is returned.
 
-# Leave-related features
+#### Adding an employee to a department
+
+The `aetd` command adds an existing `Employee` to an existing `Department` in SudoHR.
+
+Activity Diagram:
+
+![AddEmployeeToDepartmentCommand](./images/commands/department/AddEmployeeToDepartmentActivityDiagram.png)
+
+Sequence Diagram:
+
+![AddEmployeeToDepartmentCommand](./images/commands/department/AddEmployeeToDepartmentSequenceDiagram.png)
+
+##### Flow
+
+1. The user enters the command, eg. `aetd eid/100 n/Software Engineering`. It represents that the employee with ID 100
+is supposed to be added to the Software Engineering department.
+2. The parser instantiates a new `Id` and `DepartmentName` object constructed from the input of arguments `eid/` and `n/` respectively.
+3. The command is executed. It first tries to find the employee with ID 100 and department called Software Engineering.
+4. If the employee and department exists, the command checks if the same employee exists in the department.
+6. If there is no duplicate employee in the department, the model adds the employee to the department.
+
+After that, the command result is returned.
+
+##### Feature considerations
+
+There was a major design decision, which is to use `UniqueEmployeeList` for the employee list inside a `Department`.
+The idea is that a department should not contain duplicate employees. Hence, we made use of the existing
+`UniqueEmployeeList` class in `SudoHr`, instead of creating a new employee list class for Department. This logic is
+reused in `Leaves` as well.
+
+It should be noted that we still used defensive checks such as `department.hasEmployee` despite the
+`UniqueEmployeeList` having such checks internally already.
+
+#### Removing an employee from a department
+
+The `refd` command removes an `Employee` from an existing `Department` in SudoHR.
+
+Activity Diagram:
+
+![RemoveEmployeeFromDepartmentCommand](./images/commands/department/RemoveEmployeeFromDepartmentActivityDiagram.png)
+
+Sequence Diagram:
+
+![RemoveEmployeeFromDepartmentCommand](./images/commands/department/RemoveEmployeeFromDepartmentSequenceDiagram.png)
+
+##### Flow
+
+1. The user enters the command, eg. `refd eid/100 n/Software Engineering`. It represents that the employee with ID 100
+   is supposed to be removed from the Software Engineering department.
+2. The parser instantiates a new `Id` and `DepartmentName` object constructed from the input of arguments `eid/` and `n/` respectively.
+3. The command is executed. It first tries to find the employee with ID 100 and department called Software Engineering.
+4. If the employee and department exists, the command checks if the same employee exists in the department.
+6. If the employee exists in the department, the model removes the employee from the department.
+
+After that, the command result is returned.
+
+#### Listing an employee's departments
+
+The `led` command
+
+Activity Diagram:
+
+![ListEmployeeDepartmentCommand](./images/commands/department/ListEmployeeDepartmentActivityDiagram.png)
+
+Sequence Diagram:
+
+![ListEmployeeDepartmentCommand](./images/commands/department/ListEmployeeDepartmentSequenceDiagram.png)
+
+##### Flow
+
+1. The user enters the command, eg. `led eid/100`. It represents listing all departments that contain employee
+with ID 100.
+2. The parser instantiates a new `Id` object constructed from the input of argument `eid/`.
+3. The `Id` object is used to instantiate the `DepartmentContainsEmployeePredicate`, which will be used to filter
+the `FilteredDepartmentList` later on.
+4. The command is executed. It first tries to find the employee with ID 100.
+5. If the employee exists, the `FilteredDepartmentList` will be updated and SudoHR will display all the departments
+that employee with ID 100 is in.
+
+After that, the command result is returned.
+
+
+### Leave-related features
 
 The `Leave` object represents a leave date in the company. They are all stored in a `UniqueLeaveList`.
 
@@ -198,9 +363,9 @@ The attributes of a leave are:
 * `date`: The date of the leave, which is also the unique identifier for a leave
 * `employees`: The employees who applied for this leave, the list must not contain duplicate employees. It is implemented by reusing the `UniqueEmployeeList` datatype.
 
-## Adding an employee's leave on a specific day
+#### Adding an employee's leave on a specific day
 
-### AddEmployeeToLeave Command
+##### AddEmployeeToLeave Command
 The AddEmployeeToLeave Command makes use of the following classes:
 
 * `AddEmployeeToLeaveCommand` - Adds the leave of an `Employee` to `SudoHr` on a specific day
@@ -237,11 +402,11 @@ Given below is an example of how `AddEmployeeToLeaveCommand` works
 ![AddEmployeeToLeaveCommand Sequence Diagram](./images/commands/department/ListDepartmentSequenceDiagram.png)
 
 
-### Cascading employee updates to department and event
+#### Cascading employee updates to department and event
 
 #### Design considerations:
 
-### Employee
+##### Employee
 An important design consideration to note for Employee is the multiple different fields that qualify as a primary key (unique identity).
 
 An employee is identified by his ID field, and this field is used to get an employee object.
@@ -249,11 +414,11 @@ An employee is identified by his ID field, and this field is used to get an empl
 However, there are other fields to guard against duplication, specifically email and phone number fields. 
 For instance, two employees should not share email field or phone number as those two fields are known to be unique.
 
-### Departments
+##### Departments
 
-### Leaves
+##### Leaves
 
-### Cascading employee updates and deletion to department and leave
+##### Cascading employee updates and deletion to department and leave
 An important functionality is to ensure updates to employee is cascaded down to department-level and leave-level because
 each department and leave has its own list of employees. This issue becomes more prominent during loading of storage files 
 where employee objects are separately created for department's and leave's employee lists. 

@@ -22,8 +22,9 @@ public class RemoveEmployeeFromDepartmentCommand extends Command {
     public static final String COMMAND_WORD = "refd";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes an employee from an existing department.\n"
-            + "Parameters: EMPLOYEE_ID, DEPARTMENT_NAME "
-            + "[" + PREFIX_DEPARTMENT_NAME + "NAME] "
+            + "Parameters: "
+            + PREFIX_EMPLOYEE + "EMPLOYEE_ID "
+            + PREFIX_DEPARTMENT_NAME + "DEPARTMENT_NAME \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_EMPLOYEE + "100 "
             + PREFIX_DEPARTMENT_NAME + "Software Engineering";
 

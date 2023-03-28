@@ -20,9 +20,9 @@ public class ListEmployeesInDepartmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists all employees in the specified department.\n"
             + "Parameters: "
-            + PREFIX_DEPARTMENT_NAME + "DEPARTMENT_NAME"
+            + PREFIX_DEPARTMENT_NAME + "DEPARTMENT_NAME \n"
             + "Example: " + COMMAND_WORD + " "
-            + COMMAND_WORD + PREFIX_DEPARTMENT_NAME + "Human Resources";
+            + PREFIX_DEPARTMENT_NAME + "Human Resources";
 
     public static final String MESSAGE_SUCCESS = "Listed all employees in %1$s";
 

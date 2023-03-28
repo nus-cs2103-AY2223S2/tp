@@ -5,7 +5,9 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":SudoHrParser" as SudoHrParser LOGIC_COLOR
 participant ":AddDepartmentCommandParser" as AddDepartmentCommandParser LOGIC_COLOR
-participant "d:AddDepartmentCommand" as AddDepartmentCommand LOGIC_COLOR
+participant ":DepartmentName" as DepartmentName LOGIC_COLOR
+participant ":Department" as Department LOGIC_COLOR
+participant "AddDepartmentCommand" as AddDepartmentCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -26,23 +28,36 @@ activate AddDepartmentCommandParser
 AddDepartmentCommandParser --> SudoHrParser
 deactivate AddDepartmentCommandParser
 
-SudoHrParser -> AddDepartmentCommandParser : parse("n/")
+SudoHrParser -> AddDepartmentCommandParser : parse("n/Sales")
 activate AddDepartmentCommandParser
+
+create DepartmentName
+AddDepartmentCommandParser -> DepartmentName
+activate DepartmentName
+
+DepartmentName -> AddDepartmentCommandParser
+deactivate
+
+create Department
+AddDepartmentCommandParser -> Department
+activate Department
+Department -> AddDepartmentCommandParser
+deactivate
 
 create AddDepartmentCommand
 AddDepartmentCommandParser -> AddDepartmentCommand
 activate AddDepartmentCommand
 
-AddDepartmentCommand --> AddDepartmentCommandParser : d
+AddDepartmentCommand --> AddDepartmentCommandParser
 deactivate AddDepartmentCommand
 
-AddDepartmentCommandParser --> SudoHrParser : d
+AddDepartmentCommandParser --> SudoHrParser
 deactivate AddDepartmentCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 AddDepartmentCommandParser -[hidden]-> SudoHrParser
 destroy AddDepartmentCommandParser
 
-SudoHrParser --> LogicManager : d
+SudoHrParser --> LogicManager
 deactivate SudoHrParser
 
 LogicManager -> AddDepartmentCommand : execute()

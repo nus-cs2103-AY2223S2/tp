@@ -19,7 +19,7 @@ public class ListEmployeeDepartmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all of a given employee's department\n"
             + "Parameters: Employee ID\n"
-            + "Example: " + COMMAND_WORD + PREFIX_EMPLOYEE + "100";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_EMPLOYEE + "100";
 
     private final DepartmentContainsEmployeePredicate predicate;
 

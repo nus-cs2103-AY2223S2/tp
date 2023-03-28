@@ -16,11 +16,11 @@ import seedu.sudohr.model.department.DepartmentName;
  */
 public class DeleteDepartmentCommand extends Command {
 
-    public static final String COMMAND_WORD = "deldep";
+    public static final String COMMAND_WORD = "ddep";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the department identified by the department name.\n"
-            + "Parameters: DEPARTMENT_NAME (must be a string)\n"
+            + "Parameters: " + PREFIX_DEPARTMENT_NAME + "DEPARTMENT_NAME \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_DEPARTMENT_NAME + "Human Resources";
 
     public static final String MESSAGE_DELETE_DEPARTMENT_SUCCESS = "Deleted department: %1$s";
@@ -37,15 +37,15 @@ public class DeleteDepartmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Department departmentToDelete = model.getDepartment(targetDepartment);
+        Department toDelete = model.getDepartment(targetDepartment);
 
-        if (departmentToDelete == null) {
+        if (toDelete == null) {
             throw new CommandException(MESSAGE_DEPARTMENT_NOT_EXIST);
         }
 
-        model.removeDepartment(departmentToDelete);
+        model.removeDepartment(toDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_DEPARTMENT_SUCCESS, departmentToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_DEPARTMENT_SUCCESS, toDelete));
     }
 
     @Override

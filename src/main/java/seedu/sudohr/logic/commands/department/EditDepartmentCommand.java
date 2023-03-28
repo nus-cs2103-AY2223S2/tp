@@ -20,10 +20,10 @@ public class EditDepartmentCommand extends Command {
     public static final String COMMAND_WORD = "edep";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the department identified "
-            + "by the department name."
+            + "by the department name. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_DEPARTMENT_NAME + "NAME] "
+            + "Parameters: DEPARTMENT_NAME "
+            + PREFIX_DEPARTMENT_NAME + "NEW_DEPARTMENT_NAME \n"
             + "Example: " + COMMAND_WORD + " Engineering "
             + PREFIX_DEPARTMENT_NAME + "Software Engineering";
 
