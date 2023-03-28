@@ -1,20 +1,26 @@
 package seedu.address.logic.parser.homework;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.homework.MarkHomeworkAsUndoCommand;
-import seedu.address.logic.parser.AddressBookParser;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.logic.parser.homework.DeleteHomeworkCommandParserTest.VALID_DEADLINE;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.homework.MarkHomeworkAsUndoCommand;
+import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.exceptions.ParseException;
+
+
 
 public class MarkHomeworkAsUndoCommandParserTest {
-    MarkHomeworkAsUndoCommandParser parser = new MarkHomeworkAsUndoCommandParser();
-    AddressBookParser mainParser = new AddressBookParser();
+    private MarkHomeworkAsUndoCommandParser parser = new MarkHomeworkAsUndoCommandParser();
+    private AddressBookParser mainParser = new AddressBookParser();
 
     @Test
     public void parse_allFieldsNotPresent_failure() {

@@ -1,12 +1,5 @@
 package seedu.address.logic.parser.homework;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.homework.CreateHomeworkCommand;
-import seedu.address.logic.parser.AddressBookParser;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.homework.CreateHomeworkCommandParser;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -14,13 +7,20 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalStudents.AMY;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.homework.CreateHomeworkCommand;
+import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.exceptions.ParseException;
+
+
 
 
 public class CreateHomeworkCommandParserTest {
 
-    private static final String VALID_HOMEWORK_NAME = "Biology";
     public static final String VALID_DEADLINE = "2027-04-31T12:00";
+    private static final String VALID_HOMEWORK_NAME = "Biology";
     private CreateHomeworkCommandParser parser = new CreateHomeworkCommandParser();
     private AddressBookParser mainParser = new AddressBookParser();
 
@@ -35,7 +35,7 @@ public class CreateHomeworkCommandParserTest {
     public void parse_fieldsMissing_exceptionThrown() throws ParseException {
         clearTutorPro();
         //Add a new student
-        mainParser.parseCommand( "new-student name/" + VALID_NAME_AMY
+        mainParser.parseCommand("new-student name/" + VALID_NAME_AMY
                 + " phone/" + VALID_PHONE_AMY
                 + " email/" + VALID_EMAIL_AMY
                 + " address/" + VALID_ADDRESS_AMY
@@ -58,7 +58,7 @@ public class CreateHomeworkCommandParserTest {
     public void parse_allFieldsInAnyOrder_success() throws ParseException {
         clearTutorPro();
         //Add a new student
-        mainParser.parseCommand( "new-student name/" + VALID_NAME_AMY
+        mainParser.parseCommand("new-student name/" + VALID_NAME_AMY
                                          + " phone/" + VALID_PHONE_AMY
                                          + " email/" + VALID_EMAIL_AMY
                                          + " address/" + VALID_ADDRESS_AMY
