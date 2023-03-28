@@ -1121,63 +1121,40 @@ Documentation dependencies:
 
 ## 11. Glossary
 
-### A
+### Quick Reference
 - [ADDRESS (Placeholder)](#address-placeholder)
 - [Address](#address)
 - [Admonitions](#admonitions)
 - [Applicant](#applicant)
 - [Application Stage](#application-stage)
-
-### C
 - [COMMAND_WORD (Placeholder)](#commandword-placeholder)
 - [Command](#command)
 - [Command Line (CLI)](#command-line)
-
-### E
 - [Placeholder](#email-placeholder)
 - [Email](#email)
-
-### F
 - [Flags](#flags)
-
-### G
 - [Graphical User Interface(GUI)](#graphical-user-interface)
-
-### H
 - [Help Window](#help-window)
 - [Hiring Manager](#hiring-manager)
-
-### I
 - [Input](#input)
 - [INTERVIEW_DATE (Placeholder)](#interviewdate-placeholder)
 - [Interview Date](#interview-date)
-
-### K
 - [KEYWORD (Placeholder)](#keyword-placeholder)
-
-### N
 - [NAME (Placeholder)](#name-placeholder)
 - [Name](#name)
 - [NOTES (Placeholder)](#notes-placeholder)
 - [Notes](#notes)
-
-### O
 - [Operating System (OS)](#operating-system)
 - [Output](#output)
-
-### P
 - [Parameter](#parameter)
 - [PHONE_NUMBER (Placeholder)](#phonenumber-placeholder)
 - [Phone Number](#phone-number)
 - [Placeholder](#placeholder)
-
-### S
 - [STATUS (Placeholder)](#status-placeholder)
 - [Status](#status)
 - [Syntax](#syntax)
-
-### U
 - [URL](#url)
+
 
 
 
