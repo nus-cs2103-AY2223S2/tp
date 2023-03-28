@@ -1,11 +1,11 @@
 package vimification.internal.command.logic;
 
+import static java.util.Objects.requireNonNull;
+
 import vimification.commons.core.Index;
 import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.model.LogicTaskList;
-
-import static java.util.Objects.requireNonNull;
 
 public class MarkCommand extends UndoableLogicCommand {
     public static final String COMMAND_WORD = "mark";
@@ -31,15 +31,7 @@ public class MarkCommand extends UndoableLogicCommand {
     @Override
     public CommandResult undo(LogicTaskList taskList) throws CommandException {
         requireNonNull(taskList);
-        int zero_based_index = targetIndex.getZeroBased();
-        //taskList.unmark(zero_based_index);
-        return new CommandResult(UNDO_MESSAGE);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof MarkCommand // instanceof handles nulls
-                && targetIndex.equals(((MarkCommand) other).targetIndex));
+        taskList.get(targetIndex.getZeroBased()).unmark();
+        return new CommandResult(String.format(UNDO_MESSAGE, targetIndex.getOneBased()));
     }
 }
