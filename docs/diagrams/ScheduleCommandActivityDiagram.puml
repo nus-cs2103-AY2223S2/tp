@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes schedule command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if ()  then ([input contains effort])
+     :Creates a Plan Command;
+     :Saves plan to storage;
+else ([else])
+
+endif
+:Retrieve saved plan from storage;
+:Update UI to show tasks on entered date;
+stop
+@enduml

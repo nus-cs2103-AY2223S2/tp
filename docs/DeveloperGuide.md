@@ -35,8 +35,19 @@ title: Developer Guide
 
 This Developer Guide details Clock-Work's design and implementation details.
 
+Clock-Work is a **desktop application for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
+It is an application curated for the average Computer Science student, and supports basic commands like `add`, `edit`, `delete`, and advanced commands like `alert`, `schedule`, `find`.
+By helping Computer Science students plan their time more efficiently, Clock-Work aims to make the busy Computing life a little more manageable.
+
+This guide is meant for developers who are interested in Clock-Work, and want to contribute to it.
+
+If you are only interested in using the application, do take a look at our [User Guide](UserGuide.md) instead.
+
+If you would like to contact the development team, we can be contacted at our [About Us](AboutUs.md).
+
 ### 1.1 **Acknowledgements**
 
+* This project is built from the AddressBook-Level3 project created by the SE-EDU initiative.
 * Tag's color code examples courtesy of https://sashamaps.net/docs/resources/20-colors/.
 
 ### 1.2 **Setting up, getting started**
@@ -46,6 +57,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. **Design**
+
+**This section provides an overview of the classes used within Clock-Work. The general interactions between components, and the internal structure of a component is explained here.
+A good understanding of the content in this section is useful in understanding how the individual features are implements in [section 3 - Implementation](#3-implementation)**
 
 <div markdown="span" class="alert alert-primary">
 
@@ -173,13 +187,15 @@ The `Storage` component,
 
 ### 2.6 Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.task.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+**This section describes some noteworthy details on how certain features are implemented.**
+
+**You are encouraged to look at the documentation for individual features before making any changes to prevent unintended behaviour.**
 
 ### 3.1 Add Feature
 
@@ -212,8 +228,9 @@ The following diagram summarises how the activities unfold after the user types 
 
 ### 3.3 Delete Feature
 Deletes a task based on index(es) of tasks from the list currently being shown to users.
-In the previous iteration of AB3, deletion of task must be done 1 index at a time, but this feature is extended to support deletion at multiple indices in Clock-Work to improve the efficiency of the program.
-Input index(es) is checked for validity (has a task at supposed index), and an error prompt will be displayed to users should the input be invalid.
+
+Previously in AB3, deletion of task must be done 1 index at a time, but this feature is extended to support deletion at multiple indices in Clock-Work to improve the efficiency of the program.
+Input index(es) is checked for validity (has a task at supposed index and is entered in ascending order) within _DeleteCommandParser_, and an error prompt will be displayed to users should the input be invalid.
 
 Multiple deletions within a single command must be done in the following manner:
 1. Indices must be separated by whitespace, such as `delete 1 2 3`
@@ -224,13 +241,13 @@ This is to enforce atomicity and date safety, as deletion is irreversible, so it
 
 Given below is an example usage scenario and how `delete` is executed.
 
-Step 1. The user inputs a `delete` command with parameter `1 2`. The parser recognises the command word and calls DeleteCommandParser.
+Step 1. The user inputs a `delete` command with parameter `1 2`. The parser recognises the command word and calls _DeleteCommandParser_.
 
-Step 2. The `DeleteCommandParser` interprets the indices and saves it as an IndexList.
+Step 2. The _DeleteCommandParser_ interprets the indices and saves it as an IndexList.
 
-Step 3. `DeleteCommandParser` calls `DeleteCommand`.
+Step 3. _DeleteCommandParser_ calls _DeleteCommand_.
 
-Step 4. `DeleteCommand` is executed and all relevant tasks are removed from TaskBook.
+Step 4. _DeleteCommand_ is executed and all relevant tasks are removed from TaskBook.
 
 Step 5. Results are shown immediately on UI.
 
@@ -238,9 +255,23 @@ The following sequence diagram summarizes what happens in this example usage sce
 
 ![DeleteCommandSequenceDiagram](images/DeleteCommandSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a new `delete` command:
+The following activity diagram summarizes what happens when a user executes a `delete`:
 
 ![DeleteCommandSequenceDiagram](images/DeleteCommandActivityDiagram.png)
+
+#### 3.3.1 Design Consideration
+
+#### Option 1: Allow multiple deletions
+Pros: Saves user some time as they do not need to enter `delete` multiple times.
+Cons: Entire command must be rejected if one of the input is wrong to avoid unintended behaviours.
+
+#### Option 2: Only allow single deletion
+Pros: User can pinpoint which index is causing the rejection.
+Cons: Takes more time to delete multiple task at once.
+
+#### Eventual Decision
+Option 1 is chosen as a more experienced user will know what types of input are accepted by Clock-Work. Our target users, Computer Science students, should be quick on the uptake of syntax, and should be able to reap the efficiency benefits of multiple deletions.
+
 
 ### 3.4 Edit Feature
 
@@ -297,9 +328,9 @@ Cons: More complicated to implement and unwieldy for users.
 
 ### 3.8 Stats Feature
 Statistics is a useful way for users to get an overview of all open tasks in the TaskBook. Currently, `stats` supports 1 view - categorise by tags. 
-The number of tasks that fall under each tag is counted, and displayed in descending order, for up to a maximum of 10 tags.
+Entering `stats` counts the number of tasks that fall under each tag, and displays the count in descending order, for up to a maximum of 10 tags.
 
-Given below is an example usage scenario for the `stats` command.
+Given below is an example usage scenario for `stats`.
 
 Step 1. User inputs `stats` and presses enter.
 
@@ -312,6 +343,24 @@ The following sequence diagram provides an overview of how `stats` works:
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![StatsCommandActivityDiagram](images/StatsCommandActivityDiagram.png)
+
+#### 3.8.1 Design Considerations
+
+What type of information should be displayed by `stats`
+
+#### Option 1: Number of tasks per tag
+Pros: Assuming user uses tags to categorise tasks into subject folders, this will be useful in showing the user which subject requires more time on.
+
+#### Option 2: Number of completed tasks
+Pros: Motivational for users to know their progress
+Cons: May have a reverse effect as users feel complacent about their progress
+
+#### Option 3: Number of tasks under each category (_SimpleTask, Deadline, Event_)
+Pros: Users can get an overview of their task composition
+Cons: Does not improve productivity
+
+#### Eventual Decision
+As Clock-Work is an application to help Computer Science students improve their productivity, option 1 is chosen, as it can provide the most benefit to our target user group.
 
 ### 3.9 Sort Feature
 
@@ -372,11 +421,117 @@ Cons: Have to scroll down to see SimpleTasks.
 
 ### 3.10 Alert Feature
 
-### 3.11 Plan Feature
+### 3.11 Schedule Feature
+
+`schedule` displays a planned daily schedule according to the tasks currently stored. It takes in a compulsory input, `D/SHORTDATE`, and an optional input, `E/EFFORT`.
+
+#### 3.11.1 How it Works
+Entering `schedule D/SHORTDATE E/EFFORT` generates a new 30-day plan for users based on their intended `E/EFFORT`, and display a list of tasks to be done on `D/SHORTDATE`.
+Entering `schedule D/SHORTDATE` displays a list of tasks to be done on `D/SHORTDATE` based on the previously generated plan.
+
+#### 3.11.2 Generating a New Plan
+When the schedule command is ran with an `E/EFFORT` flag, an internal planning algorithm is run, and all tasks will be allocated to a 30-day plan starting from the day the command is run.
+As much as possible, tasks allocated to a day should not exceed the intended `E/EFFORT` level indicated by users.
+However, if the need arises (as specified below), the algorithm allows the effort required for a particular day to exceed the user preferred `E/EFFORT` level.
+
+The algorithm allocates tasks as such:
+
+Step 1: Allocate all events to the day(s) it is supposed to be happening. Events will be allocated, even if the effort required exceeds the user preferred effort.
+<details>
+
+<summary>More about scheduling for Events</summary>
+
+After getting a list of _Events_ from all tasks within _TaskBook_, a scheduling algorithm for events will be run. The following diagram shows its behaviour.
+
+![Event Scheduling Example](images/EventAllocation.pdf)
+
+**Some Rules**
+* Events are allocated to the date they are scheduled to happen, regardless of time.
+* Effort for event is added every day the event is scheduled to happen
+
+**Allocation Example**
+* Event A is allocated every day from 5 Mar 2023 to 2 June 2023, and its effort count of 10 is added to each of the 4 days.
+* Event B is allocated to 31 May 2023, and its effort count of 5 is added to the existing effort count of 10 (from event A).
+* Event C is allocated to 1 Jun 2023 and 2 Jun 2023 even though this means that the workload allocated to those days (28 units of effort) are greater than the workload user planned (20 units of effort).
+* No event is scheduled to occur on 3 Jun 2023. It is left empty
+</details>
+
+Step 2: Allocate all deadlines to the first free day before it is due (exclusive of due date), as we assume that it is better to complete a time-sensitive task as soon as possible. If it is not possible to find a free day, the algorithm will allocate task to a day before deadline with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
+<details>
+
+<summary>More about scheduling for Deadlines</summary>
+
+After getting a list of _Deadlines_ from all tasks within _TaskBook_, a scheduling algorithm for events will be run. The following diagram shows its behaviour.
+
+![Deadline Scheduling Example](images/DeadlineAllocation.pdf)
+
+**Some Rules**
+* Overdue deadlines still in the TaskBook is not considered in the algorithm
+* Deadlines are allocated to one of the days before the deadline
+* If there are multiple free days, Deadline will be added to the earliest free day
+* If there are no free days before the deadline, Deadline will be added to the least busy day (in terms of effort)
+
+**Allocation Example**
+* Deadline D is due on 31 May 2023, so the only date it can be allocated to is 30 May 2023. Thus, it is allocated to 30 May 2023 even though this means that the workload for 30 May is greater than the desired workload.
+* Deadline E is allocated to 31 May 2023 because there are no free dates (30 May and 31 May) before 1 Jun 2023. Among the two possible dates, 31 May has a lower current workload. Thus, it is allocated to 31 May.
+* Deadline F is allocated to 30 May 2023 as adding task to any dates before the deadline will result in exceeding the desired workload, and it is the date with the lowest workload among all possible dates.
+</details>
+
+Step 3: Allocate all SimpleTasks in descending order of effort required. As we assume that SimpleTasks are not time-sensitive, the algorithm allocates each task to the most busy free day (greedy approach). If such a day is not available, the algorithm will allocate the task to a day with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
+
+<details>
+
+<summary>More about scheduling for Simple Tasks</summary>
+
+After getting a list of _Simple Tasks_ from all tasks within _TaskBook_, a scheduling algorithm for simple tasks will be run. The following diagram shows its behaviour.
+
+![Simple Task Scheduling Example](images/SimpleTaskAllocation.pdf)
+
+**Some Rules**
+* SimpleTasks will be allocated to the most busy free day, which is a day with highest current workload where adding a simple task does not result in workload exceeding intended workload. If multiple of such days are available, allocate to the first of such days.
+* If there are no such days, assigned workload will be allowed to exceed intended workload. Algorithm allocates simple task to a day with the lowest current workload.
+* SimpleTasks are allocated in descending order of effort.
+* SimpleTasks are assumed to be non-time-sensitive
+
+**Allocation Example**
+* Task I is the first task to be allocated because it has the highest effort required. It will be allocated to 3 Jun 2023 because there are 2 free days (3 Jun and 4 Jun) with the same current workload, and 3 Jun is before 4 Jun.
+* Task H is the second to be allocated since it has the next highest effort required. It will be allocated to 4 Jun 2023 because it is the only free day, such that adding task H does not result in exceeding the desired workload.
+* Task G is then allocated to 3 Jun. Among the 2 days that Task G can be added to without exceeding desired workload (3 Jun and 4 Jun), 3 Jun has a higher workload. Thus, task G will be allocated to 3 Jun.
+</details>
+
+Given below is an example usage scenario for viewing a generated plan and how the schedule command behaves at each step:
+
+Step 1. The user launches the application.
+
+Step 2. The application displays a list of tasks (that can also be empty).
+
+Step 2. The user executes `schedule D/TODAY'S DATE` command to sort the list.
+
+Step 3. The sequence diagram below shows how the sort operation works:
+
+![ScheduleCommandNoPlanSequenceDiagram](images/ScheduleCommandNoPlanSequenceDiagram.png)
+
+Given below is an example usage scenario for generating and viewing a plan and how the schedule command behaves at each step:
+
+Step 1. The user launches the application.
+
+Step 2. The application displays a list of tasks (that can also be empty).
+
+Step 2. The user executes `schedule D/TODAY'S DATE E/EFFORT` command to sort the list.
+
+Step 3. The sequence diagram below shows how the sort operation works:
+
+![ScheduleCommandHavePlanSequenceDiagram](images/ScheduleCommandHavePlanSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![ScheduleCommandActivityDiagram](images/ScheduleCommandActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. **Documentation, logging, testing, configuration, dev-ops**
+
+**This section contains some links to the guides that are used when developing Clock-Work. You are highly encouraged to adhere to these guides when working on Clock-Work.**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -387,6 +542,8 @@ Cons: Have to scroll down to see SimpleTasks.
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. **Appendix: Requirements**
+
+**This section documents project requirements written by the Clock-Work development team.**
 
 ### Product scope
 
@@ -503,7 +660,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## 6. **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+**This section contains instructions to test Clock-Work manually. Here are some ways you can test Clock-Work.**
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
