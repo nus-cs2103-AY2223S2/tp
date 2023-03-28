@@ -116,7 +116,7 @@ Adds an elderly, a volunteer, or a pairing between one elderly and one volunteer
 
 Adds an elderly to FriendlyLink.
 
-Format: `add_elderly n/NAME enr/NRIC [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
+Format: `add_elderly n/NAME enr/NRIC bd/BIRTH_DATE [p/PHONE] [e/EMAIL] [a/ADDRESS] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
 
 * Every elderly must have a unique `NRIC`, which is 9-alphabets long.
 * Alphabets in `NRIC` are case-insensitive.
@@ -133,6 +133,7 @@ An elderly can have any number of tags and available dates.
 
 Examples:
 
+* `add_elderly n/John nr/S1234567C bd/1950-02-03`
 * `add_elderly n/John p/98765432 e/johnd@example.com a/John street enr/S1234567C bd/1950-02-03 re/NORTH r/HIGH t/lonely dr/2023-06-03,2023-06-17`
 
 #### Adding a volunteer: `add_volunteer`
