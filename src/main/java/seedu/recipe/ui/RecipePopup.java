@@ -81,10 +81,7 @@ public class RecipePopup extends UiPart<Region> {
         recipe.getIngredients()
             .forEach((ingredient, information) -> ingredients
                 .getChildren()
-                .add(
-                    new Label(ingredientKeyValuePairToString(ingredient, information))
-                )
-            );
+                .add(new Label(ingredientKeyValuePairToString(ingredient, information))));
         //Steps
         recipe.getSteps()
                 .forEach(step -> steps.getChildren().add(new Label(step.toString())));
