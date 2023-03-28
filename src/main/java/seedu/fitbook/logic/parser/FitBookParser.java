@@ -115,9 +115,6 @@ public class FitBookParser {
         case GraphCommand.COMMAND_WORD:
             return new GraphCommandParser().parse(arguments);
 
-        case ViewDetailCommand.COMMAND_WORD:
-            return new ViewDetailCommandParser().parse(arguments);
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
