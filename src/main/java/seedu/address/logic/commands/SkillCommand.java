@@ -16,11 +16,11 @@ public class SkillCommand extends Command {
 
     public static final String COMMAND_WORD = "skill";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords such as NOTE (case-insensitive) and displays them as a "
-            + "list with index numbers.\n"
-            + "Parameters: KEYWORDS(NOTES)\n "
-            + "Example: " + COMMAND_WORD + " python";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons with notes that"
+            + "matches all the keywords input and displays them as a "
+            + "list with index numbers.\n\n"
+            + "Parameters: KEYWORDS (Space-separated, Case-insensitive)\n\n"
+            + "Example: " + COMMAND_WORD + " java c++";
 
     private final Predicate<Person> findPredicate;
 

@@ -2,7 +2,9 @@
 layout: page
 title: User Guide
 ---
+
 # Table of Contents
+
 
 1. [About HMHero](#1-about-hmhero)
 2. [Features](#2-features)
@@ -57,6 +59,8 @@ As a hiring manager, you can easily track applicant progress. HMHero allows you 
 
 In addition, HMHero provides analytics regarding your hiring process, such as turnover rate and average time taken to process each applicant. With HMHero, hiring managers can gain further insight on their hiring process, empowering them to make smart decisions to streamline their hiring process.
 
+[Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## 2. Features
@@ -65,6 +69,8 @@ There are two core features that HMHero provides:
 
 - Applicant Management System
 - Hiring Process Analytics
+
+[Back to Table of Contents](#table-of-contents)
 
 ### 2.1 Applicant Management System
 
@@ -75,6 +81,8 @@ HMHero empowers you to manage applicants during hiring process.
 3. Filter shortlisted applicants and sort them by interview date.
 4. Filter all applicants based on their skill-sets.
 5. View all applicants that have interviews coming up in three days.
+
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -172,7 +180,7 @@ will reside in.
 4. Double-click on the jar file to launch HMHero.
 5. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
 
-**(To Insert Picture of Launch Screen)**
+![ui.png](images%2Fui.png)
 
 <div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong> <br>
 Ensure that the file is added to an empty folder as additional data and configuration files will be created when HMHero
@@ -234,10 +242,13 @@ The following are the attributes stored for each `Applicant`
 * Phone Number
 * Address
 * Email
+* Application Date
+* Interview Date
 * Notes
 
-Applicants are unique by name and phone number and Case Sensitive.
+Applicants are unique by name and phone number and are Case Sensitive.
 This means you cannot add two or more applicants of the same name and phone number.
+
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -271,21 +282,22 @@ Flags are delimiters that enable HMHero to distinguish different parameters with
 You could put in the corresponding [Placeholder](#524-placeholders) immediately after each flag.
 
 <div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
-You may find the following image taken from the subsequent <a href> Command Format </a> section helpful:
-<img src="/Users/merrick/Documents/NUS/Y2S2/CS2103T/tp/docs/images/CommandExample.png">
+You may find the following image taken from the subsequent <a href="#53-command-format"> Command Format </a> section helpful:
+<img src="./images/CommandExample.png">
 </div>
 
 Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
 These placeholders follow immediately after a [Flag](#523-flags).
 
-| Action | Corresponding Placeholder |
-|--------|---------------------------|
-| n/     | `NAME`                    |
-| p/     | `PHONE`                   |
-| e/     | `EMAIL`                   |
-| a/     | `ADDRESS`                 |
-| note/  | `NOTE`                    |
-| d/     | `DATETIME`                |
+| Action   | Corresponding Placeholder |
+|----------|---------------------------|
+| n/       | `NAME`                    |
+| p/       | `PHONE`                   |
+| e/       | `EMAIL`                   |
+| a/       | `ADDRESS`                 |
+| note/    | `NOTE`                    |
+| d/       | `INTERVIEW DATETIME`      |
+| applied/ | `APPLICATION DATETIME`    |
 
 Please refer to the subsequent [Command Format](#53-command-format) section to see how [Flags](#523-flags)
 and [Placeholders](#524-placeholders) are used together.
@@ -470,6 +482,9 @@ What you should expect to find:
 </div>
 
 [Back to Table of Contents](#table-of-contents)
+
+
+
 
 ### 6.1 Applicant Commands
 
@@ -904,61 +919,10 @@ Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Notes: [Python] [Java]
 
 #### 6.3.1. Receive help during usage `help`
 
-**Format**: `help [COMMAND_WORD]`
+**Format**: `help`
 
-> Displays help for HMHero
+> Displays help window for HMHero which contains link to User Guide.
 
-
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-COMMAND_WORD is strictly any of the following:
-</div>
-
-* exit
-* help
-* add
-* delete
-* edit
-* find
-* interview
-* list
-* advance
-* reject
-* remind (implementing)
-* stats (implementing)
-
-
-**Example:**
-
-**Command Input Box:**
-
-Possible inputs:
-```
-help
-```
-
-```
-help delete
-```
-
-```
-help help
-```
-
-**Help Window:**
-
-The Help Window will open showing the instructions.
-
-If no `COMMAND_WORD` was specified, only a general help message will be provided. The general help message
-shows a list of commands available to the user and a URL to this User Guide.
-
-If a `COMMAND_WORD` was specified, additional help for that command will be provided.
-
-- Format:
-  - Format 1: `find NAME or PHONE NUMBER or NOTE` (only need to provide one)
-  - Format 2: `find n/NAME p/PHONE NUMBER` (must provide both)
-- Example:
-  - Example 1: `find Jack Dill`, `find 91234567`
-  - Example 2: `find n/Jack Dill p/91234567`
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -987,11 +951,11 @@ exit
 **Expected Outcomes:**
 
 * All HMHero application windows will close
-* Your inventory data is saved.
+* Your data is saved locally in your computer.
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
-If your inventory data cannot be saved successfully, HMHero will not close in order to prevent data loss.
+If your data cannot be saved successfully, HMHero will not close in order to prevent data loss.
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -1055,6 +1019,8 @@ The JAR file not launching even after double-clicking the file.
     * Use <kbd>Cmd</kbd>+<kbd>Space</kbd> to open Spotlight Search
     * Search for "terminal" and click it to launch. 
 2. Navigate to the location where "hmhero.jar" is stored within your terminal using `cd`. For example, `cd Downloads/`
+
+
 3. On your terminal, run `java -jar hmhero.jar`
 
 **Problem:**
@@ -1077,7 +1043,6 @@ Unable to exit/save HMHero to data file
 
 1. This error is due to `hmhero.jar` being started in a protected folder. (Examples of write-protected folders include`C:\WINDOWS\System32` in windows and the `/etc` dir in linux) <br> Please move the `hmhero.jar` file into another folder in your computer and start HMHero application from that folder.
    
-
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -1126,7 +1091,7 @@ Documentation dependencies:
 - [Admonitions](#admonitions)
 - [Applicant](#applicant)
 - [Applicant List Box](#applicant-list-box)
-- [Application Stage](#application-stage)
+- [Application Cycle](#application-cycle)
 - [COMMAND_WORD (Placeholder)](#commandword-placeholder)
 - [Command](#command)
 - [Command Input Box](#command-input-box)
@@ -1157,7 +1122,7 @@ Documentation dependencies:
 - [Syntax](#syntax)
 - [URL](#url)
 
-
+---
 
 
 ### A
@@ -1174,8 +1139,10 @@ Documentation dependencies:
 > #### Applicant List Box
 > The region located at the bottom left of the HMHero's main window.<br>
 > To view more information, refer to the [User Interface](#51-user-interface) section of the User Guide
-> #### Application Stage
-> All applicants added are at the Applied status by default. From there, hiring managers can advance their application status to Shortlisted, then to Accepted. Applicants can be rejected at any stage excepted for Accepted.
+> #### Application Cycle
+> All applicants added are at the Applied status by default. From there, hiring managers can advance their application status to Shortlisted, then to Accepted. Applicants can be rejected at any stage.
+![Application Cycle](images/application_stage.png)
+
 
 ### C
 > #### COMMAND_WORD Placeholder

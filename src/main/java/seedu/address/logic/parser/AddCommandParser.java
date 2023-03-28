@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -51,6 +52,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Status status = Status.APPLIED;
         ApplicationDateTime applicationDateTime = ParserUtil.parseApplied(argMultimap
                 .getValue(PREFIX_APPLIEDTIME).orElse(""));
+        if (applicationDateTime.getApplicationDateTime().isAfter(LocalDateTime.now())) {
+            throw new ParseException("Application Date cannot be in the future!");
+        }
 
         Person person = new Person(name, phone, email, address, status, applicationDateTime,
                 Optional.empty(), noteList);
