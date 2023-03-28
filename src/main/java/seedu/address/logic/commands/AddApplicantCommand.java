@@ -50,7 +50,7 @@ public class AddApplicantCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Listing> lastShownList = model.getFilteredListingList();
+        List<Listing> lastShownList = model.getDisplayedListingBook();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_LISTING_DISPLAYED_INDEX);

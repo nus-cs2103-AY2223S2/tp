@@ -63,7 +63,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Listing> lastShownList = model.getFilteredListingList();
+        List<Listing> lastShownList = model.getDisplayedListingBook();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_LISTING_DISPLAYED_INDEX);
@@ -77,7 +77,7 @@ public class EditCommand extends Command {
         }
 
         model.setListing(listingToEdit, editedListing);
-        model.updateFilteredListingList(Model.PREDICATE_SHOW_ALL_LISTINGS);
+        model.updateFilteredListingBook(Model.PREDICATE_SHOW_ALL_LISTINGS);
         return new CommandResult(String.format(MESSAGE_EDIT_LISTING_SUCCESS, editedListing));
     }
 

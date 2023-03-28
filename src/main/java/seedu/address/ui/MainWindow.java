@@ -23,7 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindow2.fxml";
+    private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -109,7 +109,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        listingListPanel = new ListingListPanel(logic.getFilteredListingList());
+        listingListPanel = new ListingListPanel(logic.getDisplayedListingBook());
         listingListPanelPlaceholder.getChildren().add(listingListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

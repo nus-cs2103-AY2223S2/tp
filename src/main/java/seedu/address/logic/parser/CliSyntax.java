@@ -10,5 +10,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_APPLICANT = new Prefix("a/");
     public static final Prefix PREFIX_APPLICANT_WITH_ID = new Prefix("id/");
+    public static final Prefix PREFIX_FIELD = new Prefix("f/");
 
 }

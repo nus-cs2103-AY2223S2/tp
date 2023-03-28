@@ -1,68 +1,80 @@
-# Developer Guide
+---
+layout: page
+title: Developer Guide
+---
+* Table of Contents
+  {:toc}
 
-# Acknowledgments
+--------------------------------------------------------------------------------------------------------------------
+
+## **Acknowledgements**
 
 Codebase foundation by AB3.
 
 ---
 
-# Setting up, getting started
+## **Setting up, getting started**
 
-## Setting up the project on your computer
+Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
-<aside>
-❗ Caution: Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
+--------------------------------------------------------------------------------------------------------------------
 
-</aside>
+## **Design**
 
-First, **fork** this repo, and **clone** the fork into your computer.
+<div markdown="span" class="alert alert-primary">
 
-If you plan to use IntelliJ IDEA (highly recommended):
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W14-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+</div>
 
-1. **Configure the JDK**: Follow the guide *[[se-edu/guides] IDEA: Configuring the JDK](https://se-education.org/guides/tutorials/intellijJdk.html)* to ensure Intellij is configured to use **JDK 11**.
-2. **Import the project as a Gradle project**: Follow the guide *[[se-edu/guides] IDEA: Importing a Gradle project](https://se-education.org/guides/tutorials/intellijImportGradleProject.html)* to import the project into IDEA. 
+### Architecture
 
-<aside>
-💡 Note: Importing a Gradle project is slightly different from importing a normal Java project.
+<img src="images/ArchitectureDiagram.png" width="280" />
 
-</aside>
+The ***Architecture Diagram*** given above explains the high-level design of the App.
 
-1. **Verify the setup**:
-    1. Run the `seedu.address.Main` and try a few commands.
-    2. [Run the tests](https://se-education.org/addressbook-level3/Testing.html) to ensure they all pass.
+Given below is a quick overview of main components and how they interact with each other.
 
-## Before writing code
+**Main components of the architecture**
 
-1. **Configure the coding style** 
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-    If using IDEA, follow the guide *[[se-edu/guides] IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html)* to set up IDEA’s coding style to match ours.
+[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+
+The rest of the App consists of four components.
+
+* [**`UI`**](#ui-component): The UI of the App.
+* [**`Logic`**](#logic-component): The command executor.
+* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 
-<aside>
-💡 Tip: Optionally, you can follow the guide *[[se-edu/guides] Using Checkstyle](https://se-education.org/guides/tutorials/checkstyle.html)* to find how to use the CheckStyle within IDEA e.g., to report problems *as* you write code.
+**How the architecture components interact with each other**
 
-</aside>
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-1. **Set up CI**
+<img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-    This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, it will run the CI for your project automatically at each push to the `master` branch or to any PR. No set up is required.
+Each of the four main components (also shown in the diagram above),
 
-2. **Learn the design**
+* defines its *API* in an `interface` with the same name as the Component.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
-    When you are ready to start coding, we recommend that you get a sense of the overall design by reading about [AddressBook’s architecture](https://se-education.org/addressbook-level3/DeveloperGuide.html#architecture).
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-3. **Do the tutorials** These tutorials will help you get acquainted with the codebase.
-    - [Tracing code](https://se-education.org/addressbook-level3/tutorials/TracingCode.html)
-    - [Adding a new command](https://se-education.org/addressbook-level3/tutorials/AddRemark.html)
-    - [Removing fields](https://se-education.org/addressbook-level3/tutorials/RemovingFields.html)
+<img src="images/ComponentManagers.png" width="300" />
+
+The sections below give more details of each component.
+Details coming soon...
 
 ---
 
-# Appendix: Requirements
+## **Appendix: Requirements**
 
-## Product scope
+### Product scope
 
-**************************Target user profile: Recruiters**************************
+**Target user profile: Recruiters (Private or from small businesses)**
 
 - Has a need to manage a significant number of job listings.
 - Prefer desktop apps over other types.
@@ -70,9 +82,9 @@ If you plan to use IntelliJ IDEA (highly recommended):
 - Prefers typing to mouse interactions.
 - Is reasonably comfortable using CLI apps
 
-**************************************Value proposition:************************************** All-in-one app for managing job listings with an intuitive user experience
+**Value proposition**: All-in-one app that is free for managing job listings with an intuitive user experience
 
-## User stories
+### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -111,182 +123,229 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
 *{More to be added}*
 
-## Use cases
+### Use cases
 
 (For all use cases below, the **System** is the `ListingBook` and the **Actor** is the `Recruiter` unless specified otherwise)
 
-### **Use case: Delete a Listing**
+**Use case: Delete a Listing**
 
 **MSS**
 
-1. Recruiter requests to list listings
-2. ListingHub shows a list of listings
-3. The recruiter requests to delete a specific listing from the list
-4. ListingHub deletes the listing
+1. Recruiter requests to list listings.
+2. ListingBook shows a list of listings.
+3. The recruiter requests to delete a specific listing from the list.
+4. ListingBook deletes the listing.
 
     Use case ends.
 
-
 **Extensions**
 
 - 2a. The list is empty.
 
     Use case ends.
 
-- 3a. The given index is invalid.
-    - 3a1. ListingHub shows an error message.
-
-        Use case resumes at step 2.
-
-
-
-### **Use case: List all job listings**
-
-**MSS**
-
-1. Recruiter requests to list job listings
-2. ListingBook shows a list of job listings
-Use case ends.
-
-**Extensions**
-
-- 2a. The list is empty.
-Use case ends.
-
-
-### **Use case: Add a new job listing**
-
-**MSS**
-
-1. The recruiter requests to add a new job listing
-2. ListingBook adds the job listing to the list of job listings
-Use case ends.
-
-********************Extensions********************
-
-- 2a. The placeholders used are invalid
-    - 2a1. ListingBook shows an error message.
-
-        Use case resumes at step 1.
-
-- 2b. The new job title is invalid
-    - 2b1. ListingBook shows an error message.
-
-        Use case resumes at step 1.
-
-- 2c. The new job description is invalid
-    - 2c1. ListingBook shows an error message.
-
-        Use case resumes at step 1.
-
-- 2d. There is a duplicate listing in the listing book
-    - 2d1. ListingBook shows an error message.
-
-        Use case resumes at step 1.
-
-- 2e. Update filtered listing got some problem la idk
-    - 2e1. ListingBook shows an error message.
-
-        Use case resumes at step 1.
-
-
-
-### **Use case: Update a job listing**
-
-**MSS**
-
-1. Recruiter requests to update a job listing
-2. ListingBook shows a list of job listings
-3. The recruiter requests to update a specific listing from the list
-4. ListingBook updates the job listing
-Use case ends.
-
-**Extensions**
-
-- 2a. The list is empty.
-Use case ends.
 - 3a. The given index is invalid.
     - 3a1. ListingBook shows an error message.
-    Use case resumes at step 2.
-- 3b. The placeholders used are invalid
+    - Use case resumes at step 2.
+
+
+
+**Use case: List all job listings**
+
+**MSS**
+
+1. Recruiter requests to list job listings.
+2. ListingBook shows a list of job listings.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+    Use case ends.
+
+
+**Use case: Add a new job listing**
+
+**MSS**
+
+1. The recruiter requests to add a new job listing.
+2. ListingBook adds the job listing to the list of job listings.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The placeholders used are invalid.
+    - 2a1. ListingBook shows an error message.
+    - Use case resumes at step 1.
+
+- 2b. The new job title is invalid.
+    - 2b1. ListingBook shows an error message.
+    - Use case resumes at step 1.
+
+- 2c. The new job description is invalid.
+    - 2c1. ListingBook shows an error message.
+    - Use case resumes at step 1.
+
+- 2d. There is a duplicate listing in the listing book.
+    - 2d1. ListingBook shows an error message.
+    - Use case resumes at step 1.
+
+**Use case: Update a job listing**
+
+**MSS**
+
+1. Recruiter requests to update a job listing.
+2. ListingBook shows a list of job listings.
+3. The recruiter requests to update a specific listing from the list.
+4. ListingBook updates the job listing.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+    Use case ends.
+
+- 3a. The given index is invalid.
+    - 3a1. ListingBook shows an error message.
+    - Use case resumes at step 2.
+ 
+- 3b. The placeholders used are invalid.
     - 3b1. ListingBook shows an error message.
+    - Use case resumes at step 2.
 
-        Use case resumes at step 2.
-
-- 3c. The new job title is invalid
+- 3c. The new job title is invalid.
     - 3c1. ListingBook shows an error message.
+    - Use case resumes at step 2.
 
-        Use case resumes at step 2.
-
-- 3d. The new job description is invalid
+- 3d. The new job description is invalid.
     - 3d1. ListingBook shows an error message.
+    - Use case resumes at step 2.
 
-        Use case resumes at step 2.
-
-- 3e. There is a duplicate listing in the listing book
+- 3e. There is a duplicate listing in the listing book.
     - 3e1. ListingBook shows an error message.
+    - Use case resumes at step 2.
 
-        Use case resumes at step 2.
-
-- 3f. Update filtered listing got some problem la idk
-    - 3f1. ListingBook shows an error message.
-
-        Use case resumes at step 2.
-
-
-
-### **Use case: Find a job listing**
+**Use case: Find a job listing**
 
 **MSS**
 
 1. Recruiter requests to find a job listing by keyword(s).
-2. ListingBook displays a list of job listings that match the keyword
-Use case ends.
+2. ListingBook displays a list of job listings that match the keyword.
+
+    Use case ends.
 
 **Extensions**
 
 - 2a. No job listings match the keyword.
-Use case ends.
+
+    Use case ends.
 - 2b. The list is empty.
 
     Use case ends.
 
 
-### **Use case: Sort job listings**
+**Use case: Sort job listings**
 
 **MSS**
 
-1. Recruiter requests to sort job listings
-2. ListingBook sorts the job listings according to the selected option
-3. ListingBook displays the sorted list of job listings
-Use case ends.
+1. Recruiter requests to sort job listings.
+2. ListingBook sorts the job listings according to the selected option.
+3. ListingBook displays the sorted list of job listings.
 
-********************Extensions********************
+    Use case ends.
+
+**Extensions**
 
 - 2a. The list is empty.
 
     Use case ends.
 
+### **Use case: Undo**
 
-### **Use case: Filter job listings**
+**MSS**
+1. Recruiter requests for an undo.
+2. ListingBook reverses the last command.
+3. ListingBook displays reversed list of job listings.
+
+    Use case ends.
+ 
+**Extensions**
+- 2a. Previous command does not change the ListingBook.
+
+    Use case ends.
+
+**Use case: Filter job listings**
 
 **MSS**
 
-1. Recruiter requests to filter job listings
-2. ListingBook filters the job listings according to the selected option
-3. ListingBook displays the filtered list of job listings
-Use case ends.
+1. Recruiter requests to filter job listings.
+2. ListingBook filters the job listings according to the selected option.
+3. ListingBook displays the filtered list of job listings.
+
+    Use case ends.
 
 **Extensions**
 
 - 4a. No job listings match the filter criteria.
-Use case ends.
+
+    Use case ends.
 - 4b. The list is empty.
 
     Use case ends.
 
+**Use case: Delete an applicant from a job listing**
 
-## Non-Functional Requirements
+**MSS**
+
+1. Recruiter requests to delete an applicant from a job listing.
+2. ListingBook remove the existing applicant from the job listing.
+3. ListingBook displays the job listings with the applicant removed from the specified listing.
+Use case ends.
+
+**Extensions**
+
+- 1a. Specified job listing not found.
+
+    Use case ends.
+- 1b. Specified applicant not found in the job listing.
+
+    Use case ends.
+- 1c. There are two or more applicants that match the keywords.
+  - 1c1. ListingBook requests user to provide a more specific keyword.
+  - 1c2. User enters new request.
+  - Steps 1c1-1c2 are repeated until the data entered are correct.
+  - Use case resumes from step 2.
+
+**Use case: Edit an applicant from a job listing**
+
+**MSS**
+
+1. Recruiter requests to edit an applicant from a job listing.
+2. ListingBook changes the details of the existing applicant from the job listing.
+3. ListingBook displays the job listings with the edited applicant from the specified listing.
+
+    Use case ends.
+
+**Extensions**
+
+- 1a. Specified job listing not found.
+
+    Use case ends.
+- 1b. Specified applicant not found in the job listing.
+
+    Use case ends.
+- 1c. There are two or more applicants that match the keywords.
+    - 1c1. ListingBook requests user to provide a more specific keyword.
+    - 1c2. User enters new request.
+    - Steps 1c1-1c2 are repeated until the data entered are correct.
+    - Use case resumes from step 2.
+
+### Non-Functional Requirements
 
 1. Should work on any *mainstream OS* as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 listings without a noticeable sluggishness in performance for typical usage.
@@ -294,7 +353,60 @@ Use case ends.
 4. Should be maintainable and have a clear code structure and documentation, so new updates and bug fixes can be easily implemented.
 5. Should be easy to use with clear instructions and meaningful error messages.
 
-## Glossary
+### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Private contact detail**: A contact detail that is not meant to be shared with others
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Instructions for manual testing**
+
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
+
+### Launch and shutdown
+
+1. Initial launch
+
+  1. Download the jar file and copy into an empty folder
+
+  1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+
+1. Saving window preferences
+
+  1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+  1. Re-launch the app by double-clicking the jar file.<br>
+     Expected: The most recent window size and location is retained.
+
+1. _{ more test cases …​ }_
+
+### Deleting a listing
+
+1. Deleting a listing while all listings are being shown
+
+  1. Prerequisites: List all listings using the `view` command. Multiple listings in the list.
+
+  1. Test case: `delete 1`<br>
+     Expected: First listing is deleted from the list. Details of the deleted listing shown in the status message. Timestamp in the status bar is updated.
+
+  1. Test case: `delete 0`<br>
+     Expected: No listing is deleted. Error details shown in the status message. Status bar remains the same.
+
+  1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+  1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+1. _{ more test cases …​ }_

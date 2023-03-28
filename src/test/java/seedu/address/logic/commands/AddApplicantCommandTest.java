@@ -45,7 +45,7 @@ public class AddApplicantCommandTest {
 
         Applicant applicantToAdd = new ApplicantBuilder().build();
         AddApplicantCommand addApplicantCommand = new AddApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())),
+                getIndexLastListing(new ArrayList<>(model.getDisplayedListingBook())),
                 applicantToAdd);
 
         ArrayList<Applicant> editedApplicants = new ArrayList<>(newListing.getApplicants());
@@ -80,7 +80,7 @@ public class AddApplicantCommandTest {
         model.addListing(newListing);
 
         AddApplicantCommand addApplicantCommand = new AddApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())), duplicatedApplicant);
+                getIndexLastListing(new ArrayList<>(model.getDisplayedListingBook())), duplicatedApplicant);
 
         String expectedErrorMessage = AddApplicantCommand.MESSAGE_DUPLICATE_APPLICANT;
 

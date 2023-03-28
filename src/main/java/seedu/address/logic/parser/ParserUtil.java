@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.Name;
+import seedu.address.model.comparator.ListingComparator;
 import seedu.address.model.listing.JobDescription;
 import seedu.address.model.listing.JobTitle;
 
@@ -116,6 +117,24 @@ public class ParserUtil {
                 throw new ParseException(Name.MESSAGE_CONSTRAINTS);
             }
             return trimmedName;
+        }
+    }
+
+    /**
+     * Parses a {@code String field} into a relevant {@code ListingComparator}.
+     * @param field input string
+     * @return A ListingComparator to be used to sort the listings.
+     * @throws ParseException if the given {@code field} is not in the list of accepted fields.
+     */
+    public static ListingComparator parseFieldToCompare(String field) throws ParseException {
+        requireNonNull(field);
+        String trimmedAndCapitalisedField = field.trim().toUpperCase();
+
+        try {
+            ListingComparator listingComparator = ListingComparator.valueOf(trimmedAndCapitalisedField);
+            return listingComparator;
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(ListingComparator.MESSAGE_CONSTRAINTS);
         }
     }
 }

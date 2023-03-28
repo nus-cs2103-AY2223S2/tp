@@ -49,15 +49,15 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_LISTING_SUCCESS, editedListing);
 
         Model expectedModel = new ModelManager(new ListingBook(model.getListingBook()), new UserPrefs());
-        expectedModel.setListing(model.getFilteredListingList().get(0), editedListing);
+        expectedModel.setListing(model.getDisplayedListingBook().get(0), editedListing);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastListing = Index.fromOneBased(model.getFilteredListingList().size());
-        Listing lastListing = model.getFilteredListingList().get(indexLastListing.getZeroBased());
+        Index indexLastListing = Index.fromOneBased(model.getDisplayedListingBook().size());
+        Listing lastListing = model.getDisplayedListingBook().get(indexLastListing.getZeroBased());
 
         ListingBuilder listingInList = new ListingBuilder(lastListing);
         Listing editedListing = listingInList.withTitle(VALID_TITLE).withDescription(VALID_DESCRIPTION)
@@ -79,7 +79,7 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_LISTING, new EditListingDescriptor());
-        Listing editedListing = model.getFilteredListingList().get(INDEX_FIRST_LISTING.getZeroBased());
+        Listing editedListing = model.getDisplayedListingBook().get(INDEX_FIRST_LISTING.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_LISTING_SUCCESS, editedListing);
 
@@ -92,7 +92,7 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showListingAtIndex(model, INDEX_FIRST_LISTING);
 
-        Listing listingInFilteredList = model.getFilteredListingList().get(INDEX_FIRST_LISTING.getZeroBased());
+        Listing listingInFilteredList = model.getDisplayedListingBook().get(INDEX_FIRST_LISTING.getZeroBased());
         Listing editedListing = new ListingBuilder(listingInFilteredList).withTitle(VALID_TITLE_ALT).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_LISTING,
                 new EditListingDescriptorBuilder().withJobTitle(VALID_TITLE_ALT).build());
@@ -100,14 +100,14 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_LISTING_SUCCESS, editedListing);
 
         Model expectedModel = new ModelManager(new ListingBook(model.getListingBook()), new UserPrefs());
-        expectedModel.setListing(model.getFilteredListingList().get(0), editedListing);
+        expectedModel.setListing(model.getDisplayedListingBook().get(0), editedListing);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateListingUnfilteredList_failure() {
-        Listing firstListing = model.getFilteredListingList().get(INDEX_FIRST_LISTING.getZeroBased());
+        Listing firstListing = model.getDisplayedListingBook().get(INDEX_FIRST_LISTING.getZeroBased());
         EditListingDescriptor descriptor = new EditListingDescriptorBuilder(firstListing).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_LISTING, descriptor);
 
@@ -128,7 +128,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_invalidListingIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredListingList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getDisplayedListingBook().size() + 1);
         EditListingDescriptor descriptor = new EditListingDescriptorBuilder().withJobTitle(VALID_TITLE).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 

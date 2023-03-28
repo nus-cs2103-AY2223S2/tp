@@ -27,6 +27,9 @@ import seedu.address.testutil.EditListingDescriptorBuilder;
 public class CommandTestUtil {
 
     // valid applicant info
+    public static final String VALID_APPLICANT_NAME_AMY = "Amy Smith";
+    public static final String VALID_APPLICANT_NAME_AMY_DESC = " " + PREFIX_APPLICANT
+            + VALID_APPLICANT_NAME_AMY;
     public static final String VALID_APPLICANT_NAME_BENEDICT = "Benedict Green";
     public static final String VALID_APPLICANT_NAME_WITH_ID_BENEDICT = "Benedict Green#2103";
     public static final String VALID_APPLICANT_NAME_BENEDICT_DESC = " " + PREFIX_APPLICANT
@@ -128,11 +131,11 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         ListingBook expectedListingBook = new ListingBook(actualModel.getListingBook());
-        List<Listing> expectedFilteredList = new ArrayList<>(actualModel.getFilteredListingList());
+        List<Listing> expectedFilteredList = new ArrayList<>(actualModel.getDisplayedListingBook());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedListingBook, actualModel.getListingBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredListingList());
+        assertEquals(expectedFilteredList, actualModel.getDisplayedListingBook());
     }
 
     /**
@@ -140,13 +143,13 @@ public class CommandTestUtil {
      * {@code model}'s listing book.
      */
     public static void showListingAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredListingList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getDisplayedListingBook().size());
 
-        Listing listing = model.getFilteredListingList().get(targetIndex.getZeroBased());
+        Listing listing = model.getDisplayedListingBook().get(targetIndex.getZeroBased());
         final String[] splitName = listing.getTitle().fullTitle.split("\\s+");
-        model.updateFilteredListingList(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredListingBook(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredListingList().size());
+        assertEquals(1, model.getDisplayedListingBook().size());
     }
 
 }

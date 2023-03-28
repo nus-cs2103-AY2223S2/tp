@@ -31,7 +31,7 @@ public class DeleteApplicantCommand extends Command {
             + "*If there are duplicated names, specify the id by adding the 4-digit unique identifier after the name.\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_APPLICANT_WITH_ID + "John Doe#2103\n";
 
-    public static final String MESSAGE_SUCCESS = "Applicant: %1$s has been from %2$s!";
+    public static final String MESSAGE_SUCCESS = "Applicant: %1$s has been deleted from %2$s!";
     public static final String MESSAGE_APPLICANT_NOT_FOUND = "Applicant %1$s cannot be found in %2$s.";
     public static final String MESSAGE_AMBIGUOUS_APPLICANT = "There are multiple applicants with the name %1s in %2$s, "
             + "specify the 4-digit "
@@ -58,7 +58,7 @@ public class DeleteApplicantCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Listing> lastShownList = model.getFilteredListingList();
+        List<Listing> lastShownList = model.getDisplayedListingBook();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_LISTING_DISPLAYED_INDEX);
