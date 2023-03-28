@@ -12,7 +12,7 @@
 <?import javafx.stage.Stage?>
 
 <?import javafx.scene.text.TextFlow?>
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="PowerCard" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" maximized="true" onCloseRequest="#handleExit" title="PowerCard" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -33,7 +33,7 @@
           </Menu>
         </MenuBar>
         <TextFlow fx:id="titlePanel" />
-        <SplitPane fx:id="cardList" dividerPositions="0.2" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <SplitPane fx:id="cardList" dividerPositions="0.2z" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <items>
             <VBox prefHeight="0.0" prefWidth="0.0">
               <children>
