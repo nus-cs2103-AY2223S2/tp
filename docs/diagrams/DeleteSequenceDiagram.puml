@@ -5,7 +5,8 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":InternBuddyParser" as InternBuddyParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant "p:InternshipContainsKeywordPredicate" as InternshipContainsKeywordPredicate LOGIC_COLOR
+participant "c:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant "cr:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete n/google")
 activate LogicManager
 
-LogicManager -> InternBuddyParser : parseCommand("delete 1")
+LogicManager -> InternBuddyParser : parseCommand("delete n/google")
 activate InternBuddyParser
 
 create DeleteCommandParser
@@ -26,54 +27,60 @@ activate DeleteCommandParser
 DeleteCommandParser --> InternBuddyParser
 deactivate DeleteCommandParser
 
-InternBuddyParser -> DeleteCommandParser : parse("1")
+InternBuddyParser -> DeleteCommandParser : parse("n/google")
 activate DeleteCommandParser
 
+create InternshipContainsKeywordPredicate
+DeleteCommandParser -> InternshipContainsKeywordPredicate : InternshipContainsKeywordPredicate()
+activate InternshipContainsKeywordPredicate
+
+InternshipContainsKeywordPredicate --> DeleteCommandParser : p
+deactivate InternshipContainsKeywordPredicate
+
 create DeleteCommand
-DeleteCommandParser -> DeleteCommand
+DeleteCommandParser -> DeleteCommand : DeleteCommand(p)
 activate DeleteCommand
 
-DeleteCommand --> DeleteCommandParser : d
+DeleteCommand --> DeleteCommandParser : c
 deactivate DeleteCommand
 
-DeleteCommandParser --> InternBuddyParser : d
+DeleteCommandParser --> InternBuddyParser : c
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 DeleteCommandParser -[hidden]-> InternBuddyParser
 destroy DeleteCommandParser
 
-InternBuddyParser --> LogicManager : d
+InternBuddyParser --> LogicManager : c
 deactivate InternBuddyParser
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteInternship(1)
+DeleteCommand -> Model : getFilteredInternshipList()
 activate Model
 
 Model --> DeleteCommand
-deactivate Model
 
-opt deletedEqualsSelected
-    DeleteCommand -> Model : updateSelectedInternship(null)
-    activate Model
-
-    Model --> DeleteCommand
-    deactivate Model
+loop internship in internshipsToDelete
+    DeleteCommand -> Model: deleteInternship(internship)
 end
+
+deactivate Model
 
 create CommandResult
 DeleteCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteCommand : cr
 deactivate CommandResult
 
 DeleteCommand --> LogicManager : cr
 deactivate DeleteCommand
+DeleteCommand -[hidden]-> LogicManager
+destroy DeleteCommand
 
+destroy InternshipContainsKeywordPredicate
 
 [<--LogicManager
-destroy DeleteCommand
 deactivate LogicManager
 @enduml
