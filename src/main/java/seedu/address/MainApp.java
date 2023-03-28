@@ -15,19 +15,23 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
+import seedu.address.model.Mathutoring;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyMathutoring;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.storage.JsonMathutoringStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.MathutoringStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
-import seedu.address.model.ReadOnlyMathutoring;
-import seedu.address.model.Mathutoring;
+
+
 
 /**
  * Runs the application.
@@ -54,7 +58,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        seedu.address.storage.MathutoringStorage mathutoringStorage = new seedu.address.storage.JsonMathutoringStorage(userPrefs.getMathutoringFilePath());
+        MathutoringStorage mathutoringStorage = new JsonMathutoringStorage(userPrefs.getMathutoringFilePath());
         storage = new StorageManager(mathutoringStorage, userPrefsStorage);
 
         initLogging(config);

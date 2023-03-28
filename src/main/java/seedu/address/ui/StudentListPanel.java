@@ -9,7 +9,6 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.Student;
 
 /**
  * Panel containing the list of students.

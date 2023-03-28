@@ -19,13 +19,15 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.address.model.Mathutoring;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.testutil.StudentBuilder;
-import seedu.address.testutil.EditStudentDescriptorBuilder;
-import seedu.address.model.Mathutoring;
 import seedu.address.model.student.Student;
+import seedu.address.testutil.EditStudentDescriptorBuilder;
+import seedu.address.testutil.StudentBuilder;
+
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -104,7 +106,7 @@ public class EditCommandTest {
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(firstStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_STUDENT, descriptor);
 
-        assertCommandFailure(editCommand, model,  EditCommand.MESSAGE_DUPLICATE_STUDENT);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 
     @Test

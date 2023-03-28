@@ -19,8 +19,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
-import seedu.address.testutil.StudentBuilder;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
+import seedu.address.testutil.StudentBuilder;
+
 
 
 public class MathutoringTest {
@@ -61,12 +62,12 @@ public class MathutoringTest {
     }
 
     @Test
-    public void hasStudent_StudentNotInMathutoring_returnsFalse() {
+    public void hasStudent_studentNotInMathutoring_returnsFalse() {
         assertFalse(mathutoring.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_StudentInMathutoring_returnsTrue() {
+    public void hasStudent_studentInMathutoring_returnsTrue() {
         mathutoring.addStudent(ALICE);
         assertTrue(mathutoring.hasStudent(ALICE));
     }

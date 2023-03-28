@@ -24,7 +24,11 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.Student;
+import seedu.address.testutil.EditStudentDescriptorBuilder;
+import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.StudentUtil;
+
 
 public class MathutoringParserTest {
 
@@ -32,8 +36,8 @@ public class MathutoringParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        seedu.address.model.student.Student student = new seedu.address.testutil.StudentBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(seedu.address.testutil.StudentUtil.getAddCommand(student));
+        Student student = new StudentBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
         assertEquals(new AddCommand(student), command);
     }
 
@@ -52,8 +56,8 @@ public class MathutoringParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        seedu.address.model.student.Student student = new seedu.address.testutil.StudentBuilder().build();
-        EditStudentDescriptor descriptor = new seedu.address.testutil.EditStudentDescriptorBuilder(student).build();
+        Student student = new StudentBuilder().build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_STUDENT.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_STUDENT, descriptor), command);

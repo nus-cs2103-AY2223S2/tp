@@ -4,14 +4,15 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.model.Mathutoring;
+import seedu.address.model.ReadOnlyMathutoring;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.student.Student;
-import seedu.address.model.ReadOnlyMathutoring;
-import seedu.address.model.Mathutoring;
+import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods for populating {@code Mathutoring} with sample data.

@@ -10,8 +10,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.task.Task;
 import seedu.address.model.student.Student;
+import seedu.address.model.task.Task;
+
 
 /**
  * Adds a task to a student identified using it's displayed index in the student list.

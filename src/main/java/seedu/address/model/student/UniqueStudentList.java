@@ -13,9 +13,10 @@ import seedu.address.model.student.exceptions.StudentNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A student is considered unique by comparing using {@code Student#isSamePerson(Student)}. As such, adding and updating of
- * persons uses Student#isSamePerson(Student) for equality so as to ensure that the student being added or updated is
- * unique in terms of identity in the UniqueStudentList. However, the removal of a student uses Student#equals(Object) so
+ * A student is considered unique by comparing using {@code Student#isSamePerson(Student)}.
+ * As such, adding and updating of students uses Student#isSamePerson(Student) for equality
+ * so as to ensure that the student being added or updated is unique in terms of identity in the UniqueStudentList.
+ * However, the removal of a student uses Student#equals(Object) so
  * as to ensure that the student with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.

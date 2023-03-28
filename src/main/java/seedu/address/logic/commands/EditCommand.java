@@ -24,8 +24,9 @@ import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.student.Student;
+import seedu.address.model.tag.Tag;
+
 
 /**
  * Edits the details of an existing student in the math tutoring.

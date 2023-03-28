@@ -16,6 +16,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.student.Student;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -28,7 +30,7 @@ class CheckCommandTest {
     public void execute_validCheckIndexList_success() {
         showPersonAtIndex(model, INDEX_FIRST_STUDENT);
 
-        seedu.address.model.student.Student studentToCheck = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student studentToCheck = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         CheckCommand checkCommand = new CheckCommand(INDEX_FIRST_STUDENT);
 
         String expectedMessage = String.format(CheckCommand.MESSAGE_CHECK_PERSON_SUCCESS, studentToCheck);

@@ -11,11 +11,12 @@ import java.util.Set;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.score.Score;
+import seedu.address.model.score.UniqueScoreList;
 import seedu.address.model.score.UniqueScoreList.ScoreSummary;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
-import seedu.address.model.score.UniqueScoreList;
+
 
 /**
  * Represents a Student in the mathutoring.

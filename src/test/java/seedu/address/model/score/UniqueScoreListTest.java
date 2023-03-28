@@ -72,6 +72,7 @@ public class UniqueScoreListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> uniqueScoreList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> uniqueScoreList.asUnmodifiableObservableList()
+                .remove(0));
     }
 }

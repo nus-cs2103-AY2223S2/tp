@@ -16,9 +16,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.student.Student;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
-import seedu.address.model.student.Student;
+
 
 class AddTaskCommandTest {
 

@@ -10,12 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.score.Score;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
-import seedu.address.model.student.Student;
 import seedu.address.model.student.Phone;
-import seedu.address.model.score.Score;
+import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
@@ -137,7 +137,7 @@ class JsonAdaptedStudent {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        seedu.address.model.student.Student student = new seedu.address.model.student.Student(modelName, modelPhone, modelEmail, modelAddress, modelParentPhone, modelTags);
+        Student student = new Student(modelName, modelPhone, modelEmail, modelAddress, modelParentPhone, modelTags);
 
         for (JsonAdaptedTask jsonAdaptedTask : taskList) {
             Task task = jsonAdaptedTask.toModelType();
