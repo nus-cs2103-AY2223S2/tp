@@ -60,7 +60,8 @@ public class FindCommand extends Command {
         Predicate<Internship> finalFilterStat = filterStat;
         Predicate<Internship> filter = x -> finalFilterPos.test(x) && finalFilterCom.test(x) && finalFilterStat.test(x);
         model.updateFilteredInternshipList(filter);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredInternshipList().size()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredInternshipList().size()),
+                ResultType.FIND);
     }
 
     @Override

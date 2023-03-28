@@ -14,6 +14,7 @@ import seedu.internship.logic.commands.Command;
 import seedu.internship.logic.commands.DeleteCommand;
 import seedu.internship.logic.commands.EditCommand;
 import seedu.internship.logic.commands.ExitCommand;
+import seedu.internship.logic.commands.FindCommand;
 import seedu.internship.logic.commands.HelpCommand;
 import seedu.internship.logic.commands.HomeCommand;
 import seedu.internship.logic.commands.ListCommand;

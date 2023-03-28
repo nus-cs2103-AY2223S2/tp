@@ -115,6 +115,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() throws CommandException, ParseException {
+
         internshipListPanel = new InternshipListPanel(logic.getFilteredInternshipList());
         internshipListPanelPlaceholder.getChildren().add(internshipListPanel.getRoot());
 
@@ -222,6 +223,8 @@ public class MainWindow extends UiPart<Stage> {
             case CALENDAR:
                 pagePlaceholder.getChildren().clear();
                 pagePlaceholder.getChildren().add(Page.of(commandResult).getRoot());
+                break;
+            case FIND:
                 break;
             case NO_CHANGE:
                 break;

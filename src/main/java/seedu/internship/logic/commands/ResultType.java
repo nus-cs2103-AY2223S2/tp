@@ -9,4 +9,5 @@ public enum ResultType {
     NO_CHANGE,
     SHOW_INFO,
     STATS,
+    FIND,
 }
