@@ -24,7 +24,8 @@ public class AssignCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Assigns a mark to the selected student. \n"
-            + "Parameters: INDEX (must be a positive integer) + MARK_TO_ASSIGN (must be a positive integer between 0 and 100)\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "+ MARK_TO_ASSIGN (must be a positive integer between 0 and 100)\n"
             + "Example: " + COMMAND_WORD + " 1" + " 50";
 
     public static final String MESSAGE_SUCCESS = "Assigned student %2$s with grade for task %1$s";

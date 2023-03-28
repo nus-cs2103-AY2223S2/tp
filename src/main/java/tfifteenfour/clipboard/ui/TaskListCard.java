@@ -7,12 +7,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.MainApp;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
-import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.model.task.Task;
 
 /**
- * An UI component that displays information of a {@code Session}.
+ * An UI component that displays information of a {@code Task}.
  */
-public class SessionListCard extends UiPart<Region> {
+public class TaskListCard extends UiPart<Region> {
 
     private static final String FXML = "ListCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
@@ -25,7 +25,7 @@ public class SessionListCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Session session;
+    public final Task task;
 
     @FXML
     private Label id;
@@ -33,13 +33,13 @@ public class SessionListCard extends UiPart<Region> {
     private Label code;
 
     /**
-     * Creates a {@code SessionListCard} with the given {@code Session} and index to display.
+     * Creates a {@code TaskListCard} with the given {@code Task} and index to display.
      */
-    public SessionListCard(Session session, int displayedIndex) {
+    public TaskListCard(Task task, int displayedIndex) {
         super(FXML);
-        this.session = session;
+        this.task = task;
         id.setText(displayedIndex + ". ");
-        code.setText(session.getSessionName());
+        code.setText(task.getTaskName());
     }
 
     @Override
@@ -50,13 +50,13 @@ public class SessionListCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof SessionListCard)) {
+        if (!(other instanceof TaskListCard)) {
             return false;
         }
 
         // state check
-        SessionListCard card = (SessionListCard) other;
+        TaskListCard card = (TaskListCard) other;
         return id.getText().equals(card.id.getText())
-                && session.equals(card.session);
+                && task.equals(card.task);
     }
 }

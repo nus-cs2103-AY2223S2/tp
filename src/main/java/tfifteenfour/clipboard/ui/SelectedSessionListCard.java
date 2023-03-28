@@ -14,7 +14,7 @@ import tfifteenfour.clipboard.model.course.Session;
  */
 public class SelectedSessionListCard extends UiPart<Region> {
 
-    private static final String FXML = "SelectedSessionListCard.fxml";
+    private static final String FXML = "SelectedListCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**

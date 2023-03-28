@@ -55,7 +55,8 @@ public class TaskCommand extends Command {
 
         Group selectedGroup = handleSelectGroup(model, currentSelection);
         currentSelection.setCurrentPage(PageType.TASK_PAGE);
-        return new CommandResult(this, String.format("[TASK PAGE]\nViewing tasks of : %s", selectedGroup), willModifyState);
+        return new CommandResult(this,
+                String.format("[TASK PAGE]\nViewing tasks of : %s", selectedGroup), willModifyState);
     }
 
     /**

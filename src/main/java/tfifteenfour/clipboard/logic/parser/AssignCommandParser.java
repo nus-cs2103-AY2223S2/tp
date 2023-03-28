@@ -24,8 +24,8 @@ public class AssignCommandParser implements Parser<AssignCommand> {
 
             args = args.trim();
 
-            Index index = ParserUtil.parseIndex(args.split(" ",2)[0]);
-            int grade = Integer.parseInt(args.split(" ",2)[1]);
+            Index index = ParserUtil.parseIndex(args.split(" ", 2)[0]);
+            int grade = Integer.parseInt(args.split(" ", 2)[1]);
 
             if (grade < 0 || grade > 100) {
                 throw new ParseException(
