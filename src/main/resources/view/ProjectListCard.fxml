@@ -52,6 +52,16 @@
                   </HBox>
                   <HBox>
                      <children>
+                        <Label styleClass="cell_small_label" text="Repo Host: " />
+                        <Label fx:id="repoHost" styleClass="cell_small_label" text="\$HostName">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
                         <Label styleClass="cell_small_label" text="Deadline: " />
                         <Label fx:id="deadline" styleClass="cell_small_label" text="\$Date">
                            <font>
