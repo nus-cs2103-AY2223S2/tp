@@ -2,7 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DESC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_START;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -25,7 +27,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
     public AddMeetingCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-            PREFIX_MEETING);
+            PREFIX_MEETING_DESC, PREFIX_MEETING_START, PREFIX_MEETING_END);
 
         Index index;
         try {
@@ -35,7 +37,10 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
                 AddMeetingCommand.MESSAGE_USAGE), ive);
         }
 
-        Meeting meeting = ParserUtil.parseMeeting(argMultimap.getValue(PREFIX_MEETING).orElse(""));
+        String description = argMultimap.getValue(PREFIX_MEETING_DESC).get();
+        String start = argMultimap.getValue(PREFIX_MEETING_START).get();
+        String end = argMultimap.getValue(PREFIX_MEETING_END).get();
+        Meeting meeting = ParserUtil.parseMeeting(description, start, end);
 
         return new AddMeetingCommand(index, meeting);
     }
