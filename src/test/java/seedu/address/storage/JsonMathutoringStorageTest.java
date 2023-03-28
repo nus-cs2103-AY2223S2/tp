@@ -16,6 +16,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.ReadOnlyMathutoring;
+import seedu.address.model.Mathutoring;
+
 
 public class JsonMathutoringStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonMathutoringStorageTest");
@@ -24,12 +27,12 @@ public class JsonMathutoringStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readMathutoring_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readMathutoring(null));
     }
 
-    private java.util.Optional<seedu.address.model.ReadOnlyMathutoring> readAddressBook(String filePath) throws Exception {
-        return new JsonMathutoringStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyMathutoring> readMathutoring(String filePath) throws Exception {
+        return new JsonMathutoringStorage(Paths.get(filePath)).readMathutoring(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -40,69 +43,69 @@ public class JsonMathutoringStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readMathutoring("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatMathutoring.json"));
+        assertThrows(DataConversionException.class, () -> readMathutoring("notJsonFormatMathutoring.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidStudentMathutoring.json"));
+    public void readMathutoring_invalidStudentMathutoring_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readMathutoring("invalidStudentMathutoring.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidStudentMathutoring.json"));
+    public void readMathutoring_invalidAndValidStudentMathutoring_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readMathutoring("invalidAndValidStudentMathutoring.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
+    public void readAndSaveMathutoring_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        seedu.address.model.Mathutoring original = getTypicalAddressBook();
-        JsonMathutoringStorage jsonAddressBookStorage = new JsonMathutoringStorage(filePath);
+        Mathutoring original = getTypicalAddressBook();
+        JsonMathutoringStorage jsonMathutoringStorage = new JsonMathutoringStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        seedu.address.model.ReadOnlyMathutoring readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        assertEquals(original, new seedu.address.model.Mathutoring(readBack));
+        jsonMathutoringStorage.saveMathutoring(original, filePath);
+        ReadOnlyMathutoring readBack = jsonMathutoringStorage.readMathutoring(filePath).get();
+        assertEquals(original, new Mathutoring(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        assertEquals(original, new seedu.address.model.Mathutoring(readBack));
+        original.addStudent(HOON);
+        original.removeStudent(ALICE);
+        jsonMathutoringStorage.saveMathutoring(original, filePath);
+        readBack = jsonMathutoringStorage.readMathutoring(filePath).get();
+        assertEquals(original, new Mathutoring(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
-        assertEquals(original, new seedu.address.model.Mathutoring(readBack));
+        original.addStudent(IDA);
+        jsonMathutoringStorage.saveMathutoring(original); // file path not specified
+        readBack = jsonMathutoringStorage.readMathutoring().get(); // file path not specified
+        assertEquals(original, new Mathutoring(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveMathutoring_nullMathutoring_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveMathutoring(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code mathutoring} at the specified {@code filePath}.
      */
-    private void saveAddressBook(seedu.address.model.ReadOnlyMathutoring addressBook, String filePath) {
+    private void saveMathutoring(ReadOnlyMathutoring addressBook, String filePath) {
         try {
             new JsonMathutoringStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveMathutoring(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new seedu.address.model.Mathutoring(), null));
+    public void saveMathutoring_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveMathutoring(new Mathutoring(), null));
     }
 }

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -28,32 +28,32 @@ class DeleteTaskCommandTest {
 
     @Test
     void execute_invalidStudentIndexUnfilteredList_failure() {
-        Index outOfBoundPersonIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundPersonIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundPersonIndex, INDEX_FIRST_TASK);
 
-        assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     void execute_validStudentIndexInvalidTaskIndexUnfilteredList_failure() {
-        Index outOfBoundTaskIndex = Index.fromOneBased(model.getFilteredPersonList().get(INDEX_FIRST_PERSON
+        Index outOfBoundTaskIndex = Index.fromOneBased(model.getFilteredStudentList().get(INDEX_FIRST_STUDENT
                 .getZeroBased()).getTaskList().asUnmodifiableObservableList().size() + 1);
 
-        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_PERSON, outOfBoundTaskIndex);
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_STUDENT, outOfBoundTaskIndex);
 
         assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteTaskCommand deleteFirstTaskCommand = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK);
-        DeleteTaskCommand deleteSecondTaskCommand = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_SECOND_TASK);
+        DeleteTaskCommand deleteFirstTaskCommand = new DeleteTaskCommand(INDEX_FIRST_STUDENT, INDEX_FIRST_TASK);
+        DeleteTaskCommand deleteSecondTaskCommand = new DeleteTaskCommand(INDEX_FIRST_STUDENT, INDEX_SECOND_TASK);
 
         // same object -> returns true
         assertTrue(deleteFirstTaskCommand.equals(deleteFirstTaskCommand));
 
         // same values -> returns true
-        DeleteTaskCommand deleteFirstTaskCommandCopy = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK);
+        DeleteTaskCommand deleteFirstTaskCommandCopy = new DeleteTaskCommand(INDEX_FIRST_STUDENT, INDEX_FIRST_TASK);
         assertTrue(deleteFirstTaskCommand.equals(deleteFirstTaskCommandCopy));
 
         // different types -> returns false

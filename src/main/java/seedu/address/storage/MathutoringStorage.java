@@ -6,16 +6,17 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyMathutoring;
+import seedu.address.model.Mathutoring;
 
 /**
- * Represents a storage for {@link seedu.address.model.Mathutoring}.
+ * Represents a storage for {@link Mathutoring}.
  */
 public interface MathutoringStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getMathutoringFilePath();
 
     /**
      * Returns Mathutoring data as a {@link ReadOnlyMathutoring}.
@@ -23,23 +24,23 @@ public interface MathutoringStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<seedu.address.model.ReadOnlyMathutoring> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyMathutoring> readMathutoring() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getMathutoringFilePath()
      */
-    Optional<seedu.address.model.ReadOnlyMathutoring> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyMathutoring> readMathutoring(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyMathutoring} to the storage.
-     * @param addressBook cannot be null.
+     * @param mathutoring cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(seedu.address.model.ReadOnlyMathutoring addressBook) throws IOException;
+    void saveMathutoring(ReadOnlyMathutoring mathutoring) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyMathutoring)
+     * @see #saveMathutoring(ReadOnlyMathutoring)
      */
-    void saveAddressBook(seedu.address.model.ReadOnlyMathutoring addressBook, Path filePath) throws IOException;
+    void saveMathutoring(ReadOnlyMathutoring mathutoring, Path filePath) throws IOException;
 
 }

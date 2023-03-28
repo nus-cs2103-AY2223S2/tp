@@ -13,13 +13,13 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 
 /**
- * Adds a student to the math tutoring.
+ * Adds a student to the mathutoring.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the math tutoring. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the mathutoring. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -37,7 +37,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the math tutoring";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the mathutoring";
 
     private final Student toAdd;
 

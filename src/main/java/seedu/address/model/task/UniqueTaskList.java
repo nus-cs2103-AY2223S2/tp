@@ -128,7 +128,7 @@ public class UniqueTaskList implements Iterable<Task> {
 
     /**
      * Replaces the contents of this list with {@code tasks}.
-     * {@code tasks} must not contain duplicate persons.
+     * {@code tasks} must not contain duplicate students.
      */
     public void setTasks(List<Task> tasks) {
         requireAllNonNull(tasks);

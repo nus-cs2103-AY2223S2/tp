@@ -25,7 +25,7 @@ class JsonSerializableMathutoring {
 
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableMathutoring} with the given persons.
      */
     @JsonCreator
     public JsonSerializableMathutoring(@JsonProperty("students") List<JsonAdaptedStudent> students) {
@@ -42,7 +42,7 @@ class JsonSerializableMathutoring {
     }
 
     /**
-     * Converts this math tutoring into the model's {@code Mathutoring} object.
+     * Converts this mathutoring into the model's {@code Mathutoring} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

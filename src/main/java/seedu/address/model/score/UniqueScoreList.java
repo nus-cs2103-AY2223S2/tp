@@ -106,14 +106,6 @@ public class UniqueScoreList implements Iterable<Score> {
     }
 
     /**
-     * Gets the internal list for score list panel to get all scores for a specific student.
-     * @return All tasks in list.
-     */
-    public ObservableList<Score> getInternalList() {
-        return internalList;
-    }
-
-    /**
      * Returns the backing score list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Score> asUnmodifiableObservableList() {
@@ -170,7 +162,7 @@ public class UniqueScoreList implements Iterable<Score> {
     }
 
     /**
-     * Inner class of ScoreSummary
+     * Stores the recent 5 scores' summary statistic details.
      */
     public class ScoreSummary {
 

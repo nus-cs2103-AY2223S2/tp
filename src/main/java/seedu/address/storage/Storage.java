@@ -7,6 +7,7 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.ReadOnlyMathutoring;
 
 /**
  * API of the Storage component
@@ -20,12 +21,12 @@ public interface Storage extends MathutoringStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getMathutoringFilePath();
 
     @Override
-    Optional<seedu.address.model.ReadOnlyMathutoring> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyMathutoring> readMathutoring() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(seedu.address.model.ReadOnlyMathutoring addressBook) throws IOException;
+    void saveMathutoring(ReadOnlyMathutoring addressBook) throws IOException;
 
 }

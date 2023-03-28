@@ -14,7 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
 
 /**
- * Represents the in-memory model of the math tutoring data.
+ * Represents the in-memory model of the mathutoring data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -29,7 +29,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyMathutoring mathutoring, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(mathutoring, userPrefs);
 
-        logger.fine("Initializing with math tutoring: " + mathutoring + " and user prefs " + userPrefs);
+        logger.fine("Initializing with mathutoring: " + mathutoring + " and user prefs " + userPrefs);
 
         this.mathutoring = new Mathutoring(mathutoring);
         this.userPrefs = new UserPrefs(userPrefs);

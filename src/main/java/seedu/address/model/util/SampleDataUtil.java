@@ -40,7 +40,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyMathutoring getSampleAddressBook() {
+    public static ReadOnlyMathutoring getSampleMathutoring() {
         Mathutoring sampleAb = new Mathutoring();
         for (Student sampleStudent : getSamplePersons()) {
             sampleAb.addStudent(sampleStudent);

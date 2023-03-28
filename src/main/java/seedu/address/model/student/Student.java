@@ -14,10 +14,11 @@ import seedu.address.model.score.Score;
 import seedu.address.model.score.UniqueScoreList.ScoreSummary;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.score.UniqueScoreList;
 
 /**
- * Represents a Student in the math tutoring.
+ * Represents a Student in the mathutoring.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
@@ -93,7 +94,7 @@ public class Student {
         return Collections.unmodifiableSet(tags);
     }
 
-    public seedu.address.model.task.UniqueTaskList getTaskList() {
+    public UniqueTaskList getTaskList() {
         return uniqueTaskList;
     }
 

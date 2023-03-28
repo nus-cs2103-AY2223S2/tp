@@ -8,7 +8,7 @@ import java.util.Objects;
 import seedu.address.model.student.Name;
 
 /**
- * Represents a Task in the math tutoring.
+ * Represents a Task in the mathutoring.
  * Guarantees: immutable; fields are validated; details are present and not null;
  */
 public class Task implements Comparable<Task> {

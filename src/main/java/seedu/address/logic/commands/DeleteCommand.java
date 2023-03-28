@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 
 /**
- * Deletes a student identified using it's displayed index from the math tutoring.
+ * Deletes a student identified using it's displayed index from the mathutoring.
  */
 public class DeleteCommand extends Command {
 

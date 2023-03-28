@@ -27,22 +27,22 @@ public class JsonMathutoringStorage implements MathutoringStorage {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getMathutoringFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyMathutoring> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyMathutoring> readMathutoring() throws DataConversionException {
+        return readMathutoring(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readMathutoring()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyMathutoring> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyMathutoring> readMathutoring(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableMathutoring> jsonMathutoring = JsonUtil.readJsonFile(
@@ -60,16 +60,16 @@ public class JsonMathutoringStorage implements MathutoringStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyMathutoring mathutoring) throws IOException {
-        saveAddressBook(mathutoring, filePath);
+    public void saveMathutoring(ReadOnlyMathutoring mathutoring) throws IOException {
+        saveMathutoring(mathutoring, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyMathutoring)}.
+     * Similar to {@link #saveMathutoring(ReadOnlyMathutoring)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyMathutoring mathutoring, Path filePath) throws IOException {
+    public void saveMathutoring(ReadOnlyMathutoring mathutoring, Path filePath) throws IOException {
         requireNonNull(mathutoring);
         requireNonNull(filePath);
 

@@ -61,7 +61,7 @@ public class Mathutoring implements ReadOnlyMathutoring {
     //// student-level operations
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the math tutoring.
+     * Returns true if a student with the same identity as {@code student} exists in the matutoring.
      */
     public boolean hasStudent(Student student) {
         requireNonNull(student);
@@ -69,8 +69,8 @@ public class Mathutoring implements ReadOnlyMathutoring {
     }
 
     /**
-     * Adds a student to the math tutoring.
-     * The student must not already exist in the math tutoring.
+     * Adds a student to the mathutoring.
+     * The student must not already exist in the mathutoring.
      */
     public void addStudent(Student p) {
         students.add(p);
@@ -78,8 +78,8 @@ public class Mathutoring implements ReadOnlyMathutoring {
 
     /**
      * Replaces the given student {@code target} in the list with {@code editedStudent}.
-     * {@code target} must exist in the math tutoring.
-     * The student identity of {@code editedStudent} must not be the same as another existing student in the math tutoring.
+     * {@code target} must exist in the mathutoring.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in the mathutoring.
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
@@ -89,7 +89,7 @@ public class Mathutoring implements ReadOnlyMathutoring {
 
     /**
      * Removes {@code key} from this {@code Mathutoring}.
-     * {@code key} must exist in the math tutoring.
+     * {@code key} must exist in the mathutoring.
      */
     public void removeStudent(Student key) {
         students.remove(key);

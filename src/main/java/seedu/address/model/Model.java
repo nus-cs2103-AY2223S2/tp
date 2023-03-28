@@ -35,50 +35,51 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' math tutoring file path.
+     * Returns the user prefs' mathutoring file path.
      */
     Path getMathutoringFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' mathutoring file path.
      */
-    void setMathutoringFilePath(Path addressBookFilePath);
+    void setMathutoringFilePath(Path mathutoringFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces mathutoring data with the data in {@code mathutoring}.
      */
-    void setMathutoring(ReadOnlyMathutoring addressBook);
+    void setMathutoring(ReadOnlyMathutoring mathutoring);
 
     /** Returns the Mathutoring */
     ReadOnlyMathutoring getMathutoring();
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in the mathutoring.
      */
     boolean hasStudent(Student student);
 
     /**
      * Deletes the given student.
-     * The student must exist in the math tutoring.
+     * The student must exist in the mathutoring.
      */
     void deleteStudent(Student target);
 
     /**
      * Check the given student.
-     * The student must exist in the math tutoring.
+     * The student must exist in the mathutoring.
      */
     void checkStudent(Student target);
 
     /**
      * Adds the given student.
-     * {@code student} must not already exist in the math tutoring.
+     * {@code student} must not already exist in the mathutoring.
      */
     void addStudent(Student student);
 
     /**
      * Replaces the given student {@code target} with {@code editedStudent}.
-     * {@code target} must exist in the math tutoring.
-     * The student identity of {@code editedStudent} must not be the same as another existing student in the math tutoring.
+     * {@code target} must exist in the mathutoring.
+     * The student identity of {@code editedStudent} must not be the same as
+     * another existing student in the mathutoring.
      */
     void setStudent(Student target, Student editedStudent);
 

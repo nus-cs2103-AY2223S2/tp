@@ -26,6 +26,8 @@ import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
+import seedu.address.model.ReadOnlyMathutoring;
+import seedu.address.model.Mathutoring;
 
 /**
  * Runs the application.
@@ -65,25 +67,25 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample math tutoring will be used instead if {@code storage}'s math tutoring is not found,
-     * or an empty math tutoring will be used instead if errors occur when reading {@code storage}'s math tutoring.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s mathutoring and {@code userPrefs}. <br>
+     * The data from the sample mathutoring will be used instead if {@code storage}'s mathutoring is not found,
+     * or an empty mathutoring will be used instead if errors occur when reading {@code storage}'s mathutoring.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<seedu.address.model.ReadOnlyMathutoring> addressBookOptional;
-        seedu.address.model.ReadOnlyMathutoring initialData;
+        Optional<ReadOnlyMathutoring> mathutoringOptional;
+        ReadOnlyMathutoring initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            mathutoringOptional = storage.readMathutoring();
+            if (!mathutoringOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample MATHTUTORING");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = mathutoringOptional.orElseGet(SampleDataUtil::getSampleMathutoring);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty MATHTUTORING");
-            initialData = new seedu.address.model.Mathutoring();
+            initialData = new Mathutoring();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty MATHTUTORING");
-            initialData = new seedu.address.model.Mathutoring();
+            initialData = new Mathutoring();
         }
 
         return new ModelManager(initialData, userPrefs);

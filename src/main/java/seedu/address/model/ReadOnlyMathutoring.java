@@ -5,13 +5,13 @@ import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an mathutoring
  */
 public interface ReadOnlyMathutoring {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the students list.
+     * This list will not contain any duplicate students.
      */
     ObservableList<Student> getStudentList();
 

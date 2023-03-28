@@ -9,6 +9,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.ReadOnlyMathutoring;
 
 /**
  * Manages storage of Mathutoring data in local storage.
@@ -48,30 +49,30 @@ public class StorageManager implements Storage {
     // ================ Mathutoring methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return mathutoringStorage.getAddressBookFilePath();
+    public Path getMathutoringFilePath() {
+        return mathutoringStorage.getMathutoringFilePath();
     }
 
     @Override
-    public Optional<seedu.address.model.ReadOnlyMathutoring> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(mathutoringStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyMathutoring> readMathutoring() throws DataConversionException, IOException {
+        return readMathutoring(mathutoringStorage.getMathutoringFilePath());
     }
 
     @Override
-    public Optional<seedu.address.model.ReadOnlyMathutoring> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyMathutoring> readMathutoring(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return mathutoringStorage.readAddressBook(filePath);
+        return mathutoringStorage.readMathutoring(filePath);
     }
 
     @Override
-    public void saveAddressBook(seedu.address.model.ReadOnlyMathutoring addressBook) throws IOException {
-        saveAddressBook(addressBook, mathutoringStorage.getAddressBookFilePath());
+    public void saveMathutoring(ReadOnlyMathutoring mathutoring) throws IOException {
+        saveMathutoring(mathutoring, mathutoringStorage.getMathutoringFilePath());
     }
 
     @Override
-    public void saveAddressBook(seedu.address.model.ReadOnlyMathutoring addressBook, Path filePath) throws IOException {
+    public void saveMathutoring(ReadOnlyMathutoring mathutoring, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        mathutoringStorage.saveAddressBook(addressBook, filePath);
+        mathutoringStorage.saveMathutoring(mathutoring, filePath);
     }
 
 }

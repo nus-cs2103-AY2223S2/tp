@@ -31,9 +31,6 @@ import seedu.address.model.score.Score;
 import seedu.address.model.score.UniqueScoreList.ScoreSummary;
 
 
-
-
-
 /**
  * Panel containing the list of scores.
  */
