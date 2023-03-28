@@ -89,6 +89,12 @@ Equipped with both a Graphical User Interface (GUI) and Command Line Interface (
 
 </div>
 
+### Theme toggling
+
+Toggles the theme from dark to light or vice versa.
+
+![toggle theme](images/toggleTheme.png)
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
