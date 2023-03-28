@@ -139,17 +139,17 @@ public class UniqueModuleList implements Iterable<Module> {
             case GRADE:
                 obj = m.getGrade();
                 break;
-            case YEAR:
-                obj = m.getSemYear();
+            case CREDITS:
+                obj = m.getCredit().toString();
                 break;
             case TAG:
                 obj = m.getTags().toString();
                 break;
             case CODE:
-                obj = m.getCodePrefix();
+                obj = m.getCodePrefix().toString();
                 break;
             default:
-                obj = m.getCredit();
+                obj = m.getSemYear();
             }
             ObservableList<Module> existingList = result.get(obj);
             if (existingList == null) {

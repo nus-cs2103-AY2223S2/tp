@@ -6,7 +6,7 @@ import static seedu.modtrek.commons.util.AppUtil.checkArgument;
 /**
  * Code denotes the Module Code for a module.
  */
-public class Code implements Comparable<Code> {
+public class Code {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Module code is invalid. It should be alphanumeric.";
@@ -53,10 +53,5 @@ public class Code implements Comparable<Code> {
     @Override
     public int hashCode() {
         return code.hashCode();
-    }
-
-    @Override
-    public int compareTo(Code o) {
-        return 0;
     }
 }

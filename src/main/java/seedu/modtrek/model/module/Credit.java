@@ -6,7 +6,7 @@ import static seedu.modtrek.commons.util.AppUtil.checkArgument;
 /**
  * Credit denotes the Modular Credit (MC) associated with each module.
  */
-public class Credit implements Comparable<Credit> {
+public class Credit {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Credit should only be a number and only 1-2 digits long.";
@@ -53,22 +53,5 @@ public class Credit implements Comparable<Credit> {
     @Override
     public int hashCode() {
         return value.hashCode();
-    }
-
-    /**
-     * Compares this object with the specified object for order.  Returns a
-     * negative integer, zero, or a positive integer as this object is less
-     * than, equal to, or greater than the specified object.
-     *
-     * @param o the object to be compared.
-     * @return a negative integer, zero, or a positive integer as this object
-     *      is less than, equal to, or greater than the specified object.
-     * @throws NullPointerException if the specified object is null
-     * @throws ClassCastException   if the specified object's type prevents it
-     *                              from being compared to this object.
-     */
-    @Override
-    public int compareTo(Credit o) {
-        return Integer.valueOf(o.toString()) - Integer.valueOf(this.toString());
     }
 }
