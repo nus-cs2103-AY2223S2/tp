@@ -257,7 +257,7 @@ Clears all entries from ExpressLibrary.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits the program.
 
