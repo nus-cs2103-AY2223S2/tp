@@ -10,6 +10,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 /**
  * An UI component that displays information of a {@code Project}.
@@ -73,6 +74,9 @@ public class ProjectCard extends UiPart<Region> {
         }
 
         status.setText("Status: " + (project.isOverdue() ? "OVERDUE" : project.getStatus().toString()));
+        if (project.isOverdue()) {
+            status.setTextFill(Color.RED);
+        }
 
         project.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
