@@ -156,7 +156,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Field Validation
 Each `Tutee` has various fields (i.e. name, phone...). Validation from user input is done at the `Parser` level, but
-when loading from a JSON file field validation is performed automatically.\
+when loading from a JSON file field validation is performed differently.\
 The automatic validation of a tutee field requires the following three elements to be defined,
 an example implementation of a tutee field is shown below:
 ```java
@@ -256,17 +256,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 The logic of the filter implementation is found in `FilterCommand` class. The constructor of `FilterCommand` takes in 
 a `FilterTuteeDescription` object and creates a `FieldContainsKeywordPredicate` based on the variables that are set in 
-`FilterTuteeDescription`. Inside the `FilterCommand` class is a static `FilterTuteeDescription` class which encapsulates 
+`FilterTuteeDescription`.  `FilterTuteeDescription` is a similar in implementation to `EditPersonDescription` class which encapsulates 
 the fields of a tutee that the user wants to filter. `FilterTuteeDescription` contains all the fields of a tutee including: 
 `name`, `phone`, `email`, `address`, `subject`, `schedule`, `start time`, `end time`, `tag`of a tutee. 
-By default, they are all an empty string hence when filter is called without specifying an fields, the feature lists down 
-all the tutees.
+By default, they are all an empty string however when no fields are given by the user, an error message is shown. (e.g. filter n/)
 
 `FilterTuteeDescription` will have its fields updated when the user specifies the fields he/she wants to filter using the
 `filter` command. This will allow `FilterCommandParser` to set the appropriate fields in `FilterTuteeDescription` for the
-fields that are to be filtered in. Once `FilterTuteeDescription` has its fields set (i.e. nameToFilter = "alex"), 
-`FieldContainsKeywordPredicate` will take in all the variables in `FilterTuteeDescription` and return a `FieldContainsKeywordPredicate` 
-object. `FieldContainsKeywordPredicate` implements `Predicate` and it overrides the `test` method. It returns true if the 
+fields that are to be filtered in. Once `FilterTuteeDescription` has its fields set (e.g. nameToFilter = "alex"), 
+`FieldContainsKeywordPredicate` will take in all the variables in `FilterTuteeDescription` and return a `FieldContainsKeywordPredicate` object. 
+`FieldContainsKeywordPredicate` implements `Predicate` and it overrides the `test` method. It returns true if the 
 given field is empty (default) or when the tutee has the field equal to the field provided by the user when using the filter
 command. 
 
@@ -277,10 +276,10 @@ that are equal to what the user has provided.
 ### Copy feature
 
 #### Copy Implementation
-The copy feature is facilitated by `CopyCommand`. It extends `Command`. The constructor of `CopyCommand` takes in 
-an `index and an EditPersonDescripter` object and creates a `tutee` based on the variables that are set in 
-`EditPersonDescripter`. The `CopyCommand` class makes use of the `EditPersonDescripter`in the `EditCommand` class which contains all the fields of a tutee including: 
-`subject`, `schedule`, `start time`, `end time` of a tutee. 
+The copy feature is facilitated by `CopyCommand`. It extends `Command`. The constructor of `CopyCommand` takes in
+an `index and an EditPersonDescripter` object and creates a `tutee` based on the variables that are set in
+`EditPersonDescripter`. The `CopyCommand` class makes use of the `EditPersonDescripter`in the `EditCommand` class which contains all the fields of a tutee including:
+`subject`, `schedule`, `start time`, `end time` of a tutee.
 All of the fields are required to be filled in order for the command to make a copy of a tutee with a different lesson and schedule.
 
 --------------------------------------------------------------------------------------------------------------------
