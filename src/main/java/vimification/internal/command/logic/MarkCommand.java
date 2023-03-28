@@ -31,7 +31,7 @@ public class MarkCommand extends UndoableLogicCommand {
     @Override
     public CommandResult undo(LogicTaskList taskList) throws CommandException {
         requireNonNull(taskList);
-        taskList.get(targetIndex.getZeroBased()).unmark();
+        taskList.unmark(targetIndex.getZeroBased());
         return new CommandResult(String.format(UNDO_MESSAGE, targetIndex.getOneBased()));
     }
 }
