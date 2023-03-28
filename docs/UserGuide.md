@@ -10,8 +10,8 @@ title: User Guide
 * [FAQ](#faq)
 * [Command summary](#command-summary)
 
--------------------------------------------------------------------------------------------------------------------- 
-## What is MediMeet 
+--------------------------------------------------------------------------------------------------------------------
+## What is MediMeet
 
 **MediMeet** is a desktop application for doctors to manage their patients’ details and appointment dates. It helps them manage their own appointments and mitigates the need for a personal assistant or appointment manager, while also saving costs in the process.
 
