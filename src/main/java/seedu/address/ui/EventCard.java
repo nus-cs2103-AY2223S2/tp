@@ -48,6 +48,8 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private ImageView attachmentLogo;
     @FXML
+    private ImageView noteLogo;
+    @FXML
     private FlowPane tags;
     @FXML
     private ProgressBar progressBar;
@@ -98,6 +100,18 @@ public class EventCard extends UiPart<Region> {
             progressBar.setProgress((double) event.countStudents() / 20);
         }
 
+        //List existing notes
+//        if (event.countNotes() > 0) {
+//            cardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
+//                try {
+//                    desktop.open(event.getAttachments().get(0));
+//                } catch (IOException e) {
+//                    System.out.println("file processing error!");
+//                }
+//                click.consume();
+//            });
+//        }
+//
         //bind a click to open the attachment (only works for single attachment for now
         //Only prints error message for now
         if (event.getAttachments().size() > 0 && event.getAttachments().get(0).exists()) {
