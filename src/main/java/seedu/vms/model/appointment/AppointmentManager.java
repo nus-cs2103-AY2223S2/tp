@@ -1,15 +1,19 @@
 package seedu.vms.model.appointment;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.model.GroupName;
 import seedu.vms.model.IdData;
 import seedu.vms.model.StorageModel;
 import seedu.vms.model.patient.Patient;
+import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
-
-import java.util.ArrayList;
-import java.util.List;
+import seedu.vms.model.vaccination.VaxTypeManager;
 
 /**
  * Wraps all data at the patient-manager level
@@ -49,9 +53,29 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
         set(id, appointment);
     }
 
+    /**
+     * Removes all invalid appointments and returns the list of deleted.
+     */
+    public List<IdData<Appointment>> validate(ReadOnlyPatientManager patientManager, VaxTypeManager vaxTypeManager) {
+        List<IdData<Appointment>> invalidAppointments = new ArrayList<>();
+
+        Set<Index> validPatients = new HashSet<>();
+        Set<GroupName> validVaxs = new HashSet<>();
+
+        patientManager.getMapView().forEach((key, value) -> validPatients.add(Index.fromZeroBased(key)));
+        vaxTypeManager.asUnmodifiableObservableMap().forEach((key, value) -> validVaxs.add(value.getGroupName()));
+
+        getMapView().entrySet().stream()
+                .filter(x->!validPatients.contains(x.getValue().getValue().getPatient())
+                        || !validVaxs.contains(x.getValue().getValue().getVaccination()))
+                .forEach(x->invalidAppointments.add(remove(x.getKey())));
+
+        return invalidAppointments;
+    }
+
 
     /**
-     * Validates patient changes in AppointmentManager
+     * Validates patient changes in AppointmentManager.
      * Does not delete.
      */
     public List<IdData<Appointment>> validatePatientChange(ValueChange<IdData<Patient>> change) {
@@ -68,7 +92,7 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
     }
 
     /**
-     * Handles patient changes in AppointmentManager
+     * Handles patient changes in AppointmentManager.
      */
     public void handlePatientChange(ValueChange<IdData<Patient>> change) {
         if (!change.getOldValue().equals(change.getNewValue())
@@ -82,7 +106,7 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
     }
 
     /**
-     * Validates vaccination changes in AppointmentManager
+     * Validates vaccination changes in AppointmentManager.
      * Does not delete.
      */
     public List<IdData<Appointment>> validateVaccinationChange(ValueChange<VaxType> change) {
@@ -98,7 +122,7 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
     }
 
     /**
-     * Handles vaccination changes in AppointmentManager
+     * Handles vaccination changes in AppointmentManager.
      */
     public void handleVaccinationChange(ValueChange<VaxType> change) {
         if (!change.getOldValue().equals(change.getNewValue())
