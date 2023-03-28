@@ -17,7 +17,6 @@ import java.util.Set;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.commons.util.CollectionUtil;
-import tfifteenfour.clipboard.logic.commands.addcommand.AddSessionCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditCourseCommand;
 import tfifteenfour.clipboard.logic.commands.editcommand.EditGroupCommand;
@@ -46,15 +45,15 @@ public class NewEditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         Index index;
-        CommandTargetType addCommandType;
+        CommandTargetType editCommandType;
         try {
-            addCommandType = CommandTargetType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
+            editCommandType = CommandTargetType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ParseException("Add type missing. \n"
-                    + "Available option: add course, add group, add session, add student");
+            throw new ParseException("Edit type missing! Please enter a valid edit command. \n"
+                    + "Available edit commands are: edit course, edit group, edit session, edit student");
         }
 
-        switch (addCommandType) {
+        switch (editCommandType) {
         case MODULE:
             Course newCourse = parseCourseInfo(args);
             index = parseIndex(args);
@@ -72,7 +71,7 @@ public class NewEditCommandParser implements Parser<EditCommand> {
             index = parseIndex(args);
             return new EditStudentCommand(index, editStudentDescriptor);
         default:
-            throw new ParseException("Invalid argument for add command");
+            throw new ParseException("Invalid type for edit command");
         }
     }
 
@@ -105,7 +104,7 @@ public class NewEditCommandParser implements Parser<EditCommand> {
     private Session parseSessionInfo(String args) throws ParseException {
         String[] tokens = ArgumentTokenizer.tokenizeString(args);
         if (tokens.length != 4) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSessionCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditSessionCommand.MESSAGE_USAGE));
         }
 
         Session session = ParserUtil.parseSession(tokens[3]);

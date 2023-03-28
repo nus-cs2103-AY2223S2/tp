@@ -46,12 +46,13 @@ public class SelectCommand extends Command {
             // if you are on course page now, means you can only select a course
             Course selectedCourse = handleSelectCourse(model, currentSelection);
             return new CommandResult(this,
-                    String.format("[GROUP PAGE]\nViewing Course: %s", selectedCourse), willModifyState);
+                    String.format("[GROUP PAGE]\nViewing: groups for course %s", selectedCourse), willModifyState);
 
         case GROUP_PAGE:
             // if you are on group page now, means you can only select a group
             Group selectedGroup = handleSelectGroup(model, currentSelection);
-            return new CommandResult(this, String.format("[STUDENT PAGE]\nViewing Group: %s of %s", selectedGroup,
+            return new CommandResult(this,
+                    String.format("[STUDENT PAGE]\nViewing: students in group %s of %s", selectedGroup,
                     currentSelection.getSelectedCourse()), willModifyState);
 
         case STUDENT_PAGE:
@@ -60,7 +61,9 @@ public class SelectCommand extends Command {
 
         case SESSION_PAGE:
             Session selectedSession = handleSelectSession(model, currentSelection);
-            return new CommandResult(this, String.format("Viewing: %s", selectedSession), willModifyState);
+            return new CommandResult(this,
+                    String.format("[ATTENDANCE PAGE]\nViewing: session attendance for %s", selectedSession),
+                    willModifyState);
 
         default:
             throw new CommandException("Unable to select");

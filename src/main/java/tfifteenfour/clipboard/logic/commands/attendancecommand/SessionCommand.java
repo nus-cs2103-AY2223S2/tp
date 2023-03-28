@@ -55,7 +55,8 @@ public class SessionCommand extends Command {
 
         Group selectedGroup = handleSelectGroup(model, currentSelection);
         currentSelection.setCurrentPage(PageType.SESSION_PAGE);
-        return new CommandResult(this, String.format("Viewing session of : %s", selectedGroup), willModifyState);
+        return new CommandResult(this,
+                String.format("[SESSION PAGE]\nViewing: sessions of group %s", selectedGroup), willModifyState);
     }
 
     /**
