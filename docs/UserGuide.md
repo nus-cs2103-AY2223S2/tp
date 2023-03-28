@@ -226,7 +226,7 @@ Format: `clear`
 
 ConnectUS comes with a set of default contacts. If you want to remove all default contacts, or you want to restart your ConnectUS contact list, you can use the `clear` command without any additional parameters.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
 Once the contact data in ConnectUS is cleared, it cannot be retrieved. Do proceed with caution!
 </div>
 
@@ -238,7 +238,7 @@ Format: `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/TELEGRAM]
  
 You can add a contact using the `add` command followed by the parameters (as shown in the format above). While the `NAME` is mandatory, the rest of the fields (i.e. `ADDRESS`, `TELEGRAM`, `MODULE_CODE` etc.) are optional. 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 A contact can have any number of tags, modules and CCAs! (including 0)
 </div>
 
@@ -266,7 +266,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/
 
 If you accidentally added the wrong information when [adding a contact](#44-adding-a-contact-add), or if you want to update your contacts' information, you use the `edit`  command to update contact information. 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 If you want to edit a contact's tags, refer to these guides on <a href="#46-adding-additional-tags-to-a-contact-addt" class="alert-link">adding additional tags</a> or <a href="#47-deleting-tags-from-a-contact-deletet" class="alert-link">deleting a tag</a> instead!
 </div>
 
@@ -387,7 +387,7 @@ Format: `open INDEX [tg/] [wa/] [ig/]`
 
 If you want to send a message to a contact, you can directly open supported social media platforms (i.e. Instagram, Telegram, WhatsApp) from the CLI.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 You'll need to download the desktop applications for <a href="https://desktop.telegram.org/" class="alert-link">Telegram</a> and <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> respectively if you want to use these features!
 </div>
 
@@ -421,7 +421,7 @@ If you are an advanced user, you are welcome to update data directly by editing 
 
 ConnectUS data is saved as a JSON file `[JAR file location]/data/ConnectUS.json`.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
 If your changes to the data file makes its format invalid, ConnectUS will discard all data and start with an empty data file at the next run. Do remember to keep a backup of your data before attempting any changes in this manner!
 </div>
 
