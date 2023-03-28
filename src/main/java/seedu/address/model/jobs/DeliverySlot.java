@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class DeliverySlot {
 
-    public static final String MESSAGE_CONSTRAINTS = "Delivery Slot should between [1-n], and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Delivery Slot should between [1-5], and it should not be blank";
 
     public static final String VALIDATION_REGEX = "\\d+";
 
@@ -24,6 +24,7 @@ public class DeliverySlot {
     public DeliverySlot(String value) {
         requireNonNull(value);
         checkArgument(isValidDeliverySlot(value), MESSAGE_CONSTRAINTS);
+        int valueInt = Integer.parseInt(value);
         this.value = value;
     }
 

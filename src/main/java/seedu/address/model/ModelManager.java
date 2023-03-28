@@ -343,7 +343,16 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<DeliveryJob> getUnscheduledDeliveryJobList() {
         FilteredList<DeliveryJob> unscheduledJobList = new FilteredList<>(this.deliveryJobSystem.getDeliveryJobList());
-        unscheduledJobList.setPredicate(job -> ((!job.isScheduled()) && (job.getDeliveredStatus())));
+        unscheduledJobList.setPredicate(job -> (!job.isScheduled()));
+        return FXCollections.observableArrayList(unscheduledJobList);
+    }
+
+    @Override
+    public ObservableList<DeliveryJob> getCompletedDeliveryJobList() {
+        updateSortedDeliveryJobList(SORTER_BY_DATE);
+        FilteredList<DeliveryJob> unscheduledJobList =
+                new FilteredList<>(FXCollections.observableArrayList(sortedDeliveryJobs));
+        unscheduledJobList.setPredicate(job -> (job.getDeliveredStatus()));
         return FXCollections.observableArrayList(unscheduledJobList);
     }
 

@@ -20,6 +20,15 @@ public class AddDeliveryJobCommand extends Command {
 
     public static final String COMMAND_WORD = "add_job";
 
+    public static final String MESSAGE_SENDER_CONSTRAINT = "Sender ID should contain "
+            + "numeric and alphabetical characters\"\n"
+            + "+ \"and it should not be blank.\\n\"\n";
+
+    public static final String MESSAGE_RECIPIENT_CONSTRAINT = "Recipient ID should contain numeric"
+            + "and alphabetical characters\"\n"
+            + "            + \"and it should not be blank.\\n\"\n";
+
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a job to the delivery job system. "
             + "Parameters: "
             + PREFIX_SENDER_ID + "SENDER ID "

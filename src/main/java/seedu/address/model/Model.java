@@ -214,6 +214,11 @@ public interface Model {
     ObservableList<DeliveryJob> getUnscheduledDeliveryJobList();
 
     /**
+     * Returns list of completed jobs
+     */
+    ObservableList<DeliveryJob> getCompletedDeliveryJobList();
+
+    /**
      * Returns focus date
      */
     LocalDate getFocusDate();

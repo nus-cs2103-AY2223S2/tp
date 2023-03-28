@@ -16,11 +16,11 @@ import seedu.address.ui.main.StatusBarFooter;
 /**
  * Displays contact list.
  */
-public class UnscheduleWindow extends UiPart<Stage> {
+public class CompleteWindow extends UiPart<Stage> {
 
-    private static final String FXML = "UnscheduleWindow.fxml";
+    private static final String FXML = "CompletedJobWindow.fxml";
+
     private final Logger logger = LogsCenter.getLogger(getClass());
-
     private Stage primaryStage;
     private Logic logic;
 
@@ -29,7 +29,6 @@ public class UnscheduleWindow extends UiPart<Stage> {
 
     @FXML
     private Text numberOfJobs;
-
     @FXML
     private StackPane jobListPanelPlaceholder;
     @FXML
@@ -38,7 +37,7 @@ public class UnscheduleWindow extends UiPart<Stage> {
     /**
      * Creates a {@code AddressBookWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public UnscheduleWindow(Stage primaryStage, Logic logic) {
+    public CompleteWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
         this.primaryStage = primaryStage;
         this.logic = logic;
@@ -49,7 +48,7 @@ public class UnscheduleWindow extends UiPart<Stage> {
      * Show main window.
      */
     public void show() {
-        logger.fine("Showing address book page");
+        logger.fine("Showing completed job window");
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -79,8 +78,8 @@ public class UnscheduleWindow extends UiPart<Stage> {
      * fillInnerParts.
      */
     public void fillInnerParts() {
-        jobListPanel = new DeliveryJobListPanel(logic.getUnscheduledDeliveryJobList());
-        int jobListLen = logic.getUnscheduledDeliveryJobList().size();
+        jobListPanel = new DeliveryJobListPanel(logic.getCompletedDeliveryJobList());
+        int jobListLen = logic.getCompletedDeliveryJobList().size();
         numberOfJobs.setText(String.format("Total: %d job(s)", jobListLen));
 
         jobListPanelPlaceholder.getChildren().add(jobListPanel.getRoot());

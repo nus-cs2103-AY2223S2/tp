@@ -80,6 +80,10 @@ public interface Logic {
      */
     ObservableList<DeliveryJob> getUnscheduledDeliveryJobList();
 
+    /**
+     * Returns an unmodifiable view of the list of completed delivery jobs
+     */
+    ObservableList<DeliveryJob> getCompletedDeliveryJobList();
 
     /**
      * Returns the user prefs' address book file path.
