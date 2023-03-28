@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import trackr.commons.core.GuiSettings;
 import trackr.commons.core.LogsCenter;
 import trackr.model.item.Item;
@@ -30,6 +32,7 @@ public class ModelManager implements Model {
     private final FilteredList<Supplier> filteredSuppliers;
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Order> filteredOrders;
+    private final SortedList<Task> sortedTasks;
 
     /**
      * Initializes a ModelManager with the given supplier list, taskList and userPrefs.
@@ -47,9 +50,10 @@ public class ModelManager implements Model {
         this.taskList = new TaskList(taskList);
         this.orderList = new OrderList(orderList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredSuppliers = new FilteredList<>(this.supplierList.getItemList());
-        filteredTasks = new FilteredList<>(this.taskList.getItemList());
-        filteredOrders = new FilteredList<>(this.orderList.getItemList());
+        filteredSuppliers = new FilteredList<Supplier>(this.supplierList.getItemList());
+        filteredTasks = new FilteredList<Task>(this.taskList.getItemList());
+        filteredOrders = new FilteredList<Order>(this.orderList.getItemList());
+        sortedTasks = new SortedList<Task>(this.taskList.getItemList());
     }
 
     public ModelManager() {
@@ -234,7 +238,6 @@ public class ModelManager implements Model {
         }
     }
 
-
     //=========== AddressBook - Supplier ==============================================================================
 
     @Override
@@ -259,6 +262,26 @@ public class ModelManager implements Model {
     public ReadOnlyTaskList getTaskList() {
         return taskList;
     }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedTaskList}
+     */
+    @Override
+    public ObservableList<Task> getSortedTaskList() {
+        return sortedTasks;
+    }
+
+    /**
+     * Update the sorted task list.
+     * @param comparator The comparator used to sort the tasks.
+     */
+    @Override
+    public void updateSortedTaskList(Comparator<Task> comparator) {
+        requireNonNull(comparator);
+        sortedTasks.setComparator(comparator);
+    }
+
 
     //=========== Filtered Task List Accessors ===============================================================
 

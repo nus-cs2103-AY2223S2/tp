@@ -1,5 +1,7 @@
 package trackr.model.commons;
 
+import trackr.model.task.TaskStatus;
+
 import static trackr.commons.util.AppUtil.checkArgument;
 import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -49,6 +51,25 @@ public abstract class Status {
         String validationRegex = String.format("^[%s]$",
                 statuses.keySet().stream().reduce("", (t, e) -> t + e + e.toLowerCase()));
         return test.matches(validationRegex);
+    }
+
+    /**
+     * Compare this status to a given status.
+     * @return 1 if this status is done and the given status is not done,
+     *         -1 if this status is not done and the given status is done
+     *         0 if both statuses are the same.
+     */
+    public int compare(Status other) {
+        //this status is done and given status is not done
+        if (status.equals("D") && other.status.equals("N")) {
+            return 1;
+        }
+        //this status is not done and given status is done
+        if (status.equals("N") && other.status.equals("D")) {
+            return -1;
+        }
+        //both status are the same
+        return 0;
     }
 
     public String toJsonString() {

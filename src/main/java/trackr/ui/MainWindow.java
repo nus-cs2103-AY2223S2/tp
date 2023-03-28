@@ -177,6 +177,15 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Show the sorted task list.
+     */
+    @FXML
+    private void handleSortTask() {
+        TaskListPanel sortedTaskListPanel = new TaskListPanel(logic.getSortedTaskList());
+        taskListPanelPlaceholder.getChildren().add(sortedTaskListPanel.getRoot());
+    }
+
     public SupplierListPanel getSupplierListPanel() {
         return supplierListPanel;
     }
@@ -199,6 +208,10 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.getFeedbackToUser().equals("Tasks sorted!")) {
+                handleSortTask();
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -42,6 +42,25 @@ public class Task extends Item {
     }
 
     /**
+     * Compares 2 tasks using their statuses and deadlines.
+     * @param otherTask The task to compare with.
+     * @return -1 if this task is not done while the other task is done,
+     *         or if both have the same status but this task has an earlier deadline.
+     *         Returns 1 if this task is done while the other task is not done,
+     *         or if both have the same status but this task has a later deadline.
+     *         Returns 0 if both tasks have the same statuses and deadlines.
+     */
+    public int compare(Task otherTask) {
+        int compareStatusResult = taskStatus.compare(otherTask.getTaskStatus());
+
+        if (compareStatusResult != 0) {
+            return compareStatusResult;
+        }
+        //both task statuses are equal so compare deadline
+        return taskDeadline.compare(otherTask.getTaskDeadline());
+    }
+
+    /**
      * Returns true if both tasks have the same name and deadline.
      * This defines a weaker notion of equality between two tasks.
      */

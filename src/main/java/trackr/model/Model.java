@@ -1,6 +1,7 @@
 package trackr.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -71,6 +72,7 @@ public interface Model {
 
     void updateFilteredItemList(Predicate<Item> predicate, ModelEnum modelEnum);
 
+
     // =================================================== Supplier ===================================================
 
     /**
@@ -94,6 +96,16 @@ public interface Model {
      * Returns an unmodifiable view of the filtered task list
      */
     ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Returns an unmodifiable view of the sorted task list
+     */
+    ObservableList<Task> getSortedTaskList();
+
+    /**
+     * Returns an unmodifiable view of the sorted task list
+     */
+    void updateSortedTaskList(Comparator<Task> comparator);
 
     // ================================================= Order =================================================
 

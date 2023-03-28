@@ -44,6 +44,9 @@ public interface Logic {
      */
     ReadOnlyOrderList getOrderList();
 
+    /** Returns an unmodifiable view of the filtered list of orders */
+    ObservableList<Order> getFilteredOrderList();
+
     /**
      * Returns the TaskList.
      *
@@ -54,8 +57,8 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();
 
-    /** Returns an unmodifiable view of the filtered list of orders */
-    ObservableList<Order> getFilteredOrderList();
+    /** Returns an unmodifiable view of the filtered list of tasks */
+    ObservableList<Task> getSortedTaskList();
 
     /**
      * Returns the user prefs' trackr file path.
