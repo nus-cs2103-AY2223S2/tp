@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalMathutoring;
 
 import java.nio.file.Path;
 
@@ -52,15 +52,15 @@ public class StorageManagerTest {
          * {@link JsonMathutoringStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonMathutoringStorageTest} class.
          */
-        seedu.address.model.Mathutoring original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        seedu.address.model.ReadOnlyMathutoring retrieved = storageManager.readAddressBook().get();
+        seedu.address.model.Mathutoring original = getTypicalMathutoring();
+        storageManager.saveMathutoring(original);
+        seedu.address.model.ReadOnlyMathutoring retrieved = storageManager.readMathutoring().get();
         assertEquals(original, new seedu.address.model.Mathutoring(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getMathutoringFilePath());
     }
 
 }

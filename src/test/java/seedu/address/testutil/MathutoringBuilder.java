@@ -4,7 +4,7 @@ import seedu.address.model.Mathutoring;
 import seedu.address.model.student.Student;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building Mathutoring objects.
  * Example usage: <br>
  *     {@code Mathutoring ab = new MathutoringBuilder().withPerson("John", "Doe").build();}
  */

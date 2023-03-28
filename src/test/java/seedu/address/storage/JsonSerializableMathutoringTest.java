@@ -10,36 +10,37 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.testutil.TypicalPersons;
+import seedu.address.model.Mathutoring;
+import seedu.address.testutil.TypicalStudents;
 
 public class JsonSerializableMathutoringTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableMathutoringTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidStudentMathutoring.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicateStudentMathutoring.json");
+    private static final Path TYPICAL_STUDENTS_FILE = TEST_DATA_FOLDER.resolve("typicalStudentsMathutoring.json");
+    private static final Path INVALID_STUDENT_FILE = TEST_DATA_FOLDER.resolve("invalidStudentMathutoring.json");
+    private static final Path DUPLICATE_STUDENT_FILE = TEST_DATA_FOLDER.resolve("duplicateStudentMathutoring.json");
 
     @Test
-    public void toModelType_typicalPersonsFile_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
-                JsonSerializableAddressBook.class).get();
-        seedu.address.model.Mathutoring mathutoringFromFile = dataFromFile.toModelType();
-        seedu.address.model.Mathutoring typicalPersonsMathutoring = TypicalPersons.getTypicalAddressBook();
-        assertEquals(mathutoringFromFile, typicalPersonsMathutoring);
+    public void toModelType_typicalStudentsFile_success() throws Exception {
+        JsonSerializableMathutoring dataFromFile = JsonUtil.readJsonFile(TYPICAL_STUDENTS_FILE,
+                JsonSerializableMathutoring.class).get();
+        Mathutoring mathutoringFromFile = dataFromFile.toModelType();
+        Mathutoring typicalStudentsMathutoring = TypicalStudents.getTypicalMathutoring();
+        assertEquals(mathutoringFromFile, typicalStudentsMathutoring);
     }
 
     @Test
-    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
-                JsonSerializableAddressBook.class).get();
+    public void toModelType_invalidStudentFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableMathutoring dataFromFile = JsonUtil.readJsonFile(INVALID_STUDENT_FILE,
+                JsonSerializableMathutoring.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
-    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
-                JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
+    public void toModelType_duplicateStudents_throwsIllegalValueException() throws Exception {
+        JsonSerializableMathutoring dataFromFile = JsonUtil.readJsonFile(DUPLICATE_STUDENT_FILE,
+                JsonSerializableMathutoring.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableMathutoring.MESSAGE_DUPLICATE_STUDENT,
                 dataFromFile::toModelType);
     }
 

@@ -21,18 +21,19 @@ import seedu.address.model.ReadOnlyMathutoring;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.student.Student;
 import seedu.address.model.Mathutoring;
+import seedu.address.testutil.StudentBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
-        Student validStudent = new seedu.address.testutil.StudentBuilder().build();
+        Student validStudent = new StudentBuilder().build();
 
         CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
 
@@ -41,8 +42,8 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Student validStudent = new seedu.address.testutil.StudentBuilder().build();
+    public void execute_duplicateStudent_throwsCommandException() {
+        Student validStudent = new StudentBuilder().build();
         AddCommand addCommand = new AddCommand(validStudent);
         ModelStub modelStub = new ModelStubWithStudent(validStudent);
 
@@ -51,8 +52,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Student alice = new seedu.address.testutil.StudentBuilder().withName("Alice").build();
-        Student bob = new seedu.address.testutil.StudentBuilder().withName("Bob").build();
+        Student alice = new StudentBuilder().withName("Alice").build();
+        Student bob = new StudentBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 

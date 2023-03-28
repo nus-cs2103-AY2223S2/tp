@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.ALICE;
+import static seedu.address.testutil.TypicalStudents.getTypicalMathutoring;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,6 +18,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.student.Student;
+import seedu.address.testutil.StudentBuilder;
+import seedu.address.model.student.exceptions.DuplicateStudentException;
+
 
 public class MathutoringTest {
 
@@ -25,7 +29,7 @@ public class MathutoringTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), mathutoring.getPersonList());
+        assertEquals(Collections.emptyList(), mathutoring.getStudentList());
     }
 
     @Test
@@ -34,64 +38,64 @@ public class MathutoringTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        Mathutoring newData = getTypicalAddressBook();
+    public void resetData_withValidReadOnlyMathutoring_replacesData() {
+        Mathutoring newData = getTypicalMathutoring();
         mathutoring.resetData(newData);
         assertEquals(newData, mathutoring);
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateStudents_throwsDuplicatePersonException() {
         // Two students with the same identity fields
-        seedu.address.model.student.Student editedAlice = new seedu.address.testutil.StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<seedu.address.model.student.Student> newStudents = Arrays.asList(ALICE, editedAlice);
-        seedu.address.model.MathutoringTest.MathutoringStub newData = new seedu.address.model.MathutoringTest.MathutoringStub(newStudents);
+        List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
+        MathutoringStub newData = new MathutoringStub(newStudents);
 
-        assertThrows(seedu.address.model.student.exceptions.DuplicateStudentException.class, () -> mathutoring.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> mathutoring.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> mathutoring.hasPerson(null));
+    public void hasStudent_nullStudent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> mathutoring.hasStudent(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(mathutoring.hasPerson(ALICE));
+    public void hasStudent_StudentNotInMathutoring_returnsFalse() {
+        assertFalse(mathutoring.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        mathutoring.addPerson(ALICE);
-        assertTrue(mathutoring.hasPerson(ALICE));
+    public void hasStudent_StudentInMathutoring_returnsTrue() {
+        mathutoring.addStudent(ALICE);
+        assertTrue(mathutoring.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        mathutoring.addPerson(ALICE);
-        seedu.address.model.student.Student editedAlice = new seedu.address.testutil.StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void hasStudent_studentWithSameIdentityFieldsInMathutoring_returnsTrue() {
+        mathutoring.addStudent(ALICE);
+        Student editedAlice = new StudentBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(mathutoring.hasPerson(editedAlice));
+        assertTrue(mathutoring.hasStudent(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> mathutoring.getPersonList().remove(0));
+    public void getStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> mathutoring.getStudentList().remove(0));
     }
 
     /**
      * A stub ReadOnlyMathutoring whose students list can violate interface constraints.
      */
     private static class MathutoringStub implements ReadOnlyMathutoring {
-        private final ObservableList<seedu.address.model.student.Student> students = FXCollections.observableArrayList();
+        private final ObservableList<Student> students = FXCollections.observableArrayList();
 
-        MathutoringStub(Collection<seedu.address.model.student.Student> students) {
+        MathutoringStub(Collection<Student> students) {
             this.students.setAll(students);
         }
 
         @Override
-        public ObservableList<seedu.address.model.student.Student> getPersonList() {
+        public ObservableList<Student> getStudentList() {
             return students;
         }
     }
