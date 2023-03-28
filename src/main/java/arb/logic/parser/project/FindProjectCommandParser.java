@@ -4,8 +4,8 @@ import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static arb.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static arb.logic.parser.CliSyntax.PREFIX_END;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
-import static arb.logic.parser.CliSyntax.PREFIX_STATUS;
 import static arb.logic.parser.CliSyntax.PREFIX_START;
+import static arb.logic.parser.CliSyntax.PREFIX_STATUS;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -31,8 +31,6 @@ import arb.model.project.predicates.ProjectContainsTagsPredicate;
 import arb.model.project.predicates.ProjectWithinTimeframePredicate;
 import arb.model.project.predicates.TitleContainsKeywordsPredicate;
 
-import javax.swing.text.html.Option;
-
 /**
  * Parses input arguments and creates a new FindProjectCommand object
  */
@@ -52,8 +50,8 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
                 ArgumentTokenizer.tokenize(args,
                 PREFIX_NAME, PREFIX_STATUS, PREFIX_START, PREFIX_END, PREFIX_TAG, PREFIX_CLIENT);
 
-        if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STATUS, PREFIX_START, PREFIX_END, PREFIX_TAG, PREFIX_CLIENT)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STATUS, PREFIX_START,
+                PREFIX_END, PREFIX_TAG, PREFIX_CLIENT) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindProjectCommand.MESSAGE_USAGE));
         }
 

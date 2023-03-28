@@ -52,7 +52,8 @@ public class FindProjectCommandParserTest {
         assertParseSuccess(parser, " n/Sky Painting st/not done t/painting s/3pm 2023-01-01 c/Alice Wheeler",
                 expectedFindProjectCommand);
         // With whitespace
-        assertParseSuccess(parser, " \n n/Sky Painting \n \t st/not done \t t/painting  \t s/3pm 2023-01-01 \n c/Alice Wheeler \n",
+        assertParseSuccess(parser, " \n n/Sky Painting \n \t st/not done \t t/painting  "
+                        + "\t s/3pm 2023-01-01 \n c/Alice Wheeler \n",
                 expectedFindProjectCommand);
     }
 

@@ -1,6 +1,5 @@
 package arb.model.project;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,7 +7,8 @@ import java.util.List;
  */
 public class Status {
 
-    public static final String MESSAGE_CONSTRAINTS = "Status must be 'done' / 'd' or 'not done' / 'nd' (case-insensitive). "
+    public static final String MESSAGE_CONSTRAINTS = "Status must be 'done' / 'd' or 'not done' / 'nd' "
+            + "(case-insensitive)."
             + "\n Not done includes overdue status. Status must not be empty.";
 
     /**
