@@ -21,30 +21,30 @@ public class JsonAdaptedTimePeriod {
     private static final Integer[] START_TIMINGS = Timetable.START_TIMINGS;
     private static final int EARLIEST_TIMING = START_TIMINGS[0];
     private static final int LATEST_TIMING = START_TIMINGS[START_TIMINGS.length - 1];
-    protected final int startTime;
-    protected final int endTime;
-    protected final String schoolDay;
+    protected final int startHour;
+    protected final int endHour;
+    protected final String day;
 
     /**
      * Constructs a {@code JsonAdaptedTimePeriod} with the given location details.
      */
     @JsonCreator
     public JsonAdaptedTimePeriod(
-            @JsonProperty("startTime") int startTime,
-            @JsonProperty("endTime") int endTime,
-            @JsonProperty("schoolDay") String schoolDay) {
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.schoolDay = schoolDay;
+            @JsonProperty("startHour") int startHour,
+            @JsonProperty("endHour") int endHour,
+            @JsonProperty("day") String day) {
+        this.startHour = startHour;
+        this.endHour = endHour;
+        this.day = day;
     }
 
     /**
      * Converts a given {@code TimePeriod} into this class for Jackson use.
      */
     public JsonAdaptedTimePeriod(TimePeriod timePeriod) {
-        startTime = timePeriod.getStartTime().getHourOfDay();
-        endTime = timePeriod.getEndTime().getHourOfDay();
-        schoolDay = timePeriod.getSchoolDay().name();
+        startHour = timePeriod.getStartTime().getHourOfDay();
+        endHour = timePeriod.getEndTime().getHourOfDay();
+        day = timePeriod.getSchoolDay().name();
     }
 
     /**
@@ -54,26 +54,27 @@ public class JsonAdaptedTimePeriod {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public TimePeriod toModelType() throws IllegalValueException {
-        if (startTime < EARLIEST_TIMING || startTime > LATEST_TIMING) {
+        if (startHour < 0 || startHour > 23) {
+            System.out.println(startHour);
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalTime.class.getSimpleName()));
         }
 
-        final LocalTime modelStartTime = new LocalTime(startTime);
+        final LocalTime modelStartTime = new LocalTime(startHour);
 
-        if (endTime < EARLIEST_TIMING || endTime > LATEST_TIMING) {
+        if (endHour < 0 || endHour > 23) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalTime.class.getSimpleName()));
         }
 
-        final LocalTime modelEndTime = new LocalTime(endTime);
+        final LocalTime modelEndTime = new LocalTime(endHour);
 
-        if (Arrays.stream(Day.values()).map(Day::name).noneMatch(schoolDay::equals)) {
+        if (Arrays.stream(Day.values()).map(Day::name).noneMatch(day::equals)) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Day.class.getSimpleName()));
         }
 
-        final Day modelSchoolDay = Day.valueOf(schoolDay);
+        final Day modelSchoolDay = Day.valueOf(day);
 
         return new TimeBlock(modelStartTime, modelEndTime, modelSchoolDay);
     }

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.logic.commands.results.ViewCommandResult;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.logic.parser.TagType;
 import seedu.address.model.Model;
@@ -89,20 +89,20 @@ public class TagCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public ViewCommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Person personToEdit = getPersonToEdit(model);
 
         if (this.tagType == TagType.GROUP) {
             personToEdit.addGroupTags(this.groupTags);
             if (personToEdit instanceof User) {
-                return new CommandResult(String.format(MESSAGE_GROUP_TAG_USER_SUCCESS
+                return new ViewCommandResult(String.format(MESSAGE_GROUP_TAG_USER_SUCCESS
                             + "Name: " + personToEdit.getName().toString() + '\n'
-                            + "Groups: " + personToEdit.getImmutableGroupTags().toString()));
+                            + "Groups: " + personToEdit.getImmutableGroupTags().toString()), personToEdit);
             }
-            return new CommandResult(String.format(MESSAGE_GROUP_TAG_PERSON_SUCCESS
+            return new ViewCommandResult(String.format(MESSAGE_GROUP_TAG_PERSON_SUCCESS
                         + "Name: " + personToEdit.getName().toString() + '\n'
-                        + "Groups: " + personToEdit.getImmutableGroupTags().toString()));
+                        + "Groups: " + personToEdit.getImmutableGroupTags().toString()), personToEdit);
         }
 
         List<TimePeriod> timePeriods = lessons.stream().map(Lesson::getTimePeriod).collect(Collectors.toList());
@@ -134,18 +134,18 @@ public class TagCommand extends Command {
      * Add tags to person at given index.
      * @return feedback message of the operation result for display
      */
-    public CommandResult setPersonCommonModuleTags(Model model, Person personToEdit) {
+    public ViewCommandResult setPersonCommonModuleTags(Model model, Person personToEdit) {
         Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
 
         // caches the common modules in each ModuleTagSet as running set
         // intersection is expensive if we only use it in the compareTo method
         personToEdit.setCommonModules(userModuleTags);
 
-        return new CommandResult(String.format(MESSAGE_MODULE_TAG_PERSON_SUCCESS
+        return new ViewCommandResult(String.format(MESSAGE_MODULE_TAG_PERSON_SUCCESS
                 + "Name: " + personToEdit.getName().toString() + '\n'
                 + "Modules: " + personToEdit.getImmutableModuleTags().toString() + '\n'
                 + "Module(s) in common: " + personToEdit.getImmutableCommonModuleTags().toString() + '\n'
-                + "Lessons: " + personToEdit.getLessonsAsStr()));
+                + "Lessons: " + personToEdit.getLessonsAsStr()), personToEdit);
     }
 
     /**
@@ -153,14 +153,14 @@ public class TagCommand extends Command {
      * @param model {@code Model} which the command should operate on.
      * @return feedback message of the operation result for display.
      */
-    public CommandResult setUserCommonModuleTags(Model model, User editedUser) {
+    public ViewCommandResult setUserCommonModuleTags(Model model, User editedUser) {
         model.getObservablePersonList().forEach(person ->
                 person.setCommonModules(editedUser.getImmutableModuleTags()));
 
-        return new CommandResult(String.format(MESSAGE_MODULE_TAG_USER_SUCCESS
+        return new ViewCommandResult(String.format(MESSAGE_MODULE_TAG_USER_SUCCESS
                 + "Name: " + editedUser.getName().toString() + '\n'
                 + "Modules: " + editedUser.getImmutableModuleTags().toString() + '\n'
-                + "Lessons: " + editedUser.getLessonsAsStr()));
+                + "Lessons: " + editedUser.getLessonsAsStr()), editedUser);
 
     }
 

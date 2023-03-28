@@ -66,8 +66,7 @@ public class Recommender {
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
 
-        List<Recommendation> sortedRecommendations = sortRecommendations(recommendations);
-        List<Recommendation> filteredRecommendations = filterRecommendations(sortedRecommendations);
+        List<Recommendation> filteredRecommendations = filterRecommendations(recommendations);
 
         return filteredRecommendations.stream().limit(RECOMMENDATION_LIMIT).collect(Collectors.toList());
     }
@@ -132,13 +131,5 @@ public class Recommender {
         }
 
         return filteredRecommendations;
-    }
-
-    /**
-     * Returns a sorted recommendations list.
-     */
-    private List<Recommendation> sortRecommendations(List<Recommendation> recommendations) {
-        return recommendations.stream()
-                .sorted().collect(Collectors.toList());
     }
 }
