@@ -72,7 +72,7 @@ public class EditStudentCommand extends EditCommand {
             throws CommandException, ParseException {
         requireNonNull(model);
         Group selectedGroup = currentSelection.getSelectedGroup();
-        List<Student> lastShownList = selectedGroup.getModifiableStudentlist();
+        List<Student> lastShownList = selectedGroup.getUnmodifiableFilteredStudentList();
         List<Session> sessions = selectedGroup.getModifiableSessionList();
         List<Task> tasks = selectedGroup.getModifiableTaskList();
 
@@ -100,10 +100,8 @@ public class EditStudentCommand extends EditCommand {
             task.replaceStudent(studentToEdit, editedStudent);
         }
 
-        lastShownList.set(index.getZeroBased(), editedStudent);
-        return new CommandResult(this,
-                String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent),
-                willModifyState);
+        selectedGroup.setStudent(studentToEdit, editedStudent);
+        return new CommandResult(this, String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent), willModifyState);
     }
 
     /**

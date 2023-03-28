@@ -69,7 +69,7 @@ public class EditGroupCommand extends EditCommand {
         students.forEach(newGroup::addStudent);
         sessions.forEach(newGroup::addSession);
 
-        lastShownList.set(index.getZeroBased(), newGroup);
+        selectedCourse.setGroup(groupToEdit, newGroup);
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, groupToEdit, newGroup), willModifyState);
     }
 

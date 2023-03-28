@@ -75,6 +75,11 @@ public abstract class UniqueList<T> implements Iterable<T> {
         return FXCollections.unmodifiableObservableList(filteredList);
     }
 
+    public ObservableList<T> asModifiableFilteredList() {
+        return filteredList;
+    }
+
+
 	public void updateFilterPredicate(Predicate<T> predicate) {
 		this.filteredList.setPredicate(predicate);
 	}

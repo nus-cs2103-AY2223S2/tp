@@ -55,13 +55,6 @@ public class Group {
     }
 
     /**
-     * Returns a modifiable view of the list of students in this group.
-     */
-    public ObservableList<Student> getModifiableStudentlist() {
-        return students.asModifiableObservableList();
-    }
-
-    /**
      * Returns an unmodifiable view of the list of sessions in this group.
      */
     public ObservableList<Session> getUnmodifiableSessionList() {
@@ -144,6 +137,10 @@ public class Group {
         this.sessions.remove(session);
     }
 
+    public void setSession(Session sessionToReplace, Session newSession) {
+        this.sessions.set(sessionToReplace, newSession);
+    }
+
     /**
      * Deletes the given task from this group.
      * @param task Task to be deleted.
@@ -152,12 +149,20 @@ public class Group {
         this.tasks.remove(task);
     }
 
+    public void setTask(Task taskToReplace, Task newTask) {
+        this.tasks.set(taskToReplace, newTask);
+    }
+
     /**
      * Deletes the given student from this group.
      * @param student Student to be deleted.
      */
     public void deleteStudent(Student student) {
         this.students.remove(student);
+    }
+
+    public void setStudent(Student studentToReplace, Student newStudent) {
+        this.students.set(studentToReplace, newStudent);
     }
 
     /**

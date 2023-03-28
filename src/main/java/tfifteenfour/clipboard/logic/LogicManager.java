@@ -53,8 +53,6 @@ public class LogicManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        System.out.println(model.getRoster().getUnmodifiableCourseList().size());
-
         CommandResult commandResult;
         Command command = RosterParser.parseCommand(commandText, currentSelection);
 

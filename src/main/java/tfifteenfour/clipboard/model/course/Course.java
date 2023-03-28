@@ -110,6 +110,10 @@ public class Course {
         groups.remove(group);
     }
 
+    public void setGroup(Group groupToReplace, Group newGroup) {
+        groups.set(groupToReplace, newGroup);
+    }
+
 
     /**
      * Returns true if both courses are the same.

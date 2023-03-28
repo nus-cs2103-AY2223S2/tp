@@ -90,7 +90,7 @@ public class SelectCommand extends Command {
     }
 
     private Group handleSelectGroup(Model model, CurrentSelection currentSelection) throws CommandException {
-        List<Group> groupList = currentSelection.getSelectedCourse().getUnmodifiableGroupList();
+        List<Group> groupList = currentSelection.getSelectedCourse().getUnmodifiableFilteredGroupList();
         if (targetIndex.getZeroBased() >= groupList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_GROUP_DISPLAYED_INDEX);
         }
@@ -101,7 +101,7 @@ public class SelectCommand extends Command {
     }
 
     private Student handleSelectStudent(Model model, CurrentSelection currentSelection) throws CommandException {
-        List<Student> studentList = currentSelection.getSelectedGroup().getUnmodifiableStudentList();
+        List<Student> studentList = currentSelection.getSelectedGroup().getUnmodifiableFilteredStudentList();
         if (targetIndex.getZeroBased() >= studentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
@@ -113,7 +113,7 @@ public class SelectCommand extends Command {
     }
 
     private Session handleSelectSession(Model model, CurrentSelection currentSelection) throws CommandException {
-        List<Session> sessionList = currentSelection.getSelectedGroup().getUnmodifiableSessionList();
+        List<Session> sessionList = currentSelection.getSelectedGroup().getUnmodifiableFilteredSessionList();
         if (targetIndex.getZeroBased() >= sessionList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }

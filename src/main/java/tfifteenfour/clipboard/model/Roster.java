@@ -65,6 +65,10 @@ public class Roster implements ReadOnlyRoster {
         courses.remove(course);
     }
 
+    public void setCourse(Course courseToReplace, Course newCourse) {
+        courses.set(courseToReplace, newCourse);
+    }
+
     /**
      * Resets the existing data of this {@code Roster} with {@code newData}.
      */

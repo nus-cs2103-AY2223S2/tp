@@ -62,7 +62,7 @@ public class EditSessionCommand extends EditCommand {
         Session sessionToEdit = lastShownList.get(index.getZeroBased());
         newSession.setAttendance(sessionToEdit.getAttendance());
 
-        lastShownList.set(index.getZeroBased(), newSession);
+        selectedGroup.setSession(sessionToEdit, newSession);
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, sessionToEdit, newSession), willModifyState);
     }
 

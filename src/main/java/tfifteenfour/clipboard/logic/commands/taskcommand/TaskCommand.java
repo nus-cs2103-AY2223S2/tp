@@ -68,7 +68,7 @@ public class TaskCommand extends Command {
      * @throws CommandException if there is an error executing the command
      */
     private Group handleSelectGroup(Model model, CurrentSelection currentSelection) throws CommandException {
-        List<Group> groupList = currentSelection.getSelectedCourse().getUnmodifiableGroupList();
+        List<Group> groupList = currentSelection.getSelectedCourse().getUnmodifiableFilteredGroupList();
         if (targetIndex.getZeroBased() >= groupList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_GROUP_DISPLAYED_INDEX);
         }

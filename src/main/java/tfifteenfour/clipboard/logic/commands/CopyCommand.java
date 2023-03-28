@@ -46,7 +46,7 @@ public class CopyCommand extends Command {
         }
 
         Group group = currentSelection.getSelectedGroup();
-        ObservableList<Student> studentList = group.getUnmodifiableStudentList();
+        ObservableList<Student> studentList = group.getUnmodifiableFilteredStudentList();
 
         if (index.getZeroBased() >= studentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

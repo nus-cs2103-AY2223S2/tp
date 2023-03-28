@@ -65,8 +65,7 @@ public class EditCourseCommand extends EditCommand {
             newCourse.addGroup(group);
         }
 
-        model.getRoster().getModifiableCourseList().set(index.getZeroBased(), newCourse);
-
+        model.getRoster().setCourse(courseToEdit, newCourse);
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, courseToEdit, newCourse), willModifyState);
     }
 
