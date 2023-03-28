@@ -93,6 +93,14 @@ public class RecipeBook implements ReadOnlyRecipeBook {
         recipes.remove(key);
     }
 
+    /**
+     * Stars {@code recipe} in the {@code RecipeBook}.
+     * {@code recipe} must exist in the recipe book.
+     */
+    public void starRecipe(Recipe recipe) {
+        recipes.star(recipe);
+    }
+
 
     //// util methods
 

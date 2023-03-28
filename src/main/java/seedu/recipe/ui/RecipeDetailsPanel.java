@@ -45,7 +45,11 @@ public class RecipeDetailsPanel extends UiPart<Region> {
 
     public void setRecipeDetails(Recipe recipe) {
         if (recipe != null) {
-            recipeTitle.setText(recipe.getTitle().toString());
+            if (recipe.isStarred()) {
+                recipeTitle.setText(recipe.getTitle().toString() + "★");
+            } else {
+                recipeTitle.setText(recipe.getTitle().toString());
+            }
             recipeDesc.setText(recipe.getDesc().toString());
             ingredients.getChildren().clear();
             ingredientsTitle.setText("What you will need:");

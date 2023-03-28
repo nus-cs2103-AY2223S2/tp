@@ -25,6 +25,8 @@ public class Recipe {
     private final List<Step> steps;
     private final Set<Tag> tags;
 
+    private boolean isStar;
+
     /**
      * Every field must be present and not null.
      */
@@ -36,6 +38,7 @@ public class Recipe {
         this.ingredients = ingredients;
         this.steps = steps;
         this.tags = tags;
+        this.isStar = false;
     }
 
     public Title getTitle() {
@@ -55,6 +58,17 @@ public class Recipe {
 
     public Set<Tag> getTags() {
         return this.tags;
+    }
+
+    public boolean isStarred() {
+        return this.isStar;
+    }
+
+    /**
+     * Stars the recipe.
+     */
+    public void star() {
+        this.isStar = true;
     }
 
     /**
