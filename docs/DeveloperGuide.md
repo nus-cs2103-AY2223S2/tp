@@ -770,7 +770,7 @@ recommendations as certain locations are only appropriate for certain activities
 
 This feature is utilises the [`Recommender`](#recommenders)
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :information_source: **Command Formats:** <br>
 
