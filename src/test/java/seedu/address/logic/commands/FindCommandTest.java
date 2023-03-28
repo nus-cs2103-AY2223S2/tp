@@ -67,11 +67,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleModulesFound() {
         String expectedMessage = String.format(MESSAGE_MODULES_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = preparePredicate("CS2101 CS1101 CS1231S");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredModuleList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CS2101_OP, CS1101S_LEC, CS1231S_TUT), model.getFilteredModuleList());
+        assertEquals(Arrays.asList(CS2101_OP, CS1231S_TUT, CS1101S_LEC), model.getFilteredModuleList());
     }
 
     /**
