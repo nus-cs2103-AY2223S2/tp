@@ -37,14 +37,15 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
   - [4.3 Clearing all entries: `clear`](#43-clearing-all-entries-clear)
   - [4.4 Adding a contact: `add`](#44-adding-a-contact-add)
   - [4.5 Editing a contact: `edit`](#45-editing-a-contact-edit)
-  - [4.6 Adding additional tags to a contact: `addt`](#46-adding-additional-tags-to-a-contact-addt)
-  - [4.7 Deleting tags from a contact: `deletet`](#47-deleting-tags-from-a-contact-deletet)
+  - [4.6 Adding additional tags to a contact: `add-t`](#46-adding-additional-tags-to-a-contact-add-t)
+  - [4.7 Deleting tags from a contact: `delete-t`](#47-deleting-tags-from-a-contact-delete-t)
   - [4.8 Deleting a contact: `delete`](#48-deleting-a-contact-delete)
   - [4.9 Searching for contact information: `search`](#49-searching-for-contact-information-search)
   - [4.10 Opening a social media platform: `open`](#410-opening-a-social-media-platform-open)
-  - [4.11 Exiting the program: `exit`](#411-exiting-the-program-exit)
-  - [4.12 Saving the data](#412-saving-the-data)
-  - [4.13 Editing the data file](#413-editing-the-data-file)
+  - [4.11 Sending chats to a contact: `chat`](#411-sending-chats-to-a-contact-chat)
+  - [4.11 Exiting the program: `exit`](#412-exiting-the-program-exit)
+  - [4.12 Saving the data](#413-saving-the-data)
+  - [4.13 Editing the data file](#414-editing-the-data-file)
 - [5. Information Fields & Prefixes](#5-information-fields--prefixes)
   - [5.1 Name: `n/`](#51-name-n)
   - [5.2 Phone: `p/`](#52-phone-p)
@@ -55,8 +56,9 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
   - [5.7 WhatsApp: `wa/`](#57-whatsapp-wa)
   - [5.8 Birthday: `b/`](#58-birthday-b)
   - [5.9 Module: `mod/`](#59-module-mod)
-  - [5.10 CCA: `cca/`](#510-cca-cca)
-  - [5.11 Tag: `t/`](#511-tag-t)
+  - [5.10 Major: `major/`](#510-major-major)
+  - [5.11 CCA: `cca/`](#511-cca-cca)
+  - [5.12 Tag: `t/`](#512-tag-t)
 - [6. FAQ](#6-faq)
 - [7. Command Summary](#7-command-summary)
 - [8. Prefix Summary](#8-prefix-summary)
@@ -137,7 +139,7 @@ Congratulations! You have successfully set up ConnectUS.
   e.g. `[mod/MODULE_CODE]…​` can be used as ` ` (i.e. 0 times), `mod/CS2103T` (i.e. 1 time), `mod/CS2103T mod/CS2107` (i.e. 2 times) etc.
 
 * Information fields can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specify it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -183,14 +185,15 @@ ConnectUS has a list of features to assist you in your contact management needs!
 - [4.3 Clearing all entries: `clear`](#43-clearing-all-entries-clear)
 - [4.4 Adding a contact: `add`](#44-adding-a-contact-add)
 - [4.5 Editing a contact: `edit`](#45-editing-a-contact-edit)
-- [4.6 Adding additional tags to a contact: `addt`](#46-adding-additional-tags-to-a-contact-addt)
-- [4.7 Deleting tags from a contact: `deletet`](#47-deleting-tags-from-a-contact-deletet)
+- [4.6 Adding additional tags to a contact: `add-t`](#46-adding-additional-tags-to-a-contact-add-t)
+- [4.7 Deleting tags from a contact: `delete-t`](#47-deleting-tags-from-a-contact-delete-t)
 - [4.8 Deleting a contact: `delete`](#48-deleting-a-contact-delete)
 - [4.9 Searching for contact information: `search`](#49-searching-for-contact-information-search)
 - [4.10 Opening a social media platform: `open`](#410-opening-a-social-media-platform-open)
-- [4.11 Exiting the program: `exit`](#411-exiting-the-program-exit)
-- [4.12 Saving the data](#412-saving-the-data)
-- [4.13 Editing the data file](#413-editing-the-data-file)
+- [4.11 Sending chats to a contact: `chat`](#411-sending-chats-to-a-contact-chat)
+- [4.11 Exiting the program: `exit`](#412-exiting-the-program-exit)
+- [4.12 Saving the data](#413-saving-the-data)
+- [4.13 Editing the data file](#414-editing-the-data-file)
 
 ### 4.1 Viewing help: `help`
 
@@ -232,7 +235,7 @@ Once the contact data in ConnectUS is cleared, it cannot be retrieved. Do procee
 
 ### 4.4 Adding a contact: `add`
 
-Format: `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/TELEGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_CODE]…​ [cca/CCA]…​ [t/TAG]…​`
+Format: `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA]…​ [major/MAJOR]…​ [r/REMARK]…​`
 
 >Adds a contact to the ConnectUS app.
  
@@ -250,7 +253,7 @@ A contact can have any number of tags, modules and CCAs! (including 0)
 
 **Example 2:**
 
-**Input in Command Box:** `add n/James e/james@example.com ig/itsjameshere tg/itsjameshere mod/CS2103T mod/CS2101 cca/NUS Hackers t/Year 2 b/01/01/2000`
+**Input in Command Box:** `add n/James e/james@example.com ig/itsjameshere tg/itsjameshere mod/CS2103T mod/CS2101 cca/NUS Hackers r/Year 2 b/01/01/2000`
 
 **Result:**<br>![AddContactExample2](images/johndoe.png)
 
@@ -267,7 +270,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/
 If you accidentally added the wrong information when [adding a contact](#44-adding-a-contact-add), or if you want to update your contacts' information, you use the `edit`  command to update contact information. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
-If you want to edit a contact's tags, refer to these guides on <a href="#46-adding-additional-tags-to-a-contact-addt" class="alert-link">adding additional tags</a> or <a href="#47-deleting-tags-from-a-contact-deletet" class="alert-link">deleting a tag</a> instead!
+If you want to edit a contact's tags, refer to these guides on <a href="#46-adding-additional-tags-to-a-contact-add-t" class="alert-link">adding additional tags</a> or <a href="#47-deleting-tags-from-a-contact-delete-t" class="alert-link">deleting a tag</a> instead!
 </div>
 
 The `edit` command:
@@ -287,35 +290,35 @@ Please refer to [this section](#5-information-fields--prefixes) for details on h
 
 [↑ Back to feature list](#4-features)
 
-### 4.6 Adding additional tags to a contact: `addt`
+### 4.6 Adding additional tags to a contact: `add-t`
 
-Format: `addt INDEX [t/TAG_NAME] [mod/MODULE_NAME] [cca/CCA]`
+Format: `add-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA] [major/MAJOR]`
 
 > Adds a tag to an existing contact.
 
-If you want to add a new tag to a contact, you can use the `addt` command.
+If you want to add a new tag to a contact, you can use the `add-t` command.
 
-The `addt` command:
-* Adds a tag to the contact at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed contact list.
+The `add-t` command:
+* Adds a tag to the contact at the specified `PERSON_INDEX`. The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
 * At least one of the optional fields must be provided (e.g. `t/TAG_NAME`, `mod/MODULE_NAME`).
-* A new tag will be created and assigned to the person specified at the `INDEX`.
+* A new tag will be created and assigned to the person specified at the `PERSON_INDEX`.
 
 **Example:**
 
-**Input in Command Box:** `addt 1 t/friends mod/CS2103T`
+**Input in Command Box:** `add-t 1 t/friends mod/CS2103T`
 
 **Result:**<br>![AddTagToContactExample](images/johndoe.png)
 
-### 4.7 Deleting tags from a contact: `deletet`
+### 4.7 Deleting tags from a contact: `delete-t`
 
-Format: `deletet PERSON_INDEX [t/TAG_INDEX] [mod/MODULE_INDEX] [cca/CCA_INDEX]`
+Format: `delete-t PERSON_INDEX [t/TAG_INDEX] [mod/MODULE_INDEX] [cca/CCA_INDEX]`
 
 > Deletes an existing tag from an existing contact.
 
-If you want to delete an existing tag from a contact, you can use the `deletet` command.
+If you want to delete an existing tag from a contact, you can use the `delete-t` command.
 
-The `deletet` command:
+The `delete-t` command:
 * Deletes a tag from the contact at the specified `PERSON_INDEX`. The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
 * The `TAG_INDEX`, `MODULE_INDEX` and `CCA_INDEX` refer to the index of the tag shown in the respective tag types, from left to right, starting from index 1.
 
@@ -327,13 +330,13 @@ The `deletet` command:
 
 **Example:**
 
-**Input in Command Box:** `deletet 1 mod/1`
+**Input in Command Box:** `delete-t 1 mod/1`
 
 **Result:**<br>![DeleteTagFromContactExample](images/johndoe.png)
 
 ### 4.8 Deleting a contact: `delete`
 
-Format: `delete INDEX`
+Format: `delete PERSON_INDEX`
 
 > Deletes the specified contact from the ConnectUS app.
 
@@ -341,8 +344,8 @@ If you wish to remove a contact, use the `delete` command.
 
 The `delete` command:
 
-* Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
+* Deletes the contact at the specified `PERSON_INDEX`.
+* The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
 
 **Example 1:**
@@ -381,11 +384,11 @@ Examples:
 
 ### 4.10 Opening a social media platform: `open`
 
-Format: `open INDEX [tg/] [wa/] [ig/]`
+Format: `open PERSON_INDEX [tg/] [wa/] [ig/]`
 
 > Opens the respective social media platform of an existing contact.
 
-If you want to send a message to a contact, you can directly open supported social media platforms (i.e. Instagram, Telegram, WhatsApp) from the CLI.
+You can directly open supported social media platforms (i.e. Instagram, Telegram, WhatsApp) from the CLI.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 You'll need to download the desktop applications for <a href="https://desktop.telegram.org/" class="alert-link">Telegram</a> and <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> respectively if you want to use these features!
@@ -399,7 +402,25 @@ You'll need to download the desktop applications for <a href="https://desktop.te
 
 [↑ Back to feature list](#4-features)
 
-### 4.11 Exiting the program: `exit`
+### 4.11 Sending chats to a contact: `chat`
+
+Format: `chat PERSON_INDEX wa/ m/`
+
+> Sends a chat to an existing contact.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+You'll need to download the desktop application <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> if you want to use this feature!
+</div>
+
+**Example:**
+
+**Input in Command Box:** `chat 1 wa/ m/hello world!`
+
+**Result:**<br>![OpenContactExample](images/johndoe.png)
+
+[↑ Back to feature list](#4-features)
+
+### 4.12 Exiting the program: `exit`
 
 Format: `exit`
 
@@ -409,13 +430,13 @@ When you are done with your contact management needs, you can exit ConnectUS wit
 
 [↑ Back to feature list](#4-features)
 
-### 4.12 Saving the data
+### 4.13 Saving the data
 
 You won't ever need to worry about losing your contacts. ConnectUS automatically saves your data in the hard disk after any command that changes the data. There is no need to save manually.
 
 [↑ Back to feature list](#4-features)
 
-### 4.13 Editing the data file
+### 4.14 Editing the data file
 
 If you are an advanced user, you are welcome to update data directly by editing the data file.
 
@@ -431,7 +452,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 ## 5. Information Fields & Prefixes
 
-Here is a list of prefixes that ConnectUS uses when taking paramters.
+Here is a list of prefixes that ConnectUS uses when taking parameters.
 
 - [5.1 Name: `n/`](#51-name-n)
 - [5.2 Phone: `p/`](#52-phone-p)
@@ -442,8 +463,9 @@ Here is a list of prefixes that ConnectUS uses when taking paramters.
 - [5.7 WhatsApp: `wa/`](#57-whatsapp-wa)
 - [5.8 Birthday: `b/`](#58-birthday-b)
 - [5.9 Module: `mod/`](#59-module-mod)
-- [5.10 CCA: `cca/`](#510-cca-cca)
-- [5.11 Tag: `t/`](#511-tag-t)
+- [5.10 Major: `major/`](#510-major-major)
+- [5.11 CCA: `cca/`](#511-cca-cca)
+- [5.12 Tag: `t/`](#512-tag-t)
 
 ### 5.1 Name: `n/`
 * Name is a *compulsory* field, i.e. a contact cannot exist if it does not have a name.
@@ -525,7 +547,15 @@ Here is a list of prefixes that ConnectUS uses when taking paramters.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.10 CCA: `cca/`
+### 5.10 Major: `major/`
+* Major is an *optional* field, i.e. a contact can exist even if it does not have a major.
+* The prefix for a module is `major/`.
+* Major names should be alphanumeric.
+* A contact can have at most 2 majors assigned to it (i.e. a contact can have 0-2 majors).
+
+[↑ Back to prefix list](#5-information-fields--prefixes)
+
+### 5.11 CCA: `cca/`
 * CCA is an *optional* field, i.e. a contact can exist even if it does not have a CCA.
 * The prefix for a CCA is `cca/`.
 * CCA names should be alphanumeric.
@@ -533,7 +563,7 @@ Here is a list of prefixes that ConnectUS uses when taking paramters.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
-### 5.11 Tag: `t/`
+### 5.12 Tag: `t/`
 * Tag is an *optional* field, i.e. a contact can exist even if it does not have a tag.
 * The prefix for a tag is `t/`.
 * Tag names should be alphanumeric.
@@ -558,34 +588,40 @@ Here is a list of prefixes that ConnectUS uses when taking paramters.
 
 ## 7. Command Summary
 
-| Command    | Format                                                                                                                                                                       | Example                                                                               |
-|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​`                                            | `add n/James p/12345678 e/james@example.com tg/itsjameshere b/14/02/2000 mod/CS2103T` |
-| **Clear**  | `clear`                                                                                                                                                                      |                                                                                       |
-| **Delete** | `delete INDEX`                                                                                                                                                               | `delete 3`                                                                            |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​ -t` | `edit 1 p/12345678 e/james@example.com tg/itsjameshere`                               |
-| **List**   | `list`                                                                                                                                                                       |                                                                                       |
-| **Help**   | `help`                                                                                                                                                                       |                                                                                       |
-| **Search** | `search KEYWORD`                                                                                                                                                             | `search alex january`                                                                 |
-| **Exit**   | `exit`                                                                                                                                                                       |                                                                                       |
+| Command               | Format                                                                                                                                          | Example                                                                               |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| **Add a Contact**     | `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA]…​ [major/MAJOR]…​` | `add n/James p/12345678 e/james@example.com tg/itsjameshere b/14/02/2000 mod/CS2103T` |
+| **Add Tag**           | `add-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA] [major/MAJOR]`                                                                            |                                                                                       |
+| **Chat with Contact** | `chat PERSON_INDEX wa/ m/`                                                                                                                      |                                                                                       |
+| **Clear Data**        | `clear`                                                                                                                                         |                                                                                       |
+| **Delete a Contact**  | `delete PERSON_INDEX`                                                                                                                           | `delete 3`                                                                            |
+| **Delete Tag**        | `delete-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA] [major/MAJOR]`                                                                         |                                                                                       |
+| **Edit a Contact**    | `edit PERSON_INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY]`                            | `edit 1 p/12345678 e/james@example.com tg/itsjameshere`                               |
+| **Help**              | `help [COMMAND]`                                                                                                                                | `help`, `help add`                                                                    |
+| **List All Contacts** | `list`                                                                                                                                          |                                                                                       |
+                                                                                       |
+| **Open Social Media** | `open PERSON_INDEX [tg/] [wa/] [ig/]`                                                                                                           |                                                                                       |
+| **Search**            | `search KEYWORDS`                                                                                                                               | `search alex january`                                                                 |
+| **Exit**              | `exit`                                                                                                                                          |                                                                                       |
 
 [↑ Back to top](#table-of-contents)
 
 ## 8. Prefix Summary
 
-| Information Field | Prefix | Example                        |
-|-------------------|--------|--------------------------------|
-| **Address**       | `a/`   | `a/Blk 456, Den Road, #01-355` |
-| **Birthday**      | `b/`   | `b/01/01/2000`                 |
-| **CCA**           | `cca/` | `cca/NUS Hackers`              |
-| **Email**         | `e/`   | `e/johndoe@example.com`        |
-| **Instagram**     | `ig/`  | `ig/john.doe`                  |
-| **Module**        | `mod/` | `mod/CS2103T`                  |
-| **Name**          | `n/`   | `n/John Doe`                   |
-| **Phone**         | `p/`   | `p/91234567`                   |
-| **Tag**           | `t/`   | `t/School of Computing`        |
-| **Telegram**      | `tg/`  | `tg/johndoe`                   |
-| **WhatsApp**      | `wa/`  | `wa/91234567`                  |
+| Information Field | Prefix   | Example                        |
+|-------------------|----------|--------------------------------|
+| **Address**       | `a/`     | `a/Blk 456, Den Road, #01-355` |
+| **Birthday**      | `b/`     | `b/01/01/2000`                 |
+| **CCA Tag**       | `cca/`   | `cca/NUS Hackers`              |
+| **Email**         | `e/`     | `e/johndoe@example.com`        |
+| **Instagram**     | `ig/`    | `ig/john.doe`                  |
+| **Major Tag**     | `major/` | `major/CompEng`                |
+| **Module Tag**    | `mod/`   | `mod/CS2103T`                  |
+| **Name**          | `n/`     | `n/John Doe`                   |
+| **Phone**         | `p/`     | `p/91234567`                   |
+| **Remark Tag**    | `r/`     | `r/School of Computing`        |
+| **Telegram**      | `tg/`    | `tg/johndoe`                   |
+| **WhatsApp**      | `wa/`    | `wa/91234567`                  |
 
 [↑ Back to top](#table-of-contents)
 
