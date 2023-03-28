@@ -14,14 +14,14 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 1. [Quick Start](#quick-start)
 2. [Features](#features)<br>
-   2.1 [Add a module: `add`](#add-module)<br>
-   2.2 [Remove a/all module: `delete`](#delete-module)<br>
-   2.3 [Change module details: `edit`](#edit-module)<br>
-   2.4 [Tag a module: `tag`](#tag-module)<br>
-   2.5 [Find modules by keyword: `find`](#find-module)<br>
-   2.6 [Sort all modules: `sort`](#sort-module)<br>
-   2.7 [Toggle between module lists and progress: `view`](#change-view)<br>
-   2.8 [Exiting the program: `exit`](#exit-app)<br>
+   2.1 [Add a module:](#add-module) `add`<br>
+   2.2 [Remove a/all module:](#delete-module) `delete`<br>
+   2.3 [Change module details:](#edit-module) `edit`<br>
+   2.4 [Tag a module:](#tag-module) `tag`<br>
+   2.5 [Find modules by keyword:](#find-module) `find`<br>
+   2.6 [Sort all modules:](#sort-module) `sort`<br>
+   2.7 [Toggle between module lists and progress:](#change-view) `view`<br>
+   2.8 [Exiting the program:](#exit-app) `exit`<br>
    2.9 [Saving the data](#save-data)<br>
    2.10 [Editing the data file](#edit-data)
 3. [Frequently Asked Questions (FAQ)](#faq)
@@ -37,7 +37,7 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 1. Open a command terminal, `cd` to the folder you put your jar file in, and use<br>`java -jar modtrek.jar` to run the application
 1. A GUI similar to the below should appear in a few seconds.
 1. Type commands within the command line interface (CLI) and press enter to execute it. For a list of executable commands, refer to the [Features / Commands Section](#features).
-![Ui QuickStart](images/Ui-quickstart.png)
+![Ui QuickStart](images/Ui-quickstart2.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -58,7 +58,7 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 Adds a module to the module list. Modules must be distinct.
 
-Command syntax: `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`
+**Command syntax:** `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`
 
 Additional details:
 * `<code>` refers to the module code
@@ -75,21 +75,21 @@ Additional details:
    
 :exclamation: For `...`, specify one or more tags to be added, separated by space (' ').
 
-Example: `add /m CS2103T /c 4 /y y2s2 /g A /t University Level Requirements`
+**Example:** `add /m CS2103T /c 4 /y y2s2 /g A /t ULR`
 
 #### 2.2 Delete a Module : `delete` <a name="delete-module"></a>
 
 Deletes all/the specified module(s) from the module list.
 
-Command syntax: <br><br>_To delete specific modules:_ `delete /m <code1> (/m <code2>) ...` <br><br> :exclamation: For `...`, specify one or more module codes of modules to be deleted, separated by space (' '). <br><br>_To delete all modules:_ `delete all`
+**Command syntax:** <br><br>_To delete specific modules:_ `delete /m <code1> (/m <code2>) ...` <br><br> :exclamation: For `...`, specify one or more module codes of modules to be deleted, separated by space (' '). <br><br>_To delete all modules:_ `delete all`
 
-Example: `delete /m CS2100 /m CS2040S`
+**Example:** `delete /m CS2100 /m CS2040S`
 
 #### 2.3 Edit a Module : `edit` <a name="edit-module"></a>
 
 Edits an existing module in the module list.
 
-Command syntax: `edit <code> ...`
+**Command syntax:** `edit <code> ...`
 
 _Specify one or more parameters in_ `...` :
 * `/m <new code>`
@@ -98,7 +98,7 @@ _Specify one or more parameters in_ `...` :
 * `/g <grade>`
 * `/t <tag>`
 
-Example: `edit ES2660 /m CS2101 /g B+`
+**Example:** `edit ES2660 /m CS2101 /g B+`
 
 :exclamation: Past data will be overridden and not be saved
 
@@ -107,13 +107,13 @@ Example: `edit ES2660 /m CS2101 /g B+`
 Tags a module to include or remove one or more degree requirements (e.g. University Level Requirements, Computer Science Foundation etc) that the module fulfils.<br>
 Refer to [2.1 Add a module](#add-module) for the available tags.
 
-Command syntax:
+**Command syntax:**
 * _To include tags:_ `tag /m <code> include <tag1> (<tag2>) ...`
 * _To remove tags:_ `tag /m <code> remove <tag1> (<tag2>) ...`
 
 :exclamation: For `...`, specify one or more tags to be included or removed, separated by space (' ').
 
-Example:
+**Example:**
 * `tag CS2030S include CSF`
 * `tag ES2660 remove ULR ITP`
 
@@ -121,9 +121,9 @@ Example:
 
 Displays specific module(s) satisfying the search query (by code, credits, year-semester, and/or grade) and their details previously logged by the user.
 
-Command syntax: `find (/m <code>) (/c <credits>) (/y <year-semester>) (/g <grade>)`
+**Command syntax:** `find (/m <code>) (/c <credits>) (/y <year-semester>) (/g <grade>)`
 
-Example:
+**Example:**
 * `find /c 4 /g A+`
 * `find /y y2s2`
 * `find /m cs /g A+` ![Ui Find](images/Ui-find.png)
@@ -132,7 +132,7 @@ Example:
 
 Sort the modules according to the category indicated by the user.
 
-Command syntax: `sort <category>`
+**Command syntax:** `sort <category>`
 
 Categories that modules can be sorted by are:
 * `/m` to sort by module code
@@ -141,14 +141,14 @@ Categories that modules can be sorted by are:
 * `/g` to sort by grade
 * `/t` to sort by tag
 
-Example: `sort /g`
+**Example:** `sort /g`
 ![Ui Sort](images/Ui-sort.png)
 
 #### 2.7 Toggle screens : `view` <a name="change-view"></a>
 
 Toggles between the display of module progress or module lists.
 
-Command syntax:
+**Command syntax:**
 * _To view module progression:_ `view progress` ![Ui progress](images/Ui-viewprogress.png)
 * _To view module list:_ `view modules` ![Ui modules](images/Ui-viewmodules.png)
 
@@ -156,7 +156,7 @@ Command syntax:
 
 Exits the program. Alternatively you can exit the program by clicking the top-right X button to close the window.
 
-Command syntax: `exit`
+**Command syntax:** `exit`
 
 #### 2.9 Saving MODTrek data <a name="save-data"></a>
 
