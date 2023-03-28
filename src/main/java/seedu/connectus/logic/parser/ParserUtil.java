@@ -21,6 +21,8 @@ import seedu.connectus.model.socialmedia.Instagram;
 import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.socialmedia.Telegram;
 import seedu.connectus.model.socialmedia.WhatsApp;
+import seedu.connectus.model.tag.Cca;
+import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Tag;
 
@@ -152,6 +154,36 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String cca} into a {@code cca}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code cca} is invalid.
+     */
+    public static Cca parseCca(String cca) throws ParseException {
+        requireNonNull(cca);
+        String trimmedCca = cca.trim();
+        if (!Cca.isValidTagName(trimmedCca)) {
+            throw new ParseException(Cca.MESSAGE_CONSTRAINTS);
+        }
+        return new Cca(trimmedCca);
+    }
+
+    /**
+     * Parses a {@code String cca} into a {@code cca}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code cca} is invalid.
+     */
+    public static CcaPosition parseCcaPosition(String ccaPosition) throws ParseException {
+        requireNonNull(ccaPosition);
+        String trimmedCcaPosition = ccaPosition.trim();
+        if (!Cca.isValidTagName(trimmedCcaPosition)) {
+            throw new ParseException(CcaPosition.MESSAGE_CONSTRAINTS);
+        }
+        return new CcaPosition(trimmedCcaPosition);
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -173,6 +205,30 @@ public class ParserUtil {
             moduleSet.add(parseModule(moduleName));
         }
         return moduleSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> ccas} into a {@code Set<Cca>}.
+     */
+    public static Set<Cca> parseCcas(Collection<String> ccas) throws ParseException {
+        requireNonNull(ccas);
+        final Set<Cca> ccaSet = new HashSet<>();
+        for (String ccaName : ccas) {
+            ccaSet.add(parseCca(ccaName));
+        }
+        return ccaSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> ccaPositions} into a {@code Set<CcaPosition>}.
+     */
+    public static Set<CcaPosition> parseCcaPositions(Collection<String> ccaPositions) throws ParseException {
+        requireNonNull(ccaPositions);
+        final Set<CcaPosition> ccaPositionSet = new HashSet<>();
+        for (String ccaPositionName : ccaPositions) {
+            ccaPositionSet.add(parseCcaPosition(ccaPositionName));
+        }
+        return ccaPositionSet;
     }
 
     private static Instagram parseInstagram(String instagram) throws ParseException {
