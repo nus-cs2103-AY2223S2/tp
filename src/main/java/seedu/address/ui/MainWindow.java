@@ -1,14 +1,18 @@
 package seedu.address.ui;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -192,7 +196,7 @@ public class MainWindow extends UiPart<Stage> {
     protected CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             String commandWord = commandText.trim().split("\\s+")[0].toLowerCase();
-            if (Arrays.asList("clear", "delete", "deletes").contains(commandWord)) {
+            if (Arrays.asList("clear", "delete", "deletes", "deletefile").contains(commandWord)) {
                 boolean proceedWithCommand = showWarningDialog(commandWord);
                 if (!proceedWithCommand) {
                     return new CommandResult("Operation cancelled.");
@@ -263,6 +267,30 @@ public class MainWindow extends UiPart<Stage> {
     private boolean showWarningDialog(String command) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
+        //Create the OK and Cancel buttons with the event filter
+        ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButtonType = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(okButtonType, cancelButtonType);
+
+        Button okButton = (Button) alert.getDialogPane().lookupButton(okButtonType);
+        Button cancelButton = (Button) alert.getDialogPane().lookupButton(cancelButtonType);
+
+        //Consume the Enter key event when the focus is on the OK or Cancel buttons
+        okButton.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                event.consume();
+                alert.setResult(okButtonType);
+                alert.hide();
+            }
+        });
+
+        cancelButton.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                event.consume();
+                alert.setResult(cancelButtonType);
+                alert.hide();
+            }
+        });
         if (command.equalsIgnoreCase("clear")) {
             alert.setTitle("Warning");
             alert.setHeaderText("Clear Address Book");
@@ -275,14 +303,18 @@ public class MainWindow extends UiPart<Stage> {
             alert.setTitle("Warning");
             alert.setHeaderText("Delete Multiple Entries");
             alert.setContentText("This operation will delete multiple entries. Are you sure you want to proceed?");
+        } else if (command.equalsIgnoreCase("deletefile")) {
+            alert.setTitle("Warning");
+            alert.setHeaderText("Delete File");
+            alert.setContentText("This operation will delete selected file. Are you sure you want to proceed?");
         } else {
-            //If the command is not clear, delete, or deletes, proceed without showing a warning
             return true;
         }
+
         //Show the alert and wait for user's response
-        alert.showAndWait();
+        Optional<ButtonType> result = alert.showAndWait();
 
         //Return true if the user confirms the operation, false otherwise
-        return alert.getResult() == ButtonType.OK;
+        return result.orElse(cancelButtonType) == okButtonType;
     }
 }

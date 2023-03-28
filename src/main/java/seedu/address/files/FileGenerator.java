@@ -53,14 +53,15 @@ public class FileGenerator {
      */
     public void createMcForm(String filename) {
         try {
-            // Load the original PDF form
+            //Load the original PDF form
             PDDocument pdfDocument = PDDocument.load(new File("lib/MC.pdf"));
 
-            // Get the PDF form fields
+            //Get the PDF form fields
             PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
             PDAcroForm acroForm = docCatalog.getAcroForm();
 
             //Get all fields
+            String temp = filename.replace(".pdf", "");
 
             List<PDField> fieldList = acroForm.getFields();
 
@@ -91,7 +92,7 @@ public class FileGenerator {
                         field.setValue(doctorName);
                         break;
                     default:
-                        field.setValue(Integer.toString(formId));
+                        field.setValue(temp);
                         break;
                     }
                 }

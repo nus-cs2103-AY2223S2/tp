@@ -15,7 +15,6 @@ import java.util.stream.Stream;
 import seedu.address.model.person.Person;
 
 
-
 /**
  * The type Files manager.
  */
@@ -129,19 +128,36 @@ public class FilesManager {
      * @param number the number
      */
     public void readNthFile(int number) {
-        // Check if the files list is empty or the input number is invalid
+        //Check if the files list is empty or the input number is invalid
         if (files.isEmpty() || number <= 0 || number > files.size()) {
             System.out.println("Invalid file number or no files exist.");
             return;
         }
-
-        // Get the (number - 1)th file from the list (since the list is 0-indexed)
         Path nthFilePath = files.get(number - 1);
-
-        // Get the file name and display the file
         String fileName = nthFilePath.getFileName().toString();
         displayFile(fileName);
     }
+
+    /**
+     * Delete nth file.
+     *
+     * @param number the number
+     */
+    public void deleteNthFile(int number) {
+        //Check if the files list is empty or the input number is invalid
+        if (files.isEmpty() || number <= 0 || number > files.size()) {
+            System.out.println("Invalid file number or no files exist.");
+            return;
+        }
+        Path nthFilePath = files.get(number - 1);
+        String fileName = nthFilePath.getFileName().toString();
+        deleteFile(fileName);
+
+        //Update the files and fileNames lists
+        setAllFiles();
+        setFileNames();
+    }
+
     private void setAllFiles() {
         Path directory = Paths.get(path);
         files = new ArrayList<>();
