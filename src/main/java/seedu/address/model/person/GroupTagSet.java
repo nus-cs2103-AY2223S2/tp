@@ -48,6 +48,10 @@ public class GroupTagSet implements Comparable<GroupTagSet> {
         groups.remove(groupTag);
     }
 
+    public void removeAll(Set<GroupTag> groupTags) {
+        groups.removeAll(groupTags);
+    }
+
     /**
      * Returns the number of groups.
      */

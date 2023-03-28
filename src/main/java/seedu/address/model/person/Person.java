@@ -154,6 +154,18 @@ public class Person {
     }
 
     /**
+     * Adds group tags to the {@code GroupTagSet}.
+     * @param groupTags Tags to be added to the person.
+     */
+    public void addGroupTags(Set<GroupTag> groupTags) {
+        this.getGroupTags().addAll(groupTags);
+    }
+
+    public void removeGroupTags(Set<GroupTag> groupTags) {
+        this.getGroupTags().removeAll(groupTags);
+    }
+
+    /**
      * Adds module tags to the {@code ModuleTagSet}.
      * Lessons within the {@code moduleTags} must not clash with each other.
      * They must also not clash with the timetable.
