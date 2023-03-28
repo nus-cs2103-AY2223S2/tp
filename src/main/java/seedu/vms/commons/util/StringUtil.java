@@ -9,6 +9,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import seedu.vms.model.IdData;
+import seedu.vms.model.appointment.Appointment;
+
 /**
  * Helper functions for handling strings.
  */
@@ -138,6 +141,20 @@ public class StringUtil {
         }
 
         return String.format(formatInvalidMessage, builder.toString());
+    }
+
+
+    /**
+     * Formats the given collection of appointment data.
+     */
+    public static String formatAppointmentListing(Collection<IdData<Appointment>> appointments) {
+        StringBuilder builder = new StringBuilder();
+
+        for (IdData<Appointment> appointment : appointments) {
+            builder.append(String.format("\n- #%04d", appointment.getId() + 1));
+        }
+
+        return builder.toString();
     }
 
 }

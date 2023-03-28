@@ -28,14 +28,14 @@ public class DeleteCommandTest {
     private Model model = new ModelManager(getTypicalPatientManager(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIndexUnfilteredList_success() throws Exception {
         Patient patientToDelete = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased()).getValue();
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PATIENT);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getPatientManager(), new UserPrefs());
-        expectedModel.deletePatient(INDEX_FIRST_PATIENT.getZeroBased());
+        expectedModel.deletePatient(INDEX_FIRST_PATIENT.getZeroBased(), true);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -48,7 +48,7 @@ public class DeleteCommandTest {
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
     }
 
-    @Test void execute_previouslyDeletedIndex_throwsCommandException() {
+    @Test void execute_previouslyDeletedIndex_throwsCommandException() throws Exception {
         // Delete patient
         Patient patientToDelete = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased()).getValue();
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PATIENT);
@@ -56,7 +56,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getPatientManager(), new UserPrefs());
-        expectedModel.deletePatient(INDEX_FIRST_PATIENT.getZeroBased());
+        expectedModel.deletePatient(INDEX_FIRST_PATIENT.getZeroBased(), true);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
 
@@ -65,7 +65,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validIndexFilteredList_success() throws Exception {
         showPatientAtIndex(model, INDEX_FIRST_PATIENT);
 
         Patient patientToDelete = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased()).getValue();
@@ -74,7 +74,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete);
 
         Model expectedModel = new ModelManager(model.getPatientManager(), new UserPrefs());
-        expectedModel.deletePatient(INDEX_FIRST_PATIENT.getZeroBased());
+        expectedModel.deletePatient(INDEX_FIRST_PATIENT.getZeroBased(), true);
         showNoPatient(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
