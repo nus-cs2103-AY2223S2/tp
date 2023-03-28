@@ -32,4 +32,18 @@ class PolicyNameTest {
         assertTrue(PolicyName.isValidName(valid));
     }
 
+    @Test
+    void isValidNameEnum() {
+        String invalid1 = "random";
+        String invalid2 = "Fire insurante";
+        String valid = "Fire Insurance";
+        String valid2 = "fire insurance";
+        String valid3 = "FIRE INSURANCE";
+
+        assertFalse(PolicyName.isValidNameEnum(invalid1));
+        assertFalse(PolicyName.isValidNameEnum(invalid2));
+        assertTrue(PolicyName.isValidNameEnum(valid));
+        assertTrue(PolicyName.isValidNameEnum(valid2));
+        assertTrue(PolicyName.isValidNameEnum(valid3));
+    }
 }

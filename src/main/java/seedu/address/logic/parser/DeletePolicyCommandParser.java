@@ -26,17 +26,19 @@ public class DeletePolicyCommandParser implements Parser<DeletePolicyCommand> {
     public DeletePolicyCommand parse(String userInput) throws ParseException {
         requireNonNull(userInput);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_POLICY_INDEX);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_POLICY_INDEX)
+                || argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeletePolicyCommand.MESSAGE_USAGE));
+        }
+
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePolicyCommand.MESSAGE_USAGE), ive);
-        }
-        if (!arePrefixesPresent(argMultimap, PREFIX_POLICY_INDEX)
-                || argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeletePolicyCommand.MESSAGE_USAGE));
         }
 
         Index policyIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_POLICY_INDEX).get());

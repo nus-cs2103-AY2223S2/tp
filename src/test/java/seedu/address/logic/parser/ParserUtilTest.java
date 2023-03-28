@@ -31,6 +31,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_POLICY_NAME = " ";
+    private static final String INVALID_POLICY_NAME_ENUM = "random insurance";
     private static final String INVALID_POLICY_DATE = "05-10-2023";
     private static final String INVALID_POLICY_PREMIUM = "$100";
     private static final String INVALID_POLICY_PREMIUM_WITH_4_DECIMAL = "1000.00000";
@@ -217,6 +218,14 @@ public class ParserUtilTest {
     void parsePolicyName_validValueWithWhitespace_returnsTrimmedPolicyName() throws Exception {
         PolicyName expectedPolicyName = new PolicyName(VALID_POLICY_NAME);
         assertEquals(expectedPolicyName, ParserUtil.parsePolicyName(WHITESPACE + VALID_POLICY_NAME + WHITESPACE));
+    }
+    @Test
+    void parsePolicyName_invalidValueWithoutWhitespace_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePolicyName(INVALID_POLICY_NAME));
+    }
+    @Test
+    void parsePolicyName_invalidEnum_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePolicyName(INVALID_POLICY_NAME_ENUM));
     }
 
     @Test

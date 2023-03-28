@@ -92,6 +92,91 @@ e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `PolicyListPanel` etc. All
 inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the
 visible GUI.
 
+The Sequence Diagram below illustrates the interactions within the `Ui` component for the `start(primaryStage)` API
+call.
+
+![Interactions Inside the Ui Component for the launching the application](images/StartSequenceDiagram.png)
+
+#### MainWindow
+
+The `MainWindow` controller class is composed of the following classes:
+
+* `HelpWindow`
+* `ClientListPanel`
+* `PolicyListPanel`
+* `Client`
+* `ResultDisplay`
+
+The `UiManager` controller class contains the `start` method which follows the sequence:
+
+1. Instantiate a new `MainWindow` object.
+2. `show` the `MainWindow` object.
+3. Populate the subcomponents with the `fillInnerParts` method.
+
+The `MainWindow#fillInnerParts` method is as follows:
+
+1. Populate the `clientListPanel`.
+2. Populate the `policyListPanel`
+3. Populate the `resultDisplay`.
+4. Populate the `commandBox`.
+
+#### ClientLabel
+
+The `ClientLabel` is composed of the labels: `name`, `id`, `phone`, `address`, `email`, `tags` which display the
+information of the `Client`.
+
+#### ClientListPanel
+
+The `ClientListPanel` contains a `clientListView:ListView<Client>` to store the most updated list of `Client` objects.
+The
+constructor method takes in an `ObservableList<Client>` and sets it into the `clientListView`.
+
+Each `Client` in the `ObservableList<Client>` is mapped to a `ClientListViewCell` which extends a `ListCell<Client>`.
+This `ClientListViewCell` overides the `ListCell<T>#updateItem` method to register any changes made to a `Client`
+within the `Model` and reflects it onto the `UI`.
+
+#### PolicyListPanel
+
+The `PolicyListPanel` works similarly to the `ClientListPanel`. The `PolicyListPanel` contains a
+`policyListView:ListView<Client>` to store the most updated list of `Policy` objects. The constructor takes in an
+`ObservableList<Policy>` and sets it into the `policyListView`.
+
+Each `Policy` in the `ObservableList<Policy>` is mapped to a `PolicyListViewCell` which extends a `ListCell<Policy>`.
+This `PolicyListViewCell` overides the `ListCell<T>#updateItem` method to register any changes made to a `Policy`
+within the `Model` and reflects it onto the `UI`.
+
+### Design considerations:
+
+Preview of the UI design.
+
+![Preview of the UI](images/UiPreview.png)
+
+The UI follows a simple dashboard layout with list panels to display the Clients, selected Clients, and the Policies of
+the selected Clients. This layout was done such that the user would have quick and easy access to detailed information
+of each of their Clients.
+
+Each Client is labeled with a hashcode identifier, which can be used to select the Client for spotlighting.
+
+We chose to limit the information shown on the Client list so that the user can have a wide overview of their list of
+clientele. Since selecting each Client is conducted in a short and simple command, users may browse through each client
+quickly.
+
+Having a separate panel to display the Client information and Policies enables users to present the information clearly
+to their clients.
+
+#### Alternatives considered:
+
+* We considered keeping to a consolidated panel where each `ClientCard` would display the client information as well as
+  their list of `PolicyCard`. However, we found this design to be overwhelming and did not provide a layout that was
+  quick and easy to comprehend.
+
+### Selecting a Client
+
+The command `select INDEX` selects a given `Client` from the client list to be spotlighted in the GUI. The logic of
+the `select` command can be found [here](#select-feature).
+
+### JavaFX
+
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
 the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
@@ -107,8 +192,8 @@ The `UI` component,
 
 ### Logic component
 
-**API
-** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API**
+: [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -145,33 +230,42 @@ How the parsing works:
 
 ### Model component
 
-**API
-** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API**
+: [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagramss.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
-  is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
+* stores the address book data i.e., all `Client` objects (which are contained in a `UniqueClientList` object).
+* stores the currently 'selected' `Client` objects (e.g., results of a search query) as a separate _filtered_ list which
+  is exposed to outsiders as an unmodifiable `ObservableList<Client>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+The `Client` component,
+* Contains 6 classes : `Name`, `Phone`, `Address`, `Email`, `Tag`, `UniquePolicyList`
+* All `Policy` objects are stored in a `UniquePolicyList` object, similar to `UniqueClientList` object.
+* Stores the currently 'selected' `Policy` objects as a separate filtered list which is exposed to outsiders as an unmodifiable `ObservableList<Policy>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* Considered using simple `ArrayList<Policy>` to store all `Policy` objects, but it would make UI's automatic updates access harder.
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+The `Policy` component,
+* Instead of treating each object in a `Policy` as a string, `CustomDate` is in the form of a `LocalDate` class, while `Premium` is in the form of `double`.
+* This allows for future addition of features such as sorting, finding or aggregating of specific data.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Client` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Client` needing their own `Tag` objects.<br>
+
+<img src="images/BetterModelClassDiagramss.png" width="450" />
 
 </div>
 
 ### Storage component
 
-**API
-** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -194,26 +288,49 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Select Feature
+
+The select mechanism is facilitated by `SelectCommand` and `SelectCommandParser`.
+
+`SelectCommand` extends from `Command` by overriding methods from its parent class.
+The logic of this class follows the sequence.
+
+1. Get the `Client` based on the most updated client list in the `Model`.
+2. The selected `Client` produced by the `CommandResult` is passed to the `MainWindow` controller class.
+3. `ClientLabel` is updated with the selected `Client` and the `PolicyListPlaceholder` is populated with its
+   `PolicyCards`
+
+`SelectCommandParser` implements `Parser<SelectCommand>`.
+The logic of this class follows this sequence.
+
+1. Get the client index from the preamble of the input.
+
+The following sequence diagram shows how the select operation works:
+![SelectSequenceDiagram.png](images/SelectSequenceDiagram.png)
+
 ### Add Policy Feature
+
 The add policy mechanism is facilitated by `AddPolicyCommand` and `AddPolicyCommandParser`.
 
 `AddPolicyCommand` extends from `Command` by overriding methods from its parent class.
 The logic of this class follows the sequence.
+
 1. Get the `Client` based on the most updated client list in the `Model`.
 2. Create a new `Policy` based on the given `Policy` details.
 3. Add the `Policy` to the `Client` given, and update the `Client` in the `Model`.
 
-`AddPolicyCommandParser` implements `Parser<AddPolicyCommand>`. 
+`AddPolicyCommandParser` implements `Parser<AddPolicyCommand>`.
 The logic of this class follows the sequence.
+
 1. Get the client index from the preamble of the input.
-2. Get the policy details from the prefix "pn/", "pd/", "pp/", "pf/", 
-which are the Policy Name, Policy Date, Policy Premium, and Policy Frequency respectively.
-
-
+2. Get the policy details from the prefix "pn/", "pd/", "pp/", "pf/",
+   which are the Policy Name, Policy Date, Policy Premium, and Policy Frequency respectively.
 
 ### Delete Policy feature
 
-The delete policy mechanism is facilitated by `DeletePolicyCommand` and `DeletePolicyCommandParser`.
+The delete policy mechanism is facilitated by `DeletePolicyCommand` and `DeletePolicyCommandParser`. The feature is implemented by getting the client index and the policy index in their respective list in the application. Once given, we will retrieve the `Client` object from the model. Given the `Client`object we will retrieve the policies associated to this `Client` and remove the policy based on the index given. 
+
+These classes are implemented this way because, like other commands, such as `DeleteCommand` we first have to retrieve the client list followed by executing the delete feature. 
 
 `DeletePolicyCommand` extends from `Command` by overriding methods from its parent class. The logic of this class
 follows the sequence.
@@ -229,11 +346,37 @@ follows the sequence.
 The following sequence diagram shows how the delete policy operation works:
 ![DeletePolicySequenceDiagram0](images/DeletePolicySequenceDiagram.png)
 
+**Alternatives Considered**:
+- We are considering if we could receive the policies from the model instead of the client. 
+- We are also considering to execute a `SelectCommand` in the process of `DeleteCommand` so that the user will automatically move to the targeted client that he or she wishes to delete a policy from. 
+
+### Edit Policy feature
+
+The edit policy mechanism is facilitated by `EditPolicyCommand` and `EditPolicyCommandParser`. The feature is implemented by getting the client index and the policy index in their respective list in the application. Once given, we will retrieve the `Client` object from the model. Given the `Client` object we will retrieve the policies associated to this `Client` and edit the policy based on the user input given.
+
+These classes are implemented this way because, like other commands, such as `EditCommand` we first have to retrieve the client list followed by executing the edit feature.
+
+`EditPolicyCommand` extends from `Command` by overriding methods from its parent class. The logic of this class follows the sequence.
+
+1. Get the `Client` based on the most updated client list in the `Model`.
+2. Edit the`Policy` associated to the given `Policy` index from the `Client` given.
+3. The `Policy` is edited based on the prefixes given by the user input.
+
+Note that not all prefixes of the policy have to be stated.
+
+`EditPolicyCommandParser` implements `Parser<EditPolicyCommand>`. The logic of this class follows the sequence.
+
+1. Get the client index from the preamble of the input.
+2. Get the policy index from the prefix "pi/".
+3. Get the policy name from the prefix "pn/", policy start date from the prefix "pd/", policy premium from the prefix "pf/", policy frequency from the prefix "pf/"
+
+The sequence diagram for the edit policy operation works similarly to how the delete policy operation works over [here](#delete-policy-feature)
 ## Undo/redo feature
 
 ### Implementation
 
-The undo/redo mechanism is facilitated by `VersionedAddressBook`. It stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
+The undo/redo mechanism is facilitated by `VersionedAddressBook`. It stored internally as an `addressBookStateList`
+and `currentStatePointer`. Additionally, it implements the
 following operations:
 
 * `VersionedAddressBook#commit()`— Saves the current address book state in its history.
@@ -319,17 +462,19 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **current choice:** Saves the entire address book.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
-  
+
 **Issue: Pass by reference:**
 
-* **what:** You may find previous versions of Address Books stored in `VersionedAddressBook#addressBookStateList` are changed also when current addressBook are being updated.
-* **Why:** 
-  * Objects (eg. Client, Policy) are passed by reference
-  * Objects are not deep copied.
+* **what:** You may find previous versions of Address Books stored in `VersionedAddressBook#addressBookStateList` are
+  changed also when current addressBook are being updated.
+* **Why:**
+    * Objects (eg. Client, Policy) are passed by reference
+    * Objects are not deep copied.
 * **How to solve:**
-  * Implement clone method for objects (`Client#cloneClient` and `UniquePolicyList#clone` are already implemented)
-  * When commands are making changes to Address Book in model, make sure changes are only made upon new deep copied objects.
-  * Don't directly make changes on original objects (eg.Client and Policy)
+    * Implement clone method for objects (`Client#cloneClient` and `UniquePolicyList#clone` are already implemented)
+    * When commands are making changes to Address Book in model, make sure changes are only made upon new deep copied
+      objects.
+    * Don't directly make changes on original objects (eg.Client and Policy)
 
 ### \[Proposed\] Data archiving
 

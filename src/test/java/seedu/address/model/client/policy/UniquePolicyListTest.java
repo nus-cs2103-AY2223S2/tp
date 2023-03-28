@@ -15,8 +15,8 @@ import seedu.address.model.client.exceptions.PolicyNotFoundException;
 
 class UniquePolicyListTest {
 
-    private PolicyName name = new PolicyName("Health");
-    private PolicyName name1 = new PolicyName("Life");
+    private PolicyName name = new PolicyName("Health Insurance");
+    private PolicyName name1 = new PolicyName("Life Insurance");
     private CustomDate date = new CustomDate("01.02.2023");
     private Premium premium = new Premium("200");
     private Frequency frequency = new Frequency("weekly");

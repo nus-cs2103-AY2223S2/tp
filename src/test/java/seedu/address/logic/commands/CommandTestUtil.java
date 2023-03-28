@@ -24,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditClientDescriptorBuilder;
+import seedu.address.testutil.EditPolicyDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -47,7 +48,7 @@ public class CommandTestUtil {
     public static final String VALID_POLICY_PREMIUM_AMY = "1000";
     public static final String VALID_POLICY_PREMIUM_BOB = "2000";
     public static final String VALID_POLICY_FREQUENCY_AMY = "monthly";
-    public static final String VALID_POLICY_FREQUENCY_BOB = "quarterly";
+    public static final String VALID_POLICY_FREQUENCY_BOB = "yearly";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -85,6 +86,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditClientDescriptor DESC_AMY;
     public static final EditCommand.EditClientDescriptor DESC_BOB;
 
+    public static final EditPolicyCommand.EditPolicyDescriptor DESC_POLICY_AMY;
+
+    public static final EditPolicyCommand.EditPolicyDescriptor DESC_POLICY_BOB;
+
     static {
         DESC_AMY = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -92,6 +97,13 @@ public class CommandTestUtil {
         DESC_BOB = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_POLICY_AMY = new EditPolicyDescriptorBuilder().withPolicyName(VALID_POLICY_NAME_AMY)
+                .withStartDate(VALID_POLICY_DATE_AMY).withPremium(VALID_POLICY_PREMIUM_AMY)
+                .withFrequency(VALID_POLICY_FREQUENCY_AMY).build();
+        DESC_POLICY_BOB = new EditPolicyDescriptorBuilder().withPolicyName(VALID_POLICY_NAME_BOB)
+                .withStartDate(VALID_POLICY_DATE_BOB).withPremium(VALID_POLICY_PREMIUM_BOB)
+                .withFrequency(VALID_POLICY_FREQUENCY_BOB).build();
+
     }
 
     /**

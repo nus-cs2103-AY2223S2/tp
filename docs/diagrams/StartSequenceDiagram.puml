@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR_T1
+participant ":UiManager" as UiManager UI_COLOR
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":ClientListPanel" as ClientListPanel UI_COLOR
+participant ":PolicyListPanel" as PolicyListPanel UI_COLOR
+participant ":ResultDisplay" as ResultDisplay UI_COLOR
+participant ":CommandBox" as CommandBox UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":Logic" as Logic LOGIC_COLOR
+end box
+
+[-> UiManager : start(primaryStage)
+activate UiManager
+
+create MainWindow
+
+UiManager -> MainWindow
+activate MainWindow
+
+MainWindow --> UiManager
+deactivate MainWindow
+
+UiManager -> MainWindow : fillInnerParts()
+activate MainWindow
+
+create ClientListPanel
+MainWindow -> ClientListPanel : new ClientListPanel(logic:getFilteredClientList)
+activate ClientListPanel
+
+ClientListPanel -> Logic : getFilteredClientList()
+activate Logic
+
+Logic --> ClientListPanel : filteredClientList
+deactivate Logic
+
+ClientListPanel --> MainWindow
+deactivate ClientListPanel
+
+create PolicyListPanel
+MainWindow -> PolicyListPanel : new PolicyListPanel(logic:getFilteredPolicyList)
+activate PolicyListPanel
+
+PolicyListPanel -> Logic : getFilteredPolicyList()
+activate Logic
+
+Logic --> PolicyListPanel : filteredPolicyList
+deactivate Logic
+PolicyListPanel --> MainWindow
+deactivate PolicyListPanel
+
+create ResultDisplay
+MainWindow -> ResultDisplay : new ResultDisplay()
+activate ResultDisplay
+
+ResultDisplay --> MainWindow
+deactivate ResultDisplay
+
+create CommandBox
+MainWindow -> CommandBox : new CommandBox(() -> executeCommand)
+activate CommandBox
+
+CommandBox --> MainWindow
+deactivate CommandBox
+
+MainWindow --> UiManager
+deactivate MainWindow
+
+[<--UiManager
+deactivate UiManager
+@enduml
