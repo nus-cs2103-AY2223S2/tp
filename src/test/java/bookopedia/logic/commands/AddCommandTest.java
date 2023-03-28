@@ -152,6 +152,11 @@ public class AddCommandTest {
         public void sort() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public int getIndexOf(Person person) {
+            throw new AssertionError("This method should not be called");
+        }
     }
 
     /**
@@ -193,6 +198,11 @@ public class AddCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public int getIndexOf(Person person) {
+            return personsAdded.lastIndexOf(person);
         }
     }
 

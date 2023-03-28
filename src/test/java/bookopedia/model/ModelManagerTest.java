@@ -100,6 +100,11 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getIndexOf_returnsNegative() {
+        assertEquals(modelManager.getIndexOf(null), -1);
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();

@@ -60,7 +60,8 @@ public class AddParcelCommand extends Command {
 
         model.setPerson(personToAddParcel, updatedPerson);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newParcel.toString(), personToAddParcel.getName()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, newParcel.toString(), personToAddParcel.getName()),
+                true, updatedPerson, model.getIndexOf(updatedPerson));
     }
 
     @Override

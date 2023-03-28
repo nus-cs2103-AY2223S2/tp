@@ -176,8 +176,10 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleView(Person person, int id) {
         viewDisplayPlaceHolder.getChildren().clear();
-        ViewDisplay viewDisplay = new ViewDisplay(person, id);
-        viewDisplayPlaceHolder.getChildren().add(viewDisplay.getRoot());
+        if (person != null) {
+            ViewDisplay viewDisplay = new ViewDisplay(person, id);
+            viewDisplayPlaceHolder.getChildren().add(viewDisplay.getRoot());
+        }
     }
 
     public PersonListPanel getPersonListPanel() {
