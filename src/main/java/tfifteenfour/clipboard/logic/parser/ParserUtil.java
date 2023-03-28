@@ -190,8 +190,8 @@ public class ParserUtil {
      */
     public static Task parseTask(String taskName) throws ParseException {
         requireNonNull(taskName);
-        String trimmedSession = taskName.trim();
-        return new Task(trimmedSession);
+        String trimmedTask = taskName.trim();
+        return new Task(trimmedTask);
     }
 
     /**
