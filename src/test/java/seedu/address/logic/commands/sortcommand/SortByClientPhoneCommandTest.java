@@ -1,4 +1,6 @@
 package seedu.address.logic.commands.sortcommand;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 
@@ -9,6 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.transformation.SortedList;
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -66,6 +69,22 @@ public class SortByClientPhoneCommandTest {
         expectedModel.sort(toSortList);
 
         assertCommandSuccess(sortCommand, originalModel, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void emptyClientTest_throwsCommandException() {
+        ModelManager emptyModel = new ModelManager();
+        boolean inOrder = true;
+        SortByClientPhoneCommand sortCommand = new SortByClientPhoneCommand(true);
+        String expectedMessage = Messages.MESSAGE_EMPTY_SORT;
+        assertCommandFailure(sortCommand, emptyModel, expectedMessage);
+    }
+
+    @Test
+    public void get_inOrder_test() {
+        boolean inOrder = true;
+        SortByClientPhoneCommand sortCommand = new SortByClientPhoneCommand(inOrder);
+        assertEquals(sortCommand.getInorder(), inOrder);
     }
 
 }

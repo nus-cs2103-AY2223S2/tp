@@ -60,6 +60,6 @@ public class SortByClientEmailCommand extends SortCommand {
 
     @Override
     public boolean getInorder() {
-        return false;
+        return inOrder;
     }
 }
