@@ -121,9 +121,13 @@ Example
 
 - Improved test cases for EditCommand and EditCommandParser. 
 
+- Enhanced the `EditCommand` and `AdvanceCommand` to check that `applicateDateTime` <= `interviewDateTime`.
+
 - **Documentation**:
 
   - Wrote the Commands Section for UserGuide.
+  
+  - Wrote the Feature Implementation Section for Developer Guide
 
 - **Community**:
 
