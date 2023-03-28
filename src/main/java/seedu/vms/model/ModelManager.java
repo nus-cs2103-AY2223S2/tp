@@ -246,6 +246,7 @@ public class ModelManager implements Model {
     @Override
     public void handleVaccinationChange(ValueChange<VaxType> change) {
         appointmentManager.handleVaccinationChange(change);
+        patientManager.handleVaccinationChange(change);
         updateVaccinationDetail(change);
     }
 
