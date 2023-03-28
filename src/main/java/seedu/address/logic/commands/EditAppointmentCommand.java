@@ -73,7 +73,7 @@ public class EditAppointmentCommand extends Command {
                         Collectors.toList());
 
         if (matchingAppointments.size() != 1) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_ID);
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_NAME);
         }
 
         Appointment appointmentToEdit = matchingAppointments.get(0);
