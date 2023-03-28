@@ -126,6 +126,17 @@ Format: `tags {keywords}...`
 
 Example: `tags AWS Tech`
 
+### Sorting by Salary
+Sort roles based on salary, in ascending/descending order.
+
+Format: `salary asc/desc`
+
+Example 1: `salary asc`
+![Deadline](images/SalaryCommand1.png)
+
+Example 2: `salary desc`
+![Deadline](images/SalaryCommand2.png)
+
 ### Sorting by Deadline
 Sort roles based on deadline, in ascending/descending order.
 
@@ -136,9 +147,6 @@ Example 1: `deadline asc`
 
 Example 2: `deadline desc`
 ![Deadline](images/DeadlineCommand2.png)
-
-### Sorting by Salary
-Sort roles based on salary, in ascending/descending order.
 
 ### Viewing a role
 Displays more details about a particular role.
@@ -177,7 +185,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | view     | view roleID (e.g. view 221574)          |
 | list     | list                                    |
 | exit     | bye                                     |
-| deadline | deadline asc/desc (e.g. deadline asc)   |
 | salary   | salary asc/desc (e.g. salary asc)       |
+| deadline | deadline asc/desc (e.g. deadline asc)   |
 | company  | company {keyword} (e.g. company google) |
 | tags     | tags {keyword} (e.g. tags AWS tech)     |
