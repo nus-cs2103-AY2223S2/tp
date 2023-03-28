@@ -236,7 +236,7 @@ Step 2. `ClearCommand` is executed, and a fresh new TaskBook replaces the curren
 
 Step 3. Results are shown immediately on UI.
 
-The following diagram summarises the sequence of events happening during the execution. 
+The following diagram summarises the sequence of events happening during the execution.
 ![ClearCommandSequenceDiagram](images/ClearCommandSequenceDiagram.png)
 
 ### 3.3 Delete Feature
@@ -365,7 +365,7 @@ The sequence diagram below summarizes what happens during this usage scenario:
 ![HelpCommandSequenceDiagram](images/HelpCommandSequenceDiagram.png)
 
 ### 3.8 Stats Feature
-Statistics is a useful way for users to get an overview of all open tasks in the TaskBook. Currently, `stats` supports 1 view - categorise by tags. 
+Statistics is a useful way for users to get an overview of all open tasks in the TaskBook. Currently, `stats` supports 1 view - categorise by tags.
 Entering `stats` counts the number of tasks that fall under each tag, and displays the count in descending order, for up to a maximum of 10 tags.
 
 Given below is an example usage scenario for `stats`.
@@ -458,8 +458,8 @@ Pros: Able to see the Events happening close to date.
 Cons: Have to scroll down to see SimpleTasks.
 
 ### 3.10 Alert Feature
-The `alert` feature is a new feature that when called will display tasks which fall within the specified **alert window**.  
-You can find the specific implementation in the `AlertCommandParser` class and the `AlertCommand` class.  
+The `alert` feature is a new feature that when called will display tasks which fall within the specified **alert window**.
+You can find the specific implementation in the `AlertCommandParser` class and the `AlertCommand` class.
 :bulb: Note: The addition of the `alert` feature includes a new attribute to all tasks `alertWindow`.
 
 Given below is an example usage scenario and how the find mechanism behaves.
@@ -666,7 +666,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a task 
+1. User requests to add a task
 2. TaskBook adds a task based on parameters supplied.
 
     Use case ends.
@@ -679,7 +679,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* 1b. The supplied name already exists in the TaskBook. 
+* 1b. The supplied name already exists in the TaskBook.
 
     * 3a2. TaskBook shows an error message
 
@@ -732,7 +732,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. TaskBook shows an error message.
 
     Use case resumes at step 2.
-  
+
 * 3b. The input syntax is invalid
 
   * 3a2. TaskBook shows an error message

@@ -17,7 +17,7 @@ With basic commands like `add`, `delete`, `edit`, and special commands like `ale
 
 **Get started with Clock-Work with this guide!**
 
-This guide is meant for the average Computer Science student, who is interested in using Clock-Work. 
+This guide is meant for the average Computer Science student, who is interested in using Clock-Work.
 
 If you like our product and want to contribute to it, consider looking at the [Developer Guide](DeveloperGuide.md) instead.
 
@@ -96,14 +96,14 @@ For easy reference and understanding, this guide utilizes some special formattin
 | --- | --- |
 | `lowercaseword` | Valid Clock-Work command words. They may or may not be used with additional inputs. |
 | `UPPERCASEWORD` | Compulsory inputs which must be supplied in order for the command to work. |
-| `[UPPERCASEWORD]` | Optional inputs which user can supply for a command. | 
+| `[UPPERCASEWORD]` | Optional inputs which user can supply for a command. |
 
 ### Inputs into Clock-Work
 
 Clock-Work provides some flexibility regarding the types of inputs it accepts. These are some information about inputting commands you may find useful.
 
 1. First word is assumed to be a command word (add/delete/list/find).
- 
+
 2. Words in ≈ are the parameters to be supplied by the user.<br>
 
 3. Items with `…`​ after them can be used multiple times including zero times.<br>
@@ -170,7 +170,7 @@ You can add multiple tasks with the same parameters except for name with this co
 
 :warning: Adding multiple **Tags** of the same tag name will only result in one tag!
 
-:warning: Adding more than 1 **Description** or **Effort** is accepted but only the last instance will be processed 
+:warning: Adding more than 1 **Description** or **Effort** is accepted but only the last instance will be processed.
 
 e.g. `add n/SampleTask t/CS2102 t/CS2102` will only register t/CS2102 once!
 
@@ -279,7 +279,7 @@ Format: `find n/NAME` OR `find d/DESCRIPTION` OR `find t/TAG...`
 Examples:
 * `find n/book` finds **Tasks** with name `read book` and `return books`
 
-:bulb: Here are some **PRO TIPS**: 
+:bulb: Here are some **PRO TIPS**:
 * For names and descriptions, you may use the `all/` prefix to search for a task that contains all of your inputs
     * e.g. `find all/ n/do n/homework` will match a task with a name called "do math homework.
 * For tags, if you do not specify the `all/` prefix, as long as one tag matches with one of the tags you are searching for, it will be considered matched.
