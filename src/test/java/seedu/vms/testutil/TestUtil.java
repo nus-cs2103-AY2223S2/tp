@@ -1,5 +1,7 @@
 package seedu.vms.testutil;
 
+import static seedu.vms.logic.parser.CliSyntax.DELIMITER;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.HashSet;
 
 import seedu.vms.commons.core.index.Index;
+import seedu.vms.logic.parser.Prefix;
 import seedu.vms.model.GroupName;
 import seedu.vms.model.Model;
 import seedu.vms.model.patient.Patient;
@@ -55,7 +58,6 @@ public class TestUtil {
         return model.getFilteredPatientList().get(index.getZeroBased()).getValue();
     }
 
-
     /**
      * Returns a set of {@code GroupName} of the specified size.
      */
@@ -67,11 +69,34 @@ public class TestUtil {
         return grpSet;
     }
 
-
     /**
      * Returns the command String to generate the given group set.
      */
     public static String toCommandString(HashSet<GroupName> groupSet) {
         return groupSet.toString().replaceAll("[\\[\\]]", "");
+    }
+
+    /**
+     * Returns the String[] to generate the given group set.
+     */
+    public static String[] toStringArr(HashSet<GroupName> groupSet) {
+        return groupSet.stream()
+                .map(GroupName::toString)
+                .toArray(String[]::new);
+    }
+
+    /**
+     * Returns the String with prefix to generate a command to test.
+     */
+    public static String toParseStrings(HashSet<GroupName> groupSet, Prefix prefix) {
+        StringBuilder sb = new StringBuilder();
+        for (GroupName groupName : groupSet) {
+            sb.append(DELIMITER);
+            sb.append(prefix.toString());
+            sb.append(" ");
+            sb.append(groupName.toString());
+            sb.append(" ");
+        }
+        return sb.toString();
     }
 }

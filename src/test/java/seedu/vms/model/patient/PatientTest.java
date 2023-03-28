@@ -11,9 +11,13 @@ import static seedu.vms.testutil.Assert.assertThrows;
 import static seedu.vms.testutil.TypicalPatients.ALICE;
 import static seedu.vms.testutil.TypicalPatients.BOB;
 
+import java.util.HashSet;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.vms.model.GroupName;
 import seedu.vms.testutil.PatientBuilder;
+import seedu.vms.testutil.TestUtil;
 
 public class PatientTest {
 
@@ -88,4 +92,19 @@ public class PatientTest {
         editedAlice = new PatientBuilder(ALICE).withAllergies(VALID_ALLERGY_GLUTEN).build();
         assertFalse(ALICE.equals(editedAlice));
     }
+
+    @Test
+    public void valueAboveLimitThrowException() {
+        HashSet<GroupName> allergyOverLimitSet = TestUtil.generateGroupSet(Patient.LIMIT_ALLERGIES + 1);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> new PatientBuilder().withName("Alice").withAllergies(TestUtil.toStringArr(allergyOverLimitSet))
+                        .build());
+
+        HashSet<GroupName> vaccineOverLimitSet = TestUtil.generateGroupSet(Patient.LIMIT_VACCINES + 1);
+        assertThrows(IllegalArgumentException.class,
+                () -> new PatientBuilder().withName("Bob").withVaccines(TestUtil.toStringArr(vaccineOverLimitSet))
+                        .build());
+    }
+
 }

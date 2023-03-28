@@ -27,11 +27,15 @@ import static seedu.vms.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.vms.logic.parser.CliSyntax.DELIMITER;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_ALLERGY;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 import static seedu.vms.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.vms.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.vms.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.vms.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
 import static seedu.vms.testutil.TypicalIndexes.INDEX_THIRD_PATIENT;
+
+import java.util.HashSet;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,8 +47,10 @@ import seedu.vms.model.GroupName;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
+import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.Phone;
 import seedu.vms.testutil.EditPatientDescriptorBuilder;
+import seedu.vms.testutil.TestUtil;
 
 public class EditCommandParserTest {
 
@@ -90,6 +96,26 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_BLOODTYPE_DESC, BloodType.MESSAGE_CONSTRAINTS); // invalid allergy
         assertParseFailure(parser, "1" + INVALID_ALLERGY_DESC, GroupName.MESSAGE_CONSTRAINTS); // invalid allergy
         assertParseFailure(parser, "1" + INVALID_VACCINE_DESC, GroupName.MESSAGE_CONSTRAINTS); // invalid vaccine
+
+        // Too many values
+        HashSet<GroupName> allergyOverLimitSet = TestUtil.generateGroupSet(Patient.LIMIT_ALLERGIES + 1);
+        Optional<String> allergyErrorMessage = Patient.validateParams(Optional.of(allergyOverLimitSet),
+                        Optional.empty());
+        assertParseFailure(parser, "1" + TestUtil.toParseStrings(allergyOverLimitSet, PREFIX_ALLERGY),
+                        allergyErrorMessage.get()); // invalid allergy
+
+        HashSet<GroupName> vaccineOverLimitSet = TestUtil.generateGroupSet(Patient.LIMIT_VACCINES + 1);
+        Optional<String> vaccineErrorMessage = Patient.validateParams(Optional.empty(),
+                        Optional.of(vaccineOverLimitSet));
+        assertParseFailure(parser, "1" + TestUtil.toParseStrings(vaccineOverLimitSet, PREFIX_VACCINATION),
+                        vaccineErrorMessage.get()); // invalid vaccine
+
+        Optional<String> bothErrorMessage = Patient.validateParams(Optional.of(allergyOverLimitSet),
+                        Optional.of(vaccineOverLimitSet));
+        assertParseFailure(parser, "1"
+                        + TestUtil.toParseStrings(vaccineOverLimitSet, PREFIX_VACCINATION)
+                        + TestUtil.toParseStrings(allergyOverLimitSet, PREFIX_ALLERGY),
+                        bothErrorMessage.get());
 
         // invalid phone followed by valid dob
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + DOB_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
