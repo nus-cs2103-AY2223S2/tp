@@ -21,7 +21,7 @@ public class UnlinkPilotToFlightCommand implements Command {
     private static final String PILOT_NOT_FOUND_EXCEPTION =
             "Pilot with id %s is not found.";
     private static final String DISPLAY_MESSAGE =
-            "Unlinked %s from flight %s.";
+            "Unlinked pilot %s from flight %s.";
 
     /**
      * The id of the flight

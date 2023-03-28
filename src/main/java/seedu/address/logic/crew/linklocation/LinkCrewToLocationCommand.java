@@ -17,7 +17,7 @@ import seedu.address.model.location.Location;
  */
 public class LinkCrewToLocationCommand implements Command {
     private static final String DISPLAY_MESSAGE =
-            "Linked %s to location %s.";
+            "Linked crew %s to location %s.";
 
     /**
      * The id of the location

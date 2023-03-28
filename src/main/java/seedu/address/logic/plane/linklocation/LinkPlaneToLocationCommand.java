@@ -17,7 +17,7 @@ import seedu.address.model.plane.Plane;
  */
 public class LinkPlaneToLocationCommand implements Command {
     private static final String DISPLAY_MESSAGE =
-            "Linked plane [%s] to flight [%s].";
+            "Linked plane [%s] to location [%s].";
 
     /**
      * The id of the location

@@ -21,7 +21,7 @@ public class UnlinkCrewToFlightCommand implements Command {
     private static final String CREW_NOT_FOUND_EXCEPTION =
             "Crew with id %s is not found.";
     private static final String DISPLAY_MESSAGE =
-            "Unlinked %s from flight %s.";
+            "Unlinked crew %s from flight %s.";
 
     /**
      * The flight to be unlinked from.

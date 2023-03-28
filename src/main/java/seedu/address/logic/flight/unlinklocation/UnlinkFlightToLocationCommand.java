@@ -23,7 +23,7 @@ public class UnlinkFlightToLocationCommand implements Command {
     private static final String LOCATION_NOT_FOUND_EXCEPTION =
             "Location with id %s is not found.";
     private static final String DISPLAY_MESSAGE =
-            "Unlinked %s from flight %s.";
+            "Unlinked location %s from flight %s.";
 
     /**
      * The flight to be unlinked.

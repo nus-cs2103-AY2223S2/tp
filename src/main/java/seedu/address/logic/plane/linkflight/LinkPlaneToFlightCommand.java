@@ -22,7 +22,7 @@ public class LinkPlaneToFlightCommand implements Command {
     private static final String PLANE_NOT_FOUND_EXCEPTION =
             "Plane with id %s is not found.";
     private static final String DISPLAY_MESSAGE =
-            "Linked %s to flight %s.";
+            "Linked plane %s to flight %s.";
 
     /**
      * The id of the flight
