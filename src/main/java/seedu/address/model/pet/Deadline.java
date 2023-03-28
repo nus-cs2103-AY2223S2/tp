@@ -32,7 +32,7 @@ public class Deadline {
      */
     public Deadline(String description, LocalDateTime deadline) {
         requireNonNull(description);
-        checkArgument(isValidDeadline(description, deadline), MESSAGE_CONSTRAINTS);
+        //checkArgument(isValidDeadline(description, deadline), MESSAGE_CONSTRAINTS);
         this.description = description;
         this.deadline = deadline;
     }

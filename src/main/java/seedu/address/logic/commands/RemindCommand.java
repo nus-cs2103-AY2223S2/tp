@@ -14,7 +14,7 @@ public class RemindCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Here are all the upcoming reminders!";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all pets whose deadline is within 2 days "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all pets whose deadline is within 3 days "
             + "and displays them as a list with index numbers.\n"
             + "Example: " + COMMAND_WORD + " ";
 
