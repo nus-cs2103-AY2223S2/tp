@@ -28,7 +28,7 @@ import seedu.address.logic.core.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-    private static final String WINGMAN_LOGO = "/images/wingman.png";
+    private static final String WINGMAN_LOGO = "/images/Wingman.png";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
