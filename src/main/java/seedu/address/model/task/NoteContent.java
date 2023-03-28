@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class NoteContent {
 
-    public static final String MESSAGE_CONSTRAINTS = "NoteList content should not be blank.";
+    public static final String MESSAGE_CONSTRAINTS = "NoteList content can contain at most 55 words. "
+            + "It should not be blank.";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -34,7 +35,7 @@ public class NoteContent {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidContent(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.length() <= 55 && test.matches(VALIDATION_REGEX);
     }
 
 
