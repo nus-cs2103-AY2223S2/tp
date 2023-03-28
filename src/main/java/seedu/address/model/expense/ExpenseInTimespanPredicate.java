@@ -22,6 +22,15 @@ public class ExpenseInTimespanPredicate implements Predicate<Expense> {
         this.earliestDate = ParserUtil.getDateByTimespan(timespan);
     }
 
+    /**
+     * Creates an {@code ExpenseInTimespanPredicate} which returns true if the given date is after {@code earliestDate}.
+     * @param earliestDate LocalDate of the earliestDate this predicate will return True for
+     */
+    public ExpenseInTimespanPredicate(LocalDate earliestDate) {
+        this.timespan = null;
+        this.earliestDate = earliestDate;
+    }
+
     @Override
     public boolean test(Expense expense) {
         return expense.getDate().isAfter(this.earliestDate) || expense.getDate().isEqual(this.earliestDate);
