@@ -8,7 +8,7 @@ import seedu.loyaltylift.commons.exceptions.IllegalValueException;
  * Represents a Customer's points in the address book.
  * The minimum points a customer can have is 0.
  */
-public class Points {
+public class Points implements Comparable<Points> {
     public static final Integer MAXIMUM_POINTS = 999999;
     public static final Integer MINIMUM_POINTS = 0;
 
@@ -107,5 +107,11 @@ public class Points {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(Points o) {
+        int i = value.compareTo(o.value);
+        return (i != 0) ? i : cumulative.compareTo(o.cumulative);
     }
 }

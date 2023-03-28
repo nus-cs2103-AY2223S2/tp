@@ -1,6 +1,7 @@
 package seedu.loyaltylift.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -87,6 +88,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredCustomerList(Predicate<Customer> predicate);
+
+    /**
+     * Sorts the filtered customer list using the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortFilteredCustomerList(Comparator<Customer> comparator);
 
     /**
      * Returns true if a order with the same identity as {@code order} exists in the address book.

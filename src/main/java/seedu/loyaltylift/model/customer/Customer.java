@@ -3,6 +3,7 @@ package seedu.loyaltylift.model.customer;
 import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -17,6 +18,11 @@ import seedu.loyaltylift.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Customer {
+
+    // Comparators
+    public static final Comparator<Customer> SORT_NAME = Comparator.comparing(Customer::getName);
+    public static final Comparator<Customer> SORT_POINTS = Comparator.comparing(Customer::getPoints)
+            .reversed().thenComparing(SORT_NAME);
 
     // Identity fields
     private final Name name;

@@ -228,7 +228,18 @@ We settled on just a **set** and **append** command as deleting a note can be do
 
   This could be done inline using a special character (e.g. `#`) within the note itself, where the system would automatically detect the tags.
 
-  We can then provide an additional command to view all the notes with a specific tag, along with their associated customer/order.  
+  We can then provide an additional command to view all the notes with a specific tag, along with their associated customer/order.
+
+### Sorting feature
+
+Customers can be sorted either by name or by points. We decided to implement the sorting as a parameter for the `listc` command.
+
+The sorting is done by adding a JavaFX `SortedList` to the `Model`, with the original `FilteredList` as its source. This `SortedList` is then used to display the customer list in place of the `FilteredList`.
+
+The `SortedList` can be sorted by a `Comparator`.
+
+* The `Comparator`s for each sorting option is provided as static constants by the `Customer` class.
+* To facilitate the comparators, the relevant attribute classes (i.e. `Name` and `Points`) will also implement the `Comparable` interface.
 
 
 ### Order Status

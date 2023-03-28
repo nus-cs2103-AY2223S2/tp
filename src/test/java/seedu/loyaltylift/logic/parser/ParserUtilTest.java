@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
+import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Phone;
@@ -28,6 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_CUSTOMER_TYPE = "person";
+    private static final String INVALID_SORT_OPTION = "invalid";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -37,6 +39,8 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_CUSTOMER_TYPE_IND = "ind";
     private static final String VALID_CUSTOMER_TYPE_ENT = "ent";
+    private static final String VALID_SORT_OPTION_NAME = "name";
+    private static final String VALID_SORT_OPTION_POINTS = "points";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -213,5 +217,21 @@ public class ParserUtilTest {
     @Test
     public void parseCustomerType_invalidCustomerType_throwsParseException() throws Exception {
         assertThrows(ParseException.class, () -> ParserUtil.parseCustomerType(INVALID_CUSTOMER_TYPE));
+    }
+
+    @Test
+    public void parseSortOption_validSortOption() throws Exception {
+        assertEquals(ParserUtil.parseSortOption(VALID_SORT_OPTION_NAME), Customer.SORT_NAME);
+        assertEquals(ParserUtil.parseSortOption(VALID_SORT_OPTION_POINTS), Customer.SORT_POINTS);
+    }
+
+    @Test
+    public void parseSortOption_null_throwsNullPointerException() throws Exception {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSortOption(null));
+    }
+
+    @Test
+    public void parseSortOption_invalidSortOption_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSortOption(INVALID_SORT_OPTION));
     }
 }

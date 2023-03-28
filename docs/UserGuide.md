@@ -94,7 +94,14 @@ Examples:
 
 Shows a list of all customers.
 
-Format: `listc`
+Format: `listc [s/{name|points}]`
+
+* Lists all customer with the specified sorting option.
+* Be default, customers are sorted by name
+
+Examples:
+* `listc` lists all customers sorted by name
+* `listc s/points` lists all customers sorted by points
 
 ### View a customer : `viewc`
 

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.model.Model;
+import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerNameContainsKeywordsPredicate;
 
 /**
@@ -28,6 +29,7 @@ public class FindCustomerCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.sortFilteredCustomerList(Customer.SORT_NAME);
         model.updateFilteredCustomerList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW, model.getFilteredCustomerList().size()));
