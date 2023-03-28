@@ -18,7 +18,7 @@ PetPal is the all-in-one app for managing all the pets in your daycare center or
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `PetPal.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `PetPal.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-2/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 

@@ -2,13 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.pet.Pet;
 
-import java.util.List;
 
 /**
  * Lists all pets in the pet list to the user.
@@ -29,6 +30,12 @@ public class ChangeCostCommand extends Command {
     final double rate;
     final double flatCost;
 
+    /**
+     * Constructs a {@code ChangeCostCommand}
+     * @param targetIndex Index
+     * @param rate double
+     * @param flatCost double
+     */
     public ChangeCostCommand(Index targetIndex, double rate, double flatCost) {
         this.targetIndex = targetIndex;
         this.rate = rate;

@@ -5,14 +5,22 @@ import static java.util.Objects.requireNonNull;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+/**
+ * Cost object with fields (LocalDateTime)
+ * Represents the cost calculated from a set rate
+ */
 public class Cost {
 
-    public double rate;
+    private double rate;
 
-    public final LocalDateTime timeStamp;
+    private final LocalDateTime timeStamp;
 
-    public double flatCost;
+    private double flatCost;
 
+    /**
+     * Constructs a {@code Cost}
+     * @param timeStamp LocalDateTime
+     */
     public Cost(LocalDateTime timeStamp) {
         requireNonNull(timeStamp);
         this.timeStamp = timeStamp;
@@ -28,13 +36,20 @@ public class Cost {
         this.flatCost = flatCost;
     }
 
+    /**
+     * Returns the integer cost amount calculated from the rate and flatCost at the invoked time
+     */
     public double calculate() {
-        double amount = Duration.between(timeStamp, LocalDateTime.now()).getSeconds()  * rate + flatCost;
+        double amount = Duration.between(timeStamp, LocalDateTime.now()).getSeconds() * rate + flatCost;
         return Math.max(amount, 0.00);
     }
 
+    /**
+     * toString method
+     * @return String with the cost amount rounded to 2 decimal places
+     */
     public String toString() {
         double amount = calculate();
-        return "Cost: $" + Math.round(amount * 100.00) /100.00;
+        return "Cost: $" + Math.round(amount * 100.00) / 100.00;
     }
 }
