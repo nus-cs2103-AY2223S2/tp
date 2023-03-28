@@ -30,7 +30,6 @@
          <root>
             <BorderPane maxWidth="400.0" prefWidth="400.0" styleClass="background">
                <bottom>
-                     
                         <ButtonBar buttonMinWidth="50.0" maxWidth="1.7976931348623157E308" styleClass="background" BorderPane.alignment="CENTER">
                      <buttons>
                         <Button cancelButton="true" mnemonicParsing="false" onAction="#handleExit" text="Cancel" />
