@@ -6,6 +6,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
+import seedu.address.model.tank.readings.AmmoniaLevel;
 import seedu.address.model.tank.readings.UniqueIndividualAmmoniaLevels;
 
 /**
@@ -47,7 +48,7 @@ public class JsonAdaptedIndividualAmmoniaLevels {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted Tank.
      */
-    public Tank toModelType() throws IllegalValueException {
+    public UniqueIndividualAmmoniaLevels toModelType() throws IllegalValueException {
         if (tankName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TankName.class.getSimpleName()));
@@ -58,12 +59,27 @@ public class JsonAdaptedIndividualAmmoniaLevels {
         final TankName modelTankName = new TankName(tankName);
         Tank tank = new Tank(modelTankName, new AddressBook());
 
+        String[] values = commaSeperatedValues.split(",");
+        String[] dates = commaSeperatedDates.split(",");
         //create unique adapted indi list
-
+        UniqueIndividualAmmoniaLevels ret = new UniqueIndividualAmmoniaLevels(tank);
         //for loop, create ammonia levels, add to list
-
+        for (int i = 0; i < values.length; i++) {
+            String curValue = values[i];
+            String curDate = dates[i];
+            if (curValue == null || curDate == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        AmmoniaLevel.class.getSimpleName()));
+            }
+            if (!AmmoniaLevel.isValidAmmoniaLevel(curValue, curDate)) {
+                throw new IllegalValueException(AmmoniaLevel.MESSAGE_CONSTRAINTS);
+            }
+            AmmoniaLevel curLevel = new AmmoniaLevel(curValue, curDate, tank);
+            ret.add(curLevel);
+        }
         //set list's tank
-
+        ret.setTank(tank);
         //return list
+        return ret;
     }
 }
