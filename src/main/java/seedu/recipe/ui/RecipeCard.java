@@ -5,17 +5,24 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.Optional;
 import java.util.Set;
 
 //JavaFX libraries
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 //Custom Imports
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.Step;
@@ -78,6 +85,9 @@ public class RecipeCard extends UiPart<Region> {
     @FXML
     private GridPane steps;
 
+    @FXML
+    private VBox borderContainer;
+
     private final CommandExecutor commandExecutor;
     /**
      * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display
@@ -86,6 +96,7 @@ public class RecipeCard extends UiPart<Region> {
      */
     public RecipeCard(Recipe recipe, int displayedIndex, CommandExecutor executor) {
         super(FXML);
+        borderContainer.minHeightProperty().bind(this.getRoot().heightProperty().multiply(0.8));
         this.recipe = recipe;
         this.commandExecutor = executor;
 
@@ -136,8 +147,10 @@ public class RecipeCard extends UiPart<Region> {
             if (input == KeyCode.DELETE
                     || input == KeyCode.D
                     || input == KeyCode.BACK_SPACE) {
-                DeleteRecipeEvent deleteEvent = new DeleteRecipeEvent(displayedIndex);
-                cardPane.fireEvent(deleteEvent);
+                if (showConfirmationDialog()) {
+                    DeleteRecipeEvent deleteEvent = new DeleteRecipeEvent(displayedIndex);
+                    cardPane.fireEvent(deleteEvent);
+                }
             } else if (event.getCode() == KeyCode.P) {
                 RecipePopup popup = new RecipePopup(recipe, displayedIndex);
                 popup.display();
@@ -228,4 +241,63 @@ public class RecipeCard extends UiPart<Region> {
         return id.getText().equals(card.id.getText())
                 && recipe.equals(card.recipe);
     }
+    
+    private boolean showConfirmationDialog() {
+        Stage confirmationDialog = new Stage();
+        confirmationDialog.initModality(Modality.APPLICATION_MODAL);
+        confirmationDialog.setTitle("Confirm Deletion");
+    
+        AtomicBoolean confirmed = new AtomicBoolean(false);
+
+        Label label = new Label("Are you sure you want to delete this recipe?");
+        Button confirmButton = new Button("Confirm");
+        Button cancelButton = new Button("Cancel");
+    
+        confirmButton.setOnAction(e -> {
+            confirmed.set(true);
+            confirmationDialog.close();
+        });
+    
+        cancelButton.setOnAction(e -> confirmationDialog.close());
+    
+        confirmButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                confirmed.set(true);
+                confirmationDialog.close();
+            }
+        });
+    
+        cancelButton.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                confirmed.set(false);
+                confirmationDialog.close();
+            }
+        });
+    
+        HBox buttons = new HBox(10);
+        buttons.getChildren().addAll(confirmButton, cancelButton);
+        buttons.setAlignment(Pos.CENTER);
+    
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(label, buttons);
+        layout.setAlignment(Pos.CENTER);
+    
+        Scene scene = new Scene(layout, 300, 200);
+        confirmationDialog.setScene(scene);
+        
+        scene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                confirmed.set(true);
+                confirmationDialog.close();
+            } else if (event.getCode() == KeyCode.ESCAPE) {
+                confirmed.set(false);
+                confirmationDialog.close();
+            }
+        });
+    
+        confirmationDialog.showAndWait();
+    
+        return confirmed.get();
+    }    
+    
 }
