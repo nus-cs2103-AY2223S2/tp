@@ -70,7 +70,7 @@ Should you have more questions, you may proceed to our [FAQ](#faq). We hope it w
 
 Whenever you are in doubt, forget the command formats for any feature, need help troubleshooting
 or you simply want to maximise your use of this application, do remember to revisit this User Guide.
-Thank you for choosing CoDoc, and we hope you have a pleasant experience:thumbs-up:
+Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
