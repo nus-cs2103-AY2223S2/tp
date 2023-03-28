@@ -23,8 +23,6 @@ public class EndAge extends Age implements End<Age> {
      * @param p
      */
     public boolean isAfter(Person p) {
-        String a1 = value;
-        String a2 = p.getAge().value;
-        return a1.compareTo(a2) >= 0;
+        return AGE_COMPARATOR.compare(this, p.getAge()) >= 0;
     }
 }

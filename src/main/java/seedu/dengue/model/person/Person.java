@@ -52,6 +52,7 @@ public class Person {
         return age;
     }
 
+
     public Person getCopy() {
         return new Person(this.name, this.postal, this.date, this.age, this.variants);
     }

@@ -3,6 +3,8 @@ package seedu.dengue.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.dengue.commons.util.AppUtil.checkArgument;
 
+import seedu.dengue.model.range.AgeComparator;
+
 /**
  * Represents a Person's age in the Dengue Hotspot Tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidAge(String)}
@@ -11,6 +13,7 @@ public class Age {
 
     public static final String MESSAGE_CONSTRAINTS = "Age must be an integer between 0 and 199 inclusive.";
 
+    protected static final AgeComparator AGE_COMPARATOR = new AgeComparator();
     /*
      * The first character of the age must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.

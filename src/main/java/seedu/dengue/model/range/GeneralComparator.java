@@ -1,4 +1,4 @@
-package seedu.dengue.model.person;
+package seedu.dengue.model.range;
 
 import java.util.Comparator;
 
