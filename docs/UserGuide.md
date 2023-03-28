@@ -2,8 +2,6 @@
 layout: page
 title: User Guide
 ---
-# HMHero User Guide
-
 1. [About HMHero](#1-about-hmhero)
 2. [Features](#2-features)
    * 2.1. [Applicant Management System](#21-applicant-management-system)
