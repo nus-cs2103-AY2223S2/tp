@@ -27,8 +27,8 @@ public class AddEventCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "CS2103T Lecture "
             + PREFIX_START_DATE_TIME + "2023-03-10 1600 "
-            + PREFIX_END_DATE_TIME + "2023-03-10 1800"
-            + PREFIX_RECURRENCE + "weekly ";
+            + PREFIX_END_DATE_TIME + "2023-03-10 1800 "
+            + PREFIX_RECURRENCE + " weekly ";
 
     private static final String MESSAGE_SUCCESS = "New event added: %1$s";
     private static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the Calendar!";
