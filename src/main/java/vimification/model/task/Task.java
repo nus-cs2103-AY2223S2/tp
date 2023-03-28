@@ -3,10 +3,14 @@ package vimification.model.task;
 import static java.util.Objects.requireNonNull;
 import static vimification.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Set;
+import java.util.HashSet;
+
 public abstract class Task {
 
     private String description;
     private boolean isDone;
+    private Set<String> tags;
     private Priority priority;
 
     /**
@@ -16,6 +20,7 @@ public abstract class Task {
         requireAllNonNull(description, priority);
         this.description = description;
         this.isDone = isDone;
+        this.tags = new HashSet<>();
         this.priority = priority;
     }
 
@@ -59,6 +64,21 @@ public abstract class Task {
 
     public boolean containsKeyword(String keyword) {
         return description.contains(keyword);
+    }
+
+    public void addTag(String newTag) {
+        requireNonNull(newTag);
+        newTag = newTag.toLowerCase();
+        if (tags.contains(newTag)) {
+            throw new IllegalArgumentException("Tag already exists");
+        }
+        tags.add(newTag);
+    }
+
+    public void removeTag(String tag) {
+        if (!tags.remove(tag)) {
+            throw new IllegalArgumentException("Tag does not exist");
+        }
     }
 
     public boolean checkPriority(Priority priority) {
