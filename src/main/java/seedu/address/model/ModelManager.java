@@ -175,6 +175,10 @@ public class ModelManager implements Model {
     @Override
     public void setEvent(Event target, Event editedEvent) {
         this.userData.setEvent(target, editedEvent);
+
+    @Override
+    public void deleteEvent(Event event) {
+        this.userData.deleteEvent(event);
     }
 
     @Override
@@ -190,6 +194,11 @@ public class ModelManager implements Model {
     @Override
     public void untagPersonFromEvent(Index index, Person p) {
         this.userData.untagPersonFromEvent(index, p);
+    }
+
+    @Override
+    public boolean isPersonTaggedToEvent(Index index, Person p) {
+        return this.userData.isPersonTaggedToEvent(index, p);
     }
     //=========== Filtered Person List Accessors =============================================================
 

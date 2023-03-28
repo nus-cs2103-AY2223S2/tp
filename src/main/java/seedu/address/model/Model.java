@@ -93,6 +93,8 @@ public interface Model {
      */
     boolean hasPersonWithName(String name);
 
+    boolean isPersonTaggedToEvent(Index index, Person p);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -130,6 +132,10 @@ public interface Model {
     void addEvent(Event event);
 
     void setEvent(Event target, Event editedEvent);
+
+    /** Deletes {@code event} to the event list */
+    void deleteEvent(Event event);
+
 
     /** Gets list of all events */
     ObservableList<Event> getEvents();

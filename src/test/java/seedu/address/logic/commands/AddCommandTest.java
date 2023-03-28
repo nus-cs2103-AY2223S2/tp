@@ -204,15 +204,28 @@ public class AddCommandTest {
         public void setEvent(Event target, Event editedEvent) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void deleteEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public ObservableList<Event> getEvents() {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
         public void tagPersonToEvent(Index index, Person p) {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public boolean isPersonTaggedToEvent(Index index, Person p) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void untagPersonFromEvent(Index index, Person p) {
             throw new AssertionError("This method should not be called.");
         }
