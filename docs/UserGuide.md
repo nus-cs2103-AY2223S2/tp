@@ -221,7 +221,7 @@ Examples:
 
 [//]: # (add image later)
 
-### Common Functions
+### Common Commands
 
 #### Borrowing a book : `borrow`
 
