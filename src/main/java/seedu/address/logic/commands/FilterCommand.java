@@ -47,10 +47,9 @@ public class FilterCommand extends Command {
             + PREFIX_SCHEDULE + "monday "
             + PREFIX_STARTTIME + "08:30 "
             + PREFIX_ENDTIME + "10:30 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "friends ";
 
-    public static final String MESSAGE_NOT_FILTERED = "At least one field must be provided to filter.";
+    public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
 
     private final FieldContainsKeywordsPredicate predicate;
     private final FilterTuteeDescription filterTuteeDescription;
@@ -80,7 +79,7 @@ public class FilterCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the tutee with. Each non-empty field value will replace the
+     * Stores the details to filter the tutee with. Each non-empty field value will replace the
      * corresponding field value of the tutee.
      */
     public static class FilterTuteeDescription {
@@ -92,7 +91,7 @@ public class FilterCommand extends Command {
         public String scheduleToFilter;
         public String startTimeToFilter;
         public String endTimeToFilter;
-        public List<String> tagToFilter;
+        public String tagToFilter;
 
         /**
          * FilterTuteeDescription constructor.
@@ -106,7 +105,7 @@ public class FilterCommand extends Command {
             this.scheduleToFilter = "";
             this.startTimeToFilter = "";
             this.endTimeToFilter = "";
-            this.tagToFilter = Collections.emptyList();
+            this.tagToFilter = "";
         }
 
         /**
@@ -181,11 +180,11 @@ public class FilterCommand extends Command {
             return endTimeToFilter;
         }
 
-        public void setTagToFilter(List<String> tags) {
-            tagToFilter = tags;
+        public void setTagToFilter(String tag) {
+            tagToFilter = tag;
         }
 
-        public List<String> getTagToFilter() {
+        public String getTagToFilter() {
             return tagToFilter;
         }
 

@@ -2,14 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -64,6 +57,9 @@ public class FilterCommandParser implements Parser<FilterCommand>  {
         }
         if (argMultimap.getValue(PREFIX_ENDTIME).isPresent()) {
             filterTuteeDescription.setEndTimeToFilter(argMultimap.getValue(PREFIX_ENDTIME).get());
+        }
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            filterTuteeDescription.setTagToFilter(argMultimap.getValue(PREFIX_TAG).get());
         }
 
         if (!filterTuteeDescription.isAnyFieldFiltered()) {
