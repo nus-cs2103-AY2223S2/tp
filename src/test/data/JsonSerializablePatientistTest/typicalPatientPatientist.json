@@ -1,20 +1,57 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPatients#getTypicalPatientist()",
-  "persons" : [ {
-    "name" : "Adam Sandler",
-    "phone" : "94351253",
-    "email" : "adam@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "Block1WardA" ],
-    "status" : "Doing fine",
-    "id" : "G73829173B"
+  "wards" : [ {
+    "name" : "Block A Ward 1",
+    "patients" : [ {
+      "name" : "Amy Bee",
+      "id" : "A12345678B",
+      "phone" : "11111111",
+      "email" : "amy@example.com",
+      "address" : "Block 312, Amy Street 1",
+      "status" : "",
+      "tagged" : [ "Patient" ]
+    }, {
+      "name" : "Charlie Sandler",
+      "id" : "G487659645D",
+      "phone" : "2136784",
+      "email" : "charlie@example.com",
+      "address" : "123, abc, #08-111",
+      "status" : "Doing good",
+      "tagged" : [ "Patient" ]
+    }],
+    "staffs" : [ {
+      "name" : "Charles Lee",
+      "id" : "G487659645D",
+      "phone" : "2136784",
+      "email" : "leecharles@example.com",
+      "address" : "123, abc, #08-111",
+      "tagged" : [ "Staff" ]
+    } ]
   }, {
-    "name" : "Charlie Sandler",
-    "phone" : "2136784",
-    "email" : "charlie@example.com",
-    "address" : "123, abc, #08-111",
-    "tagged" : [ "Block2WardA" ],
-    "status" : "Doing good",
-    "id" : "G487659645D"
-  }]
+    "name" : "Block A Ward 2",
+    "patients" : [ {
+      "name" : "Adam Sandler",
+      "id" : "G73829173B",
+      "phone" : "94351253",
+      "email" : "adam@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "status" : "Doing fine",
+      "tagged" : [ "Patient" ]
+    }, {
+      "name" : "Bob Choo",
+      "id" : "Y78932734N",
+      "phone" : "222222222",
+      "email" : "bob@example.com",
+      "address" : "Block 123, Bobby Street 3",
+      "tagged" : [ "Patient" ]
+    }],
+    "staffs" : [  {
+      "name" : "Dacia Chin",
+      "id" : "L73825263J",
+      "phone" : "96128393",
+      "email" : "daciachin@example.com",
+      "address" : "970, Hindhede St, #07-27",
+      "tagged" : [ "Staff" ]
+    } ]
+  } ]
 }

@@ -1,0 +1,38 @@
+@startuml
+!include ../style.puml
+package "UI" {
+    interface Ui
+    class UiManager
+    class MainWindow
+    class StatusBarFooter
+    class ResultDisplay
+    class CommandBox
+    class HelpWindow
+    class PersonListPanel
+    class PersonCard
+    class DetailsPopup
+    abstract class UiPart
+}
+package "Logic"
+package "Model"
+
+UiManager <|-- Ui
+MainWindow "1" <-- UiManager
+UiPart <|-- MainWindow
+StatusBarFooter "1" *-- MainWindow
+ResultDisplay "1" *-- MainWindow
+CommandBox "1" *-- MainWindow
+DetailsPopup "1" *-- MainWindow
+HelpWindow "0..1" *-- MainWindow
+PersonListPanel "1" *-- MainWindow
+PersonCard "*" *-- PersonListPanel
+StatusBarFooter <|-- UiPart
+ResultDisplay <|-- UiPart
+CommandBox <|-- UiPart
+DetailsPopup <|-- UiPart
+HelpWindow <|-- UiPart
+PersonListPanel <|-- UiPart
+PersonCard <|-- UiPart
+Logic <-- UiManager
+Model <.. PersonCard
+@enduml

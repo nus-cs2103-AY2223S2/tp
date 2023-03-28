@@ -7,6 +7,7 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_WARD;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -22,6 +23,7 @@ import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.tag.Tag;
+import seedu.patientist.model.ward.Ward;
 
 /**
  * Parses input arguments and creates a new AddStaffCommand object
@@ -36,10 +38,10 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
     public AddStaffCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ID,
-                        PREFIX_ADDRESS, PREFIX_TAG);
+                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_WARD);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ID, PREFIX_ADDRESS)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ID, PREFIX_ADDRESS,
+                PREFIX_WARD) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStaffCommand.MESSAGE_USAGE));
         }
 
@@ -50,9 +52,10 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
         IdNumber id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
         Set<Tag> tagList = new HashSet<>(Arrays.asList(new Tag("Staff")));
         tagList.addAll(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
+        Ward ward = ParserUtil.parseWard(argMultimap.getValue(PREFIX_WARD).get());
 
         Staff staff = new Staff(name, phone, email, id, address, tagList);
-        return new AddStaffCommand(staff);
+        return new AddStaffCommand(ward.getWardName(), staff);
     }
 
     /**

@@ -7,7 +7,7 @@ import static seedu.patientist.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVER
 import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.patientist.testutil.TypicalPatients.ADAM;
 import static seedu.patientist.testutil.TypicalPatients.CHARLIE;
-import static seedu.patientist.testutil.TypicalPatients.getTypicalPatientist;
+import static seedu.patientist.testutil.TypicalWards.getTypicalPatientist;
 
 import java.util.Arrays;
 import java.util.Collections;

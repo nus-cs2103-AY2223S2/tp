@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.patientist.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.patientist.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.patientist.testutil.Assert.assertThrows;
-import static seedu.patientist.testutil.TypicalPersons.ALICE;
-import static seedu.patientist.testutil.TypicalPersons.getTypicalPatientist;
+import static seedu.patientist.testutil.TypicalPatients.AMY;
+import static seedu.patientist.testutil.TypicalWards.getTypicalPatientist;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,7 +20,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.exceptions.DuplicatePersonException;
-import seedu.patientist.testutil.PersonBuilder;
+import seedu.patientist.model.ward.Ward;
+import seedu.patientist.testutil.PatientBuilder;
 
 public class PatientistTest {
 
@@ -46,9 +47,8 @@ public class PatientistTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
+        Person editedAmy = new PatientBuilder(AMY).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        List<Person> newPersons = Arrays.asList(AMY, editedAmy);
         PatientistStub newData = new PatientistStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> patientist.resetData(newData));
@@ -61,20 +61,23 @@ public class PatientistTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(patientist.hasPerson(ALICE));
+        assertFalse(patientist.hasPerson(AMY));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        patientist.addPerson(ALICE);
-        assertTrue(patientist.hasPerson(ALICE));
+        Ward ward = new Ward("ward");
+        patientist.addWard(ward);
+        patientist.addPatient(AMY, ward);
+        assertTrue(patientist.hasPerson(AMY));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        patientist.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Ward ward = new Ward("ward");
+        patientist.addWard(ward);
+        patientist.addPatient(AMY, ward);
+        Person editedAlice = new PatientBuilder(AMY).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(patientist.hasPerson(editedAlice));
     }
 
@@ -88,6 +91,7 @@ public class PatientistTest {
      */
     private static class PatientistStub implements ReadOnlyPatientist {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Ward> wards = FXCollections.observableArrayList();
 
         PatientistStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -96,6 +100,26 @@ public class PatientistTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public void updatePersonList() {
+            return;
+        }
+
+        @Override
+        public ObservableList<Ward> getWardList() {
+            return wards;
+        }
+
+        @Override
+        public ObservableList<Person> getPatientListInWard(Ward ward) {
+            return null;
+        }
+
+        @Override
+        public ObservableList<Person> getStaffListInWard(Ward ward) {
+            return null;
         }
     }
 

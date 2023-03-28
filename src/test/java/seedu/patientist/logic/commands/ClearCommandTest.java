@@ -1,7 +1,7 @@
 package seedu.patientist.logic.commands;
 
 import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.patientist.testutil.TypicalPersons.getTypicalPatientist;
+import static seedu.patientist.testutil.TypicalWards.getTypicalPatientist;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +25,7 @@ public class ClearCommandTest {
         Model model = new ModelManager(getTypicalPatientist(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalPatientist(), new UserPrefs());
         expectedModel.setPatientist(new Patientist());
+        expectedModel.getPatientist().updatePersonList();
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

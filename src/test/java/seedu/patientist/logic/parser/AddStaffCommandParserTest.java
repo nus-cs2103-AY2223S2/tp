@@ -32,6 +32,7 @@ import static seedu.patientist.logic.parser.CommandParserTestUtil.assertParseFai
 import static seedu.patientist.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.patientist.testutil.TypicalStaff.AMY;
 import static seedu.patientist.testutil.TypicalStaff.BOB;
+import static seedu.patientist.testutil.TypicalWards.VALID_WARD_NAME;
 
 import org.junit.jupiter.api.Test;
 
@@ -55,38 +56,43 @@ public class AddStaffCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB, new AddStaffCommand(expectedStaff));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB,
+                new AddStaffCommand(VALID_WARD_NAME, expectedStaff));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB, new AddStaffCommand(expectedStaff));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB,
+                new AddStaffCommand(VALID_WARD_NAME, expectedStaff));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB, new AddStaffCommand(expectedStaff));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB,
+                new AddStaffCommand(VALID_WARD_NAME, expectedStaff));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB, new AddStaffCommand(expectedStaff));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB,
+                new AddStaffCommand(VALID_WARD_NAME, expectedStaff));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB, new AddStaffCommand(expectedStaff));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + PID_DESC_BOB,
+                new AddStaffCommand(VALID_WARD_NAME, expectedStaff));
 
         // multiple tags - all accepted
         Staff expectedStaffMultipleTags = new StaffBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND, staffTag)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB,
-                new AddStaffCommand(expectedStaffMultipleTags));
+                        new AddStaffCommand(VALID_WARD_NAME, expectedStaffMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Staff expectedPatient = new StaffBuilder(AMY).withTags(staffTag).build();
+        Staff expectedStaff = new StaffBuilder(AMY).withTags(staffTag).build();
         assertParseSuccess(parser, NAME_DESC_AMY + PID_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY, new AddStaffCommand(expectedPatient));
+                + ADDRESS_DESC_AMY, new AddStaffCommand(VALID_WARD_NAME, expectedStaff));
     }
 
     @Test

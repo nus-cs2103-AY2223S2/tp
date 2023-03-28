@@ -5,11 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.patientist.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.patientist.testutil.TypicalStaff.AMY;
-import static seedu.patientist.testutil.TypicalStaff.BOB;
 import static seedu.patientist.testutil.TypicalStaff.CHARLES;
 import static seedu.patientist.testutil.TypicalStaff.DACIA;
-import static seedu.patientist.testutil.TypicalStaff.getTypicalPatientist;
+import static seedu.patientist.testutil.TypicalWards.getTypicalPatientist;
 
 import java.util.Arrays;
 
@@ -41,12 +39,12 @@ public class ListStaffCommandTest {
     }
 
     @Test
-    public void execute_onlyPatients_found() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
+    public void execute_onlyStaff_found() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         IsStaffPredicate predicate = new IsStaffPredicate();
         ListStaffCommand command = new ListStaffCommand();
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(AMY, BOB, CHARLES, DACIA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CHARLES, DACIA), model.getFilteredPersonList());
     }
 }

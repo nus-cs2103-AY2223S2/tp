@@ -22,13 +22,15 @@ import seedu.patientist.model.ReadOnlyPatientist;
 import seedu.patientist.model.ReadOnlyUserPrefs;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.staff.Staff;
+import seedu.patientist.model.ward.Ward;
 import seedu.patientist.testutil.PatientBuilder;
 
-public class AddCommandTest {
+public class AddPatientCommandTest {
 
     @Test
     public void constructor_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddPatientCommand(null, null));
     }
 
     @Test
@@ -36,33 +38,34 @@ public class AddCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Patient validPatient = new PatientBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPatient).execute(modelStub);
+        CommandResult commandResult = new AddPatientCommand("Block A Ward 1", validPatient).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPatient), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddPatientCommand.MESSAGE_SUCCESS, validPatient), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPatient), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Patient validPatient = new PatientBuilder().build();
-        AddCommand addCommand = new AddCommand(validPatient);
+        AddPatientCommand addPatientCommand = new AddPatientCommand("Block A Ward 1", validPatient);
         ModelStub modelStub = new ModelStubWithPerson(validPatient);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddPatientCommand.MESSAGE_DUPLICATE_PERSON, () ->
+                addPatientCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Patient alice = new PatientBuilder().withName("Alice").build();
         Patient bob = new PatientBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddPatientCommand addAliceCommand = new AddPatientCommand("Block A Ward 1", alice);
+        AddPatientCommand addBobCommand = new AddPatientCommand("Block A Ward 1", bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddPatientCommand addAliceCommandCopy = new AddPatientCommand("Block A Ward 1", alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -105,12 +108,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPatientistFilePath(Path addressBookFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addPerson(Person person) {
+        public void setPatientistFilePath(Path patientistFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -130,12 +128,82 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public boolean hasPerson(Person person, Ward ward) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public boolean hasPatient(Patient patient, Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasStaff(Staff staff, Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteStaff(Staff target, Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deletePatient(Patient target, Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPatient(Patient patient, Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addStaff(Staff staff, Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPatient(Patient target, Patient edited) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setStaff(Staff target, Staff edited) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void transferPatient(Patient patient, Ward original, Ward target) {
+
+        }
+
+        @Override
+        public void transferStaff(Staff staff, Ward original, Ward target) {
+
+        }
+
+        @Override
+        public boolean hasWard(Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addWard(Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteWard(Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setWard(Ward target, Ward editedWard) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Ward getWard(String wardName) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -181,9 +249,18 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public boolean hasWard(Ward ward) {
+            return true;
+        }
+
+        @Override
+        public Ward getWard(String wardName) {
+            return new Ward(wardName);
+        }
+
+        @Override
+        public void addPatient(Patient patient, Ward ward) {
+            personsAdded.add(patient);
         }
 
         @Override
