@@ -17,7 +17,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
     private Path taskListFilePath = Paths.get("data" , "tasklist.json");
     private Path tankListFilePath = Paths.get("data", "tanklist.json");
-
+    private Path fullAmmoniaLevelsPath = Paths.get("data", "ammonialevels.json");
     /**
      * Creates a {@code UserPrefs} with default values.
      */
@@ -77,6 +77,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setTankListFilePath(Path tankListFilePath) {
         requireNonNull(tankListFilePath);
         this.tankListFilePath = tankListFilePath;
+    }
+
+    public Path getFullAmmoniaLevelsPath() {
+        return fullAmmoniaLevelsPath;
+    }
+
+    public void setFullAmmoniaLevelsPath(Path fullAmmoniaLevelsPath) {
+        requireNonNull(fullAmmoniaLevelsPath);
+        this.fullAmmoniaLevelsPath = fullAmmoniaLevelsPath;
     }
 
     @Override

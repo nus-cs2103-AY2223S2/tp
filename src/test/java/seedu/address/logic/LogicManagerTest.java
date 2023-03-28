@@ -32,6 +32,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.fish.Fish;
 import seedu.address.storage.fish.JsonAddressBookStorage;
 import seedu.address.storage.tank.JsonTankListStorage;
+import seedu.address.storage.tank.readings.ammonialevels.FullAmmoniaLevelsStorage;
+import seedu.address.storage.tank.readings.ammonialevels.JsonFullAmmoniaLevelsStorage;
 import seedu.address.storage.task.JsonTaskListStorage;
 import seedu.address.storage.userprefs.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -53,8 +55,10 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonTaskListStorage taskListStorage = new JsonTaskListStorage(temporaryFolder.resolve("taskList.json"));
         JsonTankListStorage tankListStorage = new JsonTankListStorage(temporaryFolder.resolve("tankList.json"));
+        FullAmmoniaLevelsStorage ammoniaLevelsStorage = new JsonFullAmmoniaLevelsStorage(temporaryFolder
+                .resolve("ammonialevels"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
-                taskListStorage, tankListStorage);
+                taskListStorage, tankListStorage, ammoniaLevelsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -85,8 +89,10 @@ public class LogicManagerTest {
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonTaskListStorage taskListStorage = new JsonTaskListStorage(temporaryFolder.resolve("taskList.json"));
         JsonTankListStorage tankListStorage = new JsonTankListStorage(temporaryFolder.resolve("tankList.json"));
+        FullAmmoniaLevelsStorage ammoniaLevelsStorage = new JsonFullAmmoniaLevelsStorage(temporaryFolder
+                .resolve("ammonialevels"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
-                taskListStorage, tankListStorage);
+                taskListStorage, tankListStorage, ammoniaLevelsStorage);
         // Initializes Tanks
         TankList tankList = new TankList();
         tankList.setTanks(getTypicalTanks());

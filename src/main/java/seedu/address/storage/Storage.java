@@ -10,6 +10,7 @@ import seedu.address.model.ReadOnlyTankList;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.tank.readings.ReadOnlyAmmoniaLevels;
 import seedu.address.storage.fish.AddressBookStorage;
 import seedu.address.storage.userprefs.UserPrefsStorage;
 
@@ -63,8 +64,18 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
 
     void saveTankList(ReadOnlyTankList tankList, Path filePath) throws IOException;
 
-    /**
-     * Executes the auto feeding reminder feature for Storage
-     */
-    void executeFeedingReminderInitStorage();
+    // ================ Readings methods ==============================
+    Path getFullAmmoniaLevelsFilePath();
+
+    Optional<ReadOnlyAmmoniaLevels> readFullAmmoniaLevels()
+            throws DataConversionException,
+            IOException;
+
+    Optional<ReadOnlyAmmoniaLevels> readFullAmmoniaLevels(Path filePath)
+            throws DataConversionException, IOException;
+
+    void saveFullAmmoniaLevels(ReadOnlyAmmoniaLevels fullAmmoniaLevels) throws IOException;
+
+    void saveFullAmmoniaLevels(ReadOnlyAmmoniaLevels fullAmmoniaLevels, Path filePath) throws IOException;
+
 }

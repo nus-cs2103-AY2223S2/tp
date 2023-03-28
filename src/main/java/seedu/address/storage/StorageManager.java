@@ -12,8 +12,10 @@ import seedu.address.model.ReadOnlyTankList;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.tank.readings.ReadOnlyAmmoniaLevels;
 import seedu.address.storage.fish.AddressBookStorage;
 import seedu.address.storage.tank.TankListStorage;
+import seedu.address.storage.tank.readings.ammonialevels.FullAmmoniaLevelsStorage;
 import seedu.address.storage.task.TaskListStorage;
 import seedu.address.storage.userprefs.UserPrefsStorage;
 
@@ -27,17 +29,20 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
     private final TaskListStorage taskListStorage;
     private final TankListStorage tankListStorage;
+    private final FullAmmoniaLevelsStorage fullAmmoniaLevelsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(AddressBookStorage addressBookStorage,
                           UserPrefsStorage userPrefsStorage,
-                          TaskListStorage taskListStorage, TankListStorage tankListStorage) {
+                          TaskListStorage taskListStorage, TankListStorage tankListStorage,
+                          FullAmmoniaLevelsStorage ammoniaLevelsStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.taskListStorage = taskListStorage;
         this.tankListStorage = tankListStorage;
+        this.fullAmmoniaLevelsStorage = ammoniaLevelsStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -150,9 +155,34 @@ public class StorageManager implements Storage {
         tankListStorage.saveTankList(tankList, filePath);
     }
 
+    // ================ Readings methods ==============================
     @Override
-    public void executeFeedingReminderInitStorage() {
-
+    public Path getFullAmmoniaLevelsFilePath() {
+        return tankListStorage.getTankListFilePath();
     }
 
+    @Override
+    public Optional<ReadOnlyAmmoniaLevels> readFullAmmoniaLevels()
+            throws DataConversionException,
+            IOException {
+        return readFullAmmoniaLevels(fullAmmoniaLevelsStorage.getFullAmmoniaLevelsFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyAmmoniaLevels> readFullAmmoniaLevels(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return fullAmmoniaLevelsStorage.readFullAmmoniaLevels(filePath);
+    }
+
+    @Override
+    public void saveFullAmmoniaLevels(ReadOnlyAmmoniaLevels fullAmmoniaLevels) throws IOException {
+        saveFullAmmoniaLevels(fullAmmoniaLevels, fullAmmoniaLevelsStorage.getFullAmmoniaLevelsFilePath());
+    }
+
+    @Override
+    public void saveFullAmmoniaLevels(ReadOnlyAmmoniaLevels ammoniaLevels, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        fullAmmoniaLevelsStorage.saveFullAmmoniaLevels(ammoniaLevels, filePath);
+    }
 }
