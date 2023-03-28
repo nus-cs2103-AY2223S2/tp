@@ -59,7 +59,21 @@ public class LectureUtil {
     public static String getEditCommand(ModuleCode moduleCode, LectureName lectureName,
             EditLectureDescriptor descriptor) {
 
-        return EditLectureCommand.COMMAND_WORD + " " + lectureName.toString() + " "
+        return EditLectureCommand.COMMAND_WORD + getEditLectureDetails(moduleCode, lectureName, descriptor);
+    }
+
+    /**
+     * Returns the part of the command string which excludes the edit command word.
+     *
+     * @param moduleCode The code of the module containing the lecture to be edited.
+     * @param lectureName The name of the lecture to be edited.
+     * @param descriptor The details on how to edit the lecture.
+     * @return The part of the command string which excludes the edit command word.
+     */
+    public static String getEditLectureDetails(ModuleCode moduleCode, LectureName lectureName,
+            EditLectureDescriptor descriptor) {
+
+        return lectureName.toString() + " "
                 + PREFIX_MODULE + " " + moduleCode.toString() + " "
                 + getEditLectureDescriptorDetails(descriptor);
     }

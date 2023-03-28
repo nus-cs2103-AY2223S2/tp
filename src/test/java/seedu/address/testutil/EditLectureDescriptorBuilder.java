@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.edit.EditLectureCommand.EditLectureDescriptor;
@@ -55,7 +56,7 @@ public class EditLectureDescriptorBuilder {
      * @return This {@code EditLectureDescriptorBuilder}.
      */
     public EditLectureDescriptorBuilder withName(String name) {
-        descriptor.setName(new LectureName(name));
+        descriptor.setName(name == null ? null : new LectureName(name));
         return this;
     }
 
@@ -66,8 +67,17 @@ public class EditLectureDescriptorBuilder {
      * @return This {@code EditLectureDescriptorBuilder}.
      */
     public EditLectureDescriptorBuilder withTags(String... tags) {
-        descriptor.setTags(
-                Arrays.asList(tags).stream().map(Tag::new).collect(Collectors.toSet()));
+        return withTags(Arrays.asList(tags));
+    }
+
+    /**
+     * Sets the {@code tags} of the {@code EditLectureDescriptor} that we are building.
+     *
+     * @param tags The tags to set to.
+     * @return This {@code EditLectureDescriptorBuilder}.
+     */
+    public EditLectureDescriptorBuilder withTags(Collection<String> tags) {
+        descriptor.setTags(tags == null ? null : tags.stream().map(Tag::new).collect(Collectors.toSet()));
         return this;
     }
 

@@ -64,7 +64,7 @@ public class VideoUtil {
      *
      * @param moduleCode The code of the module containing the lecture.
      * @param lectureName The name of the lecture containing the video to be edited.
-     * @param videoName The name of  the video to be edited.
+     * @param videoName The name of the video to be edited.
      * @param descriptor The details on how to edit the video.
      * @return An edit command string for editing the video with name {@code videoName} which belongs to the lecture
      *         with name {@code lectureName} contained in the moduel with code {@code moduleCode} using details in
@@ -73,7 +73,22 @@ public class VideoUtil {
     public static String getEditCommand(ModuleCode moduleCode, LectureName lectureName, VideoName videoName,
             EditVideoDescriptor descriptor) {
 
-        return EditVideoCommand.COMMAND_WORD + " " + videoName.toString() + " "
+        return EditVideoCommand.COMMAND_WORD + getEditVideoDetails(moduleCode, lectureName, videoName, descriptor);
+    }
+
+    /**
+     * Returns the part of the command string which excludes the edit command word.
+     *
+     * @param moduleCode The code of the module containing the lecture.
+     * @param lectureName The name of the lecture containing the video to be edited.
+     * @param videoName The name of the video to be edited.
+     * @param descriptor The details on how to edit the video.
+     * @return The part of the command string which excludes the edit command word.
+     */
+    public static String getEditVideoDetails(ModuleCode moduleCode, LectureName lectureName, VideoName videoName,
+            EditVideoDescriptor descriptor) {
+
+        return videoName.toString() + " "
                 + PREFIX_MODULE + " " + moduleCode.toString() + " "
                 + PREFIX_LECTURE + " " + lectureName.toString() + " "
                 + getEditLectureDescriptorDetails(descriptor);

@@ -64,9 +64,10 @@ public class CommandTestUtil {
     public static final String TAG_DESC_CONTENT = " " + PREFIX_TAG + " " + VALID_TAG_CONTENT;
     public static final String TAG_DESC_MULTI = " " + PREFIX_TAG + " " + VALID_TAG_EASY + ", " + VALID_TAG_HARD;
 
-    public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE + INVALID_MODULE_CODE;
-    public static final String INVALID_MODULE_NAME_DESC = " " + PREFIX_NAME + INVALID_MODULE_NAME;
-    public static final String INVALID_LECTURE_NAME_DESC = " " + PREFIX_LECTURE + INVALID_LECTURE_NAME;
+    public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE + " " + INVALID_MODULE_CODE;
+    public static final String INVALID_MODULE_NAME_DESC = " " + PREFIX_NAME + " " + INVALID_MODULE_NAME;
+    public static final String INVALID_LECTURE_NAME_DESC = " " + PREFIX_LECTURE + " " + INVALID_LECTURE_NAME;
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + " " + INVALID_TAG;
 
     public static final String EDIT_MODULE_CODE_DESC_2103 = " " + PREFIX_CODE + " " + VALID_MODULE_CODE_2103;
     public static final String EDIT_MODULE_CODE_DESC_2040 = " " + PREFIX_CODE + " " + VALID_MODULE_CODE_2040;
@@ -94,9 +95,9 @@ public class CommandTestUtil {
             .withName(VALID_LECTURE_NAME_L2).withTags(VALID_TAG_HARD, VALID_TAG_MATH).build();
 
     public static final EditVideoDescriptor EDIT_VIDEO_DESC_V1 = new EditVideoDescriptorBuilder()
-            .withName(VALID_VIDEO_NAME_V1).withTags(VALID_TAG_CONTENT).build();
+            .withName(VALID_VIDEO_NAME_V1).withTags(VALID_TAG_CONTENT).withWatched(false).build();
     public static final EditVideoDescriptor EDIT_VIDEO_DESC_V2 = new EditVideoDescriptorBuilder()
-            .withName(VALID_VIDEO_NAME_V2).withTags(VALID_TAG_HARD, VALID_TAG_MATH).build();
+            .withName(VALID_VIDEO_NAME_V2).withTags(VALID_TAG_HARD, VALID_TAG_MATH).withWatched(true).build();
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

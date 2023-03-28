@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.edit.EditModuleCommand.EditModuleDescriptor;
@@ -57,7 +58,7 @@ public class EditModuleDescriptorBuilder {
      * @return This {@code EditModuleDescriptorBuilder}.
      */
     public EditModuleDescriptorBuilder withCode(String code) {
-        descriptor.setCode(new ModuleCode(code));
+        descriptor.setCode(code == null ? null : new ModuleCode(code));
         return this;
     }
 
@@ -68,7 +69,7 @@ public class EditModuleDescriptorBuilder {
      * @return This {@code EditModuleDescriptorBuilder}.
      */
     public EditModuleDescriptorBuilder withName(String name) {
-        descriptor.setName(new ModuleName(name));
+        descriptor.setName(name == null ? null : new ModuleName(name));
         return this;
     }
 
@@ -79,8 +80,17 @@ public class EditModuleDescriptorBuilder {
      * @return This {@code EditModuleDescriptorBuilder}.
      */
     public EditModuleDescriptorBuilder withTags(String... tags) {
-        descriptor.setTags(
-                Arrays.asList(tags).stream().map(Tag::new).collect(Collectors.toSet()));
+        return withTags(Arrays.asList(tags));
+    }
+
+    /**
+     * Sets the {@code tags} of the {@code EditModuleDescriptor} that we are building.
+     *
+     * @param tags The tags to set to.
+     * @return This {@code EditModuleDescriptorBuilder}.
+     */
+    public EditModuleDescriptorBuilder withTags(Collection<String> tags) {
+        descriptor.setTags(tags == null ? null : tags.stream().map(Tag::new).collect(Collectors.toSet()));
         return this;
     }
 

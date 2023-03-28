@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.edit.EditVideoCommand.EditVideoDescriptor;
@@ -56,7 +57,7 @@ public class EditVideoDescriptorBuilder {
      * @return This {@code EditVideoDescriptorBuilder}.
      */
     public EditVideoDescriptorBuilder withName(String name) {
-        descriptor.setName(new VideoName(name));
+        descriptor.setName(name == null ? null : new VideoName(name));
         return this;
     }
 
@@ -66,7 +67,7 @@ public class EditVideoDescriptorBuilder {
      * @param hasWatched The watch status to set to.
      * @return This {@code EditVideoDescriptorBuilder}.
      */
-    public EditVideoDescriptorBuilder withWatched(boolean hasWatched) {
+    public EditVideoDescriptorBuilder withWatched(Boolean hasWatched) {
         descriptor.setWatched(hasWatched);
         return this;
     }
@@ -78,8 +79,17 @@ public class EditVideoDescriptorBuilder {
      * @return This {@code EditVideoDescriptorBuilder}.
      */
     public EditVideoDescriptorBuilder withTags(String... tags) {
-        descriptor.setTags(
-                Arrays.asList(tags).stream().map(Tag::new).collect(Collectors.toSet()));
+        return withTags(Arrays.asList(tags));
+    }
+
+    /**
+     * Sets the {@code tags} of the {@code EditVideoDescriptor} that we are building.
+     *
+     * @param tags The tags to set to.
+     * @return This {@code EditVideoDescriptorBuilder}.
+     */
+    public EditVideoDescriptorBuilder withTags(Collection<String> tags) {
+        descriptor.setTags(tags == null ? null : tags.stream().map(Tag::new).collect(Collectors.toSet()));
         return this;
     }
 
