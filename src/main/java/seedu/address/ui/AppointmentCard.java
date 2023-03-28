@@ -49,7 +49,7 @@ public class AppointmentCard extends UiPart<Region> {
                 .findFirst().orElseThrow();
         */
         // temporary workaround for buggy id
-        patientName.setText("Dummy patient");
+        patientName.setText(appointment.getPatientName().fullName);
         timeSlot.setText(appointment.getTimeslot().timeslotString);
         description.setText(appointment.getDescription().description);
         appointment.getTags().stream()
