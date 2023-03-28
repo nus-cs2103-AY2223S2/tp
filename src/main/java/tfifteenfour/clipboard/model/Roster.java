@@ -5,10 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.UniqueCoursesList;
-import tfifteenfour.clipboard.model.student.Student;
-import tfifteenfour.clipboard.model.student.UniqueStudentList;
 
 /**
  * Wraps all data at the address-book level
@@ -16,7 +15,6 @@ import tfifteenfour.clipboard.model.student.UniqueStudentList;
  */
 public class Roster implements ReadOnlyRoster {
 
-    private final UniqueStudentList students;
     private final UniqueCoursesList courses;
 
     /*
@@ -26,9 +24,6 @@ public class Roster implements ReadOnlyRoster {
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
-    {
-        students = new UniqueStudentList();
-    }
 
     {
         courses = new UniqueCoursesList();
@@ -46,35 +41,8 @@ public class Roster implements ReadOnlyRoster {
 
     //// list overwrite operations
 
-    /**
-     * Replaces the contents of the student list with {@code students}.
-     * {@code students} must not contain duplicate students.
-     */
-    public void setStudents(List<Student> students) {
-        this.students.setStudents(students);
-    }
-
     public void setCourses(List<Course> courses) {
         this.courses.setCourses(courses);
-    }
-
-    /**
-     * Resets the existing data of this {@code Roster} with {@code newData}.
-     */
-    public void resetData(ReadOnlyRoster newData) {
-        requireNonNull(newData);
-        // setStudents(newData.getUnmodifiableStudentList());
-        setCourses(newData.getUnmodifiableCourseList());
-    }
-
-    //// student-level operations
-
-    /**
-     * Returns true if a student with the same identity as {@code student} exists in the address book.
-     */
-    public boolean hasStudent(Student student) {
-        requireNonNull(student);
-        return students.contains(student);
     }
 
     /**
@@ -83,14 +51,6 @@ public class Roster implements ReadOnlyRoster {
     public boolean hasCourse(Course course) {
         requireNonNull(course);
         return courses.contains(course);
-    }
-
-    /**
-     * Adds a student to the address book.
-     * The student must not already exist in the address book.
-     */
-    public void addStudent(Student p) {
-        students.add(p);
     }
 
     public void addCourse(Course course) {
@@ -102,64 +62,38 @@ public class Roster implements ReadOnlyRoster {
     }
 
     /**
-     * Replaces the given student {@code target} in the list with {@code editedStudent}.
-     * {@code target} must exist in the address book.
-     * The student identity of {@code editedStudent} must not be the same as another existing student
-     * in the address book.
+     * Resets the existing data of this {@code Roster} with {@code newData}.
      */
-    public void setStudent(Student target, Student editedStudent) {
-        requireNonNull(editedStudent);
-
-        students.setStudent(target, editedStudent);
+    public void resetData(ReadOnlyRoster newData) {
+        requireNonNull(newData);
+        // setStudents(newData.getUnmodifiableStudentList());
+        setCourses(newData.getUnmodifiableCourseList());
     }
 
-    /**
-     * Removes {@code key} from this {@code Roster}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeStudent(Student key) {
-        students.remove(key);
-    }
-
-    //// util methods
-
-    @Override
-    public String toString() {
-        return students.asUnmodifiableObservableList().size() + " students";
-        // TODO: refine later
-    }
-
-    @Override
-    public ObservableList<Student> getUnmodifiableStudentList() {
-        return students.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Student> getModifiableStudentList() {
-        return students.asModifiableObservableList();
-    }
-
-    @Override
     public ObservableList<Course> getModifiableCourseList() {
         return courses.asModifiableObservableList();
     }
 
     @Override
     public ObservableList<Course> getUnmodifiableCourseList() {
-        System.out.println("GET UNMODIFIABLE COURSE LIST##");
         return courses.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public FilteredList<Course> getUnmodifiableFilteredCourseList() {
+        return courses.asUnmodifiableFilteredList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Roster // instanceof handles nulls
-                && students.equals(((Roster) other).students));
+                && courses.equals(((Roster) other).courses));
     }
 
     @Override
     public int hashCode() {
-        return students.hashCode();
+        return courses.hashCode();
     }
 
 
@@ -169,7 +103,7 @@ public class Roster implements ReadOnlyRoster {
      */
     public Roster copy() {
         Roster copy = new Roster();
-        copy.setStudents(students.asUnmodifiableObservableList());
+        copy.setCourses(courses.asUnmodifiableObservableList());
 
         return copy;
     }

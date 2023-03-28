@@ -92,7 +92,6 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty Roster");
             initialData = new Roster();
         }
-        System.out.println("initial data size " + initialData.getModifiableCourseList().size());
         this.roster = initialData;
         return new ModelManager(initialData, userPrefs);
     }

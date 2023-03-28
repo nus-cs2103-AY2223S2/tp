@@ -114,7 +114,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyRoster getRoster() {
+    public Roster getRoster() {
         return roster;
     }
 

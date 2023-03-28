@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import tfifteenfour.clipboard.model.course.exceptions.CourseNotFoundException;
 import tfifteenfour.clipboard.model.course.exceptions.DuplicateGroupException;
 
@@ -27,6 +28,8 @@ public class UniqueCoursesList implements Iterable<Course> {
     private final ObservableList<Course> internalList = FXCollections.observableArrayList();
     private final ObservableList<Course> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
+    private final FilteredList<Course> filteredCourses = new FilteredList<>(internalList);
 
     /**
      * Returns true if the list contains an equivalent course as the given argument.
@@ -109,6 +112,10 @@ public class UniqueCoursesList implements Iterable<Course> {
      */
     public ObservableList<Course> asModifiableObservableList() {
         return internalList;
+    }
+
+    public FilteredList<Course> asUnmodifiableFilteredList() {
+        return filteredCourses;
     }
 
     @Override

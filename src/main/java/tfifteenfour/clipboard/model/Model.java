@@ -50,7 +50,7 @@ public interface Model {
     void setRoster(ReadOnlyRoster roster);
 
     /** Returns the Roster */
-    ReadOnlyRoster getRoster();
+    Roster getRoster();
 
     /**
      * Makes a copy of the model

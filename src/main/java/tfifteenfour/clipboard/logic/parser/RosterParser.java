@@ -77,15 +77,6 @@ public class RosterParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        // case ModuleCommand.COMMAND_WORD:
-        //     return new ModuleCommandParser().parse(arguments);
-
-        // case ListCommand.COMMAND_WORD:
-        //     return new ListCommand();
-
-        // case ViewCommand.COMMAND_WORD:
-        //     return new ViewCommandParser().parse(arguments);
-
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
