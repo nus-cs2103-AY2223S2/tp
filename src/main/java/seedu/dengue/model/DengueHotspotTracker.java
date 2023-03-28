@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.dengue.model.person.Person;
@@ -45,8 +46,6 @@ public class DengueHotspotTracker implements ReadOnlyDengueHotspotTracker {
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
-
-
         this.persons.setPersons(persons);
     }
 
@@ -54,13 +53,9 @@ public class DengueHotspotTracker implements ReadOnlyDengueHotspotTracker {
      * Resets the existing data of this {@code DengueHotspotTracker} with {@code newData}.
      */
     public void resetData(ReadOnlyDengueHotspotTracker newData) {
-
         requireNonNull(newData);
         setPersons(newData.getPersonList());
-
     }
-
-
 
     //// person-level operations
 
@@ -88,7 +83,6 @@ public class DengueHotspotTracker implements ReadOnlyDengueHotspotTracker {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 
@@ -128,10 +122,11 @@ public class DengueHotspotTracker implements ReadOnlyDengueHotspotTracker {
     @Override
     public DengueHotspotTracker generateDeepCopy() {
         DengueHotspotTracker copy = new DengueHotspotTracker();
-        ObservableList<Person> personList = FXCollections.observableArrayList();
-        for (Person p : this.getPersonList()) {
-            personList.add(p.getCopy());
-        }
+        ObservableList<Person> personList = this.getPersonList()
+                .stream()
+                .map(p -> p.getCopy())
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+
         copy.setPersons(personList);
         return copy;
 

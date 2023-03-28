@@ -59,7 +59,6 @@ public class UndoMemory extends MemoryStack {
         } else {
             throw new CommandException("Cannot undo any further!");
         }
-
     }
 
     /**
@@ -71,8 +70,6 @@ public class UndoMemory extends MemoryStack {
         } catch (EmptyStackException err) {
             throw new CommandException("Reached the latest iteration!");
         }
-
-
     }
 
     /**

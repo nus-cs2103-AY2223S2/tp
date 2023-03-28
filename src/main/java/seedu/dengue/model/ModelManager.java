@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.dengue.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -155,6 +156,14 @@ public class ModelManager implements Model {
         updateFromMemoryStack();
     }
 
+    @Override
+    public void setPersons(List<Person> persons) {
+        requireAllNonNull(persons);
+        dengueHotspotTracker.setPersons(persons);
+        memory.saveNewLatest(this.dengueHotspotTracker);
+        updateFromMemoryStack();
+
+    }
 
 
     //=========== Filtered Person List Accessors =============================================================

@@ -44,5 +44,4 @@ public interface StackWithStorage<T> {
      */
     T removeOld();
 
-
 }

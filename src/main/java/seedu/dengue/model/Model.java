@@ -1,6 +1,7 @@
 package seedu.dengue.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -79,6 +80,8 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    void setPersons(List<Person> persons);
+
     /**
      * Returns an unmodifiable view of the filtered person list.
      */
@@ -104,6 +107,15 @@ public interface Model {
 
     void updateFromMemoryStack();
 
+    /**
+     * Undo an action.
+     * @throws CommandException if cannot undo further.
+     */
     void undo() throws CommandException;
+
+    /**
+     * Redo an action.
+     * @throws CommandException if cannot redo further.
+     */
     void redo() throws CommandException;
 }
