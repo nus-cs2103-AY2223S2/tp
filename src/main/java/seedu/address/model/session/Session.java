@@ -7,13 +7,13 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-//import java.util.stream.Collectors;
 
-//import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Name;
 
 /**
@@ -414,7 +414,8 @@ public class Session implements Comparable<Session> {
     public HashMap<String, Boolean> getAttendanceMap() {
         return attendanceMap;
     }
-    //    public List<CalendarEvent> getCalendarEvents() {
-    //        return Collections.singletonList(new CalendarEvent(this));
-    //    }
+
+    public List<CalendarEvent> getCalendarEvents() {
+        return Collections.singletonList(new CalendarEvent(this));
+    }
 }

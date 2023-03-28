@@ -178,9 +178,9 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        //        calendarDisplay = new CalendarDisplay(logic, primaryStage);
-        //        calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
-        //        registerCalendarNavigationForCalendarTab();
+        calendarDisplay = new CalendarDisplay(logic, primaryStage);
+        calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
+        registerCalendarNavigationForCalendarTab();
 
         sessionListPanel = new SessionListPanel(logic.getFilteredSessionList(), logic);
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());

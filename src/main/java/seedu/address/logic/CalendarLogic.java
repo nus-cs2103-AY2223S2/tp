@@ -46,7 +46,6 @@ public class CalendarLogic {
      * Constructs a {@code CalendarLogic} with the given {@code Logic}, {@code Stage}
      * {@code GridPane} and {@code HBox}.
      */
-
     public CalendarLogic(Logic logic, Stage primaryStage, CalendarDisplay calendarDisplay) {
         requireAllNonNull(logic, primaryStage, calendarDisplay);
         this.logic = logic;
@@ -64,7 +63,6 @@ public class CalendarLogic {
     /**
      * Initialises the logic components for the Calendar.
      */
-
     public void initialiseLogic() {
         calendarMonth = new CalendarMonth(filteredCalendarEventList);
         currentMonth = new GregorianCalendar();
@@ -117,7 +115,6 @@ public class CalendarLogic {
     /**
      * Returns the {@code Text} representing the current month.
      */
-
     public Text getTextHeader() {
         String monthString = getMonthName(currentMonth.get(Calendar.MONTH));
         String yearString = String.valueOf(currentMonth.get(Calendar.YEAR));
@@ -131,7 +128,6 @@ public class CalendarLogic {
     /**
      * Refreshes the CalendarEvents.
      */
-
     public void refresh() {
         calendarDisplay.resetGridPane();
         this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
@@ -142,7 +138,6 @@ public class CalendarLogic {
     /**
      * Displays the CalendarEvents in the previous month.
      */
-
     public void previous() {
         this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
         currentMonth = getPreviousMonth(currentMonth);
@@ -154,11 +149,9 @@ public class CalendarLogic {
     /**
      * Displays the CalendarEvents in the next month.
      */
-
     public void next() {
         this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
         currentMonth = getNextMonth(currentMonth);
-        //calendarDisplay.setTextValidation(EMPTY_MESSAGE);
         updateCalendarMonth();
     }
 

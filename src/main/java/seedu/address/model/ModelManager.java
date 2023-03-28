@@ -201,22 +201,21 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<CalendarEvent> getFilteredCalendarEventList() {
-        //        ObservableList<Session> lastShownList = this.filteredSessions;
-        //        ObservableList<CalendarEvent> calendarEventList = getCalendarEventList(lastShownList);
-        //        return calendarEventList;
-        return null;
+        ObservableList<Session> lastShownList = this.filteredSessions;
+        ObservableList<CalendarEvent> calendarEventList = getCalendarEventList(lastShownList);
+        return calendarEventList;
     }
 
-    //    private ObservableList<CalendarEvent> getCalendarEventList(ObservableList<Session> lastShownList) {
-    //        calendarEventList.clear();
-    //        lastShownList.stream().map(x -> x.getCalendarEvents()).forEach(e -> calendarEventList.addAll(e));
-    //        System.out.println(calendarEventList);
-    //        return calendarEventList;
-    //    }
+    private ObservableList<CalendarEvent> getCalendarEventList(ObservableList<Session> lastShownList) {
+        calendarEventList.clear();
+        lastShownList.stream().map(x -> x.getCalendarEvents()).forEach(e -> calendarEventList.addAll(e));
+        System.out.println(calendarEventList);
+        return calendarEventList;
+    }
 
     @Override
     public void updateCalendarEventList() {
-        //getCalendarEventList(filteredPersons);
+        getCalendarEventList(filteredSessions);
     }
 
     @Override
