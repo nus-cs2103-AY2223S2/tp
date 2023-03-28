@@ -20,7 +20,7 @@ title: User Guide
       * [Adding a fish `fish add`](#adding-a-fish-fish-add)
       * [Deleting a fish `fish delete`](#deleting-a-fish-fish-delete)
       * [Listing fishes `list fishes`](#listing-fishes-list-fishes)
-      * [Listing fishes in a tank `list fish /tank`](#listing-fishes-in-a-tank-list-fish-tank)
+      * [Viewing fishes `fish view`](#viewing-a-fish-fish-view)
       * [Sorting fishes `fish sort`](#sorting-fishes-fish-sort)
     * [Tasks](#tasks)
       * [Adding a task `task add`](#adding-a-task-task-add)
@@ -28,6 +28,7 @@ title: User Guide
       * [Listing tasks `list task`](#listing-tasks-list-task)
     * [Storage](#storage)
     * [Help](#help)
+        * [Fish Index](#fish-index)
   * [FAQ](#faq)
   * [Summary](#command-summary)
 
@@ -107,7 +108,6 @@ Format: `tank add d/<TANK_NAME>`
 Prefixes:
 * `d/` - Specifies the name of the tank
 
-
 ### Deleting a tank: `tank delete`
 
 Delete a tank entry from *Fish Ahoy!*
@@ -134,19 +134,48 @@ Format: `tank feed <TANK_INDEX>`
 
 ## Fishes
 
+Fishes are yet another core aspect of *Fish Ahoy!* This app is built around helping you keep these little guys healthy, 
+so many important details such as species, last fed date, feeding intervals are being recorded. *Fish Ahoy!* features 
+images for common species of fish currently, and aims to expand to include more fishes in the future!
+In the list, each fish
+has an [index](#faq). Use these indexes to perform certain operations on them.
+<br>
+
+Currently, there are five operations around fishes:
+* [Adding a fish `fish add`](#adding-a-fish-fish-add)
+* [Deleting a fish `fish delete`](#deleting-a-fish-fish-delete)
+* [Listing fishes `list fishes`](#listing-fishes-list-fishes)
+* [Viewing fishes `fish view`](#viewing-a-fish-fish-view)
+* [Sorting fishes `fish sort`](#sorting-fishes-fish-sort)
+
 ### Adding a fish: `fish add`
 
 Adds a fish to *Fish Ahoy!* .
 
+Use this command to add fishes to tanks. By adding fish in tanks that you own, you can easily categorise them and store
+important information about them.
+
 Format: `add fish n/<FISH_NAME> lfd/<LAST_FED_DATE> s/<SPECIES> fi/<FEEDING_INTERVAL> tk/<TANK_INDEX> [tg/<TAG>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A fish can belong to a tank
+A fish must belong to a tank.
 </div>
+
+Prefixes:
+* `n/` - The fish's name.
+* `lfd/` - The last date the fish was fed.
+* `s/` - The species of the fish.
+* `fi/` - The feeding intervals of the fish.
+* `tk/` - The tank this fish belongs to.
+
+Optional Prefixes:
+* `tg/` - These tags can be used to add additional information to the fish
 
 ### Deleting a fish: `fish delete`
 
 Deletes a fish entry from *Fish Ahoy!* .
+
+Use this command when you want to move a fish from one tank to another, or remove it entirely. 
 
 Format: `fish delete <FISH_INDEX>`
 
@@ -154,13 +183,17 @@ Format: `fish delete <FISH_INDEX>`
 
 Lists all fishes owned.
 
+Use this command to see all the fishes you own across all tanks.
+
 Format: `list fishes`
 
-### Listing fishes in a tank: `list fish /tank`
+### Viewing a fish: `fish view`
 
-Lists all fishes in a specific tank.
+View a fish, which displays relevant attributes of the selected fish.
 
-Format: `list fish /tank <TANK_NAME>`
+This command will only display a single fish, making it easier for you to see it's information.
+
+Format: `fish view <FISH_INDEX>`
 
 ### Sorting fishes: `fish sort`
 
@@ -244,9 +277,15 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+
+**Q**: Whats a fish index?<br>
+**A**: Fish indexes are used to perform operations on certain fish. Below, highlighted in red, are the fish indexes.
+
+![help message](images/FishIndexUi.png)
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install *Fish Ahoy!*  in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Fish Ahoy! home folder.
