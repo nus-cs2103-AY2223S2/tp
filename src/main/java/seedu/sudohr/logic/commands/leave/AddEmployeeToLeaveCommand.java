@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
@@ -26,7 +27,6 @@ public class AddEmployeeToLeaveCommand extends Command {
     // maybe rename to duplicate leave? not sure if the right naming is used here
     public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already has a leave on that day "
             + "in SudoHR";
-    public static final String MESSAGE_EMPLOYEE_NOT_FOUND = "The given employee does not exist in SudoHR.";
     public static final String MESSAGE_ADD_LEAVE_SUCCESS = "New employee %1$s is added on %2$s";
 
     private final LeaveDate leaveDate;
@@ -50,7 +50,7 @@ public class AddEmployeeToLeaveCommand extends Command {
         Employee employeeToAdd = model.getEmployee(employeeId);
 
         if (employeeToAdd == null) {
-            throw new CommandException(MESSAGE_EMPLOYEE_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_EMPLOYEE_NOT_FOUND);
         }
 
         Leave leaveToAdd = new Leave(leaveDate);

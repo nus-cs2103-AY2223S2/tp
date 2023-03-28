@@ -3,10 +3,32 @@ layout: page
 title: User Guide
 ---
 
-SudoHR is a **desktop app specially catered for HR professionals in managing manpower, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SudoHR can get your management tasks done faster than traditional GUI apps.
+SudoHR is a **desktop app specially catered for HR professionals in managing employees, departments and leaves data,
+optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface
+(GUI). If you can type fast, SudoHR can get your HR management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Features
+
+There are 3 main types of data in SudoHR:
+* Employees
+* Departments
+* Leaves
+
+SudoHR allows you to manage these components by:
+1. Creating, updating, listing and deleting of the 3 data types.
+2. Adding/Removing employees in departments/leaves.
+3. Apply different filters on the data.
+
+<div markdown="span" class="alert alert-warning">**WARNING:**
+SudoHR can only hold up to 10,000 employees, 10,000 departments, 10,000 leaves
+and 10,000 tags! Exceeding this limit will result in slower performance or unforeseen
+problems.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -31,7 +53,57 @@ SudoHR is a **desktop app specially catered for HR professionals in managing man
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Quick Reference Guide
+
+### Layout
+
+[//]: # (<-- Insert labelled UI here -->)
+
+### Key definitions
+
+[//]: # (GENERAL FORMAT OF DATA TYPE DEFINITION:)
+
+[//]: # (1. Explain big idea)
+[//]: # (2. Explain fields)
+[//]: # (3. Explain constraints)
+
+#### Employee
+
+#### Department
+
+A department is a group for employees. A department can have many employees and
+an employee can be in many departments.
+
+Every employee in a department must be unique.
+
+The following attributes are stored for each department:
+1. Department name
+
+Departments are unique by name and case-sensitive. You cannot add more than one
+department of the same name.
+
+#### Leave
+
+#### Prefixes
+
+[//]: # (Explain prefixes in the command and their corresponding placeholders)
+
+#### Placeholders
+
+[//]: # (List placeholders in the command)
+[//]: # (Talk about their constraints, type, format, etc)
+
+### Command Format
+
+[//]: # (Explain the general command format: command, prefixes, placeholders)
+
+### Trying your first command
+
+[//]: # (<-- Insert example context here -->)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Commands
 
 ### Viewing help : `help`
 
@@ -41,11 +113,11 @@ Shows a message explaining how to access the help page for SudoHR.
 
 Format: `help`
 
-### Adding a person: `add`
+### Adding an employee: `add`
 
 Adds an employee to SudoHR.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add id/ID n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An employee can have any number of tags (including 0)
@@ -55,7 +127,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all employees : `list`
 
 Shows a list of all employees in SudoHR.
 
@@ -110,129 +182,89 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd employee in SudoHR.
 * `find Betsy` followed by `delete 1` deletes the 1st employee in the results of the `find` command.
 
-### Adding a department: `jonathan`
+### Adding a department: `adep`
 
-Adds a person to SudoHR.
+Adds a department by name.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `adep n/DEPARTMENT_NAME`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">**NOTE:**
+As of now, a department only has a department name field. In the future, we plan to add other
+department-level details such as manager, department start date, parent department, etc.
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `adep n/Software Engineering`
+* `adep n/Marketing`
 
-### Updating a department: `jonathan`
+### Editing a department: `edep`
 
-Adds a person to SudoHR.
+Edits an existing department.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `edep OLD_DEPARTMENT_NAME n/NEW_DEPARTMENT_NAME`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+Examples:
+* `edep Software Engineering n/Software Development`
+* `edep Marketing n/Sales`
+
+### Deleting a department: `ddep`
+
+Deletes an existing department.
+
+Format: `ddep n/DEPARTMENT_NAME`
+
+Examples:
+* `ddep n/Software Engineering`
+* `ddep n/Sales`
+
+### Listing all departments: `ldep`
+
+Lists all existing departments.
+
+Format: `ldep`
+
+### Add employee to a department: `aetd`
+
+Adds an employee to a department using his ID.
+
+Format: `aetd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`
+
+<div markdown="span" class="alert alert-primary">**NOTE:**
+You cannot add an employee to a department twice.
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `aetd eid/1 n/Software Engineering`
+* `aetd eid/100 n/Sales`
 
-### Deleting a department: `jonathan`
+### Remove employee from a department: `refd`
 
-Adds a person to SudoHR.
+Removes an employee from a department using his ID.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `refd eid/1 n/Software Engineering`
+* `refd eid/100 n/Sales`
 
-### Listing all departments: `jonathan`
+### List an employee's departments: `led`
 
-Adds a person to the SudoHR.
+List all departments and employee is in.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `led eid/EMPLOYEE_ID`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `leid eid/100`
 
-### Add employee to a department: `jonathan`
+### List all employees in a department: `leid`
 
-Adds a person to the SudoHR.
+List all employees in a department.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `leid n/DEPARTMENT_NAME`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Remove employee from a department: `jonathan`
-
-Adds a person to the SudoHR.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### List all employees in a department: `jonathan`
-
-Adds a person to the SudoHR.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Adding a project: `kenneth`
-
-Adds a project to the system
-
-Format: `ap n/NAME`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A project can have any number of employees (including 0)
-</div>
-
-Examples:
-* `ap n/Human Resources`
-* `ap n/Development`
-
-### Updating a project: `[Coming soon]`
-
-### Deleting a project: `[Coming soon]`
-
-### Listing all projects: `[Coming soon]`
-
-### Add user to a project: `[Coming soon]`
-
-### Remove employee from a project: `[Coming soon]`
-
-### List all employees in a project: `[Coming soon]`
+* `leid n/Software Engineering`
+* `leid n/Sales`
 
 ### Adding a leave: `andre`
 
@@ -304,137 +336,6 @@ Examples:
 * `ls_on_leave d/2023-03-05`
 * `ls_on_leave d/2023-03-05~2023-05-7`
 
-### Adding a performance review statement: `Kwangjoo`
-
-
-Adds a performance review statement for a specified employee. Allows option to specify the subsequent performance review date. If unspecified, the next performance review date is set to default interval.
-
-
-Format: `addPR INDEX pr/REVIEW_STATEMENT d/DATE [nextPRd/DATE]​`
-
-
-Examples:
-
-* `addPR 1 pr/Met Expectations this month, expected to be promoted at the end of this year. d/2023-03-23`
-* `addPR 2 pr/Below expectations. To be sent for counselling and training regarding low performance. Early performance review next week d/2023-03-23 nextPRd/2023-03-20`
-
-### Listing all performance reviews done on employee: `Kwangjoo`
-
-Lists all the performance review of the specified employee.
-
-Format: `listPR INDEX`
-
-
-Examples:
-
-* `listPR 1`
-
-### Deleting a performance review statement: `Kwangjoo`
-
-Deletes erroneous performance reviews possibly due to administrative errors. There can only be at most one performance review per person in a given day.
-
-<!-- It could be better to include a unique employee id so that the user wont mess up and delete a wrong performance review.  -->
-
-Format: `deletePR INDEX d/DATE`
-
-Examples:
-
-* `deletePR 3 d/2023-03-23`
-
-### Listing all employees due for a performance review: `Kwangjoo`
-
-Lists all employees who have a performance review due within the next specified number of days. If the DAYS in unspecified, set to default number of days.
-
-A date can be specified and SudoHR shows the employees who need to have their performance reviewed by the specified date.
-
-If both DAYS and DATE is specified, DATE takes precedence. And If neither is specified, SudoHR displays the performance review due within the default number of days.
-
-Format: `listPRdue [within/DAYS] [by/DATE]​`
-
-Examples:
-
-* `listPRdue within/5`
-* `ListPRdue by/2023-04-05`
-
-### Adding an event: `addEvent`
-
-Adds an event to the HR management System.
-
-Format: `addEvent t/title d/description s/date ​`
-
-Examples:
-* `addEvent t/Company Dinner d/Company dinner at Raffles Hotel d/2014-02-12`
-
-
-### List all employees attending an event: `listEvent`
-
-Lists the employees added to an event in the HR Management
-
-Format: `listEvent`
-
-Examples:
-* `listEvent`
-
-
-### Updating an event: `updateEvent`
-
-Updates an event to the HR Management System.
-
-Format: `updateEvent INDEX t/title d/description s/date ​`
-
-* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-
-Examples:
-* `updateEvent 2 t/Company Dinner d/Company dinner at Raffles Hotel d/2014-02-12`
-
-### Deleting an event: `deleteEvent`
-
-Deletes an event from the HR Management System.
-
-Format: `deleteEvent INDEX`
-
-* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `deleteEvent 1`
-
-### Adding an employee to an event: `addEmployeeEvent`
-
-Adds a person to the event in the HR Management System.
-
-Format: `addEmployeeEvent EVENTINDEX EMPLOYEEINDEX`
-
-* Add the employee at the specified `EMPLOYEEINDEX` to the event at the specified `EVENTINDEX`. The `EVENTINDEX` refers to the index number shown in the displayed event list. The `EMPLOYEEINDEX` refers to the index number shown in the displayed employee list.  Both indexes **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `addEmployeeEvent 1 1`
-
-### List all employees attending an event: `listEventEmployee`
-
-Lists the employees added to an event in the HR Management
-
-Format: `listEventEmployee INDEX​`
-
-* List the employees attending the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `listEventEmployee 1`
-
-
-### Remove employee from an event: `deleteEmployeeEvent`
-
-Remove a person from a event in the HR Management System.
-
-Format: `deleteEmployeeEvent EVENTINDEX EMPLOYEEINDEX`
-
-* Remove the employee at the specified `EMPLOYEEINDEX` from the event at the specified `EVENTINDEX`. The `EVENTINDEX` refers to the index number shown in the displayed event list. The `EMPLOYEEINDEX` refers to the index number shown in the **displayed list of employees added to the event**.  Both indexes **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `deleteEmployeeEvent 1 1`
-
-
 ### Clearing all entries : `clear`
 
 Clears all entries from SudoHR.
@@ -474,6 +375,18 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Help** | `help`
+| Action                                | Format                                                           |
+|---------------------------------------|------------------------------------------------------------------|
+| **Add an employee**                   | `add id/ID n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`    |
+| **List all employees**                | `list`                                                           |
+| **Edit an employee**                  | `edit eid/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
+| **Find employee by name**             | `find KEYWORD [MORE_KEYWORDS]`                                   |
+| **Delete an employee**                | `delete eid/ID`                                                  |
+| **Add a department**                  | `adep n/DEPARTMENT_NAME`                                         |
+| **List all departments**              | `ldep`                                                           |
+| **Edit a department**                 | `edep OLD_DEPARTMENT_NAME n/NEW_DEPARTMENT_NAME`                 |
+| **Delete a department**               | `ddep n/DEPARTMENT_NAME`                                         |
+| **Add employee to department**        | `aetd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                         |
+| **Remove employee from department**   | `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                         |
+| **List an employee's department**     | `led eid/EMPLOYEE_ID`                                            |
+| **List all employees in a department** | `leid n/DEPARTMENT_NAME`                                         |

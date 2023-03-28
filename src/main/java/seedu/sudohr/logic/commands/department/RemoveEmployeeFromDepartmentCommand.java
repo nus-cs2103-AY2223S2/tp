@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 
+import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
@@ -21,14 +22,14 @@ public class RemoveEmployeeFromDepartmentCommand extends Command {
     public static final String COMMAND_WORD = "refd";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes an employee from an existing department.\n"
-            + "Parameters: EMPLOYEE_ID, DEPARTMENT_NAME "
-            + "[" + PREFIX_DEPARTMENT_NAME + "NAME] "
+            + "Parameters: "
+            + PREFIX_EMPLOYEE + "EMPLOYEE_ID "
+            + PREFIX_DEPARTMENT_NAME + "DEPARTMENT_NAME \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_EMPLOYEE + "100 "
             + PREFIX_DEPARTMENT_NAME + "Software Engineering";
 
     public static final String MESSAGE_REMOVE_EMPLOYEE_FROM_DEPARTMENT_SUCCESS = "Employee %1$s is removed from %2$s";
     public static final String MESSAGE_DEPARTMENT_NOT_FOUND = "The given department does not exist in SudoHR.";
-    public static final String MESSAGE_EMPLOYEE_NOT_FOUND = "The given employee does not exist in SudoHR.";
     public static final String MESSAGE_EMPLOYEE_NOT_FOUND_IN_DEPARTMENT =
             "The given employee does not exist in the given department";
 
@@ -53,7 +54,7 @@ public class RemoveEmployeeFromDepartmentCommand extends Command {
         Department department = model.getDepartment(departmentName);
 
         if (employee == null) {
-            throw new CommandException(MESSAGE_EMPLOYEE_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_EMPLOYEE_NOT_FOUND);
         }
 
         if (department == null) {
