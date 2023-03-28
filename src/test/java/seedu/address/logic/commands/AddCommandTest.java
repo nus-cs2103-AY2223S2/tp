@@ -272,6 +272,34 @@ public class AddCommandTest {
         public void addNoteToConsultation(Note note, String nameOfEvent) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void removeNoteFromConsultation(Index index, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeNoteFromLab(Index index, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeNoteFromTutorial(Index index, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editNoteFromTutorial(Index index, Note note, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void editNoteFromLab(Index index, Note note, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void editNoteFromConsultation(Index index, Note note, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
