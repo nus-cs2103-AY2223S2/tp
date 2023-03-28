@@ -20,6 +20,9 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - [Navigate Relatively](#navigate-relatively)
   - [Navigate Directly](#navigate-directly)
   - [Navigate Backwards](#navigate-backwards)
+  - [List Modules](#list-modules)
+  - [List Lectures of Modules](#list-lectures-of-modules)
+  - [List Videos of Lectures](#list-videos-of-lectures)
   - [Add a Module](#add-a-module)
   - [Add a Lecture](#add-a-lecture)
   - [Add a Video](#add-a-video)
@@ -36,9 +39,6 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - [Untag a module](#untag-a-module)
   - [Untag a lecture](#untag-a-lecture)
   - [Untag a video](#untag-a-video)
-  - [List Modules](#list-modules)
-  - [List Lectures of Modules](#list-lectures-of-modules)
-  - [List Videos of Lectures](#list-videos-of-lectures)
   - [Find Modules or Lectures or Videos](#find-modules-or-lectures-or-videos)
   - [Find Modules or Lectures or Videos By Tag](#find-modules-or-lectures-or-videos-by-tag)
   - [Find Lectures in a Module](#find-lectures-in-a-module)
@@ -171,6 +171,45 @@ Format: `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
 > Navigates to the parent context of the current context
 
 Format: `navb`
+
+### List Modules
+
+> Lists all modules
+
+Format: `list`
+
+### List Lectures of Modules
+
+> Lists all lectures belonging to a specified module code
+
+Format: `list [/mod {module_code}]`
+
+- `module_code` must belong to an existing module
+- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
+
+Examples:
+
+- `list /mod CS2040S` lists lectures belonging to CS2040S
+
+### List Videos of Lectures
+
+> Lists all videos belonging to a specified lecture code of a navigated/specified module code
+
+Format:\
+In module context: `list [/lec {lecture_name}]`\
+In any context: `list [/mod {module_code} /lec {lecture_name}]`
+
+- `module_code` must belong to an existing module
+- `module_code` if not specified, defaults to the module code of the module in the module context (if any)
+- `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
+- `lecture_name` if not specified, defaults to the name of the lecture in the current context (if any)
+
+Examples:
+
+- In module context of module `CS2040S`: `list /lec Week 1`
+- In any context: `list /mod CS2040 /lec Week 1`
+
+_\* Both commands lists videos that belongs to lecture `Week 1` in module `CS2040S`_
 
 ### Add a Module
 
@@ -412,45 +451,6 @@ Examples:
 
 - `untag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay` removes the tag `Yay` in the video `Video_1` of the
   lecture `Lecture_1` that belongs to the module `CS2040`
-
-### List Modules
-
-> Lists all modules
-
-Format: `list`
-
-### List Lectures of Modules
-
-> Lists all lectures belonging to a specified module code
-
-Format: `list [/mod {module_code}]`
-
-- `module_code` must belong to an existing module
-- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
-
-Examples:
-
-- `list /mod CS2040S` lists lectures belonging to CS2040S
-
-### List Videos of Lectures
-
-> Lists all videos belonging to a specified lecture code of a navigated/specified module code
-
-Format:\
-In module context: `list [/lec {lecture_name}]`\
-In any context: `list [/mod {module_code} /lec {lecture_name}]`
-
-- `module_code` must belong to an existing module
-- `module_code` if not specified, defaults to the module code of the module in the module context (if any)
-- `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
-- `lecture_name` if not specified, defaults to the name of the lecture in the current context (if any)
-
-Examples:
-
-- In module context of module `CS2040S`: `list /lec Week 1`
-- In any context: `list /mod CS2040 /lec Week 1`
-
-_\* Both commands lists videos that belongs to lecture `Week 1` in module `CS2040S`_
 
 ### Find Modules or Lectures or Videos
 
