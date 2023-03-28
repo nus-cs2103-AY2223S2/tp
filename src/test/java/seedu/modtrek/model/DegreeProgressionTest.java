@@ -105,7 +105,7 @@ public class DegreeProgressionTest {
         }
 
         @Override
-        public TreeMap<? extends Object, ObservableList<Module>> getModuleGroups() {
+        public TreeMap<Object, ObservableList<Module>> getModuleGroups() {
             return null;
         }
 

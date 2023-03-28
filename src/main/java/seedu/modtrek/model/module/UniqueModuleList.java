@@ -22,7 +22,7 @@ public class UniqueModuleList implements Iterable<Module> {
     private final ObservableList<Module> internalList = FXCollections.observableArrayList();
     private final ObservableList<Module> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private TreeMap<?, ObservableList<Module>> moduleGroups = new TreeMap<>();
+    private TreeMap<Object, ObservableList<Module>> moduleGroups = new TreeMap<>();
     private SortCommand.Sort sort = DEFAULT_SORT;
 
 
@@ -48,7 +48,7 @@ public class UniqueModuleList implements Iterable<Module> {
             throw new DuplicateModuleException();
         }
         internalList.add(toAdd);
-        sortModuleGroups(sort);
+        sortByObject(sort);
     }
 
     /**
@@ -70,7 +70,7 @@ public class UniqueModuleList implements Iterable<Module> {
         }
 
         internalList.set(index, editedModule);
-        sortModuleGroups(sort);
+        sortByObject(sort);
     }
 
     /**
@@ -83,7 +83,7 @@ public class UniqueModuleList implements Iterable<Module> {
         if (!internalList.remove(toRemove)) {
             throw new ModuleNotFoundException();
         }
-        sortModuleGroups(sort);
+        sortByObject(sort);
     }
 
     /**
@@ -95,8 +95,8 @@ public class UniqueModuleList implements Iterable<Module> {
     public void setModules(UniqueModuleList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
-        moduleGroups = sortBySemYear();
         sort = SortCommand.Sort.YEAR;
+        sortByObject(sort);
     }
 
     /**
@@ -112,8 +112,8 @@ public class UniqueModuleList implements Iterable<Module> {
         }
 
         internalList.setAll(modules);
-        moduleGroups = sortBySemYear();
         sort = SortCommand.Sort.YEAR;
+        sortByObject(sort);
     }
 
     /**
@@ -126,65 +126,41 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Returns TreeMap of Modules sorted by SemYear
-     *
-     * @return tree map
+     * Returns a sorted Map
+     * @param sort
+     * @return sorted Map
      */
-    public TreeMap<SemYear, ObservableList<Module>> sortBySemYear() {
-        TreeMap<SemYear, ObservableList<Module>> result = new TreeMap<>();
+    public TreeMap<Object, ObservableList<Module>> sortByObject(SortCommand.Sort sort) {
+        TreeMap<Object, ObservableList<Module>> result = new TreeMap<>();
+        this.sort = sort;
         for (Module m : internalList) {
-            SemYear currSemYear = m.getSemYear();
-            ObservableList<Module> existingSemYearList = result.get(currSemYear);
-            if (existingSemYearList == null) {
-                ObservableList<Module> currSemYearList = FXCollections.observableArrayList();
-                currSemYearList.add(m);
-                result.put(currSemYear, currSemYearList);
+            Object obj;
+            switch (sort) {
+            case GRADE:
+                obj = m.getGrade();
+                break;
+            case CREDITS:
+                obj = m.getCredit().toString();
+                break;
+            case TAG:
+                obj = m.getTags().toString();
+                break;
+            case CODE:
+                obj = m.getCodePrefix().toString();
+                break;
+            default:
+                obj = m.getSemYear();
+            }
+            ObservableList<Module> existingList = result.get(obj);
+            if (existingList == null) {
+                ObservableList<Module> newList = FXCollections.observableArrayList();
+                newList.add(m);
+                result.put(obj, newList);
             } else {
-                existingSemYearList.add(m);
+                existingList.add(m);
             }
         }
-        return result;
-    }
-
-    /**
-     * Returns TreeMap of Modules sorted by Credit
-     *
-     * @return tree map
-     */
-    public TreeMap<Credit, ObservableList<Module>> sortByCredit() {
-        TreeMap<Credit, ObservableList<Module>> result = new TreeMap<>();
-        for (Module m : internalList) {
-            Credit currCredit = m.getCredit();
-            ObservableList<Module> existingCreditList = result.get(currCredit);
-            if (existingCreditList == null) {
-                ObservableList<Module> currCreditList = FXCollections.observableArrayList();
-                currCreditList.add(m);
-                result.put(currCredit, currCreditList);
-            } else {
-                existingCreditList.add(m);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Returns TreeMap of Modules sorted by Grade
-     *
-     * @return tree map
-     */
-    public TreeMap<Grade, ObservableList<Module>> sortByGrade() {
-        TreeMap<Grade, ObservableList<Module>> result = new TreeMap<>();
-        for (Module m : internalList) {
-            Grade currGrade = m.getGrade();
-            ObservableList<Module> existingGradeList = result.get(currGrade);
-            if (existingGradeList == null) {
-                ObservableList<Module> currGradeList = FXCollections.observableArrayList();
-                currGradeList.add(m);
-                result.put(currGrade, currGradeList);
-            } else {
-                existingGradeList.add(m);
-            }
-        }
+        moduleGroups = result;
         return result;
     }
 
@@ -217,32 +193,11 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Sort module groups tree map.
-     *
-     * @param sort the sort
-     * @return the tree map
-     */
-    public TreeMap<?, ObservableList<Module>> sortModuleGroups(SortCommand.Sort sort) {
-        this.sort = sort;
-        switch (sort) {
-        case GRADE:
-            moduleGroups = sortByGrade();
-            return sortByGrade();
-        case CREDITS:
-            moduleGroups = sortByCredit();
-            return sortByCredit();
-        default:
-            moduleGroups = sortBySemYear();
-            return sortBySemYear();
-        }
-    }
-
-    /**
      * Gets module groups.
      *
      * @return the module groups
      */
-    public TreeMap<?, ObservableList<Module>> getModuleGroups() {
+    public TreeMap<Object, ObservableList<Module>> getModuleGroups() {
         return moduleGroups;
     }
 

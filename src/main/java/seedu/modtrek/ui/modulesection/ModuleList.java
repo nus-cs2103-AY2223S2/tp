@@ -36,7 +36,7 @@ public class ModuleList extends UiPart<Region> {
      *
      * @param moduleGroups the module groups
      */
-    public ModuleList(TreeMap<? extends Object, ObservableList<Module>> moduleGroups) {
+    public ModuleList(TreeMap<Object, ObservableList<Module>> moduleGroups) {
         super(FXML);
 
         updateSortedModules(moduleGroups);
@@ -60,14 +60,14 @@ public class ModuleList extends UiPart<Region> {
      * Updates the sorted module groups.
      * @param moduleGroups The sorted module groups.
      */
-    public void updateSortedModules(TreeMap<? extends Object, ObservableList<Module>> moduleGroups) {
+    public void updateSortedModules(TreeMap<Object, ObservableList<Module>> moduleGroups) {
         moduleList.getChildren().clear();
 
         if (moduleGroups.size() == 0) {
             displayPlaceholderText("No modules found in the module list.");
         }
 
-        for (Map.Entry<? extends Object, ObservableList<Module>> entry : moduleGroups.entrySet()) {
+        for (Map.Entry<Object, ObservableList<Module>> entry : moduleGroups.entrySet()) {
             ModuleGroup moduleGroup = new ModuleGroup(entry.getValue(), entry.getKey().toString());
             moduleList.getChildren().add(moduleGroup.getRoot());
         }

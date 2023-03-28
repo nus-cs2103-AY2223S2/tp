@@ -102,12 +102,12 @@ public class DegreeProgression implements ReadOnlyDegreeProgression {
         modules.remove(key);
     }
 
-    public TreeMap<? extends Object, ObservableList<Module>> getModuleGroups() {
+    public TreeMap<Object, ObservableList<Module>> getModuleGroups() {
         return modules.getModuleGroups();
     }
 
-    public TreeMap<?, ObservableList<Module>> sortModuleGroups(SortCommand.Sort sort) {
-        return modules.sortModuleGroups(sort);
+    public TreeMap<Object, ObservableList<Module>> sortModuleGroups(SortCommand.Sort sort) {
+        return modules.sortByObject(sort);
     }
 
     @Override

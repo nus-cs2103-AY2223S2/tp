@@ -97,21 +97,6 @@ public class SemYear implements Comparable<SemYear> {
      */
     @Override
     public int compareTo(SemYear o) {
-        Integer year1 = Integer.parseInt(o.toString().substring(1, 2));
-        Integer year2 = Integer.parseInt(this.toString().substring(1, 2));
-        if (year1 != year2) {
-            return year1 - year2;
-        }
-        String sem1 = o.toString().substring(3, 4);
-        if (sem1.equals("T")) {
-            return -1;
-        }
-        String sem2 = this.toString().substring(3, 4);
-        if (sem2.equals("T")) {
-            return 1;
-        }
-        Integer semInt1 = Integer.parseInt(sem1);
-        Integer semInt2 = Integer.parseInt(sem2);
-        return semInt1 - semInt2;
+        return o.toString().compareTo(this.toString());
     }
 }

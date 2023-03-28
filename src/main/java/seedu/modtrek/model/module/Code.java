@@ -54,5 +54,4 @@ public class Code {
     public int hashCode() {
         return code.hashCode();
     }
-
 }
