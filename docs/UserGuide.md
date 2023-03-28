@@ -478,6 +478,13 @@ If you have a project or client selected, pressing ***Enter*** in **search mode*
 
 # Command summary
 
+The table below summarizes the layout of all the commands in Mycelium. You may
+read the statement `q -a foo [-b bar]` like so:
+
+* `q` is the command,
+* `-a foo` indicates a compulsory argument;
+* `[-b bar]` indicates an optional argument.
+
 Action | Format | Example 
 --------|------------------|------
 **Create new client** | `c -cn client_name -e email [-y year_of_birth] [-src source] [-mn mobile_number]` | `c -cn Alice Baker -e alice_baker@bakers.com -y 2000`
