@@ -103,6 +103,8 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
+        return this.feedbackToUser.equals(otherCommandResult.feedbackToUser);
+        /*
         boolean isEqualTargetClients;
 
         // handles case where targetClient is null
@@ -117,6 +119,7 @@ public class CommandResult {
                 && select == otherCommandResult.select
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit;
+         */
     }
 
     @Override
