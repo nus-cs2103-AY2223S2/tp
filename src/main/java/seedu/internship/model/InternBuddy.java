@@ -5,11 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.UniqueInternshipList;
-import javax.swing.SwingUtilities;
 
 /**
  * Wraps all data at the address-book level
@@ -106,17 +103,6 @@ public class InternBuddy implements ReadOnlyInternBuddy {
         internships.view(key);
     }
 
-    public void copyInternship(Internship key) {
-        String content = key.toString();
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                final Clipboard clipboard = Clipboard.getSystemClipboard();
-                final ClipboardContent clipboardContent = new ClipboardContent();
-                clipboardContent.putString(content);
-                clipboard.setContent(clipboardContent);
-            }
-        });
-    }
 
 
     //// util methods
