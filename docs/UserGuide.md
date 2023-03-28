@@ -64,7 +64,7 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
 3. Run `java -jar vimification.jar`.
 
 4. The application should launch, and a GUI similar to the below should appear in a few seconds. <br>
-   ![Ui](images/Ui.png)
+   <img class="ui-img" src="images/Ui.png" alt="Ui Image" width="1203" height="599" title="Overall User Interface">
 
 ## Using the Command-Line Interface (CLI)
 
@@ -93,7 +93,7 @@ Vimification is designed to mimic Vim as closely as possible. Navigate Vimificat
 
 Similar to Vim, you can bring up the command input by pressing the `:` key on your keyboard.
 e.g:
-![](images/ug-images/showCommand/commandExample.png)
+<img class="ui-img" src="images/ug-images/showCommand/commandExample.png" alt="Example of Show Command Image" width="1203" height="599" title="How to bring up the command input">
 
 ## Features
 
@@ -108,6 +108,7 @@ e.g:
   e.g. in `:i todo [DESCRIPTION]`, `DESCRIPTION` is a parameter must be provided.
 
 - Items with `…`​ after them can be used multiple times including zero times.<br>
+<!-- TODO: Improve clarity -->
   e.g. `[-t TAG]…​` can be used as ` ` (i.e. 0 times), `-t cs2103t`, `-t cs2103t -t groupwork` etc.
 
 - Parameters can be in any order.<br>
@@ -140,7 +141,7 @@ Examples:
 `:i todo CS2130T UG`
 
 **After**
-![](images/ug-images/AddTaskCommandDemo.png)
+<img class="ui-img" src="images/ug-images/AddTaskCommandDemo.png" alt="Add Task Command Demo Image" width="1203" height="599" title="Add Task Command Demo">
 
 ### Adding a task with deadline
 
@@ -159,6 +160,7 @@ Examples:
 
 **After**
 ![](images/ug-images/AddDeadlineCommandDemo.png)
+<img class="ui-img" src="images/ug-images/AddDeadlineCommandDemo.png" alt="Add Deadline Command Demo Image" width="1203" height="599" title="Add Deadline Command Demo">
 
 ### Deleting a task
 
@@ -174,10 +176,10 @@ Format: `:d [TASK_INDEX]`
 Examples:
 
 **Before**
-![](images/ug-images/deleteCommand/before.png)
+<img class="ui-img" src="images/ug-images/deleteCommand/before.png" alt="Delete Command Before Image" width="1203" height="599" title="Before Delete Command">
 
 **After**
-![](images/ug-images/deleteCommand/after.png)
+<img class="ui-img" src="images/ug-images/deleteCommand/before.png" alt="Delete Command After Image" width="1203" height="599" title="After Delete Command">
 
 ### Exiting the program
 
@@ -186,7 +188,7 @@ Similar to Vim, we can use the `q` command with write `w` to exit the program.
 Format: `:wq!`, `:q!`,,`:wq`,`:q`
 
 Examples:
-![](images/ug-images/quitCommand/quitExample1.png)
+<img class="ui-img" src="images/ug-images/quitCommand/quitExample1.png" alt="Quit Example 1 Image" width="1203" height="599" title="Quit Example 1">
 
 ### Saving the data
 
@@ -213,6 +215,7 @@ _Details coming soon ..._
 
 ---
 
+<!-- TODO: Complete theis command summary box -->
 ## Command summary
 
 | Action           | Format, Examples                                                                         |
