@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
+
 /**
  * Represents a Person's value in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}
@@ -10,13 +14,15 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Location {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Location should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Location should be a valid country that contains characters and spaces, and it should not be blank";
 
     /*
      * The first character of the value must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
+    private static Set<String> countries = new HashSet<String>();
 
     public final String value;
 
@@ -31,11 +37,36 @@ public class Location {
         this.value = location;
     }
 
+    private static void getCountries() {
+        if (countries.size() == 0) {
+            for (String iso : Locale.getISOCountries()) {
+                Locale locale = new Locale("", iso);
+                countries.add(locale.getDisplayCountry());
+            }
+        }
+    }
+
+    private static boolean locationExists(String location) {
+        getCountries();
+
+        if (countries.contains(location)) {
+            return true;
+        }
+
+        for (String country : countries) {
+            if (country.contains(location)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Returns true if a given string is a valid value.
      */
     public static boolean isValidLocation(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && locationExists(test);
     }
 
     @Override
