@@ -59,11 +59,13 @@ import seedu.connectus.model.tag.Remark;
 import seedu.connectus.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
+
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withRemarks(VALID_REMARK_FRIEND)
+        Person expectedPerson = new PersonBuilder(BOB)
+                .withRemarks(VALID_REMARK_FRIEND)
                 .withModules(VALID_MODULE_CS2101).withCcas(VALID_CCA_NES)
                 .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
 
@@ -92,14 +94,14 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + REMARK_DESC_FRIEND + MODULE_DESC_CS2101
                 + CCA_DESC_NES + CCA_POSITION_DESC_DIRECTOR, new AddCommand(expectedPerson));
 
-        // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB)
+        // multiple remarks - all accepted
+        Person expectedPersonMultipleRemarks = new PersonBuilder(BOB)
                 .withRemarks(VALID_REMARK_FRIEND, VALID_REMARK_HUSBAND)
                 .withModules(VALID_MODULE_CS2101).withCcas(VALID_CCA_NES)
                 .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + REMARK_DESC_HUSBAND + REMARK_DESC_FRIEND + MODULE_DESC_CS2101
-                + CCA_DESC_NES + CCA_POSITION_DESC_DIRECTOR, new AddCommand(expectedPersonMultipleTags));
+                + CCA_DESC_NES + CCA_POSITION_DESC_DIRECTOR, new AddCommand(expectedPersonMultipleRemarks));
 
         // multiple modules - all accepted
         Person expectedPersonMultipleModules = new PersonBuilder(BOB)
@@ -112,7 +114,7 @@ public class AddCommandParserTest {
                 + CCA_DESC_NES + CCA_POSITION_DESC_DIRECTOR,
                 new AddCommand(expectedPersonMultipleModules));
 
-        // multiple cca - all accepted
+        // multiple ccas - all accepted
         Person expectedPersonMultipleCcas = new PersonBuilder(BOB)
                 .withRemarks(VALID_REMARK_FRIEND)
                 .withModules(VALID_MODULE_CS2103T).withCcas(VALID_CCA_NES, VALID_CCA_ICS)
@@ -122,7 +124,7 @@ public class AddCommandParserTest {
                         + CCA_DESC_NES + CCA_DESC_ICS + CCA_POSITION_DESC_DIRECTOR,
                 new AddCommand(expectedPersonMultipleCcas));
 
-        // multiple ccaPosition - all accepted
+        // multiple ccaPositions - all accepted
         Person expectedPersonMultipleCcaPositions = new PersonBuilder(BOB)
                 .withRemarks(VALID_REMARK_FRIEND)
                 .withModules(VALID_MODULE_CS2103T).withCcas(VALID_CCA_NES)
