@@ -9,7 +9,7 @@ header_pages:
 markdown: kramdown
 
 repository: "AY2223S2-CS2103T-T14-2/tp"
-github_icon: "images/github-icon.png"
+github_icon: "images/UI/github-icon.png"
 
 plugins:
   - jemoji

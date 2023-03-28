@@ -288,8 +288,8 @@ Examples:
 
 #### Archiving a pet: `archive`
 
-Archives the specified pet into the `archive.json` file in the `data` folder
-This command can be undone
+Archives the specified pet into the `archive.json` file in the `data` folder.
+Note that the specified pet will be removed from your PetPal.
 
 Format: `archive INDEX`
 
