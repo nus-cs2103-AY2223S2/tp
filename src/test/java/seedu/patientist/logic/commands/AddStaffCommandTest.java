@@ -10,8 +10,8 @@ import static seedu.patientist.testutil.TypicalWards.VALID_WARD_NAME;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Predicate;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 

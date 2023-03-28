@@ -84,14 +84,6 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
-    public void remove(int index) {
-        try {
-            internalList.remove(index);;
-        } catch (IndexOutOfBoundsException e) {
-            throw new PersonNotFoundException();
-        }
-    }
-
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

@@ -12,7 +12,6 @@ import seedu.patientist.model.person.staff.DummyStaff;
 import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.ward.Ward;
 
-
 /**
  * Deletes a staff member using their unique id number.
  */
@@ -30,6 +29,11 @@ public class DeleteStaffCommand extends Command {
 
     private final IdNumber idNumber;
 
+    /**
+     * Creates a DeleteStaffCommand to remove the {@code Staff} based on their {@code IdNumber}.
+     *
+     * @param idNumber The id number of the staff member.
+     */
     public DeleteStaffCommand(IdNumber idNumber) {
         requireNonNull(idNumber);
         this.idNumber = idNumber;

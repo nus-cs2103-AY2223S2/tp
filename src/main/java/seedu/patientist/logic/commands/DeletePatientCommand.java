@@ -29,6 +29,11 @@ public class DeletePatientCommand extends Command {
 
     private final IdNumber idNumber;
 
+    /**
+     * Creates a DeletePatientCommand to remove the {@code Patient} based on their {@code IdNumber}.
+     *
+     * @param idNumber The id number of the staff member.
+     */
     public DeletePatientCommand(IdNumber idNumber) {
         requireNonNull(idNumber);
         this.idNumber = idNumber;

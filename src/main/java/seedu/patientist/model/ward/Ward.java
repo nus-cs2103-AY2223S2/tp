@@ -4,6 +4,7 @@ import static seedu.patientist.commons.util.AppUtil.checkArgument;
 import static seedu.patientist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+
 import javafx.collections.ObservableList;
 import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Person;
@@ -112,6 +113,12 @@ public class Ward {
         }
     }
 
+    /**
+     * Deletes a patient based on id from any ward. Patient must already exist in ward.
+     *
+     * @param idNumber The id number of the patient.
+     * @param patient The dummy patient used to check equality of {@code IdNumber}.
+     */
     public void deletePatientById(IdNumber idNumber, Patient patient) {
         requireAllNonNull(idNumber, patient);
         if (!containsPatient(patient)) {
@@ -127,6 +134,12 @@ public class Ward {
         }
     }
 
+    /**
+     * Deletes a staff member based on id from any ward. Staff must already exist in ward.
+     *
+     * @param idNumber The id number of the staff.
+     * @param staff The dummy staff used to check equality of {@code IdNumber}.
+     */
     public void deleteStaffById(IdNumber idNumber, Staff staff) {
         requireAllNonNull(idNumber, staff);
         if (!containsStaff(staff)) {
