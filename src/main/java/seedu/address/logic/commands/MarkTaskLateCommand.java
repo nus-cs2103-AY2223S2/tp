@@ -18,7 +18,7 @@ import seedu.address.model.task.Task;
  */
 public class MarkTaskLateCommand extends Command {
 
-    public static final String COMMAND_WORD = "markTaskLate";
+    public static final String COMMAND_WORD = "marktasklate";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the task identified by its index number in the task list of the "

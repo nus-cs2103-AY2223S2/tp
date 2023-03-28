@@ -74,6 +74,10 @@ Prompts the help page link.
 
 Format: `help`
 
+Note:
+
+* Any information behind `help` will be ignored.
+
 
 ### Adding a student's contact: `add`
 
@@ -94,6 +98,10 @@ Examples:
 Lists all the students in the student list.
 
 Format: `list`
+
+Note:
+
+* Any information behind `list` will be ignored.
 
 ### Editing a student : `edit`
 
@@ -239,11 +247,19 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+Note:
+
+* Any information behind `clear` will be ignored.
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+Note:
+
+* Any information behind `exit` will be ignored.
 
 ### Saving the data
 
