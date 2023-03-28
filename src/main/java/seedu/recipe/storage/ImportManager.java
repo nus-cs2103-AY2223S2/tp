@@ -28,6 +28,7 @@ public class ImportManager {
     /**
      * Prompts the user to select a JSON file to import and returns an ObservableList of Recipe objects
      * parsed from the selected file.
+     *
      * @return An ObservableList of Recipe parsed from the selected JSON file.
      * @throws IOException if an I/O error occurs.
      * @throws DataConversionException if the JSON data in the file cannot be converted into a RecipeBook object.
@@ -44,6 +45,7 @@ public class ImportManager {
 
     /**
      * Prompts the user to select a JSON file to import and returns the selected File object.
+     *
      * @return The File object representing the selected JSON file.
      * @throws IOException if an I/O error occurs.
      */
@@ -80,6 +82,7 @@ public class ImportManager {
 
     /**
      * Parses the Recipe objects from the specified JSON file and returns an ObservableList of Recipe objects.
+     *
      * @param selectedFile The File object representing the JSON file to parse.
      * @return An ObservableList of Recipe objects parsed from the specified JSON file.
      * @throws DataConversionException if the JSON data in the file cannot be converted into a RecipeBook object.

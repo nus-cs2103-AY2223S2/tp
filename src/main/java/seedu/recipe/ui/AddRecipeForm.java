@@ -17,7 +17,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import seedu.recipe.commons.core.LogsCenter;
 
 /**
@@ -75,7 +74,7 @@ public class AddRecipeForm extends UiPart<Region> {
         ingredientsBox.getChildren().add(emptyIngredientField);
         TextField emptyStepField = createDynamicTextField("");
         stepsBox.getChildren().add(emptyStepField);
-    
+        // assert test on save button
         assert saveButton != null;
         saveButton.setOnAction(event -> saveRecipe());
         cancelButton.setOnAction(event -> closeForm());
@@ -91,7 +90,6 @@ public class AddRecipeForm extends UiPart<Region> {
         Map<String, String> inputValues = new HashMap<>();
 
         inputValues.put("name", nameField.getText());
-        
         if (!durationField.getText().isEmpty()) {
             inputValues.put("duration", durationField.getText());
         }
@@ -115,7 +113,7 @@ public class AddRecipeForm extends UiPart<Region> {
         if (!tagsField.getText().isEmpty()) {
             inputValues.put("tags", tagsField.getText());
         }
-        this.commands = handleAddRecipeEvent(inputValues);       
+        this.commands = handleAddRecipeEvent(inputValues);
         closeForm();
     }
 
@@ -123,8 +121,7 @@ public class AddRecipeForm extends UiPart<Region> {
      * Handles the add recipe event.
      *
      * @param inputValues A map of the added recipe fields with keys as field names and values as the new data.
-     * @return commands The StringBuilder instance containing the command string, to be passed back to saveRecipe()
-     * and then to AddFormCommand.
+     * @return commands The StringBuilder instance containing the command string, to be passed back to saveRecipe().
      */
     private StringBuilder handleAddRecipeEvent(Map<String, String> inputValues) {
         commands.append("add");
@@ -139,7 +136,7 @@ public class AddRecipeForm extends UiPart<Region> {
             commands.append(" d/");
             commands.append(inputValues.get("duration"));
         }
-   
+
         // Check if the portion has been added and append the duration prefix and value.
         if (inputValues.containsKey("portion")) {
             commands.append(" p/");
@@ -212,21 +209,20 @@ public class AddRecipeForm extends UiPart<Region> {
             if (event.getCode() == KeyCode.UP) {
                 // Condition 1: UP key pressed
                 if (currentIndex > 0) {
-                    TextField prevField = (TextField) ((VBox) textField.getParent()).getChildren().get(currentIndex - 1);
+                    TextField prevField = (TextField) ((VBox) textField.getParent())
+                                                                       .getChildren().get(currentIndex - 1);
                     prevField.requestFocus();
                 }
             } else if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.TAB) {
                 TextField nextField = (TextField) ((VBox) textField.getParent()).getChildren().get(currentIndex + 1);
-        
                 // Condition 2.1: DOWN key pressed
                 if (event.getCode() == KeyCode.DOWN) {
                     nextField.requestFocus();
-                }
                 // Condition 2.2: TAB key pressed
-                else if (event.getCode() == KeyCode.TAB) {
+                } else if (event.getCode() == KeyCode.TAB) {
                     // If it is a new placeholder row and there's another TextField after it, skip to the field after
-                    if (nextField.getText().isEmpty() && currentIndex + 2 <
-                            ((VBox) textField.getParent()).getChildren().size()) {
+                    if (nextField.getText().isEmpty() && currentIndex + 2
+                            < ((VBox) textField.getParent()).getChildren().size()) {
                         nextField = (TextField) ((VBox) textField.getParent()).getChildren().get(currentIndex + 2);
                     }
                     nextField.requestFocus();
@@ -236,18 +232,16 @@ public class AddRecipeForm extends UiPart<Region> {
                 // Default: Do nothing
             }
         });
-        
         //Textfield listener for automatically adding/removing new input rows
         textField.focusedProperty().addListener((observable, oldValue, newValue) -> {
             VBox parentBox = (VBox) textField.getParent();
             int lastIndex = parentBox.getChildren().size() - 1;
-
             // Check if the TextField has gained focus
             if (newValue) {
                 // Check if it's the last TextField in the VBox
                 if (parentBox.getChildren().indexOf(textField) == lastIndex) {
                     TextField newField = createDynamicTextField("");
-                    parentBox.getChildren().add(newField); 
+                    parentBox.getChildren().add(newField);
                 }
             } else {
                 // Check if it's the last TextField, it's empty, and the focus is not in the same VBox, then remove it
@@ -256,7 +250,6 @@ public class AddRecipeForm extends UiPart<Region> {
                 }
             }
         });
-
         return textField;
     }
 

@@ -1,8 +1,7 @@
 package seedu.recipe.ui;
 
-import java.util.logging.Logger;
-import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +11,6 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.recipe.commons.core.GuiSettings;
 import seedu.recipe.commons.core.LogsCenter;
@@ -145,29 +143,6 @@ public class MainWindow extends UiPart<Stage> {
             System.out.println(e.getMessage());
         }
     }
-    // My test import method
-//    @FXML
-//    private void newHandleImport() {
-//        FileChooser fileChooser = new FileChooser();
-//
-//        // Set the file extension filter for JSON files
-//        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json");
-//        fileChooser.getExtensionFilters().add(extFilter);
-//
-//        // Show open file dialog
-//        File selectedFile = fileChooser.showOpenDialog(primaryStage);
-//        try {
-//            if (selectedFile != null) {
-//                ImportManager importManager = new ImportManager();
-//                ObservableList<Recipe> importedRecipes = importManager.importRecipes(selectedFile);
-//                for (Recipe recipe : importedRecipes) {
-//                    System.out.println("Recipe: " + recipe.toString());
-//                }
-//            }
-//        } catch (DataConversionException e) {
-//            return;
-//        }
-//    }
 
     /**
      * Handles the DeleteRecipeEvent by executing the appropriate delete command
