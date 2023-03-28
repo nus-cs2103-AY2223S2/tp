@@ -22,6 +22,7 @@ import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
+import seedu.loyaltylift.model.order.StatusValue;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -246,6 +247,19 @@ public class ParserUtil {
             return Order.SORT_STATUS;
         default:
             throw new ParseException(ListOrderCommand.MESSAGE_INVALID_SORT);
+        }
+    }
+
+    /**
+     * Parses a {@code String statusValue} into a {@code StatusValue}.
+     * @throws ParseException if the given {@code attribute} is invalid.
+     */
+    public static StatusValue parseStatusValue(String statusValue) throws ParseException {
+        requireNonNull(statusValue);
+        try {
+            return StatusValue.fromString(statusValue.trim());
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(ListOrderCommand.MESSAGE_INVALID_FILTER);
         }
     }
 }
