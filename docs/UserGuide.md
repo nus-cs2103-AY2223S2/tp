@@ -309,17 +309,18 @@ Examples:
 
 ### Listing all customers : `listo`
 
-Shows a list of all orders
+Shows a list of all orders.
 
-Format: `listo [s or f/STATUS]`
+Format: `listo [s/{created|name|status}] [f/STATUS]`
 
-* If `listo s`, then sort by status, starting from pending, followed by paid, shipped and received
+* Lists all orders with the specified sorting option.
+* By default, orders are sorted by their created date
 * If `listo f/STATUS` then show only the given status
 
 Examples:
-* `listo` shows all orders.
-* `listo s` shows all orders, sorted by status.
-* `listo f/pending` shows all orders with "pending" status.
+* `listo` lists all orders sorted by created date.
+* `listo s/status` lists all orders sorted by status.
+* `listo f/pending` lists all orders with "pending" status.
 
 ### Editing an order : `edito`
 

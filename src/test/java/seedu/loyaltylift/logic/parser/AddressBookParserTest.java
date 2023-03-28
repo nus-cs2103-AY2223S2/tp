@@ -6,6 +6,7 @@ import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FO
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_POINTS;
+import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_SORT;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 
@@ -28,6 +29,7 @@ import seedu.loyaltylift.logic.commands.FindCustomerCommand;
 import seedu.loyaltylift.logic.commands.FindOrderCommand;
 import seedu.loyaltylift.logic.commands.HelpCommand;
 import seedu.loyaltylift.logic.commands.ListCustomerCommand;
+import seedu.loyaltylift.logic.commands.ListOrderCommand;
 import seedu.loyaltylift.logic.commands.SetCustomerNoteCommand;
 import seedu.loyaltylift.logic.commands.SetOrderNoteCommand;
 import seedu.loyaltylift.logic.commands.SetPointsCommand;
@@ -37,6 +39,7 @@ import seedu.loyaltylift.model.attribute.Note;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerNameContainsKeywordsPredicate;
 import seedu.loyaltylift.model.customer.Points;
+import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.OrderNameContainsKeywordsPredicate;
 import seedu.loyaltylift.testutil.CustomerBuilder;
 import seedu.loyaltylift.testutil.CustomerUtil;
@@ -98,8 +101,14 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_listc() throws Exception {
-        assertTrue(parser.parseCommand(ListCustomerCommand.COMMAND_WORD) instanceof ListCustomerCommand);
-        assertTrue(parser.parseCommand(ListCustomerCommand.COMMAND_WORD + " 3") instanceof ListCustomerCommand);
+        ListCustomerCommand parsedCommand;
+
+        parsedCommand = (ListCustomerCommand) parser.parseCommand(ListCustomerCommand.COMMAND_WORD);
+        assertEquals(new ListCustomerCommand(Customer.SORT_NAME), parsedCommand);
+
+        parsedCommand = (ListCustomerCommand) parser.parseCommand(
+                ListCustomerCommand.COMMAND_WORD + " " + PREFIX_SORT + "points");
+        assertEquals(new ListCustomerCommand(Customer.SORT_POINTS), parsedCommand);
     }
 
     @Test
@@ -170,6 +179,18 @@ public class AddressBookParserTest {
         FindOrderCommand command = (FindOrderCommand) parser.parseCommand(
                 FindOrderCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindOrderCommand(new OrderNameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_listo() throws Exception {
+        ListOrderCommand parsedCommand;
+
+        parsedCommand = (ListOrderCommand) parser.parseCommand(ListOrderCommand.COMMAND_WORD);
+        assertEquals(new ListOrderCommand(Order.SORT_CREATED_DATE), parsedCommand);
+
+        parsedCommand = (ListOrderCommand) parser.parseCommand(
+                ListOrderCommand.COMMAND_WORD + " " + PREFIX_SORT + "status");
+        assertEquals(new ListOrderCommand(Order.SORT_STATUS), parsedCommand);
     }
 
     @Test

@@ -24,10 +24,15 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+
+    // filtered lists
     private final FilteredList<Customer> filteredCustomers;
-    private final SortedList<Customer> sortedCustomers;
     private final FilteredList<Order> filteredOrders;
     private final FilteredList<Order> filteredCustomerOrders;
+
+    // sorted lists
+    private final SortedList<Customer> sortedCustomers;
+    private final SortedList<Order> sortedOrders;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,6 +48,7 @@ public class ModelManager implements Model {
         filteredOrders = new FilteredList<>(this.addressBook.getOrderList());
         filteredCustomerOrders = new FilteredList<>(this.addressBook.getOrderList());
         sortedCustomers = new SortedList<>(filteredCustomers, Customer.SORT_NAME);
+        sortedOrders = new SortedList<>(filteredOrders, Order.SORT_CREATED_DATE);
     }
 
     public ModelManager() {
@@ -178,7 +184,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Order> getFilteredOrderList() {
-        return filteredOrders;
+        return sortedOrders;
     }
 
     @Override
@@ -196,6 +202,11 @@ public class ModelManager implements Model {
     public void updateFilteredCustomerOrderList(Customer customer) {
         requireNonNull(customer);
         filteredCustomerOrders.setPredicate((order) -> order.getCustomer().equals(customer));
+    }
+
+    @Override
+    public void sortFilteredOrderList(Comparator<Order> comparator) {
+        sortedOrders.setComparator(comparator);
     }
 
     @Override

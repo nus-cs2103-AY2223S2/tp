@@ -232,14 +232,14 @@ We settled on just a **set** and **append** command as deleting a note can be do
 
 ### Sorting feature
 
-Customers can be sorted either by name or by points. We decided to implement the sorting as a parameter for the `listc` command.
+Customers and Orders can be sorted by certain attributes. We decided to implement the sorting as a parameter for the list commands.
 
-The sorting is done by adding a JavaFX `SortedList` to the `Model`, with the original `FilteredList` as its source. This `SortedList` is then used to display the customer list in place of the `FilteredList`.
+The sorting is done by adding a JavaFX `SortedList` to the `Model`, with the original `FilteredList` as its source. This `SortedList` is then used to display the customer and order list in place of the `FilteredList`.
 
 The `SortedList` can be sorted by a `Comparator`.
 
-* The `Comparator`s for each sorting option is provided as static constants by the `Customer` class.
-* To facilitate the comparators, the relevant attribute classes (i.e. `Name` and `Points`) will also implement the `Comparable` interface.
+* The `Comparator`s for each sorting option is provided as static constants by the `Customer` and `Order` class.
+* To facilitate the comparators, the relevant attribute classes (e.g. `Name` and `Points`) will also implement the `Comparable` interface.
 
 
 ### Order Status

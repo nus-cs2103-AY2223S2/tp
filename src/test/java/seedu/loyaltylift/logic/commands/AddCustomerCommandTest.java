@@ -188,6 +188,11 @@ public class AddCustomerCommandTest {
         }
 
         @Override
+        public void sortFilteredOrderList(Comparator<Order> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Order> getFilteredCustomerOrderList() {
             throw new AssertionError("This method should not be called.");
         }

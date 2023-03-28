@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 /**
  * Represents the collection of {@code StatusUpdate} of an Order.
  */
-public class Status {
+public class Status implements Comparable<Status> {
 
     public static final String MESSAGE_CONSTRAINTS = "Status updates should not be empty";
     private final List<StatusUpdate> statusUpdates;
@@ -104,4 +104,10 @@ public class Status {
     public String toString() {
         return statusUpdates.toString();
     }
+
+    @Override
+    public int compareTo(Status o) {
+        return getLatestStatus().compareTo(o.getLatestStatus());
+    }
+
 }

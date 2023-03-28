@@ -20,6 +20,7 @@ import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerNameContainsKeywordsPredicate;
+import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.testutil.EditCustomerDescriptorBuilder;
 
 /**
@@ -145,6 +146,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredCustomerList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the customer at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -157,6 +159,19 @@ public class CommandTestUtil {
         model.updateFilteredCustomerList(new CustomerNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredCustomerList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the order at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showOrderAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredOrderList().size());
+
+        Order order = model.getFilteredOrderList().get(targetIndex.getZeroBased());
+        model.updateFilteredOrderList(a -> a == order);
+
+        assertEquals(1, model.getFilteredOrderList().size());
     }
 
 }

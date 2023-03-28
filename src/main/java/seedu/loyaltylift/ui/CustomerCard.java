@@ -33,6 +33,8 @@ public class CustomerCard extends UiPart<Region> {
     private Label phone;
     @FXML
     private Label address;
+    //@FXML
+    //placeholder for bookmark
     @FXML
     private HBox customerTypePlaceholder;
 
@@ -48,6 +50,9 @@ public class CustomerCard extends UiPart<Region> {
         name.setText(customer.getName().fullName);
         phone.setText(customer.getPhone().value);
         address.setText(customer.getAddress().value);
+
+        Bookmark bookmark = Bookmark.createBookmarkIcon(customer.getMarked());
+        customerTypePlaceholder.getChildren().add(bookmark.getRoot());
 
         Badge customerTypeTag = Badge.createCustomerTypeBadge(customer.getCustomerType());
         customerTypePlaceholder.getChildren().add(customerTypeTag.getRoot());
