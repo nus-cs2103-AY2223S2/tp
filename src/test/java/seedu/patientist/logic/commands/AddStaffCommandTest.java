@@ -253,6 +253,22 @@ public class AddStaffCommandTest {
         }
 
         @Override
+        public boolean hasWard(Ward ward) {
+            requireNonNull(ward);
+            return true;
+        }
+
+        @Override
+        public Ward getWard(String wardName) {
+            return new Ward(wardName);
+        }
+
+        @Override
+        public void addStaff(Staff staff, Ward ward) {
+            staffAdded.add(staff);
+        }
+
+        @Override
         public ReadOnlyPatientist getPatientist() {
             return new Patientist();
         }
