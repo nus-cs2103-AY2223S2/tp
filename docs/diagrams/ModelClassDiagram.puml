@@ -7,7 +7,7 @@ skinparam classBackgroundColor MODEL_COLOR
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyDegreeProgression" as ReadOnlyDegreeProgression
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nModel" as Model1
 Class DegreeProgression
 Class ModelManager
 Class UserPrefs
@@ -23,13 +23,13 @@ Class Tag
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> Model1
 
 DegreeProgression .up.|> ReadOnlyDegreeProgression
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyDegreeProgression
+ModelManager .up.|> Model1
+Model1 .right.> ReadOnlyUserPrefs
+Model1 .left.> ReadOnlyDegreeProgression
 ModelManager -left-> "1" DegreeProgression
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
