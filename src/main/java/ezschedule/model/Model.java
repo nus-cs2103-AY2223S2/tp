@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import ezschedule.commons.core.GuiSettings;
 import ezschedule.model.event.Event;
+import ezschedule.model.event.UpcomingEventPredicate;
 import javafx.collections.ObservableList;
 
 /**
@@ -15,6 +16,11 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
+
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
+    Predicate<Event> PREDICATE_SHOW_NEXT_FIRST_EVENT = new UpcomingEventPredicate(1);
 
     /**
      * Returns the user prefs.

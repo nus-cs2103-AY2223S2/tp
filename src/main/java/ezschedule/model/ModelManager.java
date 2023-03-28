@@ -38,7 +38,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEvents = new FilteredList<>(this.scheduler.getEventList());
         upcomingEvents = new FilteredList<>(this.scheduler.getEventList());
-        updateUpcomingEventList(new UpcomingEventPredicate(1));
+        updateUpcomingEventList(PREDICATE_SHOW_NEXT_FIRST_EVENT);
     }
 
     public ModelManager() {
