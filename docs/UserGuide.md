@@ -327,7 +327,7 @@ Switch to another tab.
 
 Syntax: `tab t/TAB`
 
-* The available tabs are: `Home`, `Orders`, `Contacts`
+* The available tabs are: `Home`, `Orders`, `Contacts`, `Menu`
 
 Examples:
 * `tab t/HOME` switches the tab to the `Home` tab

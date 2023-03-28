@@ -213,7 +213,7 @@ Here is how `Task` works:
 This is the class representation for the `Menu` class.
 
 <p align ="center">
-   <img src="images/MenuClassDiagram.svg" width="450" />
+   <img src="images/UpdatedMenuClassDiagram.svg" width="550" />
  </p>
 
 Here is how `Menu` works:
