@@ -306,6 +306,18 @@ Cons: More complicated to implement and unwieldy for users.
 
 ### 3.6 List Feature
 
+The list feature shows every task and its associated fields to the user. In scenarios whereby the user has used commands like `sort` or `find`, The user will use `list` to get back to the original page.
+
+Given below is an example usage scenario for the `list` command.
+
+Step 1. The user inputs `list` command. The parser recognises the command word and calls `listCommand`.
+
+Step 2. `listCommand` is executed. A full list of all tasks are displayed.
+
+Step 3. Results are shown immediately on UI.
+
+![ListCommandSequenceDiagram](images/ListCommandSequenceDiagram.png)
+
 ### 3.7 Help Feature
 
 In a scenario whereby the user does not know how to proceed, `help` is intended to assist the user by giving them the link to the User Guide for the project.
