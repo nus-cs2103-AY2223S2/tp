@@ -3,28 +3,46 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
+<HBox id="cardPane" fx:id="cardPane" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
-            <HBox alignment="CENTER_LEFT" spacing="5" styleClass="person-card-box">
-                <Label fx:id="id" styleClass="person-card-upper-box-element">
-                    <minWidth>
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-                <Label fx:id="loc" text="\$location" wrapText="true"></Label>
-                <Label fx:id="time" text="\$time" wrapText="true"></Label>
+        <VBox alignment="CENTER_LEFT" style="-fx-background-color: transparent;" GridPane.columnIndex="0">
+            <HBox alignment="CENTER_LEFT" spacing="5" style="-fx-background-color: transparent;">
+                <VBox prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: black; -fx-background-radius: 5;" HBox.hgrow="ALWAYS">
+                    <HBox prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: rgb(227, 211, 238); -fx-background-radius: 5;">
+                        <Label fx:id="id" text="\$id">
+                            <minWidth>
+                                <Region fx:constant="USE_PREF_SIZE" />
+                            </minWidth>
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </HBox.margin>
+                        </Label>
+                       <Label fx:id="time" text="\$time" wrapText="true">
+                     <HBox.margin>
+                        <Insets bottom="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                       </Label>
+                    </HBox>
+                    <Label fx:id="loc" style="-fx-text-fill: white;" text="\$location" wrapText="true">
+                        <VBox.margin>
+                            <Insets bottom="2.0" left="5.0" top="5.0" />
+                        </VBox.margin>
+                    </Label>
+                     <Label fx:id="participants" style="-fx-text-fill: white;" text="\$participants">
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" />
+                  </VBox.margin>
+                     </Label>
+                </VBox>
             </HBox>
         </VBox>
         <rowConstraints>

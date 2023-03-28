@@ -116,26 +116,26 @@
                             </HBox.margin>
                         </VBox>
                         <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="550.0" styleClass="right-pane" HBox.hgrow="ALWAYS">
-                            <VBox fx:id="meetPlaceholder" minHeight="-Infinity" minWidth="-Infinity" prefHeight="245.0" prefWidth="519.0" styleClass="meet-placeholder" VBox.vgrow="NEVER">
+                            <VBox fx:id="meetPlaceholder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="218.0" prefWidth="528.0" styleClass="meet-placeholder" VBox.vgrow="NEVER">
                                 <VBox.margin>
                                     <Insets bottom="15.0" left="10.0" right="10.0" top="10.0" />
                                 </VBox.margin>
                             </VBox>
-                            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="184.0" prefWidth="550.0" VBox.vgrow="ALWAYS">
+                            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="269.0" prefWidth="550.0" VBox.vgrow="NEVER">
                                 <VBox.margin>
                                     <Insets bottom="10.0" />
                                 </VBox.margin>
                                 <opaqueInsets>
                                     <Insets left="10.0" right="10.0" />
                                 </opaqueInsets>
-                                <StackPane fx:id="userProfilePlaceholder" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="285.0" styleClass="user-profile-placeholder" HBox.hgrow="ALWAYS">
+                                <StackPane fx:id="userProfilePlaceholder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="264.0" prefWidth="285.0" styleClass="user-profile-placeholder" HBox.hgrow="NEVER">
                                     <HBox.margin>
                                         <Insets left="10.0" right="10.0" />
                                     </HBox.margin>
                                 </StackPane>
-                                <StackPane fx:id="scheduledMeetsPlaceholder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="235.0" styleClass="user-profile-placeholder" HBox.hgrow="SOMETIMES" />
+                                <StackPane fx:id="scheduledMeetsPlaceholder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="264.0" prefWidth="235.0" styleClass="user-profile-placeholder" HBox.hgrow="NEVER" />
                             </HBox>
-                            <StackPane fx:id="resultDisplayPlaceholder" alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="538.0" styleClass="result-display-placeholder" VBox.vgrow="NEVER">
+                            <StackPane fx:id="resultDisplayPlaceholder" alignment="BOTTOM_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="538.0" styleClass="result-display-placeholder" VBox.vgrow="NEVER">
                                 <padding>
                                     <Insets top="5.0" />
                                 </padding>

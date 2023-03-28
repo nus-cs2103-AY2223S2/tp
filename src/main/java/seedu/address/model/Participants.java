@@ -38,4 +38,8 @@ public class Participants {
         return this.participants;
     }
 
+    @Override
+    public String toString() {
+        return participants.toString();
+    }
 }

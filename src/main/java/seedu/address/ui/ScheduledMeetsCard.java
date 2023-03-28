@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.meetup.MeetUp;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code MeetUp}.
  */
 public class ScheduledMeetsCard extends UiPart<Region> {
 
@@ -25,10 +25,15 @@ public class ScheduledMeetsCard extends UiPart<Region> {
 
     @FXML
     private HBox cardPane;
+
     @FXML
     private Label loc;
+
     @FXML
     private Label id;
+
+    @FXML
+    private Label participants;
 
     @FXML
     private Label time;
@@ -42,6 +47,7 @@ public class ScheduledMeetsCard extends UiPart<Region> {
         id.setText(meetUp.getMeetUpIndex() + ". ");
         loc.setText(meetUp.getLocation().getName());
         time.setText(meetUp.getTimePeriod().getUiDisplay());
+        participants.setText(meetUp.getParticipants().toString());
     }
 
     @Override

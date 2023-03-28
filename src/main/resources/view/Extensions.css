@@ -22,6 +22,10 @@
     -fx-background-color: black;
 }
 
+.list-view .list-cell:filled {
+    -fx-background-color: transparent;
+}
+
 .list-view .list-cell:filled:focused:selected > * > * > * > HBox > Label {
     -fx-text-fill: white;
 }
@@ -29,6 +33,15 @@
 .list-view .list-cell:filled:focused:selected > * > * > * > Label {
     -fx-text-fill: white;
 }
+
+.list-view .list-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.list-view .list-cell:filled:focused:selected > * > * > * > HBox > * > HBox > Label {
+    -fx-text-fill: black;
+}
+
 
 
 .list-view .scroll-bar:vertical {
