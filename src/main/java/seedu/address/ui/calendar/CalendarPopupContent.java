@@ -1,3 +1,4 @@
+
 package seedu.address.ui.calendar;
 
 import javafx.fxml.FXML;
@@ -9,9 +10,11 @@ import javafx.scene.layout.VBox;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.ui.UiPart;
 
+
 /**
  * The content that is displayed within the {@code CalendarPopup}
  */
+
 public class CalendarPopupContent extends UiPart<Region> {
     private static final String FXML = "CalendarPopupContent.fxml";
     @FXML
@@ -33,9 +36,11 @@ public class CalendarPopupContent extends UiPart<Region> {
     @FXML
     private VBox popupVBox;
 
-    /**
+
+/**
      * Creates a {@code CalendarPopupContent} with the given CalendarEvent details.
      */
+
     public CalendarPopupContent(CalendarEvent calendarEvent) {
         super(FXML);
         studentLabel.setText(calendarEvent.getName().toString());
@@ -44,3 +49,4 @@ public class CalendarPopupContent extends UiPart<Region> {
         locationLabel.setText(calendarEvent.getAddress().toString());
     }
 }
+

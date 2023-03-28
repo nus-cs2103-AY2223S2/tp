@@ -7,19 +7,13 @@
       "payRate": "90",
       "tagged": [
         "friends"
-      ],
-      "sessionString": "17-03-2022 13:00 to 17-03-2022 14:00",
-      "hasPaid": "false",
-      "isPresent": "false"
+      ]
     },
     {
       "name": "Alice Pauline",
       "phone": "94351253",
       "address": "4th street",
-      "payRate": "90",
-      "sessionString": "17-03-2022 13:00 to 17-03-2022 14:00",
-      "hasPaid": "false",
-      "isPresent": "false"
+      "payRate": "90"
     }
   ]
 }

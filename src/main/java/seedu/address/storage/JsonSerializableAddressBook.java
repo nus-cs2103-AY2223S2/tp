@@ -14,6 +14,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.session.Session;
 import seedu.address.model.tag.Tag;
 
 
@@ -25,17 +26,22 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
+    public static final String MESSAGE_DUPLICATE_SESSION = "Session list contains duplicate session(s).";
+
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+
+    private final List<JsonAdaptedSession> sessions = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons, @JsonProperty("sessions") List<JsonAdaptedSession> sessions, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.persons.addAll(persons);
         this.tags.addAll(tags);
+        this.sessions.addAll(sessions);
     }
 
     /**
@@ -46,6 +52,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         tags.addAll(source.getTagList().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
+        sessions.addAll(source.getSessionList().stream().map(JsonAdaptedSession::new).collect(Collectors.toList()));
     }
 
     /**
@@ -70,6 +77,15 @@ class JsonSerializableAddressBook {
             }
             addressBook.addTag(tag);
         }
+
+        for (JsonAdaptedSession jsonAdaptedSession : sessions) {
+            Session session = jsonAdaptedSession.toModelType();
+            if (addressBook.hasSession(session)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_SESSION);
+            }
+            addressBook.addSession(session);
+        }
+
         return addressBook;
     }
 }

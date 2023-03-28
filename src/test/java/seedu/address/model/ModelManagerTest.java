@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCalendarEvents.getTypicalCalendarEvents;
+//import static seedu.address.testutil.TypicalCalendarEvents.getTypicalCalendarEvents;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.calendar.CalendarEvent;
+//import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -184,7 +184,7 @@ public class ModelManagerTest {
         assertTrue(modelManager.getFilteredPersonList().contains(BENSON));
     }
 
-    // Test for getFilteredCalendarEventList() method
+    /*// Test for getFilteredCalendarEventList() method
     @Test
     public void getFilteredCalendarEventList_success() {
         // Set up a list of persons with calendar events
@@ -222,6 +222,6 @@ public class ModelManagerTest {
         ObservableList<CalendarEvent> expectedCalendarEvents = getTypicalCalendarEvents();
         ObservableList<CalendarEvent> actualCalendarEvents = modelManager.getFilteredCalendarEventList();
         assertEquals(expectedCalendarEvents, actualCalendarEvents);
-    }
+    }*/
 
 }

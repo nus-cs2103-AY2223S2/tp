@@ -7,8 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PAY_RATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SESSION_END_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SESSION_START_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -36,8 +34,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withPayRate(VALID_PAY_RATE_BOB).withSession(VALID_SESSION_START_BOB,
-                        VALID_SESSION_END_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withPayRate(VALID_PAY_RATE_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -52,11 +49,6 @@ public class PersonTest {
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSamePerson(editedBob));
-    }
-
-    @Test
-    public void calculatePayTest() {
-        assertEquals(50.0, BOB.calculatePayRate());
     }
 
     @Test
@@ -91,10 +83,6 @@ public class PersonTest {
 
         // different address -> returns false
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different session -> returns false
-        editedAlice = new PersonBuilder(ALICE).withSession(VALID_SESSION_START_BOB, VALID_SESSION_END_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

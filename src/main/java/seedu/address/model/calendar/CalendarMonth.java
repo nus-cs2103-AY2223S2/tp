@@ -1,3 +1,4 @@
+
 package seedu.address.model.calendar;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -11,25 +12,31 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
+
 /**
  * Represents a Calendar in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
+
 public class CalendarMonth {
     // Data fields
     private ObservableList<CalendarEvent> calendarEvents;
 
-    /**
+
+/**
      * Every field must be present and not null.
      */
+
     public CalendarMonth(ObservableList<CalendarEvent> calendarEvents) {
         requireAllNonNull(calendarEvents);
         this.calendarEvents = calendarEvents;
     }
 
-    /**
+
+/**
      * Returns a mutable list of CalendarEvents.
      */
+
     public ObservableList<CalendarEvent> getCalendarEvents() {
         return calendarEvents;
     }
@@ -43,10 +50,12 @@ public class CalendarMonth {
         return FXCollections.observableList(calendarEventInDayOfMonth);
     }
 
-    /**
+
+/**
      * Returns true if both calendar month data field.
      * This defines a stronger notion of equality between two calendar month.
      */
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

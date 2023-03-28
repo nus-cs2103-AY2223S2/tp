@@ -14,7 +14,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,11 +25,13 @@ import seedu.address.model.tag.Tag;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final Predicate<Session> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
 
     private final VersionedAddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Tag> filteredTags;
+    private final FilteredList<Session> filteredSessions;;
     private final ObservableList<CalendarEvent> calendarEventList;
 
 
@@ -43,6 +48,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTags = new FilteredList<>(this.addressBook.getTagList());
+        filteredSessions = new FilteredList<>(this.addressBook.getSessionList());
         this.calendarEventList = FXCollections.observableArrayList();
     }
 
@@ -140,6 +146,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setSession(Session target, Session editedSession) {
+        requireAllNonNull(target, editedSession);
+
+        addressBook.setSession(target, editedSession);
+    }
+
+    @Override
     public void commitAddressBook() {
         addressBook.commit();
     }
@@ -165,6 +178,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Session> getFilteredSessionList() {
+        return filteredSessions;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
@@ -177,20 +195,61 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredSessionList(Predicate<Session> predicate) {
+        requireNonNull(predicate);
+        filteredSessions.setPredicate(predicate);
+    }
+
+    @Override
     public ObservableList<CalendarEvent> getFilteredCalendarEventList() {
-        ObservableList<Person> lastShownList = this.filteredPersons;
+        ObservableList<Session> lastShownList = this.filteredSessions;
         ObservableList<CalendarEvent> calendarEventList = getCalendarEventList(lastShownList);
         return calendarEventList; }
 
-    private ObservableList<CalendarEvent> getCalendarEventList(ObservableList<Person> lastShownList) {
+    private ObservableList<CalendarEvent> getCalendarEventList(ObservableList<Session> lastShownList) {
         calendarEventList.clear();
         lastShownList.stream().map(x -> x.getCalendarEvents()).forEach(e -> calendarEventList.addAll(e));
+        System.out.println(calendarEventList);
         return calendarEventList;
     }
 
     @Override
     public void updateCalendarEventList() {
-        getCalendarEventList(filteredPersons);
+        //getCalendarEventList(filteredPersons);
+    }
+
+    @Override
+    public boolean hasSession(Session toAdd) {
+        return addressBook.hasSession(toAdd);
+    }
+
+    @Override
+    public void addSession(Session toAdd) {
+        addressBook.addSession(toAdd);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+    }
+
+    @Override
+    public void removeSession(Session toRemove) {
+        addressBook.removeSession(toRemove);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+    }
+
+    @Override
+    public void addPersonToSession(Person person, Session session) {
+        addressBook.addPersonToSession(person, session);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+    }
+
+    @Override
+    public void removePersonFromSession(Person person, Session session) {
+        addressBook.removePersonFromSession(person, session);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+    }
+
+    @Override
+    public Session getSessionFromName(SessionName name) {
+        return addressBook.getSessionFromName(name);
     }
 
     @Override

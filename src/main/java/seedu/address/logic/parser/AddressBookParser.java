@@ -6,22 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DisplayGroupCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.GroupAddCommand;
-import seedu.address.logic.commands.GroupCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.ShowCommand;
-import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -53,6 +38,18 @@ public class AddressBookParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
+        case CreateSessionCommand.COMMAND_WORD:
+            return new CreateSessionCommandParser().parse(arguments);
+
+        case DeleteSessionCommand.COMMAND_WORD:
+            return new DeleteSessionCommandParser().parse(arguments);
+
+        case StudentAddCommand.COMMAND_WORD:
+            return new StudentAddCommandParser().parse(arguments);
+
+        case StudentRemoveCommand.COMMAND_WORD:
+            return new StudentRemoveCommandParser().parse(arguments);
 
         case GroupCommand.COMMAND_WORD:
             return new GroupCommandParser().parse(arguments);
@@ -95,6 +92,12 @@ public class AddressBookParser {
 
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
+
+        case MarkAttendanceCommand.COMMAND_WORD:
+            return new MarkAttendanceCommandParser().parse(arguments);
+
+        case UnmarkAttendanceCommand.COMMAND_WORD:
+            return new UnmarkAttendanceCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

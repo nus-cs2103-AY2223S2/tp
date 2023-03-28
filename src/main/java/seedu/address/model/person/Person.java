@@ -4,11 +4,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.calendar.CalendarEvent;
+//import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,50 +23,21 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Session session;
-    private final IsPresent isPresent;
-    private final HasPaid hasPaid;
     private final Set<Tag> tags = new HashSet<>();
-
+    private final int id;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Address address,
-                  PayRate payRate, Session session, IsPresent isPresent,
-                  HasPaid hasPaid, Set<Tag> tags) {
-        requireAllNonNull(name, phone, payRate, address, session, hasPaid, isPresent, tags);
+    public Person(Name name, Phone phone, Address address, PayRate payRate, Set<Tag> tags) {
+        requireAllNonNull(name, phone, payRate, address, tags);
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.payRate = payRate;
-        this.session = session;
         this.tags.addAll(tags);
-        this.isPresent = isPresent;
-        this.hasPaid = hasPaid;
+        this.id = name.hashCode();
     }
-
-    /**
-     * Naturally hasPaid and isPresent is initialised to 0
-     * @param name
-     * @param phone
-     * @param address
-     * @param payRate
-     * @param session
-     * @param tags
-     */
-    public Person(Name name, Phone phone, Address address, PayRate payRate, Session session, Set<Tag> tags) {
-        requireAllNonNull(name, phone, payRate, address, session, tags);
-        this.name = name;
-        this.phone = phone;
-        this.address = address;
-        this.payRate = payRate;
-        this.session = session;
-        this.tags.addAll(tags);
-        this.isPresent = new IsPresent();
-        this.hasPaid = new HasPaid();
-    }
-
 
     public Name getName() {
         return name;
@@ -85,16 +55,8 @@ public class Person {
         return address;
     }
 
-    public Session getSession() {
-        return session;
-    }
-
-    public HasPaid getHasPaid() {
-        return hasPaid;
-    }
-
-    public IsPresent getIsPresent() {
-        return isPresent;
+    public int getId() {
+        return id;
     }
 
     /**
@@ -137,26 +99,13 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getPayRate().equals(getPayRate())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getSession().equals(getSession())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getIsPresent().equals(getIsPresent())
-                && otherPerson.getHasPaid().equals(getHasPaid());
-    }
-
-    /**
-     * calculates the total pay of a session
-     * @return float
-     */
-    public float calculatePayRate() {
-        float duration = (float) session.getSessionDuration().toHours();
-        int ratePerHour = Integer.parseInt(getPayRate().value);
-        return (ratePerHour) * duration;
+                && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, address, payRate, session, isPresent, hasPaid, tags);
+        return Objects.hash(name, phone, address, payRate, tags, id);
     }
 
     @Override
@@ -168,13 +117,7 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Pay Rate: ")
-                .append(getPayRate())
-                .append("; Session: ")
-                .append(getSession())
-                .append("Attendance: ")
-                .append(getIsPresent())
-                .append("Paid: ")
-                .append(getHasPaid());
+                .append(getPayRate());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -185,7 +128,4 @@ public class Person {
     }
 
 
-    public List<CalendarEvent> getCalendarEvents() {
-        return Collections.singletonList(new CalendarEvent(this));
-    }
 }

@@ -38,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private SessionListPanel sessionListPanel;
     private ResultDisplay resultDisplay;
     private CalendarDisplay calendarDisplay;
     private HelpWindow helpWindow;
@@ -51,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane sessionListPanelPlaceholder;
 
     @FXML
     private StackPane calendarDisplayPlaceholder;
@@ -69,6 +73,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private Tab calendarTab;
+
+    @FXML
+    private Tab sessionTab;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -102,12 +109,14 @@ public class MainWindow extends UiPart<Stage> {
                 KeyCombination.CONTROL_DOWN));
         registerShortcut(tabPane, calendarTab, new KeyCodeCombination(KeyCode.DIGIT2,
                 KeyCombination.CONTROL_DOWN));
+        registerShortcut(tabPane, sessionTab, new KeyCodeCombination(KeyCode.DIGIT3,
+                KeyCombination.CONTROL_DOWN));
     }
 
     private void registerCalendarNavigationForCalendarTab() {
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (calendarTab.isSelected() && !commandTextField.isFocused()) {
-                calendarDisplay.handleKeyPressed(event);
+                //calendarDisplay.handleKeyPressed(event);
             }
         });
     }
@@ -163,6 +172,10 @@ public class MainWindow extends UiPart<Stage> {
         calendarDisplay = new CalendarDisplay(logic, primaryStage);
         calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
         registerCalendarNavigationForCalendarTab();
+
+        sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
+        sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
+
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());

@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAY_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -20,7 +19,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Session;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -40,8 +38,6 @@ public class CommandTestUtil {
     public static final String VALID_SESSION_START_AMY = "01-01-2022 12:00";
     public static final String VALID_SESSION_END_BOB = "01-01-2022 11:00";
     public static final String VALID_SESSION_END_AMY = "01-01-2022 13:00";
-    public static final Session VALID_SESSION_BOB = new Session("01-01-2022 10:00", "01-01-2022 11:00");
-    public static final Session VALID_SESSION_AMY = new Session("01-01-2022 12:00", "01-01-2022 13:00");
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -53,10 +49,6 @@ public class CommandTestUtil {
     public static final String PAY_RATE_DESC_BOB = " " + PREFIX_PAY_RATE + VALID_PAY_RATE_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String SESSION_DESC_AMY = " " + PREFIX_SESSION + VALID_SESSION_START_AMY
-            + " to " + VALID_SESSION_END_AMY;
-    public static final String SESSION_DESC_BOB = " " + PREFIX_SESSION + VALID_SESSION_START_BOB
-            + " to " + VALID_SESSION_END_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -64,7 +56,6 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_PAY_RATE_DESC = " " + PREFIX_PAY_RATE + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_SESSION_DESC = " " + PREFIX_SESSION; // empty string not allowed for sessions
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

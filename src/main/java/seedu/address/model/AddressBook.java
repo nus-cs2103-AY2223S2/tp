@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Set;
@@ -8,10 +9,13 @@ import java.util.Set;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionName;
+import seedu.address.model.session.UniqueSessionList;
+import seedu.address.model.session.exceptions.SessionNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
-
-
 
 /**
  * Wraps all data at the address-book level
@@ -21,6 +25,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueTagList tags;
+    private final UniqueSessionList sessions;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -32,6 +37,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         tags = new UniqueTagList();
+        sessions = new UniqueSessionList();
     }
 
     public AddressBook() {}
@@ -51,6 +57,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         this();
         setPersons(toBeCloned.getPersonList());
         setTags(toBeCloned.getTagList());
+        setSessions(toBeCloned.getSessionList());
     }
 
     //// list overwrite operations
@@ -67,6 +74,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.tags.setTags(tags);
     }
 
+    public void setSessions(List<Session> sessions) {
+        this.sessions.setSessions(sessions);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -75,6 +86,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setTags(newData.getTagList());
+        setSessions(newData.getSessionList());
     }
 
     /**
@@ -85,6 +97,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setTags(newData.getTagList());
+        setSessions(newData.getSessionList());
     }
 
     //// person-level operations
@@ -106,6 +119,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a session with the same identity as {@code session} exists in the address book.
+     */
+    public boolean hasSession(Session session) {
+        requireNonNull(session);
+        return sessions.contains(session);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
@@ -122,6 +143,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Adds a session to the address book.
+     * The session must not already exist in the address book.
+     */
+    public void addSession(Session s) {
+        sessions.add(s);
+    }
+
+    /**
      * Adds all tags to the address book.
      * The tag must not already exist in the address book.
      */
@@ -130,8 +159,6 @@ public class AddressBook implements ReadOnlyAddressBook {
             addTag(tag);
         }
     }
-
-
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
@@ -142,6 +169,43 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+    }
+
+    public void setSession(Session target, Session editedSession) {
+        requireNonNull(editedSession);
+
+        sessions.setSession(target, editedSession);
+    }
+
+    public void addPersonToSession(Person person, Session session) {
+        requireAllNonNull(person, session);
+        Session newSession = session;
+        String name = person.getName().toString();
+        if (!sessions.contains(session)) {
+            throw new SessionNotFoundException();
+        }
+
+        newSession.addPersonToSession(name);
+        sessions.setSession(session, newSession);
+    }
+
+    public void removePersonFromSession(Person person, Session session) {
+        requireAllNonNull(person, session);
+        String name = person.getName().toString();
+        if (!sessions.contains(session)) {
+            throw new SessionNotFoundException();
+        }
+        if (!session.contains(name)) {
+            throw new PersonNotFoundException();
+        }
+
+        Session newSession = session;
+        newSession.removePersonFromSession(name);
+        sessions.setSession(session, newSession);
+    }
+
+    public void removeSession(Session session) {
+        sessions.remove(session);
     }
 
     /**
@@ -171,11 +235,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Session> getSessionList() {
+        return sessions.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && persons.equals(((AddressBook) other).persons)
-                && tags.equals(((AddressBook) other).tags));
+                && tags.equals(((AddressBook) other).tags))
+                && sessions.equals(((AddressBook) other).sessions);
     }
 
     @Override
@@ -185,5 +255,14 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void sort(int targetField) {
         persons.sort(targetField);
+    }
+
+    public Session getSessionFromName(SessionName name) throws PersonNotFoundException {
+        for(Session session: sessions) {
+            if (name.sessionName.equals(session.getName().toString())) {
+                return session;
+            }
+        }
+        throw new SessionNotFoundException();
     }
 }

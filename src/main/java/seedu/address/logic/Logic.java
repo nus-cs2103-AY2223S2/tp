@@ -10,6 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
+import seedu.address.model.session.Session;
 
 /**
  * API of the Logic component
@@ -48,6 +49,8 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    ObservableList<Session> getFilteredSessionList();
 
     /** Returns an unmodifiable view of the filtered list of calendarEvents */
     ObservableList<CalendarEvent> getFilteredCalendarEventList();

@@ -14,17 +14,15 @@ import seedu.address.model.Model;
 public class DisplayGroupCommand extends Command {
     public static final String COMMAND_WORD = "display";
 
-    public static final String MESSAGE_SUCCESS = "Listed all groups";
+    public static final String MESSAGE_SUCCESS = "Listed all sessions";
 
-    public static final String MESSAGE_TEMPORARY_OUTPUT = "Here are all existing groups: ";
+    public static final String MESSAGE_TEMPORARY_OUTPUT = "Here are all existing sessions: ";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
-        String results = model.getAddressBook().getTagList().toString();
+        String results = model.getAddressBook().getSessionList().toString();
         return new CommandResult(MESSAGE_TEMPORARY_OUTPUT + results);
     }
-
 }
