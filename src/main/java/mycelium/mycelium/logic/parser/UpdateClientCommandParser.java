@@ -7,14 +7,12 @@ import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_CLIENT_MOBILE_NUMB
 import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_CLIENT_NAME;
 import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_CLIENT_NEW_EMAIL;
 import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH;
-import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static mycelium.mycelium.logic.parser.ParserUtil.parseEmail;
 import static mycelium.mycelium.logic.parser.ParserUtil.parseOptionalWith;
 
 import java.util.Optional;
 
-import mycelium.mycelium.logic.commands.AddProjectCommand;
 import mycelium.mycelium.logic.commands.UpdateClientCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.model.client.YearOfBirth;
