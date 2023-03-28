@@ -4,6 +4,9 @@ import java.util.Comparator;
 
 import seedu.address.model.person.InternshipApplication;
 
+/**
+ * Encapsulates the comparator that compares InterviewDate.
+ */
 public class InterviewDateComparator implements Comparator<InternshipApplication> {
     @Override
     public int compare(InternshipApplication i, InternshipApplication j) {
