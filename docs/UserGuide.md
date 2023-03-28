@@ -79,18 +79,18 @@ this user guide for more information, or to external websites to learn more!
 
 Here is an exhaustive table for you to refer to if you're unsure of what to input when using the various [features](#features) below this section!
 
-| Parameter         | Meaning                                                                       | Notes                                                                                                                                                                                                                                 |
-|-------------------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `ADDRESS`         | Address of the student                                                        | Can contain numbers, symbols and multiple letters/words                                                                                                                                                                               |
-| `EDUCATION_LEVEL` | Education level of the student                                                | Can contains numbers and multiple letters/words.                                                                                                                                                                                      |
-| `EMAIL`           | Email address of the student                                                  | 1. Follow the format local-part@domain <br/> 2. Must contains `@` symbol <br/> 3. Must not start with a non-alphanumeric character (eg. . , ' " @) <br/> 4. Can contains letters and numbers <br/> 5. Should not contain any spacings |
-| `INDEX`           | The number next to the student entry upon using [`list`](#listing-all-entries) | Must be a positive number (eg. 1, 2, 3...)                                                                                                                                                                                            |
-| `KEYWORD`         | The word you would like to `find` by                                          | Can contain letters and/or numbers.                                                                                                                                                                                                   |
-| `PHONE_NUMBER`    | Phone number of the student                                                   | 1. Must only contains numbers <br/>  2. Must be at least 3 numbers long                                                                                                                                                               |
-| `REMARK`          | Your notes or remarks on the student                                          | Can contain any combination of words, numbers and special characters                                                                                                                                                                  |
-| `STUDENT_NAME`    | Name of the student                                                           | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the name will be removed by the app                                                                                                   |
-| `SUBJECT`         | The subject you're teaching the student                                       | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the subject will be removed by the app                                                                                                |
-| `TAG`             | Qualities of the student you'd like to be shown as a [tag](#adding-a-student) | Must be a single word containing alphanumeric characters                                                                                                                                                                              |
+| Parameter         | Meaning                                                                              | Notes                                                                                                                                                                                                                                 |
+|-------------------|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ADDRESS`         | Address of the student                                                               | Can contain numbers, symbols and multiple letters/words                                                                                                                                                                               |
+| `EDUCATION_LEVEL` | Education level of the student                                                       | Can contains numbers and multiple letters/words.                                                                                                                                                                                      |
+| `EMAIL`           | Email address of the student                                                         | 1. Follow the format local-part@domain <br/> 2. Must contains `@` symbol <br/> 3. Must not start with a non-alphanumeric character (eg. . , ' " @) <br/> 4. Can contains letters and numbers <br/> 5. Should not contain any spacings |
+| `INDEX`           | The number next to the student entry upon using [`list`](#listing-all-students-list) | Must be a positive number (eg. 1, 2, 3...)                                                                                                                                                                                            |
+| `KEYWORD`         | The word you would like to `find` by                                                 | Can contain letters and/or numbers.                                                                                                                                                                                                   |
+| `PHONE_NUMBER`    | Phone number of the student                                                          | 1. Must only contains numbers <br/>  2. Must be at least 3 numbers long                                                                                                                                                               |
+| `REMARK`          | Your notes or remarks on the student                                                 | Can contain any combination of words, numbers and special characters                                                                                                                                                                  |
+| `STUDENT_NAME`    | Name of the student                                                                  | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the name will be removed by the app                                                                                                   |
+| `SUBJECT`         | The subject you're teaching the student                                              | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the subject will be removed by the app                                                                                                |
+| `TAG`             | Qualities of the student you'd like to be shown as a [tag](#adding-a-student-add)    | Must be a single word containing alphanumeric characters                                                                                                                                                                              |
 
 [↑ Back to top](#table-of-contents)
 
@@ -173,7 +173,7 @@ Edits a student's info _(all info except remark)_. To remove a student's field, 
 
 <div markdown="span" class="alert alert-info">
 
->:bulb: **Note:** `edit` command cannot edit the remark field of students. Use the [`remark`](#adding-remark-to-student-remark) command for editing remarks.
+>:bulb: **Note:** `edit` command cannot edit the remark field of students. Use the [`remark`](#editing-remark-of-student-remark) command for editing remarks.
 
 </div>
 
@@ -364,15 +364,15 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 
 # Prefix summary
 
-| Prefix | Meaning                                 | Example                               |
-|--------|-----------------------------------------|---------------------------------------|
-| n/     | Name of student                         | `n/Shao Hong`                         |
-| p/     | Phone number of student                 | `p/81234567`                          |
-| e/     | Email of student                        | `e/e07123456@u.edu.sg`                |
-| a/     | Address of student                      | `a/16 Bukit Timah Road, S156213`      |
-| edu/   | Education level of student              | `edu/P6`                              |
-| r/     | Remark for student                      | `r/Good in German`                    |
-| t/     | Tag of student                          | `t/active` or `t/submited t/late ...` |
+| Prefix | Meaning                                  | Example                               |
+|--------|------------------------------------------|---------------------------------------|
+| n/     | Name of student                          | `n/Shao Hong`                         |
+| p/     | Phone number of student                  | `p/81234567`                          |
+| e/     | Email of student                         | `e/e07123456@u.edu.sg`                |
+| a/     | Address of student                       | `a/16 Bukit Timah Road, S156213`      |
+| edu/   | Education level of student               | `edu/P6`                              |
+| r/     | Remark for student                       | `r/Good in German`                    |
+| t/     | Tag of student                           | `t/active` or `t/submited t/late ...` |
 | s/     | Subject that the student is being taught | `s/Math` or `s/Math s/Science ...`    |
 
 
