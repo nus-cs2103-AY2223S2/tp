@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import codoc.model.Codoc;
 import codoc.model.Model;
+import codoc.model.person.Person;
 
 /**
  * Clears CoDoc.
@@ -18,6 +19,7 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setCodoc(new Codoc());
+        model.setProtagonist(Person.getDummyPerson());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

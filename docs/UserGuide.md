@@ -10,6 +10,7 @@ If you can type fast, CoDoc can get your contact management tasks done **faster*
 You can spend **less time** _keeping track of your contacts_ and _searching through chats_, and spend **more time** making _meaningful connections_ and _accomplish your goals_.
 
 <img src="images/Ui.png"/>
+
 --------------------------------------------------------------------------------------------------------------------
 
 # Table of Contents
@@ -98,11 +99,17 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
     </td>
   </tr>
   <tr>
+    <td><strong>Prefix</strong></td>
+    <td>
+      An identifier that indicates which field our input is meant for. It is denoted by a letter or symbol followed by a slash <code>/</code>. E.g. <code>n/</code> indicates name, <code>c/</code> indicates course, <code>m+/</code> indicates addition of a module, <code>s-/</code> indicates deletion of a skill ...
+    </td>
+  </tr>
+  <tr>
     <td><strong>Index</strong></td>
     <td>
       An identifier which is the number corresponding to order of which your contacts and courses are listed out, 
       and used in conjunction with the commands to specify the contact with the given index. Each contact and course 
-      is identified with a unique index.
+      is identified with a unique index. Index must be a positive integer 1, 2, 3, ...
     </td>
   </tr>
   <tr>
@@ -283,7 +290,7 @@ Once the person has been created, the result display will show a confirmation me
 > **Compulsory parameters:**
 > - n/NAME (eg. n/John Doe)
 > - e/EMAIL (eg. e/johndoe123@email.com)
-> - y/YEAR (eg. ay/3, ay/prof, ay/alum)
+> - y/YEAR (eg. y/3)
 > - c/COURSE_INDEX (eg. c/1)
 >
 > **Optional parameters:**
@@ -295,9 +302,10 @@ Once the person has been created, the result display will show a confirmation me
 > 💡 **Tip:** A person can have any number of [OPTIONAL/PARAMETER] (including 0)
 >
 > **Examples:**
-> - `add` n/Betsy Crowe e/betsycrowe@example.com y/prof c/1 g/betsy123 l/linkedin.com/in/betsy-123
+> - `add` n/Betsy Crowe e/betsycrowe@example.com y/4 c/1 g/betsy123 l/linkedin.com/in/betsy-123
+>   ![Add Example](images/UiAddBetsy.png)
 > - `add` n/John Doe e/johnd@example.com y/2 c/3
-    > ![Add Example](images/UiAddContact.jpg)
+    ![Add Example](images/UiAddContact.jpg)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -333,17 +341,44 @@ If `s` is specified, the tab on the right will switch to the **skills** that the
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### Editing a person : `edit`
-`edit [OPTIONAL/PARAMETER]...`<br>
-> - Edits the person displayed in the view panel
-> - At least one of the optional fields must be provided.
-> - Existing values will be updated to the input values.
-> - When editing skills, the existing skills of the person will be removed i.e adding of skills is not cumulative.
-> - You can remove all the person’s skills by typing s/ without specifying any skills after it
->
-> **Examples:**
-> - edit g/91234567 e/johndoe@example.com will edit the github username and email address of the person to be 91234567 and johndoe@example.com respectively.
-> - edit n/Betsy Crower s/ Edits the name of the person to be Betsy Crower and clears all existing skills.
 
+Edits the person displayed in the view panel. Existing values will be updated to the input values.
+
+At least one of the optional fields must be provided.
+
+- You can remove a person's Github by typing `g/` without specifying any Github username after it
+- You can remove a person's Linkedin by typing `l/` without specifying any Linkedin URL after it
+- You can remove all the person’s modules by typing `m/` without specifying any modules after it
+- You can remove all the person’s skills by typing `s/` without specifying any skills after it
+
+
+`edit [OPTIONAL/PARAMETER]...`<br>
+
+> **Acceptable Parameters**
+> - n/NAME (eg. n/John Doe)
+> - e/EMAIL (eg. e/johndoe123@email.com)
+> - y/YEAR (eg. y/3)
+> - c/COURSE_INDEX (eg. c/1)
+> - g/GITHUB (eg.g/johnny)
+> - l/LINKED (eg. l/linkedin.com/in/john-doe)
+> - m/MODULE YEAR (eg. m/AY2223S1 CS2103T, m/AY2122S2 CS2101)
+>> - m+/MODULE YEAR (eg. m+/AY2223S1 CS2103T, m+/AY2122S2 CS2101)
+>> - m-/MODULE YEAR (eg. m-/AY2223S1 CS2103T, m-/AY2122S2 CS2101)
+> - s/SKILL (eg. s/C++, s/Rust)
+>> - s+/SKILL (eg. s+/C++, s+/python)
+>> - s-/SKILL (eg. s-/C++, s-/python)
+>
+> 💡 **Tip:** If `s/` or `m/` is present in the edit command, this will take precedence over `s+/ s-/ m+/ m-/`.
+> 
+> 
+> **Examples:**
+> - `edit` g/johndoeee e/johndoeee@example.com will edit the Github username and email address of the person to be johndoee and johndoe@example.com respectively.
+> ![View Example](images/UiEditFields.png)
+> - `edit` s/java s+/python Clears resets the skill list to contain only java and ignores the python skill addition.
+>![View Example](images/UiEditSkills.png)
+> - `edit` m-/ay2223s2 cs3230 Displays an error message as the module does not exist.
+> ![View Example](images/UiEditError.png)
+> 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### Finding a person : `find`
@@ -364,30 +399,46 @@ If `s` is specified, the tab on the right will switch to the **skills** that the
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### Listing all persons/Resetting filters : `list`
+
+Displays the full list of all persons stored in the person list panel.<br>
+
 `list`<br>
-> * Shows all persons stored.<br>
+
+💡 **Tip:** Use this command to revert back to the original list after performing the `find` command to shorten the list dsiplayed.
+> * `list`
+> ![result for list](images/UiList.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### Deleting a person : `delete`
+
+Deletes the person at the specified INDEX. 
+
+INDEX refers to an index currently shown in the displayed person list. You may check out our [Glossary](#glossary) for more information.<br>
+
+E.g. `delete 1` will delete the current person at index 1 as shown in the list panel.<br>
+
 `delete <INDEX>`<br>
-> * Deletes the person at the specified INDEX.<br>
-> * INDEX refers to an index currently shown in the displayed person list.<br>
-> * INDEX must be a positive integer 1, 2, 3, ...<br>
-> * E.g. `delete 1` will delete the current person at index 1 as shown in the list panel.<br>
+
+> * `delete 6` deletes Betsy Crowe who was at index 6
+> ![Delete Betsy](images/UiDelete.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### Clearing all entries : `clear`
 `clear`<br>
 > * :warning: Clears **all** entries from CoDoc.<br>
+> ![Clear](images/UiClear.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### Exiting the program : `exit`
-`exit`<br>
-> * Exits the program. <br>
-> * Equivalent to clicking the close button via the GUI. <br>
+
+Exits the program. <br>
+Equivalent to clicking the close button via the GUI. <br>
+
+>`exit`<br>
+ 
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
