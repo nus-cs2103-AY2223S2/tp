@@ -121,17 +121,17 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the patientist data, i,e all `Ward` objects (contained in a singleton `WardList` object), 
+* stores the patientist data, i,e all `Ward` objects (contained in a singleton `WardList` object),
 all `Person` objects (contained within `UniquePersonList` objects within their respective wards)
-* differentiates between `Patient` and `Staff` objects within each `Ward`, each are kept in their 
+* differentiates between `Patient` and `Staff` objects within each `Ward`, each are kept in their
 separate `UniquePersonList`.
-* stores the currently 'selected' `Person` objects (e.g. results of search, lsward, lsstf, lspat etc) 
-as separate filtered list which is available to outsiders as an unmodifiable `ObservableList<Person>` 
-that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when 
+* stores the currently 'selected' `Person` objects (e.g. results of search, lsward, lsstf, lspat etc)
+as separate filtered list which is available to outsiders as an unmodifiable `ObservableList<Person>`
+that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when
 the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside 
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside
 as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities 
+* does not depend on any of the other three components (as the `Model` represents data entities
 of the domain, they should make sense on their own without depending on other components)
 
 
@@ -168,8 +168,8 @@ us to implement the following functionalities:
 * `setPatient(Patient)`
 
 and similar functionality for `Staff` as well. This makes for easy implementation of searching for a particular
-person within a ward and other operations involving transferring between wards, through providing a clean 
-abstraction that performs checking of duplicates, checking for presence/absence of a person, etc. These 
+person within a ward and other operations involving transferring between wards, through providing a clean
+abstraction that performs checking of duplicates, checking for presence/absence of a person, etc. These
 changes reflect in the modification of the API supplied by `Model`, which requires specification of which ward
 a `Staff` or `Patient` is to be added to, and also implements operations to add, remove and edit wards, and transfer
 `Person` between wards.
@@ -187,7 +187,7 @@ their tags and delete them one by one. Wards will thus become a fully abstract c
 which is not ideal as it is a core part of what our application seeks to manage.
 
 
-Given below is a sample usage scenario and how the mechanism behaves at each step. For the sake of focus in the 
+Given below is a sample usage scenario and how the mechanism behaves at each step. For the sake of focus in the
 illustration, we will only look at a subset of the Model package involved in maintaining this feature. Higher level
 management logic such as `ModelManager` are not explicitly included, but obviously exist in the system nonetheless.
 
@@ -213,7 +213,7 @@ rather than `Person::equals`. The same person cannot exist in the same ward or i
 * As in the above point, it is illegal to modify an existing `Person` such that his or her identity is equal to another
 `Person` object's identity. Doing this programmatically through `Model::setPatient` or `Model::setStaff` will throw a `DuplicatePersonException`, and doing this by
 modifying json data files will result in undefined behaviour.
-* `Ward` objects contained in `WardList` have their uniqueness enforced by name. In other words, there cannot exist 2 or 
+* `Ward` objects contained in `WardList` have their uniqueness enforced by name. In other words, there cannot exist 2 or
 more wards with the same name.
 
 For these data to be stored for subsequent sessions, the `Storage` module had to be modified to store a list of wards containing
@@ -420,7 +420,7 @@ ___
 * 2a. Any of the requested details are missing.
     * 2a1. Patientist requests for the missing details.
     * 2a2. Ward admin enters the requested details.
-    Steps 2a1-2a2 are repeated until all details are collected.  
+    Steps 2a1-2a2 are repeated until all details are collected.
     Use case resumes from step 4.
 
       Use case ends.
@@ -429,11 +429,11 @@ ___
     * 3a1. Patientist shows an error message indicating the details with wrong format.
     * 3a2. Patientist requests for the corrected details.
     * 3a3. Ward admin enters the requested details.
-    Steps 3a1-3a3 are repeated until all details have correct format.  
+    Steps 3a1-3a3 are repeated until all details have correct format.
     Use case resumes from step 4.
 
       Use case ends
-  
+
 * *a. At any time, Ward admin chooses to cancel the addition of patient.
     * a1. Patientist requests to confirm the cancellation.
     * a2. Ward admin confirms the cancellation.
@@ -485,7 +485,7 @@ ___
 
 **MSS**
 
-1. Ward doctor <u>searches for a patient</u>. 
+1. Ward doctor <u>searches for a patient</u>.
 2. Ward doctor chooses an instruction or a prescription to be deleted.
 3. Patientist requests to confirm the deletion.
 4. Ward doctor confirms the deletion.
@@ -509,7 +509,7 @@ ___
 
 **Extensions**
 
-* 5a. The doctor/nurse with the entered name does not exist.  
+* 5a. The doctor/nurse with the entered name does not exist.
   Use case ends.
 ___
 **Use case: Delete a doctor/nurse from the ward**
