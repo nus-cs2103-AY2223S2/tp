@@ -22,7 +22,7 @@ public class DeleteStaffCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the staff identified by their id number.\n"
             + "Parameters: id/ID_NUMBER\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_ID + " A123456789B";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_ID + "A123456789B";
 
     public static final String MESSAGE_DELETE_STAFF_ID_SUCCESS = "Deleted Staff with id: %1$s";
 

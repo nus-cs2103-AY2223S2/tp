@@ -10,7 +10,7 @@ public class IdNumber {
     public static final String MESSAGE_CONSTRAINTS = "ID should be of the format: alphanumeric without spaces";
 
     /** ID should be alphanumeric. */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}]*";
+    public static final String VALIDATION_REGEX = "\\p{Alnum}*";
 
     protected final String idNumber;
 
@@ -29,7 +29,7 @@ public class IdNumber {
      * Returns true if a given string is a valid patient id.
      */
     public static boolean isValidPid(String test) {
-        return test.length() != 0 && test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

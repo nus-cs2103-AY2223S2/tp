@@ -1,7 +1,9 @@
 package seedu.patientist.logic.parser;
 
 import static seedu.patientist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ID;
 
+import seedu.patientist.logic.commands.AddPatientCommand;
 import seedu.patientist.logic.commands.DeletePatientCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
 import seedu.patientist.model.person.IdNumber;
@@ -18,8 +20,14 @@ public class DeletePatientCommandParser implements Parser<DeletePatientCommand> 
      */
     @Override
     public DeletePatientCommand parse(String userInput) throws ParseException {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_ID);
+
+        if (!argMultimap.getValue(PREFIX_ID).isPresent()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePatientCommand.MESSAGE_USAGE));
+        }
+
         try {
-            IdNumber idNumber = ParserUtil.parseId(userInput);
+            IdNumber idNumber = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
             return new DeletePatientCommand(idNumber);
         } catch (ParseException pe) {
             throw new ParseException(
