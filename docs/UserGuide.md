@@ -3,13 +3,16 @@ layout: page
 title: User Guide
 ---
 
-LoyaltyLift is a desktop application designed for small business owners to manage their customers and orders efficiently, allowing you to **improve customer relations** and **increase customer loyalty**.
+**_LoyaltyLift_** is a desktop application designed for small business owners to manage their customers and orders efficiently, allowing you to **improve customer relations** and **increase customer loyalty**.
 It is optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 With LoyaltyLift, you can easily keep track of your customers' preferences, purchase history, and contact information, enabling you to provide personalized service that will keep them coming back. 
 Our application makes it easy to manage orders, and provide rewards, helping you grow your business while delivering an exceptional customer experience. 
 
-Let's get started!
+This user guide provides in-depth documentation on LoyaltyLift installation process, command features and common questions that you might have. 
+In addition, the quick start guide provides an end-to-end setup process to get you started.
+
+Are you excited yet? Let's get started!
 
 * Table of Contents
 {:toc}
@@ -35,7 +38,7 @@ Let's get started!
 
    * `addc n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a customer named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd customer shown in the current list.
+   * `deletec 3` : Deletes the 3rd customer shown in the current list.
 
    * `clear` : Deletes all customers and orders.
 
