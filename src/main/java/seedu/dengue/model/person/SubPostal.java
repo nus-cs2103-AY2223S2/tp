@@ -10,7 +10,7 @@ import static seedu.dengue.commons.util.AppUtil.checkArgument;
 public class SubPostal {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Postal codes for find should only contain numbers or start with S or s, and have at least 1 digit long";
+            "Postal codes for find should only contain numbers or start with S or s, and be at least 1 digit long";
     public static final String VALIDATION_REGEX_FOR_SUB_POSTAL = "[Ss]?\\d{1,6}";
     public final String value;
 
