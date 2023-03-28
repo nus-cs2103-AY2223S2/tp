@@ -8,6 +8,7 @@ import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
+import seedu.patientist.model.tag.RoleTag;
 import seedu.patientist.model.tag.Tag;
 
 /**
@@ -16,46 +17,28 @@ import seedu.patientist.model.tag.Tag;
  * TODO: need to guarantee validity of patient id in the PatientIdNumber class
  */
 public class Patient extends Person {
-    public static final Tag PATIENT_TAG = new Tag("Patient");
+    public static final RoleTag PATIENT_TAG = new RoleTag("Patient");
     private PatientStatusDetails details;
 
     /**
      * Every field must be present and not null.
-     *
-     * @param email
-     * @param name
-     * @param phone
-     * @param id
-     * @param address
-     * @param tags
      */
     public Patient(Email email, Name name, Phone phone, IdNumber id, Address address, Set<Tag> tags) {
         super(name, phone, email, id, address, tags);
-        //TODO: for now, let's set ward using tags. we can change this implementation once wards are implemented
         this.details = new PatientStatusDetails();
     }
 
     /**
      * Every field must be present and not null.
-     *
-     * @param id
-     * @param name
-     * @param phone
-     * @param email
-     * @param address
-     * @param details
-     * @param tags
      */
     public Patient(IdNumber id, Name name, Phone phone, Email email,
                    Address address, PatientStatusDetails details, Set<Tag> tags) {
         super(name, phone, email, id, address, tags);
-        //TODO: for now, let's set ward using tags. we can change this implementation once wards are implemented
         this.details = details;
     }
 
     /**
      * Updates the <code>details</code> field with the new <code>PatientStatusDetails</code>.
-     * @param details
      */
     public void setPatientStatusDetails(PatientStatusDetails details) {
         this.details = details;
@@ -94,26 +77,25 @@ public class Patient extends Person {
         }
 
         Patient otherPat = (Patient) other;
-        return getIdNumber().equals(otherPat.getIdNumber()) && this.getName().equals(otherPat.getName());
+        return super.equals(otherPat);
     }
 
-    /**
-     * Compares 2 Person objects. The Patient class makes use of its <code>equals</code> method, which checks
-     * equality between 2 <code>Patient</code>'s id numbers.
-     * @param otherPerson the other <code>Person</code> object to be compared to.
-     */
     @Override
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public RoleTag getRoleTag() {
+        return PATIENT_TAG;
+    }
+
+    @Override
+    public boolean isSamePerson(Person otherPatient) {
+        if (otherPatient == this) {
             return true;
         }
 
-        if (!(otherPerson instanceof Patient)) {
+        if (!(otherPatient instanceof Patient)) {
             return false;
         }
 
-        Patient otherPat = (Patient) otherPerson;
-        return super.isSamePerson(otherPerson) && getIdNumber().equals(otherPat.getIdNumber());
+        return super.isSamePerson(otherPatient);
     }
 
 }

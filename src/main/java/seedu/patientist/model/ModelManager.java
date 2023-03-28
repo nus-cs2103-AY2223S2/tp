@@ -12,6 +12,10 @@ import javafx.collections.transformation.FilteredList;
 import seedu.patientist.commons.core.GuiSettings;
 import seedu.patientist.commons.core.LogsCenter;
 import seedu.patientist.model.person.Person;
+import seedu.patientist.model.person.exceptions.DuplicatePersonException;
+import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.staff.Staff;
+import seedu.patientist.model.ward.Ward;
 
 /**
  * Represents the in-memory model of the patientist book data.
@@ -34,6 +38,7 @@ public class ModelManager implements Model {
         this.patientist = new Patientist(patientist);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.patientist.getPersonList());
+        this.patientist.updatePersonList();
     }
 
     public ModelManager() {
@@ -70,9 +75,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPatientistFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setPatientistFilePath(addressBookFilePath);
+    public void setPatientistFilePath(Path patientistFilePath) {
+        requireNonNull(patientistFilePath);
+        userPrefs.setPatientistFilePath(patientistFilePath);
     }
 
     //=========== Patientist ================================================================================
@@ -88,27 +93,102 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
+    public boolean hasPerson(Person person) { //checked
         requireNonNull(person);
         return patientist.hasPerson(person);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        patientist.removePerson(target);
+    public boolean hasPerson(Person person, Ward ward) { //checked
+        requireAllNonNull(person, ward);
+        return patientist.hasPerson(person, ward);
     }
 
     @Override
-    public void addPerson(Person person) {
-        patientist.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public boolean hasPatient(Patient patient, Ward ward) { //checked
+        return hasPerson(patient, ward);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public boolean hasStaff(Staff staff, Ward ward) { //checked
+        return hasPerson(staff, ward);
+    }
 
-        patientist.setPerson(target, editedPerson);
+    @Override
+    public void deleteStaff(Staff target, Ward ward) { //checked
+        patientist.removeStaff(target, ward);
+    }
+
+    @Override
+    public void deletePatient(Patient target, Ward ward) { //checked
+        patientist.removePatient(target, ward);
+    }
+
+    @Override
+    public void addPatient(Patient patient, Ward ward) { //checked
+        if (hasPerson(patient)) { // global uniqueness check
+            throw new DuplicatePersonException();
+        }
+        patientist.addPatient(patient, ward);
+    }
+
+    @Override
+    public void addStaff(Staff staff, Ward ward) { //checked
+        if (hasPerson(staff)) { // global uniqueness check
+            throw new DuplicatePersonException();
+        }
+        patientist.addStaff(staff, ward);
+    }
+
+
+    @Override
+    public void setPatient(Patient target, Patient edited) { //checked? global uniqueness not enforced
+        //difficult to enforce global uniqueness as delete op happens in UPlist
+        requireAllNonNull(target, edited);
+        patientist.setPatient(target, edited);
+    }
+
+    @Override
+    public void setStaff(Staff target, Staff edited) { //checked? global uniqueness not enforced
+        //difficult to enforce global uniqueness as delete op happens in UPlist
+        requireAllNonNull(target, edited);
+        patientist.setStaff(target, edited);
+    }
+
+    @Override
+    public void transferPatient(Patient patient, Ward original, Ward target) {
+        patientist.transferPatient(patient, original, target);
+    }
+
+    @Override
+    public void transferStaff(Staff staff, Ward original, Ward target) {
+        patientist.transferStaff(staff, original, target);
+    }
+
+    @Override
+    public boolean hasWard(Ward ward) { //checked
+        return patientist.hasWard(ward);
+    }
+
+    @Override
+    public void addWard(Ward ward) { //checked
+        patientist.addWard(ward);
+    }
+
+    @Override
+    public void deleteWard(Ward ward) { //checked
+        patientist.deleteWard(ward);
+    }
+
+    @Override
+    public void setWard(Ward target, Ward editedWard) { //checked
+        patientist.setWard(target, editedWard);
+    }
+
+    @Override
+    public Ward getWard(String wardName) {
+        requireAllNonNull(wardName);
+        return this.patientist.getWard(wardName);
     }
 
     //=========== Filtered Person List Accessors =============================================================

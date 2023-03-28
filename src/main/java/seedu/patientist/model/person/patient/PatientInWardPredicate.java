@@ -7,6 +7,7 @@ import seedu.patientist.model.person.Person;
 import seedu.patientist.model.tag.Tag;
 
 /**
+ * THIS HAS BEEN DEPRECATED
  * Checks the tag of all personnel to see if they belong to a particular ward
  */
 public class PatientInWardPredicate implements Predicate<Person> {
@@ -18,6 +19,9 @@ public class PatientInWardPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        if (!(person instanceof Patient)) {
+            return false;
+        }
         return keywords.stream()
                 .anyMatch(keyword -> person.getTags().contains(new Tag(keyword)));
     }

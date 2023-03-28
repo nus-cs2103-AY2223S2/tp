@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T12-1/tp/tree/master/src/main/java/seedu/patientist/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T12-1/tp/tree/master/src/main/java/seedu/patientist/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T12-1/tp/tree/master/src/main/java/seedu/patientist/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `DetailsPopup`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T12-1/tp/tree/master/src/main/java/seedu/patientist/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T12-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,17 +86,17 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T12-1/tp/tree/master/src/main/java/seedu/patientist/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. When `Logic` is called upon to execute a command, it uses the `PatientistParser` class to parse the user command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddPatientCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a `Patient`).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -110,44 +110,46 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `PatientistParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPatientCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPatientCommand`) which the `PatientistParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddPatientCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T12-1/tp/tree/master/src/main/java/seedu/patientist/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the patientist data, i,e all `Ward` objects (contained in a singleton `WardList` object), all `Person` objects (contained within `UniquePersonList` objects within their respective wards)
-* differentiates between `Patient` and `Staff` objects within each `Ward`, each are kept in their separate `UniquePersonList`.
-* stores the currently 'selected' `Person` objects (e.g. results of search, lsward, lsstf, lspat etc) as separate filtered list which is available to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
+* stores the patientist data, i,e all `Ward` objects (contained in a singleton `WardList` object), 
+all `Person` objects (contained within `UniquePersonList` objects within their respective wards)
+* differentiates between `Patient` and `Staff` objects within each `Ward`, each are kept in their 
+separate `UniquePersonList`.
+* stores the currently 'selected' `Person` objects (e.g. results of search, lsward, lsstf, lspat etc) 
+as separate filtered list which is available to outsiders as an unmodifiable `ObservableList<Person>` 
+that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when 
+the data in the list change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside 
+as a `ReadOnlyUserPref` objects.
+* does not depend on any of the other three components (as the `Model` represents data entities 
+of the domain, they should make sense on their own without depending on other components)
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T12-1/tp/tree/master/src/main/java/seedu/patientist/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both patientist data and user preference data in json format, and read them back into corresponding objects.
+* reads patientist data into a patientist object which will contain a list of ward objects which individually contain a list of patient and staff objects.
+* inherits from both `PatientistStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.patientist.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -160,10 +162,10 @@ This section describes some noteworthy details on how certain features are imple
 The mechanism will extend the functionality provided by AddressBook's base code to provide for functionality
 that allows `Staff` and `Patient`s to be grouped logically according to the `Ward` they are assigned to. This allows
 us to implement the following functionalities:
-* `Ward#contains(Patient)`
-* `Ward#addPatient(Patient)`
-* `Ward#deletePatient(Patient)`
-* `Ward#setPatient(Patient)`
+* `contains(Patient)`
+* `addPatient(Patient)`
+* `deletePatient(Patient)`
+* `setPatient(Patient)`
 
 and similar functionality for `Staff` as well. This makes for easy implementation of searching for a particular
 person within a ward and other operations involving transferring between wards, through providing a clean 
@@ -171,6 +173,10 @@ abstraction that performs checking of duplicates, checking for presence/absence 
 changes reflect in the modification of the API supplied by `Model`, which requires specification of which ward
 a `Staff` or `Patient` is to be added to, and also implements operations to add, remove and edit wards, and transfer
 `Person` between wards.
+
+Of course, in order to implement this functionality, we need to have the ability to add and delete `Ward` objects
+as well. As such, all wards are stored in a `WardList` that enforces uniqueness of the `Ward` objects contained. This list
+provides support for lookup, add, delete and modification of elements.
 
 Other alternatives considered for this functionality were simply assigning the ward and role of a `Person` through the
 `Tag` field that already exists in the base application. However, this makes for very poor object oriented design as
@@ -180,9 +186,54 @@ ward along with all patients and staff inside, we would have to search through a
 their tags and delete them one by one. Wards will thus become a fully abstract concept not modelled anywhere in the code,
 which is not ideal as it is a core part of what our application seeks to manage.
 
-[DRAW THE UML DIAGRAMS AND WHATNOT EVENTUALLY...................]
 
-### \[Proposed\] Undo/redo feature
+Given below is a sample usage scenario and how the mechanism behaves at each step. For the sake of focus in the 
+illustration, we will only look at a subset of the Model package involved in maintaining this feature. Higher level
+management logic such as `ModelManager` are not explicitly included, but obviously exist in the system nonetheless.
+
+Step 1. The user first needs to add a `Ward` to the empty `Patientist`. The user input is parsed by `Logic`, eventually
+making a call to `addWard()` specified by `Model`. Let's say the user first adds a `Ward` called `Block A Ward 1`.
+
+![AddWardState1](images/WardFeatureStep1-After_adding_first_Ward.png)
+
+Step 2. The user decides to add another `Ward` similar to in step 1, but this new ward is called `Block B Ward 1`.
+
+![AddWardState2](images/WardFeatureStep2-After_adding_second_Ward.png)
+
+Step 3. The user adds a `Staff`, let's say `Amy` and a `Patient`, let's say `Bob` to `Block A Ward 1`. Note that UniquePersonList
+is a container for multiple `Person`. `Staff` and `Patient` inherit from `Person`, and are thus instances of `Person`.
+
+![AddWardState3](images/WardFeatureStep3-After_adding_Patient_and_Staff.png)
+
+
+
+Further notes about the wards feature:
+* The identity of `Person` objects added to the ward system must be unique. This uniqueness is enforced by `Person::isSamePerson`
+rather than `Person::equals`. The same person cannot exist in the same ward or in 2 or more different wards.
+* As in the above point, it is illegal to modify an existing `Person` such that his or her identity is equal to another
+`Person` object's identity. Doing this programmatically through `Model::setPatient` or `Model::setStaff` will throw a `DuplicatePersonException`, and doing this by
+modifying json data files will result in undefined behaviour.
+* `Ward` objects contained in `WardList` have their uniqueness enforced by name. In other words, there cannot exist 2 or 
+more wards with the same name.
+
+For these data to be stored for subsequent sessions, the `Storage` module had to be modified to store a list of wards containing
+`Patient` and `Staff` instead of a list of `Person`.
+
+Given below is an overview of how the `Storage` module behaves after launching the Patientist app.
+
+Step 1. The `Storage` module reads the data `JSON` file and deserialises it to form a `JsonSerializablePatientist` Object
+which contains a list of `JsonAdaptedWard` which is made for each `Ward` that is stored. Each `JsonAdaptedWard` contains
+a list of `JsonAdaptedPatient` and `JsonAdaptedStaff` which represents the numerous `Patient` and `Staff` that are in
+the `Ward`
+
+Step 2. The `Storage` module then calls creates the `Ward`, `Staff` and `Patient` using the blueprint provided by
+`JsonAdaptedWard`, `JsonAdaptedStaff` and `JsonAdaptedPatient` respectively. Once done, the newly created `Ward` objects
+are then stored in a new `Patientist` object, ready to be used.
+
+The opposite occurs after a command, allowing us to save the data into a `JSON` file.
+
+
+### \[Proposed\] Undo/redo feature: this section is to be deleted before submission. It is kept here for reference only.
 
 #### Proposed Implementation
 

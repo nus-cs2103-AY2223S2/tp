@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.patientist.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.patientist.testutil.TypicalPatients.ADAM;
-import static seedu.patientist.testutil.TypicalPatients.getTypicalPatientist;
+import static seedu.patientist.testutil.TypicalPatients.AMY;
+import static seedu.patientist.testutil.TypicalPatients.BOB;
+import static seedu.patientist.testutil.TypicalWards.getTypicalPatientist;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -61,12 +63,12 @@ public class FindPatientCommandTest {
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         PatientNameContainsKeywordsPredicate predicate = preparePredicate("Amy Bob Adam");
         FindPatientCommand command = new FindPatientCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ADAM), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(AMY, ADAM, BOB), model.getFilteredPersonList());
     }
 
     /**

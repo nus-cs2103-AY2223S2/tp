@@ -1,5 +1,6 @@
 package seedu.patientist.model.person.staff;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.patientist.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -7,15 +8,15 @@ import static seedu.patientist.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.patientist.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.patientist.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.patientist.testutil.TypicalStaff.AMY;
-import static seedu.patientist.testutil.TypicalStaff.BOB;
 import static seedu.patientist.testutil.TypicalStaff.CHARLES;
 import static seedu.patientist.testutil.TypicalStaff.DACIA;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.patientist.model.tag.RoleTag;
 import seedu.patientist.testutil.StaffBuilder;
 import seedu.patientist.testutil.TypicalPatients;
-import seedu.patientist.testutil.TypicalPersons;
+import seedu.patientist.testutil.TypicalStaff;
 
 public class StaffTest {
     @Test
@@ -24,30 +25,26 @@ public class StaffTest {
     }
 
     @Test
-    public void isSameStaff() {
+    public void isSamePerson() {
         // same object -> returns true
         assertTrue(AMY.isSamePerson(AMY));
 
         // null -> returns false
         assertFalse(DACIA.isSamePerson(null));
 
-        // same name, all other attributes different -> returns true
-        Staff editedCharles = new StaffBuilder(CHARLES).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags("Block7WardA").build();
+        // same id, all other attributes different -> returns true
+        Staff editedCharles = new StaffBuilder(CHARLES).withName("BOB").withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).build();
         assertTrue(CHARLES.isSamePerson(editedCharles));
 
-        // different name, all other attributes same -> returns false
-        editedCharles = new StaffBuilder(CHARLES).withName(VALID_NAME_BOB).build();
+        // same name, all other attributes different -> returns false
+        editedCharles = new StaffBuilder(CHARLES).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withIdNumber("TEST9328932932").build();
         assertFalse(CHARLES.isSamePerson(editedCharles));
 
-        // name differs in case, all other attributes same -> returns false
-        Staff editedBob = new StaffBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(TypicalPersons.BOB.isSamePerson(editedBob));
-
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new StaffBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(TypicalPersons.BOB.isSamePerson(editedBob));
+        // different ID, all other attributes same -> returns false
+        editedCharles = new StaffBuilder(CHARLES).withIdNumber("TEST912380").build();
+        assertFalse(CHARLES.isSamePerson(editedCharles));
     }
 
     @Test
@@ -66,7 +63,7 @@ public class StaffTest {
         assertFalse(AMY.equals(5));
 
         // different person -> returns false
-        assertFalse(AMY.equals(TypicalPersons.BOB));
+        assertFalse(AMY.equals(TypicalStaff.BOB));
 
         // different name -> returns false
         Staff editedAmy = new StaffBuilder(AMY).withName(VALID_NAME_BOB).build();
@@ -80,12 +77,18 @@ public class StaffTest {
         editedAmy = new StaffBuilder(AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(AMY.equals(editedAmy));
 
+        // different id
+        editedAmy = new StaffBuilder(AMY).withIdNumber("A757575757B").build();
+        assertFalse(AMY.equals(editedAmy));
+
         // different patientist -> returns false
         editedAmy = new StaffBuilder(AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(AMY.equals(editedAmy));
+    }
 
-        // different ward -> returns false
-        editedAmy = new StaffBuilder(AMY).withTags("Block7WardA").build();
-        assertFalse(AMY.equals(editedAmy));
+    @Test
+    public void getRoleTag() {
+        RoleTag staffTag = new RoleTag("Staff");
+        assertEquals(staffTag, AMY.getRoleTag());
     }
 }

@@ -24,9 +24,14 @@ import seedu.patientist.model.person.exceptions.PersonNotFoundException;
  */
 public class UniquePersonList implements Iterable<Person> {
 
+    private final String wardName;
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
+    public UniquePersonList(String wardName) {
+        this.wardName = wardName;
+    }
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -95,6 +100,13 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+    }
+
+    /**
+     * Returns true if internal list is empty.
+     */
+    public boolean isEmpty() {
+        return internalList.isEmpty();
     }
 
     /**

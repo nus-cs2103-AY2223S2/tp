@@ -1,19 +1,23 @@
 {
-  "persons" : [ {
-    "name" : "Adam Sandler",
-    "phone" : "94351253",
-    "email" : "adam@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "Block1WardA" ],
-    "status" : "Doing fine",
-    "id" : "G73829173B"
-  }, {
-    "name" : "Adam Sandler",
-    "phone" : "94351253",
-    "email" : "adam@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "Block1WardA" ],
-    "status" : "Doing fine",
-    "id" : "G73829173B"
+  "wards" : [ {
+    "name" : "Block A Ward 1",
+    "patients" : [ {
+      "name" : "Alex Yeoh",
+      "id" : "A12345A",
+      "phone" : "87438807",
+      "email" : "alex@example.com",
+      "address" : "Blk 30 Geylang Street 29, #06-40",
+      "status" : "",
+      "tagged" : [ "Patient" ]
+    }, {
+      "name" : "Alex Yeoh",
+      "id" : "A12345A",
+      "phone" : "87438807",
+      "email" : "alex@example.com",
+      "address" : "Blk 30 Geylang Street 29, #06-40",
+      "status" : "",
+      "tagged" : [ "Patient" ]
+    }],
+    "staffs" : []
   }]
 }

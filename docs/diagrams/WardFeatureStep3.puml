@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/object-diagram
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After adding Patient and Staff
+
+package "Ward System" <<rectangle>> {
+    class Patientist as "__:Patientist__"
+    class WardList as "__:WardList__"
+    package "Block A Ward 1" <<rectangle>> {
+        class BlockAWard1 as "__blockAWard1:Ward__"
+        class StaffListA1 as "__staff:UniquePersonList__"
+        class PatientListA1 as "__patients:UniquePersonList__"
+        class StaffAmy as "__amy:Staff__"
+        class PatientBob as "__bob:Patient__"
+    }
+    package "Block B Ward 1" <<rectangle>> {
+        class BlockBWard1 as "__blockAWard1:Ward__"
+        class StaffListB1 as "__staff:UniquePersonList__"
+        class PatientListB1 as "__patients:UniquePersonList__"
+    }
+
+    Patientist --> WardList
+    WardList --> BlockAWard1
+    BlockAWard1 --> StaffListA1
+    BlockAWard1 --> PatientListA1
+    PatientListA1 --> PatientBob
+    StaffListA1 --> StaffAmy
+
+    WardList --> BlockBWard1
+    BlockBWard1 --> StaffListB1
+    BlockBWard1 --> PatientListB1
+
+}
+@enduml

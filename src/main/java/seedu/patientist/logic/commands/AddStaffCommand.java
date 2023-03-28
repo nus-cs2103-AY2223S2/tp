@@ -11,6 +11,7 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.patientist.logic.commands.exceptions.CommandException;
 import seedu.patientist.model.Model;
 import seedu.patientist.model.person.staff.Staff;
+import seedu.patientist.model.ward.Ward;
 
 /**
  * Adds a hospital staff member to patientist.
@@ -37,6 +38,9 @@ public class AddStaffCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New staff member added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This staff member already exists in the patientist book";
 
+    public static final String MESSAGE_WARD_NOT_FOUND = "Ward not found: %1$s";
+
+    private final String wardToAdd;
     private final Staff toAdd;
 
     /**
@@ -44,8 +48,9 @@ public class AddStaffCommand extends Command {
      *
      * @param staff The staff member to be created.
      */
-    public AddStaffCommand(Staff staff) {
-        requireNonNull(staff);
+    public AddStaffCommand(String ward, Staff staff) {
+        requireNonNull(staff, ward);
+        wardToAdd = ward;
         toAdd = staff;
     }
     @Override
@@ -56,7 +61,12 @@ public class AddStaffCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
+        if (!model.hasWard(new Ward(wardToAdd))) {
+            throw new CommandException(String.format(MESSAGE_WARD_NOT_FOUND, wardToAdd));
+        }
+
+        model.addStaff(toAdd, model.getWard(wardToAdd));
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
@@ -64,6 +74,7 @@ public class AddStaffCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddStaffCommand // instanceof handles nulls
-                && toAdd.equals(((AddStaffCommand) other).toAdd));
+                    && toAdd.equals(((AddStaffCommand) other).toAdd)
+                    && wardToAdd.equals(((AddStaffCommand) other).wardToAdd));
     }
 }

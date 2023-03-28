@@ -7,10 +7,11 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_WARD;
 
 import java.util.Set;
 
-import seedu.patientist.logic.commands.AddCommand;
+import seedu.patientist.logic.commands.AddPatientCommand;
 import seedu.patientist.logic.commands.EditCommand;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.tag.Tag;
@@ -23,7 +24,7 @@ public class PatientUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Patient patient) {
-        return AddCommand.COMMAND_WORD + " " + getPatientDetails(patient);
+        return AddPatientCommand.COMMAND_WORD + " " + getPatientDetails(patient);
     }
 
     /**
@@ -37,6 +38,7 @@ public class PatientUtil {
         sb.append(PREFIX_ADDRESS + patient.getAddress().value + " ");
         sb.append(PREFIX_ID + patient.getIdNumber().toString() + " ");
         sb.append(PREFIX_STATUS + patient.getPatientStatusDetails().getDetails() + " ");
+        sb.append(PREFIX_WARD + "Block A Ward 1" + " ");
         patient.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
