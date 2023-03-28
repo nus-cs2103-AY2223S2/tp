@@ -19,6 +19,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_N_INPUT = "Input must be an integer between 1 and 2147483647"
             + " inclusive or the String 'all'";
     public static final String MESSAGE_INVALID_INTEGER = "Input must be an integer between 1 and 2147483647 inclusive";
+    public static final String MESSAGE_MUST_BE_EMPTY = "No inputs required for difficulty flag";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -110,6 +111,15 @@ public class ParserUtil {
             return Integer.parseInt(trimmedUserInput);
         } else {
             throw new ParseException(MESSAGE_INVALID_N_INPUT);
+        }
+    }
+
+    public static String parseEmptyInput(String userInput) throws ParseException {
+        String trimmedUserInput = userInput.trim();
+        if (trimmedUserInput.isEmpty()) {
+            return "";
+        } else {
+            throw new ParseException(MESSAGE_MUST_BE_EMPTY);
         }
     }
 
