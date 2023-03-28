@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -19,6 +21,8 @@ import seedu.address.model.person.Person;
  * The type Files manager.
  */
 public class FilesManager {
+
+    private static final Logger logger = Logger.getLogger(FilesManager.class.getName());
 
     private Person person;
     private Path reportsDir = Paths.get("reports");
@@ -37,8 +41,7 @@ public class FilesManager {
         this.person = person;
         store = new FileStorage(person.getName().fullName);
         path = "reports/" + person.getName().fullName;
-        setAllFiles();
-        setFileNames();
+        updateList();
     }
 
     public void initFile() {
@@ -57,6 +60,7 @@ public class FilesManager {
     public void deleteFile(String fileName) {
         String uri = path + "/" + fileName;
         FileStorage.deleteFile(uri);
+        updateList();
     }
 
     public void addFile() {
@@ -77,8 +81,7 @@ public class FilesManager {
         } else if (extension.equalsIgnoreCase("pdf")) {
             displayPdf(path1);
         } else {
-            //adding custom exception of Wrong File type exception
-            System.out.println("Invalid file type");
+            logger.log(Level.SEVERE, "Invalid file type" );
         }
     }
 
@@ -112,7 +115,12 @@ public class FilesManager {
     }
 
     /**
-     * Generate mc.
+     * Generates a medical certificate and saves it in the reports folder for the person associated with this
+     * FilesManager instance. The generated file name will be the next available number for medical certificates
+     * for this person.
+     * @param doctorName the name of the doctor who issued the medical certificate
+     * @param description a brief description of the reason for the medical certificate
+     * @param days the number of days for which the medical certificate is valid
      */
     public void generateMc(String doctorName, String description, int days) {
         Path path2 = Paths.get(path);
@@ -120,20 +128,18 @@ public class FilesManager {
         create = new FileGenerator(person,
                 doctorName, description, days);
         create.createMcForm(Integer.toString(nextMcNumber(path2)));
-        //Update the files and fileNames lists
-        setAllFiles();
-        setFileNames();
+        updateList();
     }
 
     /**
      * Read nth file.
      *
-     * @param number the number
+     * @param  number the number of the file to read
      */
     public void readNthFile(int number) {
         //Check if the files list is empty or the input number is invalid
-        if (files.isEmpty() || number <= 0 || number > files.size()) {
-            System.out.println("Invalid file number or no files exist.");
+        if (!isValidFileNumber(number)) {
+            logger.log(Level.WARNING, "Invalid file number or no files exist." );
             return;
         }
         Path nthFilePath = files.get(number - 1);
@@ -144,23 +150,33 @@ public class FilesManager {
     /**
      * Delete nth file.
      *
-     * @param number the number
+     * @param number the number of file to delete
      */
     public void deleteNthFile(int number) {
         //Check if the files list is empty or the input number is invalid
-        if (files.isEmpty() || number <= 0 || number > files.size()) {
-            System.out.println("Invalid file number or no files exist.");
+        if (!isValidFileNumber(number)) {
+            logger.log(Level.WARNING, "Invalid file number or no files exist." );
             return;
         }
         Path nthFilePath = files.get(number - 1);
         String fileName = nthFilePath.getFileName().toString();
         deleteFile(fileName);
-
-        //Update the files and fileNames lists
-        setAllFiles();
-        setFileNames();
+        updateList();
     }
 
+    /**
+     * Checks if the given file number is valid.
+     *
+     * @param number the number of the file to check
+     * @return true if the file number is valid, false otherwise
+     */
+    private boolean isValidFileNumber(int number) {
+        return !files.isEmpty() && number > 0 && number <= files.size();
+    }
+
+    /**
+     * Sets the list of all files in the directory.
+     */
     private void setAllFiles() {
         Path directory = Paths.get(path);
         files = new ArrayList<>();
@@ -174,6 +190,10 @@ public class FilesManager {
         }
     }
 
+    /**
+     * Set the list of file names based on the list of files in the specified directory.
+     * If there are no files or the files list is null, sets an empty list for the file names.
+     */
     private void setFileNames() {
         if (files != null) {
             fileNames = files.stream()
@@ -185,6 +205,10 @@ public class FilesManager {
         }
     }
 
+    /**
+     * Checks if the directory is empty.
+     * @return true if the directory is empty, false otherwise
+     */
     private boolean isEmptyDirectory() {
         Path directory = Paths.get(path);
         if (Files.isDirectory(directory)) {
@@ -195,6 +219,11 @@ public class FilesManager {
             }
         }
         return false;
+    }
+
+    private void updateList() {
+        setAllFiles();
+        setFileNames();
     }
 
     public Person getPerson() {

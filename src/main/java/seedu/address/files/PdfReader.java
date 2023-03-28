@@ -125,6 +125,14 @@ public class PdfReader implements FileReader<PDDocument> {
         return Toolkit.getDefaultToolkit().getScreenResolution();
     }
 
+    /**
+     * Creates a JPanel containing all pages of a PDF document as separate JLabels.
+     * @param doc the PDF document
+     * @param renderer the PDF renderer
+     * @param dpi the DPI (dots per inch) for rendering the images
+     * @return the JPanel containing the separate JLabels for each PDF page
+     * @throws IOException if there is an error rendering the PDF pages
+     */
     private JPanel createPanelWithPdfPages(PDDocument doc, PDFRenderer renderer, int dpi) throws IOException {
         JPanel panel = new JPanel(new GridLayout(0, 1));
 
@@ -138,6 +146,11 @@ public class PdfReader implements FileReader<PDDocument> {
         return panel;
     }
 
+    /**
+     * Creates a JScrollPane object from the given JPanel object.
+     * @param panel the JPanel object to be displayed in the scroll pane
+     * @return the created JScrollPane object
+     */
     private JScrollPane createScrollPane(JPanel panel) {
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -147,6 +160,10 @@ public class PdfReader implements FileReader<PDDocument> {
         return scrollPane;
     }
 
+    /**
+     * Displays the PDF file in a JFrame window with a scrollable view of the PDF pages.
+     * @param scrollPane the JScrollPane object containing the PDF pages
+     */
     private void displayPdfInFrame(JScrollPane scrollPane) {
         JFrame frame = new JFrame();
         frame.setTitle("PDF Viewer: " + getFileName(path));
