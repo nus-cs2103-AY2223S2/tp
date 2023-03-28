@@ -265,4 +265,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
         throw new SessionNotFoundException();
     }
+
+    public boolean hasSessionName(SessionName name) {
+
+        for(Session session: sessions) {
+            if (name.sessionName.equals(session.getName().toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

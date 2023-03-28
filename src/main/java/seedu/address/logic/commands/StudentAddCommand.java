@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.StudentRemoveCommand.STUDENT_NOT_FOUND_FAILURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionName;
 
@@ -47,8 +49,26 @@ public class StudentAddCommand extends Command {
 
         Person studentToAdd = lastShownList.get(index.getZeroBased());
 
+        if (!model.hasSessionName(sessionName)) {
+            throw new CommandException(String.format(
+                    SESSION_NOT_FOUND_FAILURE,
+                    sessionName,
+                    model.getAddressBook().getSessionList()
+            ));
+        }
+
         //Find session
         Session sessionToBeAddedTo = model.getSessionFromName(sessionName);
+
+        if (sessionToBeAddedTo.contains(studentToAdd
+                .getName().fullName)) {
+            throw new CommandException(
+                    String.format(
+                            STUDENT_ALREADY_ADDED_FAILURE,
+                            sessionName
+                    ));
+        }
+
         model.addPersonToSession(studentToAdd, sessionToBeAddedTo);
         model.commitAddressBook();
         return new CommandResult(String.format(SESSION_ADD_PERSON_SUCCESS, studentToAdd.getName(), sessionToBeAddedTo));

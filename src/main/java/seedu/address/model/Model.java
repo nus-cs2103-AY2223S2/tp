@@ -147,4 +147,6 @@ public interface Model {
     void removePersonFromSession(Person person, Session session);
 
     Session getSessionFromName(SessionName name);
+
+    boolean hasSessionName(SessionName sessionName);
 }

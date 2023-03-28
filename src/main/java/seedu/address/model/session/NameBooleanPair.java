@@ -6,7 +6,7 @@ public class NameBooleanPair {
 
     public NameBooleanPair(String name, boolean isPresent) {
         this.name = name;
-        this.isPresent = false;
+        this.isPresent = isPresent;
     }
 
     @Override

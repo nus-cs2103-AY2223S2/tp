@@ -114,7 +114,6 @@ public class Session implements Comparable<Session> {
      */
     public void markStudentPresent(String name) {
         attendanceMap.put(name, true);
-        System.out.println(this.toString());
     }
 
     /**
@@ -123,7 +122,6 @@ public class Session implements Comparable<Session> {
      */
     public void markStudentAbsent(String name) {
         attendanceMap.put(name, false);
-        System.out.println(this.toString());
     }
 
     /**
@@ -397,8 +395,9 @@ public class Session implements Comparable<Session> {
                 this.location,
                 this.id,
                 this.getMap());
-                
-    public List<CalendarEvent> getCalendarEvents() {
-        return Collections.singletonList(new CalendarEvent(this));
     }
+                
+//    public List<CalendarEvent> getCalendarEvents() {
+//        return Collections.singletonList(new CalendarEvent(this));
+//    }
 }

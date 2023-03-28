@@ -86,10 +86,12 @@ public class JsonAdaptedSession {
 
         final int modelId = Integer.parseInt(id);
 
+        ArrayList<NameBooleanPair> modelAttendanceList = new ArrayList<>();
         for (JsonAdaptedNameBooleanPair jsonAdaptedPair: attendanceMap) {
             NameBooleanPair pair = jsonAdaptedPair.toModelType();
+            modelAttendanceList.add(pair);
         }
 
-        return new Session(modelStartDateTime, modelEndDateTime, modelName, modelLocation, modelId);
+        return new Session(modelStartDateTime, modelEndDateTime, modelName, modelLocation, modelId, modelAttendanceList);
     }
 }
