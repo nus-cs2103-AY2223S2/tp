@@ -212,18 +212,11 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowBackups()) {
                 fillInnerPartsBackup();
                 isShowBackup = true;
-            } else {
-                if (isShowBackup) {
-                    newFillInnerParts();
-                    isShowBackup = false;
-                }
-                if (commandResult.isShowLight()) {
-                    applyLightTheme();
-                }
+            }
 
-                if (commandResult.isShowDark()) {
-                    applyDarkTheme();
-                }
+            if (isShowBackup) {
+                newFillInnerParts();
+                isShowBackup = false;
             }
 
             if (commandResult.isShowDark()) {
