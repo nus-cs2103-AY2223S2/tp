@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Client's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
-public class Phone implements Comparable<Phone>{
+public class Phone implements Comparable<Phone> {
 
 
     public static final String MESSAGE_CONSTRAINTS =

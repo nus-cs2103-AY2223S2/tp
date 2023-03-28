@@ -1,4 +1,9 @@
-package seedu.address.logic.commands.SortCommand;
+package seedu.address.logic.commands.sortcommand;
+import static java.util.Objects.requireNonNull;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.Messages;
@@ -7,22 +12,17 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Command to sort by Client Name
+ */
 public class SortByClientNameCommand extends SortCommand {
-    private boolean inOrder;
-
     public static final String COMMAND_WORD = "sortClientName";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sort the client by their name in lexicographical order.\n"
             + "Parameters: Integer value, 0 means reverse order and any other value means in order\n"
             + "Example: " + COMMAND_WORD + "1";
-
-    public static final String MESSAGE_Sort_By_Client_Name_Success  = "Sort By Client Name";
+    public static final String MESSAGE_SORT_BY_CLIENT_NAME_SUCCESS = "Sort By Client Name ";
+    private boolean inOrder;
 
 
     public SortByClientNameCommand(boolean inOrder) {
@@ -53,9 +53,9 @@ public class SortByClientNameCommand extends SortCommand {
 
     private String generateSuccessMessage(boolean inOrder) {
         if (inOrder) {
-            return MESSAGE_Sort_By_Client_Name_Success + "in ascending order";
+            return MESSAGE_SORT_BY_CLIENT_NAME_SUCCESS + "in ascending order";
         }
-        return MESSAGE_Sort_By_Client_Name_Success + "in descending order";
+        return MESSAGE_SORT_BY_CLIENT_NAME_SUCCESS + "in descending order";
     }
 
     @Override

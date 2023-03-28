@@ -1,17 +1,17 @@
 package seedu.address.logic.parser;
-
-import seedu.address.logic.commands.SortCommand.SortByClientNameCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-public class SortByClientNameCommandParser implements Parser<SortByClientNameCommand> {
+import seedu.address.logic.commands.sortcommand.SortByClientNameCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Command Parser for SortByClientNameCommand
+ */
+public class SortByClientNameCommandParser implements Parser<SortByClientNameCommand> {
     /**
-     *
      * @param args any integer number (inOrder) or 0 (reverseOrder)
-     * @return
+     * @return command
      * @throws ParseException
      */
     @Override

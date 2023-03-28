@@ -1,5 +1,4 @@
 package seedu.address.logic.parser;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -20,12 +19,11 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
-import seedu.address.logic.commands.SortCommand.SortByClientPhoneCommand;
 import seedu.address.logic.commands.UndoCommand;
-import seedu.address.logic.commands.SortCommand.SortByClientNameCommand;
+import seedu.address.logic.commands.sortcommand.SortByClientEmailCommand;
+import seedu.address.logic.commands.sortcommand.SortByClientNameCommand;
+import seedu.address.logic.commands.sortcommand.SortByClientPhoneCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-
 
 /**
  * Parses user input.
@@ -101,6 +99,9 @@ public class AddressBookParser {
 
         case SortByClientPhoneCommand.COMMAND_WORD:
             return new SortByClientPhoneCommandParser().parse(arguments);
+
+        case SortByClientEmailCommand.COMMAND_WORD:
+            return new SortByClientEmailCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

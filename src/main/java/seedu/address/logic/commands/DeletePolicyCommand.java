@@ -69,7 +69,8 @@ public class DeletePolicyCommand extends Command {
         model.setClient(clientToDeletePolicy, deletedPolicyClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
-        return new CommandResult(generateSuccessMessage(clientToDeletePolicy, policyToDelete));
+        return new CommandResult(generateSuccessMessage(clientToDeletePolicy, policyToDelete),
+                deletedPolicyClient, true, false, false);
     }
 
     private String generateSuccessMessage(Client client, Policy policy) {
