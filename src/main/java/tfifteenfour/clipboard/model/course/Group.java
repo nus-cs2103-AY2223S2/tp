@@ -110,6 +110,7 @@ public class Group {
      */
     public void addTask(Task task) {
         this.tasks.add(task);
+        task.setStudents(students);
     }
 
     /**
