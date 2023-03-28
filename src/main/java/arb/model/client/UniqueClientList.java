@@ -8,6 +8,7 @@ import java.util.List;
 
 import arb.model.client.exceptions.ClientNotFoundException;
 import arb.model.client.exceptions.DuplicateClientException;
+import arb.model.project.Project;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -34,6 +35,14 @@ public class UniqueClientList implements Iterable<Client> {
     public boolean contains(Client toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameClient);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent client with {@code Name}.
+     */
+    public boolean contains(Name toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(c -> c.getName().equals(toCheck));
     }
 
     /**
@@ -95,6 +104,73 @@ public class UniqueClientList implements Iterable<Client> {
         }
 
         internalList.setAll(clients);
+    }
+
+    /**
+     * Unlinks all linked projects from the clients in the list.
+     */
+    public void resetProjectLinkings() {
+        internalList.stream().forEach(c -> unlinkAllProjectsFromClient(c));
+    }
+
+    /**
+     * Unlinks all linked projects from {@code client}.
+     */
+    private void unlinkAllProjectsFromClient(Client client) {
+        requireNonNull(client);
+        assert contains(client);
+        client.unlinkAllProjects();
+        setClient(client, client);
+    }
+
+    /**
+     * Unlinks the linked client from {@code project}.
+     */
+    public void unlinkClientFromProject(Project project) {
+        requireNonNull(project);
+        project.getLinkedClient().ifPresent(c -> {
+            c.unlinkProject(project);
+            setClient(c, c);
+        });
+    }
+
+    /**
+     * Links {@code client} to {@code project}.
+     */
+    public void linkClientToProject(Client client, Project project) {
+        requireAllNonNull(client, project);
+        assert contains(client);
+        client.linkProject(project);
+        setClient(client, client);
+    }
+
+    /**
+     * Links the client with {@code clientName} to {@code project}.
+     */
+    public void linkClientToProject(Name clientName, Project project) {
+        assert contains(clientName);
+        Iterator<Client> iterator = iterator();
+        while (iterator.hasNext()) {
+            Client toMatch = iterator.next();
+            if (toMatch.getName().equals(clientName)) {
+                toMatch.linkProject(project);
+                project.linkToClient(toMatch);
+                return;
+            }
+        }
+    }
+
+    /**
+     * Transfers all clients linked to {@code original} to {@code target}.
+     */
+    public void transferLinkedClients(Project original, Project target) {
+        requireAllNonNull(original, target);
+        original.getLinkedClient().ifPresent(c -> {
+            c.unlinkProject(original);
+            c.linkProject(target);
+            target.linkToClient(c);
+            setClient(c, c);
+        });
     }
 
     /**

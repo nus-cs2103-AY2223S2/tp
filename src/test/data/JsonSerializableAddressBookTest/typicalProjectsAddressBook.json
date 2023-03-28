@@ -6,23 +6,27 @@
     "deadline": "2pm 2025-02-01",
     "status": "false",
     "price": "2",
+    "linkedClient" : null,
     "tagged": [ "painting", "traditional" ]
     }, {
     "title": "Crayon Drawing",
     "deadline": "3pm tomorrow",
     "status": "false",
     "price": "0.35",
+    "linkedClient" : null,
     "tagged": [ "paper", "crayons"]
   }, {
     "title": "Digital Drawing",
     "deadline": null,
     "status": "false",
-    "price": null
+    "price": null,
+    "linkedClient" : null
   }, {
     "title": "Sculpture Project",
     "deadline": null,
     "status": "false",
     "price": null,
+    "linkedClient" : null,
     "tagged": [ "clay" ]
   }]
 }

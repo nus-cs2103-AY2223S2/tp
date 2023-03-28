@@ -4,6 +4,8 @@ import static arb.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static arb.testutil.Assert.assertThrows;
 import static arb.testutil.TypicalClients.ALICE;
 import static arb.testutil.TypicalClients.BOB;
+import static arb.testutil.TypicalProjects.CRAYON_PROJECT;
+import static arb.testutil.TypicalProjects.CROCHET;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,7 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import arb.model.client.exceptions.ClientNotFoundException;
 import arb.model.client.exceptions.DuplicateClientException;
+import arb.model.project.Project;
 import arb.testutil.ClientBuilder;
+import arb.testutil.ProjectBuilder;
 
 public class UniqueClientListTest {
 
@@ -24,7 +28,7 @@ public class UniqueClientListTest {
 
     @Test
     public void contains_nullClient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueClientList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.contains((Client) null));
     }
 
     @Test
@@ -165,5 +169,77 @@ public class UniqueClientListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueClientList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void unlinkClientFromProject_success() {
+        Project project = new ProjectBuilder().build();
+        Client aliceWithProject = new ClientBuilder(ALICE).withProjects(project).build();
+        project.linkToClient(aliceWithProject);
+        uniqueClientList.add(aliceWithProject);
+        UniqueClientList expectedClientList = new UniqueClientList();
+        expectedClientList.add(ALICE);
+        uniqueClientList.unlinkClientFromProject(project);
+        assertEquals(expectedClientList, uniqueClientList);
+    }
+
+    @Test
+    public void unlinkClientFromProject_nullProject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueClientList.unlinkClientFromProject(null));
+    }
+
+    @Test
+    public void linkClientToProjectByClientObject_success() {
+        Project project = new ProjectBuilder().build();
+        Client aliceWithProject = new ClientBuilder(ALICE).withProjects(project).build();
+        Client aliceCopy = new ClientBuilder(ALICE).build();
+        uniqueClientList.add(aliceCopy);
+        UniqueClientList expectedClientList = new UniqueClientList();
+        expectedClientList.add(aliceWithProject);
+        uniqueClientList.linkClientToProject(aliceCopy, project);
+        assertEquals(uniqueClientList, expectedClientList);
+    }
+
+    @Test
+    public void linkClientToProject_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueClientList
+                .linkClientToProject(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueClientList
+                .linkClientToProject((Client) null, CRAYON_PROJECT));
+        assertThrows(NullPointerException.class, () -> uniqueClientList
+                .linkClientToProject((Name) null, CRAYON_PROJECT));
+    }
+
+    @Test
+    public void linkClientToProjectByClientName_success() {
+        Project project = new ProjectBuilder().build();
+        Client aliceWithProject = new ClientBuilder(ALICE).withProjects(project).build();
+        Client aliceCopy = new ClientBuilder(ALICE).build();
+        uniqueClientList.add(aliceCopy);
+        UniqueClientList expectedClientList = new UniqueClientList();
+        expectedClientList.add(aliceWithProject);
+        uniqueClientList.linkClientToProject(aliceCopy.getName(), project);
+        assertEquals(uniqueClientList, expectedClientList);
+    }
+
+    @Test
+    public void transferLinkedClients_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueClientList.transferLinkedClients(null, CRAYON_PROJECT));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.transferLinkedClients(CRAYON_PROJECT, null));
+    }
+
+    @Test
+    public void resetClientLinkings_success() {
+        Project crayonCopy = new ProjectBuilder(CRAYON_PROJECT).build();
+        Project crochetCopy = new ProjectBuilder(CROCHET).build();
+        Client aliceWithCrayon = new ClientBuilder(ALICE).withProjects(crayonCopy).build();
+        Client bobWithCrochet = new ClientBuilder(BOB).withProjects(crochetCopy).build();
+        uniqueClientList.add(aliceWithCrayon);
+        uniqueClientList.add(bobWithCrochet);
+        UniqueClientList expectedClientList = new UniqueClientList();
+        expectedClientList.add(ALICE);
+        expectedClientList.add(BOB);
+        uniqueClientList.resetProjectLinkings();
+        assertEquals(uniqueClientList, expectedClientList);
     }
 }

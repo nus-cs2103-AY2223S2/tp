@@ -1,10 +1,20 @@
 package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static arb.logic.commands.CommandTestUtil.CLIENT_DESC_ALIAS_ALICE;
+import static arb.logic.commands.CommandTestUtil.CLIENT_DESC_ALICE;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_ALIAS_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_ALIAS_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.EMPTY_CLIENT;
+import static arb.logic.commands.CommandTestUtil.EMPTY_CLIENT_ALIAS;
+import static arb.logic.commands.CommandTestUtil.EMPTY_DEADLINE;
+import static arb.logic.commands.CommandTestUtil.EMPTY_DEADLINE_ALIAS;
+import static arb.logic.commands.CommandTestUtil.EMPTY_PRICE;
+import static arb.logic.commands.CommandTestUtil.EMPTY_PRICE_ALIAS;
+import static arb.logic.commands.CommandTestUtil.EMPTY_TAG;
+import static arb.logic.commands.CommandTestUtil.EMPTY_TAG_ALIAS;
 import static arb.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_PRICE_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
@@ -17,6 +27,7 @@ import static arb.logic.commands.CommandTestUtil.TAG_DESC_ALIAS_POTTERY;
 import static arb.logic.commands.CommandTestUtil.TAG_DESC_PAINTING;
 import static arb.logic.commands.CommandTestUtil.TITLE_DESC_ALIAS_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.TITLE_DESC_SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.VALID_CLIENT_NAME_ALICE;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_PRICE_OIL_PAINTING;
@@ -24,7 +35,6 @@ import static arb.logic.commands.CommandTestUtil.VALID_PRICE_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TAG_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TAG_POTTERY;
 import static arb.logic.commands.CommandTestUtil.VALID_TITLE_SKY_PAINTING;
-import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 import static arb.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static arb.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static arb.testutil.TypicalIndexes.INDEX_FIRST;
@@ -42,8 +52,6 @@ import arb.model.project.Title;
 import arb.testutil.EditProjectDescriptorBuilder;
 
 public class EditProjectCommandParserTest {
-
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditProjectCommand.MESSAGE_USAGE);
@@ -103,13 +111,15 @@ public class EditProjectCommandParserTest {
 
         // using main prefixes
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_OIL_PAINTING
-                + TITLE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING + TAG_DESC_PAINTING;
+                + TITLE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING + TAG_DESC_PAINTING
+                + CLIENT_DESC_ALICE;
 
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withTitle(VALID_TITLE_SKY_PAINTING)
                 .withDeadline(VALID_DEADLINE_OIL_PAINTING)
                 .withPrice(VALID_PRICE_SKY_PAINTING)
                 .withTags(VALID_TAG_PAINTING)
+                .withLinkedClient(VALID_CLIENT_NAME_ALICE)
                 .build();
         EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);
 
@@ -118,14 +128,14 @@ public class EditProjectCommandParserTest {
         // using alias prefixes
         userInput = targetIndex.getOneBased() + DEADLINE_DESC_ALIAS_OIL_PAINTING
                 + TITLE_DESC_ALIAS_SKY_PAINTING + PRICE_DESC_ALIAS_SKY_PAINTING
-                + TAG_DESC_ALIAS_PAINTING;
+                + TAG_DESC_ALIAS_PAINTING + CLIENT_DESC_ALIAS_ALICE;
 
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // using a mix of main and alias prefixes
         userInput = targetIndex.getOneBased() + DEADLINE_DESC_ALIAS_OIL_PAINTING
                 + TITLE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING
-                + TAG_DESC_ALIAS_PAINTING;
+                + TAG_DESC_ALIAS_PAINTING + CLIENT_DESC_ALICE;
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -187,6 +197,18 @@ public class EditProjectCommandParserTest {
         userInput = targetIndex.getOneBased() + PRICE_DESC_ALIAS_SKY_PAINTING;
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // client, using main prefix
+        userInput = targetIndex.getOneBased() + CLIENT_DESC_ALICE;
+        descriptor = new EditProjectDescriptorBuilder().withLinkedClient(VALID_CLIENT_NAME_ALICE).build();
+        expectedCommand = new EditProjectCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // client, using alias prefix
+        userInput = targetIndex.getOneBased() + CLIENT_DESC_ALIAS_ALICE;
+        descriptor = new EditProjectDescriptorBuilder().withLinkedClient(VALID_CLIENT_NAME_ALICE).build();
+        expectedCommand = new EditProjectCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // tags, using main prefix
         userInput = targetIndex.getOneBased() + TAG_DESC_PAINTING;
         descriptor = new EditProjectDescriptorBuilder().withTags(VALID_TAG_PAINTING).build();
@@ -236,13 +258,48 @@ public class EditProjectCommandParserTest {
     }
 
     @Test
-    public void parse_resetTags_success() {
+    public void parse_resetValues_success() {
         Index targetIndex = INDEX_THIRD;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
+        // empty tag, main prefix
+        String userInput = targetIndex.getOneBased() + EMPTY_TAG;
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withTags().build();
         EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
+        // empty tag, alias prefix
+        userInput = targetIndex.getOneBased() + EMPTY_TAG_ALIAS;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // empty deadline, main prefix
+        userInput = targetIndex.getOneBased() + EMPTY_DEADLINE;
+        descriptor = new EditProjectDescriptorBuilder().withDeadline(null).build();
+        expectedCommand = new EditProjectCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // empty deadline, alias prefix
+        userInput = targetIndex.getOneBased() + EMPTY_DEADLINE_ALIAS;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // empty price, main prefix
+        userInput = targetIndex.getOneBased() + EMPTY_PRICE;
+        descriptor = new EditProjectDescriptorBuilder().withPrice(null).build();
+        expectedCommand = new EditProjectCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // empty price, alias prefix
+        userInput = targetIndex.getOneBased() + EMPTY_PRICE_ALIAS;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // empty client, main prefix
+        userInput = targetIndex.getOneBased() + EMPTY_CLIENT;
+        descriptor = new EditProjectDescriptorBuilder().withLinkedClient(null).build();
+        expectedCommand = new EditProjectCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // empty client, alias prefix
+        userInput = targetIndex.getOneBased() + EMPTY_CLIENT_ALIAS;
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+
 }

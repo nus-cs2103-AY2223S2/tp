@@ -34,6 +34,13 @@ public interface Logic {
     void setListType(ListType newListType);
 
     /**
+     * Sets the variable that keeps track of whether we are currently linking
+     * a project to a client.
+     * @param isInLinkMode Whether we are currently linking a project to a client.
+     */
+    void setLinkMode(boolean isInLinkMode);
+
+    /**
      * Returns the AddressBook.
      *
      * @see arb.model.Model#getAddressBook()

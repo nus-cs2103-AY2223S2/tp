@@ -1,6 +1,9 @@
 package arb.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -8,6 +11,7 @@ import arb.model.client.Client;
 import arb.model.client.Email;
 import arb.model.client.Name;
 import arb.model.client.Phone;
+import arb.model.project.Project;
 import arb.model.tag.Tag;
 import arb.model.util.SampleDataUtil;
 
@@ -25,6 +29,8 @@ public class ClientBuilder {
     private Optional<Email> email;
     private Set<Tag> tags;
 
+    private List<Project> linkedProjects;
+
     /**
      * Creates a {@code ClientBuilder} with the default details.
      */
@@ -33,6 +39,7 @@ public class ClientBuilder {
         phone = Optional.of(new Phone(DEFAULT_PHONE));
         email = Optional.of(new Email(DEFAULT_EMAIL));
         tags = new HashSet<>();
+        linkedProjects = new ArrayList<>();
     }
 
     /**
@@ -43,6 +50,7 @@ public class ClientBuilder {
         phone = Optional.ofNullable(clientToCopy.getPhone());
         email = Optional.ofNullable(clientToCopy.getEmail());
         tags = new HashSet<>(clientToCopy.getTags());
+        linkedProjects = clientToCopy.getLinkedProjects();
     }
 
     /**
@@ -77,8 +85,24 @@ public class ClientBuilder {
         return this;
     }
 
+    /**
+     * Links {@code projects} to the {@code Client} that we are building.
+     */
+    public ClientBuilder withProjects(Project ... projects) {
+        this.linkedProjects = (Arrays.asList(projects));
+        return this;
+    }
+
+    /**
+     * Builds the {@code Client}.
+     * @return The new Client.
+     */
     public Client build() {
-        return new Client(name, phone.orElse(null), email.orElse(null), tags);
+        Client client = new Client(name, phone.orElse(null), email.orElse(null), tags);
+        for (Project p : linkedProjects) {
+            client.linkProject(p);
+        }
+        return client;
     }
 
 }

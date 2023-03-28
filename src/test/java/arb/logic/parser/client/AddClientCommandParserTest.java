@@ -5,6 +5,10 @@ import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_ALIAS_AMY;
 import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_ALIAS_BOB;
 import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static arb.logic.commands.CommandTestUtil.EMPTY_EMAIL;
+import static arb.logic.commands.CommandTestUtil.EMPTY_EMAIL_ALIAS;
+import static arb.logic.commands.CommandTestUtil.EMPTY_PHONE;
+import static arb.logic.commands.CommandTestUtil.EMPTY_PHONE_ALIAS;
 import static arb.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -165,5 +169,30 @@ public class AddClientCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClientCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_emptyValue_success() {
+        // empty phone, main prefix
+        Client expectedClient = new ClientBuilder(BOB).withPhone(null).build();
+        assertParseSuccess(parser, NAME_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + EMAIL_DESC_BOB
+                + EMPTY_PHONE,
+                new AddClientCommand(expectedClient));
+
+        // empty phone, alias prefix
+        assertParseSuccess(parser, NAME_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + EMAIL_DESC_BOB
+                + EMPTY_PHONE_ALIAS,
+                new AddClientCommand(expectedClient));
+
+        // empty email, main prefix
+        expectedClient = new ClientBuilder(BOB).withEmail(null).build();
+        assertParseSuccess(parser, NAME_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + PHONE_DESC_BOB
+                + EMPTY_EMAIL,
+                new AddClientCommand(expectedClient));
+
+        // empty email, alias prefix
+        assertParseSuccess(parser, NAME_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + PHONE_DESC_BOB
+                + EMPTY_EMAIL_ALIAS,
+                new AddClientCommand(expectedClient));
     }
 }

@@ -64,7 +64,7 @@ class JsonSerializableAddressBook {
         }
 
         for (JsonAdaptedProject jsonAdaptedProject: projects) {
-            Project project = jsonAdaptedProject.toModelType();
+            Project project = jsonAdaptedProject.toModelType(addressBook);
             if (addressBook.hasProject(project)) {
                 throw new IllegalValueException((MESSAGE_DUPLICATE_PROJECT));
             }

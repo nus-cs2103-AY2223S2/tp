@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,11 +38,11 @@ import arb.logic.commands.project.UnmarkProjectCommand;
 import arb.logic.commands.tag.ListTagCommand;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Client;
-import arb.model.client.ClientContainsTagPredicate;
-import arb.model.client.NameContainsKeywordsPredicate;
+import arb.model.client.predicates.ClientContainsTagPredicate;
+import arb.model.client.predicates.NameContainsKeywordsPredicate;
 import arb.model.project.Project;
-import arb.model.project.ProjectContainsTagsPredicate;
-import arb.model.project.TitleContainsKeywordsPredicate;
+import arb.model.project.predicates.ProjectContainsTagsPredicate;
+import arb.model.project.predicates.TitleContainsKeywordsPredicate;
 import arb.testutil.ClientBuilder;
 import arb.testutil.ClientUtil;
 import arb.testutil.EditClientDescriptorBuilder;
@@ -71,7 +72,7 @@ public class AddressBookParserTest {
         for (String commandWord : AddProjectCommand.getCommandWords()) {
             AddProjectCommand command = (AddProjectCommand) parser
                 .parseCommand(ProjectUtil.getAddProjectCommand(project, commandWord));
-            assertEquals(new AddProjectCommand(project), command);
+            assertEquals(new AddProjectCommand(project, Optional.empty()), command);
         }
     }
 

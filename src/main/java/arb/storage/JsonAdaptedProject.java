@@ -13,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import arb.commons.core.LogsCenter;
 import arb.commons.exceptions.IllegalValueException;
+import arb.model.AddressBook;
+import arb.model.client.Name;
 import arb.model.project.Deadline;
 import arb.model.project.Price;
 import arb.model.project.Project;
@@ -32,6 +34,7 @@ public class JsonAdaptedProject {
     private final String deadline;
     private final String status;
     private final String price;
+    private final String linkedClient;
 
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -43,10 +46,12 @@ public class JsonAdaptedProject {
             @JsonProperty("deadline") String deadline,
             @JsonProperty("status") String status,
             @JsonProperty("price") String price,
+            @JsonProperty("linkedClient") String linkedClient,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
         this.deadline = Optional.ofNullable(deadline).orElse(null);
         this.price = Optional.ofNullable(price).orElse(null);
+        this.linkedClient = Optional.ofNullable(linkedClient).orElse(null);
         this.status = status;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -62,6 +67,7 @@ public class JsonAdaptedProject {
         this.deadline = Optional.ofNullable(source.getDeadline()).map(d -> d.dueDate.toString()).orElse(null);
         this.status = Boolean.toString(source.getStatus().getStatus());
         this.price = Optional.ofNullable(source.getPrice()).map(pr -> pr.getPrice().toString()).orElse(null);
+        this.linkedClient = Optional.ofNullable(source.getClientName()).orElse(null);
         this.tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -72,7 +78,7 @@ public class JsonAdaptedProject {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted project.
      */
-    public Project toModelType() throws IllegalValueException {
+    public Project toModelType(AddressBook ab) throws IllegalValueException {
         final List<Tag> projectTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             projectTags.add(tag.toModelType());
@@ -105,6 +111,16 @@ public class JsonAdaptedProject {
         }
         if (Boolean.parseBoolean(status)) {
             project.markAsDone();
+        }
+
+        if (linkedClient != null && !Name.isValidName(linkedClient)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        if (linkedClient != null && !ab.hasClient(new Name(linkedClient))) {
+            throw new IllegalValueException("This client is not found in the addressbook!");
+        }
+        if (linkedClient != null) {
+            ab.linkProjectToClient(new Name(linkedClient), project);
         }
 
         return project;

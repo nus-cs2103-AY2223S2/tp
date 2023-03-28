@@ -6,6 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Iterator;
 import java.util.List;
 
+import arb.model.client.Client;
 import arb.model.project.exceptions.DuplicateProjectException;
 import arb.model.project.exceptions.ProjectNotFoundException;
 import javafx.collections.FXCollections;
@@ -95,6 +96,76 @@ public class UniqueProjectList implements Iterable<Project> {
             throw new DuplicateProjectException();
         }
         internalList.setAll(projects);
+    }
+
+    /**
+     * Links {@code client} to {@code project}.
+     */
+    public void linkProjectToClient(Project project, Client client) {
+        requireAllNonNull(project, client);
+        project.linkToClient(client);
+        setProject(project, project);
+    }
+
+    /**
+     * Unlinks the linked client from {@code project}.
+     */
+    public void unlinkProjectFromClient(Project project) {
+        requireNonNull(project);
+        project.unlinkFromClient();
+        setProject(project, project);
+    }
+
+    /**
+     * Unlinks all linked clients from the projects in the list.
+     */
+    public void resetClientLinkings() {
+        internalList.stream().forEach(p -> unlinkProjectFromClient(p));
+    }
+
+    /**
+     * Transfers all projects linked to {@code original} to {@code target}.
+     */
+    public void transferLinkedProjects(Client original, Client target) {
+        requireAllNonNull(original, target);
+        Iterator<Project> linkedProjects = original.getLinkedProjects().iterator();
+        while (linkedProjects.hasNext()) {
+            Project linkedProject = linkedProjects.next();
+            linkedProject.linkToClient(target);
+            target.linkProject(linkedProject);
+            setProject(linkedProject, linkedProject);
+        }
+    }
+
+    /**
+     * Unlinks all linked projects from {@code client}.
+     */
+    public void removeAllLinks(Client client) {
+        requireNonNull(client);
+        Iterator<Project> linkedProjectsIterator = client.getLinkedProjects().iterator();
+        while (linkedProjectsIterator.hasNext()) {
+            Project toRemove = linkedProjectsIterator.next();
+            toRemove.unlinkFromClient();
+            setProject(toRemove, toRemove);
+        }
+    }
+
+    /**
+     * Marks {@code project} as done.
+     */
+    public void markProjectAsDone(Project project) {
+        requireNonNull(project);
+        project.markAsDone();
+        setProject(project, project);
+    }
+
+    /**
+     * Marks {@code project} as not done.
+     */
+    public void markProjectAsNotDone(Project project) {
+        requireNonNull(project);
+        project.markAsUndone();
+        setProject(project, project);
     }
 
     /**

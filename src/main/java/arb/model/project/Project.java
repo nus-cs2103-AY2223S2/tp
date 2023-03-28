@@ -1,6 +1,7 @@
 package arb.model.project;
 
 import static arb.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -11,6 +12,7 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import arb.commons.core.LogsCenter;
+import arb.model.client.Client;
 import arb.model.tag.Tag;
 
 /**
@@ -30,6 +32,9 @@ public class Project {
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
+    // Linked client
+    private Optional<Client> linkedClient;
+
     /**
      * Constructs a {@code Project}.
      * Title and tags must be present and not null.
@@ -41,6 +46,7 @@ public class Project {
         this.price = Optional.ofNullable(price);
         this.tags.addAll(tags);
         this.status = new Status();
+        this.linkedClient = Optional.empty();
     }
 
     public Title getTitle() {
@@ -53,8 +59,19 @@ public class Project {
     public boolean isDeadlinePresent() {
         return deadline.isPresent();
     }
+
+    /**
+     * Returns true if this project has a price.
+     */
     public boolean isPricePresent() {
         return price.isPresent();
+    }
+
+    /**
+     * Returns true if this project has a linked client.
+     */
+    public boolean isClientPresent() {
+        return linkedClient.isPresent();
     }
 
     public Deadline getDeadline() {
@@ -89,6 +106,10 @@ public class Project {
         return price.orElse(null);
     }
 
+    public String getClientName() {
+        return linkedClient.map(c -> c.getName().fullName).orElse(null);
+    }
+
     public void markAsDone() {
         this.status.setTrue();
     }
@@ -97,6 +118,24 @@ public class Project {
         this.status.setFalse();
     }
 
+    /**
+     * Links {@code client} to this project.
+     */
+    public void linkToClient(Client client) {
+        requireNonNull(client);
+        linkedClient = Optional.of(client);
+    }
+
+    /**
+     * Unlinks any linked client from this project.
+     */
+    public void unlinkFromClient() {
+        linkedClient = Optional.empty();
+    }
+
+    public Optional<Client> getLinkedClient() {
+        return linkedClient;
+    }
     /**
      * Returns true if both projects have the same title.
      * This defines a weaker notion of equality between two projects.
@@ -148,11 +187,12 @@ public class Project {
                 && otherProject.deadline.equals(deadline)
                 && otherProject.price.equals(price)
                 && otherProject.getStatus().equals(getStatus())
-                && otherProject.getTags().equals(getTags());
+                && otherProject.getTags().equals(getTags())
+                && otherProject.linkedClient.equals(linkedClient);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, deadline, status, price, tags);
+        return Objects.hash(title, deadline, status, price, tags, linkedClient);
     }
 }

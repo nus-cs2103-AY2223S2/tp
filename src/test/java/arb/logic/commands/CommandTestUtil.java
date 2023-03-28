@@ -1,5 +1,6 @@
 package arb.logic.commands;
 
+import static arb.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
@@ -23,9 +24,9 @@ import arb.model.AddressBook;
 import arb.model.ListType;
 import arb.model.Model;
 import arb.model.client.Client;
-import arb.model.client.NameContainsKeywordsPredicate;
+import arb.model.client.predicates.NameContainsKeywordsPredicate;
 import arb.model.project.Project;
-import arb.model.project.TitleContainsKeywordsPredicate;
+import arb.model.project.predicates.TitleContainsKeywordsPredicate;
 import arb.testutil.EditClientDescriptorBuilder;
 import arb.testutil.EditProjectDescriptorBuilder;
 
@@ -34,6 +35,8 @@ import arb.testutil.EditProjectDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_CLIENT_NAME_ALICE = "alice";
+    public static final String VALID_CLIENT_NAME_BOB = "bob";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -76,6 +79,10 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String TAG_DESC_ALIAS_HUSBAND = " " + PREFIX_TAG.getAlias() + VALID_TAG_HUSBAND;
 
+    public static final String CLIENT_DESC_ALICE = " " + PREFIX_CLIENT + VALID_CLIENT_NAME_ALICE;
+    public static final String CLIENT_DESC_ALIAS_ALICE = " " + PREFIX_CLIENT.getAlias() + VALID_CLIENT_NAME_ALICE;
+    public static final String CLIENT_DESC_BOB = " " + PREFIX_CLIENT + VALID_CLIENT_NAME_BOB;
+    public static final String CLIENT_DESC_ALIAS_BOB = " " + PREFIX_CLIENT.getAlias() + VALID_CLIENT_NAME_BOB;
     public static final String TITLE_DESC_SKY_PAINTING = " " + PREFIX_NAME + VALID_TITLE_SKY_PAINTING;
     public static final String TITLE_DESC_ALIAS_SKY_PAINTING = " " + PREFIX_NAME.getAlias()
             + VALID_TITLE_SKY_PAINTING;
@@ -115,6 +122,19 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final String EMPTY_TAG = " " + PREFIX_TAG;
+    public static final String EMPTY_TAG_ALIAS = " " + PREFIX_TAG.getAlias();
+    public static final String EMPTY_PHONE = " " + PREFIX_PHONE;
+    public static final String EMPTY_PHONE_ALIAS = " " + PREFIX_PHONE.getAlias();
+    public static final String EMPTY_EMAIL = " " + PREFIX_EMAIL;
+    public static final String EMPTY_EMAIL_ALIAS = " " + PREFIX_EMAIL.getAlias();
+    public static final String EMPTY_DEADLINE = " " + PREFIX_DEADLINE;
+    public static final String EMPTY_DEADLINE_ALIAS = " " + PREFIX_DEADLINE.getAlias();
+    public static final String EMPTY_PRICE = " " + PREFIX_PRICE;
+    public static final String EMPTY_PRICE_ALIAS = " " + PREFIX_PRICE.getAlias();
+    public static final String EMPTY_CLIENT = " " + PREFIX_CLIENT;
+    public static final String EMPTY_CLIENT_ALIAS = " " + PREFIX_CLIENT.getAlias();
 
     public static final EditClientCommand.EditClientDescriptor DESC_AMY;
     public static final EditClientCommand.EditClientDescriptor DESC_BOB;

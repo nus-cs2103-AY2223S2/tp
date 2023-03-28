@@ -74,7 +74,7 @@ public class AddressBookTest {
 
     @Test
     public void hasClient_nullClient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasClient(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasClient((Client) null));
     }
 
     public void hasProject_nullProject_throwsNullPointerException() {

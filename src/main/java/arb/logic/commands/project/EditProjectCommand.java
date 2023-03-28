@@ -24,6 +24,7 @@ import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.model.ListType;
 import arb.model.Model;
+import arb.model.client.predicates.NameContainsKeywordsPredicate;
 import arb.model.project.Deadline;
 import arb.model.project.Price;
 import arb.model.project.Project;
@@ -38,6 +39,7 @@ public class EditProjectCommand extends Command {
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book.";
+    public static final String MESSAGE_CANNOT_FIND_CLIENT = "Cannot find client %1$s";
 
     private static final String MAIN_COMMAND_WORD = "edit-project";
     private static final String ALIAS_COMMAND_WORD = "ep";
@@ -57,8 +59,8 @@ public class EditProjectCommand extends Command {
             + PREFIX_DEADLINE + "2023-07-05 "
             + PREFIX_PRICE + "2.07";
 
-    private final Index index;
-    private final EditProjectDescriptor editProjectDescriptor;
+    public final Index index;
+    public final EditProjectDescriptor editProjectDescriptor;
 
     /**
      * @param index of the project in the filtered project list to edit
@@ -92,10 +94,39 @@ public class EditProjectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_PROJECT);
         }
 
+        Optional<Optional<String>> optionalUpdatedClient = editProjectDescriptor.getClient();
+        String updatedClientName = projectToEdit.getClientName();
+        if (optionalUpdatedClient.isPresent()) {
+            updatedClientName = optionalUpdatedClient.get().orElse(null);
+        }
+
+        if (updatedClientName == null) {
+            model.unlinkClientFromProject(projectToEdit);
+        } else {
+            model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays
+                    .asList(updatedClientName)));
+            if (model.getFilteredClientList().size() == 0) {
+                throw new CommandException(String.format(MESSAGE_CANNOT_FIND_CLIENT,
+                        updatedClientName));
+            }
+            model.setProjectToLink(editedProject);
+        }
+
         model.setProject(projectToEdit, editedProject);
-        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-        model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
-        return new CommandResult(String.format(MESSAGE_EDIT_PROJECT_SUCCESS, editedProject), ListType.PROJECT);
+
+        String message = String.format(MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
+        ListType toBeShown = ListType.PROJECT;
+        if (updatedClientName != null) {
+            model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays
+                    .asList(updatedClientName)));
+            message = LinkProjectToClientCommand.MESSAGE_USAGE;
+            toBeShown = ListType.CLIENT;
+        } else {
+            model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+            model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
+        }
+
+        return new CommandResult(message, updatedClientName != null, toBeShown);
     }
 
     /**
@@ -107,8 +138,18 @@ public class EditProjectCommand extends Command {
         assert projectToEdit != null;
 
         Title updatedTitle = editProjectDescriptor.getTitle().orElse(projectToEdit.getTitle());
-        Deadline updatedDeadline = editProjectDescriptor.getDeadline().orElse(projectToEdit.getDeadline());
-        Price updatedPrice = editProjectDescriptor.getPrice().orElse(projectToEdit.getPrice());
+        Optional<Optional<Deadline>> optionalUpdatedDeadline = editProjectDescriptor.getDeadline();
+        Deadline updatedDeadline = projectToEdit.getDeadline();
+        if (optionalUpdatedDeadline.isPresent()) {
+            updatedDeadline = optionalUpdatedDeadline.get().orElse(null);
+        }
+
+        Optional<Optional<Price>> optionalUpdatedPrice = editProjectDescriptor.getPrice();
+        Price updatedPrice = projectToEdit.getPrice();
+        if (optionalUpdatedPrice.isPresent()) {
+            updatedPrice = optionalUpdatedPrice.get().orElse(null);
+        }
+
         Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
 
         return new Project(updatedTitle, updatedDeadline, updatedPrice, updatedTags);
@@ -146,8 +187,9 @@ public class EditProjectCommand extends Command {
      */
     public static class EditProjectDescriptor {
         private Title title;
-        private Deadline deadline;
-        private Price price;
+        private Optional<Deadline> deadline;
+        private Optional<Price> price;
+        private Optional<String> clientName;
 
         private Set<Tag> tags;
 
@@ -158,8 +200,9 @@ public class EditProjectCommand extends Command {
          */
         public EditProjectDescriptor(EditProjectDescriptor toCopy) {
             setTitle(toCopy.title);
-            setDeadline(toCopy.deadline);
-            setPrice(toCopy.price);
+            this.deadline = toCopy.deadline;
+            this.price = toCopy.price;
+            this.clientName = toCopy.clientName;
             setTags(toCopy.tags);
         }
 
@@ -167,7 +210,7 @@ public class EditProjectCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, deadline, price, tags);
+            return CollectionUtil.isAnyNonNull(title, deadline, price, tags, clientName);
         }
 
         public void setTitle(Title title) {
@@ -175,23 +218,31 @@ public class EditProjectCommand extends Command {
         }
 
         public void setDeadline(Deadline deadline) {
-            this.deadline = deadline;
+            this.deadline = Optional.ofNullable(deadline);
         }
 
         public void setPrice(Price price) {
-            this.price = price;
+            this.price = Optional.ofNullable(price);
+        }
+
+        public void setClient(String clientName) {
+            this.clientName = Optional.ofNullable(clientName).filter(c -> !c.isBlank());
         }
 
         public Optional<Title> getTitle() {
             return Optional.ofNullable(title);
         }
 
-        public Optional<Deadline> getDeadline() {
-            return Optional.ofNullable(deadline);
+        public Optional<Optional<Deadline>> getDeadline() {
+            return Optional.ofNullable(this.deadline);
         }
 
-        public Optional<Price> getPrice() {
+        public Optional<Optional<Price>> getPrice() {
             return Optional.ofNullable(price);
+        }
+
+        public Optional<Optional<String>> getClient() {
+            return Optional.ofNullable(clientName);
         }
 
         /**
@@ -229,7 +280,8 @@ public class EditProjectCommand extends Command {
             return getTitle().equals(e.getTitle())
                     && getDeadline().equals(e.getDeadline())
                     && getPrice().equals(e.getPrice())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getClient().equals(e.getClient());
         }
     }
 }

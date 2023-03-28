@@ -1,4 +1,4 @@
-package arb.model.project;
+package arb.model.project.predicates;
 
 import java.util.HashSet;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import arb.commons.util.StringUtil;
+import arb.model.project.Project;
 
 /**
  * Tests that a {@code Project}'s {@code Title} matches any of the keywords given.

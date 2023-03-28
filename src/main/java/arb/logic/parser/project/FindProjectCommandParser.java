@@ -1,6 +1,7 @@
 package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static arb.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static arb.logic.parser.CliSyntax.PREFIX_END;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_START;
@@ -22,9 +23,10 @@ import arb.logic.parser.Prefix;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.project.Deadline;
 import arb.model.project.Project;
-import arb.model.project.ProjectContainsTagsPredicate;
-import arb.model.project.ProjectWithinTimeframePredicate;
-import arb.model.project.TitleContainsKeywordsPredicate;
+import arb.model.project.predicates.LinkedClientNameContainsKeywordsPredicate;
+import arb.model.project.predicates.ProjectContainsTagsPredicate;
+import arb.model.project.predicates.ProjectWithinTimeframePredicate;
+import arb.model.project.predicates.TitleContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindProjectCommand object
@@ -33,6 +35,7 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
 
     public static final String EMPTY_NAME_ERROR = "Name cannot be empty!";
     public static final String EMPTY_TAG_ERROR = "Tag cannot be empty!";
+    public static final String EMPTY_CLIENT_NAME_ERROR = "Client name cannot be empty!";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindProjectCommand
@@ -42,14 +45,15 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
     public FindProjectCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                PREFIX_NAME, PREFIX_START, PREFIX_END, PREFIX_TAG);
+                PREFIX_NAME, PREFIX_START, PREFIX_END, PREFIX_TAG, PREFIX_CLIENT);
 
-        if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_START, PREFIX_END, PREFIX_TAG)
+        if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_START, PREFIX_END, PREFIX_TAG, PREFIX_CLIENT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindProjectCommand.MESSAGE_USAGE));
         }
 
         ArrayList<Predicate<Project>> predicates = new ArrayList<>();
+
         List<String> tags = argMultimap.getAllValues(PREFIX_TAG);
         if (tags.stream().anyMatch(t -> t.isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EMPTY_TAG_ERROR));
@@ -64,6 +68,14 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
         }
         if (!titleKeywords.isEmpty()) {
             predicates.add(new TitleContainsKeywordsPredicate(titleKeywords));
+        }
+
+        List<String> clientNameKeywords = argMultimap.getAllValues(PREFIX_CLIENT);
+        if (clientNameKeywords.stream().anyMatch(c -> c.isEmpty())) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EMPTY_CLIENT_NAME_ERROR));
+        }
+        if (!clientNameKeywords.isEmpty()) {
+            predicates.add(new LinkedClientNameContainsKeywordsPredicate(clientNameKeywords));
         }
 
         Optional<String> startString = argMultimap.getValue(PREFIX_START);

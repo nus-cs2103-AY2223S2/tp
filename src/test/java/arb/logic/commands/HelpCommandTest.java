@@ -15,7 +15,7 @@ public class HelpCommandTest {
 
     @Test
     public void execute_helpSuccess_withCurrentListTypeClient() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false,
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false, false,
                 ListType.NONE);
         assertCommandSuccess(new HelpCommand(), ListType.CLIENT, ListType.NONE, model, expectedCommandResult,
                 expectedModel);
@@ -23,9 +23,17 @@ public class HelpCommandTest {
 
     @Test
     public void execute_helpSuccess_withCurrentListTypeProject() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false,
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false, false,
                 ListType.NONE);
         assertCommandSuccess(new HelpCommand(), ListType.PROJECT, ListType.NONE, model, expectedCommandResult,
+                expectedModel);
+    }
+
+    @Test
+    public void execute_helpSuccess_withCurrentListTypeTag() {
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false, false,
+                ListType.NONE);
+        assertCommandSuccess(new HelpCommand(), ListType.TAG, ListType.NONE, model, expectedCommandResult,
                 expectedModel);
     }
 

@@ -1,6 +1,7 @@
 package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static arb.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
@@ -28,6 +29,7 @@ import arb.model.tag.Tag;
  */
 public class AddProjectCommandParser implements Parser<AddProjectCommand> {
 
+    //public static provided
     /**
      * Parses the given {@code String} of arguments in the context of the AddProjectCommand
      * and returns an AddProjectCommand object for execution.
@@ -35,7 +37,8 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
      */
     public AddProjectCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE, PREFIX_PRICE, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE, PREFIX_PRICE, PREFIX_TAG,
+                PREFIX_CLIENT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -58,9 +61,11 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
+        Optional<String> clientName = argMultimap.getValue(PREFIX_CLIENT);
+
         Project project = new Project(title, deadline, price, tagList);
 
-        return new AddProjectCommand(project);
+        return new AddProjectCommand(project, clientName);
     }
 
     /**

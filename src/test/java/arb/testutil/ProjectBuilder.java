@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import arb.model.client.Client;
 import arb.model.project.Deadline;
 import arb.model.project.Price;
 import arb.model.project.Project;
@@ -27,6 +28,8 @@ public class ProjectBuilder {
     private Set<Tag> tags;
     private boolean isDone;
 
+    private Optional<Client> linkedClient;
+
     /**
      * Creates a {@code ProjectBuilder} with the default details.
      */
@@ -36,6 +39,7 @@ public class ProjectBuilder {
         price = Optional.of(new Price(DEFAULT_PRICE));
         tags = new HashSet<>();
         isDone = false;
+        linkedClient = Optional.ofNullable(null);
     }
 
     /**
@@ -47,6 +51,7 @@ public class ProjectBuilder {
         price = Optional.ofNullable(projectToCopy.getPrice());
         tags = new HashSet<>(projectToCopy.getTags());
         isDone = projectToCopy.getStatus().getStatus();
+        linkedClient = projectToCopy.getLinkedClient();
     }
 
     /**
@@ -96,6 +101,14 @@ public class ProjectBuilder {
     }
 
     /**
+     * Links {@code client} to the {@code Project} being built.
+     */
+    public ProjectBuilder withLinkedClient(Client client) {
+        this.linkedClient = Optional.ofNullable(client);
+        return this;
+    }
+
+    /**
      * Builds the Project.
      * @return The new Project.
      */
@@ -104,6 +117,7 @@ public class ProjectBuilder {
         if (isDone) {
             project.markAsDone();
         }
+        linkedClient.ifPresent(c -> project.linkToClient(c));
         return project;
     }
 

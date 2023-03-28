@@ -2,6 +2,8 @@ package arb.model.project;
 
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_OIL_PAINTING;
 import static arb.testutil.Assert.assertThrows;
+import static arb.testutil.TypicalClients.ALICE;
+import static arb.testutil.TypicalClients.BOB;
 import static arb.testutil.TypicalProjects.OIL_PAINTING;
 import static arb.testutil.TypicalProjects.SKY_PAINTING;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,8 +16,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import arb.model.client.Client;
 import arb.model.project.exceptions.DuplicateProjectException;
 import arb.model.project.exceptions.ProjectNotFoundException;
+import arb.testutil.ClientBuilder;
 import arb.testutil.ProjectBuilder;
 
 public class UniqueProjectListTest {
@@ -159,6 +163,117 @@ public class UniqueProjectListTest {
     public void setProjects_listWithDuplicateProjects_throwsDuplicateProjectException() {
         List<Project> listWithDuplicateProjects = Arrays.asList(SKY_PAINTING, SKY_PAINTING);
         assertThrows(DuplicateProjectException.class, () -> uniqueProjectList.setProjects(listWithDuplicateProjects));
+    }
+
+    @Test
+    public void linkProjectToClient_success() {
+        Client client = new ClientBuilder().build();
+        Project skyWithLinkedClient = new ProjectBuilder(SKY_PAINTING).withLinkedClient(client).build();
+        Project skyCopy = new ProjectBuilder(SKY_PAINTING).build();
+        uniqueProjectList.add(skyCopy);
+        uniqueProjectList.linkProjectToClient(skyCopy, client);
+        UniqueProjectList expectedProjectList = new UniqueProjectList();
+        expectedProjectList.add(skyWithLinkedClient);
+        assertEquals(uniqueProjectList, expectedProjectList);
+    }
+
+    @Test
+    public void linkProjectToClient_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueProjectList.linkProjectToClient(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueProjectList.linkProjectToClient(SKY_PAINTING, null));
+    }
+
+    @Test
+    public void unlinkProjectFromClient_success() {
+        Client client = new ClientBuilder().build();
+        Project project = new ProjectBuilder().build();
+        Project projectCopy = new ProjectBuilder().withLinkedClient(client).build();
+        uniqueProjectList.add(projectCopy);
+        uniqueProjectList.unlinkProjectFromClient(projectCopy);
+        UniqueProjectList expectedProjectList = new UniqueProjectList();
+        expectedProjectList.add(project);
+        assertEquals(uniqueProjectList, expectedProjectList);
+    }
+
+    @Test
+    public void unlinkProjectFromClient_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueProjectList.unlinkProjectFromClient(null));
+    }
+
+    @Test
+    public void removeAllLinks_success() {
+        Client client = new ClientBuilder().build();
+        Project skyWithLinkedClient = new ProjectBuilder(SKY_PAINTING).withLinkedClient(client).build();
+        Project sky = new ProjectBuilder(SKY_PAINTING).build();
+        Project oilWithLinkedClient = new ProjectBuilder(OIL_PAINTING).withLinkedClient(client).build();
+        Project oil = new ProjectBuilder(OIL_PAINTING).build();
+        client.linkProject(skyWithLinkedClient);
+        client.linkProject(oilWithLinkedClient);
+        uniqueProjectList.add(skyWithLinkedClient);
+        uniqueProjectList.add(oilWithLinkedClient);
+        uniqueProjectList.removeAllLinks(client);
+        UniqueProjectList expectedProjectList = new UniqueProjectList();
+        expectedProjectList.add(sky);
+        expectedProjectList.add(oil);
+        assertEquals(uniqueProjectList, expectedProjectList);
+    }
+
+    @Test
+    public void removeAllLinks_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueProjectList.removeAllLinks(null));
+    }
+
+    @Test
+    public void transferLinkedProjects_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueProjectList.transferLinkedProjects(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueProjectList.transferLinkedProjects(ALICE, null));
+    }
+
+    @Test
+    public void resetClientLinkings_success() {
+        Client aliceCopy = new ClientBuilder(ALICE).build();
+        Client bobCopy = new ClientBuilder(BOB).build();
+        Project skyWithAlice = new ProjectBuilder(SKY_PAINTING).withLinkedClient(aliceCopy).build();
+        Project oilWithBob = new ProjectBuilder(OIL_PAINTING).withLinkedClient(bobCopy).build();
+        uniqueProjectList.add(skyWithAlice);
+        uniqueProjectList.add(oilWithBob);
+        UniqueProjectList expectedProjectList = new UniqueProjectList();
+        expectedProjectList.add(SKY_PAINTING);
+        expectedProjectList.add(OIL_PAINTING);
+        uniqueProjectList.resetClientLinkings();
+        assertEquals(uniqueProjectList, expectedProjectList);
+    }
+
+    @Test
+    public void markProjectAsDone_success() {
+        Project project = new ProjectBuilder().build();
+        Project doneProject = new ProjectBuilder().withStatus(true).build();
+        uniqueProjectList.add(project);
+        uniqueProjectList.markProjectAsDone(project);
+        UniqueProjectList expectedProjectList = new UniqueProjectList();
+        expectedProjectList.add(doneProject);
+        assertEquals(uniqueProjectList, expectedProjectList);
+    }
+
+    @Test
+    public void markProjectAsDone_nullProject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueProjectList.markProjectAsDone(null));
+    }
+
+    @Test
+    public void markProjectAsNotDone_success() {
+        Project project = new ProjectBuilder().withStatus(true).build();
+        Project notDoneProject = new ProjectBuilder().build();
+        uniqueProjectList.add(project);
+        uniqueProjectList.markProjectAsNotDone(project);
+        UniqueProjectList expectedProjectList = new UniqueProjectList();
+        expectedProjectList.add(notDoneProject);
+        assertEquals(uniqueProjectList, expectedProjectList);
+    }
+
+    @Test
+    public void markProjectAsNotDone_nullProject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueProjectList.markProjectAsNotDone(null));
     }
 
     @Test

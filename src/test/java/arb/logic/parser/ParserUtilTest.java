@@ -96,6 +96,11 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parsePhone_emptyString_returnsNull() throws Exception {
+        assertEquals(ParserUtil.parsePhone(""), null);
+    }
+
+    @Test
     public void parsePhone_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
     }
@@ -116,6 +121,11 @@ public class ParserUtilTest {
     @Test
     public void parseEmail_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    }
+
+    @Test
+    public void parseEmail_emptyString_returnsNull() throws Exception {
+        assertEquals(ParserUtil.parseEmail(""), null);
     }
 
     @Test
@@ -220,6 +230,11 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseDeadline_emptyString_returnsNull() throws Exception {
+        assertEquals(ParserUtil.parseDeadline(""), null);
+    }
+
+    @Test
     public void parseDeadline_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDeadline(INVALID_DEADLINE));
     }
@@ -240,6 +255,11 @@ public class ParserUtilTest {
     @Test
     public void parsePrice_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parsePrice(INVALID_PRICE));
+    }
+
+    @Test
+    public void parsePrice_emptyString_returnsNull() throws Exception {
+        assertEquals(ParserUtil.parsePrice(""), null);
     }
 
     @Test

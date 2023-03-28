@@ -12,8 +12,8 @@ import org.junit.jupiter.api.Test;
 import arb.commons.core.predicate.CombinedPredicate;
 import arb.logic.commands.client.FindClientCommand;
 import arb.model.client.Client;
-import arb.model.client.ClientContainsTagPredicate;
-import arb.model.client.NameContainsKeywordsPredicate;
+import arb.model.client.predicates.ClientContainsTagPredicate;
+import arb.model.client.predicates.NameContainsKeywordsPredicate;
 import arb.testutil.PredicateUtil;
 
 public class FindClientCommandParserTest {

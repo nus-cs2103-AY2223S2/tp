@@ -11,6 +11,7 @@ import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.logic.parser.AddressBookParser;
 import arb.logic.parser.exceptions.ParseException;
+import arb.logic.parser.project.LinkProjectToClientCommandParser;
 import arb.model.ListType;
 import arb.model.Model;
 import arb.model.ReadOnlyAddressBook;
@@ -30,8 +31,10 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private final LinkProjectToClientCommandParser linkToClientParser;
 
     private ListType currentListType;
+    private boolean isInLinkMode;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -40,6 +43,8 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         addressBookParser = new AddressBookParser();
+        linkToClientParser = new LinkProjectToClientCommandParser();
+        isInLinkMode = false;
     }
 
     @Override
@@ -47,9 +52,13 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command;
+        if (isInLinkMode) {
+            command = linkToClientParser.parse(commandText);
+        } else {
+            command = addressBookParser.parseCommand(commandText);
+        }
         commandResult = command.execute(model, currentListType);
-
         try {
             storage.saveAddressBook(model.getAddressBook());
         } catch (IOException ioe) {
@@ -62,6 +71,11 @@ public class LogicManager implements Logic {
     @Override
     public void setListType(ListType newListType) {
         this.currentListType = newListType;
+    }
+
+    @Override
+    public void setLinkMode(boolean isInLinkMode) {
+        this.isInLinkMode = isInLinkMode;
     }
 
     @Override

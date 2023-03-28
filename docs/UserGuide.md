@@ -46,11 +46,11 @@ All commands case insensitive
 
 ## Prefixes
 
-1. `name/` -> name: name 
-2. `email/` -> email: valid email 
-3. `phone/` -> phone: valid phone 
-4. `deadline/` -> deadline: valid date / date-time
-5. `price/` -> price: valid price
+1. `name/n` -> name: name 
+2. `email/e` -> email: valid email 
+3. `phone/p` -> phone: valid phone 
+4. `deadline/d` -> deadline: valid date / date-time
+5. `price/pr` -> price: valid price
 6. `client/` -> client: keywords to search for clients to link to a project
 
 ## Features
@@ -153,7 +153,7 @@ Examples:
 
 Edits the project details at the given index of the project list, changing only the given field(s).
 Fields that can be changed:
-* Name
+* Title
 * Deadline
 * Price
 * Tags
@@ -198,7 +198,7 @@ Examples:
 
 ### Mark a project as done : `mark INDEX`
 
-Marks the specified project as done from the artistic artistic addressbook.
+Marks the specified project as done from the artistic addressbook.
 
 Format: `mark INDEX`
 
@@ -208,6 +208,8 @@ Format: `mark INDEX`
 
 Examples:
 * `list project` followed by `mark 2` marks the 2nd project in the list of projects as done
+
+Alias: `mp`
 
 ### Unmark a project as done : `unmark INDEX`
 
@@ -221,6 +223,8 @@ Format: `unmark INDEX`
 
 Examples:
 * `list project` followed by `unmark 2` marks the 2nd project in the list of projects as not done
+
+Alias: `up`
 
 ### Linking a Project to a Client
 
@@ -237,7 +241,26 @@ Lists all tags that exist in the artistic addressbook. These include tags added 
 
 Format: `list-tag`
 
-Alias: `lt`
+### Sorting all clients : `sort-client`
+
+Sorts all clients that exist in the artistic addressbook by name in ascending order.
+
+Format: `sort-client`
+
+Alias: `sc`
+
+### Sorting all projects : `sort-project`
+
+Sorts all projects that exist in the artistic addressbook. One can sort the projects via the given options in ascending order:
+* Title
+* Deadline
+* Price
+
+One of these options must be provided.
+
+Format: `sort-project option/Option` <br> e.g., `sort-project option/name`
+
+Alias: `sp`
 
 ### Exiting the program : `exit`
 
@@ -272,15 +295,18 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Client** | `add client name/NAME [email/EMAIL] [phone/PHONE_NUMBER]​` <br> e.g., `add client name/Bob phone/12345678 email/bob@gmail.com` |
-| **Add Project** | `add project name/NAME [deadline/DEADLINE]` <br> e.g., `add project name/Background Commission deadline/2023-05-05` |
-| **Delete Client** | `delete client <index>`<br> e.g., `delete client 1` |
-| **Delete Project** | `delete project <index>`<br> e.g., `delete project 1` |
-| **Edit Client** | `edit client <index> [name/NAME] [email/EMAIL] [phone/PHONE]​` <br> e.g.,`edit client 3 name/Alice Risa phone/1234` |
-| **Edit Project** | `edit project <index> [name/NAME] [deadline/DEADLINE]` <br> e.g., `edit project 2 name/The Starry Night` |
-| **Mark Project** | `mark <index>` e.g. `mark 3` |
-| **Unmark Project** | `unmark <index>` e.g. `unmark 3` |
-| **List Client** | `list client` |
-| **List Project** | `list project` |
+| Action             | Format, Examples                                                                                                              |
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| **Add Client**     | `add client name/NAME [email/EMAIL] [phone/PHONE_NUMBER]​` <br> e.g., `add client name/Bob phone/12345678 email/bob@gmail.com` |
+| **Add Project**    | `add project name/NAME [deadline/DEADLINE]` <br> e.g., `add project name/Background Commission deadline/2023-05-05`           |
+| **Delete Client**  | `delete client <index>`<br> e.g., `delete client 1`                                                                           |
+| **Delete Project** | `delete project <index>`<br> e.g., `delete project 1`                                                                         |
+| **Edit Client**    | `edit client <index> [name/NAME] [email/EMAIL] [phone/PHONE]​` <br> e.g.,`edit client 3 name/Alice Risa phone/1234`           |
+| **Edit Project**   | `edit project <index> [name/NAME] [deadline/DEADLINE]` <br> e.g., `edit project 2 name/The Starry Night`                      |
+| **Mark Project**   | `mark <index>` e.g. `mark 3`                                                                                                  |
+| **Unmark Project** | `unmark <index>` e.g. `unmark 3`                                                                                              |
+| **List Client**    | `list client`                                                                                                                 |
+| **List Project**   | `list project`                                                                                                                |
+| **Sort Client**    | `sort-client`                                                                                                                 |
+| **Sort Project**   | `sort-project option/Option` <br> e.g., `sort-project option/name`                                                            |
+

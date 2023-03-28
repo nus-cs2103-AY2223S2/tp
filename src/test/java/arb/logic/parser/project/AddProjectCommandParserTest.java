@@ -1,10 +1,18 @@
 package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static arb.logic.commands.CommandTestUtil.CLIENT_DESC_ALIAS_ALICE;
+import static arb.logic.commands.CommandTestUtil.CLIENT_DESC_ALIAS_BOB;
+import static arb.logic.commands.CommandTestUtil.CLIENT_DESC_ALICE;
+import static arb.logic.commands.CommandTestUtil.CLIENT_DESC_BOB;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_ALIAS_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_ALIAS_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.EMPTY_DEADLINE;
+import static arb.logic.commands.CommandTestUtil.EMPTY_DEADLINE_ALIAS;
+import static arb.logic.commands.CommandTestUtil.EMPTY_PRICE;
+import static arb.logic.commands.CommandTestUtil.EMPTY_PRICE_ALIAS;
 import static arb.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_PRICE_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -23,6 +31,7 @@ import static arb.logic.commands.CommandTestUtil.TITLE_DESC_ALIAS_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.TITLE_DESC_ALIAS_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.TITLE_DESC_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.TITLE_DESC_SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.VALID_CLIENT_NAME_ALICE;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_PRICE_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TAG_PAINTING;
@@ -31,6 +40,8 @@ import static arb.logic.commands.CommandTestUtil.VALID_TITLE_SKY_PAINTING;
 import static arb.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static arb.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static arb.testutil.TypicalProjects.SKY_PAINTING;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,90 +59,121 @@ public class AddProjectCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Project expectedProject = new ProjectBuilder(SKY_PAINTING).withTags().build();
+        Optional<String> expectedClientName = Optional.of(VALID_CLIENT_NAME_ALICE);
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING
-                + PRICE_DESC_SKY_PAINTING,
-                new AddProjectCommand(expectedProject));
+                + PRICE_DESC_SKY_PAINTING + CLIENT_DESC_ALICE,
+                new AddProjectCommand(expectedProject, expectedClientName));
 
         // multiple names, main prefix only - last name accepted
         assertParseSuccess(parser, TITLE_DESC_OIL_PAINTING + TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING
-                + PRICE_DESC_SKY_PAINTING,
-                new AddProjectCommand(expectedProject));
+                + PRICE_DESC_SKY_PAINTING + CLIENT_DESC_ALICE,
+                new AddProjectCommand(expectedProject, expectedClientName));
 
         // multiple names, alias prefix only - last name accepted
         assertParseSuccess(parser, TITLE_DESC_ALIAS_OIL_PAINTING + TITLE_DESC_ALIAS_SKY_PAINTING
-                + DEADLINE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING, new AddProjectCommand(expectedProject));
+                + DEADLINE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING + CLIENT_DESC_ALICE,
+                new AddProjectCommand(expectedProject, expectedClientName));
 
         // multiple names, mix of main and alias prefix - last name accepted
         assertParseSuccess(parser, TITLE_DESC_OIL_PAINTING + TITLE_DESC_OIL_PAINTING + TITLE_DESC_SKY_PAINTING
-                + TITLE_DESC_ALIAS_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING,
-                new AddProjectCommand(expectedProject));
+                + TITLE_DESC_ALIAS_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING
+                + CLIENT_DESC_ALICE,
+                new AddProjectCommand(expectedProject, expectedClientName));
 
         // multiple deadlines, main prefix only - last deadline accepted
         assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_OIL_PAINTING + DEADLINE_DESC_SKY_PAINTING
-                + PRICE_DESC_SKY_PAINTING,
-                new AddProjectCommand(expectedProject));
+                + PRICE_DESC_SKY_PAINTING + CLIENT_DESC_ALICE,
+                new AddProjectCommand(expectedProject, expectedClientName));
 
         // multiple deadlines, alias prefix only - last deadline accepted
         assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_ALIAS_OIL_PAINTING
-                + DEADLINE_DESC_ALIAS_SKY_PAINTING + PRICE_DESC_SKY_PAINTING, new AddProjectCommand(expectedProject));
+                + DEADLINE_DESC_ALIAS_SKY_PAINTING + PRICE_DESC_SKY_PAINTING + CLIENT_DESC_ALICE,
+                new AddProjectCommand(expectedProject, expectedClientName));
 
         // multiple deadlines, mix of main and alias prefix - last deadline accepted
         assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_OIL_PAINTING
                 + DEADLINE_DESC_ALIAS_OIL_PAINTING + DEADLINE_DESC_ALIAS_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING
-                + PRICE_DESC_SKY_PAINTING,
-                new AddProjectCommand(expectedProject));
+                + PRICE_DESC_SKY_PAINTING + CLIENT_DESC_ALICE,
+                new AddProjectCommand(expectedProject, expectedClientName));
 
         // multiple prices, main prefix only - last price accepted
         assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING
-                + PRICE_DESC_OIL_PAINTING + PRICE_DESC_SKY_PAINTING,
-                new AddProjectCommand(expectedProject));
+                + PRICE_DESC_OIL_PAINTING + PRICE_DESC_SKY_PAINTING + CLIENT_DESC_ALICE,
+                new AddProjectCommand(expectedProject, expectedClientName));
 
         // multiple prices, alias prefix only - last price accepted
         assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING + PRICE_DESC_ALIAS_OIL_PAINTING
-                + PRICE_DESC_ALIAS_SKY_PAINTING, new AddProjectCommand(expectedProject));
+                + PRICE_DESC_ALIAS_SKY_PAINTING + CLIENT_DESC_ALICE,
+                new AddProjectCommand(expectedProject, expectedClientName));
 
         // multiple prices, mix of main and alias prefix - last price accepted
         assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING
                 + PRICE_DESC_ALIAS_SKY_PAINTING + PRICE_DESC_ALIAS_OIL_PAINTING + PRICE_DESC_OIL_PAINTING
-                + PRICE_DESC_SKY_PAINTING,
-                new AddProjectCommand(expectedProject));
+                + PRICE_DESC_SKY_PAINTING + CLIENT_DESC_ALICE,
+                new AddProjectCommand(expectedProject, expectedClientName));
+
+        // multiple clients, main prefix only - last client accepted
+        assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING
+                + CLIENT_DESC_BOB + CLIENT_DESC_ALICE,
+                new AddProjectCommand(expectedProject, expectedClientName));
+
+        // multiple clients, alias prefix only - last client accepted
+        assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING
+                + CLIENT_DESC_ALIAS_BOB + CLIENT_DESC_ALIAS_ALICE,
+                new AddProjectCommand(expectedProject, expectedClientName));
+
+        // multiple clients, mix of main and alias prefixes - last client accepted
+        assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING
+                + CLIENT_DESC_ALICE + CLIENT_DESC_ALIAS_BOB + CLIENT_DESC_BOB + CLIENT_DESC_ALIAS_ALICE,
+                new AddProjectCommand(expectedProject, expectedClientName));
 
         // multiple tags, main prefix only - all accepted
         Project expectedProjectMultipleTags = new ProjectBuilder(SKY_PAINTING)
                 .withTags(VALID_TAG_PAINTING, VALID_TAG_POTTERY)
                 .build();
         assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING
-                + TAG_DESC_POTTERY + TAG_DESC_PAINTING, new AddProjectCommand(expectedProjectMultipleTags));
+                + CLIENT_DESC_ALICE + TAG_DESC_POTTERY + TAG_DESC_PAINTING,
+                new AddProjectCommand(expectedProjectMultipleTags, expectedClientName));
 
         // multiple tags, alias prefix only - all accepted
         assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING
-                + TAG_DESC_ALIAS_POTTERY + TAG_DESC_ALIAS_PAINTING, new AddProjectCommand(expectedProjectMultipleTags));
+                + CLIENT_DESC_ALICE + TAG_DESC_ALIAS_POTTERY + TAG_DESC_ALIAS_PAINTING,
+                new AddProjectCommand(expectedProjectMultipleTags, expectedClientName));
 
         // multiple tags, mix of main and alias prefix - all accepted
         assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING
-                + TAG_DESC_ALIAS_POTTERY + TAG_DESC_PAINTING, new AddProjectCommand(expectedProjectMultipleTags));
+                + CLIENT_DESC_ALICE + TAG_DESC_ALIAS_POTTERY + TAG_DESC_PAINTING,
+                new AddProjectCommand(expectedProjectMultipleTags, expectedClientName));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
+        Optional<String> expectedClientName = Optional.of(VALID_CLIENT_NAME_ALICE);
+
         // zero tags
         Project expectedProject = new ProjectBuilder(SKY_PAINTING).withTags().build();
-        assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING,
-                new AddProjectCommand(expectedProject));
+        assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING
+                + CLIENT_DESC_ALICE, new AddProjectCommand(expectedProject, expectedClientName));
 
         // no deadline
         expectedProject = new ProjectBuilder(SKY_PAINTING).withDeadline(null).build();
         assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + TAG_DESC_PAINTING + TAG_DESC_POTTERY
-                + PRICE_DESC_SKY_PAINTING,
-                new AddProjectCommand(expectedProject));
+                + PRICE_DESC_SKY_PAINTING + CLIENT_DESC_ALICE,
+                new AddProjectCommand(expectedProject, expectedClientName));
 
         // no price
         expectedProject = new ProjectBuilder(SKY_PAINTING).withPrice(null).build();
-        assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING + TAG_DESC_PAINTING
-                + TAG_DESC_POTTERY,
-                new AddProjectCommand(expectedProject));
+        assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING + CLIENT_DESC_ALICE
+                + TAG_DESC_PAINTING + TAG_DESC_POTTERY,
+                new AddProjectCommand(expectedProject, expectedClientName));
+
+        // no linked client
+        expectedProject = new ProjectBuilder(SKY_PAINTING).build();
+        assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING
+                + TAG_DESC_PAINTING + TAG_DESC_POTTERY,
+                new AddProjectCommand(expectedProject, Optional.empty()));
     }
 
     @Test
@@ -143,8 +185,8 @@ public class AddProjectCommandParserTest {
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_TITLE_SKY_PAINTING + VALID_DEADLINE_SKY_PAINTING + VALID_PRICE_SKY_PAINTING,
-                expectedMessage);
+        assertParseFailure(parser, VALID_TITLE_SKY_PAINTING + VALID_DEADLINE_SKY_PAINTING + VALID_PRICE_SKY_PAINTING
+                + VALID_CLIENT_NAME_ALICE + VALID_TAG_PAINTING, expectedMessage);
     }
 
     @Test
@@ -173,5 +215,30 @@ public class AddProjectCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + TITLE_DESC_SKY_PAINTING
                 + DEADLINE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_emptyValue_success() {
+        // empty deadline, main prefix
+        Project expectedProject = new ProjectBuilder(SKY_PAINTING).withDeadline(null).build();
+        assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + TAG_DESC_PAINTING + TAG_DESC_POTTERY
+                + PRICE_DESC_SKY_PAINTING + EMPTY_DEADLINE,
+                new AddProjectCommand(expectedProject, Optional.empty()));
+
+        // empty deadline, alias prefix
+        assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + TAG_DESC_PAINTING + TAG_DESC_POTTERY
+                + PRICE_DESC_SKY_PAINTING + EMPTY_DEADLINE_ALIAS,
+                new AddProjectCommand(expectedProject, Optional.empty()));
+
+        // empty price, main prefix
+        expectedProject = new ProjectBuilder(SKY_PAINTING).withPrice(null).build();
+        assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING + TAG_DESC_PAINTING
+                + TAG_DESC_POTTERY + EMPTY_PRICE,
+                new AddProjectCommand(expectedProject, Optional.empty()));
+
+        // empty price, alias prefix
+        assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING + TAG_DESC_PAINTING
+                + TAG_DESC_POTTERY + EMPTY_PRICE_ALIAS,
+                new AddProjectCommand(expectedProject, Optional.empty()));
     }
 }

@@ -43,6 +43,8 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label numberOfProjectsLinked;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -65,6 +67,8 @@ public class ClientCard extends UiPart<Region> {
         } else {
             contentsPane.getChildren().remove(email);
         }
+
+        numberOfProjectsLinked.setText("Number of projects: " + client.getNumberOfProjectsLinked());
 
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

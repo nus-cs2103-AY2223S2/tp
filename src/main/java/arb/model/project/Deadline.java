@@ -32,6 +32,7 @@ public class Deadline implements Comparable<Deadline> {
         dueDate = parseDate(date);
     }
 
+    // @@author zrei-reused
     // Reused from https://stackoverflow.com/questions/21242110/convert-java-util-date-to-java-time-localdate
     // with minor modifications
     private LocalDateTime parseDate(String dateString) {

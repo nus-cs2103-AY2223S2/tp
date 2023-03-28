@@ -1,4 +1,4 @@
-package arb.model.project;
+package arb.model.project.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

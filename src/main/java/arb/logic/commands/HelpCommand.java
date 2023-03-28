@@ -24,7 +24,7 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, ListType currentListBeingShown) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, true, false, ListType.NONE);
+        return new CommandResult(SHOWING_HELP_MESSAGE, true, false, false, ListType.NONE);
     }
 
     public static boolean isCommandWord(String commandWord) {

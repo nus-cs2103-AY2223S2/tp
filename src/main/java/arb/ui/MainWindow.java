@@ -251,6 +251,8 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            logic.setLinkMode(commandResult.shouldEnterLinkMode());
+
             logger.info("Display " + commandResult.getListToBeShown() + " list.");
             setCurrentlyShownList(commandResult.getListToBeShown());
 

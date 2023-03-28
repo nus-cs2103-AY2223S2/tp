@@ -1,8 +1,11 @@
-package arb.model.project;
+package arb.model.project.predicates;
 
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
+
+import arb.model.project.Deadline;
+import arb.model.project.Project;
 
 /**
  * Tests that a {@code Project}'s deadline falls within the given timeframe.
