@@ -238,6 +238,10 @@ Examples:
 
 ### Other Features
 
+#### Listing all persons and events : `listall`
+
+Prints all the existing persons and events in the address book.
+
 #### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
