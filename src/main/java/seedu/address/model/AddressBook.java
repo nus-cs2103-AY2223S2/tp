@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -201,7 +200,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         Session newSession = session;
-        newSession.addPersonToSession(name);
+        newSession.removePersonFromSession(name);
         sessions.setSession(session, newSession);
     }
 
