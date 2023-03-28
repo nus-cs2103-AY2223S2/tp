@@ -244,6 +244,7 @@ public class LogicManager implements Logic {
                     "appointments", deathEx.getMessage()));
             sendLoadInfo(String.format(LOAD_EMPTY_FORMAT, "appointments"));
         }
+        validateAppointments(appointmentManager, patientManager, vaxTypeManager);
         model.setAppointmentManager(appointmentManager);
 
         KeywordManager keywordManager = new KeywordManager();
@@ -262,6 +263,27 @@ public class LogicManager implements Logic {
         model.setKeywordManager(keywordManager);
 
         isExecuting = false;
+    }
+
+
+    private void validateAppointments(AppointmentManager manager,
+                ReadOnlyPatientManager patientManager, VaxTypeManager vaxTypeManager) {
+        List<IdData<Appointment>> invalidAppointments = manager.validate(patientManager, vaxTypeManager);
+        if (invalidAppointments.isEmpty()) {
+            sendLoadInfo("Appointments validated");
+            return;
+        }
+        sendLoadWarning(formAppointmentValidationWarnMsg(invalidAppointments));
+    }
+
+
+    private String formAppointmentValidationWarnMsg(List<IdData<Appointment>> invalidAppointments) {
+        StringBuilder builder = new StringBuilder();
+        for (IdData<Appointment> data : invalidAppointments) {
+            builder.append(String.format("\n- #%04d", data.getId() + 1));
+        }
+        return String.format("The following appointments are invalid and have been deleted:%s",
+                builder.toString());
     }
 
 

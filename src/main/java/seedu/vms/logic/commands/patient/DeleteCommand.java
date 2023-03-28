@@ -6,6 +6,7 @@ import java.util.Map;
 
 import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.core.index.Index;
+import seedu.vms.commons.exceptions.UnexpectedChangeException;
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.exceptions.CommandException;
@@ -29,9 +30,28 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Patient: %1$s";
 
     private final Index targetIndex;
+    private final boolean isForce;
 
+
+    /**
+     * Constructs a {@code DeleteCommand} that will force the change.
+     */
     public DeleteCommand(Index targetIndex) {
+        // TODO: this constructor is just so that test dont break. It should be removed.
+        this(targetIndex, true);
+    }
+
+
+    /**
+     * Constructs a {@code DeleteCommand}.
+     *
+     * @param targetIndex - the id of the patient to delete.
+     * @param isForce - {@code true} if the changes the command will make
+     *      should be forced and {@code false} otherwise.
+     */
+    public DeleteCommand(Index targetIndex, boolean isForce) {
         this.targetIndex = targetIndex;
+        this.isForce = isForce;
     }
 
     @Override
@@ -44,7 +64,13 @@ public class DeleteCommand extends Command {
         }
 
         Patient patientToDelete = patientList.get(targetIndex.getZeroBased()).getValue();
-        model.deletePatient(targetIndex.getZeroBased());
+        try {
+            model.deletePatient(targetIndex.getZeroBased(), isForce);
+        } catch (UnexpectedChangeException uce) {
+            throw new CommandException(String.format("%s\n%s",
+                    uce.getMessage(),
+                    Messages.MESSAGE_USE_FORCE));
+        }
         return new CommandMessage(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete));
     }
 

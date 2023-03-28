@@ -11,6 +11,7 @@ import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.Retriever;
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.commons.exceptions.UnexpectedChangeException;
 import seedu.vms.logic.parser.ParseResult;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.appointment.Appointment;
@@ -124,7 +125,7 @@ public interface Model {
      * Deletes the given patient.
      * The patient must exist in the patient manager.
      */
-    void deletePatient(int id);
+    void deletePatient(int id, boolean isForce) throws UnexpectedChangeException;
 
     /**
      * Adds the given patient.
@@ -177,7 +178,8 @@ public interface Model {
 
     ValueChange<VaxType> editVaccination(String name, VaxType newValue) throws IllegalValueException;
 
-    ValueChange<VaxType> deleteVaccination(GroupName vaxName) throws IllegalValueException;
+    ValueChange<VaxType> deleteVaccination(GroupName vaxName, boolean isForce)
+            throws IllegalValueException, UnexpectedChangeException;
 
 
     void setVaccinationFilters(Collection<Predicate<VaxType>> filters);
@@ -261,7 +263,7 @@ public interface Model {
      * @return a list of messages describing the deletion change that will
      *      occur if the specified change were to happen.
      */
-    List<String> validatePatientChange(ValueChange<IdData<Patient>> change);
+    List<IdData<Appointment>> validatePatientChange(ValueChange<IdData<Patient>> change);
 
 
     /**
@@ -282,7 +284,7 @@ public interface Model {
      * @return a list of messages describing the deletion change that will
      *      occur if the specified change were to happen.
      */
-    List<String> validateVaccinationChange(ValueChange<VaxType> change);
+    List<IdData<Appointment>> validateVaccinationChange(ValueChange<VaxType> change);
 
 
     /**

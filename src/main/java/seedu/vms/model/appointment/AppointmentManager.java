@@ -3,7 +3,7 @@ package seedu.vms.model.appointment;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.core.index.Index;
@@ -57,18 +57,22 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
      * Removes all invalid appointments and returns the list of deleted.
      */
     public List<IdData<Appointment>> validate(ReadOnlyPatientManager patientManager, VaxTypeManager vaxTypeManager) {
-        List<IdData<Appointment>> invalidAppointments = new ArrayList<>();
+        HashSet<Integer> validPatients = new HashSet<>(patientManager
+                .getMapView()
+                .keySet());
+        HashSet<String> validVaxs = new HashSet<>(vaxTypeManager
+                .asUnmodifiableObservableMap()
+                .keySet());
 
-        Set<Index> validPatients = new HashSet<>();
-        Set<GroupName> validVaxs = new HashSet<>();
+        List<IdData<Appointment>> invalidAppointments = getMapView().entrySet().stream()
+                .map(entry -> entry.getValue())
+                .filter(entry -> !validPatients.contains(entry.getValue().getPatient().getZeroBased())
+                        || !validVaxs.contains(entry.getValue().getVaccination().getName()))
+                .collect(Collectors.toList());
 
-        patientManager.getMapView().forEach((key, value) -> validPatients.add(Index.fromZeroBased(key)));
-        vaxTypeManager.asUnmodifiableObservableMap().forEach((key, value) -> validVaxs.add(value.getGroupName()));
-
-        getMapView().entrySet().stream()
-                .filter(x->!validPatients.contains(x.getValue().getValue().getPatient())
-                        || !validVaxs.contains(x.getValue().getValue().getVaccination()))
-                .forEach(x->invalidAppointments.add(remove(x.getKey())));
+        for (IdData<Appointment> appointment : invalidAppointments) {
+            remove(appointment.getId());
+        }
 
         return invalidAppointments;
     }

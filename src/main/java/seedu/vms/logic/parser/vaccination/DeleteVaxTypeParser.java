@@ -3,6 +3,7 @@ package seedu.vms.logic.parser.vaccination;
 import seedu.vms.commons.core.Retriever;
 import seedu.vms.logic.commands.vaccination.DeleteVaxTypeCommand;
 import seedu.vms.logic.parser.ArgumentMultimap;
+import seedu.vms.logic.parser.CliSyntax;
 import seedu.vms.logic.parser.CommandParser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
@@ -26,6 +27,10 @@ public class DeleteVaxTypeParser implements CommandParser {
         } catch (ParseException parseEx) {
             throw new ParseException(String.format("%s: %s", FIELD_NAME_VAX_NAME, parseEx.getMessage()));
         }
-        return new DeleteVaxTypeCommand(retriever);
+        boolean isForce = argsMap
+                .getValue(CliSyntax.PREFIX_FORCE)
+                .map(input -> ParserUtil.parseBoolean(input))
+                .orElse(false);
+        return new DeleteVaxTypeCommand(retriever, isForce);
     }
 }

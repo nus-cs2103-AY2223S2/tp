@@ -367,4 +367,12 @@ public class ParserUtil {
 
         return groups;
     }
+
+
+    /**
+     * Parses a String to a boolean.
+     */
+    public static boolean parseBoolean(String input) {
+        return Boolean.parseBoolean(input);
+    }
 }
