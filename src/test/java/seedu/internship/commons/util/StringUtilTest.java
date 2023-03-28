@@ -1,5 +1,6 @@
 package seedu.internship.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.testutil.Assert.assertThrows;
@@ -7,42 +8,68 @@ import static seedu.internship.testutil.Assert.assertThrows;
 import java.io.FileNotFoundException;
 
 import org.junit.jupiter.api.Test;
+import seedu.internship.commons.core.Messages;
+import seedu.internship.logic.parser.ParserUtil;
+import seedu.internship.logic.parser.exceptions.ParseException;
 
 public class StringUtilTest {
 
-    //---------------- Tests for isNonZeroUnsignedInteger --------------------------------------
+    //---------------- Tests for nonZeroUnsignedIntegerCheck --------------------------------------
 
     @Test
-    public void isNonZeroUnsignedInteger() {
+    public void nonZeroUnsignedIntegerCheck() {
 
         // EP: empty strings
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("")); // Boundary value
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("  "));
-
+        this.nonZeroUnsignedIntegerCheckAssertFail("", ParserUtil.MESSAGE_INVALID_INDEX_FORMAT); // Boundary value
+        this.nonZeroUnsignedIntegerCheckAssertFail("  ", ParserUtil.MESSAGE_INVALID_INDEX_FORMAT);
         // EP: not a number
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("a"));
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("aaa"));
+        this.nonZeroUnsignedIntegerCheckAssertFail("a", ParserUtil.MESSAGE_INVALID_INDEX_FORMAT);
+        this.nonZeroUnsignedIntegerCheckAssertFail("aaa", ParserUtil.MESSAGE_INVALID_INDEX_FORMAT);
 
         // EP: zero
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("0"));
+        this.nonZeroUnsignedIntegerCheckAssertFail("0", ParserUtil.MESSAGE_INVALID_INDEX);
 
         // EP: zero as prefix
-        assertTrue(StringUtil.isNonZeroUnsignedInteger("01"));
+        this.nonZeroUnsignedIntegerCheckAssertPass("01");
 
-        // EP: signed numbers
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("-1"));
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("+1"));
+        // EP: signed negative numbers
+        this.nonZeroUnsignedIntegerCheckAssertFail("-1", ParserUtil.MESSAGE_INVALID_INDEX);
+        this.nonZeroUnsignedIntegerCheckAssertFail("-100", ParserUtil.MESSAGE_INVALID_INDEX);
+
+        // EP: signed positive numbers
+        this.nonZeroUnsignedIntegerCheckAssertFail("+1", ParserUtil.MESSAGE_INVALID_POSITIVE_SIGNED_INDEX);
+        this.nonZeroUnsignedIntegerCheckAssertFail("+100", ParserUtil.MESSAGE_INVALID_POSITIVE_SIGNED_INDEX);
 
         // EP: numbers with white space
-        assertFalse(StringUtil.isNonZeroUnsignedInteger(" 10 ")); // Leading/trailing spaces
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("1 0")); // Spaces in the middle
+
+        // Leading/trailing spaces
+        this.nonZeroUnsignedIntegerCheckAssertFail(" 10 ", ParserUtil.MESSAGE_INVALID_INDEX_FORMAT);
+        // Spaces in the middle
+        this.nonZeroUnsignedIntegerCheckAssertFail("1 0", ParserUtil.MESSAGE_INVALID_INDEX_FORMAT);
 
         // EP: number larger than Integer.MAX_VALUE
-        assertFalse(StringUtil.isNonZeroUnsignedInteger(Long.toString(Integer.MAX_VALUE + 1)));
+        nonZeroUnsignedIntegerCheckAssertFail(Long.toString(Integer.MAX_VALUE + 1), ParserUtil.MESSAGE_INVALID_INDEX);
 
         // EP: valid numbers, should return true
-        assertTrue(StringUtil.isNonZeroUnsignedInteger("1")); // Boundary value
-        assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
+        this.nonZeroUnsignedIntegerCheckAssertPass("1"); // Boundary value
+        this.nonZeroUnsignedIntegerCheckAssertPass("10");
+    }
+
+    private static void nonZeroUnsignedIntegerCheckAssertPass(String input) {
+        try {
+            StringUtil.nonZeroUnsignedIntegerCheck(input);
+        } catch (ParseException pe) {
+            throw new IllegalArgumentException("Invalid userInput.", pe);
+        }
+    }
+
+    private static void nonZeroUnsignedIntegerCheckAssertFail(String input, String expectedMessage) {
+        try {
+            StringUtil.nonZeroUnsignedIntegerCheck(input);
+            throw new AssertionError("The expected ParseException was not thrown.");
+        } catch (ParseException pe) {
+            assertEquals(expectedMessage, pe.getMessage());
+        }
     }
 
 

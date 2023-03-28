@@ -3,6 +3,7 @@ package seedu.internship.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_DATE;
@@ -18,6 +19,7 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import seedu.internship.commons.core.LogsCenter;
+import seedu.internship.commons.core.Messages;
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.logic.commands.EditCommand;
 import seedu.internship.logic.commands.EditCommand.EditInternshipDescriptor;
@@ -56,7 +58,12 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            if (pe.getMessage().equals(ParserUtil.MESSAGE_INVALID_INDEX_FORMAT)
+                    || pe.getMessage().equals(ParserUtil.MESSAGE_INVALID_POSITIVE_SIGNED_INDEX)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            } else {
+                throw new ParseException(MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+            }
         }
 
         EditInternshipDescriptor editInternshipDescriptor = new EditCommand.EditInternshipDescriptor();

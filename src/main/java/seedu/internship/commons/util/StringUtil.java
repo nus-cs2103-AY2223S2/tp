@@ -1,5 +1,9 @@
 package seedu.internship.commons.util;
 
+import seedu.internship.commons.core.Messages;
+import seedu.internship.logic.parser.ParserUtil;
+import seedu.internship.logic.parser.exceptions.ParseException;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.internship.commons.util.AppUtil.checkArgument;
 
@@ -85,5 +89,36 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    /**
+     * Throws ParseException objects with error message {@code Messages.MESSAGE_INVALID_COMMAND_FORMAT} if {@code s}
+     *   does not represent an integer or represents a positive integer with the plus sign "+" in front and
+     *   {@code Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX} if {@code s} represents a negative integer. Else,
+     *   does nothing.
+     * @param s String input
+     * @throws ParseException with error message {@code Messages.MESSAGE_INVALID_COMMAND_FORMAT} if {@code s}
+     *   does not represent an integer or represents a positive integer with the plus sign "+" in front and
+     *   {@code Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX} if {@code s} represents a negative integer.
+     */
+    public static void nonZeroUnsignedIntegerCheck(String s) throws ParseException {
+        requireNonNull(s);
+
+        int value;
+
+        try {
+            value = Integer.parseInt(s);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(ParserUtil.MESSAGE_INVALID_INDEX_FORMAT);
+        }
+
+        if (s.startsWith("+")) {
+            throw new ParseException(ParserUtil.MESSAGE_INVALID_POSITIVE_SIGNED_INDEX);
+        }
+
+        if (value <= 0) {
+            throw new ParseException(ParserUtil.MESSAGE_INVALID_INDEX);
+        }
+
     }
 }
