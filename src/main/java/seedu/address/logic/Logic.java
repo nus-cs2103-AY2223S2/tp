@@ -81,6 +81,8 @@ public interface Logic {
     ObservableList<DeliveryJob> getUnscheduledDeliveryJobList();
 
 
+    double getTotalEarnings(ObservableList<DeliveryJob> list);
+
     /**
      * Returns the user prefs' address book file path.
      */
