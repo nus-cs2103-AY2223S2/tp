@@ -3,16 +3,73 @@ layout: page
 title: CareFlow User Guide
 ---
 <a id="top"></a>
-CareFlow is a **desktop application for patient and drug inventory management, optimised for use via a Command Line Interface** (CLI) while benefiting from a Graphical User Interface (GUI).
-
-If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being!
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Quick start
+# 1. Introduction
+
+Welcome to CareFlow, your all-in-one solution for managing patient information and drug inventory in the General Practitioner clinic. Do you find yourself struggling to keep track of patient details? Are you tired of manually managing your drug inventory? CareFlow is here to help! Our easy-to-use desktop application is specifically designed for receptionists who want to improve their workflow and provide better patient care.
+
+CareFlow is a **desktop application for patient and drug inventory management, optimised for use via a Command Line Interface** (CLI) while benefiting from a Graphical User Interface (GUI). With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [3. Quick Start](#3-quick-start) to get started. Enjoy!
+
+<img src="images/Ui.png" width=50% height=50%>
+
+Figure 1. Graphical User Interface (GUI) of CareFlow*
+
+[Back to top](#top)
+
+--------------------------------------------------------------------------------------------------------------------
+
+# 2. About
+
+Welcome to the CareFlow user guide! This guide is designed to help you make the most of the software by providing detailed instructions on its features and functionalities.
+
+## 2.1 How to navigate this user guide
+
+To help you navigate the guide, we've divided it into several sections, each covering a different aspect of CareFlow. Here's a brief overview of what you'll find in each section:
+
+1. Section [1. Introduction](#1-introduction)
+   - If you want to know what CareFlow is all about, head over to section 1, "Introduction". In this section, you'll learn about CareFlow's goals and purpose, as well as get an overview of what the system can do for you.
+
+2. Section [2. About](#2-about)
+   - if you want to learn more about the guide itself and how to use it, refer to section 2, "About". Here, you'll find useful information on the symbols used in this user guide and how to navigate it easily.
+
+3. Section [3. Quick Start](#3-quick-start)
+   - If you're new to CareFlow and need help getting started, head to Section 3, "Quick Start", where you'll find step-by-step instructions to set up and begin using the application.
+
+4. Section [4. Features](#4-features)
+   - If you're looking for information on specific features, check out Section 4, "Features". Here you'll find a detailed explanation of each feature and how to use it.
+
+5. Section [5. FAQ](#5-faq)
+   - If you have any questions about using CareFlow or running into any issues, take a look at Section 5, "FAQ". We've included answers to common questions and troubleshooting tips to help you out.
+
+6. Section [6. Command Summary](#6-command-summary)
+   - If you want a quick reference for all the commands available in CareFlow, head to Section 6, "Command Summary". This section provides a list of all the commands and their functions, making it easy to find what you need.
+
+To make the most of this user guide, we recommend reading through it in order, starting with the Introduction and working your way through each section. You can also use the table of contents to jump to specific sections as needed.
+
+## 2.2 Note on symbols and formatting used
+
+Throughout this user guide, you may come across different formatting styles and symbols. These are used to make the guide more readable and easier to understand. Here are some of the formatting styles and symbols you may encounter:
+
+| <p>**Symbol/**<p>**Format** | **Meaning** |
+| --- | --- |
+| :exclamation: | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.|
+| UPPER_CASE | Words in UPPER CASE are the parameters that you need to supply to the system.<p>E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add.<p> For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`.|
+| [brackets] | Items in square brackets are optional.<p>E.g. update -n NAME [-ph PHONE] can be used as<p>`update -n Alice` or `update -n Alice -ph 12345678`|
+| `command` | The grey highlighting indicates that the word is a command to be entered by the user.|
+|[2. About](#2-about)| Blue texts shown are clickable links. These links will take you to specific sections of this User Guide or external website.|
+
+Table 1. Symbols and formats used in this User Guide.
+
+[Back to top](#top)
+
+--------------------------------------------------------------------------------------------------------------------
+
+# 3. Quick start
 
 1. Ensure you have Java 11 installed in your Computer.
    * Installing Java 11 on Windows
@@ -68,15 +125,11 @@ If you are a receptionist at a GP clinic and are comfortable typing, CareFlow ca
 
    * `exit` : Exits the app.
 
-#### Notes about command format:
-* Words in UPPER CASE are the parameters that you need to supply to the system.
-e.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add. For instance, a possible value for the `NAME` parameter is `John Doe`, and the command would be `-n John Doe`.
-
 [Back to top](#top)
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Features
+# 4. Features
 
 ## General Operations
 ### View help : `g help`
@@ -354,7 +407,7 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-# FAQ
+# 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: You can install the app in the other computer and **replace** the empty data file it creates with the file that contains the data of your previous CareFlow home folder.
@@ -363,27 +416,47 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Command Summary
+# 6. Command Summary
 
-| Action                        | Format, Examples                                                                                                                                                                                                                                                                                |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Help**                      | `g help`                                                                                                                                                                                                                                                                                        |
-| **Exit**                      | `g exit`                                                                                                                                                                                                                                                                                        |
-| **Add patient**               | `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]` <br> e.g., `add -n John Doe -ph 98765432 -em johnd@example.com -ad John Street, Block 123, #01-01 -dob 21-01-2000 -g male -ic T3871918C` |
-| **Delete patient by index**   | `p delete PATIENT_INDEX` <br> e.g., `delete -i 3`                                                                                                                                                                                                                                               |
-| **Delete patient by NRIC**    | `p delete -ic PATIENT_NRIC` <br> e.g., `delete -ic T0021248C`                                                                                                                                                                                                                                   |
-| **Update patient by name**    | `p update PATIENT_NAME [-n NEW_NAME] [-ph NEW_PHONE_NUMBER] [-em NEW_EMAIL] [-ad NEW_ADDRESS] [-dob NEW_DATE_OF_BIRTH] [-g GENDER] [-ic IC] [-da PATIENT_DRUG_ALLERGY] [-ec NEW_EMERGENCY_CONTACT_NUMBER]`                                                                                      |
-| **Find patient by name**      | `p find PATIENT_NAME` <br> e.g., `p find John` returns `john` and `John Doe`                                                                                                                                                                                                                    |
-| **Clear all patient**         | `p clear`                                                                                                                                                                                                                                                                                       |
-| **List patient**              | `p list`                                                                                                                                                                                                                                                                                        |
-| **View patient by index**     | `p view -i PATIENT_INDEX`                                                                                                                                                                                                                                                                       |
-| **Add a drug**                | `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT` <br> e.g., `d add -tn Panadol -ai paracetamol, sodium -dir Adults, 1-2 capsules -pur treat fever, headache -se dizziness -sc 500`                                                  |
-| **Delete drug by trade name** | `d delete -tn TRADE_NAME`<br> e.g., `d delete -tn Panadol Flu Max`                                                                                                                                                                                                                              |
-| **Delete drug by index**      | `d delete -i INDEX`<br> e.g.,`d delete -i 7`                                                                                                                                                                                                                                                    |
-| **Update drug storage count** | `d update TRADE_NAME -by +-VALUE`<br> e.g.,`d update -tn Panadol Flu Max -by +90`                                                                                                                                                                                                               |
-| **Find drug by trade name**   | `d find TRADE_NAME` <br> e.g., `d find Panadol`                                                                                                                                                                                                                                                 |
-| **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                                                                       |
-| **List drug**                 | `d list`                                                                                                                                                                                                                                                                                        |
-| **View drug by index**        | `d view -i DRUG_INDEX`                                                                                                                                                                                                                                                                          |
+If you need a quick and easy way to find the commands available in CareFlow, simply refer to the list below
+
+## 6.1 General Commands
+
+The following are the general commands that are available in Careflow for you to use! You will need to use the prefix `g` to use the commands.
+
+| Action | Format, Example | Expected Outcome |
+| -------|--------|------------------|
+| **Help** | `g help` | Opens up a window with a link to the User Guide. |
+| **Exit** | `g exit` | Saves all data and safely exits. |
+
+## 6.2 Patient Commands
+
+The following commands are patient-related commands that are available in Careflow for you to use! You will need to use the prefix `p` to use the commands.
+
+| Action | Format, Example | Expected Outcome |
+| -------|--------|------------------|
+| **Add patient**  | `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]` <p> e.g., `p add -n John Doe -ph 98765432 -em johnd@example.com -ad John Street, Block 123, #01-01 -dob 21-01-2000 -g male -ic T3871918C` | Adds a patient record with the particulars that you have entered.|
+| **Delete patient by index**   | `p delete -i PATIENT_INDEX` <p> e.g., `p delete -i 3`| Removes patient record at the index you have selected.|
+| **Delete patient by NRIC**    | `p delete -ic PATIENT_NRIC` <p> e.g., `p delete -ic T0021248C`| Removes patient record associated with the provided IC number.|
+| **Update patient by name**    | `p update PATIENT_NAME [-n NAME] [-ph PHONE] [-em EMAIL] [-ad ADDRESS] [-dob DATE_OF_BIRTH] [-g GENDER] [-ic IC] [-da DRUG_ALLERGY] [-ec NEW_EMERGENCY_CONTACT_NUMBER]` <p> e.g., `p update John -ph 12345678 -em 23456789` | Edit patient details located at the i-th position in the patient list with your given arguments.|
+| **View patient by index**     | `p view -i PATIENT_INDEX` <p> e.g. `p view -i 1` | Shows the patient record located at the i-th position in the patient list.|
+| **Find patient by name**      | `p find PATIENT_NAME` <p> e.g., `p find John` | Shows patient(s) record that match the patient name you have provided.|
+| **Clear all patient**         | `p clear` | Removes all patient records stored in CareFlow.|
+| **List patient**              | `p list` | Lists all the patients that have been recorded in CareFlow.| 
+
+## 6.3 Drug Commands
+
+The following commands are drug-related commands that are available in Careflow for you to use! You will need to use the prefix `d` to use the commands.
+
+| Action | Format | Expected Outcome |
+| -------|--------|------------------|
+| **Add a drug**                | `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT` <br> e.g., `d add -tn Panadol -ai paracetamol, sodium -dir Adults, 1-2 capsules -pur treat fever, headache -se dizziness -sc 500` | Adds a drug record with the particulars that you have entered. |
+| **Delete drug by index**      | `d delete -i INDEX`<br> e.g.,`d delete -i 7` | Removes drug record at the index you have selected.|
+| **Delete drug by trade name** | `d delete -tn TRADE_NAME`<br> e.g., `d delete -tn Panadol Flu Max` | Removes drug record associated with the provided trade name.|
+| **Update drug storage count** | `d update TRADE_NAME -by +-VALUE`<br> e.g.,`d update -tn Panadol Flu Max -by +90` | Edit drug's storage count with the provided trade name.|
+| **View drug by index**        | `d view -i DRUG_INDEX` <p> e.g. `d view -i 1`| Shows the drug record located at the i-th position in the drug list.|
+| **Find drug by trade name**   | `d find TRADE_NAME` <br> e.g., `d find Panadol`| Shows drug(s) record that match the drugs' trade name you have provided.|
+| **List drug**                 | `d list` | Lists all the drugs that have been recorded in CareFlow. |
+| **Clear all drugs**           | `d clear` | Removes all drug records stored in CareFlow |
 
 [Back to top](#top)
