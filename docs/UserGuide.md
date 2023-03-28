@@ -36,7 +36,6 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - [Untag a module](#untag-a-module)
   - [Untag a lecture](#untag-a-lecture)
   - [Untag a video](#untag-a-video)
-  - [Progress](#progress)
   - [List Modules](#list-modules)
   - [List Lectures of Modules](#list-lectures-of-modules)
   - [List Videos of Lectures](#list-videos-of-lectures)
@@ -410,16 +409,6 @@ Examples:
 
 - `untag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay` removes the tag `Yay` in the video `Video_1` of the
   lecture `Lecture_1` that belongs to the module `CS2040`
-
-### Progress
-
-Displays lecture progress for a specified module
-
-Format: `progress {module_code}`
-
-- Displays progress of a specified `module_code`
-
-Example: `progress CS2040S` lists progress for the module CS2040S
 
 ### List Modules
 
