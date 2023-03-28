@@ -10,7 +10,6 @@ title: User Guide
   * [Introduction](#introduction)
   * [Quickstart](#quick-start)
   * [Features](#features)
-    * [Help](#viewing-help--help)
     * [Tanks](#tanks)
       * [Adding a tank `tank add`](#adding-a-tank-tank-add)
       * [Deleting a tank `tank delete`](#deleting-a-tank-tank-delete)
@@ -27,6 +26,8 @@ title: User Guide
       * [Adding a task `task add`](#adding-a-task-task-add)
       * [Deleting a task `task delete`](#deleting-a-task-task-delete)
       * [Listing tasks `list task`](#listing-tasks-list-task)
+    * [Storage](#storage)
+    * [Help](#help)
   * [FAQ](#faq)
   * [Summary](#command-summary)
 
@@ -79,14 +80,6 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 
 
 </div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
 
 ## Tanks
 
@@ -223,8 +216,7 @@ Use the format specifier /p to specify priorities
 
 Format: `task add d/<TASK_NAME> p/<PRIORITY_LEVEL>`
 
-*Note: PRIORITY_LEVEL is only accepted as low / medium / high* 
-
+*Note: PRIORITY_LEVEL is only accepted as low / medium / high*
 
 ## Storage
 ### Saving the data
@@ -242,6 +234,15 @@ If your changes to the data file makes its format invalid, Fish Ahoy! will disca
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
+
+## Help
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
 
