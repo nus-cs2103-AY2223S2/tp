@@ -36,11 +36,18 @@ public class AddressPanel extends UiPart<Region> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
-    public PersonDetailPanel getPersonDetailPanel() {
-        return personDetailPanel;
-    }
-
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
+
+    public int getIndexOfSelectedPerson(Person person) {
+        return personListPanel.getIndexOfSelectedPerson(person);
+    }
+
+    public void setSelectedPerson(Person person) {
+        int indexOfPerson = this.getIndexOfSelectedPerson(person);
+        this.personDetailPanel.setSelectedPerson(person, indexOfPerson);
+        this.personListPanel.bindSelectedIndex(indexOfPerson);
+    }
+
 }

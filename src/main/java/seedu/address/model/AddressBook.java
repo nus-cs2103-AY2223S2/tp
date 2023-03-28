@@ -7,9 +7,9 @@ import java.util.List;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.fields.Name;
 
 /**
  * Wraps all data at the address-book level
@@ -18,8 +18,8 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private Person selectedPerson;
-    private Index selectedIndex;
+    private final ReadOnlyObjectWrapper<Person> observableSelectedPerson =
+            new ReadOnlyObjectWrapper<>(new Person(new Name("Default"))); //figure what to replace with
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,8 +30,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        selectedPerson = null;
-        selectedIndex = null;
     }
 
     public AddressBook() {}
@@ -101,17 +99,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public ReadOnlyObjectProperty<Person> getSelectedPerson() {
-        return new ReadOnlyObjectWrapper<>(selectedPerson);
+        return observableSelectedPerson.getReadOnlyProperty();
     }
+
     public void setSelectedPerson(Person person) {
-        selectedPerson = person;
+        observableSelectedPerson.set(person);
     }
-    public ReadOnlyObjectProperty<Index> getSelectedIndex() {
-        return new ReadOnlyObjectWrapper<>(selectedIndex);
-    }
-    public void setSelectedIndex(Index index) {
-        selectedIndex = index;
-    }
+
     //// util methods
     @Override
     public String toString() {

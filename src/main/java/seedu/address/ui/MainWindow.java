@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -14,12 +13,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Person;
 import seedu.address.ui.body.BodyPanel;
 import seedu.address.ui.result.ResultDisplay;
 
@@ -84,6 +81,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        this.setSelectedPerson();
     }
 
     public Stage getPrimaryStage() {
@@ -214,11 +212,6 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-            if (commandResult.isSelect()) {
-                bodyPanel.getAddressPanel().getPersonListPanel().clearSelection();
-                this.setPersonDetail();
-                this.setDisplayedIndex();
-            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {
@@ -236,19 +229,9 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Sets selected person's details in person detail panel.
      */
-    private void setPersonDetail() {
-        ReadOnlyObjectProperty<Person> observableSelectedPerson = logic.getSelectedPerson();
-        bodyPanel.getAddressPanel().getPersonDetailPanel().setPerson(observableSelectedPerson.getValue());
-    }
-
-    /**
-     * Sets selected person's current index in person detail panel
-     */
-    private void setDisplayedIndex() {
-        ReadOnlyObjectProperty<Index> observableSelectedIndex = logic.getSelectedIndex();
-        bodyPanel.getAddressPanel().getPersonDetailPanel()
-                .setDisplayedIndex(observableSelectedIndex.getValue().getOneBased());
-        bodyPanel.getAddressPanel().getPersonListPanel()
-                .bindSelectedIndex((observableSelectedIndex.getValue().getOneBased()));
+    private void setSelectedPerson() {
+        logic.getSelectedPerson().addListener((observable, oldValue, newValue) -> {
+            bodyPanel.setSelectedPerson(newValue);
+        });
     }
 }

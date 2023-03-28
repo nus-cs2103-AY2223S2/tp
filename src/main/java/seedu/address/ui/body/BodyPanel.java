@@ -7,6 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.logic.ui.tab.TabInfo;
+import seedu.address.model.person.Person;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.body.address.AddressPanel;
 import seedu.address.ui.body.calendar.CalendarPanel;
@@ -108,5 +109,9 @@ public class BodyPanel extends UiPart<Region> {
             logic.setSelectedTab(Index.fromZeroBased(newValue.intValue()));
             resultDisplay.setFeedbackToUser("Enter command below");
         });
+    }
+
+    public void setSelectedPerson(Person person) {
+        this.addressPanel.setSelectedPerson(person);
     }
 }

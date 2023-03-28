@@ -75,8 +75,9 @@ public class PersonDetailPanel extends UiPart<Region> {
         }
     }
 
-    public int getDisplayedIndex() {
-        return displayedIndex;
+    public void setSelectedPerson(Person person, int indexOfPerson) {
+        this.setPerson(person);
+        this.setDisplayedIndex(indexOfPerson);
     }
 
     /**

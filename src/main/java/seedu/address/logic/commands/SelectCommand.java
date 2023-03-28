@@ -47,16 +47,13 @@ public class SelectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person prevPerson = model.getSelectedPerson().get();
-        Index prevIndex = model.getSelectedIndex().get();
-        model.setSelectedIndex(index);
         model.setSelectedPerson(index);
         Person currPerson = model.getSelectedPerson().get();
-        Index currIndex = model.getSelectedIndex().get();
-        if (Objects.equals(prevPerson, currPerson) && Objects.equals(prevIndex, currIndex)) {
-            return new CommandResult(String.format(MESSAGE_NO_CHANGE, currPerson), false, false, true);
+        if (Objects.equals(prevPerson, currPerson)) {
+            return new CommandResult(String.format(MESSAGE_NO_CHANGE, currPerson), false, false);
         } else {
             return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, currPerson),
-                    false, false, true);
+                    false, false);
         }
     }
 
