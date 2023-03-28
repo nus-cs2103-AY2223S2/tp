@@ -2,12 +2,11 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-
-
 <?import javafx.scene.control.ListView?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+<VBox fx:id="container" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <stylesheets>
       <URL value="@ListPanel.css" />
    </stylesheets>
@@ -23,6 +22,6 @@
          <Insets left="10" right="10" top="15" bottom="15"/>
       </padding>
       </Label>
-      <ListView fx:id="noteListView" VBox.vgrow="ALWAYS" />
+      <ListView fx:id="noteListView" VBox.vgrow="ALWAYS"/>
    </ListView>
 </VBox>
