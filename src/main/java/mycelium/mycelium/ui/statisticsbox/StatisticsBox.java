@@ -3,8 +3,8 @@ package mycelium.mycelium.ui.statisticsbox;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.ListChangeListener.Change;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.layout.Region;
@@ -47,29 +47,24 @@ public class StatisticsBox extends UiPart<Region> implements TabsPanel {
     private void loadDataOnBox(Logic logic) {
         ObservableList<Project> filteredProjectList = logic.getFilteredProjectList();
 
-        filteredProjectList.addListener(new ListChangeListener<Project>() {
-            @Override
-            public void onChanged(Change<? extends Project> c) {
-                statisticsPanel.updateTabMessages(logic);
-                addPieChartData(logic);
-            }
+        filteredProjectList.addListener((Change<? extends Project> c) -> {
+            statisticsPanel.onChanged(logic);
+            setPieChartData(logic);
         });
 
-        addPieChartData(logic);
+        setPieChartData(logic);
         progressOverview.setData(pieChartData);
-
-        addProjectData(logic);
+        setProjectData(logic);
     }
 
-    private void addProjectData(Logic logic) {
+    private void setProjectData(Logic logic) {
         statisticsPanel = new StatisticsPanel(logic.getDueProjectList(), logic.getOverdueProjectList());
         statisticsPanelPlaceholder.getChildren().add(statisticsPanel.getRoot());
-        statisticsPanel.updateTabMessages(logic);
+        progressOverview.setData(pieChartData);
     }
 
-    private void addPieChartData(Logic logic) {
+    private void setPieChartData(Logic logic) {
         pieChartData.clear();
-
         if (logic.getFilteredProjectList().size() != 0) {
             logic.getProjectStatistics().forEach((k, v) -> {
                 if (v != 0) {

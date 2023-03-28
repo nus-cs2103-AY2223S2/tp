@@ -122,21 +122,6 @@ public class StatisticsPanel extends UiPart<TabPane> implements TabsPanel {
     }
 
     /**
-     * Sets the projects in the due soon project list panel.
-     */
-    public void setDueSoonProjects(ObservableList<Project> projects) {
-        dueSoonProjectListPanel.setItems(projects);
-    }
-
-    /**
-     * Sets the projects in the overdue project list panel.
-     */
-    public void setOverdueProjects(ObservableList<Project> projects) {
-        overdueProjectListPanel.setItems(projects);
-    }
-
-
-    /**
      * Returns the selected entity identifier.
      * If there is no selected entity, it will return an empty optional.
      * The identifier for projects will be the project name.
@@ -155,14 +140,12 @@ public class StatisticsPanel extends UiPart<TabPane> implements TabsPanel {
     }
 
     /**
-     * Updates the messages in the tabs.
-     * If there are no projects in the due soon or overdue project list,
-     * it will show the corresponding message.
-     * Otherwise, it will hide the message.
+     * Updates the statistics panel when there is a change 
+     * in the due soon and overdue projects.
      *
      * @param logic the logic component.
      */
-    public void updateTabMessages(Logic logic) {
+    public void onChanged(Logic logic) {
         if (logic.getDueProjectList().size() == 0) {
             dueSoonProjectTab.showMessage(NO_DUE_PROJECT_MESSAGE);
         } else {
