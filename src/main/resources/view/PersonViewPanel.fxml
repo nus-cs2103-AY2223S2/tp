@@ -18,6 +18,7 @@
       <Label fx:id="address" styleClass="cell_small_label" />
          <VBox>
             <children>
+               <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" stylesheets="@../../../../../Downloads/tp-checkUp/src/main/resources/view/DarkTheme.css" text="Appointments" textAlignment="CENTER" />
             <ListView id="appointments" fx:id="appointments" />
             </children>
          </VBox>

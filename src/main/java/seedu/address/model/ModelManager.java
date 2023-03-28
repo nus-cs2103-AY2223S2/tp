@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private Person viewPerson;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,6 +39,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        viewPerson = null;
     }
 
     public ModelManager() {
@@ -123,7 +126,11 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+
         addressBook.removePerson(target);
+        if (target.isSamePerson(viewPerson)) {
+            viewPerson = null;
+        }
     }
 
     @Override
@@ -149,6 +156,10 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+        // reused https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/112/files#diff-7bd09b3a54ed83a93060f9d5e74302f5affc224dd83cb8ae73eafa10a999930d
+        if (target.isSamePerson(viewPerson)) {
+            viewPerson = editedPerson;
+        }
     }
 
     @Override
@@ -156,6 +167,9 @@ public class ModelManager implements Model {
         requireAllNonNull(doctor, editedDoctor);
 
         addressBook.setDoctor(doctor, editedDoctor);
+        if (doctor.isSameDoctor(editedDoctor)) {
+            viewPerson = editedDoctor;
+        }
     }
 
     @Override
@@ -163,6 +177,9 @@ public class ModelManager implements Model {
         requireAllNonNull(patient, editedPatient);
 
         addressBook.setPatient(patient, editedPatient);
+        if (patient.isSamePatient(editedPatient)) {
+            viewPerson = editedPatient;
+        }
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -180,6 +197,12 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updatePersonView(Person updatedPerson) {
+        requireNonNull(updatedPerson);
+        viewPerson = updatedPerson;
     }
 
     @Override

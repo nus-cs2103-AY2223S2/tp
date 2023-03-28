@@ -139,4 +139,6 @@ public interface Model {
     boolean hasDrByNric(Nric drNric);
 
     Person getPersonView();
+
+    void updatePersonView(Person updatedPerson);
 }

@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PersonViewPanel personViewPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -116,6 +117,10 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        //handleView();
+        personViewPanel = new PersonViewPanel(logic.getPersonView());
+        personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -124,8 +129,6 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-        handleView();
     }
 
     /**
@@ -144,8 +147,10 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleView() {
         PersonViewPanel personViewPanel = new PersonViewPanel(logic.getPersonView());
-        personViewPanelPlaceholder.getChildren().clear();
-        personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
+        //personViewPanelPlaceholder.getChildren().clear();
+        //personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
+        personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
+
     }
     /**
      * Opens the help window or focuses on it if it's already opened.
