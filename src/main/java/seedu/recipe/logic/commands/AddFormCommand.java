@@ -17,10 +17,8 @@ import seedu.recipe.ui.AddRecipeForm;
 public class AddFormCommand extends Command {
 
     public static final String COMMAND_WORD = "addf";
-    public static final String MESSAGE_SUCCESS = "Opened a new RecipeForm instance.";
+    public static final String MESSAGE_SUCCESS = "Successfully added recipe ";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the recipe book";
-    private RecipeDescriptor toAdd;
-
 
     public AddFormCommand() {
     }
@@ -34,15 +32,13 @@ public class AddFormCommand extends Command {
         String commandString = stringBuilder.toString();
         try {
             RecipeDescriptor toAdd = AddCommandParser.parseToAddCommand(commandString);
-
             Recipe recipeToAdd = toAdd.toRecipe();
             if (model.hasRecipe(recipeToAdd)) {
                 throw new CommandException(MESSAGE_DUPLICATE_RECIPE);
             }
             model.addRecipe(recipeToAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, recipeToAdd));
+            return new CommandResult(MESSAGE_SUCCESS + recipeToAdd.getName() + " .");
         } catch (ParseException e) {
-            System.out.println(e.getMessage());
             return null;
         }
     }

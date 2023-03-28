@@ -62,8 +62,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
         ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PORTION, PREFIX_DURATION,
                                    PREFIX_TAG, PREFIX_INGREDIENT, PREFIX_STEP);
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
-            || !argMultimap.getPreamble().isEmpty()) {
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         RecipeDescriptor recipeDescriptor = new RecipeDescriptor();

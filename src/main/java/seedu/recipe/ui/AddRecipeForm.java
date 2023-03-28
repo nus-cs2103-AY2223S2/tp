@@ -91,72 +91,68 @@ public class AddRecipeForm extends UiPart<Region> {
     /**
      * Saves the changes made to the recipe and closes the form.
      * If any fields have been modified, the new values are stored
-     * in a map of changed values.
+     * in a map of added values.
      */
     private void saveRecipe() {
-        // Check which fields have been changed
+        // Check which fields have been added
         Map<String, String> inputValues = new HashMap<>();
-        for (Map.Entry<String, String> entry : initialValues.entrySet()) {
-            String key = entry.getKey();
-            String initialValue = entry.getValue();
-            String currentValue = null;
 
-            switch (key) {
-            case "name":
-                currentValue = nameField.getText();
-                break;
-            case "duration":
-                currentValue = durationField.getText();
-                break;
-            case "portion":
-                currentValue = portionField.getText();
-                break;
-            case "ingredients":
-                currentValue = ingredientsBox.getChildren().stream()
-                    .map(node -> ((TextField) node).getText())
-                    .collect(Collectors.joining(", "));
-                break;
-            case "steps":
-                currentValue = stepsBox.getChildren().stream()
-                    .map(node -> ((TextField) node).getText())
-                    .collect(Collectors.joining(", "));
-                break;
-            case "tags":
-                currentValue = tagsField.getText();
-                break;
-            default:
-                currentValue = "";
-                break;
-            }
 
-            if (!initialValue.equals(currentValue)) {
-                inputValues.put(key, currentValue);
-            }
+        inputValues.put("name",nameField.getText());
+        
+        if (!durationField.getText().isEmpty()){
+            inputValues.put("duration", durationField.getText());
         }
+        if (!portionField.getText().isEmpty()){
+            inputValues.put("portion", portionField.getText());
+        }
+        String ingredientsValue = ingredientsBox.getChildren().stream()
+            .map(node -> ((TextField) node).getText())
+            .collect(Collectors.joining(", "));
+        if (!ingredientsValue.isEmpty()){
+            inputValues.put("ingredients", ingredientsValue);
+        }
+
+        String stepsValue = stepsBox.getChildren().stream()
+            .map(node -> ((TextField) node).getText())
+            .collect(Collectors.joining(", "));
+        if (!stepsValue.isEmpty()){
+            inputValues.put("steps", stepsValue);
+        }
+
+        if (!tagsField.getText().isEmpty()){
+            inputValues.put("tags", tagsField.getText());
+        }        
         this.commands = handleAddRecipeEvent(inputValues);       
         closeForm();
     }
 
     /**
-     * Handles the add recipe event by updating the recipe with the changed values.
+     * Handles the add recipe event by updating the recipe with the added values.
      *
-     * @param inputValues A map of the changed recipe fields with keys as field names and values as the new data.
+     * @param inputValues A map of the added recipe fields with keys as field names and values as the new data.
      */
     private StringBuilder handleAddRecipeEvent(Map<String, String> inputValues) {
-        commands.append("add ");
-        // Check if the name has been changed and append the name prefix and value.
+        commands.append("add");
+        // Check if the name has been added and append the name prefix and value.
         if (inputValues.containsKey("name")) {
             commands.append(" n/");
             commands.append(inputValues.get("name"));
         }
 
-        // Check if the duration has been changed and append the duration prefix and value.
+        // Check if the duration has been added and append the duration prefix and value.
         if (inputValues.containsKey("duration")) {
             commands.append(" d/");
             commands.append(inputValues.get("duration"));
         }
-        
-        // Check if the ingredients have been changed and append the ingredients prefix and value.
+   
+        // Check if the portion has been added and append the duration prefix and value.
+        if (inputValues.containsKey("portion")) {
+            commands.append(" p/");
+            commands.append(inputValues.get("portion"));
+        }
+
+        // Check if the ingredients have been added and append the ingredients prefix and value.
         if (inputValues.containsKey("ingredients")) {
             String[] ingredients = inputValues.get("ingredients").split(", ");
             for (String ingredient : ingredients) {
@@ -165,7 +161,7 @@ public class AddRecipeForm extends UiPart<Region> {
             }
         }
 
-        // Check if the steps have been changed and append the steps prefix and value.
+        // Check if the steps have been added and append the steps prefix and value.
         if (inputValues.containsKey("steps")) {
             String[] steps = inputValues.get("steps").split(", ");
             for (String step : steps) {
@@ -174,7 +170,7 @@ public class AddRecipeForm extends UiPart<Region> {
             }
         }
 
-        // Check if the tags have been changed and append the tags prefix and value.
+        // Check if the tags have been added and append the tags prefix and value.
         if (inputValues.containsKey("tags")) {
             String[] tags = inputValues.get("tags").split(", ");
             for (String tag : tags) {
@@ -261,17 +257,8 @@ public class AddRecipeForm extends UiPart<Region> {
                     parentBox.getChildren().add(newField); 
                 }
             } else {
-                // Check if any other TextField has gained focus or the focus owner is not a TextField
-                Node focusOwner = textField.getScene().getFocusOwner();
-                System.out.println("focus owner:" + parentBox);
-                boolean focusChangedToDifferentVBox = focusOwner instanceof TextField && !focusOwner.getParent().equals(parentBox);
-                boolean focusChangedToNonTextField = !(focusOwner instanceof TextField);
-                System.out.println("parent box:" + parentBox);
-                System.out.println("parent box parent:" + parentBox.getParent());
                 // Check if it's the last TextField, it's empty, and the focus is not in the same VBox, then remove it
                 if (getNextTextField(textField).getText().isEmpty() && textField.getText().isEmpty()) {
-                        System.out.println("removing" + textField);
-                        System.out.println("removing" + getNextTextField(textField));
                     parentBox.getChildren().remove(getNextTextField(textField));
                 }
             }

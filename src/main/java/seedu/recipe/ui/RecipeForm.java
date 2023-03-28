@@ -154,7 +154,7 @@ public class RecipeForm extends UiPart<Region> {
             handleEditRecipeEvent(displayedIndex, changedValues);
             closeForm();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw e;
         }
     }
 
@@ -217,7 +217,6 @@ public class RecipeForm extends UiPart<Region> {
             .collect(Collectors.joining(", ")));
 
         initialValues.put("tags", tagsField.getText());
-        System.out.println("Initial size" + initialValues.size());
     }
 
     /**
@@ -292,6 +291,12 @@ public class RecipeForm extends UiPart<Region> {
             commands.append(changedValues.get("duration"));
         }
         
+        // Check if the portion has been changed and append the portion prefix and value.
+        if (changedValues.containsKey("portion")) {
+            commands.append(" p/");
+            commands.append(changedValues.get("portion"));
+        }
+
         // Check if the ingredients have been changed and append the ingredients prefix and value.
         if (changedValues.containsKey("ingredients")) {
             String[] ingredients = changedValues.get("ingredients").split(", ");
@@ -330,9 +335,7 @@ public class RecipeForm extends UiPart<Region> {
         try {
         StringBuilder commands = new StringBuilder();
         commands = collectFields(commands, changedValues);
-        System.out.println(changedValues);
         String commandText = "add " + commands.toString(); 
-        System.out.println(commandText);
         executeCommand(commandText);
 
         } catch (CommandException | ParseException e) {
@@ -353,9 +356,7 @@ public class RecipeForm extends UiPart<Region> {
             // Add the index of the item to edit.
             commands.append(index);
             commands = collectFields(commands, changedValues);
-            System.out.println(changedValues);
             String commandText = "edit " + commands.toString(); 
-            System.out.println(commandText);
             executeCommand(commandText);
         } catch (CommandException | ParseException e) {
             logger.info("Failed to edit recipe: " + index);
@@ -431,7 +432,6 @@ public class RecipeForm extends UiPart<Region> {
                         childList.remove(textField);
                     } else {
                         int index = childList.indexOf(textField);
-                        System.out.println(index);
                         if (index > 0) {
                             childList.get(index - 1).requestFocus();
                         }
@@ -447,7 +447,6 @@ public class RecipeForm extends UiPart<Region> {
             if (parentBox == null) {
                 return;
             }
-            parentBox.getChildren().forEach(box -> System.out.println(box.getAccessibleText()));
             int lastIndex = parentBox.getChildren().size() - 1;
 
             // Check if the TextField has gained focus
@@ -458,23 +457,10 @@ public class RecipeForm extends UiPart<Region> {
                     parentBox.getChildren().add(newField);
                 }
             } else {
-                // Check if any other TextField has gained focus or the focus owner is not a TextField
-                Node focusOwner = textField.getScene().getFocusOwner();
-                System.out.println("focus owner:" + parentBox);
-
-                //Flags
-                boolean focusChangedToDifferentVBox = focusOwner instanceof TextField
-                        && !focusOwner.getParent().equals(parentBox);
-                boolean focusChangedToNonTextField = !(focusOwner instanceof TextField);
-                System.out.println("parent box:" + parentBox);
-                System.out.println("parent box parent:" + parentBox.getParent());
-
                 // Check if it's the last TextField, it's empty, and the focus is not in the same VBox, then remove it
                 if (getNextTextField(textField) != null
                         && getNextTextField(textField).getText().isEmpty()
                         && textField.getText().isEmpty()) {
-                    System.out.println("removing" + textField);
-                    System.out.println("removing" + getNextTextField(textField));
                     parentBox.getChildren().remove(getNextTextField(textField));
                 }
             }
