@@ -7,7 +7,6 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "drugAllergy" : "NKDA",
     "gender" : "female",
-    "doctor" : "Ben",
     "tagged": [ "friends" ]
   }, {
     "nric": "S1234567A",
@@ -16,7 +15,6 @@
     "email": "pauline@example.com",
     "drugAllergy" : "NKDA",
     "gender" : "female",
-    "doctor" : "Ben",
     "address": "4th street"
   } ]
 }

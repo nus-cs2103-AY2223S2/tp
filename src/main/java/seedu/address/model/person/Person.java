@@ -22,8 +22,8 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final Gender gender;
+
     private final DrugAllergy drugAllergy;
-    private final Doctor doctor;
 
     // Data fields
     private final Address address;
@@ -35,7 +35,7 @@ public class Person {
      */
 
     public Person(Nric nric, Name name, Phone phone, Email email, Address address,
-                  DrugAllergy drugAllergy, Gender gender, Doctor doctor, Set<Tag> tags, Set<Medicine> medicines) {
+                  DrugAllergy drugAllergy, Gender gender, Set<Tag> tags, Set<Medicine> medicines) {
         requireAllNonNull(name, phone, email, address, tags);
         this.nric = nric;
         this.name = name;
@@ -44,7 +44,6 @@ public class Person {
         this.gender = gender;
         this.address = address;
         this.drugAllergy = drugAllergy;
-        this.doctor = doctor;
         this.tags.addAll(tags);
         this.medicines.addAll(medicines);
     }
@@ -71,10 +70,6 @@ public class Person {
 
     public Address getAddress() {
         return address;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
     }
 
     public DrugAllergy getDrugAllergy() {
@@ -131,7 +126,6 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getDrugAllergy().equals(getDrugAllergy())
-                && otherPerson.getDoctor().equals(getDoctor())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getMedicines().equals(getMedicines());
     }
@@ -139,7 +133,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(nric, name, phone, email, address, drugAllergy, doctor, tags, medicines);
+        return Objects.hash(nric, name, phone, email, address, drugAllergy, tags);
     }
 
     @Override
@@ -156,8 +150,6 @@ public class Person {
                 .append(getAddress())
                 .append("; Gender: ")
                 .append(getGender())
-                .append("; Attending Doctor: ")
-                .append(getDoctor())
                 .append("; Drug Allergy: ")
                 .append(getDrugAllergy());
 

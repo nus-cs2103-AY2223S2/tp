@@ -29,7 +29,6 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final MainWindow mainWindow;
-    private final String attendingDoctor = "Attending Doctor: ";
 
     public final Person person;
 
@@ -48,8 +47,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label gender;
     @FXML
-    private Label doctor;
-    @FXML
     private FlowPane tags;
 
     /**
@@ -66,8 +63,6 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         gender.setText(person.getGender().gender);
-        doctor.setText(attendingDoctor + person.getDoctor().doctor);
-
         person.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
