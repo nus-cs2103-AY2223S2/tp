@@ -85,4 +85,16 @@ public interface Model {
      */
     void updateFilteredRecipeList(Predicate<Recipe> predicate);
 
+    /**
+     * Stars the given recipe.
+     * The recipe must exist in the recipe book.
+     */
+    void starRecipe(Recipe target);
+
+    /**
+     * Unstars the given recipe.
+     * The recipe must exist in the recipe book.
+     */
+    void unstarRecipe(Recipe target);
+
 }

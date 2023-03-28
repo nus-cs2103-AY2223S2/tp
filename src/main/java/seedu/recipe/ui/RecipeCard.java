@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.recipe.model.recipe.Recipe;
 
 /**
- * An UI component that displays information of a {@code Recipe}.
+ * A UI component that displays information of a {@code Recipe}.
  */
 public class RecipeCard extends UiPart<Region> {
 
@@ -44,7 +44,11 @@ public class RecipeCard extends UiPart<Region> {
         super(FXML);
         this.recipe = recipe;
         id.setText(displayedIndex + ". ");
-        title.setText(recipe.getTitle().title);
+        if (recipe.isStarred()) {
+            title.setText(recipe.getTitle().title + "★");
+        } else {
+            title.setText(recipe.getTitle().title);
+        }
         desc.setText(recipe.getDesc().description);
         recipe.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

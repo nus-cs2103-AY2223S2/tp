@@ -113,6 +113,22 @@ public class ModelManager implements Model {
         recipeBook.setRecipe(target, editedRecipe);
     }
 
+    @Override
+    public void starRecipe(Recipe target) {
+        requireNonNull(target);
+
+        recipeBook.starRecipe(target);
+        updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
+    }
+
+    @Override
+    public void unstarRecipe(Recipe target) {
+        requireNonNull(target);
+
+        recipeBook.unstarRecipe(target);
+        updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
+    }
+
 
 
     //=========== Filtered Recipe List Accessors =============================================================
