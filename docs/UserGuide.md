@@ -478,6 +478,17 @@ Place all your student images in this format: `images/student/<STUDENT_NAME><STU
 
 Place all your parent images in this format: `images/parent/<PARENT_NAME>.png` <br><br>
 
+Location of where images folder should be at. (Same directory of PowerConnect.jar)
+![image message](images/images1.png)
+
+Inside the images folder, create a folder called `student` and `parent` if it does not exist. 
+![image2 message](images/images2.png)
+
+Sample of student image naming format. `images/student/<STUDENT_NAME><STUDENT_CLASS>.png`
+![imagestudent message](images/imagestudent.png)
+
+Sample of parent image naming format. `images/parent/<PARENT_NAME>.png`
+![imagesparent message](images/imagesparent.png)
 --------------------------------------------------------------------------------------------------------------------
 <a name = "faq" /></a>
 
