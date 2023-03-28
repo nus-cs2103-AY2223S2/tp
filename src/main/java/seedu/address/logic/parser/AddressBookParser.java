@@ -39,7 +39,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class AddressBookParser {
 
-    public static final List<LocalDateTime[]> MASTER_TIME = new ArrayList<>();
     /**
      * Used for initial separation of command word and args.
      */
