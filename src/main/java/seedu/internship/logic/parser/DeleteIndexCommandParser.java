@@ -1,63 +1,33 @@
 package seedu.internship.logic.parser;
 
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.internship.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
-import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
-import static seedu.internship.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.internship.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.internship.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.internship.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.internship.commons.core.index.Index;
-import seedu.internship.logic.commands.DeleteCommand;
+import seedu.internship.logic.commands.DeleteIndexCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
-import seedu.internship.model.internship.InternshipContainsKeywordsPredicate;
 
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
  */
-public class DeleteCommandParser implements Parser<DeleteCommand> {
+public class DeleteIndexCommandParser implements Parser<DeleteIndexCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns a DeleteCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DeleteCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY_NAME, PREFIX_ROLE, PREFIX_STATUS, PREFIX_DATE,
-                        PREFIX_TAG);
-
-        if (argMultimap.getValue(PREFIX_COMPANY_NAME).isEmpty()
-                && argMultimap.getValue(PREFIX_ROLE).isEmpty()
-                && argMultimap.getValue(PREFIX_STATUS).isEmpty()
-                && argMultimap.getValue(PREFIX_DATE).isEmpty()
-                && argMultimap.getValue(PREFIX_TAG).isEmpty()
-                && argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS, DeleteCommand.MESSAGE_USAGE));
-        }
-
-        List<String> nameList = this.parseCompanyNames(argMultimap.getAllValues(PREFIX_COMPANY_NAME));
-        List<String> roleList = this.parseRoles(argMultimap.getAllValues(PREFIX_ROLE));
-        List<String> statusList = this.parseStatuses(argMultimap.getAllValues(PREFIX_STATUS));
-        List<String> dateList = this.parseDates(argMultimap.getAllValues(PREFIX_DATE));
-        List<String> tagList = this.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        InternshipContainsKeywordsPredicate newPredicate = new InternshipContainsKeywordsPredicate(nameList,
-                roleList, statusList, dateList, tagList);
-
-
+    public DeleteIndexCommand parse(String args) throws ParseException {
         try {
-            List<Index> indexes = ParserUtil.parseIndexes(argMultimap.getPreamble());
+            List<Index> indexes = ParserUtil.parseIndexes(args);
             assert indexes != null;
-            return new DeleteCommand(indexes, newPredicate);
+            return new DeleteIndexCommand(indexes);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteIndexCommand.MESSAGE_USAGE), pe);
         }
     }
 
