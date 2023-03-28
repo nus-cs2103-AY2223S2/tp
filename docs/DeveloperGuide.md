@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Undo/redo feature implementation concept from original [_AddressBook 3 Developer Guide_](https://nus-cs2103-ay2223s2.github.io/tp/DeveloperGuide.html).
+* Calendar feature implementation adapted from this [_JavaFX guide_](http://www.java2s.com/ref/java/javafx-gridpane-layout-calendar.html).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +24,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/AddressBook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W13-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +37,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/AddressBook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/AddressBook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W13-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W13-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -59,7 +60,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -69,24 +70,24 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/AddressBook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W13-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `studentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `personListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/AddressBook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/AddressBook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W13-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W13-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes Coach commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `student` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `athlete` object residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/AddressBook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W13-2/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -95,17 +96,17 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the Coach command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add an athlete).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the 'destroy' marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a Coach command:
+Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a coach command:
 
 <img src="images/ParserClasses.png" width="600"/>
 
@@ -114,19 +115,19 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/AddressBook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W13-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `student` objects (which are contained in a `UniquestudentList` object).
-* stores the currently 'selected' `student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the AddressBook data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the Coach’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `student` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `student` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/ModelClassDiagram3.png" width="450" />
 
@@ -135,12 +136,12 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/AddressBook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W13-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and Coach preference data in json format, and read them back into corresponding objects.
+* can save both AddressBook data and Coach preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -156,66 +157,66 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Sort feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed sort mechanism is facilitated by `UniquePersonList`.
 
-Step 1. The Coach launches the application for the first time. The list of students will be initialised.
+Step 1. The Coach launches the application for the first time. The AddressBook is initialised.
 
-Step 2. The Coach keys in details of some students with the `add` method.
+Step 2. The Coach keys in some athletes and their details with the `add` method.
 
-Step 3. After adding his students, the Coach wants to view the upcoming coaching sessions in chronological order, so he wants to sort them by training session date in ascending order.
+Step 3. After adding his athletes, the Coach wants to view his athletes in alphabetical order, so he wants to sort them by name in ascending order.
 
-Step 4. The Coach then decides to execute the command `sort 2 0`.
+Step 4. The Coach then decides to execute the command `sort 1 1`.
 
 #### Design considerations:
 
-Restricting attribute and order to an integer value allows us to more easily anticipate and control input.
+Restricting attribute and order to an integer value allows for the input to be easily anticipated and controlled.
 
-* **Alternative 1 (current choice):** Allows users to specify what and how to sort their list.
-    * Pros: More flexible and customisable to user needs.
-    * Cons: More troublesome as user needs to check user guide to learn what integers to use.
+* **Alternative 1 (current choice):** Allow coaches to specify what and how to sort their list.
+    * Pros: More flexible and customisable to the needs of the coach.
+    * Cons: More troublesome as coach needs to check the User Guide to learn what integers to use.
 
-* **Alternative 2:** User types `sort` and it sorts based on a pre-determined attribute and order.
-    * Pros: Easy for user to use.
-    * Cons: Not flexible and customisable.
+* **Alternative 2:** Coach types `sort` and it sorts based on a pre-determined attribute and order.
+    * Pros: Easy for coach to use.
+    * Cons: Not flexible nor customisable.
 
 ### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedAddressBook#commit()` — Saves the current AddressBook state in its history.
+* `VersionedAddressBook#undo()` — Restores the previous AddressBook state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone AddressBook state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The Coach launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The Coach launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial AddressBook state, and the `currentStatePointer` pointing to that single AddressBook state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The Coach executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `AddressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The Coach executes `delete 5` command to delete the 5th athlete in the AddressBook. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the AddressBook after the `delete 5` command executes to be saved in the `AddressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted AddressBook state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The Coach executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `AddressBookStateList`.
+Step 3. The Coach executes `add n/David …​` to add a new athlete. The `add` command also calls `Model#commitAddressBook()`, causing another modified AddressBook state to be saved into the `AddressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `AddressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the AddressBook state will not be saved into the `AddressBookStateList`.
 
 </div>
 
-Step 4. The Coach now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The Coach now decides that adding the athlete was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous AddressBook state, and restores the AddressBook to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `VersionedAddressBook#canUndo()` to check if this is the case. If so, it will return an error to the Coach rather
-than attempting to perform the undo.
+than attempting to perform the undo operation.
 
 </div>
 
@@ -223,21 +224,21 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the 'destroy' marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the AddressBook to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `AddressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `VersionedAddressBook#canRedo()` to check if this is the case. If so, it will return an error to the Coach rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `AddressBookStateList.size() - 1`, pointing to the latest AddressBook state, then there are no undone AddressBook states to restore. The `redo` command uses `VersionedAddressBook#canRedo()` to check if this is the case. If so, it will return an error to the Coach rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The Coach then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `AddressBookStateList` remains unchanged.
+Step 5. The Coach then decides to execute the command `list`. Commands that do not modify the AddressBook, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `AddressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The Coach executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `AddressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The Coach executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `AddressBookStateList`, all AddressBook states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -249,97 +250,88 @@ The following activity diagram summarizes what happens when a Coach executes a n
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire AddressBook.
   * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+  * Cons: May eventually have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the `Person` being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### \[Proposed\] Data archiving
+### Grouping feature
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Introduction:
+The grouping feature enables the addition and deletion of groups in the AddressBook. It provides two commands — `group` and `groupmod` that can be used to add, delete or modify the contents of groups in the `AddressBook`.
 
-## Grouping feature
-
-### Introduction:
-The grouping feature enables the addition and deletion of groups in the addressbook. It provides two commands - “group” and “groupmod” that can be used to add, delete or modify groups in the addressbook.
-
-###Architecture:
-The grouping feature is supported by two classes: the `Group` class and the `UniqueGroupList` class. The `Group` class consists of two attributes a `UniquePersonList` (similar to that present in the `Addressbook`) and a `Tag`,
+#### Architecture:
+The grouping feature is supported by two classes — the `Group` class and the `UniqueGroupList` class. The `Group` class consists of two attributes a `UniquePersonList` (similar to that present in the `Addressbook`) and a `Tag`,
 While  the `UniqueGroupList` is essentially a list of unique groups. The class diagram below  illustrates the relationship between the two classes.
 
 ![GroupListClassDiagram](images/GroupListclassdiagram.png)
 
-###Commands:
 To allow coaches to take full advantage of the grouping functionality, two commands are required.
-####`GroupCommand`
-1. “group” command: This command is used to add or delete groups from the addressbook. The syntax of the “group” command is as follows:
-   group [m/add/remove] g/[group_name]
-   where:
-2. m/: flag to indicate the type of modification
-   1. add: command to add a new group
-   2. remove: command to delete an existing group
-3. g/: flag to indicate the group name
+#### GroupCommand
+This command is used to add or delete groups from the AddressBook.<br>`group m/MODIFICATION g/GROUPNAME` where:<br>
+1. `m/`: flag to indicate the type of modification.
+    1. `add`: adds an athlete to an existing group.
+    2. `remove`: deletes an athlete from an existing group.
+2. `g/`: flag to indicate the group name.<br>
 
-####Flow of events for the `GroupCommand`
-To add a new `Group` with the `Tag` “Hall”, the user can execute the following command:
+##### Adding a group
+To add a new `Group` with the `Tag` “Hall”, the coach can execute the following command:
 
-######group m/add g/Hall
+`group m/add g/Hall`
 
-When the user gives the above input, a `Tag` object of name Hall is created,
-this tag is tied to a `Group` class which will be added to `UniqueGroupList` in the exisiting `Addressbook`.
+When the coach gives the above input, a `Tag` object of name Hall is created,
+this tag is tied to a `Group` class which will be added to `UniqueGroupList` in the existing `AddressBook`.
 The object diagram shown depicts such an instance.
 
 ![GroupObject](images/GroupObject.png)
 
-#####Deletion of a group
-To delete an existing group with the name “Hall”, the user can execute the following command:
-1. group del g/Hall
+##### Deleting a group
+To delete an existing group with the name “Hall”, the coach can execute the following command:
+`group m/delete g/Hall`
 
-This will trigger method deleteGroup() in modelmanager that will call the method deleteGroup() in addressbook.
-During this method, the group cannot merely be deleted. It must first iterate through every person on the list and remove the "Hall"
-Tag for every person. Only after removing all "Hall" tags in the addressbook can we delete the specified group.
-####`GroupModifyCommand`
+This will trigger method `deleteGroup()` in `ModelManager` that will call the method `deleteGroup()` in the `AddressBook`.
+During this method, the group cannot merely be deleted. It must first iterate through every athlete on the list and remove the "Hall"
+`Tag` for every athlete. Only after removing all "Hall" tags in the AddressBook can we delete the specified group.
+
+#### GroupModifyCommand
 After enabling the creation and deletion of groups, the next step is to allow the addition and removal of
-students to or from Groups. The groupmod command allows for such a function. Below are the specifications.
+athletes to / from groups. The `groupmod` command allows for such a function.
 
-#####“groupmod” command: This command is used to modify existing groups in the addressbook. The syntax of the “groupmod” command is as follows:
+`groupmod INDEX m/MODIFICATION g/GROUPNAME`
 
-`groupmod [add/del] s/[student_name] g/[group_name]`
-   where:
-1. `index`: indicates the index of the student to be added of deleted from the group
-2. `m/`: flag to indicate the type of modification
-   1. add: command to add a student to an existing group
-   2. remove: command to remove a student from an existing group
-3. `g/`: flag to indicate the group name
+1. `index`: index of the athlete.
+2. `m/`: flag to indicate the type of modification.
+   1. `add`: adds an athlete to an existing group.
+   2. `remove`: deletes an athlete from an existing group.
+3. `g/`: flag to indicate the group name.
 
-####Example:
-1. To add a student named “John” to an existing group named “Hall”, the user can execute the following command:
-2. groupmod add 1 g/Hall if we assume John is at index 1.
+##### Adding an athlete to a group:
+1. To add an athlete named “John” (at index 1) to an existing group named “Hall”, the coach can execute:
+`groupmod 1 m/add g/Hall`.
 
 In such a scenario, two key things occur.
-1. The student John will be added to the `Group` with a `Tag` "Hall".
+1. The athlete "John" will be added to the `Group` with a `Tag` "Hall".
 2. The `Tag` "Hall" will be added to the list of tags in John's attribute.
 
-#####Removal of students from a group
-To remove a student named “John” from an existing group named “Hall”, the user can execute the following command:
-######groupmod 1 m/remove g/Hall
+##### Removing an athlete from a group
+To remove an athlete named “John” from an existing group named “Hall”, the coach can execute the following command:
+`groupmod 1 m/delete g/Hall`
 
-####Sequence Of Events:
-1. When the command is called, the parser finds the person at index 1 and creates a` Group` of name "Hall"
-2. These two objects will create the `GroupModifyCommand`
-3. Once the execute() method is called on the `Command` object
-4. removePersonFromGroup(John) method is called in the `Model`
-5. This calls the similarly named method in the `Addressbook` which will check whether the Hall group exists
-6. If it does, John will be removed from the Hall group.
-7. John's Hall group tag will also be removed.
+#### Sequence Of Events:
+1. When the command is called, the parser finds the athlete at index 1 and creates a` Group` of name "Hall"
+2. A `GroupModifyCommand` is created.
+3. Once the `execute()` method is called on the `GroupModifyCommand` object, `removePersonFromGroup(John)` is called in the `Model`.
+4. This calls the similarly named method in the `AddressBook` which will check whether the "Hall" group exists.
+5. If it does, "John" will be removed from the "Hall" group.
+6. John's "Hall" group tag will also be removed.
 
-###Conclusion:
-   The grouping feature provides a way to add, delete and modify groups in the addressbook. It is built on top of the UniqueGroupList data structure and provides two commands - “group” and “groupmod” - to perform the desired operations.
-Although the overall design of the GroupList may seem like an inefficient use of space, since we store duplicate copies of a person, a person belongs to every exisiting group. It makes implementatoin a lot easier, an allows more operations to be implemented in the future.
+#### Conclusion:
+The grouping feature provides a way to add, delete and modify the contents of groups in the AddressBook. It is built on top of the `UniqueGroupList` data structure and provides two commands - `group` and `groupmod` - to perform the desired operations.
+Although the overall design of the `GroupList` may seem like an inefficient use of space, since we store duplicate copies of an athlete, an athlete belongs to every existing `Group`. It makes implementation simpler, allowing more operations to be implemented in the future.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -360,42 +352,38 @@ Although the overall design of the GroupList may seem like an inefficient use of
 
 **Target Coach profile**: Sports Coaches
 
-* has a need to manage a significant number of contacts of their students
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-* requires to organise their coaching schedule on a frequent basis
+* has a need to manage a significant number of athletes.
+* prefer desktop apps over other types.
+* can type fast.
+* prefers typing rather than mouse interaction.
+* is reasonably comfortable using CLI (Command Line Interface) apps.
+* requires to organise their coaching schedule on a frequent basis.
 
 **Value proposition**:
-* manage contacts faster than a typical mouse/GUI driven app
-* contacts are specially catered towards sport athletes
-* makes scheduling of session more convenient than on calendars
+* manage contacts faster than a typical mouse/GUI-driven app.
+* features are geared towards managing athletes.
+* makes scheduling of training sessions more convenient than a regular calendar app.
 
 
 ### Coach stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities:<br>**High (must have)** - `* * *`<br>Medium (nice to have) - `* *`<br>Low (unlikely to have) - `*`
 
-| Priority | As a …​                           | I want to …​                                   | So that I can…​                                                        |
-|----------|-----------------------------------|------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new coach                         | see usage instructions                         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | coach                             | add a new student                              | record his/her profile                                                 |
-| `* * *`  | coach                             | delete a student                               | remove students that I no longer teach                                 |
-| `* * *`  | coach                             | edit a student                                 | update a student's details                                             |
-| `* *`    | coach                             | find a student by name                         | locate details of student without having to go through the entire list |
-| `* *`    | coach                             | hide private contact details                   | minimize chance of someone else seeing them by accident                |
-| `* *`    | coach                             | organise  students  by groups                  | facilitate better contact management                                   |
-| `*`      | coach with many students          | sort students by name                          | locate a student easily                                                |
-| `*`      | coach with many training sessions | I would like to view my schedule as a calendar | to better plan my week.                                                |
-
-*{More to be added}*
+| Priority | As a …​                           | I want to …​                              | So that I can…​                                                           |
+|----------|-----------------------------------|-------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | new coach                         | see usage instructions                    | refer to instructions when I forget how to use the app                    |
+| `* * *`  | coach                             | add a new athlete                         | record their profile                                                      |
+| `* * *`  | coach                             | delete an athlete                         | remove athletes that I no longer train                                    |
+| `* * *`  | coach                             | edit an athlete's details                 | refer to accurate information regarding that athlete                      |
+| `* *`    | coach                             | find an athlete by name                   | locate details of an athlete without having to go through the entire list |
+| `* *`    | coach                             | hide an athlete's private contact details | minimize chance of someone else seeing them by accident                   |
+| `* *`    | coach                             | organise athletes by groups               | facilitate better contact management                                      |
+| `*`      | coach with many athletes          | sort athletes by name                     | locate an athlete easily                                                  |
+| `*`      | coach with many training sessions | view my upcoming schedule as a calendar   | better plan my week.                                                      |
 
 ### Use cases
 
-(For all use cases below, the **System** is `SportSync` and the **Actor** is the `coach`, unless specified otherwise)
-
-### Use case: Ask for help
+#### Use case: Ask for help
 
 **MSS**
 
@@ -404,29 +392,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-### Use case: Add a student
+#### Use case: Add an athlete
 
 **MSS**
 
-1. Coach requests to add a new student in the list.
-2. SportSync add the student.
+1. Coach requests to add a new athlete in the list.
+2. SportSync adds the athlete.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Not enough details of the student were given.
+* 1a. Not enough details of the athlete were given.
 
     * 1a1. SportSync shows an error message.
 
       Use case resumes at step 1.
 
-### Use case: Delete a student
+#### Use case: Delete an athlete
 
 **MSS**
 
-1. Coach requests to delete a specific student in the list.
-2. SportSync deletes the student.
+1. Coach requests to delete a specific athlete in the list.
+2. SportSync deletes the athlete.
 
     Use case ends.
 
@@ -440,14 +428,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  Use case ends.
+    * 2a1. SportSync shows an error message.
 
-### Use case: Edit a student
+      Use case resumes at step 1.
+
+   Use case ends.
+
+#### Use case: Edit an athlete
 
 **MSS**
 
-1. Coach requests to edit a specific student's attribute in the list.
-2. SportSync edits the student's specified attribute.
+1. Coach requests to edit a specific athlete's attribute in the list.
+2. SportSync edits the specified athlete's attribute.
 
     Use case ends.
 
@@ -459,42 +451,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-### Use case: Find a student
+#### Use case: Find an athlete
 
 **MSS**
 
-1. Coach requests to find a specific student by name, in the list.
+1. Coach requests to find a specific athlete by part of their name, in the list.
 2. SportSync displays the search results.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given index is invalid.
+* 1a. The given name / part of the name does not exist within the list.
 
-    * 1a1. SportSync shows an error message.
+    * 1a1. SportSync shows an empty list.
 
       Use case resumes at step 1.
 
-## Use case: Clear the list
+#### Use case: Clear the list
 
 **MSS**
 
-1.  Coach requests to clear all students from the list.
-2.  SportSync clears all students from the list.
+1.  Coach requests to clear all athletes from the list.
+2.  SportSync clears all athletes from the list.
 
     Use case ends.
 
-### Use case: Sort the list
+#### Use case: Sort the list by name in alphabetical order
 
 **MSS**
 
-1.  Coach requests to sort all students in the list by attribute.
-2.  SportSync sorts all students in the list by attribute.
+1. Coach requests to sort all athletes in the list by name in alphabetical order.
+2. SportSync sorts all athletes in the list by name in alphabetical order.
 
     Use case ends.
 
-### Use case: Create new group
+#### Use case: Sort the list by pay rate in increasing / decreasing order
+
+**MSS**
+
+1.  Coach requests to sort all athletes in the list by pay rate in increasing / decreasing order.
+2.  SportSync sorts all athletes in the list by pay rate in increasing / decreasing order.
+
+    Use case ends.
+
+#### Use case: Create new group
 
 **MSS**
 
@@ -511,42 +512,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-### Use case: Add student to group
+#### Use case: Add athlete to group
 
 **MSS**
 
-1. Coach requests to add a student to the group with specified group name.
-2. SportSync adds the student to the group with the specified group name.
+1. Coach requests to add an athlete to a specified group.
+2. SportSync adds the athlete to the specified group.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The student already belongs to the group, the student does not exist, or the group does not exist.
+* 1a. The athlete already belongs to the group, the athlete does not exist, or the group does not exist.
 
     * 1a1. SportSync shows an error message.
 
       Use case resumes at step 1.
 
-### Use case: Display all groups
+#### Use case: Delete athlete from group
 
 **MSS**
 
-1. Coach requests to display all groups by name.
+1. Coach requests to delete an athlete from a specified group.
+2. SportSync deletes the athlete from the specified group.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The athlete does not exist, or the group does not exist.
+
+    * 1a1. SportSync shows an error message.
+
+      Use case resumes at step 1.
+
+#### Use case: Display all groups
+
+**MSS**
+
+1. Coach requests to display all group names.
 2. SportSync displays all group names.
 
    Use case ends.
 
-### Use case: Display all students belonging to group(s)
+#### Use case: Display all athletes belonging to group(s)
 
 **MSS**
 
-1. Coach requests to display all students belonging to specified group(s) by name.
-2. SportSync displays all students belonging to one or more of the specified group(s).
+1. Coach requests to display all athletes belonging to specified group(s) by name.
+2. SportSync displays all athletes by name, belonging to one or more of the specified group(s).
 
    Use case ends.
 
-### Use case: Undo a command
+#### Use case: Undo a command
 
 **MSS**
 
@@ -555,7 +573,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-### Use case: Redo a command
+#### Use case: Redo a command
 
 **MSS**
 
@@ -564,76 +582,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-### Use case: View calendar events
+#### Use case: View calendar events
 
 **MSS**
 
-1. User requests to view the calendar events.
+1. Coach requests to view the calendar events.
 2. SportSync displays the calendar events on the interface.
-3. User interacts with the calendar events as required. 
+3. Coach interacts with the calendar events as required. 
 
     Use case ends.
-
-### Features
-
-**Group**
-
-Format: `group t/GROUPNAME`
-
-* Creates a group of name `GROUPNAME`
-* Name field **must be provided.**
-
-**Group Add**
-
-Format: `groupadd INDEX t/GROUPNAME`
-
-* Adds a person at the specified `INDEX` to the group with specified `GROUPNAME`.
-* Both index and group **must already exist and be provided.**
-* A person cannot be added to a group they are already in.
-
-**Show**
-
-Format: `show [TAG1]…​`
-
-* Filters list of contacts to only contain persons belonging to the specific tag(s).
-* At least one tag **must be provided.**
-
-**Display**
-
-Format: `display`
-
-* Lists all groups created by the user.
-* Displays all existing user-created groups in the command message.
-
-**Undo**
-
-Format: `undo`
-
-* Returns the state of the address book to the state before the last entered user command.
-* Cannot be used if no user commands have been entered yet.
-
-**Redo**
-
-Format: `redo`
-
-* Returns the state of the address book to the state before undoing the last entered command.
-* If the address book is changed after an undo command, a redo command cannot be done.
-* Cannot be used if no user commands have been entered yet.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 athletes without a noticeable sluggishness in performance for typical usage.
 3.  A Coach with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **Private contact detail**: A contact detail that is not meant to be shared with others.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -663,17 +631,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a student
+### Deleting an athlete
 
-1. Deleting a student while all students are being shown
+1. Deleting an athlete while all athletes are being shown
 
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   1. Prerequisites: List all athletes using the `list` command. Multiple athletes in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No athlete is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

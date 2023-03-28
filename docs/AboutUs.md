@@ -16,17 +16,17 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/tempura-person)]
 [[portfolio](team/tempura-person.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Developing
 
 ### Oliver Loo
 
 <img src="images/oliverloo0909.png" width="200px">
 
-[[github](http://github.com/oliverloo0909)] [[portfolio](team/Oliverloo0909.md)]
+[[github](http://github.com/oliverloo0909)] [[portfolio](team/oliverloo0909.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Developing
 
 ### Jeng Yee
 
@@ -36,7 +36,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/jengoc415.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Developing
 
 ### Tricia Goh
 
@@ -46,4 +46,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/tricixg.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Developing
