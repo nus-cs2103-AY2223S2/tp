@@ -124,8 +124,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private void registerCalendarNavigationForCalendarTab() {
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (calendarTab.isSelected() && !commandTextField.isFocused()) {
-                //calendarDisplay.handleKeyPressed(event);
+            if (calendarTab.isSelected()) {
+                calendarDisplay.handleKeyPressed(event);
             }
         });
     }
