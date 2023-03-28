@@ -3,6 +3,7 @@ package seedu.address.logic.commands.reviewcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -25,7 +26,7 @@ public class ReviewCommand extends Command {
             + "Parameter: INDEX (must be a positive integer).\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Deck to be reviewed: %1$s\nEnter [ to flip card and show answer!";
+    public static final String MESSAGE_SUCCESS = "Deck to be reviewed: %1$s\nReviewing cards of %2$s";
     public static final String MESSAGE_INVALID_DECK_DISPLAYED_INDEX = "Deck index provided is invalid";
     public static final String MESSAGE_EMPTY_DECK = "The deck you chose to review is empty";
     private final Index deckIndex;
@@ -54,8 +55,27 @@ public class ReviewCommand extends Command {
 
         model.reviewDeck(deckIndex, difficulties);
 
+        String diffString = "";
+        if (difficulties.containsAll(Arrays.asList(TagName.EASY, TagName.MEDIUM, TagName.HARD))) {
+            diffString = "EASY/MEDIUM/HARD difficulties";
+        } else if (difficulties.containsAll(Arrays.asList(TagName.EASY, TagName.MEDIUM))) {
+            diffString = "EASY/MEDIUM difficulties";
+        } else if (difficulties.containsAll(Arrays.asList(TagName.EASY, TagName.HARD))) {
+            diffString = "EASY/HARD difficulties";
+        } else if (difficulties.containsAll(Arrays.asList(TagName.MEDIUM, TagName.HARD))) {
+            diffString = "MEDIUM/HARD difficulties";
+        } else if (difficulties.contains(TagName.EASY)) {
+            diffString = "EASY difficulty";
+        } else if (difficulties.contains(TagName.MEDIUM)) {
+            diffString = "MEDIUM difficulty";
+        } else if (difficulties.contains(TagName.HARD)) {
+            diffString = "HARD difficulty";
+        } else {
+            diffString = "ALL difficulties";
+        }
+
         return new CommandResult(
-                String.format(MESSAGE_SUCCESS, model.getReviewDeckName()),
+                String.format(MESSAGE_SUCCESS, model.getReviewDeckName(), diffString),
                 false, false, true, false, false, false
         );
     }
