@@ -140,7 +140,7 @@ public class StatisticsPanel extends UiPart<TabPane> implements TabsPanel {
     }
 
     /**
-     * Updates the statistics panel when there is a change 
+     * Updates the statistics panel when there is a change
      * in the due soon and overdue projects.
      *
      * @param logic the logic component.
