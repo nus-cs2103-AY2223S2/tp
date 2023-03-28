@@ -8,10 +8,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOBTITLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_JOBTITLE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_OCCUPATION_AMY;
@@ -37,7 +37,7 @@ public class TypicalPersons {
             .withGender("female")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withCompany("company")
-            .withLocation("location")
+            .withLocation("Singapore")
             .withOccupation("occupation")
             .withJobTitle("job title")
             .withPhone("94351253")
@@ -47,7 +47,7 @@ public class TypicalPersons {
             .withGender("male")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withCompany("company")
-            .withLocation("location")
+            .withLocation("America")
             .withOccupation("occupation")
             .withJobTitle("job title")
             .withEmail("johnd@example.com").withPhone("98765432")
@@ -55,33 +55,33 @@ public class TypicalPersons {
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withGender("male")
             .withPhone("95352563").withEmail("heinz@example.com").withCompany("company")
-            .withLocation("location").withOccupation("occupation").withJobTitle("job title")
+            .withLocation("Japan").withOccupation("occupation").withJobTitle("job title")
             .withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withGender("male")
             .withPhone("87652533").withEmail("cornelia@example.com").withCompany("company")
-            .withLocation("location").withOccupation("occupation").withJobTitle("job title").withAddress("10th street")
+            .withLocation("China").withOccupation("occupation").withJobTitle("job title").withAddress("10th street")
             .withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withGender("female").withEmail("werner@example.com").withCompany("company")
-            .withLocation("location").withOccupation("occupation").withJobTitle("job title")
+            .withLocation("Malaysia").withOccupation("occupation").withJobTitle("job title")
             .withAddress("michegan ave").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withGender("female")
             .withPhone("9482427").withEmail("lydia@example.com").withCompany("company")
-            .withLocation("location").withOccupation("occupation").withJobTitle("job title")
+            .withLocation("China").withOccupation("occupation").withJobTitle("job title")
             .withAddress("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withGender("male")
             .withPhone("9482442").withEmail("anna@example.com").withCompany("company")
-            .withLocation("location").withOccupation("occupation").withJobTitle("job title")
+            .withLocation("Thailand").withOccupation("occupation").withJobTitle("job title")
             .withAddress("4th street").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withGender("male").withPhone("8482424")
             .withEmail("stefan@example.com").withCompany("company")
-            .withLocation("location").withOccupation("occupation").withJobTitle("job title")
+            .withLocation("Laos").withOccupation("occupation").withJobTitle("job title")
             .withAddress("little india").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withGender("female")
             .withPhone("8482131").withEmail("hans@example.com").withCompany("company")
-            .withLocation("location").withOccupation("occupation").withJobTitle("job title")
+            .withLocation("United Kingdom").withOccupation("occupation").withJobTitle("job title")
             .withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
