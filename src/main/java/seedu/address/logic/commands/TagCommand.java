@@ -80,6 +80,8 @@ public class TagCommand extends Command {
                 .map(ModuleTag::getImmutableLessons)
                 .flatMap(Set::stream)
                 .collect(Collectors.toSet()));
+
+        System.out.println(lessons.toString());
     }
 
     private void initializeGroups(Set<? extends Tag> tagsToAdd) {
@@ -131,6 +133,7 @@ public class TagCommand extends Command {
 
         return new ViewCommandResult(MESSAGE_MODULE_TAG_PERSON_SUCCESS, editedPerson);
     }
+
     private ViewCommandResult tagUser(Model model) throws CommandException {
         User userToEdit = model.getUser();
         User editedUser = userToEdit.copy();

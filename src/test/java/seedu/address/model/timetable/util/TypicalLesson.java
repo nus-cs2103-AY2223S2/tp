@@ -448,11 +448,25 @@ public class TypicalLesson {
             .withDay(Day.MONDAY)
             .build();
 
+    public static final Lesson CS2105_THU_10AM_1HR = new LessonBuilder()
+            .withModuleCode("CS2105")
+            .withStartTime(10)
+            .withDuration(1)
+            .withDay(Day.THURSDAY)
+            .build();
+
     public static final Lesson CS2105_THU_4PM_2HR = new LessonBuilder()
             .withModuleCode("CS2105")
             .withStartTime(16)
             .withDuration(2)
             .withDay(Day.THURSDAY)
+            .build();
+
+    public static final Lesson CS2106_MON_1PM_1HR = new LessonBuilder()
+            .withModuleCode("CS2106")
+            .withStartTime(13)
+            .withDuration(1)
+            .withDay(Day.MONDAY)
             .build();
 
     public static final Lesson CS2106_WED_10AM_2HR = new LessonBuilder()
@@ -476,6 +490,13 @@ public class TypicalLesson {
             .withDay(Day.WEDNESDAY)
             .build();
 
+    public static final Lesson CS2106_THU_11AM_1HR = new LessonBuilder()
+            .withModuleCode("CS2106")
+            .withStartTime(11)
+            .withDuration(1)
+            .withDay(Day.THURSDAY)
+            .build();
+
     public static final Lesson CS2106_THU_2PM_1HR = new LessonBuilder()
             .withModuleCode("CS2106")
             .withStartTime(14)
@@ -490,11 +511,32 @@ public class TypicalLesson {
             .withDay(Day.THURSDAY)
             .build();
 
+    public static final Lesson CS2106_THU_4PM_1HR = new LessonBuilder()
+            .withModuleCode("CS2106")
+            .withStartTime(16)
+            .withDuration(1)
+            .withDay(Day.THURSDAY)
+            .build();
+
+    public static final Lesson CS2106_THU_5PM_1HR = new LessonBuilder()
+            .withModuleCode("CS2106")
+            .withStartTime(17)
+            .withDuration(1)
+            .withDay(Day.THURSDAY)
+            .build();
+
     public static final Lesson CS2109S_TUE_4PM_2HR = new LessonBuilder()
             .withModuleCode("CS2109S")
             .withStartTime(16)
             .withDuration(2)
             .withDay(Day.TUESDAY)
+            .build();
+
+    public static final Lesson CS2109S_WED_12PM_1HR = new LessonBuilder()
+            .withModuleCode("CS2109S")
+            .withStartTime(12)
+            .withDuration(1)
+            .withDay(Day.WEDNESDAY)
             .build();
 
     public static final Lesson CS2109S_WED_3PM_1HR = new LessonBuilder()
@@ -509,6 +551,13 @@ public class TypicalLesson {
             .withStartTime(17)
             .withDuration(1)
             .withDay(Day.WEDNESDAY)
+            .build();
+
+    public static final Lesson CS2109S_THU_12PM_1HR = new LessonBuilder()
+            .withModuleCode("CS2109S")
+            .withStartTime(12)
+            .withDuration(1)
+            .withDay(Day.THURSDAY)
             .build();
 
     public static final Lesson CS2108_TUE_10AM_2HR = new LessonBuilder()
@@ -599,6 +648,20 @@ public class TypicalLesson {
             .withModuleCode("CS4225")
             .withStartTime(16)
             .withDuration(1)
+            .withDay(Day.THURSDAY)
+            .build();
+
+    public static final Lesson CS4230_TUE_2PM_1HR = new LessonBuilder()
+            .withModuleCode("CS4230")
+            .withStartTime(14)
+            .withDuration(1)
+            .withDay(Day.TUESDAY)
+            .build();
+
+    public static final Lesson CS4230_THU_4PM_2HR = new LessonBuilder()
+            .withModuleCode("CS4230")
+            .withStartTime(16)
+            .withDuration(2)
             .withDay(Day.THURSDAY)
             .build();
 
@@ -760,6 +823,13 @@ public class TypicalLesson {
             .withModuleCode("MA2104")
             .withStartTime(10)
             .withDuration(2)
+            .withDay(Day.MONDAY)
+            .build();
+
+    public static final Lesson MA2104_MON_11AM_1HR = new LessonBuilder()
+            .withModuleCode("MA2104")
+            .withStartTime(11)
+            .withDuration(1)
             .withDay(Day.MONDAY)
             .build();
 
