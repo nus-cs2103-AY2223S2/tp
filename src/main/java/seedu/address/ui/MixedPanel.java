@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
@@ -26,6 +27,9 @@ public class MixedPanel extends UiPart<Region> {
     @FXML
     private ListView<Note> noteListView;
 
+    @FXML
+    private VBox container;
+
     /**
      * Creates a {@code MixedPanel} with the given {@code ObservableList}.
      */
@@ -35,6 +39,10 @@ public class MixedPanel extends UiPart<Region> {
         todoListView.setCellFactory(listView -> new TodoListViewCell());
         noteListView.setItems(noteList);
         noteListView.setCellFactory(listView -> new NoteListViewCell());
+    }
+
+    public VBox getContainer() {
+        return container;
     }
 
     /**
