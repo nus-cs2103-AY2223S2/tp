@@ -518,6 +518,7 @@ Marks selected students' attendance as absent for current session.
 
 Format:
 ```
+unmark <INDEX>
 unmark <INDEX>, <INDEX>, ...
 ```
 
