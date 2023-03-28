@@ -7,6 +7,7 @@ import java.util.*;
 import javafx.collections.ObservableList;
 import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.meetup.UniqueMeetUpList;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.User;
@@ -84,6 +85,8 @@ public class EduMate implements ReadOnlyEduMate {
     public void setParticipants(Participants participants) {
         this.participants = participants;
     }
+
+
     //// list overwrite operations
 
     /**
@@ -251,4 +254,9 @@ public class EduMate implements ReadOnlyEduMate {
         return Objects.hash(persons, user);
     }
 
+    //todo add javadoc
+    public boolean hasMeetUp(MeetUp meetUp) {
+        requireNonNull(meetUp);
+        return meets.contains(meetUp);
+    }
 }

@@ -91,9 +91,6 @@ public class EduMateStorageManager implements EduMateStorage {
         saveEduMate(eduMate, eduMateFilePath);
     }
 
-    //todo add read for meetup list
-    //todo add save for meetup list
-
 
     /**
      * Similar to {@link #saveEduMate(ReadOnlyEduMate)}.

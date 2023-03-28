@@ -11,7 +11,7 @@ import seedu.address.model.meetup.exceptions.DuplicateMeetUpException;
 import seedu.address.model.meetup.exceptions.MeetUpNotFoundException;
 
 //todo CODE SKELETON COPIED FROM UNIQUE REQ LIST, EXCEPTIONS INCLUDED
-//
+
 public class UniqueMeetUpList implements Iterable<MeetUp> {
 
     private final ObservableList<MeetUp> internalList = FXCollections.observableArrayList();

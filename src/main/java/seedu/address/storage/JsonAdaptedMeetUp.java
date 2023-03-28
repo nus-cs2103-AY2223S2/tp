@@ -31,10 +31,11 @@ public class JsonAdaptedMeetUp {
     }
 
     public JsonAdaptedMeetUp(MeetUp meetUp) {
-        this.location = new JsonAdaptedLocation(meetUp.getLocation());
-        this.participants = new JsonAdaptedParticipants(meetUp.getParticipants());
-        this.timePeriod = new JsonAdaptedTimePeriod(meetUp.getTimePeriod());
-        this.contactIndex = meetUp.getContactIndex().getContactIndex();
+        location = new JsonAdaptedLocation(meetUp.getLocation());
+        assert (meetUp.getParticipants() != null);
+        participants = new JsonAdaptedParticipants(meetUp.getParticipants());
+        timePeriod = new JsonAdaptedTimePeriod(meetUp.getTimePeriod());
+        contactIndex = meetUp.getContactIndex().getContactIndex();
     }
 
     public MeetUp toModelType() throws IllegalValueException {

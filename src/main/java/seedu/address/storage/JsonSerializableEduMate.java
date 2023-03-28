@@ -11,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.EduMate;
+import seedu.address.model.Participants;
 import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.meetup.MeetUp;
-import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 import seedu.address.model.recommendation.Recommendation;
@@ -29,14 +29,17 @@ class JsonSerializableEduMate {
     public static final String MESSAGE_DUPLICATE_RECOMMENDATION =
             "Persons list contains duplicate recommendations(s).";
 
+    public static final String MESSAGE_DUPLICATE_MEETUP =
+            "Persons list contains duplicate meetups(s).";
+
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final JsonAdaptedUser user;
 
-    //todo add meetup list
-    //private final List<JsonAdaptedMeetUp> meetUpList = new ArrayList<>();
-
     private final List<JsonAdaptedRecommendation> recommendations = new ArrayList<>();
 
+    //todo add meetup list
+    private final List<JsonAdaptedMeetUp> meetUps = new ArrayList<>();
+    private final JsonAdaptedParticipants participantList;
 
     /**
      * Constructs a {@code JsonSerializableEduMate} with the given persons.
@@ -45,12 +48,14 @@ class JsonSerializableEduMate {
     public JsonSerializableEduMate(
             @JsonProperty("persons") List<JsonAdaptedPerson> persons,
             @JsonProperty("user") JsonAdaptedUser user,
+            @JsonProperty("participantList") JsonAdaptedParticipants participantList,
+            @JsonProperty("meetUps") List<JsonAdaptedMeetUp> meetUps,
             @JsonProperty("recommendations") List<JsonAdaptedRecommendation> recommendations) {
-        //@JsonProperty("meetUps") List<JsonAdaptedMeetUp> meetUpList
         this.persons.addAll(persons);
         this.user = user;
         this.recommendations.addAll(recommendations);
-        //this.meetUpList.addAll(meetUpList); //todo double check
+        this.meetUps.addAll(meetUps); //todo double check
+        this.participantList = participantList;
 
     }
 
@@ -66,6 +71,12 @@ class JsonSerializableEduMate {
         recommendations.addAll(source.getRecommendationList()
                 .stream().map(JsonAdaptedRecommendation::new)
                 .collect(Collectors.toList()));
+
+        meetUps.addAll(source.getMeetUpList()
+                .stream().map(JsonAdaptedMeetUp::new)
+                .collect(Collectors.toList()));
+
+        participantList = new JsonAdaptedParticipants(source.getParticipantList());
     }
 
     /**
@@ -88,12 +99,6 @@ class JsonSerializableEduMate {
             eduMate.addPerson(person);
         }
 
-//        for (JsonAdaptedMeetUp jsonAdaptedMeetUp : meetUpList) {
-//            MeetUp meetUp = jsonAdaptedMeetUp.toModelType();
-//            //check for duplicate meetup
-//
-//        }
-
         for (JsonAdaptedRecommendation jsonAdaptedRecommendation : recommendations) {
             Recommendation recommendation = jsonAdaptedRecommendation.toModelType();
             if (eduMate.hasRecommendation(recommendation)) {
@@ -101,6 +106,17 @@ class JsonSerializableEduMate {
             }
             eduMate.addRecommendation(recommendation);
         }
+
+        for (JsonAdaptedMeetUp jsonAdaptedMeetUp : meetUps) {
+            MeetUp meetUp = jsonAdaptedMeetUp.toModelType();
+            if (eduMate.hasMeetUp(meetUp)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_MEETUP);
+            }
+            eduMate.addMeetUp(meetUp);
+        }
+
+        Participants modelParticipants = participantList.toModelType();
+        eduMate.setParticipants(modelParticipants);
 
         eduMate.setUser(userModel);
         return eduMate;

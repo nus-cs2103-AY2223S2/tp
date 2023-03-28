@@ -315,6 +315,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setParticipants(Set<ContactIndex> participants) {
+        eduMate.setParticipants(new Participants(participants));
+    }
+
+    @Override
     public void updateObservableMeetUpList() {
         filteredMeetUps.setPredicate(PREDICATE_SHOW_ALL_MEETUPS);
         observableMeetUps.setComparator(COMPARATOR_CONTACT_INDEX_MEETUP);
