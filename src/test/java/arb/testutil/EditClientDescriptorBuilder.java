@@ -1,5 +1,6 @@
 package arb.testutil;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -49,7 +50,7 @@ public class EditClientDescriptorBuilder {
      * Sets the {@code Phone} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+        descriptor.setPhone(Optional.ofNullable(phone).map(p -> new Phone(phone)).orElse(null));
         return this;
     }
 
@@ -57,7 +58,7 @@ public class EditClientDescriptorBuilder {
      * Sets the {@code Email} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+        descriptor.setEmail(Optional.ofNullable(email).map(e -> new Email(e)).orElse(null));
         return this;
     }
 

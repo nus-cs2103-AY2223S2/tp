@@ -29,4 +29,12 @@ public class HelpCommandTest {
                 expectedModel);
     }
 
+    @Test
+    public void execute_helpSuccess_withCurrentListTypeTag() {
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false, false,
+                ListType.NONE);
+        assertCommandSuccess(new HelpCommand(), ListType.TAG, ListType.NONE, model, expectedCommandResult,
+                expectedModel);
+    }
+
 }

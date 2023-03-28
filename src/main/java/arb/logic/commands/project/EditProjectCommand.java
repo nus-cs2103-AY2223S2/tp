@@ -59,8 +59,8 @@ public class EditProjectCommand extends Command {
             + PREFIX_DEADLINE + "2023-07-05 "
             + PREFIX_PRICE + "2.07";
 
-    private final Index index;
-    private final EditProjectDescriptor editProjectDescriptor;
+    public final Index index;
+    public final EditProjectDescriptor editProjectDescriptor;
 
     /**
      * @param index of the project in the filtered project list to edit
@@ -107,7 +107,7 @@ public class EditProjectCommand extends Command {
                     .asList(updatedClientName)));
             if (model.getFilteredClientList().size() == 0) {
                 throw new CommandException(String.format(MESSAGE_CANNOT_FIND_CLIENT,
-                        editProjectDescriptor.getClient().get()));
+                        updatedClientName));
             }
             model.setProjectToLink(editedProject);
         }
@@ -226,10 +226,7 @@ public class EditProjectCommand extends Command {
         }
 
         public void setClient(String clientName) {
-            if (clientName.isBlank()) {
-                clientName = null;
-            }
-            this.clientName = Optional.ofNullable(clientName);
+            this.clientName = Optional.ofNullable(clientName).filter(c -> !c.isBlank());
         }
 
         public Optional<Title> getTitle() {
