@@ -125,11 +125,16 @@ Examples:
 
 Creates an Exam within TutorPro to be tracked for a given student.
 
-Format: `new-exam [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2].. [exam/EXAM_NAME] [start/START_TIME] [end/END_TIME]`
+Format: `new-exam [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2].. [exam/EXAM_NAME] [start/START_TIME] 
+[end/END_TIME] (optional)[weightage/WEIGHTAGE] (optional)[grade/GRADE]`
 
 * Creates an exam that is attributed to one or more students.
 * At least one student name must be provided.
 * `START_TIME` and `END_TIME` provided must be in any of the supported date-time formats (see appendix).
+* the format of `GRADE` should be `grade/ACTUAL_SCORE/TOTAL_SCORE`
+
+💡 **Tip:** the subject of the exam should be included in the `EXAM_NAME` field to facilitate grade calculations. 
+See `calculate-grade` below:
 
 Examples:
 * `new-exam name/John Doe exam/Math MYE start/2023-05-21 12:00 end/2023-05-21 14:00`
@@ -141,7 +146,8 @@ Format: `delete-exam [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2].. [in
 
 * Removes an exam that TutorPro is currently tracking.
 * At least one student name must be provided.
-* `[INDEX_OF_EXAM]` is in reference to the indexing of the exams listed when invoking the `view-exam` command
+* `INDEX_OF_EXAM` is in reference to the indexing of the exams listed when invoking the `view-exam` command on a 
+student.
 
 Examples:
 * `delete-exam name/John Doe index/1`
@@ -154,12 +160,41 @@ Format: `view-exam (optional)[name/STUDENT_NAME] (optional)[date/DATE] (optional
 
 * Lists out exams TutorPro is currently tracking, while filtering for the specified predicates
 * All predicates are optional, leaving all parameters blank will list all currently tracked exams
-* Field `IS_DONE` when filled with parameter 'done' `eg. done/done` will list all completed exams. Leave this field 
-blank `eg done/` when filtering for upcoming exams 
+* Field `[IS_DONE]` when filled with parameter 'done' `eg. done/done` will list all completed exams. Leave this field 
+blank `eg. done/` when filtering for upcoming exams 
 
 Examples:
 * `view-exam` -lists all exams currently being tracked by TutorPro
-* `view-exam name/John date/2023-05-01 exam/MYE done/` -list exams attributed to student 'John' on date '2023-05-01' with description 'MYE' which are undone.
+* `view-exam name/John date/2023-05-01 exam/MYE done/` -list exams attributed to student 'John' on date '2023-05-01' 
+with description 'MYE' which are undone.
+
+### 11. Edit exam details: `update-exam`
+
+Format: `update-exam [name/STUDENT_NAME] [index/INDEX] (optional)[exam/NEW_EXAM_NAME] (optional)[start/START_TIME] 
+(optional)[end/END_TIME] (optional)[grade/GRADE]`
+
+* Updates the details of an exam tracked by TutorPro
+* Of the optional fields, one must be provided in order to update the exam.
+* `START_TIME` and `END_TIME` provided must be in any of the supported date-time formats (see appendix).
+* `INDEX` is in reference to the indexing of the exams listed when invoking the `view-exam` command on a
+student.
+
+Examples:
+* `update-exam name/John index/1 grade/20/25`
+
+### 12. Calculate grade:  `calculate-grade`
+
+Format: `calculate-grade [name/STUDENT_NAME] [subject/SUBJECT]`
+
+* Calculates the grade of a subject using the weightages and scores tracked by TutorPro and outputs the report.
+* the `[SUBJECT]` field matches the name and/or description of the tracked exam and factors the exam that matches the 
+description into the score calculation.
+* Should there be undefined weightages for exams, the overall report will state the grade as undefined. 
+
+Examples:
+* `calculate-grade name/John subject/Econs`
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
