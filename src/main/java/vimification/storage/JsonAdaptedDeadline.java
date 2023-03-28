@@ -26,7 +26,6 @@ public class JsonAdaptedDeadline extends JsonAdaptedTask {
         this.deadline = deadline;
     }
 
-    @JsonCreator
     public JsonAdaptedDeadline(Deadline deadline) {
         super(deadline);
         this.deadline = deadline.getDeadline();

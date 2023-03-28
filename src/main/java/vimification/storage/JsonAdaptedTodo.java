@@ -22,7 +22,6 @@ public class JsonAdaptedTodo extends JsonAdaptedTask {
         super(description, status, priority);
     }
 
-    @JsonCreator
     public JsonAdaptedTodo(Todo todo) {
         super(todo);
     }
