@@ -14,14 +14,13 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Email;
-import seedu.address.model.prescription.Medication;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.prescription.Prescription;
 import seedu.address.model.person.Role;
+import seedu.address.model.prescription.Prescription;
 import seedu.address.model.tag.Tag;
 
 /**

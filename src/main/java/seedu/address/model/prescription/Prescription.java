@@ -48,4 +48,9 @@ public class Prescription {
     public Cost getCost() {
         return cost;
     }
+
+    @Override
+    public int hashCode() {
+        return 2 * medication.hashCode() + 3 * cost.hashCode();
+    }
 }

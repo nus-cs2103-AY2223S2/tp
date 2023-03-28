@@ -75,10 +75,15 @@ public class PersonCard extends UiPart<Region> {
         if (person.isPatient()) {
             // https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html
             Patient patient = (Patient) person;
-            prescriptions.setText("Prescriptions: " + patient.getPrescriptions().stream()
-                    .map(Prescription::toString)
-                    .collect(Collectors.joining(", "))
-            );
+
+            StringBuilder prescriptionText = new StringBuilder("Prescription:\n");
+
+            int i = 1;
+            for (Prescription prescription: patient.getPrescriptions()) {
+                prescriptionText.append(String.format("%d. %s\n", i++, prescription.toString()));
+            }
+            prescriptions.setText(prescriptionText.toString());
+
             appointments.setText("Appointments: \n" + patient.patientAppointmentstoString());
         }
     }

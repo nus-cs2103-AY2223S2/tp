@@ -1,16 +1,12 @@
 package seedu.address.model.person;
 
-import static javafx.beans.binding.Bindings.isNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Optional;
 import java.util.Set;
 
-import javax.swing.text.html.Option;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.prescription.Medication;
 import seedu.address.model.prescription.Prescription;
 import seedu.address.model.tag.Tag;
 
@@ -47,6 +43,7 @@ public class Patient extends Person {
     }
 
     public Set<Prescription> getPrescriptions() {
+//        return Collections.unmodifiableSet(prescriptions);
         return prescriptions;
     }
 
@@ -85,7 +82,7 @@ public class Patient extends Person {
         Set<Prescription> prescriptions = getPrescriptions();
         if (!prescriptions.isEmpty()) {
             builder.append("; Prescriptions: ");
-            prescriptions.forEach(builder::append);
+            prescriptions.stream().map(Prescription::toString).sorted().forEach(builder::append);
         }
 
         ArrayList<Appointment> appointments = getPatientAppointments();

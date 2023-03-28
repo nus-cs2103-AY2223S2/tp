@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -7,16 +8,14 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.prescription.Cost;
-import seedu.address.model.prescription.Medication;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
-import seedu.address.model.prescription.Prescription;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -45,14 +44,16 @@ public class EditPersonDescriptorBuilder {
         descriptor.setNric(person.getNric());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
-        descriptor.setAppointments(person.getPatientAppointments());
+//        descriptor.setAppointments(person.getPatientAppointments());
 
         if (person.isDoctor()) {
             isDoctor = true;
+//            descriptor.setPrescriptions(new HashSet<>());
         } else {
             // isPatient
             Patient patient = (Patient) person;
-            descriptor.setPrescription(patient.getPrescription());
+            isDoctor = false;
+//            descriptor.setPrescriptions(patient.getPrescriptions());
         }
     }
 
@@ -99,8 +100,8 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Medication} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPrescription(String medication, String cost) {
-        descriptor.setPrescription(new Prescription(new Medication(medication), new Cost(cost)));
+    public EditPersonDescriptorBuilder withPrescription(String ... strings) {
+        descriptor.setPrescriptions(SampleDataUtil.getPrescriptionSet(strings));
         return this;
     }
 

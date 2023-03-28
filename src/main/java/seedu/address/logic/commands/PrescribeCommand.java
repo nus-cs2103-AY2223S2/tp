@@ -27,17 +27,18 @@ public class PrescribeCommand extends Command {
     //@@author Jeffry Lum-reused
     //Reused from https://nus-cs2103-ay2223s2.github.io/tp/tutorials/AddRemark.html
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Attaches a medication (and its cost) to a person identifed by their NRIC"
+            + ": Attaches a medication (and its cost) to a person identified by their NRIC. If the medication is "
+            + "already attached, this edits the cost instead.\n"
             + "Parameters: " + PREFIX_NRIC + "NRIC "
-            + PREFIX_MEDICATION + "MEDICATION"
+            + PREFIX_MEDICATION + "MEDICATION "
             + PREFIX_COST + "COST\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NRIC + "S1234567A "
             + PREFIX_MEDICATION + "paracetamol "
             + PREFIX_COST + "3.5";
 
-    public static final String MESSAGE_ADD_SUCCESS = "Prescription of Patient changed!: %1$s";
-    public static final String MESSAGE_EDIT_SUCCESS = "Prescription of Patient edited!: %1$s";
+    public static final String MESSAGE_ADD_SUCCESS = "Prescription of patient added!: %1$s";
+    public static final String MESSAGE_EDIT_SUCCESS = "Cost of prescription changed!: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "This patient does not exist.";
 
     public final Nric nric;
@@ -92,8 +93,6 @@ public class PrescribeCommand extends Command {
             }
         }
 
-
-        // todo check for duplicates
         patientPrescriptions.add(prescription);
 
         Patient editedPerson = new Patient(

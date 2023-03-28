@@ -27,9 +27,9 @@ public class MedicationTest {
     @Test
     public void isValidMedication() {
         assertFalse(Medication.isValidMedication(" "));
+        assertFalse(Medication.isValidMedication(""));
 
         assertTrue(Medication.isValidMedication("Paracetamol"));
-        assertTrue(Medication.isValidMedication(""));
         assertTrue(Medication.isValidMedication("Drug A"));
     }
 }

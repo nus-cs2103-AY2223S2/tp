@@ -30,8 +30,8 @@ import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.prescription.Prescription;
 import seedu.address.model.person.Role;
+import seedu.address.model.prescription.Prescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -124,8 +124,8 @@ public class EditCommand extends Command {
                     .orElse(patientToEdit.getPrescriptions());
             ArrayList<Appointment> patientAppointments = patientToEdit.getPatientAppointments();
 
-            return new Patient(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress, updatedPrescriptions,
-                    updatedTags, patientAppointments, role);
+            return new Patient(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress,
+                    updatedPrescriptions, updatedTags, patientAppointments, role);
         }
 
         if (personToEdit.isDoctor()) {
@@ -183,7 +183,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setNric(toCopy.nric);
             setAddress(toCopy.address);
-            setPrescription(toCopy.prescriptions);
+            setPrescriptions(toCopy.prescriptions);
             setTags(toCopy.tags);
             setAppointments(toCopy.appointments);
             setRole(toCopy.role);
@@ -232,7 +232,7 @@ public class EditCommand extends Command {
          * Sets {@code prescriptions} to this object's {@code prescriptions}.
          * A defensive copy of {@code prescriptions} is used internally.
          */
-        public void setPrescription(Set<Prescription> prescriptions) {
+        public void setPrescriptions(Set<Prescription> prescriptions) {
             this.prescriptions = (prescriptions != null) ? new HashSet<>(prescriptions) : null;
         }
 

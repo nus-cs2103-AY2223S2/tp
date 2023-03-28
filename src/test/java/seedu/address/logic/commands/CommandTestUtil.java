@@ -39,9 +39,9 @@ public class CommandTestUtil {
     public static final String VALID_NRIC_BOB = "T1234567B";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_MEDICATION_AMY = "";
-    public static final String VALID_MEDICATION_BOB = "20 Paracetamol";
-    public static final String VALID_COST_AMY = "0";
+    public static final String VALID_MEDICATION_AMY = "Paracetamol";
+    public static final String VALID_MEDICATION_BOB = "Cough Syrup";
+    public static final String VALID_COST_AMY = "10";
     public static final String VALID_COST_BOB = "0.01";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";

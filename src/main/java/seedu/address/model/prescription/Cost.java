@@ -10,9 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Cost {
 
     public static final String MESSAGE_CONSTRAINTS = "Cost should be a positive number with at most 2 decimal places.";
-    public static final String VALIDATION_REGEX = "^\\d+(.\\d{1,2})?$";
+    public static final String VALIDATION_REGEX = "^\\d+(\\.\\d{1,2})?$";
 
-    public Float value;
+    private Float value;
 
     /**
      * Constructs a {@code Cost}.
