@@ -13,23 +13,23 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 ## Table of Contents
 
 1. [Quick Start](#quick-start)
-2. [Features](#features)
-    1. Add a module: `add`
-    2. Remove a/all module: `delete`
-    3. Change module details: `edit`
-    4. Tag a module: `tag`
-    5. Filter the list of modules: `find`
-    6. Sort all modules: `sort`
-    7. Toggle between module lists and progress: `view`
-    8. Exiting the program: `exit`
-    9. Saving the data
-    10. Editing the data file
+2. [Features](#features)<br>
+   2.1 [Add a module: `add`](#add-module)<br>
+   2.2 [Remove a/all module: `delete`](#delete-module)<br>
+   2.3 [Change module details: `edit`](#edit-module)<br>
+   2.4 [Tag a module: `tag`](#tag-module)<br>
+   2.5 [Find modules by keyword: `find`](#find-module)<br>
+   2.6 [Sort all modules: `sort`](#sort-module)<br>
+   2.7 [Toggle between module lists and progress: `view`](#change-view)<br>
+   2.8 [Exiting the program: `exit`](#exit-app)<br>
+   2.9 [Saving the data](#save-data)<br>
+   2.10 [Editing the data file](#edit-data)
 3. [Frequently Asked Questions (FAQ)](#faq)
 4. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick Start <a name="quick-start"></a>
+## 1. Quick Start <a name="quick-start"></a>
 
 1. Ensure you have Java 11 or above installed in your Computer.
 1. Download `modtrek.jar` here. (To be inserted)
@@ -41,7 +41,7 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features <a name="features"></a>
+## 2. Features <a name="features"></a>
 
 <div markdown="block" class="alert alert-info">
 
@@ -54,7 +54,7 @@ ModTrek is a desktop application for managing a typical NUS Computer Science stu
 
 ### MODTrek supports the following features:
 
-#### Add a Module : `add`
+#### 2.1 Add a Module : `add` <a name="add-module"></a>
 
 Adds a module to the module list. Modules must be distinct.
 
@@ -64,7 +64,7 @@ Command syntax: `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t 
 
 Example: `add /m CS2103T /c 4 /y y2s2 /g A /t University Level Requirements`
 
-#### Delete a Module : `delete`
+#### 2.2 Delete a Module : `delete` <a name="delete-module"></a>
 
 Deletes all/the specified module(s) from the module list.
 
@@ -72,7 +72,7 @@ Command syntax: <br><br>_To delete specific modules:_ `delete /m <code1> (/m <co
 
 Example: `delete /m CS2100 /m CS2040S`
 
-#### Edit a Module : `edit`
+#### 2.3 Edit a Module : `edit` <a name="edit-module"></a>
 
 Edits an existing module in the module list.
 
@@ -82,7 +82,7 @@ Example: `edit ES2660 /m CS2101 /g B+`
 
 :exclamation: Past data will be overridden and not be saved
 
-#### Tag a Module : `tag`
+#### 2.4 Tag a Module : `tag` <a name="tag-module"></a>
 
 Tags a module to include or remove one or more degree requirements (e.g. University Level Requirements, Computer Science Foundation etc) that the module fulfils.
 
@@ -92,7 +92,7 @@ Example:
 * `tag CS2030S include cs_foundation`
 * `tag ES2660 remove university_level it_professionalism`
 
-#### Find modules : `find`
+#### 2.5 Find modules by keyword : `find` <a name="find-module"></a>
 
 Displays specific module(s) satisfying the search query (by code, credits, year-semester, and/or grade) and their details previously logged by the user.
 
@@ -102,31 +102,40 @@ Example:
 * `find /c 4 /g A+`
 * `find /y y2s2`
 
-#### Sort modules : `sort`
+#### 2.6 Sort all modules : `sort` <a name="sort-module"></a>
 
 Sort the modules according to the category indicated by the user.
 
-Command syntax: `sort ...`
+Command syntax: `sort <category>`
 
-Example:
+Categories that modules can be sorted by are:
+* `/m` to sort by module code
+* `/c` to sort by credit
+* `/y` to sort by year-semester
+* `/g` to sort by grade
+* `/t` to sort by tag
 
-#### Toggle screens : `view`
+Example: `sort /m`
+
+#### 2.7 Toggle screens : `view` <a name="change-view"></a>
 
 Toggles between the display of module progress or module lists.
 
-Command syntax: <br><br>_To view module progression:_`view progress` <br><br>_To view module list:_`view modules`
+Command syntax:
+* To view module progression: `view progress`
+* To view module list: `view modules`
 
-#### Exit MODTrek : `exit`
+#### 2.8 Exit MODTrek : `exit` <a name="exit-app"></a>
 
-Exits the program.
+Exits the program. Alternatively you can exit the program by clicking the top-right X button to close the window.
 
 Command syntax: `exit`
 
-#### Saving MODTrek data
+#### 2.9 Saving MODTrek data <a name="save-data"></a>
 
 Saves the modified data regarding the modules into the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-#### Editing MODTrek data
+#### 2.10 Editing MODTrek data <a name="edit-data"></a>
 
 ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Advanced users are welcome to update data directly by editing that data file.<br> <br>:warning: **Caution!** If your changes to the data file makes its format invalid, ModTrek will discard all data and start with an empty data file at the next run.
 
@@ -149,14 +158,14 @@ are provided only by NUS.
 
 | Action                   | Format, Examples                                                                                                                                                                                  |
 |--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                  | `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)` <br> e.g., `add /m CS2103T /c 4 /y y2s2 /g A /t University Level Requirements`                                                                                             |
-| **Delete**               | `delete /m <code1> (/m <code2>) ...` or `delete all` <br> e.g. `delete /m CS2100 /m CS2040S`                                                                                                                  |
-| **Edit**                 | `edit <existing code> (/m <new code>) (/c <credits>) (/y <year-semester>) (/g <grade>) (/t <tag>...)` <br> e.g., `edit ES2660 /m CS2101`                                                                  |
+| **Add**                  | `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)` <br> e.g., `add /m CS2103T /c 4 /y y2s2 /g A /t University Level Requirements`                                         |
+| **Delete**               | `delete /m <code1> (/m <code2>) ...` or `delete all` <br> e.g. `delete /m CS2100 /m CS2040S`                                                                                                      |
+| **Edit**                 | `edit <existing code> (/m <new code>) (/c <credits>) (/y <year-semester>) (/g <grade>) (/t <tag>...)` <br> e.g., `edit ES2660 /m CS2101`                                                          |
 | **Tag**                  | `tag /m <code> include <tag1> (<tag2>) ...` or `tag /m <code> remove <tag1> (<tag2>) ...` <br> e.g., `tag CS2030S include cs_foundation`, `tag ES2660 remove university_level it_professionalism` |
 | **Find**                 | `find (/m <code>) (/c <credits>) (/y <year-semester>) (/g <grade>)` <br> e.g., `find A+`                                                                                                          |
-| **Sort**                 | `sort ...`  |
-| **View Degree Progress** | `view progress` or `view modules` |
-| **Exit**                 | `exit` |
+| **Sort**                 | `sort <category>` e.g. `sort /m`                                                                                                                                                                   |
+| **View Degree Progress** | `view progress` or `view modules`                                                                                                                                                                 |
+| **Exit**                 | `exit`                                                                                                                                                                                            |
 
 
 <br>**Notes:**
