@@ -180,7 +180,7 @@ public class RecurringEventList {
 
     @Override
     public String toString() {
-        StringBuilder output = new StringBuilder("Recurring Events\n");
+        StringBuilder output = new StringBuilder("");
         int count = 1;
         for (RecurringEvent re : recurringEvents) {
             output.append(count).append(". ").append(re.toString()).append("\n");

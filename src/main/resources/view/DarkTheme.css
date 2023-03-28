@@ -153,6 +153,10 @@
      -fx-background-color: derive(#1d1d1d, 20%);
 }
 
+.pane-person-event-label {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 30%);
 }
