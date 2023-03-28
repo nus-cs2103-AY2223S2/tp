@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Meeting;
 import seedu.address.model.person.MeetingWithPerson;
 import seedu.address.model.person.Person;
@@ -98,4 +99,6 @@ public interface Model {
     void updateFilteredMeetingList(Predicate<MeetingWithPerson> predicate);
 
     Person addMeeting(Person personToEdit, Meeting meeting);
+
+    Person removeMeeting(Person personToEdit, Index indexMeeting);
 }

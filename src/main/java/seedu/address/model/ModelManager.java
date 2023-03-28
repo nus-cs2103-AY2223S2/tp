@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Meeting;
 import seedu.address.model.person.MeetingWithPerson;
 import seedu.address.model.person.Person;
@@ -166,6 +167,13 @@ public class ModelManager implements Model {
     @Override
     public Person addMeeting(Person personToEdit, Meeting meeting) {
         Person editedPerson = addressBook.addMeeting(personToEdit, meeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+        return editedPerson;
+    }
+
+    @Override
+    public Person removeMeeting(Person personToEdit, Index indexMeeting) {
+        Person editedPerson = addressBook.removeMeeting(personToEdit, indexMeeting);
         updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
         return editedPerson;
     }

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Meeting;
 import seedu.address.model.person.MeetingWithPerson;
 import seedu.address.model.person.Person;
@@ -111,7 +112,15 @@ public class AddressBook implements ReadOnlyAddressBook {
             personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
             personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
         this.setPerson(personToEdit, editedPerson);
-        persons.getAllMeetingAsUnmodifiableObservableList();
+        persons.refreshInternalMeetingList();
+        return editedPerson;
+    }
+
+    public Person removeMeeting(Person personToEdit, Index indexMeeting) {
+        personToEdit.getMeetings().remove(indexMeeting.getZeroBased());
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+            personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
+        persons.refreshInternalMeetingList();
         return editedPerson;
     }
 
