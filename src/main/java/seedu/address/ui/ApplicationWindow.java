@@ -1,34 +1,28 @@
-package seedu.address.ui.login;
+package seedu.address.ui;
 
+import java.util.logging.Logger;
+
+import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.ui.UiPart;
-
-import java.util.logging.Logger;
 
 /**
- * The login window that will display the initial login UI to the user before the MainWindow appears.
+ * The Application Window. Provides the basic application layout.
  *
  * @author Haiqel Bin Hanaffi
  */
-public class LoginWindow extends UiPart<Stage> {
-
-    private static final String FXML = "";
-
+public class ApplicationWindow extends UiPart {
+    private static final String FXML = "ApplicationWindow.fxml";
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
-
     private Logic logic;
 
-    // Independent ui parts residing in this Ui container
+    private HelpWindow helpWindow;
 
-    /**
-     * Creates a {@code LoginWindow} with the given {@code Stage} and {@code Logic}.
-     */
-    public LoginWindow(Stage primaryStage, Logic logic) {
+    public ApplicationWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
 
         // Set dependencies
@@ -37,12 +31,23 @@ public class LoginWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        helpWindow = new HelpWindow();
 
     }
 
-    /**
-     * Sets the default size based on {@code guiSettings}.
-     */
+    @FXML
+    private void handleExit() {
+        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+                (int) primaryStage.getX(), (int) primaryStage.getY());
+        logic.setGuiSettings(guiSettings);
+        helpWindow.hide();
+        primaryStage.hide();
+    }
+
+    void show() {
+        primaryStage.show();
+    }
+
     private void setWindowDefaultSize(GuiSettings guiSettings) {
         primaryStage.setHeight(guiSettings.getWindowHeight());
         primaryStage.setWidth(guiSettings.getWindowWidth());
@@ -51,6 +56,5 @@ public class LoginWindow extends UiPart<Stage> {
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
     }
-
 
 }

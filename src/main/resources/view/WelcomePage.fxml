@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+
+<?import javafx.scene.control.Label?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="container" alignment="CENTER" stylesheets="/view/WelcomePage.css">
+    <Label fx:id="welcomeMessage" text="Welcome To Modcheck!"/>
+    <Label fx:id="secondMessage" wrapText="true" alignment="CENTER">
+        We noticed that you are new here.
+        Would you like to set up a password?
+    </Label>
+</VBox>
+
+
