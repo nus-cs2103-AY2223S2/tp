@@ -27,7 +27,7 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
 
 ## Installation
 
-1. Download the latest `Vimification.jar` from [here](https://github.com/AY2122S2-CS2103T-W11-4/tp/releases).
+1. Download the latest `vimification.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-3/tp/releases).
 
 2. # Save the file in your intended folder.
    Vimification is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vimification can get your task management tasks done faster than traditional GUI apps. However, for users that are not fast typers or are unfamiliar with vim, we also provide a Graphical User interface (GUI) to assist you.
