@@ -9,9 +9,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.model.course.exceptions.StudentNotInSessionException;
 import tfifteenfour.clipboard.model.student.Student;
-import tfifteenfour.clipboard.model.student.StudentWithAttendance;
 import tfifteenfour.clipboard.model.student.StudentWithGrades;
 import tfifteenfour.clipboard.model.student.UniqueStudentList;
+import tfifteenfour.clipboard.model.task.exceptions.StudentNotInPageException;
 
 
 /**
@@ -67,7 +67,7 @@ public class Task {
      * Returns the grade list for each student in the current group for the current task.
      * @return A map that stores the grade list in the current group for the current task.
      */
-    public Map<Student, Integer> getAttendance() {
+    public Map<Student, Integer> getGrades() {
         return this.gradeList;
     }
 
@@ -129,11 +129,11 @@ public class Task {
     }
 
     /**
-     * Assigns a mark to the student for the current task.
+     * Assigns a grade to the student for the current task.
      * @param student The student to assign the mark to.
-     * @throws StudentNotInSessionException If the given student is not enrolled in this session.
+     * @throws StudentNotInPageException If the given student is not present in the page.
      */
-    public void markPresent(Student student, Integer grade) throws StudentNotInSessionException {
+    public void assignGrade(Student student, Integer grade) throws StudentNotInPageException {
         requireNonNull(student);
         assert gradeList != null : "Grades should not be null!";
 
