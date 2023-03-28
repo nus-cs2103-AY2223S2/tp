@@ -57,7 +57,7 @@ public abstract class Event {
     }
 
     public void deleteTaggedPerson(Person p) {
-        this.taggedPeople.remove(p);
+        this.taggedPeople.removeIf(p2 -> p2.equals(p));
     }
 
     /**

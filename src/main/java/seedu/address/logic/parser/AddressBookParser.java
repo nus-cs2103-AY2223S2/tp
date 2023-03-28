@@ -20,6 +20,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.TabCommand;
+import seedu.address.logic.commands.TagEventCommand;
+import seedu.address.logic.commands.UnTagEventCommand;
 import seedu.address.logic.commands.UnfavoriteCommand;
 import seedu.address.logic.parser.editpersoncommandsparser.EditContactCommandParser;
 import seedu.address.logic.parser.editpersoncommandsparser.EditUserCommandParser;
