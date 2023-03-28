@@ -1,7 +1,9 @@
-Wingman is a **modal** manager for managing (e.g. adding/deleting/linking/unlinking) crew, flights, locations, pilots, 
-and planes via a Command Line Interface(CLI) while still having the benefits of a Graphical User Interface (GUI). It seeks to provide a highly efficient way of resource management for airline managers.
+Wingman is a resource management tool designed for airline managers that allows for efficient management of crew,
+flights, locations, pilots, and planes via a Command Line Interface (CLI) while still providing the benefits of a 
+Graphical User Interface (GUI). The functionalities include adding, deleting, checking, or associating these 
+flight-related resources.
 
-This guide is to guide you on how to use Wingman to efficiently manage the various aspects of airline operations,
+This guide is to guide you on how to use Wingman to efficiently manage the various aspects of airline operations, 
 such as flight scheduling and management of crew, pilot, plane and location.
 
 ## Table of Contents
@@ -20,12 +22,12 @@ such as flight scheduling and management of crew, pilot, plane and location.
 
 ## How to use this guide?
 
-This user guide provides in-depth documentation on the multiple features that enable Wingman
+This user guide provides an in-depth documentation on the multiple features that enable Wingman
 to assist you in managing your resources.
 We have also included a handy [command summary](#command-summary) where you can view all the commands at a glance.
 Refer to the next section to see how you can get started in just a few steps!
 
-For the description of commands, `resource_index` (e.g. `plane_index`) acts a placeholder in the command format where a 
+For the description of commands, `{resource}_index` (e.g. `plane_index`) acts a placeholder in the command format where a 
 plane's index would be inputted. The index of any resource can be found as the number next to it in the list. Please 
 refer to the image below for clarity.
 
@@ -36,7 +38,7 @@ refer to the image below for clarity.
 You can get started with Wingman in just 3 simple steps:
 1. Click [here](https://github.com/AY2223S2-CS2103T-W11-1/tp/releases/tag/v1.3) to download the Wingman.jar file
 2. Open the terminal or command prompt (for Windows users) application in your device
-3. Run the following command: `java -jar Wingman.jar` in your terminal
+3. Run the following command in your terminal under the directory: `java -jar Wingman.jar`
 
 You should now be in the Wingman application. 
 
@@ -54,7 +56,8 @@ If that is not the case, head over to our [FAQ](#faq) section to troubleshoot
 
 ### Modal Editing
 
-Wingman offers 5 different resource modes through which you can manage your resources:
+Wingman offers 5 different modes through which you can manage your resources, with each mode 
+corresponding to one resource that the app can manage:
 - `crew` mode: to manage the crews that form your airline workforce
 - `flight` mode: to manage the flights that your airline operates
 - `location` mode: to manage the locations in which your airline operates
@@ -331,7 +334,8 @@ so you get the correct information when filtering planes by location).
 ```
 unlinklocation /lo location_index /resource_prefix resource_index
 ```
-This command is ONLY available in the following modes: `crew`, `flight`, `pilot` and `plane`.
+Same as `linklocation` command, this command is ONLY available in the following modes: `crew`, `flight`, `pilot` 
+and `plane`.
 
 This commands unlinks an entity of the current resource mode to a specified location entity in Wingman's database.
 For example, if you are currently in the `plane` mode, then this command will unlink a `plane`
@@ -646,5 +650,14 @@ All your changes to your resources will be saved for you to get back to when you
 ### 1. Why is Wingman not opening when I run the `java -jar` command?
 - You might be running the command in the wrong directory.
 Navigate to the directory where you downloaded the application file and run the same command again. 
+- Verify that your java version is 11. You may run `java -version` in your terminal to see your Java SDK version. 
+If you need to install Java 11, please follow this [guide](https://nus-cs2103-ay2223s2.github.io/website/admin/programmingLanguages.html#programming-language).
+Below is one example showing the correct version: 
+```agsl
+openjdk version "11.0.18" 2023-01-17 LTS
+OpenJDK Runtime Environment Zulu11.62+17-CA (build 11.0.18+10-LTS)
+OpenJDK 64-Bit Server VM Zulu11.62+17-CA (build 11.0.18+10-LTS, mixed mode)
+```
 
 ## Other information
+This App is developed at the National University of Singapore.
