@@ -11,7 +11,6 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.medicine.Medicine;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Doctor;
 import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -145,21 +144,6 @@ public class ParserUtil {
             throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
         return new Gender(trimmedGender);
-    }
-
-    /**
-     * Parses a {@code String doctor} into a {@code Doctor}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code doctor} is invalid.
-     */
-    public static Doctor parseDoctor(String doctor) throws ParseException {
-        requireNonNull(doctor);
-        String trimmedDoctor = doctor.trim();
-        if (!Doctor.isValidDoctor(trimmedDoctor)) {
-            throw new ParseException(Doctor.MESSAGE_CONSTRAINTS);
-        }
-        return new Doctor(trimmedDoctor);
     }
 
     /**
