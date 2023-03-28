@@ -3,7 +3,9 @@ package seedu.patientist.model.ward;
 import static seedu.patientist.commons.util.AppUtil.checkArgument;
 import static seedu.patientist.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Iterator;
 import javafx.collections.ObservableList;
+import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.UniquePersonList;
 import seedu.patientist.model.person.exceptions.DuplicatePersonException;
@@ -107,6 +109,36 @@ public class Ward {
             patients.remove(person);
         } else {
             throw new PersonNotFoundException();
+        }
+    }
+
+    public void deletePatientById(IdNumber idNumber, Patient patient) {
+        requireAllNonNull(idNumber, patient);
+        if (!containsPatient(patient)) {
+            throw new PersonNotFoundException();
+        }
+        Iterator<Person> patientIterator = patients.iterator();
+        while (patientIterator.hasNext()) {
+            Person toCheck = patientIterator.next();
+            if (patient.isSamePerson(toCheck)) {
+                patientIterator.remove();
+                return;
+            }
+        }
+    }
+
+    public void deleteStaffById(IdNumber idNumber, Staff staff) {
+        requireAllNonNull(idNumber, staff);
+        if (!containsStaff(staff)) {
+            throw new PersonNotFoundException();
+        }
+        Iterator<Person> staffIterator = staffs.iterator();
+        while (staffIterator.hasNext()) {
+            Person toCheck = staffIterator.next();
+            if (staff.isSamePerson(toCheck)) {
+                staffIterator.remove();
+                return;
+            }
         }
     }
 
