@@ -1,3 +1,5 @@
+layout: page
+title: Developer Guide
 ---
 DEVELOPER GUIDE FOR WIFE
 ---
