@@ -63,6 +63,14 @@ public class Team {
         return teamName;
     }
 
+    public Desc getTeamDesc() {
+        return teamDesc;
+    }
+
+    public Set<Tag> getSkillTags() {
+        return skillTags;
+    }
+
     /**
      * Returns true if both teams have the same name.
      */
