@@ -8,19 +8,19 @@ import tfifteenfour.clipboard.ui.UiPart;
 /**
  * A UI for the module tab.
  */
-public class ActiveModuleTab extends UiPart<Region> {
+public class InactiveCourseTab extends UiPart<Region> {
 
-    private static final String FXML = "ActiveTab.fxml";
+    private static final String FXML = "InactiveTab.fxml";
 
     @FXML
     private Label name;
 
     /**
-     * Creates an ActiveModuleTab
+     * Creates an InactiveCourseTab
      */
-    public ActiveModuleTab() {
+    public InactiveCourseTab() {
         super(FXML);
-        name.setText("Modules");
+        name.setText("Courses");
     }
 
 }

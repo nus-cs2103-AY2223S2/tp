@@ -21,10 +21,11 @@ import tfifteenfour.clipboard.model.student.Student;
  */
 public class EditGroupCommand extends EditCommand {
     public static final String COMMAND_TYPE_WORD = "group";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_TYPE_WORD
             + ": Edits a group name."
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD
+            + " Parameters: INDEX NEW_GROUP_NAME\n"
+            + "Note: INDEX must be a positive integer\n"
+            + "Example: " + COMMAND_WORD + " " + COMMAND_TYPE_WORD
             + " 1 T01";
 
     public static final String MESSAGE_SUCCESS = "Edited group: %1$s to %2$s";
