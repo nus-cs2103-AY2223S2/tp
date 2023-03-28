@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -208,6 +209,11 @@ public class AddStaffCommandTest {
 
         @Override
         public Ward getWard(String wardName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<String> getWardNames() {
             throw new AssertionError("This method should not be called.");
         }
 
