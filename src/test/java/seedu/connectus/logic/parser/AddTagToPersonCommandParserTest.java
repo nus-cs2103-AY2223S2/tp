@@ -20,10 +20,10 @@ public class AddTagToPersonCommandParserTest {
     @Test
     public void parse_validArgs_returnsCommand() {
         var remarks = new HashSet<Remark>();
-        remarks.add(new Remark("remarks"));
+        remarks.add(new Remark("remarkss"));
         var modules = new HashSet<Module>();
         modules.add(new Module("MOD1234"));
-        assertParseSuccess(parser, "1 r/tagg mod/MOD1234",
+        assertParseSuccess(parser, "1 r/remarkss mod/MOD1234",
             new AddTagToPersonCommand(INDEX_FIRST_PERSON,
                     new AddTagToPersonCommand.AddTagDescriptor(remarks, modules)));
     }
