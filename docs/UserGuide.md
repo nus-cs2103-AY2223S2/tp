@@ -330,7 +330,7 @@ copy <INDEX>
 ```
 
 Examples:
-- `copy 1` will copy the email of the 1st student listed to your clipboard.
+- `copy 1` will copy the email of the 1st student in the list to your clipboard.
 
 
 
