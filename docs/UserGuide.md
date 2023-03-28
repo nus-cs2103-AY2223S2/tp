@@ -18,22 +18,23 @@ You can even view grade statistics without the use of a dedicated data analysis 
 
 Say goodbye to the hassle of managing teaching assistant tasks and hello to increased efficiency with TAA!
 
-#### Objectives of this guide
+### Objectives of this guide
 This guide is written to provide comprehensive instructions for users to use TAA effectively and efficiently.
 More advanced users can also benefit from this guide by following the additional information provided in each feature.
+
 If you are a teaching assistant who can type fast, this guide is for you!
 
-#### Using the guide
-##### Navigation
+### Using the guide
+#### Navigation
 To use the guide, you may wish to take a look at the table of contents at the start of the page.
 You can click on the relevant sections you wish to visit, and the hyperlink will bring you straight to the relevant section.
 
 Alternatively, you may wish to use the built-in search function in your browser (<Button>Ctrl</Button> + <Button>F</Button>) to look for specific keywords relevant to your query.
 
-##### Formatting
+#### Formatting
 Aside from the usual text format, this guide includes certain special formats that are used for different purposes.
 
-###### Callouts
+##### Callouts
  
 Callouts are identified by a coloured box containing some text. 
 
@@ -57,13 +58,13 @@ Callouts are identified by a coloured box containing some text.
 :warning: **Warning:**  Describes actions that may cause the application to function unexpectedly.
 </div>
 
-###### Syntax highlighting
+##### Syntax highlighting
 Text contained within a `grey background` are used to denote either of the following:
 - commands that can be entered into the command bar 
 - file names
 - command line commands, to be run in the [terminal](#glossary) of the host machine
 
-###### Keys
+##### Keys
 Keys such as <Button>A</Button> <Button>B</Button> <Button>C</Button> are used to denote keys on the keyboard that can be pressed to perform certain things.
 
 They can also be used to denote keys that should be held together, at the same time. For example, <Button>Ctrl</Button> + <Button>F</Button> indicates that the user can press both the Ctrl and F keys together to perform a given action.
@@ -101,7 +102,7 @@ They can also be used to denote keys that should be held together, at the same t
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## Graphical User Interface
+## **Graphical User Interface**
 ![Labelled GUI](./images/Ui_labelled.png)
 <figcaption style="text-align:center"><em><strong>
 Figure 2
@@ -135,9 +136,39 @@ Purposes of each GUI component
 If the students being displayed are not the ones you wish to update, do remember to update the active class list before continuing.
 </div>
 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Features**
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** The commands stated below will follow the syntax defined in Table 2. Come back here if you're ever confused on what the symbols mean!
+</div>
+
+<div style="text-align:center"><strong>
+Table 2
+</strong>: 
+Purposes of each GUI component
+</div>
+
+|            Syntax            |                                                                      Explanation                                                                       |
+|:----------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|           `prefix/`           |           Prefixes that are used to separate the parameters supplied by the user. These are usually lower-case and are 1-2 characters long.            |
+|         `UPPER_CASE`         |  [Parameters](#glossary) to be specified by the user. These parameters are not optional, and will cause an error if they are left out of the command.  |
+| `[Items in square brackets]` |                                       Optional parameters. The command will work fine if these are not included.                                       |
+|   `param...`/`[param]...`    | More than one of the parameter `param` is accepted. The first case allows for 1 or more `params`, while the second case allows for 0 or more `params`. |
+
+
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:** Parameters can be specified in any order!
+</div>
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** If a parameter is expected to be passed in only once, but is specified multiple times by the user, onle the last occurrence of the parameter will be taken by the application.
+</div>
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** Extraneous parameters for commands that do not take in parameters will be ignored.
+</div>
 
 ### Attendance
 For attendance, you can make the following calls:
@@ -146,32 +177,34 @@ For attendance, you can make the following calls:
 
 #### Mark attendance: `markAtd`
 Marks the attendance of a student for that week<br>
-Format: `markAtd {student_number} w/{week_number}`<br>
+Format: `markAtd STUDENT_ID w/WEEK_NUMBER`<br>
+
 Examples
 * `markAtd 1 w/1`
 * `markAtd 2 w/1`
 
 #### Unmark attendance: `unmarkAtd`
 Unmarks the attendance of a student for that week<br>
-Format: `unmarkAtd {student_number} w/{week_number}`<br>
+Format: `unmarkAtd STUDENT_ID w/WEEK_NUMBER`<br>
+
 Examples
 * `unmarkAtd 1 w/1`
 * `unmarkAtd 2 w/1`
 
 ### Participation
-For Participation, you can make the following calls:
+For participation, you can make the following calls:
 * insert
 
 #### Insert participation points: `insertPP`
 Insert attendance of a student for that week<br>
-Format: `insertPP {student_number} w/{week_number} pp/{points}`
+Format: `insertPP STUDENT_ID w/WEEK_NUMBER pp/POINTS`
 Examples
 * `insertPP 1 w/1 pp/200`
 * `insertPP 2 w/1 pp/300`
 
 ### Assignments
 
-Directs you to the assignment system. Within the assignment system, you can call:
+For assignments, you can make the following calls:
 * add
 * delete
 * grade
@@ -182,41 +215,35 @@ Directs you to the assignment system. Within the assignment system, you can call
 #### Add Assignment: `add`
 Adds an assignment with name, start_date, end_date, percent_weightage, total marks. All assignments will initially be ungraded.
 <br>
-Format: `Format: add {name} {start_date} {end_date} {percent_weightage} {total_marks}`<br>
+Format: `Format: add NAME START_DATE END_DATE PERCENT_WEIGHTAGE TOTAL_MARKS`<br>
 Example:
 * `add lab1 01-03-2023 15-03-2023 20 100`
 
 #### Delete Assignment: `delete`
 Deletes the assignment of assignment_id you provided.<br>
-Format: `delete {assignment_id}`<br>
+Format: `delete ASSIGNMENT_ID`<br>
 Example:
 * `delete 1`
 
 #### Grade Assignment: `grade`
 Grades the assignment of assignment_id and student_id with a score you provide.<br>
-Format: `grade {assignment_id} {student_id} {score}`<br>
+Format: `grade ASSIGNMENT_ID STUDENT_ID SCORE`<br>
 Example:
 * `grade 1 2 20`
 
 #### Ungrade Assignment: `ungrade`
 Removes the grade of the assignment of assignment_id and student_id.<br>
-Format: `ungrade {assignment_id} {student_id}`<br>
+Format: `ungrade ASSIGNMENT_ID STUDENT_ID`<br>
 Example:
 * `ungrade 1 2`
 
-#### List all assignments: `list`
+#### List all assignments: `list_a` [coming soon]
 Lists all assignments and their respective information.
-Format: `list`
-
-#### Exit assignment system: `exit`
-Exits the assignment system.<br>
-Format: `exit`
+Format: `list_a`
 
 ### Class List
 
-Directs you to the class list system.
-In this system, you can call the following commands:
-
+For class lists, you can call the following commands:
 - Create class list: `create`
 - (Random) Groupings: `rand_grp`
 - Adding a student: `add`
@@ -227,14 +254,14 @@ In this system, you can call the following commands:
 #### Create a class list: `create`
 Creates a class list to store the information about a group of students.
 
-Format: `create LIST_NAME [STUDENT_NAMES]`
+Format: `create_class LIST_NAME [STUDENT_NAMES]`
 - The argument `LIST_NAME` should be the name of the new class list
   The argument `[STUDENT_NAMES]` should consist of a sequence of student names, separated by commas.
 
 
 Examples:
-- `create cs2103t-t14 Alex, John, Bonnie, Clyde` creates a class list of size 4 with 4 students: Alex, John, Bonnie and Clyde.
-- `create cs6244` creates an empty class list.
+- `create_class cs2103t-t14 Alex, John, Bonnie, Clyde` creates a class list of size 4 with 4 students: Alex, John, Bonnie and Clyde.
+- `create_class cs6244` creates an empty class list.
 
 
 #### Group students at random: `rand_grp` [coming soon]
@@ -253,16 +280,22 @@ Examples:
 #### Add a student: `add_student`
 Adds a student to a given class list.
 
-Format: `add_student n/STUDENT_NAME cl/CLASS_NAME`
+Format: `add_student n/STUDENT_NAME cl/CLASS_NAME...`
 - The argument `STUDENT_NAME` should be the name of the student to be added
 - The argument `CLASS_NAME` should be the name of a given class the student belongs to
-- If the class list `CLASS_NAME` does not exist, it will automatically be created with student
-`STUDENT_NAME` as its first student
-
 
 Examples:
 - `add n/Tom cl/cs2103t-t14` adds Tom to the class CS2103T-T14
 - `add n/Harry cl/cs6244` adds Harry to the class CS6244
+
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:** You can add a student to multiple classes at once! Just specify multiple `cl/` prefixes in your command. e.g. `add n/Harry cl/cs6244 cl/cs1231s`
+</div>
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** If the class list `CLASS_NAME` does not exist, it will automatically be created with student
+`STUDENT_NAME` as its first student
+</div>
 
 #### Edit a student: `edit_student`
 Edits a student in the active class list.
@@ -277,6 +310,9 @@ Examples:
 - `edit_student 12 n/Tom Hanks cl/Lab_L11` changes the name of the 12th student to "Tom Hanks", and assigns
 him to the class "Lab_L11"
 
+<div markdown="span" class="alert alert-danger">
+:warning: **Warning:**  The new fields will override the fields of the targeted student completely. i.e. to add an extra field, you will have to copy over the previous fields and add one additional parameter containing the new field to be added.
+</div>
 
 #### Delete a student: `delete_student`
 Deletes a student from the active class list.
@@ -286,6 +322,10 @@ Format: `delete_student STUDENT_INDEX`
 
 Examples:
 - `delete_student 3` removes the 3rd student in the currently active/displayed class list
+
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** This command will delete the student with the given ID on the active class list, not from the global class list with all students obtained from using the `list` command.
+</div>
 
 #### List all students : `list` 
 Lists all students tracked by TAA globally.
@@ -352,3 +392,4 @@ Format: `export [flag] [file path]`
 | Graphical User Interface | A type of user interface that allows users to interact with a computer program using graphical elements such as buttons, menus, and icons instead of typing in commands. | 
 |         Terminal         |                    Text-based interface used to interact with the computer's operating system. For Windows, it is usually called the Command Prompt.                     | 
 |       Host Machine       |                                                    The computer that is used to run the software/program in question.                                                    | 
+|        Parameter         |                                  A value that is passed in by the user. This value changes depending on what the user decides to enter.                                  | 
