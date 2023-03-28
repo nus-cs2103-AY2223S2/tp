@@ -2,9 +2,13 @@ package seedu.address.testutil;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 import seedu.address.logic.commands.edit.EditLectureCommand.EditLectureDescriptor;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building {@code EditLectureDescriptor} objects.
@@ -41,6 +45,7 @@ public class EditLectureDescriptorBuilder {
 
         descriptor = new EditLectureDescriptor();
         descriptor.setName(lecture.getName());
+        descriptor.setTags(lecture.getTags());
     }
 
     /**
@@ -51,6 +56,18 @@ public class EditLectureDescriptorBuilder {
      */
     public EditLectureDescriptorBuilder withName(String name) {
         descriptor.setName(new LectureName(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code tags} of the {@code EditLectureDescriptor} that we are building.
+     *
+     * @param tags The tags to set to.
+     * @return This {@code EditLectureDescriptorBuilder}.
+     */
+    public EditLectureDescriptorBuilder withTags(String... tags) {
+        descriptor.setTags(
+                Arrays.asList(tags).stream().map(Tag::new).collect(Collectors.toSet()));
         return this;
     }
 
