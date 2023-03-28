@@ -7,8 +7,10 @@ import java.util.Set;
 
 import seedu.address.commons.fp.Lazy;
 import seedu.address.commons.util.GetUtil;
+import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
@@ -101,12 +103,12 @@ public class LinkFlightToLocationCommandFactory implements CommandFactory<LinkFl
             Optional<String> locationIdOptional,
             FlightLocationType type,
             Map<FlightLocationType, Location> target
-    ) {
+    ) throws CommandException {
         if (locationIdOptional.isEmpty()) {
             return false;
         }
         int indexOfLocation =
-                Integer.parseInt(locationIdOptional.get());
+                Command.parseIntegerToZeroBasedIndex(locationIdOptional.get());
         Optional<Location> locationOptional =
                 locationManagerLazy.get().getItemOptional(indexOfLocation);
         if (locationOptional.isEmpty()) {
@@ -118,11 +120,11 @@ public class LinkFlightToLocationCommandFactory implements CommandFactory<LinkFl
 
     private Flight getFlightOrThrow(
             Optional<String> flightIdOptional
-    ) throws ParseException, IndexOutOfBoundException {
+    ) throws ParseException, IndexOutOfBoundException, CommandException {
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
-        int indexOfFlight = Integer.parseInt(flightIdOptional.get());
+        int indexOfFlight = Command.parseIntegerToZeroBasedIndex(flightIdOptional.get());
         Optional<Flight> flightOptional =
                 flightManagerLazy.get().getItemOptional(indexOfFlight);
         if (flightOptional.isEmpty()) {
@@ -132,7 +134,8 @@ public class LinkFlightToLocationCommandFactory implements CommandFactory<LinkFl
     }
 
     @Override
-    public LinkFlightToLocationCommand createCommand(CommandParam param) throws ParseException {
+    public LinkFlightToLocationCommand createCommand(CommandParam param)
+            throws ParseException, CommandException {
         Optional<String> locationDepartureIdOptional =
                 param.getNamedValues(LOCATION_DEPARTURE_PREFIX);
         Optional<String> locationArrivalIdOptional =

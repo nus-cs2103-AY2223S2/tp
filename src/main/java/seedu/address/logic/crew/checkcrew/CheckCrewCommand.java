@@ -29,7 +29,9 @@ public class CheckCrewCommand implements Command {
     public CommandResult execute(Model model) throws CommandException {
         boolean isAvailable;
         try {
-            isAvailable = model.checkCrewByIndex(Integer.parseInt(this.id));
+            isAvailable = model.checkCrewByIndex(
+                    Command.parseIntegerToZeroBasedIndex(id)
+            );
         } catch (IndexOutOfBoundException e) {
             return new CommandResult(
                     String.format("Error: %s", e.getMessage())

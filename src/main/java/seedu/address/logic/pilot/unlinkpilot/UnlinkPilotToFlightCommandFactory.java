@@ -7,8 +7,10 @@ import java.util.Set;
 
 import seedu.address.commons.fp.Lazy;
 import seedu.address.commons.util.GetUtil;
+import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
@@ -103,12 +105,12 @@ public class UnlinkPilotToFlightCommandFactory implements CommandFactory<UnlinkP
             Optional<String> pilotIdOptional,
             FlightPilotType type,
             Map<FlightPilotType, Pilot> target
-    ) {
+    ) throws CommandException {
         if (pilotIdOptional.isEmpty()) {
             return false;
         }
         int indexOfPilot =
-                Integer.parseInt(pilotIdOptional.get());
+                Command.parseIntegerToZeroBasedIndex(pilotIdOptional.get());
         Optional<Pilot> pilotOptional =
                 pilotManagerLazy.get().getItemOptional(indexOfPilot);
         if (pilotOptional.isEmpty()) {
@@ -120,12 +122,12 @@ public class UnlinkPilotToFlightCommandFactory implements CommandFactory<UnlinkP
 
     private Flight getFlightOrThrow(
             Optional<String> flightIdOptional
-    ) throws ParseException {
+    ) throws ParseException, CommandException {
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
         int indexOfFlight =
-                Integer.parseInt(flightIdOptional.get());
+                Command.parseIntegerToZeroBasedIndex(flightIdOptional.get());
         Optional<Flight> flightOptional =
                 flightManagerLazy.get().getItemOptional(indexOfFlight);
         if (flightOptional.isEmpty()) {
@@ -136,7 +138,8 @@ public class UnlinkPilotToFlightCommandFactory implements CommandFactory<UnlinkP
 
 
     @Override
-    public UnlinkPilotToFlightCommand createCommand(CommandParam param) throws ParseException {
+    public UnlinkPilotToFlightCommand createCommand(CommandParam param)
+            throws ParseException, CommandException {
         Optional<String> pilotFlyingIdOptional =
                 param.getNamedValues(PILOT_FLYING_PREFIX);
         Optional<String> pilotMonitoringIdOptional =

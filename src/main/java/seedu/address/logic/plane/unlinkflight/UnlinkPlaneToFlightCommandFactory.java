@@ -7,8 +7,10 @@ import java.util.Set;
 
 import seedu.address.commons.fp.Lazy;
 import seedu.address.commons.util.GetUtil;
+import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
@@ -99,12 +101,12 @@ public class UnlinkPlaneToFlightCommandFactory implements CommandFactory<UnlinkP
             Optional<String> planeIdOptional,
             FlightPlaneType type,
             Map<FlightPlaneType, Plane> target
-    ) {
+    ) throws CommandException {
         if (planeIdOptional.isEmpty()) {
             return false;
         }
         int indexOfPlane =
-                Integer.parseInt(planeIdOptional.get());
+                Command.parseIntegerToZeroBasedIndex(planeIdOptional.get());
         Optional<Plane> planeOptional =
                 planeManagerLazy.get().getItemOptional(indexOfPlane);
         if (planeOptional.isEmpty()) {
@@ -116,12 +118,12 @@ public class UnlinkPlaneToFlightCommandFactory implements CommandFactory<UnlinkP
 
     private Flight getFlightOrThrow(
             Optional<String> flightIdOptional
-    ) throws ParseException {
+    ) throws ParseException, CommandException {
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
         int indexOfFlight =
-                Integer.parseInt(flightIdOptional.get());
+                Command.parseIntegerToZeroBasedIndex(flightIdOptional.get());
         Optional<Flight> flightOptional =
                 flightManagerLazy.get().getItemOptional(indexOfFlight);
         if (flightOptional.isEmpty()) {
@@ -133,7 +135,7 @@ public class UnlinkPlaneToFlightCommandFactory implements CommandFactory<UnlinkP
     @Override
     public UnlinkPlaneToFlightCommand createCommand(
             CommandParam param
-    ) throws ParseException, IndexOutOfBoundException {
+    ) throws ParseException, IndexOutOfBoundException, CommandException {
         Optional<String> planeUsingIdOptional =
                 param.getNamedValues(PLANE_USING_PREFIX);
 

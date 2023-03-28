@@ -6,6 +6,7 @@ import java.util.Deque;
 import java.util.List;
 import java.util.Optional;
 
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.logic.crew.checkcrew.CheckCrewCommandFactory;
 import seedu.address.logic.crew.linkflight.LinkCrewToFlightCommandFactory;
@@ -190,7 +191,7 @@ public class WingmanParser extends FactoryParser {
     public Command parse(
             OperationMode operationMode,
             String userInput
-    ) throws ParseException {
+    ) throws ParseException, CommandException {
         final Deque<String> tokens = tokenize(userInput);
 
         final Optional<Command> topCommand = this.parseFactory(tokens);
@@ -225,7 +226,7 @@ public class WingmanParser extends FactoryParser {
     private Optional<Command> parseGroup(
             OperationMode operationMode,
             Deque<String> tokens
-    ) throws ParseException {
+    ) throws ParseException, CommandException {
         for (CommandGroup commandGroup : this.groups) {
             if (!commandGroup.getOperationMode().equals(operationMode)) {
                 continue;
