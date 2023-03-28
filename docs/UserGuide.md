@@ -157,7 +157,7 @@ Format: `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS] [
 * When editing tags, the existing corresponding values of the tag field in the application will be removed. i.e. adding of tags is not cumulative.
 
 <div markdown="span" class="alert alert-info">:information_source:
-**Note:** This means that if an application has an existing `highSalary` tag. Executing command `edit 1 t/creditBearing` would remove the original
+**Note:** This means that if an application has an existing `highSalary` tag. Executing command `edit-app 1 t/creditBearing` would remove the original
 `highSalary` tag, replacing it with the `creditBearing` tag.
 </div>
 
