@@ -92,10 +92,13 @@ public class EditPatientCommandTest {
 
     @Test
     public void execute_filteredList_success() {
+        System.out.println("Come here to debug");
         showPatientAtIndex(model, INDEX_FIRST_PERSON);
 
         Patient patientInFilteredList = model.getFilteredPatientList().get(INDEX_FIRST_PERSON.getZeroBased());
+        System.out.println(patientInFilteredList);
         Patient editedPatient = new PatientBuilder(patientInFilteredList).withName(VALID_NAME_BOB).build();
+        System.out.println(editedPatient);
         EditPatientCommand editCommand = new EditPatientCommand(INDEX_FIRST_PERSON,
                 new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
