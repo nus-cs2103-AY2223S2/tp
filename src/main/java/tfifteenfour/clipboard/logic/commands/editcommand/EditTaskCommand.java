@@ -23,7 +23,7 @@ public class EditTaskCommand extends EditCommand {
             + ": Edits a task name."
             + "Parameters: INDEX (must be a positive integer) + NEW_TASK_NAME\n"
             + "Example: " + COMMAND_WORD + " " + COMMAND_TYPE_WORD
-            + " 1 CA2 Pitch";
+            + " 1 CA2 Pitch and Demo";
 
     public static final String MESSAGE_SUCCESS = "Edited task: %1$s to %2$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the group";
@@ -59,7 +59,7 @@ public class EditTaskCommand extends EditCommand {
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
-        newTask.setGrades(taskToEdit.getAttendance());
+        newTask.setGrades(taskToEdit.getGrades());
 
         lastShownList.set(index.getZeroBased(), newTask);
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, taskToEdit, newTask), willModifyState);

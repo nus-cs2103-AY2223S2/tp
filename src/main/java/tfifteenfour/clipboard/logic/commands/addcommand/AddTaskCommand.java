@@ -8,7 +8,6 @@ import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
-import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.task.Task;
 
 /**
@@ -16,7 +15,7 @@ import tfifteenfour.clipboard.model.task.Task;
  */
 public class AddTaskCommand extends AddCommand {
     public static final String COMMAND_TYPE_WORD = "task";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_TYPE_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a task to the selected group. "
             + "Parameters: "
             + "TASK_NAME\n"
