@@ -1,13 +1,14 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.ShortcutCommand;
-import seedu.address.logic.parser.ShortcutCommandParser.CommandType;
-
 import static seedu.address.logic.commands.ShortcutCommand.MESSAGE_INVALID_SHORTCUT;
 import static seedu.address.logic.commands.ShortcutCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.ShortcutCommand;
+import seedu.address.logic.parser.ShortcutCommandParser.CommandType;
 
 public class ShortcutCommandParserTest {
 
