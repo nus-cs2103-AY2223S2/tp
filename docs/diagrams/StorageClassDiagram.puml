@@ -22,6 +22,12 @@ Class JsonAdaptedClient
 Class JsonAdaptedTag
 }
 
+package "FitBookExerciseRoutine Storage" #F4F6F6{
+Class "<<interface>>\nFitBookExerciseRoutineStorage" as FitBookExerciseRoutineStorage
+Class JsonFitBookExerciseRoutineStorage
+Class JsonSerializableFitBookExerciseRoutine
+Class JsonAdaptedExercise
+}
 }
 
 Class HiddenOutside #FFFFFF
@@ -30,14 +36,18 @@ HiddenOutside ..> Storage
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" FitBookStorage
+StorageManager -down-> "1" FitBookExerciseRoutineStorage
 
 Storage -left-|> UserPrefsStorage
 Storage -right-|> FitBookStorage
+Storage -left-|> FitBookExerciseRoutineStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonFitBookStorage .up.|> FitBookStorage
 JsonFitBookStorage ..> JsonSerializableFitBook
 JsonSerializableFitBook --> "*" JsonAdaptedClient
 JsonAdaptedClient --> "*" JsonAdaptedTag
-
+JsonFitBookExerciseRoutineStorage .up.|> FitBookExerciseRoutineStorage
+JsonFitBookExerciseRoutineStorage ..> JsonSerializableFitBookExerciseRoutine
+JsonSerializableFitBookExerciseRoutine --> "*" JsonAdaptedExercise
 @enduml

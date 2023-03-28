@@ -140,4 +140,5 @@ public interface FitBookModel {
     void updateFilteredRoutineList(Predicate<Routine> predicate);
 
     void removeExercise(Routine routineToDelete, int zeroBased);
+
 }
