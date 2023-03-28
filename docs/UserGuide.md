@@ -475,7 +475,7 @@ edit session <INDEX> <NEW SESSION NAME>
 
 
 Examples:
-- `edit session 1 Tutorial0` will replace the session name of the first session listed to 'Tutorial0'.
+- `edit session 1 Tutorial1` will rename the first session listed to 'Tutorial1'.
 
 
 
