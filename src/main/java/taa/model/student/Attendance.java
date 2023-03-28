@@ -156,8 +156,7 @@ public class Attendance {
     }
 
     /**
-     * @return returns string version of participation points to be stored in
-     * json file
+     * @return returns string version of participation points to be stored in json file
      */
     public String partPointsStorageStr() {
         String res = "";
