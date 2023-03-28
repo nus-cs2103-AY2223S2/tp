@@ -25,7 +25,7 @@
       </stylesheets>
 
       <VBox alignment="TOP_CENTER" minWidth="680.0" styleClass="background" stylesheets="@DarkTheme.css">
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+        <MenuBar fx:id="menuBar" stylesheets="@DarkTheme.css" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
@@ -35,11 +35,11 @@
         </MenuBar>
             <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" minWidth="680.0" spacing="5.0" VBox.vgrow="ALWAYS">
                <children>
-              <VBox fx:id="foodList" minWidth="400.0" prefWidth="400.0" styleClass="pane-with-border">
+              <VBox fx:id="foodList" minWidth="430.0" prefWidth="400.0" styleClass="pane-with-border">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <StackPane fx:id="foodListPanelPlaceholder"  VBox.vgrow="ALWAYS" />
+                <StackPane fx:id="foodListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
               <StackPane fx:id="resultDisplayPlaceholder" alignment="CENTER_RIGHT" minWidth="280.0" prefWidth="280.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                 <padding>
