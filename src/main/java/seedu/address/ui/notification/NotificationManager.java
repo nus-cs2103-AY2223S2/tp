@@ -158,7 +158,6 @@ public class NotificationManager {
             jobList = deliveryList.get(0);
         }
         if (jobList != null) {
-            System.out.println(jobList.size());
             for (DeliveryJob d: jobList) {
                 String des = d.toString();
                 show("Upcoming Job(s)!", des, Pos.TOP_LEFT);
