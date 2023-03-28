@@ -15,7 +15,7 @@
 
 <fx:root minHeight="650" minWidth="450" onCloseRequest="#handleExit" title="PlanEase" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/planease.png" />
   </icons>
   <scene>
     <Scene>
