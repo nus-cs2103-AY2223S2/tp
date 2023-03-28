@@ -258,7 +258,7 @@ After executing the command, we see that Bob has been added below the list.
 
 **Note:** You must specify minimally, the person's _name_, _email_, _year_ and _course_ when adding a person.
 
-> **:bulb: Tips for understanding commands**:
+> 💡 **Understanding commands**:
 > As you can see, we first specified the `add` command, followed by the _prefix_ `n/` and the _name_ that we want to add
 > i.e. `Bob`. Same goes for the _year_, _course_ and _email_. This `n/` and `Bob` pair, is the _prefix_ and _parameter_
 > pair that occurs frequently in other commands too. Refer to [Glossary](#glossary) for more info.
@@ -292,7 +292,7 @@ His _contact_ details will then be shown in the **Info Panel**.
 
 You may try loading other person's details by using different _index_ (e.g. `view 2`). 
 
->**Tips**: CoDoc also supports GUI, so you can just click the person in the list to view his details.
+>💡 **Tip**: CoDoc also supports GUI, so you can just click the person in the list to view his details.
 
 <br>
 
@@ -310,7 +310,7 @@ Note that you do not see anything of value, and that is because we have not adde
 You can enter `view s` as well to view Bob's _skills_ to see a similar empty list, or enter `view c` to go back to Bob's
 contact information.
 
->**Tips**: CoDoc also supports GUI, so you can click on the name of different tabs to switch between tabs.
+>💡 **Tips**: CoDoc also supports GUI, so you can click on the name of different tabs to switch between tabs.
 
 **Related:** [Viewing a person/Changing tabs: `view`](#viewing-a-personchanging-tabs--view)
 
@@ -337,7 +337,7 @@ After you see Bob in the **Info Panel**, enter `edit m/ay2223s2 cs2101 m/ay2223s
 You can now see that Bob's list of **modules taken** has been updated to contain modules _CS2101_ and _CS2103T_
 (enter `view m` if you're not on the _modules_ tab).
 
->**Tip**: You do not have to be on _modules_ tab to edit it as long as you are viewing the correct person (i.e. you
+>💡 **Tip**: You do not have to be on _modules_ tab to edit it as long as you are viewing the correct person (i.e. you
 > can be viewing Bob's contacts as you add modules). However, switching to _modules_ tab will definitely make it easy
 > for you to edit **modules taken**!
 
@@ -382,7 +382,7 @@ multiple attributes. To learn more about it, you can take a look at [Finding a p
 The pre-existing contacts that come when you first launch are just some examples that you can play around with. 
 Now, you may enter `clear` in the command box to clear all contacts and start off with a fresh database.
 
->**Tip**: Be careful not to accidentally enter the `clear` command, it will not ask twice before wiping your database!
+>💡 **Tip**: Be careful not to accidentally enter the `clear` command, it will not ask twice before wiping your database!
 
 If you need more info on the usage of each command, you can refer to the relevant sections below. 
 
@@ -390,9 +390,15 @@ If you need more info on the usage of each command, you can refer to the relevan
 
 <br>
 
+---
+
 ## Commands
 
-### Viewing help : `help`
+Here is a list of available commands and its details.
+
+<br>
+
+### 1. Viewing help : `help`
 
 `help`<br>
 > <img src="images/UiHelpMenu.png"/>
@@ -401,7 +407,7 @@ If you need more info on the usage of each command, you can refer to the relevan
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Adding a person : `add`
+### 2. Adding a person : `add`
 
 Adds a new contact into your CoDoc application. 
 
@@ -432,7 +438,7 @@ Once the person has been created, the result display will show a confirmation me
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Viewing a person/Changing tabs : `view`
+### 3. Viewing a person/Changing tabs : `view`
 
 Controls the what is displayed in the right panel. 
 
@@ -463,7 +469,7 @@ If `s` is specified, the tab on the right will switch to the **skills** that the
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Editing a person : `edit`
+### 4. Editing a person : `edit`
 
 Edits the person displayed in the view panel. Existing values will be updated to the input values.
 
@@ -504,7 +510,7 @@ At least one of the optional fields must be provided.
 > 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Finding a person : `find`
+### 5. Finding a person : `find`
 `find [OPTIONAL/PARAMETER]...`<br>
 >> find KEYWORD [MORE_KEYWORDS]
 > * The search is case-insensitive. e.g `hans` will match `Hans`
@@ -521,7 +527,7 @@ At least one of the optional fields must be provided.
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Listing all persons/Resetting filters : `list`
+### 6. Listing all persons/Resetting filters : `list`
 
 Displays the full list of all persons stored in the person list panel.<br>
 
@@ -533,7 +539,7 @@ Displays the full list of all persons stored in the person list panel.<br>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Deleting a person : `delete`
+### 7. Deleting a person : `delete`
 
 Deletes the person at the specified INDEX. 
 
@@ -548,22 +554,25 @@ E.g. `delete 1` will delete the current person at index 1 as shown in the list p
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Clearing all entries : `clear`
+### 8. Clearing all entries : `clear`
 `clear`<br>
 > * :warning: Clears **all** entries from CoDoc.<br>
 > ![Clear](images/UiClear.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
-### Exiting the program : `exit`
+### 9. Exiting the program : `exit`
 
 Exits the program. <br>
 Equivalent to clicking the close button via the GUI. <br>
 
 >`exit`<br>
- 
 
 [Scroll back to *Table of Contents*](#table-of-contents)
+
+<br>
+
+---
 
 ## Data Management
 **Q**: How do I save my person list?<br>
@@ -579,9 +588,17 @@ Equivalent to clicking the close button via the GUI. <br>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
+<br>
+
+---
+
 ## FAQ
 
 [Scroll back to *Table of Contents*](#table-of-contents)
+
+<br>
+
+---
 
 ## Upcoming Features
 
@@ -595,6 +612,10 @@ _Details coming soon ..._
 <br>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
+
+<br>
+
+---
 
 ## Command Summary 
 
