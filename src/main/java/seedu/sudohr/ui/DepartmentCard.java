@@ -25,6 +25,8 @@ public class DepartmentCard extends UiPart<Region> {
     @FXML
     private Label number;
     @FXML
+    private Label totalEmployees;
+    @FXML
     private Label name;
     @FXML
     private FlowPane employees;
@@ -39,9 +41,10 @@ public class DepartmentCard extends UiPart<Region> {
         super(FXMl);
         this.department = department;
         number.setText(displayedIndex + ". ");
+        totalEmployees.setText("Number of employees: " + department.getEmployees().size());
         name.setText(department.getName().toString());
         department.getEmployees().stream()
-                .sorted(Comparator.comparing(person-> person.getName().toString()))
+                .sorted(Comparator.comparing(employee-> employee.getName().toString()))
                 .forEach(employee -> employees.getChildren().add(new Label(employee.getName().toString())));
 
     }

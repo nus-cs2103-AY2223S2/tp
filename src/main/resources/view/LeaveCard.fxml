@@ -19,16 +19,15 @@
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="number" styleClass="cell_big_label">
+                <Label fx:id="date" styleClass="cell_bigger_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" text="\$first" styleClass="cell_bigger_label" />
             </HBox>
-            <Label fx:id="totalEmployees" styleClass="cell_big_label" />
-            <FlowPane fx:id="employees" orientation="VERTICAL" prefHeight="50"/>
+            <Label fx:id="totalNumber" styleClass="cell_big_label"/>
+            <FlowPane fx:id="employees" orientation="VERTICAL" styleClass="test" prefHeight="50"/>
         </VBox>
     </GridPane>
 </HBox>

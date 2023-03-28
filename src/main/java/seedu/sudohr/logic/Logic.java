@@ -10,6 +10,7 @@ import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.leave.Leave;
 
 /**
  * API of the Logic component
@@ -36,6 +37,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of departments */
     ObservableList<Department> getFilteredDepartmentList();
+
+    /** Returns an unmodifiable view of the filtered list of leaves */
+    ObservableList<Leave> getFilteredLeaveList();
 
     /**
      * Returns the user prefs' SudoHR file path.
