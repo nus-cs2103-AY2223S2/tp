@@ -38,7 +38,7 @@ public class EntityList<T> extends UiPart<Region> {
      * Creates a {@code ListPanel} with the given {@code list} after transforming with {@code biMap}
      *
      * @param list  ObservableList of items
-     * @param biMap BiFunction that transform the list to the approproate {@code UiPart}
+     * @param biMap BiFunction that transforms the list to the appropriate {@code UiPart}
      */
     public EntityList(
         ObservableList<T> list,
