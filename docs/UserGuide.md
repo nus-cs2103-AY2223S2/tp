@@ -74,15 +74,8 @@ Adds a person (patient/doctor) to MediConnect.
 - Each person can be added only once.
 - Each person's NRIC must be distinct.
 
-
-### Adding a person: `add a patient`, `add a doctor`
-
-Adds a person (patient/doctor) to MediConnect.
-- Each person can be added only once.
-- Each person's NRIC must be distinct.
-
 Format: `addPatient n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]`  <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`addDoctor n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]​`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`addDoctor n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]​`
 
 | Field            | Prefix | Input Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 |------------------|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -119,20 +112,18 @@ Examples:
 *  `prescribe m/paracetamol to n/John Tan` Prescribes paracetamol to John Tan
 
 
-### Finding persons (patient or doctor) by name : `find`
+### Finding persons (patient or doctor) by NRIC : `find`
 
-Finds persons who contains any of the given names.
+Finds persons with the given NRIC.
 
-Format: `find r/ROLE n/NAME`
+Format: `find ic/NRIC`
 
-* Search is case-insensitive
-* Both role and name are searched
-
+* Search is case-insensitive. e.g `s1234567x` will match with `S1234567X`.
+* Only the NRIC is searched.
+* Only full NRIC entries can be searched.
 
 Examples:
-* `find Doctor John` returns `john` and `John`
-* `find Patient Tim` returns `tim`, `Tim`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find ic/S1234567X` returns the details for the person with the given NRIC.
 
 ### Deleting a person by name : `delete`
 
