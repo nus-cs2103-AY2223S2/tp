@@ -54,7 +54,6 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         System.out.println(model.getRoster().getUnmodifiableCourseList().size());
-        System.out.println("$$$$$$$$$");
 
         CommandResult commandResult;
         Command command = RosterParser.parseCommand(commandText, currentSelection);

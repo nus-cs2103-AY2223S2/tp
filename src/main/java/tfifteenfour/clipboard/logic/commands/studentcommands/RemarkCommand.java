@@ -2,9 +2,6 @@ package tfifteenfour.clipboard.logic.commands.studentcommands;
 
 import static tfifteenfour.clipboard.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.List;
-
-import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.Command;
@@ -51,21 +48,22 @@ public class RemarkCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
-        List<Student> lastShownList = model.getUnmodifiableFilteredStudentList();
+        // List<Student> lastShownList = model.getUnmodifiableFilteredStudentList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
+        // if (index.getZeroBased() >= lastShownList.size()) {
+        //     throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        // }
 
-        Student studentToEdit = lastShownList.get(index.getZeroBased());
-        Student editedStudent = new Student(
-                studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
-                studentToEdit.getStudentId(), remark);
+        // Student studentToEdit = lastShownList.get(index.getZeroBased());
+        // Student editedStudent = new Student(
+        //         studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
+        //         studentToEdit.getStudentId(), remark);
 
-        model.setStudent(studentToEdit, editedStudent);
-        //model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        // // model.setStudent(studentToEdit, editedStudent);
+        // //model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(this, generateSuccessMessage(editedStudent), true);
+        // return new CommandResult(this, generateSuccessMessage(editedStudent), true);
+        return new CommandResult(this, "PLACEHOLDER", willModifyState);
     }
 
     /**
