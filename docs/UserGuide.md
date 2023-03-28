@@ -495,7 +495,7 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------
 
-## Students by Session Commands
+## Students under Session Page Commands
 
 ### Marking selected students as present: `mark`
 
