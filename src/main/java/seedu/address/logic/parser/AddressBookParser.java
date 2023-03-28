@@ -102,6 +102,9 @@ public class AddressBookParser {
         case AddStudentToEventCommand.COMMAND_WORD:
             return new AddStudentToEventParser().parse(arguments);
 
+        case DeleteStudentFromEventCommand.COMMAND_WORD:
+            return new DeleteStudentFromEventParser.parse(arguments);
+
         case DeleteEventCommand.COMMAND_WORD:
             return new DeleteEventCommandParser().parse(arguments);
 
