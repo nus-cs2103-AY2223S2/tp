@@ -32,6 +32,9 @@
   }, {
     "categoryName" : "test",
     "summary" : "test"
+  }, {
+    "categoryName" : "hewwo",
+    "summary" : ""
   } ],
   "expenses" : [ {
     "name" : "apples",
@@ -63,6 +66,22 @@
     "date" : "2023-03-16",
     "category" : {
       "categoryName" : "a",
+      "summary" : ""
+    }
+  }, {
+    "name" : "apple",
+    "amount" : "3.4",
+    "date" : "2023-03-28",
+    "category" : {
+      "categoryName" : "food",
+      "summary" : ""
+    }
+  }, {
+    "name" : "coffee",
+    "amount" : "5.0",
+    "date" : "2023-03-28",
+    "category" : {
+      "categoryName" : "food",
       "summary" : ""
     }
   } ]
