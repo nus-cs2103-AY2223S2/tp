@@ -10,6 +10,9 @@ import seedu.calidr.logic.commands.exceptions.CommandException;
 import seedu.calidr.model.Model;
 import seedu.calidr.model.task.Task;
 
+/**
+ * Marks a task in the task list as 'not done'.
+ */
 public class UnmarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
 
@@ -22,6 +25,11 @@ public class UnmarkTaskCommand extends Command {
 
     private final Index index;
 
+    /**
+     * Creates a UnmarkTaskCommand to mark the specified {@code Task}
+     *
+     * @param index of the task in the filtered task list to mark
+     */
     public UnmarkTaskCommand(Index index) {
         requireNonNull(index);
         this.index = index;

@@ -56,10 +56,12 @@ public class TaskPopOver extends UiPart<Region> {
             doneTick.setText("✔");
         }
 
-        // TODO
-        //  description.setText(taskEntry.getDescription());
-        description.setManaged(false);
-        description.setVisible(false);
+        if (task.getDescription().isPresent()) {
+            description.setText(task.getDescription().get().value);
+        } else {
+            description.setManaged(false);
+            description.setVisible(false);
+        }
 
         if (task instanceof Event) {
             EventDateTimes eventDateTimes = ((Event) task).getEventDateTimes();

@@ -10,6 +10,9 @@ import seedu.calidr.logic.commands.exceptions.CommandException;
 import seedu.calidr.model.Model;
 import seedu.calidr.model.task.Task;
 
+/**
+ * Marks a task in the task list as 'done'.
+ */
 public class MarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
@@ -22,6 +25,11 @@ public class MarkTaskCommand extends Command {
 
     private final Index index;
 
+    /**
+     * Creates a MarkTaskCommand to mark the specified {@code Task}
+     *
+     * @param index of the task in the filtered task list to mark
+     */
     public MarkTaskCommand(Index index) {
         requireNonNull(index);
         this.index = index;

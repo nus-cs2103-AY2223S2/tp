@@ -52,7 +52,7 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         title.setText(task.getTitle().value);
         index.setText(displayedIndex + ". ");
-        priority.setText(task.getPriority().toString());
+        priority.setText(task.getPriority().toString().toUpperCase());
         if (task.isDone()) {
             status.setText("DONE");
         } else {

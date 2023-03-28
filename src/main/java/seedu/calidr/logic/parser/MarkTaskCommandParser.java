@@ -7,7 +7,18 @@ import seedu.calidr.commons.core.index.Index;
 import seedu.calidr.logic.commands.MarkTaskCommand;
 import seedu.calidr.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new MarkTaskCommand object
+ */
 public class MarkTaskCommandParser implements Parser<MarkTaskCommand> {
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the MarkTaskCommand
+     *
+     * @param args the arguments to be parsed
+     * @return a MarkTaskCommand object for execution
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public MarkTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
