@@ -55,9 +55,7 @@ public class CopyCommand extends Command {
             copyToClipboard(selectedStudent);
         }
 
-        return new CommandResult(this,
-                String.format(MESSAGE_SUCCESS,
-                        model.getUnmodifiableFilteredStudentList().size()), willModifyState);
+        return new CommandResult(this, MESSAGE_SUCCESS, willModifyState);
     }
 
     /**

@@ -51,7 +51,7 @@ public class EditSessionCommand extends EditCommand {
         }
 
         Group selectedGroup = currentSelection.getSelectedGroup();
-        List<Session> lastShownList = selectedGroup.getModifiableSessionList();
+        List<Session> lastShownList = selectedGroup.getUnmodifiableFilteredSessionList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);

@@ -114,8 +114,8 @@ public class UniqueStudentList implements Iterable<Student> {
         return internalList;
     }
 
-    public FilteredList<Student> asFilteredList() {
-        return filteredStudents;
+    public ObservableList<Student> asUnmodifiableFilteredList() {
+        return FXCollections.unmodifiableObservableList(filteredStudents);
     }
 
     @Override

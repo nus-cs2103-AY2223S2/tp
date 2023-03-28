@@ -55,7 +55,7 @@ public class EditGroupCommand extends EditCommand {
         }
 
         Course selectedCourse = currentSelection.getSelectedCourse();
-        List<Group> lastShownList = selectedCourse.getModifiableGrouplist();
+        List<Group> lastShownList = selectedCourse.getUnmodifiableFilteredGroupList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_GROUP_DISPLAYED_INDEX);

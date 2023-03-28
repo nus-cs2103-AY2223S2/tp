@@ -48,6 +48,10 @@ public class Group {
         return students.asUnmodifiableObservableList();
     }
 
+    public ObservableList<Student> getUnmodifiableFilteredStudentList() {
+        return students.asUnmodifiableFilteredList();
+    }
+
     /**
      * Returns a modifiable view of the list of students in this group.
      */
@@ -66,11 +70,19 @@ public class Group {
         return sessions.asModifiableObservableList();
     }
 
+    public ObservableList<Session> getUnmodifiableFilteredSessionList() {
+        return sessions.asUnmodifiableFilteredList();
+    }
+
     /**
      * Returns an unmodifiable view of the list of tasks in this group.
      */
     public ObservableList<Task> getUnmodifiableTaskList() {
         return tasks.asUnmodifiableObservableList();
+    }
+
+    public ObservableList<Task> getUnmodifiableFilteredTaskList() {
+        return tasks.asUnmodifiableFilteredList();
     }
 
     /**

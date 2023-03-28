@@ -48,14 +48,14 @@ public class DeleteCourseCommand extends DeleteCommand {
             throw new CommandException("Wrong page. Navigate to course page to delete course");
         }
 
-        List<Course> lastShownList = model.getUnmodifiableFilteredCourseList();
+        List<Course> lastShownList = model.getRoster().getUnmodifiableFilteredCourseList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COURSE_DISPLAYED_INDEX);
         }
 
         Course courseToDelete = lastShownList.get(index.getZeroBased());
-        model.deleteCourse(courseToDelete);
+        model.getRoster().deleteCourse(courseToDelete);
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, courseToDelete), willModifyState);
     }
 

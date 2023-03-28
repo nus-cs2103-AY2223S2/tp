@@ -1,7 +1,6 @@
 package tfifteenfour.clipboard.model;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import tfifteenfour.clipboard.model.course.Course;
 
 /**
@@ -19,6 +18,6 @@ public interface ReadOnlyRoster {
 
     ObservableList<Course> getUnmodifiableCourseList();
 
-    FilteredList<Course> getUnmodifiableFilteredCourseList();
+    ObservableList<Course> getUnmodifiableFilteredCourseList();
 
 }

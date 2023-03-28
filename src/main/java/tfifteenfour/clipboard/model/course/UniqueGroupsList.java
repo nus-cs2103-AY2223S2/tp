@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import tfifteenfour.clipboard.model.course.exceptions.DuplicateGroupException;
 import tfifteenfour.clipboard.model.course.exceptions.GroupNotFoundException;
 
@@ -27,6 +28,7 @@ public class UniqueGroupsList implements Iterable<Group> {
     private final ObservableList<Group> internalList = FXCollections.observableArrayList();
     private final ObservableList<Group> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private final FilteredList<Group> filteredGroups = new FilteredList<>(internalList);
 
     /**
      * Returns true if the list contains an equivalent student as the given argument.
@@ -109,6 +111,10 @@ public class UniqueGroupsList implements Iterable<Group> {
      */
     public ObservableList<Group> asModifiableObservableList() {
         return internalList;
+    }
+
+    public ObservableList<Group> asUnmodifiableFilteredList() {
+        return FXCollections.unmodifiableObservableList(filteredGroups);
     }
 
     @Override

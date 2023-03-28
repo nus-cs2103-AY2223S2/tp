@@ -43,9 +43,14 @@ public class Course {
         return groups.asUnmodifiableObservableList();
     }
 
-    public ObservableList<Group> getModifiableGrouplist() {
+    public ObservableList<Group> getModifiableGroupList() {
         return groups.asModifiableObservableList();
     }
+
+    public ObservableList<Group> getUnmodifiableFilteredGroupList() {
+        return groups.asUnmodifiableFilteredList();
+    }
+
 
     /**
      * Returns course code

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import tfifteenfour.clipboard.model.task.exceptions.DuplicateTaskException;
 import tfifteenfour.clipboard.model.task.exceptions.TaskNotFoundException;
 
@@ -27,6 +28,7 @@ public class UniqueTasksList implements Iterable<Task> {
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private final FilteredList<Task> filteredTasks = new FilteredList<>(internalList);
 
     /**
      * Returns true if the list contains an equivalent Task as the given argument.
@@ -102,6 +104,10 @@ public class UniqueTasksList implements Iterable<Task> {
      */
     public ObservableList<Task> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    public ObservableList<Task> asUnmodifiableFilteredList() {
+        return FXCollections.unmodifiableObservableList(filteredTasks);
     }
 
     /**

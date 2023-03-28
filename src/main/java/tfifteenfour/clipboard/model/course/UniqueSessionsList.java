@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import tfifteenfour.clipboard.model.course.exceptions.DuplicateSessionException;
 import tfifteenfour.clipboard.model.course.exceptions.SessionNotFoundException;
 
@@ -27,6 +28,7 @@ public class UniqueSessionsList implements Iterable<Session> {
     private final ObservableList<Session> internalList = FXCollections.observableArrayList();
     private final ObservableList<Session> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private final FilteredList<Session> filteredSessions = new FilteredList<>(internalList);
 
     /**
      * Returns true if the list contains an equivalent Session as the given argument.
@@ -109,6 +111,10 @@ public class UniqueSessionsList implements Iterable<Session> {
      */
     public ObservableList<Session> asModifiableObservableList() {
         return internalList;
+    }
+
+    public ObservableList<Session> asUnmodifiableFilteredList() {
+        return FXCollections.unmodifiableObservableList(filteredSessions);
     }
 
     @Override

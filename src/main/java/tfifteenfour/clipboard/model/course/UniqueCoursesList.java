@@ -114,8 +114,8 @@ public class UniqueCoursesList implements Iterable<Course> {
         return internalList;
     }
 
-    public FilteredList<Course> asUnmodifiableFilteredList() {
-        return filteredCourses;
+    public ObservableList<Course> asUnmodifiableFilteredList() {
+        return FXCollections.unmodifiableObservableList(filteredCourses);
     }
 
     @Override

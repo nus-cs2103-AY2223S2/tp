@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.UniqueCoursesList;
 
@@ -80,7 +79,7 @@ public class Roster implements ReadOnlyRoster {
     }
 
     @Override
-    public FilteredList<Course> getUnmodifiableFilteredCourseList() {
+    public ObservableList<Course> getUnmodifiableFilteredCourseList() {
         return courses.asUnmodifiableFilteredList();
     }
 

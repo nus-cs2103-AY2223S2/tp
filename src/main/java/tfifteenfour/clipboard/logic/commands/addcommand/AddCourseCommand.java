@@ -45,11 +45,11 @@ public class AddCourseCommand extends AddCommand {
             throw new CommandException("Wrong page. Navigate to course page to add course");
         }
 
-        if (model.hasCourse(courseToAdd)) {
+        if (model.getRoster().hasCourse(courseToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_COURSE);
         }
 
-        model.addCourse(courseToAdd);
+        model.getRoster().addCourse(courseToAdd);
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, courseToAdd), willModifyState);
     }
 

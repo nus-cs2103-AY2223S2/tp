@@ -79,7 +79,7 @@ public class SelectCommand extends Command {
 
     private Course handleSelectCourse(Model model, CurrentSelection currentSelection) throws CommandException {
 
-        List<Course> courseList = model.getUnmodifiableFilteredCourseList();
+        List<Course> courseList = model.getRoster().getUnmodifiableFilteredCourseList();
         if (targetIndex.getZeroBased() >= courseList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COURSE_DISPLAYED_INDEX);
         }
