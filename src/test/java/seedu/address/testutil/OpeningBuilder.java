@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,7 +30,7 @@ public class OpeningBuilder {
     private Email email;
     private Status status;
     private Remark remark;
-    private Set<Date> dates;
+    private List<Date> dates;
 
     /**
      * Creates a {@code OpeningBuilder} with the default details.
@@ -41,7 +41,7 @@ public class OpeningBuilder {
         email = new Email(DEFAULT_EMAIL);
         status = new Status(DEFAULT_STATUS);
         remark = new Remark(DEFAULT_REMARK);
-        dates = new HashSet<>();
+        dates = new ArrayList<>();
     }
 
     /**
@@ -53,7 +53,7 @@ public class OpeningBuilder {
         email = openingToCopy.getEmail();
         status = openingToCopy.getStatus();
         remark = openingToCopy.getRemark();
-        dates = new HashSet<>(openingToCopy.getDates());
+        dates = new ArrayList<>(openingToCopy.getDates());
     }
 
     /**
@@ -68,7 +68,7 @@ public class OpeningBuilder {
      * Parses the {@code dates} into a {@code Set<Date>} and set it to the {@code Opening} that we are building.
      */
     public OpeningBuilder withDates(ArrayList<String>... dates) {
-        this.dates = Stream.of(dates).map(date -> new Date(date.get(0), date.get(1))).collect(Collectors.toSet());
+        this.dates = Stream.of(dates).map(date -> new Date(date.get(0), date.get(1))).collect(Collectors.toList());
         return this;
     }
 

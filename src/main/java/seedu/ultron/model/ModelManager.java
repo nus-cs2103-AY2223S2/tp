@@ -12,7 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.ultron.commons.core.GuiSettings;
 import seedu.ultron.commons.core.LogsCenter;
-import seedu.ultron.model.opening.DateComparator;
+import seedu.ultron.model.opening.OpeningByDateComparator;
 import seedu.ultron.model.opening.KeydateSort;
 import seedu.ultron.model.opening.Opening;
 
@@ -141,9 +141,9 @@ public class ModelManager implements Model {
     @Override
     public void sortFilteredOpeningList(KeydateSort direction) {
         if (direction.getDirection().equals("ASC")) {
-            FXCollections.sort(filteredOpenings, new DateComparator());
+            FXCollections.sort(filteredOpenings, new OpeningByDateComparator());
         } else if (direction.getDirection().equals("DESC")) {
-            FXCollections.sort(filteredOpenings, new DateComparator().reversed());
+            FXCollections.sort(filteredOpenings, new OpeningByDateComparator().reversed());
         }
     }
 
