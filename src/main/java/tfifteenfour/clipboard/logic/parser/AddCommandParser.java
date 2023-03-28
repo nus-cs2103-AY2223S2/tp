@@ -106,7 +106,9 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSessionCommand.MESSAGE_USAGE));
         }
 
-        Task task = ParserUtil.parseTask(tokens[2]);
+        String taskName = args.split(" ",2)[1].split(" ", 2)[1];
+
+        Task task = ParserUtil.parseTask(taskName);
         return task;
     }
 
