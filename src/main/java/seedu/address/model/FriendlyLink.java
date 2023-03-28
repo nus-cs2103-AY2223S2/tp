@@ -428,16 +428,21 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @return List of volunteers paired with the specified elderly.
      */
     private List<Volunteer> getPairedVolunteers(Nric elderlyNric) {
-        ArrayList<Volunteer> volunteers = new ArrayList<>();
+        ArrayList<Volunteer> result = new ArrayList<>();
         if (elderlyNric != null) {
             Elderly elderly = getElderly(elderlyNric);
             for (Pair pair : pairs) {
                 if (pair.getElderly().equals(elderly)) {
-                    volunteers.add(pair.getVolunteer());
+                    result.add(pair.getVolunteer());
                 }
             }
+
+        } else {
+            for (Volunteer volunteer : volunteers) {
+                result.add(volunteer);
+            }
         }
-        return volunteers;
+        return result;
     }
 
     /**
@@ -448,16 +453,20 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @return List of elderly paired with the specified volunteer.
      */
     private List<Elderly> getPairedElderly(Nric volunteerNric) {
-        ArrayList<Elderly> elderly = new ArrayList<>();
+        ArrayList<Elderly> result = new ArrayList<>();
         if (volunteerNric != null) {
             Volunteer volunteer = getVolunteer(volunteerNric);
             for (Pair pair : pairs) {
                 if (pair.getVolunteer().equals(volunteer)) {
-                    elderly.add(pair.getElderly());
+                    result.add(pair.getElderly());
                 }
             }
+        } else {
+            for (Elderly elderly : elderly) {
+                result.add(elderly);
+            }
         }
-        return elderly;
+        return result;
     }
 
     @Override
