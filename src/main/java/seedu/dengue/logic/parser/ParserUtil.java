@@ -2,8 +2,10 @@ package seedu.dengue.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -36,6 +38,15 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    public static List<Index> parseMultiIndex(String oneBasedIndexes) throws ParseException {
+        List<Index> indexes = new ArrayList<>();
+        String[] splitIndexes = oneBasedIndexes.trim().split("\\s+");
+        for (int i = 0; i < splitIndexes.length; i++) {
+            indexes.add(parseIndex(splitIndexes[i]));
+        }
+        return indexes;
     }
 
     /**
