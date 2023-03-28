@@ -78,7 +78,6 @@ public class UpdateClientCommandParserTest {
 
     @Test
     public void parse_oldAndNewNamesIdentical_success() {
-        // This tests what happens if we give a command to update a project's name, but then give it back the same name
         var descriptor = new UpdateClientDescriptorBuilder().withEmail("foobar@example.com").build();
         var input = " -e foobar@example.com -e2 foobar@example.com";
         var want = new UpdateClientCommand(new Email("foobar@example.com"), descriptor);
