@@ -168,7 +168,7 @@ public class StatisticsWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser("clgt");
+            resultDisplay.setFeedbackToUser(e.getMessage());
             //resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }

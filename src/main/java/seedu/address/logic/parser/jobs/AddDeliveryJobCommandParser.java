@@ -62,7 +62,7 @@ public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand
         }
 
         if (rid.equals("")) {
-            throw new ParseException(AddDeliveryJobCommand.MESSAGE_SENDER_CONSTRAINT);
+            throw new ParseException(AddDeliveryJobCommand.MESSAGE_RECIPIENT_CONSTRAINT);
         }
 
         if (ded.equals("")) {
@@ -71,7 +71,7 @@ public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand
 
         if (des.equals("")) {
             throw new ParseException(DeliverySlot.MESSAGE_CONSTRAINTS);
-        } else if (Integer.parseInt(des) < 0) {
+        } else if (Integer.parseInt(des) < 1) {
             throw new ParseException(DeliverySlot.MESSAGE_CONSTRAINTS);
         }
 

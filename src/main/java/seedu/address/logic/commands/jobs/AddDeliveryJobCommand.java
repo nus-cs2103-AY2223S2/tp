@@ -21,8 +21,8 @@ public class AddDeliveryJobCommand extends Command {
     public static final String COMMAND_WORD = "add_job";
 
     public static final String MESSAGE_SENDER_CONSTRAINT = "Sender ID should contain "
-            + "numeric and alphabetical characters\"\n"
-            + "+ \"and it should not be blank.\\n\"\n";
+            + "numeric and alphabetical characters."
+            + "\nAnd it should not be blank.";
 
     public static final String MESSAGE_RECIPIENT_CONSTRAINT = "Recipient ID should contain numeric"
             + "and alphabetical characters\"\n"
