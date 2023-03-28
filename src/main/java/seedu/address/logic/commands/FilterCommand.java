@@ -54,7 +54,7 @@ public class FilterCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(this.predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW, model.getFilteredPersonList().size()), true);
+                String.format(Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override

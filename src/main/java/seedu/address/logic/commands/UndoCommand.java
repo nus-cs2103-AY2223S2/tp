@@ -29,7 +29,7 @@ public class UndoCommand extends Command {
                 throw new CommandException(MESSAGE_NO_UNDOABLE_COMMAND);
             }
             String returnMessage = undoableModel.executeUndo();
-            return new CommandResult(String.format(MESSAGE_SUCCESS, returnMessage), true);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, returnMessage));
         } else {
             throw new IllegalArgumentException("Model passed does not support undo!");
         }

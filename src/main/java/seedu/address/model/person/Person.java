@@ -26,6 +26,8 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Set<ModuleTag> moduleTags = new HashSet<>();
 
+    private boolean hidden = true;
+
     /**
      * Every field must be present and not null.
      */
@@ -49,6 +51,21 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    /**
+     * toggle hidden.
+     */
+    public void toggleHidden() {
+        if (hidden) {
+            hidden = false;
+        } else {
+            hidden = true;
+        }
+    }
+
+    public boolean getHidden() {
+        return hidden;
     }
 
     public Address getAddress() {

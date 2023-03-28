@@ -48,6 +48,7 @@ public class PersonCard extends UiPart<Region> {
      */
     public PersonCard(Person person, int displayedIndex, boolean hidden) {
         super(FXML);
+        String curr = name.getText();
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);

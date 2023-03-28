@@ -31,11 +31,6 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setCellFactory(listView -> new PersonListViewCell());
         hidden = true;
     }
-
-    public void setHidden(boolean hidden)
-    {
-        this.hidden = hidden;
-    }
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
@@ -48,7 +43,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1, hidden).getRoot());
+                setGraphic(new PersonCard(person, getIndex() + 1, person.getHidden()).getRoot());
             }
         }
     }

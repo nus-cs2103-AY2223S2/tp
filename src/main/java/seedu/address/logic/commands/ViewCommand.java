@@ -58,7 +58,7 @@ public class ViewCommand extends Command {
         StringBuilder sb = new StringBuilder();
         nameList.stream().forEach(x -> sb.append(
                 String.format(Messages.MESSAGE_VIEW_PERSON_CONTACT_DETAILS, x) + "\n"));
-        return new CommandResult(sb.toString(), false);
+        return new CommandResult(sb.toString());
     }
 
     @Override

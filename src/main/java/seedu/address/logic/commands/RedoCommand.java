@@ -25,7 +25,7 @@ public class RedoCommand extends Command {
                 throw new CommandException(MESSAGE_NO_REDOABLE_COMMAND);
             }
             String returnMessage = undoableModel.executeRedo();
-            return new CommandResult(String.format(MESSAGE_SUCCESS, returnMessage), true);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, returnMessage));
         } else {
             throw new IllegalArgumentException("Model passed does not support undo!");
         }
