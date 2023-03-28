@@ -276,14 +276,11 @@ public class ParserUtil {
         }
         LocalDateTime newDateStart = LocalDateTime.parse(trimmedDate, formatter);
         LocalDateTime newDateEnd = LocalDateTime.parse(trimmedDate, formatter).plusHours(1);
-        System.out.println(MASTER_TIME.size());
         for (int i = 0; i < MASTER_TIME.size(); i++) {
             if (MASTER_TIME.size() == 0) {
                 break;
             }
             LocalDateTime[] currentRange = MASTER_TIME.get(i);
-            System.out.println("current range " + currentRange[0] + currentRange[1]);
-            System.out.println("new range " + newDateStart + newDateEnd);
             if (newDateStart.isAfter(currentRange[0]) && newDateStart.isBefore(currentRange[1])) {
                 throw new ParseException("You are already busy during that period!");
             }
