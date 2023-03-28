@@ -3,40 +3,9 @@ layout: page
 title: User Guide
 ---
 
-## Table of Contents
+* Table of Contents
+  {:toc}
 
-* [Introduction](#Introduction)  
-* [About](#About)
-* [Quick start](#Quick start)
-* [Features](#Features)
-  * [General Commands](#General Commands)
-    * [help](#help)
-    * [undo](#undo)
-    * [redo](#redo)
-    * [exit](#exit)
-  * [Person Commands](#Person Commands)
-    * [add](#add)
-    * [list](#list)
-    * [edit](#edit)
-    * [find](#find)
-    * [delete](#delete)
-    * [remove](#remove)
-    * [clear](#clear)
-    * [sort](#sort)
-    * [view](#view)
-  * [Project Commands](#Project Commands)
-    * [addpj](#addpj)
-    * [editpj](#editpj)
-    * [deletepj](#deletepj)
-    * [removepj](#removepj)
-    * [clearpj](#clearpj)
-    * [sortpj](#sortpj)
-    * [assign](#assign)
-    * [unassign](#unassign)
-  * [Saving the data](#Saving the data)
-  * [Editing the data file](#Editing the data file)
-* [FAQ](#FAQ) 
-* [Command summary](#Command summary)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
@@ -51,7 +20,7 @@ SOCket is optimized for use via a Command Line Interface (CLI) while still havin
 
 The SOCket User Guide helps you quickly familiarise yourself with the features and command syntax of SOCket, imparting the knowledge necessary for you to utilise SOCket's functions. More experienced users can use the **[Command summary](#command-summary)** as a quick reference for the syntax of SOCket's commands.
 
-You can use the links in the **[Table of Contents](#table-of-contents)** to quickly navigate through this document. To help you get started, refer to the **[Quick start](#quick-start)** section of the SOCket User Guide.
+You can use the links in the Table of Contents to quickly navigate through this document. To help you get started, refer to the **[Quick start](#quick-start)** section of the SOCket User Guide.
 
 --------------------------------------------------------------------------------------------------------------------
 
