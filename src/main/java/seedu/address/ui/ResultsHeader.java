@@ -26,11 +26,13 @@ public class ResultsHeader extends UiPart<Region> {
         filterType.setText("All");
     }
 
-    public void setHeader(boolean isExpenseList, String filter) {
-        if (isExpenseList) {
+    public void setHeader(ScreenType screenType, String filter) {
+        if (screenType == ScreenType.EXPENSE_SCREEN) {
             resultType.setText("Expenses");
-        } else {
+        } else if (screenType == ScreenType.CATEGORY_SCREEN) {
             resultType.setText("Category");
+        } else if (screenType == ScreenType.RECURRING_EXPENSE_SCREEN) {
+            resultType.setText("Recurring Expenses");
         }
         filterType.setText(filter);
     }

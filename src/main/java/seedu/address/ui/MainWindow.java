@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ExpenseListPanel expenseListPanel;
     private CategoryListPanel categoryListPanel;
+    private RecurringExpensePanel recurringExpensePanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ResultsHeader resultsHeader;
@@ -191,18 +192,48 @@ public class MainWindow extends UiPart<Stage> {
      * Toggles the display between the expense list and the category list.
      * @param isExpenseList true if the expense list should be shown, false if the category list should be shown
      */
-    public void switchListPanel(boolean isExpenseList) {
+//    public void switchListPanel(boolean isExpenseList) {
+//        listPanelPlaceholder.getChildren().clear();
+//        if (isExpenseList) {
+//            resultsHeader.setHeader(true, "All");
+//            resultsDetails.switchDetails("All", true);
+//            expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
+//            listPanelPlaceholder.getChildren().add(expenseListPanel.getRoot());
+//        } else {
+//            resultsHeader.setHeader(false, "");
+//            resultsDetails.switchDetails("All", false);
+//            categoryListPanel = new CategoryListPanel(logic.getFilteredCategoryList(), logic.getFilteredExpenseList());
+//            listPanelPlaceholder.getChildren().add(categoryListPanel.getRoot());
+//        }
+//    }
+
+    /**
+     * Toggles the display between the expense list and the category list.
+     * @param screenType if the expense list should be shown, false if the category list should be shown
+     */
+    public void switchTemp(ScreenType screenType) {
         listPanelPlaceholder.getChildren().clear();
-        if (isExpenseList) {
-            resultsHeader.setHeader(true, "All");
-            resultsDetails.switchDetails("All", true);
-            expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
-            listPanelPlaceholder.getChildren().add(expenseListPanel.getRoot());
-        } else {
-            resultsHeader.setHeader(false, "");
-            resultsDetails.switchDetails("All", false);
-            categoryListPanel = new CategoryListPanel(logic.getFilteredCategoryList(), logic.getFilteredExpenseList());
-            listPanelPlaceholder.getChildren().add(categoryListPanel.getRoot());
+        switch (screenType) {
+            case EXPENSE_SCREEN:
+                resultsHeader.setHeader(ScreenType.EXPENSE_SCREEN, "All");
+                resultsDetails.switchDetails("All", ScreenType.EXPENSE_SCREEN);
+                expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
+                listPanelPlaceholder.getChildren().add(expenseListPanel.getRoot());
+                break;
+            case CATEGORY_SCREEN:
+                resultsHeader.setHeader(ScreenType.CATEGORY_SCREEN, "");
+                resultsDetails.switchDetails("All", ScreenType.CATEGORY_SCREEN);
+                categoryListPanel = new CategoryListPanel(logic.getFilteredCategoryList(), logic.getFilteredExpenseList());
+                listPanelPlaceholder.getChildren().add(categoryListPanel.getRoot());
+                break;
+            case RECURRING_EXPENSE_SCREEN:
+                resultsHeader.setHeader(ScreenType.RECURRING_EXPENSE_SCREEN, "");
+                resultsDetails.switchDetails("All", ScreenType.RECURRING_EXPENSE_SCREEN);
+                recurringExpensePanel = new RecurringExpensePanel(logic.getFilteredExpenseList());
+                listPanelPlaceholder.getChildren().add(recurringExpensePanel.getRoot());
+                break;
+            default:
+                break;
         }
     }
 
@@ -217,8 +248,8 @@ public class MainWindow extends UiPart<Stage> {
             expenseListPanel.refreshList();
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            switchListPanel(commandResult.isExpenseCommand());
+//            switchListPanel(commandResult.isExpenseCommand());
+            switchTemp(ScreenType.RECURRING_EXPENSE_SCREEN);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
