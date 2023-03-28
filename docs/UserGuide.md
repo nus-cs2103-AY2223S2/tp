@@ -604,18 +604,18 @@ If this is not ideal, we recommend to avoid deleting any customers.
 
 ### Customer
 
-|                       Action | Format, Examples                                                                                                                                                             |
-|-----------------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|             **Add Customer** | `addc [ct/{ind/ent}] n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addc n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-|            **List Customer** | `listc` <br>                                                                                                                                                                 |
-|            **Find Customer** | `findc KEYWORD [MORE_KEYWORDS]` <br> e.g., `findc Hans Bo`                                                                                                                   |
-|            **View Customer** | `viewc INDEX` <br> e.g. `viewc 2`                                                                                                                                            |
-|            **Edit Customer** | `editc INDEX [ct/{ind&#124;env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]` <br> e.g. `editc 1 p/91234567 e/johndoe@example.com`                                              |
-|          **Delete Customer** | `deletec INDEX`<br> e.g., `deletec 3`                                                                                                                                        |
-|            **Mark Customer** | `markc INDEX` <br> e.g., `markc 1`                                                                                                                                           |
-|          **Unmark Customer** | `unmarkc INDEX` <br> e.g., `unmarkc 1`                                                                                                                                       |                                                                                                                                      |
-|    **Set Note for Customer** | `setnotec INDEX nt/NOTE` <br> e.g., `setnotec 2 nt/Very friendly!`                                                                                                           |
-| **Append Note for Customer** | `appendnotec INDEX nt/NOTE` <br> e.g., `appendnotec 2 nt/Very friendly!`                                                                                                     |
+|                       Action | Format, Examples                                                                                                                                                                             |
+|-----------------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|             **Add Customer** | <code>addc [ct/{ind&#124;ent}] n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addc n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code> |
+|            **List Customer** | `listc` <br>                                                                                                                                                                                 |
+|            **Find Customer** | `findc KEYWORD [MORE_KEYWORDS]` <br> e.g., `findc Hans Bo`                                                                                                                                   |
+|            **View Customer** | `viewc INDEX` <br> e.g. `viewc 2`                                                                                                                                                            |
+|            **Edit Customer** | <code>editc INDEX [ct/{ind&#124;env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]` <br> e.g. `editc 1 p/91234567 e/johndoe@example.com</code>                                                   |
+|          **Delete Customer** | `deletec INDEX`<br> e.g., `deletec 3`                                                                                                                                                        |
+|            **Mark Customer** | `markc INDEX` <br> e.g., `markc 1`                                                                                                                                                           |
+|          **Unmark Customer** | `unmarkc INDEX` <br> e.g., `unmarkc 1`                                                                                                                                                       |                                                                                                                                      |
+|    **Set Note for Customer** | `setnotec INDEX nt/NOTE` <br> e.g., `setnotec 2 nt/Very friendly!`                                                                                                                           |
+| **Append Note for Customer** | `appendnotec INDEX nt/NOTE` <br> e.g., `appendnotec 2 nt/Very friendly!`                                                                                                                     |
 
 ### Rewards
 
