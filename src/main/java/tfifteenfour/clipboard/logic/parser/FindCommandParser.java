@@ -66,7 +66,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             }
             return new FindSessionCommand(new SessionNameContainsPredicate(keywords), currentSelection);
         case STUDENT:
-            if (currentSelection.getCurrentPage() != PageType.COURSE_PAGE) {
+            if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
                 throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "student"));
             }
             return new FindStudentCommand(new StudentNameContainsPredicate(keywords), currentSelection);
