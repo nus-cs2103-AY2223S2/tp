@@ -54,7 +54,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                                 DeleteCommand.MESSAGE_USAGE));
                     }
-                    Range<Date> range = new Range(new StartDate(startDate), new EndDate(endDate));
+                    Range<Date> range = new Range<>(new StartDate(startDate), new EndDate(endDate));
                     return new DeleteCommand(range);
                 }
 
