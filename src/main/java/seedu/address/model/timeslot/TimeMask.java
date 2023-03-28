@@ -86,7 +86,7 @@ public class TimeMask {
         checkValidDayIndex(dayIndex);
         checkValidHourIndexes(startHourIndex, endHourIndex);
 
-        int startBits = Integer.parseInt("1".repeat(endHourIndex - startHourIndex + 1));
+        int startBits = Integer.parseInt("1".repeat(endHourIndex - startHourIndex + 1), 2);
         int mask = startBits << startHourIndex;
         weeklyOccupancy[dayIndex] = weeklyOccupancy[dayIndex] | mask;
     }
