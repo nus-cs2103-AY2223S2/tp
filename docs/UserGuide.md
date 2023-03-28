@@ -403,8 +403,10 @@ might wish to note:
 
 ## HotKeys
 
-> We will refer to the left panel containing the project and client tabs as the **Entity panel** 
-> and the right panel containing the overdued projects and projects due soon as the **statistic panel**.
+<div markdown="span" class="alert alert-info">
+:information_source: We will refer to the left panel containing the project and client tabs as the **Entity panel** 
+and the right panel containing the overdued projects and projects due soon as the **statistic panel**.
+</div>
 
 HotKeys are keyboard short cuts supported by Mycelium to enable faster navigation and editing of commands with the keyboard. This allows for Mycelium to be fully keyboard driven. The following are the supported hotkeys:
 
