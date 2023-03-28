@@ -172,7 +172,7 @@ negative. This simple design would be sufficient to achieve the intended feature
 Lastly, to store the cumulative points of `Customer`, a new attribute, `cumulativePoints` was introduced to the
 `JsonAdaptedCustomer`.
 
-
+### Alternatives considered
 There were other designs I was considering, listed below.
 
 1. A design choice I had to make was for the `addpoints` command, originally I intended for the command users inputted
