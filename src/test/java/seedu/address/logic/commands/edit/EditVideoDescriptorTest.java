@@ -32,6 +32,17 @@ public class EditVideoDescriptorTest {
     }
 
     @Test
+    public void isAnyFieldEdited_watchedIsEdited_returnsTrue() {
+        // watched is edited to true
+        EditVideoDescriptor descriptor = new EditVideoDescriptorBuilder().withWatched(false).build();
+        assertTrue(descriptor.isAnyFieldEdited());
+
+        // watched is edited to false
+        descriptor = new EditVideoDescriptorBuilder().withWatched(false).build();
+        assertTrue(descriptor.isAnyFieldEdited());
+    }
+
+    @Test
     public void isAnyFieldEdited_tagsIsEdited_returnsTrue() {
         // single tag
         EditVideoDescriptor descriptor = new EditVideoDescriptorBuilder().withTags(VALID_TAG_CONTENT).build();
