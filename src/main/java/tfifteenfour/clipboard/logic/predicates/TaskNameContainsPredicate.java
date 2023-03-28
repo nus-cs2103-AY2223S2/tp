@@ -5,29 +5,29 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import tfifteenfour.clipboard.commons.util.StringUtil;
-import tfifteenfour.clipboard.model.course.Course;
+import tfifteenfour.clipboard.model.task.Task;
 
 /**
  * Tests that a {@code Student}'s {@code Name} matches any of the keywords given.
  */
-public class CourseNameContainsPredicate implements Predicate<Course> {
+public class TaskNameContainsPredicate implements Predicate<Task> {
     private final List<String> keywords;
 
-    public CourseNameContainsPredicate(String[] keywords) {
+    public TaskNameContainsPredicate(String[] keywords) {
         this.keywords = Arrays.asList(keywords);
     }
 
     @Override
-    public boolean test(Course course) {
+    public boolean test(Task task) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(course.getCourseCode(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(task.getTaskName(), keyword));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CourseNameContainsPredicate // instanceof handles nulls
-                && keywords.equals(((CourseNameContainsPredicate) other).keywords)); // state check
+                || (other instanceof TaskNameContainsPredicate // instanceof handles nulls
+                && keywords.equals(((TaskNameContainsPredicate) other).keywords)); // state check
     }
 
 }
