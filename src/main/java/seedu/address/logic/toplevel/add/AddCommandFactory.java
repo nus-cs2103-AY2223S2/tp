@@ -2,6 +2,7 @@ package seedu.address.logic.toplevel.add;
 
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;

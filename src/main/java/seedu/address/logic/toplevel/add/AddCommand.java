@@ -45,7 +45,6 @@ public class AddCommand<T extends Item> implements Command {
         addFunction.add(model, item);
         return new CommandResult(String.format(
                 "Added %s.",
-                typeName,
                 item.toString()
         ));
     }

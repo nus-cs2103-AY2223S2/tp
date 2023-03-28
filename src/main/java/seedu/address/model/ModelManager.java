@@ -472,7 +472,6 @@ public class ModelManager implements Model {
             throw new CrewNotFoundException();
         }
     }
-
     @Override
     public boolean checkCrewByIndex(int index) throws IndexOutOfBoundException {
         Optional<Crew> crew = crewManager.getItemOptional(index);
@@ -496,6 +495,11 @@ public class ModelManager implements Model {
         filteredCrew.setPredicate(predicate);
     }
 
+    // TODO: this is to be made for the delete function rather than to check rank
+    public boolean isIndexValid(int index) {
+        // change this logic once changed the indexing
+        return index < crewManager.size();
+    }
 
     //=========== Plane ========================================================
 

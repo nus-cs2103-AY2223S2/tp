@@ -341,6 +341,14 @@ public interface Model {
 
     ObservableList<Crew> getFilteredCrewList();
 
+    // TODO: this is to be made for the delete function rather than to check rank
+    /**
+     * Checks whether a given index is in range of the
+     * @param index
+     * @return
+     */
+    boolean isIndexValid(int index);
+
 
     //=========== Plane methods ========================================================
 

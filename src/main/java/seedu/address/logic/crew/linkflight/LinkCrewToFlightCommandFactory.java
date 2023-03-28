@@ -35,7 +35,7 @@ public class LinkCrewToFlightCommandFactory implements CommandFactory<LinkCrewTo
             "No crew has been entered.\n"
                     + "Please enter at least 1 of the following:\n"
                     + "     /csd for the Cabin Service Director, "
-                    + "/sfa for the Senior Flight Attendants, \n"
+                    + "/sfa for the Senior Flight Attendants,\n"
                     + "     /fa for the Flight Attendants, "
                     + "/tr for the Trainees.";
 

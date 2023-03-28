@@ -79,7 +79,7 @@ public class WingmanParser extends FactoryParser {
             )),
             new CommandGroup(OperationMode.PLANE, List.of(
                     new AddCommandFactory<>(
-                            "Plane",
+                            "plane",
                             Optional.of(PlaneSyntax.PREFIXES),
                             PlaneSyntax::add,
                             PlaneSyntax::factory
@@ -96,7 +96,7 @@ public class WingmanParser extends FactoryParser {
             )),
             new CommandGroup(OperationMode.LOCATION, List.of(
                     new AddCommandFactory<>(
-                            "Plane",
+                            "location",
                             Optional.of(LocationSyntax.PREFIXES),
                             LocationSyntax::add,
                             LocationSyntax::factory
@@ -108,7 +108,7 @@ public class WingmanParser extends FactoryParser {
             )),
             new CommandGroup(OperationMode.FLIGHT, List.of(
                     new AddCommandFactory<>(
-                            "Flight",
+                            "flight",
                             Optional.of(FlightSyntax.PREFIXES),
                             FlightSyntax::add,
                             FlightSyntax::factory
