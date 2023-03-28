@@ -3,11 +3,11 @@ package seedu.address.model.module;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalModules.ALICE;
-import static seedu.address.testutil.TypicalModules.BOB;
+import static seedu.address.testutil.TypicalModules.CS2106_TUT;
+import static seedu.address.testutil.TypicalModules.CS3219;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,19 +30,19 @@ public class UniqueModuleListTest {
 
     @Test
     public void contains_moduleNotInList_returnsFalse() {
-        assertFalse(uniqueModuleList.contains(ALICE));
+        assertFalse(uniqueModuleList.contains(CS2106_TUT));
     }
 
     @Test
     public void contains_moduleInList_returnsTrue() {
-        uniqueModuleList.add(ALICE);
-        assertTrue(uniqueModuleList.contains(ALICE));
+        uniqueModuleList.add(CS2106_TUT);
+        assertTrue(uniqueModuleList.contains(CS2106_TUT));
     }
 
     @Test
     public void contains_moduleWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueModuleList.add(ALICE);
-        Module editedAlice = new ModuleBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        uniqueModuleList.add(CS2106_TUT);
+        Module editedAlice = new ModuleBuilder(CS2106_TUT).withAddress(VALID_ADDRESS_CS3219).withTags(VALID_TAG_LECTURE)
                 .build();
         assertTrue(uniqueModuleList.contains(editedAlice));
     }
@@ -54,40 +54,40 @@ public class UniqueModuleListTest {
 
     @Test
     public void add_duplicateModule_throwsDuplicateModuleException() {
-        uniqueModuleList.add(ALICE);
-        assertThrows(DuplicateModuleException.class, () -> uniqueModuleList.add(ALICE));
+        uniqueModuleList.add(CS2106_TUT);
+        assertThrows(DuplicateModuleException.class, () -> uniqueModuleList.add(CS2106_TUT));
     }
 
     @Test
     public void setModule_nullTargetModule_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueModuleList.setModule(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueModuleList.setModule(null, CS2106_TUT));
     }
 
     @Test
     public void setModule_nullEditedModule_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueModuleList.setModule(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueModuleList.setModule(CS2106_TUT, null));
     }
 
     @Test
     public void setModule_targetModuleNotInList_throwsModuleNotFoundException() {
-        assertThrows(ModuleNotFoundException.class, () -> uniqueModuleList.setModule(ALICE, ALICE));
+        assertThrows(ModuleNotFoundException.class, () -> uniqueModuleList.setModule(CS2106_TUT, CS2106_TUT));
     }
 
     @Test
     public void setModule_editedModuleIsSameModule_success() {
-        uniqueModuleList.add(ALICE);
-        uniqueModuleList.setModule(ALICE, ALICE);
+        uniqueModuleList.add(CS2106_TUT);
+        uniqueModuleList.setModule(CS2106_TUT, CS2106_TUT);
         UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
-        expectedUniqueModuleList.add(ALICE);
+        expectedUniqueModuleList.add(CS2106_TUT);
         assertEquals(expectedUniqueModuleList, uniqueModuleList);
     }
 
     @Test
     public void setModule_editedModuleHasSameIdentity_success() {
-        uniqueModuleList.add(ALICE);
-        Module editedAlice = new ModuleBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        uniqueModuleList.add(CS2106_TUT);
+        Module editedAlice = new ModuleBuilder(CS2106_TUT).withAddress(VALID_ADDRESS_CS3219).withTags(VALID_TAG_LECTURE)
                 .build();
-        uniqueModuleList.setModule(ALICE, editedAlice);
+        uniqueModuleList.setModule(CS2106_TUT, editedAlice);
         UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
         expectedUniqueModuleList.add(editedAlice);
         assertEquals(expectedUniqueModuleList, uniqueModuleList);
@@ -95,18 +95,18 @@ public class UniqueModuleListTest {
 
     @Test
     public void setModule_editedModuleHasDifferentIdentity_success() {
-        uniqueModuleList.add(ALICE);
-        uniqueModuleList.setModule(ALICE, BOB);
+        uniqueModuleList.add(CS2106_TUT);
+        uniqueModuleList.setModule(CS2106_TUT, CS3219);
         UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
-        expectedUniqueModuleList.add(BOB);
+        expectedUniqueModuleList.add(CS3219);
         assertEquals(expectedUniqueModuleList, uniqueModuleList);
     }
 
     @Test
     public void setModule_editedModuleHasNonUniqueIdentity_throwsDuplicateModuleException() {
-        uniqueModuleList.add(ALICE);
-        uniqueModuleList.add(BOB);
-        assertThrows(DuplicateModuleException.class, () -> uniqueModuleList.setModule(ALICE, BOB));
+        uniqueModuleList.add(CS2106_TUT);
+        uniqueModuleList.add(CS3219);
+        assertThrows(DuplicateModuleException.class, () -> uniqueModuleList.setModule(CS2106_TUT, CS3219));
     }
 
     @Test
@@ -116,13 +116,13 @@ public class UniqueModuleListTest {
 
     @Test
     public void remove_moduleDoesNotExist_throwsModuleNotFoundException() {
-        assertThrows(ModuleNotFoundException.class, () -> uniqueModuleList.remove(ALICE));
+        assertThrows(ModuleNotFoundException.class, () -> uniqueModuleList.remove(CS2106_TUT));
     }
 
     @Test
     public void remove_existingModule_removesModule() {
-        uniqueModuleList.add(ALICE);
-        uniqueModuleList.remove(ALICE);
+        uniqueModuleList.add(CS2106_TUT);
+        uniqueModuleList.remove(CS2106_TUT);
         UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
         assertEquals(expectedUniqueModuleList, uniqueModuleList);
     }
@@ -134,9 +134,9 @@ public class UniqueModuleListTest {
 
     @Test
     public void setModules_uniqueModuleList_replacesOwnListWithProvidedUniqueModuleList() {
-        uniqueModuleList.add(ALICE);
+        uniqueModuleList.add(CS2106_TUT);
         UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
-        expectedUniqueModuleList.add(BOB);
+        expectedUniqueModuleList.add(CS3219);
         uniqueModuleList.setModules(expectedUniqueModuleList);
         assertEquals(expectedUniqueModuleList, uniqueModuleList);
     }
@@ -148,17 +148,17 @@ public class UniqueModuleListTest {
 
     @Test
     public void setModules_list_replacesOwnListWithProvidedList() {
-        uniqueModuleList.add(ALICE);
-        List<Module> moduleList = Collections.singletonList(BOB);
+        uniqueModuleList.add(CS2106_TUT);
+        List<Module> moduleList = Collections.singletonList(CS3219);
         uniqueModuleList.setModules(moduleList);
         UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
-        expectedUniqueModuleList.add(BOB);
+        expectedUniqueModuleList.add(CS3219);
         assertEquals(expectedUniqueModuleList, uniqueModuleList);
     }
 
     @Test
     public void setModules_listWithDuplicateModules_throwsDuplicateModuleException() {
-        List<Module> listWithDuplicateModules = Arrays.asList(ALICE, ALICE);
+        List<Module> listWithDuplicateModules = Arrays.asList(CS2106_TUT, CS2106_TUT);
         assertThrows(DuplicateModuleException.class, () -> uniqueModuleList.setModules(listWithDuplicateModules));
     }
 

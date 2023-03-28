@@ -26,27 +26,27 @@ import seedu.address.testutil.EditModuleDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_RESOURCE_AMY = "11111111";
-    public static final String VALID_RESOURCE_BOB = "22222222";
-    public static final String VALID_TIMESLOT_AMY = "230223 18:00";
-    public static final String VALID_TIMESLOT_BOB = "300123 11:00";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_NAME_CS3230 = "CS3230";
+    public static final String VALID_NAME_CS3219 = "Bob Choo";
+    public static final String VALID_RESOURCE_CS3230 = "11111111";
+    public static final String VALID_RESOURCE_CS3219 = "22222222";
+    public static final String VALID_TIMESLOT_CS3230 = "230223 18:00";
+    public static final String VALID_TIMESLOT_CS3219 = "300123 11:00";
+    public static final String VALID_ADDRESS_CS3230 = "Block 312, Amy Street 1";
+    public static final String VALID_ADDRESS_CS3219 = "Block 123, Bobby Street 3";
+    public static final String VALID_TAG_LECTURE = "Lecture";
+    public static final String VALID_TAG_TUTORIAL = "Tutorial";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String TYPE_DESC_AMY = " " + PREFIX_RESOURCE + VALID_RESOURCE_AMY;
-    public static final String TYPE_DESC_BOB = " " + PREFIX_RESOURCE + VALID_RESOURCE_BOB;
-    public static final String TIMESLOT_DESC_AMY = " " + PREFIX_TIMESLOT + VALID_TIMESLOT_AMY;
-    public static final String TIMESLOT_DESC_BOB = " " + PREFIX_TIMESLOT + VALID_TIMESLOT_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String NAME_DESC_CS3230 = " " + PREFIX_NAME + VALID_NAME_CS3230;
+    public static final String NAME_DESC_CS3219 = " " + PREFIX_NAME + VALID_NAME_CS3219;
+    public static final String TYPE_DESC_CS3230 = " " + PREFIX_RESOURCE + VALID_RESOURCE_CS3230;
+    public static final String TYPE_DESC_CS3219 = " " + PREFIX_RESOURCE + VALID_RESOURCE_CS3219;
+    public static final String TIMESLOT_DESC_CS3230 = " " + PREFIX_TIMESLOT + VALID_TIMESLOT_CS3230;
+    public static final String TIMESLOT_DESC_CS3219 = " " + PREFIX_TIMESLOT + VALID_TIMESLOT_CS3219;
+    public static final String ADDRESS_DESC_CS3230 = " " + PREFIX_ADDRESS + VALID_ADDRESS_CS3230;
+    public static final String ADDRESS_DESC_CS3219 = " " + PREFIX_ADDRESS + VALID_ADDRESS_CS3219;
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_TUTORIAL;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_LECTURE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_TYPE_DESC = " " + PREFIX_RESOURCE + "911a"; // 'a' not allowed in types
@@ -57,16 +57,16 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditModuleDescriptor DESC_AMY;
-    public static final EditCommand.EditModuleDescriptor DESC_BOB;
+    public static final EditCommand.EditModuleDescriptor DESC_CS3230;
+    public static final EditCommand.EditModuleDescriptor DESC_CS3219;
 
     static {
-        DESC_AMY = new EditModuleDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withResource(VALID_RESOURCE_AMY).withTimeSlot(VALID_TIMESLOT_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditModuleDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withResource(VALID_RESOURCE_BOB).withTimeSlot(VALID_TIMESLOT_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_CS3230 = new EditModuleDescriptorBuilder().withName(VALID_NAME_CS3230)
+                .withResource(VALID_RESOURCE_CS3230).withTimeSlot(VALID_TIMESLOT_CS3230).withAddress(VALID_ADDRESS_CS3230)
+                .withTags(VALID_TAG_TUTORIAL).build();
+        DESC_CS3219 = new EditModuleDescriptorBuilder().withName(VALID_NAME_CS3219)
+                .withResource(VALID_RESOURCE_CS3219).withTimeSlot(VALID_TIMESLOT_CS3219).withAddress(VALID_ADDRESS_CS3219)
+                .withTags(VALID_TAG_LECTURE, VALID_TAG_TUTORIAL).build();
     }
 
     /**

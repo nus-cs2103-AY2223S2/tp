@@ -3,10 +3,10 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalModules.ALICE;
+import static seedu.address.testutil.TypicalModules.CS2106_TUT;
 import static seedu.address.testutil.TypicalModules.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -46,9 +46,9 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateModules_throwsDuplicateModuleException() {
         // Two modules with the same identity fields
-        Module editedAlice = new ModuleBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Module editedAlice = new ModuleBuilder(CS2106_TUT).withAddress(VALID_ADDRESS_CS3219).withTags(VALID_TAG_LECTURE)
                 .build();
-        List<Module> newModules = Arrays.asList(ALICE, editedAlice);
+        List<Module> newModules = Arrays.asList(CS2106_TUT, editedAlice);
         AddressBookStub newData = new AddressBookStub(newModules);
 
         assertThrows(DuplicateModuleException.class, () -> addressBook.resetData(newData));
@@ -61,19 +61,19 @@ public class AddressBookTest {
 
     @Test
     public void hasModule_moduleNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasModule(ALICE));
+        assertFalse(addressBook.hasModule(CS2106_TUT));
     }
 
     @Test
     public void hasModule_moduleInAddressBook_returnsTrue() {
-        addressBook.addModule(ALICE);
-        assertTrue(addressBook.hasModule(ALICE));
+        addressBook.addModule(CS2106_TUT);
+        assertTrue(addressBook.hasModule(CS2106_TUT));
     }
 
     @Test
     public void hasModule_moduleWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addModule(ALICE);
-        Module editedAlice = new ModuleBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        addressBook.addModule(CS2106_TUT);
+        Module editedAlice = new ModuleBuilder(CS2106_TUT).withAddress(VALID_ADDRESS_CS3219).withTags(VALID_TAG_LECTURE)
                 .build();
         assertTrue(addressBook.hasModule(editedAlice));
     }
