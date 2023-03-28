@@ -29,7 +29,7 @@ public class CalendarEventListPanel extends UiPart<Region> {
     private VBox calendarEventList;
 
 
-/**
+    /**
      * Constructs a new {@code CalendarEventListPanel} object with the specified list of {@code CalendarEvent} objects
      * and primary stage of the application.
      * @param calendarDayEvents The list of {@code CalendarEvent} objects to be displayed in the panel.
@@ -45,7 +45,7 @@ public class CalendarEventListPanel extends UiPart<Region> {
     }
 
 
-/**
+    /**
      * Returns a {@code VBox} object containing the list of {@code CalendarEvent} objects for the specified day.
      * The list is displayed in a vertical list, where each event is represented by an {@code EventButton}.
      * @param currentDay The current day of the month.
@@ -62,7 +62,7 @@ public class CalendarEventListPanel extends UiPart<Region> {
     }
 
 
-/**
+    /**
      * Returns a {@code Text} object displaying the current day of the month.
      * @param currentDay The current day of the month.
      * @return A {@code Text} object displaying the current day of the month.

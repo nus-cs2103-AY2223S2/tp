@@ -42,7 +42,7 @@ public class CalendarLogic {
     private ObservableList<CalendarEvent> filteredCalendarEventList;
     private CalendarDisplay calendarDisplay;
 
-/**
+    /**
      * Constructs a {@code CalendarLogic} with the given {@code Logic}, {@code Stage}
      * {@code GridPane} and {@code HBox}.
      */
@@ -61,7 +61,7 @@ public class CalendarLogic {
     }
 
 
-/**
+    /**
      * Initialises the logic components for the Calendar.
      */
 
@@ -114,7 +114,7 @@ public class CalendarLogic {
     }
 
 
-/**
+    /**
      * Returns the {@code Text} representing the current month.
      */
 
@@ -128,7 +128,7 @@ public class CalendarLogic {
     }
 
 
-/**
+    /**
      * Refreshes the CalendarEvents.
      */
 
@@ -139,7 +139,7 @@ public class CalendarLogic {
     }
 
 
-/**
+    /**
      * Displays the CalendarEvents in the previous month.
      */
 
@@ -151,7 +151,7 @@ public class CalendarLogic {
     }
 
 
-/**
+    /**
      * Displays the CalendarEvents in the next month.
      */
 

@@ -37,7 +37,7 @@ public class CalendarPopupContent extends UiPart<Region> {
     private VBox popupVBox;
 
 
-/**
+    /**
      * Creates a {@code CalendarPopupContent} with the given CalendarEvent details.
      */
 

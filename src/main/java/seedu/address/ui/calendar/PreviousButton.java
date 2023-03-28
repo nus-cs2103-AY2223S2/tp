@@ -21,7 +21,7 @@ public class PreviousButton extends CalendarButton {
     private Button previousButton;
 
 
-/**
+    /**
      * Creates a {@code PreviousButton} with the given {@code String} and {@code CalendarLogic}.
      */
 

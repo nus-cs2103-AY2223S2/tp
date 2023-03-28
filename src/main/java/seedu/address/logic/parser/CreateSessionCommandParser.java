@@ -11,10 +11,12 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.CreateSessionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.session.SessionName;
 import seedu.address.model.session.Location;
 import seedu.address.model.session.Session;
-
+import seedu.address.model.session.SessionName;
+/**
+ * Parses input arguments and creates a new CreateSessionCommand object.
+ */
 public class CreateSessionCommandParser {
 
     /**
@@ -33,9 +35,9 @@ public class CreateSessionCommandParser {
         }
 
         SessionName name = ParserUtil.parseSessionName(argMultimap.getValue(PREFIX_NAME).get());
-        ArrayList<String> start_end = ParserUtil.parseSession(argMultimap.getValue(PREFIX_SESSION).get());
-        String startDateTime = start_end.get(0);
-        String endDateTime = start_end.get(1);
+        ArrayList<String> startEnd = ParserUtil.parseSession(argMultimap.getValue(PREFIX_SESSION).get());
+        String startDateTime = startEnd.get(0);
+        String endDateTime = startEnd.get(1);
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
 
         Session session = new Session(startDateTime, endDateTime, name, location);

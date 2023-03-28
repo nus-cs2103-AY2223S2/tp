@@ -29,7 +29,7 @@ public class EventButton extends CalendarButton {
     private Button eventButton;
 
 
-/**
+    /**
      * Constructs an {@code EventButton} with the given {@code CalendarEvent} and {@code Stage}.
      * @param calendarEvent The {@code CalendarEvent} to be displayed on the button.
      * @param primaryStage The primary {@code Stage} of the application.
@@ -44,7 +44,7 @@ public class EventButton extends CalendarButton {
     }
 
 
-/**
+    /**
      * Initializes the UI components of the {@code EventButton}.
      */
 
@@ -63,7 +63,7 @@ public class EventButton extends CalendarButton {
     }
 
 
-/**
+    /**
      * Handles the event where the {@code EventButton} is clicked.
      * Displays the {@code CalendarPopup} for the {@code CalendarEvent}.
      * @param event The {@code ActionEvent} that triggered the method call.
@@ -77,7 +77,7 @@ public class EventButton extends CalendarButton {
     }
 
 
-/**
+    /**
      * Handles the event where the {@code EventButton} is focused.
      * Displays the {@code CalendarPopup} for the {@code CalendarEvent} and changes the border of the button.
      * @param observable The {@code Observable} object that triggered the method call.
@@ -96,7 +96,7 @@ public class EventButton extends CalendarButton {
     }
 
 
-/**
+    /**
      * Displays the {@code CalendarPopup} for the {@code CalendarEvent}.
      * Places the popup on the {@code EventButton} and aligns it to the center of the screen.
      */

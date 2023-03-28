@@ -1,4 +1,8 @@
 package seedu.address.logic.commands;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
+import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -6,12 +10,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.session.Session;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-
+/**
+ * Represents a command to mark attendance of a student in a specified session.
+ */
 public class MarkAttendanceCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
@@ -27,7 +28,12 @@ public class MarkAttendanceCommand extends Command {
 
     private Name personName;
     private Index index;
-
+    /**
+     * Constructs a MarkAttendanceCommand with the given session index and person name.
+     *
+     * @param index Index of the session in the filtered session list to mark attendance for.
+     * @param personName Name of the person to mark attendance for.
+     */
     public MarkAttendanceCommand(Index index, Name personName) {
         this.index = index;
         this.personName = personName;

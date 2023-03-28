@@ -22,7 +22,7 @@ public class NextButton extends CalendarButton {
     private Button nextButton;
 
 
-/**
+    /**
      * Constructs a new {@code NextButton} with the given content and {@code CalendarLogic}.
      * @param content the text displayed on the button
      * @param calendarLogic the logic that manages the calendar
@@ -36,7 +36,7 @@ public class NextButton extends CalendarButton {
     }
 
 
-/**
+    /**
      * Handles the button's focused event.
      * When the button is focused, it changes its border color to orange,
      * otherwise to grey.
@@ -53,7 +53,7 @@ public class NextButton extends CalendarButton {
     }
 
 
-/**
+    /**
      * Handles the button's onAction event.
      * When the button is clicked, it moves the calendar to the next month.
      * @param event the event that triggered the method call
