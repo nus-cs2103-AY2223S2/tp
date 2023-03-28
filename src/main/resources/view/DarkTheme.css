@@ -158,7 +158,8 @@
   -fx-font-weight: bold;
 }
 
-.detailed-view-card {
+.detailed-view-card,
+.detailed-scroll-pane .viewport {
   -fx-background-color: -fx-color;
 }
 
