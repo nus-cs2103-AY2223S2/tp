@@ -40,9 +40,7 @@ public class TypicalPersons {
             .withAttendance(atd).withTags(VALID_TAG_FRIEND).build();
     public static final Student BOB = new PersonBuilder().withName(VALID_NAME_BOB).withAttendance(atd)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-
+    
     private TypicalPersons() {} // prevents instantiation
 
     /**
