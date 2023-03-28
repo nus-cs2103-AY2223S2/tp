@@ -3,57 +3,155 @@ layout: page
 title: User Guide
 ---
 
-Teaching Assistant Assistant (TAA) is a **desktop app for managing teaching assistant activities, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TAA can get your teaching assistant tasks done faster than traditional GUI apps.
-
 * Table of Contents
-  {:toc}
+{:toc}
+
+
+## **Introduction**
+### About this application
+Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant activities, optimized for use via a Command Line Interface (CLI) while still retaining the benefits of a Graphical User Interface (GUI).
+
+With TAA, you can easily track student attendance and grades using just a keyboard, eliminating the need for multiple clicks.
+You can even view grade statistics without the use of a dedicated data analysis application! 
+
+<!-- maybe can add image here -->
+
+Say goodbye to the hassle of managing teaching assistant tasks and hello to increased efficiency with TAA!
+
+#### Objectives of this guide
+This guide is written to provide comprehensive instructions for users to use TAA effectively and efficiently.
+More advanced users can also benefit from this guide by following the additional information provided in each feature.
+If you are a teaching assistant who can type fast, this guide is for you!
+
+#### Using the guide
+##### Navigation
+To use the guide, you may wish to take a look at the table of contents at the start of the page.
+You can click on the relevant sections you wish to visit, and the hyperlink will bring you straight to the relevant section.
+
+Alternatively, you may wish to use the built-in search function in your browser (<Button>Ctrl</Button> + <Button>F</Button>) to look for specific keywords relevant to your query.
+
+##### Formatting
+Aside from the usual text format, this guide includes certain special formats that are used for different purposes.
+
+###### Callouts
+ 
+Callouts are identified by a coloured box containing some text. 
+
+**Information**
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** Provides information that is not essential, but may be useful (especially for advanced users!). 
+</div>
+
+**Tip**
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:** Provides recommendations on how you can use the app more effectively.
+</div>
+
+**Note**
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** Contains information on how the application is designed to be used.
+</div>
+
+**Warning**
+<div markdown="span" class="alert alert-danger">
+:warning: **Warning:**  Describes actions that may cause the application to function unexpectedly.
+</div>
+
+###### Syntax highlighting
+Text contained within a `grey background` are used to denote either of the following:
+- commands that can be entered into the command bar 
+- file names
+- command line commands, to be run in the [terminal](#glossary) of the host machine
+
+###### Keys
+Keys such as <Button>A</Button> <Button>B</Button> <Button>C</Button> are used to denote keys on the keyboard that can be pressed to perform certain things.
+
+They can also be used to denote keys that should be held together, at the same time. For example, <Button>Ctrl</Button> + <Button>F</Button> indicates that the user can press both the Ctrl and F keys together to perform a given action.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## **Quick start**
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java 11 or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-4/tp/releases).
+1. Download the latest `taa.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your TAA.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar taa.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](https://user-images.githubusercontent.com/59087730/222305199-8590f0f0-7e6d-4801-bcb9-cbb2a48fa28e.png)
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br><br>
+   ![Ui](./images/Ui.png)
+   <figcaption style="text-align:center"><em><strong>
+   Figure 1
+   </strong>
+   : TAA window
+   </em></figcaption>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all students.
 
    * `add_student n/John Doe cl/T01 cl/L02` : Adds a contact named `John Doe` to the Class Lists `T01` and `L02`.
 
-   * `delete 3` : Deletes the 3rd student shown in the current list.
-
-   * `clear` : Deletes all students.
+   * `delete_student 3` : Deletes the 3rd student shown in the current list.
 
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Graphical User Interface
+![Labelled GUI](./images/Ui_labelled.png)
+<figcaption style="text-align:center"><em><strong>
+Figure 2
+</strong>: 
+Labelled components of the TAA GUI
+</em></figcaption>
 
-# Features
+<br />
+The purposes of each component, as labelled in Figure 2 above, are described in Table 1 below.
+<br />
 
-## Attendance
+<div style="text-align:center"><strong>
+Table 1
+</strong>: 
+Purposes of each GUI component
+</div>
+
+|     Component      |                              Purpose                               |
+|:------------------:|:------------------------------------------------------------------:|
+|    Command Box     |                 To accept commands from the user.                  |
+|     Output Box     |     To display the result of the commands issued by the user.      |
+| Class List Display | To display the list of students in the currently active class list |
+
+
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** To send your command, first type in your command in the command box. Then, press the <Button>Enter</Button> key to send it!
+</div>
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** The commands below will operate on the active class list being displayed in the Class List display. 
+If the students being displayed are not the ones you wish to update, do remember to update the active class list before continuing.
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Features**
+
+### Attendance
 For attendance, you can make the following calls:
 * markAtd
 * unmarkAtd
 
-### Mark attendance: `markAtd`
+#### Mark attendance: `markAtd`
 Marks the attendance of a student for that week<br>
 Format: `markAtd {student_number} w/{week_number}`<br>
 Examples
 * `markAtd 1 w/1`
 * `markAtd 2 w/1`
 
-### Unmark attendance: `unmarkAtd`
+#### Unmark attendance: `unmarkAtd`
 Unmarks the attendance of a student for that week<br>
 Format: `unmarkAtd {student_number} w/{week_number}`<br>
 Examples
@@ -64,14 +162,14 @@ Examples
 For Participation, you can make the following calls:
 * insert
 
-### Insert participation points: `insertPP`
+#### Insert participation points: `insertPP`
 Insert attendance of a student for that week<br>
 Format: `insertPP {student_number} w/{week_number} pp/{points}`
 Examples
 * `insertPP 1 w/1 pp/200`
 * `insertPP 2 w/1 pp/300`
 
-## Assignments
+### Assignments
 
 Directs you to the assignment system. Within the assignment system, you can call:
 * add
@@ -81,41 +179,40 @@ Directs you to the assignment system. Within the assignment system, you can call
 * list
 * exit
 
-### Add Assignment: `add`
+#### Add Assignment: `add`
 Adds an assignment with name, start_date, end_date, percent_weightage, total marks. All assignments will initially be ungraded.
 <br>
 Format: `Format: add {name} {start_date} {end_date} {percent_weightage} {total_marks}`<br>
 Example:
 * `add lab1 01-03-2023 15-03-2023 20 100`
 
-### Delete Assignment: `delete`
+#### Delete Assignment: `delete`
 Deletes the assignment of assignment_id you provided.<br>
 Format: `delete {assignment_id}`<br>
 Example:
 * `delete 1`
 
-### Grade Assignment: `grade`
+#### Grade Assignment: `grade`
 Grades the assignment of assignment_id and student_id with a score you provide.<br>
 Format: `grade {assignment_id} {student_id} {score}`<br>
 Example:
 * `grade 1 2 20`
 
-### Ungrade Assignment: `ungrade`
+#### Ungrade Assignment: `ungrade`
 Removes the grade of the assignment of assignment_id and student_id.<br>
 Format: `ungrade {assignment_id} {student_id}`<br>
 Example:
 * `ungrade 1 2`
 
-### List all assignments: `list`
+#### List all assignments: `list`
 Lists all assignments and their respective information.
 Format: `list`
 
-### Exit assignment system: `exit`
+#### Exit assignment system: `exit`
 Exits the assignment system.<br>
 Format: `exit`
 
-## Class List
-`class_list`
+### Class List
 
 Directs you to the class list system.
 In this system, you can call the following commands:
@@ -127,7 +224,7 @@ In this system, you can call the following commands:
 - Listing all students: `list`
 - Find student: `find`
 
-### Create a class list: `create`
+#### Create a class list: `create`
 Creates a class list to store the information about a group of students.
 
 Format: `create LIST_NAME [STUDENT_NAMES]`
@@ -140,7 +237,7 @@ Examples:
 - `create cs6244` creates an empty class list.
 
 
-### Random grouping of students: `rand_grp` [coming soon]
+#### Group students at random: `rand_grp` [coming soon]
 Forms random groups of a specified size within a given class list.
 
 Format: `rand_grp CLASS_LIST GROUP_SIZE`
@@ -153,7 +250,7 @@ Examples:
 - `rand_grp cs2103t-t14 2` returns: Group 1: Alex, John; Group 2: Bonnie, Clyde
 - `rand_grp cs2103t-t14 3` returns: Group 1: Alex, John, Clyde; Group 2: Bonnie
 
-### Adding a student: `add_student`
+#### Add a student: `add_student`
 Adds a student to a given class list.
 
 Format: `add_student n/STUDENT_NAME cl/CLASS_NAME`
@@ -167,7 +264,7 @@ Examples:
 - `add n/Tom cl/cs2103t-t14` adds Tom to the class CS2103T-T14
 - `add n/Harry cl/cs6244` adds Harry to the class CS6244
 
-### Editing a student: `edit_student`
+#### Edit a student: `edit_student`
 Edits a student in the active class list.
 
 Format: `edit_student STUDENT_INDEX [n/STUDENT_NAME] [cl/CLASS_NAME]`
@@ -181,7 +278,7 @@ Examples:
 him to the class "Lab_L11"
 
 
-### Deleting a student: `delete_student`
+#### Delete a student: `delete_student`
 Deletes a student from the active class list.
 
 Format: `delete_student STUDENT_INDEX`
@@ -190,13 +287,13 @@ Format: `delete_student STUDENT_INDEX`
 Examples:
 - `delete_student 3` removes the 3rd student in the currently active/displayed class list
 
-### Listing all students : `list` 
+#### List all students : `list` 
 Lists all students tracked by TAA globally.
 
 Format: `list`
 
 
-### Find a particular student : `find` [coming soon]
+#### Find a particular student : `find` [coming soon]
 List the students in the class by their student number/name.
 
 Format: `find FLAG STUDENT_NUMBER` or `find FLAG STUDENT_NAME`
@@ -211,7 +308,7 @@ Examples:
 - find -id a0123456b
 
 
-## CSV Parser
+### CSV Parser
 
 Stores and loads data in with CSV files.
 
@@ -229,14 +326,14 @@ Meggy Spletzer,Inkling
 John von Neumann,
 ```
 
-### Import data in CSV format: `import` [in dev]
+#### Import data in CSV format: `import` [in dev]
 Import data in CSV format from file.
 
 Format: `import [flag] [file path]`
 * Flag -force overwrites records of existing students.
 * Nothing is changed if file does not exist or file access denied.
 
-### Export data in CSV format: `export` [coming soon]
+#### Export data in CSV format: `export` [coming soon]
 Export data in CSV format to file.
 
 Format: `export [flag] [file path]`
@@ -246,12 +343,12 @@ Format: `export [flag] [file path]`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## **Glossary**
 
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-_Details coming soon ..._
+|           Term           |                                                                               Explanation                                                                                | 
+|:------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|       Desktop App        |                           A software program that runs on a computer's desktop or laptop operating system, rather than through a web browser.                            |
+|  Command Line Interface  |            A way of interacting with a computer program by typing in text commands instead of using a graphical user interface (GUI) with buttons and menus.             | 
+| Graphical User Interface | A type of user interface that allows users to interact with a computer program using graphical elements such as buttons, menus, and icons instead of typing in commands. | 
+|         Terminal         |                    Text-based interface used to interact with the computer's operating system. For Windows, it is usually called the Command Prompt.                     | 
+|       Host Machine       |                                                    The computer that is used to run the software/program in question.                                                    | 
