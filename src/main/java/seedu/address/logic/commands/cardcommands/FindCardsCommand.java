@@ -19,7 +19,7 @@ import seedu.address.model.deck.Deck;
  * Finds and lists all cards in the selected deck that contain any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FindCardCommand extends Command {
+public class FindCardsCommand extends Command {
 
     public static final String COMMAND_WORD = "findCard";
 
@@ -31,11 +31,11 @@ public class FindCardCommand extends Command {
     private final QuestionContainsKeywordsPredicate cardPredicate;
 
     /**
-     * Constructs a FindCardCommand with the given list of keywords.
+     * Constructs a FindCardsCommand with the given list of keywords.
      * The command will search for cards in the selected deck that contain any of the keywords.
      * @param keywords the list of keywords to search for
      */
-    public FindCardCommand(List<String> keywords) {
+    public FindCardsCommand(List<String> keywords) {
         this.cardPredicate = new QuestionContainsKeywordsPredicate(keywords);
     }
 
@@ -52,7 +52,7 @@ public class FindCardCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCardCommand // instanceof handles nulls
-                && cardPredicate.equals(((FindCardCommand) other).cardPredicate)); // state check
+                || (other instanceof FindCardsCommand // instanceof handles nulls
+                && cardPredicate.equals(((FindCardsCommand) other).cardPredicate)); // state check
     }
 }

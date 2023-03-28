@@ -23,20 +23,20 @@ import seedu.address.model.card.QuestionContainsKeywordsPredicate;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
-public class FindCardCommandTest {
+public class FindCardsCommandTest {
     private Model model = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
 
     @Test
     public void equals() {
-        FindCardCommand findFirstCommand = new FindCardCommand(Collections.singletonList("first"));
-        FindCardCommand findSecondCommand = new FindCardCommand(Collections.singletonList("second"));
+        FindCardsCommand findFirstCommand = new FindCardsCommand(Collections.singletonList("first"));
+        FindCardsCommand findSecondCommand = new FindCardsCommand(Collections.singletonList("second"));
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCardCommand findFirstCommandCopy = new FindCardCommand(Collections.singletonList("first"));
+        FindCardsCommand findFirstCommandCopy = new FindCardsCommand(Collections.singletonList("first"));
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -55,7 +55,7 @@ public class FindCardCommandTest {
         String expectedMessage = String.format(MESSAGE_CARDS_LISTED_OVERVIEW, 0);
         QuestionContainsKeywordsPredicate predicate = prepareCardPredicate(userInput);
         List keywords = prepareKeywords(userInput);
-        FindCardCommand command = new FindCardCommand(keywords);
+        FindCardsCommand command = new FindCardsCommand(keywords);
         expectedModel.selectDeck(INDEX_FIRST);
         model.selectDeck(INDEX_FIRST);
         expectedModel.updateFilteredCardList(predicate);
@@ -69,7 +69,7 @@ public class FindCardCommandTest {
         String expectedMessage = String.format(MESSAGE_CARDS_LISTED_OVERVIEW, 1);
         QuestionContainsKeywordsPredicate predicate = prepareCardPredicate(userInput);
         List keywords = prepareKeywords(userInput);
-        FindCardCommand command = new FindCardCommand(keywords);
+        FindCardsCommand command = new FindCardsCommand(keywords);
         expectedModel.selectDeck(INDEX_FIRST);
         model.selectDeck(INDEX_FIRST);
         expectedModel.updateFilteredCardList(predicate);

@@ -15,7 +15,7 @@ import seedu.address.model.deck.DeckContainsKeywordsPredicate;
  * Finds and list all decks in the master deck that contain any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FindDeckCommand extends Command {
+public class FindDecksCommand extends Command {
     public static final String COMMAND_WORD = "findDeck";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all decks that contain any of "
@@ -26,11 +26,11 @@ public class FindDeckCommand extends Command {
     private final DeckContainsKeywordsPredicate deckPredicate;
 
     /**
-     * Constructs a FindDeckCommand with the given list of keywords.
+     * Constructs a FindDecksCommand with the given list of keywords.
      * The command will search for decks that contain any of the keywords.
      * @param keywords the list of keywords to search for
      */
-    public FindDeckCommand(List<String> keywords) {
+    public FindDecksCommand(List<String> keywords) {
         this.deckPredicate = new DeckContainsKeywordsPredicate(keywords);
     }
 
@@ -45,7 +45,7 @@ public class FindDeckCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindDeckCommand // instanceof handles nulls
-                && deckPredicate.equals(((FindDeckCommand) other).deckPredicate)); // state check
+                || (other instanceof FindDecksCommand // instanceof handles nulls
+                && deckPredicate.equals(((FindDecksCommand) other).deckPredicate)); // state check
     }
 }
