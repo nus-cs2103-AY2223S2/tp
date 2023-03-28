@@ -15,6 +15,7 @@ import tfifteenfour.clipboard.logic.commands.addcommand.AddCourseCommand;
 import tfifteenfour.clipboard.logic.commands.addcommand.AddGroupCommand;
 import tfifteenfour.clipboard.logic.commands.addcommand.AddSessionCommand;
 import tfifteenfour.clipboard.logic.commands.addcommand.AddStudentCommand;
+import tfifteenfour.clipboard.logic.commands.addcommand.AddTaskCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
@@ -25,6 +26,7 @@ import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Remark;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.StudentId;
+import tfifteenfour.clipboard.model.task.Task;
 
 
 /**
@@ -44,7 +46,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             addCommandType = CommandTargetType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ParseException("Add type missing! Please enter a valid add command. \n"
-                    + "Available add commands are: add course, add group, add session, add student");
+                    + "Available add commands are: add course, add group, add session, add task, add student");
         }
 
         switch (addCommandType) {
@@ -57,6 +59,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         case SESSION:
             Session session = parseSessionInfo(args);
             return new AddSessionCommand(session);
+        case TASK:
+            Task task = parseTaskInfo(args);
+            return new AddTaskCommand(task);
         case STUDENT:
             Student student = parseStudentInfo(args);
             return new AddStudentCommand(student);
@@ -64,7 +69,6 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException("Invalid type for add command");
         }
     }
-
 
     private Course parseCourseInfo(String args) throws ParseException {
         String[] tokens = ArgumentTokenizer.tokenizeString(args);
@@ -94,6 +98,18 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Session session = ParserUtil.parseSession(tokens[2]);
         return session;
+    }
+
+    private Task parseTaskInfo(String args) throws ParseException {
+        String[] tokens = ArgumentTokenizer.tokenizeString(args);
+        if (tokens.length < 3) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
+        }
+
+        String taskName = args.split(" ",2)[1].split(" ", 2)[1];
+
+        Task task = ParserUtil.parseTask(taskName);
+        return task;
     }
 
     private Student parseStudentInfo(String args) throws ParseException {

@@ -15,6 +15,7 @@ public class SerializedGroup {
     private String groupName;
     private List<SerializedStudent> students = new ArrayList<>();
     private List<SerializedSession> sessions = new ArrayList<>();
+    private List<SerializedTask> tasks = new ArrayList<>();
 
     /**
      * Constructs a {@code SerializedGroup} with the given group.
@@ -26,6 +27,9 @@ public class SerializedGroup {
                 .collect(Collectors.toList());
         this.sessions = group.getUnmodifiableSessionList().stream()
                 .map(session -> new SerializedSession(session))
+                .collect(Collectors.toList());
+        this.tasks = group.getUnmodifiableTaskList().stream()
+                .map(task -> new SerializedTask(task))
                 .collect(Collectors.toList());
     }
 
@@ -46,6 +50,11 @@ public class SerializedGroup {
         return sessions;
     }
 
+    @JsonProperty("tasks")
+    public List<SerializedTask> getTask() {
+        return tasks;
+    }
+
     /**
      * Converts current {@code SerializedGroup} object into a {@code Group} object and returns it.
      * @return A {@code Group} object that corresponds to this {@code SerializedGroup} object.
@@ -54,6 +63,7 @@ public class SerializedGroup {
         Group newGroup = new Group(this.groupName);
         this.students.stream().forEach(student -> newGroup.addStudent(student.toModelType()));
         this.sessions.stream().forEach(session -> newGroup.addSession(session.toModelType()));
+        this.tasks.stream().forEach(task -> newGroup.addTask(task.toModelType()));
         return newGroup;
     }
 }

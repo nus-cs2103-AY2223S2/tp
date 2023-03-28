@@ -17,6 +17,7 @@ import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.StudentId;
 import tfifteenfour.clipboard.model.tag.Tag;
+import tfifteenfour.clipboard.model.task.Task;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -181,6 +182,19 @@ public class ParserUtil {
         requireNonNull(sessionName);
         String trimmedSession = sessionName.trim();
         return new Session(trimmedSession);
+    }
+
+    /**
+     * Parses a {@code String taskName} into a {@code <Task>}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Task parseTask(String taskName) throws ParseException {
+        requireNonNull(taskName);
+        String trimmedTask = taskName.trim();
+        if (!Task.isValidTaskName(trimmedTask)) {
+            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+        }
+        return new Task(trimmedTask);
     }
 
     /**

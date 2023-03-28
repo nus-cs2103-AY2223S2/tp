@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.model.student.Assignment;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.UniqueStudentList;
+import tfifteenfour.clipboard.model.task.Task;
+import tfifteenfour.clipboard.model.task.UniqueTasksList;
 
 /**
  * Represents a Group in the CLIpboard.
@@ -20,6 +22,7 @@ public class Group {
     private String groupName;
     private final UniqueStudentList students;
     private final UniqueSessionsList sessions;
+    private final UniqueTasksList tasks;
 
     {
         students = new UniqueStudentList();
@@ -29,11 +32,9 @@ public class Group {
         sessions = new UniqueSessionsList();
     }
 
-
-    // Placeholder example only, dont use arraylist, need to use ObservableList for javafx to recognize
-    // Convert to UniqueXXXlist, just like UniqueStudentsList class
-    private ArrayList<Assignment> assignments = new ArrayList<>();
-    // ##############################################################
+    {
+        tasks = new UniqueTasksList();
+    }
 
     /**
      * Constructs a group with the given group name.
@@ -69,6 +70,21 @@ public class Group {
     }
 
     /**
+     * Returns an unmodifiable view of the list of tasks in this group.
+     */
+    public ObservableList<Task> getUnmodifiableTaskList() {
+        return tasks.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns a modifiable view of the list of tasks in this group.
+     */
+    public ObservableList<Task> getModifiableTaskList() {
+        return tasks.asModifiableObservableList();
+    }
+
+
+    /**
      * Adds the given student to this group.
      * @param student Student to be added.
      */
@@ -89,11 +105,12 @@ public class Group {
     }
 
     /**
-     * Adds the given assignment to this group.
-     * @param assignment Assignment to be added.
+     * Adds the given task to this group.
+     * @param task task to be added.
      */
-    public void addAssignment(Assignment assignment) {
-        this.assignments.add(assignment);
+    public void addTask(Task task) {
+        this.tasks.add(task);
+        task.setStudents(students);
     }
 
     /**
@@ -102,6 +119,14 @@ public class Group {
      */
     public void deleteSession(Session session) {
         this.sessions.remove(session);
+    }
+
+    /**
+     * Deletes the given task from this group.
+     * @param task Task to be deleted.
+     */
+    public void deleteTask(Task task) {
+        this.tasks.remove(task);
     }
 
     /**
@@ -145,6 +170,14 @@ public class Group {
     public boolean hasSession(Session session) {
         requireNonNull(session);
         return sessions.contains(session);
+    }
+
+    /**
+     * Returns true if this group contains the specified task.
+     */
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return tasks.contains(task);
     }
 
     /**
