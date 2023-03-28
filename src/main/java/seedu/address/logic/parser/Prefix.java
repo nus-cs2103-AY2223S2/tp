@@ -6,9 +6,33 @@ package seedu.address.logic.parser;
  */
 public class Prefix {
     private final String prefix;
+    private final String placeholderText;
 
+    /**
+     * Constructs a {@code Prefix} with given prefix and an no placeholder text.
+     * @param prefix Prefix value.
+     */
     public Prefix(String prefix) {
         this.prefix = prefix;
+        this.placeholderText = "";
+    }
+
+    //@@author EvitanRelta-reused
+    // Reused from https://github.com/AY2223S1-CS2103T-T12-2/tp
+    // with minor modifications.
+    /**
+     * Constructs a {@code Prefix} with given prefix and placeholder text.
+     * @param prefix Prefix value.
+     * @param placeholderText Placeholder text describing the expected data for the prefix.
+     */
+    public Prefix(String prefix, String placeholderText) {
+        this.prefix = prefix;
+        this.placeholderText = placeholderText;
+    }
+    //@@author
+
+    public String getPlaceholderText() {
+        return placeholderText;
     }
 
     public String getPrefix() {
@@ -34,6 +58,7 @@ public class Prefix {
         }
 
         Prefix otherPrefix = (Prefix) obj;
-        return otherPrefix.getPrefix().equals(getPrefix());
+        return otherPrefix.getPrefix().equals(getPrefix())
+                && otherPrefix.getPlaceholderText().equals(getPlaceholderText());
     }
 }
