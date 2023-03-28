@@ -32,7 +32,8 @@ public class ModuleTest {
         assertFalse(CS2106_TUT.isSameModule(null));
 
         // same name, all other attributes different -> returns true
-        Module editedAlice = new ModuleBuilder(CS2106_TUT).withResource(VALID_RESOURCE_CS3219).withTimeSlot(VALID_TIMESLOT_CS3219)
+        Module editedAlice = new ModuleBuilder(CS2106_TUT).withResource(VALID_RESOURCE_CS3219)
+                .withTimeSlot(VALID_TIMESLOT_CS3219)
                 .withAddress(VALID_ADDRESS_CS3219).withTags(VALID_TAG_LECTURE).build();
         assertTrue(CS2106_TUT.isSameModule(editedAlice));
 

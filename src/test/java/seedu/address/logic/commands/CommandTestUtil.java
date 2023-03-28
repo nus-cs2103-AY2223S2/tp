@@ -62,10 +62,12 @@ public class CommandTestUtil {
 
     static {
         DESC_CS3230 = new EditModuleDescriptorBuilder().withName(VALID_NAME_CS3230)
-                .withResource(VALID_RESOURCE_CS3230).withTimeSlot(VALID_TIMESLOT_CS3230).withAddress(VALID_ADDRESS_CS3230)
+                .withResource(VALID_RESOURCE_CS3230).withTimeSlot(VALID_TIMESLOT_CS3230)
+                .withAddress(VALID_ADDRESS_CS3230)
                 .withTags(VALID_TAG_TUTORIAL).build();
         DESC_CS3219 = new EditModuleDescriptorBuilder().withName(VALID_NAME_CS3219)
-                .withResource(VALID_RESOURCE_CS3219).withTimeSlot(VALID_TIMESLOT_CS3219).withAddress(VALID_ADDRESS_CS3219)
+                .withResource(VALID_RESOURCE_CS3219).withTimeSlot(VALID_TIMESLOT_CS3219)
+                .withAddress(VALID_ADDRESS_CS3219)
                 .withTags(VALID_TAG_LECTURE, VALID_TAG_TUTORIAL).build();
     }
 

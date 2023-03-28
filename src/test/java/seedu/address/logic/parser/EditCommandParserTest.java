@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -11,19 +11,19 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_TYPE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.TIMESLOT_DESC_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.TIMESLOT_DESC_CS3219;
-import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.TIMESLOT_DESC_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_CS3219;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS3230;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_CS3219;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_CS3230;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -83,12 +83,15 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_TYPE_DESC, Resource.MESSAGE_CONSTRAINTS); // invalid type
-        assertParseFailure(parser, "1" + INVALID_TIMESLOT_DESC, TimeSlot.MESSAGE_CONSTRAINTS); // invalid timeSlot
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "1"
+                + INVALID_TIMESLOT_DESC, TimeSlot.MESSAGE_CONSTRAINTS); // invalid timeSlot
+        assertParseFailure(parser, "1"
+                + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid type followed by valid timeSlot
-        assertParseFailure(parser, "1" + INVALID_TYPE_DESC + TIMESLOT_DESC_CS3230, Resource.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_TYPE_DESC
+                + TIMESLOT_DESC_CS3230, Resource.MESSAGE_CONSTRAINTS);
 
         // valid type followed by invalid type. The test case for invalid type followed by valid type
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
@@ -96,9 +99,12 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Module} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND
+                + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY
+                + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND
+                + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_TIMESLOT_DESC + VALID_ADDRESS_CS3230
@@ -112,7 +118,8 @@ public class EditCommandParserTest {
                 + TIMESLOT_DESC_CS3230 + ADDRESS_DESC_CS3230 + NAME_DESC_CS3230 + TAG_DESC_FRIEND;
 
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_NAME_CS3230)
-                .withResource(VALID_RESOURCE_CS3219).withTimeSlot(VALID_TIMESLOT_CS3230).withAddress(VALID_ADDRESS_CS3230)
+                .withResource(VALID_RESOURCE_CS3219).withTimeSlot(VALID_TIMESLOT_CS3230)
+                .withAddress(VALID_ADDRESS_CS3230)
                 .withTags(VALID_TAG_LECTURE, VALID_TAG_TUTORIAL).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -192,7 +199,8 @@ public class EditCommandParserTest {
         // other valid values specified
         userInput = targetIndex.getOneBased() + TIMESLOT_DESC_CS3219 + INVALID_TYPE_DESC + ADDRESS_DESC_CS3219
                 + TYPE_DESC_CS3219;
-        descriptor = new EditModuleDescriptorBuilder().withResource(VALID_RESOURCE_CS3219).withTimeSlot(VALID_TIMESLOT_CS3219)
+        descriptor = new EditModuleDescriptorBuilder().withResource(VALID_RESOURCE_CS3219)
+                .withTimeSlot(VALID_TIMESLOT_CS3219)
                 .withAddress(VALID_ADDRESS_CS3219).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);

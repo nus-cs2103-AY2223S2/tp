@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CS3219;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS3219;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_CS3219;
@@ -36,7 +36,8 @@ public class EditModuleDescriptorTest {
         assertFalse(DESC_CS3230.equals(DESC_CS3219));
 
         // different name -> returns false
-        EditModuleDescriptor editedAmy = new EditModuleDescriptorBuilder(DESC_CS3230).withName(VALID_NAME_CS3219).build();
+        EditModuleDescriptor editedAmy = new EditModuleDescriptorBuilder(DESC_CS3230)
+                .withName(VALID_NAME_CS3219).build();
         assertFalse(DESC_CS3230.equals(editedAmy));
 
         // different type -> returns false
