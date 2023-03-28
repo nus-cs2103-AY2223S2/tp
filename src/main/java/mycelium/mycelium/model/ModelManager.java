@@ -186,6 +186,13 @@ public class ModelManager implements Model {
         updateFilteredClientList(x -> true);
     }
 
+    @Override
+    public void setClient(Client target, Client editedClient) {
+        requireAllNonNull(target, editedClient);
+
+        addressBook.setClient(target, editedClient);
+    }
+
     //=========== Filtered Client List Accessors =============================================================
 
     @Override

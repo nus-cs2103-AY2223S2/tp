@@ -138,31 +138,70 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     * @param client must not be null.
+     * @return true if a client with the same identity as {@code client} exists in the address book.
+     */
     public boolean hasClient(Client client) {
         return clients.contains(client);
     }
 
-    public void removeClient(Client client) {
-        clients.remove(client);
-    }
-
+    /**
+     * Adds a client to the address book.
+     * @param client must not be null.
+     */
     public void addClient(Client client) {
         clients.add(client);
     }
 
+    /**
+     * Replaces the given client {@code client} in the list with {@code editedClient}.
+     * @param client must exist in the address book.
+     * @param editedClient must not be the same as another existing client in the address book.
+     */
+    public void setClient(Client client, Client editedClient) {
+        clients.setItem(client, editedClient);
+    }
+
+    /**
+     * Removes {@code client} from this {@code AddressBook}.
+     * @param client must exist in the address book.
+     */
+    public void removeClient(Client client) {
+        clients.remove(client);
+    }
+
+    /**
+     * Returns an unmodifiable view of the clients list.
+     * @return an unmodifiable view of the clients list.
+     */
     @Override
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns true if a project with the same identity as {@code project} exists in the address book.
+     * @param project must not be null.
+     * @return true if a project with the same identity as {@code project} exists in the address book.
+     */
     public boolean hasProject(Project project) {
         return projects.contains(project);
     }
 
+    /**
+     * Removes the project if the project has the same name as the {@code project} in the address book.
+     * @param project must not be null.
+     */
     public void removeProject(Project project) {
         projects.remove(project);
     }
 
+    /**
+     * Adds a project to Mycelium if it does not contain an existing project with the same name.
+     * @param project must not be null.
+     */
     public void addProject(Project project) {
         projects.add(project);
     }
@@ -174,7 +213,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         // NOTE: no need for null checks at this stage, let the UniqueList handle it
         projects.setItem(target, editedProject);
     }
-
     @Override
     public ObservableList<Project> getProjectList() {
         return projects.asUnmodifiableObservableList();

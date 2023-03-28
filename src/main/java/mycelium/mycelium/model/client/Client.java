@@ -116,7 +116,7 @@ public class Client implements IsSame<Client>, FuzzyComparable<String> {
             return true;
         }
         return otherClient != null
-            && otherClient.getEmail().equals(getEmail());
+            && this.getEmail().equals(otherClient.getEmail());
     }
 
     @Override
