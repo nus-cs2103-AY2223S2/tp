@@ -16,7 +16,7 @@ import seedu.address.model.deck.DeckContainsKeywordsPredicate;
  * Keyword matching is case-insensitive.
  */
 public class FindDecksCommand extends Command {
-    public static final String COMMAND_WORD = "findDeck";
+    public static final String COMMAND_WORD = "findDecks";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all decks that contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
