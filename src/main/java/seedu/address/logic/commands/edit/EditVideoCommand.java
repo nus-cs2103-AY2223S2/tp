@@ -89,11 +89,10 @@ public class EditVideoCommand extends EditCommand {
         requireNonNull(videoToEdit);
 
         VideoName updatedName = editVideoDescriptor.getName().orElse(videoToEdit.getName());
+        boolean hasWatchedUpdated = editVideoDescriptor.hasWatched().orElse(videoToEdit.hasWatched());
         Set<Tag> updatedTags = editVideoDescriptor.getTags().orElse(videoToEdit.getTags());
 
-        boolean hasWatched = videoToEdit.hasWatched();
-
-        return new Video(updatedName, hasWatched, updatedTags);
+        return new Video(updatedName, hasWatchedUpdated, updatedTags);
     }
 
     @Override
@@ -156,7 +155,7 @@ public class EditVideoCommand extends EditCommand {
             return Optional.ofNullable(hasWatched);
         }
 
-        public void setWatched(boolean hasWatched) {
+        public void setWatched(Boolean hasWatched) {
             this.hasWatched = hasWatched;
         }
 

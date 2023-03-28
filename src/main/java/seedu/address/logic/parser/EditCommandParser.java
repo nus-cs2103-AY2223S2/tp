@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_2_CONFLICTING_ARGS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
@@ -141,6 +142,12 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         String updatedNameStr = argMultimap.getValue(PREFIX_NAME).orElse(null);
         String updatedTagsStr = argMultimap.getValue(PREFIX_TAG).orElse(null);
+        boolean hasWatchFlag = argMultimap.getValue(PREFIX_WATCH).isPresent();
+        boolean hasUnwatchFlag = argMultimap.getValue(PREFIX_UNWATCH).isPresent();
+
+        if (hasWatchFlag && hasUnwatchFlag) {
+            throw new ParseException(String.format(MESSAGE_2_CONFLICTING_ARGS, PREFIX_WATCH, PREFIX_UNWATCH));
+        }
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
         LectureName lectureName = ParserUtil.parseLectureName(lectureNameStr);
@@ -148,10 +155,12 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         VideoName updatedName = updatedNameStr == null ? null : ParserUtil.parseVideoName(updatedNameStr);
         Set<Tag> updatedTags = updatedTagsStr == null ? null : ParserUtil.parseMultiTags(updatedTagsStr);
+        Boolean hasWatchedUpdated = !hasWatchFlag && !hasUnwatchFlag ? null : hasWatchFlag;
 
         EditVideoDescriptor descriptor = new EditVideoDescriptor();
         descriptor.setName(updatedName);
         descriptor.setTags(updatedTags);
+        descriptor.setWatched(hasWatchedUpdated);
 
         if (!descriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
