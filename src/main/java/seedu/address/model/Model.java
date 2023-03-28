@@ -221,16 +221,29 @@ public interface Model {
      */
     void updateFilteredConsultationList(Predicate<Consultation> predicate);
 
-    /**
-     * Checks whether a note has been added before
-     * @param note The note to check against
-     * @return A boolean indicating whether it has been added
-     */
-    boolean hasNote(Note note);
+    void editNoteFromTutorial(Index index, Note note, String nameOfEvent);
+    void editNoteFromLab(Index index, Note note, String nameOfEvent);
+    void editNoteFromConsultation(Index index, Note note, String nameOfEvent);
+
+    void removeNoteFromTutorial(Index index, String nameOfEvent);
+    void removeNoteFromLab(Index index, String nameOfEvent);
+    void removeNoteFromConsultation(Index index, String nameOfEvent);
 
     /**
-     * Append notes to the existing note list
+     * Append notes to an existing tutorial note list
      * @param note The note to add
      */
-    void addNote(Note note);
+    void addNoteToTutorial(Note note, String nameOfEvent);
+
+    /**
+     * Append notes to an existing lab note list
+     * @param note The note to add
+     */
+    void addNoteToLab(Note note, String nameOfEvent);
+
+    /**
+     * Append notes to an existing consultation note list
+     * @param note The note to add
+     */
+    void addNoteToConsultation(Note note, String nameOfEvent);
 }

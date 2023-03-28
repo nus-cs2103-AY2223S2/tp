@@ -2,48 +2,47 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EVENT_TYPE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EXTERNAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddNoteToEventCommand;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteNoteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.event.Note;
 
 /**
- * Parser notes from commands
+ * Parses input arguments and creates a new DeleteEventCommand object
  */
-public class AddNoteParser implements Parser<AddNoteToEventCommand> {
+public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddNote
-     * and returns an AddNote object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteEventCommand
+     * and returns a DeleteEventCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddNoteToEventCommand parse(String args) throws ParseException {
+    public DeleteNoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        String newArgs = args.trim().replaceFirst("Note", "");
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(newArgs, PREFIX_NOTE_EXTERNAL, PREFIX_NOTE_CONTENT,
-                        PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME);
-        if (arePrefixesAbsent(argMultimap, PREFIX_NOTE_CONTENT)) {
+                ArgumentTokenizer.tokenize(args, PREFIX_NOTE_INDEX, PREFIX_NOTE_EVENT_TYPE,
+                        PREFIX_NOTE_EVENT_NAME);
+        if (arePrefixesAbsent(argMultimap, PREFIX_NOTE_INDEX)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddNoteToEventCommand.MESSAGE_USAGE));
+                    DeleteNoteCommand.MESSAGE_USAGE) + "\n"
+                    + DeleteNoteCommand.MESSAGE_EXAMPLE);
         }
 
         // The case of adding note without event
         if (!arePrefixesPresent(argMultimap, PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddNoteToEventCommand.MESSAGE_USAGE));
+                    DeleteNoteCommand.MESSAGE_USAGE) + "\n"
+                    + DeleteNoteCommand.MESSAGE_EXAMPLE);
         }
-        String name = ParserUtil.parseNoteContent(argMultimap.getValue(PREFIX_NOTE_CONTENT).get());
+        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_NOTE_INDEX).get());
         String eventName = argMultimap.getValue(PREFIX_NOTE_EVENT_NAME).get();
         String eventType = argMultimap.getValue(PREFIX_NOTE_EVENT_TYPE).get();
-        Note note = new Note(name);
-        return new AddNoteToEventCommand(note, eventName, eventType);
+        return new DeleteNoteCommand(index, eventName, eventType);
     }
 
     /**
@@ -55,10 +54,14 @@ public class AddNoteParser implements Parser<AddNoteToEventCommand> {
     }
 
     /**
-     * Returns true if none of the prefixes is contained in the string
+     * Returns true if none of the prefixes contains command to add students (cannot add
+     * student and tutorial
+     * using the same command.)
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesAbsent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).noneMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
 }
+

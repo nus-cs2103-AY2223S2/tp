@@ -11,6 +11,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
 <HBox id="cardPane" fx:id="cardPane" spacing="20" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane style="-fx-background-radius: 16; -fx-background-color: C4C4C4;" HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -41,6 +43,7 @@
              <Label fx:id="date" styleClass="cell_big_label" />
              <ImageView fx:id="attachmentLogo" />
          </HBox>
+        <BorderPane fx:id="borderPane" />
         </VBox>
       <HBox prefHeight="81.0" prefWidth="150.0" />
         <rowConstraints>

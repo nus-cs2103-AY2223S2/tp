@@ -46,10 +46,6 @@ public class Note {
         }
     }
 
-    private boolean isEmpty() {
-        return this.content.equals(EMPTY_CONTENT);
-    }
-
     private String validateContent(String note) {
         // utf-8 check left to ui input handler
         if (note.isEmpty()) {
@@ -58,6 +54,10 @@ public class Note {
             note = note.substring(0, LENGTH_LIMIT);
         }
         return note;
+    }
+
+    private boolean isEmpty() {
+        return this.content.equals(EMPTY_CONTENT);
     }
 
     public String getContent() {
@@ -114,5 +114,16 @@ public class Note {
      */
     public String help() {
         return "Hint: Use @ to refer to students in the event"; // TODO: Help format to be determined later. @Jiatong
+    }
+
+    /**
+     * Copy current note and return a new one
+     * @return A copied note
+     */
+    public Note copy() {
+        if (isEmpty()) {
+            return new Note();
+        }
+        return new Note(getContent());
     }
 }

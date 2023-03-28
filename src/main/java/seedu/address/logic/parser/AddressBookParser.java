@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddConsultationCommand;
 import seedu.address.logic.commands.AddLabCommand;
+import seedu.address.logic.commands.AddNoteToEventCommand;
 import seedu.address.logic.commands.AddRecurCommand;
 import seedu.address.logic.commands.AddStudentToEventCommand;
 import seedu.address.logic.commands.AddTutorialCommand;
@@ -18,8 +19,10 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEventCommand;
+import seedu.address.logic.commands.DeleteNoteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditEventCommand;
+import seedu.address.logic.commands.EditNoteCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -109,6 +112,12 @@ public class AddressBookParser {
         case AddRecurCommand.COMMAND_WORD:
             return new AddRecurParser().parse(arguments);
 
+        case AddNoteToEventCommand.COMMAND_WORD:
+            return new AddNoteParser().parse(arguments);
+
+        case DeleteNoteCommand.COMMAND_WORD:
+            return new DeleteNoteCommandParser().parse(arguments);
+
         case AddStudentToEventCommand.COMMAND_WORD:
             return new AddStudentToEventParser().parse(arguments);
 
@@ -117,6 +126,9 @@ public class AddressBookParser {
 
         case EditEventCommand.COMMAND_WORD:
             return new EditEventCommandParser().parse(arguments);
+
+        case EditNoteCommand.COMMAND_WORD:
+            return new EditNoteCommandParser().parse(arguments);
 
         case ChangeTabStudentCommand.COMMAND_WORD:
             return new ChangeTabStudentCommand();
