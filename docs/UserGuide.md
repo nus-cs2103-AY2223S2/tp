@@ -4,28 +4,28 @@ title: User Guide
 ---
 <img src="images/FitBookBanner.png" width="1200" />
 
-##<span style="color:#f9963f">About FitBook</span>
+<h2><span style="color:#f9963f">About FitBook</span></h2>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 FitBook is a **desktop app for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Fitbook can get your client management tasks done faster than traditional GUI apps.
-</div>
 
 This User Guide provides brief documentation on how you can install the application and describes how each feature should be used. Start by looking at the [quick start](#quick-start) guide to get you started.
+</div>
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-##<span style="color:#f9963f">Quick start</span>
+<h2><span style="color:#f9963f">Quick start</span></h2>
 
 1. Ensure you have **Java** `11` or above installed in your Computer.
 
 1. **Download** the latest `fitbook.jar` from [here](https://github.com/AY2223S2-CS2103T-T15-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your FitBook.
+1. **Copy** the file to the folder you want to use as the _home folder_ for your FitBook.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar fitbook.jar` command to run the application.<br>
-   A **GUI** similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -52,12 +52,11 @@ This User Guide provides brief documentation on how you can install the applicat
 
 --------------------------------------------------------------------------------------------------------------------
 
-##<span style="color:#f9963f">Features</span>
+<h2><span style="color:#f9963f">Features</span></h2>
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
-<div style="border: 2px solid #fee7d3; border-radius:5px; padding:20px 0;">
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -80,9 +79,9 @@ This User Guide provides brief documentation on how you can install the applicat
 * Client list can be found in the Client panel. Routine list can be found in the Routine Panel of the `Routine` tab.
 </div>
 
-###<span style="color:#faac69">Viewing help : `help`</span>
+<h3><span style="color:#faac69">Viewing help : `help`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Shows a message explaning how to access the help page.
 
 ![help message](images/helpImage.png)
@@ -90,20 +89,19 @@ Shows a message explaning how to access the help page.
 Format: `help`
 </div>
 
-###<span style="color:#faac69">Adding a client: `add`</span>
+<h3><span style="color:#faac69">Adding a client: `add`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Adds a client to the FitBook.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER
-[cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE_NAME]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
+[cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
 
 * A client can have any number of `tags`, `appointments` and `exercise routines` (including 0).
 * A user cannot add an exercise routine to client that does not exist in the exercise routine list in the `Exercise` tab.
-* Gender should be either M or F (not case-sensitive).
-</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** `Gender` should be either M or F (not case-sensitive). </div>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** `Routine` is case sensitive. </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 w/50 g/M r/Cardio`
@@ -114,9 +112,9 @@ Using `add n/Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
 <img src="images/AddClientUG.png"/>
 </div>
 
-###<span style="color:#faac69">Listing all clients : `listClients`</span>
+<h3><span style="color:#faac69">Listing all clients : `listClients`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Displays a list of all clients in the FitBook under the Client panel.
 
 Format: `listClients`
@@ -127,19 +125,22 @@ Format: `listClients`
 * All clients in FitBook has been listed once again!
 </div>
 
-###<span style="color:#faac69">Editing a client : `edit`</span>
+<h3><span style="color:#faac69">Editing a client : `edit`</span></h2>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Edits an existing client in the FitBook.
 
 Format: `edit CLIENT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER
-[cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE_NAME]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
+[cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
 
 * Edits the client at the specified `CLIENT_INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing `tags`,`appointments` and `routines`, the existing `tags`,`appointments` and `routines` of the client will be removed i.e adding of `tags`,`appointments` and `routines` are not cumulative.
 * You can remove all the client’s tags by typing `t/` without specifying any tags after it. (same for `appointments` with `/app` prefix and `routines` with `/r`)
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** `Gender` should be either M or F (not case-sensitive). </div>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** `Routine` is case sensitive. </div>
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
@@ -151,20 +152,16 @@ Using `edit 1 p/91234567 e/johndoe@example.com` in the command input box will lo
 <img src="images/EditClientUG.png"/>
 </div>
 
-###<span style="color:#faac69">Locating clients by fields: `find`</span>
+<h3><span style="color:#faac69">Locating clients by fields: `find`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Finds Clients in FitBook whose details contain any of the given keywords.
 
 Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [w/WEIGHT] [g/GENDER] [cal/CALORIE] [t/TAG]
 [app/APPOINTMENT]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* Details containing the keyword will also be matched, even if both do not match exactly.
-  e.g. `Han` will match `Hans`, `John` will match `John Li` and `John Tan`,
-  `19` will match `1900` and `0190`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** The search is case-insensitive. e.g `hans` will match `Hans` </div>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** Details containing the keyword will also be matched, even if both do not match exactly. e.g. `Han` will match `Hans`, `John` will match `John Li` and `John Tan`, `19` will match `1900` and `0190` </div>
 
 Available Prefixes:
 * `n` filters by Name
@@ -185,9 +182,9 @@ Examples:
 '91234567'
 </div>
 
-###<span style="color:#faac69">Deleting a client : `delete`</span>
+<h3><span style="color:#faac69">Deleting a client : `delete`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Deletes the specified client from the FitBook.
 
 Format: `delete INDEX`
@@ -201,42 +198,40 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 </div>
 
-###<span style="color:#faac69">Clearing all entries : `clear`</span>
+<h3><span style="color:#faac69">Clearing all entries : `clear`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Clears all entries from the FitBook.
 
 Format: `clear`
 </div>
 
-###<span style="color:#faac69">Export Client details : `export`</span>
+<h3><span style="color:#faac69">Export Client details : `export`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Exports the client details locally into a csv file.
 
 Format: `export`
 </div>
 
-###<span style="color:#faac69">Adding a routine: `addRoutine`</span>
+<h3><span style="color:#faac69">Adding a routine: `addRoutine`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Adds a routine to the FitBook.
 
 Format: `addRoutine r/ROUTINE_NAME [ex/EXERCISE]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
-
-* A client can have any number of `Exercise` (including 0).
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** A client can have any number of `Exercise` (including 0). </div>
 
 Examples:
-* `add r/Cardio`
-* `add r/HIIT ex/3x10sets of Jumping ropes`
+* `addRoutine r/Cardio`
+* `addRoutine r/HIIT ex/3x10sets of Jumping ropes`
 
 </div>
 
-###<span style="color:#faac69">Editing a routine : `editRoutine`</span>
+<h3><span style="color:#faac69">Editing a routine : `editRoutine`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Edits an existing routine in the FitBook.
 
 Format: `editRoutine ROUTINE_INDEX r/ROUTINE_NAME` or `editRoutine INDEX exno/EXERCISE_INDEX ex/EXERCISE`
@@ -246,13 +241,13 @@ Format: `editRoutine ROUTINE_INDEX r/ROUTINE_NAME` or `editRoutine INDEX exno/EX
 * This command only allows the editing existing Routine's name or existing Exercise's name.
 
 Examples:
-*  `edit 1 r/Cardio` Edits the routine name of the 1st routine to be `Cardio` respectively.
-*  `edit 2 exno/1 ex/3x10sets dumbbells` Edits the exercise of the 2nd routine to be `3x10sets dumbbells`.
+*  `editRoutine 1 r/Cardio` Edits the routine name of the 1st routine to be `Cardio` respectively.
+*  `editRoutine 2 exno/1 ex/3x10sets dumbbells` Edits the exercise of the 2nd routine to be `3x10sets dumbbells`.
 </div>
 
-###<span style="color:#faac69">Listing all Routines in FitBook : `listRoutines`</span>
+<h3><span style="color:#faac69">Listing all Routines in FitBook : `listRoutines`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 List all Routines in FitBook under Exercise tab.
 
 Format: `listRoutines`
@@ -261,33 +256,31 @@ Format: `listRoutines`
 * All Routines in FitBook has been listed once again!
 </div>
 
-###<span style="color:#faac69">Locating Routines by name: `findRoutine`</span>
+<h3><span style="color:#faac69">Locating Routines by name: `findRoutine`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Finds Routines in FitBook whose Routine name contains any of the given keywords.
 
 Format: `findRoutine KEYWORD`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**</div>
-
-* The search is case-insensitive. e.g `cardio` will match `Cardio`.
-* The order of the keywords does not matter. e.g. `Fun swimming` will match `Swimming fun`.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** The search is case-insensitive. e.g `cardio` will match `Cardio`. </div>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** The order of the keywords does not matter. e.g. `Fun swimming` will match `Swimming fun`. </div>
 
 Examples:
 * `findRoutine Cardio`
 </div>
 
-###<span style="color:#faac69">Clearing all Routine entries : `clearRoutines`</span>
+<h3><span style="color:#faac69">Clearing all Routine entries : `clearRoutines`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Clears all Routine entries in FitBook under the `Exercise` Tab.
 
 Format: `clearRoutines`
 </div>
 
-###<span style="color:#faac69">Deleting a routine : `deleteRoutine`</span>
+<h3><span style="color:#faac69">Deleting a routine : `deleteRoutine`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Deletes the specified Routine from the FitBook.
 
 Format: `deleteRoutine ROUTINE_INDEX`
@@ -301,9 +294,9 @@ Examples:
 * `findRoutine Cardio` followed by `deleteRoutine 1` deletes the 1st Routine in the results of the `findRoutine` command.
 </div>
 
-###<span style="color:#faac69">Adding an Exercise : `addExercise`</span>
+<h3><span style="color:#faac69">Adding an Exercise : `addExercise`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Adds an exercise to a current Routine in FitBook.
 
 Format: `addExercise ROUTINE_INDEX ex/EXERCISE_NAME`
@@ -316,9 +309,9 @@ Examples:
 * `listRoutines` followed by `addExercise 1 ex/push ups` adds the exercise `push ups` to the first Routine in the exercise list in FitBook.
 </div>
 
-###<span style="color:#faac69">Deleting an Exercise : `deleteExercise`</span>
+<h3><span style="color:#faac69">Deleting an Exercise : `deleteExercise`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Deletes an exercise from a Routine in FitBook.
 
 Format: `deleteExercise ROUTINE_INDEX EXERCISE_INDEX`
@@ -333,35 +326,39 @@ Examples:
 * `findRoutine Cardio` followed `deleteExercise 1 1` deletes the exercise specified at index `1` from the Routine specified at index `1` in the results of the `findRoutineCardio` command.
 </div>
 
-###<span style="color:#faac69">Export Routine details : `exportRoutines`</span>
+<h3><span style="color:#faac69">Export Routine details : `exportRoutines`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Exports the routine details locally into a csv file.
 
 Format: `exportRoutines`
 </div>
 
-###<span style="color:#faac69">Exiting the program : `exit`</span>
+<h3><span style="color:#faac69">Exiting the program : `exit`</span></h3>
 
-<div style="background-color:#fccfa7; border-radius:5px; padding:10px 0;">
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Exits the program.
 
 Format: `exit`
 </div>
 
-###<span style="color:#faac69">Saving the data</span>
+<h3><span style="color:#faac69">Saving the data</span></h3>
 
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 FitBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+</div>
 
-###<span style="color:#faac69">Editing the data file</span>
+<h3><span style="color:#faac69">Editing the data file</span></h3>
 
+<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 FitBook data are saved as a JSON file `[JAR file location]/data/fitbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FitBook will discard all data and start with an empty data file at the next run.
 </div>
+</div>
 
-###<span style="color:#faac69">Archiving data files `[coming in v2.0]`</span>
+<h3><span style="color:#faac69">Archiving data files `[coming in v2.0]`</span></h3>
 
 _Details coming soon ..._
 ///PLACE HOLDER OUR ACTUAL FEATURE LIST////
@@ -475,33 +472,39 @@ Example:
 
 --------------------------------------------------------------------------------------------------------------------
 
-##<span style="color:#f9963f">FAQ</span>
+<h2><span style="color:#f9963f">FAQ</span></h2>
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FitBook home folder.
 
+**Q**: Must I exit the FitBook app through the `exit` command?<br>
+**A**: There is no need to exit the FitBook app through the `exit` command as everything is saved after each action changes to the list.
+
+**Q**: Why can I not tag the exercise routine to the client?<br>
+**A**: The exercise routine is probably not inside the list of routines or the routine name is wrong. The routine name is case-sensitive.
 --------------------------------------------------------------------------------------------------------------------
 
-##<span style="color:#f9963f">Command summary</span>
+<h2><span style="color:#f9963f">Command summary</span></h2>
 
 
-| Action                           | Format, Examples                                                                                                                                                      |
-|----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear all entries in FitBook** | `clear`                                                                                                                                                               |
-| **Delete**                       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**                         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**                         | `find KEYWORD [MORE KEYWORDS] [p/PHONE] [e/EMAIL] [a/ADDRESS] [w/WEIGHT] [g/GENDER]…​`<br> e.g., `find James Jake p/91234567 e/jamesjake@example.com`                 |
-| **List**                         | `listClients`                                                                                                                                                         |
-| **Help**                         | `help`                                                                                                                                                                |
-| **Export Client Details**        | `export`                                                                                                                                                              |
-| **Add Exercise**                 | `addExercise ROUTINE INDEX ex/EXERCISE` <br> e.g, `addExercise 1 ex/4 x 3 sprints`                                                                                    |
-| **Add Routine**                  | `addRoutine r/Cardio ex/3x5 1km Jog ex/3x10 Jumping Jacks `                                                                                                                                                                      |
-| **Edit Routine**                 |                                                                                                                                                                                                                                  |
-| **Delete Exercise**              | `deleteExercise ROUTINE INDEX EXERCISE INDEX` <br> e.g, `deleteExercise 1 2`                                                                                          |
-| **Delete Routine**               | `deleteRoutine ROUTINE INDEX ` <br> e.g, `deleteRoutine 1`                                                                                                            |
-| **List Routine**                 | `listRoutines`                                                                                                                                                        |
-| **Clear Routine**                | `clearRoutines`                                                                                                                                                       |
-| **Find Routine**                 | `findRoutine ROUTINE NAME` <br> e.g, `findRoutine Cardio`                                                                                                             |
-| **Export Routine Details**       | `exportRoutine`                                                                                                                                                       |
+| Action                           | Format, Examples                                                                                                                                                                                                                                                                                     |
+|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER [cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE_NAME]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague w/55 g/M`              |
+| **Clear all entries in FitBook** | `clear`                                                                                                                                                                                                                                                                                              |
+| **Delete**                       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                  |
+| **Edit**                         | `edit CLIENT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER [cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE_NAME]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                  |
+| **Find**                         | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [w/WEIGHT] [g/GENDER] [cal/CALORIE] [t/TAG] [app/APPOINTMENT]`<br> e.g., `find James Jake p/91234567 e/jamesjake@example.com`                                                                                                                         |
+| **List**                         | `listClients`                                                                                                                                                                                                                                                                                        |
+| **Help**                         | `help`                                                                                                                                                                                                                                                                                               |
+| **Export Client Details**        | `export`                                                                                                                                                                                                                                                                                             |
+| **Add Exercise**                 | `addExercise ROUTINE INDEX ex/EXERCISE` <br> e.g, `addExercise 1 ex/4 x 3 sprints`                                                                                                                                                                                                                   |
+| **Add Routine**                  | `addRoutine r/ROUTINE_NAME [ex/EXERCISE]…​` <br> e/g, `addRoutine r/Cardio ex/3x5 1km Jog ex/3x10 Jumping Jacks `                                                                                                                                                                                    |
+| **Edit Routine** (routine name)  | `editRoutine ROUTINE_INDEX r/ROUTINE_NAME` <br> e/g, `editRoutine 1 r/Cardio`                                                                                                                                                                                                                        |
+| **Edit Routine** (exercise)      | `editRoutine INDEX exno/EXERCISE_INDEX ex/EXERCISE` <br> e/g, `editRoutine 1 exno/1 ex/3x10sets of Dumbbell curls`                                                                                                                                                                                   |
+| **Delete Exercise**              | `deleteExercise ROUTINE INDEX EXERCISE INDEX` <br> e.g, `deleteExercise 1 2`                                                                                                                                                                                                                         |
+| **Delete Routine**               | `deleteRoutine ROUTINE INDEX ` <br> e.g, `deleteRoutine 1`                                                                                                                                                                                                                                           |
+| **List Routine**                 | `listRoutines`                                                                                                                                                                                                                                                                                       |
+| **Clear Routine**                | `clearRoutines`                                                                                                                                                                                                                                                                                      |
+| **Find Routine**                 | `findRoutine ROUTINE NAME` <br> e.g, `findRoutine Cardio`                                                                                                                                                                                                                                            |
+| **Export Routine Details**       | `exportRoutine`                                                                                                                                                                                                                                                                                      |
 
