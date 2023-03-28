@@ -63,8 +63,12 @@ public class FilesManager {
         updateList();
     }
 
+    /**
+     * Add file.
+     */
     public void addFile() {
         store.uploadFile();
+        setAllFiles();
     }
 
     /**
