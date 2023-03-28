@@ -316,7 +316,7 @@ Action | Format, Examples
 **FindBook** | `findBook KEYWORD [MORE_KEYWORDS]`<br> e.g., `findBook dune Cat`
 **ListBook** | `listBook`
 
-#### General
+#### Common
 
 Action | Format, Examples
 --------|------------------
