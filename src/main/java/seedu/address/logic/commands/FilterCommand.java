@@ -111,9 +111,12 @@ public class FilterCommand extends Command {
         /**
          * Returns true if at least one field is filtered.
          */
-        public boolean isAnyFieldFiltered() {
-            return CollectionUtil.isAnyNonNull(nameToFilter, phoneToFilter, emailToFilter, addressToFilter, subjectToFilter
-                    , scheduleToFilter, startTimeToFilter, endTimeToFilter, tagToFilter);
+        public boolean isAllFieldEmpty() {
+            return nameToFilter.isEmpty() && phoneToFilter.isEmpty()
+                    && emailToFilter.isEmpty() && addressToFilter.isEmpty()
+                    && subjectToFilter.isEmpty() && scheduleToFilter.isEmpty()
+                    && startTimeToFilter.isEmpty() && endTimeToFilter.isEmpty()
+                    && tagToFilter.isEmpty();
         }
 
         public void setNameToFilter(String name) {

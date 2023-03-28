@@ -62,7 +62,7 @@ public class FilterCommandParser implements Parser<FilterCommand>  {
             filterTuteeDescription.setTagToFilter(argMultimap.getValue(PREFIX_TAG).get());
         }
 
-        if (!filterTuteeDescription.isAnyFieldFiltered()) {
+        if (filterTuteeDescription.isAllFieldEmpty()) {
             throw new ParseException(FilterCommand.MESSAGE_NOT_FILTERED);
         }
 

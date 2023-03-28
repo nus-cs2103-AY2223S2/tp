@@ -254,7 +254,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Filter Implementation
 
-The filter feature is facilitated by `FilterCommand`. It extends `Command`. The constructor of `FilterCommand` takes in 
+The logic of the filter implementation is found in `FilterCommand` class. The constructor of `FilterCommand` takes in 
 a `FilterTuteeDescription` object and creates a `FieldContainsKeywordPredicate` based on the variables that are set in 
 `FilterTuteeDescription`. Inside the `FilterCommand` class is a static `FilterTuteeDescription` class which encapsulates 
 the fields of a tutee that the user wants to filter. `FilterTuteeDescription` contains all the fields of a tutee including: 
