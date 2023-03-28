@@ -141,6 +141,8 @@ public interface Model {
 
     /* ==================================== Review Operations ==================================== */
 
+    int getDeckSizeFilteredTag(int deckIndex, List<TagName> difficulties);
+
     void reviewDeck(Index idx, List<TagName> difficulties);
 
     Optional<Review> getReview();

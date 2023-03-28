@@ -231,6 +231,14 @@ public class ModelManager implements Model {
         ).size();
     }
 
+    @Override
+    public int getDeckSizeFilteredTag(int deckIndex, List<TagName> difficulties) {
+        Deck deck = filteredDecks.get(deckIndex);
+        return new FilteredList<>(masterDeck.getCardList(),
+                new CardInDeckPredicate(deck)
+                        .and(new CardHasTagPredicate(difficulties))).size();
+    }
+
     /* ==================================== Review Operations ==================================== */
 
     /**

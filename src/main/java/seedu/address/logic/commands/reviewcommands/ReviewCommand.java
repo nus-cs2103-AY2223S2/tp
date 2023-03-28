@@ -22,13 +22,18 @@ public class ReviewCommand extends Command {
 
     public static final String COMMAND_WORD = "review";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Review a deck of cards "
-            + "by the index number used in the displayed deck list.\n"
+            + "by the index number used in the displayed deck list and by the tagged difficulty.\n"
             + "Parameter: INDEX (must be a positive integer).\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Flags: -e -m -h for EASY, MEDIUM, HARD tags\n"
+            + "Example (to test all cards in deck 1): " + COMMAND_WORD + " 1\n"
+            + "Example (to test MEDIUM and HARD cards in deck 1): " + COMMAND_WORD + " 1 -m -h"
+            + "No other input is allowed between the flags.";
 
     public static final String MESSAGE_SUCCESS = "Deck to be reviewed: %1$s\nReviewing cards of %2$s";
     public static final String MESSAGE_INVALID_DECK_DISPLAYED_INDEX = "Deck index provided is invalid";
     public static final String MESSAGE_EMPTY_DECK = "The deck you chose to review is empty";
+    public static final String MESSAGE_NO_CARDS_WITH_TAG = "There are no cards "
+            + "tagged with those difficulties in the deck";
     private final Index deckIndex;
     private final List<TagName> difficulties;
 
@@ -51,6 +56,8 @@ public class ReviewCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_DECK_DISPLAYED_INDEX);
         } else if (model.getDeckSize(deckIndex.getZeroBased()) == 0) {
             throw new CommandException(MESSAGE_EMPTY_DECK);
+        } else if (model.getDeckSizeFilteredTag(deckIndex.getZeroBased(), difficulties) == 0) {
+            throw new CommandException(MESSAGE_NO_CARDS_WITH_TAG);
         }
 
         model.reviewDeck(deckIndex, difficulties);

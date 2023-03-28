@@ -46,8 +46,7 @@ public class ReviewCommandParser implements Parser<ReviewCommand> {
             try {
                 ParserUtil.parseEmptyInput(argMultimap.getValue(REVIEW_EASY_FLAG).get());
             } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        ReviewCommand.MESSAGE_USAGE), pe);
+                throw new ParseException(pe.getMessage(), pe);
             }
         }
 
