@@ -101,7 +101,11 @@ public class EditDeliveryJobCommand extends Command {
             toEdit.deliveryDate(val.date);
         }, () -> {
             deliveryJobToEdit.getDeliveryDate().ifPresent(val -> {
-                toEdit.deliveryDate(val.date);
+                editjobDescriptor.ifClearDeliveryDate(()-> {
+                    toEdit.deliveryDate(DeliveryDate.placeholder().date);
+                }, () -> {
+                    toEdit.deliveryDate(val.date);
+                });
             });
         });
 
@@ -109,7 +113,11 @@ public class EditDeliveryJobCommand extends Command {
             toEdit.deliverySlot(val.value);
         }, () -> {
             deliveryJobToEdit.getDeliverySlot().ifPresent(val -> {
-                toEdit.deliverySlot(val.value);
+                editjobDescriptor.ifClearDeliverySlot(()-> {
+                    toEdit.clearDeliverySlot();
+                }, () -> {
+                    toEdit.deliverySlot(val.value);
+                });
             });
         });
 
@@ -207,6 +215,9 @@ public class EditDeliveryJobCommand extends Command {
         private boolean isDelivered;
         private String description;
 
+        private boolean clearDate = false;
+        private boolean clearSlot = false;
+
         public EditDeliveryJobDescriptor() {
         }
 
@@ -223,6 +234,8 @@ public class EditDeliveryJobCommand extends Command {
             setEarning(toCopy.earning);
             setDelivered(toCopy.isDelivered);
             setDescription(toCopy.description);
+            clearDate = toCopy.clearDate;
+            clearSlot = toCopy.clearSlot;
         }
 
         /**
@@ -318,6 +331,46 @@ public class EditDeliveryJobCommand extends Command {
                     && getDeliverySlot().equals(e.getDeliverySlot())
                     && getEarning().equals(e.getEarning())
                     && getDelivered().equals(e.getDelivered());
+        }
+
+        /**
+         * Sets the clear slot state.
+         */
+        public void clearDeliverySlot() {
+            clearSlot = true;
+        }
+
+        /**
+         * Sets the clear date state.
+         */
+        public void clearDeliveryDate() {
+            clearDate = true;
+        }
+
+        /**
+         * Handles slot clearing.
+         * @param s
+         * @param f
+         */
+        public void ifClearDeliverySlot(Runnable s, Runnable f) {
+            if (clearSlot) {
+                s.run();
+            } else {
+                f.run();
+            }
+        }
+
+        /**
+         * Handles date clearing.
+         * @param s
+         * @param f
+         */
+        public void ifClearDeliveryDate(Runnable s, Runnable f) {
+            if (clearDate) {
+                s.run();
+            } else {
+                f.run();
+            }
         }
     }
 }
