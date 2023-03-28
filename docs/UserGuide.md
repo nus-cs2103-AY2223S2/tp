@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-#Welcome to PetPal!
+# Welcome to PetPal!
 ![Logo](images/logo.png)
 
 PetPal is your **furry and dependable assistant** who **reminds you of deadlines** and **consolidates crucial information** like pet names, tags dietary needs all in an **aesthetically pleasing** GUI! You can now focus on spend quality time with your furry friends without having to worry about things accidentally slipping your mind.
@@ -71,19 +71,19 @@ This user guide will help you get started and understand how PetPal can **seamle
 <div markdown="block" class="alert alert-block alert-info">
 
 * :white_check_mark: **Input Shortcut:**
-
+Shortened forms of commands which can help increase your efficiency in using PetPal
 </div>
 
 <div markdown="block" class="alert alert-block alert-success">
 
 * :bulb: **Note:**
-
+Information that might be useful to know to enhance your PetPal experience, might not be compulsory to know
 </div>
 
 <div markdown="block" class="alert alert-block alert-danger">
 
 * :heavy_exclamation_mark: **Caution:**
-
+Important information to note which might negatively impact your experience in using PetPal
 </div>
 
 <div markdown="block" class="alert alert-warning">
@@ -164,6 +164,7 @@ You can replace `list` with `l` for convenience.
 ### Add
 
 #### Adding a pet's information : `add`
+Format: `add o/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ts/TIME_STAMP [d/DEADLINE] [t/TAG...] `
 
 Adds all the relevant information of a pet to your PetPal.
 <br>
@@ -180,16 +181,16 @@ There are 3 key things that you should note:
 
 Figure 1 provides a summary of the parameters with their descriptions, prefixes and constraints.
 
-| Parameter      | Description                                                             | Prefix | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|----------------|-------------------------------------------------------------------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `OWNER_NAME`   | The name of the owner                                                   | `o/`   | Names should only contain alphanumeric characters and spaces, and it should not be blank                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `PET_NAME`     | The name of the pet                                                     | `n/`   | Names should only contain alphanumeric characters and spaces, and it should not be blank                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `PHONE_NUMBER` | The owner's phone number                                                | `p/`   | Phone numbers should only contain numbers, and it should be at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `EMAIL`        | The owner's email                                                       | `e/`   | Emails should be of the format local-part@domain and adhere to the following constraints:<br/> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, ( + SPECIAL_CHARACTERS + ). The local-part may not start or end with any special "characters."<br/>2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.The domain name must:<br/>- end with a domain label at least 2 characters long<br/>- have each domain label start and end with alphanumeric characters<br/>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
-| `ADDRESS`      | The owner's address                                                     | `a/`   | Cannot be blank                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `TIMESTAMP`    | The date and time when the pet start boarding                           | `ts/`  | Timestamps should be in the `YYYY-MM-DD HH:MM:SS` format.   eg. 2023-03-27 21:09:09                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |  
-| `DEADLINE`     | A deadline attributed with the pet                                      | `d/`   | Timestamps given in the deadline should be in the `YYYY-MM-DD HH:MM:SS` format.   eg. 2023-03-27 21:09:09                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `TAG`          | A label that you can attach to a pet                                    | `t/`   | Tags should be alphanumeric                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Parameter      | Description                                   | Prefix | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Required?  |
+|----------------|-----------------------------------------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
+| `OWNER_NAME`   | The name of the owner                         | `o/`   | Names should only contain alphanumeric characters and spaces, and it should not be blank                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | COMPULSORY |
+| `PET_NAME`     | The name of the pet                           | `n/`   | Names should only contain alphanumeric characters and spaces, and it should not be blank                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | COMPULSORY |
+| `PHONE_NUMBER` | The owner's phone number                      | `p/`   | Phone numbers should only contain numbers, and it should be at least 3 digits long                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | COMPULSORY |
+| `EMAIL`        | The owner's email                             | `e/`   | Emails should be of the format local-part@domain and adhere to the following constraints:<br/> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, ( + SPECIAL_CHARACTERS + ). The local-part may not start or end with any special "characters."<br/>2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.The domain name must:<br/>- end with a domain label at least 2 characters long<br/>- have each domain label start and end with alphanumeric characters<br/>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. | COMPULSORY |
+| `ADDRESS`      | The owner's address                           | `a/`   | Cannot be blank                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | COMPULSORY |
+| `TIMESTAMP`    | The date and time when the pet start boarding | `ts/`  | Timestamps should be in the `YYYY-MM-DD HH:MM:SS` format.   eg. 2023-03-27 21:09:09                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | COMPULSORY | 
+| `DEADLINE`     | A deadline attributed with the pet            | `d/`   | Timestamps given in the deadline should be in the `YYYY-MM-DD HH:MM:SS` format.   eg. 2023-03-27 21:09:09                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | OPTIONAL   |
+| `TAG`          | A label that you can attach to a pet          | `t/`   | Tags should be alphanumeric                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | OPTIONAL   |
 
 
 <p style="text-align: center;">Figure 1: Parameters with their descriptions, prefixes and constraints</p>
@@ -201,19 +202,11 @@ Figure 1 provides a summary of the parameters with their descriptions, prefixes 
 * Does not allow you to create a pet with the same name and phone number as a current pet in PetPal.
 * Allows you to create a pet with same name but different phone number or same number and different name as a current pet in PetPal.
 
-
-Format: `add o/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ts/TIME_STAMP [d/DEADLINE] [t/TAG...] `
-
-
 ![create](images/add.png)
 
 Example given: `Example: add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua`
 
 <div markdown="block" class="alert alert-block alert-success">
-
-:bulb: **Note:**
-All except the `DEADLINE` and `TAG` fields are compulsory.<br>
-
 
 :bulb: **Note:**
 It is recommended to have at most  3 `TAG` per pet.
@@ -223,9 +216,6 @@ It is recommended to have at most  3 `TAG` per pet.
 Other examples:
 * `add o/Petricia n/Whiskers p/98746333 e/petricia@petpal.com a/311 Beach Road 2023-03-27 21:09:09 d/Feed cat - 2023-03-27 21:09:09 t/MaineCoon`
 * `add o/Robert n/Fluffy p/98746333 e/rob@bmail.com a/622 Rose Road ts/2023-03-27 21:09:09 d/Feed rabbit - 2023-03-27 21:09:09 t/Vegetarian t/Rabbit`
-
-<div markdown="block" class="alert alert-block alert-info">
-
 
 #### Filtering out reminders that are due soon : `remind`
 
@@ -678,17 +668,19 @@ If your changes to the data file makes its format invalid, FABook will discard a
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**:    1. Find the save file on the current computer. The save file can be found as `FABook.json` in the `data` folder created by the app.
-
+**A**:   
+1. Find the save folder on the current computer. The save files can be found in the `data` folder created by the app, it should include both `PetPal.json` and `archive.json`
 2. Transfer the save file to your new computer.
-
-3. Install FABook on the new computer.
-
-4. Launch FABook and exit.
-
-5. You should see a new `data` folder containing a new `FABook.json`. Replace this file with the save file copied over from your old computer.
-
+3. Install the latest release of PetPal from [here]() on your new computer.
+4. Launch PetPal on your new computer and exit.
+5. You should see a new `data` folder containing a new `PetPal.json` with a sample. Replace this file with the save file copied over from your old computer.
 6. Launch FABook again. Your data should be there!
+
+<div markdown="block" class="alert alert-block alert-success">
+
+* :bulb: **Note:**
+  If you wish to transfer only 1 file over, repeat the same steps, and replace the file you want to move, instead of the entire `data` folder
+</div>
 
 **Q**: Why can I not undo the `sync` command?<br>
 **A**: Meetings that have passed should not need to be undone and be shown again.
