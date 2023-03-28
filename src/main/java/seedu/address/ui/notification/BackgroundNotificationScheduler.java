@@ -19,8 +19,7 @@ public class BackgroundNotificationScheduler extends Timer {
 
     /**
      * Create a scheduled task with {@code Timer}.
-     * A {@code BackgroundReminderTask} is scheduled from the closet upcoming hour, and
-     * every subsequent hour
+     * A {@code BackgroundReminderTask} is scheduled to check every minute
      */
     public void backgroundReminder() {
         Calendar now = Calendar.getInstance();

@@ -130,6 +130,9 @@ public class NotificationManager {
         case 14:
             jobList = deliveryList.get(4);
             break;
+        default:
+            //nothing scheduled at the moment
+            jobList = null;
         }
         if (jobList != null) {
             for (DeliveryJob d: jobList) {
