@@ -181,7 +181,7 @@ to our GitHub Releases page. Find the latest release and download the latest ver
    
    Once you have completed these steps, it should look something like this:
 
-    [placehodler for screenshot]
+    ![install_home_folder](images/user-guide/install_home_folder.PNG)
 
     <br>
    
@@ -252,7 +252,7 @@ taking **Computer Science** and his email address is **e0823741@u.nus.edu**. Her
 In the command box, enter the command `add n/Bob y/2 c/6 e/e0823741@u.nus.edu` and press the `enter` key.
 This will add a new person named Bob to our contact list.
 
-[placeholder for screenshot]
+![addcommand-bob](images/user-guide/addcommand-bob.PNG)
 
 After executing the command, we see that Bob has been added below the list.
 
@@ -288,7 +288,7 @@ numbered `8` in this example. This is his _index_.
 Now enter `view 8` into the command box.
 His _contact_ details will then be shown in the **Info Panel**.
 
-<img src="images/tutorial/adding-bob.png"/>
+![viewcommand-bob](images/user-guide/viewcommand-bob.PNG)
 
 You may try loading other person's details by using different _index_ (e.g. `view 2`). 
 
@@ -594,6 +594,42 @@ Equivalent to clicking the close button via the GUI. <br>
 
 ## FAQ
 
+**Q: I have added a person with wrong detail. How do I change it?**
+
+A: Use CoDoc's [Edit command](#4-editing-a-person--edit) to update the details. If you have also forgotten to add certain
+details, you may use the same command to add them (e.g. `edit m+/AY2223S2 CS2101` to add module _CS2101_).
+
+<br>
+
+**Q: My edit command is not working/changes are not shown.**
+
+A: Check that you have entered the command in correct format and command result shown in the **Results Panel** is not
+showing any errors.
+
+<br>
+
+**Q: My edit command is editing the wrong person.**
+
+A: Edit command works on current person you are viewing. Change the viewed person with the [View command](#3-viewing-a-personchanging-tabs--view)
+and view the correct person you want to edit before entering the command.
+
+<br>
+
+**Q: My find command is not showing correct list of people**
+
+A: This could be because there are existing list of filters before you entered the [Find command](#5-finding-a-person--find).
+Try clearing all filters with [List command](#6-listing-all-personsresetting-filters--list) then re-enter the Find command.
+
+<br>
+
+**Q: I cannot find the course I want to add in the Course List Panel.**
+
+A: We understand that the current list of courses available are limited. This is because this program is initially designed
+to be used mainly by _Computer Science_ students, hence it only lists courses of people which they may encounter during
+their studies. We are currently working to add as many courses as possible so that the program can be used by users
+outside _Computer Science_. Meanwhile, you would have to assign any other courses to the person and remember it.
+
+
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 <br>
@@ -643,18 +679,26 @@ _Details coming soon ..._
 Batch file method for Windows uers:
 1. Right-click the empty space in the _home folder_ and create new _text file_.
 
-    [image]
+    ![open_new_file](images/user-guide/open_new_file.png)
 
 2. Open the _text file_ with any text editor (notepad is fine) and write in `java -jar codoc.jar`. Save and close the file.
 
-    [image]
+    ![open_save_text](images/user-guide/open_save_text.PNG)
 
 3. Rename the file to `start.bat`. Make sure that file extension gets changed too, if you do not know how see the file 
 extension, see [here](https://www.howtogeek.com/205086/beginner-how-to-make-windows-show-file-extensions/).
     
-    [image]
+    ![open_rename](images/user-guide/open_rename.png)
+
+    **Note**: You may see a warning message below. This is because you are converting a text file to a batch file.
+
+    ![open_rename_warning](images/user-guide/open_rename_warning.PNG)
+   
+    Press "Yes" to continue renaming the file.
 
 4. If done correctly, you should now see a file with an icon similar to below. Double-click the renamed batch file `start.bat` to launch CoDoc.
+
+    ![open_done](images/user-guide/open_done.PNG)
 
 
 [Scroll back to *Downloading CoDoc*](#downloading-codoc)
