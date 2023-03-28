@@ -1,6 +1,7 @@
 package seedu.address.model.person.information;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.Parser.FIELD_NOT_SPECIFIED;
 
 import java.util.Arrays;
 
@@ -22,7 +23,8 @@ public class Region {
         NORTHEAST,
         EAST,
         WEST,
-        CENTRAL
+        CENTRAL,
+        NOT_SPECIFIED
     }
 
     /**
@@ -32,7 +34,11 @@ public class Region {
      */
     public Region(String region) {
         requireNonNull(region);
-        this.region = Place.valueOf(region.toUpperCase());
+        if (region.equals(FIELD_NOT_SPECIFIED)) {
+            this.region = Place.NOT_SPECIFIED;
+        } else {
+            this.region = Place.valueOf(region.toUpperCase());
+        }
     }
 
     /**
@@ -42,10 +48,17 @@ public class Region {
      * @return True if {@code test} is a valid region and false otherwise.
      */
     public static boolean isValidRegion(String region) {
-        if (region != null) {
-            return Arrays.stream(Place.values()).anyMatch(r -> r.toString().equals(region.toUpperCase()));
+        if (region == null) {
+            return false;
+        } else if (region.equals(FIELD_NOT_SPECIFIED)) {
+            return region.equals(FIELD_NOT_SPECIFIED);
         }
-        return false;
+        try {
+            Place.valueOf(region.toUpperCase());
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public boolean isMatch(Region anotherRegion) {

@@ -50,8 +50,7 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
         Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
             PREFIX_ADDRESS, PREFIX_NRIC_ELDERLY,
             PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_RISK, PREFIX_AVAILABILITY, PREFIX_TAG};
-        Prefix[] compulsoryPrefixes = {PREFIX_NAME, PREFIX_NRIC_ELDERLY, PREFIX_BIRTH_DATE,
-            PREFIX_REGION, PREFIX_RISK};
+        Prefix[] compulsoryPrefixes = {PREFIX_NAME, PREFIX_NRIC_ELDERLY, PREFIX_BIRTH_DATE};
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, availablePrefixes);
 
@@ -66,8 +65,8 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(FIELD_NOT_SPECIFIED));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(FIELD_NOT_SPECIFIED));
         BirthDate birthDate = ParserUtil.parseBirthDate(argMultimap.getValue(PREFIX_BIRTH_DATE).get());
-        Region region = ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).get());
-        RiskLevel risk = ParserUtil.parseRiskLevel(argMultimap.getValue(PREFIX_RISK).get());
+        Region region = ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).orElse(FIELD_NOT_SPECIFIED));
+        RiskLevel risk = ParserUtil.parseRiskLevel(argMultimap.getValue(PREFIX_RISK).orElse(FIELD_NOT_SPECIFIED));
         Set<AvailableDate> availableDates = ParserUtil.parseDateRanges(argMultimap.getAllValues(PREFIX_AVAILABILITY));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

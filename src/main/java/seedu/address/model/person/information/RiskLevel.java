@@ -1,7 +1,10 @@
 package seedu.address.model.person.information;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.Parser.FIELD_NOT_SPECIFIED;
 
+import java.text.BreakIterator;
+import java.util.Arrays;
 import java.util.HashSet;
 
 /**
@@ -21,7 +24,8 @@ public class RiskLevel {
     public enum Risk {
         LOW,
         MEDIUM,
-        HIGH
+        HIGH,
+        NOT_SPECIFIED
     }
 
     /**
@@ -31,7 +35,11 @@ public class RiskLevel {
      */
     public RiskLevel(String risk) {
         requireNonNull(risk);
-        this.riskStatus = Risk.valueOf(risk);
+        if (risk.equals(FIELD_NOT_SPECIFIED)) {
+            riskStatus = Risk.NOT_SPECIFIED;
+        } else {
+            riskStatus = Risk.valueOf(risk.toUpperCase());
+        }
     }
 
     /**
@@ -41,11 +49,17 @@ public class RiskLevel {
      * @return True if {@code test} is a valid risk level and false otherwise.
      */
     public static boolean isValidRisk(String risk) {
-        HashSet<String> set = new HashSet<>();
-        for (Risk riskSet: Risk.values()) {
-            set.add(riskSet.name());
+        if (risk == null) {
+            return false;
+        } else if (risk.equals(FIELD_NOT_SPECIFIED)) {
+            return risk.equals(FIELD_NOT_SPECIFIED);
         }
-        return set.contains(risk.toUpperCase());
+        try {
+            Risk.valueOf(risk.toUpperCase());
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     @Override
