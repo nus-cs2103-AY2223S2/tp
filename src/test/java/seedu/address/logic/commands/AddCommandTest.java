@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -199,6 +200,12 @@ public class AddCommandTest {
         public void undo() {
 
         }
+
+        @Override
+        public void sort(List<Client> lastShownList) {
+
+        }
+
     }
 
     /**

@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -140,6 +141,13 @@ public class ModelManager implements Model {
         setAddressBook(ab);
     }
 
+    //===============Sort ================================================================================
+    @Override
+    public void sort(List<Client> sortList) {
+        addressBook.setClients(sortList);
+        commit();
+    }
+
     @Override
     public void deleteClient(Client target) {
         addressBook.removeClient(target);
@@ -233,6 +241,7 @@ public class ModelManager implements Model {
     @Override
     public void updateSelectedClient(Client targetClient) {
         this.selectedClient = targetClient;
+        commit();
     }
 
     @Override

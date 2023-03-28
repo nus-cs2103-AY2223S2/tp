@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Client in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Client {
+public class Client implements Comparable<Client> {
 
     // Identity fields
     private final Name name;
@@ -141,6 +141,15 @@ public class Client {
 
         UniquePolicyList policyList = this.getPolicyList().clone(); // To change policyList you must use EditPolicy
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, policyList);
+    }
+
+    @Override
+    public int compareTo(Client o) {
+        return this.toString().compareTo(o.toString());
+    }
+
+    public String getPhoneNumber() {
+        return this.getPhoneNumber().toString();
     }
 
 }

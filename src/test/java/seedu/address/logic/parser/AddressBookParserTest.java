@@ -27,7 +27,12 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.sortcommand.SortByClientEmailCommand;
+import seedu.address.logic.commands.sortcommand.SortByClientNameCommand;
+import seedu.address.logic.commands.sortcommand.SortByClientPhoneCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
@@ -117,5 +122,47 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_sortByClientName() throws Exception {
+        assertTrue(parser.parseCommand(SortByClientNameCommand.COMMAND_WORD + "  1")
+                instanceof SortByClientNameCommand);
+        assertTrue(parser.parseCommand(SortByClientNameCommand.COMMAND_WORD + "  0")
+                instanceof SortByClientNameCommand);
+        assertTrue(parser.parseCommand(SortByClientNameCommand.COMMAND_WORD + "  -1")
+                instanceof SortByClientNameCommand);
+    }
+
+    @Test
+    public void parseCommand_sortByClientPhone() throws Exception {
+        assertTrue(parser.parseCommand(SortByClientPhoneCommand.COMMAND_WORD + "  1")
+                instanceof SortByClientPhoneCommand);
+        assertTrue(parser.parseCommand(SortByClientPhoneCommand.COMMAND_WORD + "  0")
+                instanceof SortByClientPhoneCommand);
+        assertTrue(parser.parseCommand(SortByClientPhoneCommand.COMMAND_WORD + "  -1")
+                instanceof SortByClientPhoneCommand);
+    }
+
+    @Test
+    public void parseCommand_sortByClientEmail() throws Exception {
+        assertTrue(parser.parseCommand(SortByClientEmailCommand.COMMAND_WORD + "  1")
+                instanceof SortByClientEmailCommand);
+        assertTrue(parser.parseCommand(SortByClientEmailCommand.COMMAND_WORD + "  0")
+                instanceof SortByClientEmailCommand);
+        assertTrue(parser.parseCommand(SortByClientEmailCommand.COMMAND_WORD + "  -1")
+                instanceof SortByClientEmailCommand);
+    }
+
+    @Test
+    public void parseCommand_undo() throws Exception {
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + " 3") instanceof UndoCommand);
+    }
+
+    @Test
+    public void parseCommand_redo() throws Exception {
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + " 3") instanceof RedoCommand);
     }
 }

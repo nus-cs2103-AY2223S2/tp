@@ -95,6 +95,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients.remove(key);
     }
 
+    public void sortClientByName(boolean inOrder) {
+
+    }
+
     //// util methods
 
     @Override
