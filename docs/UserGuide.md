@@ -306,7 +306,7 @@ The `add-t` command:
 
 **Example:**
 
-**Input in Command Box:** `add-t 1 t/friends mod/CS2103T`
+**Input in Command Box:** `add-t 1 r/friends mod/CS2103T`
 
 **Result:**<br>![AddTagToContactExample](images/johndoe.png)
 
@@ -416,7 +416,7 @@ You'll need to download the desktop application <a href="https://www.whatsapp.co
 
 **Input in Command Box:** `chat 1 wa/ m/hello world!`
 
-**Result:**<br>![OpenContactExample](images/johndoe.png)
+**Result:**<br>![ChatContactExample](images/johndoe.png)
 
 [↑ Back to feature list](#4-features)
 
@@ -591,16 +591,15 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 | Command               | Format                                                                                                                                          | Example                                                                               |
 |-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
 | **Add a Contact**     | `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA]…​ [major/MAJOR]…​` | `add n/James p/12345678 e/james@example.com tg/itsjameshere b/14/02/2000 mod/CS2103T` |
-| **Add Tag**           | `add-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA] [major/MAJOR]`                                                                            |                                                                                       |
-| **Chat with Contact** | `chat PERSON_INDEX wa/ m/`                                                                                                                      |                                                                                       |
+| **Add Tag**           | `add-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA] [major/MAJOR]`                                                                            | `add-t 1 r/friends mod/CS2103T`                                                       |
+| **Chat with Contact** | `chat PERSON_INDEX wa/ m/`                                                                                                                      | `chat 1 wa/ m/hello world!`                                                           |
 | **Clear Data**        | `clear`                                                                                                                                         |                                                                                       |
 | **Delete a Contact**  | `delete PERSON_INDEX`                                                                                                                           | `delete 3`                                                                            |
-| **Delete Tag**        | `delete-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA] [major/MAJOR]`                                                                         |                                                                                       |
+| **Delete Tag**        | `delete-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA] [major/MAJOR]`                                                                         | `delete-t 1 mod/1`                                                                    |
 | **Edit a Contact**    | `edit PERSON_INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY]`                            | `edit 1 p/12345678 e/james@example.com tg/itsjameshere`                               |
 | **Help**              | `help [COMMAND]`                                                                                                                                | `help`, `help add`                                                                    |
 | **List All Contacts** | `list`                                                                                                                                          |                                                                                       |
-                                                                                       |
-| **Open Social Media** | `open PERSON_INDEX [tg/] [wa/] [ig/]`                                                                                                           |                                                                                       |
+| **Open Social Media** | `open PERSON_INDEX [tg/] [wa/] [ig/]`                                                                                                           | `open 1 tg/`                                                                          |
 | **Search**            | `search KEYWORDS`                                                                                                                               | `search alex january`                                                                 |
 | **Exit**              | `exit`                                                                                                                                          |                                                                                       |
 
