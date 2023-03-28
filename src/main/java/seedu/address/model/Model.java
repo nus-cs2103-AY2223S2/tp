@@ -155,5 +155,5 @@ public interface Model {
     /** Sets the tab to the one specified in {@code index} */
     void setSelectedTab(Index index);
 
-    void editPersonForAllEvents(Person personToEdit);
+    void editPersonForAllEvents(Person personToEdit, Person editedPerson);
 }

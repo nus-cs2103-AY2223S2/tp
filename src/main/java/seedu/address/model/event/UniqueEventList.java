@@ -118,8 +118,15 @@ public class UniqueEventList implements Iterable<Event> {
         }
     }
 
-    public void editPersonForAllEvents(Person personToEdit) {
-        System.out.println(this.internalList.toString());
+    /**
+     * Edits events that have {@code personToEdit} tagged to the {@code editedPerson}.
+     */
+    public void editPersonForAllEvents(Person personToEdit, Person editedPerson) {
+        for (Event e: this.internalList) {
+            if (e.hasTaggedPerson(personToEdit)) {
+                e.editTaggedPerson(personToEdit, editedPerson);
+            }
+        }
     }
 
     /**

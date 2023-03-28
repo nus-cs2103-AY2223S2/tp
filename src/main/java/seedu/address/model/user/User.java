@@ -111,8 +111,8 @@ public class User extends Person {
         return this.events.isPersonTaggedToEvent(index, p);
     }
 
-    public void editPersonForAllEvents(Person personToEdit) {
-        this.events.editPersonForAllEvents(personToEdit);
+    public void editPersonForAllEvents(Person personToEdit, Person editedPerson) {
+        this.events.editPersonForAllEvents(personToEdit, editedPerson);
     }
 }
 

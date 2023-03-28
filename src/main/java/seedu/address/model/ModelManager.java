@@ -131,7 +131,7 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
+        this.editPersonForAllEvents(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -183,8 +183,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void editPersonForAllEvents(Person personToEdit) {
-        this.userData.editPersonForAllEvents(personToEdit);
+    public void editPersonForAllEvents(Person personToEdit, Person editedPerson) {
+        this.userData.editPersonForAllEvents(personToEdit, editedPerson);
     }
 
     @Override
