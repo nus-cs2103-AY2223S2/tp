@@ -191,16 +191,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given project {@code project} in the list with {@code editedProject}.
-     * @param project must exist in the address book.
+     * Removes the project if the project has the same name as the {@code project} in the address book.
+     * @param project must not be null.
      */
     public void removeProject(Project project) {
         projects.remove(project);
     }
 
     /**
-     * Replaces the given project {@code project} in the list with {@code editedProject}.
-     * @param project must exist in the address book.
+     * Adds a project to Mycelium if it does not contain an existing project with the same name.
+     * @param project must not be null.
      */
     public void addProject(Project project) {
         projects.add(project);

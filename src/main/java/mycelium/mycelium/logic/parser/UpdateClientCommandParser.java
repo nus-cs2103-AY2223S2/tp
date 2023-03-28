@@ -71,9 +71,6 @@ public class UpdateClientCommandParser implements Parser<UpdateClientCommand> {
         updateClientDescriptor.setYearOfBirth(yearOfBirth);
         updateClientDescriptor.setSource(source);
         updateClientDescriptor.setMobileNumber(mobileNumber);
-        if (!updateClientDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(UpdateClientCommand.MESSAGE_NOT_EDITED);
-        }
 
         return new UpdateClientCommand(email, updateClientDescriptor);
     }

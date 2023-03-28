@@ -27,7 +27,7 @@ public class UpdateClientCommand extends Command {
 
             + "Compulsory Arguments: "
             + CliSyntax.PREFIX_CLIENT_EMAIL + "CLIENT EMAIL\n"
-            + "Options (At least one): "
+            + "Optional Arguments: "
             + CliSyntax.PREFIX_CLIENT_NEW_EMAIL + "NEW CLIENT EMAIL "
             + CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH + "YEAR OF BIRTH "
             + CliSyntax.PREFIX_SOURCE + "CLIENT SOURCE "

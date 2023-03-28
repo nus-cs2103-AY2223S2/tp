@@ -3,6 +3,7 @@ package mycelium.mycelium.logic.commands;
 import static mycelium.mycelium.testutil.Assert.assertThrows;
 import static mycelium.mycelium.testutil.TypicalEntities.RANTARO;
 import static mycelium.mycelium.testutil.TypicalEntities.WEST;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -102,11 +103,10 @@ public class UpdateClientCommandTest {
         UpdateClientCommand updateClientCommand2 = new UpdateClientCommand(EMAIL, desc2);
         UpdateClientCommand updateClientCommand3 = new UpdateClientCommand(EMAIL, desc1);
         UpdateClientCommand updateClientCommand4 = new UpdateClientCommand(EMAIL, desc2);
-        assert updateClientCommand1.equals(updateClientCommand2);
-        assert updateClientCommand2.equals(updateClientCommand1);
-        assert updateClientCommand1.equals(updateClientCommand3);
-        assert updateClientCommand3.equals(updateClientCommand1);
-        assert updateClientCommand2.equals(updateClientCommand4);
-        assert updateClientCommand4.equals(updateClientCommand2);
+        assertEquals(updateClientCommand1, updateClientCommand2);
+        assertEquals(updateClientCommand3, updateClientCommand4);
+        assertEquals(updateClientCommand2, updateClientCommand1);
+        assertEquals(updateClientCommand1, updateClientCommand3);
+        assertEquals(updateClientCommand2, updateClientCommand4);
     }
 }
