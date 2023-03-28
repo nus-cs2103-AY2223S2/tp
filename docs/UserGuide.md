@@ -514,7 +514,7 @@ Examples:
 
 ### Marking selected students as absent: `unmark`
 
-Marks selected students' attendance as absent.
+Marks selected students' attendance as absent for current session.
 
 Format:
 ```
