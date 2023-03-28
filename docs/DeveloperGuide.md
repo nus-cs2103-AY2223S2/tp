@@ -178,6 +178,72 @@ a message indicating duplicate person will be shown.
 
 Step 5. `storage#saveAddressBook()` is then called, and updates the storage to contain the new `employee`.
 
+### BatchAdd feature: `batchadd`
+
+This feature is created for users to add multiple entries at once.
+In the case of this application, there are two main reasons why HR managers would use this.
+
+1. User is new and needs to import all the current data into the database.
+2. There is a new recruitment cycle and company has recruited a large number of employees.
+
+Moving on to the implementation, some things to note.
+
+- As of now, our feature only accommodates adding from a CSV file.
+- Fields does not allow for commas inside.
+
+These are possible things to work on for future iterations.
+
+#### Implementation:
+
+_Pre-requisites: User has a CSV file filled with whatever information they want to `batchadd`
+and has stored it in the `/data` folder of the repository._
+
+UML Diagram:
+![BatchAdd](images/BatchAddSequenceDiagram.png)
+
+**Steps:**
+
+Step 1. User launches the application.
+
+Step 2. User executes `batchadd filename` command. In the `LogicManager` class, the `DatabaseParser` method is called.
+This will return a new `BatchAddCommandParser` object and `parse` function is then called.
+A helper function in `ParserUtil` helps to trim the filename and check if it is valid.
+
+Note: If no argument is provided or file not in CSV format, a`ParseException` will be thrown.
+
+Step 3. The `parse` function returns a `BatchAddCommand` which is then executed. In this `execute` function, the first
+step would be to read the information in the CSV file (`getInfo` function). A `BufferedReader` object is used to read the CSV file and converts
+each row to a string of arguments (following the add command requirements) and creates a new `AddCommand`. These new `AddCommands` will be added
+into a `List<AddCommand>`.
+
+Note: If file does not exist in the folder, a `FileNotFound` exception is thrown too.
+
+Step 4. Once `getInfo` returns a `List<AddCommand>`, the list will then be iterated through to execute each `AddCommand`.
+If there is any duplicate Person found, the function call will be aborted and the database will be reverted to its original state.
+
+Step 5. `storage#saveDatabase` is then called on the current `database`, updates the database to contain the new persons added.
+
+<h4 id="batch-add-feature-design-considerations">Design Considerations</h4>
+
+##### Aspect: How Batchadd is run
+
+- Alternative 1 (Current Choice): Make use of the execution of the `AddCommand`.
+    - Pros: Makes use of the Error Handling that the `AddCommand` has.
+    - Cons: `BatchAdd` will fail if Add fails.
+- Alternative 2: Own implementation of `BatchAdd` without relying on `AddCommand`.
+    - Pros: If Add Fails, BatchAdd can still work.
+    - Cons: Implementation Heavy.
+
+##### Aspect: How Batchadd `.csv` file is processed
+
+- Alternative 1 (Current Choice): Use the positioning of columns to import data (i.e Have a fixed row position for each command).
+    - Pros: No need for header rows
+    - Cons: If the user orders it wrongly, it will not work.
+- Alternative 2: Use the Header row to determine the data used.
+    - Pros: No need to follow a specific ordering.
+    - Cons: Name of headers need to be the exact name used.
+
+
 ### Edit Feature : `edit`
 
 #### Implementation
@@ -273,7 +339,7 @@ Step 4: The `handleChangeTheme` method gets the list of all stylesheets used by 
 Step 5. The `UI` component listens to this change in the list of stylesheets to use, and updates the GUI's appearance accordingly.
 
 ### Find Feature: `find`
-This command displays all employees whose full names partially or fully match the keyword inpuuted by the user.  
+This command displays all employees whose full names partially or fully match the keyword inputed by the user.
 
 #### Implementation
 
@@ -295,94 +361,9 @@ Step 4. The `FilteredList` now only contains those employees which satisfy the `
 
 Step 5. The `UI` component listens to changes in this `FilteredList`, and updates the GUI to display this list of matching employees to the user.
 
-#### Future Considerations 
+#### Future Considerations
 
 Add functionality to find employees based on other details such as Department, Roles etc.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an
-undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th employee in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new employee. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the employee was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the employee being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -579,7 +560,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 ### Deleting a employee
 
@@ -596,7 +576,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+
 
 ### Saving data
 
@@ -604,4 +584,3 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_

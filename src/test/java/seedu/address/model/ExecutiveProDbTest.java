@@ -46,7 +46,7 @@ public class ExecutiveProDbTest {
     @Test
     public void resetData_withDuplicateEmployees_throwsDuplicateEmployeeException() {
         // Two persons with the same identity fields
-        Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Employee editedAlice = new EmployeeBuilder(ALICE)
                 .build();
         List<Employee> newEmployees = Arrays.asList(ALICE, editedAlice);
         ExecutiveProDbStub newData = new ExecutiveProDbStub(newEmployees);
@@ -75,7 +75,7 @@ public class ExecutiveProDbTest {
         executiveProDb.addEmployee(ALICE);
         Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(executiveProDb.hasEmployee(editedAlice));
+        assertFalse(executiveProDb.hasEmployee(editedAlice));
     }
 
     @Test

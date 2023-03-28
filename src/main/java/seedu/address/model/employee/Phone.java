@@ -25,6 +25,12 @@ public class Phone {
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
     }
+    /**
+     * Bypass input validation, allows actual null values.
+     */
+    public Phone() {
+        this.value = "N/A";
+    }
 
     /**
      * Returns true if a given string is a valid phone number.

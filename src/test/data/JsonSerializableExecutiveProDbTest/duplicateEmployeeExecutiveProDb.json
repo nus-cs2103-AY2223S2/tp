@@ -12,9 +12,10 @@
     "name": "Alice Pauline",
     "employeeId": "1",
     "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street",
+    "email": "alice@example.com",
+    "address": "123, Jurong West Ave 6, #08-111",
     "department" : "Marketing",
-    "picturePath" : "src/main/resources/employeepictures/default.png"
+    "picturePath" : "src/main/resources/employeepictures/default.png",
+    "tagged": [ "friends" ]
   } ]
 }

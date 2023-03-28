@@ -166,7 +166,11 @@ public class Employee {
         }
 
         return otherEmployee != null
-                && otherEmployee.getName().equals(getName());
+                && otherEmployee.getName().equals(getName())
+                && otherEmployee.getPhone().equals(getPhone())
+                && otherEmployee.getEmail().equals(getEmail())
+                && otherEmployee.getAddress().equals(getAddress())
+                && otherEmployee.getDepartment().equals(getDepartment());
     }
 
     /**

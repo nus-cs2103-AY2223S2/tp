@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.BatchAddCommand;
+import seedu.address.logic.commands.BatchExportCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -52,6 +53,9 @@ public class ExecutiveProParser {
 
         case BatchAddCommand.COMMAND_WORD:
             return new BatchAddCommandParser().parse(arguments);
+
+        case BatchExportCommand.COMMAND_WORD:
+            return new BatchExportCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
