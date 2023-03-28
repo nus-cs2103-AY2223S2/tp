@@ -14,9 +14,8 @@ import tfifteenfour.clipboard.model.task.Task;
  */
 public class SerializedTask {
     private String taskName;
-    private final List<SerializedStudent> keys = new ArrayList<>();
-    private final List<Integer> values = new ArrayList<>();
-
+    private final List<SerializedStudent> students = new ArrayList<>();
+    private final List<Integer> grades = new ArrayList<>();
 
     /**
      * Constructs a {@code SerializedTask} with the given task.
@@ -25,10 +24,9 @@ public class SerializedTask {
         this.taskName = task.getTaskName();
         Map<Student, Integer> taskGrades = task.getGrades();
         for (Student student : taskGrades.keySet()) {
-            keys.add(new SerializedStudent(student));
-            values.add(taskGrades.get(student));
+            students.add(new SerializedStudent(student));
+            grades.add(taskGrades.get(student));
         }
-
     }
 
     /**
@@ -41,14 +39,14 @@ public class SerializedTask {
         return taskName;
     }
 
-    @JsonProperty("keys")
+    @JsonProperty("students")
     public List<SerializedStudent> getKeys() {
-        return this.keys;
+        return this.students;
     }
 
-    @JsonProperty("values")
+    @JsonProperty("grades")
     public List<Integer> getValues() {
-        return this.values;
+        return this.grades;
     }
 
     /**
@@ -60,10 +58,10 @@ public class SerializedTask {
         Task newTask = new Task(this.taskName);
 
         Map<Student, Integer> newGrades = newTask.getGrades();
-        for (int i = 0; i < keys.size(); i++) {
+        for (int i = 0; i < students.size(); i++) {
             newGrades.put(
-                    keys.get(i).toModelType(),
-                    values.get(i)
+                    students.get(i).toModelType(),
+                    grades.get(i)
             );
         }
         return newTask;
