@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.logic.parser.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 /**

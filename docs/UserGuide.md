@@ -209,30 +209,6 @@ Examples:
 
 ---
 
-### Showing a student's remark: `show`
-
-Show the remark of the specified student. Useful for when the remark is too long to be displayed in the student list.
-
-> Format: `show INDEX`
-
-Examples:
-
-- `show 2`
-
-<p align=center>
-    <img alt="show before" src="images/user-guide/show_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>show</code> command</i>
-</p>
-
-<p align=center>
-    <img alt="show after" src="images/user-guide/show_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>show</code> command</i>
-</p>
-
-[↑ Back to top](#table-of-contents)
-
----
-
 ### Find/filter students: `find`
 
 Finds entries of students based on a keyword in the field that you want. <br>
@@ -332,12 +308,16 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 
 # Command summary
 
-| Action | Format, Examples                                                                                |
-| ------ | ----------------------------------------------------------------------------------------------- |
-| Add    | `add n/STUDENT_NAME a/ADDRESS o/NOTES`<br>eg. `add n/Shaun a/123 NUS Street o/Good in Japanese` |
-| Delete | `delete INDEX`<br>eg. `delete 3`                                                                |
-| Exit   | `exit`, `bye`, `quit`                                                                           |
-| List   | `list`                                                                                          |
+| Action | Format, Examples                                                                                                                                                                                                                                       |
+|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Add    | `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [r/REMARK] [t/TAG]... [s/SUBJECT]...`<br>eg. `add n/Shaun a/123 NUS Street e/shaun123@gmail.com edu/Year 1 r/Good in Japanese t/active t/hardworking s/CS2103T s/CS2101` |
+| Delete | `delete INDEX`<br>eg. `delete 3`                                                                                                                                                                                                                       |
+| Edit   | `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [t/TAG]... [s/SUBJECT]...` <br/>eg. `edit 1 n/Wen Li edu/Year 2`                                                                                                |
+| Exit   | `exit`, `bye`, `quit`                                                                                                                                                                                                                                  |
+| Find   | `find KEYWORD1 [KEYWORD2]` <br/>eg. `find Sh` <br/>eg. `find Shao Hong`                                                                                                                                                                                |
+| List   | `list`                                                                                                                                                                                                                                                 |
+| Remark | `remark INDEX [r/REMARK]` <br/>eg. `remark 2 r/Not good in Japanese`                                                                                                                                                                                   |
+| Show   | `show INDEX` <br/>eg. `show 1`                                                                                                                                                                                                                         |
 
 [↑ Back to top](#table-of-contents)
 
@@ -345,16 +325,16 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 
 # Prefix summary
 
-| Prefix | Meaning                                   | Example                          |
-|--------|-------------------------------------------|----------------------------------|
-| n/     | Name of student                           | `n/Shao Hong`                    |
-| p/     | Phone number of student                   | `p/81234567`                     |
-| e/     | Email of student                          | `e/e07123456@u.edu.sg`           |
-| a/     | Address of student                        | `a/16 Bukit Timah Road, S156213` |
-| edu/   | Education level of student                | `edu/P6`                         |
-| r/     | Remark for student                        | `r/Good in German`               |
-| t/     | Tags of student                           | `t/submited t/late`              |
-| s/     | Subjects that the student is being taught | `s/Math s/Science`               |
+| Prefix | Meaning                                 | Example                               |
+|--------|-----------------------------------------|---------------------------------------|
+| n/     | Name of student                         | `n/Shao Hong`                         |
+| p/     | Phone number of student                 | `p/81234567`                          |
+| e/     | Email of student                        | `e/e07123456@u.edu.sg`                |
+| a/     | Address of student                      | `a/16 Bukit Timah Road, S156213`      |
+| edu/   | Education level of student              | `edu/P6`                              |
+| r/     | Remark for student                      | `r/Good in German`                    |
+| t/     | Tag of student                          | `t/active` or `t/submited t/late ...` |
+| s/     | Subject that the student is being taught | `s/Math` or `s/Math s/Science ...`    |
 
 
 [↑ Back to top](#table-of-contents)
