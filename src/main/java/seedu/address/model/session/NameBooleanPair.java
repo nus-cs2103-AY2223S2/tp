@@ -8,4 +8,13 @@ public class NameBooleanPair {
         this.name = name;
         this.isPresent = false;
     }
+
+    @Override
+    public String toString() {
+        if (isPresent) {
+            return name + ": present";
+        } else {
+            return name + ": absent";
+        }
+    }
 }

@@ -28,7 +28,7 @@
                 </Label>
                 <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
             </HBox>
-            <FlowPane />
+            <FlowPane fx:id="attendanceList" />
             <Label fx:id="locationField" styleClass="cell_small_label" text="\$address" />
             <Label fx:id="startDate" styleClass="cell_small_label" text="\$startDate" />
             <Label fx:id="endDate" styleClass="cell_small_label" text="\$endDate" />

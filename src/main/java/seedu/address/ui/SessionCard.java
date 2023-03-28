@@ -2,8 +2,10 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.session.NameBooleanPair;
 import seedu.address.model.session.Session;
 
 /**
@@ -35,6 +37,8 @@ public class SessionCard extends UiPart<Region> {
     private Label startDate;
     @FXML
     private Label endDate;
+    @FXML
+    private FlowPane attendanceList;
 
 
 
@@ -49,6 +53,11 @@ public class SessionCard extends UiPart<Region> {
         locationField.setText(session.getLocation());
         startDate.setText(session.getStartDateTime());
         endDate.setText(session.getEndDateTime());
+        session.getMap().stream()
+                .forEach(
+                        pair -> attendanceList
+                                .getChildren()
+                                .add(new Label(pair.toString())));
     }
 
     @Override
