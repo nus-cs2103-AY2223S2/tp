@@ -140,16 +140,16 @@ public class CommandInput extends UiPart<HBox> {
     @FXML
     private void initialize() {
         this.getRoot().setFocusTraversable(true); // Important
-        // inputField.focusedProperty().addListener(new ChangeListener<Boolean>() {
-        // @Override
-        // public void changed(ObservableValue<? extends Boolean> arg0, Boolean wasFocused,
-        // Boolean isFocused) {
-        // if (!isFocused) {
-        // mainScreen.clearBottomComponent();
-        // }
+        inputField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> arg0, Boolean wasFocused,
+                    Boolean isFocused) {
+                if (!isFocused) {
+                    mainScreen.clearBottomComponent();
+                }
 
-        // }
-        // });
+            }
+        });
     }
 
     private boolean isTextFieldEmpty() {
