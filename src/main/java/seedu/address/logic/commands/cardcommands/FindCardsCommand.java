@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.cardcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.cardcommands.AddCommand.MESSAGE_NO_SELECTED_DECK;
+import static seedu.address.logic.commands.cardcommands.AddCardCommand.MESSAGE_NO_SELECTED_DECK;
 
 import java.util.List;
 import java.util.Optional;

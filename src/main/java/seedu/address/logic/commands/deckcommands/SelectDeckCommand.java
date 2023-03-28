@@ -28,7 +28,7 @@ public class SelectDeckCommand extends Command {
     private final Index deckIndex;
 
     /**
-     * Creates an AddCommand to add the specified {@code Card}
+     * Creates an AddCardCommand to add the specified {@code Card}
      */
     public SelectDeckCommand(Index idx) {
         requireNonNull(idx);

@@ -14,9 +14,9 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.cardcommands.AddCommand;
-import seedu.address.logic.commands.cardcommands.DeleteCommand;
-import seedu.address.logic.commands.cardcommands.EditCommand;
+import seedu.address.logic.commands.cardcommands.AddCardCommand;
+import seedu.address.logic.commands.cardcommands.DeleteCardCommand;
+import seedu.address.logic.commands.cardcommands.EditCardCommand;
 import seedu.address.logic.commands.cardcommands.FindCardsCommand;
 import seedu.address.logic.commands.cardcommands.ShowCardsCommand;
 import seedu.address.logic.commands.deckcommands.AddDeckCommand;
@@ -100,14 +100,14 @@ public class MasterDeckParser {
             return new FindDecksCommandParser().parse(arguments);
 
         // Card-related Commands
-        case AddCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, AddCommand.COMMAND_WORD));
+        case AddCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, AddCardCommand.COMMAND_WORD));
 
-        case EditCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, EditCommand.COMMAND_WORD));
+        case EditCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, EditCardCommand.COMMAND_WORD));
 
-        case DeleteCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, DeleteCommand.COMMAND_WORD));
+        case DeleteCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, DeleteCardCommand.COMMAND_WORD));
 
         case ShowCardsCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_NO_DECK_SELECTED, ShowCardsCommand.COMMAND_WORD));
@@ -193,14 +193,14 @@ public class MasterDeckParser {
             throw new ParseException(String.format(MESSAGE_DECK_SELECTED, FindDecksCommand.COMMAND_WORD));
 
         // Card-related Commands
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddCardCommand.COMMAND_WORD:
+            return new AddCardCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditCardCommand.COMMAND_WORD:
+            return new EditCardCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteCardCommand.COMMAND_WORD:
+            return new DeleteCardCommandParser().parse(arguments);
 
         case ShowCardsCommand.COMMAND_WORD:
             return new ShowCardsCommand();
@@ -286,14 +286,14 @@ public class MasterDeckParser {
             throw new ParseException(String.format(MESSAGE_IN_REVIEW, FindDecksCommand.COMMAND_WORD));
 
         // Card-related Commands
-        case AddCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_IN_REVIEW, AddCommand.COMMAND_WORD));
+        case AddCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, AddCardCommand.COMMAND_WORD));
 
-        case EditCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_IN_REVIEW, EditCommand.COMMAND_WORD));
+        case EditCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, EditCardCommand.COMMAND_WORD));
 
-        case DeleteCommand.COMMAND_WORD:
-            throw new ParseException(String.format(MESSAGE_IN_REVIEW, DeleteCommand.COMMAND_WORD));
+        case DeleteCardCommand.COMMAND_WORD:
+            throw new ParseException(String.format(MESSAGE_IN_REVIEW, DeleteCardCommand.COMMAND_WORD));
 
         case ShowCardsCommand.COMMAND_WORD:
             throw new ParseException(String.format(MESSAGE_IN_REVIEW, ShowCardsCommand.COMMAND_WORD));

@@ -20,9 +20,9 @@ import seedu.address.model.tag.Tag;
 /**
  * Adds a card to the selected deck.
  */
-public class AddCommand extends Command {
+public class AddCardCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addCard";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a card to the selected deck. "
             + "Parameters: "
@@ -40,9 +40,9 @@ public class AddCommand extends Command {
     private final AddCardDescriptor cardDescriptor;
 
     /**
-     * Creates an AddCommand to add the specified {@code AddCardDescriptor} as Card
+     * Creates an AddCardCommand to add the specified {@code AddCardDescriptor} as Card
      */
-    public AddCommand(AddCardDescriptor cardDescriptor) {
+    public AddCardCommand(AddCardDescriptor cardDescriptor) {
         requireNonNull(cardDescriptor);
         this.cardDescriptor = new AddCardDescriptor(cardDescriptor);
     }
@@ -68,8 +68,8 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && cardDescriptor.equals(((AddCommand) other).cardDescriptor));
+                || (other instanceof AddCardCommand // instanceof handles nulls
+                && cardDescriptor.equals(((AddCardCommand) other).cardDescriptor));
     }
 
     /**
@@ -99,7 +99,7 @@ public class AddCommand extends Command {
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public AddCardDescriptor(AddCommand.AddCardDescriptor toCopy) {
+        public AddCardDescriptor(AddCardCommand.AddCardDescriptor toCopy) {
             setQuestion(toCopy.question);
             setAnswer(toCopy.answer);
             setTag(toCopy.tag);
@@ -158,12 +158,12 @@ public class AddCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof AddCommand.AddCardDescriptor)) {
+            if (!(other instanceof AddCardCommand.AddCardDescriptor)) {
                 return false;
             }
 
             // state check
-            AddCommand.AddCardDescriptor otherDesc = (AddCommand.AddCardDescriptor) other;
+            AddCardCommand.AddCardDescriptor otherDesc = (AddCardCommand.AddCardDescriptor) other;
 
             return question.equals(otherDesc.question)
                     && answer.equals(otherDesc.answer)

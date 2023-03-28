@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.cardcommands.EditCommand;
-import seedu.address.logic.commands.cardcommands.EditCommand.EditCardDescriptor;
+import seedu.address.logic.commands.cardcommands.EditCardCommand;
+import seedu.address.logic.commands.cardcommands.EditCardCommand.EditCardDescriptor;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.Question;
@@ -15,14 +15,14 @@ import seedu.address.model.tag.Tag.TagName;
  */
 public class EditCardDescriptorBuilder {
 
-    private EditCommand.EditCardDescriptor descriptor;
+    private EditCardCommand.EditCardDescriptor descriptor;
 
     public EditCardDescriptorBuilder() {
-        descriptor = new EditCommand.EditCardDescriptor();
+        descriptor = new EditCardCommand.EditCardDescriptor();
     }
 
-    public EditCardDescriptorBuilder(EditCommand.EditCardDescriptor descriptor) {
-        this.descriptor = new EditCommand.EditCardDescriptor(descriptor);
+    public EditCardDescriptorBuilder(EditCardCommand.EditCardDescriptor descriptor) {
+        this.descriptor = new EditCardCommand.EditCardDescriptor(descriptor);
     }
 
     /**
@@ -67,7 +67,7 @@ public class EditCardDescriptorBuilder {
         return this;
     }
 
-    public EditCommand.EditCardDescriptor build() {
+    public EditCardCommand.EditCardDescriptor build() {
         return descriptor;
     }
 }

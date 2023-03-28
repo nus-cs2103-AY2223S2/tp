@@ -92,7 +92,7 @@ public class LogicManagerTest {
         // logic = new LogicManager(model, storage);
 
         // Execute add command
-        // String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY;
+        // String addCommand = AddCardCommand.COMMAND_WORD + NAME_DESC_AMY + ADDRESS_DESC_AMY;
         // Card expectedCard = new CardBuilder(AMY).withTag().build();
         // ModelManager expectedModel = new ModelManager();
         // expectedModel.addCard(expectedCard);
