@@ -13,6 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.OperationMode;
 
@@ -65,7 +66,7 @@ public class CommandGroupTest extends LogicCoreParserTestBase {
     }
 
     @Test
-    void parse_validTokens1_returnsCommand() throws ParseException {
+    void parse_validTokens1_returnsCommand() throws ParseException, CommandException {
         Deque<String> tokens = new ArrayDeque<>(List.of(COMMAND_WORD1, "arg1", "arg2"));
         CommandParam commandParam = new CommandParam(Optional.of("arg1 arg2"),
             Optional.empty());
@@ -74,7 +75,7 @@ public class CommandGroupTest extends LogicCoreParserTestBase {
     }
 
     @Test
-    void parse_validTokens2_returnsCommand() throws ParseException {
+    void parse_validTokens2_returnsCommand() throws ParseException, CommandException {
         Deque<String> tokens = new ArrayDeque<>(List.of(COMMAND_WORD2, "arg1",
             "arg2", "arg3"));
         CommandParam commandParam = new CommandParam(Optional.of("arg1 arg2 arg3"),
