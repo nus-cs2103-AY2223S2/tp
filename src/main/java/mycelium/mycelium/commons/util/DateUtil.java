@@ -1,8 +1,12 @@
 package mycelium.mycelium.commons.util;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
+
+
 
 /**
  * A class for Date utility functions.
@@ -17,6 +21,7 @@ public class DateUtil {
      *          false otherwise.
      */
     public static boolean isWithinThisAndNextWeek(LocalDate date) {
+        requireNonNull(date);
         assert date != null;
         LocalDate currentDate = LocalDate.now();
         LocalDate startOfCurrentWeek =
@@ -36,6 +41,7 @@ public class DateUtil {
      *          false otherwise.
      */
     public static boolean isBeforeToday(LocalDate date) {
+        requireNonNull(date);
         LocalDate currentDate = LocalDate.now();
 
         return date.isBefore(currentDate);

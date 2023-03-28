@@ -1,6 +1,5 @@
 package mycelium.mycelium.model.project;
 
-import static java.util.Objects.requireNonNull;
 import static mycelium.mycelium.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
@@ -145,11 +144,11 @@ public class Project implements IsSame<Project>, FuzzyComparable<String> {
      *          -1 for the rest
      */
     public int compareToWithDeadline(Project other) {
+        assert this.getDeadline().isPresent();
+        assert other.getDeadline().isPresent();
+
         LocalDate thisDeadline = this.getDeadline().get();
         LocalDate otherDeadline = other.getDeadline().get();
-        requireNonNull(thisDeadline);
-        requireNonNull(otherDeadline);
-
 
         if (this.equals(other)) {
             return 0;

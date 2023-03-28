@@ -33,6 +33,8 @@ import mycelium.mycelium.testutil.PersonBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
+    private static final int NUM_OF_VALID_STATUSES = 3;
+
 
     @TempDir
     public Path temporaryFolder;
@@ -91,6 +93,27 @@ public class LogicManagerTest {
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredClientList().remove(0));
     }
+
+    @Test
+    public void getFilteredProjectList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredProjectList().remove(0));
+    }
+
+    @Test
+    public void getDueProjectList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getDueProjectList().remove(0));
+    }
+
+    @Test
+    public void getOverdueProjectList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getOverdueProjectList().remove(0));
+    }
+
+    @Test
+    public void getProjectStatistics_containsThreeKeys_success() {
+        assertEquals(NUM_OF_VALID_STATUSES, logic.getProjectStatistics().size());
+    }
+
 
     /**
      * Executes the command and confirms that

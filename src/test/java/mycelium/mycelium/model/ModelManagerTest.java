@@ -1,5 +1,7 @@
 package mycelium.mycelium.model;
 
+import static mycelium.mycelium.commons.util.DateUtil.isBeforeToday;
+import static mycelium.mycelium.commons.util.DateUtil.isWithinThisAndNextWeek;
 import static mycelium.mycelium.testutil.Assert.assertThrows;
 import static mycelium.mycelium.testutil.TypicalEntities.ALICE;
 import static mycelium.mycelium.testutil.TypicalEntities.BARD;
@@ -25,14 +27,19 @@ import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.client.exceptions.DuplicateClientException;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.model.project.exceptions.DuplicateProjectException;
 import mycelium.mycelium.testutil.AddressBookBuilder;
 import mycelium.mycelium.testutil.ClientBuilder;
 import mycelium.mycelium.testutil.ProjectBuilder;
+import mycelium.mycelium.testutil.ProjectUtil;
+
 
 public class ModelManagerTest {
+    private static final int NUM_OF_VALID_STATUSES = 3;
 
     private ModelManager modelManager = new ModelManager();
+
 
     @Test
     public void constructor() {
@@ -281,6 +288,56 @@ public class ModelManagerTest {
     public void getFilteredProjectList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredProjectList().remove(0));
     }
+
+    @Test
+    public void getDueProjectList_alwaysContainsProjectsWithDeadline_success() {
+        assertEquals(0, modelManager.getDueProjectList().stream().filter(p -> p.getDeadline().isEmpty()).count());
+    }
+
+    @Test
+    public void getDueProjectList_alwaysContainsUnfinishedProjects_success() {
+        assertEquals(0, modelManager.getDueProjectList().stream().filter(
+                p -> p.getStatus() == ProjectStatus.DONE).count());
+    }
+
+    @Test
+    public void getDueProjectList_alwaysContainsProjectsWithDeadlinesWithinTwoWeeks_success() {
+        assertEquals(0, modelManager.getDueProjectList().stream().filter(
+                p -> !isWithinThisAndNextWeek(p.getDeadline().get())).count());
+    }
+
+    @Test
+    public void getDueProjectList_neverContainsOverdueProjects_success() {
+        assertEquals(0, modelManager.getDueProjectList().stream().filter(
+                p -> isBeforeToday(p.getDeadline().get())).count());
+    }
+
+    @Test
+    public void getOverdueProjectList_neverContainsDueProjects_success() {
+        assertEquals(0, modelManager.getOverdueProjectList().stream().filter(
+                p -> !isBeforeToday(p.getDeadline().get()) || p.getStatus() == ProjectStatus.DONE).count());
+    }
+
+    @Test
+    public void getDueProjectList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getDueProjectList().remove(0));
+    }
+
+    @Test
+    public void getOverdueProjectList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getOverdueProjectList().remove(0));
+    }
+
+    @Test
+    public void getProjectStatistics_containsThreeKeys_success() {
+        assertEquals(NUM_OF_VALID_STATUSES, modelManager.getProjectStatistics().size());
+    }
+
+    @Test
+    public void getProjectStatistics_containsKeysWithPositiveValues_success() {
+        assertTrue(ProjectUtil.containsPositiveValues(modelManager));
+    }
+
 
     @Test
     public void equals() {
