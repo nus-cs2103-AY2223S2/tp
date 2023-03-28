@@ -459,7 +459,7 @@ The `add` command allows users to create a new person and insert them into the a
 
 **Parsing the inputs** - When the user types an input, the parser will extract out the relevant arguments and [check whether they are valid](#model-component).
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :information_source: **Command Formats:** <br>
 
@@ -505,7 +505,7 @@ The `edit` command allows the user to edit an existing contact in EduMate.
 
 **Parsing the inputs** - When the user types an input, the parser will extract out the relevant arguments and [check whether they are valid](#model-component).
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :information_source: **Command Formats:** <br>
 
@@ -581,7 +581,7 @@ The `tag` command allows user to tag a ModuleTag and Lessons to an existing cont
 
 **Parsing the inputs** - When the user types in an input, the parser will extract out the relevant arguments.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :information_source: **Command Formats**: <br>
 
@@ -611,7 +611,7 @@ The last viewed profile will remain displayed on the profile panel should there 
 
 </div>
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :information_source: **Command Formats** <br>
 
@@ -652,7 +652,7 @@ For example, if the user wants to search for a person but does not know the full
 
 **Parsing the inputs** - When the user types an input, the parser will extract out the relevant arguments and check if there is only one type of information.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :information_source: **Command Formats:** <br>
 
@@ -687,7 +687,7 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 **Parsing the inputs** - When the user types an input, the parser will *scan* through the arguments. Then, it checks whether the field needs to be sorted in **ascending** or **descending** order. Finally, it combines all the comparators together so that we get a single comparator.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :information_source: **Command Formats:** <br>
 
@@ -723,7 +723,7 @@ Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/ma
 
 The `list` command will allow users to view all the contacts saved in `EduMate`.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :information_source: **Command Formats:** <br>
 
