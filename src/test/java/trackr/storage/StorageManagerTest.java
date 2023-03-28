@@ -2,6 +2,7 @@ package trackr.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
@@ -13,7 +14,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import trackr.commons.core.GuiSettings;
+import trackr.model.Menu;
 import trackr.model.OrderList;
+import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
@@ -63,11 +66,14 @@ public class StorageManagerTest {
         SupplierList originalAddressBook = getTypicalSupplierList();
         TaskList originalTaskList = getTypicalTaskList();
         OrderList originalOrderList = getTypicalOrderList();
-        storageManager.saveTrackr(originalAddressBook, originalTaskList, originalOrderList);
+        Menu originalMenu = getTypicalMenu();
+        storageManager.saveTrackr(originalAddressBook, originalTaskList, originalMenu, originalOrderList);
         ReadOnlySupplierList retrievedAddressBook = storageManager.readSupplierList().get();
         assertEquals(originalAddressBook, new SupplierList(retrievedAddressBook));
         ReadOnlyTaskList retrievedTaskList = storageManager.readTaskList().get();
         assertEquals(originalTaskList, new TaskList(retrievedTaskList));
+        ReadOnlyMenu retrievedMenu = storageManager.readMenu().get();
+        assertEquals(originalMenu, new Menu(retrievedMenu));
         ReadOnlyOrderList retrievedOrderList = storageManager.readOrderList().get();
         assertEquals(originalOrderList, new OrderList(retrievedOrderList));
     }

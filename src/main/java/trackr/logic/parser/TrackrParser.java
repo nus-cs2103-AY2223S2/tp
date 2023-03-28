@@ -28,7 +28,17 @@ import trackr.logic.commands.task.DeleteTaskCommand;
 import trackr.logic.commands.task.EditTaskCommand;
 import trackr.logic.commands.task.FindTaskCommand;
 import trackr.logic.commands.task.ListTaskCommand;
+import trackr.logic.menu.AddMenuItemCommand;
+import trackr.logic.menu.ClearMenuItemCommand;
+import trackr.logic.menu.DeleteMenuItemCommand;
+import trackr.logic.menu.EditMenuItemCommand;
+import trackr.logic.menu.FindMenuItemCommand;
+import trackr.logic.menu.ListMenuItemCommand;
 import trackr.logic.parser.exceptions.ParseException;
+import trackr.logic.parser.menu.AddMenuItemCommandParser;
+import trackr.logic.parser.menu.DeleteMenuItemCommandParser;
+import trackr.logic.parser.menu.EditMenuItemCommandParser;
+import trackr.logic.parser.menu.FindMenuItemCommandParser;
 import trackr.logic.parser.order.AddOrderCommandParser;
 import trackr.logic.parser.order.DeleteOrderCommandParser;
 import trackr.logic.parser.order.EditOrderCommandParser;
@@ -81,6 +91,10 @@ public class TrackrParser {
         case AddTaskCommand.COMMAND_WORD_SHORTCUT:
             return new AddTaskCommandParser().parse(arguments);
 
+        case AddMenuItemCommand.COMMAND_WORD:
+        case AddMenuItemCommand.COMMAND_WORD_SHORTCUT:
+            return new AddMenuItemCommandParser().parse(arguments);
+
         case EditSupplierCommand.COMMAND_WORD:
         case EditSupplierCommand.COMMAND_WORD_SHORTCUT:
             return new EditSupplierCommandParser().parse(arguments);
@@ -89,29 +103,41 @@ public class TrackrParser {
         case EditTaskCommand.COMMAND_WORD_SHORTCUT:
             return new EditTaskCommandParser().parse(arguments);
 
-        case DeleteSupplierCommand.COMMAND_WORD:
-        case DeleteSupplierCommand.COMMAND_WORD_SHORTCUT:
-            return new DeleteSupplierCommandParser().parse(arguments);
+        case EditMenuItemCommand.COMMAND_WORD:
+        case EditMenuItemCommand.COMMAND_WORD_SHORTCUT:
+            return new EditMenuItemCommandParser().parse(arguments);
+
         case EditOrderCommand.COMMAND_WORD:
         case EditOrderCommand.COMMAND_WORD_SHORTCUT:
             return new EditOrderCommandParser().parse(arguments);
 
+        case DeleteSupplierCommand.COMMAND_WORD:
+        case DeleteSupplierCommand.COMMAND_WORD_SHORTCUT:
+            return new DeleteSupplierCommandParser().parse(arguments);
 
         case DeleteTaskCommand.COMMAND_WORD:
         case DeleteTaskCommand.COMMAND_WORD_SHORTCUT:
             return new DeleteTaskCommandParser().parse(arguments);
 
-        case ClearSupplierCommand.COMMAND_WORD:
-        case ClearSupplierCommand.COMMAND_WORD_SHORTCUT:
-            return new ClearSupplierCommand();
+        case DeleteMenuItemCommand.COMMAND_WORD:
+        case DeleteMenuItemCommand.COMMAND_WORD_SHORTCUT:
+            return new DeleteMenuItemCommandParser().parse(arguments);
 
         case DeleteOrderCommand.COMMAND_WORD:
         case DeleteOrderCommand.COMMAND_WORD_SHORTCUT:
             return new DeleteOrderCommandParser().parse(arguments);
 
+        case ClearSupplierCommand.COMMAND_WORD:
+        case ClearSupplierCommand.COMMAND_WORD_SHORTCUT:
+            return new ClearSupplierCommand();
+
         case ClearTaskCommand.COMMAND_WORD:
         case ClearTaskCommand.COMMAND_WORD_SHORTCUT:
             return new ClearTaskCommand();
+
+        case ClearMenuItemCommand.COMMAND_WORD:
+        case ClearMenuItemCommand.COMMAND_WORD_SHORTCUT:
+            return new ClearMenuItemCommand();
 
         case ClearOrderCommand.COMMAND_WORD:
         case ClearOrderCommand.COMMAND_WORD_SHORTCUT:
@@ -124,6 +150,10 @@ public class TrackrParser {
         case FindTaskCommand.COMMAND_WORD:
         case FindTaskCommand.COMMAND_WORD_SHORTCUT:
             return new FindTaskCommandParser().parse(arguments);
+
+        case FindMenuItemCommand.COMMAND_WORD:
+        case FindMenuItemCommand.COMMAND_WORD_SHORTCUT:
+            return new FindMenuItemCommandParser().parse(arguments);
 
         case FindOrderCommand.COMMAND_WORD:
         case FindOrderCommand.COMMAND_WORD_SHORTCUT:
@@ -141,8 +171,13 @@ public class TrackrParser {
         case ListTaskCommand.COMMAND_WORD_SHORTCUT:
             return new ListTaskCommand();
 
+        case ListMenuItemCommand.COMMAND_WORD:
+        case ListMenuItemCommand.COMMAND_WORD_SHORTCUT:
+            return new ListMenuItemCommand();
+
         case TabCommand.COMMAND_WORD:
             return new TabCommandParser().parse(arguments);
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 

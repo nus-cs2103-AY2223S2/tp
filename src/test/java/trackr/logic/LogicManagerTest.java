@@ -8,6 +8,7 @@ import static trackr.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static trackr.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static trackr.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static trackr.testutil.Assert.assertThrows;
+import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalSuppliers.AMY;
 
 import java.io.IOException;
@@ -28,6 +29,7 @@ import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
+import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
@@ -210,7 +212,7 @@ public class LogicManagerTest {
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage) {
         Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
-                model.getOrderList(), new UserPrefs());
+                getTypicalMenu(), model.getOrderList(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -238,7 +240,7 @@ public class LogicManagerTest {
 
         @Override
         public void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
-                               ReadOnlyOrderList orderList, Path filePath)
+                               ReadOnlyMenu menu, ReadOnlyOrderList orderList, Path filePath)
                 throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }

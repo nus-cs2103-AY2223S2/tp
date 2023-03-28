@@ -9,7 +9,9 @@ public enum ModelEnum {
     TASK("Task"),
     ORDER("Order"),
     CUSTOMER("Customer"),
-    Item("Item");
+    Item("Item"),
+    MENUITEM("Menu Item");
+
 
     private final String strRepresentation;
 

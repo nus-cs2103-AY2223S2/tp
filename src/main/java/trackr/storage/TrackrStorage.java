@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import trackr.commons.exceptions.DataConversionException;
+import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
@@ -40,13 +41,13 @@ public interface TrackrStorage {
      * @throws IOException if there was any problem writing to the file.
      */
     void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
-            ReadOnlyOrderList orderList) throws IOException;
+            ReadOnlyMenu menu, ReadOnlyOrderList orderList) throws IOException;
 
     /**
-     * @see #saveTrackr(ReadOnlySupplierList, ReadOnlyTaskList)
+     * @see #saveTrackr(ReadOnlySupplierList, ReadOnlyTaskList, ReadOnlyMenu, ReadOnlyOrderList)
      */
     void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
-            ReadOnlyOrderList orderList, Path filePath) throws IOException;
+            ReadOnlyMenu menu, ReadOnlyOrderList orderList, Path filePath) throws IOException;
 
     /**
      * @see #getTrackrFilePath()
@@ -60,6 +61,19 @@ public interface TrackrStorage {
      * @throws IOException if there was any problem when reading from the storage.
      */
     Optional<ReadOnlyTaskList> readTaskList() throws DataConversionException, IOException;
+
+    /**
+     * @see #getTrackrFilePath()
+     */
+    Optional<ReadOnlyMenu> readMenu(Path filePath) throws DataConversionException, IOException;
+
+    /**
+     * Returns TaskList data as a {@link ReadOnlyMenu}.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     * @throws DataConversionException if the data in storage is not in the expected format.
+     * @throws IOException if there was any problem when reading from the storage.
+     */
+    Optional<ReadOnlyMenu> readMenu() throws DataConversionException, IOException;
 
     /**
      * @see #getTrackrFilePath()

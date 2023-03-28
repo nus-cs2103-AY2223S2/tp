@@ -3,6 +3,10 @@ package trackr.model.menu;
 import static java.util.Objects.requireNonNull;
 import static trackr.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Item's price in the Item list.
+ * Guarantees: immutable; is valid as declared in {@link #isValidPrice(String)}
+ */
 public class ItemPrice {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should only contain numbers, and it should be at most 3 digits long";
@@ -10,7 +14,7 @@ public class ItemPrice {
     public final String value;
 
     /**
-     * Constructs an Price Quantity Object
+     * Constructs an Price Object
      */
     public ItemPrice(String value) {
         requireNonNull(value);
@@ -27,7 +31,11 @@ public class ItemPrice {
 
     @Override
     public String toString() {
-        return value;
+        return "$" + value;
+    }
+
+    public String toJsonString() {
+        return "$" + value;
     }
 
     @Override

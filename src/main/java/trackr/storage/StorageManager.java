@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import trackr.commons.core.LogsCenter;
 import trackr.commons.exceptions.DataConversionException;
+import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
@@ -78,6 +79,18 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public Optional<ReadOnlyMenu> readMenu() throws DataConversionException, IOException {
+        return readMenu(trackrStorage.getTrackrFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyMenu> readMenu(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return trackrStorage.readMenu(filePath);
+    }
+
+
+    @Override
     public Optional<ReadOnlyOrderList> readOrderList() throws DataConversionException, IOException {
         return readOrderList(trackrStorage.getTrackrFilePath());
     }
@@ -90,16 +103,16 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveTrackr(ReadOnlySupplierList supplierList, ReadOnlyTaskList taskList,
-            ReadOnlyOrderList orderList) throws IOException {
-        saveTrackr(supplierList, taskList, orderList, trackrStorage.getTrackrFilePath());
+                           ReadOnlyMenu menu, ReadOnlyOrderList orderList) throws IOException {
+        saveTrackr(supplierList, taskList, menu, orderList, trackrStorage.getTrackrFilePath());
     }
 
     @Override
     public void saveTrackr(ReadOnlySupplierList supplierList, ReadOnlyTaskList taskList,
-            ReadOnlyOrderList orderList, Path filePath)
+                           ReadOnlyMenu menu, ReadOnlyOrderList orderList, Path filePath)
             throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        trackrStorage.saveTrackr(supplierList, taskList, orderList, filePath);
+        trackrStorage.saveTrackr(supplierList, taskList, menu, orderList, filePath);
     }
 
 }

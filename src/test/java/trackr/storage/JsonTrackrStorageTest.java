@@ -3,6 +3,7 @@ package trackr.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static trackr.testutil.Assert.assertThrows;
+import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalOrders.CHOCOLATE_COOKIES;
 import static trackr.testutil.TypicalOrders.DONUTS;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
@@ -23,7 +24,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import trackr.commons.exceptions.DataConversionException;
+import trackr.model.Menu;
 import trackr.model.OrderList;
+import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
@@ -110,45 +113,51 @@ public class JsonTrackrStorageTest {
         Path filePath = testFolder.resolve("TempTrackr.json");
         SupplierList originalAddressBook = getTypicalSupplierList();
         TaskList originalTaskList = getTypicalTaskList();
+        Menu originalMenu = getTypicalMenu();
         OrderList originalOrderList = getTypicalOrderList();
         JsonTrackrStorage jsonTrackrStorage = new JsonTrackrStorage(filePath);
 
         // Save in new file and read back
-        jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, originalOrderList, filePath);
+        jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, originalMenu, originalOrderList, filePath);
         ReadOnlySupplierList readBackAddressBook = jsonTrackrStorage.readSupplierList(filePath).get();
         ReadOnlyTaskList readBackTaskList = jsonTrackrStorage.readTaskList(filePath).get();
+        ReadOnlyMenu readBackMenu = jsonTrackrStorage.readMenu(filePath).get();
         ReadOnlyOrderList readBackOrderList = jsonTrackrStorage.readOrderList(filePath).get();
         assertEquals(originalAddressBook, new SupplierList(readBackAddressBook));
         assertEquals(originalTaskList, new TaskList(readBackTaskList));
+        assertEquals(originalMenu, new Menu(readBackMenu));
+        assertEquals(originalOrderList, new OrderList(readBackOrderList));
+
 
         // Modify data, overwrite exiting file, and read back
         originalAddressBook.addItem(HOON);
         originalAddressBook.removeItem(ALICE);
-        jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, originalOrderList, filePath);
+        jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, originalMenu, originalOrderList, filePath);
         readBackAddressBook = jsonTrackrStorage.readSupplierList(filePath).get();
         assertEquals(originalAddressBook, new SupplierList(readBackAddressBook));
 
         originalTaskList.addItem(BUY_FLOUR_N);
         originalTaskList.removeItem(SORT_INVENTORY_N);
-        jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, originalOrderList, filePath);
+        jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, originalMenu, originalOrderList, filePath);
         readBackTaskList = jsonTrackrStorage.readTaskList(filePath).get();
         assertEquals(originalTaskList, new TaskList(readBackTaskList));
 
         originalOrderList.removeItem(DONUTS);
         originalOrderList.addItem(DONUTS);
         originalOrderList.removeItem(CHOCOLATE_COOKIES);
-        jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, originalOrderList, filePath);
+        jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, originalMenu, originalOrderList, filePath);
         readBackOrderList = jsonTrackrStorage.readOrderList(filePath).get();
         assertEquals(originalOrderList, new OrderList(readBackOrderList));
 
+
         // Save and read without specifying file path
         originalAddressBook.addItem(IDA);
-        jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, originalOrderList);
+        jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, originalMenu, originalOrderList);
         readBackAddressBook = jsonTrackrStorage.readSupplierList().get(); // file path not specified
         assertEquals(originalAddressBook, new SupplierList(readBackAddressBook));
 
         originalTaskList.addItem(CLEAN_TOOLS_N);
-        jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, originalOrderList);
+        jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, originalMenu, originalOrderList);
         readBackTaskList = jsonTrackrStorage.readTaskList().get(); // file path not specified
         assertEquals(originalTaskList, new TaskList(readBackTaskList));
 
@@ -157,17 +166,17 @@ public class JsonTrackrStorageTest {
     @Test
     public void saveTrackr_nullAddressBook_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveTrackr(null,
-                null, null, "SomeFile.json"));
+                null, null, null, "SomeFile.json"));
     }
 
     /**
      * Saves {@code addressBook} and {@code taskList} at the specified {@code filePath}.
      */
     private void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
-            ReadOnlyOrderList orderList, String filePath) {
+            ReadOnlyMenu menu, ReadOnlyOrderList orderList, String filePath) {
         try {
             new JsonTrackrStorage(Paths.get(filePath))
-                    .saveTrackr(addressBook, taskList, orderList, addToTestDataPathIfNotNull(filePath));
+                    .saveTrackr(addressBook, taskList, menu, orderList, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
@@ -176,6 +185,6 @@ public class JsonTrackrStorageTest {
     @Test
     public void saveTrackr_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveTrackr(new SupplierList(),
-                new TaskList(), new OrderList(), null));
+                new TaskList(), new Menu(), new OrderList(), null));
     }
 }
