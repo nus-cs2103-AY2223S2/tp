@@ -141,7 +141,11 @@ The responsibilities of `Model` component,
 
 ### Patient component
 
+<!-- TODO -->
+
 ### Vaccination component
+
+<!-- TODO -->
 
 ### Appointment component
 
@@ -167,6 +171,8 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Keyword component
+
+<!-- TODO -->
 
 ### Common classes
 
