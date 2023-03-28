@@ -2,7 +2,13 @@
 layout: page
 title: User Guide
 ---
-<h1>The Intern's Ship - User Guide</h1>
+
+
+<div class="header">
+  <h1>The Intern's Ship - User Guide</h1>
+  <img src="images/ship.png" alt="logo" width="100">
+</div>
+
 <div style="page-break-after:always; break-after: page;">
 Whether it is credit bearing or non-credit bearing, taking up an internship during one's university study has become a
 popular option amongst many students. Studies have found that the completion of an internship increases one's chance of
@@ -33,14 +39,16 @@ traditional GUI apps.
   * Saving the data
   * Exiting the program: `exit`
 </div>
-  
------------------
-## Table of Contents
-{:toc}
+
+<div style="page-break-after:always; break-after: page;">
+<h2>Table of Contents</h2>
+1. <a href="#quick_search">Quick Start</a>
+2. <a href="#add_function">Add</a>
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+<h2 id="quick_search">Quick Start</h2>
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -81,7 +89,7 @@ Company, Status and Tags).
 
 </div>
 
-### Adding an Internship Application : `add`
+<h3 id="add_function">Adding an Internship Application : `add`</h3>
 
 Adds an internship and its details to TinS.
 
