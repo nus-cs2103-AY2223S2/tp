@@ -11,10 +11,10 @@ import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.ModelManager;
+import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.testutil.ClientBuilder;
-
-
+import mycelium.mycelium.testutil.UpdateClientDescriptorBuilder;
 
 public class UpdateClientCommandTest {
     private static final Email EMAIL = WEST.getEmail();
@@ -59,7 +59,7 @@ public class UpdateClientCommandTest {
     }
 
     @Test
-    public void execute_clientEditEmailOnlu_success() throws CommandException {
+    public void execute_clientUpdateEmailOnly_success() throws CommandException {
         // Client present in model, email edited
         UpdateClientCommand.UpdateClientDescriptor desc = new UpdateClientCommand.UpdateClientDescriptor();
         desc.setEmail(RANTARO.getEmail());
@@ -67,6 +67,29 @@ public class UpdateClientCommandTest {
         model.addClient(WEST);
         updateClientCommand.execute(model);
         assertTrue(model.hasClient(new ClientBuilder().withEmail(RANTARO.getEmail().value).build()));
+    }
+    @Test
+    public void execute_clientUpdateOptionsWithoutNewEmail_success() throws CommandException {
+        UpdateClientCommand.UpdateClientDescriptor desc =
+                new UpdateClientDescriptorBuilder()
+                        .withName("Rocky Balboa")
+                        .withYearOfBirth("1990")
+                        .withSource("Rocky 2")
+                        .withMobileNumber("12345678")
+                        .build();
+        Client client =
+                new ClientBuilder()
+                        .withName("Rocky Balboa")
+                        .withEmail(EMAIL.value)
+                        .withYearOfBirth("1990")
+                        .withSource("Rocky 2")
+                        .withMobileNumber("12345678")
+                        .build();
+        model.addClient(WEST);
+        UpdateClientCommand updateClientCommand = new UpdateClientCommand(EMAIL, desc);
+        updateClientCommand.execute(model);
+        assertTrue(model.hasClient(client));
+
     }
 
     @Test

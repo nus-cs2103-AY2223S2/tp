@@ -97,16 +97,11 @@ public class UpdateClientCommand extends Command {
         if (!updateClientDescriptor.isAnyFieldEdited()) {
             throw new CommandException(MESSAGE_NOT_EDITED);
         }
-
         Client editedClient = createUpdatedClient(uniqueClient.get(), updateClientDescriptor);
-
-        // Not sure if this is needed
-        /*
-         if (model.hasClient(editedClient)) {
-            System.out.println("Duplicate client in execute()");
+        // Ensures that new email is not a mandatory option
+        if (updateClientDescriptor.email.isPresent() && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
-          }
-        */
+        }
         model.setClient(uniqueClient.get(), editedClient);
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedClient));
     }
