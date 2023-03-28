@@ -17,6 +17,7 @@ import teambuilder.logic.commands.FindCommand;
 import teambuilder.logic.commands.HelpCommand;
 import teambuilder.logic.commands.ListCommand;
 import teambuilder.logic.commands.RedoCommand;
+import teambuilder.logic.commands.RemoveCommand;
 import teambuilder.logic.commands.SortCommand;
 import teambuilder.logic.commands.UndoCommand;
 import teambuilder.logic.parser.exceptions.ParseException;
@@ -82,6 +83,9 @@ public class TeamBuilderParser {
 
         case CreateCommand.COMMAND_WORD:
             return new CreateCommandParser().parse(arguments);
+
+        case RemoveCommand.COMMAND_WORD:
+            return new RemoveCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

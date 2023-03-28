@@ -19,6 +19,7 @@ import teambuilder.model.Model;
 import teambuilder.model.ReadOnlyTeamBuilder;
 import teambuilder.model.ReadOnlyUserPrefs;
 import teambuilder.model.person.Person;
+import teambuilder.model.team.Team;
 
 public class RedoCommandIntegrationTest {
     @Test
@@ -165,6 +166,31 @@ public class RedoCommandIntegrationTest {
         }
 
         @Override
+        public boolean hasTeam(Team team) {
+            throw new UnsupportedOperationException("Unimplemented method 'hasTeam'");
+        }
+
+        @Override
+        public void deleteTeam(Team target) {
+            throw new UnsupportedOperationException("Unimplemented method 'deleteTeam'");
+        }
+
+        @Override
+        public void addTeam(Team team) {
+            throw new UnsupportedOperationException("Unimplemented method 'addTeam'");
+        }
+
+        @Override
+        public void updatePersonInTeams(Person person) {
+            throw new UnsupportedOperationException("Unimplemented method 'updatePersonInTeams'");
+        }
+
+        @Override
+        public void removeFromAllTeams(Person person) {
+            throw new UnsupportedOperationException("Unimplemented method 'removeFromAllTeams'");
+        }
+
+        @Override
         public ObservableList<Person> getSortedPersonList() {
 
             throw new UnsupportedOperationException("Unimplemented method 'getSortedPersonList'");
@@ -179,6 +205,11 @@ public class RedoCommandIntegrationTest {
         @Override
         public void updateSort(Comparator<Person> comparator) {
             throw new UnsupportedOperationException("Unimplemented method 'updateSort'");
+        }
+
+        @Override
+        public ObservableList<Team> getTeamList() {
+            throw new AssertionError("This method should not be called.");
         }
 
     }

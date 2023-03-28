@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import teambuilder.model.person.Person;
 import teambuilder.model.person.exceptions.DuplicatePersonException;
+import teambuilder.model.team.Team;
 import teambuilder.testutil.PersonBuilder;
 
 public class TeamBuilderTest {
@@ -96,6 +97,11 @@ public class TeamBuilderTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Team> getTeamList() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 
