@@ -388,9 +388,9 @@ Vaccinations are uniquely identified by their names. The following is a list of 
 * **Name** : `<group-name>` - the name of the vaccination.
 * **Groups** : list of `<group-name>` - The groups the vaccination classifies under.
   * Default value = `empty list`.
-* **Minimum age** : `<Age>` - the minimum age (inclusive) allowed to take the vaccination.
+* **Minimum age** : `<age>` - the minimum age (inclusive) allowed to take the vaccination.
   * Default value = `0`.
-* **Maximum age** : `Age` - the maximum age (inclusive) allowed to take the vaccination.
+* **Maximum age** : `<age>` - the maximum age (inclusive) allowed to take the vaccination.
   * Default value = `200`.
 * **Ingredients** : list of `<group-name>` - ingredients of the vaccination. Similar to patient's allergies.
   * Default value = `empty list`.
@@ -412,8 +412,8 @@ vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...] [--lal <var>MIN
 
 * <code><var>VAX_NAME</var></code> : `<group-name>`
 * <code><var>GROUP</var></code> : `<group-name>`
-* <code><var>MIN_AGE</var></code> : `<Age>`
-* <code><var>MAX_AGE</var></code> : `<Age>`
+* <code><var>MIN_AGE</var></code> : `<age>`
+* <code><var>MAX_AGE</var></code> : `<age>`
 * <code><var>INGREDIENT</var></code> : `<group-name>`
 * <code><var>HISTORY_REQ</var></code> : `<req>`
 
@@ -452,8 +452,8 @@ vaccination add <var>VACCINATION</var> [--n <var>NEW_NAME</var>] [--g ...<var>GR
 * <code><var>VACCINATION</var></code> : `<vax-retriever>`
 * <code><var>NEW_NAME</var></code> : `<group-name>`
 * <code><var>GROUP</var></code> : `<group-name>`
-* <code><var>MIN_AGE</var></code> : `<Age>`
-* <code><var>MAX_AGE</var></code> : `<Age>`
+* <code><var>MIN_AGE</var></code> : `<age>`
+* <code><var>MAX_AGE</var></code> : `<age>`
 * <code><var>INGREDIENT</var></code> : `<group-name>`
 * <code><var>HISTORY_REQ</var></code> : `<req>`
 
