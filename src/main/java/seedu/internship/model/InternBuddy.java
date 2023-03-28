@@ -3,11 +3,11 @@ package seedu.internship.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import javax.swing.SwingUtilities;
 
 import javafx.collections.ObservableList;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import javax.swing.SwingUtilities;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.UniqueInternshipList;
 
