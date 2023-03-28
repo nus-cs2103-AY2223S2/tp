@@ -1,13 +1,16 @@
 ---
+layout: page
+title: User Guide
+---
 USER GUIDE FOR WIFE
 ---
-WIFE is always right. Our product Well Informed Fridge Environment &lt;WIFE/&gt; helps users to manage 
+Enhance life with WIFE! Our product Well Informed Fridge Environment &lt;WIFE/&gt; helps users to manage 
 their food items in the fridge, and never question her. With this, one never have to worry about
 optimizing storage and organization of food items in a refrigerator, thereby reducing waste and 
 improving the efficiency of grocery shopping.
-
-* Table of Contents <br/>
-*coming soon...*
+--------------------------------------------------------------------------------------------------------------------
+* Table of Contents
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -20,7 +23,7 @@ improving the efficiency of grocery shopping.
 3. Copy the file to the folder you want to use as the _home folder_ for your WIFE.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wife.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI similar to the below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -39,22 +42,22 @@ improving the efficiency of grocery shopping.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Meiji Milk`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  * Items in square brackets are optional.<br>
+    e.g `inc INDEX [q/QUANTITY]` can be used as `inc 1 q/10` or as `inc 1`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Vegetables`, `t/Fresh` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME u/UNIT`, `u/UNIT n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `n/item1 n/item2`, only `n/item2` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `list 123`, it will be interpreted as `help`.
 
 </div>
 
@@ -135,19 +138,48 @@ Example:
   listed all food
 ```
 
-### Updating a food item : `update`
+### Editing a food item : `edit`
 
-Update  food items in your fridge.
+Edit food items in your fridge.
+Format: `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE] [t/TAG]...`
 
-Format: `update <Old Item> /to <New Item>`
-
-* `Old Item`must be an item currently in the fridge
+* Index must be a valid integer that refers to an an item currently in the fridge
 
 Example: <br/>
-`update Meiji Milk /to Meiji Chocolate Milk` returns
+`edit 1 n/Broccoli q/2` returns
 ```markdown
-You have successfully updated Meiji Milk to Meiji Chocolate Milk
+Edited food item: Broccoli (expires on: 03-03-2033)
 ```
+
+### Increasing a quantity of a food item : `inc`
+
+Increases the quantity of a Food item in WIFE.
+
+Format: `inc INDEX [q/QUANTITY]`
+
+* Increases the quantity of the food item at the specified `INDEX`.
+* The index refers to the index number shown in the displayed food item list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* If no quantity is specified, the default quantity to increase is 1.
+* If a quantity is specified, it **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+`inc 1` returns
+```markdown
+  Increased Food: Broccoli (expires on: 03-03-2033) by 1
+```
+`inc 1 q/100` returns
+
+```markdown
+  Increased Food: Broccoli (expires on: 03-03-2033) by 100
+```
+
+### Decreasing the quantity of a food item : `dec`
+Decreases the quantity of a Food item in WIFE.
+Format: `dec INDEX [q/QUANTITY]`
+
+Usage is the same as `inc`, with the only difference is being to decrease the quantity of the Food item.
 
 ### Deleting a food item : `delete`
 
@@ -161,7 +193,10 @@ Format: `delete INDEX`
 
 Result:
 
-`delete 1` displays
+`delete 1` returns
+```shell
+Deleted Food: Meiji Milk (expires on 13-11-2025)
+```
 
 ![DeleteFood](images/UG/DeleteFood.png)
 
@@ -228,55 +263,6 @@ Meat
 Vegetables
 ```
 
-### Updating a food item : `edit`
-
-Edit  food items in your fridge.
-
-Format: `update <Old Item> /to <New Item>`
-
-* `Old Item`must be an item currently in the fridge
-
-Example: <br/>
-`update Meiji Milk /to Meiji Chocolate Milk` returns
-```markdown
-You have successfully updated Meiji Milk to Meiji Chocolate Milk
-```
-
-### Increasing a quantity of a food item : `inc`
-
-Increases the quantity of a Food item in WIFE.
-
-Format: `inc INDEX <q/quantity>`
-
-* Increases the quantity of the food item at the specified `INDEX`.
-* The index refers to the index number shown in the displayed food item list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* If no quantity is specified, the default quantity to increase is 1.
-* If a quantity is specified, it **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-
-`inc 1` returns
-```shell
-  Increased Food: Broccoli (expires on: 03-03-2033) by 1
-```
-`inc 1 q/100` returns
-
-```shell
-  Increased Food: Broccoli (expires on: 03-03-2033) by 100
-```
-
-### Decreasing the quantity of a food item : `dec`
-Decreases the quantity of a Food item in WIFE.
-Format: `dec INDEX <q/quantity>`
-
-Usage is the same as `inc`, with the only difference is being to decrease the quantity of the Food item.
-
-### Deleting a food item : `delete`
-```shell
-  Deleted Food: Broccoli (expires on: 03-03-2033)
-```
-
 ### Listing all food items by their tag(s) : `listbytag`
 Shows a list of all food item in WIFE by specified tag(s).
 
@@ -332,14 +318,14 @@ Format: `exit`
 
 ### Saving the data
 
-*placeholder*
+*To be included in future iterations*
 
 ### Editing the data file
 
-Wife data are saved as a JSON file `file name placeholder`. Advanced users are welcome to update data directly by editing that data file.
+Wife data are saved as a JSON file `(file name placeholder)`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, WIFE will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
