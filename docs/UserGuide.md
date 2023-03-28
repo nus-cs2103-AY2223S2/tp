@@ -306,7 +306,7 @@ Edits an existing student in the student roster.
 
 Format:
 ```
-edit <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUMBER>] [t/<TAG>]
+edit <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUMBER>]
 ```
 
 - Edits student at index specified in `<INDEX>`.
