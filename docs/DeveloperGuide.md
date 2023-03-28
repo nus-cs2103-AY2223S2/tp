@@ -183,8 +183,6 @@ The `ReturnCommand` class will first retrieve the Person object and Book object 
 
 Then, it calls `returnBook` on `editedPerson` and passes in the Book object `bookToReturn`. This will remove the Book from the Person's `Set` of books field. Similarly, the class also calls `returnBook` on `bookToReturn` to update and remove the Person from the Book's borrower field as well as clear the borrow and due dates.
 
-### \[Proposed\] Undo/redo feature
-
 ### Find book feature
 
 #### Implementation
@@ -219,14 +217,6 @@ The following sequence diagram shows how the findBook operation works:
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -310,7 +300,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -318,8 +307,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should be able to load the application within 2 seconds.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -341,18 +328,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file. <br>
+      Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by double-clicking the jar file. <br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Adding a book
 
@@ -411,8 +397,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `deletePerson`, `deletePerson x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
