@@ -91,4 +91,10 @@ public interface Model {
      */
     void starRecipe(Recipe target);
 
+    /**
+     * Unstars the given recipe.
+     * The recipe must exist in the recipe book.
+     */
+    void unstarRecipe(Recipe target);
+
 }

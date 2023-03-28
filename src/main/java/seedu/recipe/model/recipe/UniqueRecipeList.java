@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.recipe.model.recipe.exceptions.DuplicateRecipeException;
 import seedu.recipe.model.recipe.exceptions.RecipeAlreadyStarredException;
 import seedu.recipe.model.recipe.exceptions.RecipeNotFoundException;
+import seedu.recipe.model.recipe.exceptions.RecipeNotStarredException;
 
 /**
  * A list of recipes that enforces uniqueness between its elements and does not allow nulls.
@@ -97,6 +98,25 @@ public class UniqueRecipeList implements Iterable<Recipe> {
         }
 
         internalList.get(index).star();
+    }
+
+    /**
+     * Unstars the equivalent recipe from the list.
+     * The recipe must exist in the list.
+     */
+    public void unstar(Recipe toUnstar) {
+        requireNonNull(toUnstar);
+
+        int index = internalList.indexOf(toUnstar);
+        if (index == -1) {
+            throw new RecipeNotFoundException();
+        }
+
+        if (!toUnstar.isStarred()) {
+            throw new RecipeNotStarredException();
+        }
+
+        internalList.get(index).unstar();
     }
 
 

@@ -13,20 +13,20 @@ import seedu.recipe.model.recipe.Recipe;
 /**
  * Marks a recipe as in favorites identified using it's displayed index from the recipe book.
  */
-public class StarCommand extends Command {
+public class UnstarCommand extends Command {
 
-    public static final String COMMAND_WORD = "star";
+    public static final String COMMAND_WORD = "unstar";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the recipe as in favorites identified by the index number used in the displayed recipe list.\n"
+            + ": Marks the recipe as out of favorites identified by the index number used in the displayed recipe list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_STAR_RECIPE_SUCCESS = "Starred Recipe: %1$s";
+    public static final String MESSAGE_STAR_RECIPE_SUCCESS = "Unstarred Recipe: %1$s";
 
     private final Index targetIndex;
 
-    public StarCommand(Index targetIndex) {
+    public UnstarCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -39,19 +39,19 @@ public class StarCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
         }
 
-        Recipe recipeToStar = lastShownList.get(targetIndex.getZeroBased());
-        if (recipeToStar.isStarred()) {
-            throw new CommandException(Messages.MESSAGE_RECIPE_ALREADY_STARRED);
+        Recipe recipeToUnstar = lastShownList.get(targetIndex.getZeroBased());
+        if (!recipeToUnstar.isStarred()) {
+            throw new CommandException(Messages.MESSAGE_RECIPE_NOT_STARRED);
         }
-        model.starRecipe(recipeToStar);
+        model.unstarRecipe(recipeToUnstar);
 
-        return new CommandResult(String.format(MESSAGE_STAR_RECIPE_SUCCESS, recipeToStar.getTitle()));
+        return new CommandResult(String.format(MESSAGE_STAR_RECIPE_SUCCESS, recipeToUnstar.getTitle()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof StarCommand // instanceof handles nulls
-                && targetIndex.equals(((StarCommand) other).targetIndex)); // state check
+                || (other instanceof UnstarCommand // instanceof handles nulls
+                && targetIndex.equals(((UnstarCommand) other).targetIndex)); // state check
     }
 }

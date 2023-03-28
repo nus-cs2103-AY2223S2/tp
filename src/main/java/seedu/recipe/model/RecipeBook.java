@@ -101,6 +101,14 @@ public class RecipeBook implements ReadOnlyRecipeBook {
         recipes.star(recipe);
     }
 
+    /**
+     * Unstars {@code recipe} in the {@code RecipeBook}.
+     * {@code recipe} must exist in the recipe book.
+     */
+    public void unstarRecipe(Recipe recipe) {
+        recipes.unstar(recipe);
+    }
+
 
     //// util methods
 

@@ -72,6 +72,13 @@ public class Recipe {
     }
 
     /**
+     * Unstars the recipe.
+     */
+    public void unstar() {
+        this.isStar = false;
+    }
+
+    /**
      * Returns true if both recipes have the same title.
      * This defines a weaker notion of equality between two recipes.
      */
