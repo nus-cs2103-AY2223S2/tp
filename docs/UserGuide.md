@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Clock-Work User Guide
+title: User Guide
 ---
 
 :alarm_clock: Tick-tock. Tick-tock. Time is ticking. :alarm_clock:
@@ -17,13 +17,12 @@ With basic commands like `add`, `delete`, `edit`, and special commands like `ale
 
 **Get started with Clock-Work with this guide!**
 
-This guide is meant for the average Computer Science student, who is interested in using Clock-Work. 
+This guide is meant for the average Computer Science student, who is interested in using Clock-Work.
 
-If you like our product and want to contribute to it, consider looking at the [Developer Guide](UserGuide.md) instead.
+If you like our product and want to contribute to it, consider looking at the [Developer Guide](DeveloperGuide.md) instead.
 
 * Table of Contents
   * [1. Quick start](#1-quick-start)
-
   * [2. Features and commands](#2-features-and-commands)
     * [2.1 add](#21-adding-a-task--add)
     * [2.2 edit](#22-editing-a-task--edit)
@@ -40,13 +39,10 @@ If you like our product and want to contribute to it, consider looking at the [D
     * [2.11 help](#211-viewing-help--help)
     * [2.12 clear](#212-clearing-all-entries--clear)
     * [2.13 exit](#213-exiting-the-program--exit)
-
   * [3. Storage](#3-storage)
     * [3.1 saving the data](#31-saving-the-data)
     * [3.2 editing the data](#32-editing-the-data-file)
-
   * [4. FAQ](#4-faq)
-  
   * [5. Command summary](#5-command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -100,14 +96,14 @@ For easy reference and understanding, this guide utilizes some special formattin
 | --- | --- |
 | `lowercaseword` | Valid Clock-Work command words. They may or may not be used with additional inputs. |
 | `UPPERCASEWORD` | Compulsory inputs which must be supplied in order for the command to work. |
-| `[UPPERCASEWORD]` | Optional inputs which user can supply for a command. | 
+| `[UPPERCASEWORD]` | Optional inputs which user can supply for a command. |
 
 ### Inputs into Clock-Work
 
 Clock-Work provides some flexibility regarding the types of inputs it accepts. These are some information about inputting commands you may find useful.
 
 1. First word is assumed to be a command word (add/delete/list/find).
- 
+
 2. Words in ≈ are the parameters to be supplied by the user.<br>
 
 3. Items with `…`​ after them can be used multiple times including zero times.<br>
@@ -174,7 +170,7 @@ You can add multiple tasks with the same parameters except for name with this co
 
 :warning: Adding multiple **Tags** of the same tag name will only result in one tag!
 
-:warning: Adding more than 1 **Description** or **Effort** is accepted but only the last instance will be processed 
+:warning: Adding more than 1 **Description** or **Effort** is accepted but only the last instance will be processed.
 
 e.g. `add n/SampleTask t/CS2102 t/CS2102` will only register t/CS2102 once!
 
@@ -283,7 +279,7 @@ Format: `find n/NAME` OR `find d/DESCRIPTION` OR `find t/TAG...`
 Examples:
 * `find n/book` finds **Tasks** with name `read book` and `return books`
 
-:bulb: Here are some **PRO TIPS**: 
+:bulb: Here are some **PRO TIPS**:
 * For names and descriptions, you may use the `all/` prefix to search for a task that contains all of your inputs
     * e.g. `find all/ n/do n/homework` will match a task with a name called "do math homework.
 * For tags, if you do not specify the `all/` prefix, as long as one tag matches with one of the tags you are searching for, it will be considered matched.
@@ -322,6 +318,8 @@ Examples:
 
 :man_technologist: Wouldn't it be great if you can have your life planned out for you? Schedule can help!
 
+`schedule` displays a planned daily schedule according to the tasks currently stored.
+
 #### 2.9.1 How it Works
 Entering `schedule D/SHORTDATE E/EFFORT` generates a new 30-day plan for users based on their intended `E/EFFORT`, and display a list of tasks to be done on `D/SHORTDATE`.
 Entering `schedule D/SHORTDATE` displays a list of tasks to be done on `D/SHORTDATE` based on the previously generated plan.
@@ -332,19 +330,25 @@ As much as possible, tasks allocated to a day should not exceed the intended `E/
 However, if the need arises (as specified below), the algorithm allows the effort required for a particular day to exceed the user preferred `E/EFFORT` level.
 
 The algorithm allocates tasks as such:
-1. Allocate all events to the day(s) it is supposed to be happening. Events will be allocated, even if the effort required exceeds the user preferred effort.
+1. Allocate all events to the day(s) it is supposed to be happening.
 
-2. Allocate all deadlines to the first free day before it is due (exclusive of due date), as we assume that it is better to complete a time-sensitive task as soon as possible. If it is not possible to find a free day, the algorithm will allocate task to a day before deadline with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
+2. Allocate all deadlines to the first free day before it is due (exclusive of due date). Otherwise, allocate task to a day before deadline with the least amount of work allocated (in terms of effort).
 
-3. Allocate all SimpleTasks in descending order of effort required. As we assume that SimpleTasks are not time-sensitive, the algorithm allocates each task to the most busy free day (greedy approach). If such a day is not available, the algorithm will allocate the task to a day with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
+3. Allocates each SimpleTask to the most busy free day (greedy approach). If such a day is not available, allocate the task to a day with the least amount of work allocated (in terms of effort).
 
-#### 2.9.3 Displaying Daily Plan
+<details>
+
+<summary>Need more help?</summary>
+
+#### Displaying Daily Plan
 Daily Plans can be viewed by entering `schedule D/SHORTDATE` or `schedule D/SHORTDATE E/EFFORT`, with the former showing an old plan, and the latter showing a newly generated plan.
 As plans are only valid for 30 days from the last time it was generated, users are encouraged to regenerate a plan with an `E/EFFORT` flag if they do not remember when they last generated their plan.
 If no tasks are shown, it means that there are no tasks planned for that day.
 An error message that prompts users to re-generate a plan will be shown if the entered date is out of range (either too far in the future, or a date before the start date of generated plan).
 
-:construction: Valid `D/SHORTDATE` are 30-days from the day plan was generated. Re-scheduling plans multiple times would not make an invalid date become valid.
+</details>
+
+:warning: Valid `D/SHORTDATE` are 30-days from the day plan was generated. Re-scheduling plans multiple times would not make an invalid date become valid.
 
 Examples:
 - Assuming today is 2023-03-26, `schedule D/2023-04-01 E/5` will plan a 30-day schedule starting from today (March 26, 2023) according to a desired effort level of 5, and display tasks planned for April 1.
