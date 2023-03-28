@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-
 import seedu.dengue.commons.exceptions.IllegalValueException;
 import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
@@ -16,28 +12,26 @@ import seedu.dengue.model.person.Person;
 /**
  * An Immutable Dengue Hotspot Tracker that is serializable to JSON format.
  */
-@JsonRootName(value = "denguehotspottracker")
-class JsonSerializableDengueHotspotTracker {
+class CsvSerializableDengueHotspotTracker {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<BeansAdaptedPerson> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableDengueHotspotTracker} with the given persons.
+     * Constructs a {@code CsvSerializableDengueHotspotTracker} with the given persons.
      */
-    @JsonCreator
-    public JsonSerializableDengueHotspotTracker(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public CsvSerializableDengueHotspotTracker(List<BeansAdaptedPerson> persons) {
         this.persons.addAll(persons);
     }
 
     /**
      * Converts a given {@code ReadOnlyDengueHotspotTracker} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableDengueHotspotTracker}.
+     * @param source future changes to this will not affect the created {@code CsvSerializableDengueHotspotTracker}.
      */
-    public JsonSerializableDengueHotspotTracker(ReadOnlyDengueHotspotTracker source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+    public CsvSerializableDengueHotspotTracker(ReadOnlyDengueHotspotTracker source) {
+        persons.addAll(source.getPersonList().stream().map(BeansAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,8 +41,8 @@ class JsonSerializableDengueHotspotTracker {
      */
     public DengueHotspotTracker toModelType() throws IllegalValueException {
         DengueHotspotTracker dengueHotspotTracker = new DengueHotspotTracker();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
+        for (BeansAdaptedPerson beansAdaptedPerson : persons) {
+            Person person = beansAdaptedPerson.toModelType();
             if (dengueHotspotTracker.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }

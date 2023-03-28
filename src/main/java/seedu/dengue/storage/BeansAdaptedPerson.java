@@ -7,9 +7,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import org.apache.commons.beanutils.BeanUtils;
 import seedu.dengue.commons.exceptions.IllegalValueException;
 import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Date;
@@ -21,7 +19,7 @@ import seedu.dengue.model.variant.Variant;
 /**
  * Jackson-friendly version of {@link Person}.
  */
-class JsonAdaptedPerson {
+class BeansAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
@@ -29,15 +27,15 @@ class JsonAdaptedPerson {
     private final String postal;
     private final String date;
     private final String age;
-    private final List<JsonAdaptedVariant> variants = new ArrayList<>();
+    private final List<CsvAdaptedVariant> variants = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code BeansAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("postal") String postal,
-            @JsonProperty("date") String date, @JsonProperty("age") String age,
-            @JsonProperty("variants") List<JsonAdaptedVariant> variants) {
+    public BeansAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("postal") String postal,
+                              @JsonProperty("date") String date, @JsonProperty("age") String age,
+                              @JsonProperty("variants") List<CsvAdaptedVariant> variants) {
         this.name = name;
         this.postal = postal;
         this.date = date;
@@ -50,24 +48,24 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Person source) {
+    public BeansAdaptedPerson(Person source) {
         name = source.getName().fullName;
         postal = source.getPostal().value;
         date = source.getDate().value.toString();
         age = source.getAge().value;
         variants.addAll(source.getVariants().stream()
-                .map(JsonAdaptedVariant::new)
+                .map(CsvAdaptedVariant::new)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this JavaBeans-friendly adapted person object into the model's {@code Person} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
         final List<Variant> personVariants = new ArrayList<>();
-        for (JsonAdaptedVariant variant : variants) {
+        for (CsvAdaptedVariant variant : variants) {
             personVariants.add(variant.toModelType());
         }
 
