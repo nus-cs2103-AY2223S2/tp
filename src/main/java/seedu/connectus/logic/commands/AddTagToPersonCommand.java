@@ -20,14 +20,14 @@ import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
 /**
- * Adds a tag (or module) to a person identified using its displayed index from ConnectUS.
+ * Adds a tag to a person identified using its displayed index from ConnectUS.
  */
 public class AddTagToPersonCommand extends Command {
     public static final String COMMAND_WORD = "addt";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag (or module) to the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to the person identified "
         + "by the index number used in the displayed person list. \n"
         + "Parameters: INDEX (must be a positive integer) "
-        + "[" + PREFIX_REMARK + "TAG] "
+        + "[" + PREFIX_REMARK + "REMARK] "
         + "[" + PREFIX_MODULE + "MODULE]"
         + "\n"
         + "Example: " + COMMAND_WORD + " 1 "

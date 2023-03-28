@@ -27,7 +27,7 @@ public class DeleteTagFromPersonCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete a tag from the person identified"
         + "by the index number used in the displayed person list. \n"
         + "Parameters: PERSON_INDEX (must be a positive integer) "
-        + "[" + PREFIX_REMARK + "TAG_INDEX] "
+        + "[" + PREFIX_REMARK + "REMARK_INDEX] "
         + "[" + PREFIX_MODULE + "MODULE_INDEX]"
         + "\n"
         + "Example: " + COMMAND_WORD + " 1 "
@@ -67,11 +67,11 @@ public class DeleteTagFromPersonCommand extends Command {
         Set<Module> editedModules = personToEdit.getModules();
 
         if (remarkIndex != null) {
-            var originalTags = convertSetToList(personToEdit.getRemarks());
-            if (!isIndexValid(remarkIndex, originalTags)) {
+            var originalRemarks = convertSetToList(personToEdit.getRemarks());
+            if (!isIndexValid(remarkIndex, originalRemarks)) {
                 throw new CommandException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX, "tag"));
             }
-            editedRemarks = createEditedTagList(originalTags, remarkIndex);
+            editedRemarks = createEditedTagList(originalRemarks, remarkIndex);
         }
 
         if (moduleIndex != null) {
