@@ -178,6 +178,12 @@ public class ModelManager implements Model {
         return editedPerson;
     }
 
+    @Override
+    public void updateMeeting(Person personToEdit, Index meetingIndex, Meeting editedMeeting) {
+        addressBook.updateMeeting(personToEdit, meetingIndex, editedMeeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+    }
+
     // @Override
     // public void refreshedMeetingList() {
     //     filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList());

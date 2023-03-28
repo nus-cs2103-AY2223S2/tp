@@ -101,4 +101,6 @@ public interface Model {
     Person addMeeting(Person personToEdit, Meeting meeting);
 
     Person removeMeeting(Person personToEdit, Index indexMeeting);
+
+    void updateMeeting(Person personToEdit, Index indexMeeting, Meeting editedMeeting);
 }

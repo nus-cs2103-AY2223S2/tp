@@ -124,6 +124,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         return editedPerson;
     }
 
+    public void updateMeeting(Person personToEdit, Index meetingIndex, Meeting editedMeeting) {
+        personToEdit.setMeeting(meetingIndex.getZeroBased(), editedMeeting);
+        persons.refreshInternalMeetingList();
+    }
+
     //// util methods
 
     @Override
