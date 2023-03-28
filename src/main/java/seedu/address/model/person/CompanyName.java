@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an InternshipApplication's companyName in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class CompanyName {
+public class CompanyName implements Comparable<CompanyName> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Company Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -42,6 +42,11 @@ public class CompanyName {
     @Override
     public String toString() {
         return fullName;
+    }
+
+    @Override
+    public int compareTo(CompanyName companyName) {
+        return fullName.compareTo(companyName.fullName);
     }
 
     @Override

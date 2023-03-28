@@ -5,14 +5,17 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.CompanyNameComparator;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.InternshipTodo;
@@ -29,6 +32,7 @@ public class ModelManager implements Model {
     private final TodoList todoList;
     private final NoteList noteList;
     private final FilteredList<InternshipApplication> filteredInternships;
+    private final SortedList<InternshipApplication> sortedFilteredInternships;
     private final FilteredList<InternshipTodo> filteredTodo;
     private final FilteredList<Note> filteredNote;
     private final FilteredList<Person> filteredPersons;
@@ -49,6 +53,7 @@ public class ModelManager implements Model {
         this.todoList = new TodoList(todoList);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredInternships = new FilteredList<>(this.addressBook.getInternshipList());
+        sortedFilteredInternships = new SortedList<>(filteredInternships, new CompanyNameComparator());
         filteredTodo = new FilteredList<>(this.todoList.getTodoList());
         filteredNote = new FilteredList<>(this.noteList.getNoteList());
         cachedInternshipList = new ArrayList<>();
@@ -236,7 +241,7 @@ public class ModelManager implements Model {
         noteList.setNote(target, editedNote);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Internship List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -251,6 +256,12 @@ public class ModelManager implements Model {
     public void updateFilteredInternshipList(Predicate<InternshipApplication> predicate) {
         requireNonNull(predicate);
         filteredInternships.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortFilteredInternshipList(Comparator<InternshipApplication> comparator) {
+        requireNonNull(comparator);
+        filteredInternships.sort(comparator);
     }
 
     @Override
