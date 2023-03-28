@@ -1,6 +1,5 @@
 package seedu.recipe.ui;
 
-import java.util.Map;
 import java.util.logging.Logger;
 import java.io.File;
 
@@ -130,7 +129,6 @@ public class MainWindow extends UiPart<Stage> {
         if (selectedFile != null) {
             // The selectedFile variable now contains the selected JSON file
             // We can now pass this file to your import handling method
-            return;
         }
     }
 

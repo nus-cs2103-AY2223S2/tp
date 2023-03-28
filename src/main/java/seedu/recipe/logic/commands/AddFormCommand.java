@@ -10,7 +10,6 @@ import seedu.recipe.model.Model;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.ui.AddRecipeForm;
 
-
 /**
  * Opens a new RecipeForm instance.
  */
@@ -20,9 +19,19 @@ public class AddFormCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Successfully added recipe ";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the recipe book";
 
+    /**
+     * Creates an AddFormCommand instance.
+     */
     public AddFormCommand() {
     }
 
+    /**
+     * Executes the AddFormCommand which opens a new RecipeForm instance and adds the recipe.
+     *
+     * @param model The {@code Model} which the command should operate on.
+     * @return A {@code CommandResult} with the message indicating the success of the operation.
+     * @throws CommandException If the recipe already exists in the recipe book.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

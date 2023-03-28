@@ -51,15 +51,16 @@ public class AddCommandParser implements Parser<AddCommand> {
     }
 
     /**
-     * Generates a RecipeDescriptor object based on the string input by the user, which we then use to create a new AddCommand object. 
-     * 
+     * Generates a RecipeDescriptor object based on the string input by the user,
+     * which we then use to create a new AddCommand object.
+     *
      * @param args full user input string
      * @return the RecipeDescriptor based on user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public static RecipeDescriptor parseToAddCommand(String args) throws ParseException{
+    public static RecipeDescriptor parseToAddCommand(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-        ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PORTION, PREFIX_DURATION,
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PORTION, PREFIX_DURATION,
                                    PREFIX_TAG, PREFIX_INGREDIENT, PREFIX_STEP);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {

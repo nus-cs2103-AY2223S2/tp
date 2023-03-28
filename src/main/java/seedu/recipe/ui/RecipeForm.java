@@ -64,9 +64,9 @@ public class RecipeForm extends UiPart<Region> {
     private Button cancelButton;
 
     //Data fields
-    private int displayedIndex;
+    private final int displayedIndex;
     private Map<String, String> initialValues;
-    private Recipe recipe;
+    private final Recipe recipe;
 
     //Logic executors and system logging
     private final CommandExecutor commandExecutor;
