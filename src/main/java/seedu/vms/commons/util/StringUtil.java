@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Helper functions for handling strings.
@@ -119,4 +120,24 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Formats the error messages in a nice string
+     *
+     * @param errMessages
+     * @param formatInvalidMessage
+     * @return formatted Strings
+     */
+    public static String formatErrorMessage(List<String> errMessages, String formatInvalidMessage) {
+        final String formatConstrain = "- %s\n";
+
+        StringBuilder builder = new StringBuilder();
+
+        for (String message : errMessages) {
+            builder.append(String.format(formatConstrain, message));
+        }
+
+        return String.format(formatInvalidMessage, builder.toString());
+    }
+
 }

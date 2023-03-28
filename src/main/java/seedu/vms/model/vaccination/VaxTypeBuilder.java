@@ -8,6 +8,7 @@ import java.util.Optional;
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.util.AppUtil;
+import seedu.vms.commons.util.StringUtil;
 import seedu.vms.model.Age;
 import seedu.vms.model.GroupName;
 
@@ -18,7 +19,6 @@ import seedu.vms.model.GroupName;
  */
 public class VaxTypeBuilder {
     private static final String FORMAT_IVE_MESSAGE = "The following vaccination constraints have been violated\n%s";
-    private static final String FORMAT_CONSTRAINTS = "- %s\n";
 
     private static final String MESSAGE_DUPLICATE_TYPE = "Vaccination type already exist: %s";
     private static final String MESSAGE_MISSING_TYPE = "Vaccination type does not exist: %s";
@@ -200,17 +200,6 @@ public class VaxTypeBuilder {
         if (errMessages.isEmpty()) {
             return Optional.empty();
         }
-        return Optional.ofNullable(formatErrorMessage(errMessages));
-    }
-
-
-    private String formatErrorMessage(List<String> errMessages) {
-        StringBuilder builder = new StringBuilder();
-
-        for (String message : errMessages) {
-            builder.append(String.format(FORMAT_CONSTRAINTS, message));
-        }
-
-        return String.format(FORMAT_IVE_MESSAGE, builder.toString());
+        return Optional.ofNullable(StringUtil.formatErrorMessage(errMessages, FORMAT_IVE_MESSAGE));
     }
 }
