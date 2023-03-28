@@ -207,9 +207,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given project {@code project} in the list with {@code editedProject}.
-     * @return an unmodifiable view of the projects list.
+     * Replaces the given project {@code target} in the list with {@code editedProject}.
      */
+    public void setProject(Project target, Project editedProject) {
+        // NOTE: no need for null checks at this stage, let the UniqueList handle it
+        projects.setItem(target, editedProject);
+    }
     @Override
     public ObservableList<Project> getProjectList() {
         return projects.asUnmodifiableObservableList();

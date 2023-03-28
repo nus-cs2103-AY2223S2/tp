@@ -1,6 +1,6 @@
 package mycelium.mycelium.storage;
 
-import static mycelium.mycelium.testutil.TypicalPersons.getTypicalAddressBook;
+import static mycelium.mycelium.testutil.TypicalEntities.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

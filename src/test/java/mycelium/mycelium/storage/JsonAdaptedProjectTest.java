@@ -38,6 +38,8 @@ public class JsonAdaptedProjectTest {
 
     @Test
     public void toModelType_nonNullDeadline_returnsProject() throws Exception {
+        // The motivation for this test case is that the default project has a null deadline, but
+        // we want to test that everything is OK if the deadline is non-null.
         Project project = new ProjectBuilder().withDeadline(LocalDate.now()).build();
         JsonAdaptedProject jsonAdaptedProject = new JsonAdaptedProject(project);
         assertEquals(project, jsonAdaptedProject.toModelType());
@@ -45,42 +47,50 @@ public class JsonAdaptedProjectTest {
 
     @Test
     public void toModelType_invalidNullFields_throwsIllegalValueException() {
+        // Convenience lambda to build the expected error message
         UnaryOperator<String> withErr = (fieldName)
             -> String.format(JsonAdaptedProject.MISSING_FIELD_MESSAGE_FORMAT, fieldName);
+
+        // A bunch of test cases with varying null fields. It is rather verbose, but there is no working
+        // around it, since we would like to simulate Jackson's behavior of instantiating this class.
         Map<String, JsonAdaptedProject> cases = Map.of(
-            withErr.apply("name"),
+            withErr.apply("name"), // name is null
             new JsonAdaptedProject(null,
                 ProjectBuilder.DEFAULT_STATUS,
-                "chungus@chungus.org",
+                ProjectBuilder.DEFAULT_CLIENT_EMAIL,
                 ProjectBuilder.DEFAULT_SOURCE,
                 ProjectBuilder.DEFAULT_DESCRIPTION,
                 ProjectBuilder.DEFAULT_ACCEPTED_ON,
                 LocalDate.now()),
-            withErr.apply("status"),
-            new JsonAdaptedProject("owo",
+
+            withErr.apply("status"), // status is null
+            new JsonAdaptedProject(ProjectBuilder.DEFAULT_NAME,
                 null,
-                "chungus@chungus.org",
+                ProjectBuilder.DEFAULT_CLIENT_EMAIL,
                 ProjectBuilder.DEFAULT_SOURCE,
                 ProjectBuilder.DEFAULT_DESCRIPTION,
                 ProjectBuilder.DEFAULT_ACCEPTED_ON,
                 LocalDate.now()),
-            withErr.apply("clientEmail"),
-            new JsonAdaptedProject("owo",
+
+            withErr.apply("clientEmail"), // clientEmail is null
+            new JsonAdaptedProject(ProjectBuilder.DEFAULT_NAME,
                 ProjectBuilder.DEFAULT_STATUS,
                 null,
                 ProjectBuilder.DEFAULT_SOURCE,
                 ProjectBuilder.DEFAULT_DESCRIPTION,
                 ProjectBuilder.DEFAULT_ACCEPTED_ON,
                 LocalDate.now()),
-            withErr.apply("acceptedOn"),
-            new JsonAdaptedProject("owo",
+
+            withErr.apply("acceptedOn"), // acceptedOn is null
+            new JsonAdaptedProject(ProjectBuilder.DEFAULT_NAME,
                 ProjectBuilder.DEFAULT_STATUS,
-                "chungus@chungus.org",
+                ProjectBuilder.DEFAULT_CLIENT_EMAIL,
                 ProjectBuilder.DEFAULT_SOURCE,
                 ProjectBuilder.DEFAULT_DESCRIPTION,
                 null,
                 LocalDate.now())
         );
+
         cases.forEach((errMsg, project) -> {
             assertThrows(IllegalValueException.class, errMsg, project::toModelType);
         });
@@ -88,32 +98,32 @@ public class JsonAdaptedProjectTest {
 
     @Test
     public void toModelType_validNullFields_returnsProject() throws Exception {
-        UnaryOperator<String> withErr = (fieldName)
-                -> String.format(JsonAdaptedProject.MISSING_FIELD_MESSAGE_FORMAT, fieldName);
         Map<String, JsonAdaptedProject> cases = Map.of(
-            withErr.apply("source"),
+            "source is null",
             new JsonAdaptedProject(
                 ProjectBuilder.DEFAULT_NAME,
                 ProjectBuilder.DEFAULT_STATUS,
-                ProjectBuilder.DEFAULT_CLIENT_EMAIL.toString(),
+                ProjectBuilder.DEFAULT_CLIENT_EMAIL,
                 null,
                 ProjectBuilder.DEFAULT_DESCRIPTION,
                 ProjectBuilder.DEFAULT_ACCEPTED_ON,
                 LocalDate.now()),
-            withErr.apply("description"),
+
+            "description is null",
             new JsonAdaptedProject(
                 ProjectBuilder.DEFAULT_NAME,
                 ProjectBuilder.DEFAULT_STATUS,
-                ProjectBuilder.DEFAULT_CLIENT_EMAIL.toString(),
+                ProjectBuilder.DEFAULT_CLIENT_EMAIL,
                 ProjectBuilder.DEFAULT_SOURCE,
                 null,
                 ProjectBuilder.DEFAULT_ACCEPTED_ON,
                 LocalDate.now()),
-            withErr.apply("deadline"),
+
+            "deadline is null",
             new JsonAdaptedProject(
                 ProjectBuilder.DEFAULT_NAME,
                 ProjectBuilder.DEFAULT_STATUS,
-                ProjectBuilder.DEFAULT_CLIENT_EMAIL.toString(),
+                ProjectBuilder.DEFAULT_CLIENT_EMAIL,
                 ProjectBuilder.DEFAULT_SOURCE,
                 ProjectBuilder.DEFAULT_DESCRIPTION,
                 ProjectBuilder.DEFAULT_ACCEPTED_ON,
@@ -121,8 +131,10 @@ public class JsonAdaptedProjectTest {
         );
 
         Project defaultProject = new ProjectBuilder().build();
-        for (String desc : cases.keySet()) {
-            assertTrue(cases.get(desc).toModelType().isSame(defaultProject));
+        for (var tt : cases.entrySet()) {
+            var desc = tt.getKey();
+            var proj = tt.getValue();
+            assertTrue(proj.toModelType().isSame(defaultProject), "While testing case: " + desc);
         }
     }
 }
