@@ -2,10 +2,22 @@
 layout: page
 title: User Guide
 ---
+<h1>The Intern's Ship - User Guide</h1>
+<div style="page-break-after:always; break-after: page;">
+Whether it is credit bearing or non-credit bearing, taking up an internship during one's university study has become a
+popular option amongst many students. Studies have found that the completion of an internship increases one's chance of
+employment after graduation by a whopping 85%. <br>
 
-The Intern’s Ship (TinS) is a **desktop app for managing internships application, optimized for use via a Command Line
-Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TinS can
-help you manage and keep track of your internship applications faster than traditional GUI apps.
+To increase one's chances of successfully securing an internship, it is recommended that one applies for a minimum of
+20 internships, from a list of 50 potential employers. From remembering the internships one is interested in and their
+application deadlines to scheduling interview dates so that they do not clash, having to organise the large number of
+internship applications can be a hassle at times. <br>
+
+Designed with internship-seeking <b>university student</b> in mind, <b>The Intern’s Ship (TinS)</b> aims to make
+managing your internship applications fuss-free. As a <b>desktop app</b> optimized for use via a Command Line Interface
+(CLI) while still having the benefits of a Graphical User Interface (GUI), TinS is perfect for fast typers. With a
+simple command, TinS can help you manage, coordinate and keep track of your internship applications faster than
+traditional GUI apps.
 
 * Features (v1.3)
   * Adding an internship application: `add`
@@ -20,7 +32,8 @@ help you manage and keep track of your internship applications faster than tradi
   * Getting help: `help`
   * Saving the data
   * Exiting the program: `exit`
-
+</div>
+  
 -----------------
 ## Table of Contents
 {:toc}
