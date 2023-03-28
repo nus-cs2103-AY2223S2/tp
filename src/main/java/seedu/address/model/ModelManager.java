@@ -241,7 +241,7 @@ public class ModelManager implements Model {
     @Override
     public void updateSelectedClient(Client targetClient) {
         this.selectedClient = targetClient;
-        commit();
+        //commit();
     }
 
     @Override
