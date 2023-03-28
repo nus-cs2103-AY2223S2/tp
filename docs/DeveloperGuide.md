@@ -154,6 +154,47 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+### Add/Deduct reward points feature
+
+#### Implementation
+
+From `Points` class, a new feature of adding and deducting from the points a customer has, was required.
+A cumulative points system also had to be introduced. Adding points should increase the cumulative points a customer
+has while deducting points should not affect the cumulative points of the customer.
+
+As a result, a new attribute, `cumulative` was introduced to `Points`.
+For the parsing of the `addpoints` command, I had to consider between different design choices.
+The one I ultimately settled on was merely utilising `Integer.valueOf` method to parse the points inputted by the user.
+Also, in the execution of `AddPointsCommand` class, the points to add would exist as an Integer object instead of a
+`Points` object. The addition or subtraction of points from the `Points` class would then be as simple as adding the
+points to current points and cumulative points when it is positive, and subtracting from current points when it is 
+negative. This simple design would be sufficient to achieve the intended feature.
+Lastly, to store the cumulative points of `Customer`, a new attribute, `cumulativePoints` was introduced to the
+`JsonAdaptedCustomer`.
+
+### Alternatives considered
+There were other designs I was considering, listed below.
+
+1. A design choice I had to make was for the `addpoints` command, originally I intended for the command users inputted
+to include a modifier syntax for the user to specify if he or she wishes to add or subtract points.
+For instance, the command could be `addpoints 1 mod/- pt/100` to indicate that the user wants to subtract 100 points
+from the customer in the first index. I wanted to follow this implementation as many commands follow the syntax of
+`[PREFIX]/` for the user to specify their command. However, I subsequently decided that this may be too inconvenient for
+the user, and since it is intuitive for 100 or -100 points to exist, I decided to allow the specification of the
+modifier of points to come after `pt/`
+2. I also considered to have a static inner class, as encapsulation of the information of the addition or subtraction
+of points, and for `AddPointsCommand` to take in a `Points.AddPoints` as an attribute. This would allow an enum
+modifier to exist within the `AddPoints` inner class, allowing future extension of editing reward points by simply
+including new enumeration of modifiers. This would also allow a validity check of the points to be added or deducted.
+However, with the help of my teammate, I later decided that this may not be necessary as checking the validity of the
+resultant `Points` after adding or subtracting is sufficient. Moreover, utilising the `Integer.valueOf` method in
+`AddPointsCommandParser` would make parsing much simpler as compared to evaluating the modifier in front of points.
+This simpler design would also be sufficient as we had no plans to incorporate
+features other than the addition or subtraction of points.
+
+
+
 ### Customer and Order Notes
 
 #### Implementation
@@ -188,6 +229,7 @@ We settled on just a **set** and **append** command as deleting a note can be do
   This could be done inline using a special character (e.g. `#`) within the note itself, where the system would automatically detect the tags.
 
   We can then provide an additional command to view all the notes with a specific tag, along with their associated customer/order.  
+
 
 ### \[Proposed\] Undo/redo feature
 
