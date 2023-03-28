@@ -81,10 +81,11 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 
 ### Edit
 
-- `edit {module_code} [/code {updated_code}] [/name {updated_name}]`: Edits the details of a module in Le Tracker
-- `edit {lecture_name} [/mod {module_code}] [/name {updated_name}]`: Edits the details of a lecture
-- `edit {video_name} [/mod {module_code}] [/lec {lecture_name}] [/name {updated_name}]`: Edits the details of a video
-- Mark/Unmark
+- `edit {module_code} [/code {updated_code}] [/name {updated_name}] [/tags {tag_1}, [{tag_2}, ...]]`: Edits the details of a module in Le Tracker
+- `edit {lecture_name} [/mod {module_code}] [/name {updated_name}] [/tags {tag_1}, [{tag_2}, ...]]`: Edits the details of a lecture
+- `edit {video_name} [/mod {module_code}] [/lec {lecture_name}] [/name {updated_name}] [/watch] [/unwatch] [/tags {tag_1}, [{tag_2}, ...]]`: Edits the details of a video
+
+### Mark/Unmark
   - `mark /module {module_code} /lecture {lecture_index} /video {video_name}`: Marks a video as watched
   - `unmark /module {module_code} /lecture {lecture_index} /video {video_name}`: Unmarks a video as unwatched
 
@@ -268,39 +269,44 @@ Examples:
 
 > Edits the details of a module in Le Tracker.
 
-Format: `edit {module_code} [/code {updated_code}] [/name {updated_name}]`
+Format: `edit {module_code} [/code {updated_code}] [/name {updated_name}] [/tags {tag_1}, [{tag_2}, ...]]`
 
 - `module_code` must belong to an existing module
 - `updated_code` must be a valid module code
 - `updated_code` must be unique among the module codes of the modules in Le Tracker
 - `updated_name` must be a valid module name
+- `tag_1`, `tag_2`, ... must be valid tags
+- `tag_1`, `tag_2`, ... if it contains repeated tags, the repeats will be ignored
 
 Examples:
-
-- `edit CS2040 /code CS2040S /name Data Structures and Algorithms`
+- `edit CS2040 /code CS2040S /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
 
 ### Edit a Lecture
 
 > Edits the details of a lecture.
 
-Format: `edit {lecture_name} [/mod {module_code}] [/name {updated_name}]`
+Format: `edit {lecture_name} [/mod {module_code}] [/name {updated_name}] [/tags {tag_1}, [{tag_2}, ...]]`
 
 - `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
 - `module_code` must belong to an existing module
 - `module_code` if not specified, defaults to the module code of the module in the current context (if any)
 - `updated_name` must be a valid lecture name
 - `updated_name` must be unique among the names of the lectures belonging to the module specified in `module_code`
+- `tag_1`, `tag_2`, ... must be valid tags
+- `tag_1`, `tag_2`, ... if it contains repeated tags, the repeats will be ignored
 
 Examples:
 
-- `edit Lecture 01 /mod CS2040S /name Lecture 01 Introduction`
+- `edit Week 1 /mod CS2040S /name Week 01 Introduction /tags Intro, Important`
 
 ### Edit a Video
 
 > Edits the details of a video
 
-Format: `edit {video_name} [/mod {module_code}] [/lec {lecture_name}] [/name {updated_name}]`
+Format: `edit {video_name} [/mod {module_code}] [/lec {lecture_name}] [/name {updated_name}] [/watch] [/unwatch] [/tags {tag_1}, [{tag_2}, ...]]`
 
+- `/watch` if specified, then `/unwatch` cannot be specified
+- `/unwatch` if specified, then `/watch` cannot be specified
 - `video_name` must belong to a video that exist within the lecture specified in `lecture_name`
 - `module_code` must belong to an existing module
 - `module_code` if not specified, defaults to the module code of the module in the current context (if any)
@@ -308,10 +314,12 @@ Format: `edit {video_name} [/mod {module_code}] [/lec {lecture_name}] [/name {up
 - `lecture_name` if not specified, defaults to the name of the lecture in the current context (if any)
 - `updated_name` must be a valid video name
 - `updated_name` must be unique among the names of the videos belonging to the lecture specified in `lecture_name`
+- `tag_1`, `tag_2`, ... must be valid tags
+- `tag_1`, `tag_2`, ... if it contains repeated tags, the repeats will be ignored
 
 Examples:
 
-- `edit Video 01 /mod CS2040S /lec Lecture 03 Sorting /name Video 01 Analysis`
+- `edit Video 1 /mod CS2040S /lec Week 1 /name Video 01 Grade Breakdown /watch /tags Intro, Short`
 
 ### Mark or Unmark a Video
 
