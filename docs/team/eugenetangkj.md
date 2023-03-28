@@ -28,9 +28,9 @@ Given below are my contributions to InternBuddy:
 [View it on RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=eugenetangkj&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 ### Features and Enhancement
-- **Refactored code to adapt the content of AddressBook-Level3 to the context of InternBuddy**
+- **Refactored code to adapt the content of AddressBook-Level 3 to the context of InternBuddy**
   [\#13](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/13)
-  * Renamed classes and packages.
+  * Renamed classes and packages, such as from `Person` to `Internship`
   * Renamed variables.
   * Redefined test cases to suit the context of internships instead of persons.
 
@@ -98,6 +98,7 @@ Given below are my contributions to InternBuddy:
   [\#84](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/84),
   [\#86](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/86),
   [\#119](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/119)
+  * Explained implementation and design considerations for `add` and `view` commands, supplementing the explanations with sequence diagrams
   * Defined product scope by identifying InternBuddy's target audience and value proposition.
   * Drafted user stories on how Computing undergraduates would use InternBuddy.
   * Added test cases for instructions on manual testing, such as for the `add` and `view` commands.
