@@ -76,6 +76,9 @@ public class AddressBookParser {
         case SummaryCommand.COMMAND_WORD:
             return new SummaryCommand();
 
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

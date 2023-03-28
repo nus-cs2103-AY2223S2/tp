@@ -9,13 +9,12 @@ public class Mark {
     public static final String MESSAGE_CONSTRAINTS =
             "Mark should only be 'yes' or 'no', and it should not be blank.";
 
-    public final boolean mark;
+    public final boolean isMark;
 
     public Mark(String mark) {
         requireNonNull(mark);
-        checkArgument(!mark.toLowerCase(Locale.ROOT).equals("yes")
-                && !mark.toLowerCase(Locale.ROOT).equals("no"), MESSAGE_CONSTRAINTS);
-        this.mark = mark.toLowerCase(Locale.ROOT).equals("yes");
+        checkArgument(isValidMark(mark), MESSAGE_CONSTRAINTS);
+        this.isMark = mark.toLowerCase(Locale.ROOT).equals("yes");
     }
 
     public static boolean isValidMark(String mark) {
@@ -25,14 +24,14 @@ public class Mark {
 
     @Override
     public String toString() {
-        return mark ? "Need Follow-Up." : "No Need Follow-Up.";
+        return isMark ? "YES" : "NO";
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Mark // instanceof handles nulls
-                && mark == ((Mark) other).mark); // state check
+                && isMark == ((Mark) other).isMark); // state check
     }
 
 }

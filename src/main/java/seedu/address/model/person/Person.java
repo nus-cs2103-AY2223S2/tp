@@ -23,7 +23,7 @@ public class Person implements Comparable<Person> {
 
     private final Company company;
 
-    private final Mark mark;
+    private Mark mark;
 
     private final Priority priority;
     private final Set<Tag> tags = new HashSet<>();
@@ -75,6 +75,10 @@ public class Person implements Comparable<Person> {
 
     public Mark getMark() {
         return mark;
+    }
+
+    public void changeMark() {
+        mark = new Mark(mark.isMark ? "no" : "yes");
     }
 
     public Priority getPriority() {

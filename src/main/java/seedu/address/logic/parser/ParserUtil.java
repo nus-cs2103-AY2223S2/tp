@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.BusinessSize;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Mark;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
@@ -138,6 +139,17 @@ public class ParserUtil {
     }
 
     /**
+     *
+     */
+    public static Mark parseMark(String mark) throws ParseException {
+        requireNonNull(mark);
+        if (!Mark.isValidMark(mark)){
+            throw new ParseException(Mark.MESSAGE_CONSTRAINTS);
+        }
+        return new Mark(mark);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -151,8 +163,6 @@ public class ParserUtil {
         }
         return new Tag(trimmedTag);
     }
-
-
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
