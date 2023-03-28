@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
+participant "a:AlertCommand" as AlertCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+
+[-> LogicManager : execute("alert 48")
+activate LogicManager
+
+LogicManager -> TaskBookParser : parseCommand("alert 48")
+activate TaskBookParser
+
+create AlertCommand
+TaskBookParser -> AlertCommand
+activate AlertCommand
+
+AlertCommand --> TaskBookParser : a
+deactivate AlertCommand
+
+TaskBookParser --> LogicManager : a
+deactivate TaskBookParser
+
+LogicManager -> AlertCommand : execute(model)
+activate AlertCommand
+
+AlertCommand -> Model : updateAlertTaskList
+activate Model
+
+Model --> AlertCommand
+deactivate Model
+
+create CommandResult
+AlertCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AlertCommand
+deactivate CommandResult
+
+AlertCommand --> LogicManager : result
+deactivate AlertCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

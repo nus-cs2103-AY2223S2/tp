@@ -372,6 +372,30 @@ Cons: Have to scroll down to see SimpleTasks.
 
 ### 3.10 Alert Feature
 
+The `alert` feature is a new feature that when called will display tasks which fall within the specified **alert window**.  
+You can find the specific implementation in the `AlertCommandParser` class and the `AlertCommand` class.  
+:bulb: Note: The addition of the `alert` feature includes a new attribute to all tasks `alertWindow`. 
+
+Given below is an example usage scenario and how the find mechanism behaves.
+
+Step 1. The user inputs a `alert` command with parameter `48`. The parser recognises the command word and calls the AlertCommandParser.
+
+Step 2. The `AlertCommandParser` processes the parameter and notices it is not empty.
+
+Step 3. `AlertCommandParser` calls `AlertCommand` with the timeframe specified.
+
+Step 4. `AlertCommand` is executed and model filters the `AlertTaskList` with the predicate `TaskWithinTimelinePredicate(timeframe)`.
+
+Step 5. The result of the filtered list is passed back to the UI.
+
+The following sequence diagram summarizes what happens in this example usage scenario:
+
+![SortCommandSequenceDiagram](images/AlertSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new `alert` command:
+
+![SortCommandSequenceDiagram](images/AlertActivityDiagram.png)
+
 ### 3.11 Plan Feature
 
 --------------------------------------------------------------------------------------------------------------------
@@ -431,7 +455,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Clock-Work` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: Add a task**
+
+**MSS**
+
+1. User requests to add a task 
+2. TaskBook adds a task based on parameters supplied.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The input syntax is invalid
+
+    * 1a1. TaskBook shows an error message.
+
+      Use case resumes at step 1.
+
+* 1b. The supplied name already exists in the TaskBook. 
+
+    * 3a2. TaskBook shows an error message
+
+      Use case resumes at step 1.
+
 
 **Use case: Delete a task**
 
@@ -484,7 +532,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a2. TaskBook shows an error message
 
     Use case resumes at step 2.
-    
 
 ### Non-Functional Requirements
 

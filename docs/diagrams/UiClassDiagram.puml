@@ -10,6 +10,7 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
+Class AlertWindow
 Class ResultDisplay
 Class TaskListPanel
 Class TaskCard
@@ -30,16 +31,19 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
+MainWindow -down-> "0..1" AlertWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" TaskListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
+AlertWindow --> "1" TaskListPanel
 
 TaskListPanel -down-> "*" TaskCard
 
 MainWindow -left-|> UiPart
 
+AlertWindow --|> UiPart
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 TaskListPanel --|> UiPart
