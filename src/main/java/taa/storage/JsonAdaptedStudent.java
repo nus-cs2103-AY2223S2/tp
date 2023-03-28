@@ -22,15 +22,22 @@ class JsonAdaptedStudent {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
     private final String name;
+
+    private final String pp;
+
+    private final String attendance;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name,
+    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("attendance") String attendance,
+                              @JsonProperty("pp") String pp,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
+        this.pp = pp;
+        this.attendance = attendance;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -41,6 +48,8 @@ class JsonAdaptedStudent {
      */
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
+        attendance = source.getAtd().atdStrorageStr();
+        pp = source.getAtd().partPointsStorageStr();
         tagged.addAll(source.getClassTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -63,10 +72,16 @@ class JsonAdaptedStudent {
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
+        if (pp == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Participation Points"));
+        }
+        if (attendance == null ) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Attendance"));
+        }
         final Name modelName = new Name(name);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Student(modelName, modelTags);
+        return new Student(modelName, attendance, pp, modelTags);
     }
 
 }

@@ -83,9 +83,11 @@ public class EditStudentCommand extends Command {
         assert studentToEdit != null;
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
+        Attendance updatedAttendance = editStudentDescriptor.getAttendance().orElse(studentToEdit.getAtd());
         Set<Tag> updatedClassTags = editStudentDescriptor.getTags().orElse(studentToEdit.getClassTags());
 
-        return new Student(updatedName, updatedClassTags);
+        return new Student(updatedName, updatedAttendance.atdStrorageStr(),
+                updatedAttendance.partPointsStorageStr(), updatedClassTags);
     }
 
     @Override

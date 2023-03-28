@@ -30,11 +30,11 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Set<Tag> classTags) {
+    public Student(Name name, String atd, String pp, Set<Tag> classTags) {
         CollectionUtil.requireAllNonNull(name, classTags);
         this.id = ++lastId;
         this.name = name;
-        this.atd = new Attendance();
+        this.atd = new Attendance(atd, pp);
         this.classTags.addAll(classTags);
         this.submissions = new Submissions();
         hashcode = Objects.hash(name, this.classTags);
@@ -57,7 +57,7 @@ public class Student {
     /**
      * @return the average participation points of student in all classes attended so far
      */
-    public float getPP() {
+    public float getPartPoints() {
         return this.atd.getAveragePP();
     }
 

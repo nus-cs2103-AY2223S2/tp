@@ -52,7 +52,7 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
         attendance.setText(String.format("Attendance: %d/12, Participation points: %.2f",
-                this.student.getNumWeeksPresent(), this.student.getPP()));
+                this.student.getNumWeeksPresent(), this.student.getPartPoints()));
         assignment.setText("Latest assignment: "
                 + (latestSubmission == null ? "None" : latestSubmission.describeSubmission()));
         groups.setText("Groups: None");
