@@ -59,7 +59,7 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
     - [5.9.1 Module Tag: `mod/`](#591-module-tags-mod)
     - [5.9.2 Major Tag: `major/`](#592-major-tags-major)
     - [5.9.3 CCA Tag: `cca/`](#593-cca-tags-cca)
-    - [5.9.3 Remark Tag: `t/`](#594-remark-tags-r)
+    - [5.9.3 Remark Tag: `r/`](#594-remark-tags-r)
 - [6. FAQ](#6-faq)
 - [7. Command Summary](#7-command-summary)
 - [8. Prefix Summary](#8-prefix-summary)
@@ -302,7 +302,7 @@ If you want to add a new tag to a contact, you can use the `add-t` command.
 The `add-t` command:
 * Adds a tag to the contact at the specified `PERSON_INDEX`. The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
-* At least one of the optional fields must be provided (e.g. `t/TAG_NAME`, `mod/MODULE_NAME`).
+* At least one of the optional fields must be provided (e.g. `r/REMARK_NAME`, `mod/MODULE_NAME`).
 * A new tag will be created and assigned to the person specified at the `PERSON_INDEX`.
 
 **Example:**
@@ -313,7 +313,7 @@ The `add-t` command:
 
 ### 4.7 Deleting tags from a contact: `delete-t`
 
-Format: `delete-t PERSON_INDEX [t/TAG_INDEX] [mod/MODULE_INDEX] [cca/CCA_INDEX]`
+Format: `delete-t PERSON_INDEX [r/REMARK_INDEX] [mod/MODULE_INDEX] [cca/CCA_INDEX] [major/MAJOR_INDEX]`
 
 > Deletes an existing tag from an existing contact.
 
@@ -321,12 +321,12 @@ If you want to delete an existing tag from a contact, you can use the `delete-t`
 
 The `delete-t` command:
 * Deletes a tag from the contact at the specified `PERSON_INDEX`. The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
-* The `TAG_INDEX`, `MODULE_INDEX` and `CCA_INDEX` refer to the index of the tag shown in the respective tag types, from left to right, starting from index 1.
+* The `REMARK_INDEX`, `MODULE_INDEX`, `CCA_INDEX` and `MAJOR_INDEX` refer to the index of the tag shown in the respective tag types, from left to right, starting from index 1.
 
 ![DeleteTagIndexContactExample](images/johndoe.png)
 
-* All indexes (i.e. `PERSON_INDEX`, `TAG_INDEX`, `MODULE_INDEX`, `CCA_INDEX`) **must be a positive integer** e.g. 1, 2, 3, …​
-* At least one of the optional fields must be provided (i.e. `t/TAG_INDEX`, `mod/MODULE_INDEX`, `cca/CCA_INDEX`).
+* All indexes (i.e. `PERSON_INDEX`, `REMARK_INDEX`, `MODULE_INDEX`, `CCA_INDEX`, `MAJOR_INDEX`) **must be a positive integer** e.g. 1, 2, 3, …​
+* At least one of the optional fields must be provided (i.e. `r/REMARK_INDEX`, `mod/MODULE_INDEX`, `cca/CCA_INDEX`, `MAJOR_INDEX`).
 * The specified tag will be deleted from the person specified at the `PEROSN_INDEX`.
 
 **Example:**
@@ -467,7 +467,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
   - [5.9.1 Module Tag: `mod/`](#591-module-tags-mod)
   - [5.9.2 Major Tag: `major/`](#592-major-tags-major)
   - [5.9.3 CCA Tag: `cca/`](#593-cca-tags-cca)
-  - [5.9.3 Remark Tag: `t/`](#594-remark-tags-r)
+  - [5.9.3 Remark Tag: `r/`](#594-remark-tags-r)
 
 ### 5.1 Name: `n/`
 * Name is a *compulsory* field, i.e. a contact cannot exist if it does not have a name.
