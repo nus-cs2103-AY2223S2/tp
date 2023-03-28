@@ -72,7 +72,7 @@ public class DateUtil {
      * @param date LocalDate to be formated
      * @return Formatted string that is alphanumeric
      */
-    public static String getTaskDescriptionDateFormat(LocalDate date) {
+    public static String getTaskDescriptionDateFormat(LocalDateTime dateTime) {
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern(VALID_NAME_FORMAT);
         return date.format(outputFormat);
     }

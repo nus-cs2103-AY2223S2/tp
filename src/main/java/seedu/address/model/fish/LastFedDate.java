@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import seedu.address.model.date.DateUtil;
 
@@ -14,23 +16,28 @@ import seedu.address.model.date.DateUtil;
 public class LastFedDate {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Last Fed Date is a date time in the format of dd/mm/yyyy";
-    public static final String VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$";
+            "Last Fed Date Time is a date time in the format of \"dd/MM/yyyy HH:mm:ss\"";
+    public static final String VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}\\s"
+            + "([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$\n";
     public final String value;
-    public final LocalDate localDate;
-    public final String alphaNumericDate;
+    public final LocalDateTime localDateTime;
+    public final String alphaNumericDateTime;
 
     /**
      * Constructs a {@code LastFedDate}.
      *
-     * @param lastFedDate A valid last Fed Date number.
+     * @param lastFedDateTime A valid last Fed Date number.
      */
-    public LastFedDate(String lastFedDate) {
-        requireNonNull(lastFedDate);
-        checkArgument(isValidLastFedDate(lastFedDate), MESSAGE_CONSTRAINTS);
-        value = lastFedDate;
-        localDate = DateUtil.parseStringToDate(lastFedDate);
-        alphaNumericDate = DateUtil.getTaskDescriptionDateFormat(localDate);
+    public LastFedDate(String lastFedDateTime) {
+        requireNonNull(lastFedDateTime);
+        checkArgument(isValidLastFedDate(lastFedDateTime), MESSAGE_CONSTRAINTS);
+        value = lastFedDateTime;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        localDateTime = LocalDateTime.parse(lastFedDateTime, formatter);
+
+        alphaNumericDateTime = DateUtil.getTaskDescriptionDateTimeFormat(localDateTime);
+
     }
 
     /**
@@ -41,12 +48,12 @@ public class LastFedDate {
     }
 
 
-    public String getAlphaNumericDate() {
-        return this.alphaNumericDate;
+    public String getAlphaNumericDateTime() {
+        return this.alphaNumericDateTime;
     }
 
-    public LocalDate getLocalDate() {
-        return this.localDate;
+    public LocalDateTime getLocalDateTime() {
+        return this.localDateTime;
     }
 
     @Override
@@ -58,7 +65,7 @@ public class LastFedDate {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof LastFedDate // instanceof handles nulls
-                && localDate.equals(((LastFedDate) other).localDate)); // state check
+                && localDateTime.equals(((LastFedDate) other).localDateTime)); // state check
     }
 
     @Override

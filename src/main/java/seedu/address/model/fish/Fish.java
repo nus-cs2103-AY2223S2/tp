@@ -108,7 +108,7 @@ public class Fish {
      * @return formatted string of the last time this fish was fed on
      */
     public String getLastFedString() {
-        String ret = this.getName() + " last fed on " + lastFedDate.getAlphaNumericDate();
+        String ret = this.getName() + " last fed on " + lastFedDate.getAlphaNumericDateTime();
         return ret;
     }
 
