@@ -19,8 +19,8 @@ Welcome to **sprINT's User Guide**. sprINT is a **desktop application** for mana
 optimized for use via a Command Line Interface (CLI) while incorporating the benefits of a Graphical User
 Interface (GUI).
 
-If you're a *fast typer*, sprINT is the perfect tool. The app is designed to maximize speed and efficiency,
-making it a great asset in managing your internship applications.
+If you're a *fast typer*, sprINT is the perfect tool. The app is designed to maximise speed and efficiency,
+making it a great asset in your internship application journey.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -28,17 +28,19 @@ making it a great asset in managing your internship applications.
 
 ## **2. Quick start**
 
-2.1 Ensure you have Java `11` or above installed in your Computer.
+Step 1: Ensure you have Java `11` or above installed in your Computer.
 
-2.2 Download the latest `sprint.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-3/tp/releases/tag/v1.3).
+Step 2: Download the latest `sprint.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-3/tp/releases/tag/v1.3).
 
-2.3 Copy the file to the folder you want to use as the _home folder_ for your sprINT application.
+Step 3: Copy the file to the folder you want to use as the _home folder_ for your sprINT application.
 
-2.4 Open a command terminal, enter `cd` to the folder you put the jar file in, and use the `java -jar sprINT.jar` command to run the application.<br>
+Step 4: Open a command terminal, enter `cd` to the folder you put the jar file in, and use the `java -jar sprINT.jar` 
+command to run the application.<br>
+
 A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data already.<br>
 ![Ui](images/Ui.png)
 
-2.5 Type the command in the command box and press Enter to execute it.
+Step 5: Type the command in the command box and press Enter to execute it.
 e.g. typing **`help`** and pressing Enter will open the help window.<br>
 Some example commands you can try:
 
@@ -56,7 +58,7 @@ Some example commands you can try:
 
 Refer to the [Command summary](#5-command-summary) section for a complete list of commands.
 
-2.6 Refer to the [Features](#3-features) section for more details of each command.
+Step 6: Refer to the [Features](#3-features) section for more details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -110,6 +112,10 @@ Cautions are in place to warn you of potential pitfalls new users may encounter.
 **Caution:** Be aware of the difference between `(s)` and `[]`. The former allows for multiple arguments, the latter represents
 an optional argument.
 </div>
+
+* Command words and prefixes are case-sensitive.<br>
+  e.g. `UNDO` will not be recognised as a valid command for the undo operation. Similarly, `bY/` (instead of `by/`) 
+  will not be recognised as a valid prefix for the `add-task` command. 
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `r/ROLE c/COMPANY_NAME`, `c/COMPANY_NAME r/ROLE` is also acceptable.
@@ -297,7 +303,8 @@ If you accidentally issued the `clear` command, use the `undo` command to revert
 #### 3.4.4 Exiting the program : `exit`
 
 Exits the program.
-Alternatively, you can exit the program by clicking the top-right X button to close the window.
+Alternatively, you can exit the program by clicking the top-right X button to close the window. sprINT updates
+your data [periodically](#345-saving-the-data), so you don't have to worry about unsaved or possible loss of data when exiting the program.
 
 Format: `exit`
 
@@ -312,10 +319,6 @@ Data in the internship book are saved as a JSON file `[JAR file location]/data/a
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, the internship book will discard all data and start with an empty data file at the next run.
 </div>
-
-#### 3.4.7 Archiving the data files : [coming in v2.0]
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
