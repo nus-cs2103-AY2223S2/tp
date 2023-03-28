@@ -410,6 +410,11 @@ public class Session implements Comparable<Session> {
                 this.id,
                 this.getMap());
     }
+
+    public HashMap<String, Boolean> getAttendanceMap() {
+        return attendanceMap;
+    }
+
     public List<CalendarEvent> getCalendarEvents() {
         return Collections.singletonList(new CalendarEvent(this));
     }
