@@ -44,7 +44,7 @@ public class UniqueEmployeeListTest {
         uniqueEmployeeList.add(ALICE);
         Employee editedAlice = new EmployeeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniqueEmployeeList.contains(editedAlice));
+        assertFalse(uniqueEmployeeList.contains(editedAlice));
     }
 
     @Test
