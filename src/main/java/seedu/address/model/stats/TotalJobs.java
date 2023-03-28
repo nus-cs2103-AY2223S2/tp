@@ -14,7 +14,7 @@ public class TotalJobs {
     private int numJobs;
 
     /**
-     * Constructor to create a Reminder object.
+     * Constructor to create a TotalJobs object.
      * @param numJobs Number of jobs in job list. Cannot be negative and cannot be null.
      */
     public TotalJobs(int numJobs) {

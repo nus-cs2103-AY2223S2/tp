@@ -70,7 +70,19 @@ public interface Logic {
      */
     Map<LocalDate, DeliveryList> getWeekDeliveryJobList();
 
+    /**
+     * Returns job on specific day of week
+     * @param dayOfWeek day of week
+     * @return job list in the specific day
+     */
     DeliveryList getDayofWeekJob(int dayOfWeek);
+    /**
+     * Returns an unmodifiable view of the list of unscheduled delivery jobs
+     */
+    ObservableList<DeliveryJob> getUnscheduledDeliveryJobList();
+
+
+    double getTotalEarnings(ObservableList<DeliveryJob> list);
 
     /**
      * Returns the user prefs' address book file path.
@@ -102,11 +114,6 @@ public interface Logic {
      * Updates sorted delivery job list by date
      */
     void updateSortedDeliveryJobListByDate();
-
-    /**
-     * Updates week delivery job list to the week that contains focus date
-     */
-    void updateWeekDeliveryJobList(LocalDate focusDate);
 
     /**
      * Gets user input focus date

@@ -20,6 +20,9 @@ Class Name
 Class Phone
 Class Tag
 
+Class ReminderList
+Class Reminder
+
 Class "<<interface>>\nReadOnlyDeliveryJobSystem" as ReadOnlyDeliveryJobSystem
 Class DeliveryJobSystem
 Class UniqueDeliveryJobList
@@ -52,6 +55,9 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+
+AddressBook *--> "1" ReminderList
+ReminderList --> "~*" Reminder
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address

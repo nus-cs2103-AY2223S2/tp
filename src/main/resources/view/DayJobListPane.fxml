@@ -10,7 +10,7 @@
    <children>
       <Accordion>
         <panes>
-          <TitledPane animated="false" prefWidth="102.0" text="Slot 1 ">
+          <TitledPane animated="false" prefWidth="102.0" text="10AM - 11AM">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -19,7 +19,7 @@
                   </AnchorPane>
             </content>
           </TitledPane>
-          <TitledPane animated="false" text="Slot 2 ">
+          <TitledPane animated="false" text="11AM - 12PM">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -28,7 +28,7 @@
                   </AnchorPane>
             </content>
           </TitledPane>
-          <TitledPane animated="false" text="Slot 3">
+          <TitledPane animated="false" text="1PM - 2PM">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -37,7 +37,7 @@
                   </AnchorPane>
             </content>
           </TitledPane>
-            <TitledPane animated="false" layoutX="10.0" layoutY="268.0" prefHeight="210.0" prefWidth="440.0" text="Slot 4 ">
+            <TitledPane animated="false" layoutX="10.0" layoutY="268.0" prefHeight="210.0" prefWidth="440.0" text="2PM - 3PM">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -46,7 +46,7 @@
                   </AnchorPane>
                </content>
             </TitledPane>
-            <TitledPane animated="false" layoutX="10.0" layoutY="112.0" prefHeight="210.0" prefWidth="440.0" text="Slot 5">
+            <TitledPane animated="false" layoutX="10.0" layoutY="112.0" prefHeight="210.0" prefWidth="440.0" text="3PM - 4PM">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>

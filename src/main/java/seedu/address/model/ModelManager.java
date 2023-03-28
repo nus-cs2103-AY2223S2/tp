@@ -39,11 +39,11 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<DeliveryJob> filteredDeliveryJobs;
-    private final List<DeliveryJob> sortedDeliveryJobs;
     private final ObservableList<Reminder> reminderList;
-    private final Map<LocalDate, DeliveryList> jobListGroupedByDate;
     private final Map<LocalDate, DeliveryList> weekJobListGroupedByDate;
+    private List<DeliveryJob> sortedDeliveryJobs;
     private LocalDate focusDate;
+    private Map<LocalDate, DeliveryList> jobListGroupedByDate;
 
 
 
@@ -241,6 +241,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter) {
+        sortedDeliveryJobs = new ArrayList<DeliveryJob>(deliveryJobSystem.getDeliveryJobList());
         Collections.sort(sortedDeliveryJobs, sorter);
     }
 
@@ -253,8 +254,10 @@ public class ModelManager implements Model {
     public void updateSortedDeliveryJobListByDate() {
         //updateSortedDeliveryJobList(SORTER_BY_DATE);
 
+        jobListGroupedByDate.clear();
         for (int i = 0; i < sortedDeliveryJobs.size(); i++) {
-            if (sortedDeliveryJobs.get(i).isScheduled()) {
+            if (sortedDeliveryJobs.get(i).isScheduled()
+                    && (!sortedDeliveryJobs.get(i).getDeliveredStatus())) {
                 LocalDate jobDate = sortedDeliveryJobs.get(i).getDate();
                 int jobSlot = sortedDeliveryJobs.get(i).getSlot();
                 int slotIndex = (jobSlot) - 1;
@@ -333,8 +336,15 @@ public class ModelManager implements Model {
     @Override
     public DeliveryList getDayOfWeekJob(int dayOfWeek) {
         int focusDayOfWeek = focusDate.getDayOfWeek().getValue();
-        LocalDate dayToAdd = focusDate.plusDays(dayOfWeek - focusDayOfWeek);
-        return weekJobListGroupedByDate.get(dayToAdd);
+        LocalDate dayToGet = focusDate.plusDays(dayOfWeek - focusDayOfWeek);
+        return weekJobListGroupedByDate.get(dayToGet);
+    }
+
+    @Override
+    public ObservableList<DeliveryJob> getUnscheduledDeliveryJobList() {
+        FilteredList<DeliveryJob> unscheduledJobList = new FilteredList<>(this.deliveryJobSystem.getDeliveryJobList());
+        unscheduledJobList.setPredicate(job -> ((!job.isScheduled()) && (job.getDeliveredStatus())));
+        return FXCollections.observableArrayList(unscheduledJobList);
     }
 
     @Override

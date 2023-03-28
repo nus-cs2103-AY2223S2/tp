@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -19,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
+import seedu.address.model.jobs.Earning;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.storage.Storage;
@@ -115,6 +117,22 @@ public class LogicManager implements Logic {
         return model.getDayOfWeekJob(dayOfWeek);
     }
 
+    @Override
+    public double getTotalEarnings(ObservableList<DeliveryJob> list) {
+        double earnings = 0;
+        for (DeliveryJob job: list) {
+            Optional<Earning> earning = job.getEarning();
+            Earning earn = earning.get();
+            if (earn != null) {
+                earnings += Double.parseDouble(earn.value);
+            }
+        }
+        return earnings;
+    }
+
+    public ObservableList<DeliveryJob> getUnscheduledDeliveryJobList() {
+        return model.getUnscheduledDeliveryJobList();
+    }
 
     @Override
     public ObservableList<Reminder> getReminderList() {
@@ -150,13 +168,6 @@ public class LogicManager implements Logic {
     public void updateSortedDeliveryJobListByDate() {
         model.updateSortedDeliveryJobListByDate();
     };
-
-    @Override
-    public void updateWeekDeliveryJobList(LocalDate focusDate) {
-        logger.info("----------------[Update focus date to " + focusDate.toString() + "]");
-        model.updateWeekDeliveryJobList(focusDate);
-    };
-
 
     @Override
     public LocalDate getFocusDate() {

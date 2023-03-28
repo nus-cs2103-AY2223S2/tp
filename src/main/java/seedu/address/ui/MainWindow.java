@@ -29,6 +29,7 @@ import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
 import seedu.address.ui.main.StatusBarFooter;
 import seedu.address.ui.person.AddressBookWindow;
+import seedu.address.ui.timetable.UnscheduleWindow;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -45,14 +46,15 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     // private PersonListPanel personListPanel;
+    private AddressBookWindow addressBookWindow;
+    private AddDeliveryJobWindow addDeliveryJobWindow;
     private DeliveryJobListPanel deliveryJobListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private TimetableWindow timetableWindow;
     private ReminderListWindow reminderListWindow;
     private StatisticsWindow statsWindow;
-    private AddressBookWindow addressBookWindow;
-    private AddDeliveryJobWindow addDeliveryJobWindow;
+    private UnscheduleWindow unscheduleWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -137,6 +139,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         timetableWindow = new TimetableWindow(new Stage(), logic);
+        unscheduleWindow = new UnscheduleWindow(new Stage(), logic);
         reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
         addressBookWindow = new AddressBookWindow(new Stage(), logic);
@@ -266,6 +269,20 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opends unscheduled jobs window
+     */
+    @FXML
+    private void handleUnscheduledTimetable() {
+        if (!unscheduleWindow.isShowing()) {
+            logger.info("Opened window of unscheduled jobs.");
+            unscheduleWindow.show();
+            unscheduleWindow.fillInnerParts();
+        } else {
+            unscheduleWindow.focus();
+        }
+    }
+
+    /**
      * Opens Reminder List window.
      */
     @FXML
@@ -335,6 +352,7 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         timetableWindow.hide();
+        unscheduleWindow.hide();
         statsWindow.hide();
         addressBookWindow.hide();
         if (addDeliveryJobWindow != null) {
@@ -360,6 +378,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowTimetable()) {
                 handleTimetable();
+            }
+
+            if (commandResult.isShowUnschedule()) {
+                handleUnscheduledTimetable();
             }
 
             if (commandResult.isShowStatistics()) {
