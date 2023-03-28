@@ -255,16 +255,16 @@ Examples:
 * `add_volunteer n/John Wick e/johnwick@example.com a/New yourk p/1234561 vic/T1254567D dr/2023-04-01,2023-04-15`
 * `add_volunteer n/Sally White bd/1990-11-05 vic/S8457677H`
 
-#### Pair volunteer and elderly: `add_pair`
+#### Pair volunteer and elderly: `pair`
 
 Add a pairing between an existing elderly and volunteer.
 This allows you to track which elderly members are assigned to which volunteers.
 
-Format: `add_pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
+Format: `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
 
 * After pairing, the newly added pairs appear in the pair list in the window.
 * Only elderly members and volunteers existing in FriendlyLink's data can be paired.
-* Only elderly members and volunteers with intersecting available dates can be paired.
+* Elderly member and volunteers with no common available dates can be paired but a warning message is issued.
 * Elderly member and volunteers in different regions can be paired but a warning message is issued.
 * Duplicate pairs will fail to be added to FriendlyLink.
 * Alphabets in NRIC are case-insensitive.
@@ -278,8 +278,8 @@ Format: `add_pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
 </div>
 
 Examples:
-* `add_pair eic/S2235243I vic/t0123423a` pairs up the elderly with NRIC S2235243I with the volunteer with NRIC T0123423A.
-* `add_pair eic/s1135243A vic/S0773423a` pairs up the elderly with NRIC S1135243A with the volunteer with NRIC S0773423A.
+* `pair eic/S2235243I vic/t0123423a` pairs up the elderly with NRIC S2235243I with the volunteer with NRIC T0123423A.
+* `pair eic/s1135243A vic/S0773423a` pairs up the elderly with NRIC S1135243A with the volunteer with NRIC S0773423A.
 
 #### Auto pairing of volunteers and elderly: `auto_pair`
 
@@ -417,20 +417,20 @@ Format: `delete_volunteer NRIC`
 Examples:
 * `delete_volunteer S8238658J` deletes an existing volunteer with NRIC `S8238658J`, as well as all the pairings containing this volunteer.
 
-#### Unpair volunteer and elderly: `delete_pair`
+#### Unpair volunteer and elderly: `unpair`
 
 Unpairs an elderly from its assigned volunteer.
 
 This deletes the pair while still keeping the information of the elderly member and volunteer.
 
-Format `delete_pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
+Format `unpair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
 
 * After deletion, the pair is removed in the list of pairs in the window.
 * Alphabets in NRIC are case-insensitive.
 
 Examples
-* `delete_pair eic/S2235243I vic/t0123423a` unpairs the elderly with NRIC S2235243I with the volunteer with NRIC T0123423A.
-* `delete_pair eic/s1135243A vic/S0773423a` unpairs the elderly with NRIC S1135243A with the volunteer with NRIC S0773423A.
+* `unpair eic/S2235243I vic/t0123423a` unpairs the elderly with NRIC S2235243I with the volunteer with NRIC T0123423A.
+* `unpair eic/s1135243A vic/S0773423a` unpairs the elderly with NRIC S1135243A with the volunteer with NRIC S0773423A.
 
 -----------------------------------------
 
@@ -582,14 +582,14 @@ Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-0
 |----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Elderly**      | `add_elderly n/NAME eic/NRIC [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g.,`add_elderly n/John p/98765432 e/johnd@example.com a/John street eic/S1234567C bd/1950-02-03 re/NORTH r/HIGH t/lonely dr/2023-06-03,2023-06-17` |
 | **Add Volunteer**    | `add_volunteer vic/NRIC n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [t/TAG]… [mt/MEDICAL_QUALIFICATIONS]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g.,`add_volunteer n/Doe p/98765432 e/johnd@example.com a/block 123 bd/1998-02-01 vic/S8457677H re/WEST t/graduate mt/CPR BASIC`    |
-| **Add Pair**         | `add_pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`<br> <br> e.g., `add_pair eic/S2235243I vic/t0123423a`                                                                                                                                                                                                                            |
+| **Pair Up**          | `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`<br> <br> e.g., `pair eic/S2235243I vic/t0123423a`                                                                                                                                                                                                                                    |
 | **Auto Pair**        | `auto_pair`                                                                                                                                                                                                                                                                                                                     |
 | **Edit Elderly**     | `edit_elderly INDEX [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g., `edit_elderly 1 p/91234567 e/johndoe@example.com`                                                                                    |
 | **Edit Volunteer**   | `edit_volunteer INDEX [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g., `edit_volunteer 2 n/Betsy Crower mt/`                                                                         |
 | **Edit Person**      | `edit NRIC [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g., `edit S1234567A p/12334455`                                                                                      |
 | **Delete Elderly**   | `delete_elderly NRIC`<br> <br> e.g., `delete_ elderly S8238655C`                                                                                                                                                                                                                                                                |
 | **Delete Volunteer** | `delete_volunteer NRIC`<br> <br> e.g., `delete_volunteer S8238658J`                                                                                                                                                                                                                                                             |
-| **Delete Pair**      | `delete_pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`<br> <br> e.g., `delete_pair vic/t0123423a eic/S2235243I`                                                                                                                                                                                                                      |
+| **Unpair**           | `unpair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`<br> <br> e.g., `unpair vic/t0123423a eic/S2235243I`                                                                                                                                                                                                                                |
 | **Find People**      | `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS] [t/TAG] [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` <br> <br> e.g., `find n/John Doe`                                                                                                 |
 | **Summarise Data**   | `stats`                                                                                                                                                                                                                                                                                                                         |
 | **Help**             | `help`                                                                                                                                                                                                                                                                                                                          |
