@@ -127,6 +127,10 @@ import static seedu.address.model.timetable.util.TypicalLesson.ST2334_TUE_12PM_2
 
 import seedu.address.model.tag.ModuleTag;
 
+/**
+ * A typical Module Tag consisting of a module code and lessons.
+ * Lessons are extracted from {@code TypicalLesson}.
+ */
 public class TypicalModuleTag {
 
     public static final ModuleTag CS1010J_DZ = new ModuleTagBuilder()

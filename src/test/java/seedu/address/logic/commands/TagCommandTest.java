@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.tag.util.TypicalModuleTag.CFG1002_F;
 import static seedu.address.model.tag.util.TypicalModuleTag.CS2040S_F;
 import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_KE;
-import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_RU;
 import static seedu.address.model.tag.util.TypicalModuleTag.CS3245_F;
 import static seedu.address.model.tag.util.TypicalModuleTag.LAJ1201_F;
 import static seedu.address.model.timetable.util.TypicalLesson.CS2101_MON_8AM_2HR;

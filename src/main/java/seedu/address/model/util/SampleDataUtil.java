@@ -13,6 +13,7 @@ import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -123,7 +124,7 @@ public class SampleDataUtil {
 
         assignModuleTagsToPerson(person, moduleTagSet);
 
-        logger.info(String.format("Person parsed: %s", person));
+        logger.log(Level.FINE, String.format("Person parsed: %s", person));
 
         return person;
     }
@@ -151,11 +152,11 @@ public class SampleDataUtil {
     }
 
     private static Optional<ModuleTag> getModuleTagFromLine(String tag) {
-        logger.info(String.format("Tag to be formatted: %s", tag));
+        logger.log(Level.FINE, String.format("Tag to be formatted: %s", tag));
 
         try {
             ModuleTag moduleTag = ParserUtil.parseModuleTag(tag);
-            logger.info(String.format("Module Tag parsed: %s", moduleTag));
+            logger.log(Level.FINE, String.format("Module Tag parsed: %s", moduleTag));
             return Optional.of(moduleTag);
         } catch (ParseException pe) {
             return Optional.empty();

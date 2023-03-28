@@ -11,7 +11,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.tag.ModuleTag;
-import seedu.address.testutil.TypicalUser;
 
 public class ModuleTagSetTest {
     private static final ModuleTag MODULE_TAG_1 = new ModuleTag(VALID_MODULE_1);
@@ -63,7 +62,5 @@ public class ModuleTagSetTest {
     }
 
     @Test
-    public void compareTo() {
-        
-    }
+    public void compareTo() {}
 }

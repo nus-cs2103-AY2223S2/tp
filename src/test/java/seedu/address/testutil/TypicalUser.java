@@ -1,5 +1,13 @@
 package seedu.address.testutil;
 
+import static seedu.address.model.tag.util.TypicalModuleTag.CFG1002_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_HA;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2103T_HA;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2108_HA;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2109S_HA;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA2104_HA;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA3252_HA;
+
 import java.util.HashSet;
 
 import seedu.address.model.person.Address;
@@ -10,14 +18,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.person.User;
 import seedu.address.model.tag.GroupTag;
-
-import static seedu.address.model.tag.util.TypicalModuleTag.CFG1002_F;
-import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_HA;
-import static seedu.address.model.tag.util.TypicalModuleTag.CS2103T_HA;
-import static seedu.address.model.tag.util.TypicalModuleTag.CS2108_HA;
-import static seedu.address.model.tag.util.TypicalModuleTag.CS2109S_HA;
-import static seedu.address.model.tag.util.TypicalModuleTag.MA2104_HA;
-import static seedu.address.model.tag.util.TypicalModuleTag.MA3252_HA;
 
 /**
  * A utility class containing a list of {@code User} singleton object to be used in tests.

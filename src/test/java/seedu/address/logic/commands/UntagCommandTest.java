@@ -13,7 +13,6 @@ import static seedu.address.model.timetable.util.TypicalLesson.CS2101_THU_8AM_2H
 import static seedu.address.model.timetable.util.TypicalLesson.CS2105_THU_4PM_2HR;
 import static seedu.address.model.timetable.util.TypicalLesson.CS2106_WED_10AM_2HR;
 import static seedu.address.model.timetable.util.TypicalLesson.MA2104_FRI_12PM_2HR;
-import static seedu.address.model.timetable.util.TypicalLesson.MA2104_MON_10AM_2HR;
 import static seedu.address.model.timetable.util.TypicalLesson.MA2104_TUE_12PM_2HR;
 import static seedu.address.model.timetable.util.TypicalLesson.MA2104_WED_12PM_1HR;
 import static seedu.address.model.timetable.util.TypicalLesson.MA3252_FRI_7PM_3HR;

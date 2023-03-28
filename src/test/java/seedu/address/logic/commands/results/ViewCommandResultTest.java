@@ -1,12 +1,12 @@
 package seedu.address.logic.commands.results;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.EDWARD;
 import static seedu.address.testutil.TypicalPersons.HONG;
+
+import org.junit.jupiter.api.Test;
 
 public class ViewCommandResultTest {
     private static final String FEEDBACK = "feedback";

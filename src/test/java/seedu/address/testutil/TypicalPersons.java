@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_ALEX;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_ALEX;
@@ -48,8 +47,8 @@ import static seedu.address.model.tag.util.TypicalModuleTag.CS2040S_HA;
 import static seedu.address.model.tag.util.TypicalModuleTag.CS2040S_RU;
 import static seedu.address.model.tag.util.TypicalModuleTag.CS2100_HA;
 import static seedu.address.model.tag.util.TypicalModuleTag.CS2100_RU;
-import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_HA;
 import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_ALT_1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_HA;
 import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_KE;
 import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_RU;
 import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_SE;
@@ -90,8 +89,8 @@ import static seedu.address.model.tag.util.TypicalModuleTag.GESS1019_HA;
 import static seedu.address.model.tag.util.TypicalModuleTag.IS1108_DZ;
 import static seedu.address.model.tag.util.TypicalModuleTag.IS2218_DZ;
 import static seedu.address.model.tag.util.TypicalModuleTag.LAJ1201_F;
-import static seedu.address.model.tag.util.TypicalModuleTag.MA1521_HA;
 import static seedu.address.model.tag.util.TypicalModuleTag.MA1521_DZ;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA1521_HA;
 import static seedu.address.model.tag.util.TypicalModuleTag.MA2001_F;
 import static seedu.address.model.tag.util.TypicalModuleTag.MA2001_HA;
 import static seedu.address.model.tag.util.TypicalModuleTag.MA2101_HA;
@@ -375,7 +374,8 @@ public class TypicalPersons {
         return new ContactIndex(getTypicalPersons().indexOf(person) + 1);
     }
 
-    public static Person getPersonFromIndexHandler(IndexHandler indexHandler, Person person) throws PersonNotFoundException {
+    public static Person getPersonFromIndexHandler(
+            IndexHandler indexHandler, Person person) throws PersonNotFoundException {
         ContactIndex indexOwen = getContactIndexOfPerson(person);
 
         Optional<Person> optionalPerson = indexHandler.getPersonByIndex(indexOwen);

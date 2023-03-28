@@ -241,9 +241,6 @@ public class Person {
                 .filter(ModuleTag::isBasicTag)
                 .collect(Collectors.toList());
 
-        logger.info(String.format("Removing Module Tags: %s, %s",
-                removableModuleTags, completelyRemovableModuleTags));
-
         this.moduleTags.removeAll(removableModuleTags);
         removableModuleTags.stream()
                 .map(ModuleTag::getImmutableLessons)
