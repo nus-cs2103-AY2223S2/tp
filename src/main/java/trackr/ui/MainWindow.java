@@ -9,6 +9,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import trackr.commons.core.GuiSettings;
 import trackr.commons.core.LogsCenter;
@@ -31,26 +32,18 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private SupplierListPanel supplierListPanel;
-    private TaskListPanel taskListPanel;
-    private OrderListPanel orderListPanel;
+    private TabPanel tabPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    @FXML
+    private VBox tabPanelPlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
-
-    @FXML
-    private StackPane supplierListPanelPlaceholder;
-
-    @FXML
-    private StackPane taskListPanelPlaceholder;
-
-    @FXML
-    private StackPane orderListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -118,14 +111,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        supplierListPanel = new SupplierListPanel(logic.getFilteredSupplierList());
-        supplierListPanelPlaceholder.getChildren().add(supplierListPanel.getRoot());
-
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-
-        orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
-        orderListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
+        tabPanel = new TabPanel(logic);
+        tabPanelPlaceholder.getChildren().add(tabPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -182,20 +169,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleSortTask() {
-        TaskListPanel sortedTaskListPanel = new TaskListPanel(logic.getSortedTaskList());
-        taskListPanelPlaceholder.getChildren().add(sortedTaskListPanel.getRoot());
-    }
-
-    public SupplierListPanel getSupplierListPanel() {
-        return supplierListPanel;
-    }
-
-    public TaskListPanel getTaskListPanel() {
-        return taskListPanel;
-    }
-
-    public OrderListPanel getOrderListPanel() {
-        return orderListPanel;
+        tabPanel.showSortedTasks();
     }
 
     /**

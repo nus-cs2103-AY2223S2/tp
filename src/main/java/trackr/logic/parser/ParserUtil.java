@@ -12,6 +12,7 @@ import trackr.commons.util.StringUtil;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.commons.Deadline;
 import trackr.model.commons.Name;
+import trackr.model.commons.TabEnum;
 import trackr.model.commons.Tag;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
@@ -34,7 +35,7 @@ import trackr.model.task.TaskStatus;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-
+    public static final String MESSAGE_INVALID_TAB = "No such tab.";
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -296,6 +297,24 @@ public class ParserUtil {
             throw new ParseException(CustomerAddress.MESSAGE_CONSTRAINTS);
         }
         return new CustomerAddress(trimmedCustomerAddress);
+    }
+
+    //========================Parse those related to tab==================================
+    /**
+     * Parses {@code targetTabName} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @throws ParseException if the specified TabName is invalid (not a recognised Tab).
+     */
+    public static Index parseTab(String targetTabName) throws ParseException {
+        String trimmedTab = targetTabName.trim();
+        int tabIndex;
+        try {
+            tabIndex = TabEnum.getTabIndex(trimmedTab);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(MESSAGE_INVALID_TAB);
+        }
+        return Index.fromZeroBased(tabIndex);
     }
 
 }

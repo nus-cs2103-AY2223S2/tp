@@ -6,7 +6,7 @@ skinparam classBackgroundColor MODEL_COLOR
 
 top to bottom direction
 
-
+package "Model " MODEL_COLOR_T1 {
 Class "<<interface>>\nReadOnlyXYZList" as ReadOnlyXYZList
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
@@ -17,7 +17,11 @@ Class UniqueXYZList
 Class XYZ
 Class "{abstract}\nItem" as Item
 Class ItemList<T extends Item>
-Class UniqueItemList<T>
+Class "UniqueItemList<T> " as UniqueItemList
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
 
 ModelManager ..u|> Model
 Model ..r> ReadOnlyUserPrefs
@@ -28,14 +32,14 @@ UserPrefs ..u> ReadOnlyUserPrefs
 
 XYZList ..u|> ReadOnlyXYZList
 XYZList *--d> "         1" UniqueXYZList
-UniqueXYZList --> "~* all " XYZ
+UniqueXYZList --> "*" XYZ : contains all >
 
-ModelManager --->"  ~* filtered" XYZ
+ModelManager ----> "*" XYZ : contains filtered >
 
 ItemList *-d> "1 " UniqueItemList
 UniqueItemList -d> "              *" Item
 
 UniqueXYZList --l|> UniqueItemList
 XYZList --l|> ItemList
-XYZ --l> Item
+XYZ --l|> Item
 @enduml

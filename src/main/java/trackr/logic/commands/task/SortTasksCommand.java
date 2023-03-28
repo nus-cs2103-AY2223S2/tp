@@ -15,7 +15,7 @@ import trackr.model.task.SortTasksComparator;
 public class SortTasksCommand extends Command {
     public static final String COMMAND_WORD = "sort_task";
     public static final String COMMAND_WORD_SHORTCUT = "sort_t";
-    
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all tasks "
             + "based on their statuses and deadline.\n"
             + "Tasks that are not done and have the earliest deadlines would"

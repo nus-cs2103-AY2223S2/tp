@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import trackr.logic.commands.Command;
 import trackr.logic.commands.ExitCommand;
 import trackr.logic.commands.HelpCommand;
+import trackr.logic.commands.TabCommand;
 import trackr.logic.commands.order.AddOrderCommand;
 import trackr.logic.commands.order.ClearOrderCommand;
 import trackr.logic.commands.order.DeleteOrderCommand;
@@ -144,6 +145,9 @@ public class TrackrParser {
         case SortTasksCommand.COMMAND_WORD:
         case SortTasksCommand.COMMAND_WORD_SHORTCUT:
             return new SortTasksCommand();
+
+        case TabCommand.COMMAND_WORD:
+            return new TabCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

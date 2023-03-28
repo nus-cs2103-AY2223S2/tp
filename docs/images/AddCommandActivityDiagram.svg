@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="574px" preserveAspectRatio="none" style="width:683px;height:574px;background:#FFFFFF;" version="1.1" viewBox="0 0 683 574" width="683px" zoomAndPan="magnify">
+    <defs/>
+    <g>
+        <ellipse cx="266.75" cy="20" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1.0;"/>
+        <rect fill="#F1F1F1" height="34.1328" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="210" x="161.75" y="50"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="190" x="171.75" y="71.6016">User executes AddXYZCommand</text>
+        <rect fill="#F1F1F1" height="48.2656" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="353" x="90.25" y="104.1328"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="333" x="100.25" y="125.7344">AddXYZCommandParser extracts the relevant information</text>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="141" x="196.25" y="139.8672">from the input argument</text>
+        <polygon fill="#F1F1F1" points="266.75,172.3984,266.75,172.3984,278.75,184.3984,266.75,196.3984,266.75,196.3984,254.75,184.3984,266.75,172.3984" style="stroke:#181818;stroke-width:0.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="131" x="123.75" y="182.0781">[Invalid Input Argument]</text>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="29" x="278.75" y="182.0781">[else]</text>
+        <rect fill="#F1F1F1" height="48.2656" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="195" x="11" y="206.3984"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="130" x="43.5" y="228">Display error message</text>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="175" x="21" y="242.1328">on invalid command argument</text>
+        <ellipse cx="108.5" cy="299.7969" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/>
+        <ellipse cx="108.5" cy="299.7969" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/>
+        <rect fill="#F1F1F1" height="34.1328" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="124" x="363" y="206.3984"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="104" x="373" y="228">Create XYZ object</text>
+        <polygon fill="#F1F1F1" points="425,274.6641,425,274.6641,437,286.6641,425,298.6641,425,298.6641,413,286.6641,425,274.6641" style="stroke:#181818;stroke-width:0.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="75" x="338" y="284.3438">[List has Item]</text>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="29" x="437" y="284.3438">[else]</text>
+        <rect fill="#F1F1F1" height="48.2656" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="150" x="236" y="308.6641"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="130" x="246" y="330.2656">Display error message</text>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="100" x="263" y="344.3984">on duplicate item</text>
+        <ellipse cx="311" cy="402.0625" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/>
+        <ellipse cx="311" cy="402.0625" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/>
+        <rect fill="#F1F1F1" height="34.1328" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="156" x="461" y="308.6641"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="136" x="471" y="330.2656">Add XYZ to XYZ XYZList</text>
+        <rect fill="#F1F1F1" height="34.1328" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="194" x="442" y="376.9297"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="170" x="456" y="398.5313">Update XYZ in FilteredXYZList</text>
+        <rect fill="#F1F1F1" height="34.1328" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="266" x="406" y="433.0625"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="246" x="416" y="454.6641">Save XYZ to local data with internal XYZList</text>
+        <rect fill="#F1F1F1" height="34.1328" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="190" x="330" y="487.1953"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="166" x="344" y="508.7969">Success message is returned</text>
+        <ellipse cx="425" cy="552.3281" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/>
+        <ellipse cx="425" cy="552.3281" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="266.75" x2="266.75" y1="30" y2="50"/>
+        <polygon fill="#181818" points="262.75,40,266.75,50,270.75,40,266.75,44" style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="266.75" x2="266.75" y1="84.1328" y2="104.1328"/>
+        <polygon fill="#181818" points="262.75,94.1328,266.75,104.1328,270.75,94.1328,266.75,98.1328" style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="108.5" x2="108.5" y1="254.6641" y2="288.7969"/>
+        <polygon fill="#181818" points="104.5,278.7969,108.5,288.7969,112.5,278.7969,108.5,282.7969" style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="311" x2="311" y1="356.9297" y2="391.0625"/>
+        <polygon fill="#181818" points="307,381.0625,311,391.0625,315,381.0625,311,385.0625" style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="539" x2="539" y1="342.7969" y2="376.9297"/>
+        <polygon fill="#181818" points="535,366.9297,539,376.9297,543,366.9297,539,370.9297" style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="539" x2="539" y1="411.0625" y2="433.0625"/>
+        <polygon fill="#181818" points="535,423.0625,539,433.0625,543,423.0625,539,427.0625" style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="413" x2="311" y1="286.6641" y2="286.6641"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="311" x2="311" y1="286.6641" y2="308.6641"/>
+        <polygon fill="#181818" points="307,298.6641,311,308.6641,315,298.6641,311,302.6641" style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="437" x2="539" y1="286.6641" y2="286.6641"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="539" x2="539" y1="286.6641" y2="308.6641"/>
+        <polygon fill="#181818" points="535,298.6641,539,308.6641,543,298.6641,539,302.6641" style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="539" x2="539" y1="467.1953" y2="472.1953"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="539" x2="425" y1="472.1953" y2="472.1953"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="425" x2="425" y1="472.1953" y2="487.1953"/>
+        <polygon fill="#181818" points="421,477.1953,425,487.1953,429,477.1953,425,481.1953" style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="425" x2="425" y1="240.5313" y2="274.6641"/>
+        <polygon fill="#181818" points="421,264.6641,425,274.6641,429,264.6641,425,268.6641" style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="425" x2="425" y1="521.3281" y2="541.3281"/>
+        <polygon fill="#181818" points="421,531.3281,425,541.3281,429,531.3281,425,535.3281" style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="254.75" x2="108.5" y1="184.3984" y2="184.3984"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="108.5" x2="108.5" y1="184.3984" y2="206.3984"/>
+        <polygon fill="#181818" points="104.5,196.3984,108.5,206.3984,112.5,196.3984,108.5,200.3984" style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="278.75" x2="425" y1="184.3984" y2="184.3984"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="425" x2="425" y1="184.3984" y2="206.3984"/>
+        <polygon fill="#181818" points="421,196.3984,425,206.3984,429,196.3984,425,200.3984" style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="266.75" x2="266.75" y1="152.3984" y2="172.3984"/>
+        <polygon fill="#181818" points="262.75,162.3984,266.75,172.3984,270.75,162.3984,266.75,166.3984" style="stroke:#181818;stroke-width:1.0;"/>
+        <!--MD5=[db3be88d7d3fdf3e0c511f3967615da5]
+@startuml
+ !include style.puml
+
+ start
+ :User executes AddXYZCommand;
+ :AddXYZCommandParser extracts the relevant information
+ from the input argument;
+
+ 'Since the beta syntax does not support placing the condition outside the
+ 'diamond we place it as the true branch instead.
+
+ if () then ([Invalid Input Argument])
+     :Display error message
+     on invalid command argument;
+     stop
+ else ([else])
+     :Create XYZ object;
+     if() then ([List has Item])
+        :Display error message
+         on duplicate item;
+         stop
+     else ([else])
+         :Add XYZ to XYZ XYZList;
+             : Update XYZ in FilteredXYZList;
+                :Save XYZ to local data with internal XYZList;
+         endif
+ : Success message is returned;
+ stop
+ @enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam BackgroundColor #FFFFFFF
+
+skinparam Shadowing false
+
+skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 1
+    BorderColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #000000
+    Color #000000
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+hide footbox
+hide members
+hide circle
+
+ start
+ :User executes AddXYZCommand;
+ :AddXYZCommandParser extracts the relevant information
+ from the input argument;
+
+
+ if () then ([Invalid Input Argument])
+     :Display error message
+     on invalid command argument;
+     stop
+ else ([else])
+     :Create XYZ object;
+     if() then ([List has Item])
+        :Display error message
+         on duplicate item;
+         stop
+     else ([else])
+         :Add XYZ to XYZ XYZList;
+             : Update XYZ in FilteredXYZList;
+                :Save XYZ to local data with internal XYZList;
+         endif
+ : Success message is returned;
+ stop
+ @enduml
+
+PlantUML version 1.2022.12(Mon Oct 24 02:12:26 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+-->    </g>
+</svg>

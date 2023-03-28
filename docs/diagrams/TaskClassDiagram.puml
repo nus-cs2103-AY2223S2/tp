@@ -11,6 +11,8 @@ Abstract Class "{abstract}\nItem" as Item
 Abstract Class "{abstract}\nName" as Name
 Abstract Class "{abstract}\nDeadline" as Deadline
 Abstract Class "{abstract}\nStatus" as Status
+Class "UniqueItemList<T> " as UniqueItemList
+Class ItemList<T extends Item>
 
 Class Task
 Class TaskName
@@ -19,11 +21,11 @@ Class TaskDeadline
 Class TaskList extends ItemList
 Class UniqueTaskList extends UniqueItemList
 
-ItemList *--r> "1 " UniqueItemList
-UniqueItemList -r> Item
+ItemList *--r> "1" UniqueItemList
+UniqueItemList -r> "*" Item
 
 TaskList *--r> "1 " UniqueTaskList
-UniqueTaskList -r> Task
+UniqueTaskList -r> "*" Task
 Task *--> "1" TaskName
 Task *--> "1" TaskDeadline
 Task *--> "1 " TaskStatus
