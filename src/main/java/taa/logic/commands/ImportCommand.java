@@ -71,6 +71,18 @@ public class ImportCommand extends Command {
             throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + Name.MESSAGE_CONSTRAINTS);
         }
 
+        if (!record.isMapped(CsvUtil.KW_Attendance)) {
+            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"'
+                    + record + "\". " + mkMsgNoColumn(CsvUtil.KW_Attendance));
+        }
+        final String atd = record.get(CsvUtil.KW_Attendance).trim();
+
+        if (!record.isMapped(CsvUtil.KW_PP)) {
+            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"'
+                    + record + "\". " + mkMsgNoColumn(CsvUtil.KW_PP));
+        }
+        final String pp = record.get(CsvUtil.KW_Attendance).trim();
+
         if (!record.isMapped(CsvUtil.KW_TAGS)) {
             throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + mkMsgNoColumn(CsvUtil.KW_TAGS));
         }
@@ -85,7 +97,7 @@ public class ImportCommand extends Command {
             throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + Tag.MESSAGE_CONSTRAINTS);
         }
 
-        return new Student(new Name(name), parsedTags);
+        return new Student(new Name(name), atd, pp, parsedTags);
     }
 
     @Override

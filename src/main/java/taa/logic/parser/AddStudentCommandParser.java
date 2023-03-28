@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import taa.commons.core.Messages;
 import taa.logic.commands.AddStudentCommand;
 import taa.logic.parser.exceptions.ParseException;
+import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.tag.Tag;
@@ -37,7 +38,7 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CLASS_TAG));
 
-        Student student = new Student(name, tagList);
+        Student student = new Student(name, Attendance.ORIGINAL_ATD, Attendance.ORIGINAL_PP, tagList);
 
         return new AddStudentCommand(student);
     }
