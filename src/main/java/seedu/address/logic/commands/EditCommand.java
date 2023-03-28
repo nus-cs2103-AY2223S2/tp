@@ -39,6 +39,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in MedInfo.";
+    public static final String MESSAGE_WARD_NOT_FOUND = "Ward not found.";
 
     private final Index index;
     private final EditPatientDescriptor editPatientDescriptor;
@@ -70,6 +71,10 @@ public class EditCommand extends Command {
 
         if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatient(editedPatient)) {
             throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
+        }
+
+        if (!model.hasWard(editedPatient.getWard())) {
+            throw new CommandException(MESSAGE_WARD_NOT_FOUND);
         }
 
         model.setPatient(patientToEdit, editedPatient);
