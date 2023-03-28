@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternshipCatalogueParser" as InternshipCatalogueParser LOGIC_COLOR
+participant ":EventCatalogueParser" as EventCatalogueParser LOGIC_COLOR
+participant "u:EventAddCommand" as EventAddCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Event" as Event MODEL_COLOR
+end box
+[-> LogicManager : execute("event add ..")
+activate LogicManager
+
+LogicManager -> InternshipCatalogueParser : parseCommand("event add ..")
+activate InternshipCatalogueParser
+
+InternshipCatalogueParser -> EventCatalogueParser: parseCommand("add ..")
+activate EventCatalogueParser
+
+create EventAddCommand
+EventCatalogueParser -> EventAddCommand
+activate EventAddCommand
+
+
+create Event
+EventAddCommand -> Event
+activate Event
+
+Event --> EventAddCommand
+deactivate Event
+EventAddCommand --> EventCatalogueParser
+deactivate EventAddCommand
+
+EventCatalogueParser --> InternshipCatalogueParser : :EventAddCommand
+deactivate EventCatalogueParser
+
+InternshipCatalogueParser --> LogicManager : :EventAddCommand
+deactivate InternshipCatalogueParser
+
+LogicManager -> EventAddCommand : execute(:Model)
+activate EventAddCommand
+
+EventAddCommand -> Model : getSelectedInternship()
+Model --> EventAddCommand : selectedInternship:Internship
+
+EventAddCommand -> Event: setInternship(selectedInternship)
+
+
+EventAddCommand -> Model : addEvent(:Event)
+EventAddCommand -> Model : updateFilteredEventList(selectedInternship)
+deactivate Model
+EventAddCommand --> LogicManager : :CommandResult
+deactivate EventAddCommand
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml

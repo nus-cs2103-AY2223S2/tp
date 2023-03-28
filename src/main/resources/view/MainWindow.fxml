@@ -15,7 +15,7 @@
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="The Intern's Ship" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <!-- edit this if we want to change main icon image -->
-        <Image url="@/images/address_book_32.png" />
+        <Image url="@/images/ship.png" />
     </icons>
     <scene>
         <Scene>
@@ -52,7 +52,7 @@
                   <SplitPane dividerPositions="0.0" minWidth="450.0" VBox.vgrow="ALWAYS">
                      <items>
                         <StackPane fx:id="internshipListPanelPlaceholder" alignment="TOP_LEFT" />
-                        <StackPane fx:id="internshipInfoPanelPlaceholder" alignment="TOP_LEFT" />
+                        <StackPane fx:id="pagePlaceholder" alignment="TOP_LEFT" />
                      </items>
                   </SplitPane>
                        <StackPane fx:id="statusbarPlaceholder" />

@@ -5,13 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.HashMap;
 import java.util.List;
 
-import seedu.internship.commons.core.Messages;
-import seedu.internship.commons.core.index.Index;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.EventCatalogue;
 import seedu.internship.model.Model;
 import seedu.internship.model.event.Event;
-import seedu.internship.model.internship.Internship;
 
 /**
  * List all events with clashing timings.
@@ -27,6 +24,6 @@ public class ClashCommand extends Command {
         requireNonNull(model);
         EventCatalogue eventCatalogue = (EventCatalogue) model.getEventCatalogue();
         HashMap<Event, List<Event>> hash = eventCatalogue.findClashEvents();
-        return new CommandResult(String.format(MESSAGE_CLASH_INTERNSHIP_SUCCESS), hash);
+        return new CommandResult(String.format(MESSAGE_CLASH_INTERNSHIP_SUCCESS), ResultType.CLASH, hash);
     }
 }

@@ -13,7 +13,7 @@ import seedu.internship.model.internship.Internship;
 
 
 /**
- * Adds a internship to the internship catalogue.
+ * Adds an internship to the internship catalogue.
  */
 public class AddCommand extends Command {
 
@@ -28,11 +28,11 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_POSITION + "Software Engineer "
-            + PREFIX_COMPANY + "Grab"
-            + PREFIX_STATUS + "1"
-            + PREFIX_DESCRIPTION + "Interview Date: 20 May 2023"
-            + PREFIX_TAG + "highly interested"
-            + PREFIX_TAG + "django";
+            + PREFIX_COMPANY + "Grab "
+            + PREFIX_STATUS + "1 "
+            + PREFIX_DESCRIPTION + "Interview Date: 20 May 2023 "
+            + PREFIX_TAG + "highly interested "
+            + PREFIX_TAG + "django ";
 
     public static final String MESSAGE_SUCCESS = "New internship added: %1$s";
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the catalogue";

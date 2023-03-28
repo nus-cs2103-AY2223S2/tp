@@ -4,47 +4,65 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Package Model <<Rectangle>> {
+Class "<<interface>>\nReadOnlyInternshipCatalogue" as ReadOnlyInternshipCatalogue
+Class "<<interface>>\nReadOnlyEventCatalogue" as ReadOnlyEventCatalogue
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class InternshipCatalogue
 Class ModelManager
 Class UserPrefs
-
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
+Class UniqueInternshipList
+Class Internship
+Class Company
+Class Position
+Class Status
+Class Description
 Class Tag
-
+Class EventCatalogue
+Class UniqueEventList
+Class Event
+Class Start
+Class End
+Class Name
+Class TimeParser
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+InternshipCatalogue .up.|> ReadOnlyInternshipCatalogue
+EventCatalogue .up.|> ReadOnlyEventCatalogue
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .right.> ReadOnlyEventCatalogue
+Model .left.> ReadOnlyInternshipCatalogue
+ModelManager -left-> "1" InternshipCatalogue
+ModelManager -right-> "1" EventCatalogue
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+InternshipCatalogue *--> "1" UniqueInternshipList
+EventCatalogue *--> "1" UniqueEventList
+UniqueInternshipList --> "~* all" Internship
+UniqueEventList --> "~* all" Event
+Internship *--> Status
+Internship *--> Description
+Internship *--> Position
+Internship *--> Company
+Internship *--> "*" Tag
+Event *--> Name
+Event *--> Description
+Event *--> Start
+Event *--> End
+Start  .up.|> TimeParser
+End  .up.|> TimeParser
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Status -[hidden]right-> Description
+Description -[hidden]right-> Company
+Company -[hidden]right-> Position
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Internship
+ModelManager -->"~* filtered" Event
 @enduml
