@@ -158,9 +158,21 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+    public void updateFilteredMeetingList(Predicate<MeetingWithPerson> predicate) {
         requireNonNull(predicate);
         filteredMeetings.setPredicate(predicate);
     }
 
+    @Override
+    public Person addMeeting(Person personToEdit, Meeting meeting) {
+        Person editedPerson = addressBook.addMeeting(personToEdit, meeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+        return editedPerson;
+    }
+
+    // @Override
+    // public void refreshedMeetingList() {
+    //     filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList());
+    //     updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+    // }
 }

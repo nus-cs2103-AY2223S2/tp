@@ -33,6 +33,10 @@ public class UniquePersonList implements Iterable<Person> {
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    private final ObservableList<MeetingWithPerson> internalMeetingList = FXCollections.observableArrayList();
+    private final ObservableList<MeetingWithPerson> internalUmodifiableMeetingList =
+            FXCollections.unmodifiableObservableList(internalMeetingList);
+
     /**
      * Returns true if the list contains an equivalent person as the given argument.
      */
@@ -143,16 +147,24 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Returns a list of all the meetings that every person in this list has.
      * List returned is unmodifiable
+     * Internal Meeting list is refreshed before it is returned.
      */
     public ObservableList<MeetingWithPerson> getAllMeetingAsUnmodifiableObservableList() {
+        refreshInternalMeetingList();
+        return internalUmodifiableMeetingList;
+    }
+
+    /**
+     * Refreshes the internal meeting list, should be called when any meetings are modified
+     */
+    public void refreshInternalMeetingList() {
         // Converts the internalList into a stream, maps every person inside it to it's meeting list,
         // then every ArrayList of Meetings are combined together to form one giant ArrayList that
         // contains all the meetings that every person has
         ArrayList<MeetingWithPerson> meeting = internalList.stream()
                                            .flatMap(p -> p.getMeetings().stream().map(m -> new MeetingWithPerson(m, p)))
                                            .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
-        ObservableList<MeetingWithPerson> observableList = FXCollections.observableArrayList(meeting);
-        return FXCollections.unmodifiableObservableList(observableList);
+        internalMeetingList.clear();
+        internalMeetingList.addAll(meeting);
     }
-
 }
