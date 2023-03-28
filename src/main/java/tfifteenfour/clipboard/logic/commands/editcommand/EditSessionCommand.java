@@ -19,7 +19,7 @@ import tfifteenfour.clipboard.model.course.Session;
  */
 public class EditSessionCommand extends EditCommand {
     public static final String COMMAND_TYPE_WORD = "session";
-    public static final String MESSAGE_USAGE = COMMAND_WORD  + " " + COMMAND_TYPE_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_TYPE_WORD
             + ": Edits a session name."
             + " Parameters: INDEX NEW_SESSION_NAME\n"
             + "Note: INDEX must be a positive integer\n"
