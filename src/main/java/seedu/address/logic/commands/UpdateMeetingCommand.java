@@ -86,7 +86,7 @@ public class UpdateMeetingCommand extends Command {
             String meetingClashMsg = "Meeting specified clashes with other meetings!";
             throw new CommandException(meetingClashMsg);
         }
-        personToEdit.setMeeting(meetingIndex.getZeroBased(), editedMeeting);
+        model.updateMeeting(personToEdit, meetingIndex, editedMeeting);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_UPDATE_MEETING_SUCCESS, editedMeeting));
     }

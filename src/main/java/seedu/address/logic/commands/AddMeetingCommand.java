@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,13 +72,16 @@ public class AddMeetingCommand extends Command {
             throw new CommandException(meetingClashMsg);
         }
 
-        personToEdit.getMeetings().add(meeting);
-        Person editedPerson = new Person(
-            personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-            personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
+        // personToEdit.getMeetings().add(meeting);
+        // Person editedPerson = new Person(
+        //     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+        //     personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
+        // model.setPerson(personToEdit, editedPerson);
 
-        model.setPerson(personToEdit, editedPerson);
+        // Adds meeting and returns edited person
+        Person editedPerson = model.addMeeting(personToEdit, meeting); 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
 
         return new CommandResult(generateSuccessMessage(editedPerson));
     }

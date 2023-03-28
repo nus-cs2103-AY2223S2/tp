@@ -11,6 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.Meeting;
+import seedu.address.model.person.MeetingWithPerson;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<MeetingWithPerson> filteredMeetings;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +38,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList());
     }
 
     public ModelManager() {
@@ -107,7 +112,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -147,4 +151,42 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    //=========== Filtered Meeting List Accessors =============================================================
+
+    @Override
+    public ObservableList<MeetingWithPerson> getFilteredMeetingList() {
+        return filteredMeetings;
+    }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<MeetingWithPerson> predicate) {
+        requireNonNull(predicate);
+        filteredMeetings.setPredicate(predicate);
+    }
+
+    @Override
+    public Person addMeeting(Person personToEdit, Meeting meeting) {
+        Person editedPerson = addressBook.addMeeting(personToEdit, meeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+        return editedPerson;
+    }
+
+    @Override
+    public Person removeMeeting(Person personToEdit, Index indexMeeting) {
+        Person editedPerson = addressBook.removeMeeting(personToEdit, indexMeeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+        return editedPerson;
+    }
+
+    @Override
+    public void updateMeeting(Person personToEdit, Index meetingIndex, Meeting editedMeeting) {
+        addressBook.updateMeeting(personToEdit, meetingIndex, editedMeeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+    }
+
+    // @Override
+    // public void refreshedMeetingList() {
+    //     filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList());
+    //     updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+    // }
 }
