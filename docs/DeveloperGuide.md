@@ -691,9 +691,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list tasks
-2.  AddressBook shows a list of tasks
+2.  TaskBook shows a list of tasks
 3.  User requests to delete a specific task in the list
-4.  AddressBook deletes the task
+4.  TaskBook deletes the task
 
     Use case ends.
 
@@ -705,9 +705,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TaskBook shows an error message.
 
       Use case resumes at step 2.
+
 
 **Use case: Edit a task**
 
