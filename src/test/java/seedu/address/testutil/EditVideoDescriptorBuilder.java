@@ -45,6 +45,7 @@ public class EditVideoDescriptorBuilder {
 
         descriptor = new EditVideoDescriptor();
         descriptor.setName(video.getName());
+        descriptor.setWatched(video.hasWatched());
         descriptor.setTags(video.getTags());
     }
 
@@ -56,6 +57,17 @@ public class EditVideoDescriptorBuilder {
      */
     public EditVideoDescriptorBuilder withName(String name) {
         descriptor.setName(new VideoName(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code hasWatched} of the {@code EditVideoDescriptor} that we are building.
+     *
+     * @param hasWatched The watch status to set to.
+     * @return This {@code EditVideoDescriptorBuilder}.
+     */
+    public EditVideoDescriptorBuilder withWatched(boolean hasWatched) {
+        descriptor.setWatched(hasWatched);
         return this;
     }
 
