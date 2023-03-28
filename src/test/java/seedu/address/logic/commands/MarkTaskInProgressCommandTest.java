@@ -67,7 +67,7 @@ class MarkTaskInProgressCommandTest {
         // null -> returns false
         assertFalse(markFirstTaskInProgressCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(markFirstTaskInProgressCommand.equals(markSecondTaskInProgressCommand));
     }
 }

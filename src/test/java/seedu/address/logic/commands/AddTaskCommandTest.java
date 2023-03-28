@@ -16,7 +16,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
@@ -40,10 +39,10 @@ class AddTaskCommandTest {
     @Test
     public void execute_addValidTask_success() throws Exception {
         Task validTask = new TaskBuilder().build();
-        Person personToAddTaskTo = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        seedu.address.model.student.Student studentToAddTaskTo = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         CommandResult commandResult = new AddTaskCommand(INDEX_FIRST_PERSON, validTask).execute(model);
 
-        assertEquals(String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS, personToAddTaskTo.getName(),
+        assertEquals(String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS, studentToAddTaskTo.getName(),
                 validTask.getName()), commandResult.getFeedbackToUser());
     }
 
@@ -67,7 +66,7 @@ class AddTaskCommandTest {
         // null -> returns false
         assertFalse(addFirstTaskCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(addFirstTaskCommand.equals(addSecondTaskCommand));
     }
 }

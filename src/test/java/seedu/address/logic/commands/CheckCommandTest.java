@@ -16,7 +16,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -29,13 +28,13 @@ class CheckCommandTest {
     public void execute_validCheckIndexList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person personToCheck = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        seedu.address.model.student.Student studentToCheck = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         CheckCommand checkCommand = new CheckCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(CheckCommand.MESSAGE_CHECK_PERSON_SUCCESS, personToCheck);
+        String expectedMessage = String.format(CheckCommand.MESSAGE_CHECK_PERSON_SUCCESS, studentToCheck);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.checkPerson(personToCheck);
+        expectedModel.checkPerson(studentToCheck);
 
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
 
@@ -81,7 +80,7 @@ class CheckCommandTest {
         // null -> returns false
         assertFalse(checkFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(checkFirstCommand.equals(checkSecondCommand));
     }
 }

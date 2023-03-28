@@ -10,11 +10,11 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
+import seedu.address.model.student.Student;
 
 /**
- * Adds a task to a person identified using it's displayed index in the student list.
+ * Adds a task to a student identified using it's displayed index in the student list.
  */
 public class AddTaskCommand extends Command {
 
@@ -36,7 +36,7 @@ public class AddTaskCommand extends Command {
 
     /**
      * Creates an AddTaskCommand to add the specified {@code Task} to
-     * a person
+     * a student
      */
     public AddTaskCommand(Index targetIndex, Task taskToAdd) {
         requireAllNonNull(targetIndex, taskToAdd);
@@ -47,21 +47,21 @@ public class AddTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Person personToAddTaskTo = lastShownList.get(targetIndex.getZeroBased());
+        Student studentToAddTaskTo = lastShownList.get(targetIndex.getZeroBased());
 
-        if (personToAddTaskTo.hasTask(taskToAdd)) {
+        if (studentToAddTaskTo.hasTask(taskToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        personToAddTaskTo.addTask(taskToAdd);
+        studentToAddTaskTo.addTask(taskToAdd);
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS,
-                personToAddTaskTo.getName(), taskToAdd.getName()));
+                studentToAddTaskTo.getName(), taskToAdd.getName()));
     }
 
     @Override

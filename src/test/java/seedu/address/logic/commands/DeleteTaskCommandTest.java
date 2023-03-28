@@ -62,7 +62,7 @@ class DeleteTaskCommandTest {
         // null -> returns false
         assertFalse(deleteFirstTaskCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(deleteFirstTaskCommand.equals(deleteSecondTaskCommand));
     }
 }

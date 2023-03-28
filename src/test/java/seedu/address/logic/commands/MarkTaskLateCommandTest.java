@@ -63,7 +63,7 @@ class MarkTaskLateCommandTest {
         // null -> returns false
         assertFalse(markFirstTaskLateCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(markFirstTaskLateCommand.equals(markSecondTaskLateCommand));
     }
 }

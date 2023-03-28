@@ -68,7 +68,7 @@ class MarkTaskCompleteCommandTest {
         // null -> returns false
         assertFalse(markFirstTaskCompleteCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(markFirstTaskCompleteCommand.equals(markSecondTaskCompleteCommand));
     }
 }
