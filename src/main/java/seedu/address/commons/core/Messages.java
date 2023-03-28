@@ -31,7 +31,8 @@ public class Messages {
             + String.format(MESSAGE_DO_NOT_EXIST, "%1$s")
             + " in Lecture %3$s of Module %2$s";
 
-    public static final String MESSAGE_CAN_DO_MULTIPLE = "(can be comma \",\" separated to include multiple)";
+    public static final String MESSAGE_CAN_DO_MULTIPLE = "(first parameter can be comma \",\" "
+            + "separated to include multiple objects)";
 
     public static final String MESSAGE_MODULE_TAG_DOES_NOT_EXIST = "Tag %1$s of "
             + String.format(MESSAGE_MODULE_DOES_NOT_EXIST, "%2$s");

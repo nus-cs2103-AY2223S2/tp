@@ -12,8 +12,8 @@ public abstract class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ":\n"
-            + DeleteModuleCommand.MESSAGE_USAGE
-            + DeleteLectureCommand.MESSAGE_USAGE
-            + DeleteVideoCommand.MESSAGE_USAGE
+            + DeleteModuleCommand.MESSAGE_USAGE + "\n"
+            + DeleteLectureCommand.MESSAGE_USAGE + "\n"
+            + DeleteVideoCommand.MESSAGE_USAGE + "\n"
             + Messages.MESSAGE_CAN_DO_MULTIPLE;
 }
