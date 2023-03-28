@@ -107,6 +107,6 @@ public class Grade implements Comparable<Grade> {
         } else if (o.toPoints() < this.toPoints()) {
             return -1;
         }
-        return 0;
+        return o.toString().compareTo(this.toString());
     }
 }

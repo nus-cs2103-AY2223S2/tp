@@ -28,6 +28,8 @@ public class SortCommandParser implements Parser<SortCommand> {
             return new SortCommand("year");
         } else if (prefix.equals("/m")) {
             return new SortCommand("code");
+        } else if (prefix.equals("/t")) {
+            return new SortCommand("tag");
         } else {
             throw new ParseException("Invalid format!");
         }
