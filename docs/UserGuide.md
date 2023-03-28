@@ -230,18 +230,38 @@ Optional Prefixes:
 
 
 ## Tasks
+These are the routine tasks that all fish keepers have to undertake to keep their fish bright and healthy. Create tasks 
+to remind you and help you in your fish keeping. *Fish Ahoy!* will automatically generate feeding reminders for you 
+based off your fishes' last fed date. These will have a **high** priority to remind you to feed them!
+In the list, each fish has an [index](#faq). Use these indexes to perform certain operations on them.
+
+
+Currently, there are three operations around tasks:
+* [Adding a task `task add`](#adding-a-task-task-add)
+* [Deleting a task `task delete`](#deleting-a-task-task-delete)
+* [Listing tasks `list task`](#listing-tasks-list-task)
+
 
 ### Adding a task: `task add`
 
 Adds a task to *Fish Ahoy!* .
 
-Format: `task add d/<TASK_NAME>`
+Use this command to add your weekly tasks into *Fish Ahoy!* such as tank cleaning and equipment maintenance.
 
-To specify tank specific task: `task add d/<TASK_NAME> tk/<TANK_INDEX>`
+Format: `task add d/<TASK_NAME> [tk/<TANK_INDEX> p/<PRIORITY_LEVEL>]`
+
+Prefixes:
+* `d/` - The task description.
+
+Optional Prefixes:
+* `tk/` - The tank that this task involves.
+* `p/` - The priority level of the task. Note that PRIORITY_LEVEL is **only** accepted as `low` / `medium` / `high`
 
 ### Deleting a task: `task delete`
 
 Delete a task entry from *Fish Ahoy!* .
+
+Use this command to delete a task from *Fish Ahoy!*, when you have completed the task or would like to change it.
 
 Format: `task delete <TASK_INDEX>`
 
@@ -249,16 +269,10 @@ Format: `task delete <TASK_INDEX>`
 
 Lists all tasks created.
 
+Use this command to list all tasks.
+
 Format: `list task`
 
-
-### Setting Priorities: `/p`
-
-Use the format specifier /p to specify priorities
-
-Format: `task add d/<TASK_NAME> p/<PRIORITY_LEVEL>`
-
-*Note: PRIORITY_LEVEL is only accepted as low / medium / high*
 
 ## Storage
 ### Saving the data
@@ -292,7 +306,7 @@ Format: `help`
 ## FAQ
 
 **Q**: Whats a tank index?<br>
-**A**: Tank indexes are used to perform operations on certain fish. Below, highlighted in red, are the tank indexes.
+**A**: Tank indexes are used to perform operations on certain tanks. Below, highlighted in red, are the tank indexes.
 
 ![help message](images/TankIndexUi.png)
 
@@ -300,6 +314,11 @@ Format: `help`
 **A**: Fish indexes are used to perform operations on certain fish. Below, highlighted in red, are the fish indexes.
 
 ![help message](images/FishIndexUi.png)
+
+**Q**: Whats a task index?<br>
+**A**: Task indexes are used to perform operations on certain tasks. Below, highlighted in red, are the task indexes.
+
+![help message](images/TaskIndexUi.png)
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install *Fish Ahoy!*  in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Fish Ahoy! home folder.
