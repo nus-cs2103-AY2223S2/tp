@@ -212,4 +212,9 @@ public class ModelManager implements Model {
         addressBook.bookAppointment(appointment);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
+
+    @Override
+    public Person getPersonView() {
+        return filteredPersons.get(0); // todo change placeholder
+    }
 }

@@ -45,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane personViewPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
@@ -121,6 +124,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        handleView();
     }
 
     /**
@@ -135,6 +140,13 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    // reused https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/112/files
+    @FXML
+    public void handleView() {
+        PersonViewPanel personViewPanel = new PersonViewPanel(logic.getPersonView());
+        personViewPanelPlaceholder.getChildren().clear();
+        personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
+    }
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
