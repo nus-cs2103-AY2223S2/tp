@@ -83,7 +83,15 @@ public class StatisticPanel extends UiPart<Region> {
         pieChart.setClockwise(true);
         pieChart.setLabelsVisible(false);
         pieChart.setStartAngle(180);
+        applyCustomColorSequence(pieChartData, "#af4505", "#9f6100", "#05813b", "#57acda");
+    }
 
+    private void applyCustomColorSequence(ObservableList<PieChart.Data> pieChartData, String... pieColors) {
+        int i = 0;
+        for (PieChart.Data data : pieChartData) {
+            data.getNode().setStyle("-fx-pie-color: " + pieColors[i % pieColors.length] + ";");
+            i++;
+        }
     }
 
 }
