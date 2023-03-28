@@ -9,9 +9,9 @@ import static trackr.commons.util.AppUtil.checkArgument;
  */
 public class ItemCost {
     public static final String MESSAGE_CONSTRAINTS =
-            "Cost should only contain numbers, and it should be at most 3 digits long";
-    public static final String VALIDATION_REGEX = "^([1-9]{0,3})$";
-    public final String value;
+            "Cost should only contain numbers, and it should be at most 4 digits long";
+    public static final String VALIDATION_REGEX = "^([1-9]{0,4})$";
+    public final float value;
 
     /**
      * Constructs an Cost Object
@@ -19,7 +19,7 @@ public class ItemCost {
     public ItemCost(String value) {
         requireNonNull(value);
         checkArgument(isValidCost(value), MESSAGE_CONSTRAINTS);
-        this.value = value;
+        this.value = Float.parseFloat(value);
     }
 
     /**
@@ -31,21 +31,25 @@ public class ItemCost {
 
     @Override
     public String toString() {
-        return value;
+        return "$" + value;
     }
 
-    public String toJsonString() { return "$" + value; }
+    public String toJsonString() { return Float.toString(value); }
+
+    public float getValue() {
+        return value;
+    }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ItemCost // instanceof handles nulls
-                && value.equals(((ItemCost) other).value)); // state check
+                && value == (((ItemCost) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return Float.hashCode(value);
     }
 
 }

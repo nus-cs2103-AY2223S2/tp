@@ -9,7 +9,7 @@ import trackr.logic.parser.ParserUtil;
 import trackr.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteTaskCommand object
+ * Parses input arguments and creates a new DeleteMenuItemCommand object
  */
 public class DeleteMenuItemCommandParser implements Parser<DeleteMenuItemCommand> {
 

@@ -17,16 +17,18 @@ public class MenuItem extends Item {
     private final ItemName itemName;
     private final ItemPrice itemPrice;
     private final ItemCost itemCost;
+    private final ItemProfit itemProfit;
 
     /**
      * Every field must be present and not null.
      */
-    public MenuItem(ItemName ItemName, ItemPrice ItemPrice, ItemCost ItemCost) {
+    public MenuItem(ItemName itemName, ItemPrice itemPrice, ItemCost itemCost) {
         super(ModelEnum.Item);
-        requireAllNonNull(ItemName, ItemPrice, ItemCost);
-        this.itemName = ItemName;
-        this.itemPrice = ItemPrice;
-        this.itemCost = ItemCost;
+        requireAllNonNull(itemName, itemPrice, itemCost);
+        this.itemName = itemName;
+        this.itemPrice = itemPrice;
+        this.itemCost = itemCost;
+        this.itemProfit = new ItemProfit(itemPrice, itemCost);
     }
 
     public ItemName getItemName() {
@@ -39,6 +41,10 @@ public class MenuItem extends Item {
 
     public ItemCost getItemCost() {
         return itemCost;
+    }
+
+    public ItemProfit getItemProfit() {
+        return itemProfit;
     }
 
     /**
@@ -86,7 +92,7 @@ public class MenuItem extends Item {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(itemName, itemPrice, itemCost);
+        return Objects.hash(itemName, itemPrice, itemCost, itemProfit);
     }
 
     @Override
@@ -96,7 +102,9 @@ public class MenuItem extends Item {
                 .append("; Price: ")
                 .append(getItemPrice())
                 .append("; Cost: ")
-                .append(getItemCost());
+                .append(getItemCost())
+                .append("; Profit Margin: ")
+                .append(getItemProfit());
         return builder.toString();
     }
 }

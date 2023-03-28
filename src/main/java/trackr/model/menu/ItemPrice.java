@@ -9,17 +9,17 @@ import static trackr.commons.util.AppUtil.checkArgument;
  */
 public class ItemPrice {
     public static final String MESSAGE_CONSTRAINTS =
-            "Price should only contain numbers, and it should be at most 3 digits long";
-    public static final String VALIDATION_REGEX = "^([1-9]{0,3})$";
-    public final String value;
+            "Price should only contain numbers, and it should be at most 4 digits long";
+    public static final String VALIDATION_REGEX = "^([1-9]{0,4})$";
+    public final float value;
 
     /**
-     * Constructs an Price Object
+     * Constructs a Price Object
      */
     public ItemPrice(String value) {
         requireNonNull(value);
         checkArgument(isValidPrice(value), MESSAGE_CONSTRAINTS);
-        this.value = value;
+        this.value = Float.parseFloat(value);
     }
 
     /**
@@ -35,18 +35,22 @@ public class ItemPrice {
     }
 
     public String toJsonString() {
-        return "$" + value;
+        return Float.toString(value);
+    }
+
+    public float getValue() {
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ItemPrice // instanceof handles nulls
-                && value.equals(((ItemPrice) other).value)); // state check
+                && value == ((ItemPrice) other).value); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return Float.hashCode(value);
     }
 }

@@ -12,6 +12,7 @@ public class MenuItemDescriptor implements ItemDescriptor<MenuItem> {
     private ItemName itemName;
     private ItemPrice itemPrice;
     private ItemCost itemCost;
+    private ItemProfit itemProfit;
 
     public MenuItemDescriptor() {}
 
@@ -22,13 +23,14 @@ public class MenuItemDescriptor implements ItemDescriptor<MenuItem> {
         setItemName(toCopy.itemName);
         setItemPrice(toCopy.itemPrice);
         setItemCost(toCopy.itemCost);
+        setItemProfit(toCopy.itemProfit);
     }
 
     /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldNonNull() {
-        return CollectionUtil.isAnyNonNull(itemName, itemPrice, itemCost);
+        return CollectionUtil.isAnyNonNull(itemName, itemPrice, itemCost, itemProfit);
     }
 
     public void setItemName(ItemName itemName) {
@@ -53,6 +55,14 @@ public class MenuItemDescriptor implements ItemDescriptor<MenuItem> {
 
     public Optional<ItemCost> getItemCost() {
         return Optional.ofNullable(itemCost);
+    }
+
+    public void setItemProfit(ItemProfit itemProfit) {
+        this.itemProfit = itemProfit;
+    }
+
+    public Optional<ItemProfit> getItemProfit() {
+        return Optional.ofNullable(itemProfit);
     }
 
     @Override
