@@ -80,6 +80,7 @@ public class DetailDisplay extends UiPart<Region> {
      */
     public void setInfo(Person person, ObservableList<UiFile> fileList) {
         this.person = person;
+        fileList.sorted(new FileComparator());
         viewDisplay.setItems(fileList);
         viewDisplay.setCellFactory(listView -> new FileList.FileListViewCell());
         name.setText(person.getName().fullName);
