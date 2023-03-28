@@ -349,9 +349,9 @@ Examples:
 
 
 
-### View a student's information: `view`
+### Displays a student's information: `select`
 
-Views personal information for a particular student.
+Select a particular student and display his / her particulars.
 
 Format:
 ```
