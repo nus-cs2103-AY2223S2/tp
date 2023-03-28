@@ -32,6 +32,12 @@
   }, {
     "categoryName" : "test",
     "summary" : "test"
+  }, {
+    "categoryName" : "1",
+    "summary" : ""
+  }, {
+    "categoryName" : "2",
+    "summary" : ""
   } ],
   "expenses" : [ {
     "name" : "apples",
@@ -63,6 +69,22 @@
     "date" : "2023-03-16",
     "category" : {
       "categoryName" : "a",
+      "summary" : ""
+    }
+  }, {
+    "name" : "test1",
+    "amount" : "2.0",
+    "date" : "2023-03-28",
+    "category" : {
+      "categoryName" : "1",
+      "summary" : ""
+    }
+  }, {
+    "name" : "test2",
+    "amount" : "2.0",
+    "date" : "2023-03-28",
+    "category" : {
+      "categoryName" : "2",
       "summary" : ""
     }
   } ]

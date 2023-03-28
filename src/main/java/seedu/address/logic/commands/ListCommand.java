@@ -46,12 +46,16 @@ public class ListCommand extends Command {
         requireNonNull(model);
         model.updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
 
-        if (categoryPredicate.isPresent()) {
+        if (categoryPredicate.isPresent() && timespanPredicate.isPresent()) {
+            model.updateFilteredExpensesList(categoryPredicate.get().and(timespanPredicate.get()));
+        }
+        else if (categoryPredicate.isPresent()) {
             model.updateFilteredExpensesList(categoryPredicate.get());
         }
-        if (timespanPredicate.isPresent()) {
+        else if (timespanPredicate.isPresent()) {
             model.updateFilteredExpensesList(timespanPredicate.get());
         }
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW, model.getFilteredExpenseList().size()), true);
     }
