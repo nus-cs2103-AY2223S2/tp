@@ -2,6 +2,7 @@ package seedu.address.model.employee;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -24,6 +25,11 @@ public class Employee {
     // Data fields
     private final Address address;
     private final Department department;
+    private Payroll payroll;
+    private int leaveCount;
+    private LocalDate dateOfBirth = null;
+    private LocalDate dateOfJoining = null;
+
     private PicturePath picturePath;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -39,6 +45,28 @@ public class Employee {
         this.email = email;
         this.address = address;
         this.department = department;
+        this.picturePath = new PicturePath("src/main/resources/employeepictures/default.png");
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null except picturePathString. Includes new fields (payroll,
+     * leave count, date of birth, date of joining)
+     */
+    public Employee(Name name, EmployeeId employeeId, Phone phone, Email email, Address address,
+                    Department department, Payroll payroll, int leaveCount, LocalDate dateOfBirth,
+                    LocalDate dateOfJoining, Set<Tag> tags) {
+        requireAllNonNull(name, employeeId, phone, email, address, department, payroll, leaveCount,
+                dateOfBirth, dateOfJoining, tags);
+        this.name = name;
+        this.employeeId = employeeId;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.department = department;
+        this.leaveCount = leaveCount;
+        this.dateOfBirth = dateOfBirth;
+        this.dateOfJoining = dateOfJoining;
         this.picturePath = new PicturePath("src/main/resources/employeepictures/default.png");
         this.tags.addAll(tags);
     }
@@ -81,6 +109,22 @@ public class Employee {
 
     public Department getDepartment() {
         return department;
+    }
+
+    public Payroll getPayroll() {
+        return payroll;
+    }
+
+    public int getLeaveCount() {
+        return leaveCount;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public LocalDate getDateOfJoining() {
+        return dateOfJoining;
     }
 
     public PicturePath getPicturePath() {
