@@ -9,6 +9,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.TaskBookModel;
 import seedu.address.model.task.Task;
 
 
@@ -33,9 +34,10 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, TaskBookModel taskBookModel) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
+        requireNonNull(taskBookModel);
+        List<Task> lastShownList = taskBookModel.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -43,7 +45,7 @@ public class UnmarkCommand extends Command {
 
         // TODO: throw exception if task is not done?
         Task taskToUnmark = lastShownList.get(targetIndex.getZeroBased());
-        model.unmarkTask(taskToUnmark);
+        taskBookModel.unmarkTask(taskToUnmark);
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark));
     }
 }

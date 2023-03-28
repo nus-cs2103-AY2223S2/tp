@@ -118,7 +118,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -189,13 +189,17 @@ public class MainWindow extends UiPart<Stage> {
                 personListPanel = new PersonListPanel(logic.getFilteredPersonList());
                 listPanelPlaceholder.getChildren().clear();
                 listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+                StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+                statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
                 panelLabel.setText("Persons");
             }
 
             if (commandResult.getFeedbackToUser().equals(ViewCommand.MESSAGE_SUCCESS)) {
-                personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+                taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
                 listPanelPlaceholder.getChildren().clear();
                 listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+                StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskBookFilePath());
+                statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
                 panelLabel.setText("Tasks");
             }
 

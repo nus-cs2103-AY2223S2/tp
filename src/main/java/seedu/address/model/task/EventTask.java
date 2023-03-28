@@ -17,7 +17,7 @@ public class EventTask extends Task {
      * @param endDate The end date of the event.
      */
     public EventTask(TaskDescription description, Date startDate, Date endDate) {
-        super(description);
+        super(description, String.format("From: %s To: %s", startDate.toString(), endDate.toString()), "E");
         this.startDate = startDate;
         this.endDate = endDate;
     }

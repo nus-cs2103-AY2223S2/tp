@@ -32,7 +32,7 @@ public class ToDoCommandParser implements Parser<ToDoCommand> {
 
         TaskDescription description = ParserUtil.parseTaskDescription(argMultimap.getValue(PREFIX_TASK).get());
 
-        Task task = new Task(description);
+        Task task = new Task(description, "", "T");
 
         return new ToDoCommand(task);
     }

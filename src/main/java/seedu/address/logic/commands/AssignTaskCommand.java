@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static seedu.address.model.TaskBookModel.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
@@ -11,9 +11,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.TaskBookModel;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.Date;
-import seedu.address.model.task.DeadlineTask;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 
@@ -56,12 +55,12 @@ public class AssignTaskCommand extends Command {
      * @return feedback message of the operation result for display
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, TaskBookModel taskBookModel) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
+        List<Task> lastShownList = taskBookModel.getFilteredTaskList();
         List<Person> lastShownPersonList = model.getFilteredPersonList();
 
-        if (!model.hasTaskIndex(toAssignTask)) {
+        if (!taskBookModel.hasTaskIndex(toAssignTask)) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
@@ -74,8 +73,8 @@ public class AssignTaskCommand extends Command {
         Task assignedTask = createAssignedTask(taskToAssign, toAssignMember, personToAssign);
 
         //model.assignTask(toAssignTask, toAssignMember);
-        model.assignTask(taskToAssign, assignedTask, toAssignTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        taskBookModel.assignTask(taskToAssign, assignedTask, toAssignTask);
+        taskBookModel.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         String taskString = taskToAssign.toString();
         String personString = personToAssign.getName().toString();
         return new CommandResult(String.format(MESSAGE_SUCCESS, personString, taskString));
@@ -92,9 +91,15 @@ public class AssignTaskCommand extends Command {
 
     private static Task createAssignedTask(Task taskToAssign, Index personToAssign, Person personAssigned) {
         TaskDescription taskDesc = taskToAssign.getDescription();
-        Date taskDate = ((DeadlineTask) taskToAssign).getDate();
-        Task assignedTask = new DeadlineTask(taskDesc, taskDate);
-        assignedTask.assignPerson(personToAssign, personAssigned);
+        String taskDate = taskToAssign.getDate().toString();
+        String taskType = taskToAssign.getTaskType();
+        Task assignedTask = new Task(taskDesc, taskDate, taskType);
+        String personAssignedName = personAssigned.getName().toString();
+        String personAssignedRole = personAssigned.getRole().toString();
+        assignedTask.assignPerson(personToAssign, personAssignedName, personAssignedRole);
+        boolean status = taskToAssign.isDone();
+        assignedTask.setStatus(status);
+
         return assignedTask;
     }
 

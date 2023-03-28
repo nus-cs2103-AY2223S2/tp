@@ -13,9 +13,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.Comment;
-import seedu.address.model.task.Score;
-import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -26,10 +23,9 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Task> filteredTasks;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook and userPrefs and taskPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
@@ -39,7 +35,6 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
     }
 
     public ModelManager() {
@@ -70,10 +65,13 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
+
     @Override
     public Path getAddressBookFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
+
+
 
     @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
@@ -81,7 +79,8 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== Pied Piper ================================================================================
+
+    //=========== Address Book ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -101,18 +100,6 @@ public class ModelManager implements Model {
 
 
     @Override
-    public boolean hasTask(Task task) {
-        requireNonNull(task);
-        return addressBook.hasTask(task);
-    }
-
-    @Override
-    public boolean hasTaskIndex(Index taskIndex) {
-        requireNonNull(taskIndex);
-        return addressBook.hasTaskIndex(taskIndex);
-    }
-
-    @Override
     public boolean hasPersonIndex(Index personIndex) {
         requireNonNull(personIndex);
         return addressBook.hasPersonIndex(personIndex);
@@ -123,10 +110,6 @@ public class ModelManager implements Model {
         addressBook.removePerson(target);
     }
 
-    @Override
-    public void deleteTask(Task target) {
-        addressBook.removeTask(target);
-    }
 
     @Override
     public void addPerson(Person person) {
@@ -134,32 +117,6 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
-    @Override
-    public void addTask(Task task) {
-        addressBook.addTask(task);
-    }
-
-    @Override
-    public void commentOnTask(Comment comment, Task task) {
-        addressBook.commentOnTask(comment, task);
-    }
-
-    @Override
-    public void markTask(Task task, Score score) {
-        requireNonNull(task);
-        addressBook.markTask(task, score);
-    }
-
-    @Override
-    public void unmarkTask(Task task) {
-        requireNonNull(task);
-        addressBook.unmarkTask(task);
-    }
-
-    @Override
-    public void assignTask(Task taskToAssign, Task assignedTask, Index taskIndex) {
-        addressBook.assignTask(taskToAssign, assignedTask, taskIndex);
-    }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
@@ -185,16 +142,6 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    @Override
-    public ObservableList<Task> getFilteredTaskList() {
-        return filteredTasks;
-    }
-
-    @Override
-    public void updateFilteredTaskList(Predicate<Task> predicate) {
-        requireNonNull(predicate);
-        filteredTasks.setPredicate(predicate);
-    }
 
     @Override
     public boolean equals(Object obj) {

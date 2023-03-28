@@ -10,6 +10,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TaskBook;
+import seedu.address.model.TaskBookModel;
+import seedu.address.model.TaskBookModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
@@ -19,21 +22,27 @@ public class ListCommandTest {
 
     private Model model;
     private Model expectedModel;
+    private TaskBookModel taskBookModel;
+    private TaskBookModel expectedTaskBookModel;
 
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        taskBookModel = new TaskBookModelManager(new TaskBook(), new UserPrefs());
+        expectedTaskBookModel = new TaskBookModelManager(taskBookModel.getTaskBook(), new UserPrefs());
     }
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), model, taskBookModel, ListCommand.MESSAGE_SUCCESS,
+            expectedModel, expectedTaskBookModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), model, taskBookModel, ListCommand.MESSAGE_SUCCESS,
+            expectedModel, expectedTaskBookModel);
     }
 }

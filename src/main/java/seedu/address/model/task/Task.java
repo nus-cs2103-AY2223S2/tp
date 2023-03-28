@@ -16,11 +16,13 @@ public class Task {
     private String personAssignedName;
     private String personAssignedRole;
     private Score score;
+    private String date;
+    private String taskType;
 
     /**
      * The constructor of the Task that takes in description of the task.
      */
-    public Task(TaskDescription description) {
+    public Task(TaskDescription description, String date, String taskType) {
         this.description = description;
         this.isDone = false;
         this.personAssignedIndex = null;
@@ -28,6 +30,8 @@ public class Task {
         this.personAssignedRole = null;
         this.score = null;
         this.taskComment = null;
+        this.date = date;
+        this.taskType = taskType;
     }
 
     /**
@@ -37,6 +41,14 @@ public class Task {
      */
     public TaskDescription getDescription() {
         return this.description;
+    }
+
+    /**
+     * Supplies type of the current task when requested.
+     * @return String type of the task
+     */
+    public String getTaskType() {
+        return this.taskType;
     }
 
     /**
@@ -55,6 +67,13 @@ public class Task {
      */
     public boolean isDone() {
         return isDone;
+    }
+
+    /**
+     * Marks the current task as done.
+     */
+    public void setStatus(boolean isDone) {
+        this.isDone = isDone;
     }
 
     /**
@@ -93,15 +112,39 @@ public class Task {
     }
 
     /**
+     * Supplies date of the current task when requested.
+     * @return String date of the task
+     */
+    public String getDate() {
+        return this.date;
+    }
+
+    /**
      * Assigns a person to the current task.
      *
      * @param personIndex Index of the person to be assigned to the current task
+     * @param personToAssign Person to be assigned to the current task
      */
     public void assignPerson(Index personIndex, Person personToAssign) {
         this.personAssignedIndex = personIndex;
         this.personAssignedName = personToAssign.getName().toString();
         this.personAssignedRole = personToAssign.getRole();
     }
+    /**
+     * Assigns a person to the current task.
+     *
+     * @param personIndex Index of the person to be assigned to the current task
+     * @param personName Name of the person to be assigned to the current task
+     * @param personRole Role of the person to be assigned to the current task
+     */
+    public void assignPerson(Index personIndex, String personName, String personRole) {
+        this.personAssignedIndex = personIndex;
+        this.personAssignedName = personName;
+        this.personAssignedRole = personRole;
+    }
+
+
+
 
     /**
      * Supplies the index of the person assigned to the current task when requested.
