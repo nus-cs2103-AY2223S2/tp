@@ -23,6 +23,7 @@ import seedu.recipe.logic.commands.CommandResult;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.storage.ExportManager;
 import seedu.recipe.storage.ImportManager;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
 
@@ -135,6 +136,15 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    @FXML
+    private void handleExport() {
+        ExportManager exportManager = new ExportManager(primaryStage);
+        try {
+            exportManager.execute();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     // My test import method
 //    @FXML
 //    private void newHandleImport() {
