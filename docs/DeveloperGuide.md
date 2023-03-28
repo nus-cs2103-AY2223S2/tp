@@ -271,7 +271,7 @@ While  the `UniqueGroupList` is essentially a list of unique groups. The class d
 ![GroupListClassDiagram](images/GroupListclassdiagram.png)
 
 To allow coaches to take full advantage of the grouping functionality, two commands are required.
-### GroupCommand
+#### GroupCommand
 This command is used to add or delete groups from the AddressBook.<br>`group m/MODIFICATION g/GROUPNAME` where:<br>
 1. `m/`: flag to indicate the type of modification.
     1. `add`: adds an athlete to an existing group.
@@ -297,7 +297,7 @@ This will trigger method `deleteGroup()` in `ModelManager` that will call the me
 During this method, the group cannot merely be deleted. It must first iterate through every athlete on the list and remove the "Hall"
 `Tag` for every athlete. Only after removing all "Hall" tags in the AddressBook can we delete the specified group.
 
-### GroupModifyCommand
+#### GroupModifyCommand
 After enabling the creation and deletion of groups, the next step is to allow the addition and removal of
 athletes to / from groups. The `groupmod` command allows for such a function.
 
@@ -309,7 +309,7 @@ athletes to / from groups. The `groupmod` command allows for such a function.
    2. `remove`: deletes an athlete from an existing group.
 3. `g/`: flag to indicate the group name.
 
-#### Adding an athlete to a group:
+##### Adding an athlete to a group:
 1. To add an athlete named “John” (at index 1) to an existing group named “Hall”, the coach can execute:
 `groupmod 1 m/add g/Hall`.
 
