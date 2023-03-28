@@ -97,6 +97,24 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// meeting operations
+
+    /**
+     * Adds a meeting to the Person
+     * @param personToEdit person we want to add meeting to
+     * @param meeting meeting that is to be added
+     * @return 
+     */
+    public Person addMeeting(Person personToEdit, Meeting meeting) {
+        personToEdit.getMeetings().add(meeting);
+        Person editedPerson = new Person(
+            personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+            personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
+        this.setPerson(personToEdit, editedPerson);
+        persons.getAllMeetingAsUnmodifiableObservableList();
+        return editedPerson;
+    }
+
     //// util methods
 
     @Override

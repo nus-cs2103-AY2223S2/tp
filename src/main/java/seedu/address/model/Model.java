@@ -15,6 +15,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<MeetingWithPerson> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -94,5 +95,7 @@ public interface Model {
      * Updates the filtered meeting list to filter by input {@code predicate}
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredMeetingList(Predicate<Meeting> predicate);
+    void updateFilteredMeetingList(Predicate<MeetingWithPerson> predicate);
+
+    Person addMeeting(Person personToEdit, Meeting meeting);
 }
