@@ -1,53 +1,57 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.List;
-
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
+import javafx.collections.ObservableList;
 import seedu.address.experimental.model.Model;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Name;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Adds a person to the address book.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an entity from Reroll.";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_SUCCESS = "Existing entity deleted: %1$s";
 
-    private final Index targetIndex;
+    private final Name entityName;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    private final Classification classification;
+
+    /**
+     * Creates a KillCommand to delete the specified {@code Entity}
+     */
+    public DeleteCommand(Name name, Classification classification) {
+        requireAllNonNull(name, classification);
+        this.entityName = name;
+        this.classification = classification;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Entity> lastShownList = model.getFilteredEntityList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Entity entityToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteEntity(entityToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, entityToDelete));
+        ObservableList<Entity> listByClassification = model.getListByClassification(classification.toString());
+        Entity toDelete = listByClassification.stream()
+                .filter(entity -> entity.getName().equals(entityName))
+                .findFirst()
+                .orElseThrow(() -> new CommandException("No such entity found!"));
+        requireNonNull(toDelete);
+        model.deleteEntity(toDelete);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof DeleteCommand // instanceof handles nulls
-            && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteCommand // instanceof handles nulls
+                && entityName.equals(((DeleteCommand) other).entityName)
+                && classification.equals(((DeleteCommand) other).classification));
     }
 }

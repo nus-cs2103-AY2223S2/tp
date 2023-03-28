@@ -132,4 +132,8 @@ public interface Model {
      */
     Entity getCurrentSelectedEntity();
 
+    /**
+     * Get list of entities by classification
+     */
+    ObservableList<Entity> getListByClassification(String classification);
 }
