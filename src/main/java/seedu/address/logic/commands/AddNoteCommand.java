@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Note;
@@ -25,16 +24,16 @@ public class AddNoteCommand extends Command {
     public static final String LAB_STRING = "lab";
     public static final String CONSULTATION_STRING = "consultation";
     private Note toAdd;
-    private Index index;
     private String eventName;
     private String eventType;
 
     /**
      * Creates an AddLab to add the specified {@code Lab}
      */
-    public AddNoteCommand(Note note) {
-        requireNonNull(note);
+    public AddNoteCommand(Note note, String name, String type) {
         toAdd = note;
+        eventName = name;
+        eventType = type;
     }
 
     /**
@@ -51,8 +50,16 @@ public class AddNoteCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_NOTE);
         }
 
-        model.addNote(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        if (this.eventType.equals(TUTORIAL_STRING)) {
+            model.addNoteToTutorial(toAdd, eventName);
+        } else if (this.eventType.equals(LAB_STRING)) {
+            model.addNoteToLab(toAdd, this.eventName);
+        } else if (this.eventType.equals(CONSULTATION_STRING)) {
+            model.addNoteToConsultation(toAdd, this.eventName);
+        } else {
+            throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
+        }
+        return new CommandResult(String.format(MESSAGE_SUCCESS), false, false, false, true);
     }
 
     @Override

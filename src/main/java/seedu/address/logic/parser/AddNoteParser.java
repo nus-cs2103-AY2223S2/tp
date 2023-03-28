@@ -1,9 +1,11 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_CONTENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EXTERNAL;
+import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddNoteCommand;
@@ -11,7 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Note;
 
 /**
- * Parser for notes (TODO: add more note options)
+ * Parser for notes from commands
  */
 public class AddNoteParser implements Parser<AddNoteCommand> {
 
@@ -21,11 +23,12 @@ public class AddNoteParser implements Parser<AddNoteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddNoteCommand parse(String args) throws ParseException {
-        //newArgs to trim first word when more commands added to switch-case in AddressBookParser
+        requireNonNull(args);
         String newArgs = args.trim().replaceFirst("Note", "");
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NOTE_EXTERNAL);
-        //Make the user not create lab and students with the same command
+                ArgumentTokenizer.tokenize(args, PREFIX_NOTE_EXTERNAL, PREFIX_NOTE_CONTENT,
+                        PREFIX_TUTORIAL, PREFIX_LAB);
+
         if (!arePrefixesAbsent(argMultimap, PREFIX_NOTE_CONTENT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddNoteCommand.MESSAGE_USAGE));
@@ -36,10 +39,15 @@ public class AddNoteParser implements Parser<AddNoteCommand> {
                     AddNoteCommand.MESSAGE_USAGE));
         }
 
+        Optional<String> tutorialName = argMultimap.getValue(PREFIX_TUTORIAL);
+        Optional<String> labName = argMultimap.getValue(PREFIX_LAB);
+        String eventName = !tutorialName.isEmpty() ? tutorialName.get() : labName.get();
+        String eventType = !tutorialName.isEmpty() ? "tutorial" : "lab";
+
         String name = ParserUtil.parseNoteContent(argMultimap.getValue(PREFIX_NOTE_CONTENT).get());
 
         Note note = new Note(name);
-        return new AddNoteCommand(note);
+        return new AddNoteCommand(note, eventName, eventType);
     }
 
     /**

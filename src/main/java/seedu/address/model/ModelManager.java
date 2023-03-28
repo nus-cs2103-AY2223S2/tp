@@ -225,9 +225,21 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addNote(Note note) {
+    public void addNoteToTutorial(Note note, String nameOfEvent) {
         requireNonNull(note);
-        addressBook.addNote(note);
+        addressBook.addNoteToTutorial(note, nameOfEvent);
+    }
+
+    @Override
+    public void addNoteToLab(Note note, String nameOfEvent) {
+        requireNonNull(note);
+        addressBook.addNoteToLab(note, nameOfEvent);
+    }
+
+    @Override
+    public void addNoteToConsultation(Note note, String nameOfEvent) {
+        requireNonNull(note);
+        addressBook.addNoteToConsultation(note, nameOfEvent);
     }
 
     //=========== Filtered Person List Accessors =============================================================

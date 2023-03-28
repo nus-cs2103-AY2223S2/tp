@@ -5,14 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.event.Consultation;
-import seedu.address.model.event.Lab;
-import seedu.address.model.event.Note;
-import seedu.address.model.event.NoteList;
-import seedu.address.model.event.Tutorial;
-import seedu.address.model.event.UniqueConsultationList;
-import seedu.address.model.event.UniqueLabList;
-import seedu.address.model.event.UniqueTutorialList;
+import seedu.address.model.event.*;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -305,12 +298,34 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds note to address book note list
      * @param note The note to add.
      */
-    public void addNote(Note note) {
+    public void addNoteToTutorial(Note note, String nameOfEvent) {
         notes.add(note);
+        for (Tutorial tutorial : tutorials) {
+            if (tutorial.hasMatchByName(nameOfEvent)) {
+                tutorial.addNote(note);
+            }
+        }
+    }
+
+    public void addNoteToLab(Note note, String nameOfEvent) {
+        notes.add(note);
+        for (Lab lab : labs) {
+            if (lab.hasMatchByName(nameOfEvent)) {
+                lab.addNote(note);
+            }
+        }
+    }
+
+    public void addNoteToConsultation(Note note, String nameOfEvent) {
+        notes.add(note);
+        for (Consultation consultation : consultations) {
+            if (consultation.hasMatchByName(nameOfEvent)) {
+                consultation.addNote(note);
+            }
+        }
     }
 
     //// util methods
-
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons "
