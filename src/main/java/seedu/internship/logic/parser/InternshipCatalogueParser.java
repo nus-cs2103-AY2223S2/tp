@@ -65,6 +65,8 @@ public class InternshipCatalogueParser {
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
         case HomeCommand.COMMAND_WORD:
             return new HomeCommand();
         case StatsCommand.COMMAND_WORD:
