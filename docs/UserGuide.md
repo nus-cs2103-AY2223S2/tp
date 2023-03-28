@@ -244,13 +244,18 @@ Examples:
 
 Shows a list of all employees in address book whose names match the keyword provided.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [*] KEYWORD [MORE_KEYWORDS]`
 
-* Displays list of employees matching at least one keyword if multiple keywords are provided.
-* Keyword is for the name only, not any other details
+* If asterisk (`*`) is inputted, it displays list of employees matching _all_ the given keywords. 
+* If asterisk (`*`) is _not_ inputted, it displays list of employees matching _any_ of the given keywords. 
+* Even if the keyword just partially matches a part of employees full name, it is considered a match.
+* For finding department, the keyword has to be a full match.
+* Keyword is to search for the name and department of the employee only, not any other details.
 
 Examples:
-* `find John` displays list of all employees whose full name contains a 'John' in it
+* `find John Sales` displays list of all employees whose full name contains a 'John' in it, 
+or they are in the 'Sales' department 
+* `find * John Sales` displays list of all employees in the 'Sales' department who have a 'John' in their name
 
 
 ### Deleting an employee : `delete`

@@ -47,7 +47,7 @@ public class CommandFormat {
     private static final CommandFormat FIND_COMMAND_FORMAT = new CommandFormat(
             "find",
             "Find employees with a search filter.",
-            "find [n/NAME_KEYWORD]");
+            "find [*] KEYWORD [MORE KEYWORDS...]");
 
     // All misc commands below
     private static final CommandFormat HELP_COMMAND_FORMAT = new CommandFormat(
