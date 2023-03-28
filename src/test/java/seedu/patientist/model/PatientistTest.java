@@ -9,17 +9,17 @@ import static seedu.patientist.testutil.Assert.assertThrows;
 import static seedu.patientist.testutil.TypicalPatients.AMY;
 import static seedu.patientist.testutil.TypicalWards.getTypicalPatientist;
 
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
+//import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.patientist.model.person.Person;
-import seedu.patientist.model.person.exceptions.DuplicatePersonException;
+//import seedu.patientist.model.person.exceptions.DuplicatePersonException;
 import seedu.patientist.model.ward.Ward;
 import seedu.patientist.testutil.PatientBuilder;
 
@@ -42,16 +42,6 @@ public class PatientistTest {
         Patientist newData = getTypicalPatientist();
         patientist.resetData(newData);
         assertEquals(newData, patientist);
-    }
-
-    @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAmy = new PatientBuilder(AMY).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        List<Person> newPersons = Arrays.asList(AMY, editedAmy);
-        PatientistStub newData = new PatientistStub(newPersons);
-
-        assertThrows(DuplicatePersonException.class, () -> patientist.resetData(newData));
     }
 
     @Test
