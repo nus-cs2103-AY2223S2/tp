@@ -11,7 +11,7 @@ CoDoc is more than just a traditional contact management app. Save useful inform
 **skills possessed** by a person to greatly improve your **networking experience**.
 
 **Spend less time** _keeping track of your contacts_ or _searching through chats_, and **more time** making _meaningful
-connections_ and _accomplish your goals_!
+connections_ and _accomplishing your goals_!
 
 <img src="images/Ui.png"/>
 
@@ -75,7 +75,7 @@ If you have questions regarding storing of information, you may proceed to our [
 
 Should you have more questions, you may proceed to our [FAQ](#faq). We hope it will be sufficient to clarify your doubts.
 
-Whenever you are in doubt, forget the command formats for any feature, need help troubleshooting
+Whenever you are in doubt, forget the command formats for any feature, need help troubleshooting, 
 or you simply want to maximise your use of this application, do remember to revisit this User Guide.
 Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
 
@@ -191,7 +191,7 @@ to our GitHub Releases page. Find the latest release and download the latest ver
      2. `java -jar codoc.jar` to launch the application.
      3. CoDoc should launch in a few seconds.
    
-   * For windows users who prefers clicking in folder to launch:
+   * For Windows users who prefer clicking in folder to launch:
      1. Create a .bat file in the folder you put the jar file in (_home folder_).
      2. Write `java -jar codoc.jar` into the .bat file.
      3. Click on the .bat file and CoDoc should launch in a few seconds.
@@ -251,7 +251,7 @@ taking **Computer Science** and his email address is **e0823741@u.nus.edu**. Her
 In the command box, enter the command `add n/Bob y/2 c/6 e/e0823741@u.nus.edu` and press the `enter` key.
 This will add a new person named Bob to our contact list.
 
-![addcommand-bob](images/user-guide/addcommand-bob.PNG)
+<img src="images/UG-tutorial/adding-bob.png"/>
 
 After executing the command, we see that Bob has been added below the list.
 
@@ -259,7 +259,7 @@ After executing the command, we see that Bob has been added below the list.
 
 > 💡 **Understanding commands**:
 > As you can see, we first specified the `add` command, followed by the _prefix_ `n/` and the _name_ that we want to add
-> i.e. `Bob`. Same goes for the _year_, _course_ and _email_. This `n/` and `Bob` pair, is the _prefix_ and _parameter_
+> i.e. `Bob`. The same goes for the _year_, _course_ and _email_. This `n/` and `Bob` pair, is the _prefix_ and _parameter_
 > pair that occurs frequently in other commands too. Refer to [Glossary](#glossary) for more info.
 
 Here, you may have noticed we entered `c/6` and wonder why the parameter for _course_ was `6` instead of `Computer Science`.
@@ -287,9 +287,9 @@ numbered `8` in this example. This is his _index_.
 Now enter `view 8` into the command box.
 His _contact_ details will then be shown in the **Info Panel**.
 
-![viewcommand-bob](images/user-guide/viewcommand-bob.PNG)
+<img src="images/UG-tutorial/viewing-bob.png"/>
 
-You may try loading other person's details by using different _index_ (e.g. `view 2`). 
+You may try loading another person's details by using different _index_ (e.g. `view 2`). 
 
 >💡 **Tip**: CoDoc also supports GUI, so you can just click the person in the list to view his details.
 
@@ -301,7 +301,7 @@ the _detailed contacts_ tab, showing basic contact details.
 Now let's try viewing other tabs in **Info Panel**. 
 To do so, enter `view m` in the command box. This will show Bob's **modules taken** under _detailed modules_ tab.
 
-<img src="images/tutorial/viewing-bobs-modules.png"/>
+<img src="Desktop/CS2103T/tp/docs/images/UG-tutorial/viewing-bobs-modules.png"/>
 
 Note that you do not see anything of value, and that is because we have not added any modules Bob has taken so far
 (don't worry, we will show how you can add onto this list below).
@@ -331,7 +331,7 @@ do so.
 
 After you see Bob in the **Info Panel**, enter `edit m/ay2223s2 cs2101 m/ay2223s2 cs2103t` in the command box. 
 
-<img src="images/tutorial/editing-bobs-modules.png"/>
+<img src="Desktop/CS2103T/tp/docs/images/UG-tutorial/editing-bobs-modules.png"/>
 
 You can now see that Bob's list of **modules taken** has been updated to contain modules _CS2101_ and _CS2103T_
 (enter `view m` if you're not on the _modules_ tab).
@@ -365,7 +365,7 @@ have been applied. We can do this by entering `list` into the command box. This 
 Then enter `find m/cs2103t`. This will make **Person List Panel** show only the people who have CS2103T in their module
 list. On successful execution, you will see something like below.
 
-<img src="images/tutorial/finding-cs2103t.png"/>
+<img src="Desktop/CS2103T/tp/docs/images/UG-tutorial/finding-cs2103t.png"/>
 
 If you tried the examples for previous commands, Bob would be shown as well.
 
@@ -439,7 +439,7 @@ Once the person has been created, the result display will show a confirmation me
 
 ### 3. Viewing a person/Changing tabs : `view`
 
-Controls the what is displayed in the right panel. 
+Controls what is displayed in the right panel. 
 
 If an `integer` is specified, the person displayed on the right will be the person in the person list that has the **same index** as the integer given.
 
@@ -474,8 +474,8 @@ Edits the person displayed in the view panel. Existing values will be updated to
 
 At least one of the optional fields must be provided.
 
-- You can remove a person's Github by typing `g/` without specifying any Github username after it
-- You can remove a person's Linkedin by typing `l/` without specifying any Linkedin URL after it
+- You can remove a person's GitHub by typing `g/` without specifying any GitHub username after it
+- You can remove a person's LinkedIn by typing `l/` without specifying any LinkedIn URL after it
 - You can remove all the person’s modules by typing `m/` without specifying any modules after it
 - You can remove all the person’s skills by typing `s/` without specifying any skills after it
 
@@ -500,7 +500,7 @@ At least one of the optional fields must be provided.
 > 
 > 
 > **Examples:**
-> - `edit` g/johndoeee e/johndoeee@example.com will edit the Github username and email address of the person to be johndoee and johndoe@example.com respectively.
+> - `edit` g/johndoeee e/johndoeee@example.com will edit the GitHub username and email address of the person to be johndoee and johndoe@example.com respectively.
 > ![View Example](images/UiEditFields.png)
 > - `edit` s/java s+/python Clears resets the skill list to contain only java and ignores the python skill addition.
 >![View Example](images/UiEditSkills.png)
@@ -510,18 +510,18 @@ At least one of the optional fields must be provided.
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### 5. Finding a person : `find`
-Find all persons that contains the given constraints. <br>
+Find all people that contain the given constraints. <br>
 - `find` supports continuous search by allowing constraints to stack, (refer to example below to find out more)
 - All constraints applied are shown in *Result Display*.
 - To remove all constraints, use `list`. 
-- At least one of the optional field must be provided.
+- At least one of the optional fields must be provided.
 - All constraints are case-insensitive.
 
 `find [OPTIONAL/PARAMETER]...`<br>
 > **Acceptable Parameters used as Constraints**
-> * n/NAME (e.g. n/Jo will load all person name that contains Jo such as Jo, John, Joleen.
-> * y/YEAR (e.g. y/2 will load all person who are in year 2)
-> * c/COURSE (e.g. c/Computer will load all person enrolled in Computer Engineering and Computer Science)
+> * n/NAME (e.g. n/Jo will load all people whose names contain Jo such as Jo, John, Joleen.
+> * y/YEAR (e.g. y/2 will load all persons who are in year 2)
+> * c/COURSE (e.g. c/Computer will load all people enrolled in Computer Engineering and Computer Science)
 >   * [Why is it **find** c/COURSE and not c/COURSE_INDEX like **add** and **edit**?](#why-is-it-find-ccourse-and-not-ccourseindex-like-add-and-edit-)
 > * m/MODULES (e.g. m/CS2103 will load all person with CS2103 including CS2103T and CS2103R)
 >   * m/ACADEMIC_YEAR MODULES (e.g. m/AY2223S1 CS2103 will load all person with AY2223S1 CS2103 including AY2223S1 CS2103T and AY2223S1 CS2103R in their module list)
@@ -530,7 +530,7 @@ Find all persons that contains the given constraints. <br>
 >     * cs2040 in AY2223S1
 >     * cs2090, cs3230 in AY2223S2
 > * s/SKILLS (e.g. s/java will load all person that contains java in their skill list such as java and javascript)
->   * 💡 **Tip:** Similar to m/MODULES you can add in as many skills as you want separated by a space.
+>   * 💡 **Tip:** Similar to m/MODULES you can add in as many skills as you want to separate by a space.
 > 
 >
 > **Examples:**
@@ -547,7 +547,7 @@ Displays the full list of all persons stored in the person list panel.<br>
 
 `list`<br>
 
-💡 **Tip:** Use this command to revert back to the original list after performing the `find` command to shorten the list dsiplayed.
+💡 **Tip:** Use this command to revert back to the original list after performing the `find` command to shorten the list displayed.
 > * `list`
 > ![result for list](images/UiList.png)
 
@@ -593,12 +593,14 @@ Equivalent to clicking the close button via the GUI. <br>
 **A**: CoDoc automatically saves your person list after every successful `add`, `edit` and `clear`.
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install CoDoc in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoDoc home folder.
+**A**: Install CoDoc on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoDoc home folder.
 
 **Q**: Where is the data file stored?<br>
 **A**: CoDoc data are saved as a JSON file at ***[JAR file location]*****/data/codoc.json**. Advanced users are welcome to update data directly by editing that data file.
 
-:warning: If your changes to the data file makes its format invalid, CoDoc will discard all data and start with an empty data file at the next run.
+:warning:
+If your changes to the data file make its format invalid,
+CoDoc will discard all data and start with an empty data file at the next run.
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -608,7 +610,7 @@ Equivalent to clicking the close button via the GUI. <br>
 
 ## FAQ
 
-**Q: I have added a person with wrong detail. How do I change it?**
+**Q: I have added a person with wrong details. How do I change it?**
 
 A: Use CoDoc's [Edit command](#4-editing-a-person--edit) to update the details. If you have also forgotten to add certain
 details, you may use the same command to add them (e.g. `edit m+/AY2223S2 CS2101` to add module _CS2101_).
@@ -624,27 +626,27 @@ showing any errors.
 
 **Q: My edit command is editing the wrong person.**
 
-A: Edit command works on current person you are viewing. Change the viewed person with the [View command](#3-viewing-a-personchanging-tabs--view)
+A: Edit command works on the current person you are viewing. Change the viewed person with the [View command](#3-viewing-a-personchanging-tabs--view)
 and view the correct person you want to edit before entering the command.
 
 <br>
 
 **Q: Why is it `find c/COURSE` and not `c/COURSE_INDEX` like `add` and `edit`?**
 
-A: This is done as it speeds up the adding and editing process since there is no need for you to manually keep track of how courses are inputed—CS vs Computer Science.
-Also, this avoids clashing acronym such as CS which could be interpreted as Chinese Studies too.
+A: This is done as it speeds up the adding and editing process since there is no need for you to manually keep track of how courses are inputted—CS vs Computer Science.
+Also, this avoids clashing acronyms such as CS which could be interpreted as Chinese Studies too.
 
 
 **Q: My find command is not showing correct list of people**
 
-A: This could be because there are existing list of filters before you entered the [Find command](#5-finding-a-person--find).
+A: This could be because there is existing list of filters before you entered the [Find command](#5-finding-a-person--find).
 Try clearing all filters with [List command](#6-listing-all-personsresetting-filters--list) then re-enter the Find command.
 
 <br>
 
 **Q: I cannot find the course I want to add in the Course List Panel.**
 
-A: We understand that the current list of courses available are limited. This is because this program is initially designed
+A: We understand that the current list of courses available is limited. This is because this program is initially designed
 to be used mainly by _Computer Science_ students, hence it only lists courses of people which they may encounter during
 their studies. We are currently working to add as many courses as possible so that the program can be used by users
 outside _Computer Science_. Meanwhile, you would have to assign any other courses to the person and remember it.
@@ -696,7 +698,7 @@ _Details coming soon ..._
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
 ### How to Open CoDoc
 
-Batch file method for Windows uers:
+Batch file method for Windows users:
 1. Right-click the empty space in the _home folder_ and create new _text file_.
 
     ![open_new_file](images/user-guide/open_new_file.png)
@@ -705,7 +707,7 @@ Batch file method for Windows uers:
 
     ![open_save_text](images/user-guide/open_save_text.PNG)
 
-3. Rename the file to `start.bat`. Make sure that file extension gets changed too, if you do not know how see the file 
+3. Rename the file to `start.bat`. Make sure that file extension gets changed too, if you do not know how to see the file 
 extension, see [here](https://www.howtogeek.com/205086/beginner-how-to-make-windows-show-file-extensions/).
     
     ![open_rename](images/user-guide/open_rename.png)

@@ -26,7 +26,7 @@ public class SampleDataUtil {
             new Person(
                     new ProfilePicture("src/main/resources/images/avataricons/001-bear.png"),
                     new Name("Lim Jun Jie"),
-                    new Course("1"),
+                    new Course("6"),
                     new Year("2"),
                     new Github("limjj10"),
                     new Email("limjj10@example.com"),
@@ -41,7 +41,7 @@ public class SampleDataUtil {
             new Person(
                     new ProfilePicture("src/main/resources/images/avataricons/002-rabbit.png"),
                     new Name("Nicole Lee"),
-                    new Course("1"),
+                    new Course("6"),
                     new Year("2"),
                     new Github("nicoleee"),
                     new Email("nicoleee@example.com"),
@@ -56,7 +56,7 @@ public class SampleDataUtil {
             new Person(
                     new ProfilePicture("src/main/resources/images/avataricons/003-panda.png"),
                     new Name("Nicole Tan"),
-                    new Course("2"),
+                    new Course("4"),
                     new Year("1"),
                     new Github("nykhoul"),
                     new Email("nykhoul02@example.com"),
@@ -69,7 +69,7 @@ public class SampleDataUtil {
             new Person(
                     new ProfilePicture("src/main/resources/images/avataricons/004-sloth.png"),
                     new Name("Muhammad Syafiq"),
-                    new Course("3"),
+                    new Course("9"),
                     new Year("2"),
                     new Github("sp33dysyafiq"),
                     new Email("syafiq2000@example.com"),
@@ -100,7 +100,7 @@ public class SampleDataUtil {
             new Person(
                     new ProfilePicture("src/main/resources/images/avataricons/006-puffer-fish.png"),
                     new Name("Nguyen Thanh Tran"),
-                    new Course("4"),
+                    new Course("10"),
                     new Year("4"),
                     new Github("ilovebanhmi"),
                     new Email("e0542769@example.com"),
@@ -123,7 +123,7 @@ public class SampleDataUtil {
             new Person(
                     new ProfilePicture("src/main/resources/images/avataricons/007-beaver.png"),
                     new Name("Jeremy Lim"),
-                    new Course("1"),
+                    new Course("6"),
                     new Year("2"),
                     new Github("jljw23"),
                     new Email("jeremylimjw23@example.com"),
