@@ -1,9 +1,7 @@
 package seedu.recipe.ui;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -21,7 +19,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import seedu.recipe.commons.core.LogsCenter;
-import seedu.recipe.model.recipe.Recipe;
 
 /**
  * Represents the form element for users to add {@code Recipe}s
@@ -56,9 +53,6 @@ public class AddRecipeForm extends UiPart<Region> {
     @FXML
     private Button cancelButton;
 
-    //Data fields
-    private Map<String, String> initialValues;
-
     //Logic executors and system logging
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -68,12 +62,11 @@ public class AddRecipeForm extends UiPart<Region> {
     interface CustomFocusChangeListener {
         void onFocusChange(boolean newValue);
     }
+
     /**
-     * Creates a new RecipeForm with the given recipe and displayed index.
-     * If the recipe is not null, the form fields are pre-populated with the recipe's data.
+     * Creates a new AddRecipeForm instance.
      *
-     * @param recipe         The recipe to add.
-     * @param displayedIndex The index of the recipe in the displayed list.
+     * @param stringBuilder The {@code StringBuilder} that stores the command string.
      */
     public AddRecipeForm(StringBuilder stringBuilder) {
         super(FXML);
@@ -87,7 +80,7 @@ public class AddRecipeForm extends UiPart<Region> {
         saveButton.setOnAction(event -> saveRecipe());
         cancelButton.setOnAction(event -> closeForm());
     }
-    
+
     /**
      * Saves the changes made to the recipe and closes the form.
      * If any fields have been modified, the new values are stored
@@ -97,40 +90,41 @@ public class AddRecipeForm extends UiPart<Region> {
         // Check which fields have been added
         Map<String, String> inputValues = new HashMap<>();
 
-
-        inputValues.put("name",nameField.getText());
+        inputValues.put("name", nameField.getText());
         
-        if (!durationField.getText().isEmpty()){
+        if (!durationField.getText().isEmpty()) {
             inputValues.put("duration", durationField.getText());
         }
-        if (!portionField.getText().isEmpty()){
+        if (!portionField.getText().isEmpty()) {
             inputValues.put("portion", portionField.getText());
         }
         String ingredientsValue = ingredientsBox.getChildren().stream()
             .map(node -> ((TextField) node).getText())
             .collect(Collectors.joining(", "));
-        if (!ingredientsValue.isEmpty()){
+        if (!ingredientsValue.isEmpty()) {
             inputValues.put("ingredients", ingredientsValue);
         }
 
         String stepsValue = stepsBox.getChildren().stream()
             .map(node -> ((TextField) node).getText())
             .collect(Collectors.joining(", "));
-        if (!stepsValue.isEmpty()){
+        if (!stepsValue.isEmpty()) {
             inputValues.put("steps", stepsValue);
         }
 
-        if (!tagsField.getText().isEmpty()){
+        if (!tagsField.getText().isEmpty()) {
             inputValues.put("tags", tagsField.getText());
-        }        
+        }
         this.commands = handleAddRecipeEvent(inputValues);       
         closeForm();
     }
 
     /**
-     * Handles the add recipe event by updating the recipe with the added values.
+     * Handles the add recipe event.
      *
      * @param inputValues A map of the added recipe fields with keys as field names and values as the new data.
+     * @return commands The StringBuilder instance containing the command string, to be passed back to saveRecipe()
+     * and then to AddFormCommand.
      */
     private StringBuilder handleAddRecipeEvent(Map<String, String> inputValues) {
         commands.append("add");
@@ -191,14 +185,12 @@ public class AddRecipeForm extends UiPart<Region> {
         VBox parentBox = (VBox) currentTextField.getParent();
         int currentIndex = parentBox.getChildren().indexOf(currentTextField);
         int lastIndex = parentBox.getChildren().size() - 1;
-    
         if (currentIndex < lastIndex) {
             Node nextNode = parentBox.getChildren().get(currentIndex + 1);
             if (nextNode instanceof TextField) {
                 return (TextField) nextNode;
             }
         }
-    
         return null;
     }
 
@@ -233,7 +225,8 @@ public class AddRecipeForm extends UiPart<Region> {
                 // Condition 2.2: TAB key pressed
                 else if (event.getCode() == KeyCode.TAB) {
                     // If it is a new placeholder row and there's another TextField after it, skip to the field after
-                    if (nextField.getText().isEmpty() && currentIndex + 2 < ((VBox) textField.getParent()).getChildren().size()) {
+                    if (nextField.getText().isEmpty() && currentIndex + 2 <
+                            ((VBox) textField.getParent()).getChildren().size()) {
                         nextField = (TextField) ((VBox) textField.getParent()).getChildren().get(currentIndex + 2);
                     }
                     nextField.requestFocus();

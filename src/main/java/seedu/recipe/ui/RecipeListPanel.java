@@ -1,13 +1,10 @@
 package seedu.recipe.ui;
 
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.recipe.commons.core.LogsCenter;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.ui.CommandBox.CommandExecutor;
 
@@ -16,7 +13,6 @@ import seedu.recipe.ui.CommandBox.CommandExecutor;
  */
 public class RecipeListPanel extends UiPart<Region> {
     private static final String FXML = "RecipeListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(RecipeListPanel.class);
     private final CommandExecutor commandExecutor;
 
     @FXML
