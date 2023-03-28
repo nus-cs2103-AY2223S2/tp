@@ -1,16 +1,14 @@
 package seedu.recipe.storage;
 
-import static seedu.recipe.storage.ExportManager.setIcon;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import javafx.collections.ObservableList;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 import seedu.recipe.commons.exceptions.DataConversionException;
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.ReadOnlyRecipeBook;
@@ -21,7 +19,10 @@ import seedu.recipe.model.recipe.Recipe;
  */
 public class ImportManager {
 
-    public ImportManager() {
+    private final Stage owner;
+
+    public ImportManager(Stage owner) {
+        this.owner = owner;
     }
 
     /**
@@ -34,7 +35,7 @@ public class ImportManager {
      */
     public ObservableList<Recipe> execute() throws IOException, DataConversionException, IllegalValueException {
         File importedFile = this.selectFile();
-        if (!importedFile.exists()) {
+        if (importedFile == null) {
             return null;
         }
         ObservableList<Recipe> importedRecipes = importRecipes(importedFile);
@@ -47,33 +48,33 @@ public class ImportManager {
      * @throws IOException if an I/O error occurs.
      */
     public File selectFile() throws IOException {
-        // Create a file chooser that opens at the Downloads folder
-        JFileChooser fileChooser = new JFileChooser(System.getProperty("user.home") + "/Downloads");
+        FileChooser fileChooser = new FileChooser();
 
         // Set filter to only show JSON files
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("JSON Files", "json");
-        fileChooser.setFileFilter(filter);
+        ExtensionFilter filter = new ExtensionFilter("JSON Files", "*.json");
+        fileChooser.getExtensionFilters().add(filter);
 
-        // change the icon and dialog title
-        JFrame jFrame = setIcon();
-        fileChooser.setDialogTitle("Import RecipeBook");
+        // Set initial directory to the Downloads folder
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home"), "Downloads"));
+
+        // Set dialog title
+        fileChooser.setTitle("Import RecipeBook");
+
         // Show the file chooser dialog and get the result
-        int result = fileChooser.showOpenDialog(jFrame);
+        File selectedFile = fileChooser.showOpenDialog(owner);
 
         // User canceled the file chooser dialog
-        if (result != JFileChooser.APPROVE_OPTION) {
+        if (selectedFile == null) {
             System.out.println("No file selected.");
-            jFrame.dispose();
             return null;
         }
-        File selectedFile = fileChooser.getSelectedFile();
+
         // Check if the file is a JSON file
         if (!selectedFile.getName().endsWith(".json")) {
             System.out.println("Selected file is not a JSON file.");
-            jFrame.dispose();
             return null;
         }
-        jFrame.dispose();
+
         return selectedFile;
     }
 
@@ -95,22 +96,5 @@ public class ImportManager {
             throw e;
         }
         return importedRecipeBook.get().getRecipeList();
-    }
-
-    /**
-     * Example of how to use it. Erase after reading.
-     * @param args
-     * @throws IOException
-     */
-    public static void main(String[] args) throws IOException, IllegalValueException {
-        ImportManager importManager = new ImportManager();
-        try {
-            ObservableList<Recipe> importedRecipes = importManager.execute();
-            for (Recipe recipe : importedRecipes) {
-                System.out.println("Recipe: " + recipe.toString());
-            }
-        } catch (DataConversionException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
