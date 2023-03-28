@@ -53,7 +53,7 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PET_SUCCESS = "Edited Pet: %1$s";
+    public static final String MESSAGE_EDIT_PET_SUCCESS = "Edited Pet:\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PET = "This pet already exists in the pet list.";
 
