@@ -26,7 +26,7 @@ CookHub is a **desktop app for managing recipes, optimized for use via a Command
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `add n/NAME` : Add a new recipe.
+   * `add` n/NAME` : Add a new recipe.
    * `delete` : Delete a new recipe.
    * `list` : Lists all recipes.
    * `view {recipe no.}` : View a recipe in greater detail.
@@ -65,33 +65,53 @@ CookHub is a **desktop app for managing recipes, optimized for use via a Command
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
 
-### Add recipe : `add`
+### Add a recipe : `add`
 
-Add a new recipe, step by step:
+Adds a recipe to the recipe book.
 
-Enter the title 
-Enter the ingredients, line by line. After all the ingredients have been entered, use the /finish command to proceed to the next step.
-Enter the cooking instructions, step by step. After all the instructions, have been entered, use the /finish command
+Format: `add t/TITLE d/DESCRIPTION i/INGREDIENT s/STEP [t/TAG]`
 
-### Delete recipe : `delete {recipe no.}`
-Remove a recipe
-- Recipe removed from list, number in the list shifted up 
+:bulb: Tip: A recipe can have any number of tags (including 0)
 
-### View recipe : `view {recipe no.}`
-Gets a detailed view of the recipe specified by the {recipe no.}
-The {recipe no.} refers to the index number shown in the displayed recipe list.
-The {recipe no.} must be a positive integer (eg. 1, 2, 3).
 
-Format: `view {recipe no.}`
+Examples:
 
-![view recipe](images/viewRecipe.png)
+- `add t/Corndogs d/I love corndogs i/100g flour i/500ml oil i/half block string cheese i/100ml water i/Hotdog s/Mix flour and water until homogenous s/Poke hotdog and string cheese through a skewer s/Dip skewer into batter until fully coated i/Fry in oil until golden brown`
+- `add t/Scrambled Eggs i/4 eggs i/1 tablespoon of butter i/100ml heavy cream s/Crack the eggs into a bowl, add the cream and whisk s/Heat the butter in the pan until sizzling s/Pour the eggs in and stir until cooked to desired doneness tag/easy tag/15min`
+
+### Edit a recipe: `edit {recipe number}`
+Edits a recipe in the recipe book.
+
+Format: `edit {recipe number} t/TITLE d/DESCRIPTION i/INGREDIENT s/STEP [t/TAG]`
+
+- The *recipe number* refers to the index number shown in the displayed recipe book
+- The *recipe number* must be a positive integer starting from 1 and must exist in the recipe book
+
+
+Example:
+- `edit 1 t/Corndogs d/I love corndogs i/200g flour i/500ml oil i/half block string cheese i/100ml water 
+i/Hotdog s/Mix flour and water until homogenous s/Poke hotdog and string cheese through a skewer s/Dip skewer into batter until fully coated i/Fry in oil until golden brown`
+
+
+### Delete a recipe : `delete {recipe no.}`
+Deletes the recipe at the specified *task number* from the recipe book.
+
+Format: `delete {recipe number}`
+
+- The *recipe number* refers to the index number shown in the displayed recipe book
+- The *recipe number* must be a positive integer starting from 1 and must exist in the recipe book
+
+Examples:
+- `delete 1`
+- `delete 2`
+
 
 ### List recipe : `list`
 
@@ -117,7 +137,8 @@ CookHub data are saved in the hard disk automatically after any command that cha
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/cookhub.json`. Advanced users are welcome to update data directly by editing that data file.
+CookHub data are saved as a JSON file `[JAR file location]/data/cookhub.json`. Advanced users are welcome to 
+update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CookHub will discard all data and start with an empty data file at the next run.
@@ -139,4 +160,4 @@ _Details coming soon ..._
 ## Command summary
 
 Action | Format, Examples
---------|------------------
+------|------------------
