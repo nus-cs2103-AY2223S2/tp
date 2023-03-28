@@ -1,0 +1,97 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteSubtaskParser" as DeleteSubtaskParser LOGIC_COLOR
+participant "d:DeleteSubtaskCommand" as DeleteSubtaskCommand LOGIC_COLOR
+participant "t:SimpleTask" as SimpleTask LOGIC_COLOR
+participant "l:Deadline" as Deadline LOGIC_COLOR
+participant "v:Event" as Event LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("remove-subsection 1 I/1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("remove-subsection 1 I/1")
+activate AddressBookParser
+
+create DeleteSubtaskParser
+AddressBookParser -> DeleteSubtaskParser
+activate DeleteSubtaskParser
+
+DeleteSubtaskParser --> AddressBookParser
+deactivate DeleteSubtaskParser
+
+AddressBookParser -> DeleteSubtaskParser : parse("1 I/1")
+activate DeleteSubtaskParser
+
+create DeleteSubtaskCommand
+DeleteSubtaskParser -> DeleteSubtaskCommand : (1, 1)
+activate DeleteSubtaskCommand
+
+DeleteSubtaskCommand --> DeleteSubtaskParser : d
+deactivate DeleteSubtaskCommand
+
+DeleteSubtaskParser --> AddressBookParser : d
+deactivate DeleteSubtaskParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteSubtaskParser -[hidden]-> AddressBookParser
+destroy DeleteSubtaskParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> DeleteSubtaskCommand : execute()
+activate DeleteSubtaskCommand
+
+alt old task is SimpleTask
+
+    DeleteSubtaskCommand -> SimpleTask
+    activate SimpleTask
+
+    SimpleTask --> DeleteSubtaskCommand : t (new task)
+    deactivate SimpleTask
+
+else old task is Deadline
+    DeleteSubtaskCommand -> Deadline
+    activate Deadline
+
+    Deadline --> DeleteSubtaskCommand : l (new task)
+    deactivate Deadline
+
+else old task is Event
+    DeleteSubtaskCommand -> Event
+    activate Event
+
+    Event --> DeleteSubtaskCommand : v (new task)
+    deactivate Event
+end
+
+DeleteSubtaskCommand -> Model : setTask()
+activate Model
+
+Model --> DeleteSubtaskCommand
+deactivate Model
+
+create CommandResult
+DeleteSubtaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteSubtaskCommand
+deactivate CommandResult
+
+DeleteSubtaskCommand --> LogicManager : result
+deactivate DeleteSubtaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

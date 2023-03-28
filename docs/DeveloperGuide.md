@@ -222,7 +222,57 @@ The following diagram summarises the sequence of events happening during the exe
 ![AddCommandSequenceDiagram](images/AddCommand.png)
 
 The following diagram summarises how the activities unfold after the user types 'Find' Command.
-![SortCommandSequenceDiagram](images/AddActivityDiagram.png)
+![AddCommandActivityDiagram](images/AddActivityDiagram.png)
+
+#### 3.1.1 Add a Subsection
+Our app supports adding a subsection to a parent task. The command word is `subsection` and the parameters are `index`, `n/name` and `d/description`. Note that the description here is optional.
+A user may wish to add a subsection to a task named "Do homework" with index 1 in the list currently shown to the user, and the user can do so by entering `subsection 1 n/CS2100 d/Lab 1`.
+Note that subsection only contains a name and description, unlike the parent task that contains more fields.
+
+Given below is an example usage scenario and how `subsection` is executed.
+
+Step 1. The user inputs a `subsection` command with parameter `1 n/CS2100 d/Lab 1`. The parser recognises the command word and calls AddSubtaskParser.
+
+Step 2. The `AddSubtaskParser` interprets the index and create a new subtask class with input name and description.
+
+Step 3. `AddSubtaskParser` calls `AddSubtaskCommand`.
+
+Step 4. `AddSubtaskCommand` is executed and a new parent task with the new subtask added to the `subtaskList` is created.
+
+Step 5. The new parent task replaces the old parent task.
+
+Step 6. Results are shown immediately on UI.
+
+The following diagram summarises the sequence of events happening during the execution.
+![SubsectionSequenceDiagram](images/SubsectionSequenceDiagram.png)
+
+The following diagram summarises how the activities unfold after the user types 'Find' Command.
+![SubsectionActivityDiagram](images/SubsectionActivityDiagram.png)
+
+#### 3.1.2 Delete a Subsection
+The user can delete a subsection from a parent task by entering `remove-subsection` command.
+A user may wish to delete a subsection from a task with index 1 in the list currently displayed to the user, and the user can do so by entering `remove-subsection 1 I/1`, where the first index is the index of 
+the parent task, and the index after the `I` parameter refers to the index of the subsection in the parent task.
+
+Given below is an example usage scenario and how `subsection` is executed.
+
+Step 1. The user inputs a `remove-subsection` command with parameter `1 I/1`. The parser recognises the command word and calls DeleteSubtaskParser.
+
+Step 2. The `DeleteSubtaskParser` interprets the indexes.
+
+Step 3. `DeleteSubtaskParser` calls `DeleteSubtaskCommand` and passes the two indexes to the command.
+
+Step 4. `DeleteSubtaskCommand` is executed and a new parent task with the updated `subtaskList` after deleting the subtask at index 1 is created.
+
+Step 5. The new parent task replaces the old parent task.
+
+Step 6. Results are shown immediately on UI.
+
+The following diagram summarises the sequence of events happening during the execution.
+![RemoveSubsectionCommandSequenceDiagram](images/RemoveSubsectionSequenceDiagram.png)
+
+The following diagram summarises how the activities unfold after the user types 'Find' Command.
+![RemoveSubsectionCommandActivityDiagram](images/RemoveSubsectionActivityDiagram.png)
 
 ### 3.2 Clear Feature
 
@@ -288,6 +338,33 @@ Option 1 is chosen as a more experienced user will know what types of input are 
 
 ### 3.4 Edit Feature
 
+The edit feature now can edit many possible fields of a task, including the task's name, description, tags and effort. The editing is based on the index of the task in the list currently shown to the user. Entering `edit` with 
+prefixes after it, such as `n/homework` will change the name of the original task to homework.
+
+You can find the specific implementation in the `EditCommandParser` and `EditCommand` class.
+
+Given below is an example usage scenario and how the edit mechanism behaves.
+
+Step 1. The user inputs a `edit` command with parameter `1 n/homework`. The parser recognises the command word and calls the EditCommandParser.
+
+Step 2. The `EditCommandParser` recognises that the parameter being changed is the name field and the index of the task is 1.
+
+Step 3. The `EditCommandParser` creates an `EditTaskDescriptor` that stores the changed parameter value, which is `homework` in this case.
+
+Step 4. The `EditCommandParser` calls `EditCommand` with the index of the task and the `EditTaskDescriptor`. 
+
+Step 5. The `EditCommand` is executed and a new task is created, with the name parameter changed to "homework". The new task replaces the original task in the task list.
+
+Step 6. The result of the filtered list is passed back to the UI.
+
+The following sequence diagram summarizes what happens in this example usage scenario:
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new `edit` command:
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
 ### 3.5 Find Feature
 
 Before, the `find` feature on AB3 would find persons whose names contain any of the given keywords. This limited the search functionality to purely names. With our new enhancement, `find` can now search via any field.
@@ -309,11 +386,11 @@ Step 5. The result of the filtered list is passed back to the UI.
 
 The following sequence diagram summarizes what happens in this example usage scenario:
 
-![SortCommandSequenceDiagram](images/FindSequenceDiagram.png)
+![FindCommandSequenceDiagram](images/FindSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a new `find` command:
 
-![SortCommandSequenceDiagram](images/FindActivityDiagram.png)
+![FindCommandActivityDiagram](images/FindActivityDiagram.png)
 
 #### 3.5.1 Design Consideration
 
