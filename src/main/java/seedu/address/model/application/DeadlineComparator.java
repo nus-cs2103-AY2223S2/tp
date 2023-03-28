@@ -3,6 +3,7 @@ package seedu.address.model.application;
 import java.util.Comparator;
 
 import seedu.address.model.task.Task;
+import seedu.address.logic.parser.SortApplicationCommandParser.SortingSequence;
 
 /**
  * Compares two applications based on the deadline of their upcoming task.
@@ -10,8 +11,13 @@ import seedu.address.model.task.Task;
  */
 public class DeadlineComparator implements Comparator<Application> {
 
-    @Override
-    public int compare(Application appOne, Application appTwo) {
+    private final SortingSequence sortingSequence;
+
+     public DeadlineComparator(SortingSequence sortingSequence) {
+         this.sortingSequence = sortingSequence;
+     }
+
+    public int compareAscending(Application appOne, Application appTwo) {
         if (appOne.hasTask() && appTwo.hasTask()) {
             Task taskOne = appOne.getTask();
             Task taskTwo = appTwo.getTask();
@@ -28,5 +34,14 @@ public class DeadlineComparator implements Comparator<Application> {
             }
         }
         return 0;
+    }
+
+    @Override
+    public int compare(Application appOne, Application appTwo) {
+         if (sortingSequence.equals(SortingSequence.ASCENDING)) {
+             return compareAscending(appOne, appTwo);
+         } else {
+             return -compareAscending(appOne, appTwo);
+         }
     }
 }

@@ -9,7 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.SortApplicationCommand;
-import seedu.address.logic.commands.SortApplicationCommand.SortingOrder;
+import seedu.address.logic.parser.SortApplicationCommandParser.SortingOrder;
+import seedu.address.logic.parser.SortApplicationCommandParser.SortingSequence;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.application.CompanyEmail;
 import seedu.address.model.application.CompanyName;
@@ -100,6 +101,33 @@ public class ApplicationParserUtil {
     }
 
     /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
+    }
+
+    /**
      * Parses a {@code String sortingOrder} into an {@code SortingOrder}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -108,10 +136,30 @@ public class ApplicationParserUtil {
     public static SortingOrder parseSortingOrder(String sortingOrder) throws ParseException {
         requireNonNull(sortingOrder);
         String trimmedSortingOrder = sortingOrder.trim();
-        if (!SortApplicationCommand.isValidSortingOrder(trimmedSortingOrder)) {
-            throw new ParseException((SortApplicationCommand.MESSAGE_CONSTRAINTS));
+        if (!SortingOrder.isValidSortingOrder(trimmedSortingOrder)) {
+            throw new ParseException(SortApplicationCommand.MESSAGE_CONSTRAINTS);
         }
+
         return SortingOrder.valueOf(sortingOrder.toUpperCase());
+    }
+
+    /**
+     * Parses a {@code String sortingSequence} into an {@code SortingSequence}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sortingSequence} is invalid.
+     */
+    public static SortingSequence parseSortingSequence(String sortingSequence) throws ParseException {
+        requireNonNull(sortingSequence);
+        String trimmedSortingSequence = sortingSequence.trim();
+        if (SortingSequence.isValidSortingSequence(trimmedSortingSequence)) {
+            if (trimmedSortingSequence.equalsIgnoreCase("a")) {
+                return SortingSequence.ASCENDING;
+            } else if (trimmedSortingSequence.equalsIgnoreCase("d")) {
+                return SortingSequence.DESCENDING;
+            }
+        }
+        throw new ParseException(SortApplicationCommand.MESSAGE_CONSTRAINTS);
     }
 
     /**
@@ -145,32 +193,5 @@ public class ApplicationParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
-    }
-
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 }
