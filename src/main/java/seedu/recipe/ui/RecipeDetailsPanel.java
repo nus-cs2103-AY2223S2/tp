@@ -46,24 +46,27 @@ public class RecipeDetailsPanel extends UiPart<Region> {
     public void setRecipeDetails(Recipe recipe) {
         if (recipe != null) {
             if (recipe.isStarred()) {
-                recipeTitle.setText(recipe.getTitle().toString() + "★");
+                recipeTitle.setText(recipe.getTitle().toString() + " ★");
             } else {
                 recipeTitle.setText(recipe.getTitle().toString());
             }
             recipeDesc.setText(recipe.getDesc().toString());
             ingredients.getChildren().clear();
-            ingredientsTitle.setText("What you will need:");
+            ingredientsTitle.setText("Ingredients");
             recipe.getIngredients().stream()
                     .forEach(ingredient -> {
-                        Label ingredientLabel = new Label(ingredient.ingredient);
+                        String eachIngredient = "•  " + ingredient.ingredient;
+                        Label ingredientLabel = new Label(eachIngredient);
+                        ingredientLabel.setWrapText(true);
                         ingredients.getChildren().add(ingredientLabel);
                     });
             steps.getChildren().clear();
-            stepsTitle.setText("Instructions:");
+            stepsTitle.setText("Instructions");
             recipe.getSteps().stream()
                     .forEach(step -> {
-                        String eachStep = recipe.getSteps().indexOf(step) + 1 + ". " + step.step;
+                        String eachStep = recipe.getSteps().indexOf(step) + 1 + ".  " + step.step;
                         Label stepLabel = new Label(eachStep);
+                        stepLabel.setWrapText(true);
                         steps.getChildren().add(stepLabel);
                     });
         }
