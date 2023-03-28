@@ -8,6 +8,9 @@ import seedu.vms.model.StorageModel;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.vaccination.VaxType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Wraps all data at the patient-manager level
  * Duplicates are not allowed (by .isSameAppointment comparison)
@@ -46,6 +49,24 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
         set(id, appointment);
     }
 
+
+    /**
+     * Validates patient changes in AppointmentManager
+     * Does not delete.
+     */
+    public List<IdData<Appointment>> validatePatientChange(ValueChange<IdData<Patient>> change) {
+        List<IdData<Appointment>> invalidAppointments = new ArrayList<>();
+        if (!change.getOldValue().equals(change.getNewValue())
+                && change.getOldValue().isPresent()
+                && change.getNewValue().isEmpty()) {
+            Index patientToDelete = Index.fromZeroBased(change.getOldValue().get().getId());
+            getMapView().entrySet().stream()
+                    .filter(x->x.getValue().getValue().getPatient().equals(patientToDelete))
+                    .forEach(x->invalidAppointments.add(x.getValue()));
+        }
+        return invalidAppointments;
+    }
+
     /**
      * Handles patient changes in AppointmentManager
      */
@@ -58,6 +79,22 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
                     .filter(x->x.getValue().getValue().getPatient().equals(patientToDelete))
                     .forEach(x->remove(x.getKey()));
         }
+    }
+
+    /**
+     * Validates vaccination changes in AppointmentManager
+     * Does not delete.
+     */
+    public List<IdData<Appointment>> validateVaccinationChange(ValueChange<VaxType> change) {
+        List<IdData<Appointment>> invalidAppointments = new ArrayList<>();
+        if (!change.getOldValue().equals(change.getNewValue())
+                && change.getOldValue().isPresent()) {
+            GroupName vaxToChange = change.getOldValue().get().getGroupName();
+            getMapView().entrySet().stream()
+                    .filter(x->x.getValue().getValue().getVaccination().equals(vaxToChange))
+                    .forEach(x->invalidAppointments.add(x.getValue()));
+        }
+        return invalidAppointments;
     }
 
     /**
