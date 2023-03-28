@@ -14,7 +14,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.MultiFieldContainsKeywordsPredicate;
+import seedu.address.logic.parser.predicates.ContainsKeywordsPredicate;
 import seedu.address.testutil.TypicalPersons;
 
 
@@ -27,10 +27,10 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        MultiFieldContainsKeywordsPredicate firstPredicate =
-                new MultiFieldContainsKeywordsPredicate(Collections.singletonList("first"));
-        MultiFieldContainsKeywordsPredicate secondPredicate =
-                new MultiFieldContainsKeywordsPredicate(Collections.singletonList("second"));
+        ContainsKeywordsPredicate firstPredicate =
+                new ContainsKeywordsPredicate(Collections.singletonList("first"));
+        ContainsKeywordsPredicate secondPredicate =
+                new ContainsKeywordsPredicate(Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -55,7 +55,7 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        MultiFieldContainsKeywordsPredicate predicate = preparePredicate(" ");
+        ContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -65,14 +65,14 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private MultiFieldContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new MultiFieldContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private ContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new ContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        MultiFieldContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        ContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
