@@ -37,7 +37,7 @@ public class JsonSerializableFullReadingLevels {
      * @param source Future changes to this will not affect the created {@code JsonSerializableFullReadingLevels}.
      */
     public JsonSerializableFullReadingLevels(ReadOnlyReadingLevels source) {
-        readingLevels.addAll(source.getAmmoniaLevelLists().stream().map(JsonAdaptedIndividualReadingLevels::new)
+        readingLevels.addAll(source.getFullReadingLevels().stream().map(JsonAdaptedIndividualReadingLevels::new)
                 .collect(Collectors.toList()));
     }
 
@@ -52,7 +52,7 @@ public class JsonSerializableFullReadingLevels {
         for (JsonAdaptedIndividualReadingLevels jsonAdaptedReadingList : readingLevels) {
             UniqueIndividualReadingLevels individualAmmoniaLevels = jsonAdaptedReadingList.toModelType();
             //TODO add dupe tank check
-            fullReadingLevels.addAmmoniaLevelList(individualAmmoniaLevels);
+            fullReadingLevels.addIndividualReadingLevel(individualAmmoniaLevels);
         }
         return fullReadingLevels;
     }

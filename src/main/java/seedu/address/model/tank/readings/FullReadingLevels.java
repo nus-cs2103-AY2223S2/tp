@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
  */
 public class FullReadingLevels implements ReadOnlyReadingLevels {
 
-    private final UniqueFullReadingLevels ammoniaLevelLists;
+    private final UniqueFullReadingLevels fullReadingLevels;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -22,7 +22,7 @@ public class FullReadingLevels implements ReadOnlyReadingLevels {
      *   among constructors.
      */
     {
-        ammoniaLevelLists = new UniqueFullReadingLevels();
+        fullReadingLevels = new UniqueFullReadingLevels();
     }
 
     public FullReadingLevels() {}
@@ -38,11 +38,11 @@ public class FullReadingLevels implements ReadOnlyReadingLevels {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the ammonia level list with {@code ammoniaLevelLists}.
-     * {@code ammoniaLevelLists} must not contain duplicate ammoniaLevelLists.
+     * Replaces the contents of the ammonia level list with {@code fullReadingLevels}.
+     * {@code fullReadingLevels} must not contain duplicate fullReadingLevels.
      */
-    public void setAmmoniaLevelLists(List<UniqueIndividualReadingLevels> ammoniaLevelLists) {
-        this.ammoniaLevelLists.setAmmoniaLevelLists(ammoniaLevelLists);
+    public void setFullReadingLevels(List<UniqueIndividualReadingLevels> fullReadingLevels) {
+        this.fullReadingLevels.setReadingLevels(fullReadingLevels);
     }
 
     /**
@@ -52,73 +52,72 @@ public class FullReadingLevels implements ReadOnlyReadingLevels {
     public void resetData(ReadOnlyReadingLevels newData) {
         requireNonNull(newData);
 
-        setAmmoniaLevelLists(newData.getAmmoniaLevelLists());
+        setFullReadingLevels(newData.getFullReadingLevels());
     }
 
     //// ammoniaLevel-level operations
 
     /**
-     * Returns true if a ammoniaLevel with the same identity as {@code UniqueIndividualReadingLevels} exists
-     * in the ammonia level list.
+     * Returns true if a reading Level with the same identity as {@code UniqueIndividualReadingLevels} exists
+     * in the reading level list. They are same identity if they are of the same tank.
      */
-    public boolean hasAmmoniaLevelList(UniqueIndividualReadingLevels ammoniaLevelList) {
+    public boolean hasIndividualReadingLevels(UniqueIndividualReadingLevels ammoniaLevelList) {
         requireNonNull(ammoniaLevelList);
-        return ammoniaLevelLists.containsSameDayReading(ammoniaLevelList);
+        return fullReadingLevels.containsSameTankReading(ammoniaLevelList);
     }
 
     /**
-     * Adds an ammonia level to the FullReadingLevels.
+     * Adds an individual reading level to the FullReadingLevels.
      * Readings of the same day will replace the other one on the same day
      */
-    public void addAmmoniaLevelList(UniqueIndividualReadingLevels ammoniaLevelList) {
-        ammoniaLevelLists.add(ammoniaLevelList);
+    public void addIndividualReadingLevel(UniqueIndividualReadingLevels individualReadingLevels) {
+        fullReadingLevels.add(individualReadingLevels);
     }
 
     /**
-     * Replaces the given ammonia level {@code target} in the list with {@code editedAmmoniaLevel}.
+     * Replaces the given ammonia level {@code target} in the list with {@code editedReadingLevel}.
      * {@code target} must exist in the FullReadingLevels.
      */
-    public void setAmmoniaLevelList(UniqueIndividualReadingLevels target,
-                                    UniqueIndividualReadingLevels editedAmmoniaLevel) {
-        requireNonNull(editedAmmoniaLevel);
+    public void setIndividualReadingLevel(UniqueIndividualReadingLevels target,
+                                          UniqueIndividualReadingLevels editedReadingLevel) {
+        requireNonNull(editedReadingLevel);
 
-        ammoniaLevelLists.setUniqueIndividualAmmoniaLevelList(target, editedAmmoniaLevel);
+        fullReadingLevels.setUniqueIndividualReadingLevels(target, editedReadingLevel);
     }
 
     /**
      * Removes {@code key} from this {@code FullReadingLevels}.
      * {@code key} must exist in the FullReadingLevels.
      */
-    public void removeAmmoniaLevelList(UniqueIndividualReadingLevels key) {
-        ammoniaLevelLists.remove(key);
+    public void removeIndividualReadingLevel(UniqueIndividualReadingLevels key) {
+        fullReadingLevels.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return ammoniaLevelLists.asUnmodifiableObservableList().size() + " individual tank ammonia level readings";
-        // TODO: refine later
+        return fullReadingLevels.asUnmodifiableObservableList().size() + " individual tank readings";
     }
 
     @Override
-    public ObservableList<UniqueIndividualReadingLevels> getAmmoniaLevelLists() {
-        return ammoniaLevelLists.asUnmodifiableObservableList();
+    public ObservableList<UniqueIndividualReadingLevels> getFullReadingLevels() {
+        return fullReadingLevels.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FullReadingLevels // instanceof handles nulls
-                && ammoniaLevelLists.equals(((FullReadingLevels) other).ammoniaLevelLists));
+                && fullReadingLevels.equals(((FullReadingLevels) other).fullReadingLevels));
     }
 
     @Override
     public int hashCode() {
-        return ammoniaLevelLists.hashCode();
+        return fullReadingLevels.hashCode();
     }
 
     public int size() {
-        return ammoniaLevelLists.size();
+        return fullReadingLevels.size();
     }
 }

@@ -23,21 +23,21 @@ public class UniqueFullReadingLevels implements Iterable<UniqueIndividualReading
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent reading as the given argument.
+     * Returns true if the list already contains a reading list with the same tank as toCheck
      */
-    public boolean containsSameDayReading(UniqueIndividualReadingLevels toCheck) {
+    public boolean containsSameTankReading(UniqueIndividualReadingLevels toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
      * Adds a reading to the list.
-     * If a reading of the same day
+     * A reading with the same tank as toAdd must no already exist in the list
      */
     public void add(UniqueIndividualReadingLevels toAdd) {
         requireNonNull(toAdd);
-        if (containsSameDayReading(toAdd)) {
-            internalList.remove(toAdd);
+        if (containsSameTankReading(toAdd)) {
+            throw new DuplicateReadingException();
         }
         internalList.add(toAdd);
     }
@@ -47,7 +47,7 @@ public class UniqueFullReadingLevels implements Iterable<UniqueIndividualReading
      * {@code editedUniqueIndividualReadingLevels}.
      * {@code target} must exist in the list.
      */
-    public void setUniqueIndividualAmmoniaLevelList(
+    public void setUniqueIndividualReadingLevels(
             UniqueIndividualReadingLevels target,
             UniqueIndividualReadingLevels editedUniqueIndividualReadingLevels) {
         requireAllNonNull(target, editedUniqueIndividualReadingLevels);
@@ -71,31 +71,26 @@ public class UniqueFullReadingLevels implements Iterable<UniqueIndividualReading
         }
     }
 
-    public void setAmmoniaLevelLists(UniqueFullReadingLevels replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
     /**
      * Replaces the contents of this list with {@code UniqueIndividualAmmoniaLevelLists}.
      * {@code UniqueIndividualAmmoniaLevelLists} must not contain duplicate UniqueIndividualAmmoniaLevelLists.
      */
-    public void setAmmoniaLevelLists(List<UniqueIndividualReadingLevels> uniqueIndividualReadingLevels) {
-        requireAllNonNull(uniqueIndividualReadingLevels);
-        if (!ammoniaLevelListsAreUnique(uniqueIndividualReadingLevels)) {
+    public void setReadingLevels(List<UniqueIndividualReadingLevels> uniqueIndividualReadingLevelsList) {
+        requireAllNonNull(uniqueIndividualReadingLevelsList);
+        if (!ReadingLevelsAreUnique(uniqueIndividualReadingLevelsList)) {
             throw new DuplicateReadingException();
         }
 
-        internalList.setAll(uniqueIndividualReadingLevels);
+        internalList.setAll(uniqueIndividualReadingLevelsList);
     }
 
     /**
      * Returns true if {@code Readings} contains only unique Readings.
      */
-    private boolean ammoniaLevelListsAreUnique(List<UniqueIndividualReadingLevels> ammoniaLevelLists) {
-        for (int i = 0; i < ammoniaLevelLists.size() - 1; i++) {
-            for (int j = i + 1; j < ammoniaLevelLists.size(); j++) {
-                if (ammoniaLevelLists.get(i).equals(ammoniaLevelLists.get(j))) {
+    private boolean ReadingLevelsAreUnique(List<UniqueIndividualReadingLevels> readingLevelsList) {
+        for (int i = 0; i < readingLevelsList.size() - 1; i++) {
+            for (int j = i + 1; j < readingLevelsList.size(); j++) {
+                if (readingLevelsList.get(i).equals(readingLevelsList.get(j))) {
                     return false;
                 }
             }

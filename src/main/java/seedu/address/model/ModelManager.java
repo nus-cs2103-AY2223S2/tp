@@ -56,7 +56,7 @@ public class ModelManager implements Model {
         this.tankList = new TankList(tankList);
         filteredTanks = new FilteredList<>(this.tankList.getTankList());
         this.fullReadingLevels = new FullReadingLevels();
-        filteredAmmoniaLevels = new FilteredList<>(this.fullReadingLevels.getAmmoniaLevelLists());
+        filteredAmmoniaLevels = new FilteredList<>(this.fullReadingLevels.getFullReadingLevels());
 
         updateTanksOfEachFishAndFishListOfEachTank();
         updateTankOfEachTask();
@@ -388,24 +388,24 @@ public class ModelManager implements Model {
     @Override
     public boolean hasIndividualAmmoniaLevels(UniqueIndividualReadingLevels ammoniaLevels) {
         requireNonNull(ammoniaLevels);
-        return fullReadingLevels.hasAmmoniaLevelList(ammoniaLevels);
+        return fullReadingLevels.hasIndividualReadingLevels(ammoniaLevels);
     }
 
     @Override
     public void deleteIndividualAmmoniaLevels(UniqueIndividualReadingLevels target) {
-        fullReadingLevels.removeAmmoniaLevelList(target);
+        fullReadingLevels.removeIndividualReadingLevel(target);
     }
 
     @Override
     public void addIndividualAmmoniaLevels(UniqueIndividualReadingLevels ammoniaLevels) {
-        fullReadingLevels.addAmmoniaLevelList(ammoniaLevels);
+        fullReadingLevels.addIndividualReadingLevel(ammoniaLevels);
     }
 
     @Override
     public void setIndividualAmmoniaLevels(UniqueIndividualReadingLevels target,
                                            UniqueIndividualReadingLevels editedList) {
         requireAllNonNull(target, editedList);
-        fullReadingLevels.setAmmoniaLevelList(target, editedList);
+        fullReadingLevels.setIndividualReadingLevel(target, editedList);
     }
 
     //=========== Filtered FullReadingLevels Accessors =============================================================
