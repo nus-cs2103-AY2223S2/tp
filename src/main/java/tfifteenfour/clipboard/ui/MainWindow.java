@@ -384,36 +384,42 @@ public class MainWindow extends UiPart<Stage> {
      * Handles UI for select command.
      */
     private void handleSelectCommand() {
-        if (logic.getCurrentSelection().getCurrentPage().equals(PageType.GROUP_PAGE)) {
 
+        PageType currentPage = logic.getCurrentSelection().getCurrentPage();
+
+        switch(currentPage){
+        case COURSE_PAGE:
+            break;
+        case GROUP_PAGE:
             showGroupPane(logic.getCurrentSelection().getSelectedCourse());
             closeModuleTab();
             showGroupTab();
             refreshNavigationBar();
-
-        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)
-                && !logic.getCurrentSelection().getSelectedStudent().equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
-
-            showStudentPane(logic.getCurrentSelection().getSelectedGroup());
-            refreshViewPane();
-
-        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.STUDENT_PAGE)) {
-
-            showStudentPane(logic.getCurrentSelection().getSelectedGroup());
-            showStudentTab();
-            refreshNavigationBar();
-
-        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.SESSION_STUDENT_PAGE)) {
+            break;
+        case STUDENT_PAGE:
+            if (logic.getCurrentSelection().getSelectedStudent().equals(CurrentSelection.NON_EXISTENT_STUDENT)) {
+                showStudentPane(logic.getCurrentSelection().getSelectedGroup());
+                showStudentTab();
+                refreshNavigationBar();
+            } else {
+                showStudentPane(logic.getCurrentSelection().getSelectedGroup());
+                refreshViewPane();
+            }
+            break;
+        case SESSION_STUDENT_PAGE:
             logic.getCurrentSelection().getSelectedSession().selectSession();
             showSessionPane(logic.getCurrentSelection().getSelectedGroup());
             showAttendancePane(logic.getCurrentSelection().getSelectedSession());
             refreshNavigationBar();
-
-        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.TASK_STUDENT_PAGE)) {
+            break;
+        case TASK_STUDENT_PAGE:
             logic.getCurrentSelection().getSelectedTask().selectTask();
             showTaskPane(logic.getCurrentSelection().getSelectedGroup());
             showGradePane(logic.getCurrentSelection().getSelectedTask());
             refreshNavigationBar();
+            break;
+        default:
+            break;
         }
     }
 
@@ -422,12 +428,16 @@ public class MainWindow extends UiPart<Stage> {
      * @param backCommand
      */
     private void handleBackCommand(BackCommand backCommand) {
-        if (logic.getCurrentSelection().getCurrentPage().equals(PageType.COURSE_PAGE)) {
+        PageType currentPage = logic.getCurrentSelection().getCurrentPage();
+
+        switch(currentPage){
+        case COURSE_PAGE:
             showCoursePane();
             showModuleTab();
             closeGroupTab();
             refreshNavigationBar();
-        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.GROUP_PAGE)) {
+            break;
+        case GROUP_PAGE:
             showGroupPane(backCommand.getPreviousSelection().getSelectedCourse());
             showGroupTab();
             closeViewPane();
@@ -435,18 +445,22 @@ public class MainWindow extends UiPart<Stage> {
             closeSessionTab();
             closeTaskTab();
             refreshNavigationBar();
-        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.SESSION_PAGE)) {
+            break;
+        case SESSION_PAGE:
             logic.getCurrentSelection().getSelectedGroup().unMarkAllSessions();
             showSessionPane(logic.getCurrentSelection().getSelectedGroup());
             rightPanelPlaceholder.getChildren().clear();
             refreshNavigationBar();
-        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.TASK_PAGE)) {
+            break;
+        case TASK_PAGE:
             logic.getCurrentSelection().getSelectedGroup().unMarkAllTasks();
             showTaskPane(logic.getCurrentSelection().getSelectedGroup());
             rightPanelPlaceholder.getChildren().clear();
             refreshNavigationBar();
+            break;
+        default:
+            break;
         }
-
     }
 
     private void handleSessionCommand() {
