@@ -30,7 +30,7 @@ public class RecipeBook implements ReadOnlyRecipeBook {
     public RecipeBook() {}
 
     /**
-     * Creates an RecipeBook using the Recipes in the {@code toBeCopied}
+     * Creates a RecipeBook using the Recipes in the {@code toBeCopied}
      */
     public RecipeBook(ReadOnlyRecipeBook toBeCopied) {
         this();
@@ -123,6 +123,11 @@ public class RecipeBook implements ReadOnlyRecipeBook {
         return recipes.asUnmodifiableObservableList();
     }
 
+    public void viewRecipeList() {
+        for (Recipe r : recipes) {
+            System.out.println(r);
+        }
+    }
 
     @Override
     public boolean equals(Object other) {

@@ -1,8 +1,15 @@
 {
-  "recipes": [ {
-    "title": "df@dfji",
-    "desc": "9$$82424",
-    "ingredients": ["invalid@email!3e"],
-    "steps": ["4th street"]
+  "recipes" : [ {
+    "title" : "Corndogs",
+    "desc" : "Homemade corndogs",
+    "ingredients" : [ {
+      "name" : "flour",
+      "quantity" : -2,
+      "unitOfMeasurement" : "cup",
+      "pricePerUnit" : 0.8
+    } ],
+    "steps" : [ "step 1" ],
+    "tags" : [ "easy" ],
+    "isStar" : false
   } ]
 }

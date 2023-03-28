@@ -116,7 +116,7 @@ public class AddCommandParserTest {
 
         // invalid ingredient
         assertParseFailure(parser, TITLE_DESC_SOUP + DESC_DESC_SOUP + INVALID_INGREDIENT_DESC
-                + STEP_DESC_SOUP + TAG_DESC_SOUP, Ingredient.MESSAGE_CONSTRAINTS);
+                + STEP_DESC_SOUP + TAG_DESC_SOUP, Ingredient.INGREDIENT_WRONG_ARGUMENTS_MESSAGE_CONSTRAINTS);
 
         // invalid step
         assertParseFailure(parser, TITLE_DESC_SOUP + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP + INVALID_STEP_DESC

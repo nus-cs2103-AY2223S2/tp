@@ -46,16 +46,16 @@ public class RecipeDetailsPanel extends UiPart<Region> {
     public void setRecipeDetails(Recipe recipe) {
         if (recipe != null) {
             if (recipe.isStarred()) {
-                recipeTitle.setText(recipe.getTitle().toString() + "★");
+                recipeTitle.setText(recipe.getTitle().toString() + "★" + " [Price: $" + recipe.getCost() + "]");
             } else {
-                recipeTitle.setText(recipe.getTitle().toString());
+                recipeTitle.setText(recipe.getTitle().toString() + " [Price: $" + recipe.getCost() + "]");
             }
             recipeDesc.setText(recipe.getDesc().toString());
             ingredients.getChildren().clear();
             ingredientsTitle.setText("What you will need:");
             recipe.getIngredients().stream()
                     .forEach(ingredient -> {
-                        Label ingredientLabel = new Label(ingredient.ingredient);
+                        Label ingredientLabel = new Label(ingredient.toDisplayString());
                         ingredients.getChildren().add(ingredientLabel);
                     });
             steps.getChildren().clear();

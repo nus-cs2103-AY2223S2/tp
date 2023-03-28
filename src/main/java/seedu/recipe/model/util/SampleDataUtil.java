@@ -23,8 +23,8 @@ public class SampleDataUtil {
         return new Recipe[] {
             new Recipe(new Title("Corndogs"), new Description("Awesome cheap corndogs"),
                     new HashSet<Ingredient>(Arrays.asList(
-                            new Ingredient("eggs"),
-                            new Ingredient("flour"))),
+                            new Ingredient("eggs", 3.0, "unit", 0.90),
+                            new Ingredient("flour", 1.5, "cup", 0.10))),
                     new ArrayList<Step>(Arrays.asList(
                             new Step("Test1"),
                             new Step("Test2"))),
@@ -50,5 +50,5 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }
+

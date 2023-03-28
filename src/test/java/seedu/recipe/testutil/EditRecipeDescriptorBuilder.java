@@ -1,11 +1,16 @@
 package seedu.recipe.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.recipe.logic.commands.EditCommand.EditRecipeDescriptor;
+import seedu.recipe.logic.parser.ParserUtil;
+import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Description;
 import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Recipe;
@@ -61,9 +66,15 @@ public class EditRecipeDescriptorBuilder {
      * that we are building.
      */
     public EditRecipeDescriptorBuilder withIngredients(String... ingredients) {
-        Set<Ingredient> ingredientSet = Stream.of(ingredients).map(Ingredient::new).collect(Collectors.toSet());
-        descriptor.setIngredients(ingredientSet);
-        return this;
+        List<String> list = Arrays.asList(ingredients);
+        Collection<String> collectionOfIngredients = new ArrayList<>(list);
+        try {
+            Set<Ingredient> ingredientSet = ParserUtil.parseIngredients(collectionOfIngredients);
+            descriptor.setIngredients(ingredientSet);
+            return this;
+        } catch (ParseException e) {
+            return null;
+        }
     }
 
     /**

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DESC_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENTS_SOUP;
 import static seedu.recipe.testutil.Assert.assertThrows;
 import static seedu.recipe.testutil.TypicalRecipes.CORNDOGS;
 import static seedu.recipe.testutil.TypicalRecipes.SOUP;
@@ -41,7 +42,7 @@ public class UniqueRecipeListTest {
     @Test
     public void contains_recipeWithSameIdentityFieldsInList_returnsTrue() {
         uniqueRecipeList.add(CORNDOGS);
-        Recipe editedAlice = new RecipeBuilder(CORNDOGS).withIngredients(VALID_DESC_SOUP).build();
+        Recipe editedAlice = new RecipeBuilder(CORNDOGS).withIngredients(VALID_INGREDIENTS_SOUP).build();
         assertTrue(uniqueRecipeList.contains(editedAlice));
     }
 

@@ -20,16 +20,20 @@ import seedu.recipe.model.recipe.Title;
 public class JsonAdaptedRecipeTest {
     private static final String INVALID_TITLE = "R@chel";
     private static final String INVALID_DESC = "+6@*1234";
-    private static final String INVALID_INGREDIENT = "+6@*1234";
+    private static final String INVALID_INGREDIENT_NAME = "+6@*1234";
     private static final String INVALID_STEP = "+6@*1234";
     private static final String INVALID_TAG = "";
-
 
     private static final String VALID_TITLE = CORNDOGS.getTitle().toString();
     private static final String VALID_DESC = CORNDOGS.getDesc().toString();
     private static final Set<JsonAdaptedIngredient> VALID_INGREDIENTS = CORNDOGS.getIngredients().stream()
             .map(JsonAdaptedIngredient::new)
             .collect(Collectors.toSet());
+
+    private static final Double VALID_INGREDIENT_QUANTITY = 2.0;
+    private static final String VALID_INGREDIENT_UOM = "kg";
+    private static final Double VALID_INGREDIENT_PPU = 2.0;
+
     private static final List<JsonAdaptedStep> VALID_STEPS = CORNDOGS.getSteps().stream()
             .map(JsonAdaptedStep::new)
             .collect(Collectors.toList());
@@ -78,7 +82,8 @@ public class JsonAdaptedRecipeTest {
     @Test
     public void toModelType_invalidIngredients_throwsIllegalValueException() {
         Set<JsonAdaptedIngredient> invalidIngredients = new HashSet<>(VALID_INGREDIENTS);
-        invalidIngredients.add(new JsonAdaptedIngredient(INVALID_INGREDIENT));
+        invalidIngredients.add(new JsonAdaptedIngredient(INVALID_INGREDIENT_NAME, VALID_INGREDIENT_QUANTITY,
+                VALID_INGREDIENT_UOM, VALID_INGREDIENT_PPU));
         JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_TITLE, VALID_DESC, invalidIngredients,
                 VALID_STEPS, VALID_TAG, false);
         assertThrows(IllegalValueException.class, recipe::toModelType);
