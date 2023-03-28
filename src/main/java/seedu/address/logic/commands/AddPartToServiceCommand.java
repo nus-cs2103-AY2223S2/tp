@@ -61,6 +61,6 @@ public class AddPartToServiceCommand extends Command {
         }
         model.addPartToService(this.serviceId, this.partName, this.quantity);
         return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.quantity, this.partName, this.serviceId),
-            ResultType.LISTED_SERVICES);
+            Tab.SERVICES);
     }
 }

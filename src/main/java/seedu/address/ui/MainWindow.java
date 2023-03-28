@@ -5,15 +5,22 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListCustomersCommand;
+import seedu.address.logic.commands.ListServicesCommand;
+import seedu.address.logic.commands.ListVehiclesCommand;
+import seedu.address.logic.commands.Tab;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -22,8 +29,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-
     private static final String FXML = "MainWindow.fxml";
+
+    public final String[] tabResultDisplayMessages = new String[6];
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -35,23 +43,41 @@ public class MainWindow extends UiPart<Stage> {
     private CustomerListPanel customerListPanel;
     private VehicleListPanel vehicleListPanel;
     private ServiceListPanel serviceListPanel;
+    private CustomerDetailsPanel customerDetailsPanel;
+    private VehicleDetailsPanel vehicleDetailsPanel;
+    private ServiceDetailsPanel serviceDetailsPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private HBox commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane listPanelPlaceholder;
+    private StackPane customerListPanelPlaceholder;
+
+    @FXML
+    private StackPane vehicleListPanelPlaceholder;
+
+    @FXML
+    private StackPane serviceListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private TabPane tabs;
+    @FXML
+    private StackPane customerDetailsPlaceholder;
+    @FXML
+    private StackPane vehicleDetailsPlaceholder;
+    @FXML
+    private StackPane serviceDetailsPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -113,35 +139,52 @@ public class MainWindow extends UiPart<Stage> {
     private void initCustomerListPanel() {
         customerListPanel = new CustomerListPanel(logic.getFilteredCustomerList(),
                 logic.getCustomerVehicleMap());
-        listPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
+        customerListPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
     }
 
     private void initVehicleListPanel() {
         vehicleListPanel = new VehicleListPanel(logic.getFilteredVehicleList(),
                 logic.getVehicleDataMap());
-        listPanelPlaceholder.getChildren().add(vehicleListPanel.getRoot());
+        vehicleListPanelPlaceholder.getChildren().add(vehicleListPanel.getRoot());
     }
 
     private void initServiceListPanel() {
         serviceListPanel = new ServiceListPanel(logic.getFilteredServiceList(),
                 logic.getServiceDataMap());
-        listPanelPlaceholder.getChildren().add(serviceListPanel.getRoot());
+        serviceListPanelPlaceholder.getChildren().add(serviceListPanel.getRoot());
+    }
+
+    private void initTabResultDisplayMessages() {
+        tabResultDisplayMessages[Tab.CUSTOMERS.ordinal()] = ListCustomersCommand.MESSAGE_SUCCESS;
+        tabResultDisplayMessages[Tab.VEHICLES.ordinal()] = ListVehiclesCommand.MESSAGE_SUCCESS;
+        tabResultDisplayMessages[Tab.SERVICES.ordinal()] = ListServicesCommand.MESSAGE_SUCCESS;
     }
 
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        initTabResultDisplayMessages();
+
         initCustomerListPanel();
+        initVehicleListPanel();
+        initServiceListPanel();
+
+        initSelected();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getShopFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        HBox.setHgrow(commandBox.getRoot(), Priority.ALWAYS);
+
+        tabs.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            resultDisplay.setFeedbackToUser(tabResultDisplayMessages[newValue.intValue()]);
+        });
     }
 
     /**
@@ -188,6 +231,29 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    private void updateSelectedTab(CommandResult commandResult) {
+        int tabIndex = commandResult.getType().ordinal();
+        tabResultDisplayMessages[tabIndex] = commandResult.getFeedbackToUser();
+        if (!tabs.getSelectionModel().isSelected(tabIndex) && commandResult.getType() != Tab.UNCHANGED) {
+            tabs.getSelectionModel().select(tabIndex);
+        }
+    }
+
+    private void initSelected() {
+        customerDetailsPlaceholder.getChildren().clear();
+        customerDetailsPanel = new CustomerDetailsPanel(logic.getSelectedCustomer(), logic.getCustomerVehicleMap());
+        customerDetailsPlaceholder.getChildren().add(customerDetailsPanel.getRoot());
+
+        vehicleDetailsPlaceholder.getChildren().clear();
+        vehicleDetailsPanel = new VehicleDetailsPanel(logic.getSelectedVehicle(), logic.getVehicleDataMap());
+        vehicleDetailsPlaceholder.getChildren().add(vehicleDetailsPanel.getRoot());
+
+        serviceDetailsPlaceholder.getChildren().clear();
+        serviceDetailsPanel = new ServiceDetailsPanel(logic.getSelectedService(), logic.getServiceDataMap());
+        serviceDetailsPlaceholder.getChildren().add(serviceDetailsPanel.getRoot());
+    }
+
+
     /**
      * Executes the command and returns the result.
      *
@@ -197,23 +263,9 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
+            updateSelectedTab(commandResult);
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            listPanelPlaceholder.getChildren().clear();
-
-            // Handle UI Updates
-            switch (commandResult.getType()) {
-            case LISTED_CUSTOMERS:
-                initCustomerListPanel();
-                break;
-            case LISTED_VEHICLES:
-                initVehicleListPanel();
-                break;
-            case LISTED_SERVICES:
-                initServiceListPanel();
-                break;
-            default:
-            }
+            initSelected();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -2,10 +2,13 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.service.Vehicle;
+import seedu.address.model.service.VehicleType;
 
 /**
  * An UI component that displays information of a {@code Customer}.
@@ -13,6 +16,9 @@ import seedu.address.model.service.Vehicle;
 public class VehicleCard extends UiPart<Region> {
 
     private static final String FXML = "VehicleListCard.fxml";
+    private static final Image CarIcon = new Image("/images/car_white_icon.png");
+    private static final Image MotorbikeIcon = new Image("/images/motorbike_white_icon.png");
+
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved
@@ -21,7 +27,7 @@ public class VehicleCard extends UiPart<Region> {
      * or an exception will be thrown by JavaFX during runtime.
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The
-     *      issue on AddressBook level 4</a>
+     * issue on AddressBook level 4</a>
      */
 
     public final Vehicle vehicle;
@@ -40,6 +46,8 @@ public class VehicleCard extends UiPart<Region> {
     @FXML
     private Label owner;
     @FXML
+    private ImageView typeImg;
+    @FXML
     private Label numberOfServices;
 
     /**
@@ -54,8 +62,13 @@ public class VehicleCard extends UiPart<Region> {
         plateNumber.setText(vehicle.getPlateNumber());
         brand.setText(vehicle.getBrand() + ",");
         type.setText(vehicle.getType().getValue());
-        owner.setText(vehicleOwner.getName().fullName);
-        numberOfServices.setText("Number of services: " + vehicle.getServiceIds().size());
+        if (vehicle.getType() == VehicleType.CAR) {
+            typeImg.setImage(CarIcon);
+        } else {
+            typeImg.setImage(MotorbikeIcon);
+        }
+        owner.setText("Owner: " + vehicleOwner.getName().fullName);
+        numberOfServices.setText(vehicle.getServiceIds().size() + " total services");
     }
 
     @Override

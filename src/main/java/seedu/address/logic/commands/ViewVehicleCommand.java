@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.entity.person.Customer;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.VehicleIdPredicate;
 
@@ -31,11 +30,10 @@ public class ViewVehicleCommand extends Command {
         requireNonNull(model);
         model.updateFilteredVehicleList(predicate);
         Vehicle current = model.getFilteredVehicleList().get(0);
-        Customer vehicleOwner = model.getVehicleDataMap().getVehicleCustomer(current);
-        // TODO: Show all nested objects associated with vehicle
+        model.selectVehicle(current);
         return new CommandResult(
-                String.format(Messages.MESSAGE_VEHICLE_VIEW_OVERVIEW, current, vehicleOwner),
-                ResultType.LISTED_VEHICLES);
+                String.format(Messages.MESSAGE_VEHICLE_VIEW_OVERVIEW, current.getId()),
+                Tab.VEHICLES);
     }
 
     @Override

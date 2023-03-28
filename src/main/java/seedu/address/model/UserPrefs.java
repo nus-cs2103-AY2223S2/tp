@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path shopFilePath = Paths.get("data" , "autom8.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -51,9 +52,18 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
+    public Path getShopFilePath() {
+        return shopFilePath;
+    }
+
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
+    }
+
+    public void setShopFilePath(Path shopFilePath) {
+        requireNonNull(shopFilePath);
+        this.shopFilePath = shopFilePath;
     }
 
     @Override

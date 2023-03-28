@@ -48,6 +48,6 @@ public class AddTechnicianToServiceCommand extends Command {
         }
         model.addTechnicianToService(this.serviceId, this.techId);
         return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.serviceId),
-            ResultType.LISTED_SERVICES);
+                Tab.SERVICES);
     }
 }

@@ -59,7 +59,7 @@ public class AddCustomerCommand extends AddCommand {
         }
 
         model.addCustomer(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ResultType.LISTED_CUSTOMERS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), Tab.CUSTOMERS);
     }
 
     @Override

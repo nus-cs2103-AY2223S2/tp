@@ -54,9 +54,14 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' shop file path.
      */
-    Path getAddressBookFilePath();
+    Path getShopFilePath();
+
+    /**
+     * Sets the user prefs' shop file path.
+     */
+    void setShopFilePath(Path shopFilePath);
 
     /**
      * Sets the user prefs' address book file path.
@@ -271,4 +276,34 @@ public interface Model {
     VehicleDataMap getVehicleDataMap();
 
     ServiceDataMap getServiceDataMap();
+
+    /**
+     * Sets currently selected customer
+     */
+    void selectCustomer(Customer customer);
+
+    /**
+     * Returns currently selected customer
+     */
+    Customer getSelectedCustomer();
+
+    /**
+     * Sets currently selected vehicle
+     */
+    void selectVehicle(Vehicle vehicle);
+
+    /**
+     * Returns currently selected vehicle
+     */
+    Vehicle getSelectedVehicle();
+
+    /**
+     * Sets currently selected service
+     */
+    void selectService(Service service);
+
+    /**
+     * Returns currently selected service
+     */
+    Service getSelectedService();
 }

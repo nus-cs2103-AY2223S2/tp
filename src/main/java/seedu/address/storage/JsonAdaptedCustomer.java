@@ -23,6 +23,7 @@ class JsonAdaptedCustomer extends JsonAdaptedPerson {
 
     private final int id;
     private final List<Integer> vehicleIds = new ArrayList<>();
+    private final List<Integer> appointmentIds = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedCustomer} with the given customer details.
@@ -32,11 +33,15 @@ class JsonAdaptedCustomer extends JsonAdaptedPerson {
                                @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                                @JsonProperty("address") String address,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                               @JsonProperty("vehicleIds") List<Integer> vehicleIds) {
+                               @JsonProperty("vehicleIds") List<Integer> vehicleIds,
+                               @JsonProperty("appointmentIds") List<Integer> appointmentIds) {
         super(name, phone, email, address, tagged);
         this.id = id;
         if (vehicleIds != null) {
             this.vehicleIds.addAll(vehicleIds);
+        }
+        if (appointmentIds != null) {
+            this.appointmentIds.addAll(appointmentIds);
         }
     }
 
@@ -47,6 +52,9 @@ class JsonAdaptedCustomer extends JsonAdaptedPerson {
         super(source);
         this.id = source.getId();
         vehicleIds.addAll(source.getVehicleIds().stream()
+                .map(Integer::new)
+                .collect(Collectors.toList()));
+        appointmentIds.addAll(source.getAppointmentIds().stream()
                 .map(Integer::new)
                 .collect(Collectors.toList()));
     }
@@ -62,6 +70,10 @@ class JsonAdaptedCustomer extends JsonAdaptedPerson {
         for (Integer id : vehicleIds) {
             customerVehicleIds.add(id);
         }
+        final List<Integer> customerAppointmentIds = new ArrayList<>();
+        for (Integer id : appointmentIds) {
+            customerAppointmentIds.add(id);
+        }
 
         if (id == 0) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Id"));
@@ -69,8 +81,10 @@ class JsonAdaptedCustomer extends JsonAdaptedPerson {
         final int id = this.id;
 
         final Set<Integer> modelVehicleIds = new HashSet<>(customerVehicleIds);
+        final Set<Integer> modelAppointmentIds = new HashSet<>(customerAppointmentIds);
 
-        return new Customer(id, p.getName(), p.getPhone(), p.getEmail(), p.getAddress(), p.getTags(), modelVehicleIds);
+        return new Customer(id, p.getName(), p.getPhone(), p.getEmail(), p.getAddress(),
+                p.getTags(), modelVehicleIds, modelAppointmentIds);
     }
 
 }

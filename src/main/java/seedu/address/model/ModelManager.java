@@ -37,10 +37,14 @@ public class ModelManager implements Model {
     private final FilteredList<Technician> filteredTechnicians;
     private final FilteredList<Service> filteredServices;
     private final FilteredList<Vehicle> filteredVehicles;
-    private final FilteredList<Appointment> filteredAppointment;
+    private final FilteredList<Appointment> filteredAppointments;
 
     private final PartMap partMap;
     private final Shop shop;
+
+    private Customer selectedCustomer;
+    private Vehicle selectedVehicle;
+    private Service selectedService;
 
     // Mapped
     private final CustomerVehicleMap customerVehicleMap;
@@ -65,15 +69,26 @@ public class ModelManager implements Model {
         filteredTechnicians = new FilteredList<>(this.shop.getTechnicianList());
         filteredServices = new FilteredList<>(this.shop.getServiceList());
         filteredVehicles = new FilteredList<>(this.shop.getVehicleList());
-        filteredAppointment = new FilteredList<>(this.shop.getAppointmentList());
+        filteredAppointments = new FilteredList<>(this.shop.getAppointmentList());
         partMap = this.shop.getPartMap();
         //        filteredParts = new FilteredList<>(this.shop.getPartList()); // filteredParts
 
-        customerVehicleMap = new CustomerVehicleMap(this.shop.getCustomerList(), this.shop.getVehicleList());
+        customerVehicleMap = new CustomerVehicleMap(this.shop.getCustomerList(), this.shop.getVehicleList(),
+                this.shop.getAppointmentList());
         vehicleDataMap = new VehicleDataMap(this.shop.getVehicleList(), this.shop.getCustomerList(),
                 this.shop.getServiceList());
         serviceDataMap = new ServiceDataMap(this.shop.getServiceList(), this.shop.getTechnicianList(),
                 this.shop.getVehicleList());
+
+        if (filteredCustomers.size() > 0) {
+            selectedCustomer = filteredCustomers.get(0);
+        }
+        if (filteredVehicles.size() > 0) {
+            selectedVehicle = filteredVehicles.get(0);
+        }
+        if (filteredServices.size() > 0) {
+            selectedService = filteredServices.get(0);
+        }
     }
 
     public ModelManager() {
@@ -81,7 +96,8 @@ public class ModelManager implements Model {
     }
 
     private void resetMaps() {
-        this.customerVehicleMap.reset(this.shop.getCustomerList(), this.shop.getVehicleList());
+        this.customerVehicleMap.reset(this.shop.getCustomerList(), this.shop.getVehicleList(),
+                this.shop.getAppointmentList());
         this.vehicleDataMap.reset(this.shop.getVehicleList(), this.shop.getCustomerList(),
                 this.shop.getServiceList());
         this.serviceDataMap.reset(this.shop.getServiceList(), this.shop.getTechnicianList(),
@@ -113,14 +129,20 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getShopFilePath() {
+        return userPrefs.getShopFilePath();
     }
 
     @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public void setShopFilePath(Path shopFilePath) {
+        requireNonNull(shopFilePath);
+        userPrefs.setShopFilePath(shopFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -228,6 +250,7 @@ public class ModelManager implements Model {
         this.shop.addVehicle(customerId, vehicle);
         resetMaps();
         updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
     /**
@@ -297,7 +320,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {
-        return filteredAppointment;
+        return filteredAppointments;
     }
 
     // ==== For Part ==
@@ -413,7 +436,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
         requireNonNull(predicate);
-        filteredAppointment.setPredicate(predicate);
+        filteredAppointments.setPredicate(predicate);
     }
 
     @Override
@@ -456,6 +479,36 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    @Override
+    public void selectCustomer(Customer customer) {
+        selectedCustomer = customer;
+    }
+
+    @Override
+    public Customer getSelectedCustomer() {
+        return selectedCustomer;
+    }
+
+    @Override
+    public void selectVehicle(Vehicle vehicle) {
+        selectedVehicle = vehicle;
+    }
+
+    @Override
+    public Vehicle getSelectedVehicle() {
+        return selectedVehicle;
+    }
+
+    @Override
+    public void selectService(Service service) {
+        selectedService = service;
+    }
+
+    @Override
+    public Service getSelectedService() {
+        return selectedService;
     }
 
 }

@@ -12,13 +12,14 @@ public class ListCustomersCommand extends Command {
 
     public static final String COMMAND_WORD = "listcustomers";
 
-    public static final String MESSAGE_SUCCESS = "Listed all customers.";
+    public static final String MESSAGE_SUCCESS = "Currently listing all customers.";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-        return new CommandResult(MESSAGE_SUCCESS, ResultType.LISTED_CUSTOMERS);
+        model.selectCustomer(model.getFilteredCustomerList().get(0));
+        return new CommandResult(MESSAGE_SUCCESS, Tab.CUSTOMERS);
     }
 }
 

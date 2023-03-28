@@ -65,7 +65,7 @@ public class AddVehicleCommand extends RedoableCommand {
         }
 
         model.addVehicle(toAdd.getOwnerId(), toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ResultType.LISTED_VEHICLES);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), Tab.VEHICLES);
     }
 
     @Override
