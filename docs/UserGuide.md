@@ -153,12 +153,6 @@ Format: `find_details KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find 22224444` returns the patient with a phone number `22224444`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a patient : `delete`
 
