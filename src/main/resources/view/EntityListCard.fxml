@@ -2,11 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
@@ -15,26 +15,33 @@
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="60.0" GridPane.columnIndex="0">
-      <padding>
-        <Insets bottom="5" left="15" right="5" top="5" />
-      </padding>
-      <HBox alignment="TOP_CENTER" spacing="5">
-            <HBox HBox.hgrow="ALWAYS">
-               <children>
-              <Label fx:id="id" styleClass="cell_big_label">
-                <minWidth>
-                  <!-- Ensures that the label text is never truncated -->
-                  <Region fx:constant="USE_PREF_SIZE" />
-                </minWidth>
-              </Label>
-              <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-               </children>
+      <HBox>
+         <children>
+            <ImageView fx:id="logoImageView" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+          <VBox alignment="CENTER_LEFT" minHeight="60.0" HBox.hgrow="ALWAYS">
+            <padding>
+              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+            <HBox alignment="TOP_CENTER" spacing="5">
+                  <HBox HBox.hgrow="ALWAYS">
+                     <children>
+                    <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                     </children>
+                  </HBox>
             </HBox>
-            <Label fx:id="classification" styleClass="cell_big_label" text="\$class" />
+            <FlowPane fx:id="tags" />
+          </VBox>
+            <Label fx:id="classification" minHeight="60.0" styleClass="cell_big_label" text="\$class" HBox.hgrow="NEVER">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
       </HBox>
-      <FlowPane fx:id="tags" />
-    </VBox>
       <rowConstraints>
          <RowConstraints />
       </rowConstraints>
