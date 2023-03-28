@@ -84,7 +84,7 @@ public class RosterParser {
             return new HelpCommand();
 
         case RemarkCommand.COMMAND_WORD:
-            return new RemarkCommandParser().parse(arguments);
+            return new RemarkCommandParser(currentSelection).parse(arguments);
 
         case UploadCommand.COMMAND_WORD:
             return new UploadCommandParser().parse(arguments);

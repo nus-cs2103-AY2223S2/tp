@@ -1,15 +1,22 @@
 package tfifteenfour.clipboard.logic.commands.studentcommands;
 
+import static java.util.Objects.requireNonNull;
 import static tfifteenfour.clipboard.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
+
+import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
+import tfifteenfour.clipboard.model.course.Group;
+import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.student.Remark;
 import tfifteenfour.clipboard.model.student.Student;
+import tfifteenfour.clipboard.model.task.Task;
 
 /**
  * Changes the remark of an existing person in the address book.
@@ -48,22 +55,34 @@ public class RemarkCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
-        // List<Student> lastShownList = model.getUnmodifiableFilteredStudentList();
+        requireNonNull(model);
+        Group selectedGroup = currentSelection.getSelectedGroup();
+        List<Student> lastShownList = selectedGroup.getUnmodifiableFilteredStudentList();
+        List<Session> sessions = selectedGroup.getModifiableSessionList();
+        List<Task> tasks = selectedGroup.getModifiableTaskList();
 
-        // if (index.getZeroBased() >= lastShownList.size()) {
-        //     throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        // }
 
-        // Student studentToEdit = lastShownList.get(index.getZeroBased());
-        // Student editedStudent = new Student(
-        //         studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
-        //         studentToEdit.getStudentId(), remark);
 
-        // // model.setStudent(studentToEdit, editedStudent);
-        // //model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
 
-        // return new CommandResult(this, generateSuccessMessage(editedStudent), true);
-        return new CommandResult(this, "PLACEHOLDER", willModifyState);
+        Student studentToEdit = lastShownList.get(index.getZeroBased());
+        Student editedStudent = new Student(
+                studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
+                studentToEdit.getStudentId(), remark);
+
+
+        for (Session session : sessions) {
+            session.replaceStudent(studentToEdit, editedStudent);
+        }
+
+        for (Task task : tasks) {
+            task.replaceStudent(studentToEdit, editedStudent);
+        }
+
+        selectedGroup.setStudent(studentToEdit, editedStudent);
+        return new CommandResult(this, generateSuccessMessage(editedStudent), true);
     }
 
     /**
