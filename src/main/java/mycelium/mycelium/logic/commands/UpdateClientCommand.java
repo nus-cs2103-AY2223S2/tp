@@ -61,14 +61,15 @@ public class UpdateClientCommand extends Command {
 
     /**
      * Creates and returns a {@code Client} with the details of {@code clientToEdit}
-     * @param clientToEdit the client to edit.
-     * @param updateClientDescriptor the details to edit the client with.
-     * @return a client with the details of {@code clientToEdit} edited with {@code editClientDescriptor}.
+     * @param clientToEdit client to be edited.
+     * @param updateClientDescriptor details to edit the client with.
+     * @return a client with the details of {@code clientToEdit}.
      */
-    private static Client createUpdatedClient(Client clientToEdit, UpdateClientDescriptor updateClientDescriptor) {
+    private static Optional<Client> createUpdatedClient(Client clientToEdit,
+                                                        UpdateClientDescriptor updateClientDescriptor) {
         assert clientToEdit != null;
         if (!updateClientDescriptor.isAnyFieldEdited()) {
-            return clientToEdit;
+            return Optional.empty();
         }
         Name updatedName = updateClientDescriptor.getName().orElse(clientToEdit.getName());
         Email updatedEmail = updateClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
@@ -77,7 +78,11 @@ public class UpdateClientCommand extends Command {
         Optional<NonEmptyString> updatedSource = updateClientDescriptor.getSource().or(clientToEdit::getSource);
         Optional<Phone> updatedMobileNumber = updateClientDescriptor
                 .getMobileNumber().or(clientToEdit::getMobileNumber);
-        return new Client(updatedName, updatedEmail, updatedYearOfBirth, updatedSource, updatedMobileNumber);
+        Client client = new Client(updatedName, updatedEmail, updatedYearOfBirth, updatedSource, updatedMobileNumber);
+        if (client.equals(clientToEdit)) {
+            return Optional.empty();
+        }
+        return Optional.of(client);
     }
 
     /**
@@ -94,16 +99,16 @@ public class UpdateClientCommand extends Command {
         if (!uniqueClient.isPresent()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT);
         }
-        if (!updateClientDescriptor.isAnyFieldEdited()) {
+        Optional<Client> updatedClient = createUpdatedClient(uniqueClient.get(), updateClientDescriptor);
+        if (updatedClient.isEmpty()) {
             throw new CommandException(MESSAGE_NOT_EDITED);
         }
-        Client editedClient = createUpdatedClient(uniqueClient.get(), updateClientDescriptor);
         // Ensures that new email is not a mandatory option
-        if (updateClientDescriptor.email.isPresent() && model.hasClient(editedClient)) {
+        if (updateClientDescriptor.email.isPresent() && model.hasClient(updatedClient.get())) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
-        model.setClient(uniqueClient.get(), editedClient);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedClient));
+        model.setClient(uniqueClient.get(), updatedClient.get());
+        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedClient));
     }
 
     /**
