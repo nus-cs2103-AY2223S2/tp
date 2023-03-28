@@ -15,6 +15,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 
+/**
+ * Card containing a person
+ */
 public class ResultPersonCard extends UiPart<Region> {
     private static final String FXML = "ResultPersonCard.fxml";
     public final Person person;

@@ -79,18 +79,18 @@ this user guide for more information, or to external websites to learn more!
 
 Here is an exhaustive table for you to refer to if you're unsure of what to input when using the various [features](#features) below this section!
 
-| Parameter         | Meaning                                                                              | Notes                                                                                                                                                                                                                                 |
-|-------------------|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `ADDRESS`         | Address of the student                                                               | Can contain numbers, symbols and multiple letters/words                                                                                                                                                                               |
-| `EDUCATION_LEVEL` | Education level of the student                                                       | Can contains numbers and multiple letters/words.                                                                                                                                                                                      |
-| `EMAIL`           | Email address of the student                                                         | 1. Follow the format local-part@domain <br/> 2. Must contains `@` symbol <br/> 3. Must not start with a non-alphanumeric character (eg. . , ' " @) <br/> 4. Can contains letters and numbers <br/> 5. Should not contain any spacings |
-| `INDEX`           | The number next to the student entry upon using [`list`](#listing-all-students-list) | Must be a positive number (eg. 1, 2, 3...)                                                                                                                                                                                            |
-| `KEYWORD`         | The word you would like to `find` by                                                 | Can contain letters and/or numbers.                                                                                                                                                                                                   |
-| `PHONE_NUMBER`    | Phone number of the student                                                          | 1. Must only contains numbers <br/>  2. Must be at least 3 numbers long                                                                                                                                                               |
-| `REMARK`          | Your notes or remarks on the student                                                 | Can contain any combination of words, numbers and special characters                                                                                                                                                                  |
-| `STUDENT_NAME`    | Name of the student                                                                  | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the name will be removed by the app                                                                                                   |
-| `SUBJECT`         | The subject you're teaching the student                                              | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the subject will be removed by the app                                                                                                |
-| `TAG`             | Qualities of the student you'd like to be shown as a [tag](#adding-a-student-add)    | Must be a single word containing alphanumeric characters                                                                                                                                                                              |
+| Parameter         | Meaning                                                                       | Notes                                                                                                                                                                                                                                 |
+|-------------------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ADDRESS`         | Address of the student                                                        | Can contain numbers, symbols and multiple letters/words                                                                                                                                                                               |
+| `EDUCATION_LEVEL` | Education level of the student                                                | Can contains numbers and multiple letters/words.                                                                                                                                                                                      |
+| `EMAIL`           | Email address of the student                                                  | 1. Follow the format local-part@domain <br/> 2. Must contains `@` symbol <br/> 3. Must not start with a non-alphanumeric character (eg. . , ' " @) <br/> 4. Can contains letters and numbers <br/> 5. Should not contain any spacings |
+| `INDEX`           | The number next to the student entry upon using [`list`](#listing-all-entries) | Must be a positive number (eg. 1, 2, 3...)                                                                                                                                                                                            |
+| `KEYWORD`         | The word you would like to `find` by                                          | Can contain letters and/or numbers.                                                                                                                                                                                                   |
+| `PHONE_NUMBER`    | Phone number of the student                                                   | 1. Must only contains numbers <br/>  2. Must be at least 3 numbers long                                                                                                                                                               |
+| `REMARK`          | Your notes or remarks on the student                                          | Can contain any combination of words, numbers and special characters                                                                                                                                                                  |
+| `STUDENT_NAME`    | Name of the student                                                           | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the name will be removed by the app                                                                                                   |
+| `SUBJECT`         | The subject you're teaching the student                                       | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the subject will be removed by the app                                                                                                |
+| `TAG`             | Qualities of the student you'd like to be shown as a [tag](#adding-a-student) | Must be a single word containing alphanumeric characters                                                                                                                                                                              |
 
 [↑ Back to top](#table-of-contents)
 
@@ -116,7 +116,7 @@ Exits the program.
 
 <div markdown="span" class="alert alert-info">
 
-:bulb: **Note:** This is the same as closing the app via the top-right `x` button.
+>:bulb: **Note:** This is the same as closing the app via the top-right `x` button.
 
 </div>
 
@@ -141,6 +141,7 @@ Adds a student to the list, along with their education level and any student-spe
 > Format: `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [r/REMARK] [t/TAG]... [s/SUBJECT]...`
 
 **:bulb: Note:** `EDUCATION_LEVEL`, `TAG`,  and  `SUBJECT` will be displayed as blue tags.
+* You only the name ie. `n/` is compulsory. You can add details for other fields using commands that we will talk about later!
 
 Examples:
 
@@ -158,6 +159,8 @@ Examples:
     <br><i><b>Above:</b> After entering <code>add</code> command</i>
 </p>
 
+
+
 [↑ Back to top](#table-of-contents)
 
 ---
@@ -170,7 +173,7 @@ Edits a student's info _(all info except remark)_. To remove a student's field, 
 
 <div markdown="span" class="alert alert-info">
 
-:bulb: **Note:** `edit` command cannot edit the remark field of students. Use the [`remark`](#editing-remark-of-student-remark) command for editing remarks.
+>:bulb: **Note:** `edit` command cannot edit the remark field of students. Use the [`remark`](#adding-remark-to-student-remark) command for editing remarks.
 
 </div>
 
@@ -220,33 +223,6 @@ Examples:
 
 ---
 
-### Delete a student: `delete`
-
-Deletes the specified student from the address book.
-
-> Format: `delete INDEX`
-
-- Deletes the student at the specified `INDEX`.
-- The index refers to the index number shown in the displayed student list.
-- The index **must be a positive integer** 1, 2, 3, ...
-
-Examples:
-
-- `list` followed by `delete 2` deletes the 2nd student in the address book.
-
-<p align=center>
-    <img alt="delete before" src="images/user-guide/delete_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>delete</code> command</i>
-</p>
-
-<p align=center>
-    <img alt="delete after" src="images/user-guide/delete_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>delete</code> command</i>
-</p>
-
-[↑ Back to top](#table-of-contents)
-
----
 
 ### Showing a student's remark: `show`
 
@@ -274,20 +250,37 @@ Examples:
 
 ### Find/filter students: `find`
 
-Find/filter students based on their name.
+Finds entries of students based on a keyword in the field that you want. <br>
 
-> Format: `find KEYWORD1 [KEYWORD2]...`
+The `find` command allows you to match keywords or partial keywords with the entries, for example:<br><br>
+`find Sh` displays the students with names which contain `sh` in them, such as `Shaun` or `Amresh`.<br>
+This applies to all fields EXCEPT tags and subjects, where you will have to enter and find them by the 
+tags and subjects in full.
+
+> Format: `find FIELD KEYWORDS...` <br>
+* `FIELD` refers to the type of details such as name, address, email and so on.
+* Input the field like so:
+  * Name: `n/`
+  * Address: `a/`
+  * Email: `e/`
+  * Phone No.: `p/`
+  * Education: `edu/`
+  * Remark: `r/`
+  * Tags: `t/`
+  * Subjects: `s/`
 
 <div markdown="span" class="alert alert-info">
 
-:bulb: **Note:** `find` can find for partial matches of the keywords _(eg. `find Sh` will display the students named "Shao Hong" & "Shaun")_.
+>:bulb: **Note:** No input in the `FIELD` defaults to finding by name.
 
 </div>
 
 Examples:
 
-- `find Shao Hong` will display the student named "Shao Hong"
 - `find Sh` will display the students named "Shao Hong" & "Shaun"
+- `find a/ pas` will display students who stay at places which names that contain `pas` such as `Pasir Ris`
+- `find t/ URGENT` will display students who have the exact tag `URGENT`
+- `find s/ German` will display students who have the exact subject `German`
 
 <p align=center>
     <img alt="find before" src="images/user-guide/find_before.jpg" />
@@ -298,6 +291,39 @@ Examples:
     <img alt="find after" src="images/user-guide/find_after.jpg" />
     <br><i><b>Above:</b> After entering <code>find</code> command</i>
 </p>
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+### Delete a student: `delete`
+
+Deletes the specified student from the address book.
+
+> Format: `delete INDEX`
+
+- Deletes the student at the specified `INDEX`.
+- The index refers to the index number shown in the displayed student list.
+- The index **must be a positive integer** 1, 2, 3, ...
+
+Examples:
+
+- `list` followed by `delete 2` deletes the 2nd student in the address book.
+
+<p align=center>
+    <img alt="delete before" src="images/user-guide/delete_before.jpg" />
+    <br><i><b>Above:</b> Before entering <code>delete</code> command</i>
+</p>
+
+<p align=center>
+    <img alt="delete after" src="images/user-guide/delete_after.jpg" />
+    <br><i><b>Above:</b> After entering <code>delete</code> command</i>
+</p>
+
+> :slightly_smiling_face: **Tip:** You can combine `find` and `delete` when you have a 
+> very long list of students. <br>
+> For instance, you can `find` the student(s) you want gone, and then `delete`
+> using the index from the list displayed!
 
 [↑ Back to top](#table-of-contents)
 
@@ -338,15 +364,15 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 
 # Prefix summary
 
-| Prefix | Meaning                                  | Example                               |
-|--------|------------------------------------------|---------------------------------------|
-| n/     | Name of student                          | `n/Shao Hong`                         |
-| p/     | Phone number of student                  | `p/81234567`                          |
-| e/     | Email of student                         | `e/e07123456@u.edu.sg`                |
-| a/     | Address of student                       | `a/16 Bukit Timah Road, S156213`      |
-| edu/   | Education level of student               | `edu/P6`                              |
-| r/     | Remark for student                       | `r/Good in German`                    |
-| t/     | Tag of student                           | `t/active` or `t/submited t/late ...` |
+| Prefix | Meaning                                 | Example                               |
+|--------|-----------------------------------------|---------------------------------------|
+| n/     | Name of student                         | `n/Shao Hong`                         |
+| p/     | Phone number of student                 | `p/81234567`                          |
+| e/     | Email of student                        | `e/e07123456@u.edu.sg`                |
+| a/     | Address of student                      | `a/16 Bukit Timah Road, S156213`      |
+| edu/   | Education level of student              | `edu/P6`                              |
+| r/     | Remark for student                      | `r/Good in German`                    |
+| t/     | Tag of student                          | `t/active` or `t/submited t/late ...` |
 | s/     | Subject that the student is being taught | `s/Math` or `s/Math s/Science ...`    |
 
 
