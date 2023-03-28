@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
@@ -74,7 +75,7 @@ public class PersonCard extends UiPart<Region> {
             public void handle(MouseEvent clickEvent) {
                 try {
                     mainWindow.execute("view i/" + person.getNric().fullNric);
-                } catch (ParseException | CommandException e) {
+                } catch (CommandException | IllegalValueException e) {
                     e.printStackTrace();
                 }
             };
