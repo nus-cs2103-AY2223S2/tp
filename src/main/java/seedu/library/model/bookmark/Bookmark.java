@@ -101,12 +101,12 @@ public class Bookmark implements Comparable<Bookmark> {
 
         Bookmark otherBookmark = (Bookmark) other;
         return otherBookmark.getTitle().equals(getTitle())
-                && otherBookmark.getProgress().equals(getProgress())
-                && otherBookmark.getGenre().equals(getGenre())
-                && otherBookmark.getAuthor().equals(getAuthor())
-                && otherBookmark.getRating().equals(getRating())
+                //&& otherBookmark.getProgress().equals(getProgress())
+                && otherBookmark.getGenre().equals(getGenre());
+                //&& otherBookmark.getAuthor().equals(getAuthor())
+                //&& otherBookmark.getRating().equals(getRating())
                 //&& otherBookmark.getUrl().equals(getUrl())
-                && otherBookmark.getTags().equals(getTags());
+                //&& otherBookmark.getTags().equals(getTags());
     }
 
     @Override

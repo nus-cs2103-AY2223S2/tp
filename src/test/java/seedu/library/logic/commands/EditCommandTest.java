@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.library.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_PROGRESS_BOB;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_TAGS;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.library.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -33,7 +34,7 @@ import seedu.library.testutil.EditBookmarkDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalLibrary(), new UserPrefs(), new Tags());
+    private Model model = new ModelManager(getTypicalLibrary(), new UserPrefs(), VALID_TAGS);
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -93,7 +94,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_BOOKMARK_SUCCESS, editedBookmark);
 
-        Model expectedModel = new ModelManager(new Library(model.getLibrary()), new UserPrefs(), new Tags());
+        Model expectedModel = new ModelManager(new Library(model.getLibrary()), new UserPrefs(), VALID_TAGS);
         expectedModel.setBookmark(model.getFilteredBookmarkList().get(0), editedBookmark);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
