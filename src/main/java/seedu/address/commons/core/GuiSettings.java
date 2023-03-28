@@ -35,6 +35,9 @@ public class GuiSettings implements Serializable {
     private static final String DEFAULT_ATTACHMENT_ICON = "/images/attachment.png";
     private static final String DEFAULT_NO_ATTACHMENT_ICON = "/images/noAttachment.png";
 
+    private static final String DEFAULT_NOTE_ICON = "/images/note.png";
+    private static final String DEFAULT_NO_NOTE_ICON = "/images/noNote.png";
+
     private static final Point NULL_COORDINATE = null;
 
     private final double windowWidth;
@@ -55,6 +58,8 @@ public class GuiSettings implements Serializable {
     private final String consultationIcon;
     private final String attachmentIcon;
     private final String noAttachmentIcon;
+    private final String noteIcon;
+    private final String noNoteIcon;
     private final int eventIconSize;
 
     /**
@@ -80,6 +85,8 @@ public class GuiSettings implements Serializable {
         attachmentIcon = DEFAULT_ATTACHMENT_ICON;
         noAttachmentIcon = DEFAULT_NO_ATTACHMENT_ICON;
         eventIconSize = DEFAULT_EVENT_ICON_SIZE;
+        noteIcon = DEFAULT_NOTE_ICON;
+        noNoteIcon = DEFAULT_NO_NOTE_ICON;
     }
 
     //Allow user to modify student profile size in next iteration
@@ -106,6 +113,8 @@ public class GuiSettings implements Serializable {
         attachmentIcon = DEFAULT_ATTACHMENT_ICON;
         noAttachmentIcon = DEFAULT_NO_ATTACHMENT_ICON;
         eventIconSize = DEFAULT_EVENT_ICON_SIZE;
+        noteIcon = DEFAULT_NOTE_ICON;
+        noNoteIcon = DEFAULT_NO_NOTE_ICON;
     }
 
     public double getWindowWidth() {
@@ -179,12 +188,15 @@ public class GuiSettings implements Serializable {
     public String getNoAttachmentIcon() {
         return noAttachmentIcon;
     }
-
+    public String getNoteIcon() {
+        return noteIcon;
+    }
+    public String getNoNoteIcon() {
+        return noNoteIcon;
+    }
     public int getEventIconSize() {
         return eventIconSize;
     }
-
-
 
     @Override
     public boolean equals(Object other) {

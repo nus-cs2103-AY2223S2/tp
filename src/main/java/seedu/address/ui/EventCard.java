@@ -3,19 +3,23 @@ package seedu.address.ui;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.Note;
 
 /**
  * Informs the user on the number of undone tasks
@@ -29,6 +33,13 @@ public class EventCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private HBox studentProfiles;
+
+    @FXML
+    private VBox noteBox;
+
+    @FXML
+    private BorderPane borderPane;
+
     @FXML
     private HBox details;
     @FXML
@@ -37,8 +48,6 @@ public class EventCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label date;
-    @FXML
-    private Label notes;
     @FXML
     private Label attachments;
     @FXML
@@ -49,6 +58,8 @@ public class EventCard extends UiPart<Region> {
     private ImageView attachmentLogo;
     @FXML
     private ImageView noteLogo;
+
+    private ScrollPane scrollPane;
     @FXML
     private FlowPane tags;
     @FXML
@@ -67,16 +78,35 @@ public class EventCard extends UiPart<Region> {
         name.setText(event.getName());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         date.setText(event.getDate().format(formatter));
-        //notes.setText("" + event.countNotes());
         GuiSettings guiSettings = new GuiSettings();
         int size = guiSettings.getEventIconSize();
 
         //Set attachment icon
-        if (event.getAttachments().size() > 0) {
+        if (event.countAttachments() > 0) {
             setImageIcon(attachmentLogo, guiSettings.getAttachmentIcon(), size);
         } else {
             setImageIcon(attachmentLogo, guiSettings.getNoAttachmentIcon(), size);
         }
+
+        List<String> noteStrs;
+        if (event.countNotes() > 0) {
+            setImageIcon(noteLogo, guiSettings.getNoteIcon(), size);
+            noteStrs = event.getNotes().stream().map(Note::toString).collect(Collectors.toList());
+        } else {
+            setImageIcon(noteLogo, guiSettings.getNoNoteIcon(), size);
+            noteStrs = new ArrayList<>();
+            noteStrs.add(new Note().toString());
+        }
+        for (String text : noteStrs) {
+            Label label = new Label(text);
+            noteBox.getChildren().add(label);
+        }
+        scrollPane.setContent(noteBox);
+        borderPane.setCenter(scrollPane);
+        borderPane.setTop(noteLogo);
+        noteLogo.setOnMouseClicked(mouseEvent -> {
+            scrollPane.setVisible(!scrollPane.isVisible());
+        });
 
         //set list of student profiles at top right
         for (int i = 0; i < event.countStudents(); i++) {
@@ -100,21 +130,21 @@ public class EventCard extends UiPart<Region> {
             progressBar.setProgress((double) event.countStudents() / 20);
         }
 
-        //List existing notes
-//        if (event.countNotes() > 0) {
-//            cardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
-//                try {
-//                    desktop.open(event.getAttachments().get(0));
-//                } catch (IOException e) {
-//                    System.out.println("file processing error!");
-//                }
-//                click.consume();
-//            });
-//        }
-//
         //bind a click to open the attachment (only works for single attachment for now
         //Only prints error message for now
         if (event.getAttachments().size() > 0 && event.getAttachments().get(0).exists()) {
+            cardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.open(event.getAttachments().get(0));
+                } catch (IOException e) {
+                    System.out.println("file processing error!");
+                }
+                click.consume();
+            });
+        }
+
+        if (event.countNotes() > 0) {
             cardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
                 Desktop desktop = Desktop.getDesktop();
                 try {
