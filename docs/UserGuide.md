@@ -511,7 +511,7 @@ Examples:
 
 
 
-### Unmarkikng attendance of a selected students: `unmark`
+### Marking selected students as absent: `unmark`
 
 Marks selected students' attendance as absent.
 
