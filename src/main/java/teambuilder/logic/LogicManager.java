@@ -15,6 +15,7 @@ import teambuilder.logic.parser.exceptions.ParseException;
 import teambuilder.model.Model;
 import teambuilder.model.ReadOnlyTeamBuilder;
 import teambuilder.model.person.Person;
+import teambuilder.model.team.Team;
 import teambuilder.storage.Storage;
 
 /**
@@ -77,5 +78,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ObservableList<Team> getFilteredTeamList() {
+        return model.getSortedTeamList();
     }
 }
