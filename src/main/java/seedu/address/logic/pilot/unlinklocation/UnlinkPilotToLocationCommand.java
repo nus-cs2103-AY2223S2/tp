@@ -18,11 +18,11 @@ import seedu.address.model.pilot.Pilot;
  */
 public class UnlinkPilotToLocationCommand implements Command {
     private static final String LOCATION_NOT_FOUND_EXCEPTION =
-            "Location with id [%s] is not found.";
+            "Location with ID %s can't be found.";
     private static final String PILOT_NOT_FOUND_EXCEPTION =
-            "Pilot with id [%s] is not found.";
+            "Pilot with ID %s can't be found.";
     private static final String DISPLAY_MESSAGE =
-            "Unlinked pilot [%s] from location [%s].";
+            "Unlinked %s from %s.";
 
     /**
      * The id of the location
@@ -50,9 +50,8 @@ public class UnlinkPilotToLocationCommand implements Command {
         String result = pilot.entrySet()
                 .stream()
                 .map((entry) -> String.format(
-                        "%s: %s",
-                        entry.getKey(),
-                        entry.getValue().getName()))
+                        "%s",
+                        entry.getValue().toString()))
                 .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, location.getName());
     }

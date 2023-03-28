@@ -129,6 +129,9 @@ public class Crew implements Item {
 
     @Override
     public String toString() {
-        return String.format("%s %s", rank, name);
+        return String.format(
+                "%s %s",
+                rank,
+                name);
     }
 }

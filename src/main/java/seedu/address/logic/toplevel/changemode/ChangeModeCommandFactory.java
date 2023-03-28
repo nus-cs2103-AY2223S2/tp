@@ -28,10 +28,14 @@ public class ChangeModeCommandFactory implements CommandFactory<ChangeModeComman
     public ChangeModeCommand createCommand(CommandParam param) throws ParseException {
         final String modeStr = param.getUnnamedValueOrThrow();
         final OperationMode mode;
+
         try {
             mode = OperationMode.fromString(modeStr);
         } catch (IllegalArgumentException e) {
-            throw new ParseException("Invalid mode: " + modeStr);
+            throw new ParseException(String.format(
+                    "%s is an invalid mode.\n"
+                            + "Please try crew, flight, location, pilot, or plane.",
+                    modeStr));
         }
         return new ChangeModeCommand(mode);
     }

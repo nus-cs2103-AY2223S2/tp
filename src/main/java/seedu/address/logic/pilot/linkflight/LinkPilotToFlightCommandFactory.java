@@ -30,10 +30,21 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
     private static final String PILOT_MONITORING_PREFIX = "/pm";
 
     private static final String NO_FLIGHT_MESSAGE =
-            "No flight has been entered. Please enter /fl for the flight.";
+            "No flight has been entered.\n"
+                    + "Please enter /fl followed by the flight ID.";
     private static final String NO_PILOT_MESSAGE =
-            "No pilot has been entered. Please enter /pm for the pilot monitoring"
-                    + " and /pf for the pilot flying.";
+            "No pilot has been entered.\n"
+                    + "Please enter at least 1 of the following:\n"
+                    + "     /pm for the Pilot Monitoring, "
+                    + "/pf for the Pilot Flying.";
+
+    private static final String INVALID_INDEX_VALUE_MESSAGE =
+            "%s is an invalid value.\n"
+                    + "Please try using an integer instead.";
+
+    private static final String INDEX_OUT_OF_BOUNDS_MESSAGE =
+            "Index %s is out of bounds.\n"
+                    + "Please enter a valid index.";
 
     private final Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy;
     private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
@@ -103,17 +114,30 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
     }
 
 
-    private boolean addPilot(
-            Optional<String> pilotIdOptional,
-            FlightPilotType type,
-            Map<FlightPilotType, Pilot> target
-    ) throws CommandException {
+    private boolean addPilot(Optional<String> pilotIdOptional, FlightPilotType type, Map<FlightPilotType, Pilot> target)
+            throws CommandException {
         if (pilotIdOptional.isEmpty()) {
             return false;
         }
-        int index = Command.parseIntegerToZeroBasedIndex(pilotIdOptional.get());
-        Optional<Pilot> pilotOptional =
-                pilotManagerLazy.get().getItemOptional(index);
+
+        int pilotId;
+        try {
+            pilotId = Command.parseIntegerToZeroBasedIndex(pilotIdOptional.get());
+        } catch (NumberFormatException e) {
+            throw new CommandException(String.format(
+                    INVALID_INDEX_VALUE_MESSAGE,
+                    pilotIdOptional.get()
+            ));
+        }
+
+        boolean isPilotIndexValid = (pilotId < pilotManagerLazy.get().size());
+        if (!isPilotIndexValid) {
+            throw new CommandException(String.format(
+                    INDEX_OUT_OF_BOUNDS_MESSAGE,
+                    pilotId + 1));
+        }
+
+        Optional<Pilot> pilotOptional = pilotManagerLazy.get().getItemOptional(pilotId);
         if (pilotOptional.isEmpty()) {
             return false;
         }
@@ -121,41 +145,64 @@ public class LinkPilotToFlightCommandFactory implements CommandFactory<LinkPilot
         return true;
     }
 
-    private Flight getFlightOrThrow(
-            Optional<String> flightIdOptional
-    ) throws ParseException, CommandException {
+    private Flight getFlightOrThrow(Optional<String> flightIdOptional) throws ParseException, CommandException {
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
-        int index = Command.parseIntegerToZeroBasedIndex(flightIdOptional.get());
-        Optional<Flight> flightOptional =
-                flightManagerLazy.get().getItemOptional(index);
+
+        int flightId;
+        try {
+            flightId = Command.parseIntegerToZeroBasedIndex(flightIdOptional.get());
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format(INVALID_INDEX_VALUE_MESSAGE, flightIdOptional.get()));
+        }
+
+        boolean isFlightIndexValid = (flightId < flightManagerLazy.get().size());
+        if (!isFlightIndexValid) {
+            throw new CommandException(String.format(
+                    INDEX_OUT_OF_BOUNDS_MESSAGE,
+                    flightId + 1));
+        }
+
+        Optional<Flight> flightOptional = flightManagerLazy.get().getItemOptional(flightId);
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
+
         return flightOptional.get();
     }
 
     @Override
     public LinkPilotToFlightCommand createCommand(CommandParam param)
-            throws ParseException, IndexOutOfBoundException, CommandException {
+            throws ParseException, IndexOutOfBoundException {
         Optional<String> pilotFlyingIdOptional =
                 param.getNamedValues(PILOT_FLYING_PREFIX);
         Optional<String> pilotMonitoringIdOptional =
                 param.getNamedValues(PILOT_MONITORING_PREFIX);
 
-        Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
+        Flight flight;
+        try {
+            flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
+        } catch (CommandException e) {
+            throw new ParseException(e.getMessage());
+        }
+
         Map<FlightPilotType, Pilot> pilots = new HashMap<>();
 
-        boolean hasFoundPilot = addPilot(
-                pilotFlyingIdOptional,
-                FlightPilotType.PILOT_FLYING,
-                pilots
-        ) || addPilot(
-                pilotMonitoringIdOptional,
-                FlightPilotType.PILOT_MONITORING,
-                pilots
-        );
+        boolean hasFoundPilot;
+        try {
+            hasFoundPilot = addPilot(
+                    pilotFlyingIdOptional,
+                    FlightPilotType.PILOT_FLYING,
+                    pilots
+            ) || addPilot(
+                    pilotMonitoringIdOptional,
+                    FlightPilotType.PILOT_MONITORING,
+                    pilots
+            );
+        } catch (CommandException e) {
+            throw new ParseException(e.getMessage());
+        }
 
         if (!hasFoundPilot) {
             throw new ParseException(NO_PILOT_MESSAGE);

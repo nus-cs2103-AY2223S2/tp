@@ -29,10 +29,18 @@ public class UnlinkFlightToLocationCommandFactory implements CommandFactory<Unli
     public static final String LOCATION_ARRIVAL_PREFIX = "/to";
 
     private static final String NO_FLIGHT_MESSAGE =
-            "No flight has been entered. Please enter /fl for the flight.";
+            "No flight has been entered. "
+                    + "Please enter /fl followed by the flight ID.";
     private static final String NO_LOCATION_MESSAGE =
-            "No location has been entered. Please enter /from for the departure location"
-                    + " and /to for the arrival location.";
+            "No location has been entered.\n"
+                    + "Please enter /from followed by the departure location ID "
+                    + "and /to followed by the arrival location ID.";
+    private static final String INVALID_INDEX_VALUE_MESSAGE =
+            "%s is an invalid value.\n"
+                    + "Please try using an integer instead.";
+    private static final String INDEX_OUT_OF_BOUNDS_MESSAGE =
+            "Index %s is out of bounds.\n"
+                    + "Please enter a valid index.";
 
     private final Lazy<ReadOnlyItemManager<Location>> locationManagerLazy;
 
@@ -108,10 +116,25 @@ public class UnlinkFlightToLocationCommandFactory implements CommandFactory<Unli
         if (locationIdOptional.isEmpty()) {
             return false;
         }
-        int indexOfLocation =
-                Command.parseIntegerToZeroBasedIndex(locationIdOptional.get());
-        Optional<Location> locationOptional =
-                locationManagerLazy.get().getItemOptional(indexOfLocation);
+
+        int locationId;
+        try {
+            locationId = Command.parseIntegerToZeroBasedIndex(locationIdOptional.get());
+        } catch (NumberFormatException e) {
+            throw new CommandException(String.format(
+                    INVALID_INDEX_VALUE_MESSAGE,
+                    locationIdOptional.get()
+            ));
+        }
+
+        boolean isLocationIndexValid = (locationId < locationManagerLazy.get().size());
+        if (!isLocationIndexValid) {
+            throw new CommandException(String.format(
+                    INDEX_OUT_OF_BOUNDS_MESSAGE,
+                    locationId));
+        }
+
+        Optional<Location> locationOptional = locationManagerLazy.get().getItemOptional(locationId);
         if (locationOptional.isEmpty()) {
             return false;
         }
@@ -120,16 +143,29 @@ public class UnlinkFlightToLocationCommandFactory implements CommandFactory<Unli
         return true;
     }
 
-    private Flight getFlightOrThrow(
-            Optional<String> flightIdOptional
-    ) throws ParseException, CommandException {
+    private Flight getFlightOrThrow(Optional<String> flightIdOptional) throws ParseException, CommandException {
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
-        int indexOfFlight =
-                Command.parseIntegerToZeroBasedIndex(flightIdOptional.get());
-        Optional<Flight> flightOptional =
-                flightManagerLazy.get().getItemOptional(indexOfFlight);
+
+        int flightId;
+        try {
+            flightId = Command.parseIntegerToZeroBasedIndex(flightIdOptional.get());
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format(
+                    INVALID_INDEX_VALUE_MESSAGE,
+                    flightIdOptional.get()
+            ));
+        }
+
+        boolean isFlightIndexValid = (flightId < flightManagerLazy.get().size());
+        if (!isFlightIndexValid) {
+            throw new CommandException(String.format(
+                    INDEX_OUT_OF_BOUNDS_MESSAGE,
+                    flightId + 1));
+        }
+
+        Optional<Flight> flightOptional = flightManagerLazy.get().getItemOptional(flightId);
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
@@ -149,15 +185,21 @@ public class UnlinkFlightToLocationCommandFactory implements CommandFactory<Unli
         Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
         Map<FlightLocationType, Location> locations = new HashMap<>();
 
-        boolean hasFoundLocation = addLocation(
-                locationDepartureIdOptional,
-                FlightLocationType.LOCATION_DEPARTURE,
-                locations
-        ) || addLocation(
-                locationArrivalIdOptional,
-                FlightLocationType.LOCATION_ARRIVAL,
-                locations
-        );
+
+        boolean hasFoundLocation;
+        try {
+            hasFoundLocation = addLocation(
+                    locationDepartureIdOptional,
+                    FlightLocationType.LOCATION_DEPARTURE,
+                    locations
+            ) || addLocation(
+                    locationArrivalIdOptional,
+                    FlightLocationType.LOCATION_ARRIVAL,
+                    locations
+            );
+        } catch (CommandException e) {
+            throw new ParseException(e.getMessage());
+        }
 
         if (!hasFoundLocation) {
             throw new ParseException(NO_LOCATION_MESSAGE);

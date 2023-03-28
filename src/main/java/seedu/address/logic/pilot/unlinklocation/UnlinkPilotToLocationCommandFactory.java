@@ -29,11 +29,17 @@ public class UnlinkPilotToLocationCommandFactory implements CommandFactory<Unlin
     private static final String PILOT_PREFIX = "/pi";
 
     private static final String NO_LOCATION_MESSAGE =
-            "No location has been entered. "
+            "No location has been entered.\n"
                     + "Please enter /lo followed by the location ID.";
     private static final String NO_PILOT_MESSAGE =
-            "No pilot has been entered. "
-                    + "Please enter /pi followed by the pilot iD.";
+            "No pilot has been entered.\n"
+                    + "Please enter /pi followed by the pilot ID.";
+    private static final String INVALID_INDEX_VALUE_MESSAGE =
+            "%s is an invalid value.\n"
+                    + "Please try using an integer instead.";
+    private static final String INDEX_OUT_OF_BOUNDS_MESSAGE =
+            "Index %s is out of bounds.\n"
+                    + "Please enter a valid index.";
 
     private final Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy;
     private final Lazy<ReadOnlyItemManager<Location>> locationManagerLazy;
@@ -110,10 +116,25 @@ public class UnlinkPilotToLocationCommandFactory implements CommandFactory<Unlin
         if (pilotIdOptional.isEmpty()) {
             return false;
         }
-        int indexOfPilot =
-                Command.parseIntegerToZeroBasedIndex(pilotIdOptional.get());
-        Optional<Pilot> pilotOptional =
-                pilotManagerLazy.get().getItemOptional(indexOfPilot);
+
+        int pilotId;
+        try {
+            pilotId = Command.parseIntegerToZeroBasedIndex(pilotIdOptional.get());
+        } catch (NumberFormatException e) {
+            throw new CommandException(String.format(
+                    INVALID_INDEX_VALUE_MESSAGE,
+                    pilotIdOptional.get()
+            ));
+        }
+
+        boolean isPilotIndexValid = (pilotId < pilotManagerLazy.get().size());
+        if (!isPilotIndexValid) {
+            throw new CommandException(String.format(
+                    INDEX_OUT_OF_BOUNDS_MESSAGE,
+                    pilotId + 1));
+        }
+
+        Optional<Pilot> pilotOptional = pilotManagerLazy.get().getItemOptional(pilotId);
         if (pilotOptional.isEmpty()) {
             return false;
         }
@@ -127,10 +148,25 @@ public class UnlinkPilotToLocationCommandFactory implements CommandFactory<Unlin
         if (locationIdOptional.isEmpty()) {
             throw new ParseException(NO_LOCATION_MESSAGE);
         }
-        int indexOfLocation =
-                Command.parseIntegerToZeroBasedIndex(locationIdOptional.get());
-        Optional<Location> locationOptional =
-                locationManagerLazy.get().getItemOptional(indexOfLocation);
+
+        int locationId;
+        try {
+            locationId = Command.parseIntegerToZeroBasedIndex(locationIdOptional.get());
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format(
+                    INVALID_INDEX_VALUE_MESSAGE,
+                    locationIdOptional.get()
+            ));
+        }
+
+        boolean isLocationIndexValid = (locationId < locationManagerLazy.get().size());
+        if (!isLocationIndexValid) {
+            throw new CommandException(String.format(
+                    INDEX_OUT_OF_BOUNDS_MESSAGE,
+                    locationId + 1));
+        }
+
+        Optional<Location> locationOptional = locationManagerLazy.get().getItemOptional(locationId);
         if (locationOptional.isEmpty()) {
             throw new ParseException(NO_LOCATION_MESSAGE);
         }
@@ -149,11 +185,16 @@ public class UnlinkPilotToLocationCommandFactory implements CommandFactory<Unlin
         Location location = getLocationOrThrow(locationIdOptional);
         Map<PilotLocationType, Pilot> pilot = new HashMap<>();
 
-        boolean hasFoundPilot = addPilot(
-                pilotIdOptional,
-                PilotLocationType.LOCATION_USING,
-                pilot
-        );
+        boolean hasFoundPilot;
+        try {
+            hasFoundPilot = addPilot(
+                    pilotIdOptional,
+                    PilotLocationType.LOCATION_USING,
+                    pilot
+            );
+        } catch (CommandException e) {
+            throw new ParseException(e.getMessage());
+        }
 
         if (!hasFoundPilot) {
             throw new ParseException(NO_PILOT_MESSAGE);

@@ -30,14 +30,19 @@ public class LinkCrewToLocationCommandFactory implements CommandFactory<LinkCrew
     private static final String CREW_PREFIX = "/cr";
 
     private static final String NO_LOCATION_MESSAGE =
-            "No location has been entered. "
+            "No location has been entered.\n"
                     + "Please enter /lo followed by the location ID.";
     private static final String NO_CREW_MESSAGE =
-            "No crew has been entered. "
+            "No crew has been entered.\n"
                     + "Please enter /cr followed by the crew ID.";
+    private static final String INVALID_INDEX_VALUE_MESSAGE =
+            "%s is an invalid value.\n"
+                    + "Please try using an integer instead.";
+    private static final String INDEX_OUT_OF_BOUNDS_MESSAGE =
+            "Index %s is out of bounds.\n"
+                    + "Please enter a valid index.";
 
     private final Lazy<ReadOnlyItemManager<Crew>> crewManagerLazy;
-
     private final Lazy<ReadOnlyItemManager<Location>> locationManagerLazy;
 
     /**
@@ -104,18 +109,31 @@ public class LinkCrewToLocationCommandFactory implements CommandFactory<LinkCrew
         ));
     }
 
-    private boolean addCrew(
-            Optional<String> crewIdOptional,
-            CrewLocationType type,
-            Map<CrewLocationType, Crew> target
-    ) throws CommandException {
+    private boolean addCrew(Optional<String> crewIdOptional, CrewLocationType type, Map<CrewLocationType, Crew> target)
+            throws CommandException {
         if (crewIdOptional.isEmpty()) {
             return false;
         }
-        int indexOfCrew =
-                Command.parseIntegerToZeroBasedIndex(crewIdOptional.get());
-        Optional<Crew> crewOptional =
-                crewManagerLazy.get().getItemOptional(indexOfCrew);
+
+        int crewId;
+        try {
+            crewId =
+                    Command.parseIntegerToZeroBasedIndex(crewIdOptional.get());
+        } catch (NumberFormatException e) {
+            throw new CommandException(String.format(
+                    INVALID_INDEX_VALUE_MESSAGE,
+                    crewIdOptional.get()
+            ));
+        }
+
+        boolean isCrewIndexValid = (crewId < crewManagerLazy.get().size());
+        if (!isCrewIndexValid) {
+            throw new CommandException(String.format(
+                    INDEX_OUT_OF_BOUNDS_MESSAGE,
+                    crewId + 1));
+        }
+
+        Optional<Crew> crewOptional = crewManagerLazy.get().getItemOptional(crewId);
         if (crewOptional.isEmpty()) {
             return false;
         }
@@ -123,16 +141,26 @@ public class LinkCrewToLocationCommandFactory implements CommandFactory<LinkCrew
         return true;
     }
 
-    private Location getLocationOrThrow(
-            Optional<String> locationIdOptional
-    ) throws ParseException, CommandException {
+    private Location getLocationOrThrow(Optional<String> locationIdOptional) throws ParseException, CommandException {
         if (locationIdOptional.isEmpty()) {
             throw new ParseException(NO_LOCATION_MESSAGE);
         }
-        int indexOfLocation =
-                Command.parseIntegerToZeroBasedIndex(locationIdOptional.get());
-        Optional<Location> locationOptional =
-                locationManagerLazy.get().getItemOptional(indexOfLocation);
+
+        int locationId;
+        try {
+            locationId = Command.parseIntegerToZeroBasedIndex(locationIdOptional.get());
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format(INVALID_INDEX_VALUE_MESSAGE, locationIdOptional.get()));
+        }
+
+        boolean isLocationIndexValid = (locationId < locationManagerLazy.get().size());
+        if (!isLocationIndexValid) {
+            throw new CommandException(String.format(
+                    INDEX_OUT_OF_BOUNDS_MESSAGE,
+                    locationId + 1));
+        }
+
+        Optional<Location> locationOptional = locationManagerLazy.get().getItemOptional(locationId);
         if (locationOptional.isEmpty()) {
             throw new ParseException(NO_LOCATION_MESSAGE);
         }
@@ -141,8 +169,7 @@ public class LinkCrewToLocationCommandFactory implements CommandFactory<LinkCrew
     }
 
     @Override
-    public LinkCrewToLocationCommand createCommand(CommandParam param)
-            throws ParseException, CommandException {
+    public LinkCrewToLocationCommand createCommand(CommandParam param) throws ParseException, CommandException {
         Optional<String> locationIdOptional =
                 param.getNamedValues(LOCATION_PREFIX);
         Optional<String> crewIdOptional =
@@ -151,11 +178,16 @@ public class LinkCrewToLocationCommandFactory implements CommandFactory<LinkCrew
         Location location = getLocationOrThrow(locationIdOptional);
         Map<CrewLocationType, Crew> crews = new HashMap<>();
 
-        boolean hasFoundCrew = addCrew(
-                crewIdOptional,
-                CrewLocationType.LOCATION_USING,
-                crews
-        );
+        boolean hasFoundCrew;
+        try {
+            hasFoundCrew = addCrew(
+                    crewIdOptional,
+                    CrewLocationType.LOCATION_USING,
+                    crews
+            );
+        } catch (CommandException e) {
+            throw new ParseException(e.getMessage());
+        }
 
         if (!hasFoundCrew) {
             throw new ParseException(NO_CREW_MESSAGE);

@@ -41,7 +41,7 @@ public class Pilot implements Item {
 
     private static final String RANK_STRING = "Rank";
 
-    private static final String FLIGHT_HR_STRING = "Flight Hour";
+    private static final String FLIGHT_HR_STRING = "Flight Hours";
 
     private static final String AVAILABILITY_STRING = "Status";
 
@@ -188,9 +188,9 @@ public class Pilot implements Item {
     public List<String> getDisplayList() {
         return List.of(
                 String.format("%s", name),
-                String.format("%s: %s", GENDER_STRING, gender),
-                String.format("%s: %s", AGE_STRING, age),
                 String.format("%s: %s", RANK_STRING, rank),
+                String.format("%s: %s", AGE_STRING, age),
+                String.format("%s: %s", GENDER_STRING, gender),
                 String.format("%s: %s", FLIGHT_HR_STRING, flightHour),
                 String.format("%s: %s", AVAILABILITY_STRING, getAvailabilityString())
         );
@@ -203,6 +203,9 @@ public class Pilot implements Item {
 
     @Override
     public String toString() {
-        return String.format("%s %s (%s: %s)", rank, name, AGE_STRING, age);
+        return String.format(
+                "%s %s",
+                rank,
+                name);
     }
 }

@@ -4,12 +4,19 @@ import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.exception.IndexOutOfBoundException;
+import seedu.address.model.pilot.Pilot;
 
 /**
  * The command that checks a pilot's availability in the Wingman app.
  */
 public class CheckPilotCommand implements Command {
+    private static final String INVALID_INDEX_VALUE_MESSAGE =
+            "%s is an invalid value.\n"
+                    + "Please try using an integer instead.";
+    private static final String INDEX_OUT_OF_BOUNDS_MESSAGE =
+            "Index %s is out of bounds.\n"
+                    + "Please enter a valid index.";
+
     /**
      * The UUID of the pilot whose availability is to be checked.
      */
@@ -26,19 +33,38 @@ public class CheckPilotCommand implements Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        int index = Command.parseIntegerToZeroBasedIndex(id);
         boolean isAvailable;
+
+        int pilotId;
         try {
-            isAvailable = model.checkPilotByIndex(index);
-        } catch (IndexOutOfBoundException e) {
-            return new CommandResult(
-                    String.format("Error: %s", e.getMessage())
-            );
+            pilotId = Command.parseIntegerToZeroBasedIndex(id);
+        } catch (NumberFormatException e) {
+            throw new CommandException(String.format(
+                    INVALID_INDEX_VALUE_MESSAGE,
+                    id
+            ));
         }
+
+        boolean isPilotIndexValid = (pilotId < model.getPilotManager().size());
+        if (!isPilotIndexValid) {
+            throw new CommandException(String.format(
+                    INDEX_OUT_OF_BOUNDS_MESSAGE,
+                    pilotId + 1));
+        }
+
+        isAvailable = model.checkPilotByIndex(pilotId);
+
+        Pilot pilot = model.getPilotManager().getItem(pilotId);
         if (isAvailable) {
-            return new CommandResult("This pilot is available.");
+            return new CommandResult(String.format(
+                    "%s is available.",
+                    pilot.toString()
+            ));
         } else {
-            return new CommandResult("This pilot is unavailable.");
+            return new CommandResult(String.format(
+                    "%s is unavailable.",
+                    pilot.toString()
+            ));
         }
     }
 }

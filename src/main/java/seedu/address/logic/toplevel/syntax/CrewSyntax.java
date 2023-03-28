@@ -1,6 +1,7 @@
 package seedu.address.logic.toplevel.syntax;
 
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
@@ -31,6 +32,13 @@ public abstract class CrewSyntax {
             PREFIX_RANK
     );
 
+    private static final String INVALID_CREW_RANK_MESSAGE =
+            "%s is an invalid crew rank.\n"
+                    + "Please try 0 for a Cabin Service Director, "
+                    + "1 for a Senior Flight Attendant,\n"
+                    + "2 for a Flight Attendant, "
+                    + "or 3 for a Trainee.";
+
     /**
      * The factory that creates a crew.
      *
@@ -41,6 +49,15 @@ public abstract class CrewSyntax {
     public static Crew factory(CommandParam param) throws ParseException {
         final String name = param.getNamedValuesOrThrow(PREFIX_NAME);
         final int rankId = param.getNamedIntOrThrow(PREFIX_RANK);
+
+        if (!(Stream.of(0, 1, 2, 3)
+                .anyMatch(validRank -> validRank.equals(rankId)))) {
+            throw new ParseException(String.format(
+                    INVALID_CREW_RANK_MESSAGE,
+                    rankId
+            ));
+        }
+
         final CrewRank rank = CrewRank.fromIndex(rankId);
         return new Crew(name, rank);
     }

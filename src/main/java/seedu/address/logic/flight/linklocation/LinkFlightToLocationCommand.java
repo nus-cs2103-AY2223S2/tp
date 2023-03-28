@@ -17,11 +17,11 @@ import seedu.address.model.location.Location;
  */
 public class LinkFlightToLocationCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
-            "Flight with id %s is not found.";
+            "Flight with ID %s can't be found.";
     private static final String LOCATION_NOT_FOUND_EXCEPTION =
-            "Location with id %s is not found.";
+            "Location with ID %s can't be found.";
     private static final String DISPLAY_MESSAGE =
-            "Linked location %s to flight %s.";
+            "Linked %s to %s.";
 
     /**
      * The flight to be linked.
@@ -49,9 +49,8 @@ public class LinkFlightToLocationCommand implements Command {
         String result = locations.entrySet()
                 .stream()
                 .map((entry) -> String.format(
-                        "%s: %s",
-                        entry.getKey(),
-                        entry.getValue().getName()))
+                        "%s",
+                        entry.getValue().toString()))
                 .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());
     }

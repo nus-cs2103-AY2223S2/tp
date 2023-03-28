@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
+import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 
 /**
@@ -14,6 +15,9 @@ public class CheckCrewCommandFactory implements CommandFactory<CheckCrewCommand>
     public static final String COMMAND_WORD = "check";
     public static final String PREFIX_ID = "/id";
 
+    private static final String NO_CREW_MESSAGE =
+            "No crew has been entered. "
+                    + "Please enter /id followed by the crew ID.";
     @Override
     public String getCommandWord() {
         return COMMAND_WORD;
@@ -25,9 +29,9 @@ public class CheckCrewCommandFactory implements CommandFactory<CheckCrewCommand>
     }
 
     @Override
-    public CheckCrewCommand createCommand(CommandParam param) throws ParseException {
-        String id = param.getNamedValuesOrThrow(PREFIX_ID);
+    public CheckCrewCommand createCommand(CommandParam param) throws ParseException, CommandException {
+        String index = param.getNamedValuesOrThrow(PREFIX_ID);
 
-        return new CheckCrewCommand(id);
+        return new CheckCrewCommand(index);
     }
 }
