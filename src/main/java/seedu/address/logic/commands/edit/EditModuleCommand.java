@@ -86,11 +86,11 @@ public class EditModuleCommand extends EditCommand {
 
         ModuleCode updatedCode = editModuleDescriptor.getCode().orElse(moduleToEdit.getCode());
         ModuleName updateName = editModuleDescriptor.getName().orElse(moduleToEdit.getName());
+        Set<Tag> updatedTags = editModuleDescriptor.getTags().orElse(moduleToEdit.getTags());
 
-        Set<Tag> tags = moduleToEdit.getTags();
         List<? extends ReadOnlyLecture> lectures = moduleToEdit.getLectureList();
 
-        return new Module(updatedCode, updateName, tags, lectures);
+        return new Module(updatedCode, updateName, updatedTags, lectures);
     }
 
     /**

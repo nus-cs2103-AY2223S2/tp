@@ -6,6 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UNWATCH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WATCH;
+
+import java.util.Set;
 
 import seedu.address.logic.commands.edit.EditCommand;
 import seedu.address.logic.commands.edit.EditLectureCommand;
@@ -18,6 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleName;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.video.VideoName;
 
 /**
@@ -35,7 +41,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_NAME, PREFIX_MODULE, PREFIX_LECTURE);
+                ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_NAME, PREFIX_MODULE, PREFIX_LECTURE,
+                        PREFIX_TAG, PREFIX_UNWATCH, PREFIX_WATCH);
 
         if (isEditModule(argMultimap)) {
             return parseEditModuleCommand(argMultimap);
@@ -63,15 +70,18 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         String updatedCodeStr = argMultimap.getValue(PREFIX_CODE).orElse(null);
         String updatedNameStr = argMultimap.getValue(PREFIX_NAME).orElse(null);
+        String updatedTagsStr = argMultimap.getValue(PREFIX_TAG).orElse(null);
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
 
         ModuleCode updatedCode = updatedCodeStr == null ? null : ParserUtil.parseModuleCode(updatedCodeStr);
         ModuleName updatedName = updatedNameStr == null ? null : ParserUtil.parseModuleName(updatedNameStr);
+        Set<Tag> updatedTags = updatedTagsStr == null ? null : ParserUtil.parseMultiTags(updatedTagsStr);
 
         EditModuleDescriptor descriptor = new EditModuleDescriptor();
         descriptor.setCode(updatedCode);
         descriptor.setName(updatedName);
+        descriptor.setTags(updatedTags);
 
         if (!descriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -95,14 +105,17 @@ public class EditCommandParser implements Parser<EditCommand> {
         String lectureNameStr = argMultimap.getPreamble();
 
         String updatedNameStr = argMultimap.getValue(PREFIX_NAME).orElse(null);
+        String updatedTagsStr = argMultimap.getValue(PREFIX_TAG).orElse(null);
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
         LectureName lectureName = ParserUtil.parseLectureName(lectureNameStr);
 
         LectureName updatedName = updatedNameStr == null ? null : ParserUtil.parseLectureName(updatedNameStr);
+        Set<Tag> updatedTags = updatedTagsStr == null ? null : ParserUtil.parseMultiTags(updatedTagsStr);
 
         EditLectureDescriptor descriptor = new EditLectureDescriptor();
         descriptor.setName(updatedName);
+        descriptor.setTags(updatedTags);
 
         if (!descriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -127,14 +140,18 @@ public class EditCommandParser implements Parser<EditCommand> {
         String videoNameStr = argMultimap.getPreamble();
 
         String updatedNameStr = argMultimap.getValue(PREFIX_NAME).orElse(null);
+        String updatedTagsStr = argMultimap.getValue(PREFIX_TAG).orElse(null);
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
         LectureName lectureName = ParserUtil.parseLectureName(lectureNameStr);
         VideoName videoName = ParserUtil.parseVideoName(videoNameStr);
+
         VideoName updatedName = updatedNameStr == null ? null : ParserUtil.parseVideoName(updatedNameStr);
+        Set<Tag> updatedTags = updatedTagsStr == null ? null : ParserUtil.parseMultiTags(updatedTagsStr);
 
         EditVideoDescriptor descriptor = new EditVideoDescriptor();
         descriptor.setName(updatedName);
+        descriptor.setTags(updatedTags);
 
         if (!descriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

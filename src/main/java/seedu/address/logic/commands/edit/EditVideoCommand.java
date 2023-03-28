@@ -89,11 +89,11 @@ public class EditVideoCommand extends EditCommand {
         requireNonNull(videoToEdit);
 
         VideoName updatedName = editVideoDescriptor.getName().orElse(videoToEdit.getName());
+        Set<Tag> updatedTags = editVideoDescriptor.getTags().orElse(videoToEdit.getTags());
 
         boolean hasWatched = videoToEdit.hasWatched();
-        Set<Tag> tags = videoToEdit.getTags();
 
-        return new Video(updatedName, hasWatched, tags);
+        return new Video(updatedName, hasWatched, updatedTags);
     }
 
     @Override

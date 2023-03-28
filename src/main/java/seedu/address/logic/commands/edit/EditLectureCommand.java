@@ -98,11 +98,11 @@ public class EditLectureCommand extends EditCommand {
         requireNonNull(lectureToEdit);
 
         LectureName updatedName = editLectureDescriptor.getName().orElse(lectureToEdit.getName());
+        Set<Tag> updatedTags = editLectureDescriptor.getTags().orElse(lectureToEdit.getTags());
 
-        Set<Tag> tags = lectureToEdit.getTags();
         List<Video> videos = lectureToEdit.getVideoList();
 
-        return new Lecture(updatedName, tags, videos);
+        return new Lecture(updatedName, updatedTags, videos);
     }
 
     /**
