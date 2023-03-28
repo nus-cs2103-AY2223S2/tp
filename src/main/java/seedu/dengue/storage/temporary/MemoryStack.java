@@ -9,7 +9,7 @@ import java.util.Stack;
 import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
 
 /**
- * A Stack ADT for the temporary memory storage for DengueHotspotTracker's undo command.
+ * A specialised Stack for the temporary memory storage for DengueHotspotTracker's undo command.
  * This stack has a fixed size of 10.
  */
 public class MemoryStack implements StackWithStorage<ReadOnlyDengueHotspotTracker> {
