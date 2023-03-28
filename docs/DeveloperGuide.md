@@ -123,25 +123,47 @@ How the parsing works:
 3. The resultant `CommandParser` parses the remaining user input to create a `Command` object, such as `AddCommand`, and optionally a `CommandMessage`. Both of which are encapsulated into a `ParseResult` and returned.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
+The responsibilities of `Model` component,
 
-The `Model` component,
+* stores the runtime state of the other managers:
+  * `PatientManager`
+  * `VaxTypeManager`
+  * `AppointmentManager`
+  * `KeywordManager`
+* stores the objects to be displayed as a separate filtered map which is exposed to outsiders as an unmodifiable `ObservableMap<K, V>` where `V` is the type of object being stored (eg. `IdData<Patient>`) and `K` is the type of the key the stored object is mapped to (for `Patient` and `Appointment`, this is an `Integer` and as for `VaxType`, this is a `String`).
+* stores the object to be detailed as a `ObjectProperty<V>` where `V` is the type of the object to be displayed (eg. `IdData<Patient>`).
+* store a `UserPref` object that represents the user's preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
 
-* stores the patient manager data i.e., all `Patient` objects (which are contained in a `UniquePatientList` object).
-* stores the currently 'selected' `Patient` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Patient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+### Patient component
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Vms`, which `Patient` references. This allows `Vms` to only require one `Tag` object per unique tag, instead of each `Patient` needing their own `Tag` objects.<br>
+<!-- TODO -->
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+### Vaccination component
 
-</div>
+Vaccinations are represented as `VaxType` objects and stored within `VaxTypeManager`.
+
+#### VaxType
+
+To represent a vaccination, `VaxType` contains the following attributes:
+
+* A name represented as a `GroupName` object.
+* A set of groups which the vaccination classifies under as a set of `GroupName` objects.
+* A minimum age as an `Age` object.
+* A maximum age as an `Age` object.
+* A set ingredients of the vaccination as a set of `GroupName` objects.
+* A list of requirements of vaccination groups that will have to be taken before this vaccination can be taken as a list of `Requirement` objects.
+
+#### VaxTypeManager
+
+On top of storing `VaxType` objects, `VaxTypeManager` ensures the uniqueness of `VaxType`. It also ensures that there are at most 30 `VaxType` objects stored.
 
 ### Appointment component
+
 **API** : [`Appointment.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/Appointment.java)
 
 The `Appointment` component,
@@ -158,10 +180,11 @@ The `Appointment` component,
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
-The `Storage` component,
-* can save both patient manager data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `VmsStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+The `Storage` component is responsible for the reading and writing of the states of the different managers in `Model` to and from the hard disk. As shown in the diagram above, it inherits from `PatientManagerStorage`, `UserPrefsStorage`, `VaxTypeStorage`, `AppointmentStorage` and `KeywordStorage`. As such, it can be treated as either one (if only the functionality of only one is needed).
+
+### Keyword component
+
+<!-- TODO -->
 
 ### Common classes
 
@@ -281,7 +304,7 @@ Given below is an example usage scenario when a user enter `patient edit 5 --n J
     5. `ParserUtil#parseBloodType` will be called to create a BloodType object using "B+".
     6. `ParserUtil#parseGroups` will be called to create GroupName[] object named allergies using ["catfur", "pollen"].
     7. `ParserUtil#parseGroups` will be called to create GroupName[] object named vaccines using ["covax"].
-4. After successfully parsing the args, `EditCommandParser` will create an editPatientDescriptor using the new Name, Phone, Dob, BloodType, Allergies<GroupName>, Vaccines<GroupName>. Then it will create an `EditCommand` with the new editPatientDescriptor object with the index.
+4. After successfully parsing the args, `EditCommandParser` will create an editPatientDescriptor using the new Name, Phone, Dob, BloodType, Allergies `<GroupName>`, Vaccines `<GroupName>`. Then it will create an `EditCommand` with the new editPatientDescriptor object with the index.
 5. When `EditCommand#execute` is called, the following will happen.
     1. It will ensure that the Index given is within the list, else it will throw a CommandExeception
     2. It will edit the patient by creating a new patient with the new values from the Parser as Patients are Immuttable
