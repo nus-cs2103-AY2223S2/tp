@@ -505,7 +505,7 @@ Step 1: Allocate all events to the day(s) it is supposed to be happening. Events
 
 After getting a list of _Events_ from all tasks within _TaskBook_, a scheduling algorithm for events will be run. The following diagram shows its behaviour.
 
-![Event Scheduling Example](images/EventAllocation.pdf)
+![Event Scheduling Example](images/EventAllocation.png)
 
 **Some Rules**
 * Events are allocated to the date they are scheduled to happen, regardless of time.
@@ -518,6 +518,7 @@ After getting a list of _Events_ from all tasks within _TaskBook_, a scheduling 
 * No event is scheduled to occur on 3 Jun 2023. It is left empty
 </details>
 
+
 Step 2: Allocate all deadlines to the first free day before it is due (exclusive of due date), as we assume that it is better to complete a time-sensitive task as soon as possible. If it is not possible to find a free day, the algorithm will allocate task to a day before deadline with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
 <details>
 
@@ -525,7 +526,7 @@ Step 2: Allocate all deadlines to the first free day before it is due (exclusive
 
 After getting a list of _Deadlines_ from all tasks within _TaskBook_, a scheduling algorithm for events will be run. The following diagram shows its behaviour.
 
-![Deadline Scheduling Example](images/DeadlineAllocation.pdf)
+![Deadline Scheduling Example](images/DeadlineAllocation.png)
 
 **Some Rules**
 * Overdue deadlines still in the TaskBook is not considered in the algorithm
@@ -539,6 +540,7 @@ After getting a list of _Deadlines_ from all tasks within _TaskBook_, a scheduli
 * Deadline F is allocated to 30 May 2023 as adding task to any dates before the deadline will result in exceeding the desired workload, and it is the date with the lowest workload among all possible dates.
 </details>
 
+
 Step 3: Allocate all SimpleTasks in descending order of effort required. As we assume that SimpleTasks are not time-sensitive, the algorithm allocates each task to the most busy free day (greedy approach). If such a day is not available, the algorithm will allocate the task to a day with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
 
 <details>
@@ -547,7 +549,7 @@ Step 3: Allocate all SimpleTasks in descending order of effort required. As we a
 
 After getting a list of _Simple Tasks_ from all tasks within _TaskBook_, a scheduling algorithm for simple tasks will be run. The following diagram shows its behaviour.
 
-![Simple Task Scheduling Example](images/SimpleTaskAllocation.pdf)
+![Simple Task Scheduling Example](images/SimpleTaskAllocation.png)
 
 **Some Rules**
 * SimpleTasks will be allocated to the most busy free day, which is a day with highest current workload where adding a simple task does not result in workload exceeding intended workload. If multiple of such days are available, allocate to the first of such days.
@@ -560,6 +562,7 @@ After getting a list of _Simple Tasks_ from all tasks within _TaskBook_, a sched
 * Task H is the second to be allocated since it has the next highest effort required. It will be allocated to 4 Jun 2023 because it is the only free day, such that adding task H does not result in exceeding the desired workload.
 * Task G is then allocated to 3 Jun. Among the 2 days that Task G can be added to without exceeding desired workload (3 Jun and 4 Jun), 3 Jun has a higher workload. Thus, task G will be allocated to 3 Jun.
 </details>
+
 
 Given below is an example usage scenario for viewing a generated plan and how the schedule command behaves at each step:
 
