@@ -94,7 +94,7 @@ public class Patient extends Person {
     }
 
     /**
-     * Assigns a doctor if doctor does not exist in doctor's doctor list.
+     * Assigns a doctor if doctor does not exist in patient's doctor list.
      *
      * @param doctor a doctor.
      */
