@@ -462,7 +462,8 @@ The `add` command allows users to create a new person and insert them into the a
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Command Formats:** <br>
-- `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`
+
+* `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`
 
 </div>
 
@@ -507,8 +508,11 @@ The `edit` command allows the user to edit an existing contact in EduMate.
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Command Formats:** <br>
-- `edit z/FIELD`: Edits the user details. <br>
-- `edit INDEX z/FIELD`: Edits the details of the contact at the specified `INDEX`.<br>
+
+* `edit z/FIELD`: Edits the user details.
+
+* `edit INDEX z/FIELD`: Edits the details of the contact at the specified `INDEX`.
+
 </div>
 
 **Distinguishing between contact and user** - As specified in the command formats, if the user wants to edit their own details, they can just leave out the index. On our end, the `ArgumentMultimap` has been modified to accept null as a valid index, which will handle such a use case.
@@ -581,9 +585,11 @@ The `tag` command allows user to tag a ModuleTag and Lessons to an existing cont
 
 :information_source: **Command Formats**: <br>
 
-- `tag m/MODULE`: Tags a module to user. <br>
-- `tag INDEX m/MODULE`: Tags a module to the contact at specified index. <br>
-- `tag m/MODULE DAY START END`: Tags a lesson to the user with the specified parameters, and tags the module if not already done so. <br>
+* `tag m/MODULE`: Tags a module to user.
+
+* `tag INDEX m/MODULE`: Tags a module to the contact at specified index.
+
+* `tag m/MODULE DAY START END`: Tags a lesson to the user with the specified parameters, and tags the module if not already done so.
 
 </div>
 
@@ -609,9 +615,12 @@ The last viewed profile will remain displayed on the profile panel should there 
 
 :information_source: **Command Formats** <br>
 
-- `view` : Displays user's profile on the display panel. <br>
-- `view n/XYZ` : Display XYZ's profile on the display panel. <br>
-- `view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
+* `view` : Displays user's profile on the display panel.
+
+* `view n/XYZ` : Display XYZ's profile on the display panel.
+
+* `view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
+
 </div>
 
 **Parsing the inputs** - When the user enters the input, the `ViewCommandParser` will first check if the arguments are empty.
@@ -647,7 +656,7 @@ For example, if the user wants to search for a person but does not know the full
 
 :information_source: **Command Formats:** <br>
 
-- `find [z/FIELD MORE_FIELD]`: Finds the contacts matching the field found in the 'z' field.
+* `find [z/FIELD MORE_FIELD]`: Finds the contacts matching the field found in the 'z' field.
 
 </div>
 
@@ -682,10 +691,13 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 :information_source: **Command Formats:** <br>
 
--`sort`: Sorts the contacts by their index. <br>
--`sort [z/a]…ZWSP`: Sorts the contacts by the `z` field in **ascending** order.<br>
--`sort [z/d]…ZWSP`: Sorts the contacts by the `z` field in **descending** order.<br>
--`sort [z/]…ZWSP`: Sorts the contacts by the `z` field in their **default** order.<br>
+* `sort`: Sorts the contacts by their index.
+
+* `sort [z/a]…ZWSP`: Sorts the contacts by the `z` field in **ascending** order.
+
+* `sort [z/d]…ZWSP`: Sorts the contacts by the `z` field in **descending** order.
+
+* `sort [z/]…ZWSP`: Sorts the contacts by the `z` field in their **default** order.
 
 </div>
 
@@ -715,7 +727,7 @@ The `list` command will allow users to view all the contacts saved in `EduMate`.
 
 :information_source: **Command Formats:** <br>
 
--`list`: lists all contacts in the EduMate Application.
+* `list`: lists all contacts in the EduMate Application.
 
 </div>
 
@@ -729,7 +741,7 @@ The `exit` command allows users to exit the EduMate Application via the command 
 
 :information_source: **Command Formats:** <br>
 
-- `exit`: Exits the EduMate Application.
+* `exit`: Exits the EduMate Application.
 
 </div>
 
@@ -758,6 +770,17 @@ recommendations as certain locations are only appropriate for certain activities
 
 This feature is utilises the [`Recommender`](#recommenders)
 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Command Formats:** <br>
+
+* `meet 2 7 8 10`: Recommends a meeting time and location for all the participants with contact index of 2, 7, 8, 10 (including the user).
+
+* `eat 2 7 8 10` : Recommends a time and eating place where all participants with contact index of 2, 7, 8, 10 (including the user) can have a meal together.
+
+* `study 2 7 8 10` : Recommends a time and study spot where all participants with contact index of 2, 7, 8, 10 (including the user) can study together.
+
+</div>
 
 
 ### **Organise Command**
