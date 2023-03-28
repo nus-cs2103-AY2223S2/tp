@@ -6,16 +6,23 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SCORE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import jdk.jshell.spi.ExecutionControlProvider;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddScoreCommand;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteScoreCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -25,9 +32,13 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.score.Score;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.ScoreBuilder;
+import seedu.address.testutil.TaskBuilder;
 
 public class AddressBookParserTest {
 
@@ -41,6 +52,24 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_addScore() throws Exception {
+        Score score = new ScoreBuilder().build();
+        AddScoreCommand command = (AddScoreCommand) parser.parseCommand(
+                AddScoreCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() +
+                        " " + PersonUtil.getAddScoreDetails(score));
+        assertEquals(new AddScoreCommand(INDEX_FIRST_PERSON, score), command);
+    }
+
+    @Test
+    public void parseCommand_addTask() throws Exception {
+        Task task = new TaskBuilder().build();
+        AddTaskCommand command = (AddTaskCommand) parser.parseCommand(
+                AddTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() +
+                        " " + PersonUtil.getAddTaskDetails(task));
+        assertEquals(new AddTaskCommand(INDEX_FIRST_PERSON, task), command);
+    }
+
+    @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
@@ -51,6 +80,22 @@ public class AddressBookParserTest {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_deleteScore() throws Exception {
+        DeleteScoreCommand command = (DeleteScoreCommand) parser.parseCommand(
+                DeleteScoreCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " " +
+                        INDEX_FIRST_SCORE.getOneBased());
+        assertEquals(new DeleteScoreCommand(INDEX_FIRST_PERSON, INDEX_FIRST_SCORE), command);
+    }
+
+    @Test
+    public void parseCommand_deleteTask() throws Exception {
+        DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
+                DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " " +
+                INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK), command);
     }
 
     @Test

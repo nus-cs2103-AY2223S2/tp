@@ -5,14 +5,20 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_LABEL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE_VALUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
 
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
+import seedu.address.model.score.Score;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * A utility class for Person.
@@ -61,6 +67,25 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        return sb.toString();
+    }
+
+    /**
+     * Returns an add task command string for adding the {@code task}.
+     */
+    public static String getAddTaskDetails(Task task) {
+        String s = PREFIX_TASK_TITLE + task.getName().fullName;
+        return s;
+    }
+
+    /**
+     * Returns an add score command string for adding the {@code score}.
+     */
+    public static String getAddScoreDetails(Score score) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX_SCORE_LABEL + score.getLabel().label + " ");
+        sb.append(PREFIX_SCORE_VALUE + score.getValue().value.toString() + " ");
+        sb.append(PREFIX_SCORE_DATE + score.getDate().date.toString());
         return sb.toString();
     }
 }
