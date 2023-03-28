@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternBuddyParser" as InternBuddyParser LOGIC_COLOR
+participant "u:UpcomingCommand" as UpcomingCommand LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("upcoming")
+activate LogicManager
+
+LogicManager -> InternBuddyParser : parseCommand("upcoming")
+activate InternBuddyParser
+
+create UpcomingCommand
+InternBuddyParser -> UpcomingCommand
+activate UpcomingCommand
+
+UpcomingCommand -->InternBuddyParser : u
+deactivate UpcomingCommand
+
+InternBuddyParser --> LogicManager : u
+
+deactivate InternBuddyParser
+
+LogicManager -> UpcomingCommand : execute()
+activate UpcomingCommand
+
+UpcomingCommand -> Model : updateFilteredInternshipList(predicate)
+activate Model
+
+Model --> UpcomingCommand
+deactivate Model
+
+create CommandResult
+UpcomingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> UpcomingCommand
+deactivate CommandResult
+
+UpcomingCommand --> LogicManager : cr
+deactivate UpcomingCommand
+
+[<--LogicManager : cr
+destroy UpcomingCommand
+deactivate LogicManager
+
+@enduml
