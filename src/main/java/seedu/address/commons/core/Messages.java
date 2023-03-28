@@ -5,7 +5,9 @@ package seedu.address.commons.core;
  */
 public class Messages {
 
-    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command\n";
+    public static final String MESSAGE_KNOWN_COMMANDS = "The known commands are:\n"
+            + "nav, add, edit, delete, tag, list, find, mark, unmark, help and exit";
 
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
 

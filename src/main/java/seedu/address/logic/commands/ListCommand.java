@@ -25,9 +25,16 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all modules, lectures or videos.\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + " CS2040S "
+    public static final String MESSAGE_USAGE = "Make sure that you are calling this command from the correct context.\n"
+            + COMMAND_WORD + ": List modules or lectures or videos from ANY context.\n"
+            + COMMAND_WORD + " " + PREFIX_MODULE + " {module_code}: List lectures from MODULE context.\n"
+            + COMMAND_WORD + " " + PREFIX_LECTURE + " {lecture_name}: List videos from LECTURE context.\n"
+            + COMMAND_WORD + " " + PREFIX_MODULE + " {module_code} "
+            + PREFIX_LECTURE + " {lecture_name}: List videos from ANY context.\n"
+            + "Example: " + COMMAND_WORD + " | "
+            + COMMAND_WORD + " " + PREFIX_MODULE + " CS2040S | "
+            + COMMAND_WORD + " " + PREFIX_LECTURE + " Week 1\n"
+            + COMMAND_WORD + " " + PREFIX_MODULE + " CS2040S "
             + PREFIX_LECTURE + " Week 1";
 
     public static final String MESSAGE_SUCCESS_MODULES = "Listed all modules";
@@ -73,19 +80,31 @@ public class ListCommand extends Command {
                 throw new CommandException(
                     String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode));
             }
-            ReadOnlyLecture lecture = model.getLecture(moduleCode, lectureName);
-            model.updateFilteredVideoList(new VideoPredicate(lecture), lecture);
-            return new CommandResult(String.format(MESSAGE_SUCCESS_VIDEOS, moduleCode, lectureName), Level.VIDEO);
+            return filterByVideoList(model);
         }
         if (moduleCode != null) {
             if (!model.hasModule(moduleCode)) {
                 throw new CommandException(
                     String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
             }
-            ReadOnlyModule module = model.getModule(moduleCode);
-            model.updateFilteredLectureList(new LecturePredicate(module), module);
-            return new CommandResult(String.format(MESSAGE_SUCCESS_LECTURES, moduleCode), Level.LECTURE);
+            return filterByLectureList(model);
         }
+        return filterByModuleList(model);
+    }
+
+    private CommandResult filterByVideoList(Model model) {
+        ReadOnlyLecture lecture = model.getLecture(moduleCode, lectureName);
+        model.updateFilteredVideoList(new VideoPredicate(lecture), lecture);
+        return new CommandResult(String.format(MESSAGE_SUCCESS_VIDEOS, moduleCode, lectureName), Level.VIDEO);
+    }
+
+    private CommandResult filterByLectureList(Model model) {
+        ReadOnlyModule module = model.getModule(moduleCode);
+        model.updateFilteredLectureList(new LecturePredicate(module), module);
+        return new CommandResult(String.format(MESSAGE_SUCCESS_LECTURES, moduleCode), Level.LECTURE);
+    }
+
+    private CommandResult filterByModuleList(Model model) {
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(MESSAGE_SUCCESS_MODULES, Level.MODULE);
     }
@@ -108,4 +127,5 @@ public class ListCommand extends Command {
         }
         return false;
     }
+
 }
