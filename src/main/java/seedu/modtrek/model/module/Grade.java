@@ -69,6 +69,10 @@ public class Grade {
         return !value.equals("U");
     }
 
+    public boolean isSatisfactory() {
+        return value.equals("S");
+    }
+
     @Override
     public String toString() {
         return value;

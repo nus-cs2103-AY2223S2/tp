@@ -25,19 +25,21 @@ public class DegreeProgressionData {
         "MS", 16,
         "UE", 40));
 
-    // User's calculated data
-    private int completedCredit = 0;
-    private int plannedCredit = 0; // Includes Incomplete Modules
+    // User's calculateProgressd data
+    private int completedCredit = 0; // Credits counted for gpa
+    private int plannedCredit = 0;
     private HashMap<String, Integer> completedRequirementCredits = new HashMap<>();
     private float cumulativePoints = 0;
     private float gpa = 5.00f;
     private int duplicatedCredits = 0;
+    private int overallPercentage;
+    private int meaningfulCredits;
 
     private DegreeProgressionData() {}
 
     /**
      * Factory method to generate the data needed to show progress. Progress
-     * is calculated from the user's current modlist.
+     * is calculateProgressd from the user's current modlist.
      *
      * @param modList
      * @return
@@ -50,6 +52,7 @@ public class DegreeProgressionData {
         });
         data.totalRequirementCredits.merge("UE", data.duplicatedCredits, (x, y) -> x + y);
         data.computeGpa();
+        data.calculateProgress();
         return data;
     }
 
@@ -59,6 +62,10 @@ public class DegreeProgressionData {
 
     public int getCompletedCredit() {
         return completedCredit;
+    }
+
+    public int getMeaningfulCredit() {
+        return meaningfulCredits;
     }
 
     public int getPlannedCredit() {
@@ -89,12 +96,11 @@ public class DegreeProgressionData {
         return result;
     }
 
-    /**
-     * Returns Overall Percentage, computed by considering all the requirements fulfillment.
-     *
-     * @return Overall percentage as whole number
-     */
-    public int getOverallPercentage() {
+    public int getOverallPercentage() {;
+        return overallPercentage;
+    }
+
+    private void calculateProgress() {
         float totalRequirementCompletion = 0;
         for (Entry<String, Integer> entry : completedRequirementCredits.entrySet()) {
             int total = totalRequirementCredits.get(entry.getKey());
@@ -103,7 +109,8 @@ public class DegreeProgressionData {
         }
         totalRequirementCompletion -= duplicatedCredits;
         assert totalRequirementCompletion >= 0;
-        return (int) (totalRequirementCompletion / TOTALCREDIT * 100);
+        meaningfulCredits = (int) totalRequirementCompletion;
+        overallPercentage = (int) (totalRequirementCompletion / TOTALCREDIT * 100);
     }
 
     private void computeModule(Module module) {
@@ -118,8 +125,10 @@ public class DegreeProgressionData {
                             return oldValue + newValue;
                         });
             });
-            completedCredit += credit;
-            cumulativePoints += credit * module.getGrade().toPoints();
+            if (!module.isSatisfactory()) { // Checks for SU option
+                completedCredit += credit;
+                cumulativePoints += credit * module.getGrade().toPoints();
+            }
         } else if (!module.isComplete()) {
             plannedCredit += credit;
         }
@@ -152,12 +161,11 @@ public class DegreeProgressionData {
                     completedRequirementCredits.get(shortFormTag),
                     tag.equals("UE") ? tagTotal + duplicatedCredits : tagTotal));
         }
-        details.append(String.format("\nCurrent GPA: %.2f\n", getGpa()))
+        details.append(String.format("\nCurrent CAP: %.2f\n", getGpa()))
                 .append("OVERALL PROGRESS\n")
-                .append(String.format("> Completed: %1$d\n", completedCredit))
-                .append(String.format("> Planned:   %1$d\n", plannedCredit))
-                .append(String.format("> Total:     %1$d\n", TOTALCREDIT))
-                .append("Note that completed modules do not mean that it is counted to the overall progress!\n");
+                .append(String.format("> Planned:    %1$d\n", plannedCredit))
+                .append(String.format("> Meaningful: %1$d\n", meaningfulCredits))
+                .append("Meaningful credits count towards progression!");
         return details.toString();
     }
 

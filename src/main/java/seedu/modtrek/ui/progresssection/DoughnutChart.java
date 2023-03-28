@@ -112,7 +112,7 @@ public class DoughnutChart extends PieChart {
         percent.getStyleClass().add("h2");
 
         // TODO: update this
-        Text totalMc = new Text(degreeProgressionData.getCompletedCredit() + "/"
+        Text totalMc = new Text(degreeProgressionData.getMeaningfulCredit() + "/"
                 + DegreeProgressionData.TOTALCREDIT + " MCs");
         totalMc.setStyle("-fx-fill: -white;");
         totalMc.getStyleClass().add("h3");

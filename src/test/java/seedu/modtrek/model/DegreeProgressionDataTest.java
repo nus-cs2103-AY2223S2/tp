@@ -24,6 +24,11 @@ public class DegreeProgressionDataTest {
     }
 
     @Test
+    public void getMeaningfulCredit() {
+        assertEquals(20, data.getMeaningfulCredit());
+    }
+
+    @Test
     public void getCompletedRequirementCredits() {
         Map<String, Integer> expected = Map.of(
                 "CSF", 16,
