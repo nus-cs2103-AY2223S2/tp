@@ -2,8 +2,6 @@ package seedu.recipe.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.recipe.testutil.Assert.assertThrows;
-import static seedu.recipe.testutil.TypicalRecipes.CORNDOGS;
-import static seedu.recipe.testutil.TypicalRecipes.SOUP;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

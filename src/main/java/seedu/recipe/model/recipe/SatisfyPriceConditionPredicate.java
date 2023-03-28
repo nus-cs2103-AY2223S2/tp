@@ -9,6 +9,10 @@ public class SatisfyPriceConditionPredicate implements Predicate<Recipe> {
 
     private String filter;
     private Double price;
+
+    /**
+     * Creates a SatisfyPriceConditionPredicate with the correct filter and price as verified by ParserUtil.
+     */
     public SatisfyPriceConditionPredicate(String filter, Double price) {
         this.filter = filter;
         this.price = price;

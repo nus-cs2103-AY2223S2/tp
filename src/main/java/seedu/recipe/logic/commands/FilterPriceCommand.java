@@ -2,14 +2,8 @@ package seedu.recipe.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import seedu.recipe.commons.core.Messages;
-import seedu.recipe.commons.core.index.Index;
-import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.model.Model;
-import seedu.recipe.model.recipe.ContainsKeywordsPredicate;
-import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.SatisfyPriceConditionPredicate;
 
 /**

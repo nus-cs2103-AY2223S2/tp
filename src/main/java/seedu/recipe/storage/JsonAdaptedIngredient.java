@@ -1,22 +1,11 @@
 package seedu.recipe.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.logic.parser.exceptions.ParseException;
-import seedu.recipe.model.recipe.Description;
 import seedu.recipe.model.recipe.Ingredient;
-import seedu.recipe.model.recipe.Recipe;
-import seedu.recipe.model.recipe.Step;
-import seedu.recipe.model.recipe.Title;
-import seedu.recipe.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Ingredient}.
@@ -71,11 +60,11 @@ class JsonAdaptedIngredient {
             throw new ParseException(Ingredient.INGREDIENT_QUANTITY_MESSAGE_CONSTRAINTS);
         }
 
-        if (!Ingredient.isValidIngredientUOM(unitOfMeasurement)) {
+        if (!Ingredient.isValidIngredientUom(unitOfMeasurement)) {
             throw new ParseException(Ingredient.INGREDIENT_UOM_MESSAGE_CONSTRAINTS);
         }
 
-        if (!Ingredient.isValidIngredientPPU(pricePerUnit)) {
+        if (!Ingredient.isValidIngredientPpu(pricePerUnit)) {
             throw new ParseException(Ingredient.INGREDIENT_PPU_MESSAGE_CONSTRAINTS);
         }
         return new Ingredient(name, quantity, unitOfMeasurement, pricePerUnit);

@@ -2,12 +2,7 @@ package seedu.recipe.logic.parser;
 
 import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.logging.Filter;
-
-import javafx.util.Pair;
-import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.FilterPriceCommand;
-import seedu.recipe.logic.commands.StarCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.SatisfyPriceConditionPredicate;
 

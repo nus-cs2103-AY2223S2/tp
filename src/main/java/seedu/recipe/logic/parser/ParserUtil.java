@@ -8,12 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.sql.rowset.serial.SerialArray;
-
-import javafx.util.Pair;
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.commons.util.StringUtil;
-import seedu.recipe.logic.commands.FilterPriceCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Description;
 import seedu.recipe.model.recipe.Ingredient;
@@ -122,8 +118,8 @@ public class ParserUtil {
 
         String name;
         Double quantity;
-        String unit_of_measurement;
-        Double price_per_unit;
+        String unitOfMeasurement;
+        Double pricePerUnit;
 
         if (!Ingredient.isValidIngredientName(ingredientFields[0])) {
             throw new ParseException(Ingredient.INGREDIENT_NAME_MESSAGE_CONSTRAINTS);
@@ -136,26 +132,26 @@ public class ParserUtil {
             if (!Ingredient.isValidIngredientQuantity(quantity)) {
                 throw new ParseException(Ingredient.INGREDIENT_QUANTITY_MESSAGE_CONSTRAINTS);
             }
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new ParseException("Quantity is not a double!");
         }
 
 
-        if (!Ingredient.isValidIngredientUOM(ingredientFields[2])) {
+        if (!Ingredient.isValidIngredientUom(ingredientFields[2])) {
             throw new ParseException(Ingredient.INGREDIENT_UOM_MESSAGE_CONSTRAINTS);
         } else {
-            unit_of_measurement = ingredientFields[2];
+            unitOfMeasurement = ingredientFields[2];
         }
 
         try {
-            price_per_unit = Double.valueOf(ingredientFields[3]);
-            if (!Ingredient.isValidIngredientPPU(price_per_unit)) {
+            pricePerUnit = Double.valueOf(ingredientFields[3]);
+            if (!Ingredient.isValidIngredientPpu(pricePerUnit)) {
                 throw new ParseException(Ingredient.INGREDIENT_PPU_MESSAGE_CONSTRAINTS);
             }
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new ParseException("Price per unit is not a double!");
         }
-        return new Ingredient(name, quantity, unit_of_measurement, price_per_unit);
+        return new Ingredient(name, quantity, unitOfMeasurement, pricePerUnit);
     }
 
     /**
@@ -226,7 +222,7 @@ public class ParserUtil {
             if (price < 0) {
                 throw new ParseException("Price less than 0");
             }
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new ParseException("Price is not a valid positive number!");
         }
 

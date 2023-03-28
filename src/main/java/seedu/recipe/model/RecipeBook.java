@@ -123,12 +123,6 @@ public class RecipeBook implements ReadOnlyRecipeBook {
         return recipes.asUnmodifiableObservableList();
     }
 
-    public void viewRecipeList() {
-        for (Recipe r : recipes) {
-            System.out.println(r);
-        }
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

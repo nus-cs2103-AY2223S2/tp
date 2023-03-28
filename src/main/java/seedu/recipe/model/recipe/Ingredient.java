@@ -3,16 +3,14 @@ package seedu.recipe.model.recipe;
 import static java.util.Objects.requireNonNull;
 import static seedu.recipe.commons.util.AppUtil.checkArgument;
 
-import seedu.recipe.logic.parser.exceptions.ParseException;
-
 /**
  * Represents an Ingredient in a list of ingredients in a recipe.
  */
 public class Ingredient {
     public static final String INGREDIENT_WRONG_ARGUMENTS_MESSAGE_CONSTRAINTS =
-            "The wrong arguments have been passed into ingredients!\n" +
-                    "Usage: i/<ingredientName> <quantity> <unit_of_measurement> <price_per_unit>\n" +
-                    "Example: i/sugar 2.5 tablespoon 0.010;\n";
+            "The wrong arguments have been passed into ingredients!\n"
+                    + "Usage: i/<ingredientName> <quantity> <unit_of_measurement> <price_per_unit>\n"
+                    + "Example: i/sugar 2.5 tablespoon 0.010;\n";
     public static final String INGREDIENT_NAME_MESSAGE_CONSTRAINTS =
             "An ingredient should only contain alphanumeric characters and spaces, and it should not be blank.";
 
@@ -20,7 +18,8 @@ public class Ingredient {
             "An ingredient should have a quantity of more than 0.";
 
     public static final String INGREDIENT_UOM_MESSAGE_CONSTRAINTS =
-            "The unit of measurement you define should only contain alphanumeric characters and spaces, and it should not be blank.";
+            "The unit of measurement you define should only contain alphanumeric characters "
+                    + "and spaces, and it should not be blank.";
 
     public static final String INGREDIENT_PPU_MESSAGE_CONSTRAINTS =
             "The price per unit of an ingredient should be more than OR equals to 0.";
@@ -49,7 +48,7 @@ public class Ingredient {
         requireNonNull(name);
         requireNonNull(unitOfMeasurement);
         checkArgument(isValidIngredientName(name), INGREDIENT_NAME_MESSAGE_CONSTRAINTS);
-        checkArgument(isValidIngredientUOM(unitOfMeasurement), INGREDIENT_UOM_MESSAGE_CONSTRAINTS);
+        checkArgument(isValidIngredientUom(unitOfMeasurement), INGREDIENT_UOM_MESSAGE_CONSTRAINTS);
         this.name = name;
         this.quantity = quantity;
         this.unitOfMeasurement = unitOfMeasurement;
@@ -67,21 +66,21 @@ public class Ingredient {
         }
 
         Double quantity;
-        Double price_per_unit;
+        Double pricePerUnit;
 
-        if (!Ingredient.isValidIngredientName(ingredientFields[0]) ||
-                !Ingredient.isValidIngredientUOM(ingredientFields[2])) {
+        if (!Ingredient.isValidIngredientName(ingredientFields[0])
+                || !Ingredient.isValidIngredientUom(ingredientFields[2])) {
             return false;
         }
 
         try {
             quantity = Double.valueOf(ingredientFields[1]);
-            price_per_unit = Double.valueOf(ingredientFields[3]);
-            if (!Ingredient.isValidIngredientQuantity(quantity) ||
-                    !Ingredient.isValidIngredientPPU(price_per_unit)) {
+            pricePerUnit = Double.valueOf(ingredientFields[3]);
+            if (!Ingredient.isValidIngredientQuantity(quantity)
+                    || !Ingredient.isValidIngredientPpu(pricePerUnit)) {
                 return false;
             }
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             return false;
         }
 
@@ -95,22 +94,26 @@ public class Ingredient {
     public static boolean isValidIngredientQuantity(Double quantity) {
         return quantity > 0;
     }
-    public static boolean isValidIngredientUOM(String unit_of_measurement) {
-        return unit_of_measurement.matches(VALIDATION_REGEX);
+    public static boolean isValidIngredientUom(String unitOfMeasurement) {
+        return unitOfMeasurement.matches(VALIDATION_REGEX);
     }
-    public static boolean isValidIngredientPPU(Double price_per_unit) {
-        return price_per_unit >= 0;
+    public static boolean isValidIngredientPpu(Double pricePerUnit) {
+        return pricePerUnit >= 0;
     }
 
+    /**
+     * Returns the ingredient string to be displayed by the UI.
+     */
     public String toDisplayString() {
+
         return this.name + " | " + this.quantity + " " + this.unitOfMeasurement
                 + " | " + "$" + this.pricePerUnit + "/" + this.unitOfMeasurement;
     }
 
     @Override
     public String toString() {
-        return this.name + " " + this.quantity +
-                " " + this.unitOfMeasurement + " " + this.pricePerUnit;
+        return this.name + " " + this.quantity
+                + " " + this.unitOfMeasurement + " " + this.pricePerUnit;
     }
 
     @Override
