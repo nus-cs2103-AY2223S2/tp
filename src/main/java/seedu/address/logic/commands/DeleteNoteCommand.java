@@ -12,8 +12,8 @@ import seedu.address.model.Model;
 public class DeleteNoteCommand extends Command {
     public static final String COMMAND_WORD = "rm-note";
 
-    public static final String MESSAGE_USAGE = "Delete syntax: rm-note -index INDEX (must be a positive integer) " +
-            "-name name-of-event -type type-of-event";
+    public static final String MESSAGE_USAGE = "Delete syntax: rm-note -index INDEX (must be a positive integer) "
+            + "-name name-of-event -type type-of-event";
     public static final String MESSAGE_EXAMPLE = "rm-note -index 0 -name t1 -type tutorial";
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
             + "cannot be recognized!";

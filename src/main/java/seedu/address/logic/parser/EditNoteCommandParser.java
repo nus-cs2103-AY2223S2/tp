@@ -2,13 +2,15 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_CONTENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_EVENT_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
 
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.EditNoteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Note;
 
@@ -25,10 +27,12 @@ public class EditNoteCommandParser implements Parser<EditNoteCommand> {
     public EditNoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NOTE_CONTENT, PREFIX_NOTE_INDEX, PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME);
+                ArgumentTokenizer.tokenize(args, PREFIX_NOTE_CONTENT, PREFIX_NOTE_INDEX, PREFIX_NOTE_EVENT_TYPE,
+                        PREFIX_NOTE_EVENT_NAME);
 
         // The case of adding note without event
-        if (!arePrefixesPresent(argMultimap, PREFIX_NOTE_CONTENT, PREFIX_NOTE_INDEX, PREFIX_NOTE_EVENT_TYPE, PREFIX_NOTE_EVENT_NAME)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NOTE_CONTENT, PREFIX_NOTE_INDEX, PREFIX_NOTE_EVENT_TYPE,
+                PREFIX_NOTE_EVENT_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditNoteCommand.MESSAGE_USAGE) + "\n"
                     + EditNoteCommand.MESSAGE_EXAMPLE);
