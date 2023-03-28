@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
+import tfifteenfour.clipboard.logic.predicates.ShowAllListedPredicate;
 import tfifteenfour.clipboard.logic.predicates.TaskNameContainsPredicate;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
@@ -40,9 +41,13 @@ public class FindTaskCommand extends FindCommand {
         requireNonNull(model);
 		Group selectedGroup = currentSelection.getSelectedGroup();
         selectedGroup.updateFilteredTasks(predicate);
+        int filteredSize = selectedGroup.getUnmodifiableFilteredTaskList().size();
 
-        return new CommandResult(this, String.format(MESSAGE_SUCCESS,
-                selectedGroup.getUnmodifiableFilteredSessionList().size()), willModifyState);
+        if (filteredSize == 0) {
+            ShowAllListedPredicate.resetTasksFilter(currentSelection);
+        }
+
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, filteredSize), willModifyState);
     }
 
     @Override

@@ -6,6 +6,7 @@ import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.predicates.GroupNameContainsPredicate;
+import tfifteenfour.clipboard.logic.predicates.ShowAllListedPredicate;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Course;
 
@@ -40,9 +41,13 @@ public class FindGroupCommand extends FindCommand {
         requireNonNull(model);
         Course selectedCourse = currentSelection.getSelectedCourse();
         selectedCourse.updateFilteredGroups(predicate);
+        int filteredSize = selectedCourse.getUnmodifiableFilteredGroupList().size();
 
-        return new CommandResult(this, String.format(MESSAGE_SUCCESS,
-                selectedCourse.getUnmodifiableFilteredGroupList().size()), willModifyState);
+        if (filteredSize == 0) {
+            ShowAllListedPredicate.resetGroupsFilter(currentSelection);
+        }
+
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, filteredSize), willModifyState);
     }
 
     @Override

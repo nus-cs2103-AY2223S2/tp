@@ -36,4 +36,12 @@ public class ShowAllListedPredicate {
 	public static void resetTasksFilter(CurrentSelection currentSelection) {
 		currentSelection.getSelectedGroup().updateFilteredTasks(PREDICATE_SHOW_ALL_TASKS);
 	}
+
+	public static void resetAllFilters(Model model, CurrentSelection currentSelection) {
+		resetTasksFilter(currentSelection);
+		resetSessionsFilter(currentSelection);
+		resetStudentsFilter(currentSelection);
+		resetGroupsFilter(currentSelection);
+		resetCoursesFilter(model);
+	}
 }

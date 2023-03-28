@@ -10,11 +10,13 @@ import tfifteenfour.clipboard.logic.commands.findcommand.FindCourseCommand;
 import tfifteenfour.clipboard.logic.commands.findcommand.FindGroupCommand;
 import tfifteenfour.clipboard.logic.commands.findcommand.FindSessionCommand;
 import tfifteenfour.clipboard.logic.commands.findcommand.FindStudentCommand;
+import tfifteenfour.clipboard.logic.commands.findcommand.FindTaskCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.logic.predicates.CourseNameContainsPredicate;
 import tfifteenfour.clipboard.logic.predicates.GroupNameContainsPredicate;
 import tfifteenfour.clipboard.logic.predicates.SessionNameContainsPredicate;
 import tfifteenfour.clipboard.logic.predicates.StudentNameContainsPredicate;
+import tfifteenfour.clipboard.logic.predicates.TaskNameContainsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -70,8 +72,13 @@ public class FindCommandParser implements Parser<FindCommand> {
                 throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "student"));
             }
             return new FindStudentCommand(new StudentNameContainsPredicate(keywords), currentSelection);
+        case TASK:
+            if (currentSelection.getCurrentPage() != PageType.TASK_PAGE) {
+                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "student"));
+            }
+            return new FindTaskCommand(new TaskNameContainsPredicate(keywords), currentSelection);
         default:
-            throw new ParseException("Invalid type for edit command");
+            throw new ParseException("Invalid type for find command");
         }
     }
 

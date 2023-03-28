@@ -6,7 +6,9 @@ import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.predicates.CourseNameContainsPredicate;
+import tfifteenfour.clipboard.logic.predicates.ShowAllListedPredicate;
 import tfifteenfour.clipboard.model.Model;
+import tfifteenfour.clipboard.model.Roster;
 
 public class FindCourseCommand extends FindCommand {
 	public static final String COMMAND_TYPE_WORD = "course";
@@ -36,10 +38,15 @@ public class FindCourseCommand extends FindCommand {
      */
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
         requireNonNull(model);
-        model.getRoster().updateFilteredCourses(predicate);;
+        Roster roster = model.getRoster();
+        roster.updateFilteredCourses(predicate);
+        int filteredSize = roster.getUnmodifiableFilteredCourseList().size();
 
-        return new CommandResult(this, String.format(MESSAGE_SUCCESS,
-                model.getRoster().getUnmodifiableFilteredCourseList().size()), willModifyState);
+        if (filteredSize == 0) {
+            ShowAllListedPredicate.resetCoursesFilter(model);
+        }
+
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, filteredSize), willModifyState);
     }
 
     @Override

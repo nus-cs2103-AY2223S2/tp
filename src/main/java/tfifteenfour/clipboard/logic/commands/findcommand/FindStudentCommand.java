@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
+import tfifteenfour.clipboard.logic.predicates.ShowAllListedPredicate;
 import tfifteenfour.clipboard.logic.predicates.StudentNameContainsPredicate;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
@@ -40,9 +41,13 @@ public class FindStudentCommand extends FindCommand {
         requireNonNull(model);
 		Group selectedGroup = currentSelection.getSelectedGroup();
         selectedGroup.updateFilteredStudents(predicate);
+        int filteredSize = selectedGroup.getUnmodifiableFilteredStudentList().size();
 
-        return new CommandResult(this, String.format(MESSAGE_SUCCESS,
-                selectedGroup.getUnmodifiableFilteredStudentList().size()), willModifyState);
+        if (filteredSize == 0) {
+            ShowAllListedPredicate.resetStudentsFilter(currentSelection);
+        }
+
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, filteredSize), willModifyState);
     }
 
     @Override

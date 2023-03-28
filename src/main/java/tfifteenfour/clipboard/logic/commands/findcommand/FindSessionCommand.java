@@ -6,6 +6,7 @@ import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.predicates.SessionNameContainsPredicate;
+import tfifteenfour.clipboard.logic.predicates.ShowAllListedPredicate;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
 
@@ -40,9 +41,13 @@ public class FindSessionCommand extends FindCommand {
         requireNonNull(model);
 		Group selectedGroup = currentSelection.getSelectedGroup();
         selectedGroup.updateFilteredSessions(predicate);
+        int filteredSize = selectedGroup.getUnmodifiableFilteredSessionList().size();
 
-        return new CommandResult(this, String.format(MESSAGE_SUCCESS,
-                selectedGroup.getUnmodifiableFilteredSessionList().size()), willModifyState);
+        if (filteredSize == 0) {
+            ShowAllListedPredicate.resetSessionsFilter(currentSelection);
+        }
+
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, filteredSize), willModifyState);
     }
 
     @Override

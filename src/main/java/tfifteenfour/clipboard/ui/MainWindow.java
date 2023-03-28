@@ -247,9 +247,6 @@ public class MainWindow extends UiPart<Stage> {
         closeSessionTab();
         closeTaskTab();
         closeNavigationBar();
-        logic.getCurrentSelection().getSelectedGroup().unMarkAllSessions();
-        logic.getCurrentSelection().getSelectedGroup().unMarkAllTasks();
-        logic.getCurrentSelection().navigateBackToCoursePage();
     }
 
     private void refreshNavigationBar() {
