@@ -16,8 +16,6 @@ public class Scheduler implements ReadOnlyScheduler {
 
     private final UniqueEventList events;
 
-    //    private FilteredList<Event> upcomingEvents;
-
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html

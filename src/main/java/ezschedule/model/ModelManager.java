@@ -19,14 +19,12 @@ import javafx.collections.transformation.FilteredList;
  */
 public class ModelManager implements Model {
 
-    public static final int DISPLAY_UPCOMING_COUNT = 1;
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Scheduler scheduler;
     private final UserPrefs userPrefs;
     private final FilteredList<Event> filteredEvents;
     private final FilteredList<Event> upcomingEvents;
-
 
     /**
      * Initializes a ModelManager with the given scheduler and userPrefs.
@@ -40,6 +38,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEvents = new FilteredList<>(this.scheduler.getEventList());
         upcomingEvents = new FilteredList<>(this.scheduler.getEventList());
+        updateUpcomingEventList(new UpcomingEventPredicate(1));
     }
 
     public ModelManager() {
@@ -140,8 +139,6 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Event> getUpcomingEventList() {
-        UpcomingEventPredicate predicate = new UpcomingEventPredicate(DISPLAY_UPCOMING_COUNT);
-        upcomingEvents.setPredicate(predicate);
         return upcomingEvents;
     }
 
