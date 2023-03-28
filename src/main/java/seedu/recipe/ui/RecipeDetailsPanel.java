@@ -52,18 +52,21 @@ public class RecipeDetailsPanel extends UiPart<Region> {
             }
             recipeDesc.setText(recipe.getDesc().toString());
             ingredients.getChildren().clear();
-            ingredientsTitle.setText("What you will need:");
+            ingredientsTitle.setText("Ingredients");
             recipe.getIngredients().stream()
                     .forEach(ingredient -> {
-                        Label ingredientLabel = new Label(ingredient.toDisplayString());
+                        String eachIngredient = "•  " + ingredient.toDisplayString();
+                        Label ingredientLabel = new Label(eachIngredient);
+                        ingredientLabel.setWrapText(true);
                         ingredients.getChildren().add(ingredientLabel);
                     });
             steps.getChildren().clear();
-            stepsTitle.setText("Instructions:");
+            stepsTitle.setText("Instructions");
             recipe.getSteps().stream()
                     .forEach(step -> {
-                        String eachStep = recipe.getSteps().indexOf(step) + 1 + ". " + step.step;
+                        String eachStep = recipe.getSteps().indexOf(step) + 1 + ".  " + step.step;
                         Label stepLabel = new Label(eachStep);
+                        stepLabel.setWrapText(true);
                         steps.getChildren().add(stepLabel);
                     });
         }
