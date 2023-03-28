@@ -4,13 +4,13 @@ title: User Guide
 ---
 # CoDoc User Guide
 #### Welcome to CoDoc, a desktop app for students in SoC to connect with each other for the benefit of their course of study.
-CoDoc is optimized for use via a **Command Line Interface (CLI)** while still having the benefits of a **Graphical User Interface (GUI)**. 
-If you can type fast, CoDoc can get your contact management tasks done **faster** than traditional GUI apps.
+CoDoc is **optimized for** use via a **Command Line Interface (CLI)** while still having the **benefits of** a **Graphical User Interface (GUI)**. 
+If you can type fast, CoDoc can get your **contact management** tasks **done faster** than traditional GUI apps.
 
-CoDoc offers more than just a traditional contact management app. Save useful information such as **modules taken** or
-**skills possessed** by a person to greately improve your **networking experience**.
+CoDoc is more than just a traditional contact management app. Save useful information such as **modules taken** or
+**skills possessed** by a person to greatly improve your **networking experience**.
 
-Spend **less time** _keeping track of your contacts_ and _searching through chats_, and **more time** making _meaningful
+**Spend less time** _keeping track of your contacts_ or _searching through chats_, and **more time** making _meaningful
 connections_ and _accomplish your goals_!
 
 <img src="images/Ui.png"/>
@@ -21,7 +21,6 @@ CoDoc.**
 --------------------------------------------------------------------------------------------------------------------
 
 # Table of Contents
-- [Navigating the user guide](#navigating-the-user-guide)
 - [Glossary](#glossary)
 - [Quick Start](#quick-start)
   - [Download and Installation](#download-and-installation)
@@ -43,8 +42,8 @@ CoDoc.**
   - [Exiting the program : `exit`](#9-exiting-the-program--exit)
 - [Data Management](#data-management)
 - [FAQ](#faq)
-- [Upcoming Features](#upcoming-features)
 - [Command Summary](#command-summary)
+- [Upcoming Features](#upcoming-features)
 - [Additional Resources](#additional-resources)
   - [How To Check Java Version](#how-to-check-java-version)
   - [How to Open CoDoc](#how-to-open-codoc)
@@ -400,10 +399,10 @@ Here is a list of available commands and its details.
 
 ### 1. Viewing help : `help`
 
+Opens help menu <br>
+Equivalent to clicking Help > Help F1 via the GUI <br>
 `help`<br>
 > <img src="images/UiHelpMenu.png"/>
-> * Opens help menu <br>
-> * Equivalent to clicking Help > Help F1 via the GUI <br>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -637,7 +636,7 @@ _Details coming soon ..._
 
 ## Additional Resources
 ### How To Check Java Version
-[Scroll back to *Downloading CoDoc*](#downloading-codoc)
+[Scroll back to *Downloading CoDoc*](#download-and-installation)
 ### How to Open CoDoc
 
 Batch file method for Windows uers:
@@ -657,7 +656,7 @@ extension, see [here](https://www.howtogeek.com/205086/beginner-how-to-make-wind
 4. If done correctly, you should now see a file with an icon similar to below. Double-click the renamed batch file `start.bat` to launch CoDoc.
 
 
-[Scroll back to *Downloading CoDoc*](#downloading-codoc)
+[Scroll back to *Downloading CoDoc*](#download-and-installation)
 
 --------------------------------------------------------------------------------------------------------------------
 [Scroll back to *Table of Contents*](#table-of-contents)
