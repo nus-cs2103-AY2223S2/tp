@@ -45,8 +45,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         try {
             addCommandType = CommandTargetType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ParseException("Add type missing. \n"
-                    + "Available option: add course, add group, add session, add task, add student");
+            throw new ParseException("Add type missing! Please enter a valid add command. \n"
+                    + "Available add commands are: add course, add group, add session, add task, add student");
         }
 
         switch (addCommandType) {
@@ -66,7 +66,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             Student student = parseStudentInfo(args);
             return new AddStudentCommand(student);
         default:
-            throw new ParseException("Invalid argument for add command");
+            throw new ParseException("Invalid type for add command");
         }
     }
 

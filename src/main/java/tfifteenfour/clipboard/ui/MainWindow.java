@@ -31,13 +31,13 @@ import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.ui.pagetab.ActiveCourseTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveGroupTab;
-import tfifteenfour.clipboard.ui.pagetab.ActiveModuleTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveSessionTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveStudentTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveTaskTab;
+import tfifteenfour.clipboard.ui.pagetab.InactiveCourseTab;
 import tfifteenfour.clipboard.ui.pagetab.InactiveGroupTab;
-import tfifteenfour.clipboard.ui.pagetab.InactiveModuleTab;
 import tfifteenfour.clipboard.ui.pagetab.InactiveSessionTab;
 import tfifteenfour.clipboard.ui.pagetab.InactiveStudentTab;
 import tfifteenfour.clipboard.ui.pagetab.InactiveTaskTab;
@@ -83,7 +83,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane rightPanelPlaceholder;
 
     @FXML
-    private VBox moduleTabPlaceholder;
+    private VBox courseTabPlaceholder;
 
     @FXML
     private VBox groupTabPlaceholder;
@@ -179,7 +179,7 @@ public class MainWindow extends UiPart<Stage> {
      * Initializes page tabs.
      */
     private void initializePageTabs() {
-        moduleTabPlaceholder.getChildren().add(new ActiveModuleTab().getRoot());
+        courseTabPlaceholder.getChildren().add(new ActiveCourseTab().getRoot());
         groupTabPlaceholder.getChildren().add(new InactiveGroupTab().getRoot());
         studentTabPlaceholder.getChildren().add(new InactiveStudentTab().getRoot());
         sessionTabPlaceholder.getChildren().add(new InactiveSessionTab().getRoot());
@@ -309,8 +309,8 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void showModuleTab() {
-        moduleTabPlaceholder.getChildren().clear();
-        moduleTabPlaceholder.getChildren().add(new ActiveModuleTab().getRoot());
+        courseTabPlaceholder.getChildren().clear();
+        courseTabPlaceholder.getChildren().add(new ActiveCourseTab().getRoot());
     }
 
     private void showGroupTab() {
@@ -334,8 +334,8 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void closeModuleTab() {
-        moduleTabPlaceholder.getChildren().clear();
-        moduleTabPlaceholder.getChildren().add(new InactiveModuleTab().getRoot());
+        courseTabPlaceholder.getChildren().clear();
+        courseTabPlaceholder.getChildren().add(new InactiveCourseTab().getRoot());
     }
 
     private void closeGroupTab() {

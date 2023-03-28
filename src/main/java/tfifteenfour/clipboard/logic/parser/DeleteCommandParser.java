@@ -20,7 +20,6 @@ import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteGroupCommand;
 import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteSessionCommand;
 import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteStudentCommand;
 import tfifteenfour.clipboard.logic.commands.deletecommand.DeleteTaskCommand;
-import tfifteenfour.clipboard.logic.commands.studentcommands.ViewCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
@@ -36,9 +35,13 @@ import tfifteenfour.clipboard.model.student.StudentId;
  */
 public class DeleteCommandParser implements Parser<DeleteCommand> {
 
+    private static final String MESSAGE_USAGE = "delete: Deletes the item at index specified in parameter. "
+            + "Parameters: ITEM_TYPE INDEX\n"
+            + "Note: INDEX must be a positive integer.\n"
+            + "Examples: delete course 1, delete session 3";
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the DeleteCommand
+     * and returns an DeleteCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteCommand parse(String args) throws ParseException {
@@ -48,8 +51,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         try {
             deleteCommandType = CommandTargetType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ParseException("Delete type missing. \n"
-                    + "Available option: delete course, delete group, delete session, delete task, delete student");
+            throw new ParseException("Delete type missing! Please enter a valid delete command.\n"
+                    + "Available delete commands are: delete course, delete group, delete session, delete task, delete student");
         }
 
         Index index;
@@ -57,7 +60,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             index = parseDeleteCommandIndex(args);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), pe);
         }
 
         switch (deleteCommandType) {

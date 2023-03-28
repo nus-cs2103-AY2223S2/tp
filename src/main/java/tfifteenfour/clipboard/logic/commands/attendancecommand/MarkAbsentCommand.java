@@ -46,8 +46,10 @@ public class MarkAbsentCommand extends Command {
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
         requireNonNull(model);
 
-        if (currentSelection.getCurrentPage() != PageType.SESSION_STUDENT_PAGE) {
-            throw new CommandException("Wrong page. Navigate to session page to mark attendance");
+        if (currentSelection.getCurrentPage() == PageType.SESSION_PAGE) {
+            throw new CommandException("Please select a session to start marking attendance.");
+        } else if (currentSelection.getCurrentPage() != PageType.SESSION_STUDENT_PAGE) {
+            throw new CommandException("Wrong page! Navigate to session page to mark attendance.");
         }
 
         Session session = currentSelection.getSelectedSession();
