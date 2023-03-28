@@ -1,13 +1,5 @@
 package seedu.internship.logic.parser;
 
-import seedu.internship.logic.commands.DeleteFieldCommand;
-import seedu.internship.logic.parser.exceptions.ParseException;
-import seedu.internship.model.internship.InternshipContainsKeywordsPredicate;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.internship.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
@@ -15,6 +7,13 @@ import static seedu.internship.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_STATUS;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import seedu.internship.logic.commands.DeleteFieldCommand;
+import seedu.internship.logic.parser.exceptions.ParseException;
+import seedu.internship.model.internship.InternshipContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object

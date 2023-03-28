@@ -1,23 +1,27 @@
 package seedu.internship.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.internship.model.Model;
-import seedu.internship.model.ModelManager;
-import seedu.internship.model.UserPrefs;
-import seedu.internship.model.internship.Internship;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.internship.logic.commands.CommandTestUtil.SIMPLE_PREDICATE;
 import static seedu.internship.logic.commands.CommandTestUtil.ONE_FIELD_PREDICATE;
+import static seedu.internship.logic.commands.CommandTestUtil.SIMPLE_PREDICATE;
 import static seedu.internship.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.internship.logic.commands.CommandTestUtil.showInternshipAtIndex;
 import static seedu.internship.logic.commands.DeleteFieldCommand.MESSAGE_DELETE_INTERNSHIP_SUCCESS;
 import static seedu.internship.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 import static seedu.internship.testutil.TypicalInternships.getTypicalInternBuddy;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.internship.model.Model;
+import seedu.internship.model.ModelManager;
+import seedu.internship.model.UserPrefs;
+import seedu.internship.model.internship.Internship;
+
+
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

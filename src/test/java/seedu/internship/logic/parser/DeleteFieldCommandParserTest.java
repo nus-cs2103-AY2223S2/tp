@@ -1,15 +1,15 @@
 package seedu.internship.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.internship.logic.commands.DeleteFieldCommand;
-
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.internship.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
-import static seedu.internship.logic.commands.CommandTestUtil.MULTIPLE_INDEX_LIST;
-import static seedu.internship.logic.commands.CommandTestUtil.SIMPLE_PREDICATE;
 import static seedu.internship.logic.commands.CommandTestUtil.ONE_FIELD_PREDICATE;
+import static seedu.internship.logic.commands.CommandTestUtil.SIMPLE_PREDICATE;
 import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.internship.logic.commands.DeleteFieldCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

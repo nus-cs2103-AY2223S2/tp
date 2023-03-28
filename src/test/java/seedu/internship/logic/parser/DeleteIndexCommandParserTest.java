@@ -2,15 +2,8 @@ package seedu.internship.logic.parser;
 
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.internship.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
-import static seedu.internship.logic.commands.CommandTestUtil.COMPANY_NAME_DESC_GOOGLE;
-import static seedu.internship.logic.commands.CommandTestUtil.DATE_DESC_GOOGLE;
-import static seedu.internship.logic.commands.CommandTestUtil.EMPTY_INDEXLIST;
-import static seedu.internship.logic.commands.CommandTestUtil.EMPTY_PREDICATE;
-import static seedu.internship.logic.commands.CommandTestUtil.NON_EMPTY_INDEXLIST;
 import static seedu.internship.logic.commands.CommandTestUtil.MULTIPLE_INDEX_LIST;
-import static seedu.internship.logic.commands.CommandTestUtil.ROLE_DESC_GOOGLE;
-import static seedu.internship.logic.commands.CommandTestUtil.STATUS_DESC_GOOGLE;
-import static seedu.internship.logic.commands.CommandTestUtil.TAG_DESC_FRONT;
+import static seedu.internship.logic.commands.CommandTestUtil.NON_EMPTY_INDEXLIST;
 import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseSuccess;
 

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.internship.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.internship.logic.commands.CommandTestUtil.EMPTY_PREDICATE;
 import static seedu.internship.logic.commands.CommandTestUtil.NON_EMPTY_INDEXLIST;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.internship.logic.parser.CliSyntax.PREFIX_DATE;

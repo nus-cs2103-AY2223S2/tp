@@ -1,5 +1,16 @@
 package seedu.internship.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.internship.logic.parser.CliSyntax.PREFIX_STATUS;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
 import seedu.internship.MainApp;
 import seedu.internship.commons.core.LogsCenter;
 import seedu.internship.logic.commands.exceptions.CommandException;
@@ -7,16 +18,9 @@ import seedu.internship.model.Model;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.InternshipContainsKeywordsPredicate;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.internship.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
-import static seedu.internship.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.internship.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.internship.logic.parser.CliSyntax.PREFIX_STATUS;
+
+
 
 /**
  * Deletes an internship identified using it's displayed index from InternBuddy.
