@@ -27,13 +27,13 @@ public class AssignCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) + MARK_TO_ASSIGN (must be a positive integer between 0 and 100)\n"
             + "Example: " + COMMAND_WORD + " 1" + " 50";
 
-    public static final String MESSAGE_SUCCESS = "Assigned student with grade of ";
+    public static final String MESSAGE_SUCCESS = "Assigned student with grade.";
 
     private final Index targetIndex;
     private final int grade;
 
     /**
-     * Creates a MarkPresentCommand to mark the student at the specified index as present.
+     * Creates a AssignCommand to assign a mark to the student for the current task.
      */
     public AssignCommand(Index targetIndex, int grade) {
         super(true);
@@ -45,23 +45,23 @@ public class AssignCommand extends Command {
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
         requireNonNull(model);
 
-        if (currentSelection.getCurrentPage() != PageType.SESSION_STUDENT_PAGE) {
+        if (currentSelection.getCurrentPage() != PageType.TASK_STUDENT_PAGE) {
             throw new CommandException("Wrong page. Navigate to task page to assign grade");
         }
 
         Task task = currentSelection.getSelectedTask();
         ObservableList<StudentWithGrades> studentList = task.getUnmodifiableStudentList();
-        StringBuilder studentMarked = new StringBuilder();
+        StringBuilder studentAssigned = new StringBuilder();
 
         if (targetIndex.getZeroBased() >= studentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         } else {
             Student studentToAssign = studentList.get(targetIndex.getZeroBased());
             task.assignGrade(studentToAssign, grade);
-            studentMarked.append(studentToAssign.getName());
+            studentAssigned.append(studentToAssign.getName());
         }
 
-        return new CommandResult(this, String.format(MESSAGE_SUCCESS, task, studentMarked), willModifyState);
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, task, studentAssigned), willModifyState);
     }
 
     @Override
