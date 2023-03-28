@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
@@ -26,7 +25,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.medicine.Medicine;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Doctor;
 import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
@@ -54,7 +52,6 @@ public class EditCommand extends Command {
         + "[" + PREFIX_ADDRESS + "ADDRESS] "
         + "[" + PREFIX_DRUG_ALLERGY + "ADDRESS] "
         + "[" + PREFIX_GENDER + "GENDER] "
-        + "[" + PREFIX_DOCTOR + "DOCTOR] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "[" + PREFIX_MEDICINE + "MEDICINE]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
@@ -115,12 +112,11 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         DrugAllergy updatedAllergy = editPersonDescriptor.getDrugAllergy().orElse(personToEdit.getDrugAllergy());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
-        Doctor updatedDoctor = editPersonDescriptor.getDoctor().orElse(personToEdit.getDoctor());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Medicine> updatedMedicines = editPersonDescriptor.getMedicines().orElse(personToEdit.getMedicines());
 
         return new Person(updatedNric, updatedName, updatedPhone, updatedEmail,
-            updatedAddress, updatedAllergy, updatedGender, updatedDoctor, updatedTags, updatedMedicines);
+            updatedAddress, updatedAllergy, updatedGender, updatedTags, updatedMedicines);
     }
 
     @Override
@@ -152,7 +148,6 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Gender gender;
-        private Doctor doctor;
         private DrugAllergy drugAllergy;
         private Set<Tag> tags;
         private Set<Medicine> medicines;
@@ -171,7 +166,6 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setGender(toCopy.gender);
-            setDoctor(toCopy.doctor);
             setDrugAllergy(toCopy.drugAllergy);
             setTags(toCopy.tags);
             setMedicines(toCopy.medicines);
@@ -181,8 +175,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(nric, name, phone, email, address, drugAllergy,
-                    gender, doctor, tags, medicines);
+            return CollectionUtil.isAnyNonNull(nric, name, phone, email, address, drugAllergy, gender, tags, medicines);
         }
 
         public void setNric(Nric nric) {
@@ -231,14 +224,6 @@ public class EditCommand extends Command {
 
         public Optional<Gender> getGender() {
             return Optional.ofNullable(gender);
-        }
-
-        public void setDoctor(Doctor doctor) {
-            this.doctor = doctor;
-        }
-
-        public Optional<Doctor> getDoctor() {
-            return Optional.ofNullable(doctor);
         }
 
         public void setDrugAllergy(DrugAllergy drugAllergy) {
@@ -304,7 +289,6 @@ public class EditCommand extends Command {
                 && getPhone().equals(e.getPhone())
                 && getEmail().equals(e.getEmail())
                 && getAddress().equals(e.getAddress())
-                && getDoctor().equals(e.getDoctor())
                 && getDrugAllergy().equals(e.getDrugAllergy())
                 && getTags().equals(e.getTags())
                 && getMedicines().equals(e.getMedicines());
