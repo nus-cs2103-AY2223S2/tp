@@ -9,6 +9,7 @@
       "address": "123, Jurong West Ave 6, #08-111",
       "drugAllergy": "NKDA",
       "gender": "female",
+      "doctor": "Ben",
       "tagged": [
         "Diabetic"
       ]
@@ -21,6 +22,7 @@
       "address": "311, Clementi Ave 2, #02-25",
       "drugAllergy": "NKDA",
       "gender": "male",
+      "doctor": "Alex",
       "tagged": [
         "Osteoporotic",
         "Diabetic"
@@ -37,6 +39,7 @@
       "address": "wall street",
       "drugAllergy": "Penicilin",
       "gender": "male",
+      "doctor": "Shannon",
       "tagged": [
         "Asthmatic"
       ]
@@ -49,6 +52,7 @@
       "address": "10th street",
       "drugAllergy": "Aspirin Panadol",
       "gender": "male",
+      "doctor": "None",
       "tagged": [
         "Epileptic"
       ]
@@ -61,6 +65,7 @@
       "address": "michegan ave",
       "drugAllergy": "NKDA",
       "gender": "female",
+      "doctor": "Ben",
       "tagged": [
         "Arthritic"
       ]
@@ -73,6 +78,7 @@
       "address": "little tokyo",
       "drugAllergy": "Aspirin Panadol",
       "gender": "female",
+      "doctor": "Shannon",
       "tagged": [
         "Diabetic"
       ],
@@ -88,6 +94,7 @@
       "address": "4th street",
       "drugAllergy": "Lidocaine",
       "gender": "male",
+      "doctor": "Shafiq",
       "tagged": [
         "Diabetic"
       ]

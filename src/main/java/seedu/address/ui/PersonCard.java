@@ -27,6 +27,7 @@ public class PersonCard extends UiPart<Region> {
     public final Person person;
 
     private final String drugAllergies = "Allergies: ";
+    private final String attendingDoctor = "Attending Doctor: ";
 
     @FXML
     private HBox cardPane;
@@ -44,6 +45,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private Label gender;
+    @FXML
+    private Label doctor;
     @FXML
     private Label drugAllergy;
     @FXML
@@ -63,6 +66,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         gender.setText(person.getGender().gender);
+        doctor.setText(attendingDoctor + person.getDoctor().doctor);
         drugAllergy.setText(drugAllergies + person.getDrugAllergy().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()
