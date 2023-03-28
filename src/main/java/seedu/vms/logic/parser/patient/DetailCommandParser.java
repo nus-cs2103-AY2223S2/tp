@@ -1,23 +1,19 @@
 package seedu.vms.logic.parser.patient;
 
 import seedu.vms.commons.core.index.Index;
-import seedu.vms.logic.commands.patient.DetailPatientCommand;
+import seedu.vms.logic.commands.patient.DetailCommand;
 import seedu.vms.logic.parser.ArgumentMultimap;
 import seedu.vms.logic.parser.CommandParser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 
-
 /**
- * Parser for {@link DetailPatientCommand}.
+ * Parser for {@link DetailCommand}.
  */
-public class DetailPatientParser implements CommandParser {
-    public static final String COMMAND_WORD = "detail";
-
-
+public class DetailCommandParser implements CommandParser {
     @Override
-    public DetailPatientCommand parse(ArgumentMultimap argsMap) throws ParseException {
+    public DetailCommand parse(ArgumentMultimap argsMap) throws ParseException {
         Index index = ParserUtil.parseIndex(argsMap.getPreamble());
-        return new DetailPatientCommand(index);
+        return new DetailCommand(index);
     }
 }
