@@ -39,7 +39,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_INGREDIENT, PREFIX_TITLE,
                 PREFIX_STEP)
                 || !argMultimap.getPreamble().isEmpty()) {
-            System.out.println("yo");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
