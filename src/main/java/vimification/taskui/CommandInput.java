@@ -144,7 +144,6 @@ public class CommandInput extends UiPart<HBox> {
             @Override
             public void changed(ObservableValue<? extends Boolean> arg0, Boolean wasFocused,
                     Boolean isCommandInputFocused) {
-
                 // bottomComponent may be displaying CommandResult.
                 boolean isCommandInputLingering =
                         mainScreen.bottomComponent.getChildren().contains(getRoot());
