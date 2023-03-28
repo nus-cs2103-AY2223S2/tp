@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.model.person.ContactIndex;
+import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
 public class UntagCommandParserTest {
@@ -22,16 +23,29 @@ public class UntagCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsUntagCommand() {
-        createValidArgsReturnsUntagCommand(
+        createModuleValidArgsReturnsUntagCommand(
                 new ContactIndex(1),
                 new HashSet<ModuleTag>() {{
                     add(new ModuleTag("CS1234"));
                     }},
                 "1 m/CS1234");
+        createGroupValidArgsReturnsUntagCommand(
+                new ContactIndex(2),
+                new HashSet<GroupTag>() {{
+                    add(new GroupTag("Friend"));
+                }},
+                "2 g/Friend");
     }
 
-    private void createValidArgsReturnsUntagCommand(ContactIndex index, Set<ModuleTag> modules, String userInput) {
-        UntagCommand expectedUntagCommand = new UntagCommand(index, modules);
+    private void createModuleValidArgsReturnsUntagCommand(ContactIndex index, Set<ModuleTag> modules,
+                                                          String userInput) {
+        UntagCommand expectedUntagCommand = new UntagCommand(index, modules, TagType.MODULE);
+
+        assertParseSuccess(parser, userInput, expectedUntagCommand);
+    }
+
+    private void createGroupValidArgsReturnsUntagCommand(ContactIndex index, Set<GroupTag> groups, String userInput) {
+        UntagCommand expectedUntagCommand = new UntagCommand(index, groups, TagType.GROUP);
 
         assertParseSuccess(parser, userInput, expectedUntagCommand);
     }

@@ -108,7 +108,7 @@ public class TypicalPersons {
             .withAddress("Kovan").withEmail("kevinho@gmail.com")
             .withPhone("99997496").withTelegramHandle("@kevinho")
             .withContactIndex(12)
-            .withGroupTags("NUS")
+            .withGroupTags("NUS", "TA")
             .withModuleTags("IS2101", "CS2030S", "LAC2201", "YSC1207", "CS2113T", "CS2107").build();
 
     public static final Person LAVENDER = new PersonBuilder().withName("Lavender Crawford")
