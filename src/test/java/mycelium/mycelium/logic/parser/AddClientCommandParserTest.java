@@ -20,8 +20,6 @@ import mycelium.mycelium.testutil.ClientBuilder;
 import mycelium.mycelium.testutil.Pair;
 
 public class AddClientCommandParserTest {
-    // TODO I noticed the argument tokenizer takes the LAST instance of a
-    // prefix, not the first. We must add this to the user guide or something.
     @Test
     public void parse_missingRequiredArgs_throwsParseException() {
         // Just a silly little check, so that we can use -cn and -e verbatim in
