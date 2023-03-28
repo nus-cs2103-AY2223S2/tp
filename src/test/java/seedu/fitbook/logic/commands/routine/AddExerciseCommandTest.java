@@ -173,6 +173,7 @@ public class AddExerciseCommandTest {
         public void removeExercise(Routine routineToDelete, int zeroBased) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public void addExercise(Routine routine, Exercise exercise) {
             throw new AssertionError("This method should not be called.");
