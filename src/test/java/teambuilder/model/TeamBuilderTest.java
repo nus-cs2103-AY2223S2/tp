@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import teambuilder.model.person.Person;
 import teambuilder.model.person.exceptions.DuplicatePersonException;
+import teambuilder.model.team.Team;
 import teambuilder.testutil.PersonBuilder;
 
 public class TeamBuilderTest {
@@ -88,6 +89,7 @@ public class TeamBuilderTest {
      */
     private static class AddressBookStub implements ReadOnlyTeamBuilder {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Team> teams = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -96,6 +98,11 @@ public class TeamBuilderTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Team> getTeamList() {
+            return teams;
         }
     }
 

@@ -19,6 +19,7 @@ import teambuilder.model.Model;
 import teambuilder.model.ReadOnlyTeamBuilder;
 import teambuilder.model.ReadOnlyUserPrefs;
 import teambuilder.model.person.Person;
+import teambuilder.model.team.Team;
 
 public class UndoCommandTest {
     @Test
@@ -139,12 +140,12 @@ public class UndoCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyTeamBuilder addressBook) {
+        public void setTeamBuilder(ReadOnlyTeamBuilder teamBuilder) {
             throw new UnsupportedOperationException("Unimplemented method 'setAddressBook'");
         }
 
         @Override
-        public ReadOnlyTeamBuilder getAddressBook() {
+        public ReadOnlyTeamBuilder getTeamBuilder() {
             throw new UnsupportedOperationException("Unimplemented method 'getAddressBook'");
         }
 
@@ -173,6 +174,31 @@ public class UndoCommandTest {
         }
 
         @Override
+        public boolean hasTeam(Team team) {
+            throw new UnsupportedOperationException("Unimplemented method 'hasTeam'");
+        }
+
+        @Override
+        public void deleteTeam(Team team) {
+            throw new UnsupportedOperationException("Unimplemented method 'deleteTeam'");
+        }
+
+        @Override
+        public void addTeam(Team team) {
+            throw new UnsupportedOperationException("Unimplemented method 'addTeam'");
+        }
+
+        @Override
+        public void setTeam(Team team, Team editedTeam) {
+            throw new UnsupportedOperationException("Unimplemented method 'setTeam'");
+        }
+
+        @Override
+        public ObservableList<Team> getSortedTeamList() {
+            throw new UnsupportedOperationException("Unimplemented method 'getSortedTeamList'");
+        }
+
+        @Override
         public ObservableList<Person> getSortedPersonList() {
 
             throw new UnsupportedOperationException("Unimplemented method 'getSortedPersonList'");
@@ -185,9 +211,20 @@ public class UndoCommandTest {
         }
 
         @Override
-        public void updateSort(Comparator<Person> comparator) {
+        public void updateFilteredTeamList(Predicate<Team> predicate) {
+
+        }
+
+        @Override
+        public void updateSortPerson(Comparator<Person> comparator) {
             throw new UnsupportedOperationException("Unimplemented method 'updateSort'");
         }
+
+        @Override
+        public void updateSortTeam(Comparator<Team> comparator) {
+
+        }
+
 
     }
 

@@ -46,11 +46,11 @@ public class CreateCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        //        if (model.hasTeam(toCreate)) {
-        //            throw new CommandException(MESSAGE_DUPLICATE_TEAM);
-        //        }
-        //
-        //        model.addTeam(toCreate);
+        if (model.hasTeam(toCreate)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TEAM);
+        }
+
+        model.addTeam(toCreate);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toCreate));
     }

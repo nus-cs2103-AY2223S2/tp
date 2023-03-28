@@ -26,7 +26,7 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see teambuilder.model.Model#getAddressBook()
+     * @see teambuilder.model.Model#getTeamBuilder()
      */
     ReadOnlyTeamBuilder getAddressBook();
 
