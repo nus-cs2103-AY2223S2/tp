@@ -169,7 +169,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        courseListPanel = new CourseListPanel(logic.getRoster().getUnmodifiableCourseList());
+        courseListPanel = new CourseListPanel(logic.getRoster().getUnmodifiableFilteredCourseList());
         leftPanelPlaceholder.getChildren().add(courseListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -287,7 +287,7 @@ public class MainWindow extends UiPart<Stage> {
      * Shows course pane.
      */
     private void showCoursePane() {
-        courseListPanel = new CourseListPanel(logic.getRoster().getUnmodifiableCourseList());
+        courseListPanel = new CourseListPanel(logic.getRoster().getUnmodifiableFilteredCourseList());
         leftPanelPlaceholder.getChildren().add(courseListPanel.getRoot());
     }
 
@@ -296,7 +296,7 @@ public class MainWindow extends UiPart<Stage> {
      * @param course that groups belong to.
      */
     private void showGroupPane(Course course) {
-        GroupListPanel groupListPanel = new GroupListPanel(course.getUnmodifiableGroupList());
+        GroupListPanel groupListPanel = new GroupListPanel(course.getUnmodifiableFilteredGroupList());
         leftPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
     }
 
@@ -305,17 +305,17 @@ public class MainWindow extends UiPart<Stage> {
      * @param group that students belong to.
      */
     private void showStudentPane(Group group) {
-        StudentListPanel studentListPanel = new StudentListPanel(group.getUnmodifiableStudentList());
+        StudentListPanel studentListPanel = new StudentListPanel(group.getUnmodifiableFilteredStudentList());
         leftPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
     }
 
     private void showSessionPane(Group group) {
-        SessionListPanel sessionListPanel = new SessionListPanel(group.getUnmodifiableSessionList());
+        SessionListPanel sessionListPanel = new SessionListPanel(group.getUnmodifiableFilteredSessionList());
         leftPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
     }
 
     private void showTaskPane(Group group) {
-        TaskListPanel taskListPanel = new TaskListPanel(group.getUnmodifiableTaskList());
+        TaskListPanel taskListPanel = new TaskListPanel(group.getUnmodifiableFilteredTaskList());
         leftPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
     }
 
