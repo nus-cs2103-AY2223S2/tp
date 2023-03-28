@@ -122,8 +122,7 @@ public class BookmarkListPanel extends UiPart<Region> {
                 } else {
                     setGraphic(new BookmarkCard(bookmark, getIndex() + 1).getRoot());
                 }
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 throw new AssertionError(e);
             }
         }

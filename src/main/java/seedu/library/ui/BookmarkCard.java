@@ -80,13 +80,27 @@ public class BookmarkCard extends UiPart<Region> {
         this.bookmark = bookmark;
         id.setText(displayedIndex + ". ");
         title.setText(bookmark.getTitle().value);
-        progress.setText(bookmark.getProgress().getVolume());
-        chaptert.setText(bookmark.getProgress().getChapter());
-        paget.setText(bookmark.getProgress().getPage());
+
+        if (bookmark.getProgress() != null) {
+            progress.setText(bookmark.getProgress().getVolume());
+            chaptert.setText(bookmark.getProgress().getChapter());
+            paget.setText(bookmark.getProgress().getPage());
+        } else {
+            progress.setText("~");
+            chaptert.setText("~");
+            paget.setText("~");
+        }
+
         vol.setImage(new Image(svol));
         chap.setImage(new Image(schap));
         page.setImage(new Image(spage));
-        author.setText(bookmark.getAuthor().value);
+
+        if (bookmark.getAuthor() != null) {
+            author.setText(bookmark.getAuthor().value);
+        } else {
+            author.setText("");
+        }
+
         genre.setText(bookmark.getGenre().value);
         rateHead.setImage(new Image(ratingImage));
         rateCard(bookmark);
@@ -99,26 +113,29 @@ public class BookmarkCard extends UiPart<Region> {
      * @param bookmark
      */
     public void rateCard(Bookmark bookmark) throws IOException {
+        InputStream rating0 = new FileInputStream("src/main/resources/images/Rating0.png");
         InputStream rating1 = new FileInputStream("src/main/resources/images/Rating1.png");
         InputStream rating2 = new FileInputStream("src/main/resources/images/Rating2.png");
         InputStream rating3 = new FileInputStream("src/main/resources/images/Rating3.png");
         InputStream rating4 = new FileInputStream("src/main/resources/images/Rating4.png");
         InputStream rating5 = new FileInputStream("src/main/resources/images/Rating5.png");
+
+        if (bookmark.getRating() == null) {
+            ratingI.setImage(new Image(rating0));
+            return;
+        }
+
         String rating = bookmark.getRating().toString();
 
         if (rating.equals("1")) {
             ratingI.setImage(new Image(rating1));
-        }
-        else if (rating.equals("2")) {
+        } else if (rating.equals("2")) {
             ratingI.setImage(new Image(rating2));
-        }
-        else if (rating.equals("3")) {
+        } else if (rating.equals("3")) {
             ratingI.setImage(new Image(rating3));
-        }
-        else if (rating.equals("4")) {
+        } else if (rating.equals("4")) {
             ratingI.setImage(new Image(rating4));
-        }
-        else if (rating.equals("5")) {
+        } else if (rating.equals("5")) {
             ratingI.setImage(new Image(rating5));
         }
 

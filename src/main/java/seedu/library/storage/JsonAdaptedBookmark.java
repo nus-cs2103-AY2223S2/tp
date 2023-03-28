@@ -61,10 +61,10 @@ class JsonAdaptedBookmark {
      */
     public JsonAdaptedBookmark(Bookmark source) {
         title = source.getTitle().value;
-        progress = new JsonAdaptedProgress(source.getProgress());
+        progress = (source.getProgress() == null) ? null : new JsonAdaptedProgress(source.getProgress());
         genre = source.getGenre().value;
-        author = source.getAuthor().value;
-        rating = source.getRating().value;
+        author = (source.getProgress() == null) ? null : source.getAuthor().value;
+        rating = (source.getRating() == null) ? null : source.getRating().value;
         url = source.getUrl().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -90,12 +90,12 @@ class JsonAdaptedBookmark {
         }
         final Title modelTitle = new Title(title);
 
-        if (progress == null) {
-            throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Progress.class.getSimpleName()));
+
+        Progress modelProgress = null;
+        if (progress != null) {
+            modelProgress = progress.toModelType();
         }
 
-        final Progress modelProgress = progress.toModelType();
 
         if (genre == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Genre.class.getSimpleName()));
@@ -105,21 +105,21 @@ class JsonAdaptedBookmark {
         }
         final Genre modelGenre = new Genre(genre);
 
-        if (author == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Author.class.getSimpleName()));
+        Author modelAuthor = null;
+        if (author != null) {
+            if (!Author.isValidAuthor(author)) {
+                throw new IllegalValueException(Author.MESSAGE_CONSTRAINTS);
+            }
+            modelAuthor = new Author(author);
         }
-        if (!Author.isValidAuthor(author)) {
-            throw new IllegalValueException(Author.MESSAGE_CONSTRAINTS);
-        }
-        final Author modelAuthor = new Author(author);
 
-        if (rating == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName()));
+        Rating modelRating = null;
+        if (rating != null) {
+            if (!Rating.isValidRating(rating)) {
+                throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+            }
+            modelRating = new Rating(rating);
         }
-        if (!Rating.isValidRating(rating)) {
-            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
-        }
-        final Rating modelRating = new Rating(rating);
 
         if (url == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Url.class.getSimpleName()));

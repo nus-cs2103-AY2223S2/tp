@@ -17,8 +17,10 @@ import seedu.library.commons.core.index.Index;
 import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.model.Library;
 import seedu.library.model.Model;
+import seedu.library.model.ReadOnlyTags;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.BookmarkContainsKeywordsPredicate;
+import seedu.library.model.util.SampleDataUtil;
 import seedu.library.testutil.EditBookmarkDescriptorBuilder;
 
 /**
@@ -34,8 +36,9 @@ public class CommandTestUtil {
     public static final String VALID_GENRE_BOB = "Others";
     public static final String VALID_AUTHOR_AMY = "Hajime Isayama";
     public static final String VALID_AUTHOR_BOB = "Muneyuki Kaneshiro";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_HUSBAND = "MaleProtagonist";
+    public static final String VALID_TAG_FRIEND = "FemaleProtagonist";
+    public static final ReadOnlyTags VALID_TAGS = SampleDataUtil.getSampleTagList();
 
     public static final String TITLE_DESC_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
     public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;

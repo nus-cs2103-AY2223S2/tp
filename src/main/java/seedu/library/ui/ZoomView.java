@@ -59,8 +59,7 @@ public class ZoomView extends UiPart<Region> {
             InputStream image = new FileInputStream("src/main/resources/images/default-avatar.png");
             avatar.setImage(new Image(image));
             hideFields();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("IO error");
         }
 
@@ -77,12 +76,12 @@ public class ZoomView extends UiPart<Region> {
         try {
             this.bookmark = bookmark;
             viewTitle.setText("Title: " + bookmark.getTitle().value);
-            authorView.setText("Author: " + bookmark.getAuthor().value);
+            String authorString = (bookmark.getAuthor() == null) ? "-" : bookmark.getAuthor().value;
+            authorView.setText("Author: " + authorString);
             genreView.setText("Genre: " + bookmark.getGenre().value);
-            progressView.setText("Progress: " + bookmark.getProgress().toString());
+            String progressString = (bookmark.getProgress() == null) ? "-" : bookmark.getProgress().toString();
+            progressView.setText("Progress: " + progressString);
             urlLink.setText(bookmark.getUrl().value);
-            genreView.setText("Genre: " + bookmark.getGenre().value);
-            progressView.setText("Progress: " + bookmark.getProgress().toString());
             bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                     .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
             InputStream image = new FileInputStream("src/main/resources/images/default-avatar.png");
@@ -91,8 +90,7 @@ public class ZoomView extends UiPart<Region> {
                 openLink(urlLink.getText());
             });
             rate(bookmark);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new AssertionError(e);
         }
 
@@ -105,8 +103,7 @@ public class ZoomView extends UiPart<Region> {
     public void openLink(String url) {
         try {
             Desktop.getDesktop().browse(new URI(url));
-        }
-        catch (IOException | URISyntaxException ex) {
+        } catch (IOException | URISyntaxException ex) {
             throw new AssertionError(ex);
         }
     }
@@ -117,34 +114,37 @@ public class ZoomView extends UiPart<Region> {
      */
     public void rate(Bookmark bookmark) {
         try {
+            InputStream rating0 = new FileInputStream("src/main/resources/images/Rating0.png");
             InputStream rating1 = new FileInputStream("src/main/resources/images/Rating1.png");
             InputStream rating2 = new FileInputStream("src/main/resources/images/Rating2.png");
             InputStream rating3 = new FileInputStream("src/main/resources/images/Rating3.png");
             InputStream rating4 = new FileInputStream("src/main/resources/images/Rating4.png");
             InputStream rating5 = new FileInputStream("src/main/resources/images/Rating5.png");
+
+            if (bookmark.getRating() == null) {
+                ratingStar.setImage(new Image(rating0));
+                ratingStar.setVisible(true);
+                return;
+            }
+
             String rating = bookmark.getRating().toString();
 
             if (rating.equals("1")) {
                 ratingStar.setImage(new Image(rating1));
                 ratingStar.setVisible(true);
-            }
-            else if (rating.equals("2")) {
+            } else if (rating.equals("2")) {
                 ratingStar.setImage(new Image(rating2));
                 ratingStar.setVisible(true);
-            }
-            else if (rating.equals("3")) {
+            } else if (rating.equals("3")) {
                 ratingStar.setImage(new Image(rating3));
                 ratingStar.setVisible(true);
-            }
-            else if (rating.equals("4")) {
+            } else if (rating.equals("4")) {
                 ratingStar.setImage(new Image(rating4));
                 ratingStar.setVisible(true);
-            }
-            else if (rating.equals("5")) {
+            } else if (rating.equals("5")) {
                 ratingStar.setImage(new Image(rating5));
                 ratingStar.setVisible(true);
-            }
-            else {
+            } else {
                 ratingStar.setVisible(false);
             }
 
