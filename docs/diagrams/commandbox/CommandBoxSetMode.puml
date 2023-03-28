@@ -1,0 +1,25 @@
+@startuml
+!include ../style.puml
+
+mainframe sd set mode
+participant ":CommandBox" as CommandBox UI_COLOR
+participant "outgoingMode:Mode" as Outgoing MODE_COLOR_T3
+participant "incomingMode:Mode" as Incoming MODE_COLOR
+
+[-> CommandBox : setMode(incomingMode)
+activate CommandBox
+CommandBox -> CommandBox : getInput()
+CommandBox -> Outgoing : teardownMode()
+activate Outgoing
+Outgoing -> Outgoing : revert command box state
+Outgoing --> CommandBox
+deactivate Outgoing
+destroy Outgoing
+CommandBox -> Incoming : setupMode(input)
+activate Incoming
+Incoming -> Incoming : setup command box state
+Incoming --> CommandBox
+deactivate Incoming
+CommandBox -->[
+deactivate CommandBox
+@enduml

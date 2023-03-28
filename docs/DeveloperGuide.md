@@ -217,48 +217,134 @@ will be called to listen for changes in project list. The remaining methods are 
 
 ## Keyboard Interaction
 
-### Hotkeys
+### Hotkeys with UiEvents
 
-### UiEvents
+UiEvents is an abstraction of keyboard events that can trigger changes in
+user interface or perform some action. These keyboard events are handled by
+UiEvent handlers that are bundled together within the `UiEventManager` class.
 
-{TODO update diagrams}
+<div markdown="span" class="alert alert-info">
+:information_source: We will occasionally refer to each of these event handlers as a `Key`
+</div>
 
-UiEvents is an abstraction of Keyboard events that can trigger some changes in
-user interface and its behaviour. The `UiEventManager` class is responsible of
-bundling all UiEvents that can occur. The following is the class diagram of the
+The following is the class diagram of the
 `UiEventManager` class.
 
 ![UiEventManager class diagram](images/UiEventManager.png)
 
-There are currently 3 registered event handlers, namely:
-* `HelpKey` (F1)
-  * Opens up the help menu, and focuses on it if already opened
-* `FindKey` (Ctrl+F)
-  * toggles between CommandMode and SearchMode.
-* `SwitchKey` (Ctrl+W)
-  * Switches between the tabs
+There are currently 10 registered event handlers, namely:
+* `HelpKey` Help (F1)
+* `QuitKey` Quit (CTRL+Q)
+* `StartOfLineKey` Start of Line (CTRL+W)
+* `EndOfLineKey` End of Line (CTRL+E)
+* `ClearKey` Clear line (CTRL+D)
+* `SwitchPanelKey` Switch Panels (CTRL+S)
+* `SwitchTabKey` Switch Tabs (CTRL+L)
+* `NextItemKey` Select next (CTRL+J)
+* `PrevItemKey` Select previous (CTRL+K)
+* `FindKey` Search (CTRL+F)
+
+Each of these event handler perform an action associated with a keyboard event. 
+The action performed by each event handler can be found and modified in their respectively 
+named files found in the `java/mycelium/mycelium/logic/uievent` folder.
+
+To find out more about the supported keyboard events and its associated actions 
+in Mycelium, please refer to the [User Guide](UserGuide.md#hotkeys).
 
 #### UiEvent Handling
-When a keyboard input is registered, the `UiEventManager#catchAndExecute(KeyEvent)`
-method will be called. The following is the sequence diagram for the mentioned method.
+The `UiEventManager` is responsible for calling the appropriate event handler to handle
+the incoming event. When a keyboard input is registered, the `UiEventManager#catchAndExecute(KeyEvent)`
+method will be called with the incoming event as the argument.
 
 ![EventHandling sequence diagram](images/EventHandling.png)
 
-The key combination that triggered the event will be checked against each of the 3
-registered event handlers *(`HelpKey`, `FindKey`, and `SwitchKey`)*. Once there is a match,
-an instance of the event handler will be created, executed and the event consumed to
-prevent the event from propagating any further.
+The key combination that triggered the event will be checked against the
+above-mentioned registered event handlers to decide which event handler to invoke.
 
-##### `HelpKey`
-![Show Help](images/ShowHelp.png)
+![GenericKey sequence diagram](images/GenericKey.png)
 
-##### `FindKey`
-![Toggle command box mode](images/ToggleMode.png)
+The above sequence diagram shows what happens once there is a match with a 
+generic event handler. An instance of the respective `Key` will be created, 
+and executed. The event is then consumed to prevent the event from propagating 
+any further to the inner UI elements.
 
-#### `SwitchKey`
-![Switch Tabs](images/SwitchTab.png)
+![GenericKeyExecute sequence diagram](images/GenericKeyExecute.png)
 
-### Command box
+The above sequence diagram shows how the user interface can be modified during 
+the execution of the `Key` instance. The `Key` calls the respective method of
+the `MainWindow` which in turns calls the respective UI component to perform 
+the action associated with the event.
+
+We will use the `SwitchTabKey` event handler as a concrete example. The following
+sequence diagrams show what happens when the `SwitchTabKey` event handler is invoked.
+
+![SwitchTabKey sequence diagram](images/SwitchTabKey.png)
+![SwitchTabKeyExecute sequence diagram](images/SwitchTabKeyExecute.png)
+
+Note that not all event handlers are built the same. An example of a more 
+complicated event handler will be `FindKey` which we will elaborate more 
+in the next section.
+
+### Command Box
+
+The command box in Mycelium can be in one of 2 `Mode` of operation, namely, `CommandMode` and `SearchMode`,
+and supports switching between these 2 modes. 
+A `Mode` is modular component that is attached to the command box which
+dictates the behaviour of the command box on input change and on submit.
+
+The following is class diagram of the command box.
+
+![CommandBox class diagram](images/CommandBoxClassDiagram.png)
+
+#### Changing Modes
+
+The user can toggle between `SearchMode` and `CommandMode` with a keyboard event
+invoking the `FindKey` event handler. Please refer to the 
+[UiEvent Handling](#uievent-handling) section for more information of how Mycelium
+handles keyboard event.
+
+The following sequence diagrams show what happens when `FindKey` event handler 
+is invoked.
+
+![FindKey sequence diagram](images/ToggleMode.png)
+![FindKeyExecute sequence diagram](images/ToggleModeExecute.png)
+
+Depending on the current `Mode` of the command box, triggering the `FindKey` event handler
+creates the other `Mode` and calls `MainWindow#setCommandBoxMode(Mode)` which sets `Mode`
+of the command box by calling `CommandBox#setMode(Mode)`.
+
+![CommandBoxSetMode sequence diagram](images/CommandBoxSetMode.png)
+
+When `Mode#setMode(Mode)` is called, the command box will call `Mode#teardownMode()`
+on its outgoing `Mode` to perform the necessary clean up which includes 
+reverting the input to its prior state. The command box then calls `Mode#setupMode(String)`
+on the incoming `Mode` which will perform the necessary setup for the incoming `Mode`. 
+This includes caching the current input of the command box so that it can return the input
+to its original state when incoming `Mode` is torn down in the future.
+
+#### On submit
+
+The following sequence diagram shows what happens when the user submits in the
+command box.
+
+![CommandBoxSubmit sequence diagram](images/CommandBoxSubmit.png)
+
+When the user submits, the command box will call `Mode#onInputSubmit(String)` 
+on its current `Mode` with the text input. An `Optional<Mode>` instance will be
+returned which indicate the next `Mode` to change to if there is a `Mode`. Otherwise,
+it will remain in keep its current `Mode`. This is utilised to switch back the command
+box to `CommandMode` when submitting in `SearchMode`.
+
+#### On input change
+
+The following sequence diagram shows what happens when the user edits the input
+of the command box.
+
+![CommandBoxInputChange sequence diagram](images/CommandBoxInputChange.png)
+
+When the user edits the input, the command box will call `Mode#onInputChange(String)`
+on its current `Mode` with the text input. This is utilised in `SearchMode` to allow
+for interactive changes to the displayed projects and clients as the user types.
 
 ### Fuzzy searching
 

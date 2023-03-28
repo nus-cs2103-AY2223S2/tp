@@ -1,64 +1,35 @@
 @startuml
-participant ":UiEventManager" as UiEventManager
-participant ":HelpKey" as HelpKey
-participant ":SwitchKey" as SwitchKey
-participant ":FindKey" as FindKey
-participant "event:KeyEvent" as Event
+!include ../style.puml
+!define ef event is from pressing
+!define refOver ref over UiEventManager, Event:
+
+participant ":UiEventManager" as UiEventManager UI_EVENT_COLOR
+participant "event:KeyEvent" as Event UI_EVENT_COLOR_T3
 
 [-> UiEventManager : catchAndExecute(event)
 activate UiEventManager
-alt is show help event
-    create HelpKey
-    UiEventManager -> HelpKey
-    activate HelpKey
-    HelpKey --> UiEventManager: helpKey
-    deactivate HelpKey
-
-    UiEventManager -> HelpKey : execute(logic,mainWindow)
-    activate HelpKey
-    ref over HelpKey : Show help
-    HelpKey -> Event : consume()
-    activate Event
-    Event --> HelpKey
-    deactivate Event
-    HelpKey --> UiEventManager
-    deactivate HelpKey
-    destroy HelpKey
-else is switch tab event
-    create SwitchKey
-    UiEventManager -> SwitchKey
-    activate SwitchKey
-    SwitchKey --> UiEventManager: switchKey
-    deactivate SwitchKey
-
-    UiEventManager -> SwitchKey : execute(logic,mainWindow)
-    activate SwitchKey
-    ref over SwitchKey: Switch tabs
-    SwitchKey -> Event : consume()
-    activate Event
-    Event --> SwitchKey
-    deactivate Event
-    SwitchKey --> UiEventManager
-    deactivate SwitchKey
-    destroy SwitchKey
-else is toggle command box mode event
-    create FindKey
-    UiEventManager -> FindKey
-    activate FindKey
-    FindKey --> UiEventManager: findKey
-    deactivate FindKey
-
-    UiEventManager -> FindKey : execute(logic,mainWindow)
-    activate FindKey
-    ref over FindKey : Toggle command box mode
-    FindKey -> Event : consume()
-    activate Event
-    Event --> FindKey
-    deactivate Event
-    FindKey -> UiEventManager
-    deactivate FindKey
-    destroy FindKey
+alt ef "F1"
+    refOver show help
+else ef "CTRL-F"
+    refOver toggle mode
+else ef "CTRL-S"
+    refOver switch panel
+else ef "CTRL-L"
+    refOver switch tabs
+else ef "CTRL-J"
+    refOver next item
+else ef "CTRL-K"
+    refOver previous item
+else ef "CTRL-D"
+    refOver clear command box
+else ef "CTRL-W"
+    refOver move to start of line
+else ef "CTRL-E"
+    refOver move to end of line
+else ef "CTRL-Q"
+    refOver quit mycelium
 end
+
 UiEventManager -->[
 deactivate UiEventManager
 @enduml

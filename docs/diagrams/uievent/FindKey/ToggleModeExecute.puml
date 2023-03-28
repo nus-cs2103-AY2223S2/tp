@@ -1,0 +1,38 @@
+@startuml
+!include ../../style.puml
+
+mainframe sd execute toggle mode
+participant ":FindKey" as FindKey KEY_COLOR_T3
+participant "mainWindow:MainWindow" as MainWindow UI_COLOR_T4
+participant ":SearchMode" as SearchMode MODE_COLOR
+participant ":CommandMode" as CommandMode MODE_COLOR_T3
+participant ":CommandBox" as CommandBox UI_COLOR
+
+
+activate FindKey
+
+alt in COMMAND_MODE
+    create SearchMode
+    FindKey -> SearchMode
+    activate SearchMode
+    SearchMode --> FindKey : mode
+    deactivate SearchMode
+else in SEARCH_MODE
+    create CommandMode
+    FindKey -> CommandMode
+    activate CommandMode
+    CommandMode --> FindKey : mode
+    deactivate CommandMode
+end
+
+FindKey -> MainWindow : setCommandBoxMode(mode)
+activate MainWindow
+MainWindow -> CommandBox : setMode(mode)
+activate CommandBox
+ref over CommandBox : set mode
+CommandBox --> MainWindow
+deactivate
+MainWindow --> FindKey
+deactivate MainWindow
+@enduml
+

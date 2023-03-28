@@ -1,8 +1,10 @@
 @startuml
-!define sdName generic key event
-!define typeName Key
-!define keyName key
-!define refName execute key
-
-!include ../templates/KeyHandling.puml
+!define sdName execute event action
+!define KeyType Key
+!define targetName uiComponent
+!define targetType UiPart
+!define toMW action()
+!define toTarget action()
+!define targetAction perform action
+!include ../templates/KeyExecute.puml
 @enduml

@@ -1,36 +1,8 @@
 @startuml
-mainframe sd Toggle command box mode
-participant ":FindKey" as FindKey
-participant "mainWindow:MainWindow" as MainWindow
-participant ":SearchMode" as SearchMode
-participant ":CommandMode" as CommandMode
-participant ":CommandBox" as CommandBox
+!define sdName toggle mode
+!define typeName FindKey
+!define keyName findKey
+!define refName execute toggle mode
 
-
-activate FindKey
-
-alt in COMMAND_MODE
-    create SearchMode
-    FindKey -> SearchMode
-    activate SearchMode
-    SearchMode --> FindKey : mode
-    deactivate SearchMode
-else in SEARCH_MODE
-    create CommandMode
-    FindKey -> CommandMode
-    activate CommandMode
-    CommandMode --> FindKey : mode
-    deactivate CommandMode
-end
-
-FindKey -> MainWindow : setCommandBoxMode(mode)
-activate MainWindow
-MainWindow -> CommandBox : setMode(mode)
-activate CommandBox
-ref over CommandBox, SearchMode, CommandMode : change mode
-CommandBox --> MainWindow
-deactivate
-MainWindow --> FindKey
-deactivate MainWindow
+!include ../templates/KeyHandling.puml
 @enduml
-

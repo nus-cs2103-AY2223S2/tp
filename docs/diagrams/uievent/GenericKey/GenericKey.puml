@@ -1,0 +1,9 @@
+@startuml
+!define sdName event action
+!define typeName Key
+!define keyName key
+!define refName execute event action
+
+!include ../templates/KeyHandling.puml
+@enduml
+
