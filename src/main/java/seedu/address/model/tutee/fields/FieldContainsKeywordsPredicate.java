@@ -1,6 +1,5 @@
 package seedu.address.model.tutee.fields;
 
-import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
@@ -18,11 +17,11 @@ public class FieldContainsKeywordsPredicate implements Predicate<Tutee> {
     private final String scheduleKeyword;
     private final String startTimeKeyword;
     private final String endTimeKeyword;
-    private final List<String> tagKeyword;
+    private final String tagKeyword;
 
     public FieldContainsKeywordsPredicate(String nameKeyword, String phoneKeyword, String emailKeyword,
                                           String addressKeyword, String subjectkeyword,String scheduleKeyword,
-                                          String startTimeKeyword, String endTimeKeyword, List<String> tagKeyword) {
+                                          String startTimeKeyword, String endTimeKeyword, String tagKeyword) {
         this.nameKeyword = nameKeyword;
         this.phoneKeyword = phoneKeyword;
         this.emailKeyword = emailKeyword;
@@ -52,9 +51,8 @@ public class FieldContainsKeywordsPredicate implements Predicate<Tutee> {
                 StringUtil.containsWordIgnoreCase(tutee.getStartTime().startTime, startTimeKeyword);
         boolean containsEndTime = endTimeKeyword.isEmpty() ||
                 StringUtil.containsWordIgnoreCase(tutee.getEndTime().endTime, endTimeKeyword);
-        boolean containsTag = tagKeyword.stream()
-                .allMatch(keyword -> tutee.getTags().stream().anyMatch(
-                        tag -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword)));
+        boolean containsTag = tagKeyword.isEmpty() ||
+                tutee.getTags().stream().anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.tagName, tagKeyword));
 
         return containsName && containsPhone && containsEmail && containsAddress && containsSubject && containsSchedule
                 && containsStartTime && containsEndTime && containsTag;
