@@ -18,12 +18,13 @@ public class AssignCommandParser implements Parser<AssignCommand> {
      */
     public AssignCommand parse(String args) throws ParseException {
         try {
+            args = args.trim();
             Index index = ParserUtil.parseIndex(args.split(" ",2)[0]);
             int grade = Integer.parseInt(args.split(" ",2)[1]);
             return new AssignCommand(index, grade);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignCommand.MESSAGE_USAGE), pe);
         }
     }
 }
