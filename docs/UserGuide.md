@@ -207,7 +207,7 @@ At least one of the following arguments must be provided:
   - The client’s new year of birth.
   - **Default:** *null*
 - **`-src source`**
-  - The client’s digital service platform, e.g. Fiverr.
+  - The client’s new digital service platform, e.g. Fiverr.
   - **Default:** *null*
 - **`-mn mobile_number`**
   - The client’s new mobile number.
