@@ -26,7 +26,7 @@ import seedu.address.model.tag.Tag;
  */
 public class EditCardCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editCard";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the card identified "
             + "by the index number used in the displayed card list. "

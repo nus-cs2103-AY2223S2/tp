@@ -17,7 +17,7 @@ import seedu.address.model.card.Card;
  */
 public class DeleteCardCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "deleteCard";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the card identified by the index number used in the displayed selected deck.\n"
