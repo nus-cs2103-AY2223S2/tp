@@ -1,3 +1,4 @@
+# Wingman User Guide
 Wingman is a resource management tool designed for airline managers that allows for efficient management of crew,
 flights, locations, pilots, and planes via a Command Line Interface (CLI) while still providing the benefits of a 
 Graphical User Interface (GUI). The functionalities include adding, deleting, checking, or associating these 
