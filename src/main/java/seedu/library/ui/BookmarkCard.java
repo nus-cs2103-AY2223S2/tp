@@ -98,7 +98,7 @@ public class BookmarkCard extends UiPart<Region> {
         if (bookmark.getAuthor() != null) {
             author.setText(bookmark.getAuthor().value);
         } else {
-            author.setText("-");
+            author.setText("");
         }
 
         genre.setText(bookmark.getGenre().value);
@@ -113,6 +113,7 @@ public class BookmarkCard extends UiPart<Region> {
      * @param bookmark
      */
     public void rateCard(Bookmark bookmark) throws IOException {
+        InputStream rating0 = new FileInputStream("src/main/resources/images/Rating0.png");
         InputStream rating1 = new FileInputStream("src/main/resources/images/Rating1.png");
         InputStream rating2 = new FileInputStream("src/main/resources/images/Rating2.png");
         InputStream rating3 = new FileInputStream("src/main/resources/images/Rating3.png");
@@ -120,6 +121,7 @@ public class BookmarkCard extends UiPart<Region> {
         InputStream rating5 = new FileInputStream("src/main/resources/images/Rating5.png");
 
         if (bookmark.getRating() == null) {
+            ratingI.setImage(new Image(rating0));
             return;
         }
 
