@@ -46,6 +46,9 @@ public class UndoCommand extends Command {
         Model undoneModel = history.presentModel();
         model.setAddressBook(undoneModel.getAddressBook());
         model.updateFilteredPersonList(undoneModel.getPredicate());
+        if (undoneModel.isFrozen()) {
+            model.freezeWith(undoneModel.getFilteredPersonList());
+        }
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, undoneCommands, numCommands), false, false);
     }

@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,7 +13,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.exceptions.ModifyFrozenStateException;
 import seedu.address.model.history.History;
+import seedu.address.model.person.ParticularPersonsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -25,6 +29,10 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final History history;
     private final FilteredList<Person> filteredPersons;
+    private final List<Person> frozenPersons;
+
+    private Predicate<? super Person> frozenPredicate = null;
+    private boolean isFrozen = false;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,6 +47,7 @@ public class ModelManager implements Model {
         this.history = new History(history);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
+        frozenPersons = new ArrayList<>();
     }
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
@@ -87,7 +96,10 @@ public class ModelManager implements Model {
     @Override
     public ModelManager stateDetachedCopy() {
         ModelManager copy = new ModelManager(addressBook.deepCopy(), userPrefs);
-        copy.updateFilteredPersonList(filteredPersons.getPredicate());
+        copy.updateFilteredPersonList(getPredicate());
+        if (isFrozen) {
+            copy.freezeWith(filteredPersons);
+        }
         return copy;
     }
 
@@ -173,11 +185,64 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<? super Person> predicate) {
         requireNonNull(predicate);
+        try {
+            unfreezeFilteredPersonList();
+        } catch (ModifyFrozenStateException ex) {
+            // do nothing
+        }
         filteredPersons.setPredicate(predicate);
     }
 
     @Override
+    public void freezeFilteredPersonList() throws ModifyFrozenStateException {
+        if (isFrozen) {
+            throw new ModifyFrozenStateException("Model is already frozen");
+        }
+        frozenPersons.clear();
+        frozenPersons.addAll(filteredPersons);
+        frozenPredicate = filteredPersons.getPredicate();
+        filteredPersons.setPredicate(new ParticularPersonsPredicate(frozenPersons));
+        isFrozen = true;
+    }
+
+    @Override
+    public void unfreezeFilteredPersonList() throws ModifyFrozenStateException {
+        if (!isFrozen) {
+            throw new ModifyFrozenStateException("Model is not frozen");
+        }
+        filteredPersons.setPredicate(frozenPredicate);
+        isFrozen = false;
+    }
+
+    @Override
+    public void freezeWith(List<Person> frozenPersons) {
+        requireNonNull(frozenPersons);
+        try {
+            unfreezeFilteredPersonList();
+        } catch (ModifyFrozenStateException ex) {
+            // do nothing
+        }
+        this.frozenPersons.clear();
+        for (Person p: addressBook.getPersonList()) {
+            if (frozenPersons.contains(p)) {
+                this.frozenPersons.add(p);
+            }
+        }
+        frozenPredicate = filteredPersons.getPredicate();
+        filteredPersons.setPredicate(new ParticularPersonsPredicate(this.frozenPersons));
+        isFrozen = true;
+    }
+
+    @Override
+    public boolean isFrozen() {
+        return isFrozen;
+    }
+
+    @Override
     public Predicate<? super Person> getPredicate() {
+        if (isFrozen) {
+            return frozenPredicate;
+        }
         return filteredPersons.getPredicate();
     }
 
