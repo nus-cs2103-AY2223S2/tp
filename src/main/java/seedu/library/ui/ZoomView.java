@@ -77,12 +77,12 @@ public class ZoomView extends UiPart<Region> {
         try {
             this.bookmark = bookmark;
             viewTitle.setText("Title: " + bookmark.getTitle().value);
-            authorView.setText("Author: " + bookmark.getAuthor().value);
+            String authorString = (bookmark.getAuthor() == null) ? "-" : bookmark.getAuthor().value;
+            authorView.setText("Author: " + authorString);
             genreView.setText("Genre: " + bookmark.getGenre().value);
-            progressView.setText("Progress: " + bookmark.getProgress().toString());
+            String progressString = (bookmark.getProgress() == null) ? "-" : bookmark.getProgress().toString();
+            progressView.setText("Progress: " + progressString);
             urlLink.setText(bookmark.getUrl().value);
-            genreView.setText("Genre: " + bookmark.getGenre().value);
-            progressView.setText("Progress: " + bookmark.getProgress().toString());
             bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                     .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
             InputStream image = new FileInputStream("src/main/resources/images/default-avatar.png");
@@ -122,6 +122,11 @@ public class ZoomView extends UiPart<Region> {
             InputStream rating3 = new FileInputStream("src/main/resources/images/Rating3.png");
             InputStream rating4 = new FileInputStream("src/main/resources/images/Rating4.png");
             InputStream rating5 = new FileInputStream("src/main/resources/images/Rating5.png");
+
+            if (bookmark.getRating() == null) {
+                return;
+            }
+
             String rating = bookmark.getRating().toString();
 
             if (rating.equals("1")) {

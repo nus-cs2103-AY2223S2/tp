@@ -27,10 +27,10 @@ public class Bookmark implements Comparable<Bookmark> {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Title, genre and tags must be present and not null.
      */
     public Bookmark(Title title, Progress progress, Genre genre, Author author, Rating rating, Url url, Set<Tag> tags) {
-        requireAllNonNull(title, progress, genre, author, tags);
+        requireAllNonNull(title, genre, tags);
         this.title = title;
         this.progress = progress;
         this.genre = genre;

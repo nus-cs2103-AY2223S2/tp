@@ -80,13 +80,27 @@ public class BookmarkCard extends UiPart<Region> {
         this.bookmark = bookmark;
         id.setText(displayedIndex + ". ");
         title.setText(bookmark.getTitle().value);
-        progress.setText(bookmark.getProgress().getVolume());
-        chaptert.setText(bookmark.getProgress().getChapter());
-        paget.setText(bookmark.getProgress().getPage());
+
+        if (bookmark.getProgress() != null) {
+            progress.setText(bookmark.getProgress().getVolume());
+            chaptert.setText(bookmark.getProgress().getChapter());
+            paget.setText(bookmark.getProgress().getPage());
+        } else {
+            progress.setText("~");
+            chaptert.setText("~");
+            paget.setText("~");
+        }
+
         vol.setImage(new Image(svol));
         chap.setImage(new Image(schap));
         page.setImage(new Image(spage));
-        author.setText(bookmark.getAuthor().value);
+
+        if (bookmark.getAuthor() != null) {
+            author.setText(bookmark.getAuthor().value);
+        } else {
+            author.setText("-");
+        }
+
         genre.setText(bookmark.getGenre().value);
         rateHead.setImage(new Image(ratingImage));
         rateCard(bookmark);
@@ -104,6 +118,11 @@ public class BookmarkCard extends UiPart<Region> {
         InputStream rating3 = new FileInputStream("src/main/resources/images/Rating3.png");
         InputStream rating4 = new FileInputStream("src/main/resources/images/Rating4.png");
         InputStream rating5 = new FileInputStream("src/main/resources/images/Rating5.png");
+
+        if (bookmark.getRating() == null) {
+            return;
+        }
+
         String rating = bookmark.getRating().toString();
 
         if (rating.equals("1")) {

@@ -38,16 +38,22 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AUTHOR,
                         PREFIX_PROGRESS, PREFIX_GENRE, PREFIX_RATING, PREFIX_URL, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_PROGRESS, PREFIX_GENRE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_GENRE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-        Progress progress = ParserUtil.parseProgress(argMultimap.getValue(PREFIX_PROGRESS).get());
+        Progress progress = argMultimap.getValue(PREFIX_PROGRESS).isPresent()
+                ? ParserUtil.parseProgress(argMultimap.getValue(PREFIX_PROGRESS).get())
+                : null;
         Genre genre = ParserUtil.parseGenre(argMultimap.getValue(PREFIX_GENRE).get());
-        Author author = ParserUtil.parseAuthor(argMultimap.getValue(PREFIX_AUTHOR).get());
-        Rating rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get());
+        Author author = argMultimap.getValue(PREFIX_AUTHOR).isPresent()
+                ? ParserUtil.parseAuthor(argMultimap.getValue(PREFIX_AUTHOR).get())
+                : null;
+        Rating rating = argMultimap.getValue(PREFIX_RATING).isPresent()
+                ? ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get())
+                : null;
         Url url = argMultimap.getValue(PREFIX_URL).isPresent()
                 ? ParserUtil.parseUrl(argMultimap.getValue(PREFIX_URL).get())
                 : new Url("");
