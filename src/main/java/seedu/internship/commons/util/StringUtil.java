@@ -1,14 +1,14 @@
 package seedu.internship.commons.util;
 
-import seedu.internship.logic.parser.ParserUtil;
-import seedu.internship.logic.parser.exceptions.ParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.internship.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+
+import seedu.internship.logic.parser.ParserUtil;
+import seedu.internship.logic.parser.exceptions.ParseException;
 
 /**
  * Helper functions for handling strings.
@@ -79,8 +79,8 @@ public class StringUtil {
      *   does nothing.
      * @param s String input
      * @throws ParseException with error message {@code Messages.MESSAGE_INVALID_COMMAND_FORMAT} if {@code s}
-     *   does not represent an integer or represents a positive integer with the plus sign "+" in front and
-     *   {@code Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX} if {@code s} represents a negative integer.
+     *     does not represent an integer or represents a positive integer with the plus sign "+" in front and
+     *     {@code Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX} if {@code s} represents a negative integer.
      */
     public static void nonZeroUnsignedIntegerCheck(String s) throws ParseException {
         requireNonNull(s);
