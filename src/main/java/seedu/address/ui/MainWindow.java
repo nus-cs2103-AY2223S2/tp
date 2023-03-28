@@ -3,10 +3,12 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -27,7 +29,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-
+    private static final String DARK_THEME = "/css/DarkTheme.css";
+    private static final String LIGHT_THEME = "/css/LightTheme.css";
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private final Stage primaryStage;
@@ -51,7 +54,11 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem baseMenuItem;
+    @FXML
+    private MenuItem darkMenuItem;
 
+    @FXML
+    private MenuItem lightMenuItem;
     @FXML
     private StackPane personListPanelPlaceholder;
 
@@ -85,10 +92,7 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
         quickstartWindow = new QuickstartWindow();
 
-        // NOT COMPATIBLE WITH MACOS
-        // Image customCursorImage = new Image("/images/cursor.png");
-        // this.customCursor = new ImageCursor(customCursorImage);
-        // primaryStage.getScene().getRoot().setCursor(customCursor);
+
     }
 
     public Stage getPrimaryStage() {
@@ -97,6 +101,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(lightMenuItem, KeyCombination.valueOf("F2"));
+        setAccelerator(darkMenuItem, KeyCombination.valueOf("F3"));
     }
 
     /**
@@ -127,6 +133,20 @@ public class MainWindow extends UiPart<Stage> {
                 event.consume();
             }
         });
+
+        EventHandler<KeyEvent> keyEventHandler = event -> {
+            if (event.getCode() == KeyCode.F2) {
+                // Perform action for F1
+                setLightTheme();
+                event.consume();
+            } else if (event.getCode() == KeyCode.F3) {
+                // Perform action for F2
+                setDarkTheme();
+                event.consume();
+            }
+        };
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, keyEventHandler);
+
 
         // set event filter on menu to set custom cursor on hover
         primaryStage.getScene().addEventFilter(MouseEvent.MOUSE_ENTERED, e
@@ -238,5 +258,23 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+
+    }
+    /**
+     * Loads the light themed css.
+     */
+    @FXML
+    public void setLightTheme() {
+        primaryStage.getScene().getStylesheets().clear();
+        primaryStage.getScene().getStylesheets().add(LIGHT_THEME);
+    }
+
+    /**
+     * Loads the dark themed css.
+     */
+    @FXML
+    public void setDarkTheme() {
+        primaryStage.getScene().getStylesheets().clear();
+        primaryStage.getScene().getStylesheets().add(DARK_THEME);
     }
 }
