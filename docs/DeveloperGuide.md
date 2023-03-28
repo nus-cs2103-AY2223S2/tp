@@ -165,10 +165,7 @@ The `Appointment` component,
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
-The `Storage` component,
-* can save both patient manager data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `VmsStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+The `Storage` component is responsible for the reading and writing of the states of the different managers in `Model` to and from the hard disk. As shown in the diagram above, it inherits from `PatientManagerStorage`, `UserPrefsStorage`, `VaxTypeStorage`, `AppointmentStorage` and `KeywordStorage`. As such, it can be treated as either one (if only the functionality of only one is needed).
 
 ### Keyword component
 
