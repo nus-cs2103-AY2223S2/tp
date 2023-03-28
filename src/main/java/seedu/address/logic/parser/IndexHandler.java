@@ -50,7 +50,6 @@ public class IndexHandler {
     }
 
     public ContactIndex assignMeetUpIndex() {
-        //todo model should have this
         List<MeetUp> meetUpList = model.getObservableMeetUpList();
         if (meetUpList.isEmpty()) {
             return new ContactIndex(1);
@@ -59,7 +58,7 @@ public class IndexHandler {
         OptionalInt takenIndices = IntStream.iterate(1, x -> x + 1)
                 .takeWhile(integer -> meetUpList.stream()
                         .anyMatch(meetUp -> meetUp
-                                .getContactIndex().equals(new ContactIndex(integer)))).max();
+                                .getMeetUpIndex().equals(new ContactIndex(integer)))).max();
         Integer availableIndex = takenIndices.getAsInt() + 1;
         return new ContactIndex(availableIndex);
     }
@@ -67,7 +66,7 @@ public class IndexHandler {
     public Optional<MeetUp> getMeetUpByIndex(ContactIndex index) {
         List<MeetUp> meetUpList = model.getObservableMeetUpList();
         return meetUpList.stream()
-                .filter(meetUp -> meetUp.getContactIndex().equals(index)).findFirst();
+                .filter(meetUp -> meetUp.getMeetUpIndex().equals(index)).findFirst();
     }
 
     /**

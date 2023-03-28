@@ -32,10 +32,9 @@ public interface Model {
     Comparator<Recommendation> COMPARATOR_CONTACT_INDEX_RECOMMENDATION =
             Comparator.comparing(Recommendation::getContactIndex);
 
-    //todo double check
     Predicate<MeetUp> PREDICATE_SHOW_ALL_MEETUPS = unused -> true;
 
-    Comparator<MeetUp> COMPARATOR_CONTACT_INDEX_MEETUP = Comparator.comparing(MeetUp::getContactIndex);
+    Comparator<MeetUp> COMPARATOR_CONTACT_INDEX_MEETUP = Comparator.comparing(MeetUp::getMeetUpIndex);
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -176,7 +175,11 @@ public interface Model {
      */
     void updateObservablePersonList();
 
-    //TODO ADD JAVA DOCS
+    /**
+     * Gets a recommendation by its index.
+     * @param contactIndex Recommendation index.
+     * @return Recommendation with the given index if it exists.
+     */
     Optional<Recommendation> getRecommendationByIndex(ContactIndex contactIndex);
 
     void addMeetUp(MeetUp meetUp);
@@ -184,9 +187,6 @@ public interface Model {
     ContactIndex getMeetUpIndex();
 
     ObservableList<MeetUp> getObservableMeetUpList();
-
-    //todo do i need this??
-    //void updateObservableMeetUpList();
 
     /** Returns an unmodifiable view of the filtered recommendation list */
     ObservableList<Recommendation> getObservableRecommendationList();

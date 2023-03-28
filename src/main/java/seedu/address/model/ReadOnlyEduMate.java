@@ -28,14 +28,12 @@ public interface ReadOnlyEduMate {
      * This will always be non-null.
      */
     User getUser();
-
-    //todo double check new addition
+    
     /**
      * Returns an unmodifiable view of the meet ups lists.
      */
     ObservableList<MeetUp> getMeetUpList();
 
-    //todo double check new addition
     Participants getParticipantList();
 
 }

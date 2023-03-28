@@ -16,68 +16,82 @@ import java.util.stream.Collectors;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+/**
+ * Parses input arguments and creates a new OrganiseCommand object
+ */
 public class OrganiseCommandParser implements Parser<OrganiseCommand> {
 
-    //need ot settle organise type. is it a custom or suggestion
-    //probably can only settle custom for now, by index will have to wait for integration
+    /**
+     * Parses the given {@code String} of arguments in the context of the OrganiseCommand
+     * and returns a OrganiseCommand object for execution.
+     * @throws ParseException if the user input does not conform to the expected format
+     */
+
+    private static final String MESSAGE_NO_PARTICIPANTS_GIVEN = "No participants were supplied";
+    private static final String MESSAGE_NO_DATE_GIVEN = "No dates were supplied";
+    private static final String MESSAGE_NO_LOCATION_GIVEN ="No location was supplied";
+    private static final String MESSAGE_NO_TIME_GIVEN = "No time was supplied";
+    private static final String MESSAGE_WRONG_TIME_FORMAT = "Time not in correct format";
+    private static final String MESSAGE_WRONG_DATE_FORMAT = "Date not in correct format";
 
     public OrganiseCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, Prefix.DAY, Prefix.TIME, Prefix.LOCATION);
 
-        if (argumentMultimap.getValue(Prefix.DAY).isPresent()) {
-            List<String> indexArray = Arrays.stream(argumentMultimap.getPreamble().split(" ")).filter(x -> !x.isEmpty()).collect(Collectors.toList());
-            Set<ContactIndex> indices = ParserUtil.parseIndices(indexArray);
-            Participants participants = new Participants(indices);
-            System.out.println(indices.toString()); //todo remove
-
-            if (argumentMultimap.getValue(Prefix.DAY).isEmpty()) {
-                throw new ParseException("NO DATE GIVEN"); //todo make this a constant
-            }
-
-            Day day;
+        //for recommendations
+        if (!argumentMultimap.getPreamble().isEmpty()) {
             try {
-                day = Day.valueOf(argumentMultimap.getValue(Prefix.DAY).get());
-                System.out.println(day); //todo handle when day is invalid
-            } catch (IllegalArgumentException e) {
-                throw new ParseException("WRONG DAY");
-            }
-
-            //todo might need to create new constructor for location with no lat long
-            if (argumentMultimap.getValue(Prefix.LOCATION).isEmpty()) {
-                throw new ParseException("NO LOCATION GIVEN"); //todo make this constant
-            }
-            Location location = new Location(argumentMultimap.getValue(Prefix.LOCATION).toString(), 1.3, 103.7); //todo, ask about this
-            System.out.println(location);
-
-            if (argumentMultimap.getValue(Prefix.TIME).isEmpty()) {
-                throw new ParseException("NO TIME GIVEN"); //todo make this constant
-            }
-
-            List<String> time = List.of(argumentMultimap.getValue(Prefix.TIME).get().split(" "));
-
-            LocalTime startHour, endHour;
-            try { //todo might need to add minutes later
-                startHour = new LocalTime(Integer.parseInt(time.get(0)), 0);
-                endHour = new LocalTime(Integer.parseInt(time.get(1)), 0);
+                ContactIndex contactIndex = new ContactIndex(Integer.parseInt(args.trim()));
+                return new OrganiseCommand(contactIndex);
             } catch (NumberFormatException nfe) {
-                throw new ParseException("WRONG HOUR FORMAT"); //todo make this a constant
+                throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
             }
-            System.out.println(startHour);
-            System.out.println(endHour);
-
-
-
-            return new OrganiseCommand(day, startHour, endHour, location, participants);
         }
 
+        //for participants
+        List<String> indexArray = Arrays.stream(argumentMultimap.getPreamble().split(" ")).filter(x -> !x.isEmpty()).collect(Collectors.toList());
+        Set<ContactIndex> indices = ParserUtil.parseIndices(indexArray);
+        if (indices.isEmpty()) {
+            throw new ParseException(MESSAGE_NO_PARTICIPANTS_GIVEN);
+        }
+        Participants participants = new Participants(indices);
+
+        //for day
+        if (!argumentMultimap.getValue(Prefix.DAY).isPresent()) {
+            throw new ParseException(MESSAGE_NO_DATE_GIVEN);
+        }
+        Day day;
         try {
-            ContactIndex contactIndex = new ContactIndex(Integer.parseInt(args.trim()));
-            System.out.println(contactIndex.toString()); //todo remove
-            return new OrganiseCommand(contactIndex);
-        } catch (NumberFormatException nfe) {
-            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
+            day = Day.valueOf(argumentMultimap.getValue(Prefix.DAY).get());
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(MESSAGE_WRONG_DATE_FORMAT);
         }
+
+        //for time
+        if (!argumentMultimap.getValue(Prefix.TIME).isPresent()) {
+            throw new ParseException(MESSAGE_NO_TIME_GIVEN);
+        }
+        List<String> time = List.of(argumentMultimap.getValue(Prefix.TIME).get().split(" "));
+        LocalTime startHour, endHour;
+        try {
+            startHour = new LocalTime(Integer.parseInt(time.get(0)), 0);
+            endHour = new LocalTime(Integer.parseInt(time.get(1)), 0);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(MESSAGE_WRONG_TIME_FORMAT);
+        }
+
+        //for location
+        if (argumentMultimap.getValue(Prefix.LOCATION).isEmpty()) {
+            throw new ParseException(MESSAGE_NO_LOCATION_GIVEN);
+        }
+        if (argumentMultimap.getValue(Prefix.LOCATION).get().trim().isEmpty()) {
+            throw new ParseException(MESSAGE_NO_LOCATION_GIVEN);
+        }
+
+        Location location = new Location(argumentMultimap.getValue(Prefix.LOCATION).get(), 1.3, 103.7); //todo, ask about this
+
+        return new OrganiseCommand(day, startHour, endHour, location, participants);
+
     }
 }

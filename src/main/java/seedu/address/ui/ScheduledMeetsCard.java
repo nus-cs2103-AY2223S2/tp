@@ -1,15 +1,10 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.meetup.MeetUp;
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.GroupTag;
-import seedu.address.model.tag.ModuleTag;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -44,7 +39,7 @@ public class ScheduledMeetsCard extends UiPart<Region> {
     public ScheduledMeetsCard(MeetUp meetUp) {
         super(FXML);
         this.meetUp = meetUp;
-        id.setText(meetUp.getContactIndex() + ". ");
+        id.setText(meetUp.getMeetUpIndex() + ". ");
         loc.setText(meetUp.getLocation().getName());
         time.setText(meetUp.getTimePeriod().getUiDisplay());
     }

@@ -28,8 +28,8 @@ public class EduMate implements ReadOnlyEduMate {
     private static final Logger logger = LogsCenter.getLogger(EduMate.class);
 
     private final UniquePersonList persons;
-    private final UniqueMeetUpList meets; //todo check again before push
-    protected Participants participants; //todo check again before push
+    private final UniqueMeetUpList meets;
+    protected Participants participants;
     private User user;
     private final UniqueRecommendationList recommendations;
 
@@ -43,8 +43,8 @@ public class EduMate implements ReadOnlyEduMate {
     {
         persons = new UniquePersonList();
         user = SampleDataUtil.getSampleUser();
-        meets = new UniqueMeetUpList(); //todo check again before push
-        participants = new Participants(); //todo check again before push
+        meets = new UniqueMeetUpList();
+        participants = new Participants();
         recommendations = new UniqueRecommendationList();
     }
 
@@ -57,43 +57,6 @@ public class EduMate implements ReadOnlyEduMate {
         this();
         resetData(toBeCopied);
     }
-
-    //todo double check new addition
-    /**
-     * Replaces the contents of meet up list with {@code meetUps}.
-     * @param meetUps List of meet ups.
-     */
-    public void setMeetUps(List<MeetUp> meetUps) {
-        this.meets.setMeetUps(meetUps);
-    }
-
-    /**
-     * Replaces the contents of the meet ups list with an empty list of meet ups.
-     */
-    //todo double check new addition
-    public void resetMeetUps() {
-        this.meets.setMeetUps(new ArrayList<>());
-    }
-
-    @Override
-    public ObservableList<MeetUp> getMeetUpList() {
-        return meets.asUnmodifiableObservableList();
-    }
-
-    public void addMeetUp(MeetUp meetUp) {
-        meets.add(meetUp);
-    }
-
-    //todo add remove meetup
-
-    public Participants getParticipantList() {
-        return participants;
-    }
-
-    public void setParticipants(Participants participants) {
-        this.participants = participants;
-    }
-
 
     //// list overwrite operations
 
@@ -277,9 +240,52 @@ public class EduMate implements ReadOnlyEduMate {
         return Objects.hash(persons, user);
     }
 
-    //todo add javadoc
+    //// meetup methods
+    /**
+     * Replaces the contents of meet up list with {@code meetUps}.
+     * @param meetUps List of meet ups.
+     */
+    public void setMeetUps(List<MeetUp> meetUps) {
+        this.meets.setMeetUps(meetUps);
+    }
+
+    /**
+     * Replaces the contents of the meet ups list with an empty list of meet ups.
+     */
+    public void resetMeetUps() {
+        this.meets.setMeetUps(new ArrayList<>());
+    }
+
+    @Override
+    public ObservableList<MeetUp> getMeetUpList() {
+        return meets.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns true if a meet up with the same identity as
+     * {@code meetUp} exists in the address book.
+     */
     public boolean hasMeetUp(MeetUp meetUp) {
         requireNonNull(meetUp);
         return meets.contains(meetUp);
     }
+
+    public void addMeetUp(MeetUp meetUp) {
+        meets.add(meetUp);
+    }
+
+    //// participants methods
+
+    public Participants getParticipantList() {
+        return participants;
+    }
+
+    /**
+     * Replaces the contents of participants with {@code participants}.
+     * @param participants New participants.
+     */
+    public void setParticipants(Participants participants) {
+        this.participants = participants;
+    }
+
 }

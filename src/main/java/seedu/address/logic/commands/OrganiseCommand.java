@@ -15,16 +15,18 @@ import seedu.address.model.recommendation.Recommendation;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.TimeBlock;
 import seedu.address.model.time.TimePeriod;
-
 import java.util.List;
-import java.util.Set;
 
+/**
+ * Adds a meeting to the address book
+ */
 public class OrganiseCommand extends Command {
 
     public static final String COMMAND_WORD = "organise";
-    public static final String MESSAGE_SUCCESS = "Organised a new meeting";
-
-    //need error messages for wrong formats
+    public static final String MESSAGE_ORGANISE_NEW_MEETING_SUCCESS = "Organised a new meeting";
+    public static final String MESSAGE_SCHEDULE_RECOMMENDATION_SUCCESS = "Added a new meeting from recommendations";
+    public static final String MESSAGE_NO_SUCH_RECOMMENDATION = "No recommendation with this index";
+    public static final String MESSAGE_DUPLICATE_MEETING = "This is a duplicate meeting";
 
     private final ContactIndex index;
     private final TimePeriod timePeriod;
@@ -33,7 +35,6 @@ public class OrganiseCommand extends Command {
 
 
     public OrganiseCommand(ContactIndex index) {
-        //TODO grab from saved suggestions the recommendation by index
         this.index = index;
         this.timePeriod = null;
         this.location = null;
@@ -51,36 +52,39 @@ public class OrganiseCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        //for recommendations
         if (this.index != null) {
-
-            Recommendation recommendation = model.getRecommendationByIndex(this.index).get();
-
-            if (recommendation == null) {
-                throw new CommandException("NO RECOMMENDATION WITH THIS INDEX"); //todo make this a constant
+            if (model.getRecommendationByIndex(this.index).isEmpty()) {
+                throw new CommandException(MESSAGE_NO_SUCH_RECOMMENDATION);
             }
-            Participants participants = model.getParticipants(); //todo model should save this
-            //todo check if participants is null, tho technically if recc isnt null, this shld not be either, maybe an assert here
+            Recommendation recommendation = model.getRecommendationByIndex(this.index).get();
+            Participants participants = model.getParticipants();
             ContactIndex newIndex = model.getMeetUpIndex();
             MeetUp meetUp = new MeetUp(recommendation, participants, newIndex);
             model.addMeetUp(meetUp);
-            model.updateObservableMeetUpList(); //todo update the meetup observable list
-            return new CommandResult("SUCCESSFULLY added new meeting from recommendation");
+            model.updateObservableMeetUpList();
+            return new CommandResult(MESSAGE_SCHEDULE_RECOMMENDATION_SUCCESS);
         }
 
-        //
+        //for customised new meetings
         ContactIndex newIndex = model.getMeetUpIndex();
         MeetUp meetUp = new MeetUp(timePeriod, location, indices, newIndex);
         try {
             model.addMeetUp(meetUp);
         } catch (DuplicateMeetUpException dm) {
-            throw new CommandException("DUPLICATE MEET");
+            throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
         model.updateObservableMeetUpList();
-        List<MeetUp> l = model.getObservableMeetUpList();
-        l.forEach(System.out::println);
+        return new CommandResult(MESSAGE_ORGANISE_NEW_MEETING_SUCCESS);
+    }
 
-
-        return new CommandResult("successfully added new meeting");
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof OrganiseCommand
+                && indices.equals(((OrganiseCommand) other).indices)
+                && location.equals(((OrganiseCommand) other).location)
+                && timePeriod == ((OrganiseCommand) other).timePeriod);
     }
 }

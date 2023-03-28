@@ -6,56 +6,67 @@ import seedu.address.model.person.ContactIndex;
 import seedu.address.model.recommendation.Recommendation;
 import seedu.address.model.time.TimePeriod;
 
-import java.util.Optional;
-import java.util.Set;
-
+/**
+ * A scheduled meet up consisting of location, time period and participants' indexes.
+ */
 public class MeetUp implements Comparable<MeetUp> {
-    private final TimePeriod timePeriod; //todo comment later: this is an abstract class, could be hour block or timeblock
+    private final TimePeriod timePeriod;
     private final Location location;
     private final Participants participants;
-    private final ContactIndex contactIndex;
+    private final ContactIndex meetUpIndex;
 
-    //todo constructor for choice form recommendations
-    public MeetUp(Recommendation recommendation, Participants participants, ContactIndex contactIndex) {
+    /**
+     * Constructor for a {@code MeetUp} object.
+     */
+    public MeetUp(Recommendation recommendation, Participants participants, ContactIndex meetUpIndex) {
         this.timePeriod = recommendation.getTimePeriod();
         this.location = recommendation.getLocation();
         this.participants = participants;
-        this.contactIndex = contactIndex;
+        this.meetUpIndex = meetUpIndex;
     }
 
-    //todo constructor for customised meet
-    public MeetUp(TimePeriod timePeriod, Location location, Participants participants, ContactIndex contactIndex) {
+    /**
+     * Overloaded constructor for a {@code MeetUp} object not from meet recommendations.
+     */
+    public MeetUp(TimePeriod timePeriod, Location location, Participants participants, ContactIndex meetUpIndex) {
         this.timePeriod = timePeriod;
         this.location = location;
         this.participants = participants;
-        this.contactIndex = contactIndex;
+        this.meetUpIndex = meetUpIndex;
     }
 
-    public ContactIndex getContactIndex() {
-        return this.contactIndex;
+    /**
+     * Gets index of meetup.
+     */
+    public ContactIndex getMeetUpIndex() {
+        return this.meetUpIndex;
     }
 
-    public int getContactIndexValue() {
-        return this.contactIndex.getContactIndex();
-    }
-
+    /**
+     * Gets location.
+     */
     public Location getLocation() {
         return location;
     }
 
+    /**
+     * Gets time period.
+     */
     public TimePeriod getTimePeriod() {
         return timePeriod;
     }
 
+    /**
+     * Gets location.
+     */
     public Participants getParticipants() {
         return participants;
     }
 
     @Override
-    public int compareTo(MeetUp o) {
-        return 0;
+    public int compareTo(MeetUp other) {
+        return meetUpIndex.compareTo(other.meetUpIndex);
     }
-    //todo implement this
 
     public boolean isSameMeetUp(MeetUp other) {
         return this.timePeriod.equals(other.timePeriod) && this.location.equals(other.location) && this.participants.equals(other.participants);

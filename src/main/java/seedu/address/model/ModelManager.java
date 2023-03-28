@@ -34,8 +34,6 @@ public class ModelManager implements Model {
     private final FilteredList<Recommendation> filteredRecommendations;
     private final SortedList<Recommendation> observableRecommendations;
     private final IndexHandler indexHandler;
-
-    //TODO ADD NEW LISTS FOR SCHEDULED MEETS
     private final FilteredList<MeetUp> filteredMeetUps;
     private final SortedList<MeetUp> observableMeetUps;
 
@@ -55,7 +53,6 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.eduMate.getPersonList());
         observablePersons = new SortedList<>(filteredPersons);
 
-        //TODO ADD INIT FOR SUGGESTION AND SCHEDULED MEETS LIST
         filteredMeetUps = new FilteredList<>(this.eduMate.getMeetUpList());
         observableMeetUps = new SortedList<>(filteredMeetUps);
 
@@ -294,7 +291,6 @@ public class ModelManager implements Model {
     @Override
     public Optional<Recommendation> getRecommendationByIndex(ContactIndex index) {
         return indexHandler.getRecommendationByIndex(index);
-        //todo DOUBLE CHECK
     }
 
     @Override
