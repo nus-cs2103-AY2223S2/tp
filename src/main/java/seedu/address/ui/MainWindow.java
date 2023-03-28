@@ -140,7 +140,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void newFillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), this);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 
@@ -242,7 +242,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, IllegalValueException {
         return executeCommand(commandText);
     }
 
