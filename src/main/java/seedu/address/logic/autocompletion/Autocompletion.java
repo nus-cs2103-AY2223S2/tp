@@ -22,6 +22,9 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ViewCommand;
 
+/**
+ * Autocomplete a given query.
+ */
 public class Autocompletion {
     private static final List<String> POSSIBLE_COMMAND_WORDS = Arrays.asList(
             AddCommand.COMMAND_WORD,
@@ -36,18 +39,19 @@ public class Autocompletion {
     );
 
     private static final Map<String, String> COMMAND_WORD_USAGES = new HashMap<>() {{
-        put(AddApplicantCommand.COMMAND_WORD, "INDEX " + PREFIX_APPLICANT + "APPLICANT");
-        put(AddCommand.COMMAND_WORD, PREFIX_TITLE + "TITLE "
-                + PREFIX_DESCRIPTION + "DESCRIPTION "
-                + PREFIX_APPLICANT + "APPLICANT");
-        put(DeleteApplicantCommand.COMMAND_WORD, "INDEX " + PREFIX_APPLICANT_WITH_ID + "APPLICANT#ID");
-        put(DeleteCommand.COMMAND_WORD, "INDEX");
-        put(EditCommand.COMMAND_WORD, "INDEX "
-                + PREFIX_TITLE + "TITLE "
-                + PREFIX_DESCRIPTION + "DESCRIPTION "
-                + PREFIX_APPLICANT + "APPLICANT");
-        put(FindCommand.COMMAND_WORD, "QUERY");
-    }};
+            put(AddApplicantCommand.COMMAND_WORD, "INDEX " + PREFIX_APPLICANT + "APPLICANT");
+            put(AddCommand.COMMAND_WORD, PREFIX_TITLE + "TITLE "
+                    + PREFIX_DESCRIPTION + "DESCRIPTION "
+                    + PREFIX_APPLICANT + "APPLICANT");
+            put(DeleteApplicantCommand.COMMAND_WORD, "INDEX " + PREFIX_APPLICANT_WITH_ID + "APPLICANT#ID");
+            put(DeleteCommand.COMMAND_WORD, "INDEX");
+            put(EditCommand.COMMAND_WORD, "INDEX "
+                    + PREFIX_TITLE + "TITLE "
+                    + PREFIX_DESCRIPTION + "DESCRIPTION "
+                    + PREFIX_APPLICANT + "APPLICANT");
+            put(FindCommand.COMMAND_WORD, "QUERY");
+        }
+    };
 
     private String query;
     private List<String> result;
@@ -78,8 +82,8 @@ public class Autocompletion {
         if (query.matches("(?i)^\\s*[a-zA-Z]+$")) {
             String trimmedToLowerQuery = query.trim().toLowerCase();
             for (String command : POSSIBLE_COMMAND_WORDS) {
-                if (command.toLowerCase().equals(trimmedToLowerQuery) &&
-                        COMMAND_WORD_USAGES.containsKey(trimmedToLowerQuery)) {
+                if (command.toLowerCase().equals(trimmedToLowerQuery)
+                        && COMMAND_WORD_USAGES.containsKey(trimmedToLowerQuery)) {
                     result.add(" " + COMMAND_WORD_USAGES.get(trimmedToLowerQuery));
                 } else if (command.toLowerCase().startsWith(trimmedToLowerQuery)) {
                     result.add(command.substring(trimmedToLowerQuery.length()));

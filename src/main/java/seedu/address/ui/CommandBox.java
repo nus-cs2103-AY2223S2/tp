@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -36,9 +37,10 @@ public class CommandBox extends UiPart<Region> {
         this.suggestions = new ArrayList<>();
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, oldValue, newValue) -> {
-                    handleInputUpdated();
-                    setStyleToDefault();
-                });
+                handleInputUpdated();
+                setStyleToDefault();
+            }
+        );
 
         commandTextField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.TAB) {
@@ -49,7 +51,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Handles autocompletion feature
+     * Handles autocompletion feature.
      */
     private void handleInputUpdated() {
         String input = commandTextField.getText();
