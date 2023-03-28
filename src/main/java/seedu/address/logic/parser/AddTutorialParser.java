@@ -15,7 +15,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.io.File;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddTutorialCommand;
@@ -50,7 +50,7 @@ public class AddTutorialParser implements Parser<AddTutorialCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialCommand.MESSAGE_USAGE));
         }
         String name = ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get());
-        LocalDate date;
+        LocalDateTime date;
         File file;
         String note;
         Tutorial tutorial = new Tutorial(name);

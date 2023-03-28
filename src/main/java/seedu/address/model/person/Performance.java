@@ -15,6 +15,10 @@ public class Performance {
 
     public final String value;
 
+    public Performance() {
+        value = NULL_PERFORMANCE;
+    }
+
     /**
      * Accepts remark that is not empty
      * @param performance String of a performance

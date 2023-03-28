@@ -75,8 +75,8 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different person but same email and same phone number -> returns true
+        assertTrue(addAliceCommand.equals(addBobCommand));
     }
 
     /**
@@ -255,6 +255,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredConsultationList(Predicate<Consultation> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortAllPersonList(String metric, boolean increasingOrder) {
             throw new AssertionError("This method should not be called.");
         }
 

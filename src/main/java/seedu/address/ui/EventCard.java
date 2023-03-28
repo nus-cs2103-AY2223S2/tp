@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -41,13 +42,15 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label attachments;
     @FXML
-    private Label progressBar;
-    @FXML
     private Label attendance;
+    @FXML
+    private Label progressBarCount;
     @FXML
     private ImageView attachmentLogo;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ProgressBar progressBar;
 
     /**
      * Adds an event with a unique index
@@ -60,37 +63,39 @@ public class EventCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         name.setText(event.getName());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         date.setText(event.getDate().format(formatter));
         //notes.setText("" + event.countNotes());
-
         GuiSettings guiSettings = new GuiSettings();
         int size = guiSettings.getEventIconSize();
 
         //Set attachment icon
         if (event.getAttachments().size() > 0) {
-            Image attachmentIcon = new Image(Objects.requireNonNull(this.getClass()
-                    .getResourceAsStream(guiSettings.getAttachmentIcon())));
-            attachmentLogo.setImage(attachmentIcon);
-            attachmentLogo.setFitWidth(size);
-            attachmentLogo.setFitHeight(size);
+            setImageIcon(attachmentLogo, guiSettings.getAttachmentIcon(), size);
         } else {
-            Image attachmentIcon = new Image(Objects.requireNonNull(this.getClass()
-                    .getResourceAsStream(guiSettings.getNoAttachmentIcon())));
-            attachmentLogo.setImage(attachmentIcon);
-            attachmentLogo.setFitWidth(size);
-            attachmentLogo.setFitHeight(size);
+            setImageIcon(attachmentLogo, guiSettings.getNoAttachmentIcon(), size);
         }
 
         //set list of student profiles at top right
-        for (String studentProfile: event.getStudentProfiles()) {
-            ImageView profile = new ImageView();
-            Image newImage = new Image(Objects.requireNonNull(this.getClass()
-                    .getResourceAsStream(studentProfile)));
-            profile.setImage(newImage);
-            profile.setFitWidth(size);
-            profile.setFitHeight(size);
-            studentProfiles.getChildren().addAll(profile);
+        for (int i = 0; i < event.countStudents(); i++) {
+            //Ensures only 5 student profile icons are displayed
+            if (i == 4) {
+                break;
+            }
+            String studentProfile = event.getStudentProfiles().get(i);
+            ImageView newImageView = setImageIcon(studentProfile, size);
+            studentProfiles.getChildren().addAll(newImageView);
+        }
+
+        //Ensures plus icon is rendered if more than 5 students are present
+        if (event.countStudents() > 5) {
+            ImageView newImageView = setImageIcon(guiSettings.getMorePhoto(), size);
+            studentProfiles.getChildren().addAll(newImageView);
+        }
+
+        //Update progress bar with a maximum of 20 students
+        if (event.countStudents() > 0) {
+            progressBar.setProgress((double) event.countStudents() / 20);
         }
 
         //bind a click to open the attachment (only works for single attachment for now
@@ -106,6 +111,24 @@ public class EventCard extends UiPart<Region> {
                 click.consume();
             });
         }
+    }
+
+    private void setImageIcon(ImageView imageView, String filePath, int size) {
+        Image newImage = new Image(Objects.requireNonNull(this.getClass()
+                .getResourceAsStream(filePath)));
+        imageView.setImage(newImage);
+        imageView.setFitWidth(size);
+        imageView.setFitHeight(size);
+    }
+
+    private ImageView setImageIcon(String filePath, int size) {
+        ImageView imageView = new ImageView();
+        Image newImage = new Image(Objects.requireNonNull(this.getClass()
+                .getResourceAsStream(filePath)));
+        imageView.setImage(newImage);
+        imageView.setFitWidth(size);
+        imageView.setFitHeight(size);
+        return imageView;
     }
 
     //Add more comparison in equals

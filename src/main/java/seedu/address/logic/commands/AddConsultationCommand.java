@@ -41,7 +41,7 @@ public class AddConsultationCommand extends Command {
         }
 
         model.addConsultation(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd, false, false, false, true));
     }
 
     @Override

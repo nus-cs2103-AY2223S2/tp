@@ -1,18 +1,27 @@
 {
   "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
+    "name" : "Alex Yeoh",
+    "phone" : "87438807",
+    "email" : "e1234567@u.nus.edu",
     "photo" : "/images/studentProfiles/student_1.png",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "remark" : "She likes aardvarks.",
-    "performance" : "1",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "remark" : "None yet!",
+    "performance" : "30",
     "tagged" : [ "friends" ]
+  }, {
+    "name" : "Bernice Yu",
+    "phone" : "99272758",
+    "email" : "e7654321@u.nus.edu",
+    "photo" : "/images/studentProfiles/student_2.png",
+    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+    "remark" : "None yet!",
+    "performance" : "81",
+    "tagged" : [ "colleagues", "friends" ]
   }, {
     "name" : "Charlotte Oliveiro",
     "phone" : "93210283",
-    "email" : "charlotte@example.com",
-    "photo" : "/images/studentProfiles/student_2.png",
+    "email" : "e1122334@u.nus.edu",
+    "photo" : "/images/studentProfiles/student_3.png",
     "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
     "remark" : "None yet!",
     "performance" : "4",
@@ -20,73 +29,32 @@
   }, {
     "name" : "David Li",
     "phone" : "91031282",
-    "email" : "lidavid@example.com",
-    "photo" : "/images/studentProfiles/student_3.png",
+    "email" : "e9988776@u.nus.edu",
+    "photo" : "/images/studentProfiles/student_4.png",
     "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
     "remark" : "None yet!",
-    "performance" : "3",
+    "performance" : "19",
     "tagged" : [ "family" ]
   }, {
     "name" : "Irfan Ibrahim",
     "phone" : "92492021",
-    "email" : "irfan@example.com",
-    "photo" : "/images/studentProfiles/student_4.png",
+    "email" : "e9999888@u.nus.edu",
+    "photo" : "/images/studentProfiles/student_5.png",
     "address" : "Blk 47 Tampines Street 20, #17-35",
     "remark" : "None yet!",
-    "performance" : "8",
+    "performance" : "89",
     "tagged" : [ "classmates" ]
   }, {
     "name" : "Roy Balakrishnan",
     "phone" : "92624417",
-    "email" : "royb@example.com",
-    "photo" : "/images/studentProfiles/student_5.png",
+    "email" : "e5555111@u.nus.edu",
+    "photo" : "/images/studentProfiles/student_6.png",
     "address" : "Blk 45 Aljunied Street 85, #11-31",
     "remark" : "None yet!",
-    "performance" : "2",
+    "performance" : "50",
     "tagged" : [ "colleagues" ]
-  }, {
-    "name" : "John Doe",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "photo" : "/images/studentProfiles/student_6.png",
-    "address" : "John street, block 123, #01-01",
-    "remark" : "None yet!",
-    "performance" : "2",
-    "tagged" : [ ]
-  }, {
-    "name" : "Johnoe",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "photo" : "/images/studentProfiles/student_7.png",
-    "address" : "John street, block 123, #01-01",
-    "remark" : "None yet!",
-    "performance" : "1",
-    "tagged" : [ ]
-  }, {
-    "name" : "JohnDsoe",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "photo" : "/images/studentProfiles/student_8.png",
-    "address" : "John street, block 123, #01-01",
-    "remark" : "None yet!",
-    "performance" : "2",
-    "tagged" : [ ]
-  }, {
-    "name" : "Jooe",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "photo" : "/images/studentProfiles/student_9.png",
-    "address" : "John street, block 123, #01-01",
-    "remark" : "None yet!",
-    "performance" : "20",
-    "tagged" : [ ]
   } ],
-  "tutorials" : [ {
-    "name" : "tut",
-    "eventDate" : "2023-03-16",
-    "students" : [ ],
-    "attachments" : [ ],
-    "notes" : [ ]
-  } ],
-  "labs" : [ ]
+  "tutorials" : [ ],
+  "labs" : [ ],
+  "consultations" : [ ]
 }

@@ -15,7 +15,7 @@ UniqueConsultationList -right-> Consultation
 Consultation -up-|> Event
 
 Consultation *--> "1" Name
-Consultation *--> "1" LocalDate
+Consultation *--> "1" LocalDateTime
 Consultation *--> "*" Note
 Consultation *--> "*" Person
 

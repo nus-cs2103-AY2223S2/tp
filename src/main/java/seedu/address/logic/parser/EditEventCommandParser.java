@@ -9,22 +9,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.event.Consultation;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.Lab;
-import seedu.address.model.event.Tutorial;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new EditEventCommand object
  */
 public class EditEventCommandParser implements Parser<EditEventCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditEventCommand
+     * and returns an EditEventCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditEventCommand parse(String args) throws ParseException {
@@ -38,43 +33,49 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
         boolean isLab;
         boolean isConsultation;
 
-        Event newEvent;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditEventCommand.MESSAGE_USAGE), pe);
         }
 
         if (!argMultimap.getValue(PREFIX_TUTORIAL).isPresent()
                 && !argMultimap.getValue(PREFIX_LAB).isPresent()
                 && !argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEventCommand.MESSAGE_USAGE));
         }
 
+        EditEventCommand.EditEventDescriptor editEventDescriptor = new EditEventCommand.EditEventDescriptor();
         if (argMultimap.getValue(PREFIX_TUTORIAL).isPresent()) {
-            newEvent = new Tutorial(ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get()));
+            editEventDescriptor.setEventName(ParserUtil.parseTutorialName(
+                    argMultimap.getValue(PREFIX_TUTORIAL).get()));
             isTutorial = true;
             isLab = false;
             isConsultation = false;
         } else if (argMultimap.getValue(PREFIX_LAB).isPresent()) {
-            newEvent = new Lab(ParserUtil.parseLabName(argMultimap.getValue(PREFIX_LAB).get()));
+            editEventDescriptor.setEventName(ParserUtil.parseLabName(argMultimap.getValue(PREFIX_LAB).get()));
             isTutorial = false;
             isLab = true;
             isConsultation = false;
         } else {
-            newEvent = new Consultation(ParserUtil.parseLabName(argMultimap.getValue(PREFIX_CONSULTATION).get()));
+            editEventDescriptor.setEventName(ParserUtil.parseLabName(
+                    argMultimap.getValue(PREFIX_CONSULTATION).get()));
             isTutorial = false;
             isLab = false;
             isConsultation = true;
         }
-
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            newEvent.changeDate(ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get()));
+            editEventDescriptor.setDate(ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_FILE).isPresent()) {
-            newEvent.addAttachment(ParserUtil.parseEventFile(argMultimap.getValue(PREFIX_FILE).get()));
+            editEventDescriptor.setAttachments(ParserUtil.parseEventFile(argMultimap.getValue(PREFIX_FILE).get()));
         }
-        return new EditEventCommand(index, newEvent, isTutorial, isLab, isConsultation);
+
+        if (!editEventDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditEventCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return new EditEventCommand(index, editEventDescriptor, isTutorial, isLab, isConsultation);
     }
 }
