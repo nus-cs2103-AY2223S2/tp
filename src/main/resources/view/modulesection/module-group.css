@@ -1,13 +1,18 @@
 .module-group-title {
-    -fx-padding: 5 12;
+    -fx-padding: 5 10;
 
     -fx-font-family: 'Lexend Deca SemiBold', sans-serif;
     -fx-text-fill: -dark-grey;
 
+    -fx-background-color: -white;
+}
+.module-group-title-short {
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+.module-group-title-long {
     -fx-border-radius: 20;
     -fx-background-radius: 20;
-
-    -fx-background-color: -white;
 }
 .module-card-group {
     -fx-padding: 5 0;
