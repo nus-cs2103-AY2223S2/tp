@@ -23,12 +23,12 @@ public class UnTagEventCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Untags a Person to an Event. "
             + "Parameters: "
             + PREFIX_EVENT_TO_TAG + "INDEX OF EVENT TO TAG "
-            + PREFIX_PERSON_TO_TAG + "INDEX OF PERSON TO TAG "
+            + PREFIX_PERSON_TO_TAG + "NAME OF PERSON TO TAG "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_EVENT_TO_TAG + "1 "
             + PREFIX_PERSON_TO_TAG + "John Doe";
-    private static final String MESSAGE_SUCCESS = "%1$s is now untagged to Event: %2$s";
-    private static final String MESSAGE_SUCCESS_2 = "%1$s is already untagged to Event: %2$s";
+    private static final String MESSAGE_SUCCESS = "%1$s is now untagged to Event %2$s";
+    private static final String MESSAGE_SUCCESS_2 = "%1$s is already untagged to Event %2$s";
     private static final String MESSAGE_INVALID_EVENT = "This event doesn't exists in the Calendar!";
     private static final String MESSAGE_INVALID_PERSON = "This Person doesn't exists in the Calendar!";
 
@@ -62,12 +62,12 @@ public class UnTagEventCommand extends Command {
         Person taggingPerson = model.getPersonWithName(personName.toString());
 
         if (!model.isPersonTaggedToEvent(eventIndex, taggingPerson)) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS_2, taggingPerson, eventIndex));
+            return new CommandResult(String.format(MESSAGE_SUCCESS_2, this.personName, eventIndex));
         }
 
         model.untagPersonFromEvent(eventIndex, taggingPerson);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, taggingPerson, eventIndex));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, this.personName, eventIndex));
     }
 
     @Override
