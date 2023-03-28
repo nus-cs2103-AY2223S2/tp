@@ -34,8 +34,8 @@ import seedu.address.storage.fish.AddressBookStorage;
 import seedu.address.storage.fish.JsonAddressBookStorage;
 import seedu.address.storage.tank.JsonTankListStorage;
 import seedu.address.storage.tank.TankListStorage;
-import seedu.address.storage.tank.readings.ammonialevels.FullAmmoniaLevelsStorage;
-import seedu.address.storage.tank.readings.ammonialevels.JsonFullAmmoniaLevelsStorage;
+import seedu.address.storage.tank.readings.ammonialevels.FullReadingLevelsStorage;
+import seedu.address.storage.tank.readings.ammonialevels.JsonFullReadingLevelsStorage;
 import seedu.address.storage.task.JsonTaskListStorage;
 import seedu.address.storage.task.TaskListStorage;
 import seedu.address.storage.userprefs.JsonUserPrefsStorage;
@@ -71,7 +71,7 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
         TankListStorage tankListStorage = new JsonTankListStorage(userPrefs.getTankListFilePath());
-        FullAmmoniaLevelsStorage ammoniaLevelsStorage = new JsonFullAmmoniaLevelsStorage(userPrefs
+        FullReadingLevelsStorage ammoniaLevelsStorage = new JsonFullReadingLevelsStorage(userPrefs
                 .getFullAmmoniaLevelsPath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage, tankListStorage,
                 ammoniaLevelsStorage);

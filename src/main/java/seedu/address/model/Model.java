@@ -10,6 +10,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
+import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskFeedingReminder;
 
@@ -178,4 +180,21 @@ public interface Model {
      */
     public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel();
 
+    //=========== FullReadingLevels  =============================================================
+    void setFullAmmoniaLevels(ReadOnlyReadingLevels ammoniaLevels);
+
+    ReadOnlyReadingLevels getFullAmmoniaLevels();
+
+    boolean hasIndividualAmmoniaLevels(UniqueIndividualReadingLevels ammoniaLevels);
+
+    void deleteIndividualAmmoniaLevels(UniqueIndividualReadingLevels target);
+
+    void addIndividualAmmoniaLevels(UniqueIndividualReadingLevels ammoniaLevels);
+
+    void setIndividualAmmoniaLevels(UniqueIndividualReadingLevels target,
+                                    UniqueIndividualReadingLevels editedList);
+
+    ObservableList<UniqueIndividualReadingLevels> getFilteredAmmoniaLevels();
+
+    void updateFilteredAmmoniaLevels(Predicate<UniqueIndividualReadingLevels> predicate);
 }

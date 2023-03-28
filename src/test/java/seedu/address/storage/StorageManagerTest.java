@@ -16,8 +16,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.fish.JsonAddressBookStorage;
 import seedu.address.storage.tank.JsonTankListStorage;
-import seedu.address.storage.tank.readings.ammonialevels.FullAmmoniaLevelsStorage;
-import seedu.address.storage.tank.readings.ammonialevels.JsonFullAmmoniaLevelsStorage;
+import seedu.address.storage.tank.readings.ammonialevels.FullReadingLevelsStorage;
+import seedu.address.storage.tank.readings.ammonialevels.JsonFullReadingLevelsStorage;
 import seedu.address.storage.task.JsonTaskListStorage;
 import seedu.address.storage.userprefs.JsonUserPrefsStorage;
 
@@ -34,7 +34,7 @@ public class StorageManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonTaskListStorage taskListStorage = new JsonTaskListStorage(getTempFilePath("tl"));
         JsonTankListStorage tankListStorage = new JsonTankListStorage(getTempFilePath("tanklist"));
-        FullAmmoniaLevelsStorage ammoniaLevelsStorage = new JsonFullAmmoniaLevelsStorage(
+        FullReadingLevelsStorage ammoniaLevelsStorage = new JsonFullReadingLevelsStorage(
                 getTempFilePath("ammonialevels"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage, tankListStorage,
                 ammoniaLevelsStorage);

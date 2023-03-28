@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.fish.Fish;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 
 /**
  *  Represents a Tank of the user that contains fish.
@@ -13,6 +14,7 @@ import seedu.address.model.fish.Fish;
 public class Tank {
     private final TankName name;
     private final AddressBook fishList;
+    public final UniqueIndividualReadingLevels individualAmmoniaLevels;
 
     /**
      * Creates a Tank.

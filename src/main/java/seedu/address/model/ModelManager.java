@@ -16,6 +16,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
+import seedu.address.model.tank.readings.FullReadingLevels;
+import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
+import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskFeedingReminder;
 
@@ -33,7 +36,8 @@ public class ModelManager implements Model {
     private final FilteredList<Task> filteredTasks;
     private final TankList tankList;
     private final FilteredList<Tank> filteredTanks;
-
+    private final FullReadingLevels fullReadingLevels;
+    private final FilteredList<UniqueIndividualReadingLevels> filteredAmmoniaLevels;
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -51,6 +55,8 @@ public class ModelManager implements Model {
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
         this.tankList = new TankList(tankList);
         filteredTanks = new FilteredList<>(this.tankList.getTankList());
+        this.fullReadingLevels = new FullReadingLevels();
+        filteredAmmoniaLevels = new FilteredList<>(this.fullReadingLevels.getAmmoniaLevelLists());
 
         updateTanksOfEachFishAndFishListOfEachTank();
         updateTankOfEachTask();
@@ -358,6 +364,7 @@ public class ModelManager implements Model {
         filteredTanks.setPredicate(predicate);
     }
 
+    //=========== Feeding reminders =============================================================
     @Override
     public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel() {
         //create new Feeding reminders and returns it
@@ -366,4 +373,55 @@ public class ModelManager implements Model {
                 .createListOfFeedingReminders(tanksWithUnfedFish);
         return reminders;
     }
+
+    //=========== FullReadingLevels  =============================================================
+    @Override
+    public void setFullAmmoniaLevels(ReadOnlyReadingLevels ammoniaLevels) {
+        this.fullReadingLevels.resetData(ammoniaLevels);
+    }
+
+    @Override
+    public ReadOnlyReadingLevels getFullAmmoniaLevels() {
+        return fullReadingLevels;
+    }
+
+    @Override
+    public boolean hasIndividualAmmoniaLevels(UniqueIndividualReadingLevels ammoniaLevels) {
+        requireNonNull(ammoniaLevels);
+        return fullReadingLevels.hasAmmoniaLevelList(ammoniaLevels);
+    }
+
+    @Override
+    public void deleteIndividualAmmoniaLevels(UniqueIndividualReadingLevels target) {
+        fullReadingLevels.removeAmmoniaLevelList(target);
+    }
+
+    @Override
+    public void addIndividualAmmoniaLevels(UniqueIndividualReadingLevels ammoniaLevels) {
+        fullReadingLevels.addAmmoniaLevelList(ammoniaLevels);
+    }
+
+    @Override
+    public void setIndividualAmmoniaLevels(UniqueIndividualReadingLevels target,
+                                           UniqueIndividualReadingLevels editedList) {
+        requireAllNonNull(target, editedList);
+        fullReadingLevels.setAmmoniaLevelList(target, editedList);
+    }
+
+    //=========== Filtered FullReadingLevels Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the {@code FullReadingLevels}.
+     */
+    @Override
+    public ObservableList<UniqueIndividualReadingLevels> getFilteredAmmoniaLevels() {
+        return filteredAmmoniaLevels;
+    }
+
+    @Override
+    public void updateFilteredAmmoniaLevels(Predicate<UniqueIndividualReadingLevels> predicate) {
+        requireNonNull(predicate);
+        filteredAmmoniaLevels.setPredicate(predicate);
+    }
+
 }

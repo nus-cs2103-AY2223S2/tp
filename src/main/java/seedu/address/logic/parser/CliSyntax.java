@@ -17,4 +17,7 @@ public class CliSyntax {
     /* Task prefixes */
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_PRIORITY = new Prefix("p/");
+
+    /* Tank reading prefixes */
+    public static final Prefix PREFIX_AMMONIA_LEVEL = new Prefix("al/");
 }
