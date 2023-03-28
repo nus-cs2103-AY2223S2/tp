@@ -12,7 +12,6 @@ import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
-import tfifteenfour.clipboard.model.course.Session;
 import tfifteenfour.clipboard.model.task.Task;
 
 /**
@@ -40,7 +39,7 @@ public class DeleteTaskCommand extends DeleteCommand {
     }
 
     /**
-     * Deletes the session specified by the index from the selected group in the model.
+     * Deletes the task specified by the index from the selected group in the model.
      *
      * @param model {@code Model} which the command should operate on.
      * @param currentSelection Current selection of course and group.
@@ -58,7 +57,7 @@ public class DeleteTaskCommand extends DeleteCommand {
         List<Task> lastShownList = selectedGroup.getUnmodifiableTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToDelete = lastShownList.get(index.getZeroBased());
