@@ -49,7 +49,7 @@ In charge of defining, assigning and tracking project tasks.
 [[portfolio](team/gmengqi.md)]
 
 * Role: Deliverables & deadline
-* Responsibilities: Ensure project deliverables are done on time and in the right format 
+* Responsibilities: Ensure project deliverables are done on time and in the right format
 
 ### Kristen Chung Jia Yi
 

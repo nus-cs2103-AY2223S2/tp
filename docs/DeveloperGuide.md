@@ -268,10 +268,10 @@ _{Explain here how the data archiving feature will be implemented}_
 * wants to organise their contacts into groups
 * needs a method which is able to compile every group member's FTS
 
-**Value proposition**: 
+**Value proposition**:
 
-* Helps users to keep track of personal and friends timetable 
-* Students find it hard to find FTS within their group of friends in NUS as they have to compare their 
+* Helps users to keep track of personal and friends timetable
+* Students find it hard to find FTS within their group of friends in NUS as they have to compare their
 timetables one by one. WGT then helps students to easily find FTS within their friend groups
 * Students can keep track of group meetings across all modules
 
@@ -290,9 +290,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user     | store my timetable                                             | keep track of my timetable                                            |
 | `* * *`  | user     | store my friends' timetable                                    | keep track of my friends' timetable                                   |
 | `* * *`  | student  | find a FTS within my group of friends                          | know when my friends are free                      |
-| `* *`    | student with many friends | be able to have multiple groups                                | manage my groups better | 
+| `* *`    | student with many friends | be able to have multiple groups                                | manage my groups better |
 | `* *`    | forgetful student | be notified about upcoming meetings i have with my friends     | Make sure i wouldn't miss a meeting | 
-| `* *`    | user | be able to categorize my contact lists                         | easily find someone | 
+| `* *`    | user | be able to categorize my contact lists                         | easily find someone |
 | `*`      | student with a lot of projects | be able to set recurring tasks such as weekly project meetings | Remember my tasks |
 | `*`      | user | easily find out the venue and time of my upcoming lessons      | make my life more convenient |
 
@@ -337,7 +337,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty
-    
+
     Use case ends.
 
 * 3a. The given index is invalid
@@ -413,10 +413,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **CLI**: Command Line Interface 
+* **CLI**: Command Line Interface
 * **FTS**: Free Time Slot
 * **GUI**: Graphical User Interface
-* **MSS**: Main Success Scenario 
+* **MSS**: Main Success Scenario
 * **API**: Application Programming Interface
 --------------------------------------------------------------------------------------------------------------------
 
