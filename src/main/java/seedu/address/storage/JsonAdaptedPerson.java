@@ -9,15 +9,9 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.sun.marlin.DTransformingPathConsumer2D;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.BusinessSize;
-import seedu.address.model.person.Company;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Priority;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,6 +31,9 @@ class JsonAdaptedPerson {
     private final String company;
 
     private final String priority;
+
+
+    private final String transactionCount;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -47,6 +44,7 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("businessSize") String businessSize, @JsonProperty("company") String company,
                              @JsonProperty("priority") String priority,
+                             @JsonProperty("transactionCount") String transactionCount,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -55,6 +53,8 @@ class JsonAdaptedPerson {
         this.businessSize = businessSize;
         this.company = company;
         this.priority = priority;
+        this.transactionCount = transactionCount;
+
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -71,6 +71,7 @@ class JsonAdaptedPerson {
         businessSize = source.getBusinessSize().value;
         company = source.getCompany().value;
         priority = source.getPriority().value;
+        transactionCount = source.getTransactionCount().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -150,9 +151,16 @@ class JsonAdaptedPerson {
 
         final Priority modelPriority = new Priority(priority);
 
+        if (!TransactionCount.isValidTransactionCount(transactionCount)) {
+            throw new IllegalValueException(TransactionCount.MESSAGE_CONSTRAINTS);
+        }
+
+        final TransactionCount modelTransactionCount = new TransactionCount(transactionCount);
+
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBusinessSize, modelCompany,
-                modelPriority, modelTags);
+                modelPriority, modelTransactionCount, modelTags);
     }
 
 }

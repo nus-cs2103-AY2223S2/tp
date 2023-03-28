@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRANSACTION_COUNT;
+
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -40,6 +42,7 @@ public class AddCommand extends Command {
             + PREFIX_BUSINESS_SIZE + "50 "
             + PREFIX_COMPANY + "software engineering is not cs "
             + PREFIX_PRIORITY + "HIGH "
+            + PREFIX_TRANSACTION_COUNT + "0 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

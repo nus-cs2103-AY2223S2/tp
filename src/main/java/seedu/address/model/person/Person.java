@@ -26,13 +26,15 @@ public class Person implements Comparable<Person> {
     private Mark mark;
 
     private final Priority priority;
+
+    private final TransactionCount transactionCount;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, BusinessSize businessSize,
-                  Company company, Priority priority, Set<Tag> tags) {
+                  Company company, Priority priority, TransactionCount transactionCount, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, businessSize, company, priority, tags);
         this.name = name;
         this.phone = phone;
@@ -42,6 +44,7 @@ public class Person implements Comparable<Person> {
         this.company = company;
         this.mark = new Mark("yes");
         this.priority = priority;
+        this.transactionCount = transactionCount;
         this.tags.addAll(tags);
     }
 
@@ -75,6 +78,10 @@ public class Person implements Comparable<Person> {
 
     public Mark getMark() {
         return mark;
+    }
+
+    public TransactionCount getTransactionCount() {
+        return transactionCount;
     }
 
     public void changeMark() {
@@ -128,6 +135,7 @@ public class Person implements Comparable<Person> {
                 && otherPerson.getBusinessSize().equals(getBusinessSize())
                 && otherPerson.getCompany().equals(getCompany())
                 && otherPerson.getPriority().equals(getPriority())
+                && otherPerson.getTransactionCount().equals(getTransactionCount())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -136,7 +144,8 @@ public class Person implements Comparable<Person> {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, businessSize, company, priority, tags);
+        return Objects.hash(name, phone, email, address, businessSize, company,
+                priority, mark, transactionCount, tags);
     }
 
 
@@ -156,7 +165,11 @@ public class Person implements Comparable<Person> {
                 .append("; Company: ")
                 .append(getCompany())
                 .append("; Priority: ")
-                .append(getPriority());
+                .append(getPriority())
+                .append("; Mark: ")
+                .append(getMark())
+                .append("; Transaction Count: ")
+                .append(getTransactionCount());
 
 
         Set<Tag> tags = getTags();

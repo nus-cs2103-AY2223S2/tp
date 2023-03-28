@@ -9,14 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.BusinessSize;
-import seedu.address.model.person.Company;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Mark;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Priority;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -136,6 +129,19 @@ public class ParserUtil {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
         return new Priority(priority);
+    }
+
+    /**
+     * Parses a {@code String transactionCount} into an {@code transactionCount}.
+     *
+     * @throws ParseException if the given {@code transactionCount} is invalid.
+     */
+    public static TransactionCount parseTransactionCount(String transactionCount) throws ParseException {
+        requireNonNull(transactionCount);
+        if (!TransactionCount.isValidTransactionCount(transactionCount)) {
+            throw new ParseException(TransactionCount.MESSAGE_CONSTRAINTS);
+        }
+        return new TransactionCount(transactionCount);
     }
 
     /**
