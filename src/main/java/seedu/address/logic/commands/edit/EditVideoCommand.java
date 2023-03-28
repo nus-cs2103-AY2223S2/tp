@@ -131,6 +131,7 @@ public class EditVideoCommand extends EditCommand {
          */
         public EditVideoDescriptor(EditVideoDescriptor toCopy) {
             setName(toCopy.name);
+            setWatched(toCopy.hasWatched);
             setTags(toCopy.tags);
         }
 
