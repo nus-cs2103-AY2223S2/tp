@@ -73,7 +73,8 @@ public class VideoUtil {
     public static String getEditCommand(ModuleCode moduleCode, LectureName lectureName, VideoName videoName,
             EditVideoDescriptor descriptor) {
 
-        return EditVideoCommand.COMMAND_WORD + getEditVideoDetails(moduleCode, lectureName, videoName, descriptor);
+        return EditVideoCommand.COMMAND_WORD + " "
+                + getEditVideoDetails(moduleCode, lectureName, videoName, descriptor);
     }
 
     /**
