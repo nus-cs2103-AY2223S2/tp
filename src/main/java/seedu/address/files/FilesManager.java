@@ -83,8 +83,29 @@ public class FilesManager {
         }
     }
 
-    public int numberOfFiles(Path drc) {
-        return files.size();
+    /**
+     * Calculates and returns the next number to be used in the file naming format "number-mc".
+     *
+     * @param drc The directory path where the files are located.
+     * @return The next number to be used in the file naming format "number-mc".
+     */
+    public int nextMcNumber(Path drc) {
+        int highestNumber = 0;
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(drc, "*-mc.pdf")) {
+            for (Path entry : stream) {
+                if (Files.isRegularFile(entry)) {
+                    String fileName = entry.getFileName().toString();
+                    String[] tokens = fileName.split("-mc\\.pdf");
+                    if (tokens.length > 0) {
+                        int number = Integer.parseInt(tokens[0]);
+                        highestNumber = Math.max(highestNumber, number);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return highestNumber + 1;
     }
 
     public List<String> getFileNames() {
@@ -99,7 +120,7 @@ public class FilesManager {
         FileStorage.createDrc(path);
         create = new FileGenerator(person,
                 doctorName, description, days);
-        create.createMcForm(Integer.toString(numberOfFiles(path2)));
+        create.createMcForm(Integer.toString(nextMcNumber(path2)));
     }
 
     /**
