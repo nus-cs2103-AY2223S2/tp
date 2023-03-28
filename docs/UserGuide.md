@@ -317,10 +317,10 @@ If `s` is specified, the tab on the right will switch to the **skills** that the
 
 > 
 > **Acceptable parameters:**
-> - Any index number within the length of the person list
-> - c 
-> - m
-> - s
+> - Any index number within the length of the person list (e.g. view 2)
+> - c (e.g. view c)
+> - m (e.g. view m)
+> - s (e.g. view s)
 >
 > 💡 **Tip:** If the right panel is showing a person's module, changing the person by typing `view 3` for example, will result in the right panel displaying the module tab of the person at index 3. The same applies for skills.
 >
