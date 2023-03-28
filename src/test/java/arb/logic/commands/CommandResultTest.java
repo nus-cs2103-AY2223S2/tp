@@ -36,6 +36,9 @@ public class CommandResultTest {
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false, ListType.NONE)));
 
+        // different enter link mode value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true, ListType.NONE)));
+
         // different list type value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", ListType.CLIENT)));
     }
@@ -57,6 +60,10 @@ public class CommandResultTest {
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true,
                 false, ListType.NONE).hashCode());
+
+        // different enter link mode value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false,
+                true, ListType.NONE));
 
         // different list type value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", ListType.CLIENT).hashCode());

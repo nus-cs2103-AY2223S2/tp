@@ -7,6 +7,8 @@ import static arb.logic.commands.CommandTestUtil.VALID_PRICE_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TAG_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TITLE_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TITLE_SKY_PAINTING;
+import static arb.testutil.TypicalClients.ALICE;
+import static arb.testutil.TypicalClients.BOB;
 import static arb.testutil.TypicalProjects.OIL_PAINTING;
 import static arb.testutil.TypicalProjects.SKY_PAINTING;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -26,7 +28,8 @@ public class ProjectTest {
 
         Project sky = new ProjectBuilder().withTitle(VALID_TITLE_SKY_PAINTING)
                 .withDeadline(VALID_DEADLINE_SKY_PAINTING)
-                .withPrice(VALID_PRICE_SKY_PAINTING).build();
+                .withPrice(VALID_PRICE_SKY_PAINTING)
+                .withLinkedClient(ALICE).build();
 
         assertFalse(defaultProject.equals(null)); // null
         assertFalse(defaultProject.equals(3)); // different type
@@ -39,6 +42,8 @@ public class ProjectTest {
         assertFalse(sky.equals(editedSky)); // changed deadline
         editedSky = new ProjectBuilder(sky).withPrice(VALID_PRICE_OIL_PAINTING).build();
         assertFalse(sky.equals(editedSky)); // changed price
+        editedSky = new ProjectBuilder(sky).withLinkedClient(BOB).build();
+        assertFalse(sky.equals(editedSky)); // changed linked client
         editedSky = new ProjectBuilder(sky).withStatus(true).build();
         assertFalse(sky.equals(editedSky)); // changed status
         editedSky = new ProjectBuilder(editedSky).withStatus(false).build();
@@ -54,7 +59,7 @@ public class ProjectTest {
 
         Project skyWithoutDeadline = new ProjectBuilder()
                 .withTitle(VALID_TITLE_SKY_PAINTING).withPrice(VALID_PRICE_SKY_PAINTING)
-                .withDeadline(null).build();
+                .withDeadline(null).withLinkedClient(ALICE).build();
 
         assertFalse(defaultProjectWithoutDeadline.equals(null)); // null
         assertFalse(defaultProjectWithoutDeadline.equals(3)); // different type
@@ -95,7 +100,7 @@ public class ProjectTest {
 
         // same name, all other attributes different -> returns true
         Project editedSkyPainting = new ProjectBuilder(SKY_PAINTING).withDeadline(VALID_DEADLINE_OIL_PAINTING)
-                .withPrice(VALID_PRICE_OIL_PAINTING).withStatus(true).build();
+                .withPrice(VALID_PRICE_OIL_PAINTING).withStatus(true).withLinkedClient(ALICE).build();
         assertTrue(SKY_PAINTING.isSameProject(editedSkyPainting));
 
         // different name, all other attributes same -> returns false
@@ -111,5 +116,28 @@ public class ProjectTest {
         String titleWithTrailingSpaces = VALID_TITLE_OIL_PAINTING + " ";
         editedOilPainting = new ProjectBuilder(OIL_PAINTING).withTitle(titleWithTrailingSpaces).build();
         assertFalse(OIL_PAINTING.isSameProject(editedOilPainting));
+    }
+
+    @Test
+    public void isOverdue() {
+        // due yesterday and is not done
+        Project overdueProject = new ProjectBuilder().withDeadline("yesterday").build();
+        assertTrue(overdueProject.isOverdue());
+
+        // due tomorrow and is done
+        Project notOverdueProject = new ProjectBuilder().withDeadline("tomorrow").withStatus(true).build();
+        assertFalse(notOverdueProject.isOverdue());
+        // due tomorrow and is not done
+        notOverdueProject = new ProjectBuilder().withDeadline("tomorrow").build();
+        assertFalse(notOverdueProject.isOverdue());
+        // due yesterday and is done
+        notOverdueProject = new ProjectBuilder().withDeadline("yesterday").withStatus(true).build();
+        assertFalse(notOverdueProject.isOverdue());
+        // no deadline and is not done
+        notOverdueProject = new ProjectBuilder().withDeadline(null).build();
+        assertFalse(notOverdueProject.isOverdue());
+        // no deadline and is done
+        notOverdueProject = new ProjectBuilder().withDeadline(null).withStatus(true).build();
+        assertFalse(notOverdueProject.isOverdue());
     }
 }

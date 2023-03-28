@@ -164,6 +164,7 @@ public class UniqueClientList implements Iterable<Client> {
      * Transfers all clients linked to {@code original} to {@code target}.
      */
     public void transferLinkedClients(Project original, Project target) {
+        requireAllNonNull(original, target);
         original.getLinkedClient().ifPresent(c -> {
             c.unlinkProject(original);
             c.linkProject(target);

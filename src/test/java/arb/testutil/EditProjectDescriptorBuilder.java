@@ -1,5 +1,6 @@
 package arb.testutil;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -35,6 +36,7 @@ public class EditProjectDescriptorBuilder {
         descriptor.setDeadline(project.getDeadline());
         descriptor.setPrice(project.getPrice());
         descriptor.setTags(project.getTags());
+        descriptor.setClient(project.getClientName());
     }
 
     /**
@@ -49,7 +51,7 @@ public class EditProjectDescriptorBuilder {
      * Sets the {@code Deadline} of the {@code EditProjectDescriptor} that we are building.
      */
     public EditProjectDescriptorBuilder withDeadline(String deadline) {
-        descriptor.setDeadline(new Deadline(deadline));
+        descriptor.setDeadline(Optional.ofNullable(deadline).map(d -> new Deadline(d)).orElse(null));
         return this;
     }
 
@@ -66,7 +68,15 @@ public class EditProjectDescriptorBuilder {
      * Sets the {@code Price} of the {@code EditProjectDescriptor} that we are building.
      */
     public EditProjectDescriptorBuilder withPrice(String price) {
-        descriptor.setPrice(new Price(price));
+        descriptor.setPrice(Optional.ofNullable(price).map(p -> new Price(p)).orElse(null));
+        return this;
+    }
+
+    /**
+     * Sets the {@code linkedClient} of the {@code EditProjectDescriptor} that we are building.
+     */
+    public EditProjectDescriptorBuilder withLinkedClient(String clientName) {
+        descriptor.setClient(clientName);
         return this;
     }
 

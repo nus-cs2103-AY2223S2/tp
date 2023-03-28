@@ -187,11 +187,12 @@ public class Project {
                 && otherProject.deadline.equals(deadline)
                 && otherProject.price.equals(price)
                 && otherProject.getStatus().equals(getStatus())
-                && otherProject.getTags().equals(getTags());
+                && otherProject.getTags().equals(getTags())
+                && otherProject.linkedClient.equals(linkedClient);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, deadline, status, price, tags);
+        return Objects.hash(title, deadline, status, price, tags, linkedClient);
     }
 }

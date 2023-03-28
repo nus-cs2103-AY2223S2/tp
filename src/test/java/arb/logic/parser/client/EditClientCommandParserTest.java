@@ -5,6 +5,12 @@ import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_ALIAS_AMY;
 import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_ALIAS_BOB;
 import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static arb.logic.commands.CommandTestUtil.EMPTY_EMAIL;
+import static arb.logic.commands.CommandTestUtil.EMPTY_EMAIL_ALIAS;
+import static arb.logic.commands.CommandTestUtil.EMPTY_PHONE;
+import static arb.logic.commands.CommandTestUtil.EMPTY_PHONE_ALIAS;
+import static arb.logic.commands.CommandTestUtil.EMPTY_TAG;
+import static arb.logic.commands.CommandTestUtil.EMPTY_TAG_ALIAS;
 import static arb.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -26,7 +32,6 @@ import static arb.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static arb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static arb.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static arb.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 import static arb.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static arb.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static arb.testutil.TypicalIndexes.INDEX_FIRST;
@@ -45,8 +50,6 @@ import arb.model.tag.Tag;
 import arb.testutil.EditClientDescriptorBuilder;
 
 public class EditClientCommandParserTest {
-
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditClientCommand.MESSAGE_USAGE);
@@ -96,9 +99,9 @@ public class EditClientCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Client} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + EMPTY_TAG, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + EMPTY_TAG + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + EMPTY_TAG + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_PHONE_AMY,
@@ -236,13 +239,37 @@ public class EditClientCommandParserTest {
     }
 
     @Test
-    public void parse_resetTags_success() {
+    public void parse_resetValues_success() {
         Index targetIndex = INDEX_THIRD;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
+        // empty tag, main prefix
+        String userInput = targetIndex.getOneBased() + EMPTY_TAG;
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withTags().build();
         EditClientCommand expectedCommand = new EditClientCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
+        // empty tag, alias prefix
+        userInput = targetIndex.getOneBased() + EMPTY_TAG_ALIAS;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // empty phone, main prefix
+        userInput = targetIndex.getOneBased() + EMPTY_PHONE;
+        descriptor = new EditClientDescriptorBuilder().withPhone(null).build();
+        expectedCommand = new EditClientCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // empty tag, alias prefix
+        userInput = targetIndex.getOneBased() + EMPTY_PHONE_ALIAS;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // empty email, main prefix
+        userInput = targetIndex.getOneBased() + EMPTY_EMAIL;
+        descriptor = new EditClientDescriptorBuilder().withEmail(null).build();
+        expectedCommand = new EditClientCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // empty email, alias prefix
+        userInput = targetIndex.getOneBased() + EMPTY_EMAIL_ALIAS;
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }
