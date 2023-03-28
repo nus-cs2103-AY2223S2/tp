@@ -27,6 +27,8 @@ import tfifteenfour.clipboard.logic.commands.studentcommands.EditCommand;
 import tfifteenfour.clipboard.logic.commands.studentcommands.FindCommand;
 import tfifteenfour.clipboard.logic.commands.studentcommands.RemarkCommand;
 import tfifteenfour.clipboard.logic.commands.studentcommands.SortCommand;
+import tfifteenfour.clipboard.logic.commands.taskcommand.AssignCommand;
+import tfifteenfour.clipboard.logic.commands.taskcommand.TaskCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 
 
@@ -55,8 +57,8 @@ public class RosterParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
 
+        switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
@@ -117,6 +119,12 @@ public class RosterParser {
 
         case AttendanceCommand.COMMAND_WORD:
             return new AttendanceCommand();
+
+        case TaskCommand.COMMAND_WORD:
+            return new TaskCommandParser().parse(arguments);
+
+        case AssignCommand.COMMAND_WORD:
+            return new AssignCommandParser().parse(arguments);
 
         case HomeCommand.COMMAND_WORD:
             return new HomeCommand();
