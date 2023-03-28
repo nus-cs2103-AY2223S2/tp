@@ -45,24 +45,20 @@
           </padding>
         </StackPane>
             <HBox>
-               <children>
-      
-                    <VBox fx:id="personList" minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border">
-                <padding>
-                  <Insets bottom="10" left="10" right="10" top="10" />
-                </padding>
-                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-              </VBox>
+                   <VBox fx:id="personList" minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border">
+                       <padding>
+                           <Insets bottom="10" left="10" right="10" top="10" />
+                       </padding>
+                       <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                   </VBox>
+
                   <VBox fx:id="personList1" minWidth="400.0" prefWidth="400.0" styleClass="pane-with-border">
                      <padding>
                         <Insets bottom="10" left="10" right="10" top="10" />
                      </padding>
-                     <children>
+
                         <StackPane fx:id="personViewPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                     </children>
                   </VBox>
-                  <StackPane fx:id="personListPanelPlaceholder2" />
-               </children>
             </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />

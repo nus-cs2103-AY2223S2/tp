@@ -147,9 +147,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleView() {
         PersonViewPanel personViewPanel = new PersonViewPanel(logic.getPersonView());
-        //personViewPanelPlaceholder.getChildren().clear();
-        //personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
-        personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
+        personViewPanelPlaceholder.getChildren().clear();
+        personViewPanelPlaceholder.getChildren().setAll(personViewPanel.getRoot());
+        //personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
 
     }
     /**
@@ -202,7 +202,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
+            handleView();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
