@@ -198,6 +198,11 @@ public class ModelManager implements Model {
         updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
     }
 
+    @Override
+    public void setExpense(int index, Expense newExpense) {
+        expenseTracker.setExpense(index, newExpense);
+    }
+
     /**
      * Indicates if an expense exists in the expense list
      * @param expense the expense to check for
@@ -206,5 +211,10 @@ public class ModelManager implements Model {
     public boolean hasExpense(Expense expense) {
         requireNonNull(expense);
         return expenseTracker.hasExpense(expense);
+    }
+
+    @Override
+    public void setBudget(Budget budget) {
+        expenseTracker.setBudget(budget);
     }
 }

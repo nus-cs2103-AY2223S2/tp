@@ -39,6 +39,10 @@ public class ExpenseList implements Iterable<Expense> {
         internalListOfExpenses.remove(toRemove);
     }
 
+    public void set(int index, Expense newExpense) {
+        internalListOfExpenses.set(index, newExpense);
+    }
+
     /**
      * Replace expenses with {@code target} category with Misc object
      * @param target

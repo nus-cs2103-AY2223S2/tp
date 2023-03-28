@@ -17,7 +17,7 @@ public class AddCategoryCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a category to FastTrack. "
             + "Parameters: "
             + PREFIX_CATEGORY + "CATEGORY_NAME "
-            + "(optional) " + PREFIX_SUMMARY + "CATEGORY_SUMMARY\n"
+            + "[" + PREFIX_SUMMARY + "CATEGORY_SUMMARY]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CATEGORY + "groceries "
             + PREFIX_SUMMARY + "all expenses related to groceries\n";

@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
@@ -19,5 +20,9 @@ public interface ReadOnlyExpenseTracker {
      * Returns an unmodifiable view of the expense list.
      */
     ObservableList<Expense> getExpenseList();
+
+    Budget getBudget();
+
+    ObjectProperty<Budget> getBudgetForStats();
 
 }

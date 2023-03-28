@@ -19,6 +19,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCategoryCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SetBudgetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -84,6 +85,9 @@ public class ExpenseTrackerParser {
 
         case EditExpenseCommand.COMMAND_WORD:
             return new EditExpenseCommandParser().parse(arguments);
+
+        case SetBudgetCommand.COMMAND_WORD:
+            return new SetBudgetParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
