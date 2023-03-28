@@ -213,7 +213,6 @@ Consequently, the state of the selected tab needs to be shared between the two m
 
 > **Example:** If the user has navigated from the 1st tab to the 3rd using the tab bar before trying to navigate back to the 1st tab using `tab 1`, they should not be warned that they are already on the 1st tab. In other words, both methods should have their states in sync from the perspective of the user, so as not to induce unexpected behaviour.
 
-<<<<<<< HEAD
 ### Command for selecting 
 
 The `select` feature allows user to select which contact's details to display on the person details panel.
@@ -244,7 +243,7 @@ Consequently, the state of the selected person and index needs to be shared betw
 > **Example:** 
 > - If the user has selected index 1 by clicking on the contact, executing "select 1" should result in a warning that the contact is already select.
 > - If the user has selected index 1 by using `select 1`, clicking on the same contact at index 1 should "deselect" contact.
-=======
+
 ### Command for Favourite Contacts
 
 For improved User Experience, we want users to be able to easily look up contacts they frequently contact.
@@ -269,8 +268,6 @@ Users have can choose to input these 4 different type of Recurring Events into A
 The Add Event Command works by having the User entering the "addevent" command. The User will then specify the Description of the Event, Start Date and Time of the event,
 End Date and Time of the Event, followed by the Recurrence type, whether it is Daily, Weekly, Monthly, Yearly, or a One-Time Event. All are required fields except the Recurrence Field.
 If left unspecified, the Event will be added as a One-Time Event, the Success Message will prompt to the user, what type of Event will have be added to the Events Calendar UI of AddressBook Neo.
->>>>>>> 8588ea950727b32af6ecee90b82c60bc8a007b75
-
 
 ### \[Proposed\] Undo/redo feature
 
