@@ -1,4 +1,6 @@
-#addMessage, #getMessage, #editMessage, #deleteMessage, #filterMessage, #listMessage, #saveMessage, #clearMessage, #noteMessage, #helpMessage {
+#undoMessage, #redoMessage, #addMessage, #editMessage, #deleteMessage, #listMessage, #viewMessage,
+#findMessage, #backupMessage, #loadBackupMessage, #viewBackupMessage, #deleteBackupMessage,
+#clearMessage, #lightModeMessage, #darkModeMessage, #noteMessage, #helpMessage {
     -fx-text-fill: white;
     -fx-padding: 10 0 0 0;
 }

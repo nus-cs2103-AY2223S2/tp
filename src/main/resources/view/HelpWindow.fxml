@@ -21,12 +21,17 @@
       </stylesheets>
       <HBox alignment="BOTTOM_RIGHT" fx:id="commandListContainer">
         <VBox>
-          <Label fx:id="addMessage" text="Label">
+          <Label fx:id="undoMessage" text="Label">
             <HBox.margin>
               <Insets right="5.0" />
             </HBox.margin>
           </Label>
-          <Label fx:id="getMessage" text="Label">
+          <Label fx:id="redoMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
+          <Label fx:id="addMessage" text="Label">
             <HBox.margin>
               <Insets right="5.0" />
             </HBox.margin>
@@ -41,22 +46,52 @@
               <Insets right="5.0" />
             </HBox.margin>
           </Label>
-          <Label fx:id="filterMessage" text="Label">
-            <HBox.margin>
-              <Insets right="5.0" />
-            </HBox.margin>
-          </Label>
           <Label fx:id="listMessage" text="Label">
             <HBox.margin>
               <Insets right="5.0" />
             </HBox.margin>
           </Label>
-          <Label fx:id="saveMessage" text="Label">
+          <Label fx:id="viewMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
+          <Label fx:id="findMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
+          <Label fx:id="backupMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
+          <Label fx:id="loadBackupMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
+          <Label fx:id="viewBackupMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
+          <Label fx:id="deleteBackupMessage" text="Label">
             <HBox.margin>
               <Insets right="5.0" />
             </HBox.margin>
           </Label>
           <Label fx:id="clearMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
+          <Label fx:id="lightModeMessage" text="Label">
+            <HBox.margin>
+              <Insets right="5.0" />
+            </HBox.margin>
+          </Label>
+          <Label fx:id="darkModeMessage" text="Label">
             <HBox.margin>
               <Insets right="5.0" />
             </HBox.margin>
