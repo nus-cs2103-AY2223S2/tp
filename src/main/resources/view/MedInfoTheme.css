@@ -1,6 +1,6 @@
 .background {
-    -fx-background-color: derive(#0c4270, 20%);
-    background-color: #0c4270; /* Used in the default.html file */
+    -fx-background-color: derive(#1d1d1d, 20%);
+    background-color: #1d1d1d; /* Used in the default.html file */
 }
 
 .label {
@@ -77,14 +77,14 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    -fx-border-color: transparent transparent transparent #4d4d4d;
+    -fx-background-color: derive(#A8C5C9, 20%);
+    -fx-border-color: transparent;
 }
 
 .split-pane {
-    -fx-border-radius: 1;
-    -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-radius: 5;
+    -fx-border-width: 0;
+    -fx-background-color: derive(#FFFFFF, 20%);
 }
 
 .list-view {
@@ -100,11 +100,11 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #a8acad;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #8c9091;
 }
 
 .list-cell:filled:selected {
@@ -132,20 +132,36 @@
     -fx-text-fill: #010504;
 }
 
+/**
+ * CLI Text box
+ * MainWindow.fxml
+ */
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: derive(#A8C5C9, 20%);
 }
 
+/**
+ * Main body holding CLI and lists
+ * MainWindow.fxml
+ */
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
+     -fx-background-color: derive(#FFFFFF, 20%);
+     -fx-border-color: derive(#FFFFFF, 10%);
      -fx-border-top-width: 1px;
 }
 
+/**
+ * Used at the bottom status-bar
+ * StatusBarFooter.fxml
+ */
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#A8C5C9, 30%);
 }
 
+/**
+ * Status indicators GRAY/GREEN/YELLOW/RED
+ * PatientListCard.fxml
+ */
 .status-UNKNOWN {
     -fx-background-color: derive(#1d1d1d, 30%);
     -fx-font-family: "Segoe UI Light";
@@ -178,18 +194,6 @@
     -fx-padding: 5px;
 }
 
-.result-display {
-    -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
-    -fx-padding: 5px;
-}
-
-.result-display .label {
-    -fx-text-fill: black !important;
-}
-
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: black;
@@ -199,7 +203,7 @@
 
 .status-bar-with-border {
     -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#FFFFFF, 25%);
+    -fx-border-color: derive(#1d1d1d, 25%);
     -fx-border-width: 1px;
     -fx-text-fill: black;
 }
@@ -226,14 +230,17 @@
     -fx-text-fill: white;
 }
 
+/**
+ * Menu
+ */
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#A8C5C9, 20%);
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
 
@@ -341,6 +348,10 @@
     -fx-padding: 8 1 8 1;
 }
 
+/**
+ * Patient card
+ * PatientListCard.fxml
+ */
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -351,6 +362,10 @@
     -fx-text-fill: #F70D1A;
 }
 
+/**
+ * Command text field
+ * MainWindow.fxml
+ */
 #commandTextField {
     -fx-background-color: transparent #0c4270 transparent #0c4270;
     -fx-background-insets: 0;
@@ -359,16 +374,36 @@
     -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 #filterField, #patientListPanel, #patientWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
+/**
+ * Results Display
+ * ResultDisplay.fxml
+ */
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: #A8C5C9;
     -fx-background-radius: 0;
+}
+
+/**
+ * RESULT display output font
+ * ResultDisplay.fxml
+ */
+.result-display {
+    -fx-background-color: #A8C5C9;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 11pt;
+    -fx-text-fill: black;
+    -fx-padding: 5px;
+}
+
+.result-display .label {
+    -fx-text-fill: black !important;
 }
 
 #tags {
