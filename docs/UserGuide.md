@@ -145,7 +145,7 @@ edit course <INDEX> <NEW COURSE NAME>
 
 
 Examples:
-- `edit course 1 CS2106` will replace the course name of the first course listed in the course list to 'CS2106'.
+- `edit course 1 CS2106` will rename the first course listed in the course list to 'CS2106'.
 
 
 
