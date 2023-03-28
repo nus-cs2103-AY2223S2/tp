@@ -6,12 +6,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_KNOWN_COMMANDS;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2040;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2103;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_2040;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V2;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
@@ -51,7 +49,9 @@ import seedu.address.testutil.LectureBuilder;
 import seedu.address.testutil.LectureUtil;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleUtil;
+import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
+import seedu.address.testutil.TypicalVideos;
 import seedu.address.testutil.VideoBuilder;
 import seedu.address.testutil.VideoUtil;
 
@@ -104,8 +104,7 @@ public class TrackerParserTest {
     @Test
     public void parseCommand_editModule() throws Exception {
         ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
-        Module module = new ModuleBuilder().withCode(VALID_MODULE_CODE_2040)
-                .withName(VALID_MODULE_NAME_2040).build();
+        Module module = new ModuleBuilder(TypicalModules.getCs2040s()).build();
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(module).build();
 
         EditCommand command = (EditCommand) parser.parseCommand(ModuleUtil.getEditCommand(moduleCode, descriptor));
@@ -117,7 +116,7 @@ public class TrackerParserTest {
         ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
         LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
 
-        Lecture lecture = new LectureBuilder().withName(VALID_LECTURE_NAME_L2).build();
+        Lecture lecture = new LectureBuilder(TypicalLectures.getCs2040sWeek1()).build();
         EditLectureDescriptor descriptor = new EditLectureDescriptorBuilder(lecture).build();
 
         EditCommand command = (EditCommand) parser.parseCommand(
@@ -131,7 +130,7 @@ public class TrackerParserTest {
         LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
         VideoName videoName = new VideoName(VALID_VIDEO_NAME_V1);
 
-        Video video = new VideoBuilder().withName(VALID_VIDEO_NAME_V2).build();
+        Video video = new VideoBuilder(TypicalVideos.CONTENT_VIDEO).build();
         EditVideoDescriptor descriptor = new EditVideoDescriptorBuilder(video).build();
 
         EditCommand command = (EditCommand) parser.parseCommand(
