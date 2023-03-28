@@ -3,10 +3,9 @@ layout: page
 title: User Guide
 ---
 
-
-<div class="header">
-  <h1>The Intern's Ship - User Guide</h1>
+<div class="header" align="center">
   <img src="images/ship.png" alt="logo" width="100">
+  <h1>The Intern's Ship - User Guide</h1>
 </div>
 
 <div style="page-break-after:always; break-after: page;">
