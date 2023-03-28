@@ -34,7 +34,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_DATE,
                         PREFIX_STARTDATE, PREFIX_ENDDATE);
 
-        if (hasIndexAndDate(args, argMultimap)) {
+        if (hasIndexAndDate(argMultimap)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
@@ -78,9 +78,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         }
     }
 
-    private static boolean hasIndexAndDate(String args, ArgumentMultimap argMultimap) {
+    private static boolean hasIndexAndDate(ArgumentMultimap argMultimap) {
 
-        boolean indexBeforeDate = !argMultimap.getPreamble().isEmpty();
+        boolean indexBeforeDate = !argMultimap.getPreamble().isEmpty() & !noDateProvided(argMultimap);
 
         Optional<String> date = argMultimap.getValue(PREFIX_DATE);
         Optional<String> startDate = argMultimap.getValue(PREFIX_STARTDATE);

@@ -40,6 +40,11 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code oneBasedIndexes} into a {@code List<Index>} and returns it. Leading and trailing whitespaces will
+     * be trimmed.
+     * @throws ParseException if any of the specified indexes are invalid (not non-zero unsigned integer).
+     */
     public static List<Index> parseMultiIndex(String oneBasedIndexes) throws ParseException {
         List<Index> indexes = new ArrayList<>();
         String[] splitIndexes = oneBasedIndexes.trim().split("\\s+");

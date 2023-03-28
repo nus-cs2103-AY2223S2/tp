@@ -1,13 +1,9 @@
 package seedu.dengue.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_ENDDATE;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_STARTDATE;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_VARIANT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,11 +109,14 @@ public class DeleteCommand extends Command {
     private CommandResult executeIndexes(Model model, List<Person> lastShownList) throws CommandException {
         assert targetIndexes.isPresent();
         List<Index> indexes = targetIndexes.get();
+        List<Person> referenceCopy = new ArrayList<>(lastShownList);
         for (Index idx : indexes) {
-            if (idx.getZeroBased() >= lastShownList.size()) {
+            if (idx.getZeroBased() >= referenceCopy.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
-            Person personToDelete = lastShownList.get(idx.getZeroBased());
+        }
+        for (Index idx : indexes) {
+            Person personToDelete = referenceCopy.get(idx.getZeroBased());
             model.deletePerson(personToDelete);
         }
         return new CommandResult(String.format(MESSAGE_DELETE_INDEX_SUCCESS, indexes.size()));
