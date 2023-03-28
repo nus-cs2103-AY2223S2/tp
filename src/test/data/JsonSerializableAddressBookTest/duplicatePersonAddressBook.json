@@ -7,6 +7,7 @@
     "businessSize" : "2",
     "company" : "software engineering is not cs",
     "priority" : "HIGH",
+    "transactionCount" : "0",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -15,6 +16,7 @@
     "businessSize" : "2",
     "company" : "software engineering is not cs",
     "priority" : "HIGH",
+    "transactionCount" : "0",
     "address": "4th street"
   } ]
 }

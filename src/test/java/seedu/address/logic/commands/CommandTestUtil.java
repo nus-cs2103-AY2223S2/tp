@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRANSACTION_COUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -48,6 +49,9 @@ public class CommandTestUtil {
 
     public static final String VALID_PRIORITY_AMY = "HIGH";
     public static final String VALID_PRIORITY_BOB = "LOW";
+
+    public static final String VALID_TRANSACTION_COUNT_AMY = "0";
+    public static final String VALID_TRANSACTION_COUNT_BOB = "1";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -71,6 +75,13 @@ public class CommandTestUtil {
     public static final String PRIORITY_DESC_AMY = " " + PREFIX_PRIORITY + VALID_PRIORITY_AMY;
     public static final String PRIORITY_DESC_BOB = " " + PREFIX_PRIORITY + VALID_PRIORITY_BOB;
 
+    public static final String TRANSACTION_COUNT_DESC_AMY = " " + PREFIX_TRANSACTION_COUNT
+            + VALID_TRANSACTION_COUNT_AMY;
+
+    public static final String TRANSACTION_COUNT_DESC_BOB = " " + PREFIX_TRANSACTION_COUNT
+            + VALID_TRANSACTION_COUNT_BOB;
+
+
 
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
@@ -91,12 +102,12 @@ public class CommandTestUtil {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withBusinessSize(VALID_BUSINESS_SIZE_AMY).withCompany(VALID_COMPANY_AMY)
-                .withPriority(VALID_PRIORITY_AMY)
+                .withPriority(VALID_PRIORITY_AMY).withTransactionCount(VALID_TRANSACTION_COUNT_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withBusinessSize(VALID_BUSINESS_SIZE_BOB).withCompany(VALID_COMPANY_BOB)
-                .withPriority(VALID_PRIORITY_BOB)
+                .withPriority(VALID_PRIORITY_BOB).withTransactionCount(VALID_TRANSACTION_COUNT_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

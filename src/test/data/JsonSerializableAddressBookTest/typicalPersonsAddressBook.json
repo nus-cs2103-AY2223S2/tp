@@ -8,6 +8,7 @@
     "businessSize" : "2",
     "company" : "software engineering is not cs",
     "priority" : "HIGH",
+    "transactionCount" : "0",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -17,6 +18,7 @@
     "businessSize" : "23",
     "company" : "software engineering is not cs",
     "priority" : "HIGH",
+    "transactionCount" : "0",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -26,6 +28,7 @@
     "businessSize" : "234",
     "company" : "software engineering is not cs",
     "priority" : "HIGH",
+    "transactionCount" : "0",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -35,6 +38,7 @@
     "businessSize" : "2345",
     "company" : "software engineering is not cs",
     "priority" : "HIGH",
+    "transactionCount" : "0",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -44,6 +48,7 @@
     "businessSize" : "23456",
     "company" : "software engineering is not cs",
     "priority" : "HIGH",
+    "transactionCount" : "0",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -53,6 +58,7 @@
     "businessSize" : "234567",
     "company" : "software engineering is not cs",
     "priority" : "HIGH",
+    "transactionCount" : "0",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -62,6 +68,7 @@
     "businessSize" : "2345678",
     "company" : "software engineering is not cs",
     "priority" : "HIGH",
+    "transactionCount" : "0",
     "tagged" : [ ]
   } ]
 }

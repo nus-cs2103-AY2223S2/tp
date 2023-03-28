@@ -4,7 +4,7 @@ package seedu.address.model.person;
  * Represents a Person's business size in the address book.
  * Guarantees: is valid as declared in {@link #isValidTransactionCount(String)} (String)}
  */
-public class TransactionCount {
+public class TransactionCount implements Comparable<TransactionCount>{
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -53,6 +53,11 @@ public class TransactionCount {
         } catch (Exception e) {
             return 0;
         }
+    }
+
+    @Override
+    public int compareTo(TransactionCount transactionCount) {
+        return this.getIntValue() - transactionCount.getIntValue();
     }
 
     @Override
