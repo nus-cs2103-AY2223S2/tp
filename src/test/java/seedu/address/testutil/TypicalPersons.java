@@ -51,6 +51,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.EduMate;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 
 /**
@@ -136,6 +137,8 @@ public class TypicalPersons {
             .withModuleTags(MODULE_TAG_SET_9)
             .build();
 
+    // ISAAC onwards have the same module tag set as OWEN.
+
     public static final Person ISAAC = new PersonBuilder().withName("Isaac Newton")
             .withAddress(NEWTON)
             .withEmail("isaacnewton@gmail.com")
@@ -216,8 +219,13 @@ public class TypicalPersons {
      */
     public static EduMate getTypicalEduMate() {
         EduMate ab = new EduMate();
+        int index = 1;
         for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
+            Person copiedPerson = new PersonBuilder(person).build();
+            copiedPerson.setContactIndex(new ContactIndex(index));
+            System.out.println(copiedPerson.toString());
+            ab.addPerson(copiedPerson);
+            index += 1;
         }
         ab.setUser(TypicalUser.getTypicalUser());
         return ab;

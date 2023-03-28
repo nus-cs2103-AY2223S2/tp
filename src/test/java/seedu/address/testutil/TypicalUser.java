@@ -12,6 +12,13 @@ import seedu.address.model.person.User;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_V1_1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2103T_V1_1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2108_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2109S_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA2104_V1;
+import static seedu.address.model.tag.util.TypicalModuleTag.MA3252_V1;
+
 /**
  * A utility class containing a list of {@code User} singleton object to be used in tests.
  */
@@ -26,13 +33,12 @@ public class TypicalUser {
                 add(new GroupTag("User"));
             }},
             new HashSet<>() {{
-                add(new ModuleTag("CS2100"));
-                add(new ModuleTag("CS2101"));
-                add(new ModuleTag("CS2102"));
-                add(new ModuleTag("CS2103"));
-                add(new ModuleTag("CS2104"));
-                add(new ModuleTag("CS2105"));
-                add(new ModuleTag("CS2106"));
+                add(CS2109S_V1);
+                add(CS2101_V1_1);
+                add(CS2103T_V1_1);
+                add(CS2108_V1);
+                add(MA3252_V1);
+                add(MA2104_V1);
             }});
 
     /**

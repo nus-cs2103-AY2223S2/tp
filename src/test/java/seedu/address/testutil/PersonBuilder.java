@@ -87,6 +87,15 @@ public class PersonBuilder {
      * Parses the {@code moduleTags} into a {@code Set<ModuleTag>}
      * and set it to the {@code Person} that we are building.
      */
+    public PersonBuilder withModuleTags() {
+        this.moduleTags = SampleDataUtil.getModuleTagSet();
+        return this;
+    }
+
+    /**
+     * Parses the {@code moduleTags} into a {@code Set<ModuleTag>}
+     * and set it to the {@code Person} that we are building.
+     */
     public PersonBuilder withModuleTags(String ... moduleTags) {
         this.moduleTags = SampleDataUtil.getModuleTagSet(moduleTags);
         return this;

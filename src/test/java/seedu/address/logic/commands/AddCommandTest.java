@@ -101,6 +101,7 @@ public class AddCommandTest {
     @Test
     public void checkAssignedIndex_gapsInContactIndexSequence_assignLowestAvailableIndex() throws CommandException {
         Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
+        System.out.println(model.getEduMate().toString());
         IndexHandler indexHandler = new IndexHandler(model);
         int[] indicesToDelete = new int[] {3, 6, 10};
         for (int idx : indicesToDelete) {
