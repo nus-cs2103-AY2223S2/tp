@@ -9,6 +9,7 @@ public enum CommandTargetType {
     MODULE("course"),
     GROUP("group"),
     SESSION("session"),
+    TASK("task"),
     STUDENT("student");
 
     private String type;
