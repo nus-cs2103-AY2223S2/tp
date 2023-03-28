@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":UI" as UI UI_COLOR
+end box
+
+box Notification #FFCC80
+participant "notificationManager:NotificationManager" as NotificationManager #F57C00
+end box
+
+box BackgroundNotification #DCE775
+participant ":BackgroundNotificationScheduler" as BackgroundNotificationScheduler #9E9D24
+end box
+
+box Timer #BA68C8
+participant ":Timer" as Timer1 #7B1FA2
+participant ":Timer" as Timer2 #7B1FA2
+end box
+
+box TimerTask #EF9A9A
+participant ":BackgroundReminderTask" as BackgroundReminderTask #E53935
+participant ":BackgroundScheduleTask" as BackgroundScheduleTask #E53935
+end box
+
+
+create NotificationManager
+UI-> NotificationManager
+activate NotificationManager
+
+NotificationManager -> NotificationManager : checkReminderList()
+NotificationManager -> NotificationManager : checkNowSchedule()
+
+create BackgroundNotificationScheduler
+UI -> BackgroundNotificationScheduler
+activate BackgroundNotificationScheduler
+
+
+create Timer1
+BackgroundNotificationScheduler -> Timer1
+activate Timer1
+
+create Timer2
+BackgroundNotificationScheduler -> Timer2
+activate Timer2
+
+loop for the respective Timer schedules
+create BackgroundReminderTask
+Timer1 -> BackgroundReminderTask : every minute
+BackgroundReminderTask -> NotificationManager : checkReminderList()
+
+create BackgroundScheduleTask
+Timer2 -> BackgroundScheduleTask : 20 minutes before next schedule slot
+BackgroundScheduleTask -> NotificationManager : checkNextSchedule()
+
+end loop
+
+@enduml

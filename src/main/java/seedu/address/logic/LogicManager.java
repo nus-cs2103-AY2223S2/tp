@@ -126,6 +126,9 @@ public class LogicManager implements Logic {
         return earnings;
     }
 
+    public ObservableList<DeliveryJob> getUnscheduledDeliveryJobList() {
+        return model.getUnscheduledDeliveryJobList();
+    }
 
     @Override
     public ObservableList<Reminder> getReminderList() {
@@ -161,13 +164,6 @@ public class LogicManager implements Logic {
     public void updateSortedDeliveryJobListByDate() {
         model.updateSortedDeliveryJobListByDate();
     };
-
-    @Override
-    public void updateWeekDeliveryJobList(LocalDate focusDate) {
-        logger.info("----------------[Update focus date to " + focusDate.toString() + "]");
-        model.updateWeekDeliveryJobList(focusDate);
-    };
-
 
     @Override
     public LocalDate getFocusDate() {

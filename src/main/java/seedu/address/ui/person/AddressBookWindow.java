@@ -58,7 +58,7 @@ public class AddressBookWindow extends UiPart<Stage> {
         super(FXML, primaryStage);
 
         // Set dependencies
-        this.primaryStage = new Stage();
+        this.primaryStage = primaryStage;
         this.logic = logic;
         this.selectHandler = selectHandler;
     }

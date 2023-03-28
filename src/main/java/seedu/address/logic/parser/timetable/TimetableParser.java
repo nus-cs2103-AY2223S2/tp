@@ -8,7 +8,8 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.TimetableDateCommand;
+import seedu.address.logic.commands.timetable.TimetableDateCommand;
+import seedu.address.logic.commands.timetable.TimetableUnscheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -39,6 +40,9 @@ public class TimetableParser {
         switch (commandWord) {
         case TimetableDateCommand.COMMAND_WORD:
             return new TimetableDateCommandParser().parse(arguments);
+
+        case TimetableUnscheduleCommand.COMMAND_WORD:
+            return new TimetableUnscheduleCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_TIMETABLE_COMMAND);
