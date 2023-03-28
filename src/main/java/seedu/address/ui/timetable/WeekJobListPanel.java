@@ -12,7 +12,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.model.jobs.DeliveryList;
 import seedu.address.ui.UiPart;
-import seedu.address.ui.jobs.DayJobListPanel;
 
 /**
  * Controller for a timetable page

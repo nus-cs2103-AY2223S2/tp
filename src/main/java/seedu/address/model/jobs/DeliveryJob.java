@@ -126,12 +126,36 @@ public class DeliveryJob {
     }
 
     /**
+     * Checks if job has delivery date
+     * @return boolean
+     */
+    public boolean hasDate() {
+        return getDeliveryDate().isPresent();
+    }
+
+    /**
+     * Checks if job has delivery slot
+     * @return boolean
+     */
+    public boolean hasSlot() {
+        return getDeliverySlot().isPresent();
+    }
+
+    /**
      * Checks if job has delivery date and slot.
      *
      * @return boolean
      */
     public boolean isScheduled() {
         return getDeliveryDate().isPresent() && getDeliverySlot().isPresent();
+    }
+
+    /**
+     * Checks if job has valid delivery date and slot
+     * @return
+     */
+    public boolean isValidScheduled() {
+        return isScheduled() && deliverySlot.get().isValid();
     }
 
     /**

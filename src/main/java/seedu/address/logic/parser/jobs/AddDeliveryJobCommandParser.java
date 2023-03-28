@@ -71,6 +71,8 @@ public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand
 
         if (des.equals("")) {
             throw new ParseException(DeliverySlot.MESSAGE_CONSTRAINTS);
+        } else if (Integer.parseInt(des) < 0) {
+            throw new ParseException(DeliverySlot.MESSAGE_CONSTRAINTS);
         }
 
         if (ear.equals("")) {
