@@ -76,7 +76,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-        toggleTheme(logic.getGuiSettings().isLightMode());
+        toggleTheme(logic.getGuiSettings().isLightMode(), false);
 
         setAccelerators();
 
@@ -184,7 +184,11 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void toggleTheme(boolean isLightMode) {
-        if (this.isLightMode == isLightMode) {
+        toggleTheme(isLightMode, true);
+    }
+
+    private void toggleTheme(boolean isLightMode, boolean isLazy) {
+        if (isLazy && this.isLightMode == isLightMode) {
             return;
         }
         this.isLightMode = isLightMode;
