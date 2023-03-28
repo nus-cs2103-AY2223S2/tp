@@ -11,6 +11,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.jobs.DeliveryDate;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.person.PersonCard;
@@ -81,7 +82,11 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
         label.setText(job.getJobId());
 
         job.getDeliveryDate().ifPresentOrElse(val -> {
-            deliveryTimeDate.setText(val.date);
+            if (val.date.equals(DeliveryDate.placeholder().toString())) {
+                deliveryTimeDate.setText("N.A");
+            } else {
+                deliveryTimeDate.setText(val.date);
+            }
         }, () -> {
             deliveryTimeDate.setText("N.A");
         });

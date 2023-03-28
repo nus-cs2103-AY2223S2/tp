@@ -1,6 +1,6 @@
 package seedu.address.model.jobs;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.util.NoSuchElementException;
@@ -64,6 +64,7 @@ public class DeliveryJob {
             Optional<DeliverySlot> deliverySlot,
             Optional<Earning> earning,
             Boolean isDelivered, String description) {
+        requireAllNonNull(jobId, recipient, sender, deliveryDate, deliverySlot, earning, isDelivered, description);
         this.jobId = jobId;
         this.recipient = recipient;
         this.sender = sender;
@@ -75,7 +76,7 @@ public class DeliveryJob {
     }
 
     private static String genJobId(String recipient, String sender) {
-        requireNonNull(recipient, sender);
+        requireAllNonNull(recipient, sender);
         return recipient.substring(0, 2)
                 .concat(sender.substring(0, 2))
                 .concat(UUID.randomUUID().toString().substring(0, 6))
@@ -256,6 +257,16 @@ public class DeliveryJob {
          */
         public Builder deliverySlot(String slot) {
             this.deliverySlot = Optional.of(new DeliverySlot(slot));
+            return this;
+        }
+
+        /**
+         * Sets deliverySlot.
+         *
+         * @return
+         */
+        public Builder clearDeliverySlot() {
+            this.deliverySlot = Optional.of(DeliverySlot.placeholder());
             return this;
         }
 
