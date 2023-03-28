@@ -9,8 +9,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 PetPal is the all-in-one app for managing all the pets in your daycare center or in your shelter
 
 * Table of Contents
-  * [Quick Start](#Quick-Start)
-  * [Features](#Features)
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -186,12 +185,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add p/bobby o/Sharon n/12345678 [t/TAG]…​`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [p/PET_NAME] [o/OWNER_NAME] [t/TAG]…​`<br> e.g.,`edit 2 o/James Lee `
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                  |
+|------------|-----------------------------------------------------------------------------------|
+| **Add**    | `add p/bobby o/Sharon n/12345678 [t/TAG]…​`                                       |
+| **Clear**  | `clear`                                                                           |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                               |
+| **Edit**   | `edit INDEX [p/PET_NAME] [o/OWNER_NAME] [t/TAG]…​`<br> e.g.,`edit 2 o/James Lee ` | 
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Milo`                              |                        
+| **List**   | `list`                                                                            |
+| **Help**   | `help`                                                                            |
