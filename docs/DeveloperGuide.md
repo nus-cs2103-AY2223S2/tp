@@ -423,13 +423,24 @@ The following legend describes the symbols used in this section:
 
 MSS refers to *Main Success Scenario*.
 
+**Use case: List all applicants**
+
+Precondition: HMHero already has some applicants stored.
+
+**MSS**
+
+1. User enters command to view applicants in the list.
+2. HMHero shows list of applicants.
+
+   Use case ends.
+
 **Use case: Add an applicant**
 
 Precondition: Applicant does not exist in HMHero yet.
 
 **MSS**
 
-1.  User requests to add a specific applicant in the list.
+1.  User enters command to add a specific applicant in the list.
 2.  HMHero adds the applicant.
 
     Use case ends.
@@ -441,13 +452,7 @@ Precondition: Applicant does not exist in HMHero yet.
     * 1a1. HMHero shows an error message.
 
       Use case resumes at step 1.
-  
 
-
-* 1b. If a duplicate applicant already exists in HMHero.
-    * 1b1. HMHero shows an error message.
-
-      Use case resumes at step 1.
 
 **Use case: Delete an applicant**
 
@@ -463,11 +468,6 @@ Precondition: Applicant to delete exists in HMHero.
     Use case ends.
 
 **Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
 
 * 3a. The given applicant's name does not exist.
 
@@ -491,7 +491,8 @@ Precondition: Applicant to delete exists in HMHero.
 
 **Use case: Advance an applicant’s status**
 
-Precondition: Status of Applicant to advance is not `ACCEPTED` or `REJECTED`.
+Precondition: Status of Applicant to advance is not `ACCEPTED` or `REJECTED` and HMHero already has some applicants 
+stored.
 
 **MSS**
 
@@ -503,10 +504,6 @@ Precondition: Status of Applicant to advance is not `ACCEPTED` or `REJECTED`.
     Use case ends.
 
 **Extensions**
-
-* 2a. The list is empty.
-
-    Use case ends.
 
 
 * 3a. The given applicant's name does not exist.
@@ -544,16 +541,9 @@ Precondition: Status of Applicant to advance is not `ACCEPTED` or `REJECTED`.
       Use case resumes at step 3.
 
 
-* 3f. The given applicant’s current status is already `REJECTED` or `ACCEPTED`.
-
-    * 3f1. HMHero shows an error message.
-
-      Use case resumes at step 3.
-
-
 **Use case: Reject an applicant’s status**
 
-Precondition: Status of Applicant to reject is not `REJECTED`.
+Precondition: Status of Applicant to reject is not `REJECTED` and HMHero already has some applicants stored.
 
 **MSS**
 
@@ -567,11 +557,6 @@ Precondition: Status of Applicant to reject is not `REJECTED`.
 **Extensions**
 
 
-* 2a. The list is empty.
-
-  Use case ends.
-
-
 * 3a. The given applicant's name does not exist.
 
     * 3a1. HMHero shows an error message.
@@ -582,13 +567,6 @@ Precondition: Status of Applicant to reject is not `REJECTED`.
 * 3b. The given applicant's phone number does not exist.
 
     * 3b1. HMHero shows an error message.
-
-      Use case resumes at step 3.
-
-
-* 3c. The given applicant's current status is already `REJECTED`.
-
-    * 3c1. HMHero shows an error message.
 
       Use case resumes at step 3.
 
@@ -608,11 +586,6 @@ Precondition: Applicant to find exists in HMHero.
 
 **Extensions**
 
-* 2a. The list is empty.
-
-  Use case ends.
-
-
 * 3a. HMHero detects that the command entered is of invalid formatting.
     * 3a1. HMHero shows an error message
   
@@ -620,6 +593,8 @@ Precondition: Applicant to find exists in HMHero.
 
 
 **Use case: Finding applicants with specific skills**
+
+Precondition: Applicants with skills that user gave exists in HMHero.
 
 **MSS**
 
@@ -631,11 +606,6 @@ Precondition: Applicant to find exists in HMHero.
     Use case ends.
 
 **Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
 
 * 3a. HMHero detects that the command entered is of invalid formatting.
     * 3a1. HMHero shows an error message
@@ -658,11 +628,6 @@ Precondition: There are shortlisted applicants in HMHero.
 
 **Extensions**
 
-* 2a. The list is empty.
-
-  Use case ends.
-
-
 * 3a. HMHero detects that the command entered is of invalid formatting.
     * 3a1. HMHero shows an error message
 
@@ -683,11 +648,6 @@ Precondition: There are shortlisted applicants in HMHero.
     Use case ends.
 
 **Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
 
 * 3a. HMHero detects that the command entered is of invalid formatting.
     * 3a1. HMHero shows an error message
