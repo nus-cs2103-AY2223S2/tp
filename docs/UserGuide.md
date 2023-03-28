@@ -967,17 +967,18 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 
 ### 7.1. Applicant Commands
 
-| Action                                 | Format                                                                                                                                                                           | Example                                                                     |
-|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| Add a new applicant                    | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`                                                                                                                               | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
-| Search for an applicant                | `find [KEY]` <br> (Minimally one `KEY` must be provided) <br> <br> **Note:** You can provide multiple key to find an applicant using `NAME` . For example, `find n/Thomas Marry` | `find n/Thomas p/98764321`                                                  |
-| List all applicants                    | `list`                                                                                                                                                                           | `list`                                                                      |
-| Delete an applicant                    | `delete n/NAME p/PHONE`                                                                                                                                                          | `delete n/Thomas p/98765432`                                                |
-| Advance an applicant                   | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide `INTERVIEW DATETIME` to advance applicant's `status` `APPLIED` to `ACCEPTED`             | `advance n/Thomas p/98765432 d/20-03-2024 12:12`                            |
-| Reject an applicant                    | `reject n/NAME p/PHONE`                                                                                                                                                          | `reject n/Thomas p/98765432`                                                |
-| View the interview dates of applicants | `interview`                                                                                                                                                                      | `interview`                                                                 |
-| Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                                        | `edit 1 n/Marry p/98763245`                                                 |
-| Remind an applicant's interview date   | TO BE UPDATED                                                                                                                                                                    | To be updated                                                               |
+| Action                                 | Format                                                                                                                                                               | Example                                                                     |
+|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| Add a new applicant                    | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`                                                                                                                   | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
+| Search for an applicant                | `find [n/NAME] [p/PHONE]` <br> (Minimally one of `n/NAME` or `p/PHONE` must be provided)                                                                             | `find n/Thomas p/98764321`                                                  |
+| List all applicants                    | `list`                                                                                                                                                               | `list`                                                                      |
+| Delete an applicant                    | `delete n/NAME p/PHONE`                                                                                                                                              | `delete n/Thomas p/98765432`                                                |
+| Advance an applicant                   | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide `INTERVIEW DATETIME` to advance applicant's `status` `APPLIED` to `ACCEPTED` | `advance n/Thomas p/98765432 d/20-03-2024 12:12`                            |
+| Reject an applicant                    | `reject n/NAME p/PHONE`                                                                                                                                              | `reject n/Thomas p/98765432`                                                |
+| View the interview dates of applicants | `interview`                                                                                                                                                          | `interview`                                                                 |
+| Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                            | `edit 1 n/Marry p/98763245`                                                 |
+| Remind an applicant's interview date   | `remind`                                                                                                                                                             | `remind`                                                                    |
+| View summary statistics                | `summary`                                                                                                                                                            | `remind`                                                                    |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -985,9 +986,9 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 
 ### 7.2. Statistics Commands
 
-| Action                                  | Format   | Example |
-|-----------------------------------------|----------|---------|
-| Displays statistics collected by HMHero | `stats`  | `stats` | 
+| Action                                  | Format    | Example   |
+|-----------------------------------------|-----------|-----------|
+| Displays statistics collected by HMHero | `summary` | `summary` | 
 
 [Back to Table of Contents](#table-of-contents)
 

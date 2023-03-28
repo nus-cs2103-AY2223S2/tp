@@ -9,19 +9,13 @@ import java.util.stream.Collectors;
 import seedu.address.model.HMHero;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.note.Note;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.ApplicationDateTime;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Status;
+import seedu.address.model.person.*;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    private static final LocalDateTime SAMPLE_DATE_TIME = LocalDateTime.of(2023, 04, 04, 16, 25);
+    private static final LocalDateTime SAMPLE_DATE_TIME = LocalDateTime.of(2023, 01, 01, 16, 25);
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -33,7 +27,7 @@ public class SampleDataUtil {
                     new ApplicationDateTime(SAMPLE_DATE_TIME),
                     Optional.empty(), getNoteSet("C++", "Java")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), Status.ACCEPTED,
+                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), Status.REJECTED,
                     new ApplicationDateTime(SAMPLE_DATE_TIME), Optional.empty(),
                 getNoteSet("C")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
