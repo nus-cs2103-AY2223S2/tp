@@ -647,7 +647,7 @@ Below is an Activity Diagram for the execution of the `ViewCommand`.
 
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/FindCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/FindCommandParser.java)
 
-The 'find' command allows users to search for their contacts with partial information. 
+The `find` command allows users to search for their contacts with partial information. 
 
 For example, if the user wants to search for a person but does not know the full name, they can simply search the name and get a list of people matching the name. This applies to all information a Person contains. Additionally, it can accept multiple keywords for the search but is limited to the same type of information.
 
@@ -757,19 +757,21 @@ Sets the `isExit` boolean in the `CommandResult` class to `true` which is passed
 
 ### **Meet Command**
 
-<div markdown="span" class="alert alert-warning">
-    :construction: Integration works in the process.
-</div>
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/MeetCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/MeetCommandParser.java)
+
+The `meet` command allows users to get recommendations of optimal meeting timings and locations with their contacts.
 
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Sub-Commands** <br>
 The `meet` command has 2 different sub-commands : `eat`, `study`.
-However, we will be referring to all 3 commands generally as `meet`. All 3 commands only differ in the location
+However, we will be referring to all 3 commands generally as `meet`.
+</div>
+
+All 3 commands (`meet`, `study` and `eat`) only differ in the location
 recommendations as certain locations are only appropriate for certain activities.
 
 Running `meet` will recommend studying, eating locations and other general locations together with their recommended timings.
-</div>
 
 This feature is utilises the [`Recommender`](#recommenders)
 
@@ -853,7 +855,7 @@ will be free so that a meetup could be scheduled.
 <div markdown="span" class="alert alert-info">
 
 
-:information_source: **Very Important Re-emphasis** <br>
+:information_source: **Very Important Re-emphasis**
 The `TimingRecommender` will always recommend timeslots and **ranks them in descending time** duration that
 the participants could meet up.
 </div>
