@@ -25,16 +25,16 @@
           <Label fx:id="totalNum" text="\$totalNum" styleClass="cell_big_label" style="-fx-text-fill: #000000; -fx-font-size: 20"/>
         </VBox>
         <VBox alignment="CENTER" >
-          <Label fx:id="interestedNum" styleClass="cell_small_label" text="\$interestedNum" style="-fx-text-fill: #af4505; -fx-font-size: 17"/>
+          <Label fx:id="interestedNum" styleClass="cell_small_label" text="\$interestedNum" style="-fx-text-fill: #FF00FF; -fx-font-size: 17"/>
         </VBox>
         <VBox alignment="CENTER" >
-          <Label style="-fx-text-fill: #9f6100; -fx-font-size: 17" fx:id="appliedNum" styleClass="cell_small_label" text="\$appliedNum" />
+          <Label style="-fx-text-fill: #800080; -fx-font-size: 17" fx:id="appliedNum" styleClass="cell_small_label" text="\$appliedNum" />
         </VBox>
         <VBox alignment="CENTER" >
-          <Label style="-fx-text-fill: #05813b; -fx-font-size: 17" fx:id="offeredNum" styleClass="cell_small_label" text="\$offeredNum" />
+          <Label style="-fx-text-fill: #008000; -fx-font-size: 17" fx:id="offeredNum" styleClass="cell_small_label" text="\$offeredNum" />
         </VBox>
         <VBox alignment="CENTER" >
-          <Label style="-fx-text-fill: #57acda; -fx-font-size: 17" fx:id="rejectedNum" styleClass="cell_small_label" text="\$rejectedNum" />
+          <Label style="-fx-text-fill: #FF0000; -fx-font-size: 17" fx:id="rejectedNum" styleClass="cell_small_label" text="\$rejectedNum" />
         </VBox>
       </VBox>
       <VBox alignment="CENTER" style="-fx-background-color: #dffbf6;-fx-background-radius:20px;">

@@ -15,6 +15,11 @@ public class Statistic {
     private final HashMap<Status, Integer> statsMap = new HashMap<>();
     private Integer totalNum = 0;
 
+    private final Status interestedStat = new Status("interested");
+    private final Status appliedStat = new Status("applied");
+    private final Status offeredStat = new Status("offered");
+    private final Status rejectedStat = new Status("rejected");
+
     /**
      * Constructs a Statistic instance corresponding to the current list of applications.
      *
@@ -23,10 +28,10 @@ public class Statistic {
     public Statistic(ObservableList<Application> applications) {
         requireNonNull(applications);
 
-        statsMap.put(new Status("interested"), 0);
-        statsMap.put(new Status("applied"), 0);
-        statsMap.put(new Status("offered"), 0);
-        statsMap.put(new Status("rejected"), 0);
+        statsMap.put(interestedStat, 0);
+        statsMap.put(appliedStat, 0);
+        statsMap.put(offeredStat, 0);
+        statsMap.put(rejectedStat, 0);
 
         for (Application app : applications) {
             totalNum++;
