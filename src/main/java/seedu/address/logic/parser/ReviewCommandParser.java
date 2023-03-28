@@ -9,13 +9,13 @@ import static seedu.address.model.tag.Tag.TagName.EASY;
 import static seedu.address.model.tag.Tag.TagName.HARD;
 import static seedu.address.model.tag.Tag.TagName.MEDIUM;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.reviewcommands.ReviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag.TagName;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Parses input arguments and creates a new ReviewCommand object
