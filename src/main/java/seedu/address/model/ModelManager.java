@@ -173,6 +173,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteEvent(Event event) {
+        this.userData.deleteEvent(event);
+    }
+
+    @Override
     public ObservableList<Event> getEvents() {
         return this.userData.getData().getValue().getEvents().asUnmodifiableObservableList();
     }

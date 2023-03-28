@@ -87,6 +87,10 @@ public class User extends Person {
         this.events.add(e);
     }
 
+    public void deleteEvent(Event event) {
+        this.events.remove(event);
+    }
+
     public UniqueEventList getEvents() {
         return this.events;
     }
