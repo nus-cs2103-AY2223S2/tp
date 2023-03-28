@@ -264,7 +264,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/
 
 If you accidentally added the wrong information when [adding a contact](#44-adding-a-contact-add), or if you want to update your contacts' information, you use the `edit`  command to update contact information. 
 
-:bulb: **Tip:** If you want to edit a contact's tags, refer to these guides on [adding additional tags](#46-adding-additional-tags-to-a-contact-addt) or  [deleting a tag](#47-deleting-tags-from-a-contact-deletet) instead!
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you want to edit a contact's tags, refer to these guides on <a href="#46-adding-additional-tags-to-a-contact-addt" class="alert-link">adding additional tags</a> or <a href="#47-deleting-tags-from-a-contact-deletet" class="alert-link">deleting a tag</a> instead!
+</div>
+
 
 The `edit` command:
 
