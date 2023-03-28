@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="base" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ListView fx:id="orderHistoryListView" styleClass="orderHistoryListView" />
+   </children>
+   <stylesheets>
+      <URL value="@OrderSection.css" />
+      <URL value="@OrderHistoryPanel.css" />
+   </stylesheets>
+</VBox>
