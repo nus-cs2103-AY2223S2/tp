@@ -28,7 +28,8 @@ public class NavigationBar extends UiPart<Region> {
             status.setText(currentSelection.getSelectedCourse().getCourseCode());
 
         } else if (currentSelection.getCurrentPage() == PageType.STUDENT_PAGE
-                || currentSelection.getCurrentPage() == PageType.SESSION_PAGE) {
+                || currentSelection.getCurrentPage() == PageType.SESSION_PAGE
+                || currentSelection.getCurrentPage() == PageType.TASK_PAGE) {
             String courseCode = currentSelection.getSelectedCourse().getCourseCode();
             String groupName = currentSelection.getSelectedGroup().getGroupName();
 
@@ -39,6 +40,12 @@ public class NavigationBar extends UiPart<Region> {
             String sessionName = currentSelection.getSelectedSession().getSessionName();
 
             status.setText(courseCode + " > " + groupName + " > " + sessionName + " > Attendance");
+        } else if (currentSelection.getCurrentPage() == PageType.TASK_STUDENT_PAGE) {
+            String courseCode = currentSelection.getSelectedCourse().getCourseCode();
+            String groupName = currentSelection.getSelectedGroup().getGroupName();
+            String taskName = currentSelection.getSelectedTask().getTaskName();
+
+            status.setText(courseCode + " > " + groupName + " > " + taskName + " > Grades");
         }
     }
 }

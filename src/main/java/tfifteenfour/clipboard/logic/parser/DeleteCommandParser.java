@@ -52,7 +52,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             deleteCommandType = CommandTargetType.fromString(ArgumentTokenizer.tokenizeString(args)[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ParseException("Delete type missing! Please enter a valid delete command.\n"
-                    + "Available delete commands are: delete course, delete group, delete session, delete task, delete student");
+                    + "Available delete commands are: "
+                    + "delete course, delete group, delete session, delete task, delete student");
         }
 
         Index index;

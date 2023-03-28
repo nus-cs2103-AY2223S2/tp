@@ -144,11 +144,11 @@ public class Task {
         System.out.println("Student " + student.getName() + " has obtained grade " + grade + " for task " + taskName);
     }
 
-    public void selectSession() {
+    public void selectTask() {
         isSelected = true;
     }
 
-    public void unselectSession() {
+    public void unselectTask() {
         isSelected = false;
     }
 
