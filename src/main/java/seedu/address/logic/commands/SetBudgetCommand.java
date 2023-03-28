@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
 import seedu.address.model.Budget;
@@ -11,7 +10,6 @@ import seedu.address.model.Model;
  */
 public class SetBudgetCommand extends Command {
 
-    private final Budget budget;
 
     public static final String COMMAND_WORD = "set";
 
@@ -21,6 +19,7 @@ public class SetBudgetCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_PRICE + " 1000";
 
     public static final String MESSAGE_SUCCESS = "Monthly budget successfully set to ";
+    private final Budget budget;
 
     public SetBudgetCommand(Budget budget) {
         this.budget = budget;

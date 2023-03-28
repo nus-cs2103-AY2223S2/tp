@@ -21,13 +21,6 @@ import seedu.address.model.expense.Expense;
  */
 public class EditExpenseCommand extends Command {
     public static final String COMMAND_WORD = "eexp";
-
-    private final Index targetIndex;
-    private final String newExpenseName;
-    private final Double newExpenseAmount;
-    private final LocalDate newExpenseDate;
-    private final String newExpenseCategoryInString;
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the expense identified by the index number used in the displayed expenses list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
@@ -36,6 +29,13 @@ public class EditExpenseCommand extends Command {
             + "[" + PREFIX_PRICE + "AMOUNT] "
             + "[" + PREFIX_DATE + "DATE] \n"
             + "Example: " + COMMAND_WORD + " 1 n/KFC c/food p/10 d/20/03/23 ";
+
+    private final Index targetIndex;
+    private final String newExpenseName;
+    private final Double newExpenseAmount;
+    private final LocalDate newExpenseDate;
+    private final String newExpenseCategoryInString;
+
 
     /**
      * JavaDoc

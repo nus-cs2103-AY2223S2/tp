@@ -8,7 +8,6 @@ import java.util.Objects;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
-import seedu.address.model.Budget;
 import seedu.address.model.category.Category;
 import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.category.UniqueCategoryList;
@@ -24,8 +23,6 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     private static final MiscellaneousCategory MISCELLANEOUS_CATEGORY = new MiscellaneousCategory();
     private final UniqueCategoryList categories;
     private final ExpenseList expenses;
-//    private final Budget budget;
-
     private final ObjectProperty<Budget> simpleBudget;
 
 
@@ -43,7 +40,6 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     {
         categories = new UniqueCategoryList();
         expenses = new ExpenseList();
-//        budget = new Budget(0);
         simpleBudget = new SimpleObjectProperty<>(new Budget(0));
     }
 

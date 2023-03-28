@@ -70,12 +70,17 @@ public interface Model {
      */
     void deleteExpense(Expense expense);
 
-    void setExpense(int index, Expense expense);
-
     /**
      * Delete all expense.
      */
     void clearExpense();
+
+    /**
+     * Replaces the Expense in the expense list at the given index.
+     * @param index
+     * @param expense
+     */
+    void setExpense(int index, Expense expense);
 
     /**
      * Replaces the given expense {@code target} with {@code editedExpense}.

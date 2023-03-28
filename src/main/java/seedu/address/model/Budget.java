@@ -1,5 +1,8 @@
 package seedu.address.model;
 
+/**
+ * Represents a budget which users of FastTrack can set.
+ */
 public class Budget {
     private double monthBudget;
 

@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.Budget;
 import seedu.address.model.ExpenseTracker;
 import seedu.address.model.ReadOnlyExpenseTracker;
 import seedu.address.model.category.Category;

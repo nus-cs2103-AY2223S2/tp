@@ -7,11 +7,9 @@ import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.logging.Logger;
 
-import javafx.beans.Observable;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
