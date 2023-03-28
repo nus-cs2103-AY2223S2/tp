@@ -87,7 +87,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a client: `add client`
+### Adding a client: `add-client`
 
 Adds a client to the application with the supplied details. The details that can be supplied are the name, email address and phone number of the client.
 
@@ -102,11 +102,23 @@ Examples:
 * `add client name/Alice`
 * `add client name/Clary phone/87654321 email/clary@gmail.com`
 
-### List all clients: `list client`
+Alias: `ac`
+
+### List all clients: `list-client`
 
 List out all clients.
 
 Format: `list client`
+
+Alias: `lc`
+
+### Listing all projects : `list-project`
+
+Shows a list of all projects in the application.
+
+Format: `list project`
+
+Alias: `lp`
 
 ### Adding a project: `add-project`
 
@@ -122,20 +134,14 @@ Clients can be linked by entering individual keywords that are part of the clien
 
 Format: `add-project name/NAME [deadline/DEADLINE] [price/PRICE] [tag/TAG] [client/CLIENT]`
 
-Alias: `ap`
-
 Examples:
 * `add-project name/Background Commission deadline/2023-05-05 price/500 tag/painting client/alice client/wheeler` Adds a project with the name Background Commision, a deadline of 5th May 2023, a price of $500, tagged painting, and links this project to a client whose name contains any of the keywords `alice` or `wheeler`.
 * `add-project name/Oil Painting`
 * `ap n/Background Commission d/2023-05-05 pr/500 t/painting c/alice c/wheeler`
 
-### Listing all projects : `list project`
+Alias: `ap`
 
-Shows a list of all projects in the application.
-
-Format: `list project`
-
-### Editing a client : `edit client`
+### Editing a client : `edit-client`
 
 Edits the client at the given index of the client list, changing only the given field(s).
 Fields that can be changed:
@@ -148,6 +154,8 @@ Format: `edit client <index> [name/NAME] [email/EMAIL] [phone/PHONE]`
 Examples:
 *  `edit client 1 email/new@email.com` Edits the email address of the 1st client to be `new@email.com`.
 *  `edit client 3 name/Alice Risa phone/1234` Edits the name of the 3rd client to `Alice Risa` and phone number to `1234`. 
+
+Alias: `ec`
 
 ### Editing a project : `edit-project`
 
@@ -183,11 +191,13 @@ Format: `delete client <index>`
 Example:
 *  `delete client 1` Deletes the first client in the list (if there is one).
 
-### Deleting a project : `delete project INDEX`
+Alias: `dc`
 
-Deletes the specified project from the artistic artistic addressbook.
+### Deleting a project : `delete-project`
 
-Format: `delete INDEX`
+Deletes the specified project from the project list.
+
+Format: `delete-project INDEX`
 
 * Deletes the project at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -195,6 +205,41 @@ Format: `delete INDEX`
 
 Examples:
 * `list` project followed by `delete 2` deletes the 2nd project in the list of projects
+
+Alias: `dp`
+
+### Finding a projects : `find-project`
+
+Finds a project based on details provided. Details that can be supplied are the name, deadline, price, tags, and 
+client the project is linked to. 
+
+Format: `find-project name/NAME [deadline/DEADLINE] [price/PRICE] [tag/TAG] [client/CLIENT]`
+
+* Finds all projects whose titles contain any of 
+* the specified keywords (case-insensitive) in name, contains any of the tags given (case-insensitive), 
+* shares the same deadline and price, and is linked to the client with the provided client name and displays 
+* them as a list with index numbers.
+
+Examples:
+* "find-project name/sculpture client/alice tag/personal deadline/tomorrow price/500" will find the project 
+* which has title 'sculpture', is linked to client 'alice', has a tag 'personal', deadline that is 'tomorrow', and which has a value of $500.
+
+Alias: `fp`
+
+### Finding a client : `find-client`
+
+Finds a client based on details provided. Details that can be supplied are the client's name, email address, and phone number.
+
+Format: `find-client [name/NAME] [email/EMAIL] [phone/PHONE]`
+
+* Finds all clients whose names contain any of
+* the specified keywords (case-insensitive) in name, has the same email and phone number as the one provided.
+
+Examples:
+* "find-client name/bob email/bob@gmail.com phone/97547849" will find the client
+* which has name 'bob', email 'bob@gmail.com', and phone number 97547849.
+
+Alias: `fc`
 
 ### Mark a project as done : `mark INDEX`
 
