@@ -78,8 +78,7 @@ public class MassOpCommandTest {
     @Test
     public void execute_zeroRegexes_allFiltered() {
         Model modelCopy = model.stateDetachedCopy();
-        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
-                7);
+        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
         FieldsMatchRegexPredicate predicate =
                 new FieldsMatchRegexPredicate(new ArrayList<>(),
                     new ArrayList<>(),
@@ -88,8 +87,10 @@ public class MassOpCommandTest {
                     new ArrayList<>(),
                     new ArrayList<>());
         Tag testTag = new Tag("Test");
+        for (Person p: expectedModel.getFilteredPersonList()) {
+            p.addTag(testTag);
+        }
         MassOpCommand command = new MassOpCommand(predicate, testTag, false);
-        expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, modelCopy, expectedMessage, expectedModel);
         Person aliceWithTag = ALICE.deepCopy();
         aliceWithTag.addTag(testTag);
@@ -106,7 +107,7 @@ public class MassOpCommandTest {
         Person georgeWithTag = GEORGE.deepCopy();
         georgeWithTag.addTag(testTag);
         assertEquals(Arrays.asList(aliceWithTag, bensonWithTag, carlWithTag, danielWithTag,
-                elleWithTag, fionaWithTag, georgeWithTag), model.getFilteredPersonList());
+                elleWithTag, fionaWithTag, georgeWithTag), modelCopy.getFilteredPersonList());
     }
 
 }
