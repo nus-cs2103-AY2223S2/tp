@@ -329,7 +329,7 @@ To remove an athlete named “John” from an existing group named “Hall”, t
 5. If it does, "John" will be removed from the "Hall" group.
 6. John's "Hall" group tag will also be removed.
 
-### Conclusion:
+#### Conclusion:
 The grouping feature provides a way to add, delete and modify the contents of groups in the AddressBook. It is built on top of the `UniqueGroupList` data structure and provides two commands - `group` and `groupmod` - to perform the desired operations.
 Although the overall design of the `GroupList` may seem like an inefficient use of space, since we store duplicate copies of an athlete, an athlete belongs to every existing `Group`. It makes implementation simpler, allowing more operations to be implemented in the future.
 
