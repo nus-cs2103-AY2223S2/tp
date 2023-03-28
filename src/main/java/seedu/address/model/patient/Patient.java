@@ -23,6 +23,7 @@ public class Patient {
     private Status status = new Status("GRAY");
     private WardName ward = new WardName("Waiting Room");
     private Discharge discharge = new Discharge("To Be Confirmed");
+    private final int INVERTER = -1;
 
     /**
      * Constructor for Patient taking in nric and name.
@@ -193,7 +194,7 @@ public class Patient {
      * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
      */
     public int compareToByNameDesc(Patient patient) {
-        return -1 * this.getNameString().compareTo(patient.getNameString());
+        return INVERTER * this.getNameString().compareTo(patient.getNameString());
     }
 
     /**
@@ -209,7 +210,7 @@ public class Patient {
      * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
      */
     public int compareToByStatusDesc(Patient patient) {
-        return -1 * this.getStatus().getValue().compareTo(patient.getStatus().getValue());
+        return INVERTER * this.getStatus().getValue().compareTo(patient.getStatus().getValue());
     }
 
     /**
@@ -225,7 +226,7 @@ public class Patient {
      * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
      */
     public int compareToByDischargeDesc(Patient patient) {
-        return -1 * this.getDischargeString().compareTo(patient.getDischargeString());
+        return INVERTER * this.getDischargeString().compareTo(patient.getDischargeString());
     }
 
     /**
@@ -241,7 +242,7 @@ public class Patient {
      * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
      */
     public int compareToByWardDesc(Patient patient) {
-        return -1 * this.getWardNameString().compareTo(patient.getWardNameString());
+        return INVERTER * this.getWardNameString().compareTo(patient.getWardNameString());
     }
 
     /**
