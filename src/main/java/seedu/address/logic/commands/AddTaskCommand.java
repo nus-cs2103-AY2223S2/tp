@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class AddTaskCommand extends Command {
      * a person
      */
     public AddTaskCommand(Index targetIndex, Task taskToAdd) {
-        requireNonNull(taskToAdd);
+        requireAllNonNull(targetIndex, taskToAdd);
         this.targetIndex = targetIndex;
         this.taskToAdd = taskToAdd;
     }

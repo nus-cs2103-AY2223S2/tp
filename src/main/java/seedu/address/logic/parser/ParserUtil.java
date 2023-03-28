@@ -55,7 +55,13 @@ public class ParserUtil {
      */
     public static Index parseFirstIndex(String twoIndexes) throws ParseException {
         String trimmedIndex = twoIndexes.trim();
-        String firstIndex = trimmedIndex.split(" ")[FIRST_INDEX];
+
+        if (!StringUtil.isTwoIndexString(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+
+        String firstIndex = trimmedIndex.split("\\s+")[FIRST_INDEX];
+
         if (!StringUtil.isNonZeroUnsignedInteger(firstIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
@@ -69,10 +75,17 @@ public class ParserUtil {
      */
     public static Index parseSecondIndex(String twoIndexes) throws ParseException {
         String trimmedIndex = twoIndexes.trim();
-        String secondIndex = trimmedIndex.split(" ")[SECOND_INDEX];
+
+        if (!StringUtil.isTwoIndexString(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+
+        String secondIndex = trimmedIndex.split("\\s+")[SECOND_INDEX];
+
         if (!StringUtil.isNonZeroUnsignedInteger(secondIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
+
         return Index.fromOneBased(Integer.parseInt(secondIndex));
     }
 

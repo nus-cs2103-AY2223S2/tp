@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -39,7 +40,11 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_PARENT_PHONE_AMY = "33333333";
     public static final String VALID_PARENT_PHONE_BOB = "44444444";
-    public static final String VALID_TASK_NAME = "Complete E Math Paper 1";
+    public static final String VALID_TASK_NAME_1 = "Complete E Math Paper 1";
+    public static final String VALID_TASK_NAME_2 = "Do Math Exercise 2";
+    public static final String VALID_SCORE_LABEL = "Test 1";
+    public static final String VALID_SCORE_VALUE = "100";
+    public static final String VALID_SCORE_DATE = "2023-03-09";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -53,6 +58,7 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TASK_NAME_DESC_TASK_1 = " " + PREFIX_TASK_TITLE + VALID_TASK_NAME_1;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PARENT_PHONE_DESC = " " + PREFIX_PARENT_PHONE
@@ -61,16 +67,13 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TASK_NAME_DESC = " " + PREFIX_TASK_TITLE + "Do Exercise 1.1"; // '.' not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
-
-    public static final String VALID_SCORE_LABEL = "Test 1";
-    public static final String VALID_SCORE_VALUE = "100";
-    public static final String VALID_SCORE_DATE = "2023-03-09";
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
