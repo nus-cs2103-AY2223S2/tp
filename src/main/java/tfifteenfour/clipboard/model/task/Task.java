@@ -19,8 +19,9 @@ import tfifteenfour.clipboard.model.student.UniqueStudentList;
  */
 public class Task {
 
-    public static final String MESSAGE_CONSTRAINTS = "Task names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Tasks should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     private final String taskName;
     private Boolean isSelected;
