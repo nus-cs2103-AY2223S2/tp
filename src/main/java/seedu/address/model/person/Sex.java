@@ -36,6 +36,7 @@ public class Sex {
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidSex(String test) {
+        test = test.toUpperCase();
         if (isDefaultSex(test)) {
             return true;
         }
