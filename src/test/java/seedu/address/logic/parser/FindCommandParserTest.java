@@ -55,23 +55,23 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(sharedPredicateList, elderlyPredicateList, Collections.emptyList());
-        String userInput = " n/Alice Pauline a/123, Jurong West Ave 6, #08-111 nr/S9673908G p/94351253 "
+        String userInput = " n/Alice Pauline a/123, Jurong West Ave 6, #08-111 ic/S9673908G p/94351253 "
                 + "bd/1990-01-01 e/alice@example.com t/friends r/medium re/central dr/2023-05-01, 2023-05-12";
         assertParseSuccess(parser, userInput, expectedFindCommand);
 
         // multiple whitespaces between fields
-        userInput = " n/Alice Pauline        a/123, Jurong West Ave 6, #08-111     nr/S9673908G p/94351253 "
+        userInput = " n/Alice Pauline        a/123, Jurong West Ave 6, #08-111     ic/S9673908G p/94351253 "
                 + "bd/1990-01-01    e/alice@example.com t/friends    r/medium re/central   dr/2023-05-01, 2023-05-12";
         assertParseSuccess(parser, userInput, expectedFindCommand);
 
         // fields in any order
-        userInput = " r/medium n/Alice Pauline dr/2023-05-01, 2023-05-12 re/central nr/S9673908G "
+        userInput = " r/medium n/Alice Pauline dr/2023-05-01, 2023-05-12 re/central ic/S9673908G "
                 + "bd/1990-01-01 e/alice@example.com p/94351253 t/friends a/123, Jurong West Ave 6, #08-111";
         assertParseSuccess(parser, userInput, expectedFindCommand);
 
         // all possible fields
         expectedFindCommand = new FindCommand(sharedPredicateList, elderlyPredicateList, volunteerPredicateList);
-        userInput = " n/Alice Pauline a/123, Jurong West Ave 6, #08-111 nr/S9673908G p/94351253 "
+        userInput = " n/Alice Pauline a/123, Jurong West Ave 6, #08-111 ic/S9673908G p/94351253 "
                 + "bd/1990-01-01 e/alice@example.com t/friends r/medium re/central dr/2023-05-01, 2023-05-12 "
                 + "mt/cpr basic";
         assertParseSuccess(parser, userInput, expectedFindCommand);
