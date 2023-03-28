@@ -119,6 +119,17 @@ public abstract class StorageModel<T> implements ReadOnlyStorageModel<T> {
 
 
     /**
+     * Returns the {@code IdData} that is mapped to the specified id.
+     *
+     * @param id - the id of the {@code IdData} to return.
+     * @return the {@code IdData} that is mapped to the specified id.
+     */
+    public IdData<T> get(int id) {
+        return dataMap.get(id);
+    }
+
+
+    /**
      * Removes the data associated with the specified ID.
      *
      * @param id - the ID of the data to remove.

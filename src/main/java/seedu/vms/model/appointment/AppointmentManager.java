@@ -60,8 +60,8 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
         HashSet<Integer> validPatients = new HashSet<>(patientManager
                 .getMapView()
                 .keySet());
-        HashSet<String> validVaxs = new HashSet<>(vaxTypeManager.
-                asUnmodifiableObservableMap()
+        HashSet<String> validVaxs = new HashSet<>(vaxTypeManager
+                .asUnmodifiableObservableMap()
                 .keySet());
 
         List<IdData<Appointment>> invalidAppointments = getMapView().entrySet().stream()
