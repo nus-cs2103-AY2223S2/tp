@@ -403,21 +403,23 @@ Example:
 ## Command summary
 
 
-| Action                     | Format, Examples                                                                                                                                                      |
-|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**                  | `clear`                                                                                                                                                               |
-| **Delete**                 | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**                   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**                   | `find KEYWORD [MORE KEYWORDS] [p/PHONE] [e/EMAIL] [a/ADDRESS] [w/WEIGHT] [g/GENDER]…​`<br> e.g., `find James Jake p/91234567 e/jamesjake@example.com`                 |
-| **List**                   | `listClients`                                                                                                                                                         |
-| **Help**                   | `help`                                                                                                                                                                |
-| **Export Client Details**  | `export`                                                                                                                                                              |
-| **Add Exercise**           | `addExercise ROUTINE INDEX ex/EXERCISE` <br> e.g, `addExercise 1 ex/4 x 3 sprints`                                                                                    |
-| **Delete Exercise**        | `deleteExercise ROUTINE INDEX EXERCISE INDEX` <br> e.g, `deleteExercise 1 2`                                                                                          |
-| **Delete Routine**         | `deleteRoutine ROUTINE INDEX ` <br> e.g, `deleteRoutine 1`                                                                                                            |
-| **List Routine**           | `listRoutines`                                                                                                                                                        |
-| **Clear Routine**          | `clearRoutines`                                                                                                                                                       |
-| **Find Routine**           | `findRoutine ROUTINE NAME` <br> e.g, `findRoutine Cardio`                                                                                                             |
-| **Export Routine Details** | `exportRoutine`                                                                                                                                                        |
+| Action                           | Format, Examples                                                                                                                                                      |
+|----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear all entries in FitBook** | `clear`                                                                                                                                                               |
+| **Delete**                       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**                         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**                         | `find KEYWORD [MORE KEYWORDS] [p/PHONE] [e/EMAIL] [a/ADDRESS] [w/WEIGHT] [g/GENDER]…​`<br> e.g., `find James Jake p/91234567 e/jamesjake@example.com`                 |
+| **List**                         | `listClients`                                                                                                                                                         |
+| **Help**                         | `help`                                                                                                                                                                |
+| **Export Client Details**        | `export`                                                                                                                                                              |
+| **Add Exercise**                 | `addExercise ROUTINE INDEX ex/EXERCISE` <br> e.g, `addExercise 1 ex/4 x 3 sprints`                                                                                    |
+| **Add Routine**                  | `addRoutine r/Cardio ex/3x5 1km Jog ex/3x10 Jumping Jacks `                                                                                                                                                                      |
+| **Edit Routine**                 |                                                                                                                                                                                                                                  |
+| **Delete Exercise**              | `deleteExercise ROUTINE INDEX EXERCISE INDEX` <br> e.g, `deleteExercise 1 2`                                                                                          |
+| **Delete Routine**               | `deleteRoutine ROUTINE INDEX ` <br> e.g, `deleteRoutine 1`                                                                                                            |
+| **List Routine**                 | `listRoutines`                                                                                                                                                        |
+| **Clear Routine**                | `clearRoutines`                                                                                                                                                       |
+| **Find Routine**                 | `findRoutine ROUTINE NAME` <br> e.g, `findRoutine Cardio`                                                                                                             |
+| **Export Routine Details**       | `exportRoutine`                                                                                                                                                       |
 
