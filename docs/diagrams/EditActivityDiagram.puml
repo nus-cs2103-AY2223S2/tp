@@ -2,9 +2,6 @@
 start
 :User executes edit command;
 
-'Since the beta syntax does not support placing the condition outside the
-'diamond we place it as the true branch instead.
-
 :Extracts all the parameters from the command;
 
 :Gets the task at the corresponding index in the task list;

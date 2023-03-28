@@ -206,7 +206,7 @@ The following diagram summarises the sequence of events happening during the exe
 ![AddCommandSequenceDiagram](images/AddCommand.png)
 
 The following diagram summarises how the activities unfold after the user types 'Find' Command.
-![SortCommandSequenceDiagram](images/AddActivityDiagram.png)
+![AddCommandActivityDiagram](images/AddActivityDiagram.png)
 
 #### 3.1.1 Add a Subsection
 Our app supports adding a subsection to a parent task. The command word is `subsection` and the parameters are `index`, `n/name` and `d/description`. Note that the description here is optional.
@@ -231,7 +231,7 @@ The following diagram summarises the sequence of events happening during the exe
 ![SubsectionSequenceDiagram](images/SubsectionSequenceDiagram.png)
 
 The following diagram summarises how the activities unfold after the user types 'Find' Command.
-![SortCommandSequenceDiagram](images/SubsectionActivityDiagram.png)
+![SubsectionActivityDiagram](images/SubsectionActivityDiagram.png)
 
 #### 3.1.2 Delete a Subsection
 The user can delete a subsection from a parent task by entering `remove-subsection` command.
@@ -342,11 +342,11 @@ Step 5. The result of the filtered list is passed back to the UI.
 
 The following sequence diagram summarizes what happens in this example usage scenario:
 
-![SortCommandSequenceDiagram](images/FindSequenceDiagram.png)
+![FindCommandSequenceDiagram](images/FindSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a new `find` command:
 
-![SortCommandSequenceDiagram](images/FindActivityDiagram.png)
+![FindCommandActivityDiagram](images/FindActivityDiagram.png)
 
 #### 3.5.1 Design Consideration
 
