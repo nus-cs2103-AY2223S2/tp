@@ -16,7 +16,7 @@ public enum PlaneLocationType {
     public String toString() {
         switch (this) {
         case LOCATION_USING:
-            return "Location being used";
+            return "Plane";
         default:
             return "Unknown";
         }
