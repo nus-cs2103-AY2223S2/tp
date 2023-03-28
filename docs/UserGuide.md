@@ -59,7 +59,7 @@ If you are first time users of CoDoc, we highly recommend that you read through 
 **familiar** with CoDoc and to gain the most out of your experience.
 
 We have provided a quick tutorial on how to [download and install](#download-and-installation) CoDoc, 
-how to make sense of the [interface](#navigation), as well as how to [properly use each command](#tutorial). 
+how to make sense of the [interface](#navigation), as well as how to [properly use each command](#codoc-tutorial--your-first-steps). 
 
 If you are proficient with the command types and are looking for a quick summary of our commands, you may jump to our [Command Summary](#command-summary) that contains relevant examples.
 
@@ -278,7 +278,7 @@ Related: [Adding a person: `add`](#2-adding-a-person--add)
 
 #### 2. Viewing a person
 
-Now that you have added Bob into CoDoc, you can view his details by using the [View command](#viewing-a-personchanging-tabs--view).
+Now that you have added Bob into CoDoc, you can view his details by using the [View command](#2-viewing-a-person).
 This will load Bob's details into the [**Info Panel**](#navigation).
 
 To do so, let's first identify Bob's _index_. From the [**Person List Panel**](#navigation), we can tell that Bob is
@@ -311,7 +311,7 @@ contact information.
 
 >💡 **Tips**: CoDoc also supports GUI, so you can click on the name of different tabs to switch between tabs.
 
-**Related:** [Viewing a person/Changing tabs: `view`](#viewing-a-personchanging-tabs--view)
+**Related:** [Viewing a person/Changing tabs: `view`](#2-viewing-a-person)
 
 <br>
 
@@ -326,7 +326,7 @@ First make sure that Bob is shown in the right panel using the View command. In 
 do so.
 
 >**Why is this step necessary?:** Editing only works on the person shown in the info panel. Make sure you are viewing
-> the correct person with the [View command](#viewing-a-personchanging-tabs--view) (or with a click) before you enter
+> the correct person with the [View command](#2-viewing-a-person) (or with a click) before you enter
 > the [Edit command](#4-editing-a-person--edit).
 
 After you see Bob in the **Info Panel**, enter `edit m/ay2223s2 cs2101 m/ay2223s2 cs2103t` in the command box. 
@@ -347,7 +347,7 @@ As the name suggests, [Edit command](#4-editing-a-person--edit) is capable of ed
 _name_, _year_, _GitHub username_, etc. Use this to fix your mistakes or update your database as you progress your studies!
 
 **Related:** [Adding a person: `add`](#2-adding-a-person--add),
-[Viewing a person: `view`](#viewing-a-personchanging-tabs--view),
+[Viewing a person: `view`](#2-viewing-a-person),
 [Editing a person: `edit`](#4-editing-a-person--edit)
 
 <br>
@@ -372,7 +372,7 @@ If you tried the examples for previous commands, Bob would be shown as well.
 Our `find` command is pretty powerful; it works for other attributes, like _year_, _skills_, etc. and you can find by
 multiple attributes. To learn more about it, you can take a look at [Finding a person: `find`](#5-finding-a-person--find).
 
-**Related docs:** [Finding a person: `find`](#5-finding-a-person--find), [Listing all persons/Resetting filters: `list`](#listing-all-personsresetting-filters--list)
+**Related docs:** [Finding a person: `find`](#5-finding-a-person--find), [Listing all persons/Resetting filters: `list`](#6-listing-all-personsresetting-filters--list)
 
 <br>
 
