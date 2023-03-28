@@ -202,8 +202,8 @@ to our GitHub Releases page. Find the latest release and download the latest ver
 
 If you have managed to complete all steps, congratulations! You should be seeing CoDoc application 
 launched in its factory state as shown below.
-   
-<img src="images/Ui-minimised.png"/>
+
+![Ui-minimised](images/Ui-minimised.png)
         <br>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
@@ -220,7 +220,7 @@ This way you can see more content as well.
 
 Below is the breakdown of the CoDoc screen:
 
-<img src="images/navigation.png"/>
+![navigation](images/navigation.png)
 
 - **Menu Bar:** if you ever feel stuck, you can always click on the `Help` button here or enter `help` in the command box. 
 - **Command Box:** this is where you can type in commands.
@@ -251,7 +251,7 @@ taking **Computer Science** and his email address is **e0823741@u.nus.edu**. Her
 In the command box, enter the command `add n/Bob y/2 c/6 e/e0823741@u.nus.edu` and press the `enter` key.
 This will add a new person named Bob to our contact list.
 
-<img src="images/UG-tutorial/adding-bob.png"/>
+![adding-bob](images/UG-tutorial/adding-bob.png)
 
 After executing the command, we see that Bob has been added below the list.
 
@@ -287,7 +287,7 @@ numbered `8` in this example. This is his _index_.
 Now enter `view 8` into the command box.
 His _contact_ details will then be shown in the **Info Panel**.
 
-<img src="images/UG-tutorial/viewing-bob.png"/>
+![viewing-bob](images/UG-tutorial/viewing-bob.png)
 
 You may try loading another person's details by using different _index_ (e.g. `view 2`). 
 
@@ -301,7 +301,7 @@ the _detailed contacts_ tab, showing basic contact details.
 Now let's try viewing other tabs in **Info Panel**. 
 To do so, enter `view m` in the command box. This will show Bob's **modules taken** under _detailed modules_ tab.
 
-<img src="Desktop/CS2103T/tp/docs/images/UG-tutorial/viewing-bobs-modules.png"/>
+![viewing-bobs-modules](images/UG-tutorial/viewing-bobs-modules.png)
 
 Note that you do not see anything of value, and that is because we have not added any modules Bob has taken so far
 (don't worry, we will show how you can add onto this list below).
@@ -331,7 +331,7 @@ do so.
 
 After you see Bob in the **Info Panel**, enter `edit m/ay2223s2 cs2101 m/ay2223s2 cs2103t` in the command box. 
 
-<img src="Desktop/CS2103T/tp/docs/images/UG-tutorial/editing-bobs-modules.png"/>
+![editing-bobs-modules](images/UG-tutorial/editing-bobs-modules.png)
 
 You can now see that Bob's list of **modules taken** has been updated to contain modules _CS2101_ and _CS2103T_
 (enter `view m` if you're not on the _modules_ tab).
@@ -365,7 +365,7 @@ have been applied. We can do this by entering `list` into the command box. This 
 Then enter `find m/cs2103t`. This will make **Person List Panel** show only the people who have CS2103T in their module
 list. On successful execution, you will see something like below.
 
-<img src="Desktop/CS2103T/tp/docs/images/UG-tutorial/finding-cs2103t.png"/>
+![finding-cs2103t](images/UG-tutorial/finding-cs2103t.png)
 
 If you tried the examples for previous commands, Bob would be shown as well.
 
