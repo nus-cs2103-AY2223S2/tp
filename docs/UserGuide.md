@@ -204,7 +204,7 @@ At least one of the following arguments must be provided:
   - THe client's new email. Must be unique in Mycelium. Case sensitive.
   - **Default:** *null*
 - **`-y year_of_birth`**
-  - The client’s year of birth.
+  - The client’s new year of birth.
   - **Default:** *null*
 - **`-src source`**
   - The client’s digital service platform, e.g. Fiverr.
