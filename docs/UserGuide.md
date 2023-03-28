@@ -189,8 +189,8 @@ Required Information:
 
 Examples:
 *  `meetingUpdate 1 1 md/ Policy discussion` Edits the meeting description of the 1st meeting belonging to the 1st person to `Policy discussion`
-*  `meetingUpdate 2 3 md/ Plan review ms/ 30-03-2020 20:10 me/ 22:10` Updates the description, start and end of the 3rd meeting belonging to the 2nd person
-to `Plan review`, `30-03-2020 20:10` and `22:10` respectively
+*  `meetingUpdate 2 3 md/ Plan review ms/ 30-03-2020 20:10 me/ 30-03-2020 22:10` Updates the description, start and end of the 3rd meeting belonging to the 2nd person
+to `Plan review`, `30-03-2020 20:10` and `30-03-2020 22:10` respectively
 
 Notes:
 * Edits the meetings of person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3,

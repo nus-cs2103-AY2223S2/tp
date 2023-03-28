@@ -32,6 +32,9 @@ public class UpdateMeetingCommandParser implements Parser<UpdateMeetingCommand> 
 
         String[] allIndexes = argMultimap.getPreamble().split(" ");
 
+        if (allIndexes.length > 2) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateMeetingCommand.MESSAGE_USAGE));
+        }
         try {
             index = ParserUtil.parseIndex(allIndexes[0]);
             meetingIndex = ParserUtil.parseIndex(allIndexes[1]);
@@ -45,11 +48,10 @@ public class UpdateMeetingCommandParser implements Parser<UpdateMeetingCommand> 
                 ParserUtil.parseMeetingDescription(argMultimap.getValue(PREFIX_MEETING_DESC).get()));
         }
         if (argMultimap.getValue(PREFIX_MEETING_START).isPresent()) {
-            editMeetingDescriptor.setStart(ParserUtil.parseStart(argMultimap.getValue(PREFIX_MEETING_START).get()));
+            editMeetingDescriptor.setStart(ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_MEETING_START).get()));
         }
         if (argMultimap.getValue(PREFIX_MEETING_END).isPresent()) {
-            editMeetingDescriptor.setEnd(ParserUtil.parseEnd(argMultimap.getValue(PREFIX_MEETING_START).get(),
-                argMultimap.getValue(PREFIX_MEETING_END).get()));
+            editMeetingDescriptor.setEnd(ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_MEETING_END).get()));
         }
         if (!editMeetingDescriptor.isAnyFieldEdited()) {
             throw new ParseException(UpdateMeetingCommand.MESSAGE_NOT_EDITED);

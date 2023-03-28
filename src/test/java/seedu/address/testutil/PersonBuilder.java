@@ -118,9 +118,9 @@ public class PersonBuilder {
         } else {
             String[] args = dateTime.trim().split(" ", 1);
             String desc = args[0];
-            String dateTimeString = args[1];
-            LocalDateTime[] dateTimes = ParserUtil.parseDateTime(dateTimeString);
-            Meeting meetingToAdd = new Meeting(desc, dateTimes[0], dateTimes[1]);
+            LocalDateTime start = ParserUtil.parseDateTime(args[1]);
+            LocalDateTime end = ParserUtil.parseDateTime(args[2]);
+            Meeting meetingToAdd = new Meeting(desc, start, end);
             this.meetings.add(meetingToAdd);
         }
 

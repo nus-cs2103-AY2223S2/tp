@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DESC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_START;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -42,9 +45,13 @@ public class CommandTestUtil {
     public static final String VALID_MEETING_DESC_AMY = "Amy's Meeting";
     public static final LocalDateTime VALID_MEETING_START_AMY = LocalDateTime.of(2023, 3, 25, 19, 25);
     public static final LocalDateTime VALID_MEETING_END_AMY = LocalDateTime.of(2023, 3, 25, 20, 25);
+    public static final String VALID_MEETING_START_STRING_AMY = "25-03-2023 19:25";
+    public static final String VALID_MEETING_END_STRING_AMY = "25-03-2023 20:25";
     public static final String VALID_MEETING_DESC_BOB = "Bob's Meeting";
     public static final LocalDateTime VALID_MEETING_START_BOB = LocalDateTime.of(2023, 3, 25, 12, 0);
     public static final LocalDateTime VALID_MEETING_END_BOB = LocalDateTime.of(2023, 3, 25, 15, 0);
+    public static final String VALID_MEETING_START_STRING_BOB = "25-03-2023 12:00";
+    public static final String VALID_MEETING_END_STRING_BOB = "25-03-2023 15:00";
     public static final Meeting VALID_MEETING_AMY = new Meeting();
     public static final Meeting VALID_MEETING_BOB = new Meeting();
 
@@ -58,6 +65,12 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String M_DESC_AMY = " " + PREFIX_MEETING_DESC + VALID_MEETING_DESC_AMY;
+    public static final String M_START_AMY = " " + PREFIX_MEETING_START + VALID_MEETING_START_STRING_AMY;
+    public static final String M_END_AMY = " " + PREFIX_MEETING_END + VALID_MEETING_END_STRING_AMY;
+    public static final String M_DESC_BOB = " " + PREFIX_MEETING_DESC + VALID_MEETING_DESC_BOB;
+    public static final String M_START_BOB = " " + PREFIX_MEETING_START + VALID_MEETING_START_STRING_BOB;
+    public static final String M_END_BOB = " " + PREFIX_MEETING_END + VALID_MEETING_END_STRING_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

@@ -96,16 +96,16 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addMeeting() throws Exception {
-        final String meeting_desc = "sample";
-        final String meeting_start = "30-12-2020 15:30";
-        final String meeting_end  = "30-12-2020 16:30";
+        final String meetingDesc = "sample";
+        final String meetingStart = "30-12-2020 15:30";
+        final String meetingEnd = "30-12-2020 16:30";
         final Meeting sampleMeeting = new Meeting("sample",
             LocalDateTime.of(2020, 12, 30, 15, 30),
             LocalDateTime.of(2020, 12, 30, 16, 30)
         );
-        AddMeetingCommand command = (AddMeetingCommand) parser.parseCommand(AddMeetingCommand.COMMAND_WORD + " "
-            + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_MEETING_DESC + meeting_desc + " "
-        + PREFIX_MEETING_START + meeting_start + " " + PREFIX_MEETING_END + meeting_end);
+        AddMeetingCommand command = (AddMeetingCommand) parser.parseCommand(AddMeetingCommand.COMMAND_WORD
+            + " " + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_MEETING_DESC + meetingDesc
+            + " " + PREFIX_MEETING_START + meetingStart + " " + PREFIX_MEETING_END + meetingEnd);
         assertEquals(new AddMeetingCommand(INDEX_FIRST_PERSON, sampleMeeting), command);
     }
 

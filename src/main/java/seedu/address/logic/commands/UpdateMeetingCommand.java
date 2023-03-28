@@ -21,13 +21,12 @@ import seedu.address.model.person.Person;
  */
 public class UpdateMeetingCommand extends Command {
     public static final String COMMAND_WORD = "meetingUpdate";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates a meeting of a person identified"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates a meeting of a person identified "
         + "by the index number of the person and index number of the person's meeting.\n"
         + "The meeting will not be updated if there are clashes with"
-        + "other meetings on the day or period specified, "
-        + "or if the end is before the start.\n"
-        + "Parameters: [INDEX] [MEETINGINDEX] md/ [DESCRIPTION] ms/ [DATE START] me/ [TIME END]\n"
-        + "Example: " + COMMAND_WORD + "1 2 md/ Policy discussion ms/ 30-03-2020 20:10 me/ 22:10";
+        + "other meetings on the day or period specified, " + "or if the end is before the start.\n"
+        + "Parameters: [INDEX] [MEETINGINDEX] md/[DESCRIPTION] ms/[DATE START] me/[DATE END]\n"
+        + "Example: " + COMMAND_WORD + " 1 2 md/Policy discussion ms/30-03-2020 20:10 me/22:10";
     public static final String MESSAGE_UPDATE_MEETING_SUCCESS = "Meeting of Person updated: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
@@ -37,8 +36,9 @@ public class UpdateMeetingCommand extends Command {
 
     /**
      * Constructor for UpdateMeetingCommand object
-     * @param index index of Person
-     * @param meetingIndex Index of meeting to be updated
+     *
+     * @param index                 index of Person
+     * @param meetingIndex          Index of meeting to be updated
      * @param editMeetingDescriptor Object storing edited meeting
      */
     public UpdateMeetingCommand(Index index, Index meetingIndex, EditMeetingDescriptor editMeetingDescriptor) {
@@ -55,14 +55,19 @@ public class UpdateMeetingCommand extends Command {
      * Creates and returns a {@code Meeting} with the details of {@code meetingToEdit}
      * edited with {@code editMeetingDescriptor}.
      */
-    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor) {
+    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor)
+            throws CommandException {
         assert meetingToEdit != null;
 
         String updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
         LocalDateTime updatedStart = editMeetingDescriptor.getStart().orElse(meetingToEdit.getStart());
         LocalDateTime updatedEnd = editMeetingDescriptor.getEnd().orElse(meetingToEdit.getEnd());
-
-        return new Meeting(updatedDescription, updatedStart, updatedEnd);
+        Meeting m = new Meeting(updatedDescription, updatedStart, updatedEnd);
+        if (m.isCorrectPeriod()) {
+            String incorrectDateTimeMsg = "Start date and time should be before end date and time!";
+            throw new CommandException(incorrectDateTimeMsg);
+        }
+        return m;
     }
 
     @Override
@@ -116,6 +121,10 @@ public class UpdateMeetingCommand extends Command {
     }
 
     @Override
+    public String toString() {
+        return this.index + " " + this.meetingIndex + " " + this.editMeetingDescriptor;
+    }
+    @Override
     public boolean equals(Object other) {
         // short circuit if same object
         if (other == this) {
@@ -129,7 +138,8 @@ public class UpdateMeetingCommand extends Command {
 
         // state check
         UpdateMeetingCommand e = (UpdateMeetingCommand) other;
-        return index.equals(e.index) && editMeetingDescriptor.equals(e.editMeetingDescriptor);
+        return index.equals(e.index) && meetingIndex.equals(e.meetingIndex)
+            && editMeetingDescriptor.equals(e.editMeetingDescriptor);
     }
 
     /**
@@ -141,10 +151,12 @@ public class UpdateMeetingCommand extends Command {
         private LocalDateTime start;
         private LocalDateTime end;
 
-        public EditMeetingDescriptor() {}
+        public EditMeetingDescriptor() {
+        }
 
         /**
          * Constructor for EditMeetingDescriptor object
+         *
          * @param toCopy Meeting to be edited
          */
         public EditMeetingDescriptor(EditMeetingDescriptor toCopy) {
@@ -182,6 +194,11 @@ public class UpdateMeetingCommand extends Command {
 
         public void setEnd(LocalDateTime end) {
             this.end = end;
+        }
+
+        @Override
+        public String toString() {
+            return this.description + " " + this.start + " " + this.end;
         }
 
         @Override
