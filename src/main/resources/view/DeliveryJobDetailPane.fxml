@@ -14,8 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane id="detail-pane" prefWidth="500.0" styleClass="background" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="detail-pane" prefWidth="500.0" styleClass="background" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox spacing="10.0">
          <children>
@@ -26,7 +25,10 @@
                   <AnchorPane maxWidth="1.7976931348623157E308">
                      <children>
                         <Label contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" styleClass="label-bright" text="Contact Detail:" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        <Button fx:id="toggleContactButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#toggleVisibility" text="Hide" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="toggleContactButton" mnemonicParsing="false" onAction="#toggleVisibility" prefHeight="35.0" text="Hide" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <graphic>
+                              <Label graphicTextGap="0.0" styleClass="label-bright" text="👁" />
+                           </graphic></Button>
                      </children>
                   </AnchorPane>
                   <GridPane fx:id="contactDetailPane" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="label-bright">
@@ -59,27 +61,26 @@
          <children>
             <GridPane fx:id="fullDeliveryJobDetailPlaceholder" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                   <RowConstraints vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <HBox spacing="5">
                      <children>
-                        <Label fx:id="label" styleClass="label-header" text="\$job_label">
+                        <Label fx:id="label" alignment="TOP_LEFT" styleClass="label-header" text="\\$job_label">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <VBox alignment="CENTER_LEFT" minWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <VBox alignment="TOP_RIGHT" minWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets bottom="10.0" right="10.0" top="10.0" />
                      </padding>
                      <children>
                         <Label styleClass="label-bright" text="Earning:">
@@ -87,7 +88,7 @@
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </Label>
-                        <Label fx:id="earning1" contentDisplay="RIGHT" styleClass="label-bright" text="\$">
+                        <Label fx:id="earning1" contentDisplay="RIGHT" styleClass="label-bright-header" text="\$">
                            <font>
                               <Font name="System Italic" size="24.0" />
                            </font>
@@ -118,8 +119,14 @@
                      <children>
                         <Label styleClass="label-bright" text="Delivery Schedule:" />
                         <Label fx:id="deliveryAddress" contentDisplay="RIGHT" styleClass="label-bright" text="\\$delivery_address" textFill="#69e6ff80" underline="true" />
-                        <Label fx:id="deliveryTimeDate" contentDisplay="RIGHT" styleClass="label-bright" text="\$delivery_time_date" />
-                        <Label fx:id="deliveryTimeSlot" styleClass="label-bright" text="\$delivery_time_slot" />
+                        <Label fx:id="deliveryTimeDate" graphicTextGap="6.0" styleClass="label-bright" text="\\$delivery_time_date">
+                           <graphic>
+                              <Label styleClass="label-bright-header" text="📅" />
+                           </graphic></Label>
+                        <Label fx:id="deliveryTimeSlot" graphicTextGap="6.0" styleClass="label-bright" text="\\$delivery_time_slot">
+                           <graphic>
+                              <Label styleClass="label-bright-header" text="🕧" />
+                           </graphic></Label>
                      </children>
                      <padding>
                         <Insets bottom="10.0" right="10.0" top="10.0" />
@@ -127,8 +134,14 @@
                   </VBox>
                   <HBox alignment="TOP_RIGHT" spacing="5.0" GridPane.columnIndex="1">
                      <children>
-                        <Button fx:id="completeButton" mnemonicParsing="false" onAction="#handleCompleteAction" text="Mark Delivered" />
-                        <Button mnemonicParsing="false" onAction="#handleEditAction" text="Edit" />
+                        <Button fx:id="completeButton" mnemonicParsing="false" onAction="#handleCompleteAction" text="Mark Delivered">
+                           <graphic>
+                              <Label graphicTextGap="0.0" styleClass="label-bright" text="✅" textFill="WHITE" />
+                           </graphic></Button>
+                        <Button mnemonicParsing="false" onAction="#handleEditAction" text="Edit">
+                           <graphic>
+                              <Label graphicTextGap="0.0" styleClass="label-bright" text="🖋" />
+                           </graphic></Button>
                      </children>
                   </HBox>
                </children>

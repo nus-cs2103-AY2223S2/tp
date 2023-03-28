@@ -99,7 +99,6 @@ public class AddressBookWindow extends UiPart<Stage> {
     public void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), (person) -> {
             selectHandler.accept(person);
-            getRoot().close();
         }, personIndex -> {
             try {
                 logic.execute(new DeleteCommand(personIndex));

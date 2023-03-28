@@ -159,6 +159,11 @@ public interface Model {
     ObservableList<DeliveryJob> getDeliveryJobList();
 
     /**
+     * Returns job list
+     */
+    ObservableList<DeliveryJob> getSortedDeliveryJobListByComparator();
+
+    /**
      * Updates filtered delivery job list based on new predicate
      * @param predicate
      */
@@ -169,6 +174,12 @@ public interface Model {
      * @param sorter
      */
     void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter);
+
+    /**
+     * Updates sorted delivery job list based on new sorter
+     * @param sorter
+     */
+    void updateSortedDeliveryJobListByComparator(Comparator<DeliveryJob> sorter);
 
     /**
      * Updates sorted delivery job list by date

@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.jobs.DeliveryJob;
@@ -39,6 +40,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<DeliveryJob> filteredDeliveryJobs;
+    private final SortedList<DeliveryJob> sortedDeliveryJobsList;
     private final ObservableList<Reminder> reminderList;
     private final Map<LocalDate, DeliveryList> weekJobListGroupedByDate;
     private List<DeliveryJob> sortedDeliveryJobs;
@@ -65,6 +67,7 @@ public class ModelManager implements Model {
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.filteredDeliveryJobs = new FilteredList<>(this.deliveryJobSystem.getDeliveryJobList());
         this.sortedDeliveryJobs = new ArrayList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
+        this.sortedDeliveryJobsList = new SortedList<>(filteredDeliveryJobs);
         //updateSortedDeliveryJobListByDate();
         this.jobListGroupedByDate = new HashMap<LocalDate, DeliveryList>();
         this.weekJobListGroupedByDate = new HashMap<LocalDate, DeliveryList>();
@@ -243,6 +246,16 @@ public class ModelManager implements Model {
     public void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter) {
         sortedDeliveryJobs = new ArrayList<DeliveryJob>(deliveryJobSystem.getDeliveryJobList());
         Collections.sort(sortedDeliveryJobs, sorter);
+    }
+
+    @Override
+    public void updateSortedDeliveryJobListByComparator(Comparator<DeliveryJob> sorter) {
+        sortedDeliveryJobsList.setComparator(sorter);
+    }
+
+    @Override
+    public ObservableList<DeliveryJob> getSortedDeliveryJobListByComparator() {
+        return sortedDeliveryJobsList;
     }
 
     @Override

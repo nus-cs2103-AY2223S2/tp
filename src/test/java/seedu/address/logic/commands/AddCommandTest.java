@@ -17,6 +17,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -299,6 +300,18 @@ public class AddCommandTest {
         public ObservableList<DeliveryJob> getFilteredDeliveryJobList() {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getFilteredDeliveryJobList'");
+        }
+
+        @Override
+        public void updateSortedDeliveryJobListByComparator(Comparator<DeliveryJob> sorter) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'updateSortedDeliveryJobListByComparator'");
+        }
+
+        @Override
+        public ObservableList<DeliveryJob> getSortedDeliveryJobListByComparator() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getSortedDeliveryJobListByComparator'");
         }
 
     }

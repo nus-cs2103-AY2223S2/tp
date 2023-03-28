@@ -66,4 +66,13 @@ public class Earning {
         return value.hashCode();
     }
 
+    /**
+     * Parses string value to double.
+     *
+     * @return
+     */
+    public double toDouble() {
+        return Double.parseDouble(value);
+    }
+
 }
