@@ -2,7 +2,7 @@
 [![CI Status](https://github.com/AY2223S2-CS2103T-T14-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-T14-2/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103-T14-2/tp/branch/master/graph/badge.svg)](https://app.codecov.io/gh/AY2223S2-CS2103-T14-2/tp)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/UI/Ui.png)
 
 It is the one-stop application for your needs of managing pets! Be it for your daycare center or your pet shelter,
 this app is what you need for managing large number of pets!
