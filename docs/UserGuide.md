@@ -3,16 +3,18 @@ layout: page
 title: User Guide
 ---
 
+# 1. What is SudoHR?
+
 SudoHR is a **desktop app specially catered for HR professionals in managing employees, departments and leaves data,
 optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface
 (GUI). If you can type fast, SudoHR can get your HR management tasks done faster than traditional GUI apps.
 
-* Table of Contents
+# 2. Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# 3. Features
 
 There are 3 main types of data in SudoHR:
 * Employees
@@ -22,7 +24,7 @@ There are 3 main types of data in SudoHR:
 SudoHR allows you to manage these components by:
 1. Creating, updating, listing and deleting of the 3 data types.
 2. Adding/Removing employees in departments/leaves.
-3. Apply different filters on the data.
+3. Applying different filters on the data.
 
 <div markdown="span" class="alert alert-danger">**WARNING:**
 SudoHR can only hold up to 10,000 employees, 10,000 departments, 10,000 leaves
@@ -32,7 +34,7 @@ problems.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# 4. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -53,13 +55,19 @@ problems.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick Reference Guide
+# 5. Notations
 
-### Layout
+[//]: # (Explain notations used in the UG)
+
+--------------------------------------------------------------------------------------------------------------------
+
+# 6. Quick Reference Guide
+
+## 6.1. Layout
 
 [//]: # (<-- Insert labelled UI here -->)
 
-### Key definitions
+## 6.2. Key definitions
 
 [//]: # (GENERAL FORMAT OF DATA TYPE DEFINITION:)
 
@@ -67,11 +75,12 @@ problems.
 [//]: # (2. Explain fields)
 [//]: # (3. Explain constraints)
 
-#### Employee
+### 6.2.1. Employee
 
 [//]: # (To be done by Andre)
+An employee represents an employee in your company.
 
-#### Department
+### 6.2.2. Department
 
 A department is a group for employees. A department can have many employees and
 an employee can be in many departments.
@@ -84,11 +93,12 @@ The following attributes are stored for each department:
 Departments are unique by name and case-sensitive. You cannot add more than one
 department of the same name.
 
-#### Leave
+### 6.2.3. Leave
 
 [//]: # (To be done by Jer En)
+A leave can be taken by many employees.
 
-#### Prefixes
+### 6.2.4. Prefixes
 
 [//]: # (Explain prefixes in the command and their corresponding placeholders)
 
@@ -109,7 +119,7 @@ There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 | g/     | DATE                       |
 | eid/   | EMPLOYEE_ID                |
 
-#### Placeholders
+### 6.2.5. Placeholders
 
 [//]: # (List placeholders in the command)
 | Placeholder             | Corresponding Flag | Format                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
@@ -127,19 +137,19 @@ There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 
 [//]: # (Talk about their constraints, type, format, etc)
 
-### Command Format
+## 6.3. Command Format
 
 [//]: # (Explain the general command format: command, prefixes, placeholders)
 
-### Trying your first command
+## 6.4. Trying your first command
 
 [//]: # (<-- Insert example context here -->)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Commands
+# 7. Commands
 
-### Viewing help : `help`
+## 7.1. Viewing help : `help`
 
 Shows a message explaining how to access the help page for SudoHR.
 
@@ -147,7 +157,9 @@ Shows a message explaining how to access the help page for SudoHR.
 
 Format: `help`
 
-### Adding an employee: `add`
+## 7.2. Employee Commands
+
+### 7.2.1. Adding an employee: `add`
 
 Adds an employee to SudoHR.
 
@@ -161,13 +173,13 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all employees : `list`
+### 7.2.2. Listing all employees : `list`
 
 Shows a list of all employees in SudoHR.
 
 Format: `list`
 
-### Editing an employee : `edit`
+### 7.2.3. Editing an employee : `edit`
 
 Edits an existing employee in SudoHR.
 
@@ -184,7 +196,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
 
-### Locating employees by name: `find`
+### 7.2.4. Find employees by name: `find`
 
 Finds employees whose names contain any of the given keywords.
 
@@ -202,7 +214,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting an employee : `delete`
+### 7.2.5. Deleting an employee : `delete`
 
 Deletes the specified employee from SudoHR.
 
@@ -216,7 +228,9 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd employee in SudoHR.
 * `find Betsy` followed by `delete 1` deletes the 1st employee in the results of the `find` command.
 
-### Adding a department: `adep`
+## 7.3. Department Commands
+
+### 7.3.1. Adding a department: `adep`
 
 Adds a department by name.
 
@@ -231,7 +245,7 @@ Examples:
 * `adep n/Software Engineering`
 * `adep n/Marketing`
 
-### Editing a department: `edep`
+### 7.3.2. Editing a department: `edep`
 
 Edits an existing department.
 
@@ -241,7 +255,24 @@ Examples:
 * `edep Software Engineering n/Software Development`
 * `edep Marketing n/Sales`
 
-### Deleting a department: `ddep`
+### 7.3.3. Find departments by name: `fdep`
+
+Finds departments whose names contain any of the given keywords.
+
+Format: `fdep KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `engineering` will match `Engineering`
+* The order of the keywords does not matter. e.g. `Software Engineering` will match `Engineering Software`
+* Only the name is searched.
+* Only full words will be matched e.g. `Software` will not match `Softwares`
+* Departments matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Software Engineering` will return `Software Development`, `Data Engineering`
+
+Examples:
+* `fdep Engineering` returns `Engineering` and `Software Engineering`
+* `fdep software engineering` returns `Software Development`, `Data Engineering`<br>
+
+### 7.3.4. Deleting a department: `ddep`
 
 Deletes an existing department.
 
@@ -251,13 +282,13 @@ Examples:
 * `ddep n/Software Engineering`
 * `ddep n/Sales`
 
-### Listing all departments: `ldep`
+### 7.3.5. Listing all departments: `ldep`
 
 Lists all existing departments.
 
 Format: `ldep`
 
-### Add employee to a department: `aetd`
+### 7.3.6. Add employee to a department: `aetd`
 
 Adds an employee to a department using his ID.
 
@@ -271,7 +302,7 @@ Examples:
 * `aetd eid/1 n/Software Engineering`
 * `aetd eid/100 n/Sales`
 
-### Remove employee from a department: `refd`
+### 7.3.7. Remove employee from a department: `refd`
 
 Removes an employee from a department using his ID.
 
@@ -281,7 +312,7 @@ Examples:
 * `refd eid/1 n/Software Engineering`
 * `refd eid/100 n/Sales`
 
-### List an employee's departments: `led`
+### 7.3.8. List an employee's departments: `led`
 
 List all departments and employee is in.
 
@@ -290,7 +321,7 @@ Format: `led eid/EMPLOYEE_ID`
 Examples:
 * `leid eid/100`
 
-### List all employees in a department: `leid`
+### 7.3.9. List all employees in a department: `leid`
 
 List all employees in a department.
 
@@ -299,6 +330,8 @@ Format: `leid n/DEPARTMENT_NAME`
 Examples:
 * `leid n/Software Engineering`
 * `leid n/Sales`
+
+## 7.4. Leave Commands
 
 ### Adding a leave: `andre`
 
@@ -370,13 +403,15 @@ Examples:
 * `ls_on_leave d/2023-03-05`
 * `ls_on_leave d/2023-03-05~2023-05-7`
 
-### Clearing all entries : `clear`
+## 7.5. General Commands
+
+### 7.5.1. Clearing all entries : `clear`
 
 Clears all entries from SudoHR.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### 7.5.2. Exiting the program : `exit`
 
 Exits the program.
 
@@ -409,18 +444,19 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                                | Format                                                           |
-|---------------------------------------|------------------------------------------------------------------|
-| **Add an employee**                   | `add id/ID n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`    |
-| **List all employees**                | `list`                                                           |
-| **Edit an employee**                  | `edit eid/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
-| **Find employee by name**             | `find KEYWORD [MORE_KEYWORDS]`                                   |
-| **Delete an employee**                | `delete eid/ID`                                                  |
-| **Add a department**                  | `adep n/DEPARTMENT_NAME`                                         |
-| **List all departments**              | `ldep`                                                           |
-| **Edit a department**                 | `edep OLD_DEPARTMENT_NAME n/NEW_DEPARTMENT_NAME`                 |
-| **Delete a department**               | `ddep n/DEPARTMENT_NAME`                                         |
-| **Add employee to department**        | `aetd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                         |
-| **Remove employee from department**   | `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                         |
-| **List an employee's department**     | `led eid/EMPLOYEE_ID`                                            |
+| Action                                 | Format                                                           |
+|----------------------------------------|------------------------------------------------------------------|
+| **Add an employee**                    | `add id/ID n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`    |
+| **List all employees**                 | `list`                                                           |
+| **Edit an employee**                   | `edit eid/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
+| **Find employee by name**              | `find KEYWORD [MORE_KEYWORDS]`                                   |
+| **Delete an employee**                 | `delete eid/ID`                                                  |
+| **Add a department**                   | `adep n/DEPARTMENT_NAME`                                         |
+| **List all departments**               | `ldep`                                                           |
+| **Edit a department**                  | `edep OLD_DEPARTMENT_NAME n/NEW_DEPARTMENT_NAME`                 |
+| **Find department by name**            | `fdep KEYWORD [MORE_KEYWORDS]`                                   |
+| **Delete a department**                | `ddep n/DEPARTMENT_NAME`                                         |
+| **Add employee to department**         | `aetd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                         |
+| **Remove employee from department**    | `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                         |
+| **List an employee's department**      | `led eid/EMPLOYEE_ID`                                            |
 | **List all employees in a department** | `leid n/DEPARTMENT_NAME`                                         |
