@@ -2,9 +2,10 @@ package seedu.address.logic.commands.navigation;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-
+import seedu.address.model.navigation.NavigationContext;
 
 /**
  * Navigates backwards in the hierarchy.
@@ -20,6 +21,28 @@ public class BackNavCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.navigateBack();
-        return new CommandResult(NavCommand.getSuccessfulNavMessage(model.getCurrentNavContext()));
+
+        NavigationContext navContext = model.getCurrentNavContext();
+        list(navContext, model);
+
+        return NavCommand.getSuccessfulCommandResult(navContext, model);
+    }
+
+    private void list(NavigationContext navContext, Model model) throws CommandException {
+        switch (navContext.getLayer()) {
+        case INVALID:
+            break;
+        case LECTURE:
+            new ListCommand(navContext.getModuleCode(), navContext.getLectureName()).execute(model);
+            break;
+        case MODULE:
+            new ListCommand(navContext.getModuleCode()).execute(model);
+            break;
+        case ROOT:
+            new ListCommand().execute(model);
+            break;
+        default:
+            break;
+        }
     }
 }

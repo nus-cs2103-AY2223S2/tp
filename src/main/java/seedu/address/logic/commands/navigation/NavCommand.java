@@ -4,6 +4,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.lecture.LectureName;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.navigation.NavigationContext;
 
 /**
@@ -24,7 +30,23 @@ public abstract class NavCommand extends Command {
 
     public static final String MESSAGE_NAV_SUCCESS = "You navigated to %s";
 
+    public static CommandResult getSuccessfulCommandResult(NavigationContext context, Model model) {
+        return new CommandResult(NavCommand.getSuccessfulNavMessage(context), context.toString());
+    }
+
     public static String getSuccessfulNavMessage(NavigationContext context) {
         return String.format(MESSAGE_NAV_SUCCESS, context);
+    }
+
+    protected void listAtRoot(Model model) throws CommandException {
+        new ListCommand().execute(model);
+    }
+
+    protected void listAtModule(ModuleCode moduleCode, Model model) throws CommandException {
+        new ListCommand(moduleCode).execute(model);
+    }
+
+    protected void listAtLecture(ModuleCode moduleCode, LectureName lectureName, Model model) throws CommandException {
+        new ListCommand(moduleCode, lectureName).execute(model);
     }
 }

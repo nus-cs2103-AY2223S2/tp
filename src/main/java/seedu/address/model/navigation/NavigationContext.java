@@ -50,7 +50,7 @@ public class NavigationContext {
      * @return new immutable NavigationContext with the specified module code
      */
     public NavigationContext addModule(ModuleCode moduleCode) {
-        if (this.moduleCode != null || this.lectureName != null) {
+        if (getLayer() != NavLayer.ROOT) {
             return this;
         }
 
@@ -63,11 +63,35 @@ public class NavigationContext {
      * @return new immutable NavigationContext with the specified lecture name
      */
     public NavigationContext addLecture(LectureName lectureName) {
-        if (moduleCode == null || this.lectureName != null) {
+        if (getLayer() != NavLayer.MODULE) {
             return this;
         }
 
         return new NavigationContext(moduleCode, lectureName);
+    }
+
+    public NavLayer getLayer() {
+        final int rootLayerBitMask = 0;
+        final int moduleLayerBitMask = 1;
+        final int lectureLayerBitMask = 3;
+
+        int layerMask = getCurrentLayerBitMask();
+        switch (layerMask) {
+        case rootLayerBitMask:
+            return NavLayer.ROOT;
+        case moduleLayerBitMask:
+            return NavLayer.MODULE;
+        case lectureLayerBitMask:
+            return NavLayer.LECTURE;
+        default:
+            return NavLayer.INVALID;
+        }
+    }
+
+    private int getCurrentLayerBitMask() {
+        int moduleCodeBit = moduleCode == null ? 0 : 1;
+        int lectureNameBit = (lectureName == null ? 0 : 1) << 1;
+        return moduleCodeBit + lectureNameBit;
     }
 
     /**
@@ -127,5 +151,25 @@ public class NavigationContext {
                 || (lectureName.equals(other.lectureName));
 
         return moduleEquals && lectureEquals;
+    }
+
+    /**
+     * Represents different nav layers.
+     */
+    public enum NavLayer {
+        INVALID(0), ROOT(1), MODULE(2), LECTURE(3);
+
+        public static final int LOWEST_LAYER_ID = 1;
+        public static final int HIGHEST_LAYER_ID = 3;
+
+        private final int layer;
+
+        private NavLayer(int layer) {
+            this.layer = layer;
+        }
+
+        public int getLayerId() {
+            return layer;
+        }
     }
 }

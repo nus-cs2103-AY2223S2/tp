@@ -5,6 +5,7 @@ import java.util.Stack;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.navigation.NavigationContext;
+import seedu.address.model.navigation.NavigationContext.NavLayer;
 
 /**
  * The Navigation class allows the user to "navigate" to various contexts (i.e. modules, lectures).
@@ -126,24 +127,4 @@ public class Navigation implements ReadOnlyNavigation {
         return contextStack.equals(other.contextStack);
     }
 
-
-    /**
-     * Represents different nav layers.
-     */
-    public enum NavLayer {
-        INVALID(0), ROOT(1), MODULE(2), LECTURE(3);
-
-        public static final int LOWEST_LAYER_ID = 1;
-        public static final int HIGHEST_LAYER_ID = 3;
-
-        private final int layer;
-
-        private NavLayer(int layer) {
-            this.layer = layer;
-        }
-
-        public int getLayerId() {
-            return layer;
-        }
-    }
 }
