@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
+import seedu.address.model.card.CardTest;
 import seedu.address.model.card.Question;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
@@ -22,6 +23,7 @@ public class CardBuilder {
     private Answer answer;
     private Tag tag;
     private Deck deck;
+    private boolean isFlipped;
 
 
     /**
@@ -32,6 +34,7 @@ public class CardBuilder {
         answer = new Answer(DEFAULT_ANSWER);
         tag = new Tag(DEFAULT_TAG);
         deck = new Deck(DEFAULT_DECK);
+        isFlipped = true;
     }
 
     /**
@@ -42,6 +45,7 @@ public class CardBuilder {
         answer = cardToCopy.getAnswer();
         tag = cardToCopy.getTag();
         deck = cardToCopy.getDeck();
+        isFlipped = cardToCopy.isFlipped();
     }
 
     /**
@@ -76,8 +80,14 @@ public class CardBuilder {
         return this;
     }
 
+    public CardBuilder withFlipAttribute(boolean isFlipped) {
+        this.isFlipped = isFlipped;
+        return this;
+    }
+
     public Card build() {
-        return new Card(question, answer, tag, deck);
+        Card toBuild = new Card(question, answer, tag, deck);
+        return new Card(toBuild, isFlipped);
     }
 
 }

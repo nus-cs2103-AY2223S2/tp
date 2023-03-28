@@ -2,6 +2,7 @@ package seedu.address.model.card;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_PHOTOSYNTHESIS;
@@ -106,6 +107,10 @@ public class CardTest {
         // different tags -> returns false
         editedLoop = new CardBuilder(LOOP).withTag(VALID_TAG_MEDIUM).build();
         assertFalse(LOOP.equals(editedLoop));
+
+        // different flip attribute -> returns false
+        editedLoop = new CardBuilder(LOOP).withFlipAttribute(!LOOP.isFlipped()).build();
+        assertNotEquals(editedLoop, LOOP);
     }
 
     @Test

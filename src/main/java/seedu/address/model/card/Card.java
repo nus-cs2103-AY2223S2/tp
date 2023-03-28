@@ -34,10 +34,16 @@ public class Card {
         this.answer = answer;
         this.tag = Optional.ofNullable(tag).orElse(new Tag(UNTAGGED));
         this.deck = deck;
-        this.isFlipped = true;
+        this.isFlipped = true; // flipped by default
     }
 
-    private Card(Card toUpdate, boolean isFlipped) {
+    /**
+     * Overloaded constructor to instantiate a flipped/unflipped card.
+     *
+     * @param toUpdate Cards to copy.
+     * @param isFlipped boolean indicating if card is flipped.
+     */
+    public Card(Card toUpdate, boolean isFlipped) {
         requireAllNonNull(toUpdate, isFlipped);
         this.question = toUpdate.question;
         this.answer = toUpdate.answer;
@@ -45,8 +51,6 @@ public class Card {
         this.deck = toUpdate.deck;
         this.isFlipped = isFlipped;
     }
-
-
 
     public Question getQuestion() {
         return question;
@@ -138,7 +142,8 @@ public class Card {
         return otherCard.getQuestion().equals(getQuestion())
                 && otherCard.getAnswer().equals(getAnswer())
                 && otherCard.getTag().equals(getTag())
-                && otherCard.getDeck().equals(getDeck());
+                && otherCard.getDeck().equals(getDeck())
+                && otherCard.isFlipped == isFlipped();
     }
 
     @Override
