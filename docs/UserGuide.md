@@ -7,7 +7,7 @@ LoyaltyLift is a desktop application designed for small business owners to manag
 It is optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 With LoyaltyLift, you can easily keep track of your customers' preferences, purchase history, and contact information, enabling you to provide personalized service that will keep them coming back. 
-Our user-friendly interface makes it easy to manage orders, and provide rewards, helping you grow your business while delivering an exceptional customer experience. 
+Our application makes it easy to manage orders, and provide rewards, helping you grow your business while delivering an exceptional customer experience. 
 
 Let's get started!
 
@@ -119,7 +119,7 @@ Format: `findc KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Customers matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -154,13 +154,13 @@ Edits an existing customer in the address book.
 
 Format: `editc INDEX [ct/{ind|env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
-* Edits the customer at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the customer at the specified `INDEX`. The index refers to the index number shown in the displayed customer list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
-*  `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `editc 2 ct/ind n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `editc 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st customer to be `91234567` and `johndoe@example.com` respectively.
+*  `editc 2 ct/ind n/Betsy Crower t/` Edits the name of the 2nd customer to be `Betsy Crower` and clears all existing tags.
 
 #### Deleting a customer : `deletec`
 
@@ -173,10 +173,10 @@ Format: `deletec INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listc` followed by `deletec 2` deletes the 2nd person in the address book.
-* `findc Betsy` followed by `deletec 1` deletes the 1st person in the results of the `findc` command.
+* `listc` followed by `deletec 2` deletes the 2nd customer in the address book.
+* `findc Betsy` followed by `deletec 1` deletes the 1st customer in the results of the `findc` command.
 
-#### Marking a person : `markc`
+#### Marking a customer : `markc`
 
 Bookmarks a customer from the list of customers.
 
@@ -187,10 +187,10 @@ Format: `markc INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listc` followed by `markc 2` bookmarks the 2nd person in the address book.
-* `findc Betsy` followed by `markc 1` bookmarks the 1st person in the results of the `findc` command.
+* `listc` followed by `markc 2` bookmarks the 2nd customer in the address book.
+* `findc Betsy` followed by `markc 1` bookmarks the 1st customer in the results of the `findc` command.
 
-#### Unmarking a person : `unmarkc`
+#### Unmarking a customer : `unmarkc`
 
 Un-bookmarks a customer from the list of customers.
 
@@ -201,8 +201,8 @@ Format: `unmarkc INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listc` followed by `unmarkc 2` un-bookmarks the 2nd person in the address book.
-* `findc Betsy` followed by `unmarkc 1` bookmarks the 1st person in the results of the `findc` command.
+* `listc` followed by `unmarkc 2` un-bookmarks the 2nd customer in the address book.
+* `findc Betsy` followed by `unmarkc 1` bookmarks the 1st customer in the results of the `findc` command.
 
 #### Setting a customer's note : `setnotec`
 
@@ -382,7 +382,7 @@ Examples:
 
 #### Deleting an order : `deleteo`
 
-Deletes the specified person from the address book.
+Deletes the specified order from the address book.
 
 Format: `deleteo ORDER_INDEX`
 
@@ -391,8 +391,8 @@ Format: `deleteo ORDER_INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listo` followed by `delete 2` deletes the 2nd order on the displayed order list.
-* `findo chocolate` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `listo` followed by `deleteo 2` deletes the 2nd order on the displayed order list.
+* `findo chocolate` followed by `deleteo 1` deletes the 1st order in the results of the `findo` command.
 
 #### Setting an order's note : `setnoteo`
 
