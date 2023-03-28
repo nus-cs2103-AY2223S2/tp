@@ -58,6 +58,19 @@ public class Module {
         return code;
     }
 
+    public CodePrefix getCodePrefix() {
+        char[] moduleCode = code.toString().toCharArray();
+        String modulePrefix = "";
+        for (char c : moduleCode) {
+            if (Character.isAlphabetic(c)) {
+                modulePrefix += Character.toString(c);
+            } else {
+                break;
+            }
+        }
+        return new CodePrefix(modulePrefix);
+    }
+
     public Credit getCredit() {
         return credits;
     }

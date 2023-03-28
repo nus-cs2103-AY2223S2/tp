@@ -6,7 +6,7 @@ import static seedu.modtrek.commons.util.AppUtil.checkArgument;
 /**
  * The type CodePrefix representing the prefix of a module code.
  */
-public class CodePrefix {
+public class CodePrefix implements Comparable<CodePrefix> {
 
     /**
      * The constant MESSAGE_CONSTRAINTS.
@@ -59,5 +59,10 @@ public class CodePrefix {
     @Override
     public int hashCode() {
         return codePrefix.hashCode();
+    }
+
+    @Override
+    public int compareTo(CodePrefix o) {
+        return o.toString().compareTo(this.toString());
     }
 }

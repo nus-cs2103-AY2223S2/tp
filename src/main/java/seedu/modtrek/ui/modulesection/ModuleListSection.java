@@ -24,7 +24,7 @@ public class ModuleListSection extends ModuleSection {
      * @param sort the sort criteria
      * @param sorters the list of sorting handlers for the buttons in the dropdown box in sortNav.
      */
-    public ModuleListSection(TreeMap<? extends Object, ObservableList<Module>> sortedModules,
+    public ModuleListSection(TreeMap<Object, ObservableList<Module>> sortedModules,
                              String sort, List<Runnable> sorters) {
         super();
 
@@ -40,7 +40,7 @@ public class ModuleListSection extends ModuleSection {
      * @param sortedModules The sorted modules.
      * @param sort The sort criteria.
      */
-    public void update(TreeMap<? extends Object, ObservableList<Module>> sortedModules, String sort) {
+    public void update(TreeMap<Object, ObservableList<Module>> sortedModules, String sort) {
         moduleList.updateSortedModules(sortedModules);
         sortNav.updateSortLabel(sort);
     }

@@ -26,6 +26,8 @@ public class SortCommandParser implements Parser<SortCommand> {
             return new SortCommand("credits");
         } else if (prefix.equals("/y")) {
             return new SortCommand("year");
+        } else if (prefix.equals("/m")) {
+            return new SortCommand("code");
         } else {
             throw new ParseException("Invalid format!");
         }

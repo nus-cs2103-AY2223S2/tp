@@ -115,7 +115,7 @@ public class ResultsSection extends UiPart<Region> {
     /**
      * Displays all the modules, sorted by a given category.
      */
-    public void displayAllModules(TreeMap<? extends Object, ObservableList<Module>> sortedModules, String sort) {
+    public void displayAllModules(TreeMap<Object, ObservableList<Module>> sortedModules, String sort) {
         footerButtonGroup.selectModuleListButton();
 
         headerTitle.setText("My Modules");
