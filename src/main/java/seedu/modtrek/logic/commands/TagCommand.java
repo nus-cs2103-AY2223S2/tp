@@ -26,28 +26,28 @@ public class TagCommand extends Command {
      * The constant MESSAGE_ARGUMENTS.
      */
     public static final String MESSAGE_ARGUMENTS = "Module Code: %1$d, Tag: %2$s";
+
     /**
      * The constant MESSAGE_USAGE.
      */
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds tags to the module identified.\n"
-            + "Parameters: CODE (module code) include/remove\n"
-            + "Example: " + COMMAND_WORD + " CS1101S " + "include "
-            + "/t UNIVERSITY LEVEL REQUIREMENTS";
+            + ": Adds tags to the module identified.\n\n"
+            + "Parameters: <MODULE_CODE> include/remove /t <TAG>...\n\n"
+            + "Example 1: " + COMMAND_WORD + " CS1101S " + "include " + "/t ULR\n"
+            + "Example 2: " + COMMAND_WORD + " MA2001 " + "remove " + "/t CSF";
 
-    /**
-     * The constant MESSAGE_NOT_IMPLEMENTED_YET.
-     */
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
-            "Tag command not implemented yet";
     /**
      * The constant MESSAGE_ADD_TAG_SUCCESS.
      */
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Added tag to Module: %1$s";
+
     /**
      * The constant MESSAGE_ADD_TAG_FAILURE.
      */
     public static final String MESSAGE_REMOVE_TAG_SUCCESS = "Removed tag from Module: %1$s";
+
+    public static final String MESSAGE_MISSING_PREFIX =
+            "Missing tag prefix /t.";
 
     private final Code code;
     private final boolean isInclude;

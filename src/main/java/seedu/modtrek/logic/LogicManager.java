@@ -1,7 +1,11 @@
 package seedu.modtrek.logic;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -9,6 +13,8 @@ import seedu.modtrek.commons.core.GuiSettings;
 import seedu.modtrek.commons.core.LogsCenter;
 import seedu.modtrek.logic.commands.Command;
 import seedu.modtrek.logic.commands.CommandResult;
+import seedu.modtrek.logic.commands.FindCommand;
+import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.logic.parser.ModTrekParser;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
@@ -27,6 +33,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final ModTrekParser modTrekParser;
+    private List<String> filtersList;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,6 +42,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         modTrekParser = new ModTrekParser();
+        filtersList = new ArrayList<>();
     }
 
     @Override
@@ -43,6 +51,9 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = modTrekParser.parseCommand(commandText);
+        if (command instanceof FindCommand) {
+            filtersList = ((FindCommand) command).getFiltersList();
+        }
         commandResult = command.execute(model);
 
         try {
@@ -55,12 +66,23 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public List<String> getFiltersList() {
+        requireNonNull(filtersList);
+        return filtersList;
+    }
+
+    @Override
     public ReadOnlyDegreeProgression getDegreeProgression() {
         return model.getDegreeProgression();
     }
 
+    @Override
     public ObservableList<Module> getFilteredModuleList() {
         return model.getFilteredModuleList();
+    }
+
+    public void sortModuleGroups(SortCommand.Sort sort) {
+        model.sortModuleGroups(sort);
     }
 
     @Override

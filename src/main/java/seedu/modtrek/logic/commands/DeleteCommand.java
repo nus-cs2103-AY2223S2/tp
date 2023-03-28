@@ -1,6 +1,7 @@
 package seedu.modtrek.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.modtrek.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.HashSet;
@@ -26,9 +27,10 @@ public class DeleteCommand extends Command {
      * The constant MESSAGE_USAGE.
      */
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the module identified by the module code.\n"
-            + "Parameters: {all} /m MODULE CODE\n"
-            + "Example: " + COMMAND_WORD + " /m CS1101S";
+            + ": Deletes all modules or the module identified by the module code.\n\n"
+            + "Parameters: (all) or (" + PREFIX_CODE + " <MODULE_CODE>)\n\n"
+            + "Example 1: " + COMMAND_WORD + " all\n"
+            + "Example 2: " + COMMAND_WORD + " " + PREFIX_CODE + " CS1101S";
 
     /**
      * The constant MESSAGE_DELETE_MODULE_SUCCESS.
@@ -85,7 +87,16 @@ public class DeleteCommand extends Command {
         String notFoundModules = String.format(MESSAGE_DELETE_MODULE_NOT_FOUND, codesNotFound);
 
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        return new CommandResult(deletedModules + "\n" + notFoundModules);
+        String message;
+        if (codesFound.isEmpty()) {
+            throw new CommandException(notFoundModules);
+        }
+        if (codesNotFound.isEmpty()) {
+            message = deletedModules;
+        } else {
+            message = deletedModules + "\n" + notFoundModules;
+        }
+        return new CommandResult(message);
     }
 
     @Override
