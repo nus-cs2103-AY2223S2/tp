@@ -33,13 +33,14 @@ public class CommandRecommendationEngineTest {
     @Test
     public void recommendCommand_validCommand_success() {
         try {
-            String expected = "add_volunteer n/<name> vnr/<nric> a/<address> p/<phone> "
-                    + "e/<email> t/<tag> re/<region> ag/<age> dr/<start_date,end_date>";
+            String expected = "add_volunteer n/<name> nr/<nric> bd/<birth_date> re/<region> "
+                    + "a/<address> p/<phone> e/<email> "
+                    + "mt/<medical_qualification> dr/<start_date,end_date> t/<tag>";
             String actual = commandRecommendationEngine.recommendCommand("add_volunteer");
             assertEquals(expected, actual);
 
-            expected = "add_elderly n/Zong Xun enr/<nric> a/<address> p/<phone> "
-                    + "e/<email> t/<tag> re/<region> ag/<age> r/<risk> dr/<start_date,end_date>";
+            expected = "add_elderly n/Zong Xun nr/<nric> bd/<birth_date> re/<region> r/<risk> "
+                    + "a/<address> p/<phone> e/<email> dr/<start_date,end_date> t/<tag>";
             actual = commandRecommendationEngine.recommendCommand("add_elderly n/Zong Xun");
             assertEquals(expected, actual);
 
@@ -69,80 +70,80 @@ public class CommandRecommendationEngineTest {
     public void parseArguments_invalidArgs_fail() {
         String userArgs = "notValidInput n/Zong Xun";
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
-                .commandInfoMap.get(AddVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                .COMMAND_INFO_MAP.get(AddVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         assertFalse(AddVolunteerCommandParser.validate(argumentMultimap));
 
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
-                .commandInfoMap.get(AddElderlyCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                .COMMAND_INFO_MAP.get(AddElderlyCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         assertFalse(AddElderlyCommandParser.validate(argumentMultimap));
 
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
-                .commandInfoMap.get(AddPairCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                .COMMAND_INFO_MAP.get(AddPairCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         assertFalse(AddPairCommandParser.validate(argumentMultimap));
 
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
-                .commandInfoMap.get(ClearCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                .COMMAND_INFO_MAP.get(ClearCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         assertFalse(ClearCommandParser.validate(argumentMultimap));
 
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
-                .commandInfoMap.get(ExitCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                .COMMAND_INFO_MAP.get(ExitCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         assertFalse(ExitCommandParser.validate(argumentMultimap));
 
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
-                .commandInfoMap.get(ListCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                .COMMAND_INFO_MAP.get(ListCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         assertFalse(ListCommandParser.validate(argumentMultimap));
 
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
-                .commandInfoMap.get(HelpCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                .COMMAND_INFO_MAP.get(HelpCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         assertFalse(HelpCommandParser.validate(argumentMultimap));
 
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
-                .commandInfoMap.get(DeletePairCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                .COMMAND_INFO_MAP.get(DeletePairCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         assertFalse(DeletePairCommandParser.validate(argumentMultimap));
 
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
-                .commandInfoMap.get(FindCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                .COMMAND_INFO_MAP.get(FindCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         assertTrue(FindCommandParser.validate(argumentMultimap));
 
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
-                .commandInfoMap.get(EditCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                .COMMAND_INFO_MAP.get(EditCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         assertTrue(EditCommandParser.validate(argumentMultimap));
 
         userArgs = "dadiaodhawoid hoidahwodiwaod";
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
-                .commandInfoMap.get(DeleteElderlyCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                .COMMAND_INFO_MAP.get(DeleteElderlyCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         assertFalse(DeleteElderlyCommandParser.validate(argumentMultimap));
 
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
-                .commandInfoMap.get(DeleteVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                .COMMAND_INFO_MAP.get(DeleteVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         assertFalse(DeleteVolunteerCommandParser.validate(argumentMultimap));
 
         userArgs = "n/Zon hello/<nric>";
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
-                .commandInfoMap.get(AddVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                .COMMAND_INFO_MAP.get(AddVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         assertFalse(AddVolunteerCommandParser.validate(argumentMultimap));
 
         userArgs = "1";
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
-                .commandInfoMap.get(EditElderlyCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                .COMMAND_INFO_MAP.get(EditElderlyCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         assertTrue(EditElderlyCommandParser.validate(argumentMultimap));
 
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, CommandRecommendationEngine
-                .commandInfoMap.get(EditVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
+                .COMMAND_INFO_MAP.get(EditVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         assertTrue(EditVolunteerCommandParser.validate(argumentMultimap));
     }

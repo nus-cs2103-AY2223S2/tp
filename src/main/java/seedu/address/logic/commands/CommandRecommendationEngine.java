@@ -13,6 +13,7 @@ import seedu.address.logic.parser.AddPairCommandParser;
 import seedu.address.logic.parser.AddVolunteerCommandParser;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.AutoPairCommandParser;
 import seedu.address.logic.parser.ClearCommandParser;
 import seedu.address.logic.parser.DeleteElderlyCommandParser;
 import seedu.address.logic.parser.DeletePairCommandParser;
@@ -33,7 +34,7 @@ import seedu.address.logic.parser.StatsCommandParser;
  * https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions
  */
 public class CommandRecommendationEngine {
-    public static final Map<String, CommandInfo> commandInfoMap = new LinkedHashMap<>();
+    public static final Map<String, CommandInfo> COMMAND_INFO_MAP = new LinkedHashMap<>();
     private static final String INVALID_COMMAND_MESSAGE = "No such command exists!"
             + " Please refer to our user guide for the list of valid commands.";
     private static final String INVALID_PREFIX_MESSAGE = "Invalid prefix!"
@@ -100,6 +101,11 @@ public class CommandRecommendationEngine {
                 StatsCommand.COMMAND_WORD,
                 StatsCommand.COMMAND_PROMPTS,
                 StatsCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                AutoPairCommand.COMMAND_WORD,
+                AutoPairCommand.COMMAND_PROMPTS,
+                AutoPairCommandParser::validate
+        ));
     }
 
     /**
@@ -108,7 +114,7 @@ public class CommandRecommendationEngine {
      * @param commandInfo Command info to add
      */
     private static void registerCommandInfo(CommandInfo commandInfo) {
-        commandInfoMap.put(commandInfo.getCmdWord(), commandInfo);
+        COMMAND_INFO_MAP.put(commandInfo.getCmdWord(), commandInfo);
     }
 
     /**
@@ -127,7 +133,8 @@ public class CommandRecommendationEngine {
 
         // not a complete command
         if (commandIndex == -1) {
-            commandInfo = findMatchingCommandInfo(userInput);
+            //  Checking only for prefix matching since the command is incomplete
+            commandInfo = findMatchingCommandInfo(userInput, false);
             if (commandInfo == null) {
                 throw new CommandException(INVALID_COMMAND_MESSAGE);
             }
@@ -137,7 +144,8 @@ public class CommandRecommendationEngine {
         // complete command
         commandWord = userInput.substring(0, commandIndex);
         String parsedArgs = userInput.substring(commandIndex);
-        commandInfo = findMatchingCommandInfo(commandWord);
+        // Forcing exact matching since the command must be complete
+        commandInfo = findMatchingCommandInfo(commandWord, true);
 
         if (commandInfo == null || !commandWord.equals(commandInfo.getCmdWord())) {
             throw new CommandException(INVALID_COMMAND_MESSAGE);
@@ -174,11 +182,12 @@ public class CommandRecommendationEngine {
         return userInput.contains(delimiter);
     }
 
-    private CommandInfo findMatchingCommandInfo(String commandWord) {
-        return commandInfoMap.keySet()
+    private CommandInfo findMatchingCommandInfo(String commandWord, boolean isExactMatching) {
+        return COMMAND_INFO_MAP.keySet()
                 .stream()
-                .filter(command -> command.startsWith(commandWord))
-                .map(commandInfoMap::get)
+                .filter(command -> isExactMatching ? command.equals(commandWord) : command.startsWith(commandWord))
+                .sorted()
+                .map(COMMAND_INFO_MAP::get)
                 .findFirst()
                 .orElse(null);
     }
@@ -254,7 +263,7 @@ public class CommandRecommendationEngine {
      * @return A boolean value indicating if the set of arguments specified is valid.
      */
     public static boolean isValidArgs(String command, ArgumentMultimap argumentMultimap) {
-        CommandInfo commandInfo = commandInfoMap.get(command);
+        CommandInfo commandInfo = COMMAND_INFO_MAP.get(command);
         Function<ArgumentMultimap, Boolean> argumentValidator = commandInfo.getCmdValidator();
         return argumentValidator.apply(argumentMultimap);
     }

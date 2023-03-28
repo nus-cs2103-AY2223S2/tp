@@ -5,7 +5,7 @@
     "email": "invalid@email!3e",
     "address": "4th street",
     "nric" : "S0077007W",
-    "age" : "55",
+    "birthDate" : "1954-01-01",
     "availableDates": ["2023-al-01 to 2023-05-12"],
     "region": "EAST",
     "riskLevel": "LOW"

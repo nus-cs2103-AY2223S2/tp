@@ -10,8 +10,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.information.Address;
-import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.AvailableDate;
+import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -37,13 +37,13 @@ public class JsonAdaptedElderly extends JsonAdaptedPerson implements JsonSeriali
     @JsonCreator
     public JsonAdaptedElderly(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
           @JsonProperty("email") String email, @JsonProperty("address") String address,
-          @JsonProperty("nric") String nric, @JsonProperty("age") String age,
+          @JsonProperty("nric") String nric, @JsonProperty("birthDate") String birthDate,
           @JsonProperty("region") String region,
           @JsonProperty("riskLevel") String riskLevel,
           @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
           @JsonProperty("availableDates") List<JsonAdaptedAvailableDate> dates) {
 
-        super(name, phone, email, address, nric, age, region, tagged, dates);
+        super(name, phone, email, address, nric, birthDate, region, tagged, dates);
         this.riskLevel = riskLevel;
     }
 
@@ -82,11 +82,11 @@ public class JsonAdaptedElderly extends JsonAdaptedPerson implements JsonSeriali
         Set<Tag> modelTags = super.getTagSet(friendlyLink);
         Set<AvailableDate> modelAvailableDates = super.getAvailableDateSet();
         Nric modelNric = super.getModelNric(MISSING_FIELD_MESSAGE_FORMAT);
-        Age modelAge = super.getModelAge(MISSING_FIELD_MESSAGE_FORMAT);
+        BirthDate modelBirthDate = super.getModelBirthDate(MISSING_FIELD_MESSAGE_FORMAT);
         Region modelRegion = super.getModelRegion(MISSING_FIELD_MESSAGE_FORMAT);
         RiskLevel modelRiskLevel = getModelRiskLevel(MISSING_FIELD_MESSAGE_FORMAT);
 
         return new Elderly(modelName, modelPhone, modelEmail, modelAddress,
-               modelNric, modelAge, modelRegion, modelRiskLevel, modelTags, modelAvailableDates);
+               modelNric, modelBirthDate, modelRegion, modelRiskLevel, modelTags, modelAvailableDates);
     }
 }

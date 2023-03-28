@@ -2,12 +2,17 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Elderly;
 
@@ -21,6 +26,11 @@ public class ElderlyListPanel extends UiPart<Region> {
     @FXML
     private ListView<Elderly> elderlyListView;
 
+    @FXML
+    private VBox elderlyListBox;
+
+    private final VBox emptyBox = new VBox();
+
     /**
      * Creates a {@code ElderlyListPanel} with the given {@code ObservableList}.
      *
@@ -28,9 +38,45 @@ public class ElderlyListPanel extends UiPart<Region> {
      */
     public ElderlyListPanel(ObservableList<Elderly> elderlyList) {
         super(FXML);
+
+        ImageView imageView = new ImageView();
+        Image image = new Image("/images/empty.png");
+        imageView.setFitHeight(100);
+        imageView.setPickOnBounds(true);
+        imageView.setPreserveRatio(true);
+        imageView.setImage(image);
+
+        emptyBox.getChildren().add(imageView);
+        Label label = new Label("Add an elderly to see something here!");
+        emptyBox.getChildren().add(label);
+
+        emptyBox.setAlignment(Pos.CENTER);
+        emptyBox.setMaxHeight(Region.USE_COMPUTED_SIZE);
+        emptyBox.setMinHeight(400);
+
+        label.setStyle(
+                "-fx-text-fill: whitesmoke; -fx-font-size: 23; -fx-label-padding: 10"
+        );
+
+        if (elderlyList.size() == 0) {
+            elderlyListView.setMaxHeight(0);
+            elderlyListBox.getChildren().add(emptyBox);
+        } else {
+            elderlyListBox.getChildren().remove(emptyBox);
+            elderlyListView.setMaxHeight(Region.USE_COMPUTED_SIZE);
+        }
+
         elderlyListView.setItems(elderlyList);
-        elderlyListView.setCellFactory(listView -> new ElderlyListViewCell());
-        ObservableList<Node> children = elderlyListView.getChildrenUnmodifiable();
+        elderlyListView.setCellFactory(listView -> new ElderlyListPanel.ElderlyListViewCell());
+        elderlyList.addListener((ListChangeListener<? super Elderly>) c -> {
+            if (c.getList().size() == 0) {
+                elderlyListView.setMaxHeight(0);
+                elderlyListBox.getChildren().add(emptyBox);
+            } else {
+                elderlyListBox.getChildren().remove(emptyBox);
+                elderlyListView.setMaxHeight(Region.USE_COMPUTED_SIZE);
+            }
+        });
     }
 
     /**

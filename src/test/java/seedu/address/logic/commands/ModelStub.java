@@ -118,11 +118,6 @@ class ModelStub implements Model {
     }
 
     @Override
-    public boolean hasElderly(Elderly elderly) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void deleteElderly(Elderly target) {
         throw new AssertionError("This method should not be called.");
     }
@@ -144,11 +139,6 @@ class ModelStub implements Model {
 
     @Override
     public boolean hasVolunteer(Nric nric) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public boolean hasVolunteer(Volunteer volunteer) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -197,6 +187,13 @@ class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
+    public void updateAllFilteredLists(Predicate<Elderly> elderlyPredicate,
+                                       Predicate<Volunteer> volunteerPredicate, Predicate<Pair> pairPredicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void refreshAllFilteredLists() {
         throw new AssertionError("This method should not be called.");
     }

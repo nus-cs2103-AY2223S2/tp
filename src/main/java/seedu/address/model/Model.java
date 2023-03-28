@@ -125,14 +125,6 @@ public interface Model {
     boolean hasElderly(Nric nric);
 
     /**
-     * Returns true if an elderly with the same identity as {@code elderly} exists in the friendly link database.
-     *
-     * @param elderly Elderly to be checked.
-     * @return True if {@code elderly} exists in FriendlyLink, false otherwise.
-     */
-    boolean hasElderly(Elderly elderly);
-
-    /**
      * Deletes the given elderly.
      * The elderly must exist in the friendly link database.
      *
@@ -160,17 +152,9 @@ public interface Model {
     void setElderly(Elderly target, Elderly editedElderly);
 
     /**
-     * Returns true if an volunteer with the same {@code nric} exists in the friendly link database.
+     * Returns true if a volunteer with the same {@code nric} exists in the friendly link database.
      */
     boolean hasVolunteer(Nric nric);
-
-    /**
-     * Returns true if a volunteer with the same identity as {@code volunteer} exists in the friendly link database.
-     *
-     * @param volunteer Volunteer to be checked.
-     * @return True if {@code volunteer} exists in FriendlyLink, false otherwise.
-     */
-    boolean hasVolunteer(Volunteer volunteer);
 
     /**
      * Deletes the given volunteer.
@@ -295,6 +279,12 @@ public interface Model {
      * @param predicate Predicate to filter the pair list.
      */
     void updateFilteredPairList(Predicate<Pair> predicate);
+
+    /**
+     * Updates all filtered lists with the given predicates.
+     */
+    void updateAllFilteredLists(Predicate<Elderly> elderlyPredicate,
+                                Predicate<Volunteer> pairPredicate, Predicate<Pair> volunteerPredicate);
 
     /**
      * Refreshes all filtered lists to display everything.

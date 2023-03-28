@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.AvailableDate;
+import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -157,6 +158,23 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String birthDate} into an {@code BirthDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param birthDate BirthDate of the person
+     * @return {@code BirthDate} object.
+     * @throws ParseException If the given {@code birthDate} is invalid.
+     */
+    public static BirthDate parseBirthDate(String birthDate) throws ParseException {
+        requireNonNull(birthDate);
+        String trimmedBod = birthDate.trim();
+        if (!BirthDate.isValidBirthDate(trimmedBod)) {
+            throw new ParseException(BirthDate.MESSAGE_CONSTRAINTS);
+        }
+        return new BirthDate(trimmedBod);
+    }
+
+    /**
      * Parses a {@code String region} into an {@code Region}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -204,6 +222,10 @@ public class ParserUtil {
         requireNonNull(datePair);
 
         String[] dates = datePair.split(",");
+
+        if (dates.length != 2) {
+            throw new ParseException(AvailableDate.INVALID_NUMBER_OF_DATES);
+        }
         String startDate = dates[0];
         String endDate = dates[1];
 

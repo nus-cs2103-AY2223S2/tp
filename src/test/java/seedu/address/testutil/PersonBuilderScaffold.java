@@ -5,8 +5,8 @@ import java.util.Set;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.person.information.Address;
-import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.AvailableDate;
+import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -25,7 +25,7 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_NRIC = "S1111111A";
-    public static final String DEFAULT_AGE = "40";
+    public static final String DEFAULT_BIRTH_DATE = "1970-01-01";
     public static final String DEFAULT_REGION = "CENTRAL";
 
     protected Name name;
@@ -33,7 +33,7 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
     protected Email email;
     protected Address address;
     protected Nric nric;
-    protected Age age;
+    protected BirthDate birthDate;
     protected Region region;
     protected Set<Tag> tags;
     protected Set<AvailableDate> availableDates;
@@ -47,7 +47,7 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         nric = new Nric(DEFAULT_NRIC);
-        age = new Age(DEFAULT_AGE);
+        birthDate = new BirthDate(DEFAULT_BIRTH_DATE);
         region = new Region(DEFAULT_REGION);
         tags = new HashSet<>();
         availableDates = new HashSet<>();
@@ -62,7 +62,7 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         nric = personToCopy.getNric();
-        age = personToCopy.getAge();
+        birthDate = personToCopy.getBirthDate();
         region = personToCopy.getRegion();
         tags = new HashSet<>(personToCopy.getTags());
         availableDates = new HashSet<>(personToCopy.getAvailableDates());
@@ -90,7 +90,8 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code startDate} and {@code endDate} into a {@code Set<AvailableDate>} and set it
+     * to the {@code Person} that we are building.
      */
     public T withAvailableDates(String startDate, String endDate) {
         this.availableDates.add(SampleDataUtil.getAvailableDate(startDate, endDate));
@@ -130,10 +131,10 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
     }
 
     /**
-     * Sets the {@code Age} of the {@code Person} that we are building.
+     * Sets the {@code BirthDate} of the {@code Person} that we are building.
      */
-    public T withAge(String age) {
-        this.age = new Age(age);
+    public T withBirthDate(String birthDate) {
+        this.birthDate = new BirthDate(birthDate);
         return castSelf();
     }
 

@@ -8,8 +8,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidAge(String)}
  */
 public class Age {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Age should only contain numbers, and it should be 2-3 digits long";
+    public static final String MESSAGE_CONSTRAINTS = "Invalid arguments. \n"
+            + "Age should only contain numbers, and it should be 2-3 digits long";
     public static final String VALIDATION_REGEX = "\\d{2,3}";
     public final String value;
 

@@ -2,9 +2,9 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ELDERLY;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_VOLUNTEER;
-import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_ELDERLY;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
 import static seedu.address.commons.core.Messages.MESSAGE_NRIC_NOT_EXIST;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
@@ -75,23 +75,45 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicateElderly_throwsCommandException() {
+    public void execute_editElderlyNricInAnotherElderly_throwsCommandException() {
         Elderly selectedElderly = TypicalElderly.getTypicalElderly().get(1);
         Nric selectedNric = TypicalElderly.getTypicalElderly().get(0).getNric();
         EditDescriptor descriptor = new EditDescriptorBuilder(selectedElderly).build();
         EditCommand editCommand = new EditCommand(selectedNric, descriptor);
 
-        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_ELDERLY);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_PERSON_IN_ELDERLY);
     }
 
     @Test
-    public void execute_duplicateVolunteer_throwsCommandException() {
+    public void execute_editElderlyNricInAnotherVolunteer_throwsCommandException() {
+        Elderly selectedElderly = TypicalElderly.getTypicalElderly().get(0);
+        Nric volunteerNric = TypicalVolunteers.getTypicalVolunteers().get(0).getNric();
+        EditDescriptor descriptor = new EditDescriptorBuilder(selectedElderly)
+                .withNric(volunteerNric.value).build();
+        EditCommand editCommand = new EditCommand(selectedElderly.getNric(), descriptor);
+
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS);
+    }
+
+    @Test
+    public void execute_editVolunteerNricInAnotherVolunteer_throwsCommandException() {
         Volunteer selectedVolunteer = TypicalVolunteers.getTypicalVolunteers().get(1);
         Nric selectedNric = TypicalVolunteers.getTypicalVolunteers().get(0).getNric();
         EditDescriptor descriptor = new EditDescriptorBuilder(selectedVolunteer).build();
         EditCommand editCommand = new EditCommand(selectedNric, descriptor);
 
-        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_VOLUNTEER);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS);
+    }
+
+    @Test
+    public void execute_editVolunteerNricInAnotherElderly_throwsCommandException() {
+        Volunteer selectedVolunteer = TypicalVolunteers.getTypicalVolunteers().get(0);
+        Nric elderlyNric = TypicalElderly.getTypicalElderly().get(0).getNric();
+        EditDescriptor descriptor = new EditDescriptorBuilder(selectedVolunteer)
+                .withNric(elderlyNric.value).build();
+        EditCommand editCommand = new EditCommand(selectedVolunteer.getNric(), descriptor);
+
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_PERSON_IN_ELDERLY);
     }
 
     @Test
@@ -99,7 +121,7 @@ public class EditCommandTest {
         Nric validNric = TypicalVolunteers.getTypicalVolunteers().get(0).getNric();
         EditCommand editCommand = new EditCommand(validNric, new EditDescriptor());
 
-        assertCommandFailure(editCommand, model, MESSAGE_NOT_EDITED);
+        assertCommandFailure(editCommand, model, MESSAGE_NO_FIELD_PROVIDED);
     }
     @Test
     public void execute_invalidNric_throwsCommandException() {

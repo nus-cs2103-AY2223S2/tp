@@ -13,8 +13,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Address;
-import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.AvailableDate;
+import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -41,13 +41,13 @@ public class JsonAdaptedVolunteer extends JsonAdaptedPerson implements JsonSeria
     @JsonCreator
     public JsonAdaptedVolunteer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
               @JsonProperty("email") String email, @JsonProperty("address") String address,
-              @JsonProperty("nric") String nric, @JsonProperty("age") String age,
+              @JsonProperty("nric") String nric, @JsonProperty("birthDate") String birthDate,
               @JsonProperty("region") String region,
               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
               @JsonProperty("medicalTagged") List<JsonAdaptedMedicalTag> medicalTagged,
               @JsonProperty("availableDates") List<JsonAdaptedAvailableDate> dates) {
 
-        super(name, phone, email, address, nric, age, region, tagged, dates);
+        super(name, phone, email, address, nric, birthDate, region, tagged, dates);
         if (medicalTagged != null) {
             this.medicalTags.addAll(medicalTagged);
         }
@@ -88,14 +88,14 @@ public class JsonAdaptedVolunteer extends JsonAdaptedPerson implements JsonSeria
         Address modelAddress = super.getModelAddress(MISSING_FIELD_MESSAGE_FORMAT);
         Set<Tag> modelTags = super.getTagSet(friendlyLink);
         Nric modelNric = super.getModelNric(MISSING_FIELD_MESSAGE_FORMAT);
-        Age modelAge = super.getModelAge(MISSING_FIELD_MESSAGE_FORMAT);
+        BirthDate modelBirthDate = super.getModelBirthDate(MISSING_FIELD_MESSAGE_FORMAT);
         Region modelRegion = super.getModelRegion(MISSING_FIELD_MESSAGE_FORMAT);
         Set<AvailableDate> modelAvailableDates = super.getAvailableDateSet();
         Set<MedicalQualificationTag> medicalQualificationTags =
                 getMedicalTagSet(friendlyLink);
 
         return new Volunteer(modelName, modelPhone, modelEmail, modelAddress,
-                modelNric, modelAge, modelRegion, modelTags,
+                modelNric, modelBirthDate, modelRegion, modelTags,
                 medicalQualificationTags, modelAvailableDates);
     }
 }

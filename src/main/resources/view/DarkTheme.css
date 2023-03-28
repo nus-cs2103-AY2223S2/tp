@@ -5,7 +5,7 @@
     -fx-light-green: #D4E5B1;
     -fx-morning-green: #F0FFE3;
 
-    -fx-tag-color: #3e7b91;
+    -fx-tag-color: #457C51;
 
     -fx-border-radius-default: 10;
     -fx-background-radius-default: 10;
@@ -13,6 +13,21 @@
     -fx-label-ff: "Segoe UI Semibold";
     -fx-label-small-ff: "Segoe UI";
     -fx-label-light-ff: "Segoe UI Light";
+}
+
+.popup-title {
+    -fx-font-size: 20;
+    -fx-font-family: -fx-label-ff;
+    -fx-text-fill: black;
+}
+
+.popup {
+    -fx-background-color: #B5C89C;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-opacity: 95%;
+    -fx-padding: 2 10 2 10;
+    -fx-max-width: 100;
 }
 
 .background {
@@ -105,49 +120,66 @@
 }
 
 .list-view {
-    -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-background-color: -fx-evening-green;
-    -fx-border-color: -fx-dark-green;
+    -fx-padding: 3;
+    -fx-background-color: transparent;
+}
+
+.listView {
+    -fx-background-color: -fx-dark-green;
+    -fx-border-radius: 10 10 0 0;
+    -fx-background-radius: 10 10 0 0;
+}
+
+.listLabel {
+    -fx-label-padding: 10;
+    -fx-font-size: 25;
+    -fx-text-fill: -fx-morning-green;
 }
 
 .list-cell {
-    -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-graphic-text-gap: 0;
     -fx-text-fill: black;
+    -fx-label-padding: 5;
+    -fx-border-width: 1;
+
 }
 
 .list-cell:filled:even {
-    -fx-background-color: -fx-medium-green;
+    -fx-background-color: -fx-light-green;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: -fx-medium-green;
-}
-
-.list-cell:filled:selected {
-    -fx-background-color: -fx-evening-green;
+    -fx-background-color: -fx-light-green;
 }
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: -fx-morning-green;
-    -fx-border-width: 1;
+    -fx-background-color: -fx-medium-green;
+    -fx-label-padding: 5;
 }
 
 .list-cell .label {
     -fx-text-fill: black;
 }
 
+.cell_big_label_with_ball {
+    -fx-background-color: transparent;
+    -fx-font-family: -fx-label-ff;
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #010504;
+}
+
 .cell_big_label {
     -fx-font-family: -fx-label-ff;
-    -fx-font-size: 16px;
+    -fx-font-size: 17px;
+    -fx-font-weight: 700;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
     -fx-font-family: -fx-label-small-ff;
-    -fx-font-size: 13px;
+    -fx-font-size: 15px;
     -fx-text-fill: #010504;
 }
 
@@ -158,8 +190,8 @@
 }
 
 .pane-with-border {
-     -fx-background-color: -fx-light-green;
-     -fx-border-color:  -fx-light-green;
+    -fx-background-color: -fx-light-green;
+    -fx-border-color: -fx-light-green;
 }
 
 .status-bar {
@@ -167,22 +199,19 @@
 }
 
 .result-display {
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: -fx-label-small-ff;
     -fx-font-size: 13pt;
     -fx-text-fill: black;
     -fx-wrap-text: true;
 }
 
-.result-display .label {
-    -fx-text-fill: black !important;
-}
-
 #resultBox {
     -fx-border-color: -fx-dark-green;
-}
-
-#resultDisplay .content {
     -fx-background-color: -fx-morning-green;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-alignment: "top-left";
+    -fx-padding: 10;
 }
 
 .status-bar .label {
@@ -213,7 +242,7 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: -fx-dark-green;
 }
 
 .context-menu .label {
@@ -233,6 +262,16 @@
 
 .menu .left-container {
     -fx-background-color: black;
+}
+
+.menu:hover, .menu:showing {
+    -fx-border-color: -fx-morning-green;
+    -fx-background-color: -fx-dark-green;
+}
+
+.menu-item:focused {
+    -fx-border-color: -fx-morning-green;
+    -fx-background-color: -fx-dark-green;
 }
 
 /*
@@ -310,9 +349,9 @@
 }
 
 .scroll-bar {
-    -fx-background-color: -fx-medium-green;
-    -fx-border-radius: 0 10 10 0;
-    -fx-background-radius: 0 10 10 0;
+    -fx-background-color: -fx-light-green;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
 }
 
 .scroll-bar .thumb {
@@ -432,8 +471,8 @@
 }
 
 #medicalTags {
-    -fx-hgap: 17;
-    -fx-vgap: 31;
+    -fx-hgap: 7;
+    -fx-vgap: 3;
 }
 
 #medicalTags .label {

@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
@@ -33,12 +33,16 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.predicates.AddressContainsKeywordPredicate;
-import seedu.address.model.person.predicates.AgeIsEqualPredicate;
+import seedu.address.model.person.predicates.AvailableDatesWithinRangePredicate;
+import seedu.address.model.person.predicates.BirthDateEqualPredicate;
 import seedu.address.model.person.predicates.EmailContainsKeywordPredicate;
+import seedu.address.model.person.predicates.MedicalQualificationContainsKeywordPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
 import seedu.address.model.person.predicates.NricContainsKeywordPredicate;
 import seedu.address.model.person.predicates.PhoneContainsDigitsPredicate;
+import seedu.address.model.person.predicates.RegionIsEqualPredicate;
 import seedu.address.model.person.predicates.RiskLevelIsEqualPredicate;
+import seedu.address.model.person.predicates.SkillLevelIsEqualPredicate;
 import seedu.address.model.person.predicates.TagIsEqualPredicate;
 import seedu.address.testutil.EditDescriptorBuilder;
 
@@ -59,8 +63,8 @@ public class CommandTestUtil {
     public static final String VALID_NRIC_BOB = "T2345678C";
     public static final String VALID_NRIC_CHARLIE = "T3456789D";
 
-    public static final String VALID_AGE_AMY = "68";
-    public static final String VALID_AGE_BOB = "85";
+    public static final String VALID_BIRTH_DATE_AMY = "1980-03-01";
+    public static final String VALID_BIRTH_DATE_BOB = "1950-04-01";
 
     public static final String VALID_REGION_AMY = "NORTH";
     public static final String VALID_REGION_BOB = "CENTRAL";
@@ -91,8 +95,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
 
-    public static final String AGE_DESC_AMY = " " + PREFIX_AGE + VALID_AGE_AMY;
-    public static final String AGE_DESC_BOB = " " + PREFIX_AGE + VALID_AGE_BOB;
+    public static final String BIRTH_DATE_DESC_AMY = " " + PREFIX_BIRTH_DATE + VALID_BIRTH_DATE_AMY;
+    public static final String BIRTH_DATE_DESC_BOB = " " + PREFIX_BIRTH_DATE + VALID_BIRTH_DATE_BOB;
 
     public static final String REGION_DESC_AMY = " " + PREFIX_REGION + VALID_REGION_AMY;
     public static final String REGION_DESC_BOB = " " + PREFIX_REGION + VALID_REGION_BOB;
@@ -114,17 +118,18 @@ public class CommandTestUtil {
     public static final String NRIC_ELDERLY_DESC_BOB = " " + PREFIX_NRIC_ELDERLY + VALID_NRIC_BOB;
     public static final String NRIC_VOLUNTEER_DESC_AMY = " " + PREFIX_NRIC_VOLUNTEER + VALID_NRIC_AMY;
     public static final String NRIC_VOLUNTEER_DESC_BOB = " " + PREFIX_NRIC_VOLUNTEER + VALID_NRIC_BOB;
-    public static final String NRIC_PERSON_DESC_AMY = " " + PREFIX_NRIC + VALID_NRIC_AMY;
-    public static final String NRIC_PERSON_DESC_BOB = " " + PREFIX_NRIC + VALID_NRIC_BOB;
+    public static final String NRIC_DESC_AMY = " " + PREFIX_NRIC + VALID_NRIC_AMY;
+    public static final String NRIC_DESC_BOB = " " + PREFIX_NRIC + VALID_NRIC_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_ADDRESS_DESC = " "
+            + PREFIX_ADDRESS + " abc"; // string starting with whitespace not allowed for addresses
     public static final String INVALID_NRIC_DESC = " " + PREFIX_NRIC + INVALID_NRIC;
     public static final String INVALID_VOLUNTEER_NRIC_DESC = " " + PREFIX_NRIC_VOLUNTEER + INVALID_NRIC;
     public static final String INVALID_ELDERLY_NRIC_DESC = " " + PREFIX_NRIC_ELDERLY + INVALID_NRIC;
-    public static final String INVALID_AGE_DESC = " " + PREFIX_AGE + "1835";
+    public static final String INVALID_BIRTH_DATE_DESC = " " + PREFIX_BIRTH_DATE + "something";
     public static final String INVALID_REGION_DESC = " " + PREFIX_REGION + "south";
     public static final String INVALID_RISK_DESC = " " + PREFIX_RISK + "safe";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "single*"; // '*' not allowed in tags
@@ -143,24 +148,33 @@ public class CommandTestUtil {
             new PhoneContainsDigitsPredicate<>(ALICE.getPhone().value);
     public static final AddressContainsKeywordPredicate<Person> PREDICATE_HAS_ADDRESS =
             new AddressContainsKeywordPredicate<>(ALICE.getAddress().value);
-    public static final AgeIsEqualPredicate<Person> PREDICATE_HAS_AGE =
-            new AgeIsEqualPredicate<>(ALICE.getAge().value);
+    public static final BirthDateEqualPredicate<Person> PREDICATE_HAS_BIRTHDATE =
+            new BirthDateEqualPredicate<>(ALICE.getBirthDate().birthDate.toString());
     public static final NricContainsKeywordPredicate<Person> PREDICATE_HAS_NRIC =
             new NricContainsKeywordPredicate<>(ALICE.getNric().value);
     public static final RiskLevelIsEqualPredicate<Elderly> PREDICATE_HAS_RISKLEVEL =
             new RiskLevelIsEqualPredicate<>(BOB.getRiskLevel().riskStatus);
+    public static final RegionIsEqualPredicate<Person> PREDICATE_HAS_REGION =
+            new RegionIsEqualPredicate<>(ALICE.getRegion().region);
+    public static final MedicalQualificationContainsKeywordPredicate<Volunteer> PREDICATE_HAS_MEDICAL_QUALIFICATION =
+            new MedicalQualificationContainsKeywordPredicate<>(ALICE.getMedicalTags().iterator().next().tagName);
+    public static final SkillLevelIsEqualPredicate<Volunteer> PREDICATE_HAS_SKILL_LEVEL =
+            new SkillLevelIsEqualPredicate<>(ALICE.getMedicalTags().iterator().next().getQualificationLevel());
+    public static final AvailableDatesWithinRangePredicate<Person> PREDICATE_HAS_AVAILABLE_DATE =
+            new AvailableDatesWithinRangePredicate<>(ALICE.getAvailableDates().iterator().next().getStartDate(),
+                    ALICE.getAvailableDates().iterator().next().getEndDate());
     public static final TagIsEqualPredicate<Person> PREDICATE_HAS_TAG =
             new TagIsEqualPredicate<>(ALICE.getTags().iterator().next().tagName);
 
     static {
         DESC_AMY = new EditDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY).withRiskLevel(VALID_RISK_LEVEL_AMY)
+                .withNric(VALID_NRIC_AMY).withBirthDate(VALID_BIRTH_DATE_AMY).withRiskLevel(VALID_RISK_LEVEL_AMY)
                 .withTags(VALID_TAG_STRONG).build();
 
         DESC_BOB = new EditDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB).withRiskLevel(VALID_RISK_LEVEL_BOB)
+                .withNric(VALID_NRIC_BOB).withBirthDate(VALID_BIRTH_DATE_BOB).withRiskLevel(VALID_RISK_LEVEL_BOB)
                 .withTags(VALID_TAG_SINGLE, VALID_TAG_STRONG).build();
     }
 
@@ -212,7 +226,8 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered volunteer list to show only the volunteer at the given {@code targetIndex}.
+     * Updates {@code model}'s filtered volunteer list to show only the volunteer at the given {@code targetIndex}
+     * in the {@code model}'s FriendlyLink.
      */
     public static void showVolunteerAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredVolunteerList().size());
@@ -226,7 +241,7 @@ public class CommandTestUtil {
 
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s FriendlyLink.
      */
     public static void showElderlyAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredElderlyList().size());
@@ -236,5 +251,18 @@ public class CommandTestUtil {
         model.updateFilteredElderlyList(new NameContainsKeywordsPredicate<>(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredElderlyList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the pair at the given {@code targetIndex} in the
+     * {@code model}'s FriendlyLink.
+     */
+    public static void showPairAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPairList().size());
+
+        Pair pair = model.getFilteredPairList().get(targetIndex.getZeroBased());
+        model.updateFilteredPairList(pairElement -> pairElement.equals(pair));
+
+        assertEquals(1, model.getFilteredPairList().size());
     }
 }

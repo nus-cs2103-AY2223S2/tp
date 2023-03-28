@@ -27,7 +27,7 @@ import seedu.address.model.person.information.Nric;
  */
 public class AddPairCommand extends Command {
 
-    public static final String COMMAND_WORD = "add_pair";
+    public static final String COMMAND_WORD = "pair";
     public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
 
     static {

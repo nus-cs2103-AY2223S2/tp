@@ -3,7 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_VOLUNTEER;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_ELDERLY;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -11,9 +12,13 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.AddElderlyCommandTest.ModelStubWithElderly;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FriendlyLink;
+import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.Nric;
+import seedu.address.testutil.ElderlyBuilder;
 import seedu.address.testutil.VolunteerBuilder;
 
 public class AddVolunteerCommandTest {
@@ -36,13 +41,24 @@ public class AddVolunteerCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_sameNricInVolunteersList_throwsCommandException() {
         Volunteer validVolunteer = new VolunteerBuilder().build();
         AddVolunteerCommand addVolunteerCommand = new AddVolunteerCommand(validVolunteer);
         ModelStub modelStub = new ModelStubWithVolunteer(validVolunteer);
 
         assertThrows(CommandException.class,
-                MESSAGE_DUPLICATE_VOLUNTEER, () -> addVolunteerCommand.execute(modelStub));
+                MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS, () -> addVolunteerCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_sameNricInElderlyList_throwsCommandException() {
+        Volunteer validVolunteer = new VolunteerBuilder().build();
+        Elderly validElderly = new ElderlyBuilder().build();
+        AddVolunteerCommand addVolunteerCommand = new AddVolunteerCommand(validVolunteer);
+        ModelStub modelStub = new ModelStubWithElderly(validElderly);
+
+        assertThrows(CommandException.class, MESSAGE_DUPLICATE_PERSON_IN_ELDERLY, () ->
+                addVolunteerCommand.execute(modelStub));
     }
 
     @Test
@@ -72,7 +88,7 @@ public class AddVolunteerCommandTest {
     /**
      * A Model stub that contains a single volunteer.
      */
-    private static class ModelStubWithVolunteer extends ModelStub {
+    public static class ModelStubWithVolunteer extends ModelStub {
         private final Volunteer volunteer;
 
         ModelStubWithVolunteer(Volunteer volunteer) {
@@ -81,9 +97,14 @@ public class AddVolunteerCommandTest {
         }
 
         @Override
-        public boolean hasVolunteer(Volunteer volunteer) {
-            requireNonNull(volunteer);
-            return this.volunteer.isSamePerson(volunteer);
+        public boolean hasVolunteer(Nric nric) {
+            requireNonNull(nric);
+            return this.volunteer.getNric().equals((nric));
+        }
+
+        @Override
+        public boolean hasElderly(Nric nric) {
+            return false;
         }
     }
 
@@ -94,9 +115,13 @@ public class AddVolunteerCommandTest {
         final ArrayList<Volunteer> volunteersAdded = new ArrayList<>();
 
         @Override
-        public boolean hasVolunteer(Volunteer volunteer) {
-            requireNonNull(volunteer);
-            return volunteersAdded.stream().anyMatch(volunteer::isSamePerson);
+        public boolean hasVolunteer(Nric nric) {
+            return false;
+        }
+
+        @Override
+        public boolean hasElderly(Nric nric) {
+            return false;
         }
 
         @Override

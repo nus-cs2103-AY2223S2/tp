@@ -91,7 +91,6 @@ public class MedicalQualificationTag extends Tag {
      */
     public String toFullString() {
         String qualificationLevelString = qualificationLevel.name();
-
         return super.toString() + " " + qualificationLevelString;
     }
 }
