@@ -4,6 +4,9 @@ import seedu.address.logic.commands.LoadCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.exceptions.UiInputRequiredException;
 
+/**
+ * Parses input arguments and creates a new LoadCommand object
+ */
 public class LoadCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the LoadCommand
