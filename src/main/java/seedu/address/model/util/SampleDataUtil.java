@@ -37,13 +37,14 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
+        for (Ward sampleWard : getSampleWards()) {
+            sampleAb.addWard(sampleWard);
+        }
+
         for (Patient samplePatient : getSamplePatients()) {
             sampleAb.addPatient(samplePatient);
         }
 
-        for (Ward sampleWard : getSampleWards()) {
-            sampleAb.addWard(sampleWard);
-        }
         return sampleAb;
     }
 }

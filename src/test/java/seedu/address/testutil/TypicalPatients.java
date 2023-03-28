@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WARD_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_WARD_BOB;
+import static seedu.address.model.ward.Ward.wardWithName;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,11 +45,11 @@ public class TypicalPatients {
             .withName("George Townsend").withStatus("RED").withWard("ICU").withDischarge("14/02/2023 1400").build();
 
     // Wards
-    public static final Ward WR = new Ward("Waiting Room");
-    public static final Ward A = new Ward("Class A");
-    public static final Ward B = new Ward("Class B");
-    public static final Ward C = new Ward("Class C");
-    public static final Ward ICU = new Ward("ICU");
+    public static final Ward WR = wardWithName("Waiting Room");
+    public static final Ward A = wardWithName("Class A").withCapacity(30);
+    public static final Ward B = wardWithName("Class B").withCapacity(30);
+    public static final Ward C = wardWithName("Class C").withCapacity(30);
+    public static final Ward ICU = wardWithName("ICU").withCapacity(40);
 
     // Manually added
     public static final Patient HOON = new PatientBuilder().withName("Hoon Meier").withNric("T2222222L")
