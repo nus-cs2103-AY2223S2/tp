@@ -304,6 +304,7 @@ public class PdfConverter {
         String[] textSplit = text.split(" ");
         float lengthUsed = 0;
         float xPosition = this.x;
+        int count = 0;
         for (int i = 0; i < textSplit.length; i++) {
             String curString = textSplit[i];
             lengthUsed += textLength(curString, font, fontSize);
@@ -318,7 +319,7 @@ public class PdfConverter {
             }
             float yPrev = this.y;
             if (lengthUsed > wrap) {
-                this.y -= textHeight(font, fontSize, this.margin / 2);
+                if (count != 0) this.y -= textHeight(font, fontSize, this.margin / 2);
                 this.x = xPosition;
                 lengthUsed = textLength(curString, font, fontSize);
             }
@@ -334,6 +335,7 @@ public class PdfConverter {
             this.contentStream.drawString(curString);
             this.contentStream.endText();
             this.x += textLength(curString, font, fontSize);
+            count += 1;
         }
         this.x = xPosition;
     }
