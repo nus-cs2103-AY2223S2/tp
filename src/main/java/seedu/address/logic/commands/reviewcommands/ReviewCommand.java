@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.reviewcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CARD_DISPLAYED_INDEX;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Arrays;
@@ -30,7 +31,6 @@ public class ReviewCommand extends Command {
             + "No other input is allowed between the flags.";
 
     public static final String MESSAGE_SUCCESS = "Deck to be reviewed: %1$s\nReviewing cards of %2$s";
-    public static final String MESSAGE_INVALID_DECK_DISPLAYED_INDEX = "Deck index provided is invalid";
     public static final String MESSAGE_EMPTY_DECK = "The deck you chose to review is empty";
     public static final String MESSAGE_NO_CARDS_WITH_TAG = "There are no cards "
             + "tagged with those difficulties in the deck";
@@ -53,7 +53,7 @@ public class ReviewCommand extends Command {
         List<Deck> deckList = model.getFilteredDeckList();
         boolean isIndexOutOfBound = deckIndex.getZeroBased() >= deckList.size();
         if (isIndexOutOfBound) {
-            throw new CommandException(MESSAGE_INVALID_DECK_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_CARD_DISPLAYED_INDEX);
         } else if (model.getDeckSize(deckIndex.getZeroBased()) == 0) {
             throw new CommandException(MESSAGE_EMPTY_DECK);
         } else if (model.getDeckSizeFilteredTag(deckIndex.getZeroBased(), difficulties) == 0) {

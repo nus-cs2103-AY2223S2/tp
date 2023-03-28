@@ -19,7 +19,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_N_INPUT = "Input must be an integer between 1 and 2147483647"
             + " inclusive or the String 'all'";
     public static final String MESSAGE_INVALID_INTEGER = "Input must be an integer between 1 and 2147483647 inclusive";
-    public static final String MESSAGE_MUST_BE_EMPTY = "No inputs required for difficulty flag";
+    public static final String MESSAGE_MUST_BE_EMPTY = "No inputs allowed";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
