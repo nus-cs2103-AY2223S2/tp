@@ -7,7 +7,7 @@ import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_CREATED_DAT
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NAME_B;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_NOTE_A;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_QUANTITY_B;
-import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_STATUS_B;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_STATUS_B_PENDING_DATE;
 import static seedu.loyaltylift.testutil.TypicalOrders.ORDER_B;
 import static seedu.loyaltylift.testutil.TypicalOrders.ORDER_C;
 
@@ -44,7 +44,7 @@ public class OrderTest {
         assertFalse(ORDER_C.equals(editedC));
 
         // different status -> returns false
-        editedC = new OrderBuilder(ORDER_C).withStatus(VALID_STATUS_B).build();
+        editedC = new OrderBuilder(ORDER_C).withInitialStatus(VALID_STATUS_B_PENDING_DATE).build();
         assertFalse(ORDER_C.equals(editedC));
 
         // different address -> returns false
@@ -87,7 +87,7 @@ public class OrderTest {
         assertFalse(ORDER_C.equals(editedC));
 
         // different status -> returns false
-        editedC = new OrderBuilder(ORDER_C).withStatus(VALID_STATUS_B).build();
+        editedC = new OrderBuilder(ORDER_C).withInitialStatus(VALID_STATUS_B_PENDING_DATE).build();
         assertFalse(ORDER_C.equals(editedC));
 
         // different address -> returns false

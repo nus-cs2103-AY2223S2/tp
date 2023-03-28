@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.loyaltylift.logic.commands.FindCustomerCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
-import seedu.loyaltylift.model.customer.NameContainsKeywordsPredicate;
+import seedu.loyaltylift.model.customer.CustomerNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCustomerCommand object
@@ -27,7 +27,7 @@ public class FindCustomerCommandParser implements Parser<FindCustomerCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindCustomerCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindCustomerCommand(new CustomerNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

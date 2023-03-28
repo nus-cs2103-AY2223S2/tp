@@ -6,7 +6,6 @@ import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_ORDERS;
-import static seedu.loyaltylift.model.order.Status.PENDING;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +18,7 @@ import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
+import seedu.loyaltylift.model.order.Status;
 
 /**
  * Adds an order to LoyaltyLift.
@@ -77,8 +77,9 @@ public class AddOrderCommand extends Command {
         Name name = addOrderDescriptor.getName();
         Address address = addOrderDescriptor.getAddress().orElse(taggedCustomer.getAddress());
         Quantity quantity = addOrderDescriptor.getQuantity().orElse(new Quantity(1));
+        Status status = new Status();
 
-        return new Order(taggedCustomer, name, quantity, PENDING, address);
+        return new Order(taggedCustomer, name, quantity, address);
     }
 
     @Override

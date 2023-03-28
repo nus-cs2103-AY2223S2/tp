@@ -50,6 +50,10 @@ public class OrderInfo extends UiPart<ScrollPane> {
             NotePanel orderNote = new NotePanel(note);
             insertSection("Note", orderNote.getRoot());
         }
+
+        // Order History
+        OrderHistoryPanel orderHistoryPanel = new OrderHistoryPanel(order.getStatus());
+        insertSection("History", orderHistoryPanel.getRoot());
     }
 
     private void insertSection(String sectionTitle, Node node) {

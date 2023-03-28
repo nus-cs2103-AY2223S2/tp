@@ -222,9 +222,11 @@ Format: `setnotec INDEX nt/NOTE`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The note refers to the customer's new note.
 * Any existing note will be overwritten.
+* A customer's note can be removed by setting an empty note.
 
 Examples:
 * `listc` followed by `setnotec 2 nt/Very friendly!` sets the 2nd customer's note as "Very friendly!".
+* `listc` followed by `setnotec 2 nt/` removes the 2nd customer's note.
 * `findc Betsy` followed by `setnotec 1 nt/Vegetarian` sets the 1st customer's note as "Vegetarian" in the results of the `findc` command.
 
 ### Appending a customer's note : `appendnotec`
@@ -333,9 +335,11 @@ Format: `setnoteo INDEX nt/NOTE`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The note refers to the order's new note.
 * Any existing note will be overwritten.
+* An order's note can be removed by setting an empty note.
 
 Examples:
 * `listo` followed by `setnoteo 2 nt/Keep cool` sets the 2nd order's note as "Keep cool".
+* `listc` followed by `setnotec 2 nt/` removes the 2nd order's note.
 * `findo Brownies` followed by `setnoteo 1 nt/Vegan-friendly` sets the 1st order's note as "Vegan-friendly" in the results of the `findo` command.
 
 ### Appending an order's note : `appendnoteo`
@@ -355,7 +359,7 @@ Examples:
 
 ### Locating orders by name: `findo`
 
-Finds persons whose names contain any of the given keywords.
+Finds orders whose names contain any of the given keywords.
 
 Format: `findo KEYWORD [MORE_KEYWORDS]`
 
@@ -363,7 +367,7 @@ Format: `findo KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `chocolate cake` will match ` cake chocolate`.
 * Only the order name is searched.
 * Only full words will be matched e.g. `chocolate` will not match `chocolatey`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Orders matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `chocolate cake` will return `chocolate muffin`, `crepe cake`
 
 Examples:

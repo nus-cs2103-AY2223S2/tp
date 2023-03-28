@@ -2,6 +2,9 @@ package seedu.loyaltylift.storage;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,6 +19,7 @@ import seedu.loyaltylift.model.order.CreatedDate;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
 import seedu.loyaltylift.model.order.Status;
+import seedu.loyaltylift.model.order.StatusUpdate;
 
 /**
  * Jackson-friendly version of {@link Order}.
@@ -28,7 +32,7 @@ public class JsonAdaptedOrder {
     private final String customerId;
     private final String name;
     private final Integer quantity;
-    private final String status;
+    private final List<JsonAdaptedStatusUpdate> statusUpdates = new ArrayList<>();
     private final String address;
     private final String createdDate;
     private final String note;
@@ -38,17 +42,21 @@ public class JsonAdaptedOrder {
      */
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("customerId") String customerId,
-                            @JsonProperty("name") String name, @JsonProperty("phone") Integer quantity,
-                            @JsonProperty("email") String status, @JsonProperty("address") String address,
+                            @JsonProperty("name") String name,
+                            @JsonProperty("phone") Integer quantity,
+                            @JsonProperty("statusUpdates") List<JsonAdaptedStatusUpdate> statusUpdates,
+                            @JsonProperty("address") String address,
                             @JsonProperty("createdDate") String createdDate,
                             @JsonProperty("note") String note) {
         this.customerId = customerId;
         this.name = name;
         this.quantity = quantity;
-        this.status = status;
         this.address = address;
         this.createdDate = createdDate;
         this.note = note;
+        if (statusUpdates != null) {
+            this.statusUpdates.addAll(statusUpdates);
+        }
     }
 
     /**
@@ -58,7 +66,9 @@ public class JsonAdaptedOrder {
         customerId = source.getCustomer().getUid();
         name = source.getName().fullName;
         quantity = source.getQuantity().value;
-        status = source.getStatus().toString().toUpperCase();
+        statusUpdates.addAll(source.getStatus().getStatusUpdates().stream()
+                .map(JsonAdaptedStatusUpdate::new)
+                .collect(Collectors.toList()));
         address = source.getAddress().value;
         createdDate = source.getCreatedDate().toString();
         note = source.getNote().value;
@@ -92,10 +102,14 @@ public class JsonAdaptedOrder {
         }
         final Quantity modelQuantity = new Quantity(quantity);
 
-        if (status == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
+        final List<StatusUpdate> modelStatusUpdates = new ArrayList<>();
+        for (JsonAdaptedStatusUpdate statusUpdate : statusUpdates) {
+            modelStatusUpdates.add(statusUpdate.toModelType());
         }
-        final Status modelStatus = Status.valueOf(status);
+        if (!Status.isValidStatus(modelStatusUpdates)) {
+            throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
+        }
+        final Status modelStatus = new Status(modelStatusUpdates);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -127,6 +141,6 @@ public class JsonAdaptedOrder {
         }
         final Note modelNote = new Note(note);
 
-        return new Order(customer, modelName, modelQuantity, modelStatus, modelAddress, modelCreatedDate, modelNote);
+        return new Order(customer, modelName, modelQuantity, modelAddress, modelStatus, modelCreatedDate, modelNote);
     }
 }

@@ -25,6 +25,7 @@ import seedu.loyaltylift.logic.commands.EditCustomerCommand;
 import seedu.loyaltylift.logic.commands.EditCustomerCommand.EditCustomerDescriptor;
 import seedu.loyaltylift.logic.commands.ExitCommand;
 import seedu.loyaltylift.logic.commands.FindCustomerCommand;
+import seedu.loyaltylift.logic.commands.FindOrderCommand;
 import seedu.loyaltylift.logic.commands.HelpCommand;
 import seedu.loyaltylift.logic.commands.ListCustomerCommand;
 import seedu.loyaltylift.logic.commands.SetCustomerNoteCommand;
@@ -34,8 +35,9 @@ import seedu.loyaltylift.logic.commands.ViewCustomerCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.attribute.Note;
 import seedu.loyaltylift.model.customer.Customer;
-import seedu.loyaltylift.model.customer.NameContainsKeywordsPredicate;
+import seedu.loyaltylift.model.customer.CustomerNameContainsKeywordsPredicate;
 import seedu.loyaltylift.model.customer.Points;
+import seedu.loyaltylift.model.order.OrderNameContainsKeywordsPredicate;
 import seedu.loyaltylift.testutil.CustomerBuilder;
 import seedu.loyaltylift.testutil.CustomerUtil;
 import seedu.loyaltylift.testutil.EditCustomerDescriptorBuilder;
@@ -85,7 +87,7 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCustomerCommand command = (FindCustomerCommand) parser.parseCommand(
                 FindCustomerCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCustomerCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCustomerCommand(new CustomerNameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -160,6 +162,14 @@ public class AddressBookParserTest {
                 + INDEX_FIRST.getOneBased() + " "
                 + PREFIX_NOTE + noteToAppend);
         assertEquals(new AppendOrderNoteCommand(INDEX_FIRST, noteToAppend), command);
+    }
+
+    @Test
+    public void parseCommand_findo() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindOrderCommand command = (FindOrderCommand) parser.parseCommand(
+                FindOrderCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindOrderCommand(new OrderNameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

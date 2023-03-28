@@ -19,7 +19,7 @@ import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.customer.Customer;
-import seedu.loyaltylift.model.customer.NameContainsKeywordsPredicate;
+import seedu.loyaltylift.model.customer.CustomerNameContainsKeywordsPredicate;
 import seedu.loyaltylift.testutil.EditCustomerDescriptorBuilder;
 
 /**
@@ -84,8 +84,9 @@ public class CommandTestUtil {
     public static final String VALID_NAME_B = "Banana Split";
     public static final String VALID_QUANTITY_A = "5";
     public static final String VALID_QUANTITY_B = "2";
-    public static final String VALID_STATUS_A = "Pending";
-    public static final String VALID_STATUS_B = "Paid";
+    public static final String VALID_STATUS_A_PENDING_DATE = "2022/01/09";
+    public static final String VALID_STATUS_A_PAID_DATE = "2022/03/26";
+    public static final String VALID_STATUS_B_PENDING_DATE = "2023/02/09";
     public static final String VALID_ADDRESS_A = "10 Summer Drive, Singapore 3098812";
     public static final String VALID_ADDRESS_B = "11 Fabordrive, Singapore 3001298";
     public static final String VALID_CREATED_DATE_A = "2023/01/09";
@@ -153,7 +154,7 @@ public class CommandTestUtil {
 
         Customer customer = model.getFilteredCustomerList().get(targetIndex.getZeroBased());
         final String[] splitName = customer.getName().fullName.split("\\s+");
-        model.updateFilteredCustomerList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredCustomerList(new CustomerNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredCustomerList().size());
     }
