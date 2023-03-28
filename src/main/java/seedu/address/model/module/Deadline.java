@@ -1,5 +1,8 @@
 package seedu.address.model.module;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.util.SampleDataUtil.EMPTY_INPUT;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -19,16 +22,16 @@ public class Deadline implements Comparable<Deadline> {
      * @param deadline A valid deadline.
      */
     public Deadline(String deadline) {
-        //deadline is optional and hence we do not requireNonNull.
-        //requireNonNull(deadline);
-        value = convertStringToDate(deadline);
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        value = convertStringToDate(trimmedDeadline);
     }
 
     /**
      * Returns if a given string is a valid deadline.
      */
     public static boolean isValidDeadline(String test) {
-        if (test.equals("None.")) {
+        if (test.equals(EMPTY_INPUT)) {
             return true;
         }
         return test.matches(VALIDATION_REGEX);
@@ -39,7 +42,7 @@ public class Deadline implements Comparable<Deadline> {
      * @return LocalDateTime instance
      */
     private LocalDateTime convertStringToDate(String deadline) {
-        if (deadline.equals("None.")) {
+        if (deadline.equals(EMPTY_INPUT)) {
             return null;
         }
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("ddMMyy HH:mm");
@@ -52,7 +55,7 @@ public class Deadline implements Comparable<Deadline> {
      */
     public String displayFormat() {
         if (value == null) {
-            return "None.";
+            return EMPTY_INPUT;
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, HH:mm");
         return formatter.format(value);
@@ -62,7 +65,7 @@ public class Deadline implements Comparable<Deadline> {
     @Override
     public String toString() {
         if (value == null) {
-            return "None.";
+            return EMPTY_INPUT;
         }
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("ddMMyy HH:mm");
         return dateTimeFormatter.format(value);

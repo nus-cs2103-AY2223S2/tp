@@ -2,11 +2,14 @@ package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.util.SampleDataUtil.EMPTY_INPUT;
+
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Objects;
 
 /**
  * Represents a Module's timeSlot in the address book.
@@ -31,21 +34,20 @@ public class TimeSlot implements Comparable<TimeSlot> {
      */
     public TimeSlot(String timeSlot) {
         requireNonNull(timeSlot);
-        String timeSlotTrimmedAndUpperCase = timeSlot.trim().toLowerCase();
-        checkArgument(isValidTimeSlot(timeSlotTrimmedAndUpperCase), MESSAGE_CONSTRAINTS);
-        processStringToTimeSlot(timeSlotTrimmedAndUpperCase);
-        this.storedInputString = timeSlot.trim();
-
+        String trimmedTimeSlot = timeSlot.trim();
+        checkArgument(isValidTimeSlot(trimmedTimeSlot), MESSAGE_CONSTRAINTS);
+        processStringToTimeSlot(trimmedTimeSlot);
     }
 
     /**
      * Returns if a given string is a valid timeSlot.
      */
-    public static boolean isValidTimeSlot(String test) {
-        if (test.equals("none.")) {
+    public static boolean isValidTimeSlot(String timeSlot) {
+        if (timeSlot.equals(EMPTY_INPUT)) {
             return true;
         }
-        return test.matches(VALIDATION_REGEX);
+        //We need to change the string to lower case so a String like "Monday" would still match validation string
+        return timeSlot.toLowerCase().matches(VALIDATION_REGEX);
     }
 
     /**
@@ -53,17 +55,19 @@ public class TimeSlot implements Comparable<TimeSlot> {
      * @return LocalDateTime instance
      */
     private void processStringToTimeSlot(String timeslot) {
-        if (timeslot.equals("NONE.")) {
+        if (timeslot.equals(EMPTY_INPUT)) {
             day = null;
             startTime = null;
             endTime = null;
+            storedInputString = EMPTY_INPUT;
 
         } else {
             String[] values = timeslot.split(" ");
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-            day = DayOfWeek.valueOf(values[0]);
-            startTime = LocalTime.parse(timeslot, dateTimeFormatter);
-            endTime = LocalTime.parse(timeslot, dateTimeFormatter);
+            day = DayOfWeek.valueOf(values[0].toUpperCase());
+            startTime = LocalTime.parse(values[1], dateTimeFormatter);
+            endTime = LocalTime.parse(values[2], dateTimeFormatter);
+            storedInputString = timeslot;
         }
     }
 
@@ -72,9 +76,6 @@ public class TimeSlot implements Comparable<TimeSlot> {
      * @return Display format String
      */
     public String displayFormat() {
-        if (day == null) {
-            return "None.";
-        }
         //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, hh:mm a");
         //return formatter.format(storedInputString);
         return storedInputString;

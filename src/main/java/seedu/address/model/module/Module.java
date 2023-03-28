@@ -150,10 +150,24 @@ public class Module {
     }
 
     public int compareTimeSlot(Module otherModule) {
+        if (this.timeSlot.day == null) {
+            //if this module has no timeslot, this module should be moved to the end of the sorted list.
+            return 1;
+        } else if (otherModule.timeSlot.day == null) {
+            //if other module has no timeslot, other module should be moved to the end of the sorted list.
+            return -1;
+        }
         return this.timeSlot.compareTo(otherModule.timeSlot);
     }
 
     public int compareDeadline(Module otherModule) {
+        if (this.deadline.value == null) {
+            //if this module has no deadline, this module should be moved to the end of the sorted list.
+            return 1;
+        } else if (otherModule.deadline.value == null) {
+            //if other module has no deadline, other module should be moved to the end of the sorted list.
+            return -1;
+        }
         return this.deadline.compareTo(otherModule.deadline);
     }
 
