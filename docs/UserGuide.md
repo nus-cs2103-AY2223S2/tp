@@ -257,7 +257,7 @@ Format:
 ```
 task <INDEX>
 ```
-- Selects group at index specified in <INDEX> and displays list of tasks assigned to that group.
+- Selects group at index specified in `<INDEX>` and displays list of tasks assigned to that group.
 
 Examples:
 - `task 1` will return a list of tasks for the 1st group.
