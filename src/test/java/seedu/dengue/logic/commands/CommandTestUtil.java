@@ -10,15 +10,22 @@ import static seedu.dengue.logic.parser.CliSyntax.PREFIX_VARIANT;
 import static seedu.dengue.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.dengue.commons.core.index.Index;
 import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.Model;
-import seedu.dengue.model.person.FilterPredicate;
+import seedu.dengue.model.person.Age;
+import seedu.dengue.model.person.Date;
+import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
+import seedu.dengue.model.person.SubPostal;
+import seedu.dengue.model.predicate.FindPredicate;
+import seedu.dengue.model.variant.Variant;
 import seedu.dengue.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -159,8 +166,13 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new FilterPredicate(Arrays.asList(splitName[0])));
+        Optional<SubPostal> emptySubPostal = Optional.empty();
+        Optional<Name> testName = Optional.of(person.getName());
+        Optional<Age> emptyAge = Optional.empty();
+        Optional<Date> emptyDate = Optional.empty();
+        Set<Variant> emptyVariants = new HashSet<>();
+        model.updateFilteredPersonList(
+                new FindPredicate(testName, emptySubPostal, emptyAge, emptyDate, emptyVariants));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

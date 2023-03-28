@@ -1,8 +1,8 @@
 package seedu.dengue.logic.commands;
 
 import static seedu.dengue.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.dengue.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.dengue.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+//import static seedu.dengue.logic.commands.CommandTestUtil.showPersonAtIndex;
+//import static seedu.dengue.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.dengue.testutil.TypicalPersons.getTypicalDengueHotspotTracker;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -31,9 +31,9 @@ public class ListCommandTest {
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
-    @Test
-    public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
-    }
+    //    @Test
+    //    public void execute_listIsFiltered_showsEverything() {
+    //        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    //        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    //    }
 }

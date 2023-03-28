@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.dengue.commons.core.index.Index;
@@ -13,6 +14,8 @@ import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Postal;
+import seedu.dengue.model.person.SubPostal;
+import seedu.dengue.model.predicate.PredicateUtil;
 import seedu.dengue.model.variant.Variant;
 
 /**
@@ -27,10 +30,10 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    public static Index parseIndex(String oneBasedIndex) throws seedu.dengue.logic.parser.exceptions.ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new seedu.dengue.logic.parser.exceptions.ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
@@ -42,12 +45,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code name} is invalid.
      */
     public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
+        if (!PredicateUtil.isNameValid(name)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-
+        String trimmedName = name.trim();
         return new Name(trimmedName);
     }
 
@@ -58,12 +59,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code Postal} is invalid.
      */
     public static Postal parsePostal(String postal) throws ParseException {
-        requireNonNull(postal);
-        String trimmedPostal = postal.trim();
-        if (!Postal.isValidPostal(trimmedPostal)) {
+        if (!PredicateUtil.isPostalValid(postal)) {
             throw new ParseException(Postal.MESSAGE_CONSTRAINTS);
         }
-
+        String trimmedPostal = postal.trim();
         return new Postal(trimmedPostal);
     }
 
@@ -75,12 +74,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code age} is invalid.
      */
     public static Age parseAge(String age) throws ParseException {
-        requireNonNull(age);
-        String trimmedAge = age.trim();
-        if (!Age.isValidAge(trimmedAge)) {
+        if (!PredicateUtil.isAgeValid(age)) {
             throw new ParseException(Age.MESSAGE_CONSTRAINTS);
         }
-
+        String trimmedAge = age.trim();
         return new Age(trimmedAge);
     }
 
@@ -91,12 +88,11 @@ public class ParserUtil {
      * @throws ParseException if the given {@code date} is invalid.
      */
     public static Date parseDate(String date) throws ParseException {
-        requireNonNull(date);
-        String trimmedDate = date.trim();
-        if (!Date.isValidDate(trimmedDate)) {
+        if (!PredicateUtil.isDateValid(date)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new Date(trimmedDate);
+        String trimmedDate = date.trim();
+        return new Date(date);
     }
 
     /**
@@ -106,22 +102,129 @@ public class ParserUtil {
      * @throws ParseException if the given {@code variant} is invalid.
      */
     public static Variant parseVariant(String variant) throws ParseException {
-        requireNonNull(variant);
-        String trimmedVariant = variant.trim();
-        if (!Variant.isValidVariantName(trimmedVariant)) {
+        if (!PredicateUtil.isVariantValid(variant)) {
             throw new ParseException(Variant.MESSAGE_CONSTRAINTS);
         }
+        String trimmedVariant = variant.trim();
         return new Variant(trimmedVariant);
     }
 
     /**
      * Parses {@code Collection<String> variants} into a {@code Set<Variant>}.
+     *
+     * @throws ParseException if the given {@code Set<Variant>} is invalid.
      */
     public static Set<Variant> parseVariants(Collection<String> variants) throws ParseException {
         requireNonNull(variants);
         final Set<Variant> variantSet = new HashSet<>();
         for (String variantName : variants) {
             variantSet.add(parseVariant(variantName));
+        }
+        return variantSet;
+    }
+
+    /**
+     * Parses a {@code Optional<String> name} into a {@code Optional<Name>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Optional<Name> parseOptionalName(Optional<String> name) throws ParseException {
+        if (name.isPresent()) {
+            if (!PredicateUtil.isNameValid(name.get())) {
+                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            }
+            String trimmedName = name.get().trim();
+            return Optional.of(new Name(trimmedName));
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    /**
+     * Parses a {@code Optional<String> Postal} into a {@code Optional<Postal>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code postal} is invalid.
+     */
+    public static Optional<SubPostal> parseOptionalSubPostal(Optional<String> subPostal) throws ParseException {
+        if (subPostal.isPresent()) {
+            if (!PredicateUtil.isSubPostalValid(subPostal.get())) {
+                throw new ParseException(SubPostal.MESSAGE_CONSTRAINTS);
+            }
+            String trimmedSubPostal = subPostal.get().trim();
+            return Optional.of(new SubPostal(trimmedSubPostal));
+        } else {
+            return Optional.empty();
+        }
+    }
+
+
+    /**
+     * Parses a {@code Optional<String> age} into an {@code Optional<Age>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code age} is invalid.
+     */
+    public static Optional<Age> parseOptionalAge(Optional<String> age) throws ParseException {
+        if (age.isPresent()) {
+            if (!PredicateUtil.isAgeValid(age.get())) {
+                throw new ParseException(Age.MESSAGE_CONSTRAINTS);
+            }
+            String trimmedAge = age.get().trim();
+            return Optional.of(new Age(trimmedAge));
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    /**
+     * Parses a {@code Optional<String> date} into an {@code Optional<Date>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Optional<Date> parseOptionalDate(Optional<String> date) throws ParseException {
+        if (date.isPresent()) {
+            if (!PredicateUtil.isDateValid(date.get())) {
+                throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+            }
+            String trimmedDate = date.get().trim();
+            return Optional.of(new Date(trimmedDate));
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    /**
+     * Parses a {@code Optional<String> variant} into a {@code Optional<Variant>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code variant} is invalid.
+     */
+    public static Optional<Variant> parseOptionalVariant(Optional<String> variant) throws ParseException {
+        if (variant.isPresent()) {
+            if (!PredicateUtil.isVariantValid(variant.get())) {
+                throw new ParseException(Variant.MESSAGE_CONSTRAINTS);
+            }
+            String trimmedVariant = variant.get().trim();
+            return Optional.of(new Variant(trimmedVariant));
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    /**
+     * Parses {@code Collection<Optional<String>> variants} into a {@code Set<Optional<Variant>>}.
+     *
+     * @throws ParseException if the given {@code Set<Optional<Variant>>} is invalid.
+     */
+    public static Set<Optional<Variant>> parseOptionalVariants(Collection<Optional<String>> variants)
+            throws ParseException {
+        requireNonNull(variants);
+        final Set<Optional<Variant>> variantSet = new HashSet<>();
+        for (Optional<String> variantName : variants) {
+            variantSet.add(parseOptionalVariant(variantName));
         }
         return variantSet;
     }
