@@ -27,6 +27,12 @@ public class DeleteMultipleIndexCommand extends DeleteCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Person> personlist = model.getFilteredPersonList();
+        personlist.stream().forEach(x -> {
+            if (!x.getHidden()) {
+                x.toggleHidden();
+            }
+        });
         List<Person> lastShownList = model.getFilteredPersonList();
         isIndexesValid(lastShownList);
 
