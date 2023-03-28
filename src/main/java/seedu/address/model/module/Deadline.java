@@ -83,7 +83,7 @@ public class Deadline implements Comparable<Deadline> {
 
 
     @Override
-    public int compareTo(Deadline o) {
-        return 0;
+    public int compareTo(Deadline otherDeadline) {
+        return value.compareTo(otherDeadline.value);
     }
 }

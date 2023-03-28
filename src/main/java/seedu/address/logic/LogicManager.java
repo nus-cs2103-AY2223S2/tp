@@ -89,7 +89,7 @@ public class LogicManager implements Logic {
 
         for (int i = 0; i < model.getDisplayedModuleList().size(); i++) {
             boolean isDeadlineNull = model.getDisplayedModuleList().get(i).getDeadline().value == null;
-            boolean isSlotNull = model.getDisplayedModuleList().get(i).getTimeSlot().value == null;
+            boolean isSlotNull = model.getDisplayedModuleList().get(i).getTimeSlot().day == null;
 
             // Handle deadlines
             if (!isDeadlineNull) {
@@ -132,7 +132,7 @@ public class LogicManager implements Logic {
         String fullLine = "";
         Module module = model.getDisplayedModuleList().get(index);
 
-        boolean isSlotToday = module.getTimeSlot().value.toLocalDate().isEqual(today);
+        boolean isSlotToday = module.getTimeSlot().getLocalDateTime().toLocalDate().isEqual(today);
 
         if(isSlotToday) {
             String moduleName = module.getName().fullName;
@@ -140,7 +140,7 @@ public class LogicManager implements Logic {
             moduleType = moduleType.replace("[", "").replace("]", "");
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
-            LocalDateTime date = module.getTimeSlot().value;
+            LocalDateTime date = module.getTimeSlot().getLocalDateTime();
             String formattedDate = formatter.format(date);
 
             fullLine = moduleName + " " + moduleType + " Starting at: " + formattedDate + "\n";
