@@ -29,7 +29,7 @@ import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 import seedu.recipe.testutil.RecipeBuilder;
 import seedu.recipe.testutil.RecipeUtil;
 
-public class AddressBookParserTest {
+public class CookHubParserTest {
 
     private final CookHubParser parser = new CookHubParser();
 
@@ -72,7 +72,7 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " t/" + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new TitleContainsKeywordsPredicate(keywords)), command);
     }
 

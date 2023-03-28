@@ -15,6 +15,7 @@ import seedu.recipe.logic.commands.ExitCommand;
 import seedu.recipe.logic.commands.FindCommand;
 import seedu.recipe.logic.commands.HelpCommand;
 import seedu.recipe.logic.commands.ListCommand;
+import seedu.recipe.logic.commands.OnlyCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 
 /**
@@ -67,6 +68,9 @@ public class CookHubParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case OnlyCommand.COMMAND_WORD:
+            return new OnlyCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
