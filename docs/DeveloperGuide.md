@@ -249,7 +249,7 @@ These operations are exposed in the `Model` and `Logic` interface as `Model#comm
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. 
+Step 1. The user launches the application for the first time.
 
 Step 2. The user executes `delete_job ALBE6DD723` command to delete job with ID ALBE6DD723 in the DeliveryJobSystem. The `delete` command calls `Model#commitDeliveryJob()`, causing the modified state of the delivery job list system after the `delete_job ALBE6DD723` command executes to be saved in the `deliveryJobSystemStateList`.
 
@@ -302,7 +302,7 @@ Step 1. The user launches the application for the first time.
 
 Step 2. The user inputs a series of commands to modify the state of the deliveryJobList.
 
-Step 3. The user now wants to view a summary of the statistics of the jobs in the deliveryJobList. 
+Step 3. The user now wants to view a summary of the statistics of the jobs in the deliveryJobList.
 The `statistics` command will open up the statistics window, where a list of statistics will be shown.
 
 The following sequence diagram shows how the statistics operation works:
@@ -342,9 +342,9 @@ The following sequence diagram shows how the update operation works:
 ### Notification feature
 #### Implementation
 
-The Notification feature is facilitated by an external library, [ControlsFx](https://github.com/controlsfx/controlsfx). 
-It is an open source project for JavaFX that aims to provide really high quality UI controls and other tools to 
-complement the core JavaFX distribution. The mechanism is handled by `NotificationManager`, which implements the 
+The Notification feature is facilitated by an external library, [ControlsFx](https://github.com/controlsfx/controlsfx).
+It is an open source project for JavaFX that aims to provide really high quality UI controls and other tools to
+complement the core JavaFX distribution. The mechanism is handled by `NotificationManager`, which implements the
 following operations:
 
 * `NotificationManager#checkReminderList()` — Check against the `reminderList` found in `Model` and display a reminder notification with `NotificationManager#show()`.
@@ -570,11 +570,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <b>Extensions:</b>
 * 3a. A few minutes before the next schedule, System will check if there is an job.
-    * 3a1. If there is an upcoming job, fire a pop up notification. 
+    * 3a1. If there is an upcoming job, fire a pop up notification.
     Use case resumes from step 4.
 </pre>
 </details>
- 
+
 <details>
 <summary><b>[RE2] Add reminders</b></summary>
 <pre>
@@ -604,7 +604,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes from step 1.
 </pre>
 </details>
- 
+
 <details>
 <summary><b>[RE4] List reminders</b></summary>
 <pre>

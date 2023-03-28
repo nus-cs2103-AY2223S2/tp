@@ -55,10 +55,4 @@ BackgroundScheduleTask -> NotificationManager : checkNextSchedule()
 
 end loop
 
-
-
-
-
-
-
 @enduml
