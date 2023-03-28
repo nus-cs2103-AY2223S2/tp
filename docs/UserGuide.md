@@ -359,7 +359,7 @@ select <INDEX>
 ```
 
 Examples:
-- `view 2` will display the full student details of the 2nd student in the student list on the view panel.
+- `select 2` will select the 2nd student in the student list and display his / her particulars on the view panel.
 
 
 
