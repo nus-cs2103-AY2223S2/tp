@@ -29,5 +29,9 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_PAIR =
             "This pair consisting of elderly with NRIC %1$s"
                     + " and volunteer with NRIC %2$s already exists in FriendlyLink";
+    public static final String MESSAGE_WARNING_REGION = "\nWarning: The paired volunteer's and elderly's region "
+            + "do not match";
+    public static final String MESSAGE_WARNING_AVAILABLE_DATES = "\nWarning: The paired elderly and volunteer "
+            + "do not have common available dates";
 
 }

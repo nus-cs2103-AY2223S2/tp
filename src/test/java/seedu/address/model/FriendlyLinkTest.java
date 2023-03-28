@@ -10,11 +10,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STRONG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
 import static seedu.address.testutil.TypicalElderly.ALICE;
-import static seedu.address.testutil.TypicalElderly.GEORGE;
 import static seedu.address.testutil.TypicalPairs.PAIR1;
 import static seedu.address.testutil.TypicalVolunteers.BOB;
 import static seedu.address.testutil.TypicalVolunteers.ELLE;
-import static seedu.address.testutil.TypicalVolunteers.FIONA;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -221,14 +219,6 @@ public class FriendlyLinkTest {
     @Test
     public void getPairList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> friendlyLink.getPairList().remove(0));
-    }
-
-    @Test
-    public void addPair_noOverlappingDates_throwsIllegalValueException() {
-        friendlyLink.addElderly(GEORGE);
-        friendlyLink.addVolunteer(FIONA);
-        assertThrows(IllegalArgumentException.class, () ->
-                friendlyLink.addPair(GEORGE.getNric(), FIONA.getNric()));
     }
 
     /**

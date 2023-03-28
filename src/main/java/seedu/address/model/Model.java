@@ -152,7 +152,7 @@ public interface Model {
     void setElderly(Elderly target, Elderly editedElderly);
 
     /**
-     * Returns true if an volunteer with the same {@code nric} exists in the friendly link database.
+     * Returns true if a volunteer with the same {@code nric} exists in the friendly link database.
      */
     boolean hasVolunteer(Nric nric);
 
@@ -199,7 +199,7 @@ public interface Model {
      * @param elderlyNric Nric of the elderly of the pair to add.
      * @param volunteerNric Nric of the volunteer of the pair to add.
      */
-    boolean addPair(Nric elderlyNric, Nric volunteerNric);
+    void addPair(Nric elderlyNric, Nric volunteerNric);
 
     /**
      * Returns true if a pair with the same identity as {@code pair} exists in FriendlyLink.
@@ -281,14 +281,34 @@ public interface Model {
     void updateFilteredPairList(Predicate<Pair> predicate);
 
     /**
+     * Updates all filtered lists with the given predicates.
+     */
+    void updateAllFilteredLists(Predicate<Elderly> elderlyPredicate,
+                                Predicate<Volunteer> pairPredicate, Predicate<Pair> volunteerPredicate);
+
+    /**
      * Refreshes all filtered lists to display everything.
      */
     void refreshAllFilteredLists();
 
     /**
-     * updates all filtered lists with the given predicates.
+     * Checks whether regions of an elderly and a volunteer are the same.
+     * The elderly and volunteer with the given Nric must exist in FriendlyLink.
+     *
+     * @param elderlyNric Nric of the elderly.
+     * @param volunteerNric Nric of the volunteer.
+     * @return True if both persons belong in the same region, false otherwise.
      */
-    void updateAllFilteredLists(Predicate<Elderly> elderlyPredicate,
-            Predicate<Volunteer> pairPredicate, Predicate<Pair> volunteerPredicate);
+    boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric);
 
+    /**
+     * Checks whether there are suitable available dates between an elderly and a volunteer.
+     * The elderly and volunteer with the given Nric must exist in FriendlyLink.
+     *
+     * @param elderlyNric Nric of the elderly.
+     * @param volunteerNric Nric of the volunteer.
+     * @return True if both persons share common available dates or at least one person
+     *     has no specified available dates, false otherwise.
+     */
+    boolean checkHasSuitableAvailableDates(Nric elderlyNric, Nric volunteerNric);
 }

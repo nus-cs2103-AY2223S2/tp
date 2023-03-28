@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -105,6 +106,47 @@ public abstract class Person {
         }
         return otherPerson != null
                 && otherPerson.getNric().equals(nric);
+    }
+
+    /**
+     * Returns true if both persons belong to the same region.
+     * {@code otherPerson} must not be null.
+     *
+     * @param otherPerson Person to be compared to.
+     * @return True if both persons belong to the same region and false otherwise.
+     */
+    public boolean isSameRegion(Person otherPerson) {
+        requireNonNull(otherPerson);
+        return otherPerson.getRegion().equals(region);
+    }
+
+    /**
+     * Checks whether there are suitable available dates between two persons.
+     * {@code otherPerson} must not be null.
+     *
+     * @param otherPerson Person to be compared to.
+     * @return True if both persons share common available dates or at least one person
+     *     has no specified available dates, false otherwise.
+     */
+    public boolean hasSuitableAvailableDates(Person otherPerson) {
+        requireNonNull(otherPerson);
+        Set<AvailableDate> availableDates = getAvailableDates();
+        Set<AvailableDate> otherAvailableDates = otherPerson.getAvailableDates();
+
+        // no restrictions
+        if (availableDates.isEmpty() || otherAvailableDates.isEmpty()) {
+            return true;
+        }
+
+        // find first matching dates
+        for (AvailableDate date : availableDates) {
+            for (AvailableDate availableDate : otherAvailableDates) {
+                if (date.isIntersect(availableDate.getStartDate(), availableDate.getEndDate())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**

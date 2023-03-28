@@ -54,7 +54,7 @@ public class TypicalVolunteers {
             .withNric("S0203151E").build();
     public static final Volunteer ELLE = new VolunteerBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").withBirthDate("1994-05-01")
-            .withAvailableDates("2023-05-11", "2023-05-12").withRegion("NORTHEAST")
+            .withAvailableDates("2023-05-11", "2023-05-12").withRegion("NORTH")
             .withNric("S7238791J").build();
     public static final Volunteer FIONA = new VolunteerBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")

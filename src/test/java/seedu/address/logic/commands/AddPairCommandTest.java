@@ -3,21 +3,30 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PAIR;
 import static seedu.address.commons.core.Messages.MESSAGE_ELDERLY_NOT_FOUND;
 import static seedu.address.commons.core.Messages.MESSAGE_VOLUNTEER_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_WARNING_AVAILABLE_DATES;
+import static seedu.address.commons.core.Messages.MESSAGE_WARNING_REGION;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.commands.AddPairCommand.MESSAGE_ADD_PAIR_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_CHARLIE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalElderly.AMY;
 import static seedu.address.testutil.TypicalPairs.PAIR1;
 import static seedu.address.testutil.TypicalPairs.PAIR2;
+import static seedu.address.testutil.TypicalVolunteers.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FriendlyLink;
+import seedu.address.model.Model;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.pair.exceptions.DuplicatePairException;
 import seedu.address.model.person.Elderly;
@@ -25,7 +34,11 @@ import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.exceptions.ElderlyNotFoundException;
 import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.Nric;
+import seedu.address.testutil.ElderlyBuilder;
+import seedu.address.testutil.FriendlyLinkBuilder;
+import seedu.address.testutil.ModelManagerBuilder;
 import seedu.address.testutil.PairBuilder;
+import seedu.address.testutil.VolunteerBuilder;
 
 public class AddPairCommandTest {
 
@@ -50,7 +63,7 @@ public class AddPairCommandTest {
         Volunteer volunteer = validPair.getVolunteer();
         ModelStubAcceptingPairAdded modelStub = new ModelStubAcceptingPairAdded(elderly, volunteer);
         CommandResult commandResult = new AddPairCommand(elderly.getNric(), volunteer.getNric()).execute(modelStub);
-        String expectedMessage = String.format(AddPairCommand.MESSAGE_ADD_PAIR_SUCCESS,
+        String expectedMessage = String.format(MESSAGE_ADD_PAIR_SUCCESS,
                 elderly.getNric(), volunteer.getNric());
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
         assertEquals(validPair, modelStub.pair);
@@ -87,6 +100,54 @@ public class AddPairCommandTest {
         String expectedMessage = String.format(MESSAGE_DUPLICATE_PAIR, elderlyNric, volunteerNric);
         assertThrows(CommandException.class,
                 expectedMessage, () -> addPairCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_noCommonAvailableDates_successfulWithWarning() throws Exception {
+        Elderly elderly = new ElderlyBuilder(AMY)
+                .withAvailableDates("2023-02-02", "2023-03-03")
+                .withRegion(VALID_REGION_AMY)
+                .build();
+        Volunteer volunteer = new VolunteerBuilder(BOB)
+                .withAvailableDates("2023-04-04", "2023-05-05")
+                .withRegion(VALID_REGION_AMY)
+                .build();
+        FriendlyLink friendlyLink = new FriendlyLinkBuilder()
+                .withElderly(elderly)
+                .withVolunteer(volunteer)
+                .build();
+        Model model = new ModelManagerBuilder()
+                .withFriendlyLink(friendlyLink)
+                .build();
+        String expectedMessage = String.format(MESSAGE_ADD_PAIR_SUCCESS, elderly.getNric(), volunteer.getNric())
+                + MESSAGE_WARNING_AVAILABLE_DATES;
+        CommandResult commandResult = new AddPairCommand(elderly.getNric(), volunteer.getNric()).execute(model);
+        assertEquals(expectedMessage, commandResult.getFeedbackToUser());
+        assertTrue(model.getFilteredPairList().contains(new Pair(elderly, volunteer)));
+    }
+
+    @Test
+    public void execute_differentRegion_successfulWithWarning() throws Exception {
+        Elderly elderly = new ElderlyBuilder(AMY)
+                .withAvailableDates("2023-02-02", "2023-03-03")
+                .withRegion(VALID_REGION_AMY)
+                .build();
+        Volunteer volunteer = new VolunteerBuilder(BOB)
+                .withAvailableDates("2023-02-02", "2023-03-03")
+                .withRegion(VALID_REGION_BOB)
+                .build();
+        FriendlyLink friendlyLink = new FriendlyLinkBuilder()
+                .withElderly(elderly)
+                .withVolunteer(volunteer)
+                .build();
+        Model model = new ModelManagerBuilder()
+                .withFriendlyLink(friendlyLink)
+                .build();
+        String expectedMessage = String.format(MESSAGE_ADD_PAIR_SUCCESS, elderly.getNric(), volunteer.getNric())
+                + MESSAGE_WARNING_REGION;
+        CommandResult commandResult = new AddPairCommand(elderly.getNric(), volunteer.getNric()).execute(model);
+        assertEquals(expectedMessage, commandResult.getFeedbackToUser());
+        assertTrue(model.getFilteredPairList().contains(new Pair(elderly, volunteer)));
     }
 
     @Test
@@ -141,12 +202,11 @@ public class AddPairCommandTest {
         }
 
         @Override
-        public boolean addPair(Nric elderlyNric, Nric volunteerNric) {
+        public void addPair(Nric elderlyNric, Nric volunteerNric) {
             if (pair.getElderly().getNric().equals(elderlyNric)
                 && pair.getVolunteer().getNric().equals(volunteerNric)) {
                 throw new DuplicatePairException();
             }
-            return false; // dummy return
         }
 
     }
@@ -172,7 +232,7 @@ public class AddPairCommandTest {
         }
 
         @Override
-        public boolean addPair(Nric elderlyNric, Nric volunteerNric) {
+        public void addPair(Nric elderlyNric, Nric volunteerNric) {
             if (!elderlyNric.equals(elderly.getNric())) {
                 throw new ElderlyNotFoundException();
             } else if (!volunteerNric.equals(volunteer.getNric())) {
@@ -183,7 +243,6 @@ public class AddPairCommandTest {
                 throw new DuplicatePairException();
             }
             this.pair = new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric));
-            return false; // dummy return
         }
 
         @Override
@@ -199,6 +258,16 @@ public class AddPairCommandTest {
         @Override
         public FriendlyLink getFriendlyLink() {
             return new FriendlyLink();
+        }
+
+        @Override
+        public boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric) {
+            return true;
+        }
+
+        @Override
+        public boolean checkHasSuitableAvailableDates(Nric elderlyNric, Nric volunteerNric) {
+            return true;
         }
     }
 

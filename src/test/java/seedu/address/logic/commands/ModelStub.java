@@ -83,7 +83,7 @@ class ModelStub implements Model {
     }
 
     @Override
-    public boolean addPair(Nric elderlyNric, Nric volunteerNric) {
+    public void addPair(Nric elderlyNric, Nric volunteerNric) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -188,13 +188,23 @@ class ModelStub implements Model {
     }
 
     @Override
+    public void updateAllFilteredLists(Predicate<Elderly> elderlyPredicate,
+                                       Predicate<Volunteer> volunteerPredicate, Predicate<Pair> pairPredicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void refreshAllFilteredLists() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void updateAllFilteredLists(Predicate<Elderly> elderlyPredicate,
-                                       Predicate<Volunteer> volunteerPredicate, Predicate<Pair> pairPredicate) {
+    public boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean checkHasSuitableAvailableDates(Nric elderlyNric, Nric volunteerNric) {
         throw new AssertionError("This method should not be called.");
     }
 }
