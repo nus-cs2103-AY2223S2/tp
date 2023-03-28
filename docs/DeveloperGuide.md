@@ -324,7 +324,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Keep track of the update list without saving the entire model into FitBookExerciseRoutine after each addExercise command.
     * Pros: Might be faster.
     * Cons: Will be risky as it does not maintain accuracy of data in the model.
-    * 
+
 ### Delete Routine feature
 
 #### Implementation
@@ -449,7 +449,7 @@ Step 2.5/3.5. These commands will therefore go through updates for the FitBookMo
 
 ![AddEditRoutineState2](images/AddEditRoutineState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `editRoutine` command is at index 4, pointing at an invalid Routine, it will return an error to the user, prompting the user that he/she has used an invalid routine index. 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `editRoutine` command is at index 4, pointing at an invalid Routine, it will return an error to the user, prompting the user that he/she has used an invalid routine index.
 
 </div>
 

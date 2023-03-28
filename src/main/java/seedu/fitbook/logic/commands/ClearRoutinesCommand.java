@@ -2,8 +2,11 @@ package seedu.fitbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.fitbook.model.FitBookExerciseRoutine;
 import seedu.fitbook.model.FitBookModel;
+import seedu.fitbook.model.client.Client;
 
 /**
  * Clears the FitBook routine list.
@@ -17,6 +20,15 @@ public class ClearRoutinesCommand extends Command {
     public CommandResult execute(FitBookModel model) {
         requireNonNull(model);
         model.setFitBookExerciseRoutine(new FitBookExerciseRoutine());
+        updateClientExercise(model);
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    /**
+     * Updates the {@code clients} with the cleared {@code Routine}.
+     */
+    private void updateClientExercise(FitBookModel model) {
+        List<Client> clientList = model.getFitBook().getClientList();
+        clientList.forEach(client -> client.clearRoutines());
     }
 }
