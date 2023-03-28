@@ -18,6 +18,8 @@ import seedu.connectus.model.person.Name;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.socialmedia.SocialMedia;
+import seedu.connectus.model.tag.Cca;
+import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -35,6 +37,8 @@ class JsonAdaptedPerson {
     private JsonAdaptedSocialMedia socialMedia = new JsonAdaptedSocialMedia();
     private final List<JsonAdaptedRemark> remarks = new ArrayList<>();
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
+    private final List<JsonAdaptedCca> ccas = new ArrayList<>();
+    private final List<JsonAdaptedCcaPosition> ccaPositions = new ArrayList<>();
     private JsonAdaptedBirthday birthday = new JsonAdaptedBirthday();
 
     /**
@@ -45,7 +49,9 @@ class JsonAdaptedPerson {
             @JsonProperty("email") JsonAdaptedEmail email, @JsonProperty("address") JsonAdaptedAddress address,
             @JsonProperty("socialMedia") JsonAdaptedSocialMedia socialMedia,
             @JsonProperty("remarks") List<JsonAdaptedRemark> remarks,
-             @JsonProperty("modules") List<JsonAdaptedModule> modules,
+            @JsonProperty("modules") List<JsonAdaptedModule> modules,
+            @JsonProperty("ccas") List<JsonAdaptedCca> ccas,
+            @JsonProperty("ccaPositions") List<JsonAdaptedCcaPosition> ccaPositions,
             @JsonProperty("birthday") JsonAdaptedBirthday birthday) {
         this.name = name;
         if (phone != null) {
@@ -66,6 +72,12 @@ class JsonAdaptedPerson {
         if (modules != null) {
             this.modules.addAll(modules);
         }
+        if (ccas != null) {
+            this.ccas.addAll(ccas);
+        }
+        if (ccaPositions != null) {
+            this.ccaPositions.addAll(ccaPositions);
+        }
         if (birthday != null) {
             this.birthday = birthday;
         }
@@ -83,6 +95,15 @@ class JsonAdaptedPerson {
         modules.addAll(source.getModules().stream()
                 .map(JsonAdaptedModule::new)
                 .collect(Collectors.toList()));
+
+        ccas.addAll(source.getCcas().stream()
+                .map(JsonAdaptedCca::new)
+                .collect(Collectors.toList()));
+
+        ccaPositions.addAll(source.getCcaPositions().stream()
+                .map(JsonAdaptedCcaPosition::new)
+                .collect(Collectors.toList()));
+
         if (source.getPhone().isPresent()) {
             phone = new JsonAdaptedPhone(source.getPhone().get());
         }
@@ -120,6 +141,16 @@ class JsonAdaptedPerson {
         final List<Module> personModules = new ArrayList<>();
         for (JsonAdaptedModule module : modules) {
             personModules.add(module.toModelType());
+        }
+
+        final List<Cca> personCcas = new ArrayList<>();
+        for (JsonAdaptedCca cca : ccas) {
+            personCcas.add(cca.toModelType());
+        }
+
+        final List<CcaPosition> personCcaPositions = new ArrayList<>();
+        for (JsonAdaptedCcaPosition ccaPosition : ccaPositions) {
+            personCcaPositions.add(ccaPosition.toModelType());
         }
 
         if (name == null) {
@@ -179,7 +210,20 @@ class JsonAdaptedPerson {
                 p.setModules(modelModules);
             }
         }
-
+      
+        if (ccas != null) {
+            Set<Cca> modelCcas = new HashSet<>(personCcas);
+            if (!modelCcas.isEmpty()) {
+                p.setCcas(modelCcas);
+            }
+        }
+      
+        if (ccaPositions != null) {
+            Set<CcaPosition> modelCcaPositions = new HashSet<>(personCcaPositions);
+            if (!modelCcaPositions.isEmpty()) {
+                p.setCcaPositions(modelCcaPositions);
+            }
+        }
         return p;
     }
 

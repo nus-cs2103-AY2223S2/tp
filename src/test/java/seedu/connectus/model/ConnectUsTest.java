@@ -45,7 +45,9 @@ public class ConnectUsTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .withModules(VALID_MODULE_CS2101).withCcas(VALID_CCA_ICS)
+                .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         ConnectUsStub newData = new ConnectUsStub(newPersons);
 
@@ -71,7 +73,9 @@ public class ConnectUsTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         connectUs.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .withModules(VALID_MODULE_CS2101).withCcas(VALID_CCA_ICS)
+                .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
         assertTrue(connectUs.hasPerson(editedAlice));
     }
 

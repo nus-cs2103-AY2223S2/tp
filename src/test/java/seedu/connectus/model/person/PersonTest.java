@@ -3,6 +3,10 @@ package seedu.connectus.model.person;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_ICS;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_NES;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_DIRECTOR;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_PRESIDENT;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2101;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2103T;
@@ -35,8 +39,8 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withRemarks(VALID_REMARK_HUSBAND)
-                .withModules(VALID_MODULE_CS2101).build();
+                .withAddress(VALID_ADDRESS_BOB).withRemarks(VALID_REMARK_HUSBAND).withModules(VALID_MODULE_CS2101)
+                .withCcas(VALID_CCA_ICS).withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -93,6 +97,14 @@ public class PersonTest {
 
         // different modules -> returns false
         editedAlice = new PersonBuilder(ALICE).withModules(VALID_MODULE_CS2103T).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different ccas -> returns false
+        editedAlice = new PersonBuilder(ALICE).withTags(VALID_CCA_NES).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different ccaPositions -> returns false
+        editedAlice = new PersonBuilder(ALICE).withTags(VALID_CCA_POSITION_PRESIDENT).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

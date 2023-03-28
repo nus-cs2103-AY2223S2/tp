@@ -3,6 +3,8 @@ package seedu.connectus.logic.parser;
 import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
@@ -23,6 +25,8 @@ import seedu.connectus.model.person.Email;
 import seedu.connectus.model.person.Name;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
+import seedu.connectus.model.tag.Cca;
+import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -40,7 +44,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
             PREFIX_ADDRESS, PREFIX_BIRTHDAY, PREFIX_REMARK, PREFIX_MODULE,
-            PREFIX_SOCMED_INSTAGRAM, PREFIX_SOCMED_TELEGRAM, PREFIX_SOCMED_WHATSAPP);
+            PREFIX_SOCMED_INSTAGRAM, PREFIX_SOCMED_TELEGRAM, PREFIX_SOCMED_WHATSAPP, PREFIX_CCA, PREFIX_CCA_POSITION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -78,6 +82,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (argMultimap.getValue(PREFIX_MODULE).isPresent()) {
             Set<Module> moduleList = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE));
             person.setModules(moduleList);
+        }
+        if (argMultimap.getValue(PREFIX_CCA).isPresent()) {
+            Set<Cca> ccaList = ParserUtil.parseCcas(argMultimap.getAllValues(PREFIX_CCA));
+            person.setCca(ccaList);
+        }
+        if (argMultimap.getValue(PREFIX_CCA_POSITION).isPresent()) {
+            Set<CcaPosition> ccaPositionList = ParserUtil.parseCcaPositions(argMultimap.getAllValues(PREFIX_CCA_POSITION));
+            person.setCcaPosition(ccaPositionList);
         }
 
         {

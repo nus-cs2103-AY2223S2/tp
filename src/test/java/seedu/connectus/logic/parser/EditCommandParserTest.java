@@ -3,9 +3,15 @@ package seedu.connectus.logic.parser;
 import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.connectus.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.connectus.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.connectus.logic.commands.CommandTestUtil.CCA_DESC_ICS;
+import static seedu.connectus.logic.commands.CommandTestUtil.CCA_DESC_NES;
+import static seedu.connectus.logic.commands.CommandTestUtil.CCA_POSITION_DESC_DIRECTOR;
+import static seedu.connectus.logic.commands.CommandTestUtil.CCA_POSITION_DESC_PRESIDENT;
 import static seedu.connectus.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.connectus.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_CCA_DESC;
+import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_CCA_POSITION_DESC;
 import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -14,6 +20,10 @@ import static seedu.connectus.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.connectus.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_ICS;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_NES;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_DIRECTOR;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_PRESIDENT;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -141,7 +151,6 @@ public class EditCommandParserTest {
         descriptor = new EditPersonDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
-
     }
 
     @Test
@@ -153,6 +162,7 @@ public class EditCommandParserTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).build();
+
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

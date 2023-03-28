@@ -16,6 +16,8 @@ import seedu.connectus.model.socialmedia.Instagram;
 import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.socialmedia.Telegram;
 import seedu.connectus.model.socialmedia.WhatsApp;
+import seedu.connectus.model.tag.Cca;
+import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -35,10 +37,11 @@ public class SampleDataUtil {
         p1.setBirthday(new Birthday("01/01/1990"));
         p1.setRemarks(getRemarkSet("friends"));
         p1.setModules(getModuleSet("CS2107"));
+        p1.setCcas(getCcaSet("NES"));
+        p1.setCcaPositions(getCcaPositionSet("Director"));
 
 
         // Sample person 2
-        Person p2 = new Person(new Name("Bernice Yu"));
         p2.setPhone(new Phone("99272758"));
         p2.setEmail(new Email("berniceyu@example.com"));
         p2.setAddress(new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"));
@@ -48,6 +51,8 @@ public class SampleDataUtil {
         p2.setBirthday(new Birthday("31/05/2000"));
         p2.setRemarks(getRemarkSet("colleagues", "friends"));
         p2.setModules(getModuleSet("CS2105"));
+        p2.setCcas(getCcaSet("ICS"));
+        p2.setCcaPositions(getCcaPositionSet("President"));
 
         // Sample person 3
         Person p3 = new Person(new Name("Charlotte Oliveiro"));
@@ -59,6 +64,8 @@ public class SampleDataUtil {
         p3.setBirthday(new Birthday("07/07/1993"));
         p3.setRemarks(getRemarkSet("neighbours"));
         p3.setModules(getModuleSet("CS2105", "ES2660"));
+        p3.setCcas(getCcaSet("NUS Computing Club"));
+        p3.setCcaPositions(getCcaPositionSet("Treasurer"));
 
 
         // Sample person 4
@@ -72,6 +79,8 @@ public class SampleDataUtil {
         p4.setBirthday(new Birthday("18/06/1999"));
         p4.setRemarks(getRemarkSet("family"));
         p4.setModules(getModuleSet("CS2109S"));
+        p4.setCcas(getCcaSet("NUS Chess Club"));
+        p4.setCcaPositions(getCcaPositionSet("Secretary"));
 
         // Sample person 5
         Person p5 = new Person(new Name("Irfan Ibrahim"));
@@ -84,6 +93,8 @@ public class SampleDataUtil {
         p5.setBirthday(new Birthday("29/02/2004"));
         p5.setRemarks(getRemarkSet("classmates"));
         p5.setModules(getModuleSet("CS1101S"));
+        p5.setCcas(getCcaSet("ICS"));
+        p5.setCcaPositions(getCcaPositionSet("Vice-President"));
 
         // Sample person 6
         Person p6 = new Person(new Name("Roy Balakrishnan"));
@@ -96,6 +107,8 @@ public class SampleDataUtil {
         p6.setBirthday(new Birthday("24/09/2004"));
         p6.setRemarks(getRemarkSet("colleagues"));
         p6.setModules(getModuleSet("CS1101S"));
+        p6.setCcas(getCcaSet("NUS Hackers"));
+        p6.setCcaPositions(getCcaPositionSet("Executive"));
 
         return new Person[] {
             p1, p2, p3, p4, p5, p6
@@ -125,6 +138,24 @@ public class SampleDataUtil {
     public static Set<Module> getModuleSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Module::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a cca set containing the list of strings given.
+     */
+    public static Set<Cca> getCcaSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Cca::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a ccaPosition set containing the list of strings given.
+     */
+    public static Set<CcaPosition> getCcaPositionSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(CcaPosition::new)
                 .collect(Collectors.toSet());
     }
 }

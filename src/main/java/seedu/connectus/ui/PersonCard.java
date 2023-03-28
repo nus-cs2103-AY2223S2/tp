@@ -101,6 +101,12 @@ public class PersonCard extends UiPart<Region> {
         person.getModules().stream()
                 .sorted(Comparator.comparing(module -> module.tagName))
                 .forEach(module -> tags.getChildren().add(new Label(module.tagName)));
+        person.getCcas().stream()
+                .sorted(Comparator.comparing(cca -> cca.tagName))
+                .forEach(cca -> tags.getChildren().add(new Label(cca.tagName)));
+        person.getCcaPositions().stream()
+                .sorted(Comparator.comparing(ccaPosition -> ccaPosition.tagName))
+                .forEach(ccaPosition -> tags.getChildren().add(new Label(ccaPosition.tagName)));
 
         if (person.getBirthday().isPresent()) {
             birthday.setText(person.getBirthday().get().toString());

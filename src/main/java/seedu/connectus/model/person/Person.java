@@ -10,6 +10,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.connectus.model.socialmedia.SocialMedia;
+import seedu.connectus.model.tag.Cca;
+import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -29,6 +31,8 @@ public class Person {
     private Optional<Address> address;
     private Set<Module> modules = new HashSet<>();
     private Set<Remark> remarks = new HashSet<>();
+    private Set<Cca> ccas = new HashSet<>();
+    private Set<CcaPosition> ccaPositions = new HashSet<>();
     private Optional<Birthday> birthday;
 
     // Social media fields
@@ -38,7 +42,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name) {
-        requireAllNonNull(name, modules, remarks);
+        requireAllNonNull(name, tags, modules, ccas, ccaPositions);
         this.name = name;
         this.phone = Optional.empty();
         this.email = Optional.empty();
@@ -47,6 +51,8 @@ public class Person {
         this.birthday = Optional.empty();
         this.modules.addAll(modules);
         this.remarks.addAll(remarks);
+        this.ccas.addAll(ccas);
+        this.ccaPositions.addAll(ccaPositions);
     }
 
     /**
@@ -140,6 +146,24 @@ public class Person {
     }
 
     /**
+     * Returns an immutable cca set, which throws
+     * {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Cca> getCcas() {
+        return Collections.unmodifiableSet(ccas);
+    }
+
+    /**
+     * Returns an immutable ccaPosition set, which throws
+     * {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<CcaPosition> getCcaPositions() {
+        return Collections.unmodifiableSet(ccaPositions);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -173,12 +197,14 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getRemarks().equals(getRemarks())
                 && otherPerson.getModules().equals(getModules());
+                && otherPerson.getCcas().equals(getCcas())
+                && otherPerson.getCcaPositions().equals(getCcaPositions());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, remarks, modules);
+        return Objects.hash(name, phone, email, address, remarks, modules, ccas, ccaPositions);
     }
 
     @Override
@@ -205,6 +231,16 @@ public class Person {
         if (!modules.isEmpty()) {
             builder.append("; Modules: ");
             modules.forEach(builder::append);
+        }
+        Set<Tag> ccas = getTags();
+        if (!ccas.isEmpty()) {
+            builder.append("; Ccas: ");
+            ccas.forEach(builder::append);
+        }
+        Set<Tag> ccaPositions = getTags();
+        if (!ccaPositions.isEmpty()) {
+            builder.append("; CcaPositions: ");
+            ccaPositions.forEach(builder::append);
         }
         return builder.toString();
     }
