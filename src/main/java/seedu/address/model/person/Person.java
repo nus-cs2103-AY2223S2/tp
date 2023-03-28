@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.time.LocalDateTime;
 
 import seedu.address.model.tag.Tag;
 
@@ -87,6 +88,8 @@ public class Person {
         return meetings;
     }
 
+
+
     /**
      * Gets the most recent meeting that the person has
      */
@@ -118,6 +121,8 @@ public class Person {
         return otherPerson != null
             && otherPerson.getName().equals(getName());
     }
+
+
 
     /**
      * Returns true if both persons have the same identity and data fields.
