@@ -151,6 +151,11 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
+    public int getDeckSizeFilteredTag(int deckIndex, List<TagName> difficulties) {
+        throw new AssertionError("This method should not be called.");
+    }
+
     /* ==================================== Review Operations ==================================== */
 
     @Override
