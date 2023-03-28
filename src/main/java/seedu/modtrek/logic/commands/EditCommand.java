@@ -1,6 +1,7 @@
 package seedu.modtrek.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.modtrek.commons.core.Messages.MESSAGE_MODULE_MISSING;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
@@ -46,7 +47,6 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the grade book.";
-    public static final String MESSAGE_EDIT_MODULE_FAIL = "Module %1$s is not yet added.";
 
     private final Code code;
     private final EditModuleDescriptor editModuleDescriptor;
@@ -72,7 +72,7 @@ public class EditCommand extends Command {
         Module moduleToEdit = new Module(code);
         int index = lastShownList.indexOf(moduleToEdit);
         if (index < 0) {
-            throw new CommandException(String.format(MESSAGE_EDIT_MODULE_FAIL, moduleToEdit.getCode()));
+            throw new CommandException(String.format(MESSAGE_MODULE_MISSING, moduleToEdit.getCode()));
         }
         moduleToEdit = lastShownList.get(index);
         Module editedModule = createEditedModule(moduleToEdit, editModuleDescriptor);

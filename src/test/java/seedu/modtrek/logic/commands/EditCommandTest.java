@@ -2,6 +2,7 @@ package seedu.modtrek.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.modtrek.commons.core.Messages.MESSAGE_MODULE_MISSING;
 import static seedu.modtrek.logic.commands.CommandTestUtil.DESC_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.DESC_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CODE_MA2002;
@@ -9,7 +10,6 @@ import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_CREDIT_MA2002;
 import static seedu.modtrek.logic.commands.CommandTestUtil.VALID_TAG_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.modtrek.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.modtrek.logic.commands.EditCommand.MESSAGE_EDIT_MODULE_FAIL;
 import static seedu.modtrek.testutil.TypicalModules.CS1101S;
 import static seedu.modtrek.testutil.TypicalModules.CS2100;
 import static seedu.modtrek.testutil.TypicalModules.IS1103;
@@ -127,7 +127,7 @@ class EditCommandTest {
                 .withCode(VALID_CODE_MA2002).build();
         EditCommand editCommand = new EditCommand(CS1101S.getCode(), descriptor);
 
-        assertCommandFailure(editCommand, model, String.format(MESSAGE_EDIT_MODULE_FAIL, CS1101S.getCode()));
+        assertCommandFailure(editCommand, model, String.format(MESSAGE_MODULE_MISSING, CS1101S.getCode()));
     }
 
     @Test
