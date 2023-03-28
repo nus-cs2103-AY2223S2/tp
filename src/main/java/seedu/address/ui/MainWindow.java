@@ -4,11 +4,14 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.Mnemonic;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -34,29 +37,36 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
-    private ResultDisplay resultDisplay;
+    private ApplicationListPanel applicationListPanel;
+    private QuickAccessToolbar quickAccessToolbar;
     private HelpWindow helpWindow;
     private TodoListPanel todoListPanel;
     private NoteListPanel noteListPanel;
+    private ViewContentPanel viewContentPanel;
+    private SummaryPanel summaryPanel;
     private MixedPanel mixedPanel;
     private CommandBox commandBox;
-    private StatusBarFooter statusBarFooter;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private MenuItem helpMenuItem;
+    private StackPane applicationListPanelPlaceholder;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane viewContentPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private StackPane summaryPanelPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane quickAccessToolbarPlaceholder;
+
+    @FXML
+    private VBox mainContainer;
+
+    @FXML
+    private GridPane headerGridPane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -70,26 +80,33 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        quickAccessToolbar = new QuickAccessToolbar(this::executeCommand);
+        quickAccessToolbarPlaceholder.getChildren().add(quickAccessToolbar.getRoot());
 
         setAccelerators();
-
         helpWindow = new HelpWindow();
+        headerGridPane.maxWidthProperty().bind(primaryStage.widthProperty());
+        commandBoxPlaceholder.maxWidthProperty().bind(primaryStage.widthProperty());
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
+
     private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(quickAccessToolbar.getHelpButton(), KeyCombination.valueOf("F1"));
     }
 
+
+
     /**
-     * Sets the accelerator of a MenuItem.
+     * Sets the accelerator of a button.
      * @param keyCombination the KeyCombination value of the accelerator
      */
-    private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
-        menuItem.setAccelerator(keyCombination);
+    private void setAccelerator(Button helpButton, KeyCombination keyCombination) {
+        Mnemonic m = new Mnemonic(helpButton, keyCombination);
+        primaryStage.getScene().addMnemonic(m);
 
         /*
          * TODO: the code below can be removed once the bug reported here
@@ -108,7 +125,7 @@ public class MainWindow extends UiPart<Stage> {
          */
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
-                menuItem.getOnAction().handle(new ActionEvent());
+                helpButton.getOnAction().handle(new ActionEvent());
                 event.consume();
             }
         });
@@ -118,26 +135,43 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getSortedFilteredInternshipList());
+        applicationListPanel = new ApplicationListPanel(logic.getSortedFilteredInternshipList());
+        commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
         noteListPanel = new NoteListPanel(logic.getFilteredNoteList());
         mixedPanel = new MixedPanel(logic.getFilteredTodoList(), logic.getFilteredNoteList());
 
-        personListPanelPlaceholder.getChildren().addAll(todoListPanel.getRoot(), noteListPanel.getRoot(),
-                mixedPanel.getRoot(), personListPanel.getRoot());
+        applicationListPanelPlaceholder.getChildren().addAll(todoListPanel.getRoot(), noteListPanel.getRoot(),
+                mixedPanel.getRoot(), applicationListPanel.getRoot());
 
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        viewContentPanel = new ViewContentPanel();
+        viewContentPanelPlaceholder.getChildren().add(viewContentPanel.getRoot());
 
-        statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        summaryPanel = new SummaryPanel();
+        summaryPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
 
-        commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        setHeightConstraints();
+    }
+
+    private void setHeightConstraints() {
+        applicationListPanel.getContainer().maxHeightProperty().bind(primaryStage.heightProperty().multiply(0.9));
+        todoListPanel.getContainer().maxHeightProperty().bind(primaryStage.heightProperty().multiply(0.9));
+        noteListPanel.getContainer().maxHeightProperty().bind(primaryStage.heightProperty().multiply(0.9));
+        mixedPanel.getContainer().maxHeightProperty().bind(primaryStage.heightProperty().multiply(0.9));
+
+        viewContentPanel.getContainer().maxHeightProperty().bind(
+                primaryStage.heightProperty().multiply(0.75 * 0.73));
+        viewContentPanel.getContainer().prefHeightProperty().bind(
+                primaryStage.heightProperty().multiply(0.75 * 0.73));
+        summaryPanel.getContainer().maxHeightProperty().bind(
+                primaryStage.heightProperty().multiply(0.75 * 0.22));
+        summaryPanel.getContainer().prefHeightProperty().bind(
+                primaryStage.heightProperty().multiply(0.75 * 0.22));
     }
 
     private void changePanelPlaceholder(MainWindow m, TodoType type) {
-        m.getPersonListPanel().getRoot().setVisible(type == TodoType.NONE);
+        m.getApplicationListPanel().getRoot().setVisible(type == TodoType.NONE);
         m.getTodoListPanel().getRoot().setVisible(type == TodoType.TODO);
         m.getNoteListPanel().getRoot().setVisible(type == TodoType.NOTE);
         m.getMixedPanel().getRoot().setVisible(type == TodoType.BOTH);
@@ -183,8 +217,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ApplicationListPanel getApplicationListPanel() {
+        return applicationListPanel;
     }
 
     public TodoListPanel getTodoListPanel() {
@@ -199,10 +233,6 @@ public class MainWindow extends UiPart<Stage> {
         return mixedPanel;
     }
 
-    public StatusBarFooter getStatusBarFooter() {
-        return statusBarFooter;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -213,8 +243,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             changePanelPlaceholder(this, commandResult.getType());
-            this.getStatusBarFooter().setStatusFooterBarText(logic, commandResult.getType());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             commandBox.clearCommandTextField();
             ResultDialog.displayResultDialog(commandResult.getFeedbackToUser(), primaryStage);
 
@@ -229,7 +257,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            ResultDialog.displayResultDialog(e.getMessage(), primaryStage);
             throw e;
         }
     }
