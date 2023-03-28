@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.AddressContainsKeywordsPredicate;
+import seedu.address.model.person.MedicineContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.NricContainsKeywordsPredicate;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
@@ -26,13 +26,13 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_multiplePrefixes_throwsParseException() {
-        assertParseFailure(parser, " n/ a/ Bob",
+        assertParseFailure(parser, " n/ m/ Bob",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         assertParseFailure(parser, " n/ i/ Bob",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, " n/ i/ a/ t/ tokyo",
+        assertParseFailure(parser, " n/ i/ m/ t/ tokyo",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, " n/ i/ a/ Bob",
+        assertParseFailure(parser, " n/ i/ m/ Bob",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
@@ -52,12 +52,12 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindAddressCommand() throws ParseException {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new AddressContainsKeywordsPredicate(Arrays.asList("tokyo")));
+                new FindCommand(new MedicineContainsKeywordsPredicate(Arrays.asList("Aspirin")));
 
-        assertParseSuccess(parser, " a/tokyo", expectedFindCommand);
+        assertParseSuccess(parser, " m/Aspirin", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, "\n a/tokyo \n \t", expectedFindCommand);
+        assertParseSuccess(parser, "\n m/Aspirin \n \t", expectedFindCommand);
     }
 
     @Test
