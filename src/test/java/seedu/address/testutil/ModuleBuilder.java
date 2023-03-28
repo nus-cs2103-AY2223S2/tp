@@ -21,10 +21,10 @@ public class ModuleBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_RESOURCE = "85355255";
-    public static final String DEFAULT_TIMESLOT = "amy@gmail.com";
+    public static final String DEFAULT_TIMESLOT = "230323 14:00";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "default remark";
-    public static final String DEFAULT_DEADLINE = "default deadline";
+    public static final String DEFAULT_DEADLINE = "120423 12:00";
     public static final String DEFAULT_TEACHER = "default teacher";
 
     private Name name;

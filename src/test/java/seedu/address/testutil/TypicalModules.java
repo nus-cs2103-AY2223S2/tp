@@ -24,29 +24,29 @@ import seedu.address.model.module.Module;
 public class TypicalModules {
 
     public static final Module ALICE = new ModuleBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withTimeSlot("alice@example.com")
+            .withAddress("123, Jurong West Ave 6, #08-111").withTimeSlot("290323 12:00")
             .withResource("94351253")
             .withTags("friends").build();
     public static final Module BENSON = new ModuleBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withTimeSlot("johnd@example.com").withResource("98765432")
+            .withTimeSlot("290323 12:00").withResource("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Module CARL = new ModuleBuilder().withName("Carl Kurz").withResource("95352563")
-            .withTimeSlot("heinz@example.com").withAddress("wall street").build();
+            .withTimeSlot("290323 12:00").withAddress("wall street").build();
     public static final Module DANIEL = new ModuleBuilder().withName("Daniel Meier").withResource("87652533")
-            .withTimeSlot("cornelia@example.com").withAddress("10th street").withTags("friends").build();
+            .withTimeSlot("290323 12:00").withAddress("10th street").withTags("friends").build();
     public static final Module ELLE = new ModuleBuilder().withName("Elle Meyer").withResource("9482224")
-            .withTimeSlot("werner@example.com").withAddress("michegan ave").build();
+            .withTimeSlot("290323 12:00").withAddress("michegan ave").build();
     public static final Module FIONA = new ModuleBuilder().withName("Fiona Kunz").withResource("9482427")
-            .withTimeSlot("lydia@example.com").withAddress("little tokyo").build();
+            .withTimeSlot("290323 12:00").withAddress("little tokyo").build();
     public static final Module GEORGE = new ModuleBuilder().withName("George Best").withResource("9482442")
-            .withTimeSlot("anna@example.com").withAddress("4th street").build();
+            .withTimeSlot("290323 12:00").withAddress("4th street").build();
 
     // Manually added
     public static final Module HOON = new ModuleBuilder().withName("Hoon Meier").withResource("8482424")
-            .withTimeSlot("stefan@example.com").withAddress("little india").build();
+            .withTimeSlot("290323 12:00").withAddress("little india").build();
     public static final Module IDA = new ModuleBuilder().withName("Ida Mueller").withResource("8482131")
-            .withTimeSlot("hans@example.com").withAddress("chicago ave").build();
+            .withTimeSlot("290323 12:00").withAddress("chicago ave").build();
 
     // Manually added - Module's details found in {@code CommandTestUtil}
     public static final Module AMY = new ModuleBuilder().withName(VALID_NAME_AMY).withResource(VALID_RESOURCE_AMY)
