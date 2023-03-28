@@ -17,8 +17,8 @@ import com.opencsv.CSVReader;
  */
 public class Csv {
 
-    public static final String MESSAGE_CONSTRAINTS = "Files should end in either '.csv' or '.txt'";
-    public static final String VALIDATION_REGEX = ".*((\\.csv)|(\\.txt))\\z";
+    public static final String MESSAGE_CONSTRAINTS = "Files should end in '.csv'";
+    public static final String VALIDATION_REGEX = ".*(\\.csv)\\z";
     private final List<String[]> csvNestedArray;
     private final List<String> headers;
     private final int numOfCols;
@@ -52,7 +52,7 @@ public class Csv {
     }
 
     /**
-     * Returns if a given path ends with .csv or .txt.
+     * Returns if a given path ends with .csv.
      */
     public static boolean isValidCsvPath(String test) {
         return test.matches(VALIDATION_REGEX);
