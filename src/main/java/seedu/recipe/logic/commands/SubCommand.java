@@ -5,10 +5,12 @@ import seedu.recipe.model.Model;
 import seedu.recipe.model.ReadOnlyRecipeBook;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 
@@ -43,8 +45,17 @@ public class SubCommand extends Command {
         requireNonNull(model);
         ReadOnlyRecipeBook recipeBook = model.getRecipeBook();
         ObservableList<Recipe> recipeObservableList = recipeBook.getRecipeList();
+        List<IngredientBuilder> preloadedSubstitutions = recipeBook.getPreloadedSubstitutes();
 
         HashSet<Ingredient> subList = new HashSet<>();
+
+        // query the preloaded ingredient table first
+        HashMap<Ingredient, IngredientInformation> preloadedSubTable = new HashMap<>();
+        preloadedSubstitutions.forEach(ingredientBuilder -> preloadedSubTable.putAll(ingredientBuilder.build()));
+        if (preloadedSubTable.containsKey(queryIngredient)) {
+            IngredientInformation rInfo = preloadedSubTable.get(queryIngredient);
+            subList.addAll(rInfo.getSubstitutions());
+        }
 
         // query all recipes in the current recipe book
         for (Recipe r : recipeObservableList) {
