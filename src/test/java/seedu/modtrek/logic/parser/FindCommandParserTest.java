@@ -67,23 +67,33 @@ public class FindCommandParserTest {
     public void parse_validArgsModuleCode_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new ModuleCodePredicate("CS1101S",
-                        "", "", "", new HashSet<>()), new ArrayList<>());
+                new FindCommand(new ModuleCodePredicate(true, "CS1101S", new HashSet<>(),
+                        new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>()), new ArrayList<>());
         assertParseSuccess(parser, "CS1101S", expectedFindCommand);
     }
 
     @Test
     public void parse_validArgsModuleCodePrefix_returnsFindCommand() {
+        HashSet<String> codePrefixes = new HashSet<>();
+        codePrefixes.add("CS");
         List<String> filtersList = new ArrayList<>();
         filtersList.add("/m CS");
         FindCommand expectedFindCommand =
-                new FindCommand(new ModuleCodePredicate("CS",
-                        "", "", "", new HashSet<>()), filtersList);
+                new FindCommand(new ModuleCodePredicate(false, "", codePrefixes,
+                        new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>()), filtersList);
         assertParseSuccess(parser, CODEPREFIX_DESC_CS, expectedFindCommand);
     }
 
     @Test
     public void parse_validArgsAllPrefix_returnsFindCommand() {
+        HashSet<String> codePrefixes = new HashSet<>();
+        codePrefixes.add("CS");
+        HashSet<Credit> credits = new HashSet<>();
+        credits.add(new Credit("4"));
+        HashSet<SemYear> semYears = new HashSet<>();
+        semYears.add(new SemYear("Y1S1"));
+        HashSet<Grade> grades = new HashSet<>();
+        grades.add(new Grade("A"));
         HashSet<Tag> tags = new HashSet<>();
         tags.add(new Tag("Computer Science Foundation"));
         List<String> filtersList = new ArrayList<>();
@@ -93,7 +103,8 @@ public class FindCommandParserTest {
         filtersList.add("/g A");
         filtersList.add("/t CSF");
         FindCommand expectedFindCommand =
-                new FindCommand(new ModuleCodePredicate("CS", "4", "Y1S1", "A", tags), filtersList);
+                new FindCommand(new ModuleCodePredicate(false, "",
+                        codePrefixes, credits, semYears, grades, tags), filtersList);
         assertParseSuccess(parser, CODEPREFIX_DESC_CS + CREDIT_DESC_CS1101S
                 + SEMYEAR_DESC_CS1101S + GRADE_DESC_CS1101S + TAG_DESC_CS1101S, expectedFindCommand);
     }

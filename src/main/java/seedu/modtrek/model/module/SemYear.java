@@ -9,7 +9,8 @@ import static seedu.modtrek.commons.util.AppUtil.checkArgument;
 public class SemYear implements Comparable<SemYear> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "SemYear should be alphanumeric in the format YxS(T)x, where x are digits.";
+            "SemYear should be alphanumeric in the format YxS(T)x, where the first x is a digit between 0 and 5,"
+                    + " and the second x is a digit between 1 and 2.";
 
     public static final String MESSAGE_MISSING_DETAIL = "Missing sem-year after /y.";
 
