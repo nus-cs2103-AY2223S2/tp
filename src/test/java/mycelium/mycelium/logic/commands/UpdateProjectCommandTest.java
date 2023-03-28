@@ -138,7 +138,7 @@ public class UpdateProjectCommandTest {
     @Test
     public void execute_allFieldsSameExceptName_success() throws CommandException {
         var cmd = new UpdateProjectCommand(BING.getName(),
-            new UpdateProjectDescriptorBuilder(BARD).withName(BARD.getName()).build());
+            new UpdateProjectDescriptorBuilder(BING).withName(BARD.getName()).build());
         model.addProject(BING);
         cmd.execute(model);
 
