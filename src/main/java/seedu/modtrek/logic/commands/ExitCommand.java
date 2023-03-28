@@ -11,8 +11,8 @@ public class ExitCommand extends Command {
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting ModTrek as requested ...";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exits ModTrek.\n"
-            + "Parameters: NIL\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exits ModTrek.\n\n"
+            + "Parameters: NIL\n\n"
             + "Example: " + COMMAND_WORD;
 
     @Override

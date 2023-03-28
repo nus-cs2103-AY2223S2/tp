@@ -18,8 +18,16 @@ public class ProgressSection extends UiPart<Region> {
     /**
      * Instantiates a ProgressSection.
      */
-    public ProgressSection(DegreeProgressionData degreeProgressionData) {
+    public ProgressSection() {
         super(FXML);
+    }
+
+    /**
+     * Displays the degree progress in the form of a doughnut chart.
+     * @param degreeProgressionData The degree progress data.
+     */
+    public void displayProgress(DegreeProgressionData degreeProgressionData) {
+        progressSection.getChildren().clear();
 
         DoughnutChart doughnutChart = new DoughnutChart(degreeProgressionData);
         progressSection.getChildren().add(doughnutChart);

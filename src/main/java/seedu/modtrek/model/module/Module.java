@@ -128,22 +128,23 @@ public class Module {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(code)
+        builder.append("\nCode: ")
+                .append(code)
                 .append("; Credits: ")
                 .append(credits)
                 .append("; Year-Semester: ")
                 .append(semesterYear);
 
+        if (!grade.isEmpty()) {
+            builder.append("; Grade: ")
+                    .append(grade);
+        }
+
         if (!tags.isEmpty()) {
             builder.append("; Tags:");
             for (Tag tag : tags) {
-                builder.append(" ").append(tag);
+                builder.append(" [").append(tag).append("]");
             }
-        }
-
-        if (grade != null) {
-            builder.append("; Grade: ")
-                    .append(grade);
         }
 
         return builder.toString();

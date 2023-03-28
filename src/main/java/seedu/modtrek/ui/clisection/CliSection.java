@@ -1,5 +1,6 @@
 package seedu.modtrek.ui.clisection;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -36,6 +37,8 @@ public class CliSection extends UiPart<Region> {
 
         // Scroll down to the end every time cliScreen's height changes.
         cliScreen.heightProperty().addListener((observable) -> cliScreenScrollContainer.setVvalue(1.0));
+
+        Platform.runLater(() -> cliInput.requestFocus());
     }
 
     /**

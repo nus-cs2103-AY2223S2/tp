@@ -1,6 +1,7 @@
 package seedu.modtrek.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
@@ -31,12 +32,13 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the module identified. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: MODULE CODE "
-            + "[" + PREFIX_CREDIT + "CREDITS] "
-            + "[" + PREFIX_SEMYEAR + "SEMESTER-YEAR] "
-            + "[" + PREFIX_GRADE + "GRADE] "
-            + "[" + PREFIX_TAG + "TAG...]\n"
+            + "Existing values will be overwritten by the input values.\n\n"
+            + "Parameters: MODULE_CODE "
+            + "(" + PREFIX_CODE + " <MODULE_CODE>) "
+            + "(" + PREFIX_CREDIT + " <MODULE_CREDITS>) "
+            + "(" + PREFIX_SEMYEAR + " <SEMESTER_YEAR>) "
+            + "(" + PREFIX_GRADE + "<GRADE>) "
+            + "(" + PREFIX_TAG + "<TAG>...)\n\n"
             + "Example: " + COMMAND_WORD + " CS2106 "
             + PREFIX_CREDIT + " 4 "
             + PREFIX_SEMYEAR + " Y2S2";
@@ -44,7 +46,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the grade book.";
-    public static final String MESSAGE_EDIT_MODULE_FAIL = "Module %1$s is not yet added";
+    public static final String MESSAGE_EDIT_MODULE_FAIL = "Module %1$s is not yet added.";
 
     private final Code code;
     private final EditModuleDescriptor editModuleDescriptor;

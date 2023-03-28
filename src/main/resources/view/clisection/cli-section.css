@@ -61,6 +61,8 @@
 
 #cli-input-container {
     -fx-padding: 15 60;
+
+    -fx-opacity: 1;
 }
 #cli-input {
     -fx-padding: 15 20;
@@ -69,6 +71,7 @@
     -fx-background-radius: 20;
 
     -fx-background-color: -teal;
+    -fx-opacity: 1;
 
     -fx-text-fill: -white;
     -fx-prompt-text-fill: -white;

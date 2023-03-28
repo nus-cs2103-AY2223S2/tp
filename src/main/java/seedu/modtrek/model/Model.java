@@ -1,10 +1,12 @@
 package seedu.modtrek.model;
 
 import java.nio.file.Path;
+import java.util.TreeMap;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.modtrek.commons.core.GuiSettings;
+import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.module.Module;
 
 /**
@@ -117,6 +119,12 @@ public interface Model {
      * @return the filtered module list
      */
     ObservableList<Module> getFilteredModuleList();
+
+    TreeMap<?, ObservableList<Module>> getModuleGroups();
+
+    void sortModuleGroups(SortCommand.Sort sort);
+
+    String getSort();
 
     /**
      * Updates the filter of the filtered Module list to filter by the given {@code predicate}.

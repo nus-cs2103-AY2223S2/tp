@@ -18,6 +18,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      */
     public ViewCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         String[] trimmedArgs = args.trim().split(" ");
         if (trimmedArgs.length == 1) {
             String flag = trimmedArgs[0];

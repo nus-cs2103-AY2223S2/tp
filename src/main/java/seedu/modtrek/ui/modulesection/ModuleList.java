@@ -1,16 +1,14 @@
 package seedu.modtrek.ui.modulesection;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.modtrek.model.module.Module;
-import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.ui.UiPart;
 
 /**
@@ -25,43 +23,51 @@ public class ModuleList extends UiPart<Region> {
     /**
      * Instantiates a new ModuleList.
      *
-     * @param modules the entire list of modules
-     * @param isFilteredList indicates if the list of modules is filtered by a search query
+     * @param modules        the entire list of modules
      */
-    public ModuleList(ObservableList<Module> modules, boolean isFilteredList) {
+    public ModuleList(ObservableList<Module> modules) {
         super(FXML);
 
-        if (modules.size() == 0) {
-            displayPlaceholderText(isFilteredList);
-        }
-        displayModuleGroup(modules, isFilteredList);
+        updateFilteredModules(modules);
     }
 
     /**
+     * Instantiates a new Module list.
+     *
+     * @param moduleGroups the module groups
+     */
+    public ModuleList(TreeMap<? extends Object, ObservableList<Module>> moduleGroups) {
+        super(FXML);
+
+        updateSortedModules(moduleGroups);
+    }
+    /**
      * Displays all module groups within a module list.
      * @param modules the list of modules
-     * @param isFilteredList indicates if the list of modules is filtered by a search query
      */
-    private void displayModuleGroup(ObservableList<Module> modules, boolean isFilteredList) {
-        if (isFilteredList) {
-            ModuleGroup moduleGroup = new ModuleGroup(modules, "");
-            moduleList.getChildren().add(moduleGroup.getRoot());
-            return;
+    public void updateFilteredModules(ObservableList<Module> modules) {
+        moduleList.getChildren().clear();
+
+        if (modules.size() == 0) {
+            displayPlaceholderText("No modules found that match your search query.");
         }
 
-        HashMap<SemYear, ObservableList<Module>> modsPerSemYear = new HashMap<>();
-        for (Module module : modules) {
-            SemYear semYear = module.getSemYear();
-            if (!modsPerSemYear.containsKey(semYear)) {
-                ObservableList<Module> mods = FXCollections.observableArrayList();
-                mods.add(module);
-                modsPerSemYear.put(semYear, mods);
-            } else {
-                modsPerSemYear.get(semYear).add(module);
-            }
+        ModuleGroup moduleGroup = new ModuleGroup(modules, "");
+        moduleList.getChildren().add(moduleGroup.getRoot());
+    }
+
+    /**
+     * Updates the sorted module groups.
+     * @param moduleGroups The sorted module groups.
+     */
+    public void updateSortedModules(TreeMap<? extends Object, ObservableList<Module>> moduleGroups) {
+        moduleList.getChildren().clear();
+
+        if (moduleGroups.size() == 0) {
+            displayPlaceholderText("No modules found in the module list.");
         }
 
-        for (Map.Entry<SemYear, ObservableList<Module>> entry : modsPerSemYear.entrySet()) {
+        for (Map.Entry<? extends Object, ObservableList<Module>> entry : moduleGroups.entrySet()) {
             ModuleGroup moduleGroup = new ModuleGroup(entry.getValue(), entry.getKey().toString());
             moduleList.getChildren().add(moduleGroup.getRoot());
         }
@@ -69,15 +75,8 @@ public class ModuleList extends UiPart<Region> {
 
     /**
      * Displays the placeholder text message when no modules are present in the module list.
-     *
-     * @param isFilteredList indicates if the list of modules is filtered by a search query
      */
-    private void displayPlaceholderText(boolean isFilteredList) {
-        String text;
-
-        text = isFilteredList ? "There are no modules that match your search query."
-                : "No modules found in the module list.";
-
+    private void displayPlaceholderText(String text) {
         Label placeholder = new Label(text);
         placeholder.getStyleClass().add("h3");
         moduleList.getChildren().add(placeholder);

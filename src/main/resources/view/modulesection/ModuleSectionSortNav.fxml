@@ -15,7 +15,7 @@
     </stylesheets>
 
     <Label text="Sort by:" id="module-section-sort-nav-label" styleClass="h3" />
-    <ComboBox styleClass="h4">
+    <ComboBox fx:id="sortDropdown" styleClass="h4">
         <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="Year"/>

@@ -18,23 +18,25 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds module to ModTrek.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds module to ModTrek.\n\n"
             + "Parameters: "
-            + PREFIX_CODE + "MODULE CODE "
-            + PREFIX_CREDIT + "MODULE CREDITS "
-            + PREFIX_SEMYEAR + "SEMESTER-YEAR "
-            + PREFIX_GRADE + "GRADE "
-            + "[" + PREFIX_TAG + "TAG...]\n"
+            + PREFIX_CODE + "<MODULE_CODE> "
+            + PREFIX_CREDIT + "<MODULE_CREDITS> "
+            + PREFIX_SEMYEAR + "<SEMESTER_YEAR> "
+            + "(" + PREFIX_GRADE + "<GRADE>) "
+            + "(" + PREFIX_TAG + "<TAG>...)\n\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CODE + " CS1101S "
             + PREFIX_CREDIT + " 4 "
             + PREFIX_SEMYEAR + " Y1S1 "
             + PREFIX_GRADE + " A "
-            + PREFIX_TAG + " University Level Requirement "
-            + PREFIX_TAG + " Computer Science Foundation";
+            + PREFIX_TAG + " ULR "
+            + PREFIX_TAG + " CSF";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This module has already been added.Try using edit instead.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This module has already been added. Try using edit instead.";
+    public static final String MESSAGE_MISSING_PREFIXES =
+            "Missing code prefix /m, credit prefix /c, and/or sem-year prefix /y.";
 
     private final Module toAdd;
 

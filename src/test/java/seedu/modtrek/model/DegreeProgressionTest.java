@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.TreeMap;
 
 import org.junit.jupiter.api.Test;
 
@@ -100,6 +101,16 @@ public class DegreeProgressionTest {
 
         @Override
         public DegreeProgressionData getProgressionData() {
+            return null;
+        }
+
+        @Override
+        public TreeMap<? extends Object, ObservableList<Module>> getModuleGroups() {
+            return null;
+        }
+
+        @Override
+        public String getSort() {
             return null;
         }
     }
