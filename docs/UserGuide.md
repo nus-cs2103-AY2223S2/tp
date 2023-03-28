@@ -310,7 +310,7 @@ edit <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUMBER>]
 ```
 
 - Edits student at index specified in `<INDEX>`.
-- At least one field `[n/<NAME>]`, `[p/<PHONE_NUMBER>]`, `[e/<EMAIL>]`, `[sid/<STUDENT_NUMBER>]`, or `[t/<TAG>]` must be provided.
+- At least one field `[n/<NAME>]`, `[p/<PHONE_NUMBER>]`, `[e/<EMAIL>]` or `[sid/<STUDENT_NUMBER>]` must be provided.
 - Fields entered following `edit <INDEX>` will replace the original fields.
 - Fields not entered will not replace the original fields.
 
