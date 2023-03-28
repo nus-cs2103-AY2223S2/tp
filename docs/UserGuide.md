@@ -70,6 +70,7 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 
 - `list`: Lists all modules/lectures/videos based on context
 - `list [/mod {module_code}]`: Lists all the lectures in a specified module
+- `list [/lec {lecture_name}]`: Lists all the videos in a specified module and lecture (:exclamation: only works if you are in `module` context)
 - `list [/mod {module_code} /lec {lecture_name}]`: Lists all the videos in a specified module and lecture
 
 ### Add
@@ -431,14 +432,19 @@ Examples: `list /mod CS2040S` lists lectures belonging to CS2040S
 
 > Lists all videos belonging to a specified lecture code of a specified module code
 
-Format: `list [/mod {module_code} /lec {lecture_name}]`
+Format:\
+In module context: `list [/lec {lecture_name}]`\
+In any context: `list [/mod {module_code} /lec {lecture_name}]`
 
 - `module_code` must belong to an existing module
-- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
+- `module_code` if not specified, defaults to the module code of the module in the module context (if any)
 - `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
 - `lecture_name` if not specified, defaults to the name of the lecture in the current context (if any)
 
-Examples: `list /mod CS2040 /lect wk1` lists videos belongs to lecture wk1 of module CS2040S
+Examples:\
+In module context of module `CS2040S`: `list /lec Week 1`\
+In any context: `list /mod CS2040 /lec Week 1`\
+_\* Both commands lists videos that belongs to lecture Week 1 in module CS2040S_
 
 ### Find Modules or Lectures or Videos
 
