@@ -8,7 +8,6 @@ import static seedu.internship.testutil.Assert.assertThrows;
 import java.io.FileNotFoundException;
 
 import org.junit.jupiter.api.Test;
-import seedu.internship.commons.core.Messages;
 import seedu.internship.logic.parser.ParserUtil;
 import seedu.internship.logic.parser.exceptions.ParseException;
 

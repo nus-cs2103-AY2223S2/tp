@@ -19,7 +19,6 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import seedu.internship.commons.core.LogsCenter;
-import seedu.internship.commons.core.Messages;
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.logic.commands.EditCommand;
 import seedu.internship.logic.commands.EditCommand.EditInternshipDescriptor;

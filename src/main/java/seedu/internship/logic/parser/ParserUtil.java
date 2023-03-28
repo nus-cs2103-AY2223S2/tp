@@ -32,9 +32,6 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-//        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-//            throw new ParseException(MESSAGE_INVALID_INDEX);
-//        }
         try {
             StringUtil.nonZeroUnsignedIntegerCheck(trimmedIndex);
         } catch (ParseException pe) {
