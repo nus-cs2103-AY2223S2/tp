@@ -20,8 +20,8 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        Nric firstNric = new Nric ("S1234567X");
-        Nric secondNric = new Nric ("T1234567A");
+        Nric firstNric = new Nric("S1234567X");
+        Nric secondNric = new Nric("T1234567A");
 
         FindCommand findFirstCommand = new FindCommand(firstNric);
         FindCommand findSecondCommand = new FindCommand(secondNric);
