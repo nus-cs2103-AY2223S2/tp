@@ -48,8 +48,53 @@ Are you excited yet? Let's get started!
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Basics
 
-## Add your first customer and order
+This section is designed to help new users get started with using LoyaltyLift.
+In this section, you will learn how to perform essential tasks such as adding customers, creating orders, and setting up rewards. 
+By the end of these tutorials, you will have a solid understanding of the fundamental features of LoyaltyLift and how to use them effectively to improve your business operations.
+
+So, let's dive in and get started!
+
+
+### Navigating around LoyaltyLift
+
+Before starting your journey with LoyaltyLift, let's take a quick look at the layout of LoyaltyLift.
+
+![Layout of LoyaltyLift](images/loyaltyLiftLayout.png)
+
+It is composed of 3 panels, the Information Panel, Command Panel and Table Panel. 
+The table panel displays either the **customers** or **orders**. 
+This can be configured by selecting the corresponding tab at the Table Tabs area.
+
+The components are summarised below.
+
+|         Component | Purpose                                                           |
+|------------------:|:------------------------------------------------------------------|
+|     Command Panel | Input area to submit your command to LoyaltyLift                  |
+| Information Panel | Displays details of a specific customer or order                  |
+|       Table Panel | Displays list of customers or orders                              |
+|        Table Tabs | Switch between displaying customers and orders in the Table Panel |
+
+#### Using the CLI
+{: .no_toc}
+
+The Command Panel is where you type your commands and submit it. 
+LoyaltyLift then processes your request and perform them if it is successful.
+
+If LoyaltyLift understands your request, it will perform it and display a feedback that it has succeeded as seen below.
+
+![CLI Success](images/cliSuccess.png)
+
+Otherwise, the input font will turn red instead as seen below. 
+The feedback will assist you in correcting the command as much as possible. 
+
+![CLI Failure](images/cliFailure.png)
+
+
+Now that you are familiar with the layout of LoyaltyLift, you are ready to jump right into using the application! 
+
+### Add your first customer and order
 
 In this tutorial, you will learn how to add your first customer _Lyndon Edwards_ and his order which is 2 of his favourite _Banana Cake_.
 Finally, you will learn to remove a customer and observe that **all orders belonging to a customer will be removed as well**.
