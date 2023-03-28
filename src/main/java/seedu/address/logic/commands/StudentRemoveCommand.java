@@ -1,5 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -8,10 +13,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionName;
 
-import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 /**
  * Command to remove a student from a session
@@ -25,13 +27,14 @@ public class StudentRemoveCommand extends Command {
             + PREFIX_NAME + "hall";
 
     public static final String SESSION_REMOVE_PERSON_SUCCESS = "Removed Person: %1$s to Session: %2$s";
-    public static final String SESSION_NOT_FOUND_FAILURE = "Session: %1$s cannot be found. "
-            + "Here are the list of existing sessions: %2$s";
+    public static final String SESSION_NOT_FOUND_FAILURE = "Session: %1$s cannot be found. ";
     public static final String STUDENT_NOT_FOUND_FAILURE = "Student not found";
 
     private SessionName sessionName;
     private Index index;
-
+    /**
+     * Represents a command to remove a student from a session.
+     */
     public StudentRemoveCommand(Index index, SessionName sessionName) {
         this.index = index;
         this.sessionName = sessionName;
@@ -49,8 +52,21 @@ public class StudentRemoveCommand extends Command {
 
         Person studentToRemove = lastShownList.get(index.getZeroBased());
 
+        if (!model.hasSessionName(sessionName)) {
+            throw new CommandException(String.format(
+                    SESSION_NOT_FOUND_FAILURE,
+                    sessionName
+            ));
+        }
+
         //Find session
         Session session = model.getSessionFromName(sessionName);
+
+        if (!session.contains(studentToRemove
+                .getName().fullName)) {
+            throw new CommandException(STUDENT_NOT_FOUND_FAILURE);
+        }
+
         model.removePersonFromSession(studentToRemove, session);
         model.commitAddressBook();
         return new CommandResult(String.format(SESSION_REMOVE_PERSON_SUCCESS, studentToRemove.getName(), session));

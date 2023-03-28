@@ -1,7 +1,8 @@
 package seedu.address.model.session.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Sessions (Sessions are considered duplicates if they have the same
+ * Signals that the operation will result in
+ * duplicate Sessions (Sessions are considered duplicates if they have the same
  * identity).
  */
 public class DuplicateSessionException extends RuntimeException {

@@ -1,20 +1,19 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.session.Session;
-import seedu.address.model.session.SessionName;
-
-import java.util.List;
-
-import static java.util.Objects.compare;
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-
+/**
+ * Command to unmark attendance of a specified person in a session.
+ */
 public class UnmarkAttendanceCommand extends Command {
 
     public static final String COMMAND_WORD = "unmark";
@@ -31,7 +30,11 @@ public class UnmarkAttendanceCommand extends Command {
 
     private Name personName;
     private Index index;
-
+    /**
+     * Constructs an UnmarkAttendanceCommand with the specified session index and person name.
+     * @param index Index of the session in the displayed list.
+     * @param personName Name of the person to unmark attendance for.
+     */
     public UnmarkAttendanceCommand(Index index, Name personName) {
         this.index = index;
         this.personName = personName;

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class DisplayGroupCommandTest {
 
-    private String expectedOutput = "Listed all groups";
+    private String expectedOutput = "Listed all sessions";
 
     @Test
     public void checkMessageSuccess() {

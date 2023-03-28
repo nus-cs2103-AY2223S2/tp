@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -30,7 +31,11 @@ public class StudentAddCommand extends Command {
 
     private SessionName sessionName;
     private Index index;
-
+    /**
+     * Creates a new {@code StudentAddCommand} to add a student to a session.
+     * @param index Index of the student in the student list to add.
+     * @param sessionName Name of the session to add the student to.
+     */
     public StudentAddCommand(Index index, SessionName sessionName) {
         this.index = index;
         this.sessionName = sessionName;
@@ -47,8 +52,26 @@ public class StudentAddCommand extends Command {
 
         Person studentToAdd = lastShownList.get(index.getZeroBased());
 
+        if (!model.hasSessionName(sessionName)) {
+            throw new CommandException(String.format(
+                    SESSION_NOT_FOUND_FAILURE,
+                    sessionName,
+                    model.getAddressBook().getSessionList()
+            ));
+        }
+
         //Find session
         Session sessionToBeAddedTo = model.getSessionFromName(sessionName);
+
+        if (sessionToBeAddedTo.contains(studentToAdd
+                .getName().fullName)) {
+            throw new CommandException(
+                    String.format(
+                            STUDENT_ALREADY_ADDED_FAILURE,
+                            sessionName
+                    ));
+        }
+
         model.addPersonToSession(studentToAdd, sessionToBeAddedTo);
         model.commitAddressBook();
         return new CommandResult(String.format(SESSION_ADD_PERSON_SUCCESS, studentToAdd.getName(), sessionToBeAddedTo));

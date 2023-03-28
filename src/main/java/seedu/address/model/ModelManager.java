@@ -14,7 +14,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.calendar.CalendarEvent;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionName;
@@ -31,7 +30,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Tag> filteredTags;
-    private final FilteredList<Session> filteredSessions;;
+    private final FilteredList<Session> filteredSessions;
     private final ObservableList<CalendarEvent> calendarEventList;
 
 
@@ -202,16 +201,18 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<CalendarEvent> getFilteredCalendarEventList() {
-        ObservableList<Session> lastShownList = this.filteredSessions;
-        ObservableList<CalendarEvent> calendarEventList = getCalendarEventList(lastShownList);
-        return calendarEventList; }
-
-    private ObservableList<CalendarEvent> getCalendarEventList(ObservableList<Session> lastShownList) {
-        calendarEventList.clear();
-        lastShownList.stream().map(x -> x.getCalendarEvents()).forEach(e -> calendarEventList.addAll(e));
-        System.out.println(calendarEventList);
-        return calendarEventList;
+        //        ObservableList<Session> lastShownList = this.filteredSessions;
+        //        ObservableList<CalendarEvent> calendarEventList = getCalendarEventList(lastShownList);
+        //        return calendarEventList;
+        return null;
     }
+
+    //    private ObservableList<CalendarEvent> getCalendarEventList(ObservableList<Session> lastShownList) {
+    //        calendarEventList.clear();
+    //        lastShownList.stream().map(x -> x.getCalendarEvents()).forEach(e -> calendarEventList.addAll(e));
+    //        System.out.println(calendarEventList);
+    //        return calendarEventList;
+    //    }
 
     @Override
     public void updateCalendarEventList() {
@@ -250,6 +251,11 @@ public class ModelManager implements Model {
     @Override
     public Session getSessionFromName(SessionName name) {
         return addressBook.getSessionFromName(name);
+    }
+
+    @Override
+    public boolean hasSessionName(SessionName sessionName) {
+        return addressBook.hasSessionName(sessionName);
     }
 
     @Override

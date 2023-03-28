@@ -20,7 +20,7 @@ public class CalendarPopup extends UiPart<Popup> {
     private Popup popup;
 
 
-/**
+    /**
      * Creates a {@code CalendarPopup} with the given {@code CalendarEvent} details.
      * @param calendarEvent The {@code CalendarEvent} to display in the popup.
      * @param owner The owner of the popup.
@@ -34,7 +34,7 @@ public class CalendarPopup extends UiPart<Popup> {
     }
 
 
-/**
+    /**
      * Initializes the content of the {@code CalendarPopup} with the given {@code CalendarEvent}.
      * @param calendarEvent The {@code CalendarEvent} to display in the popup.
      */

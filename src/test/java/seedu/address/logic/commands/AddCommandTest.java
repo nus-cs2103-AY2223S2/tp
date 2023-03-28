@@ -21,7 +21,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 //import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
+import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionName;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
@@ -146,12 +149,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Session> getFilteredSessionList() {
+            return null;
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void sortAddressBook(int attribute) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSession(Session target, Session editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -184,6 +197,16 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public ObservableList<CalendarEvent> getFilteredCalendarEventList() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredSessionList(Predicate<Session> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         /*@Override
         public ObservableList<CalendarEvent> getFilteredCalendarEventList() {
             return null;
@@ -193,6 +216,42 @@ public class AddCommandTest {
         public void updateCalendarEventList() {
 
         }
+
+        @Override
+        public boolean hasSession(Session toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addSession(Session toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeSession(Session toRemove) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPersonToSession(Person person, Session session) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removePersonFromSession(Person person, Session session) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Session getSessionFromName(SessionName name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSessionName(SessionName sessionName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
