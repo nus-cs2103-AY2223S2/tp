@@ -2,13 +2,11 @@ package tfifteenfour.clipboard.logic;
 
 import java.nio.file.Path;
 
-import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.ReadOnlyRoster;
-import tfifteenfour.clipboard.model.student.Student;
 
 /**
  * API of the Logic component
@@ -29,11 +27,6 @@ public interface Logic {
      * @see tfifteenfour.clipboard.model.Model#getRoster()
      */
     ReadOnlyRoster getRoster();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Student> getUnmodifiableFilteredStudentList();
-
-    ObservableList<Student> getViewedStudent();
 
     /**
      * Returns the user prefs' address book file path.

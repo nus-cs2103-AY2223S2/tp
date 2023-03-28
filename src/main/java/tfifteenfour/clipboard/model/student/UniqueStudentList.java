@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import tfifteenfour.clipboard.model.student.exceptions.DuplicateStudentException;
 import tfifteenfour.clipboard.model.student.exceptions.StudentNotFoundException;
 
@@ -27,6 +28,8 @@ public class UniqueStudentList implements Iterable<Student> {
     private final ObservableList<Student> internalList = FXCollections.observableArrayList();
     private final ObservableList<Student> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
+    private final FilteredList<Student> filteredStudents = new FilteredList<>(internalList);
 
     /**
      * Returns true if the list contains an equivalent student as the given argument.
@@ -109,6 +112,10 @@ public class UniqueStudentList implements Iterable<Student> {
      */
     public ObservableList<Student> asModifiableObservableList() {
         return internalList;
+    }
+
+    public FilteredList<Student> asFilteredList() {
+        return filteredStudents;
     }
 
     @Override

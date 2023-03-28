@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.logic.commands.Command;
@@ -15,7 +14,6 @@ import tfifteenfour.clipboard.logic.parser.RosterParser;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.ReadOnlyRoster;
-import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.storage.Storage;
 
 /**
@@ -36,8 +34,6 @@ public class LogicManager implements Logic {
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
     public LogicManager(Model model, Storage storage) {
-        System.out.println(model.getModifiableFilteredCourseList().size());
-        System.out.println("LOGIC MANGER #####");
         this.model = model;
         this.storage = storage;
         this.currentSelection = new CurrentSelection();
@@ -90,16 +86,6 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyRoster getRoster() {
         return model.getRoster();
-    }
-
-    @Override
-    public ObservableList<Student> getUnmodifiableFilteredStudentList() {
-        return model.getUnmodifiableFilteredStudentList();
-    }
-
-    @Override
-    public ObservableList<Student> getViewedStudent() {
-        return model.getViewedStudent();
     }
 
     @Override
