@@ -52,11 +52,19 @@ public class Autocompletion {
     private String query;
     private List<String> result;
 
+    /**
+     * Creates an autocompletion service.
+     * @param query The input string to complete
+     */
     public Autocompletion(String query) {
         this.query = query;
         this.result = new ArrayList<>();
     }
 
+    /**
+     * Obtains list of suggestions for the current query.
+     * @return A list of possible continuation for the query
+     */
     public List<String> getListOfSuggestions() {
         addSuggestionsForCommandWord();
         addSuggestionsForCommandWordUsage();
@@ -65,30 +73,6 @@ public class Autocompletion {
 
         return result;
     }
-
-//    public static void main(String[] args) {
-//        Model model = new ModelManager();
-//        model.addListing(new Listing(new JobTitle("Chicken rice uncle"), new JobDescription("test"),
-//                new ArrayList<>(Arrays.asList(new Applicant(new Name("John"))))));
-//        model.addListing(new Listing(new JobTitle("Chicken rice auntie"), new JobDescription("test"),
-//                new ArrayList<>(Arrays.asList(
-//                        new Applicant(new Name("John")),
-//                        new Applicant(new Name("John")),
-//                        new Applicant(new Name("Jane"))))));
-//        model.addListing(new Listing(new JobTitle("Software Developer"), new JobDescription("unique"),
-//                new ArrayList<>(Arrays.asList(
-//                        new Applicant(new Name("Ali")),
-//                        new Applicant(new Name("Xiao Ming")),
-//                        new Applicant(new Name("Muthu"))))));
-//
-//        String query = "add ";
-//        System.out.println("Query: " + query);
-//        System.out.println("---------------------------");
-//        Autocompletion autocompletion = new Autocompletion(query);
-//        for (String suggestion : autocompletion.getListOfSuggestions()) {
-//            System.out.println(suggestion);
-//        }
-//    }
 
     private void addSuggestionsForCommandWord() {
         if (query.matches("(?i)^\\s*[a-zA-Z]+$")) {
