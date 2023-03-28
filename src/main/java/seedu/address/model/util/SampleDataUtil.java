@@ -23,12 +23,13 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getEventSet(new Event(new EventName("Concert A"), new DateTime("01-05-2023 17:00"),
-                        new DateTime("01-05-2023 18:00")))),
+                getEventSet(new Event(new EventName("Taylor Swift: The Eras Tour"), new DateTime("01-05-2023 19:00"),
+                        new DateTime("01-05-2023 22:00")))),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getEventSet(new Event(new EventName("Concert B"), new DateTime("02-05-2023 17:00"),
-                        new DateTime("02-05-2023 18:00")))),
+                getEventSet(new Event(new EventName("Disney On Ice presents Mickey and Friends"),
+                        new DateTime("11-03-2023 17:00"),
+                        new DateTime("11-03-2023 19:00")))),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getEventSet()),
@@ -55,10 +56,10 @@ public class SampleDataUtil {
             new Event(new EventName("Louis Tomlinson: Faith In The Future World Tour"),
                     new DateTime("27-04-2023 19:30"),
                     new DateTime("27-04-2023 21:30")),
-            new Event(new EventName("Concert A"), new DateTime("01-05-2023 17:00"),
-                new DateTime("01-05-2023 18:00")),
-            new Event(new EventName("Concert B"), new DateTime("02-05-2023 17:00"),
-                 new DateTime("02-05-2023 18:00"))
+            new Event(new EventName("Taylor Swift: The Eras Tour"), new DateTime("01-05-2023 19:00"),
+                new DateTime("01-05-2023 22:00")),
+            new Event(new EventName("Yiruma Live in Singapore 2023"), new DateTime("02-05-2023 20:00"),
+                 new DateTime("02-05-2023 21:00"))
         };
     }
 

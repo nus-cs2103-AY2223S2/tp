@@ -125,16 +125,12 @@ How the parsing works:
 
 The `Model` component,
 
-- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+- stores the address book data i.e., all `Person` (which are contained in a `UniquePersonList` object) and `Event` (which are contained in a `UniqueEventList` object) objects .
 - stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the currently 'selected' `Event` objects, similar to how the currently 'selected' `Person` objects are stored and updated. It is stored as an unmodifiable `ObservableList<Event>`.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 ### Storage component
 
@@ -158,6 +154,31 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented] Add event feature
+
+#### Current Implementation
+
+Adding an event is a feature that uses the command `addevent ev/EVENT_NAME from/EVENT_START_DATE_TIME to/EVENT_END_DATE_TIME`.
+
+The following sequence diagram shows how the add event operation works.
+
+![AddEventSequenceDiagram](images/AddEventSequenceDiagram.png)
+
+This operation is similar to that of adding a person. Adding an event involves calling `Model#addEvent(Event)`, which in turn calls `AddressBook#addEvent(Event)` to add the Event object to the existing `AddressBook`.
+
+### \[Implemented] Find event feature
+
+#### Current Implementation
+
+Finding an event is a feature that uses the command `findevent [EVENT_NAME]`. The implementation of `findevent` is similar to the `find` implementation but specific to events.
+Below is the sequence diagram detailing how the `findevent` operation works.
+
+![FindEventSequenceDiagram](images/FindEventSequenceDiagram.png)
+
+Following the same initial steps of parsing commands, searching for an event involves further parsing the keywords into a `EventNameContainsKeywordsPredicate` object.
+This `EventNameContainsKeywordsPredicate` object is used to instantiate a `FindEventCommand` object.
+The `FindEventCommand` object is then executed in `LogicManager#execute` through `FindEventCommand#execute` which returns the output of the command.
+
 ### \[Implemented] Delete event feature
 
 #### Current Implementation
@@ -166,11 +187,44 @@ Deleting an event is a feature that uses the command `delevent [EVENT_INDEX]`. T
 
 ![DelEventSequenceDiagram](images/DelEventSequenceDiagram.png)
 
-This operation is similar to that of deleting a person. Deleting an event involves calling `Model#deleteEvent(1)`, which in turn calls `AddressBook#deleteEvent(1)` to delete the event at index `1` in the `AddressBook`. 
+This operation is similar to that of deleting a person. Deleting an event involves calling `Model#deleteEvent(1)`, which in turn calls `AddressBook#deleteEvent(1)` to delete the event at index `1` in the `AddressBook`.
 
 Additionally, this operation involves searching through all `Person` objects in the `AddressBook` and deleting the event at index `1`. This is done by calling `Model#deleteEventFromPersonList(1)`, which in turn calls `AddressBook#deleteEventFromPersonList(1)`.
 
 The `deleteEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display) in order to completely remove the specified event from the `AddressBook`.
+
+### \[Implemented] Sort events feature
+
+#### Current Implementation
+
+Sorting a list of events is a feature that uses the command `sortevent a/b/c/d`. 
+The events can be sorted based on their:
+- names in ascending order (using `sortevent a`)
+- names in descending order (using `sortevent b`)
+- start date times in ascending order (using `sortevent c`)
+- end date times in ascending order (using `sortevent d`)
+
+The following sequence diagram shows how the sort events operation works.
+
+![SortEventSequenceDiagram](images/SortEventSequenceDiagram.png)
+
+Sorting a list of events involves calling `Model#sortEventList(SortEventType)`, which will sort the event list based on the `SortEventType` object passed into the method.
+
+This sorting feature can only be executed when there are more than 1 event listed on the UI.
+It will only sort the event list based on the last String entered in the user input.
+Moreover, the sorting is preserved until this command is executed again to sort the events by another variable or the program stops running.
+
+### \[Implemented] List persons from an event feature
+
+#### Current Implementation
+
+Listing persons from an event is a feature that uses the command `listevcontact [EVENT_INDEX]`. The following sequence diagram shows how the listing of persons from an event works.
+
+![ListEvContactSequenceDiagram](images/ListEvContactSequenceDiagram.png)
+
+The `listevcontact` constructs an `EventSetContainsEventPredicate` object first, then executes `Model#updateFilteredPersonList(EventSetContainsEventPredicate)` to update the list according to the predicate to list of persons whose event set contain the specified event.
+
+The `EventSetContainsEventPredicate` object is created in `ListEvContactCommand` instead of `ListEvContactCommandParser` because the `EventSetContainsEventPredicate` object needs to take in the specified `Event` which can only be referenced by the `EVENT_INDEX` in `ListEvContactCommand` class. 
 
 ### \[Proposed\] Undo/redo feature
 
@@ -288,24 +342,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                 | I want to …​                                               | So that I can…​                                         |
-|-----|-------------------------|------------------------------------------------------------|---------------------------------------------------------|
-| `* * *` | event planner           | add my own event                                           | refer to instructions when I forget how to use the App  |
-| `* * *` | event planner           | view all my events                                         | track all the upcoming events I have                    |
-| `* * *` | event planner           | delete an existing event                                   | delete event that have ended                            |
-| `* * *` | event planner           | add an existing event to a new contact                     | -                                                       |
-| `* *` | event planner           | search for events via names                                | locate events easily  |
-| `* *` | forgetful event planner | be reminded that I have entered the event of the same name | avoid adding the same event name  |
-| `* *` | new event planner       | sort upcoming events according to dates                                | prioritize events when I am planning  |
-| `* *` | event planner           | list all contacts from a particular event                                | know the people associated to this event  |
-| `* *` | event planner           | edit events                                | change details  |
-| `* *` | event planner           | list all events and contacts                                | conveniently view everything  |
-| `*` | event planner           | add overall-in-charge for every event                          | know who to approach for issues related to the event  |
-| `*` | event planner           | set up a checklist of customer’s requirements                             | account for every need  |
-| `*` | forgetful event planner | set reminders conveniently                                | be on track with things  |
-| `*` | forgetful event planner | receive reminders for upcoming events                                | avoid forgetting about the event  |
-| `*` | event planner           | archive old events                                | view and take reference from old events  |
-
+| Priority | As a …​                 | I want to …​                                               | So that I can…​                                        |
+| -------- | ----------------------- | ---------------------------------------------------------- | ------------------------------------------------------ |
+| `* * *`  | event planner           | add my own event                                           | refer to instructions when I forget how to use the App |
+| `* * *`  | event planner           | view all my events                                         | track all the upcoming events I have                   |
+| `* * *`  | event planner           | delete an existing event                                   | delete event that have ended                           |
+| `* * *`  | event planner           | add an existing event to a new contact                     | -                                                      |
+| `* *`    | event planner           | search for events via names                                | locate events easily                                   |
+| `* *`    | forgetful event planner | be reminded that I have entered the event of the same name | avoid adding the same event name                       |
+| `* *`    | new event planner       | sort upcoming events according to dates                    | prioritize events when I am planning                   |
+| `* *`    | event planner           | list all contacts from a particular event                  | know the people associated to this event               |
+| `* *`    | event planner           | edit events                                                | change details                                         |
+| `* *`    | event planner           | list all events and contacts                               | conveniently view everything                           |
+| `*`      | event planner           | add overall-in-charge for every event                      | know who to approach for issues related to the event   |
+| `*`      | event planner           | set up a checklist of customer’s requirements              | account for every need                                 |
+| `*`      | forgetful event planner | set reminders conveniently                                 | be on track with things                                |
+| `*`      | forgetful event planner | receive reminders for upcoming events                      | avoid forgetting about the event                       |
+| `*`      | event planner           | archive old events                                         | view and take reference from old events                |
 
 ### Use cases
 
@@ -318,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to add a new event.
 2.  PlanEase shows a prompt to indicate that the event has been added successfully.
 
-  Use case ends.
+Use case ends.
 
 **Extensions**
 
@@ -333,13 +386,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1b1. PlanEase prompts User of invalid inputs.
 
   Use case ends.
-  
+
 - 1c. PlanEase detects that the User of entered less than or more than 2 datetime inputs.
 
   - 1c1. PlanEase prompts User of invalid number of datetime inputs.
 
   Use case ends.
-  
+
 - 1d. PlanEase detects that the User has used invalid prefix(es).
 
   - 1d1. PlanEase prompts User of invalid prefix(es) used.
@@ -351,7 +404,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1e1. PlanEase prompts User of duplicate event used.
 
   Use case ends.
-  
+
 <br>
 
 **Use case: List all events**
@@ -361,7 +414,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list all events.
 2.  PlanEase shows a list of events.
 
-  Use case ends.
+Use case ends.
 
 <br>
 
@@ -372,7 +425,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to delete a specific event in the list
 2.  PlanEase deletes the event in the list and deletes all occurrences of the event tied to person in the address book, if any.
 
-  Use case ends.
+Use case ends.
 
 **Extensions**
 
@@ -391,7 +444,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to add a new contact.
 2.  PlanEase shows a prompt to indicate that the contact has been added successfully.
 
-  Use case ends.
+Use case ends.
 
 **Extensions**
 
@@ -406,13 +459,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1b1. PlanEase shows an error message.
 
   Use case ends.
-  
+
 - 1c. The prefix(es) used are invalid.
 
   - 1c1. PlanEase shows an error message.
 
   Use case ends.
-  
 
 ### Non-Functional Requirements
 

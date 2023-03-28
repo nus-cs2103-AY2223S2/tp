@@ -26,8 +26,8 @@ public class EventUtil {
     public static String getEventDetails(Event event) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_EVENT_NAME + event.getName().name + " ");
-        sb.append(PREFIX_START_DATE_TIME + event.getStartDateTime().dateTime + " ");
-        sb.append(PREFIX_END_DATE_TIME + event.getEndDateTime().dateTime + " ");
+        sb.append(PREFIX_START_DATE_TIME + event.getStartDateTime().toString() + " ");
+        sb.append(PREFIX_END_DATE_TIME + event.getEndDateTime().toString() + " ");
         return sb.toString();
     }
 
