@@ -42,6 +42,8 @@ Artistic addressbook (ArB) is a **desktop app for managing contacts, optimized f
 
 `<Required argument> [optional argument]`
 
+An asterisk `*` after any argument indicates that it can be entered a variable number of times.
+
 All commands case insensitive
 
 ## Prefixes
@@ -88,29 +90,29 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 ### Adding a client: `add-client`
+#### Alias: `ac`
 
-Adds a client to the application with the supplied details. The details that can be supplied are the name, email address and phone number of the client.
+Adds a client to the application with the supplied details. The details that can be supplied are the name, email address, and phone number of the client, along with any number of tags to be added.
 
 Only the name of the client is compulsory. 
 
 The email address and phone number must be in a valid format. E.g. `XXX@gmail.com` or ```XXX@yahoo.com``` for emails and `12345678` for phone numbers.
 
-Format: `add client name/NAME [email/EMAIL] [phone/PHONE_NUMBER]`
+Format: `add client name/NAME [email/EMAIL] [phone/PHONE_NUMBER] [tag/TAG]*`
+
+Note: each tag to be added need a separate `tag/TAG` flag.
 
 Examples:
-* `add client name/Bob phone/12345678 email/bob@gmail.com`
+* `add client name/Bob phone/12345678 email/bob@gmail.com tag/friend tag/default`
 * `add client name/Alice`
 * `add client name/Clary phone/87654321 email/clary@gmail.com`
 
-Alias: `ac`
-
 ### List all clients: `list-client`
+#### Alias: `lc`
 
 List out all clients.
 
 Format: `list client`
-
-Alias: `lc`
 
 ### Listing all projects : `list-project`
 
@@ -142,20 +144,21 @@ Examples:
 Alias: `ap`
 
 ### Editing a client : `edit-client`
+#### Alias: `ec`
 
-Edits the client at the given index of the client list, changing only the given field(s).
+Edits the client at the given index of the client list, changing only the given field(s). Any fields that are mentioned but left empty will be deleted (apart from the name)
+
 Fields that can be changed:
 * Name
 * Email address
 * Phone number
+* Tags
 
-Format: `edit client <index> [name/NAME] [email/EMAIL] [phone/PHONE]`
+Format: `edit client <index> [name/NAME] [email/EMAIL] [phone/PHONE] [tag/TAG]*`
 
 Examples:
 *  `edit client 1 email/new@email.com` Edits the email address of the 1st client to be `new@email.com`.
-*  `edit client 3 name/Alice Risa phone/1234` Edits the name of the 3rd client to `Alice Risa` and phone number to `1234`. 
-
-Alias: `ec`
+*  `edit client 3 name/Alice Risa phone/1234 tag/` Edits the name of the 3rd client to `Alice Risa` and phone number to `1234`. Removes any tags.
 
 ### Editing a project : `edit-project`
 
@@ -183,6 +186,7 @@ Example:
 * `ep 2 n/The Starry Night pr/500`
 
 ### Deleting a client : `delete client`
+#### Alias: `dc`
 
 Deletes the client at the specified index of the client list.
 
@@ -190,8 +194,6 @@ Format: `delete client <index>`
 
 Example:
 *  `delete client 1` Deletes the first client in the list (if there is one).
-
-Alias: `dc`
 
 ### Deleting a project : `delete-project`
 
