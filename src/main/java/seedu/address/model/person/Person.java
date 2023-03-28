@@ -244,7 +244,7 @@ public class Person {
         logger.info(String.format("Removing Module Tags: %s, %s",
                 removableModuleTags, completelyRemovableModuleTags));
 
-        removableModuleTags.forEach(this.moduleTags::remove);
+        this.moduleTags.removeAll(removableModuleTags);
         removableModuleTags.stream()
                 .map(ModuleTag::getImmutableLessons)
                 .flatMap(Set::stream)

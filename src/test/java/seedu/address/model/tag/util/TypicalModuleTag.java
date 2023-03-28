@@ -544,7 +544,7 @@ public class TypicalModuleTag {
             .build();
 
     public static final ModuleTag CFG1002_F = new ModuleTagBuilder()
-            .withModuleCode("CFG1002_F")
+            .withModuleCode("CFG1002")
             .build();
 }
 

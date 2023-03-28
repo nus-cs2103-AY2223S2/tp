@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-class ModuleTagBuilder {
+public class ModuleTagBuilder {
     public static final String DEFAULT_MODULE_CODE = "CS2103T";
     public static final Set<Lesson> DEFAULT_LESSONS = new HashSet<>();
 

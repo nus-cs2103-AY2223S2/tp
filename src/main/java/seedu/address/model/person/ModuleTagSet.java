@@ -78,6 +78,7 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
 
         ModuleTag existingModuleTag = modules.get(tagName);
         existingModuleTag.removeLessons(moduleTag.getImmutableLessons());
+        modules.put(tagName, existingModuleTag);
 
         if (existingModuleTag.getImmutableLessons().size() == 0) {
             modules.remove(tagName);
@@ -112,6 +113,10 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      * Returns whether the tag can be removed.
      */
     public boolean canRemove(ModuleTag moduleTag) {
+//        System.out.println(moduleTag);
+//        System.out.println(modules.get(moduleTag.tagName));
+//        System.out.println(modules.containsKey(moduleTag.tagName)
+//                && modules.get(moduleTag.tagName).containsLessons(moduleTag.getImmutableLessons()));
         return modules.containsKey(moduleTag.tagName)
                 && modules.get(moduleTag.tagName).containsLessons(moduleTag.getImmutableLessons());
     }
