@@ -15,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
@@ -244,7 +245,13 @@ public class ModelManager implements Model {
         TimeMask baseMask = new TimeMask();
         for (Person person: persons) {
             baseMask.mergeMask(person.getRecurringMask());
+            IsolatedEventList isolatedEventList = person.getIsolatedEventList();
+            if (isolatedEventList == null) {
+                continue;
+            }
+            baseMask.mergeIsolatedEvents(isolatedEventList);
         }
+
         // TODO: Potential bugs
         ObservableList<String> timetable = TimeMask.getTimetable(date.getDayOfWeek(), baseMask);
         System.out.println(timetable);

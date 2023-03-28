@@ -6,6 +6,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
 
 public class TimeMask {
@@ -40,6 +42,24 @@ public class TimeMask {
         }
     }
 
+    public void mergeIsolatedEvents(IsolatedEventList isolatedEventList) {
+        for (int i = 0; i < isolatedEventList.getSize(); i++) {
+            IsolatedEvent event = isolatedEventList.getIsolatedEvent(i);
+
+            int startIndex = event.getStartDayValue();
+            int endIndex = event.getEndDayValue();
+            int startTime = event.getStartDate().getHour();
+            int endTime = event.getEndDate().getHour();
+
+            if (startIndex != endIndex) {
+                occupySlots(startIndex, startTime, endTime);
+                occupySlots(endIndex, 0, endTime);
+            } else {
+                occupySlots(startIndex, startTime, endTime);
+            }
+        }
+    }
+
     private void freeSlots(int dayIndex, int startHourIndex, int endHourIndex) {
         checkValidDayIndex(dayIndex);
         checkValidHourIndexes(startHourIndex, endHourIndex);
@@ -57,7 +77,6 @@ public class TimeMask {
 
         int startBits = Integer.parseInt("1".repeat(endHourIndex - startHourIndex + 1));
         int mask = startBits << startHourIndex;
-
         weeklyOccupancy[dayIndex] = weeklyOccupancy[dayIndex] | mask;
     }
 
@@ -87,7 +106,6 @@ public class TimeMask {
             freeSlots(dayIndex, startHourIndex, endHourIndex);
         }
     }
-
 
     public static ObservableList<String> getTimetable(DayOfWeek startDay, TimeMask timeMask) {
         ObservableList<String> linearTimetable = FXCollections.observableArrayList();

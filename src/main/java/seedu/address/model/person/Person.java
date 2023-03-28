@@ -144,6 +144,18 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    public void removeExpiredEvent() {
+        int len = isolatedEventList.getSize();
+        LocalDateTime now = LocalDateTime.now();
+
+        for (int i = 0; i < len; i++) {
+            IsolatedEvent event = isolatedEventList.getIsolatedEvent(i);
+            if (event.getStartDate().isBefore(now)) {
+                isolatedEventList.deleteIsolatedEvent(event);
+            }
+        }
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -196,17 +208,5 @@ public class Person {
             groups.forEach(builder::append);
         }
         return builder.toString();
-    }
-
-    public void removeExpiredEvent() {
-        int len = isolatedEventList.getSize();
-        LocalDateTime now = LocalDateTime.now();
-
-        for (int i = 0; i < len; i++) {
-            IsolatedEvent event = isolatedEventList.getIsolatedEvent(i);
-            if (event.getStartDate().isBefore(now)) {
-                isolatedEventList.deleteIsolatedEvent(event);
-            }
-        }
     }
 }
