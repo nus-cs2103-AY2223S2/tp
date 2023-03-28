@@ -11,37 +11,37 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added Delivery Job System Storage.
     * What is does: Handle saving and loading of delivery job list from data files.
-    * Justification: This feature allow delivery job data to be saved in a seperate data file to avoid congesting the address book. 
+    * Justification: This feature allow delivery job data to be saved in a separate data file to avoid congesting the address book.
     * Highlights: Largely inline with address book storage structure with modification to json adapted classes to fit our custom delivery job model.
     * Credits: Address book storage.
 
 * **New Feature**: Delivery Job List and Detail Pane in MainWindow.
     * What is does: Display a list of pending delivery jobs for user. Able to view the job detail when selected.
-    * Justification: The user needs to see all the available jobs and its details. 
+    * Justification: The user needs to see all the available jobs and its details.
     * Highlights: User can select to view the job detail by mouse or arrow keys.
     * Credits: MainWindow.
 
 * **New Feature**: List Delivery Job Command.
     * What is does: List all the available jobs.
-    * Justification: Core function. 
+    * Justification: Core function.
     * Highlights: .
     * Credits: ListCommand.
 
 * **New Feature**: Delete Delivery Job Command.
     * What is does: Delete a selected jobs.
-    * Justification: Core function. 
+    * Justification: Core function.
     * Highlights: User can select and delete a job using `del` key from the MainWindow.
     * Credits: DeleteCommand.
 
 * **New Feature**: Edit Delivery Job Command.
     * What is does: Edit a selected jobs.
-    * Justification: Core function. 
+    * Justification: Core function.
     * Highlights: Able to select jobs using list index or job id.
     * Credits: EditCommand.
 
 * **New Feature**: Find Delivery Job Command.
     * What is does: Find a selected jobs.
-    * Justification: Core function. 
+    * Justification: Core function.
     * Highlights: All attributes of `DeliveryJob` can be use as a command option for searching.
     * Credits: FindCommand.
 
