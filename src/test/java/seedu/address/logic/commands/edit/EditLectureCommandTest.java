@@ -23,9 +23,11 @@ import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.video.Video;
 import seedu.address.testutil.EditLectureDescriptorBuilder;
 import seedu.address.testutil.LectureBuilder;
 import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.TypicalLectures;
 
 /**
  * Contains integration tests (interactions with the Model) and unit tests for {@code EditLectureCommand}.
@@ -67,8 +69,10 @@ public class EditLectureCommandTest {
     public void execute_editAcceptedByModel_success() {
         Module originalModule = new ModuleBuilder().withCode(VALID_MODULE_CODE_2103).build();
         Module editedModule = new ModuleBuilder(originalModule).build();
-        Lecture originalLecture = new LectureBuilder().withName(VALID_LECTURE_NAME_L1).build();
-        Lecture editedLecture = new LectureBuilder().withName(VALID_LECTURE_NAME_L2).build();
+        Lecture originalLecture = new LectureBuilder(TypicalLectures.getCs2040sWeek1()).build();
+        Lecture editedLecture = new LectureBuilder(TypicalLectures.getCs2040sWeek2()).withVideos().build();
+        originalLecture.getVideoList().stream().forEach(v -> editedLecture.addVideo((Video) v));
+
         EditLectureDescriptor descriptor = new EditLectureDescriptorBuilder(editedLecture).build();
 
         EditLectureCommand command = new EditLectureCommand(
@@ -116,8 +120,10 @@ public class EditLectureCommandTest {
     @Test
     public void execute_duplicateLecture_failure() {
         Module module = new ModuleBuilder().withCode(VALID_MODULE_CODE_2103).build();
-        Lecture originalLecture = new LectureBuilder().withName(VALID_LECTURE_NAME_L1).build();
-        Lecture editedLecture = new LectureBuilder().withName(VALID_LECTURE_NAME_L2).build();
+        Lecture originalLecture = new LectureBuilder(TypicalLectures.getCs2040sWeek1()).build();
+        Lecture editedLecture = new LectureBuilder(TypicalLectures.getCs2040sWeek2()).withVideos().build();
+        originalLecture.getVideoList().stream().forEach(v -> editedLecture.addVideo((Video) v));
+
         EditLectureDescriptor descriptor = new EditLectureDescriptorBuilder(editedLecture).build();
 
         module.addLecture(originalLecture);

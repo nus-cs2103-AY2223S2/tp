@@ -8,8 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.EDIT_MODULE_DESC_CS20
 import static seedu.address.logic.commands.CommandTestUtil.EDIT_MODULE_DESC_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2040;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2103;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_2040;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_2103;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
@@ -18,10 +16,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.edit.EditModuleCommand.EditModuleDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.lecture.Lecture;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.TypicalModules;
 
 /**
  * Contains integration tests (interactions with the Model) and unit tests for {@code EditModuleCommand}.
@@ -52,10 +52,10 @@ public class EditModuleCommandTest {
 
     @Test
     public void execute_editAcceptedByModel_success() {
-        Module originalModule = new ModuleBuilder().withCode(VALID_MODULE_CODE_2103)
-                .withName(VALID_MODULE_NAME_2103).build();
-        Module editedModule = new ModuleBuilder().withCode(VALID_MODULE_CODE_2040)
-                .withName(VALID_MODULE_NAME_2040).build();
+        Module originalModule = new ModuleBuilder(TypicalModules.getCs2040s()).build();
+        Module editedModule = new ModuleBuilder(TypicalModules.getSt2334()).withLectures().build();
+        originalModule.getLectureList().stream().forEach(l -> editedModule.addLecture((Lecture) l));
+
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(editedModule).build();
 
         EditModuleCommand command = new EditModuleCommand(originalModule.getCode(), descriptor);
@@ -83,10 +83,10 @@ public class EditModuleCommandTest {
 
     @Test
     public void execute_duplicateModule_failure() {
-        Module originalModule = new ModuleBuilder().withCode(VALID_MODULE_CODE_2103)
-                .withName(VALID_MODULE_NAME_2103).build();
-        Module editedModule = new ModuleBuilder().withCode(VALID_MODULE_CODE_2040)
-                .withName(VALID_MODULE_NAME_2040).build();
+        Module originalModule = new ModuleBuilder(TypicalModules.getCs2040s()).build();
+        Module editedModule = new ModuleBuilder(TypicalModules.getSt2334()).withLectures().build();
+        originalModule.getLectureList().stream().forEach(l -> editedModule.addLecture((Lecture) l));
+
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(editedModule).build();
 
         model.addModule(originalModule);

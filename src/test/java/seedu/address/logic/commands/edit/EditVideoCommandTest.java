@@ -31,6 +31,7 @@ import seedu.address.model.video.VideoName;
 import seedu.address.testutil.EditVideoDescriptorBuilder;
 import seedu.address.testutil.LectureBuilder;
 import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.TypicalVideos;
 import seedu.address.testutil.VideoBuilder;
 
 
@@ -82,8 +83,9 @@ public class EditVideoCommandTest {
         Module editedModule = new ModuleBuilder(originalModule).build();
         Lecture originalLecture = new LectureBuilder().withName(VALID_LECTURE_NAME_L1).build();
         Lecture editedLecture = new LectureBuilder(originalLecture).build();
-        Video originalVideo = new VideoBuilder().withName(VALID_VIDEO_NAME_V1).build();
-        Video editedVideo = new VideoBuilder().withName(VALID_VIDEO_NAME_V2).build();
+        Video originalVideo = new VideoBuilder(TypicalVideos.CONTENT_VIDEO).build();
+        Video editedVideo = new VideoBuilder(TypicalVideos.ANALYSIS_VIDEO).build();
+
         EditVideoDescriptor descriptor = new EditVideoDescriptorBuilder(editedVideo).build();
 
         EditVideoCommand command = new EditVideoCommand(
@@ -153,8 +155,8 @@ public class EditVideoCommandTest {
     public void execute_duplicateVideo_failure() {
         Module module = new ModuleBuilder().withCode(VALID_MODULE_CODE_2103).build();
         Lecture lecture = new LectureBuilder().withName(VALID_LECTURE_NAME_L1).build();
-        Video originalVideo = new VideoBuilder().withName(VALID_VIDEO_NAME_V1).build();
-        Video editedVideo = new VideoBuilder().withName(VALID_VIDEO_NAME_V2).build();
+        Video originalVideo = new VideoBuilder(TypicalVideos.CONTENT_VIDEO).build();
+        Video editedVideo = new VideoBuilder(TypicalVideos.ANALYSIS_VIDEO).build();
         EditVideoDescriptor descriptor = new EditVideoDescriptorBuilder(editedVideo).build();
 
         lecture.addVideo(originalVideo);
