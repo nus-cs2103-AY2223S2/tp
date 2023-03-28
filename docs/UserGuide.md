@@ -152,11 +152,11 @@ A Task must have a description.([What is a valid Description?](#q4-what-is-a-val
 
 Format:
 
-* <span style="color:#4285F4">SimpleTask</span>: `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
+* <span style="color:#4285F4">SimpleTask</span>: `add n/TASKNAME [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
 
-* <span style="color:#34A853">Deadline</span>: `add n/TASKNAME D/DEADLINE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
+* <span style="color:#34A853">Deadline</span>: `add n/TASKNAME D/DEADLINE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
 
-* <span style="color:#FBBC05">Event</span>: `add n/TASKNAME F/FROMDATE T/TODATE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]
+* <span style="color:#FBBC05">Event</span>: `add n/TASKNAME F/FROMDATE T/TODATE [d/DESCRIPTION] [t/TAGS]…​ [E/EFFORT]`
 
 Examples:
 * `add n/Read Book d/Make sure to take notes t/Leisure`
@@ -168,7 +168,7 @@ You can add multiple tasks with the same parameters except for name with this co
 
 :bulb: **PRO TIP**: Parameters that comes after the command can be in any order!
 
-:bulb: **PRO TIP**: A task can have any number of tags (including 0)
+:bulb: **PRO TIP**: A task can have any number of tags (including 0). Each tag will be automatically assigned a color.
 
 :warning: You are unable to add any tasks (<span style="color:#4285F4">simpleTask</span>, <span style="color:#34A853">Deadline</span>, <span style="color:#FBBC05">Event</span>) of the same name.
 
@@ -431,6 +431,9 @@ _Details coming soon ..._
 
 ### Q4 What is a valid Description?
 **A**: A valid Description is a text input that has at least one character.
+
+### Q5 Why does two different tags have the same tag color??
+**A**: There are currently 20 available color codes for tags. By the birthday paradox, the chances of collisions do rise as more tags exists. More colors will be added in future iterations.
 
 
 --------------------------------------------------------------------------------------------------------------------

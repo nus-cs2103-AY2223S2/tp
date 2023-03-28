@@ -190,7 +190,7 @@ You can find the specific implementation in the 'AddCommandParser' class and the
 
 Given below is a scenario of how the add command is used and behaves.
 
-Step 1. The user inputs an 'add' Command with parameters 'n/CS2109S n/CS2103T n/homework'.
+Step 1. The user inputs an `add` Command with parameters `n/CS2109S n/CS2103T n/homework`.
 
 Step 2. The AddCommandParser recognises that the input command has two names and one description as the parameters. Since there is no deadline prefix 'D' and event prefixes 'f' and 't', the parser will create tasks that are simple tasks. The tasks will have the same description but different names
 
@@ -397,6 +397,16 @@ The following activity diagram summarizes what happens when a user executes a ne
 ![SortCommandSequenceDiagram](images/AlertActivityDiagram.png)
 
 ### 3.11 Plan Feature
+
+### 3.12 Tag color codes
+
+Color coded tags are a new feature aimed at providing a better User experience such that users are able to identify similar tags easily.
+
+It is important to note that there are currently only 20 colors available and colors are assigned by the program (within TaskCard.java) and not the user.
+
+The color is decided by calculating the hashcode of the tag's name then module 20 (the current size of the available colors).
+
+The color of this tag is then decided by looking up the result in an array of colors and taking its corresponding color.
 
 --------------------------------------------------------------------------------------------------------------------
 
