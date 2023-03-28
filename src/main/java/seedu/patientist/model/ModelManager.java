@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.patientist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -183,6 +184,11 @@ public class ModelManager implements Model {
     @Override
     public void setWard(Ward target, Ward editedWard) { //checked
         patientist.setWard(target, editedWard);
+    }
+
+    @Override
+    public List<String> getWardNames() {
+        return this.patientist.getWardNames();
     }
 
     @Override
