@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -34,6 +36,8 @@ public class ExportProgressWindow extends UiPart<Stage> {
 
     @FXML
     private TextArea resultDisplay;
+    @FXML
+    private ImageView exportImage;
 
     /**
      * Creates a new ExportProgressWindow.
@@ -45,6 +49,7 @@ public class ExportProgressWindow extends UiPart<Stage> {
         this.root = root;
         this.person = person;
         this.logic = logic;
+        this.exportImage.setImage(new Image(this.getClass().getResourceAsStream("/images/export.png")));
         if (this.person != null) {
             resultDisplay.setText("Export " + this.person.getName().fullName + "'s progress");
             saveAsButton.setDisable(false);

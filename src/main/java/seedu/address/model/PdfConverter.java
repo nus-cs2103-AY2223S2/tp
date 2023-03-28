@@ -2,23 +2,27 @@ package seedu.address.model;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
+import org.apache.pdfbox.pdmodel.graphics.color.PDColor;
 import seedu.address.AppParameters;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.score.Score;
 import seedu.address.model.score.ScoreList;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
 
 /**
@@ -42,6 +46,11 @@ public class PdfConverter {
     private final PDFont fontBold = PDType1Font.HELVETICA_BOLD;
     private final PDFont fontItalic = PDType1Font.HELVETICA_OBLIQUE;
     private final PDFont font = PDType1Font.HELVETICA;
+    private final Color black = Color.BLACK;
+    private final Color red = new Color(194, 47, 40);
+    private final Color yellow = new Color(219, 168, 0);
+    private final Color green = new Color(0, 100, 0);
+    private Color curColor;
 
     private final int fontTitleSize = 20;
 
@@ -68,6 +77,7 @@ public class PdfConverter {
         this.contentStream = new PDPageContentStream(document, page);
         this.x = this.xInit;
         this.y = this.yInit;
+        this.curColor = black;
 
         String docTitle = key.getName().fullName + "'s Progress Report";
         String dateCreated = "Date created: " + LocalDate.now();
@@ -167,13 +177,38 @@ public class PdfConverter {
         this.y = yFinal;
     }
 
+    private String convertStatusString(String input) {
+        String statement = input;
+        String converted = "";
+        switch(statement) {
+        case "INPROGRESS":
+            converted = "In Progress";
+            break;
+        case "COMPLETE":
+            converted = "Complete";
+            break;
+        case "LATE":
+            converted =  "Late";
+            break;
+        }
+        return converted;
+    }
+
     private void createTableContentForTask(TaskList tasks, List<String> maxContentWidthString, PDFont font,
                                            int fontSize)
             throws IOException {
         float yFinal = this.y;
+        ObservableList<Task> sortedTaskList = tasks.getInternalList();
         for (int i = 0; i < tasks.size(); i++) {
-            List<String> contents = Arrays.asList("In Progress", tasks.get(i).getName().fullName);
+            String status = convertStatusString(sortedTaskList.get(i).getStatus().name());
+            if (status.equals("Late")) {
+                this.curColor = this.red;
+            } else if (status.equals("Complete")) {
+                this.curColor = this.green;
+            }
+            List<String> contents = Arrays.asList(status, sortedTaskList.get(i).getName().fullName);
             createTableRow(contents, maxContentWidthString, font, fontSize);
+            this.curColor = this.black;
             yFinal = this.y - margin;
             this.x = this.xInit;
             this.y -= textHeight(font, fontSize, 0) / 2 + this.margin * 2;
@@ -185,11 +220,23 @@ public class PdfConverter {
     private void createTableContentForScore(ScoreList scores, List<String> maxContentWidthString, PDFont font,
                                             int fontSize) throws IOException {
         float yFinal = this.y;
+        ObservableList<Score> sortedScoreList = scores.getSortedScoreList();
         for (int i = 0; i < scores.size(); i++) {
-            Score currentScore = scores.get(i);
+            Score currentScore = sortedScoreList.get(i);
+            double value = currentScore.getValue().value;
+            if (value == 100) {
+                this.curColor = this.green;
+            }
+            if (value < 80) {
+                this.curColor = this.yellow;
+            }
+            if (value < 50) {
+                this.curColor = this.red;
+            }
             List<String> contents = Arrays.asList(currentScore.getDate().toString(), currentScore.getLabel().toString(),
                     currentScore.getValue().toString());
             createTableRow(contents, maxContentWidthString, font, fontSize);
+            this.curColor = this.black;
             yFinal = this.y - this.margin;
             this.x = this.xInit;
             this.y -= textHeight(font, fontSize, 0) / 2 + this.margin * 2;
@@ -281,6 +328,7 @@ public class PdfConverter {
                 this.yInitTable = this.y + textHeight(font, fontSize, 0) / 2 + 2 * this.margin;
             }
             setUpContentStream(font, fontSize, this.x, this.y);
+            this.contentStream.setNonStrokingColor(this.curColor);
             this.contentStream.drawString(curString);
             this.contentStream.endText();
             this.x += textLength(curString, font, fontSize);

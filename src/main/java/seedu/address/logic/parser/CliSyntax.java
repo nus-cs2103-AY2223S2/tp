@@ -17,6 +17,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_SCORE_VALUE = new Prefix("v/");
     public static final Prefix PREFIX_SCORE_DATE = new Prefix("d/");
     public static final Prefix PREFIX_FILEPATH = new Prefix("p/");
-    public static final Prefix PREFIX_FILENAME = new Prefix("n/");
 
 }

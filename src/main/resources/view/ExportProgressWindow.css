@@ -1,21 +1,9 @@
-#exportMessage, #saveAsButton, #directoryChosen {
+#exportMessage, #directoryChosen {
     -fx-text-fill: white;
     -fx-font-family: "SansSerif";
     -fx-font-size: 12pt;
     -fx-text-alignment: center;
     -fx-wrap-text: true;
-}
-
-#saveAsButton {
-    -fx-background-color: #FF94B4;
-}
-
-#saveAsButton:hover {
-    -fx-background-color: #EF6FA3;
-}
-
-#saveAsButton:armed {
-    -fx-background-color: #DD689D;
 }
 
 #exportMessageContainer {
@@ -71,4 +59,18 @@
 
 .result-display .label {
     -fx-text-fill: white !important;
+}
+.containerButton {
+    -fx-background-color: #d1ceee;
+    -fx-font-size: 16pt;
+    -fx-text-fill: #5058a3;
+    -fx-background-radius: 10;
+}
+
+.containerButton:hover {
+    -fx-background-color: #dad8e9;
+}
+
+.containerButton:armed {
+    -fx-background-color: #d1ceee;
 }

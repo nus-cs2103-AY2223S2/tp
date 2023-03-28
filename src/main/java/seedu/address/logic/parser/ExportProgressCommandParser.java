@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FILENAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 
 import java.util.stream.Stream;
@@ -22,7 +21,7 @@ public class ExportProgressCommandParser implements Parser<ExportProgressCommand
      */
     public ExportProgressCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_FILENAME, PREFIX_FILEPATH);
+                ArgumentTokenizer.tokenize(args, PREFIX_FILEPATH);
 
         Index index;
 
@@ -33,10 +32,10 @@ public class ExportProgressCommandParser implements Parser<ExportProgressCommand
                     ExportProgressCommand.MESSAGE_USAGE));
         }
 
-        String fileName = ParserUtil.parseFileName(argMultimap.getValue(PREFIX_FILENAME));
+        String fileName = ".pdf";
         String filePath = ParserUtil.parseFilePath(argMultimap.getValue(PREFIX_FILEPATH));
 
-        return new ExportProgressCommand(index, fileName, filePath);
+        return new ExportProgressCommand(index, filePath);
     }
 
     /**

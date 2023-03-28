@@ -223,26 +223,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a file name.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given file name is invalid.
-     */
-    public static String parseFileName(Optional<String> fileNameOpt) throws ParseException {
-        String fileName = fileNameOpt.isEmpty() ? "" : fileNameOpt.get();
-        fileName += ".pdf";
-        File f = new File(fileName);
-        try {
-            f.createNewFile();
-            f.delete();
-        } catch (IOException e) {
-            throw new ParseException("File name should follow general file naming conventions\n"
-                    + "Avoid special characters");
-        }
-        return fileName;
-    }
-
-    /**
      * Parses a file path.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -250,12 +230,6 @@ public class ParserUtil {
      */
     public static String parseFilePath(Optional<String> filePathOpt) throws ParseException {
         String filePath = filePathOpt.isEmpty() ? "" : filePathOpt.get();
-        if (filePath.contains("/")) {
-            throw new ParseException("Path must contain backslashes ('\\') instead of forward slashes");
-        }
-        if (File.separator.equals("/")) {
-            filePath = filePath.replace("\\", "/");
-        }
         Path path = Paths.get(filePath);
         if (Files.isWritable(path) && Files.isDirectory(path)) {
             return path.toString();
