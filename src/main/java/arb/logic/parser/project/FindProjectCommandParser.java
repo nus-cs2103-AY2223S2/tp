@@ -4,6 +4,7 @@ import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static arb.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static arb.logic.parser.CliSyntax.PREFIX_END;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
+import static arb.logic.parser.CliSyntax.PREFIX_STATUS;
 import static arb.logic.parser.CliSyntax.PREFIX_START;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -23,10 +24,14 @@ import arb.logic.parser.Prefix;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.project.Deadline;
 import arb.model.project.Project;
+import arb.model.project.Status;
+import arb.model.project.predicates.IsOfStatusPredicate;
 import arb.model.project.predicates.LinkedClientNameContainsKeywordsPredicate;
 import arb.model.project.predicates.ProjectContainsTagsPredicate;
 import arb.model.project.predicates.ProjectWithinTimeframePredicate;
 import arb.model.project.predicates.TitleContainsKeywordsPredicate;
+
+import javax.swing.text.html.Option;
 
 /**
  * Parses input arguments and creates a new FindProjectCommand object
@@ -45,9 +50,9 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
     public FindProjectCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                PREFIX_NAME, PREFIX_START, PREFIX_END, PREFIX_TAG, PREFIX_CLIENT);
+                PREFIX_NAME, PREFIX_STATUS, PREFIX_START, PREFIX_END, PREFIX_TAG, PREFIX_CLIENT);
 
-        if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_START, PREFIX_END, PREFIX_TAG, PREFIX_CLIENT)
+        if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_STATUS, PREFIX_START, PREFIX_END, PREFIX_TAG, PREFIX_CLIENT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindProjectCommand.MESSAGE_USAGE));
         }
@@ -76,6 +81,15 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
         }
         if (!clientNameKeywords.isEmpty()) {
             predicates.add(new LinkedClientNameContainsKeywordsPredicate(clientNameKeywords));
+        }
+
+        Optional<String> statusString = argMultimap.getValue(PREFIX_STATUS);
+        Status status = null;
+        if (statusString.isPresent()) {
+            status = ParserUtil.parseStatus(statusString.get());
+        }
+        if (status != null) {
+            predicates.add(new IsOfStatusPredicate(status));
         }
 
         Optional<String> startString = argMultimap.getValue(PREFIX_START);
