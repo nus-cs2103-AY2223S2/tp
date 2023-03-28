@@ -107,18 +107,21 @@ public class ModelManager implements Model {
     @Override
     public void deleteEvent(Event target) {
         scheduler.removeEvent(target);
+        updateUpcomingEventList(new UpcomingEventPredicate());
     }
 
     @Override
     public void addEvent(Event event) {
         scheduler.addEvent(event);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+        updateUpcomingEventList(new UpcomingEventPredicate());
     }
 
     @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
         scheduler.setEvent(target, editedEvent);
+        updateUpcomingEventList(new UpcomingEventPredicate());
     }
 
     //=========== Event List Accessors =============================================================
