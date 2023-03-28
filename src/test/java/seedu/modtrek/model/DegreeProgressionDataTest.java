@@ -20,7 +20,7 @@ public class DegreeProgressionDataTest {
 
     @Test
     public void getPlannedCredit() {
-        assertEquals(33, data.getPlannedCredit());
+        assertEquals(13, data.getPlannedCredit());
     }
 
     @Test

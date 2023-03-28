@@ -65,7 +65,7 @@ public enum ValidTag {
     }
 
     /**
-     * Retrieves long form version of the requirement.
+     * Retrieves total credit per requirement.
      *
      * @param tagName the short-form version of the requirement
      * @return ValidTag as the long-form
@@ -89,24 +89,6 @@ public enum ValidTag {
         default:
             return tag;
         }
-    }
-
-    /**
-     * Retrieves total credit per requirement.
-     *
-     * @param tagName
-     * @return Total credit
-     */
-    public static int getTotalCredit(String tagName) {
-        Map<ValidTag, Integer> mappedCredits = Map.of(
-                ULR, 16,
-                CSF, 36,
-                CSBD, 40,
-                ITP, 12,
-                MS, 16,
-                UE, 40);
-        ValidTag tag = ValidTag.getShortForm(tagName);
-        return mappedCredits.get(tag);
     }
 
     /**

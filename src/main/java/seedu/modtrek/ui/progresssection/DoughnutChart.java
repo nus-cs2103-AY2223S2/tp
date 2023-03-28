@@ -58,11 +58,13 @@ public class DoughnutChart extends PieChart {
         ObservableList<PieChart.Data> doughnutData = FXCollections.observableArrayList();
 
         Map<String, Integer> completeCreditsMap = degreeProgressionData.getCompletedRequirementCredits();
+        Map<String, Integer> totalCreditsMap = degreeProgressionData.getTotalRequirementCredits();
 
         List<String> tags = ValidTag.getTags();
         for (String tag : tags) {
-            int completeCredits = completeCreditsMap.get(ValidTag.getShortForm(tag).toString());
-            int incompleteCredits = ValidTag.getTotalCredit(tag) - completeCredits;
+            String shortFormTag = ValidTag.getShortForm(tag).toString();
+            int completeCredits = completeCreditsMap.get(shortFormTag);
+            int incompleteCredits = totalCreditsMap.get(shortFormTag) - completeCredits;
             doughnutData.add(new PieChart.Data(tag, completeCredits));
             doughnutData.add(new PieChart.Data(tag, incompleteCredits));
         }
@@ -111,7 +113,7 @@ public class DoughnutChart extends PieChart {
 
         // TODO: update this
         Text totalMc = new Text(degreeProgressionData.getCompletedCredit() + "/"
-                + degreeProgressionData.TOTALCREDIT + " MCs");
+                + DegreeProgressionData.TOTALCREDIT + " MCs");
         totalMc.setStyle("-fx-fill: -white;");
         totalMc.getStyleClass().add("h3");
 
@@ -306,6 +308,8 @@ public class DoughnutChart extends PieChart {
 
         double fullAngle = 2 * Math.PI;
 
+        Map<String, Integer> totalCreditsMap = degreeProgressionData.getTotalRequirementCredits();
+
         ObservableList<Data> doughnutData = getData();
         assert doughnutData.size() == Tag.NUM_TAGS * 2 : "Number of divisions of doughnut chart should be 12.";
         for (int i = 0; i < doughnutData.size(); i += 2) {
@@ -313,7 +317,7 @@ public class DoughnutChart extends PieChart {
 
             String tag = ValidTag.getShortForm(completeData.getName()).toString();
 
-            double totalCredits = ValidTag.getTotalCredit(tag);
+            double totalCredits = totalCreditsMap.get(tag);
 
             double offset = totalCredits / 2;
             offset += accCredits;
