@@ -24,7 +24,7 @@ SudoHR allows you to manage these components by:
 2. Adding/Removing employees in departments/leaves.
 3. Apply different filters on the data.
 
-<div markdown="span" class="alert alert-warning">**WARNING:**
+<div markdown="span" class="alert alert-danger">**WARNING:**
 SudoHR can only hold up to 10,000 employees, 10,000 departments, 10,000 leaves
 and 10,000 tags! Exceeding this limit will result in slower performance or unforeseen
 problems.
@@ -69,6 +69,8 @@ problems.
 
 #### Employee
 
+[//]: # (To be done by Andre)
+
 #### Department
 
 A department is a group for employees. A department can have many employees and
@@ -77,20 +79,52 @@ an employee can be in many departments.
 Every employee in a department must be unique.
 
 The following attributes are stored for each department:
-1. Department name
+1. Department Name
 
 Departments are unique by name and case-sensitive. You cannot add more than one
 department of the same name.
 
 #### Leave
 
+[//]: # (To be done by Jer En)
+
 #### Prefixes
 
 [//]: # (Explain prefixes in the command and their corresponding placeholders)
 
+Prefixes are delimiters to differentiate between different types of input.
+
+<div markdown="span" class="alert alert-primary">**NOTE:**
+There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
+</div>
+
+| Prefix | Placeholder                |
+|--------|----------------------------|
+| id/    | ID                         |
+| n/     | NAME <br/> DEPARTMENT_NAME |
+| p/     | PHONE_NUMBER               |
+| e/     | EMAIL                      |
+| a/     | ADDRESS                    |
+| t/     | TAG                        |
+| g/     | DATE                       |
+| eid/   | EMPLOYEE_ID                |
+
 #### Placeholders
 
 [//]: # (List placeholders in the command)
+| Placeholder             | Corresponding Flag | Format                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+|-------------------------|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **ID**                  | id/               | ID is the unique identifier for an employee. Leading zeroes will automatically be removed. <br/> It has the following constraints: <li> Must be a positive integer </li> <br/> Valid Examples: <li>1</li> <li>100</li> Invalid Examples: <li>Bob</li> <li>0</li> <li>-1</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **NAME**                | n/                | NAME represents the name of an employee. <br/> It has the following constraints: <li> It must only contain hexadecimal characters </li> <li> Cannot be blank </li> <br/> Valid Examples: <li>Kenneth</li> <li>Bob Lim</li> Invalid Examples: <li>Bob*</li> <li>1Alice</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **PHONE_NUMBER**        | p/                | PHONE_NUMBER represents the phone number of an employee. <br/> It has the following constraints: <li> Must only contain numbers </li> <li> It must contain at least 3 digits </li> <br/> Valid Examples: <li>123</li> <li>97628372</li> Invalid Examples: <li>12</li> <li>Hello</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| **EMAIL**               | e/                | EMAIL represents the email of an employee. It must be of the format local-part@domain <br/> It has the following constraints: <li> The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, ( +_.- ). The local-part may not start or end with any special characters. </li>  <li> This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. <li> The domain name must: <ol><li>End with a domain label at least 2 characters long</li><li>Have each domain label start and end with alphanumeric characters</li><li>Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.</li></ol></li> Valid Examples: <li>PeterJack+1190@example.com</li> <li>a1+be.d@example1.com</li> Invalid Examples: <li>peter jack@example.com</li> <li>-peterjack@example.com</li> |
+| **ADDRESS**             | a/                | ADDRESS represents the home address of an employee. <br/> It can take in any value!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **TAG**                 | t/                | TAG represents a tag of an employee. <br/> It has the following constraints: <li> They can only contain alphanumeric characters. </li> <br/> Valid Examples: <li>Manager</li> Invalid Examples: <li>*Manager</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| **EMPLOYEE_ID**         | eid/              | Similar to ID, The EMPLOYEE_ID represents the ID of an employee. It is used when you want to select an employee. <br/> It follows the same constraints as ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **DEPARTMENT_NAME**     | n/                | DEPARTMENT_NAME is the unique identifier for a department. It is used when creating, editing and deleting a department. <br/> It has the following constraints: <li> They can only contain alphanumeric characters. </li> <br/> Valid Examples: <li>Manager</li> Invalid Examples: <li>*Manager</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| **OLD_DEPARTMENT_NAME** | NA                | OLD_DEPARTMENT_NAME represents the original name before editing a department. It has the same constraints as DEPARTMENT_NAME.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **DATE**                | g/                | DATE represents the date of the leave.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+
 [//]: # (Talk about their constraints, type, format, etc)
 
 ### Command Format
@@ -188,7 +222,7 @@ Adds a department by name.
 
 Format: `adep n/DEPARTMENT_NAME`
 
-<div markdown="span" class="alert alert-primary">**NOTE:**
+<div markdown="span" class="alert alert-warning">**NOTE:**
 As of now, a department only has a department name field. In the future, we plan to add other
 department-level details such as manager, department start date, parent department, etc.
 </div>
@@ -229,7 +263,7 @@ Adds an employee to a department using his ID.
 
 Format: `aetd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`
 
-<div markdown="span" class="alert alert-primary">**NOTE:**
+<div markdown="span" class="alert alert-warning">**NOTE:**
 You cannot add an employee to a department twice.
 </div>
 
