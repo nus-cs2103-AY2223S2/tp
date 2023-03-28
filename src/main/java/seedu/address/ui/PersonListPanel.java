@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.InternshipApplication;
 
@@ -20,13 +21,20 @@ public class PersonListPanel extends UiPart<Region> {
     @FXML
     private ListView<InternshipApplication> applicationListView;
 
+    @FXML
+    private VBox container;
+
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ViewContentPanel} with the given {@code ObservableList}.
      */
     public PersonListPanel(ObservableList<InternshipApplication> applicationList) {
         super(FXML);
         applicationListView.setItems(applicationList);
         applicationListView.setCellFactory(listView -> new PersonListViewCell());
+    }
+
+    public VBox getContainer() {
+        return container;
     }
 
     /**
