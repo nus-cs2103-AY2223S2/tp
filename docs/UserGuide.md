@@ -157,7 +157,7 @@ Format:
 ```
 select <INDEX>
 ```
-- Selects course at index specified in <INDEX> and displays list of groups from that course.
+- Selects course at index specified in `<INDEX>` and displays list of groups from that course.
 
 Examples:
 - `select 1` will return a list of groups from the 1st course.
