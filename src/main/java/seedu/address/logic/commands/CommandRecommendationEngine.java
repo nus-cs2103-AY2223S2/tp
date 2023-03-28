@@ -133,7 +133,8 @@ public class CommandRecommendationEngine {
 
         // not a complete command
         if (commandIndex == -1) {
-            commandInfo = findMatchingCommandInfo(userInput);
+            //  Checking only for prefix matching since the command is incomplete
+            commandInfo = findMatchingCommandInfo(userInput, false);
             if (commandInfo == null) {
                 throw new CommandException(INVALID_COMMAND_MESSAGE);
             }
@@ -143,7 +144,8 @@ public class CommandRecommendationEngine {
         // complete command
         commandWord = userInput.substring(0, commandIndex);
         String parsedArgs = userInput.substring(commandIndex);
-        commandInfo = findMatchingCommandInfo(commandWord);
+        // Forcing exact matching since the command must be complete
+        commandInfo = findMatchingCommandInfo(commandWord, true);
 
         if (commandInfo == null || !commandWord.equals(commandInfo.getCmdWord())) {
             throw new CommandException(INVALID_COMMAND_MESSAGE);
@@ -180,10 +182,11 @@ public class CommandRecommendationEngine {
         return userInput.contains(delimiter);
     }
 
-    private CommandInfo findMatchingCommandInfo(String commandWord) {
+    private CommandInfo findMatchingCommandInfo(String commandWord, boolean isExactMatching) {
         return COMMAND_INFO_MAP.keySet()
                 .stream()
-                .filter(command -> command.startsWith(commandWord))
+                .filter(command -> isExactMatching ? command.equals(commandWord) : command.startsWith(commandWord))
+                .sorted()
                 .map(COMMAND_INFO_MAP::get)
                 .findFirst()
                 .orElse(null);
