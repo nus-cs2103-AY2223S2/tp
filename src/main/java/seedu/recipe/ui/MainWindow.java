@@ -124,40 +124,40 @@ public class MainWindow extends UiPart<Stage> {
     // Alson import method - Crashes the app, needs fixing
     @FXML
     private void handleImport() {
-        ImportManager importManager = new ImportManager();
+        ImportManager importManager = new ImportManager(primaryStage);
         try {
             ObservableList<Recipe> importedRecipes = importManager.execute();
             for (Recipe recipe : importedRecipes) {
                 System.out.println("Recipe: " + recipe.toString());
             }
         } catch (DataConversionException | IOException | IllegalValueException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
 
     // My test import method
-    @FXML
-    private void newHandleImport() {
-        FileChooser fileChooser = new FileChooser();
-
-        // Set the file extension filter for JSON files
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json");
-        fileChooser.getExtensionFilters().add(extFilter);
-
-        // Show open file dialog
-        File selectedFile = fileChooser.showOpenDialog(primaryStage);
-        try {
-            if (selectedFile != null) {
-                ImportManager importManager = new ImportManager();
-                ObservableList<Recipe> importedRecipes = importManager.importRecipes(selectedFile);
-                for (Recipe recipe : importedRecipes) {
-                    System.out.println("Recipe: " + recipe.toString());
-                }
-            }
-        } catch (DataConversionException e) {
-            return;
-        }
-    }
+//    @FXML
+//    private void newHandleImport() {
+//        FileChooser fileChooser = new FileChooser();
+//
+//        // Set the file extension filter for JSON files
+//        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json");
+//        fileChooser.getExtensionFilters().add(extFilter);
+//
+//        // Show open file dialog
+//        File selectedFile = fileChooser.showOpenDialog(primaryStage);
+//        try {
+//            if (selectedFile != null) {
+//                ImportManager importManager = new ImportManager();
+//                ObservableList<Recipe> importedRecipes = importManager.importRecipes(selectedFile);
+//                for (Recipe recipe : importedRecipes) {
+//                    System.out.println("Recipe: " + recipe.toString());
+//                }
+//            }
+//        } catch (DataConversionException e) {
+//            return;
+//        }
+//    }
 
     /**
      * Handles the DeleteRecipeEvent by executing the appropriate delete command
