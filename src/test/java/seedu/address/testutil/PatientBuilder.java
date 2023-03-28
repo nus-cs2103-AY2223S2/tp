@@ -5,6 +5,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Status;
+import seedu.address.model.ward.Ward;
 import seedu.address.model.ward.WardName;
 
 /**
@@ -17,7 +18,6 @@ public class PatientBuilder {
     public static final String DEFAULT_STATUS = "GRAY";
     public static final String DEFAULT_WARD = "Waiting Room";
     public static final String DEFAULT_DISCHARGE = "To Be Confirmed";
-
 
     private Nric nric;
     private Name name;
@@ -74,8 +74,8 @@ public class PatientBuilder {
     /**
      * Sets the {@code Ward} of the {@code Patient} that we are building.
      */
-    public PatientBuilder withWard(String ward) {
-        this.ward = new WardName(ward);
+    public PatientBuilder withWard(WardName ward) {
+        this.ward = ward;
         return this;
     }
 

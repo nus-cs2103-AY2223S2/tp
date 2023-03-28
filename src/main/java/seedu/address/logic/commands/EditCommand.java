@@ -45,8 +45,8 @@ public class EditCommand extends Command {
     private final EditPatientDescriptor editPatientDescriptor;
 
     /**
-     * @param index                of the patient in the filtered patient list to
-     *                             edit
+     * @param index                 of the patient in the filtered patient list to
+     *                              edit
      * @param editPatientDescriptor details to edit the patient with
      */
     public EditCommand(Index index, EditPatientDescriptor editPatientDescriptor) {
@@ -168,6 +168,7 @@ public class EditCommand extends Command {
         public void setWard(WardName ward) {
             this.ward = ward;
         }
+
         public void setDischarge(Discharge discharge) {
             this.discharge = discharge;
         }
@@ -187,6 +188,7 @@ public class EditCommand extends Command {
         public Optional<WardName> getWard() {
             return Optional.ofNullable(ward);
         }
+
         public Optional<Discharge> getDischarge() {
             return Optional.ofNullable(discharge);
         }
