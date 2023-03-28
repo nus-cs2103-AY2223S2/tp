@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.card.exceptions.CardNotFoundException;
 import seedu.address.model.card.exceptions.DuplicateCardException;
-import seedu.address.model.tag.Tag;
 
 /**
  * A list of cards that enforces uniqueness between its elements and does not allow nulls.
@@ -67,39 +66,6 @@ public class UniqueCardList implements Iterable<Card> {
         }
 
         internalList.set(index, editedCard);
-    }
-
-
-    /**
-     * Adds a tag to the specified card in the internal list, and updates the list accordingly.
-     *
-     * @param target The card to tag.
-     * @param tag    The tag to add.
-     */
-    public void tagCard(Card target, Tag tag) {
-        int index = internalList.indexOf(target);
-
-        if (index == -1) {
-            throw new CardNotFoundException();
-        }
-
-        Card newCard = new Card(target.getQuestion(), target.getAnswer(), tag, target.getDeck());
-
-        internalList.set(index, newCard);
-    }
-
-    /**
-     * Replaces old card with new card that is flipped.
-     * @param target
-     */
-    public void flipCard(Card target) {
-        int index = internalList.indexOf(target);
-        if (target.isFlipped()) {
-            target.setAsUnflipped();
-        } else {
-            target.setAsFlipped();
-        }
-        internalList.set(index, target);
     }
 
     /**

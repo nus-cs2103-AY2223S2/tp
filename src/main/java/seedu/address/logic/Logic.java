@@ -68,6 +68,12 @@ public interface Logic {
     ObservableList<Pair<String, String>> getReviewDeckNameList();
 
     /**
+     * Returns the card list storing cards in Review.
+     * @return The Observable List in Review.
+     */
+    ObservableList<Card> getReviewCardList();
+
+    /**
      * Removes all the card and deck data of users.
      */
     void factoryReset();

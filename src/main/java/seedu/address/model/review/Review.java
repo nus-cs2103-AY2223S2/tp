@@ -1,6 +1,5 @@
 package seedu.address.model.review;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
@@ -10,8 +9,11 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.util.Pair;
 import seedu.address.model.card.Card;
+import seedu.address.model.card.IsSameCardPredicate;
+import seedu.address.model.card.UniqueCardList;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
 
@@ -22,61 +24,62 @@ import seedu.address.model.tag.Tag;
 public class Review {
 
     private final Deck deck;
-    private final List<Card> cardList;
-    private int currCardNum = 1; // 1-Indexed
-    private Card currCard;
+
+    private UniqueCardList uniqueReviewCardList;
+    private final ObservableList<Card> unmodifiableReviewCardList;
+    private final FilteredList<Card> filteredReviewCardList;
 
     private final int totalNumCards;
-    private List<Integer> orderOfCards;
+    private Card currCard;
+    private final List<Integer> orderOfCards;
+    private int currCardIndex = 0; // 0-Indexed
     private ObservableList<Pair<String, String>> reviewStatsList;
 
     /**
      * Every field must be present and not null.
      */
-    public Review(Deck deck, List<Card> cardList) {
-        requireAllNonNull(deck, cardList);
+    public Review(Deck deck, List<Card> cardsInDeck, int userSetNum) {
+        requireAllNonNull(deck, cardsInDeck, userSetNum);
 
         this.deck = deck;
-        this.cardList = cardList;
-        totalNumCards = cardList.size();
-        unflipAllCards();
+        totalNumCards = userSetNum < 0
+                ? cardsInDeck.size()
+                : Integer.min(userSetNum, cardsInDeck.size());
 
-        // initialise order of card
-        orderOfCards = new Random().ints(0, cardList.size())
+        initReviewCardList(cardsInDeck);
+        this.unmodifiableReviewCardList = uniqueReviewCardList.asUnmodifiableObservableList();
+        filteredReviewCardList = new FilteredList<>(this.unmodifiableReviewCardList);
+
+        // Randomise order of cards based on the total number of cards allowed in review
+        orderOfCards = new Random().ints(0, cardsInDeck.size())
                 .distinct().limit(totalNumCards).boxed().collect(Collectors.toList());
 
         // initialise first card
-        currCard = this.cardList.get(orderOfCards.get(currCardNum - 1));
+        currCard = this.uniqueReviewCardList.asUnmodifiableObservableList().get(orderOfCards.get(currCardIndex));
+        filteredReviewCardList.setPredicate(new IsSameCardPredicate(currCard));
 
-        // initialise reviewStats
+        // initialize review stats
         reviewStatsList = FXCollections.observableList(new ArrayList<>());
+        updateReviewStatsList();
     }
 
     /**
-     * Every field must be present and not null.
-     * Overloaded constructor of Review object used if user has set a card limit for each Review session.
+     * Initialize all cards as unflipped.
+     *
+     * @param cardList List of Cards to initialize UniqueCardList with.
      */
-    public Review(Deck deck, List<Card> cardList, int userSetNum) {
-        requireNonNull(deck);
-        requireNonNull(cardList);
-
-        this.deck = deck;
-        this.cardList = cardList;
-        totalNumCards = userSetNum;
-        unflipAllCards();
-
-        // initialise shuffled order of cards and limit
-        orderOfCards = new Random().ints(0, cardList.size())
-                .distinct().limit(userSetNum).boxed().collect(Collectors.toList());
-
-        // initialise first card
-        currCard = this.cardList.get(orderOfCards.get(currCardNum - 1));
-
-        reviewStatsList = FXCollections.observableList(new ArrayList<Pair<String, String>>());
+    private void initReviewCardList(List<Card> cardList) {
+        uniqueReviewCardList = new UniqueCardList();
+        for (Card c : cardList) {
+            uniqueReviewCardList.add(c.buildUnflippedCard());
+        }
     }
 
-    public Card getCurrCard() {
-        return currCard;
+    /**
+     * Returns the list of card in this review.
+     */
+    public ObservableList<Card> getFilteredReviewCardList() {
+        return filteredReviewCardList;
     }
 
     public Deck getDeck() {
@@ -87,19 +90,42 @@ public class Review {
         return deck.getDeckName();
     }
 
-    public boolean isFlipped() {
-        return currCard.isFlipped();
+    private void unflipCard(Card card) {
+        this.uniqueReviewCardList.setCard(card, card.buildUnflippedCard());
+    }
+
+    private void flipCard(Card card) {
+        this.uniqueReviewCardList.setCard(card, card.buildFlippedCard());
     }
 
     /**
-     * Flips the current card under review.
+     * Updates the current card whenever the current card is modified in the Review card list.
      */
-    public void flipCard() {
-        if (isFlipped()) {
-            currCard.setAsUnflipped();
+    private void updateCurrCard() {
+        int indexInReview = orderOfCards.get(currCardIndex);
+        currCard = this.unmodifiableReviewCardList.get(indexInReview);
+    }
+
+    /**
+     * Flips the current card in review.
+     */
+    public void flipCurrCard() {
+        if (currCard.isFlipped()) {
+            unflipCard(currCard);
         } else {
-            currCard.setAsFlipped();
+            flipCard(currCard);
         }
+
+        updateCurrCard();
+    }
+
+    /**
+     * Checks the flip state of the current card in Review.
+     *
+     * @return true if the current card is flipped, otherwise false
+     */
+    public boolean isCurrCardFlipped() {
+        return currCard.isFlipped();
     }
 
     /**
@@ -107,78 +133,78 @@ public class Review {
      * @return boolean indicating if card is the last card
      */
     public boolean goToNextCard() {
-        boolean priorStateIsFlipped = currCard.isFlipped();
-        currCard.setAsUnflipped(); // always unflip current card before moving to next
-        currCardNum++;
-        if (currCardNum > totalNumCards) {
-            currCardNum--;
-            if (priorStateIsFlipped) {
-                currCard.setAsFlipped();
-            }
-            updateReviewStatsList();
+        if (currCardIndex == totalNumCards - 1) {
             return false;
-        } else {
-            currCard = cardList.get(orderOfCards.get(currCardNum - 1));
-            currCard.setAsUnflipped();
-            updateReviewStatsList();
-            return true;
         }
+
+        unflipCard(currCard); // always unflip current card before moving to next
+
+        currCardIndex++;
+        currCard = unmodifiableReviewCardList.get(orderOfCards.get(currCardIndex));
+        filteredReviewCardList.setPredicate(new IsSameCardPredicate(currCard));
+
+        updateReviewStatsList();
+        return true;
     }
 
     /**
      * Move back to previous card to be under review.
-     * @return
+     * @return boolean indicating if card is the first card.
      */
     public boolean goToPrevCard() {
-        currCard.setAsUnflipped(); // always unflip current card before moving to prev
-        currCardNum--;
-        if (currCardNum <= 0) {
-            currCardNum++;
-            updateReviewStatsList();
+        if (currCardIndex == 0) {
             return false;
-        } else {
-            currCard = cardList.get(orderOfCards.get(currCardNum - 1));
-            currCard.setAsUnflipped();
-            updateReviewStatsList();
-            return true;
         }
+
+        unflipCard(currCard); // always unflip current card before moving to previous one
+
+        currCardIndex--;
+        currCard = unmodifiableReviewCardList.get(orderOfCards.get(currCardIndex));
+        filteredReviewCardList.setPredicate(new IsSameCardPredicate(currCard));
+
+        updateReviewStatsList();
+        return true;
     }
 
-    public void setCard(Tag tag) {
-        currCard = new Card(currCard.getQuestion(), currCard.getAnswer(), tag, currCard.getDeck());
+    /**
+     * Returns the current card in the review.
+     * Card is always flipped to be consistent with the cards in MasterDeck.
+     *
+     * @return the current card flipped.
+     */
+    public Card getCurrCard() {
+        return currCard.buildFlippedCard();
     }
 
-    public void unflipAllCards() {
-        cardList.stream().forEach(Card::setAsUnflipped);
-    }
-
-    public void flipAllCards() {
-        cardList.stream().forEach(Card::setAsFlipped);
+    /**
+     * Tags the current card in review as easy/medium/hard
+     *
+     * @param tag the tag to add to current card.
+     */
+    public void tagCurrentCard(Tag tag) {
+        uniqueReviewCardList.setCard(currCard, currCard.buildCardWithtag(tag));
+        updateCurrCard();
+        updateReviewStatsList();
     }
 
     public ObservableList<Pair<String, String>> getReviewStatsList() {
-        updateReviewStatsList();
         return reviewStatsList;
     }
 
     public int getNoOfEasyTags() {
-        return (int) cardList.stream().filter(card -> card.getTagName().equals("easy")).count();
+        return (int) unmodifiableReviewCardList.stream().filter(card -> card.getTagName().equals("easy")).count();
     }
 
     public int getNoOfMediumTags() {
-        return (int) cardList.stream().filter(card -> card.getTagName().equals("medium")).count();
+        return (int) unmodifiableReviewCardList.stream().filter(card -> card.getTagName().equals("medium")).count();
     }
 
     public int getNoOfHardTags() {
-        return (int) cardList.stream().filter(card -> card.getTagName().equals("hard")).count();
+        return (int) unmodifiableReviewCardList.stream().filter(card -> card.getTagName().equals("hard")).count();
     }
 
     public int getNoOfUntagged() {
-        return (int) cardList.stream().filter(card -> card.getTagName() == "untagged").count();
-    }
-
-    public void tagCard() {
-        updateReviewStatsList();
+        return (int) unmodifiableReviewCardList.stream().filter(card -> card.getTagName().equals("untagged")).count();
     }
 
     public ObservableList<Pair<String, String> > getReviewDeckNameList() {
@@ -192,7 +218,7 @@ public class Review {
     public void updateReviewStatsList() {
         Pair<String, String> title = new Pair<>("Deck Name", deck.getDeckName());
         Pair<String, String> cardsSeen = new Pair<>("Current Card Number:",
-                String.format("%d/%d", currCardNum, totalNumCards));
+                String.format("%d/%d", currCardIndex + 1, totalNumCards));
         Pair<String, String> tagCount = new Pair<>("Current Tags:",
                  String.format("%d Easy, %d Medium, %d Hard",
                          getNoOfEasyTags(), getNoOfMediumTags(), getNoOfHardTags()));

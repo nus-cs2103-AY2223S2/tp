@@ -139,7 +139,7 @@ public class MainWindow extends UiPart<Stage> {
         rightTitle = new DeckNamePanel(logic.getDeckNameList());
         rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredCardList());
+        personListPanel = new PersonListPanel(logic.getFilteredCardList(), false);
         rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
@@ -222,7 +222,9 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
-        personListPanel.toggleReview();
+        personListPanel = new PersonListPanel(logic.getReviewCardList(), true);
+        rightPanelPlaceholder.getChildren().clear();
+        rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(REVIEW_TITLE);
@@ -242,7 +244,9 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
-        personListPanel.endReview();
+        personListPanel = new PersonListPanel(logic.getFilteredCardList(), true);
+        rightPanelPlaceholder.getChildren().clear();
+        rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(MAIN_TITLE);

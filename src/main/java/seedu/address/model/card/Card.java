@@ -23,7 +23,7 @@ public class Card {
 
     // Data fields
     private final Tag tag;
-    private boolean isFlipped = true;
+    private final boolean isFlipped;
 
     /**
      * Every field must be present and not null.
@@ -34,6 +34,37 @@ public class Card {
         this.answer = answer;
         this.tag = Optional.ofNullable(tag).orElse(new Tag(UNTAGGED));
         this.deck = deck;
+        this.isFlipped = true; // flipped by default
+    }
+
+    /**
+     * Overloaded constructor to instantiate a flipped/unflipped card.
+     *
+     * @param toUpdate Cards to copy.
+     * @param isFlipped boolean indicating if card is flipped.
+     */
+    public Card(Card toUpdate, boolean isFlipped) {
+        requireAllNonNull(toUpdate, isFlipped);
+        this.question = toUpdate.question;
+        this.answer = toUpdate.answer;
+        this.tag = toUpdate.tag;
+        this.deck = toUpdate.deck;
+        this.isFlipped = isFlipped;
+    }
+
+    /**
+     * Overloaded constructor to instantiate a card with a different tag.
+     *
+     * @param toUpdate Cards to copy.
+     * @param tag New tag.
+     */
+    public Card(Card toUpdate, Tag tag) {
+        requireAllNonNull(toUpdate, tag);
+        this.question = toUpdate.question;
+        this.answer = toUpdate.answer;
+        this.deck = toUpdate.deck;
+        this.isFlipped = toUpdate.isFlipped;
+        this.tag = tag;
     }
 
     public Question getQuestion() {
@@ -61,7 +92,7 @@ public class Card {
     }
 
     /**
-     * Returns true if both cards have the same question.
+     * Returns true if both cards have the same question, answer and deck.
      * This defines a weaker notion of equality between two cards.
      */
     public boolean isSameCard(Card otherCard) {
@@ -95,24 +126,24 @@ public class Card {
     }
 
     /**
-     * Sets card as flipped.
+     * Builds a flipped card.
      */
-    public void setAsFlipped() {
-        this.isFlipped = true;
+    public Card buildFlippedCard() {
+        return new Card(this, true);
     }
 
     /**
-     * Sets card as unflipped.
+     * Builds an unflipped card.
      */
-    public void setAsUnflipped() {
-        this.isFlipped = false;
+    public Card buildUnflippedCard() {
+        return new Card(this, false);
     }
 
     /**
-     * Flips/unflips card as specified.
+     * Builds a new card of similar attributes but with a different tag
      */
-    public void setFlip(boolean isFlipped) {
-        this.isFlipped = isFlipped;
+    public Card buildCardWithtag(Tag tag) {
+        return new Card(this, tag);
     }
 
     /**
@@ -133,7 +164,8 @@ public class Card {
         return otherCard.getQuestion().equals(getQuestion())
                 && otherCard.getAnswer().equals(getAnswer())
                 && otherCard.getTag().equals(getTag())
-                && otherCard.getDeck().equals(getDeck());
+                && otherCard.getDeck().equals(getDeck())
+                && otherCard.isFlipped == isFlipped;
     }
 
     @Override

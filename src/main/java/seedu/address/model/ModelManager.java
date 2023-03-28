@@ -17,7 +17,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.CardInDeckPredicate;
-import seedu.address.model.card.IsSameCardPredicate;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
 import seedu.address.model.tag.Tag;
@@ -147,26 +146,6 @@ public class ModelManager implements Model {
         filteredCards.setPredicate(predicate);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return masterDeck.equals(other.masterDeck)
-                && userPrefs.equals(other.userPrefs)
-                && filteredDecks.equals(other.filteredDecks)
-                && filteredCards.equals(other.filteredCards); // todo: check equal selectedDeck and review
-    }
-
     /* ==================================== PowerDeck Operations ==================================== */
 
     @Override
@@ -260,15 +239,20 @@ public class ModelManager implements Model {
     public void reviewDeck(Index deckIndex) {
         int zeroBasesIdx = deckIndex.getZeroBased();
         Deck deckToReview = filteredDecks.get(zeroBasesIdx);
-        List<Card> cardList = new FilteredList<>(
-                masterDeck.getCardList(), new CardInDeckPredicate(deckToReview)
-        );
-        if (numCardsPerReview > 0) {
-            currReview = new Review(deckToReview, cardList, numCardsPerReview);
-        } else {
-            currReview = new Review(deckToReview, cardList);
-        }
-        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+
+        List<Card> cardsToReview =
+                new FilteredList<>(masterDeck.getCardList(), new CardInDeckPredicate(deckToReview));
+
+        currReview = new Review(deckToReview, cardsToReview, numCardsPerReview);
+    }
+
+    /**
+     * Returns the card list in Review
+     */
+    @Override
+    public ObservableList<Card> getReviewCardList() {
+        assert currReview != null : "Must be in review mode";
+        return currReview.getFilteredReviewCardList();
     }
 
     @Override
@@ -279,14 +263,12 @@ public class ModelManager implements Model {
     @Override
     public boolean goToPrevCard() {
         boolean isFirstCard = this.currReview.goToPrevCard();
-        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
         return isFirstCard;
     }
 
     @Override
     public boolean goToNextCard() {
         boolean isLastCard = this.currReview.goToNextCard();
-        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
         return isLastCard;
     }
 
@@ -297,7 +279,6 @@ public class ModelManager implements Model {
 
     @Override
     public void endReview() {
-        currReview.flipAllCards();
         currReview = null;
         if (selectedDeck != null) {
             updateFilteredCardList(new CardInDeckPredicate(selectedDeck));
@@ -315,19 +296,19 @@ public class ModelManager implements Model {
     @Override
     public void flipCard() {
         assert currReview != null : "Flip command executed without a Review session.";
-        masterDeck.flipCard(filteredCards.get(0));
+        currReview.flipCurrCard();
     }
 
     @Override
     public boolean isReviewCardFlipped() {
-        return currReview.isFlipped();
+        assert currReview != null : "Flip command executed without a Review session.";
+        return currReview.isCurrCardFlipped();
     }
 
     @Override
     public void tagCurrentCardInReview(Tag tag) {
-        assert filteredCards.size() == 1 : "One and only one card can be reviewed at once.";
-        masterDeck.tagCard(filteredCards.get(0), tag);
-        currReview.updateReviewStatsList();
+        masterDeck.tagCard(currReview.getCurrCard(), tag); // modifies masterDeck
+        currReview.tagCurrentCard(tag); // reflects in GUI
     }
 
     @Override
@@ -353,5 +334,26 @@ public class ModelManager implements Model {
         }
 
         return ModelState.MAIN_UNSELECTED_MODE;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+        return masterDeck.equals(other.masterDeck)
+                && userPrefs.equals(other.userPrefs)
+                && filteredDecks.equals(other.filteredDecks)
+                && filteredCards.equals(other.filteredCards); // todo: check equal selectedDeck and review
     }
 }

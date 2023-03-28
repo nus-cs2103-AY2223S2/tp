@@ -136,6 +136,8 @@ public interface Model {
 
     int getDeckSize(int deckIndex);
 
+    /* ==================================== Review Operations ==================================== */
+
     void reviewDeck(Index idx);
 
     Optional<Review> getReview();
@@ -150,18 +152,25 @@ public interface Model {
 
     boolean goToNextCard();
 
-    void setNumCardsPerReview(int i);
-
-    /**
-     * Returns the state of the model
-     */
-    ModelState getState();
-
     boolean isReviewCardFlipped();
+
+    void setNumCardsPerReview(int i);
 
     void tagCurrentCardInReview(Tag tag);
 
     ObservableList<Pair<String, String>> getReviewStatsList();
 
     ObservableList<Pair<String, String>> getReviewDeckNameList();
+
+    /**
+     * Returns the list of cards in the Review.
+     */
+    ObservableList<Card> getReviewCardList();
+
+    /* ==================================== State ==================================== */
+
+    /**
+     * Returns the state of the model
+     */
+    ModelState getState();
 }
