@@ -43,21 +43,30 @@ class JsonAdaptedClient {
 
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+
+    private final List<JsonAdaptedWeightHistory> weightHistories = new ArrayList<>();
+    private final List<JsonAdaptedWeightDate> weightHistoriesDate = new ArrayList<>();
+
     private final List<JsonAdaptedRoutineName> routinesRoutineName = new ArrayList<>();
     private final List<JsonAdaptedExerciseClient> exercises = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
      */
     @JsonCreator
-    public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedClient(
+            @JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
-            @JsonProperty("weight") String weight, @JsonProperty("gender") String gender,
-            @JsonProperty("goal") String goal, @JsonProperty("calorie") String calorie,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("weight") String weight,
+            @JsonProperty("weightHistory") List<JsonAdaptedWeightHistory> weightHistory,
+            @JsonProperty("weightDateTime") List<JsonAdaptedWeightDate> weightDateTime,
+            @JsonProperty("gender") String gender, @JsonProperty("goal") String goal,
+            @JsonProperty("calorie") String calorie, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("routines_names") List<JsonAdaptedRoutineName> routinesRoutineName,
-            @JsonProperty("exercises") List<JsonAdaptedExerciseClient> exercises) {
+            @JsonProperty("exercises") List<JsonAdaptedExerciseClient> exercises) throws IllegalValueException {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -71,6 +80,12 @@ class JsonAdaptedClient {
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (weightHistory != null) {
+            this.weightHistories.addAll(weightHistory);
+        }
+        if (weightDateTime != null) {
+            this.weightHistoriesDate.addAll(weightDateTime);
         }
         if (routinesRoutineName != null) {
             this.routinesRoutineName.addAll(routinesRoutineName);
@@ -98,6 +113,12 @@ class JsonAdaptedClient {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        weightHistories.addAll(source.getWeightHistory().weights.stream()
+                .map(JsonAdaptedWeightHistory::new)
+                .collect(Collectors.toList()));
+        weightHistoriesDate.addAll(source.getWeightHistory().getListDates().stream()
+                .map(JsonAdaptedWeightDate::new)
+                .collect(Collectors.toList()));
         routinesRoutineName.addAll(source.getRoutinesName().stream()
                 .map(JsonAdaptedRoutineName::new)
                 .collect(Collectors.toList()));
@@ -114,6 +135,14 @@ class JsonAdaptedClient {
     public Client toFitBookModelType() throws IllegalValueException {
         final List<Tag> clientTags = new ArrayList<>();
         final List<Appointment> clientAppointments = new ArrayList<>();
+        final List<Weight> clientWeightHistory = new ArrayList<>();
+        for (int i = 0; i < weightHistories.size(); i++) {
+            JsonAdaptedWeightHistory jsonAdaptedWeightHistory = weightHistories.get(i);
+            JsonAdaptedWeightDate jsonAdaptedWeightDate = weightHistoriesDate.get(i);
+            clientWeightHistory.add(
+                    new Weight(jsonAdaptedWeightDate.toFitBookModelType(),
+                            jsonAdaptedWeightHistory.toFitBookModelType()));
+        }
         final List<Routine> clientRoutines = new ArrayList<>();
         final List<List<Exercise>> routineExercises = new ArrayList<>();
         for (JsonAdaptedAppointment appointment : appointments) {
@@ -136,7 +165,6 @@ class JsonAdaptedClient {
         for (JsonAdaptedTag tag : tagged) {
             clientTags.add(tag.toFitBookModelType());
         }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -176,13 +204,7 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Calorie.MESSAGE_CONSTRAINTS);
         }
         final Calorie modelCalorie = new Calorie(calorie);
-        if (weight == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
-        }
-        if (!Weight.isValidWeight(weight)) {
-            throw new IllegalValueException(Weight.MESSAGE_CONSTRAINTS);
-        }
-        final Weight modelWeight = new Weight(weight);
+
         if (gender == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
         }
@@ -190,6 +212,7 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
         }
         final Gender modelGender = new Gender(gender);
+
         if (goal == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Goal.class.getSimpleName()));
         }
@@ -197,12 +220,20 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Goal.MESSAGE_CONSTRAINTS);
         }
         final Goal modelGoal = new Goal(goal);
+
+        if (weight == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
+        }
+        if (!Weight.isValidWeight(weight)) {
+            throw new IllegalValueException(Weight.MESSAGE_CONSTRAINTS);
+        }
+        final Weight modelWeight = new Weight(weight);
+
         final Set<Appointment> modelAppointment = new HashSet<>(clientAppointments);
         final Set<Tag> modelTags = new HashSet<>(clientTags);
+        final List<Weight> modelWeightHistory = new ArrayList<>(clientWeightHistory);
         final Set<Routine> modelRoutine = new HashSet<>(clientRoutines);
-
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelAppointment,
-                modelWeight, modelGender, modelCalorie, modelGoal, modelTags, modelRoutine);
+                modelWeight, modelGender, modelCalorie, modelGoal, modelTags, modelRoutine, modelWeightHistory);
     }
-
 }

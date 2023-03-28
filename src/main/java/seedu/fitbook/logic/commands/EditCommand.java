@@ -36,6 +36,7 @@ import seedu.fitbook.model.client.Goal;
 import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.client.Weight;
+import seedu.fitbook.model.client.WeightHistory;
 import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.routines.RoutineName;
 import seedu.fitbook.model.tag.Tag;
@@ -94,7 +95,7 @@ public class EditCommand extends Command {
         List<Client> lastShownList = model.getFilteredClientList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
         Client clientToEdit = lastShownList.get(index.getZeroBased());
@@ -191,6 +192,7 @@ public class EditCommand extends Command {
         private Goal goal;
         private Set<Tag> tags;
         private Set<Appointment> appointments;
+        private WeightHistory weightHistory;
         private Set<Routine> routines;
 
         public EditClientDescriptor() {}
@@ -210,6 +212,7 @@ public class EditCommand extends Command {
             setGoal(toCopy.goal);
             setAppointments(toCopy.appointments);
             setTags(toCopy.tags);
+            setWeightHistory(toCopy.weightHistory);
             setRoutines(toCopy.routines);
         }
 
@@ -271,6 +274,12 @@ public class EditCommand extends Command {
         }
         public Optional<Goal> getGoal() {
             return Optional.ofNullable(goal);
+        }
+        public void setWeightHistory(WeightHistory weightHistory) {
+            this.weightHistory = weightHistory;
+        }
+        public Optional<WeightHistory> getWeightHistory() {
+            return Optional.ofNullable(weightHistory);
         }
 
         /**

@@ -41,7 +41,8 @@ public class TypicalClients {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withWeight("50.0").withGender("M")
             .withGoal("lose-weight").withTags("owesMoney", "friends")
-            .withAppointments("13-02-2020 18:30", "14-01-2021 18:30").withCalorie("2424").withRoutines().build();
+            .withAppointments("13-02-2020 18:30", "14-01-2021 18:30").withCalorie("2424").withWeightHistory("50.0")
+            .withWeightDate("23-03-2023 18:00").withRoutines().build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withWeight("50.0").withGender("M").withGoal("lose-weight").withCalorie("2111").withRoutines().build();
