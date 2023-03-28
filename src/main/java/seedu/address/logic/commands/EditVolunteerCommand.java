@@ -5,6 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_EL
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
+import static seedu.address.commons.core.Messages.MESSAGE_WARNING_AVAILABLE_DATES;
+import static seedu.address.commons.core.Messages.MESSAGE_WARNING_REGION;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
@@ -17,11 +19,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -114,8 +118,20 @@ public class EditVolunteerCommand extends Command {
         }
 
         model.setVolunteer(volunteerToEdit, editedVolunteer);
+        @SuppressWarnings("unchecked")
+        Predicate<Volunteer> predicate = (Predicate<Volunteer>) PREDICATE_SHOW_ALL;
+        model.updateFilteredVolunteerList(predicate);
+
+        String finalMessage = String.format(MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer);
+        if (!model.checkIsSameRegion(null, editedVolunteer.getNric())) {
+            finalMessage += MESSAGE_WARNING_REGION;
+        }
+        if (!model.checkHasSuitableAvailableDates(null, editedVolunteer.getNric())) {
+            finalMessage += MESSAGE_WARNING_AVAILABLE_DATES;
+        }
+
         model.refreshAllFilteredLists();
-        return new CommandResult(String.format(MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer));
+        return new CommandResult(finalMessage);
     }
 
     @Override

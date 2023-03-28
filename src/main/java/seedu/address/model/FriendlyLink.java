@@ -2,22 +2,22 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
+import java.util.function.BiFunction;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.pair.UniquePairList;
 import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.exceptions.ElderlyNotFoundException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.exceptions.VolunteerNotFoundException;
-import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Nric;
-import seedu.address.model.person.information.Region;
-
 
 /**
  * Wraps all data at the friendly-link level
@@ -224,6 +224,11 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     public void setElderly(Elderly target, Elderly editedElderly) {
         requireNonNull(editedElderly);
         elderly.setPerson(target, editedElderly);
+        for (Pair pair : pairs) {
+            if (pair.getElderly().equals(target)) {
+                pairs.setPair(pair, new Pair(editedElderly, pair.getVolunteer()));
+            }
+        }
     }
 
     /**
@@ -238,6 +243,11 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     public void setVolunteer(Volunteer target, Volunteer editedVolunteer) {
         requireNonNull(editedVolunteer);
         volunteers.setPerson(target, editedVolunteer);
+        for (Pair pair : pairs) {
+            if (pair.getVolunteer().equals(target)) {
+                pairs.setPair(pair, new Pair(pair.getElderly(), editedVolunteer));
+            }
+        }
     }
 
     /**
@@ -291,32 +301,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @param elderlyNric Nric of elderly.
      * @param volunteerNric Nric of volunteer.
      */
-    public boolean addPair(Nric elderlyNric, Nric volunteerNric) {
-        Elderly elderly = getElderly(elderlyNric);
-        Volunteer volunteer = getVolunteer(volunteerNric);
-
-        Region elderlyRegion = elderly.getRegion();
-        Region volunteerRegion = volunteer.getRegion();
-
-        Set<AvailableDate> elderlyAvailableDates = elderly.getAvailableDates();
-        Set<AvailableDate> volunteerAvailableDates = volunteer.getAvailableDates();
-
-        // check if region match. If does not match, issue a warning in feedback
-        boolean issueWarning;
-        if (!elderlyRegion.isMatch(volunteerRegion)) {
-            issueWarning = true;
-        } else {
-            issueWarning = false;
-        }
-
-        // Checks if the availableDates are compatible between the elderly and volunteer
-        if (AvailableDate.isAvailableDatesIntersecting(elderlyAvailableDates, volunteerAvailableDates)) {
-            pairs.add(new Pair(elderly, volunteer));
-            return issueWarning;
-        }
-
-        throw new IllegalArgumentException("The elderly cannot be paired with the volunteer "
-                + "due to a clash in availability");
+    public void addPair(Nric elderlyNric, Nric volunteerNric) {
+        pairs.add(new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric)));
     }
 
     /**
@@ -375,6 +361,112 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     @Override
     public ObservableList<Pair> getPairList() {
         return pairs.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Checks whether regions of an elderly and a volunteer are the same.
+     * If null is specified for any Nric, checks are conducted on all involved pairs.
+     * The elderly and volunteer with the given Nric must exist in FriendlyLink.
+     *
+     * @param elderlyNric Nric of the elderly.
+     * @param volunteerNric Nric of the volunteer.
+     * @return True if both persons of all involved pairs belong in the same region, false otherwise.
+     */
+    public boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric) {
+        return checkPairs(elderlyNric,
+                volunteerNric, Person::isSameRegion);
+    }
+
+    /**
+     * Checks whether there are suitable available dates between an elderly and a volunteer.
+     * If null is specified for any Nric, checks are conducted on all involved pairs.
+     * The elderly and volunteer with the given Nric must exist in FriendlyLink.
+     *
+     * @param elderlyNric Nric of the elderly.
+     * @param volunteerNric Nric of the volunteer.
+     * @return True if both persons share common available dates or at least one person
+     *     has no specified available dates for all involved pairs, false otherwise.
+     */
+    public boolean checkHasSuitableAvailableDates(Nric elderlyNric, Nric volunteerNric) {
+        return checkPairs(elderlyNric,
+                volunteerNric, Person::hasSuitableAvailableDates);
+    }
+
+    /**
+     * Checks whether pairs with specified elderly and volunteer satisfies a given predicate.
+     * If null is specified for any Nric, checks are conducted on all involved pairs.
+     * The elderly and volunteer with the given Nric must exist in FriendlyLink.
+     *
+     * @param elderlyNric Nric of the elderly.
+     * @param volunteerNric Nric of the volunteer.
+     * @param predicate Predicate to check pairs.
+     * @return True if all involved pairs satisfies the given predicate, false otherwise.
+     */
+    private boolean checkPairs(Nric elderlyNric, Nric volunteerNric,
+            BiFunction<Elderly, Volunteer, Boolean> predicate) {
+        List<Elderly> elderlyToCheck = elderlyNric == null
+                ? getPairedElderly(volunteerNric)
+                : new ArrayList<>(Collections.singletonList(getElderly(elderlyNric)));
+        List<Volunteer> volunteerToCheck = volunteerNric == null
+                ? getPairedVolunteers(elderlyNric)
+                : new ArrayList<>(Collections.singletonList(getVolunteer(volunteerNric)));
+        for (Elderly elderly : elderlyToCheck) {
+            for (Volunteer volunteer : volunteerToCheck) {
+                if (!predicate.apply(elderly, volunteer)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Gets list of volunteers paired with a specified elderly.
+     * Returns the full list of volunteers if {@code elderlyNric} is null.
+     *
+     * @param elderlyNric Nric of the specified elderly
+     * @return List of volunteers paired with the specified elderly.
+     */
+    private List<Volunteer> getPairedVolunteers(Nric elderlyNric) {
+        ArrayList<Volunteer> result = new ArrayList<>();
+        if (elderlyNric != null) {
+            Elderly elderly = getElderly(elderlyNric);
+            for (Pair pair : pairs) {
+                if (pair.getElderly().equals(elderly)) {
+                    result.add(pair.getVolunteer());
+                }
+            }
+
+        } else {
+            for (Volunteer volunteer : volunteers) {
+                result.add(volunteer);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Gets list of elderly paired with a specified volunteer.
+     * Returns the full list of elderly if {@code volunteerNric} is null.
+     *
+     * @param volunteerNric Nric of the specified volunteer
+     * @return List of elderly paired with the specified volunteer.
+     */
+    private List<Elderly> getPairedElderly(Nric volunteerNric) {
+        ArrayList<Elderly> result = new ArrayList<>();
+        if (volunteerNric != null) {
+            Volunteer volunteer = getVolunteer(volunteerNric);
+            for (Pair pair : pairs) {
+                if (pair.getVolunteer().equals(volunteer)) {
+                    result.add(pair.getElderly());
+                }
+            }
+        } else {
+            for (Elderly elderly : elderly) {
+                result.add(elderly);
+            }
+        }
+        return result;
     }
 
     @Override
