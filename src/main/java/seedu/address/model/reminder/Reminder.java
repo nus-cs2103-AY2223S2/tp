@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 public class Reminder {
     private final String description;
     private final LocalDateTime reminderDateTime;
+    private boolean hasShown;
 
     /**
      * Constructor to create a Reminder object.
@@ -22,6 +23,7 @@ public class Reminder {
         requireAllNonNull(description, reminderDateTime);
         this.description = description;
         this.reminderDateTime = reminderDateTime;
+        this.hasShown = false;
     }
 
     public String getDescription() {
@@ -34,6 +36,14 @@ public class Reminder {
 
     public String reminderDateTimeToString() {
         return dateTimeToString(reminderDateTime);
+    }
+
+    public Boolean getHasShown() {
+        return this.hasShown;
+    }
+
+    public void setHasShown(Boolean b) {
+        this.hasShown = b;
     }
 
     /**
