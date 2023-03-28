@@ -22,7 +22,7 @@ import seedu.recipe.model.recipe.TitleContainsKeywordsPredicate;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
-public class FindCommandTest {
+public class FindRecipeCommandTest {
     private Model model = new ModelManager(getTypicalRecipeBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalRecipeBook(), new UserPrefs());
 
