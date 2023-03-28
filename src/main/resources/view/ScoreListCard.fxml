@@ -10,7 +10,7 @@
 <HBox id="cardPane" fx:id="cardPane" maxWidth="Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="360" prefWidth="360"/>
         </columnConstraints>
         <HBox prefWidth="100" alignment="CENTER_LEFT">
             <padding>
@@ -18,7 +18,6 @@
             </padding>
             <Label fx:id="id" styleClass="cell_middle_label">
                 <minWidth>
-                    <!-- Ensures that the label text is never truncated -->
                     <Region fx:constant="USE_PREF_SIZE" />
                 </minWidth>
             </Label>

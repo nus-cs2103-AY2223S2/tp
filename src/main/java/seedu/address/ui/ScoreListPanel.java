@@ -15,6 +15,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableCell;
@@ -30,10 +31,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.score.Score;
 import seedu.address.model.score.ScoreList.ScoreSummary;
-
-
-
-
 
 /**
  * Panel containing the list of scores.
@@ -61,6 +58,8 @@ public class ScoreListPanel extends UiPart<Region> {
     private Tab tab1;
     @FXML
     private Tab tab2;
+    @FXML
+    private ScrollPane scoreScroll;
 
     @FXML
     private TableView<ScoreSummary> scoreStatistic;
@@ -85,6 +84,7 @@ public class ScoreListPanel extends UiPart<Region> {
 
         name.setText("No student being checked now");
         nameChart.setText("No student being checked now");
+        scoreScroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scoreStatistic.setVisible(false);
 
         scoreListView.setCellFactory(listView -> new ScoreListPanel.ScoreListViewCell());
@@ -94,6 +94,7 @@ public class ScoreListPanel extends UiPart<Region> {
             if (person.getSortedScoreList().size() != 0) {
                 newChart(person);
                 statisticTable(person);
+                scoreScroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
             } else {
                 name.setText("No score history found for " + person.getName().fullName);
                 nameChart.setText("No score chart for " + person.getName().fullName);
@@ -230,7 +231,6 @@ public class ScoreListPanel extends UiPart<Region> {
         });
 
         scoreStatistic.setItems(person.getScoreSummary());
-
     }
 
     /**
@@ -241,8 +241,6 @@ public class ScoreListPanel extends UiPart<Region> {
     private void newChart(Person person) {
         name.setText("Score history for " + person.getName().fullName);
         nameChart.setText("Recent 5 scores for " + person.getName().fullName);
-        // xAxis.setLabel("Date");
-        // yAxis.setLabel("Score");
         scoreChart.setVisible(true);
         scoreChart.setLegendVisible(false);
         XYChart.Series<String, Double> series = new XYChart.Series<>();
@@ -263,6 +261,10 @@ public class ScoreListPanel extends UiPart<Region> {
             XYChart.Data<String, Double> data = new XYChart.Data<>(date, value);
             data.setNode(new HoveredThresholdNode(data.getYValue(), label));
             series.getData().add(data);
+        }
+
+        for (XYChart.Data entry : series.getData()) {
+            entry.getNode().setStyle("-fx-background-color: #FF94B4, white; -fx-background-radius: 6;");
         }
 
         scoreChart.getData().add(series);
@@ -294,10 +296,10 @@ public class ScoreListPanel extends UiPart<Region> {
         }
 
         private Label createDataThresholdLabel(Double scoreValue, String examLabel) {
-            final Label label = new Label(examLabel + "\n \t" + scoreValue);
+            final Label label = new Label(examLabel + ": " + "\n" + scoreValue);
             label.getStyleClass().addAll("chart-line-symbol", "chart-series-line");
-            label.setStyle("-fx-font-size: 14; -fx-font-weight: bold; -fx-background-color: white; "
-                    + "-fx-border-color: #605BF1; -fx-border-width: 2; ");
+            label.setStyle("-fx-font-size: 12; -fx-font-weight: bold; -fx-background-color: white; "
+                    + "-fx-border-color: #FF94B4; -fx-border-width: 2;");
 
             if (scoreValue >= 80) {
                 label.setTextFill(Color.rgb(126, 190, 97));

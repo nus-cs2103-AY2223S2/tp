@@ -46,9 +46,9 @@ public class CheckCommand extends Command {
 
         Person personToCheck = personList.get(targetIndex.getZeroBased());
         model.checkPerson(personToCheck);
-        String nameKeywords = personToCheck.getName().fullName;
+        //String nameKeywords = personToCheck.getName().fullName;
 
-        model.updateFilteredPersonList(person -> person.getName().fullName.equals(nameKeywords));
+        //model.updateFilteredPersonList(person -> person.getName().fullName.equals(nameKeywords));
         return new CommandResult(String.format(MESSAGE_CHECK_PERSON_SUCCESS, personToCheck));
     }
 
