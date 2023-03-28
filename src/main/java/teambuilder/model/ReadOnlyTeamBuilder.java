@@ -2,6 +2,7 @@ package teambuilder.model;
 
 import javafx.collections.ObservableList;
 import teambuilder.model.person.Person;
+import teambuilder.model.team.Team;
 
 /**
  * Unmodifiable view of an address book
@@ -13,5 +14,6 @@ public interface ReadOnlyTeamBuilder {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getPersonList();
+    ObservableList<Team> getTeamList();
 
 }
