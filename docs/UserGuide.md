@@ -421,13 +421,17 @@ E.g. `delete 1` will delete the current person at index 1 as shown in the list p
 ### Clearing all entries : `clear`
 `clear`<br>
 > * :warning: Clears **all** entries from CoDoc.<br>
+> ![Clear](images/UiClear.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### Exiting the program : `exit`
-`exit`<br>
-> * Exits the program. <br>
-> * Equivalent to clicking the close button via the GUI. <br>
+
+Exits the program. <br>
+Equivalent to clicking the close button via the GUI. <br>
+
+>`exit`<br>
+ 
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
