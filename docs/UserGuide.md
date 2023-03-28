@@ -242,7 +242,7 @@ Format:
 ```
 session <INDEX>
 ```
-- Selects group at index specified in <INDEX> and displays list of sessions in that group.
+- Selects group at index specified in `<INDEX>` and displays list of sessions in that group.
 
 Examples:
 - `session 1` will return a list of sessions from the 1st group.
