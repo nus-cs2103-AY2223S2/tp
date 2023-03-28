@@ -38,8 +38,7 @@ public class SortMeetingCommand extends Command {
         return m.getLocation().toString();
     });
     private static final Comparator<Meeting> dateTimeComparator = Comparator.comparing((Meeting m) -> m.getDateTime()
-                                                                .get())
-                                                                .reversed();
+                                                                .get());
     private static final String MESSAGE_SUCCESS = "Sorted by %1$s";
     /**
      * Creates an SortMeetingCommand to get {@code ModelManage} class to sort with a specified attributes {@code Title},

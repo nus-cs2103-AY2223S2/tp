@@ -3,12 +3,22 @@ layout: page
 title: User Guide
 ---
 
-Quick Contacts (QC) is a **cross-platform desktop application** that enables you to easily **manage your contacts and meetings all in one place**! It is designed for users who have a large number of contacts, with many of which are only needed temporarily.
+## About QuickContacts
 
-Equipped with both a Graphical User Interface (GUI) and Command Line Interface (CLI), users are empowered with the ability to perform tasks using QC in a second via the CLI while still enjoying the beauty of the GUI.
+QuickContacts is a **contacts and meetings management application** that enables you to manage your schedule and contacts with ease! It is designed for users who have a large number of contacts and meetings with those contacts.
+
+QuickContacts is a **cross-platform application** that works on Windows, macOS and Linux. We, the developers at QuickContacts, understand the amount of time required to manage many contacts and maintaining a schedule with many meetings with them. Designed for busy individuals, QuickContacts is built around a Command Line Interface (CLI) that empowers users to perform tasks in seconds. With fast fingers, you can be assured that your time spent managing your schedule is minimised!
+
+QuickContacts is specially designed for:
+
+* Seamless creation and management of contacts and meetings
+* Users who have a large number of contacts and meetings
+* Typists
+
+This user guide serves as an introduction on how to incorporate QuickContacts into your daily workflow. Head over to the [Getting started](#getting-started) section to get onboard!
 
 ## Table of Contents
-- [Quick start](#quick-start)
+- [Getting started](#getting-started)
 - [Features](#features)
     - [`help`](#viewing-help--help)
     - [`add`](#adding-a-person--add)
@@ -32,7 +42,7 @@ Equipped with both a Graphical User Interface (GUI) and Command Line Interface (
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Getting Started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -88,6 +98,12 @@ Equipped with both a Graphical User Interface (GUI) and Command Line Interface (
 * Commands are **_italicised and bolded_** for ease of identification.
 
 </div>
+
+### Theme toggling
+
+Toggles the theme from dark to light or vice versa.
+
+![toggle theme](images/toggleTheme.png)
 
 ### Viewing help : `help`
 
@@ -205,7 +221,7 @@ Exits the program.
 
 Format: `exit`
 
-### Adding a Meeting: `addm`
+### Adding a Meeting : `addm`
 
 Adds a meeting to the address book.
 
@@ -215,7 +231,7 @@ Examples:
 * `addm m/CS2103T Tutorial p/John Doe p/Jane Doe dt/2022-02-22 10:00 l/COM1-B103 des/CS2103T Tutorial`
 * `addm m/CS2103T Tutorial p/John Doe p/Mary Jane dt/2022-02-22 22:22 l/COM1-B103 des/CS2101 Tutorial`
 
-### Finding Meetings by name: `findm`
+### Finding Meetings by name : `findm`
 
 Find meetings whose names contain any of the given keywords.
 
@@ -247,14 +263,14 @@ If your changes to the data file makes its format invalid, QuickContacts will di
 
 _Details coming soon ..._
 
-### Exporting of contact: `export`
+### Exporting of contact : `export`
 * Exports the persons at the specified `INDEX`es.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Format: `export p/ INDEX1 p/ INDEX2`
 
-### Importing of contacts: `import`
+### Importing of contacts : `import`
 * Imports the persons in the provided JSON.
 * The JSON **must contain a valid array of persons** 
 
@@ -286,7 +302,7 @@ Optional Parameter `f/` that forces imports regardless of duplicate values.
 
 Format: `import JSON f/`
 
-### Export meetings: `exportm`
+### Export meetings : `exportm`
 * Exports the meetings at the specified `INDEX`es, between `start` and `end` dates.
 * The indexes refer to the index numbers shown in the displayed meetings list.
 * The indexes **must be positive integers** 1, 2, 3
@@ -294,7 +310,7 @@ Format: `import JSON f/`
 
 Format: `exportm p/ INDEX1 p/ INDEX2 start/ START_DATE end/ END_DATE`
 
-### Import meetings: `importm`
+### Import meetings : `importm`
 * Imports the meetings in the provided JSON.
 * The JSON **must contain a valid array of meetings**
 
@@ -369,14 +385,19 @@ Optional Parameter `f/` that forces imports regardless of duplicate values.
 
 Format: `import JSON f/`
 
-### Create meetings `[Coming Soon]`
-_Details coming soon ..._
+### Delete meetings : `delm`
 
-### Delete meetings `[Coming Soon]`
-_Details coming soon ..._
+Deletes the specified meeting.
 
-### Edit meetings `[Coming Soon]`
-_Details coming soon ..._
+Format: `delm INDEX`
+
+* Deletes the meeting at the specified `INDEX`.
+* The index refers to the index number shown in the displayed meetings list.
+* The index must be a positive integer 1, 2, 3...
+
+Examples:
+
+* `listm` followed by `delm 2` deletes the 2nd meeting.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -389,12 +410,21 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
+| Action                | Format, Examples                                                                                                                                                      |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Create a contact**  | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Reset all data**    | `clear`                                                                                                                                                               |
+| **Delete a contact**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit a contact**    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find a contact**    | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List all contacts** | `list`                                                                                                                                                                |
+| **Help**              | `help`                                                                                                                                                                |
+| **List all meetings** | `listm`                                                                                                                                                               |
+| **Create a meeting**  | `addm m/TITLE dt/DATE_TIME p/CONTACT_NAME... l/LOCATION des/DESCRIPTION`                                                                                              |
+| **Edit a meeting**    | `editm INDEX [m/TITLE] [dt/DATE_TIME] [p/CONTACT_NAME]... [l/LOCATION] [des/DESCRIPTION]`                                                                             |
+| **Delete a meeting**  | `delm INDEX` <br> e.g., `deletem 3`                                                                                                                                   |
+| **Export a contact**  | `export p/INDEX...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                   |
+| **Export a meeting**  | `exportm m/INDEX...` <br> e.g., `exportm m/1 m/2 m/3`                                                                                                                 |
+| **Import a contact**  | `import VALID_JSON`                                                                                                                                                   |
+| **Import a meeting**  | `importm VALID_JSON`                                                                                                                                                  |
+| **Sort meetings**     | `sortm SORT_FIELD` <br> e.g., `sortm dt/`                                                                                                                             |
