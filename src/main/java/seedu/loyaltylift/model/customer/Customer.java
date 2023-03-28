@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
@@ -23,6 +24,9 @@ public class Customer {
     public static final Comparator<Customer> SORT_NAME = Comparator.comparing(Customer::getName);
     public static final Comparator<Customer> SORT_POINTS = Comparator.comparing(Customer::getPoints)
             .reversed().thenComparing(SORT_NAME);
+
+    // Predicates
+    public static final Predicate<Customer> FILTER_SHOW_MARKED = customer -> customer.getMarked().value;
 
     // Identity fields
     private final Name name;

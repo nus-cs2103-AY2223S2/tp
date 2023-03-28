@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showCustomerAtIndex;
+import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 
@@ -32,7 +33,10 @@ public class ListCustomerCommandTest {
     @Test
     public void equals() {
         ListCustomerCommand listCommand = new ListCustomerCommand();
-        ListCustomerCommand listSortOrderCommand = new ListCustomerCommand(Customer.SORT_POINTS);
+        ListCustomerCommand listSortOrderCommand = new ListCustomerCommand(
+                Customer.SORT_POINTS, PREDICATE_SHOW_ALL_CUSTOMERS);
+        ListCustomerCommand listFilterMarkedCommand = new ListCustomerCommand(
+                Customer.SORT_NAME, Customer.FILTER_SHOW_MARKED);
 
         // same object -> returns true
         assertTrue(listCommand.equals(listCommand));
@@ -49,16 +53,19 @@ public class ListCustomerCommandTest {
 
         // different comparator -> returns false
         assertFalse(listCommand.equals(listSortOrderCommand));
+
+        // different predicate -> returns false
+        assertFalse(listCommand.equals(listFilterMarkedCommand));
     }
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCustomerCommand(null), model, ListCustomerCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCustomerCommand(), model, ListCustomerCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showCustomerAtIndex(model, INDEX_FIRST);
-        assertCommandSuccess(new ListCustomerCommand(null), model, ListCustomerCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCustomerCommand(), model, ListCustomerCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
