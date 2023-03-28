@@ -308,6 +308,19 @@ Cons: More complicated to implement and unwieldy for users.
 
 ### 3.7 Help Feature
 
+In a scenario whereby the user does not know how to proceed, `help` is intended to assist the user by giving them the link to the User Guide for the project.
+
+Given below is an example usage scenario for the `help` command.
+
+Step 1. The user inputs `help` command. The parser recognises the command word and calls `HelpCommand`.
+
+Step 2. `HelpCommand` is executed. A pop-up with the link to our User Guide is shown.
+
+Step 3. Results are shown immediately on UI.
+
+The sequence diagram below summarizes what happens during this usage scenario:
+![HelpCommandSequenceDiagram](images/HelpCommandSequenceDiagram.png)
+
 ### 3.8 Stats Feature
 Statistics is a useful way for users to get an overview of all open tasks in the TaskBook. Currently, `stats` supports 1 view - categorise by tags. 
 The number of tasks that fall under each tag is counted, and displayed in descending order, for up to a maximum of 10 tags.
