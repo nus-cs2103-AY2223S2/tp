@@ -16,10 +16,10 @@ participant ":DateTime" as DateTime MODEL_COLOR
 participant "e:Event" as Event MODEL_COLOR
 end box
 
-[-> LogicManager : execute("addevent ev/Carnival from/17-07-2023 12:00 to/23-07-2023 22:00")
+[-> LogicManager : execute("addevent ev/Carnival\nfrom/17-07-2023 12:00 to/23-07-2023 22:00")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("addevent ev/Carnival from/17-07-2023 12:00 to/23-07-2023 22:00")
+LogicManager -> AddressBookParser : parseCommand("addevent ev/Carnival\nfrom/17-07-2023 12:00 to/23-07-2023 22:00")
 activate AddressBookParser
 
 create AddEventCommandParser
@@ -29,10 +29,10 @@ activate AddEventCommandParser
 AddEventCommandParser --> AddressBookParser
 deactivate AddEventCommandParser
 
-AddressBookParser -> AddEventCommandParser : parse("ev/Carnival from/17-07-2023 12:00 to/23-07-2023 22:00")
+AddressBookParser -> AddEventCommandParser : parse("ev/Carnival from/17-07-2023\n12:00 to/23-07-2023 22:00")
 activate AddEventCommandParser
 
-AddEventCommandParser -> AddEventCommandParser : check that ev/, from/, to/ prefixes are entered
+AddEventCommandParser -> AddEventCommandParser : check that ev/, from/, \nto/ prefixes are entered
 
 AddEventCommandParser -> DateTime : check that date time inputs are valid
 activate DateTime
