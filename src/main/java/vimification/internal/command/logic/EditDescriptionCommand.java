@@ -13,7 +13,7 @@ public class EditDescriptionCommand extends UndoableLogicCommand{
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edit the description of a task.\n"
             + "Parameters: Index (index number of the target task in the displayed task list)\n"
-            + "          : Description (new description of the task.\n"
+            + "          : Description (new description of the task).\n"
             + "Conditions: Index must be positive integer and cannot exceed total number of tasks.\n"
             + "          : Description cannot be empty.\n"
             + "Example: " + COMMAND_WORD + " 1" + " quiz";

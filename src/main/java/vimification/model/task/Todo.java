@@ -12,7 +12,10 @@ public class Todo extends Task {
         super(description);
     }
 
-
+    public LocalDateTime getDeadline() {
+        return null;
+    }
+    public void setDeadline(LocalDateTime deadline) {};
     @Override
     public Todo clone() {
         return new Todo(getDescription(), getStatus(), getPriority());

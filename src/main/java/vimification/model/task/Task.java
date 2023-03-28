@@ -68,6 +68,8 @@ public abstract class Task {
         this.status = status;
     }
 
+    public abstract void setDeadline(LocalDateTime date);
+    public abstract LocalDateTime getDeadline();
     public void setStatus(int level) {
         this.status = Status.fromInt(level);
     }

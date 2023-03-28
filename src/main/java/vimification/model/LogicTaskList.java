@@ -2,6 +2,7 @@ package vimification.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import vimification.model.task.Priority;
+import vimification.model.task.Status;
 import vimification.model.task.Task;
 
 /**
@@ -147,6 +149,21 @@ public class LogicTaskList {
         tasks.get(index).setDescription(newDescription);
     }
 
+    public Status getStatus(int index) {
+        return tasks.get(index).getStatus();
+    }
+
+    public void setStatus(int index, Status newStatue) {
+        tasks.get(index).setStatus(newStatue);
+    }
+
+    public LocalDateTime getDeadline(int index) {
+        return tasks.get(index).getDeadline();
+    }
+
+    public void setDeadline(int index, LocalDateTime newDate) {
+        tasks.get(index).setDeadline(newDate);
+    }
     public List<Task> removeAllDone() {
         Predicate<Task> pred = Task::isDone;
         List<Task> tasksDone = stream()

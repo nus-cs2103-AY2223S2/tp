@@ -16,7 +16,7 @@ public class SearchByDateBetween extends SearchCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": search for tasks that have deadline between (inclusive) the input dates.\n"
             + "Parameters: DATETIME (start date time) + DATETIME (end date time)\n"
-            + "Conditions: Date time must be valid.\n"
+            + "Conditions: Date time must be valid in the format of YYYY-MM-DD.\n"
             + "Example: " + COMMAND_WORD + " 2023-01-01" + " 2024-01-01";
 
     public SearchByDateBetween(LocalDateTime startDate, LocalDateTime endDate) {

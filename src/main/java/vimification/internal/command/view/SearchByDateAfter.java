@@ -17,7 +17,7 @@ public class SearchByDateAfter extends SearchCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": search for tasks that have deadline after (inclusive) the input date.\n"
             + "Parameters: DATETIME \n"
-            + "Conditions: Date time must be valid.\n"
+            + "Conditions: Date time must be valid in the format of YYYY-MM-DD.\n"
             + "Example: " + COMMAND_WORD + " 2023-01-01";
 
     public SearchByDateAfter(LocalDateTime date) {
