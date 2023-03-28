@@ -380,24 +380,6 @@ Examples:
 
 * `edit S2233556T p/91642345 re/NORTH` Edits the phone number of the person identified by `S2233556T` to be `91642345` and region to be `NORTH`.
 * `edit S8833657U re/CENTRAL r/HIGH` Edits the region of the person identified by `S8833657U` to be `CENTRAL` and risk level to be `HIGH`. However, if `S8833657U` identifies a volunteer, the risk level edit will be ignored.
-
-#### Editing a pair by index: `edit_pair` (COMING SOON)
-
-<div markdown="span" class="alert alert-info">:information_source: **Info**
-This feature has not been implemented yet.
-</div>
-
-Edits an existing pair based on their index in the pairs list.
-
-Format: `edit_pair INDEX [eic/ELDERLY_NRIC] [vic/VOLUNTEER_NRIC]`
-
-* Edits the pair at the specified `INDEX` in the displayed pair list.
-* Any combination of the optional fields is possible but **at least one** optional field must be specified.
-* Existing values will be updated to the input values.
-
-Examples:
-
-* `edit_pair 1 eic/T0245267I` Edits the 1st pair so that the volunteer is paired to the elderly with NRIC `T0245267I` instead.
 ------------------------------------------------
 
 ### Deleting records
