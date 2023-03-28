@@ -315,8 +315,8 @@ Action | Format, Examples
 --------|------------------
 **AddBook** | `addBook t/TITLE a/AUTHOR i/ISBN…​` <br> e.g., `addBook t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
 **DeleteBook** | `deleteBook BOOK_INDEX`<br> e.g., `deleteBook 3`
-**EditBok** | `editBook BOOK_INDEX [t/TITLE] [a/AUTHOR] [i/ISBN] [bd/BORROW_DATE] [dd/DUE_DATE]…​`<br> e.g.,`editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
-**FindPerson** | `findBook KEYWORD [MORE_KEYWORDS]`<br> e.g., `find dune Cat`
+**EditBook** | `editBook BOOK_INDEX [t/TITLE] [a/AUTHOR] [i/ISBN] [bd/BORROW_DATE] [dd/DUE_DATE]…​`<br> e.g.,`editBook 1 t/Diary of a Wimpy Kid a/Jeff Kinney i/9780810993136`
+**FindBook** | `findBook KEYWORD [MORE_KEYWORDS]`<br> e.g., `findBook dune Cat`
 **ListBook** | `listBook`
 
 #### General
