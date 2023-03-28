@@ -119,7 +119,8 @@ public class EditCommand extends Command {
         assert fishToEdit != null;
 
         Name updatedName = editFishDescriptor.getName().orElse(fishToEdit.getName());
-        LastFedDateTime updatedLastFedDate = editFishDescriptor.getLastFedDate().orElse(fishToEdit.getLastFedDateTime());
+        LastFedDateTime updatedLastFedDate = editFishDescriptor.getLastFedDate()
+                .orElse(fishToEdit.getLastFedDateTime());
         Species updatedSpecies = editFishDescriptor.getSpecies().orElse(fishToEdit.getSpecies());
         FeedingInterval updatedFeedingInterval = editFishDescriptor.getFeedingInterval()
                 .orElse(fishToEdit.getFeedingInterval());

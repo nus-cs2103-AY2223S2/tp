@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Description {
     public static final String MESSAGE_CONSTRAINTS =
-            "Description Names should only contain alphanumeric characters and spaces, and it should not be blank";
-//    public static final String VALIDATION_REGEX = ".[ a-zA-Z0-9\n]*";
+            "Description Names should only contain alphanumeric characters, symbols and spaces,"
+                    + " and it should not be blank";
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9\\s:-]*$";
     public final String description;
 

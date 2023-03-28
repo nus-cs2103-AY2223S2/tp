@@ -338,7 +338,7 @@ public class ModelManager implements Model {
     public void setLastFedDateTimeFishes(Tank tankToFeed, String newDateTime) {
         requireAllNonNull(tankToFeed, newDateTime);
 
-        tankToFeed.setLastFedDateFishes(newDateTime);
+        tankToFeed.setLastFedDateTimeFishes(newDateTime);
         updateFilteredFishList(PREDICATE_SHOW_ALL_FISHES);
     }
 

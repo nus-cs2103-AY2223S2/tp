@@ -97,10 +97,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Sets the lastFedDate field of all fishes in this {@code fishes} list
      * with new LastFedDate object with {@code newDate}.
      */
-    public void setLastFedDateFishes(String newDate) {
-        requireNonNull(newDate);
+    public void setLastFedDateTimeFishes(String newDateTime) {
+        requireNonNull(newDateTime);
 
-        fishes.setLastFedDateFishes(newDate);
+        fishes.setLastFedDateTimeFishes(newDateTime);
     }
 
     //// util methods
