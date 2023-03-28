@@ -1,16 +1,18 @@
 package seedu.address.model.person;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static seedu.address.testutil.Assert.assertThrows;
-
-import org.junit.jupiter.api.Test;
 
 public class EmailTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Email(null));
+    public void constructor_null_doesNotThrowNullPointerException() {
+        assertDoesNotThrow(() -> new Email(null));
+        assertThrows(IllegalArgumentException.class, () -> new Email("-"));
     }
 
     @Test

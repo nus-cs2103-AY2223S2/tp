@@ -43,8 +43,6 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_DRUG_ALLERGY_AMY = "NKDA";
     public static final String VALID_DRUG_ALLERGY_BOB = "Panadol";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_MEDICINE_PANADOL = "Panadol";
     public static final String VALID_GENDER_AMY = "female";
     public static final String VALID_GENDER_BOB = "male";
@@ -82,9 +80,11 @@ public class CommandTestUtil {
     public static final String INVALID_GENDER_DESC_2 = " " + PREFIX_GENDER + "Male Female"; // missing full spelling
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_MEDICINE_DESC = " " + PREFIX_MEDICINE + "$$"; // '$' not allowed in medicine
+    public static final String NULL_EMAIL = " " + PREFIX_EMAIL + "null";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+    public static final String NULL_STRING = " " + "null";
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
