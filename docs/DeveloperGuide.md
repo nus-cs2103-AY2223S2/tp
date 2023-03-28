@@ -407,7 +407,7 @@ Use case resumes at step 2.
 1. User requests to filter appointments.
 2. MediMeet asks the user to enter the criteria to filter appointments by.
 3. User enters the criteria to filter appointments by.
-4. MediMeet shows the list of appointments that match the request.                                                    
+4. MediMeet shows the list of appointments that match the request.
    Use case ends.
 
 **Extensions:**
