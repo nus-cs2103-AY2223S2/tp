@@ -273,11 +273,11 @@ public class LogicManager implements Logic {
             sendLoadInfo("Appointments validated");
             return;
         }
-        sendLoadWarning(formApptValidationWarnMsg(invalidAppointments));
+        sendLoadWarning(formAppointmentValidationWarnMsg(invalidAppointments));
     }
 
 
-    private String formApptValidationWarnMsg(List<IdData<Appointment>> invalidAppointments) {
+    private String formAppointmentValidationWarnMsg(List<IdData<Appointment>> invalidAppointments) {
         StringBuilder builder = new StringBuilder();
         for (IdData<Appointment> data : invalidAppointments) {
             builder.append(String.format("\n- #%04d", data.getId() + 1));

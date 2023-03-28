@@ -158,14 +158,14 @@ public class ModelManager implements Model {
         ValueChange<IdData<Patient>> change = new ValueChange<>(oldValue, null);
 
         // validation
-        ArrayList<IdData<Appointment>> invalidAppts = new ArrayList<>();
+        ArrayList<IdData<Appointment>> invalidAppointments = new ArrayList<>();
         if (!isForce) {
-            invalidAppts.addAll(validatePatientChange(change));
+            invalidAppointments.addAll(validatePatientChange(change));
         }
-        if (!invalidAppts.isEmpty()) {
+        if (!invalidAppointments.isEmpty()) {
             throw new UnexpectedChangeException(String.format(
-                    Messages.FORMAT_UNEXPECTED_APPT_CHANGE,
-                    StringUtil.formatAppointmentListing(invalidAppts)));
+                    Messages.FORMAT_UNEXPECTED_APPOINTMENT_CHANGE,
+                    StringUtil.formatAppointmentListing(invalidAppointments)));
         }
 
         // deletion
@@ -290,14 +290,14 @@ public class ModelManager implements Model {
         ValueChange<VaxType> change = new ValueChange<>(oldValue, null);
 
         // validation
-        ArrayList<IdData<Appointment>> invalidAppts = new ArrayList<>();
+        ArrayList<IdData<Appointment>> invalidAppointments = new ArrayList<>();
         if (!isForce) {
-            invalidAppts.addAll(validateVaccinationChange(change));
+            invalidAppointments.addAll(validateVaccinationChange(change));
         }
-        if (!invalidAppts.isEmpty()) {
+        if (!invalidAppointments.isEmpty()) {
             throw new UnexpectedChangeException(String.format(
-                    Messages.FORMAT_UNEXPECTED_APPT_CHANGE,
-                    StringUtil.formatAppointmentListing(invalidAppts)));
+                    Messages.FORMAT_UNEXPECTED_APPOINTMENT_CHANGE,
+                    StringUtil.formatAppointmentListing(invalidAppointments)));
         }
 
         // deletion

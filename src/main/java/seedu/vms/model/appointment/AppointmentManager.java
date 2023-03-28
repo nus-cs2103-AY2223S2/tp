@@ -70,8 +70,8 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
                         || !validVaxs.contains(entry.getValue().getVaccination().getName()))
                 .collect(Collectors.toList());
 
-        for (IdData<Appointment> appt : invalidAppointments) {
-            remove(appt.getId());
+        for (IdData<Appointment> appointment : invalidAppointments) {
+            remove(appointment.getId());
         }
 
         return invalidAppointments;

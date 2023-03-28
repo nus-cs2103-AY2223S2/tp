@@ -147,11 +147,11 @@ public class StringUtil {
     /**
      * Formats the given collection of appointment data.
      */
-    public static String formatAppointmentListing(Collection<IdData<Appointment>> appts) {
+    public static String formatAppointmentListing(Collection<IdData<Appointment>> appointments) {
         StringBuilder builder = new StringBuilder();
 
-        for (IdData<Appointment> appt : appts) {
-            builder.append(String.format("\n- #%04d", appt.getId() + 1));
+        for (IdData<Appointment> appointment : appointments) {
+            builder.append(String.format("\n- #%04d", appointment.getId() + 1));
         }
 
         return builder.toString();
