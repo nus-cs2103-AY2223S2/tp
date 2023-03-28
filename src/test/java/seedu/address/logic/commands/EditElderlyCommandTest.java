@@ -6,28 +6,39 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_ELDERLY;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ELDERLY_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
+import static seedu.address.commons.core.Messages.MESSAGE_WARNING_AVAILABLE_DATES;
+import static seedu.address.commons.core.Messages.MESSAGE_WARNING_REGION;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RISK_LEVEL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showElderlyAtIndex;
 import static seedu.address.testutil.TestUtil.getTypicalModelManager;
+import static seedu.address.testutil.TypicalElderly.AMY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalVolunteers.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.util.EditDescriptor;
+import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
+import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Volunteer;
 import seedu.address.testutil.EditDescriptorBuilder;
 import seedu.address.testutil.ElderlyBuilder;
+import seedu.address.testutil.FriendlyLinkBuilder;
 import seedu.address.testutil.ModelManagerBuilder;
+import seedu.address.testutil.VolunteerBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditElderlyCommand.
@@ -38,7 +49,11 @@ public class EditElderlyCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredElderlyList_success() {
-        Elderly editedElderly = new ElderlyBuilder().build();
+        Elderly firstElderly = model.getFilteredElderlyList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Elderly editedElderly = new ElderlyBuilder()
+                .withNric(firstElderly.getNric().value)
+                .withRegion(firstElderly.getRegion().region.name())
+                .build();
         EditDescriptor descriptor = new EditDescriptorBuilder(editedElderly).build();
         EditElderlyCommand editElderlyCommand = new EditElderlyCommand(INDEX_FIRST_PERSON, descriptor);
 
@@ -83,10 +98,7 @@ public class EditElderlyCommandTest {
     public void execute_noFieldSpecifiedUnfilteredElderlyList_failure() {
         EditElderlyCommand editElderlyCommand = new EditElderlyCommand(INDEX_FIRST_PERSON,
                 new EditDescriptor());
-
-        String expectedMessage = MESSAGE_NO_FIELD_PROVIDED;
-
-        assertCommandFailure(editElderlyCommand, model, expectedMessage);
+        assertCommandFailure(editElderlyCommand, model, MESSAGE_NO_FIELD_PROVIDED);
     }
 
     @Test
@@ -108,6 +120,81 @@ public class EditElderlyCommandTest {
         expectedModel.setElderly(model.getFilteredElderlyList().get(0), editedElderly);
 
         assertCommandSuccess(editElderlyCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_noCommonAvailableDates_successfulWithWarning() {
+        Elderly elderly = new ElderlyBuilder(AMY)
+                .withAvailableDates("2023-02-02", "2023-03-03")
+                .withRegion(VALID_REGION_AMY)
+                .build();
+        Volunteer volunteer = new VolunteerBuilder(BOB)
+                .withAvailableDates("2023-02-02", "2023-05-05")
+                .withRegion(VALID_REGION_AMY)
+                .build();
+        FriendlyLink friendlyLink = new FriendlyLinkBuilder()
+                .withElderly(elderly)
+                .withVolunteer(volunteer)
+                .withPair(new Pair(elderly, volunteer))
+                .build();
+        Model model = new ModelManagerBuilder()
+                .withFriendlyLink(friendlyLink)
+                .build();
+
+        Elderly editedElderly = new ElderlyBuilder(AMY)
+                .withAvailableDates("2023-06-06", "2023-07-07")
+                .build();
+        FriendlyLink editedFriendlyLink = new FriendlyLinkBuilder()
+                .withElderly(editedElderly)
+                .withVolunteer(volunteer)
+                .withPair(new Pair(editedElderly, volunteer))
+                .build();
+        Model expectedModel = new ModelManagerBuilder()
+                .withFriendlyLink(editedFriendlyLink)
+                .build();
+
+        EditElderlyCommand editElderlyCommand = new EditElderlyCommand(INDEX_FIRST_PERSON,
+                new EditDescriptorBuilder().withAvailableDates("2023-06-06,2023-07-07").build());
+        String expectedMessage = String.format(EditElderlyCommand.MESSAGE_EDIT_ELDERLY_SUCCESS,
+                editedElderly) + MESSAGE_WARNING_AVAILABLE_DATES;
+        assertCommandSuccess(editElderlyCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_differentRegion_successfulWithWarning() {
+        Elderly elderly = new ElderlyBuilder(AMY)
+                .withRegion(VALID_REGION_AMY)
+                .build();
+        Volunteer volunteer = new VolunteerBuilder(BOB)
+                .withRegion(VALID_REGION_AMY)
+                .build();
+        FriendlyLink friendlyLink = new FriendlyLinkBuilder()
+                .withElderly(elderly)
+                .withVolunteer(volunteer)
+                .withPair(new Pair(elderly, volunteer))
+                .build();
+        Model model = new ModelManagerBuilder()
+                .withFriendlyLink(friendlyLink)
+                .build();
+
+        Elderly editedElderly = new ElderlyBuilder(AMY)
+                .withRegion(VALID_REGION_BOB)
+                .build();
+        FriendlyLink editedFriendlyLink = new FriendlyLinkBuilder()
+                .withElderly(editedElderly)
+                .withVolunteer(volunteer)
+                .withPair(new Pair(editedElderly, volunteer))
+                .build();
+        Model expectedModel = new ModelManagerBuilder()
+                .withFriendlyLink(editedFriendlyLink)
+                .build();
+
+        EditElderlyCommand editElderlyCommand = new EditElderlyCommand(INDEX_FIRST_PERSON,
+                new EditDescriptorBuilder().withRegion(VALID_REGION_BOB).build());
+        String expectedMessage = String.format(EditElderlyCommand.MESSAGE_EDIT_ELDERLY_SUCCESS,
+                editedElderly) + MESSAGE_WARNING_REGION;
+        assertCommandSuccess(editElderlyCommand, model, expectedMessage, expectedModel);
+
     }
 
     @Test

@@ -58,7 +58,7 @@
     "address" : "michegan ave",
     "nric" : "S7238791J",
     "birthDate" : "1994-05-01",
-    "region": "NORTHEAST",
+    "region": "NORTH",
     "tagged" : [ ],
     "medicalTags" : [ ],
     "availableDates": ["2023-05-11 to 2023-05-12"]

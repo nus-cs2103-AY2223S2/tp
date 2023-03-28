@@ -6,25 +6,36 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_FIELD_PROVIDED;
+import static seedu.address.commons.core.Messages.MESSAGE_WARNING_AVAILABLE_DATES;
+import static seedu.address.commons.core.Messages.MESSAGE_WARNING_REGION;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showVolunteerAtIndex;
 import static seedu.address.testutil.TestUtil.getTypicalModelManager;
+import static seedu.address.testutil.TypicalElderly.AMY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalVolunteers.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.util.EditDescriptor;
+import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
+import seedu.address.model.pair.Pair;
+import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 import seedu.address.testutil.EditDescriptorBuilder;
+import seedu.address.testutil.ElderlyBuilder;
+import seedu.address.testutil.FriendlyLinkBuilder;
 import seedu.address.testutil.ModelManagerBuilder;
 import seedu.address.testutil.VolunteerBuilder;
 
@@ -78,13 +89,86 @@ public class EditVolunteerCommandTest {
     }
 
     @Test
+    public void execute_noCommonAvailableDates_successfulWithWarning() {
+        Elderly elderly = new ElderlyBuilder(AMY)
+                .withAvailableDates("2023-02-02", "2023-03-03")
+                .withRegion(VALID_REGION_AMY)
+                .build();
+        Volunteer volunteer = new VolunteerBuilder(BOB)
+                .withAvailableDates("2023-02-02", "2023-05-05")
+                .withRegion(VALID_REGION_AMY)
+                .build();
+        FriendlyLink friendlyLink = new FriendlyLinkBuilder()
+                .withElderly(elderly)
+                .withVolunteer(volunteer)
+                .withPair(new Pair(elderly, volunteer))
+                .build();
+        Model model = new ModelManagerBuilder()
+                .withFriendlyLink(friendlyLink)
+                .build();
+
+        Volunteer editedVolunteer = new VolunteerBuilder(BOB)
+                .withAvailableDates("2023-06-06", "2023-07-07")
+                .withRegion(VALID_REGION_AMY)
+                .build();
+        FriendlyLink editedFriendlyLink = new FriendlyLinkBuilder()
+                .withElderly(elderly)
+                .withVolunteer(editedVolunteer)
+                .withPair(new Pair(elderly, editedVolunteer))
+                .build();
+        Model expectedModel = new ModelManagerBuilder()
+                .withFriendlyLink(editedFriendlyLink)
+                .build();
+
+        EditVolunteerCommand editVolunteerCommand = new EditVolunteerCommand(INDEX_FIRST_PERSON,
+                new EditDescriptorBuilder().withAvailableDates("2023-06-06,2023-07-07").build());
+        String expectedMessage = String.format(EditVolunteerCommand.MESSAGE_EDIT_VOLUNTEER_SUCCESS,
+                editedVolunteer) + MESSAGE_WARNING_AVAILABLE_DATES;
+        assertCommandSuccess(editVolunteerCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_differentRegion_successfulWithWarning() {
+        Elderly elderly = new ElderlyBuilder(AMY)
+                .withRegion(VALID_REGION_AMY)
+                .build();
+        Volunteer volunteer = new VolunteerBuilder(BOB)
+                .withRegion(VALID_REGION_AMY)
+                .build();
+        FriendlyLink friendlyLink = new FriendlyLinkBuilder()
+                .withElderly(elderly)
+                .withVolunteer(volunteer)
+                .withPair(new Pair(elderly, volunteer))
+                .build();
+        Model model = new ModelManagerBuilder()
+                .withFriendlyLink(friendlyLink)
+                .build();
+
+        Volunteer editedVolunteer = new VolunteerBuilder(BOB)
+                .withRegion(VALID_REGION_BOB)
+                .build();
+        FriendlyLink editedFriendlyLink = new FriendlyLinkBuilder()
+                .withElderly(elderly)
+                .withVolunteer(editedVolunteer)
+                .withPair(new Pair(elderly, editedVolunteer))
+                .build();
+        Model expectedModel = new ModelManagerBuilder()
+                .withFriendlyLink(editedFriendlyLink)
+                .build();
+
+        EditVolunteerCommand editVolunteerCommand = new EditVolunteerCommand(INDEX_FIRST_PERSON,
+                new EditDescriptorBuilder().withRegion(VALID_REGION_BOB).build());
+        String expectedMessage = String.format(EditVolunteerCommand.MESSAGE_EDIT_VOLUNTEER_SUCCESS,
+                editedVolunteer) + MESSAGE_WARNING_REGION;
+        assertCommandSuccess(editVolunteerCommand, model, expectedMessage, expectedModel);
+
+    }
+
+    @Test
     public void execute_noFieldSpecifiedUnfilteredVolunteerList_failure() {
         EditVolunteerCommand editVolunteerCommand = new EditVolunteerCommand(INDEX_FIRST_PERSON,
                 new EditDescriptor());
-
-        String expectedMessage = MESSAGE_NO_FIELD_PROVIDED;
-
-        assertCommandFailure(editVolunteerCommand, model, expectedMessage);
+        assertCommandFailure(editVolunteerCommand, model, MESSAGE_NO_FIELD_PROVIDED);
     }
 
     @Test

@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PAIR;
 import static seedu.address.commons.core.Messages.MESSAGE_ELDERLY_NOT_FOUND;
 import static seedu.address.commons.core.Messages.MESSAGE_VOLUNTEER_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_WARNING_AVAILABLE_DATES;
+import static seedu.address.commons.core.Messages.MESSAGE_WARNING_REGION;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
@@ -43,7 +45,6 @@ public class AddPairCommand extends Command {
 
     public static final String MESSAGE_ADD_PAIR_SUCCESS = "New pair consisting of elderly with NRIC %1$s"
             + " and volunteer with NRIC %2$s added";
-    public static final String MESSAGE_WARNING_REGION = "Warning: The volunteer's and elderly's region do not match";
 
     private final Nric elderlyNric;
     private final Nric volunteerNric;
@@ -64,13 +65,15 @@ public class AddPairCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
-            boolean issueWarning = model.addPair(elderlyNric, volunteerNric);
-            if (!issueWarning) {
-                return new CommandResult(String.format(MESSAGE_ADD_PAIR_SUCCESS, elderlyNric, volunteerNric));
-            } else {
-                return new CommandResult(String.format(
-                        MESSAGE_ADD_PAIR_SUCCESS + "\n" + MESSAGE_WARNING_REGION, elderlyNric, volunteerNric));
+            String finalMessage = String.format(MESSAGE_ADD_PAIR_SUCCESS, elderlyNric, volunteerNric);
+            model.addPair(elderlyNric, volunteerNric);
+            if (!model.checkIsSameRegion(elderlyNric, volunteerNric)) {
+                finalMessage += MESSAGE_WARNING_REGION;
             }
+            if (!model.checkHasSuitableAvailableDates(elderlyNric, volunteerNric)) {
+                finalMessage += MESSAGE_WARNING_AVAILABLE_DATES;
+            }
+            return new CommandResult(finalMessage);
         } catch (ElderlyNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_ELDERLY_NOT_FOUND, elderlyNric));
         } catch (VolunteerNotFoundException e) {

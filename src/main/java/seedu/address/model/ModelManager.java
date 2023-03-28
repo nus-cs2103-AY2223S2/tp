@@ -198,10 +198,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean addPair(Nric elderlyNric, Nric volunteerNric) {
-        boolean result = friendlyLink.addPair(elderlyNric, volunteerNric);
+    public void addPair(Nric elderlyNric, Nric volunteerNric) {
+        friendlyLink.addPair(elderlyNric, volunteerNric);
         refreshAllFilteredLists();
-        return result;
     }
 
     @Override
@@ -277,6 +276,18 @@ public class ModelManager implements Model {
     public void updateFilteredPairList(Predicate<Pair> predicate) {
         requireNonNull(predicate);
         filteredPairs.setPredicate(predicate);
+    }
+
+    //=========== Others ==================================================================================
+
+    @Override
+    public boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric) {
+        return friendlyLink.checkIsSameRegion(elderlyNric, volunteerNric);
+    }
+
+    @Override
+    public boolean checkHasSuitableAvailableDates(Nric elderlyNric, Nric volunteerNric) {
+        return friendlyLink.checkHasSuitableAvailableDates(elderlyNric, volunteerNric);
     }
 
     @Override
