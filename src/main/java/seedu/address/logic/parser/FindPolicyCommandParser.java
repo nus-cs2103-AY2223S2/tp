@@ -1,10 +1,12 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.Arrays;
+
 import seedu.address.logic.commands.FindPolicyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PolicyExistInPersonPredicate;
 
 /**
  * Parses input arguments and creates a new FindPolicyCommand object
@@ -26,6 +28,6 @@ public class FindPolicyCommandParser implements Parser<FindPolicyCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindPolicyCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindPolicyCommand(new PolicyExistInPersonPredicate(Arrays.asList(nameKeywords)));
     }
 }
