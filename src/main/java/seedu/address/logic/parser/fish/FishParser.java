@@ -5,11 +5,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.fish.FishAddCommand;
-import seedu.address.logic.commands.fish.FishCommand;
-import seedu.address.logic.commands.fish.FishDeleteCommand;
-import seedu.address.logic.commands.fish.FishSortCommand;
-import seedu.address.logic.commands.fish.FishViewCommand;
+import seedu.address.logic.commands.fish.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -46,6 +42,8 @@ public class FishParser {
             return new FishViewCommandParser().parse(arguments);
         case FishSortCommand.FISH_COMMAND_WORD:
             return new FishSortCommandParser().parse(arguments);
+        case FishEditCommand.FISH_COMMAND_WORD:
+            return new FishEditCommandParser().parse(arguments);
         default:
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                         FishCommand.MESSAGE_USAGE));
