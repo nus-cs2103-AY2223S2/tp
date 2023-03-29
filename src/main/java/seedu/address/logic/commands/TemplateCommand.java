@@ -45,7 +45,9 @@ public class TemplateCommand extends Command {
                 .filter(t -> t.getName().equals(templateName))
                 .findFirst()
                 .orElse(null);
-        requireNonNull(templateToUse);
+        if (templateToUse == null) {
+            throw new CommandException(MESSAGE_NO_TEMPLATE);
+        }
         Entity toAdd = templateToUse.generateCharacter(newName);
         if (model.hasEntity(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ENTITY);
