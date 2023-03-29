@@ -78,8 +78,8 @@ public class ListingTest {
 
     @Test
     public void stringTest() {
-        String expected = "Chicken Rice Uncle; "
-                + "JobDescription: Make delicious chicken rice!";
+        String expected = "\nJob Title: Chicken Rice Uncle"
+                + "\nJob Description: Make delicious chicken rice!";
         assertEquals(CHICKEN_RICE_UNCLE.toString(), expected);
     }
 }
