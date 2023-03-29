@@ -1,6 +1,8 @@
 package seedu.sudohr.logic.commands.leave;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 
 import java.util.List;
 
@@ -20,14 +22,20 @@ import seedu.sudohr.model.leave.LeaveDate;
  * displayed index in SudoHR.
  */
 public class AddEmployeeToLeaveCommand extends Command {
-    public static final String COMMAND_WORD = "addEmployeeLeave";
+    public static final String COMMAND_WORD = "aetl";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee's leave to SudoHR.\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a leave on a specific day to the SudoHR. \n"
+            + "Parameters: \n"
+            + PREFIX_EMPLOYEE + "ID "
+            + PREFIX_DATE + "DATE \n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_EMPLOYEE + "1 "
+            + PREFIX_DATE + "2022-03-04 ";
 
     // maybe rename to duplicate leave? not sure if the right naming is used here
-    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already has a leave on that day "
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee has already leave on this day "
             + "in SudoHR";
-    public static final String MESSAGE_ADD_LEAVE_SUCCESS = "New employee %1$s is added on %2$s";
+    public static final String MESSAGE_ADD_LEAVE_SUCCESS = "New employee %1$s has taken leave on %2$s";
 
     private final LeaveDate leaveDate;
     private final Id employeeId;

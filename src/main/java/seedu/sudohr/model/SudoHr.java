@@ -286,6 +286,17 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
+     * Gets the number of employees in the specified department.
+     */
+    public int getCountForDepartment(Department dept) {
+        requireNonNull(dept);
+        if (hasDepartment(dept)) {
+            return dept.employeeCount();
+        }
+        return 0;
+    }
+
+    /**
      * Deletes an employee from the employee list for each department it belongs to
      * @param employeeToDelete employee to delete
      */
@@ -413,6 +424,17 @@ public class SudoHr implements ReadOnlySudoHr {
         }
         leaves.setLeaves(new UniqueLeaveList());
         leaves.setLeaves(currList);
+    }
+
+    /**
+     * Gets the number of employees on a specified leave.
+     */
+    public int getCountOnLeave(Leave leave) {
+        requireNonNull(leave);
+        if (hasLeave(leave)) {
+            return leave.getNumberOnLeave();
+        }
+        return 0;
     }
 
     /**

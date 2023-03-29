@@ -10,7 +10,9 @@ import seedu.sudohr.model.Model;
  * Lists all leaves with at least one person on leave in SudoHr to the user.
  */
 public class ListLeaveCommand extends Command {
-    public static final String COMMAND_WORD = "listlve";
+    public static final String COMMAND_WORD = "llve";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all leaves in SudoHR. ";
 
     public static final String MESSAGE_SUCCESS = "Listed all leaves";
 

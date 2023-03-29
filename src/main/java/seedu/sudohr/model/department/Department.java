@@ -92,6 +92,14 @@ public class Department {
         employees.remove(key);
     }
 
+    /**
+     * Gets the number of employees in the department.
+     * @return the number of employees.
+     */
+    public int employeeCount() {
+        return employees.size();
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

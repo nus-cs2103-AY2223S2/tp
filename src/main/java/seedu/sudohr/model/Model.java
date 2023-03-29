@@ -144,6 +144,16 @@ public interface Model {
     Department getDepartment(DepartmentName name);
 
     /**
+     * Gets the number of employees in the specified department.
+     */
+    int getCountForDepartment(Department department);
+
+    /**
+     * Gets the number of employees in the specified department.
+     */
+    int getCountForDepartment(DepartmentName departmentName);
+
+    /**
      * Returns true if a department with the same identity as {@code department} exists in SudoHR.
      */
     boolean hasDepartment(Department department);
@@ -215,8 +225,7 @@ public interface Model {
     void addLeave(Leave leave);
 
     /**
-     * Returns true if a leave with the same identity as {@code leave} exists in
-     * the sudohr book.
+     * Returns true if a leave with the same identity as {@code leave} exists in SudoHR.
      */
     boolean hasLeave(Leave leave);
 
@@ -224,9 +233,19 @@ public interface Model {
     /**
      * Adds the leave it does not exist and returns or else return the existing
      * leave
-     * {@code leaveToAdd} must not already exist in the sudohr book.
+     * {@code leaveToAdd} must not already exist in SudoHR.
      */
     Leave getInternalLeaveIfExist(Leave leaveToAdd);
+
+    /**
+     * Gets the number of employees on the specified leave.
+     */
+    int getCountOnLeave(Leave leave);
+
+    /**
+     * Overloaded method gets the number of employees on the specified leave.
+     */
+    int getCountOnLeave(LeaveDate date);
 
     /**
      * Returns true if a given date{@code date} has the employee {@code employee} in

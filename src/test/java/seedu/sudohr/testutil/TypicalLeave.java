@@ -28,6 +28,7 @@ public class TypicalLeave {
             .withEmployees(DANIEL, ELLE, FIONA).build();
     public static final Leave LEAVE_TYPE_3 = new LeaveBuilder().withLeaveDate("2002-03-04")
             .withEmployees(GEORGE, HOON, IDA, FIONA).build();
+    public static final Leave LEAVE_TYPE_EMPTY = new LeaveBuilder().build();
 
     public static final Employee EMPLOYEE_ON_LEAVE_TYPE_1 = CARL;
     public static final Employee EMPLOYEE_ON_LEAVE_TYPE_2_AND_3 = FIONA;
