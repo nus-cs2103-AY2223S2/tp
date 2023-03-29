@@ -8,86 +8,86 @@ import java.util.Stack;
 
 
 /**
- * A specialised Stack for the temporary memory storage for DengueHotspotTracker's undo command.
+ * A specialised Stack for the temporary redoHistory undoHistory for DengueHotspotTracker's undo command.
  * This stack has a fixed size of 10.
  */
 public class SpecialisedStackForMemory<T> implements StackWithStorage<T> {
 
     protected static final int MAX_SIZE = 10;
-    private final Deque<T> memory;
-    private final Stack<T> storage;
+    private final Deque<T> redoHistory;
+    private final Stack<T> undoHistory;
 
     /**
      * Creates a specialised stack that stores {@Code T} objects.
      * @param latest A {@link T} object.
      */
     protected SpecialisedStackForMemory(T latest) {
-        this.storage = new Stack<>();
-        this.memory = new ArrayDeque<T>(MAX_SIZE + 1);
-        this.memory.push(latest);
+        this.undoHistory = new Stack<>();
+        this.redoHistory = new ArrayDeque<T>(MAX_SIZE + 1);
+        this.redoHistory.push(latest);
     }
 
     /**
      * Creates an empty {@code SpecialisedStackForMemory}.
      */
     public SpecialisedStackForMemory() {
-        this.storage = new Stack<>();
-        this.memory = new ArrayDeque<T>(MAX_SIZE + 1);
+        this.undoHistory = new Stack<>();
+        this.redoHistory = new ArrayDeque<T>(MAX_SIZE + 1);
     }
 
     @Override
     public T temporaryPop() throws NoSuchElementException {
-        T latest = this.memory.pop();
-        this.storage.push(latest);
+        T latest = this.redoHistory.pop();
+        this.undoHistory.push(latest);
         return latest;
     }
 
-    public Deque<T> getMemory() {
-        return this.memory;
+    public Deque<T> getRedoHistory() {
+        return this.redoHistory;
     }
 
-    public Stack<T> getStorage() {
-        return this.storage;
+    public Stack<T> getUndoHistory() {
+        return this.undoHistory;
     }
 
     @Override
     public void pushOneFromTemporaryPop() throws EmptyStackException {
-        this.memory.push(this.storage.pop());
+        this.redoHistory.push(this.undoHistory.pop());
     }
     @Override
     public void pushAllFromTemporaryPop() {
-        while (!this.storage.isEmpty()) {
-            this.memory.push(this.storage.pop());
+        while (!this.undoHistory.isEmpty()) {
+            this.redoHistory.push(this.undoHistory.pop());
         }
     }
 
     @Override
     public void clearStorage() {
-        this.storage.clear();
+        this.undoHistory.clear();
     }
 
     @Override
     public T peek() {
-        return this.memory.peek();
+        return this.redoHistory.peek();
     }
 
     @Override
     public T push(T latest) {
-        this.memory.push(latest);
+        this.redoHistory.push(latest);
         return latest;
     }
 
     @Override
     public T removeOld() throws NoSuchElementException {
-        return this.memory.pollLast();
+        return this.redoHistory.pollLast();
     }
 
     /**
-     * Checks if the memory stack is full.
+     * Checks if the redoHistory stack is full.
      * @return A boolean value.
      */
     public boolean isFull() {
-        return this.memory.size() > MAX_SIZE;
+        return this.redoHistory.size() > MAX_SIZE;
     }
 
 }

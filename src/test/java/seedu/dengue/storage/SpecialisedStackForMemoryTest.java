@@ -55,7 +55,7 @@ public class SpecialisedStackForMemoryTest {
         for (int i = size - 1; i >= 0; i--) {
             assertTrue(specialisedStack.temporaryPop() == integers.get(i));
         }
-        assertTrue(specialisedStack.getStorage().size() == size);
+        assertTrue(specialisedStack.getUndoHistory().size() == size);
     }
 
     @Test

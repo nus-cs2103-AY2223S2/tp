@@ -46,7 +46,7 @@ public class TemporaryMemoryTest {
         assertFalse(this.memory.isFull());
         for (i = i; i < inputs.size(); i++) {
             this.memory.saveNewLatest(this.inputs.get(i++));
-            assertEquals(this.memory.getMemory().size(), 10);
+            assertEquals(this.memory.getRedoHistory().size(), 10);
         }
     }
     // Saves multiple files into the stack, then perform undo a number of times
@@ -73,7 +73,7 @@ public class TemporaryMemoryTest {
         this.memory.saveNewLatest(inputs.get(1));
         this.memory.undo();
         this.memory.saveNewLatest(inputs.get(2));
-        assertEquals(this.memory.getStorage().size(), 0);
+        assertEquals(this.memory.getUndoHistory().size(), 0);
     }
 
     // Negative test cases.
@@ -84,7 +84,7 @@ public class TemporaryMemoryTest {
         this.memory.saveNewLatest(inputs.get(1));
         this.memory.undo();
         this.memory.undo();
-        assertEquals(this.memory.getMemory().size(), 1);
+        assertEquals(this.memory.getRedoHistory().size(), 1);
         assertThrows(CommandException.class, () -> this.memory.undo());
     }
 

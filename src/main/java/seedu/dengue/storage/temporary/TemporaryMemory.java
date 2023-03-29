@@ -46,7 +46,7 @@ public class TemporaryMemory extends SpecialisedStackForMemory<ReadOnlyDengueHot
      * Checks if further undo operations are possible.
      */
     public boolean canUndo() {
-        return this.getMemory().size() > 1;
+        return this.getRedoHistory().size() > 1;
     }
 
     /**
