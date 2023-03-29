@@ -235,7 +235,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
                 && getInstagram().equals(e.getInstagram());
     }
 
-    //todo ig, tele..., exeption on empty target
+    //todo ig, tele...,
     @Override
     public boolean test(Person person) {
         if (getName().isPresent()) {

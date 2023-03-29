@@ -1,5 +1,6 @@
 package seedu.connectus.logic.parser;
 
+import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
@@ -44,52 +45,101 @@ public class SearchCommandParser implements Parser<SearchCommand> {
             predicate.setKeywords(keywords);
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            if (argMultimap.getValue(PREFIX_NAME).get().trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+            }
             predicate.setName(argMultimap.getValue(PREFIX_NAME).get());
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            if (argMultimap.getValue(PREFIX_PHONE).get().trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+            }
             predicate.setPhone(argMultimap.getValue(PREFIX_PHONE).get());
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            if (argMultimap.getValue(PREFIX_EMAIL).get().trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+            }
             predicate.setEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            if (argMultimap.getValue(PREFIX_ADDRESS).get().trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+            }
             predicate.setAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         }
         if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
+            if (argMultimap.getValue(PREFIX_BIRTHDAY).get().trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+            }
             predicate.setBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get());
         }
         if (argMultimap.getValue(PREFIX_SOCMED_INSTAGRAM).isPresent()) {
+            if (argMultimap.getValue(PREFIX_SOCMED_INSTAGRAM).get().trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+            }
             predicate.setBirthday(argMultimap.getValue(PREFIX_SOCMED_INSTAGRAM).get());
         }
         if (argMultimap.getValue(PREFIX_SOCMED_TELEGRAM).isPresent()) {
+            if (argMultimap.getValue(PREFIX_SOCMED_TELEGRAM).get().trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+            }
             predicate.setBirthday(argMultimap.getValue(PREFIX_SOCMED_TELEGRAM).get());
         }
         if (argMultimap.getValue(PREFIX_SOCMED_WHATSAPP).isPresent()) {
+            if (argMultimap.getValue(PREFIX_SOCMED_WHATSAPP).get().trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+            }
             predicate.setBirthday(argMultimap.getValue(PREFIX_SOCMED_WHATSAPP).get());
         }
         Set<String> remarks = new HashSet<>();
-        remarks.addAll(argMultimap.getAllValues(PREFIX_REMARK));
+        for (String s : argMultimap.getAllValues(PREFIX_REMARK)) {
+            if (s.trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+            } else {
+                remarks.add(s);
+            }
+        }
         if (remarks.size() > 0) {
             predicate.setRemarks(remarks);
         }
         Set<String> modules = new HashSet<>();
-        modules.addAll(argMultimap.getAllValues(PREFIX_MODULE));
-        if (remarks.size() > 0) {
+        for (String s : argMultimap.getAllValues(PREFIX_MODULE)) {
+            if (s.trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+            } else {
+                modules.add(s);
+            }
+        }
+        if (modules.size() > 0) {
             predicate.setModules(modules);
         }
         Set<String> ccas = new HashSet<>();
-        ccas.addAll(argMultimap.getAllValues(PREFIX_CCA));
-        if (remarks.size() > 0) {
+        for (String s : argMultimap.getAllValues(PREFIX_CCA)) {
+            if (s.trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+            } else {
+                ccas.add(s);
+            }
+        }
+        if (ccas.size() > 0) {
             predicate.setCcas(ccas);
         }
         Set<String> ccaPositions = new HashSet<>();
-        ccaPositions.addAll(argMultimap.getAllValues(PREFIX_CCA_POSITION));
-        if (remarks.size() > 0) {
+        for (String s : argMultimap.getAllValues(PREFIX_CCA_POSITION)) {
+            if (s.trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+            } else {
+                ccaPositions.add(s);
+            }
+        }
+        if (ccaPositions.size() > 0) {
             predicate.setCcaPositions(ccaPositions);
         }
 
         if (!predicate.isFieldKeywordPresent()) {
-            throw new ParseException(SearchCommand.MESSAGE_NO_KEYWORDS);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SearchCommand.MESSAGE_NO_KEYWORDS));
         }
 
         return new SearchCommand(predicate);
