@@ -2,7 +2,7 @@
 
 TechTrack is a powerful internship/job tracking application that combines the flexibility of a Command Line Interface (CLI) with the benefits of a Graphical User Interface (GUI).
 
-Designed for computing students and professionals, TechTrack helps you manage your internship search project by setting goals, tracking deadlines, and providing clear feedback on your progress. Its CLI interface is optimized for speed, efficiency, and ease of use, making it a valuable tool for students who are already familiar with CLI environments.
+Designed for computing students and professionals, TechTrack helps you manage your internship search project by setting goals, tracking deadlines, and providing clear feedback on your progress. Its CLI interface is optimized for speed, efficiency, and ease of use.
 
 1. [Quick Start](#quick-start)
 2. [Features](#features)
@@ -13,7 +13,7 @@ Designed for computing students and professionals, TechTrack helps you manage yo
    2. [Viewing Role Info](#viewing-role-info)
       1. [Find roles by name](#find-roles-by-name)
       2. [Find roles by company](#find-roles-by-company)
-      3. [Find roles by tags](#find-roles-by-tags)
+      3. [Find roles by tag](#find-roles-by-tag)
       4. [Sorting a role by deadline](#sorting-by-deadline)
       5. [Sorting a role by salary](#sorting-by-salary)
       6. [Viewing a role](#viewing-a-role)
@@ -73,10 +73,10 @@ Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/J
 | `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information.   |
 | `Yes`    | coy    | COMPANY              | At least 1 alphanumeric character.                                  |
 | `Yes`    | jd     | JOB DESCRIPTION      | At least 1 alphanumeric character.                                  |
-| `No`     | t      | TAGS                 | -                                                                   |
+| `No`     | t      | TAG                  | -                                                                   |
 | `Yes`    | $      | SALARY               | Positive integers only.                                             |
 | `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format (i.e. `2023-10-20`). and must not be over |
-| `Yes`    | x      | EXPERIENCE REQUIRED  | At least 1 alphanumeric character                                   |
+| `Yes`    | x      | EXPERIENCE REQUIRED  | At least 1 character                                                |
 
 
 ### Editing a Role: `edit`:
@@ -100,7 +100,7 @@ These commands are:
 
 * [Find roles by name](#find-roles-by-name)
 * [Find roles by company](#find-roles-by-company)
-* [Find roles by tags](#find-roles-by-tags)
+* [Find roles by tag](#find-roles-by-tag)
 * [Sorting a role by deadline](#sorting-by-deadline)
 * [Sorting a role by salary](#sorting-by-salary)
 * [Viewing a role](#viewing-a-role)
@@ -119,12 +119,12 @@ Format: `company {keywords}...`
 
 Example: `company Google`
 
-### Find roles by tags
-Searches for roles with the provided tags.
+### Find roles by tag
+Searches for roles with the provided tag.
 
-Format: `tags {keywords}...`
+Format: `tag {keyword}`
 
-Example: `tags AWS Tech`
+Example: `tag Tech`
 
 ### Sorting by Salary
 Sort roles based on salary, in ascending/descending order.
@@ -188,4 +188,4 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | salary   | salary asc/desc (e.g. salary asc)       |
 | deadline | deadline asc/desc (e.g. deadline asc)   |
 | company  | company {keyword} (e.g. company google) |
-| tags     | tags {keyword} (e.g. tags AWS tech)     |
+| tag      | tag  {keyword} (e.g. tag tech)          |
