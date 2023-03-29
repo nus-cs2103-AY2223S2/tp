@@ -96,7 +96,7 @@ public class Employee {
     }
 
     public String getDateOfBirth() {
-        return dateOfBirth.map(s -> s.format(dateTimeFormatter)).orElse("");
+        return dateOfBirth.map(s -> s.toString()).orElse("");
     }
 
     public Optional<LocalDate> getDateOfBirthOptional() {
@@ -104,7 +104,7 @@ public class Employee {
     }
 
     public String getDateOfJoining() {
-        return dateOfJoining.map(s -> s.format(dateTimeFormatter)).orElse("");
+        return dateOfJoining.map(s -> s.toString()).orElse("");
     }
 
     public Optional<LocalDate> getDateOfJoiningOptional() {

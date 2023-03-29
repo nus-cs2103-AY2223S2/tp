@@ -117,11 +117,18 @@ public class EditCommand extends Command {
         Address updatedAddress = editEmployeeDescriptor.getAddress().orElse(employeeToEdit.getAddress());
         Department updatedDepartment = editEmployeeDescriptor.getDepartment().orElse(employeeToEdit.getDepartment());
         Payroll updatedPayroll = editEmployeeDescriptor.getPayroll().orElse(employeeToEdit.getPayroll());
-        LeaveCounter updatedLeaveCounter = editEmployeeDescriptor.getLeaveCounter().orElse(employeeToEdit.getLeaveCounter());
-        Optional<LocalDate> updatedDateOfBirth = editEmployeeDescriptor.getDateOfBirth()
-                .flatMap(s -> employeeToEdit.getDateOfBirthOptional());
-        Optional<LocalDate> updatedDateOfJoining = editEmployeeDescriptor.getDateOfJoining()
-                .flatMap(s -> employeeToEdit.getDateOfJoiningOptional());
+        LeaveCounter updatedLeaveCounter = editEmployeeDescriptor.getLeaveCounter()
+                .orElse(employeeToEdit.getLeaveCounter());
+        Optional<LocalDate> updatedDateOfBirth = Optional.ofNullable(editEmployeeDescriptor.getDateOfBirth())
+                .flatMap(s -> s);
+        if (updatedDateOfBirth.isEmpty()) {
+            updatedDateOfBirth = employeeToEdit.getDateOfBirthOptional();
+        }
+        Optional<LocalDate> updatedDateOfJoining = Optional.ofNullable(editEmployeeDescriptor.getDateOfJoining())
+                .flatMap(s -> s);
+        if (updatedDateOfJoining.isEmpty()) {
+            updatedDateOfJoining = employeeToEdit.getDateOfJoiningOptional();
+        }
         Optional<PicturePath> updatedPicturePath = Optional.of(employeeToEdit.getPicturePath());
         Set<Tag> updatedTags = editEmployeeDescriptor.getTags().orElse(employeeToEdit.getTags());
 

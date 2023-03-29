@@ -193,9 +193,7 @@ public class ParserUtil {
      */
     public static Optional<LocalDate> parseDateOfBirth(Optional<String> dateOfBirth) throws ParseException {
         requireNonNull(dateOfBirth);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
-
-        Optional<LocalDate> localDate = dateOfBirth.map(date -> LocalDate.parse(date, formatter));
+        Optional<LocalDate> localDate = dateOfBirth.map(date -> LocalDate.parse(date));
         return localDate;
     }
 
@@ -207,9 +205,7 @@ public class ParserUtil {
      */
     public static Optional<LocalDate> parseDateOfJoining(Optional<String> dateOfJoining) throws ParseException {
         requireNonNull(dateOfJoining);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
-
-        Optional<LocalDate> localDate = dateOfJoining.map(date -> LocalDate.parse(date, formatter));
+        Optional<LocalDate> localDate = dateOfJoining.map(date -> LocalDate.parse(date));
         return localDate;
     }
 
