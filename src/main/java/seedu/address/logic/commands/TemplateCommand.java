@@ -3,13 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
+
 import seedu.address.experimental.model.Model;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Template;
-
-import java.util.List;
 
 /**
  * Creates a new character from a template.

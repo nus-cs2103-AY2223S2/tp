@@ -2,7 +2,6 @@ package seedu.address.experimental.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;

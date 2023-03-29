@@ -160,7 +160,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void listTemplates() { updateFilteredEntityList(PREDICATE_IS_TEMPLATE); }
+    public void listTemplates() {
+        updateFilteredEntityList(PREDICATE_IS_TEMPLATE);
+    }
 
     //=========== Filtered Entity List Accessors =============================================================
 
@@ -216,8 +218,9 @@ public class ModelManager implements Model {
         case "template":
             entities = this.reroll.getTemplateList();
             break;
+        default:
+            logger.info("What have you done");
         }
-        requireNonNull(entities);
         return entities;
     }
 

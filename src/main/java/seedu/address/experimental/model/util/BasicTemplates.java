@@ -1,7 +1,6 @@
 package seedu.address.experimental.model.util;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import seedu.address.model.entity.Name;

@@ -73,6 +73,8 @@ public class Classification {
         return Objects.equals(classification, "mob");
     }
 
-    public boolean isTemplate() { return Objects.equals(classification, "template"); }
+    public boolean isTemplate() {
+        return Objects.equals(classification, "template");
+    }
 
 }
