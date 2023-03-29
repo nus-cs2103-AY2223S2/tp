@@ -115,7 +115,9 @@ For **new users** visit our [quick start](#quick-start) to get you started .
 - What it does: Unassigns the patient at the specified `PATIENT_INDEX` to the doctor at the specified `DOCTOR_INDEX`. The indexes provided **must be a positive integer** 1, 2, 3, …  
 - Examples:
   - `unassign-ptn ptn/1 doc/1` unassigns the first patient to the first doctor.
+
 [Scroll back to Table of Contents](#table-of-contents)
+
 ### Editing a doctor : 
 - Command format: `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`
 - What it does: Edits the doctor at the specified `INDEX`. The index refers to the index number shown in the displayed doctor list. The index **must be a positive integer** 1, 2, 3, …​
