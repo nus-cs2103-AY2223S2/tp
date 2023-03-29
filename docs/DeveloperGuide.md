@@ -392,12 +392,66 @@ The `Model` component,
 </div>
 
 #### **Name**
+
+Represents the name of the user or the contact in `EduMate`.
+
+<div markdown="span" class="alert alert-warning">
+
+:warning: **Warning**:
+There can only be letters of the alphabets in the name.
+
+</div>
+
 #### **Address**
+
+Represents the nearest MRT station to the user or contact's home.
+
+<div markdown="span" class="alert alert-warning">
+:warning: **Warning**:
+Must be a valid name of an MRT station in Singapore.
+
+</div>
+
 #### **Phone**
+
+Represents the contact number of the user or the contact.
+
+<div markdown="span" class="alert alert-warning">
+:warning: **Warning**:
+Phone numbers must be entire numeric and at least 3 digits long.
+
+</div>
+
 #### **Email**
 #### **Telegram Handle**
+
+Represents the Telegram Handle of the user or contact.
+
+<div markdown="span" class="alert alert-warning">
+:warning: **Warning**:
+Telegram Handles must start with the `@` symbol followed by alphanumeric inputs.
+
+</div>
+
 #### **Group Tag Set**
+
+Represents a collection of groups that the user or contact belong to.
+
+<div markdown="span" class="alert alert-warning">
+:warning: **Warning**:
+Group Tag Set must contain unique group names.
+
+</div>
+
 #### **Module Tag Set**
+
+Represents a collection of modules that the user or contact is enrolled into.
+
+<div markdown="span" class="alert alert-warning">
+:warning: **Warning**:
+Module Tag Set must contain unique module codes.
+
+</div>
 
 ### **Tag**
 #### **Group Tag**
@@ -543,12 +597,6 @@ From these two sources of information, we can create a `descriptor` that keeps t
 
 * `editPersonDescriptor.getName().orElse(userToEdit.getName())`.
 
-<div markdown="span" class="alert alert-warning">
-
-:warning: **Warning**:
-If no fields have been changed, an exception is thrown. This is handled in the `EditCommandParser`.
-
-</div>
 
 In summary, the activity diagram is as such:
 
@@ -1343,6 +1391,7 @@ Expected Output in Command Output Box: Suggestions on where and when to study.
 * **Graphical User Interface (GUI)**: A form of user interface that allows users to interact with electronic devices through graphical icons
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **NUS**: National University of Singapore
+* **MRT** : Also known as the Mass Rapid Transit, Singapore high-speed railway system.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Pull Request (PR)**: An event that takes place in software development when a contributor/developer is ready to begin the process of merging new code changes with the main project repository
 * **Repo (Repository)**: A storage location for software packages, mainly residing on GitHub

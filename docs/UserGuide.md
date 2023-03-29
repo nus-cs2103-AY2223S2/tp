@@ -194,10 +194,11 @@ a/[NEAREST MRT STATION TO YOUR HOUSE] e/[YOUR EMAIL]`
 <br>
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** <br>
+:bulb: **Tip:** 
 You do not have to enter all your information at once! You can omit some of the information
 and **its corresponding prefix** and enter them in the future!
 <br>
+
 
 Moreover, eduMate will replace the missing fields with placeholders which you
 can then edit over later!
@@ -360,12 +361,12 @@ Examples:
 
 ### View a contact's profile `view`
 
-You can use the view command to look up your details, or a contact's details on the [Profile Panel](#profile-panel).
+The `view` command retrieves either the user's information or the contact's information and display them on the [Profile Panel](#profile-panel).
 
 <div markdown="block" class="alert alert-info">
 
 :information_source: You can use this command if:
-* you want to view a contact's full details
+* you want to view a contact's full details on the [Profile Panel](#profile-panel).
 * you are unsure what index to use for a particular contact
 
 </div>
