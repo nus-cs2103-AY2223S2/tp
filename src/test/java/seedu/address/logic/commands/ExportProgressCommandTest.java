@@ -1,210 +1,130 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
+import java.nio.file.Paths;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
 
-public class ExportProgressCommandTest {
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code ExportProgressCommand}.
+ */
+class ExportProgressCommandTest {
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullIndexes_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new ExportProgressCommand(null, null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    void execute_invalidStudentIndexDefaultDir_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        ExportProgressCommand exportProgressCommand = new ExportProgressCommand(outOfBoundIndex, "");
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertCommandFailure(exportProgressCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    void execute_validStudentIndexDefaultDir_success() throws IOException {
+        Person studentToExport = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        ExportProgressCommand exportProgressCommand = new ExportProgressCommand(INDEX_FIRST_PERSON, "");
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        String studentName = studentToExport.getName().fullName;
+        String defaultDir = Paths.get("").toAbsolutePath().toString();
+        String defaultPath = Paths.get(studentName + "'s Progress Report.pdf").toAbsolutePath().toString();
+        String expectedMessage = String.format(ExportProgressCommand.MESSAGE_SUCCESS, studentName, defaultDir,
+                studentName + "'s Progress Report.pdf");
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.exportProgress(studentToExport, defaultPath);
+
+        assertCommandSuccess(exportProgressCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    void execute_validStudentIndexValidCustomDir_success() throws IOException {
+        Person studentToExport = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        ExportProgressCommand exportProgressCommand = new ExportProgressCommand(INDEX_FIRST_PERSON,
+                System.getProperty("user.home"));
+
+        String studentName = studentToExport.getName().fullName;
+        String customDir = System.getProperty("user.home");
+        String customPath = Paths.get(customDir, studentName + "'s Progress Report.pdf").toString();
+        String expectedMessage = String.format(ExportProgressCommand.MESSAGE_SUCCESS, studentName, customDir,
+                studentName + "'s Progress Report.pdf");
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.exportProgress(studentToExport, customPath);
+
+        assertCommandSuccess(exportProgressCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        ExportProgressCommand exportProgressFirstCommand = new ExportProgressCommand(INDEX_FIRST_PERSON, "");
+        ExportProgressCommand exportProgressSecondCommand = new ExportProgressCommand(INDEX_SECOND_PERSON, "");
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(exportProgressFirstCommand.equals(exportProgressFirstCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        ExportProgressCommand exportProgressFirstCommandCopy = new ExportProgressCommand(INDEX_FIRST_PERSON, "");
+        assertTrue(exportProgressFirstCommand.equals(exportProgressFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(exportProgressFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(exportProgressFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(exportProgressFirstCommand.equals(exportProgressSecondCommand));
     }
 
-    /**
-     * A default model stub that have all of the methods failing.
-     */
-    private class ModelStub implements Model {
-        @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
+    @Test
+    void execute_validStudentIndexFileCurrentlyOpened_failure() throws IOException, InterruptedException {
+        Person studentToExport = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        String studentName = studentToExport.getName().fullName;
+        String defaultDir = Paths.get("").toAbsolutePath().toString();
+        String defaultPath = Paths.get(studentName + "'s Progress Report.pdf").toAbsolutePath().toString();
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.exportProgress(studentToExport, defaultPath);
+
+        if (Desktop.isDesktopSupported()) {
+            File pdf = new File(defaultPath);
+            Desktop.getDesktop().open(pdf);
         }
 
-        @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
-        }
+        TimeUnit.SECONDS.sleep(5);
 
-        @Override
-        public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
-        }
+        ExportProgressCommand exportProgressCommand = new ExportProgressCommand(INDEX_FIRST_PERSON, "");
 
-        @Override
-        public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
-        }
+        String expectedMessage = "Error!\n"
+                + studentName + "'s Progress Report.pdf (The process cannot access the file because it is being used "
+                + "by another process)";
 
-        @Override
-        public Path getAddressBookFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void checkPerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Person findSelectedPerson() {
-            return null;
-        }
-
-        @Override
-        public void exportProgress(Person target, String completePath) throws IOException {
-            throw new AssertionError("This method should not be called.");
-        }
+        assertCommandFailure(exportProgressCommand, model, expectedMessage);
     }
-
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
-
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the person being added.
-     */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
-        }
-    }
-
 }

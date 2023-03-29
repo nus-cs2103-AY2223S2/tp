@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -232,7 +233,7 @@ public class ParserUtil {
         if (Files.isWritable(path) && Files.isDirectory(path)) {
             return path.toString();
         } else {
-            throw new ParseException("Path to directory is invalid!");
+            throw new ParseException(Messages.MESSAGE_INVALID_DIRECTORY);
         }
     }
 

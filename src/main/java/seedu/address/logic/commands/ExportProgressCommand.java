@@ -24,7 +24,7 @@ public class ExportProgressCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports a student's progress.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_FILEPATH + "FILE PATH]\n"
+            + "[" + PREFIX_FILEPATH + "FILE PATH TO DIRECTORY]\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 "
             + PREFIX_FILEPATH + Paths.get("").toAbsolutePath();
@@ -67,9 +67,16 @@ public class ExportProgressCommand extends Command {
             throw new CommandException("Error!\n" + e.getMessage());
         }
         if (this.filePath.equals("")) {
-            this.filePath = Paths.get(this.filePath, fileName).toAbsolutePath().toString();
+            this.filePath = Paths.get("").toAbsolutePath().toString();
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToExport.getName().fullName,
                 this.filePath, fileName));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ExportProgressCommand // instanceof handles nulls
+                && targetIndex.equals(((ExportProgressCommand) other).targetIndex)); // state check
     }
 }
