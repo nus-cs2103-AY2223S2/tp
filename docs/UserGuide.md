@@ -47,45 +47,49 @@ Apart from being your all-encompassing address book, NeoBook also has a calendar
 --------------------------------------------------------------------------------------------------------------------
 ## User Interface
 
-1. Use these tabs to toggle between the NeoBook, Calendar and your own information!
+1. Use these tabs to toggle between the NeoBook, Events and your own information!
 
-![highlightTabs](images/userguide/highlightTab.png)
+![uitabs](images/userguide/uitabs.png)
 
 ### UI Breakdown For `NeoBook`
 
-![addressBkUI](images/userguide/addressBkUI.png)
+![neobook](images/userguide/neobook.png)
 
 1. Current Displayed List
    * show contacts based on command input
    * contains the `index` you should use to refer to each contact
+   * A : Contains favorite contacts for easy access
+   * B : Contains all contacts
 2. Information Of Specific Contact
    * displays all the saved information related to contact
-   * toggle between different contacts by _clicking on them in the displayed list_
+   * toggle between different contacts by _clicking on them in the displayed list_ or using the [select command](#select-contact-to-expand-details--select)
 3. Command Results:
    * displays the result of input command
 4. Command Line:
    * type command and press enter to execute it
    * refer to the [NeoBook Features](#neobook-features) below for possible commands to execute
 
-### UI Breakdown For `Calendar`
+### UI Breakdown For `Events`
 
-![calendar](images/userguide/calendarUI.png)
+![events](images/userguide/events.png)
 
-1. Calender Display
-   * displays all lessons and events you have saved
+1. Events Display
+   * displays all events you have saved and their respective details
 2. Command Results:
    * displays the result of input command
 3. Command Line
    * type command and press enter to execute it
-   * refer to the [Calendar Features](#calendar-features) below for possible commands to execute
+   * refer to the [Event Features](#event-features) below for possible commands to execute
 
 ### UI Breakdown For `Me`
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Development of `Me` tab is still a work in progress. Stay tune!**<br>
-</div>
+![me](images/userguide/me.png)
+
+1. Display
+    * contains your personal details
 
 [Back To Contents](#table-of-contents)
+
 ____________________________________________________________________________________________________________________
 ## NeoBook Features
 
@@ -125,7 +129,7 @@ Simply use this command to get access to our help page!
 
 `help`
 
-![help message](images/helpMessage.png)
+![help](images/userguide/help.png)
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -401,10 +405,10 @@ Use this command to exit the application!
 [Back To Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-## Calendar Features
+## Event Features
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Development of calendar commands is still a work in progress. Stay tune!**<br>
+**:information_source: Development of events commands is still a work in progress. Stay tune!**<br>
 </div>
 
 [Back To Contents](#table-of-contents)
