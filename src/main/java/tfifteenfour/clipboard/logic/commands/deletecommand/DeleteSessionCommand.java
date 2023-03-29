@@ -54,7 +54,7 @@ public class DeleteSessionCommand extends DeleteCommand {
         }
 
         Group selectedGroup = currentSelection.getSelectedGroup();
-        List<Session> lastShownList = selectedGroup.getUnmodifiableSessionList();
+        List<Session> lastShownList = selectedGroup.getUnmodifiableFilteredSessionList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);

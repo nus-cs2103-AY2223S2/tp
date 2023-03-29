@@ -14,7 +14,7 @@ import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
-import tfifteenfour.clipboard.logic.parser.NewEditCommandParser.EditStudentDescriptor;
+import tfifteenfour.clipboard.logic.parser.EditCommandParser.EditStudentDescriptor;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
@@ -72,7 +72,7 @@ public class EditStudentCommand extends EditCommand {
             throws CommandException, ParseException {
         requireNonNull(model);
         Group selectedGroup = currentSelection.getSelectedGroup();
-        List<Student> lastShownList = selectedGroup.getModifiableStudentlist();
+        List<Student> lastShownList = selectedGroup.getUnmodifiableFilteredStudentList();
         List<Session> sessions = selectedGroup.getModifiableSessionList();
         List<Task> tasks = selectedGroup.getModifiableTaskList();
 
@@ -87,7 +87,8 @@ public class EditStudentCommand extends EditCommand {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
+        if (!studentToEdit.isSameStudent(editedStudent)
+            && currentSelection.getSelectedGroup().hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
@@ -100,10 +101,8 @@ public class EditStudentCommand extends EditCommand {
             task.replaceStudent(studentToEdit, editedStudent);
         }
 
-        lastShownList.set(index.getZeroBased(), editedStudent);
-        return new CommandResult(this,
-                String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent),
-                willModifyState);
+        selectedGroup.setStudent(studentToEdit, editedStudent);
+        return new CommandResult(this, String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent), willModifyState);
     }
 
     /**

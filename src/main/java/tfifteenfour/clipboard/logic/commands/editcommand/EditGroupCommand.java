@@ -55,7 +55,7 @@ public class EditGroupCommand extends EditCommand {
         }
 
         Course selectedCourse = currentSelection.getSelectedCourse();
-        List<Group> lastShownList = selectedCourse.getModifiableGrouplist();
+        List<Group> lastShownList = selectedCourse.getUnmodifiableFilteredGroupList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_GROUP_DISPLAYED_INDEX);
@@ -69,7 +69,7 @@ public class EditGroupCommand extends EditCommand {
         students.forEach(newGroup::addStudent);
         sessions.forEach(newGroup::addSession);
 
-        lastShownList.set(index.getZeroBased(), newGroup);
+        selectedCourse.setGroup(groupToEdit, newGroup);
         return new CommandResult(this, String.format(MESSAGE_SUCCESS, groupToEdit, newGroup), willModifyState);
     }
 

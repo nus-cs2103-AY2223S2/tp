@@ -2,6 +2,8 @@ package tfifteenfour.clipboard.model.course;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.UniqueStudentList;
@@ -48,11 +50,8 @@ public class Group {
         return students.asUnmodifiableObservableList();
     }
 
-    /**
-     * Returns a modifiable view of the list of students in this group.
-     */
-    public ObservableList<Student> getModifiableStudentlist() {
-        return students.asModifiableObservableList();
+    public ObservableList<Student> getUnmodifiableFilteredStudentList() {
+        return students.asUnmodifiableFilteredList();
     }
 
     /**
@@ -66,6 +65,10 @@ public class Group {
         return sessions.asModifiableObservableList();
     }
 
+    public ObservableList<Session> getUnmodifiableFilteredSessionList() {
+        return sessions.asUnmodifiableFilteredList();
+    }
+
     /**
      * Returns an unmodifiable view of the list of tasks in this group.
      */
@@ -73,11 +76,27 @@ public class Group {
         return tasks.asUnmodifiableObservableList();
     }
 
+    public ObservableList<Task> getUnmodifiableFilteredTaskList() {
+        return tasks.asUnmodifiableFilteredList();
+    }
+
     /**
      * Returns a modifiable view of the list of tasks in this group.
      */
     public ObservableList<Task> getModifiableTaskList() {
         return tasks.asModifiableObservableList();
+    }
+
+    public void updateFilteredSessions(Predicate<Session> predicate) {
+        sessions.updateFilterPredicate(predicate);
+    }
+
+    public void updateFilteredTasks(Predicate<Task> predicate) {
+        tasks.updateFilterPredicate(predicate);
+    }
+
+    public void updateFilteredStudents(Predicate<Student> predicate) {
+        students.updateFilterPredicate(predicate);
     }
 
 
@@ -118,6 +137,10 @@ public class Group {
         this.sessions.remove(session);
     }
 
+    public void setSession(Session sessionToReplace, Session newSession) {
+        this.sessions.set(sessionToReplace, newSession);
+    }
+
     /**
      * Deletes the given task from this group.
      * @param task Task to be deleted.
@@ -126,12 +149,20 @@ public class Group {
         this.tasks.remove(task);
     }
 
+    public void setTask(Task taskToReplace, Task newTask) {
+        this.tasks.set(taskToReplace, newTask);
+    }
+
     /**
      * Deletes the given student from this group.
      * @param student Student to be deleted.
      */
     public void deleteStudent(Student student) {
         this.students.remove(student);
+    }
+
+    public void setStudent(Student studentToReplace, Student newStudent) {
+        this.students.set(studentToReplace, newStudent);
     }
 
     /**

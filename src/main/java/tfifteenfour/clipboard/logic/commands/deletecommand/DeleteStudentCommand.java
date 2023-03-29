@@ -49,7 +49,7 @@ public class DeleteStudentCommand extends DeleteCommand {
         }
 
         Group selectedGroup = currentSelection.getSelectedGroup();
-        List<Student> lastShownList = selectedGroup.getUnmodifiableStudentList();
+        List<Student> lastShownList = selectedGroup.getUnmodifiableFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

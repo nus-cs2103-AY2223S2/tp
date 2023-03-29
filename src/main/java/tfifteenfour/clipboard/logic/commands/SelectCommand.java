@@ -8,6 +8,7 @@ import tfifteenfour.clipboard.commons.core.Messages;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
+import tfifteenfour.clipboard.logic.predicates.ShowAllListedPredicate;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
@@ -40,34 +41,37 @@ public class SelectCommand extends Command {
     public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
         requireNonNull(model);
 
-
-
         switch (currentSelection.getCurrentPage()) {
         case COURSE_PAGE:
             // if you are on course page now, means you can only select a course
             Course selectedCourse = handleSelectCourse(model, currentSelection);
+            ShowAllListedPredicate.resetCoursesFilter(model);
             return new CommandResult(this,
                     String.format("[GROUP PAGE]\nViewing: groups for course %s", selectedCourse), willModifyState);
 
         case GROUP_PAGE:
             // if you are on group page now, means you can only select a group
             Group selectedGroup = handleSelectGroup(model, currentSelection);
+            ShowAllListedPredicate.resetGroupsFilter(currentSelection);
             return new CommandResult(this,
                     String.format("[STUDENT PAGE]\nViewing: students in group %s of %s", selectedGroup,
                     currentSelection.getSelectedCourse()), willModifyState);
 
         case STUDENT_PAGE:
             Student selectedStudent = handleSelectStudent(model, currentSelection);
+            ShowAllListedPredicate.resetStudentsFilter(currentSelection);
             return new CommandResult(this, String.format("Viewing: %s", selectedStudent), willModifyState);
 
         case SESSION_PAGE:
             Session selectedSession = handleSelectSession(model, currentSelection);
+            ShowAllListedPredicate.resetSessionsFilter(currentSelection);
             return new CommandResult(this,
                     String.format("[ATTENDANCE PAGE]\nViewing: session attendance for %s", selectedSession),
                     willModifyState);
 
         case TASK_PAGE:
             Task selectedTask = handleSelectTask(model, currentSelection);
+            ShowAllListedPredicate.resetTasksFilter(currentSelection);
             return new CommandResult(this,
                     String.format("[GRADES PAGE]\nViewing: grades for %s", selectedTask),
                     willModifyState);
@@ -79,7 +83,7 @@ public class SelectCommand extends Command {
 
     private Course handleSelectCourse(Model model, CurrentSelection currentSelection) throws CommandException {
 
-        List<Course> courseList = model.getUnmodifiableFilteredCourseList();
+        List<Course> courseList = model.getRoster().getUnmodifiableFilteredCourseList();
         if (targetIndex.getZeroBased() >= courseList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COURSE_DISPLAYED_INDEX);
         }
@@ -90,7 +94,7 @@ public class SelectCommand extends Command {
     }
 
     private Group handleSelectGroup(Model model, CurrentSelection currentSelection) throws CommandException {
-        List<Group> groupList = currentSelection.getSelectedCourse().getUnmodifiableGroupList();
+        List<Group> groupList = currentSelection.getSelectedCourse().getUnmodifiableFilteredGroupList();
         if (targetIndex.getZeroBased() >= groupList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_GROUP_DISPLAYED_INDEX);
         }
@@ -101,7 +105,7 @@ public class SelectCommand extends Command {
     }
 
     private Student handleSelectStudent(Model model, CurrentSelection currentSelection) throws CommandException {
-        List<Student> studentList = currentSelection.getSelectedGroup().getUnmodifiableStudentList();
+        List<Student> studentList = currentSelection.getSelectedGroup().getUnmodifiableFilteredStudentList();
         if (targetIndex.getZeroBased() >= studentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
@@ -113,7 +117,7 @@ public class SelectCommand extends Command {
     }
 
     private Session handleSelectSession(Model model, CurrentSelection currentSelection) throws CommandException {
-        List<Session> sessionList = currentSelection.getSelectedGroup().getUnmodifiableSessionList();
+        List<Session> sessionList = currentSelection.getSelectedGroup().getUnmodifiableFilteredSessionList();
         if (targetIndex.getZeroBased() >= sessionList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }

@@ -73,9 +73,9 @@ public class SampleDataUtil {
 
     public static ReadOnlyRoster getSampleRoster() {
         Roster sampleAb = new Roster();
-        for (Student sampleStudent : getSampleStudents()) {
-            sampleAb.addStudent(sampleStudent);
-        }
+        // for (Student sampleStudent : getSampleStudents()) {
+        //     sampleAb.addStudent(sampleStudent);
+        // }
         return sampleAb;
     }
 

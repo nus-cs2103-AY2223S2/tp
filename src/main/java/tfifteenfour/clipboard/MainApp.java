@@ -66,8 +66,6 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
         model.setRoster(roster);
-        System.out.println(roster.getUnmodifiableCourseList().size());
-        System.out.println("model size BEFORE logic called: " + model.getModifiableFilteredCourseList().size());
         logic = new LogicManager(model, storage);
         ui = new UiManager(logic);
     }
@@ -94,7 +92,6 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty Roster");
             initialData = new Roster();
         }
-        System.out.println("initial data size " + initialData.getModifiableCourseList().size());
         this.roster = initialData;
         return new ModelManager(initialData, userPrefs);
     }
