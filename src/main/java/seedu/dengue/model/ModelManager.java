@@ -196,7 +196,8 @@ public class ModelManager implements Model {
 
     //=========== Sort Stuff =============================================================
 
-    public void sort(String type) {
+    public void sort(List<Person> sortedList) {
+        dengueHotspotTracker.setPersons(sortedList);
     }
 
     //=========== Misc Stuff =============================================================

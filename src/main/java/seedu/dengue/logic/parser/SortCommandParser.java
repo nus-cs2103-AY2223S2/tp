@@ -3,10 +3,12 @@ package seedu.dengue.logic.parser;
 import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_POSTAL;
-import static seedu.dengue.logic.parser.CliSyntax.PREFIX_VARIANT;
+import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.dengue.logic.commands.SortCommand;
+import seedu.dengue.logic.comparators.PersonAgeComparator;
+import seedu.dengue.logic.comparators.PersonDateComparator;
+import seedu.dengue.logic.comparators.PersonNameComparator;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 
 /**
@@ -21,14 +23,12 @@ public class SortCommandParser {
     public SortCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim().toLowerCase();
 
-        if (trimmedArgs.equals(PREFIX_POSTAL.getPrefix())) {
-            return new SortCommand("POSTAL");
+        if (trimmedArgs.equals(PREFIX_NAME.getPrefix())) {
+            return new SortCommand(new PersonNameComparator(), "NAME");
         } else if (trimmedArgs.equals(PREFIX_AGE.getPrefix())) {
-            return new SortCommand("AGE");
+            return new SortCommand(new PersonAgeComparator(), "AGE");
         } else if (trimmedArgs.equals(PREFIX_DATE.getPrefix())) {
-            return new SortCommand("DATE");
-        } else if (trimmedArgs.equals(PREFIX_VARIANT.getPrefix())) {
-            return new SortCommand("VARIANT");
+            return new SortCommand(new PersonDateComparator(), "DATE");
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));

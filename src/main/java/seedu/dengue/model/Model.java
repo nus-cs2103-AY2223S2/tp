@@ -123,5 +123,5 @@ public interface Model {
      * Sorts the list.
      * @throws CommandException if sort type not specified.
      */
-    void sort(String type) throws CommandException;
+    void sort(List<Person> sortedList);
 }

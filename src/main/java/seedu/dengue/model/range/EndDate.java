@@ -1,5 +1,6 @@
 package seedu.dengue.model.range;
 
+import seedu.dengue.logic.comparators.DateComparator;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Person;
 
@@ -23,7 +24,7 @@ public class EndDate extends Date implements End<Date> {
      * @param p
      */
     public boolean isAfter(Person p) {
-        return DATE_COMPARATOR.compare(this, p.getDate()) >= 0;
+        return new DateComparator().compare(this, p.getDate()) >= 0;
 
     }
 }

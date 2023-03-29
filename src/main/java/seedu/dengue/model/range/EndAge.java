@@ -1,5 +1,6 @@
 package seedu.dengue.model.range;
 
+import seedu.dengue.logic.comparators.AgeComparator;
 import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Person;
 
@@ -23,6 +24,6 @@ public class EndAge extends Age implements End<Age> {
      * @param p
      */
     public boolean isAfter(Person p) {
-        return AGE_COMPARATOR.compare(this, p.getAge()) >= 0;
+        return new AgeComparator().compare(this, p.getAge()) >= 0;
     }
 }

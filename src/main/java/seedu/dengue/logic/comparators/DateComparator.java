@@ -1,13 +1,14 @@
-package seedu.dengue.model.range;
+package seedu.dengue.logic.comparators;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 
 import seedu.dengue.model.person.Date;
 
 /**
  * Comparator for the class {@Date}
  */
-public class DateComparator extends GeneralComparator<Date> {
+public class DateComparator implements Comparator<Date> {
     /**
      * Compares two {@Date} objects.
      * @param d1 the first object to be compared.
@@ -24,6 +25,10 @@ public class DateComparator extends GeneralComparator<Date> {
         } else {
             return 1;
         }
+    }
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj;
     }
 
 }
