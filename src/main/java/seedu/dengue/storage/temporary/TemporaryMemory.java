@@ -13,6 +13,10 @@ import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
  */
 public class TemporaryMemory extends SpecialisedStackForMemory<ReadOnlyDengueHotspotTracker> {
 
+    /**
+     * Creates a temporary memory modelled after a {@link SpecialisedStackForMemory}.
+     * @param latest The most current {@link ReadOnlyDengueHotspotTracker} data.
+     */
     public TemporaryMemory(ReadOnlyDengueHotspotTracker latest) {
         super(latest.generateDeepCopy());
     }

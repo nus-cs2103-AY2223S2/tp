@@ -7,5 +7,10 @@ import seedu.dengue.logic.parser.exceptions.ParseException;
  */
 abstract class UndoRedoCommandParser {
 
+    /**
+     * Checks that an integer is positive.
+     * @param number An integer.
+     * @throws ParseException If the number is not positive.
+     */
     abstract void requirePositive(int number) throws ParseException;
 }

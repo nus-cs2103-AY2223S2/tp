@@ -80,6 +80,10 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Replaces all persons with {@code persons}.
+     * @param persons A list of persons to serve as replacements.
+     */
     void setPersons(List<Person> persons);
 
     /**
@@ -105,6 +109,10 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Updates with the latest {@link DengueHotspotTracker}
+     * from {@link seedu.dengue.storage.temporary.TemporaryMemory}.
+     */
     void updateFromMemoryStack();
 
     /**
