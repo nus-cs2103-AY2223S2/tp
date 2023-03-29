@@ -91,6 +91,7 @@ The UI is split into 4 main parts
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
+    * Run `java -version` to display current version of java installed.
     * Mac Users are encouraged to use to use the Azul build of OpenJDK11 version found
       [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
     * Choose the `JDK FX` version and not any other version.
@@ -134,12 +135,21 @@ Adds a new contact.
 **Example**:
 - `newcontact n/Deborah Tan p/91234567`
   - This command will create a new contact named `Deborah Tan` with phone number `91234567`.
+  - Example expected output:
+  ```
+  New contact added: Deborah Tan; Phone: 91234567
+  ```
+<br/>
+
 - `newcontact n/Tan Jun Wei p/82828234`
   - This command will create a new contact named `Tan Jun Wei` with phone number `82828234`.
-
+  - Example expected output:
+  ````
+    New contact added: Tan Jun Wei; Phone: 82828234
+  ````
 ### Clear all Events and Contacts: `clear` <a id = "clear-all-events"></a>
 
-Clears all events and contacts.
+Clears all events in Paidlancers.
 
 **Format**: `clear`
 
@@ -154,12 +164,15 @@ Adds a new event.
 
 **Format**: `newevent n/NAME r/RATE a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`
 
-- Creates a new event with specified `NAME`, `RATE`, `ADDRESS`, `START_TIME`, `END_TIME` and `TAG`s
-    - Both `START_TIME` and `END_TIME` must have the format `dd-MM-yyyy HH:mm`.
+- Both `START_TIME` and `END_TIME` must have the format `dd-MM-yyyy HH:mm`.
 
 **Example**:
 - `newevent n/DJ at wedding r/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
-  - This command will create a new event named `DJ at wedding` with rate `100` at address `311, Clementi Ave 2, #02-25` from `11-03-2023 11:00` to `11-03-2023 17:00` with tags `friends` and `dj`.
+  - This command will create a new event named `DJ at wedding` with rate `100` at address `311, Clementi Ave 2, #02-25` from `11-03-2023 11:00` to `11-03-2023 17:00` with tags `friends` and `dj` as shown below:
+  ````
+  New event added: DJ at wedding; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]; Tags: [dj][friends]
+  ````
+
 
 ### Delete an Event: `delete` <a id = "delete-an-event"></a>
 
@@ -174,10 +187,14 @@ Deletes the specified event.
 **Example**:
 - `delete 2`
   - This command will delete the 2nd event in the event list.
+  - Example expected output:
+  ````
+  Deleted Event: DJ at wedding; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]; Tags: [dj][friends]
+  ````
 
 ### Edit an Event: `edit` <a id = "edit-an-event"></a>
 
-Edits the specified event.
+Edits the specified event from the event book.
 
 **Format**: `edit INDEX [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`
 
@@ -192,18 +209,30 @@ Edits the specified event.
   - To link the event to a new contact, consider using [`linkcontact`](#link-contact-to-event) instead.
 
 **Example**:
-- `edit 1 r/100`
+- `edit 2 r/100`
   - This command will edit the rate of the 1st event to be `100`.
+  - Example expected output:
+  ````
+  Edited Event: DJ at wedding; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]; Tags: [dj][friends]
+  ````
 - `edit 2 n/Wedding Dinner t/`
   - This command will edit the name of the 2nd event to be `Wedding Dinner` and remove all tags.
-- `edit 1 n/Wedding Lunch`
+  - Example expected output:
+  ````
+  Edited Event: Wedding Dinner; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]
+  ````
+- `edit 2 n/Wedding Lunch`
   - This command will edit the name of the 1st event to be `Wedding Lunch`.
-
+  - Example expected output:
+  ````
+  Edited Event: Wedding Lunch; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]
+  ````
 ### Exit application: `exit` <a id = "exit-application"></a>
 
 Closes Paidlancers.
 
 **Format**: `exit`
+
 
 ### Find Event: `find` <a id = "find-event"></a>
 
@@ -237,7 +266,10 @@ Links a client contact to an event.
 **Example**:
 - `linkcontact 2 91234567`
   - This command will link the contact with phone number `91234567` to the 2nd event in the event list.
-
+  - Example expected output:
+  ````
+  Successfully linked! Wedding Lunch; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]
+  ````
 ### List all Events: `list` <a id = "list-all-events"></a>
 
 Displays all events.
@@ -257,7 +289,10 @@ Marks a specified event in Paidlancers as done.
 **Example**:
 - `mark 2`
   - This command will mark the 2nd event in the event list as done.
-
+  - Example expected output:
+  ````
+  Marked event: Wedding Lunch; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [X]; Contact: Gladious Lee; Phone: 92348274
+  ````
 ### Unmark an Event: `unmark` <a id = "unmark-event"></a>
 
 Unmarks a specified event in Paidlancers.
@@ -271,12 +306,20 @@ Unmarks a specified event in Paidlancers.
 **Example**:
 - `unmark 2`
   - This command will unmark the 2nd event in the event list.
+  - Example expected output:
+  ````
+  Unmarked event: Wedding Lunch; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]; Contact: Gladious Lee; Phone: 92348274
+  ````
 
 ### View Total Revenue: `revenue` <a id = "view-total-revenue"></a>
 
 Displays the total revenue based on all the completed events.
 
 **Format**: `revenue`
+- Example expected output:
+  ````
+  The total revenue is: 200.00
+  ````
 
 ### View Upcoming Events: `remind` <a id = "view-upcoming-events"></a>
 
@@ -324,22 +367,22 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features Summary
-|                    Features                     |                                Features Format                                |                                                     Example Usage                                                     |
-|:-----------------------------------------------:|:-----------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|
-|         [Add a Contact](#add-a-contact)         |                         `newcontact n/NAME p/NUMBER`                          |                                         `newcontact n/Deborah Tan p/91234567`                                         |
-|      [Clear all Events and Contacts](#clear-all-events)      |                                    `clear`                                    |                                                        `clear`                                                        |
-|      [Create New Event](#create-new-event)      |     `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`     | `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj` |
-|       [Delete an Event](#delete-an-event)       |                                `delete INDEX`                                 |                                                      `delete 2`                                                       |
-|         [Edit an Event](#edit-an-event)         | `edit INDEX [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...` |                                                    `edit 2 r/100`                                                     |
-|      [Exit application](#exit-application)      |                                    `exit`                                     |                                                        `exit`                                                         |
-|            [Find Event](#find-event)            |                        `find KEYWORD [MORE_KEYWORDS]`                         |                                                 `find wedding dinner`                                                 |
-| [Link Contact to Event](#link-contact-to-event) |                          `linkcontact INDEX CONTACT`                          |                                               `linkcontact 2 91234567`                                                |
-|       [List all Events](#list-all-events)       |                                    `list`                                     |                                                        `list`                                                         |
-|        [Mark Event as Done](#mark-event)        |                                 `mark INDEX`                                  |                                                       `mark 2`                                                        |
-|        [Unmark an Event](#unmark-event)         |                                `unmark INDEX`                                 |                                                      `unmark 2`                                                       |
-|    [View Total Revenue](#view-total-revenue)    |                                   `revenue`                                   |                                                       `revenue`                                                       |
-|  [View Upcoming Events](#view-upcoming-events)  |                                 `remind DAYS`                                 |                                                      `remind 2`                                                       |
-|           [Saving data](#saving-data)           |                                      NIL                                      |                                                          NIL                                                          |
+|                      Features                      |                                Features Format                                |                                                     Example Usage                                                     |
+|:--------------------------------------------------:|:-----------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|
+|          [Add a Contact](#add-a-contact)           |                         `newcontact n/NAME p/NUMBER`                          |                                         `newcontact n/Deborah Tan p/91234567`                                         |
+| [Clear all Events and Contacts](#clear-all-events) |                                    `clear`                                    |                                                        `clear`                                                        |
+|       [Create New Event](#create-new-event)        |     `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`     | `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj` |
+|        [Delete an Event](#delete-an-event)         |                                `delete INDEX`                                 |                                                      `delete 2`                                                       |
+|          [Edit an Event](#edit-an-event)           | `edit INDEX [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...` |                                                    `edit 2 r/100`                                                     |
+|       [Exit application](#exit-application)        |                                    `exit`                                     |                                                        `exit`                                                         |
+|             [Find Event](#find-event)              |                        `find KEYWORD [MORE_KEYWORDS]`                         |                                                 `find wedding dinner`                                                 |
+|  [Link Contact to Event](#link-contact-to-event)   |                          `linkcontact INDEX CONTACT`                          |                                               `linkcontact 2 91234567`                                                |
+|        [List all Events](#list-all-events)         |                                    `list`                                     |                                                        `list`                                                         |
+|         [Mark Event as Done](#mark-event)          |                                 `mark INDEX`                                  |                                                       `mark 2`                                                        |
+|          [Unmark an Event](#unmark-event)          |                                `unmark INDEX`                                 |                                                      `unmark 2`                                                       |
+|     [View Total Revenue](#view-total-revenue)      |                                   `revenue`                                   |                                                       `revenue`                                                       |
+|   [View Upcoming Events](#view-upcoming-events)    |                                 `remind DAYS`                                 |                                                      `remind 2`                                                       |
+|            [Saving data](#saving-data)             |                                      NIL                                      |                                                          NIL                                                          |
 
 <div style="position: fixed; font-size: large; bottom: 25px; right: 50px; background-color: #d8d8d8">
   <a href="#top">Back to top</a>
