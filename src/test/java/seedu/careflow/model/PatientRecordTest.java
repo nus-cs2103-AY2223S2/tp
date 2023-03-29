@@ -56,27 +56,27 @@ public class PatientRecordTest {
     }
 
     @Test
-    public void hasPatient_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> patientRecord.hasPatient(null));
+    public void hasSamePatientName_nullPatient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> patientRecord.hasSamePatientName(null));
     }
 
     @Test
-    public void hasPatient_patientNotInPatientRecord_returnsFalse() {
-        assertFalse(patientRecord.hasPatient(ALICE));
+    public void hasSamePatientName_patientNotInPatientRecord_returnsFalse() {
+        assertFalse(patientRecord.hasSamePatientName(ALICE));
     }
 
     @Test
-    public void hasPatient_patientInPatientRecord_returnsTrue() {
+    public void hasSamePatientName_patientInPatientRecord_returnsTrue() {
         patientRecord.addPatient(ALICE);
-        assertTrue(patientRecord.hasPatient(ALICE));
+        assertTrue(patientRecord.hasSamePatientName(ALICE));
     }
 
     @Test
-    public void hasPatient_patientWithSameIdentityFieldsInPatientRecord_returnsTrue() {
+    public void hasSamePatientName_patientWithSameIdentityFieldsInPatientRecord_returnsTrue() {
         patientRecord.addPatient(ALICE);
         Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB)
                 .build();
-        assertTrue(patientRecord.hasPatient(editedAlice));
+        assertTrue(patientRecord.hasSamePatientName(editedAlice));
     }
 
     @Test

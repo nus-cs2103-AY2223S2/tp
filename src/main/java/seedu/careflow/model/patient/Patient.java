@@ -105,6 +105,19 @@ public class Patient {
     }
 
     /**
+     * Returns true if both patient have the same NRIC.
+     * This defines a weaker notion of equality between two patient.
+     */
+    public boolean isSameIc(Patient otherPatient) {
+        if (otherPatient == this) {
+            return true;
+        }
+
+        return otherPatient != null
+                && otherPatient.getIc().equals(getIc());
+    }
+
+    /**
      * Returns true if both patients have the same identity and data fields.
      * This defines a stronger notion of equality between two patients.
      */

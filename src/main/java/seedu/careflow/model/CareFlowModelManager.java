@@ -130,9 +130,15 @@ public class CareFlowModelManager implements CareFlowModel {
     }
 
     @Override
-    public boolean hasPatient(Patient patient) {
+    public boolean hasSamePatientName(Patient patient) {
         requireNonNull(patient);
-        return careFlow.hasPatient(patient);
+        return careFlow.hasSamePatientName(patient);
+    }
+
+    @Override
+    public boolean hasSamePatientIc(Patient patient) {
+        requireNonNull(patient);
+        return careFlow.hasSamePatientIc(patient);
     }
 
     @Override

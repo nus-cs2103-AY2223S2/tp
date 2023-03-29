@@ -91,19 +91,19 @@ public class CareFlowModelManagerTest {
     }
 
     @Test
-    public void hasPatient_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPatient(null));
+    public void hasSamePatientName_nullPatient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasSamePatientName(null));
     }
 
     @Test
-    public void hasPatient_patientNotInPatientRecord_returnsFalse() {
-        assertFalse(modelManager.hasPatient(ALICE));
+    public void hasSamePatientName_patientNotInPatientRecord_returnsFalse() {
+        assertFalse(modelManager.hasSamePatientName(ALICE));
     }
 
     @Test
-    public void hasPatient_patientInPatientRecord_returnsTrue() {
+    public void hasSamePatientName_patientInPatientRecord_returnsTrue() {
         modelManager.addPatient(ALICE);
-        assertTrue(modelManager.hasPatient(ALICE));
+        assertTrue(modelManager.hasSamePatientName(ALICE));
     }
 
     @Test

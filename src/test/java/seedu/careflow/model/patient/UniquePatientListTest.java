@@ -25,25 +25,25 @@ public class UniquePatientListTest {
 
     @Test
     public void contains_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePatientList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniquePatientList.containName(null));
     }
 
     @Test
     public void contains_patientNotInList_returnsFalse() {
-        assertFalse(uniquePatientList.contains(ALICE));
+        assertFalse(uniquePatientList.containName(ALICE));
     }
 
     @Test
     public void contains_patientInList_returnsTrue() {
         uniquePatientList.add(ALICE);
-        assertTrue(uniquePatientList.contains(ALICE));
+        assertTrue(uniquePatientList.containName(ALICE));
     }
 
     @Test
     public void contains_patientWithSameIdentityFieldsInList_returnsTrue() {
         uniquePatientList.add(ALICE);
         Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withIc(VALID_IC_BOB).build();
-        assertTrue(uniquePatientList.contains(editedAlice));
+        assertTrue(uniquePatientList.containName(editedAlice));
     }
 
     @Test

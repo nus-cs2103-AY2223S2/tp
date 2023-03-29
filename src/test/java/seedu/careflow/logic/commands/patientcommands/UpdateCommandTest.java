@@ -11,6 +11,7 @@ import static seedu.careflow.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.assertCommandFailure;
 import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.assertCommandSuccess;
 import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.showPatientAtIndex;
+import static seedu.careflow.logic.commands.patientcommands.UpdateCommand.MESSAGE_DUPLICATE_PATIENT_NAME;
 import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
 import static seedu.careflow.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.careflow.testutil.TypicalPatients.getTypicalPatientRecord;
@@ -109,7 +110,7 @@ public class UpdateCommandTest {
         // assume the typicalPatientRecord's patient list has more than 2 patients
         UpdateCommand editCommand = new UpdateCommand(model.getFilteredPatientList().get(1).getName(), descriptor);
 
-        assertCommandFailure(editCommand, model, UpdateCommand.MESSAGE_DUPLICATE_PATIENT);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_PATIENT_NAME);
     }
 
     @Test
@@ -121,7 +122,7 @@ public class UpdateCommandTest {
         UpdateCommand editCommand = new UpdateCommand(model.getPatientRecord().getPatientList().get(0).getName(),
                 new EditPatientDescriptorBuilder(personInList).build());
 
-        assertCommandFailure(editCommand, model, UpdateCommand.MESSAGE_DUPLICATE_PATIENT);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_PATIENT_NAME);
     }
 
     @Test

@@ -62,8 +62,9 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String BIRTHDATE_DESC_AMY = " " + PREFIX_DOB + VALID_BIRTHDATE_AMY;
-    public static final String BIRTHDATE_DESC_BOB = " " + PREFIX_DOB + VALID_BIRTHDATE_BOB;
+
+    public static final String DOB_DESC_AMY = " " + PREFIX_DOB + VALID_BIRTHDATE_AMY;
+    public static final String DOB_DESC_BOB = " " + PREFIX_DOB + VALID_BIRTHDATE_BOB;
     public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
     public static final String IC_DESC_AMY = " " + PREFIX_IC + VALID_IC_AMY;
