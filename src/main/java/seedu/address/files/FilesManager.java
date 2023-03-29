@@ -68,10 +68,14 @@ public class FilesManager {
     /**
      * Add file.
      */
-    public void addFile() throws RuntimeException {
-        store.uploadFile();
-        setAllFiles();
-        hasError = false;
+    public void addFile() {
+        try {
+            store.uploadFile();
+            setAllFiles();
+            hasError = false;
+        } catch (RuntimeException e) {
+            logger.log(Level.WARNING, e.getMessage());
+        }
     }
 
     /**

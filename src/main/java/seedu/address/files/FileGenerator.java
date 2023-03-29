@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
@@ -15,6 +17,8 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
 
 import seedu.address.model.person.MedicalCondition;
 import seedu.address.model.person.Person;
+
+
 
 
 /**
@@ -99,6 +103,8 @@ public class FileGenerator {
         pdfDocument.save(new File("reports/" + person.getName().fullName + "/" + filename + "-mc.pdf"));
         pdfDocument.close();
         setMedicalCondition();
+        SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(
+                null, "MC form created successfully!", "Success", JOptionPane.INFORMATION_MESSAGE));
     }
 
     private void setMedicalCondition() {
