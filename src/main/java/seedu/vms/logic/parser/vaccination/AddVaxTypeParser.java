@@ -15,7 +15,7 @@ public class AddVaxTypeParser extends VaxTypeBuilderParser {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = VaccinationParser.FEATURE_NAME + " " + COMMAND_WORD
-            + " - Adds a vaccination to the system\n"
+            + ": Adds a vaccination to the system\n"
             + "Syntax: "
             + "vaccination add VAX_NAME [--g ...GROUP...] [--lal MIN_AGE] [--ual MAX_AGE] "
             + "[--a ...INGREDIENT...]... [--h HISTORY_REQ]...\n"
@@ -35,7 +35,7 @@ public class AddVaxTypeParser extends VaxTypeBuilderParser {
             VaxTypeBuilder builder = parseBuilderNoRename(argsMap);
             return new AddVaxTypeCommand(name, builder);
         } catch (ParseException parseEx) {
-            throw new ParseException(String.format("%s\n\n%s", parseEx.getMessage(), MESSAGE_USAGE));
+            throw new ParseException(String.format("%s\n%s", parseEx.getMessage(), MESSAGE_USAGE));
         }
     }
 }

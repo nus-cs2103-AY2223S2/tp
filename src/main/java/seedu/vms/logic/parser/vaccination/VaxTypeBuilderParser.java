@@ -22,11 +22,11 @@ import seedu.vms.model.vaccination.VaxTypeBuilder;
  */
 public abstract class VaxTypeBuilderParser implements CommandParser {
     private static final String FIELD_NAME_VAX_NAME = "Vaccination name";
-    private static final String FIELD_NAME_GRP_SET = "Group set";
-    private static final String FIELD_NAME_MIN_AGE = "Min age";
-    private static final String FIELD_NAME_MAX_AGE = "Max age";
-    private static final String FIELD_NAME_INGREDIENTS = "Ingredients";
-    private static final String FIELD_NAME_HISTORY = "History requirements";
+    private static final String FIELD_NAME_GRP_SET = "GROUP";
+    private static final String FIELD_NAME_MIN_AGE = "MIN_AGE";
+    private static final String FIELD_NAME_MAX_AGE = "MAX_AGE";
+    private static final String FIELD_NAME_INGREDIENTS = "INGREDIENT";
+    private static final String FIELD_NAME_HISTORY = "HISTORY_REQ";
 
 
     /**
