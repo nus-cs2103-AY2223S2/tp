@@ -91,9 +91,9 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 
 ### Delete
 
-- `delete-module {module_code}`: Deletes a module from Le Tracker
-- `delete-lecture /module {module_code} /lecture {lecture_id}`: Deletes the specified lecture from the specified module
-- `delete-video /module {module_code} /lecture {lecture_id} /video {video_id}`: Deletes the specified video from the specified lecture from the specified module
+- `delete {module_code}`: Deletes module(s) from Le Tracker
+- `delete {lecture_name} /mod {module_code}`: Deletes the specified lecture(s) from the specified module
+- `delete {video_name} /mod {module_code} /lec {lecture_name}`: Deletes the specified video(s) from the specified lecture from the specified module
 
 ### Tag
 
@@ -334,45 +334,50 @@ Examples:
 - `mark /module CS2040 /lecture 1 /video lecture_01-part-1`
 - `unmark /module CS2040 /lecture 1 /video lecture_01-part-1`
 
-### Delete a Module
+### Delete Module(s)
 
-> Deletes the specified module and all its embodied content from the application
+> Deletes the specified module(s) and all its embodied content from the application
 
-Format: `delete-module CS2040`
+Format: `delete {module_code}`
 
 - Deletes the module of the specified `module_code`
-- If the module does not exist, nothing happens
+- Multiple modules can be specified to be deleted, separating them by commas(",")
+- If any module specified does not exist, nothing changes within the model
 
 Examples:
 
-- `delete-module CS2040`
+- `delete CS2040`
+- `delete CS2040, ST2334`
 
-### Delete a Lecture
+### Delete Lecture(s)
 
-> Deletes the specified lecture from the specified module
+> Deletes the specified lecture(s) and all its embodied content from the specified module
 
-Format: `delete-lecture /module {module_code} /lecture {lecture_id}`
+Format: `delete {lecture_name} /mod {module_code}`
 
-- Deletes the lecture of the specified `lecture_id` from the specified `module_code`
-- The `lecture_id` **must be a positive integer** 1, 2, 3, ...
-
-Examples:
-
-- `delete-lecture CS2040 /lecture 1` deletes the 1st lecture in the results of the `list /module CS2040` command
-
-### Delete a Video
-
-> Deletes the specified video from the specified lecture from the specified module
-
-Format: `delete-video /module {module_code} /lecture {lecture_id} /video {video_id}`
-
-- Deletes the video of the specified `video_id` from the specified `lecture_id` of the specified `module_code`
-- `video_id` refers to the index number shown when listing the videos of the specified lecture using the `lecture_id` in the specified module using the `module_code`
-- the `video_id` **must be a positive integer** 1, 2, 3, ...
+- Deletes the lecture of the specified `lecture_name` from the specified `module_code`
+- Multiple lectures within the same module can be specified to be deleted, separating them by commas(",")
+- If the module or any lecture specified does not exist, nothing changes within the model
 
 Examples:
 
-- `delete-video /module CS2040 /lecture 1 /video 3` deletes the 3rd video in the results of the `list /module CS2040 /lecture 1` command
+- `delete lecture 1 /mod CS2040` deletes `lecture 1` lecture found in module `CS2040`
+- `delete lecture 1, lecture 2 /mod ST2334` deletes `lecture 1` and `lecture 2` lectures found in module `ST2334`
+
+### Delete Video(s)
+
+> Deletes the specified video(s) and all its embodied content from the specified lecture from the specified module
+
+Format: `delete {video_name} /mod {module_code} /lec {lecture_name}`
+
+- Deletes the video of the specified `video_name` from the specified `lecture_name` of the specified `module_code`
+- Multiple videos within the same lecture of a module can be specified to be deleted, separating them by commas(",")
+- If the module, lecture or any video specified does not exist, nothing changes within the model
+
+Examples:
+
+- `delete video 3 /mod CS2040 /lec lecture 1` deletes `video 3` from lecture `lecture 1` of module `CS2040`
+- `delete video 1, video 3 /mod CS2040 /leclecture 1` deletes `video 1` and `video 3` from lecture `lecture 1` of module `CS2040`
 
 ### Tag a module
 
