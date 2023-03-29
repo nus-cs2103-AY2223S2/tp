@@ -1,5 +1,7 @@
 package seedu.calidr.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -93,13 +95,14 @@ public class TaskPopOver extends UiPart<Region> {
 
         priority.setText(StringUtil.capitalize(task.getPriority().toString()) + " priority");
 
-        /*
-        task.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        */
-        // TODO stub
-        tags.getChildren().addAll(new Label("Stub 1"), new Label("Stub 2"));
+        if (task.getTags().isEmpty()) {
+            tags.setManaged(false);
+            tags.setVisible(false);
+        } else {
+            task.getTags().stream()
+                    .sorted(Comparator.comparing(tag -> tag.tagName))
+                    .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        }
 
         closeButton.setOnAction(e -> this.getRoot().getScene().getWindow().hide());
     }

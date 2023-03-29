@@ -59,7 +59,7 @@
             </Label>
          </HBox>
          <Label fx:id="priority"/>
-         <Label fx:id="task_location"/>
+         <Label fx:id="taskLocation"/>
       </VBox>
    </VBox>
    <HBox alignment="CENTER" maxHeight="-Infinity" VBox.vgrow="NEVER">
