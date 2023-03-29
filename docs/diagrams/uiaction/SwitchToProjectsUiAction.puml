@@ -1,0 +1,16 @@
+@startuml
+!include ../style.puml
+
+participant ":TabSwitchAction" as Action UI_EVENT_COLOR
+participant "mainWindow:MainWindow" as MainWindow UI_COLOR_T3
+
+mainframe sd execute UiAction
+[-> Action: execute(mainWindow)
+activate Action1
+Action -> MainWindow: selectProjectTab()
+activate MainWindow
+MainWindow --> Action
+deactivate MainWindow
+Action -->[
+deactivate Action
+@enduml
