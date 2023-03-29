@@ -1,2 +1,3 @@
-package seedu.address.logic.commands.task;public class TaskEditCommand {
+package seedu.address.logic.commands.task;
+public class TaskEditCommand {
 }
