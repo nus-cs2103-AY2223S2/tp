@@ -69,6 +69,14 @@ public class ClientBuilder {
     }
 
     /**
+     * Sets the {@code Email} of the {@code Client} that we are building.
+     */
+    public ClientBuilder withEmail(Email email) {
+        this.email = email;
+        return this;
+    }
+
+    /**
      * Sets the {@code YearOfBirth} of the {@code Client} that we are building.
      */
     public ClientBuilder withYearOfBirth(String yearOfBirth) {

@@ -1,16 +1,20 @@
 package mycelium.mycelium.logic.commands;
 
+import static mycelium.mycelium.logic.commands.CommandTestUtil.assertCommandFailure;
+import static mycelium.mycelium.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static mycelium.mycelium.testutil.Assert.assertThrows;
 import static mycelium.mycelium.testutil.TypicalEntities.RANTARO;
 import static mycelium.mycelium.testutil.TypicalEntities.WEST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
+import mycelium.mycelium.logic.uiaction.TabSwitchAction;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.ModelManager;
 import mycelium.mycelium.model.client.Client;
@@ -21,9 +25,13 @@ import mycelium.mycelium.testutil.UpdateClientDescriptorBuilder;
 public class UpdateClientCommandTest {
     private static final Email EMAIL = WEST.getEmail();
     private static final UpdateClientCommand.UpdateClientDescriptor EMPTY_DESC =
-            new UpdateClientCommand.UpdateClientDescriptor();
+        new UpdateClientCommand.UpdateClientDescriptor();
     private static final UpdateClientCommand.UpdateClientDescriptor NEW_DESC =
-            new UpdateClientCommand.UpdateClientDescriptor(RANTARO);
+        new UpdateClientCommand.UpdateClientDescriptor(RANTARO);
+
+    private static final Function<String, CommandResult> buildCommandResult = (msg)
+        -> new CommandResult(msg, new TabSwitchAction(TabSwitchAction.TabSwitch.CLIENT));
+
     private Model model = new ModelManager();
 
     @Test
@@ -31,25 +39,21 @@ public class UpdateClientCommandTest {
         UpdateClientCommand updateClientCommand = new UpdateClientCommand(EMAIL, EMPTY_DESC);
         assertThrows(NullPointerException.class, () -> updateClientCommand.execute(null));
     }
+
     @Test
     public void execute_clientNotPresent_throwsCommandException() {
         // Client not present in model
         UpdateClientCommand updateClientCommand = new UpdateClientCommand(EMAIL, EMPTY_DESC);
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_CLIENT, () -> updateClientCommand.execute(model));
+        assertCommandFailure(updateClientCommand, model, Messages.MESSAGE_INVALID_CLIENT);
     }
-    @Test
-    public void execute_clientPresent_success() {
-        // Client present in model
-        model.addClient(WEST);
-        UpdateClientCommand updateClientCommand = new UpdateClientCommand(EMAIL, EMPTY_DESC);
-        assertThrows(CommandException.class, () -> updateClientCommand.execute(model));
-    }
+
     @Test
     public void execute_clientNoFieldEdited_throwsCommandException() {
         UpdateClientCommand updateClientCommand = new UpdateClientCommand(EMAIL, EMPTY_DESC);
         model.addClient(new ClientBuilder().withEmail(EMAIL.value).build());
-        assertThrows(CommandException.class, () -> updateClientCommand.execute(model));
+        assertCommandFailure(updateClientCommand, model, UpdateClientCommand.MESSAGE_NOT_EDITED);
     }
+
     @Test
     public void execute_clientEdited_success() throws CommandException {
         // Client present in model, all fields edited
@@ -63,36 +67,48 @@ public class UpdateClientCommandTest {
     @Test
     public void execute_clientUpdateEmailOnly_success() throws CommandException {
         // Client present in model, email edited
-        UpdateClientCommand.UpdateClientDescriptor desc = new UpdateClientCommand.UpdateClientDescriptor();
+        var desc = new UpdateClientCommand.UpdateClientDescriptor();
         desc.setEmail(RANTARO.getEmail());
-        UpdateClientCommand updateClientCommand = new UpdateClientCommand(EMAIL, desc);
+
+        var cmd = new UpdateClientCommand(EMAIL, desc);
         model.addClient(WEST);
-        updateClientCommand.execute(model);
-        assertFalse(model.hasClient(WEST));
-        assertTrue(model.hasClient(new ClientBuilder().withEmail(RANTARO.getEmail().value).build()));
+
+        var updatedClient = new ClientBuilder(WEST).withEmail(RANTARO.getEmail()).build();
+        var expMsg = String.format(UpdateClientCommand.MESSAGE_SUCCESS, updatedClient);
+        var expRes = buildCommandResult.apply(expMsg);
+        var expModel = new ModelManager();
+        expModel.addClient(updatedClient);
+
+        assertCommandSuccess(cmd, model, expRes, expModel);
     }
+
     @Test
     public void execute_clientUpdateOptionsWithoutNewEmail_success() throws CommandException {
         UpdateClientCommand.UpdateClientDescriptor desc =
-                new UpdateClientDescriptorBuilder()
-                        .withName("Rocky Balboa")
-                        .withYearOfBirth("1990")
-                        .withSource("Rocky 2")
-                        .withMobileNumber("12345678")
-                        .build();
+            new UpdateClientDescriptorBuilder()
+                .withName("Rocky Balboa")
+                .withYearOfBirth("1990")
+                .withSource("Rocky 2")
+                .withMobileNumber("12345678")
+                .build();
         Client client =
-                new ClientBuilder()
-                        .withName("Rocky Balboa")
-                        .withEmail(EMAIL.value)
-                        .withYearOfBirth("1990")
-                        .withSource("Rocky 2")
-                        .withMobileNumber("12345678")
-                        .build();
+            new ClientBuilder()
+                .withName("Rocky Balboa")
+                .withEmail(EMAIL.value)
+                .withYearOfBirth("1990")
+                .withSource("Rocky 2")
+                .withMobileNumber("12345678")
+                .build();
         model.addClient(WEST);
-        UpdateClientCommand updateClientCommand = new UpdateClientCommand(EMAIL, desc);
-        updateClientCommand.execute(model);
-        assertTrue(model.hasClient(client));
 
+        var expMsg = String.format(UpdateClientCommand.MESSAGE_SUCCESS, client);
+        var expRes = buildCommandResult.apply(expMsg);
+        var expModel = new ModelManager();
+        expModel.addClient(client);
+
+        UpdateClientCommand updateClientCommand = new UpdateClientCommand(EMAIL, desc);
+
+        assertCommandSuccess(updateClientCommand, model, expRes, expModel);
     }
 
     @Test

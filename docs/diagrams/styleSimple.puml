@@ -1,0 +1,10 @@
+hide footbox
+hide circle
+hide empty methods
+hide empty members
+
+skinparam MinClassWidth 50
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+skinparam classAttributeIconSize 0

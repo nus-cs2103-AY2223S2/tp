@@ -42,7 +42,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         }
 
         // For projects, the only required field is the project name and the client's email.
-        NonEmptyString name = ParserUtil.parseNonEmptyString(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
+        NonEmptyString name = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
         Email clientEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
 
         // The project's status and acceptedOn date take default values.
@@ -57,7 +57,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
 
         Optional<NonEmptyString> source = ParserUtil.parseOptionalWith(
             argMultimap.getValue(PREFIX_SOURCE),
-            ParserUtil::parseNonEmptyString);
+            ParserUtil::parseSource);
         // NOTE: the description is allowed to be empty. Thus we do not wrap it into a NonEmptyString.
         Optional<String> description = argMultimap.getValue(PREFIX_PROJECT_DESCRIPTION);
         Optional<LocalDate> deadline = ParserUtil.parseOptionalWith(

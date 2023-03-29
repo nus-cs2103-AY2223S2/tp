@@ -101,7 +101,6 @@ class JsonAdaptedClient {
         if (yearOfBirth != null) {
             validityCheck(!YearOfBirth.isValidYearOfBirth(yearOfBirth), YearOfBirth.MESSAGE_CONSTRAINTS);
         }
-        // TODO validityCheck for source
         if (mobileNumber != null) {
             validityCheck(!Phone.isValidPhone(mobileNumber), Phone.MESSAGE_CONSTRAINTS);
         }

@@ -26,9 +26,8 @@ public class DeleteProjectCommandParser implements Parser<DeleteProjectCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteProjectCommand.MESSAGE_USAGE));
         }
 
-        NonEmptyString
-            targetProjectName =
-            ParserUtil.parseNonEmptyString(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
+        NonEmptyString targetProjectName =
+            ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
         return new DeleteProjectCommand(targetProjectName);
     }
 }

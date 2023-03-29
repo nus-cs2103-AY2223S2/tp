@@ -158,15 +158,37 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a string by asserting that it is non empty after trimming.
+     * Parses a string by asserting that it is non-empty after trimming. Note that this
      */
-    public static NonEmptyString parseNonEmptyString(String source) throws ParseException {
+    private static NonEmptyString parseNonEmptyString(String source) throws ParseException {
         requireNonNull(source);
         String trimmedSource = source.trim();
         if (!NonEmptyString.isValid(trimmedSource)) {
             throw new ParseException(NonEmptyString.MESSAGE_CONSTRAINTS);
         }
         return NonEmptyString.of(trimmedSource);
+    }
+
+    /**
+     * Parses a string into a {@code NonEmptyString} representing a project name.
+     */
+    public static NonEmptyString parseProjectName(String source) throws ParseException {
+        try {
+            return parseNonEmptyString(source);
+        } catch (ParseException e) {
+            throw new ParseException(Messages.MESSAGE_EMPTY_PROJECT_NAME);
+        }
+    }
+
+    /**
+     * Parses a string into a {@code NonEmptyString} representing a project or client's source.
+     */
+    public static NonEmptyString parseSource(String source) throws ParseException {
+        try {
+            return parseNonEmptyString(source);
+        } catch (ParseException e) {
+            throw new ParseException(Messages.MESSAGE_EMPTY_SOURCE);
+        }
     }
 
     /**

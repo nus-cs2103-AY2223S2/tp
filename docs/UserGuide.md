@@ -6,9 +6,9 @@ title: User Guide
 
 Mycelium is a desktop application aimed at helping **freelance web developers
 manage clients and projects** from multiple online sources. All interactions
-with Mycelium are through text commands, allowing for efficient manipulation of
-data while benefiting from the ease of viewing offered by the Graphical User
-Interface.
+with Mycelium are through text commands or HotKeys, allowing for efficient
+manipulation of data while benefiting from the ease of viewing offered by the
+Graphical User Interface.
 
 ## Using this Guide
 
@@ -21,7 +21,7 @@ HotKeys. The three main parts of this guide contain descriptions on how to use
 commands for managing [clients](#managing-clients) and
 [projects](#managing-projects), as well as the available [HotKeys](#hotkeys).
 
-### Icons and conventions
+### Icons and Conventions
 
 The following typographical conventions are used in this guide.
 
@@ -73,10 +73,10 @@ to help you get a feel for the application. Feel free to delete them later.
 <img src="images/OnStartupScreenshot.png" />
 
 You may resize the window to your liking. At this point, we recommend that you
-jump over to the [Main View](#main-view) or [Command Summary](#command-summary)
-sections to get an overview of the commands which are the bread and butter of
-Mycelium. Alternatively, you may continue reading the guide for a guided tour
-of how Mycelium is intended to be used.
+jump over to the [UI Overview](#ui-overview) or [Command
+Summary](#command-summary) sections to get an overview of the commands which
+are the bread and butter of Mycelium. Alternatively, you may continue reading
+the guide for a guided tour of how Mycelium is intended to be used.
 
 ## Glossary
 
@@ -93,9 +93,22 @@ software editing, building, testing, and packaging in an easy-to-use application
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Main View
+## UI Overview
 
-The main view of Mycelium is composed of two panels. The left panel is what we will refer to as the **Entity panel** and the right panel is what we will refer to as the **Statistics panel**.
+This screenshot below highlights the four main components in Mycelium's window.
+
+<img src="images/UiOverview.png" />
+
+1. **Command box:** box for text input. Can be for either running commands or
+   fuzzy searching (more on this later).
+1. **Output box:** After a command is entered, the result from that command
+   will be displayed here. Note that the box is scrollable, and for large
+   output messages, you may have to scroll both horizontally and vertically to
+   see the full message.
+1. **Entity panel:** Lists projects and clients in two separate tabs.
+1. **Statistics panel:** Displays overview of projects.
+
+More details about the Entity and Statistics panel are given in the following sections.
 
 ### Entity Panel
 
@@ -106,8 +119,8 @@ The Entity panel is where you will be able to view your projects and clients. It
 The Projects tab lists all the projects you've created. Each project block contains the project’s
 
 - Name
-- Status, which would be either **not started, in progress, or done**
-- Client
+- Status
+- Client email
 - Source, e.g. Fiverr
 - Description
 - Accepted date
@@ -118,16 +131,16 @@ The Projects tab lists all the projects you've created. Each project block conta
 The Clients tab lists all the clients you've created. Each client block contains the client’s
 
 - Name or username
-- Year of birth
 - Email
+- Year of birth
+- Source, e.g. Fiverr
 - Phone number
-- List of associated platforms
 
 ### Statistics Panel
 
 The Statistics panel is where you will be able to view statistics about your projects. It is vertically split into 2 portions.
 
-The top portion is composed of two tabs, one that lists the projects that are due soon and the other lists projects that overdue.
+The top portion is composed of two tabs, one that lists the projects that are due within this week or the next and the other tab lists projects that are overdue.
 
 The bottom portion shows a pie chart that displays the relative proportions of projects that are not started, in progress, and done.
 
@@ -139,11 +152,12 @@ Commands in Mycelium take the general form of `command_name [arguments...]`.
 Arguments may be compulsory or optional. If you do not provide the optional
 arguments, Mycelium will use sensible defaults in their place.
 
-All arguments take the structure of `-arg arg_data`. Some commands may take
-multiple arguments, in which case you may specify them in any order.
+All arguments take the structure of `-arg_flag arg_data`; the argument flag is
+always followed by a space. Some commands may also take multiple arguments, in
+which case you may specify them in any order, delimited by whitespace.
 Furthermore, if duplicate argument flags are provided, then only the *last one*
 is used. Finally, note that `arg_data` can consist of multiple whitespace
-separated tokens.
+separated tokens, but any leading or trailing whitespace will be trimmed.
 
 As an example, the command below creates a new project with the name *Mycelium
 Desktop*, for client *Spiderman*, and sourced from *fiverr.com*. (Don't worry
@@ -154,19 +168,38 @@ demonstrate the layout.)
 p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com
 ```
 
-You will also discover that all command names in Mycelium are at most two
-characters long. This terseness is *intentional* to allow for faster
-keystrokes.
+<div markdown="span" class="alert alert-success">
+:bulb: You will also discover that all command names in Mycelium are at most
+two characters long. This terseness is *intentional* to allow for faster
+keystrokes. Also note that all commands and argument flags are case sensitive.
+</div>
 
 <div markdown="span" class="alert alert-info"> 
 :information_source: **A note on dates:** some arguments are in the form of
 dates. For these, Mycelium only accepts input of the format dd/MM/yyyy. For
 example, "14/03/2023" is okay, but "14/3/2023", or "14-03-2023" are not okay.
+
+The range of valid years is from -9999 to 9999.
+</div>
+
+<div markdown="span" class="alert alert-danger">
+:warning: Avoid having any argument flag appear literally in your argument's
+data. For example, any attempts to create a project named *Mycelium -pn
+Desktop* would fail.
+
+```bash
+p -pn Mycelium -pn Desktop -e spiderman@gmail.com
+```
+
+In the command above, *Desktop* is interpreted as another argument, actually
+overrides *Mycelium*. So we end up with a project named *Desktop*.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Managing Clients
+
+This section documents the commands related to managing clients.
 
 ### Creating a client contact: `c`
 
@@ -182,7 +215,7 @@ Creates a new client contact.
 **Optional Arguments**
 
 - `-y year_of_birth`
-    - The client’s year of birth.
+    - The client’s year of birth. Any combination of four digits is acceptable.
     - **Default**: *null*
 - `-src source`
     - The platform the client is sourced from, such as Fiverr. This can be any arbitrary non-empty string.
@@ -203,16 +236,15 @@ You should see the following output if the client is created successfully.
 ```
 New client added: Alice Baker (alice_baker@bakers.com)
 ```
+<div markdown="span" class="alert alert-info">
+:information_source: **A note on names:** Mycelium supports names with *s/o*
+and *d/o* in them. For example, *Alice Baker s/o Bob Baker* is a valid name.
+In fact, *X Æ A-12* is also a valid name in Mycelium.
+</div>
 
 ### Deleting a client contact: `dc`
 
 Deletes an *existing* client contact.
-
-**Notes**
-
-- You should not add any quotation marks around any of the attributes.
-- An error message will be shown with an attempt to create a client with an existing email
-in Mycelium.
 
 **Compulsory Arguments**
 
@@ -223,11 +255,16 @@ in Mycelium.
 
 The command `dc -e alice_baker@bakers.com`  deletes the contact with the corresponding email.
 
-Expected output:
+Once the client is deleted, you should see the following output.
 
 ```
 Deleted Client: Alice Baker (alice_baker@bakers.com)
 ```
+
+<div markdown="span" class="alert alert-info">
+:information_source: An error message will be shown with an attempt to create a
+client with an existing email in Mycelium.
+</div>
 
 ### Updating a client: `uc`
 
@@ -258,7 +295,7 @@ At least one of the following arguments must be provided:
 
 **Example**
 
-The command `uc -e alice_bakers@bakers.com -cn Bobby Baker` updates the client with email *alice_bakers@bakers.com* to have the name *Bobby Baker*.
+The command `uc -e alice_baker@bakers.com -cn Bobby Baker` updates the client with email *alice_baker@bakers.com* to have the name *Bobby Baker*.
 
 **Expected output:**
 
@@ -268,6 +305,8 @@ Updated Client: Bobby Baker (alice_baker@bakers.com)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Managing Projects
+
+This section documents the commands related to managing projects.
 
 ### Creating a project: `p`
 
@@ -305,10 +344,10 @@ Creates a new project.
 
 The following command creates a new project whose name is *Mycelium Desktop*,
 submitted from the client *spiderman@gmail.com* and sourced from *fiverr.com*,
-with a deadline on *30 February, 2075*.
+with a deadline on *14 March, 2075*.
 
 ```bash
-p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075
+p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com -dd 14/03/2075
 ```
 
 If the project is added successfully, you should see the following message in
@@ -407,7 +446,7 @@ target project.
 <div markdown="span" class="alert alert-success">
 :bulb: Notice that the arguments here are similar to that of creating a
 project. You may refer to the section above on [creating a
-project](#creating-a-project:-p) for more details on what each argument means.
+project](#creating-a-project-p) for more details on what each argument means.
 </div>
 
 **Example**
@@ -511,8 +550,8 @@ quite a quality-of-life feature!
 </div>
 
 <div markdown="span" class="alert alert-success">
-:bulb: Confused about search mode? You may check out the [section
-below](#ctrlf-search) for more information.
+:bulb: Still confused about search mode? You may check out the [section
+below](#ctrlf-search) on the (CTRL+F) HotKey for more information.
 </div>
 
 ### Fuzzy searching clients
@@ -521,7 +560,7 @@ This works exactly the same as as fuzzy searching projects, described above.
 The only difference to note is that the query is matched against the clients'
 emails, and not their names.
 
-### Gotchas
+### Fuzzy search Gotchas
 
 In general, fuzzy search in Mycelium should feel familiar to most developers,
 since it is similar to, for example, finding files in IDEs, or the well known
@@ -595,7 +634,7 @@ This shortcut allows you toggle the command box between **search mode** and **co
 
 In **command mode**, the input in the command box is used to execute the command.
 
-In **search mode**, the command box is highlighted light blue and the input is used to *interactively* search for the closest matching project or client by name in the **entity panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the entity panel will be put into focus automatically.
+In **search mode**, the command box is highlighted light blue and the input is used to *interactively* search for the closest matching project or client by name in the **Entity panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the Entity panel will be put into focus automatically.
 
 If you have a project or client selected, pressing (ENTER) in **search mode** switches back to **command mode** and appends the name or email of the selected project or client to the command box respectively. This is useful if you want to quickly reference a project or client in your command.
 
@@ -631,9 +670,9 @@ read the statement `q -a foo [-b bar]` like so:
 
 Action | Format | Example 
 --------|------------------|------
-[**Create new client**](#creating-a-client-contact--c) | `c -cn client_name -e email [-y year_of_birth] [-src source] [-mn mobile_number]` | `c -cn Alice Baker -e alice_baker@bakers.com -y 2000`
-[**Delete an existing client** ](#deleting-a-client-contact--dc)| `dc -e email` | `dc -e alice_baker@bakers.com`
+[**Create new client**](#creating-a-client-contact-c) | `c -cn client_name -e email [-y year_of_birth] [-src source] [-mn mobile_number]` | `c -cn Alice Baker -e alice_baker@bakers.com -y 2000`
+[**Delete an existing client** ](#deleting-a-client-contact-dc)| `dc -e email` | `dc -e alice_baker@bakers.com`
 [**Update an existing client**](#updating-a-client-uc) | `uc -e email [-cn client_name] [-y year_of_birth] [-src source] [-mn mobile_number] [-e2 new_email]` | `uc -e alice_baker@bakers.com -y 2002 -mn 85090234`
-[**Create a project**](#creating-a-project--p)| `p -pn project_name -e client_email [-s status] [-src source] [-d description] [-ad accepted_date] [-dd deadline_date]` | `p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075`
-[**Delete a project**](#deleting-a-project--dp) | `dp -pn project_name` | `dp -pn Mycelium Desktop`
-[**Update an existing project**](#updating-a-project--up) | `up -pn project_name [-e email] [-s status] [-src source] [-d description]  [-ad accepted_date] [-dd deadline_date] [-pn2 new_project_name]` | `up -pn Mycelium Desktop -e alice_baker@bakers.com -dd 30/03/2024`
+[**Create a project**](#creating-a-project-p)| `p -pn project_name -e client_email [-s status] [-src source] [-d description] [-ad accepted_date] [-dd deadline_date]` | `p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com -dd 30/02/2075`
+[**Delete a project**](#deleting-a-project-dp) | `dp -pn project_name` | `dp -pn Mycelium Desktop`
+[**Update an existing project**](#updating-a-project-up) | `up -pn project_name [-e email] [-s status] [-src source] [-d description]  [-ad accepted_date] [-dd deadline_date] [-pn2 new_project_name]` | `up -pn Mycelium Desktop -e alice_baker@bakers.com -dd 30/03/2024`

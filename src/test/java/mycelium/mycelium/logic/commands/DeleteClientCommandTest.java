@@ -1,18 +1,19 @@
 package mycelium.mycelium.logic.commands;
 
+import static mycelium.mycelium.logic.commands.CommandTestUtil.assertCommandFailure;
+import static mycelium.mycelium.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Map;
+import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 
-import mycelium.mycelium.logic.commands.exceptions.CommandException;
+import mycelium.mycelium.commons.core.Messages;
+import mycelium.mycelium.logic.uiaction.TabSwitchAction;
 import mycelium.mycelium.model.ModelManager;
-import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.testutil.ClientBuilder;
 import mycelium.mycelium.testutil.Pair;
@@ -21,27 +22,28 @@ public class DeleteClientCommandTest {
     // TODO add more tests in the manner of DeleteCommandTest.java! The tests we
     // have now are very basic, and I have written them in a rush.
 
+    private static final Function<String, CommandResult> buildCommandResult = (msg)
+        -> new CommandResult(msg, new TabSwitchAction(TabSwitchAction.TabSwitch.CLIENT));
+
     private ModelManager model = new ModelManager();
 
     @Test
     public void execute_validEmail_success() throws Exception {
-        Client client = new ClientBuilder().build();
+        var client = new ClientBuilder().build();
         model.addClient(client);
-
         assertTrue(model.hasClient(client));
 
-        DeleteClientCommand cmd = new DeleteClientCommand(client.getEmail());
-        CommandResult res = cmd.execute(model);
+        var cmd = new DeleteClientCommand(client.getEmail());
+        var expRes = buildCommandResult.apply(String.format(DeleteClientCommand.MESSAGE_DELETE_PERSON_SUCCESS, client));
+        var expModel = new ModelManager(); // empty model
 
-        assertFalse(model.hasClient(client));
-        assertEquals(String.format(DeleteClientCommand.MESSAGE_DELETE_PERSON_SUCCESS, client), res.getFeedbackToUser());
+        assertCommandSuccess(cmd, model, expRes, expModel);
     }
 
     @Test
     public void execute_nonExistentEmail_throwsCommandException() {
-        DeleteClientCommand cmd = new DeleteClientCommand(new Email("hogriders@coc.org"));
-
-        assertThrows(CommandException.class, () -> cmd.execute(model));
+        var cmd = new DeleteClientCommand(new Email("hogriders@coc.org"));
+        assertCommandFailure(cmd, model, Messages.MESSAGE_INVALID_CLIENT);
     }
 
     @Test
