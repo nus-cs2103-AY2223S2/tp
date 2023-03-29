@@ -235,7 +235,17 @@ _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer**.
 * At least one field must be provided.
-* For the following fields, they are considered a `SuperField`
+
+For the following fields, they are considered a `SuperField`.
+* Modules
+* Tags
+
+A `SuperField`
+can contain many inputs in that single field. When using edit, the command checks
+for if that input is already in that `SuperField`, if it is, it will remove it.
+If not, then it will add the input into the `SuperField`
+  * e.g. `edit mt/CS2103T` removes CS2103T from the Modules field
+of a person if it already exists and adds it if it does not.
   
 | Specifier | Name of Field                   | Optional? |
 |-----------|---------------------------------|-----------|
