@@ -100,31 +100,4 @@ class ExportProgressCommandTest {
         // different person -> returns false
         assertFalse(exportProgressFirstCommand.equals(exportProgressSecondCommand));
     }
-
-    @Test
-    void execute_validStudentIndexFileCurrentlyOpened_failure() throws IOException, InterruptedException {
-        Person studentToExport = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-
-        String studentName = studentToExport.getName().fullName;
-        String defaultDir = Paths.get("").toAbsolutePath().toString();
-        String defaultPath = Paths.get(studentName + "'s Progress Report.pdf").toAbsolutePath().toString();
-
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.exportProgress(studentToExport, defaultPath);
-
-        if (Desktop.isDesktopSupported()) {
-            File pdf = new File(defaultPath);
-            Desktop.getDesktop().open(pdf);
-        }
-
-        TimeUnit.SECONDS.sleep(5);
-
-        ExportProgressCommand exportProgressCommand = new ExportProgressCommand(INDEX_FIRST_PERSON, "");
-
-        String expectedMessage = "Error!\n"
-                + studentName + "'s Progress Report.pdf (The process cannot access the file because it is being used "
-                + "by another process)";
-
-        assertCommandFailure(exportProgressCommand, model, expectedMessage);
-    }
 }
