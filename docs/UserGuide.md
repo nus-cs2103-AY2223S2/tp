@@ -523,7 +523,7 @@ Find all people that contain the given constraints. <br>
 > * n/NAME (e.g. n/Jo will load all people whose names contain Jo such as Jo, John, Joleen.
 > * y/YEAR (e.g. y/2 will load all persons who are in year 2)
 > * c/COURSE (e.g. c/Computer will load all people enrolled in Computer Engineering and Computer Science)
->   * [Why is it **find** c/COURSE and not c/COURSE_INDEX like **add** and **edit**?](#why-is-it-find-ccourse-and-not-ccourseindex-like-add-and-edit-)
+>   * Notes that this is different from `add` and `edit` which uses c/COURSE_INDEX. To find out why, refer to our [faq](#faq)
 > * m/MODULES (e.g. m/CS2103 will load all person with CS2103 including CS2103T and CS2103R)
 >   * m/ACADEMIC_YEAR MODULES (e.g. m/AY2223S1 CS2103 will load all person with AY2223S1 CS2103 including AY2223S1 CS2103T and AY2223S1 CS2103R in their module list)
 >   * 💡 **Tip:** You can input as many MODULES and ACADEMIC_YEAR MODULES as you want. <br> For example,  m/`cs1101 cs1231` `AY2223S1 cs2040` `AY2223S2 cs2090 cs3230` will load all person that have taken
