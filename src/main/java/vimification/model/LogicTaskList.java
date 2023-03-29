@@ -10,7 +10,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import vimification.commons.core.Index;
 import vimification.model.task.Priority;
 import vimification.model.task.Status;
 import vimification.model.task.Task;
@@ -112,23 +111,20 @@ public class LogicTaskList {
      * Marks the task with the specified index as done.
      */
     /**
-    public void mark(int index) {
-        tasks.get(index).mark();
-    }
+     * public void mark(int index) { tasks.get(index).mark(); }
      **/
 
     /**
      * Unmarks the task with the specified index as not done.
      */
     /**
-    public void unmark(int index) {
-        tasks.get(index).unmark();
-    }
+     * public void unmark(int index) { tasks.get(index).unmark(); }
      **/
 
     public Priority getPriority(int index) {
         return tasks.get(index).getPriority();
     }
+
     public void setPriority(int index, int newLevel) {
         tasks.get(index).setPriority(newLevel);
     }
@@ -166,14 +162,9 @@ public class LogicTaskList {
     }
 
     /**
-    public List<Task> removeAllDone() {
-        Predicate<Task> pred = Task::isDone;
-        List<Task> tasksDone = stream()
-                .filter(pred)
-                .collect(Collectors.toCollection(ArrayList::new));
-        tasks.removeAll(tasksDone);
-        return tasksDone;
-    }
+     * public List<Task> removeAllDone() { Predicate<Task> pred = Task::isDone; List<Task> tasksDone
+     * = stream() .filter(pred) .collect(Collectors.toCollection(ArrayList::new));
+     * tasks.removeAll(tasksDone); return tasksDone; }
      */
 
     public void addAll(List<Task> tasks) {
