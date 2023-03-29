@@ -11,7 +11,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_BOOK_BORROWED = "The book is already borrowed";
     public static final String MESSAGE_BOOK_BORROWED_NOT_FOUND =
-        "The person has borrowed a book but is not found in book list";
+        "The book is not found in the book list";
     public static final String MESSAGE_BORROWER_NOT_FOUND =
         "The book is borrowed but the person is not found in person list";
     public static final String MESSAGE_BOOK_NOT_BORROWED = "The book is not borrowed";
