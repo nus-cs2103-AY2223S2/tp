@@ -114,9 +114,16 @@ Examples:
 *  `edit 1 n/Hobbit a/J. R. R. Tolkien` Edits the title and author of the 1st bookmark to be `Hobbit` and `J. R. R. Tolkien` respectively.
 *  `edit 2 n/The Odyssey t/` Edits the name of the 2nd person to be `The Odyssey` and clears all existing tags.
 
-### Locating bookmarks by title: `find`
+### Locating bookmarks by specific fields: `find`
 
+<<<<<<< Updated upstream
 Find bookmarks whose specified fields contain the given keywords.
+=======
+
+`find` helps you to find bookmarks whose specified fields contain the given keywords. You can use this when you
+want to filter out certain bookmarks from your large list of bookmarks. `find` allows you to search for bookmarks 
+using the title, author, genre and/or tags of a bookmark.
+>>>>>>> Stashed changes
 
 Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 
@@ -129,8 +136,9 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 * Only full words will be matched e.g. `Ranker` will not match `Ranker's`
 
 Examples:
-* `find n/ Chainsaw Man` returns `chainsaw man` and `Chainsaw Man`
-* `find n/ ranker's g/ Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`<br>
+* `find n/Chainsaw Man` returns `chainsaw man` and `Chainsaw Man`
+* `find n/ranker's g/Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`
+*  `find a/Yoo Heonhwa` returns every bookmark whose author of the book is Yoo Heonhwa<br>
 
 
 ### Deleting a person : `delete`
@@ -195,7 +203,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MyLib home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -211,4 +219,8 @@ Action | Format, Examples
 **GoTo** | `goto INDEX`<br> e.g., `goto 3`
 **List** | `list`
 **Help** | `help`
+**List Tags** | `tags`
+**Adding a tag** | `addtag [t/TAG]…` <br> e.g., `addtag t/Novel`
+**Deleting a tag** | `dtag TAGNAME` <br> e.g., `dtag MaleProtagonist`
+**List Genres** | `genre`
 
