@@ -1,0 +1,32 @@
+!define sdName ""
+!define keyType ""
+!define targetType ""
+!define targetName ""
+!define toMW ""
+!define toTarget ""
+!define targetAction ""
+
+@startuml
+!include ../../style.puml
+
+mainframe sd sdName
+participant ":KeyType" as Key KEY_COLOR_T3
+participant "mainWindow:MainWindow" as MainWindow UI_COLOR_T4
+participant "targetName:targetType" as Target UI_COLOR
+
+[-> Key : execute(logic, mainWindow)
+activate Key
+Key -> MainWindow : toMW
+activate MainWindow
+MainWindow -> Target : toTarget
+activate Target
+Target -> Target : targetAction
+Target --> MainWindow
+deactivate Target
+MainWindow --> Key
+deactivate MainWindow
+Key -->[
+deactivate Key
+
+@enduml
+

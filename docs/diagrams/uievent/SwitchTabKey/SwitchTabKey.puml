@@ -1,0 +1,9 @@
+@startuml
+!define sdName switch tabs
+!define typeName SwitchTabKey
+!define refName execute tab switch
+!define keyName switchTabKey
+
+!include ../templates/KeyHandling.puml
+@enduml
+

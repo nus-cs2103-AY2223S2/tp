@@ -66,7 +66,7 @@ java -jar mycelium.jar
 
 If you see a window like the one shown below, then you have successfully
 installed and launched Mycelium! Notice that some mock data has been populated
-to help you get a feel for the application. Feel free to delete them later. 
+to help you get a feel for the application. Feel free to delete them later.
 
 <img src="images/OnStartupScreenshot.png" />
 
@@ -123,7 +123,7 @@ separated tokens.
 As an example, the command below creates a new project with the name *Mycelium
 Desktop*, for client *Spiderman*, and sourced from *fiverr.com*. (Don't worry
 about what the arguments mean for now, this example is just meant to
-demonstrate the layout.) 
+demonstrate the layout.)
 
 ```bash
 p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com
@@ -511,8 +511,10 @@ might wish to note:
 
 ## HotKeys
 
-> We will refer to the left panel containing the project and client tabs as the **Entity panel** 
-> and the right panel containing the overdued projects and projects due soon as the **statistic panel**.
+<div markdown="span" class="alert alert-info">
+:information_source: We will refer to the left panel containing the project and client tabs as the **entity panel**
+and the right panel containing the overdued projects and projects due soon as the **statistic panel**.
+</div>
 
 HotKeys are keyboard short cuts supported by Mycelium to enable faster navigation and editing of commands with the keyboard. This allows for Mycelium to be fully keyboard driven. The following are the supported hotkeys:
 
@@ -538,25 +540,25 @@ This shortcut allows you to quickly clear the current line in the command box. T
 
 ### (CTRL+S) Switch Panels
 
-This shortcut allows you to quickly switch the focus between the main panel and the statistic panel. 
+This shortcut allows you to quickly switch the focus between the entity panel and the statistic panel.
 The panel in focus will be highlighted with a blue header.
 
 ### (CTRL+L) Switch Tabs
 
-This shortcut allows you to quickly switch between the tabs of panel that is currently in focus. 
-If the main panel is in focus, then the tabs will be the projects and clients tabs. 
+This shortcut allows you to quickly switch between the tabs of panel that is currently in focus.
+If the entity panel is in focus, then the tabs will be the projects and clients tabs.
 If the right statistic panel is in focus, then the tabs will be the overdued and due soon tabs.
 
 ### (CTRL+J) Select next
 
-This shortcut allows you to quickly select the next item on the currently selected list in the 
-currently selected panel, either the main panel or statistic panel.
+This shortcut allows you to quickly select the next item on the currently selected list in the
+currently selected panel, either the entity panel or statistic panel.
 
 Within the tab that is in focus, the next item in the list will be selected. If there was no item originally selected, then the first item in the list will be selected.
 
 ### (CTRL+K) Select previous
 
-This shortcut allows you to quickly select the previous item on the currently selected list in the currently selected panel, either the main panel or statistic panel.
+This shortcut allows you to quickly select the previous item on the currently selected list in the currently selected panel, either the entity panel or statistic panel.
 
 Within the tab that is in focus, the previous item in the list will be selected. If there was no item originally selected, then the last item in the list will be selected.
 
@@ -564,9 +566,9 @@ Within the tab that is in focus, the previous item in the list will be selected.
 
 This shortcut allows you toggle the command box between **search mode** and **command mode** (default).
 
-In **command mode**, the input in the command box is used to execute the command. 
+In **command mode**, the input in the command box is used to execute the command.
 
-In **search mode**, the command box is highlighted light blue and the input is used to *interactively* search for the closest matching project or client by name in the **main panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the main panel will be put into focus automatically.
+In **search mode**, the command box is highlighted light blue and the input is used to *interactively* search for the closest matching project or client by name in the **entity panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the entity panel will be put into focus automatically.
 
 If you have a project or client selected, pressing (ENTER) in **search mode** switches back to **command mode** and appends the name or email of the selected project or client to the command box respectively. This is useful if you want to quickly reference a project or client in your command.
 
