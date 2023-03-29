@@ -6,11 +6,14 @@ import static expresslibrary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import expresslibrary.logic.commands.AddBookCommand;
 import expresslibrary.logic.commands.AddPersonCommand;
 import expresslibrary.logic.commands.BorrowCommand;
 import expresslibrary.logic.commands.ClearCommand;
 import expresslibrary.logic.commands.Command;
+import expresslibrary.logic.commands.DeleteBookCommand;
 import expresslibrary.logic.commands.DeletePersonCommand;
+import expresslibrary.logic.commands.EditBookCommand;
 import expresslibrary.logic.commands.EditPersonCommand;
 import expresslibrary.logic.commands.ExitCommand;
 import expresslibrary.logic.commands.FindBookCommand;
@@ -48,11 +51,20 @@ public class ExpressLibraryParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        case AddBookCommand.COMMAND_WORD:
+            return new AddBookCommandParser().parse(arguments);
+
         case AddPersonCommand.COMMAND_WORD:
             return new AddPersonCommandParser().parse(arguments);
 
+        case EditBookCommand.COMMAND_WORD:
+            return new EditBookCommandParser().parse(arguments);
+
         case EditPersonCommand.COMMAND_WORD:
             return new EditPersonCommandParser().parse(arguments);
+
+        case DeleteBookCommand.COMMAND_WORD:
+            return new DeleteBookCommandParser().parse(arguments);
 
         case DeletePersonCommand.COMMAND_WORD:
             return new DeletePersonCommandParser().parse(arguments);
