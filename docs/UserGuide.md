@@ -138,7 +138,7 @@ Use this command to add him/her to your NeoBook.
 
 **Syntax:**
 
-`add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+`add {SPECIFIER}/{INPUT}...`
 
 Here are all the specifiers that can be used:
 
@@ -161,8 +161,8 @@ A person can have any number of tags and modules taken(including 0).
 IMPT: If you want to add multiple tags or modules in one statement,
 every tag or module has to have its corresponding specifier.
 
-In the future, only modules that are a part of NUS' mod systems will be allowed. This is
-to prevent any messiness and also allows for syncing with the calendar.
+Only modules that are a part of NUS' mod systems will be allowed. This is
+to prevent any messiness and also allows for future syncing with the calendar.
 </div>
 
 Examples:
