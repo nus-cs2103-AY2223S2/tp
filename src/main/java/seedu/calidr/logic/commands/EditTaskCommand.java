@@ -101,11 +101,14 @@ public class EditTaskCommand extends Command {
             Title updatedTitle = editTaskDescriptor.getTitle().orElse(todoToEdit.getTitle());
             Description oldDescription = todoToEdit.getDescription().orElse(null);
             Description updatedDescription = editTaskDescriptor.getDescription().orElse(oldDescription);
+            Location oldLocation = todoToEdit.getLocation().orElse(null);
+            Location updatedLocation = editTaskDescriptor.getLocation().orElse(oldLocation);
             Priority updatedPriority = editTaskDescriptor.getPriority().orElse(todoToEdit.getPriority());
             TodoDateTime updatedBy = editTaskDescriptor.getByDateTime().orElse(todoToEdit.getBy());
 
             ToDo updatedTodo = new ToDo(updatedTitle, updatedBy);
             updatedTodo.setDescription(updatedDescription);
+            updatedTodo.setLocation(updatedLocation);
             updatedTodo.setPriority(updatedPriority);
 
             return updatedTodo;
@@ -116,6 +119,8 @@ public class EditTaskCommand extends Command {
             Title updatedTitle = editTaskDescriptor.getTitle().orElse(eventToEdit.getTitle());
             Description oldDescription = eventToEdit.getDescription().orElse(null);
             Description updatedDescription = editTaskDescriptor.getDescription().orElse(oldDescription);
+            Location oldLocation = eventToEdit.getLocation().orElse(null);
+            Location updatedLocation = editTaskDescriptor.getLocation().orElse(oldLocation);
             Priority updatedPriority = editTaskDescriptor.getPriority().orElse(eventToEdit.getPriority());
 
             LocalDateTime updatedFromDateTime = editTaskDescriptor.getFromDateTime()
@@ -130,6 +135,7 @@ public class EditTaskCommand extends Command {
 
             Event updatedEvent = new Event(updatedTitle, updatedEventTimes);
             updatedEvent.setDescription(updatedDescription);
+            updatedEvent.setLocation(updatedLocation);
             updatedEvent.setPriority(updatedPriority);
 
             return updatedEvent;
@@ -173,7 +179,7 @@ public class EditTaskCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, description, byDateTime,
+            return CollectionUtil.isAnyNonNull(title, description, location, byDateTime,
                     fromDateTime, toDateTime, priority);
         }
 
