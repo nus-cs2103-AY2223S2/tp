@@ -13,7 +13,7 @@ import seedu.fitbook.commons.core.LogsCenter;
 import seedu.fitbook.model.client.Client;
 
 public class SummaryListCard extends UiPart<Region> {
-    private static final String FXML = "SummaryListCard.fxml";
+    private static final String FXML = "GraphCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
 
     /**
@@ -49,6 +49,9 @@ public class SummaryListCard extends UiPart<Region> {
         client.getAppointments().stream()
                 .sorted(Comparator.comparing(appointment -> appointment.appointmentTime))
                 .forEach(appointment -> appointments.getChildren().add(new Label(appointment.appointmentTime)));
+        client.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

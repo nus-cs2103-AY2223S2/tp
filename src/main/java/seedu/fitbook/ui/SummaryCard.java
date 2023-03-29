@@ -48,7 +48,7 @@ public class SummaryCard extends UiPart<Region> {
     @FXML
     private Label routines;
     @FXML
-    private Label exercises;
+    private Label subTitle;
     @FXML
     private FlowPane appointments;
     @FXML
@@ -63,8 +63,6 @@ public class SummaryCard extends UiPart<Region> {
     private ImageView phoneIcon;
     @FXML
     private ImageView addressIcon;
-    @FXML
-    private ImageView genderIcon;
     @FXML
     private ImageView emailIcon;
     @FXML
@@ -89,7 +87,6 @@ public class SummaryCard extends UiPart<Region> {
         } else {
             genderText = "femaleIcon";
         }
-        id.setText(displayedIndex + ". ");
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
         address.setText(client.getAddress().value);
@@ -148,7 +145,7 @@ public class SummaryCard extends UiPart<Region> {
             routineIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/routineIcon.png")));
         } else {
             routines.setManaged(false);
-            exercises.setManaged(false);
+            subTitle.setManaged(false);
             routineIcon.setManaged(false);
         }
     }

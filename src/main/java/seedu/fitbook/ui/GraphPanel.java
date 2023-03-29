@@ -9,9 +9,9 @@ import javafx.scene.layout.Region;
 import seedu.fitbook.commons.core.LogsCenter;
 import seedu.fitbook.model.client.Client;
 
-public class SummaryPanel extends UiPart<Region> {
-    private static final String FXML = "SummaryPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(SummaryPanel.class);
+public class GraphPanel extends UiPart<Region> {
+    private static final String FXML = "GraphPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(GraphPanel.class);
 
     @javafx.fxml.FXML
     private ListView<Client> clientListView;
@@ -19,16 +19,16 @@ public class SummaryPanel extends UiPart<Region> {
     /**
      * Creates a {@code ClientListPanel} with the given {@code ObservableList}.
      */
-    public SummaryPanel(ObservableList<Client> clientList) {
+    public GraphPanel(ObservableList<Client> clientList) {
         super(FXML);
         clientListView.setItems(clientList);
-        clientListView.setCellFactory(listView -> new SummaryPanel.SummaryViewCell());
+        clientListView.setCellFactory(listView -> new GraphPanel.GraphListCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Client} using a {@code ClientCard}.
      */
-    class SummaryViewCell extends ListCell<Client> {
+    class GraphListCell extends ListCell<Client> {
         @Override
         protected void updateItem(Client client, boolean empty) {
             super.updateItem(client, empty);
@@ -37,7 +37,7 @@ public class SummaryPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new SummaryCard(client, getIndex() + 1).getRoot());
+                setGraphic(new GraphCard(client, getIndex() + 1).getRoot());
             }
         }
     }

@@ -1,5 +1,7 @@
 package seedu.fitbook.ui;
 
+import java.util.Date;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -23,6 +25,8 @@ import seedu.fitbook.logic.commands.CommandResult;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.client.Weight;
+import seedu.fitbook.model.client.WeightHistory;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -53,11 +57,14 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
     private SchedulePanel schedulePanel;
+    private GraphPanel graphPanel;
     private ExercisePanel exercisePanel;
+    private ExerciseListPanel exerciseListPanel;
     private SummaryPanel summaryPanel;
     private SummaryListPanel summaryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private int tabNumber = 0;
     @FXML
     private Label exercisePanelTitle;
 
@@ -201,6 +208,10 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    private void setTabNumber(int tabNumber) {
+        this.tabNumber = tabNumber;
+    }
+
     /**
      * Closes the application.
      */
@@ -227,11 +238,16 @@ public class MainWindow extends UiPart<Stage> {
         setMainTitleText(EXERCISE);
         setSubTitle(EXERCISE);
         rightPanelPlaceholder.setManaged(false);
+        leftPanelPlaceholder.setManaged(false);
 
         exercisePanel = new ExercisePanel(logic.getFilteredRoutineList());
         rightPanelPlaceholder.getChildren().add(exercisePanel.getRoot());
 
+        exerciseListPanel = new ExerciseListPanel(logic.getFilteredClientList());
+        leftPanelPlaceholder.getChildren().add(exerciseListPanel.getRoot());
+
         rightPanelPlaceholder.setManaged(true);
+        leftPanelPlaceholder.setManaged(true);
     }
 
     @FXML
@@ -241,11 +257,16 @@ public class MainWindow extends UiPart<Stage> {
         setMainTitleText(STATISTIC);
         setSubTitle(STATISTIC);
         rightPanelPlaceholder.setManaged(false);
+        leftPanelPlaceholder.setManaged(false);
 
-        exercisePanel = new ExercisePanel(logic.getFilteredRoutineList());
-        rightPanelPlaceholder.getChildren().add(exercisePanel.getRoot());
+        summaryListPanel = new SummaryListPanel(logic.getFilteredClientList());
+        leftPanelPlaceholder.getChildren().add(summaryListPanel.getRoot());
+
+        graphPanel = new GraphPanel(logic.getFilteredClientList());
+        rightPanelPlaceholder.getChildren().add(graphPanel.getRoot());
 
         rightPanelPlaceholder.setManaged(true);
+        leftPanelPlaceholder.setManaged(true);
     }
 
     @FXML

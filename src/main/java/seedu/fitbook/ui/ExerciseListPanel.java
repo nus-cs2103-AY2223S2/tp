@@ -8,9 +8,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.fitbook.commons.core.LogsCenter;
 import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.routines.Routine;
 
-public class SummaryPanel extends UiPart<Region> {
-    private static final String FXML = "SummaryPanel.fxml";
+public class ExerciseListPanel extends UiPart<Region> {
+    private static final String FXML = "ExerciseListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(SummaryPanel.class);
 
     @javafx.fxml.FXML
@@ -19,16 +20,16 @@ public class SummaryPanel extends UiPart<Region> {
     /**
      * Creates a {@code ClientListPanel} with the given {@code ObservableList}.
      */
-    public SummaryPanel(ObservableList<Client> clientList) {
+    public ExerciseListPanel(ObservableList<Client> clientList) {
         super(FXML);
         clientListView.setItems(clientList);
-        clientListView.setCellFactory(listView -> new SummaryPanel.SummaryViewCell());
+        clientListView.setCellFactory(listView -> new ExerciseListPanel.ExerciseListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Client} using a {@code ClientCard}.
      */
-    class SummaryViewCell extends ListCell<Client> {
+    class ExerciseListViewCell extends ListCell<Client> {
         @Override
         protected void updateItem(Client client, boolean empty) {
             super.updateItem(client, empty);
@@ -37,8 +38,9 @@ public class SummaryPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new SummaryCard(client, getIndex() + 1).getRoot());
+                setGraphic(new ExerciseListCard(client, getIndex() + 1).getRoot());
             }
         }
     }
+
 }
