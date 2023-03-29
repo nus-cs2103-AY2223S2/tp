@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.homework.ViewHomeworkCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -75,7 +76,8 @@ public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
 
             // it cannot be an empty string
             if (!checkEmptyString(nameKeywords)) {
-                throw new ParseException("Name cannot be empty.");
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        Messages.MESSAGE_EMPTY_STUDENT));
             }
 
             namePredicate = new NamePredicate(nameKeywords);
@@ -89,11 +91,13 @@ public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
             // there can only be one status prefix
             if (argMultimap.getAllValues(PREFIX_STATUS).size() > 1) {
-                throw new ParseException("Only one status prefix allowed.");
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        Messages.MESSAGE_MULTIPLE_STATUS));
             }
             // it cannot be an empty string
             if (argMultimap.getValue(PREFIX_STATUS).get().isEmpty()) {
-                throw new ParseException("Status cannot be empty.");
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        Messages.MESSAGE_EMPTY_STATUS));
             }
 
             String status = argMultimap.getValue(PREFIX_STATUS).get();
