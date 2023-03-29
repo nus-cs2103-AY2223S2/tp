@@ -1,21 +1,37 @@
 ---
 layout: page
 title: Developer Guide
+
 ---
+
+## Table of Contents
+
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## Acknowledgements
 
-@junyi
+* Libraries used: [JavaFX](https://openjfx.io/),
+  [Jackson](https://github.com/FasterXML/jackson),
+  [JUnit5](https://github.com/junit-team/junit5)
+* With inspiration from: [fzf](https://github.com/junegunn/fzf) (for fuzzy
+  finding), [Vim](https://www.vim.org/) (for hotkeys)
+* Originally forked from: [AddressBook
+  3](https://github.com/nus-cs2103-AY2223S2/tp)
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+## Using this Guide
 
-## How to use this guide
+This guide is written for anyone who wishes to hack on the Mycelium codebase.
+It assumes basic knowledge of Java as well as the ability to read UML diagrams.
 
 ### Icons and conventions
+
+The following typographical conventions are used in this guide.
+
+* (KEYCAP) - Indicates a literal set of keys, e.g. (CTRL+F) refers to the
+  combination of the 'Control' and 'F' keys.
 
 Throughout this guide, you might encounter certain boxes which like the ones
 below. Here is what each of them means.
@@ -34,16 +50,68 @@ below. Here is what each of them means.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Setting Up, Getting Started
 
-@junyi
+### Cloning the repo
 
-{TODO put the page here instead}
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+First, fork [the repo](https://github.com/AY2223S2-CS2103T-W14-1/tp), and clone
+the fork into your local machine.
+
+If you plan to use Intellij IDEA:
+
+1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring
+   the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to to
+   ensure Intellij is configured to use **JDK 11**.
+1. **Import the project as a Gradle project**: Follow the guide
+   [_[se-edu/guides] IDEA: Importing a Gradle
+   project_](https://se-education.org/guides/tutorials/intellijImportGradleProject.html)
+   to import the project into IDEA.<br> :information_source: Note: Importing a Gradle
+   project is slightly different from importing a normal Java project.
+
+If you plan to use other development environments, please seek out the
+appropriate guides on setting up JDK 11 and Gradle.
+
+Now, assuming you have successfully set up the project, let us verify that the
+code works as intended. In a terminal, navigate to the directory where you
+cloned the repo and execute the following command: `./gradlew test`. This will
+run all of Mycelium's automated tests. If you don't see any error messages
+printed, then you're all set.
+
+<div markdown="span" class="alert alert-success">
+:bulb: Did `./gradlew test` not work for you? Depending on your operating
+system and shell, there might be different ways to run the Gradle wrapper file.
+We advise you to
+
+1. Check that the file has execute permissions
+1. Check [Gradle's
+   website](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:using_wrapper)
+   for more information
+</div>
+
+### Before writing code
+
+1. **Configure the coding style**
+
+   If using IDEA, follow the guide [_[se-edu/guides] IDEA: Configuring the code
+   style_](https://se-education.org/guides/tutorials/intellijCodeStyle.html) to
+   set up IDEA's coding style to match ours.
+
+1. **Set up CI**
+
+   This project comes with a GitHub Actions config files (in
+   `.github/workflows` folder). When GitHub detects those files, it will run
+   the CI for your project automatically at each push to the `master` branch or
+   to any PR. No set up required.
+
+1. **Learn the design**
+
+   When you are ready to start coding, we recommend that you get some sense of
+   the overall design by reading about [Mycelium’s
+   architecture](#architecture).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## Design
 
 ### Architecture
 
@@ -183,8 +251,12 @@ Classes used by multiple components are in the `mycelium.mycelium.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
-@junyi
-{TODO add a brief interlude here about categorization of implementation details}
+<div markdown="span" class="alert alert-info">
+:information_source: The following three sections discuss implementation
+details. We have divided them into three overarching themes: [User
+Interface](#user-interface), [Command Handling](#command-handling), and
+[Keyboard Interactions](#keyboard-interactions).
+</div>
 
 ## User Interface
 
@@ -367,14 +439,14 @@ for interactive changes to the displayed projects and clients as the user types.
 
 {TODO fix diagrams}
 
-A fuzzy search searches for text that matches a term closely instead of
-exactly. In Mycelium, this is implemented using [Levenshtein
-distance](https://en.wikipedia.org/wiki/Levenshtein_distance). A higher
-distance corresponds to a better match; a lower distance corresponds to a worse
-match. The goal of this feature is to provide interactive fuzzy searching and
-display sorted results such that the best match is at the top; here,
-"interactive" means that results are ranked and displayed *as* the user types
-their query.
+A fuzzy search searches for text that matches a term closely instead of exactly.
+In Mycelium, this is implemented using a modified version of [Levenshtein
+distance](https://en.wikipedia.org/wiki/Levenshtein_distance), which measures
+the "distance" between two strings. A lower distance corresponds to a better
+match; a higher distance corresponds to a worse match. The goal of this feature
+is to provide interactive fuzzy searching and display sorted results such that
+the best match is at the top; here, "interactive" means that results are ranked
+and displayed *as* the user types their query.
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** We will use the terms "fuzzy search" and "fuzzy
@@ -384,101 +456,98 @@ against some input, and sorting them such that the closest matches are at the
 front.
 </div>
 
-The main algorithm is in `Fuzzy#delta`, which is a pure function computing the
-distance between two strings. In order to use it from the application, we also
-have the `FuzzyManager` class which simplifies the task of ranking clients and
-projects. The class diagram below shows a high level overview of the classes
-involved.
+This section will briefly cover the idea behind the fuzzy ranking algorithm.
+For full details regarding how the scoring is done, it is best to refer to [the
+code](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/util/Fuzzy.java)
+directly.
+
+The scoring algorithm is implemented in the `Fuzzy` class in two pure
+functions - `Fuzzy#delta` and `Fuzzy#levenshtein`, both returning a `double`
+between 0 and 1 inclusive. A score of 1 indicates a perfect match, and lower
+scores indicate poorer matches.
+
+* `Fuzzy#delta` is a simpler algorithm which takes a query string and a target,
+  and expects to find the query string as a subsequence of the target. In other
+  words, it expects to find every character of the query within the target, and
+  in the same order.
+* `Fuzzy#levenshtein` computes the Levenshtein distance between two strings,
+  and then normalizes it into the range [0, 1].
+
+Suppose we have a query string and a list of items to rank, according to how
+well they match the query. In broad strokes, the algorithm proceeds as such:
+
+1. Compute `Fuzzy#delta` for each item.
+1. For each item which received a score above zero, sort them by descending
+   scores and add them to the resulting list.
+1. Compute `Fuzzy#levenshtein` for the *remaining items* only.
+1. Repeat step (2) for the remaining items using the scores obtained from
+   `Fuzzy#levenshtein`.
+1. Return the resulting list.
+
+<div markdown="span" class="alert alert-success">
+:bulb: The algorithm outlined above actually filters out all items which
+receive a **zero** score from both `Fuzzy#delta` and `Fuzzy#levenshtein`. These
+items would subsequently not be displayed to the user. If we raised this number
+to, say, 0.1, then we can impose a stricter requirement on how well the items
+match any given query, thus potentially filtering out more items. Hence, this
+is a point for possible fine-tuning in the future.
+</div>
+
+#### `FuzzyManager`
+
+In order to use fuzzy search from the application, we also have the
+`FuzzyManager` class which exposes a more convenient API for us to rank clients
+and projects. The class diagram below shows a high level overview of the
+classes involved.
 
 ![FuzzyManagerHighLevelClassDiagram](images/FuzzyManagerHighLevelClassDiagram.png)
-
-First, we briefly note that since the same command input box must be toggled
-between use for regular commands (e.g. for basic CRUD) as well as for fuzzy
-searching, the `CommandBox` has a `mode` attribute to help it distinguish
-between the two states. (The toggling between states is handled by key actions,
-which is discussed in another section.) The `Mode` abstract class is
-responsible for taking action upon changes in user input. In particular, the
-`SearchMode` class encapsulates the logic required to handle search requests
-(via a change in user input) as well as applying updates to the UI. The
-following sequence diagrams illustrate this in further detail.
-
-![FuzzyManagerSequenceDiagramA](images/FuzzyManagerSequenceDiagramA.png)
-![FuzzyManagerSequenceDiagramB](images/FuzzyManagerSequenceDiagramB.png)
-
-The two figures above illustrate the end to end sequence between a change in
-user input (e.g. a user types a single character) until the updating of the UI.
-The `handleInputChanged()` method on `CommandBox` is invoked by JavaFX, and the
-contents of the command box are passed to a `SearchMode` instance to handle.
-From here, it is a three-step process.
-
-1. Retrieve an unmodified view of the clients and projects from a `Logic` instance
-1. Pass the two lists through the `FuzzyManager#rankItems` method, which
-   performs fuzzy ranking on the lists of clients and projects
-1. Apply the two ranked lists to the `MainWindow`
 
 The `FuzzyManager#rankItems` method is just a convenient pure function which,
 when given a list of clients or projects and a query string, constructs a new
 sorted and filtered list based on how well each item matches the query. It
 relies on the algorithm implemented within the `Fuzzy` class.
 
-#### Ranking considerations
+Note that part of this logic is implemented in the `SearchMode` class, which
+has already been mentioned [above](#command-box). The `SearchMode` class
+encapsulates the logic required to handle search requests (via a change in user
+input) as well as applying updates to the UI. The following sequence diagrams
+illustrate this in further detail.
 
-For ease of use, there is a `Fuzzy#ratio` method which wraps `Fuzzy#delta`.
-The former returns a score between 0 and 1, where 0 means that the two strings
-are completely different, and 1 means the two are identical. Let us call this
-number the *delta score* of two strings.
+![FuzzyManagerSequenceDiagramA](images/FuzzyManagerSequenceDiagramA.png)
+![FuzzyManagerSequenceDiagramB](images/FuzzyManagerSequenceDiagramB.png)
 
-Thus, the entire ranking process can be described as such:
+From above, we see that the `onInputChanged()` method on `SearchMode` is
+invoked with the current contents of the command box. From here, it is a
+three-step process.
 
-1. Compute the delta score of each project and client's name against the input text
-1. Sort the projects and clients by descending scores
-1. Prune the projects and clients whose score is below a certain threshold
-
-Note that we have not specified the threshold in the last point. At the moment,
-the threshold is set to zero, meaning only strings which are *completely*
-different (i.e. not even a single character matches) are pruned. Raising the
-threshold would reduce the number of results displayed; thus, this is a point
-for potential fine-tuning in the future.
+1. Retrieve an unmodified view of the clients and projects from a `Logic` instance
+1. Pass the two lists through the `FuzzyManager#rankItems` method, which
+   performs fuzzy ranking on the lists of clients and projects
+1. Apply the two ranked lists to the `MainWindow`
 
 #### `CommandBox` state
 
-As mentioned above, the same command box is used for entering regular commands
-as well as fuzzy searching, so we need some way to track the state of the
-command box, i.e. at any point in time, whether it should be taking in commands
-or performing fuzzy searching. This is achieved through a `mode` attribute on
-the `CommandBox` class. At the time of writing, there are two modes in used -
-`CommandMode`, which is the usual mode used for entering commands to, for
-instance, create a project, and `SearchMode`, which allows the command box to
-function as an interactive search bar.
-
-The class diagram below gives an overview of the `Mode` abstract class. The two
-methods of interest are `onInputChange()` and `onInputSubmit()`. The latter is
-invoked by `CommandBox` when the user pressed enter, while the former is
-invoked upon every change in the input. Thus, `SearchMode` implements its logic
-in the `onInputChange()` method.
-
-![ModeAbstractClassDiagram](images/ModeAbstractClassDiagram.png)
-
-The activity diagram below illustrates this dispatching of state concerning
-changes in user input.
+The section on the [`Command Box`](#command-box) introduced the role of this
+class in managing state between `SearchMode` and `CommandMode`. We can now
+contextualize the differences between these two modes in relation to fuzzy
+searching. This is illustrated in the activity diagram below.
 
 ![FuzzyManagerActivityDiagram](images/FuzzyManagerActivityDiagram.png)
 
 #### Updating the UI
 
 From the second sequence diagram above, we see that updates to the UI after
-fuzzy ranking is done via two setters - `MainWindow#setClients` and
-`MainWindow#setProjects`. This departs from the model used in our CRUD
-operations, where (immutable) references to a `FilteredList` of clients and
-projects were obtained upon UI initialization, and any changes such as the
-creation or deletion of a client were automatically propagated to the UI with
-no additional setters required in our application's code.
+fuzzy ranking is achieved by having `SearchMode` *set* the list of items in
+`MainWindow`. This departs from the approach used in our CRUD operations, where
+(immutable) references to a `FilteredList` of clients and projects were
+obtained upon UI initialization, and any changes such as the creation or
+deletion of a client were automatically propagated to the UI with no additional
+setters required in our application's code.
 
 However, the inclusion of fuzzy search introduces an important requirement -
-*sorting*. We wish to modify the order of items based on how well they match
-the user's input, *and* filter out the items which match poorly. Furthermore,
-upon the user exiting fuzzy search mode, we need to revert the user's view of
-clients and projects back to the way it was, before fuzzy searching began.
+*arbitrary filtering and sorting* based on user input. Furthermore, upon the
+user exiting fuzzy search mode, we need to revert the user's view of clients
+and projects back to the way it was, before fuzzy searching began.
 
 In order to decouple these requirements from the more basic ones of CRUD, we
 avoid modifying the original `FilteredList` owned by the UI. The general idea
@@ -497,19 +566,155 @@ address book, which automatically reverts it to its pre-fuzzy state.
 
 ## DevOps
 
-@junyi
+### Build automation
 
-## Logging
+This project uses Gradle for **build automation and dependency management**.
+**You are recommended to read [this Gradle Tutorial from the
+se-edu/guides](https://se-education.org/guides/tutorials/gradle.html)**.
 
-@junyi
+Given below are how to use Gradle for some important project tasks.
 
-## Documentation
+* **`clean`**: Deletes the files created during the previous build tasks (e.g.
+  files in the `build` folder).<br>e.g. `./gradlew clean`
 
-@junyi
+* **`shadowJar`**: Uses the ShadowJar plugin to creat a fat JAR file in the
+  `build/lib` folder, *if the current file is outdated*.<br>e.g. `./gradlew shadowJar`.
+
+* **`run`**: Builds and runs the application.<br>
+  **`runShadow`**: Builds the application as a fat JAR, and then runs it.
+
+* **`checkstyleMain`**: Runs the code style check for the main code base.<br>
+  **`checkstyleTest`**: Runs the code style check for the test code base.
+
+* **`test`**: Runs all tests.
+  * `./gradlew test` — Runs all tests
+  * `./gradlew clean test` — Cleans the project and runs tests
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+### Continuous integration (CI)
+
+This project uses GitHub Actions for CI. The project comes with the necessary
+GitHub Actions configurations files (in the `.github/workflows` folder). No
+further setting up required.
+
+#### Code coverage
+
+As part of CI, this project uses Codecov to generate coverage reports. When CI
+runs, it will generate code coverage data (based on the tests run by CI) and
+upload that data to the CodeCov website, which in turn can provide you more
+info about the coverage of your tests.
+
+However, because Codecov is known to run into intermittent problems (e.g.,
+report upload fails) due to issues on the Codecov service side, the CI is
+configured to pass even if the Codecov task failed. Therefore, developers are
+advised to check the code coverage levels periodically and take corrective
+actions if the coverage level falls below desired levels.
+
+To enable Codecov for forks of this project, follow the steps given in [this
+se-edu guide](https://se-education.org/guides/tutorials/codecov.html).
+
+#### Repository-wide checks
+
+In addition to running Gradle checks, CI includes some repository-wide checks.
+Unlike the Gradle checks which only cover files used in the build process,
+these repository-wide checks cover all files in the repository. They check for
+repository rules which are hard to enforce on development machines such as line
+ending requirements.
+
+These checks are implemented as POSIX shell scripts, and thus can only be run
+on POSIX-compliant operating systems such as macOS and Linux. To run all checks
+locally on these operating systems, execute the following in the repository
+root directory:
+
+`./config/travis/run-checks.sh`
+
+Any warnings or errors will be printed out to the console.
+
+**If adding new checks:**
+
+* Checks are implemented as executable `check-*` scripts within the `.github`
+  directory. The `run-checks.sh` script will automatically pick up and run
+  files named as such. That is, you can add more such files if you need and the
+  CI will do the rest.
+
+* Check scripts should print out errors in the format `SEVERITY:FILENAME:LINE:
+  MESSAGE`
+  * SEVERITY is either ERROR or WARN.
+  * FILENAME is the path to the file relative to the current directory.
+  * LINE is the line of the file where the error occurred and MESSAGE is the
+    message explaining the error.
+
+* Check scripts must exit with a non-zero exit code if any errors occur.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Making a release
+
+Here are the steps to create a new release.
+
+1. Update the version number in
+   [`MainApp.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/MainApp.java).
+1. Generate a fat JAR file using Gradle (i.e., `gradlew shadowJar`).
+1. Tag the repo with the version number. e.g. `v0.1`
+1. [Create a new release using
+   GitHub](https://help.github.com/articles/creating-releases/). Upload the JAR
+   file you created.
+
+## Logging
+
+* We are using `java.util.logging` package for logging.
+* The `LogsCenter` class is used to manage the logging levels and logging
+  destinations.
+* The `Logger` for a class can be obtained using `LogsCenter.getLogger(Class)`
+  which will log messages according to the specified logging level.
+* Log messages are output through the console and to a `.log` file.
+* The output logging level can be controlled using the `logLevel` setting in
+  the configuration file (See the [Configuration guide](Configuration.md)
+  section).
+* **When choosing a level for a log message**, follow the conventions given in
+  [_[se-edu/guides] Java: Logging
+  conventions_](https://se-education.org/guides/conventions/java/logging.html).
+
+## Documentation
+
+**Setting up and maintaining the project website:**
+
+* We use [**Jekyll**](https://jekyllrb.com/) to manage documentation.
+* The `docs/` folder is used for documentation.
+* To learn how set it up and maintain the project website, follow the guide
+  [_[se-edu/guides] **Using Jekyll for project
+  documentation**_](https://se-education.org/guides/tutorials/jekyll.html).
+* Note these points when adapting the documentation to a different
+  project/product:
+  * The 'Site-wide settings' section of the page linked above has information
+    on how to update site-wide elements such as the top navigation bar.
+  * :bulb: In addition to updating content files, you might have to update the
+    config files `docs\_config.yml` and `docs\_sass\minima\_base.scss` (which
+    contains a reference to `Mycelium` that comes into play when converting
+    documentation pages to PDF format).
+
+**Style guidance:**
+
+* Follow the [**_Google developer documentation style
+  guide_**](https://developers.google.com/style).
+* Also relevant is the [_[se-edu/guides] **Markdown coding
+  standard**_](https://se-education.org/guides/conventions/markdown.html)
+
+**Diagrams:**
+
+We use both [draw.io](https://app.diagrams.net/) and
+[PlantUML](https://plantuml.com/) as diagramming tools. The former is a drag
+and drop editor, while the latter defines UML diagrams through plain text
+files.
+
+* The `docs/images` directory contains ready-for-use pictures in PNG format
+* The `docs/diagrams` directory contains `.puml` files (for PlantUML) and
+  `.xml` files (for draw.io) which allow editing and regenerating of diagrams
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix: Requirements
 
 ### Product scope
 
@@ -654,17 +859,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+The terms in this glossary are sorted in alphabetical order.
 
-* **Console-first Interface**: An interface with interactions primarily through
-                               text commands
-* **Project**: A freelance software development job
+
 * **Client**: An individual associated with a particular project
-
-@junyi
+* **Console-first Interface**: An interface with interactions primarily through
+  text commands
+* **Draw.io**: A drag-and-drop diagramming tool. Available at
+  [draw.io](https://app.diagrams.net/).
+* **Fuzzy search**: A feature to search for items which partially match a query
+  rather than exactly
+* **PlantUML**: A text-based diagramming tool. See
+  [plantuml.com](https://plantuml.com/) for more information.
+* **Project**: A freelance software development gig
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## Appendix: Instructions for manual testing
 
 {TODO maybe add}
 
