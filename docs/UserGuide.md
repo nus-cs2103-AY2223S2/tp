@@ -73,16 +73,15 @@ For **new users** visit our [quick start](#quick-start) to get you started .
 ### Viewing help
 
 - Command format: `help`
-- Explanation: Shows a message explaining how to access the help page.
+- What it does: Shows a message explaining how to access the help page.
 
 ![help message](images/HelpWindow.png)
-
 
 
 ### Adding a doctor: 
 
 - Command format: `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALITY y/YEARS_OF_EXPERIENCE [t/TAGS]…`
-- Explanation: Adds a doctor to the address book.
+- What it does: Adds a doctor to the address book.
 
 ![add-doc](images/AddDoc.png)
 
@@ -90,10 +89,17 @@ For **new users** visit our [quick start](#quick-start) to get you started .
   - `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
   - `add-doc n/Gabriel Tan p/98765432 e/gabt@example.com s/Neurosurgery y/5`
 
+<<<<<<< Updated upstream
 ### Adding a patient: `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]…`
+=======
+### Adding a patient:
+- Command format: `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS [r/REMARK] [t/TAGS]…`
+- What it does: Adds a patient to the address book.
+>>>>>>> Stashed changes
 
-Adds a patient to the address book.
+![add-ptn](images/AddPtn.png)
 
+<<<<<<< Updated upstream
 Format: `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]…`
 
 
@@ -116,35 +122,66 @@ Format: `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
+=======
+- Examples:
+  - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/brother`
+  - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient`
+![AddPtn.png](images%2FAddPtn.png)
+### Editing a doctor : 
+- Command format: `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`
+- What it does: Edits the doctor at the specified `INDEX`. The index refers to the index number shown in the displayed doctor list. The index **must be a positive integer** 1, 2, 3, …​
+- Note to users:
+  - Users can edit specific doctors in the clinic by providing at least one of the optional fields. Existing values will be updated to the input values and all other values will remain the same. 
+  - At least one of the optional fields must be provided. 
+  - Existing values will be updated to the input values. 
+  - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without
+>>>>>>> Stashed changes
     specifying any tags after it.
 
-Examples:
-*  `edit 1 p/91234567` Edits the phone number of the 1st doctor to be `91234567`.
-*  `edit-doc 2 n/Gabriel Tan p/12345678 t/` Edits the name and phone number of the 2nd doctor to be `Gabriel Tan` and `91234567` respectively. Adding t/ also clears all existing tags.
+![EditDoc](images/EditDoc.png)
 
-### Deleting a doctor : `del-doc`
+- Examples:
+  - `edit-doc 1 p/91234567` Edits the phone number of the 1st doctor to be `91234567`.
+  - `edit-doc 2 n/Gabriel Tan p/12345678 t/` Edits the name and phone number of the 2nd doctor to be `Gabriel Tan` and `91234567` respectively. Adding t/ also clears all existing tags.
 
-Deletes the specified doctor from the address book.
+### Editing a patient : 
+- Command format: `edit-ptn INDEX [n/NAME] [p/PHONE_NUMBER]`
+- What it does: Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+- Note to users:
+    - Users can edit specific patients in the clinic by providing at least one of the optional fields. Existing values will be updated to the input values and all other values will remain the same.
+    - At least one of the optional fields must be provided.
+    - Existing values will be updated to the input values.
+    - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without
+      specifying any tags after it.
 
-Format: `del-doc INDEX`
+![EditPtn](images/EditPtn.png)
 
-* Deletes the doctor at the specified `INDEX`.
-* The index refers to the index number shown in the displayed doctor list.
-* The index **must be a positive integer** 1, 2, 3, …​
+- Examples:
+    - `edit-ptn 1 n/Daenerys Targaryen` Edits the name of the 1st patient to be `Daenerys Targaryen`.
+    - `edit-ptn 2 n/Daenerys Targaryen st/Inpatient t/` Edits the name and status of the 2nd patient to be `Daenerys Targaryen` and `Inpatient` respectively. Adding t/ also clears all existing tags.
+
+### Deleting a doctor : 
+- Command format: `del-doc INDEX`
+- What it does: Deletes the specified doctor from the address book.
+- Note to user:
+  - The index refers to the index number shown in the displayed doctor list. 
+  - The index **must be a positive integer** 1, 2, 3, …​
+
+![DelDoc](images/DelDoc.png)
 
 Examples:
 * `list-doc` followed by `del-doc 2` deletes the 2nd doctor in the address book.
 * `find-doc Gabriel` followed by `del-doc 1` deletes the 1st doctor in the results of the `find-doc` command.
-* 
+
 ### Deleting a patient : `del-ptn`
 
-Deletes the specified patient from the address book.
+- Command format: `del-ptn INDEX`
+- What it does: Deletes the specified patient from the address book.
+- Note to user:
+  - The index refers to the index number shown in the displayed patient list. 
+  - The index **must be a positive integer** 1, 2, 3, …​
 
-Format: `del-ptn INDEX`
-
-* Deletes the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+![DelPtn](images/DelPtn.png)
 
 Examples:
 * `list-ptn` followed by `del-ptn 2` deletes the 2nd patient in the address book.
