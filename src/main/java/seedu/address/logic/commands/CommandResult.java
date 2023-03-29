@@ -2,9 +2,18 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 import seedu.address.model.Level;
+import seedu.address.model.lecture.LectureName;
+import seedu.address.model.lecture.ReadOnlyLecture;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ReadOnlyModule;
+import seedu.address.model.video.Video;
 
 /**
  * Represents the result of a command execution.
@@ -21,41 +30,88 @@ public class CommandResult {
 
     private final String currentContext;
 
+    /** Information on the adding, editing, or deleting of modules. */
+    private final List<ModuleEditInfo> moduleEditInfoList = new ArrayList<>();
+
+    /** Information on the adding, editing, or deleting of lectures. */
+    private final List<LectureEditInfo> lectureEditInfoList = new ArrayList<>();
+
+    /** Information on the adding, editing, or deleting of videos. */
+    private final List<VideoEditInfo> videoEditInfoList = new ArrayList<>();
+
     /** The level list to be displayed */
-    private Level level;
+    private final Level level;
+
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Level level, String context) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Level level, String context,
+            List<ModuleEditInfo> moduleEditInfoList, List<LectureEditInfo> lectureEditInfoList,
+            List<VideoEditInfo> videoEditInfoList) {
 
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.level = level;
         this.currentContext = context;
+        this.moduleEditInfoList.addAll(requireNonNull(moduleEditInfoList));
+        this.lectureEditInfoList.addAll(requireNonNull(lectureEditInfoList));
+        this.videoEditInfoList.addAll(requireNonNull(videoEditInfoList));
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code showHelp}, and {@code exit},
+     * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.currentContext = "";
+        this(feedbackToUser, showHelp, exit, null, "", Collections.emptyList(),
+                Collections.emptyList(), Collections.emptyList());
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code level},
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, Level level) {
-        this(feedbackToUser, false, false, level, "");
+        this(feedbackToUser, false, false, level, "", Collections.emptyList(),
+                Collections.emptyList(), Collections.emptyList());
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code context},
+     * and other fields set to their default value.
+     */
     public CommandResult(String feedbackToUser, String context) {
-        this(feedbackToUser, false, false, null, context);
+        this(feedbackToUser, false, false, null, context, Collections.emptyList(),
+                Collections.emptyList(), Collections.emptyList());
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code moduleEditInfos},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, ModuleEditInfo... moduleEditInfos) {
+        this(feedbackToUser, false, false, null, "", Arrays.asList(moduleEditInfos),
+                Collections.emptyList(), Collections.emptyList());
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code lectureEditInfos},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, LectureEditInfo... lectureEditInfos) {
+        this(feedbackToUser, false, false, null, "", Collections.emptyList(),
+                Arrays.asList(lectureEditInfos), Collections.emptyList());
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code videoEditInfos},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, VideoEditInfo... videoEditInfos) {
+        this(feedbackToUser, false, false, null, "", Collections.emptyList(),
+                Collections.emptyList(), Arrays.asList(videoEditInfos));
     }
 
     /**
@@ -76,6 +132,21 @@ public class CommandResult {
 
     public String getCurrentContext() {
         return this.currentContext;
+    }
+
+    /** Returns an unmodifiable view of the list of module edit information. */
+    public List<ModuleEditInfo> getModuleEditInfoList() {
+        return Collections.unmodifiableList(moduleEditInfoList);
+    }
+
+    /** Returns an unmodifiable view of the list of lecture edit information. */
+    public List<LectureEditInfo> getLectureEditInfoList() {
+        return Collections.unmodifiableList(lectureEditInfoList);
+    }
+
+    /** Returns an unmodifiable view of the list of video edit information. */
+    public List<VideoEditInfo> getVideoEditInfoList() {
+        return Collections.unmodifiableList(videoEditInfoList);
     }
 
     public boolean isShowHelp() {
@@ -100,6 +171,9 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && currentContext.equals(otherCommandResult.currentContext)
+                && moduleEditInfoList.equals(otherCommandResult.moduleEditInfoList)
+                && lectureEditInfoList.equals(otherCommandResult.lectureEditInfoList)
+                && videoEditInfoList.equals(otherCommandResult.videoEditInfoList)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit;
     }
@@ -107,6 +181,171 @@ public class CommandResult {
     @Override
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit);
+    }
+
+    /**
+     * Stores information about a module that was added, edited, or deleted.
+     */
+    public static class ModuleEditInfo {
+        private final ReadOnlyModule originalModule;
+        private final ReadOnlyModule editedModule;
+
+        /**
+         * Constructs a {@code ModuleEditInfo}.
+         *
+         * @param originalModule The original module. {@code null} if the module was added.
+         * @param editedModule The edited module. {@code null} if the module was deletd.
+         */
+        public ModuleEditInfo(ReadOnlyModule originalModule, ReadOnlyModule editedModule) {
+            this.originalModule = originalModule;
+            this.editedModule = editedModule;
+        }
+
+        public ReadOnlyModule getOriginalModule() {
+            return originalModule;
+        }
+
+        public ReadOnlyModule getEditedModule() {
+            return editedModule;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            }
+
+            if (!(other instanceof ModuleEditInfo)) {
+                return false;
+            }
+
+            ModuleEditInfo otherModuleEditInfo = (ModuleEditInfo) other;
+
+            return (originalModule == null
+                            ? originalModule == otherModuleEditInfo.originalModule
+                            : originalModule.equals(otherModuleEditInfo.originalModule))
+                    && (editedModule == null
+                            ? editedModule == otherModuleEditInfo.editedModule
+                            : editedModule.equals(otherModuleEditInfo.editedModule));
+        }
+    }
+
+    /**
+     * Stores information about a lecture that was added, edited, or deleted.
+     */
+    public static class LectureEditInfo {
+        private final ModuleCode moduleCode;
+        private final ReadOnlyLecture originalLecture;
+        private final ReadOnlyLecture editedLecture;
+
+        /**
+         * Constructs a {@code LectureEditInfo}.
+         *
+         * @param moduleCode The code of the module that the edited lecture belongs to.
+         * @param originalLecture The original lecture. {@code null} if the lecture was added.
+         * @param editedLecture The edited lecture. {@code null} if the lecture was deleted.
+         */
+        public LectureEditInfo(ModuleCode moduleCode, ReadOnlyLecture originalLecture, ReadOnlyLecture editedLecture) {
+            this.moduleCode = requireNonNull(moduleCode);
+            this.originalLecture = originalLecture;
+            this.editedLecture = editedLecture;
+        }
+
+        public ModuleCode getModuleCode() {
+            return moduleCode;
+        }
+
+        public ReadOnlyLecture getOriginaLecture() {
+            return originalLecture;
+        }
+
+        public ReadOnlyLecture getEditedLecture() {
+            return editedLecture;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            }
+
+            if (!(other instanceof LectureEditInfo)) {
+                return false;
+            }
+
+            LectureEditInfo otherLectureEditInfo = (LectureEditInfo) other;
+
+            return moduleCode.equals(otherLectureEditInfo.moduleCode)
+                    && (originalLecture == null
+                            ? originalLecture == otherLectureEditInfo.originalLecture
+                            : originalLecture.equals(otherLectureEditInfo.originalLecture))
+                    && (editedLecture == null
+                            ? editedLecture == otherLectureEditInfo.editedLecture
+                            : editedLecture.equals(otherLectureEditInfo.editedLecture));
+        }
+    }
+
+    /**
+     * Stores information about a video that was added, edited, or deleted.
+     */
+    public static class VideoEditInfo {
+        private final ModuleCode moduleCode;
+        private final LectureName lectureName;
+        private final Video originalVideo;
+        private final Video editedVideo;
+
+        /**
+         * Constructs a {@code VideoEditInfo}.
+         *
+         * @param moduleCode The code of the module that the lecture with name {@code lectureName} belongs to.
+         * @param lectureName The name of the lecture that the edited video belongs to.
+         * @param originalVideo The original video. {@code null} if the video was added.
+         * @param editedVideo The edited video. {@code null} if the video was deleted.
+         */
+        public VideoEditInfo(ModuleCode moduleCode, LectureName lectureName, Video originalVideo, Video editedVideo) {
+            this.moduleCode = requireNonNull(moduleCode);
+            this.lectureName = requireNonNull(lectureName);
+            this.originalVideo = originalVideo;
+            this.editedVideo = editedVideo;
+        }
+
+        public ModuleCode getModuleCode() {
+            return moduleCode;
+        }
+
+        public LectureName getLectureName() {
+            return lectureName;
+        }
+
+        public Video getOriginalVideo() {
+            return originalVideo;
+        }
+
+        public Video getEditedVideo() {
+            return editedVideo;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            }
+
+            if (!(other instanceof VideoEditInfo)) {
+                return false;
+            }
+
+            VideoEditInfo otherVideoEditInfo = (VideoEditInfo) other;
+
+            return moduleCode.equals(otherVideoEditInfo.moduleCode)
+                    && lectureName.equals(otherVideoEditInfo.lectureName)
+                    && (originalVideo == null
+                            ? originalVideo == otherVideoEditInfo.originalVideo
+                            : originalVideo.equals(otherVideoEditInfo.originalVideo))
+                    && (editedVideo == null
+                            ? editedVideo == otherVideoEditInfo.editedVideo
+                            : editedVideo.equals(otherVideoEditInfo.editedVideo));
+        }
     }
 
 }
