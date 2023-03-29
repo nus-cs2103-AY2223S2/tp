@@ -11,7 +11,7 @@ import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.Note;
 
 /**
- * Adds an application to the internship tracker.
+ * Adds a quick note to the note list.
  */
 public class AddNoteCommand extends Command {
 
@@ -31,7 +31,7 @@ public class AddNoteCommand extends Command {
     private final Note note;
 
     /**
-     * Creates an AddCommand to add the specified {@code InternshipApplication}
+     * Creates an AddNoteCommand to add the specified {@code Note}.
      */
     public AddNoteCommand(Note noteContent) {
         requireNonNull(noteContent);

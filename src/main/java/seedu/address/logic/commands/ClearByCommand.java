@@ -17,18 +17,28 @@ import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.JobTitle;
 
 /**
- * Clears the address book entries by parameter specified.
+ * Clears the internship application entries by parameter specified.
  */
 public class ClearByCommand extends Command {
+    /**
+     * An enum class to specify the clear_by type.
+     */
     enum ParamType {
         JOBTITLE("Job title"), COMPANYNAME("Company name"), STATUS("Status");
 
         private String name;
 
+        /**
+         * Creates string representation for the respective ParamType.
+         * @param name
+         */
         ParamType(String name) {
             this.name = name;
         }
 
+        /**
+         * Getter for the string representation of the respective ParamType enum object.
+         */
         public String getName() {
             return name;
         }
@@ -61,7 +71,8 @@ public class ClearByCommand extends Command {
     private ParamType paramType;
 
     /**
-     * Creates an ClearByCommand to delete all the relevant {@code company} internship
+     * Creates a ClearByCommand to delete all the relevant applications that have company names match
+     * {@code companyName}.
      */
     public ClearByCommand(CompanyName companyName) {
         this.companyName = companyName;
@@ -70,7 +81,8 @@ public class ClearByCommand extends Command {
     }
 
     /**
-     * Creates an ClearByCommand to delete all the relevant {@code jobTitle} internship
+     * Creates a ClearByCommand to delete all the relevant applications that have jobTitles match
+     * {@code jobTitle}.
      */
     public ClearByCommand(JobTitle jobTitle) {
         this.jobTitle = jobTitle;
@@ -79,7 +91,8 @@ public class ClearByCommand extends Command {
     }
 
     /**
-     * Creates an ClearByCommand to delete all the relevant {@code status} internship
+     * Creates a ClearByCommand to delete all the relevant applications that have statuses match
+     * {@code status}.
      */
     public ClearByCommand(InternshipStatus status) {
         this.status = status;

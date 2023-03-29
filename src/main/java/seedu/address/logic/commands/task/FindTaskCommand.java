@@ -28,6 +28,7 @@ public class FindTaskCommand extends Command {
     private final ContentContainsKeywordsPredicate contentPredicate;
 
     /**
+     * Creates a FindTaskCommand instance.
      * Find todo and content that match {@code titlePredicate} or {@code contentPredicate}.
      */
     public FindTaskCommand(TitleContainsKeywordsPredicate titlePredicate,

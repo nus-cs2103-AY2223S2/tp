@@ -20,7 +20,7 @@ import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.NoteContent;
 
 /**
- * Edits the note content of a todo identified using it's displayed index from the list of todos.
+ * Edits the note content of a todo identified by its displayed index from the list of todos.
  */
 public class EditNoteContentCommand extends Command {
 
@@ -42,8 +42,8 @@ public class EditNoteContentCommand extends Command {
     private final NoteContent toUpdate;
 
     /**
-     * @param targetIndex of the to update content
-     * @param content to update
+     * Creates a EditNoteContentCommand to update the note content of the todo task specified at index
+     * {@code targetIndex} to {@code content}.
      */
     public EditNoteContentCommand(Index targetIndex, NoteContent content) {
         requireNonNull(targetIndex);
@@ -73,10 +73,9 @@ public class EditNoteContentCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code InternshipApplication} with the content of {@code content}
+     * Creates and returns a {@code InternshipTodo} with the content of {@code content}
      */
-    private static InternshipTodo createdUpdatedTodo(
-            InternshipTodo todo, NoteContent content) {
+    private static InternshipTodo createdUpdatedTodo(InternshipTodo todo, NoteContent content) {
         assert todo != null;
 
         CompanyName companyName = todo.getInternshipTitle();

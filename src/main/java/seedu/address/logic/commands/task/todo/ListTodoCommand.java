@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.InternshipTodo;
 /**
- * Lists all persons in the address book to the user.
+ * Lists all todo applications in the todo list to the user.
  */
 public class ListTodoCommand extends Command {
 

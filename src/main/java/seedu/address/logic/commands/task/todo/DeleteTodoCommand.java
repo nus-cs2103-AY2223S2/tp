@@ -14,7 +14,7 @@ import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.InternshipTodo;
 
 /**
- * Deletes a todo identified using it's displayed index from the todo list.
+ * Deletes a todo identified by its displayed index from the todo list.
  */
 public class DeleteTodoCommand extends Command {
 
@@ -34,7 +34,7 @@ public class DeleteTodoCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates an DeleteCommand to delete the specified {@code targetIndex} todo
+     * Creates a DeleteTodoCommand to delete a todo task at the specified {@code targetIndex}.
      */
     public DeleteTodoCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

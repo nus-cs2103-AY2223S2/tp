@@ -12,7 +12,7 @@ import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.Note;
 
 /**
- * Clears the address book.
+ * Clears the note list.
  */
 public class ClearNoteCommand extends Command {
 

@@ -19,6 +19,7 @@ import seedu.address.model.task.NoteContent;
  * Parses input arguments and creates a new AddNoteCommand object
  */
 public class AddNoteCommandParser implements Parser<AddNoteCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddNoteCommand
      * and returns an AddNoteCommand object for execution.

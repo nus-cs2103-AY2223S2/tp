@@ -12,7 +12,7 @@ import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.InternshipTodo;
 
 /**
- * Clears the address book.
+ * Clears the todo list.
  */
 public class ClearTodoCommand extends Command {
 

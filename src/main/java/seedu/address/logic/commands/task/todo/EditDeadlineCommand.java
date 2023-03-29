@@ -20,14 +20,14 @@ import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.NoteContent;
 
 /**
- * Edits the deadline of a todo identified using it's displayed index from the list of todos.
+ * Edits the deadline of a todo identified by its displayed index from the list of todos.
  */
 public class EditDeadlineCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit_ddl";
+    public static final String COMMAND_WORD = "edit_deadline";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the deadline of the specified todo from current available list.\n"
+            + ": Edits the deadline of the specified todo from current available todo list.\n"
             + "Parameters: INDEX (INDEX must be a positive integer) "
             + "[" + PREFIX_DEADLINE + "DEADLINE] (must be in format yyyy-mm-dd)\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -42,8 +42,8 @@ public class EditDeadlineCommand extends Command {
     private final ApplicationDeadline toUpdate;
 
     /**
-     * @param targetIndex of the to update deadline
-     * @param deadline to update
+     * Creates a EditDeadlineCommand to update the deadline of the todo task specified at index {@code targetIndex} to
+     * {@code deadline}.
      */
     public EditDeadlineCommand(Index targetIndex, ApplicationDeadline deadline) {
         requireNonNull(targetIndex);
@@ -73,7 +73,7 @@ public class EditDeadlineCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code InternshipApplication} with the deadline of {@code deadline}
+     * Creates and returns a {@code InternshipTodo} with the deadline of {@code deadline}
      */
     private static InternshipTodo createdUpdatedTodo(
             InternshipTodo todo, ApplicationDeadline deadline) {

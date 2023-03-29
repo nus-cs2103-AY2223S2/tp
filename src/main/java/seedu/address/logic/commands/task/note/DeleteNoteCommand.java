@@ -14,7 +14,7 @@ import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.Note;
 
 /**
- * Deletes a note identified using it's displayed index from the note list.
+ * Deletes a note identified by its displayed index from the note list.
  */
 public class DeleteNoteCommand extends Command {
 
@@ -34,7 +34,7 @@ public class DeleteNoteCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates an DeleteCommand to delete the specified {@code targetIndex} note
+     * Creates a DeleteNoteCommand to delete the specified note at {@code targetIndex}.
      */
     public DeleteNoteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

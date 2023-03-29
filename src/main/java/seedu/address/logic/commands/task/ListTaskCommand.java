@@ -13,7 +13,8 @@ import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all tasks to the user.
+ * The tasks include todo tasks and notes.
  */
 public class ListTaskCommand extends Command {
 
@@ -28,10 +29,13 @@ public class ListTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         assert model != null;
+
         model.updateFilteredTodoList(PREDICATE_SHOW_ALL_TODO);
         model.updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
+
         List<InternshipTodo> lastShownTodoList = model.getFilteredTodoList();
         List<Note> lastShownNoteList = model.getFilteredNoteList();
+
         if (lastShownTodoList.size() > 0 || lastShownNoteList.size() > 0) {
             return new CommandResult(MESSAGE_SUCCESS, type);
         } else {

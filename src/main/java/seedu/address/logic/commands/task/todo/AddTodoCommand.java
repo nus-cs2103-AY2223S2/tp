@@ -13,7 +13,7 @@ import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.InternshipTodo;
 
 /**
- * Adds an application to the internship tracker.
+ * Adds a todo internship application to the todo list.
  */
 public class AddTodoCommand extends Command {
 
@@ -37,7 +37,7 @@ public class AddTodoCommand extends Command {
     private final InternshipTodo todo;
 
     /**
-     * Creates an AddCommand to add the specified {@code InternshipApplication}
+     * Creates an AddTodoCommand to add the specified {@code InternshipTodo}
      */
     public AddTodoCommand(InternshipTodo applicationTodo) {
         requireNonNull(applicationTodo);
