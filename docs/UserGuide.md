@@ -36,7 +36,7 @@ This user guide provides a detailed documentation on QuickContacts and serves as
 QuickContacts into your daily workflow. From having QuickContacts installed to making the best use out of QuickContacts,
 this user guide has everything you need. Head over to the [Getting started](#getting-started) section to get onboard!
 
-## Table of Contents
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
