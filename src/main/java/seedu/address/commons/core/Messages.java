@@ -60,4 +60,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_EXAM_TIME = "Exam start time cannot be after exam end time";
     public static final String MESSAGE_INVALID_EXAM_DURATION =
         "The exam duration is too short(< 30 min)/long(> 3 hours)";
+    public static final String MESSAGE_INVALID_DONE_INPUT = "Invalid input for done/ field. Accepted inputs:"
+        + "done, not done";
 }
