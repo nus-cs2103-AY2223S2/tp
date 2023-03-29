@@ -249,7 +249,8 @@
 }
 
 .text-area:focused {
-    -fx-highlight-fill: #7ecfff;
+    -fx-highlight-fill: -fx-dark-green;
+    -fx-text-fill: black;
 
     -fx-background-insets: 0;
     -fx-background-color: transparent;
