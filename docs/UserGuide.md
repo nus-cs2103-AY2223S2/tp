@@ -19,7 +19,7 @@ Without further ado, let's get started!
 1. [Quick Start](#quick-start)
 2. [Features](#features)
     1. [Legend](#legend)
-    2. [Student Features](#student)
+    2. [Student Features: `student`](#student)
          1. [Add student: `add`](#addstudent)
          2. [Add attendance to students: `attendance`](#attendance)
          3. [Add students' grade: `grade`](#gradestudent)
@@ -29,7 +29,7 @@ Without further ado, let's get started!
          7. [Editing a student's particulars: `edit`](#editstudent)
          8. [Searching students: `find`](#findstudent)
          9. [Deleting a student: `delete`](#deletestudent)
-    3. [Parent Features](#parent)
+    3. [Parent Features: `parent`](#parent)
         1. [Add Parent/Next-of-Kin: `add`](#addparent)
         2. [Listing all Parents/Next-of-Kins: `list`](#listparent)
         3. [Editing a Parent/Next-of-Kin particulars: `edit`](#editparent)
@@ -478,6 +478,17 @@ Place all your student images in this format: `images/student/<STUDENT_NAME><STU
 
 Place all your parent images in this format: `images/parent/<PARENT_NAME>.png` <br><br>
 
+Location of where images folder should be at. (Same directory of PowerConnect.jar)
+![image message](images/images1.png)
+
+Inside the images folder, create a folder called `student` and `parent` if it does not exist. 
+![image2 message](images/images2.png)
+
+Sample of student image naming format. `images/student/<STUDENT_NAME><STUDENT_CLASS>.png`
+![imagestudent message](images/imagestudent.png)
+
+Sample of parent image naming format. `images/parent/<PARENT_NAME>.png`
+![imagesparent message](images/imagesparent.png)
 --------------------------------------------------------------------------------------------------------------------
 <a name = "faq" /></a>
 
