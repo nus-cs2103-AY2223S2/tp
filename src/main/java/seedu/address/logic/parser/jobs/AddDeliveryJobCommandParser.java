@@ -9,8 +9,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SENDER_ID;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.jobs.AddDeliveryJobCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -26,6 +28,7 @@ import seedu.address.model.jobs.Earning;
  * Parses input arguments and creates a new AddDeliveryJobCommand object
  */
 public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand> {
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values
@@ -61,18 +64,21 @@ public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand
             date = argMultimap.getValue(PREFIX_DELIVERY_DATE).get();
         } catch (NoSuchElementException e) {
             date = "";
+            logger.fine("Missing date argument for delivery job");
         }
 
         try {
             slot = argMultimap.getValue(PREFIX_DELIVERY_SLOT).get();
         } catch (NoSuchElementException e) {
             slot = "";
+            logger.fine("Missing slot argument for delivery job");
         }
 
         try {
             earn = argMultimap.getValue(PREFIX_EARNING).get();
         } catch (NoSuchElementException e) {
             earn = "";
+            logger.fine("Missing earn argument for delivery job");
         }
 
         if (sid.equals("")) {
@@ -83,20 +89,9 @@ public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand
             throw new ParseException(AddDeliveryJobCommand.MESSAGE_RECIPIENT_CONSTRAINT);
         }
 
-        /*if (ded.equals("")) {
-            throw new ParseException(DeliveryDate.MESSAGE_CONSTRAINTS);
-        }
-
-        if (des.equals("")) {
-            throw new ParseException(DeliverySlot.MESSAGE_CONSTRAINTS);
-        } */
         if ((!slot.equals("")) && (Integer.parseInt(slot) < 1)) {
             throw new ParseException(DeliverySlot.MESSAGE_CONSTRAINTS);
         }
-
-        /*if ((ear != null) && (ear.equals(""))) {
-            throw new ParseException(Earning.MESSAGE_CONSTRAINTS);
-        }*/
 
         DeliveryJob job = createDeliveryJob(rid, sid, date, slot, earn);
         return new AddDeliveryJobCommand(job);
