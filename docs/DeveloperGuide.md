@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+ **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -54,7 +54,7 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram-0.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -142,9 +142,10 @@ The `Model` component,
   
 
 #### Relationship Between `Internship` and `Event` entities
-Events cannot exist without it's correponding internship, thus there exists a composite relationship between the two .
-Also to make insertions and deletions of events easier , each event instance stores the internship instance it is associated with.Due to this ,
-extra precuations are taken during internship deletions , making sure the corresponding events are deleted as well.
+Events cannot exist without it's correponding internship, thus there exists a composite relationship between the two.
+Also, to make insertions and deletions of events easier, each event instance stores the internship instance it is
+associated with. Due to this, extra precautions are taken during internship deletions, making sure the corresponding
+events are deleted as well.
 
 
 <img src="images/InternshipEventModelClassDiagram.png" width="250" />
@@ -156,13 +157,16 @@ extra precuations are taken during internship deletions , making sure the corres
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* can save internship catalogue data, event catalogue data and user preference data in json format, and read them back
+into corresponding objects.
+* inherits from both `InternshipCatalogueStorage`, `EventCatalogueStorage` and `UserPrefStorage`, which means it can be
+treated as either one (if only the functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
+that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.internship.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -171,16 +175,36 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### View Calendar feature
+The view calendar feature displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX.
+It is accessible by the command `calendar`.
 
 #### Implementation
+Given below is an example usage, and what happens at every step of the execution of the `calendar` command.
 
-The view calendar feature displays all Events under existing Internships in a calendar rendered by third-party JavaFX library CalendarFX. 
+Step 1. The user enters `calendar` command into the CommandBox.
 
-It is facilitated by `CalendarPage`, which upon creation will initialize a `Calendar`, a CalendarFX class that will then store all events it receives from the `Model` interface via a `CommandResult` into the `Calendar`. Then, the `Calendar` will be displayed in a `MonthPage`, a CalendarFX view that showcases all events by month in a grids.
+Step 2. `MainWindow` receives the input and calls `execute('calendar')`. `execute(String)` is a method declared in LogicManager.
 
-The following sequence diagram depicts the interactions between different components following the `execute("calendar")` API call . 
+Step 3. `InternshipCatalogueParser` parses the input and extracts the command String `calendar`. A `CalendarCommand` is then created.
 
-![Sequence Diagram for execute("calendar")](images/ViewCalendarSequenceDiagram.png)
+Step 4. `LogicManager` calls `execute(Model)` method of the `CalendarCommand`. The argument is a `Model` instance stored in `LogicManager`.   
+
+Step 5. In the method `execute`, `updateFilteredEventList(Predicate)` of the `Model` instance is called. `PREDICATE_SHOW_ALL_EVENTS`, which is a `Predicate` that evaluates to `true` for all `Event` is passed as argument. As a result, the `Model` now maintains a list of all added `Events`. 
+
+Step 6. The `execute` method then obtains the list of all `Event`s generated in `Model` instance, and creates a `CommandResult` that encapsulates it. The `CommandResult` is returned to `LogicManager`. 
+
+Step 7. `LogicManager` returns the `CommandResult` to `MainWindow`.
+
+Step 8. In `MainWindow`'s `executeCommand` method, the `ResultType` of the `CommandResult` is recognized as `CALENDAR`, and `Page.of(CommandResult)` is called.
+
+Step 9. `Page.of(CommandResult)` again detects that `ResultType` of the `CommandResult` is `CALENDAR`, and calls `new CalendarPage(commandResult.getEvents())`. 
+
+Step 10. Within constructor of the `CalendarPage`, the necessary CalendarFX components are created and initialized with the current time.
+Two crucial CalendarFX components used here include a `Calendar` and a `MonthPage`. A `Calendar` is a CalendarFX class that stores all events it receives, whereas `MonthPage` is a composite CalendarFX control that showcases all events by month in grids.
+
+Step 11. Then, the list of `Event`s received by the `CalendarPage` constructor is added to `Calendar`, each as an `Entry`, a CalendarFX class that represents an event. If the `Event` is a deadline, then the `Entry` will be set as a full-day `Entry` with `setFullDay(true)`.
+
+Step 12. The `CalendarPage` is constructed and now returned to the `MainWindow`, where it will be added as a children of `pagePlaceholder` for display on the GUI. 
 
 To learn more about CalendarFX, you may visit its Developer Guide [here](https://dlsc-software-consulting-gmbh.github.io/CalendarFX/).
 
@@ -207,11 +231,6 @@ The Activity Diagram for Add event is
 
 The Sequence Diagram for the adding the event is
 ![EventAddSequenceDiagram](images/EventAddSequenceDiagram.png)
-
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ### Select command feature
 
@@ -243,9 +262,31 @@ The following sequence diagram shows how the select command works:
 
 ![SelectSequenceDiagram](images/SelectSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SelectCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+Note: The lifeline for `SelectCommand` should end at the destroy marker(X) but due to a limitation of PlantUML, the
+lifeline reaches the end of diagram.
 
-</div>
+### Clash Command feature
+
+#### Implementation
+The purpose of the `clash` command is for users to finding events with clashing timing, enabling them to reschedule
+clashing events.
+
+The `clash` command feature is standard command that extends `Command` and returns a `CommandResult` in the
+`execute()` method.
+
+Given below is an example usage scenario and how the select command behaves at each step.
+
+Step 1. The user enters the `clash` command into the CLI.
+
+Step 2. `InternshipCatalogueParser` parses the input and extracts the command `clash`, and creates a new `ClashCommand`.
+
+Step 3. `LogicManager` calls the `execute()` method of the `ClashCommand` instance, 
+which invokes `getEventCatalogue()` on `Model` to get the current Event Catalogue of TinS.
+
+Step 4. The `findClashEvents` is then called on `eventCatalogue`, which invokes a series of methods to loop through
+all events in `eventCatalogue` and find events with clashing datetimes. This returns a hash map of an event to a list
+of events that it clashes with.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -492,8 +533,8 @@ Use Case Ends.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">Note: These instructions only provide a starting point for testers to work on;
+testers are expected to do more <b>exploratory</b> testing.
 
 </div>
 
@@ -514,17 +555,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting an Internship
 
-1. Deleting a person while all persons are being shown
+1. Deleting an internship while all internships are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all internships using the `list` command. Multiple internships in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First internship is deleted from the list. Details of the deleted internship shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No internship is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

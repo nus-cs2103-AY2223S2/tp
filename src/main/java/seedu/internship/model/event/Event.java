@@ -2,6 +2,7 @@ package seedu.internship.model.event;
 
 import static seedu.internship.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 import seedu.internship.model.internship.Internship;
@@ -87,7 +88,24 @@ public class Event {
         return otherEvent != null
                 && otherEvent.getStart().equals(getStart())
                 && otherEvent.getEnd().equals(getEnd())
+                && otherEvent.getName().equals(getName())
                 && otherEvent.getInternship().equals(getInternship());
+    }
+
+    public boolean isClash(Event otherEvent) {
+        return !this.equals(otherEvent) &&
+                (this.start.isEqualTime(otherEvent.start) || this.end.isEqualTime(otherEvent.end)
+                || this.start.isBetween(otherEvent.start, otherEvent.end)
+                || this.end.isBetween(otherEvent.start, otherEvent.end));
+    }
+
+
+
+    /**
+     * Returns true if start date of event lies between the specified date inclusive.
+     */
+    public boolean isBetweenDate(LocalDate start, LocalDate end) {
+        return !(getStart().getLd().isBefore(start) || getStart().getLd().isAfter(end));
     }
 
     /**

@@ -3,8 +3,10 @@ package seedu.internship.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.internship.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,6 +45,23 @@ public class UniqueEventList implements Iterable<Event> {
             throw new DuplicateEventException();
         }
         internalList.add(toAdd);
+    }
+
+    private List<Event> getClashEvents(Event clashEvent) {
+        requireNonNull(clashEvent);
+        return internalList.stream().filter(e -> !e.isDeadline()).filter(e -> clashEvent.isClash(e))
+                .collect(Collectors.toList());
+    }
+
+    public HashMap<Event, List<Event>> getClashEventList() {
+        HashMap<Event, List<Event>> hash = new HashMap<>();
+        for(Event event : internalList) {
+            List<Event> lst = getClashEvents(event);
+            if (!lst.isEmpty() && !hash.containsKey(event)) {
+                hash.put(event, lst);
+            }
+        }
+        return hash;
     }
 
     /**
@@ -101,6 +120,8 @@ public class UniqueEventList implements Iterable<Event> {
     public ObservableList<Event> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
+
+
 
     @Override
     public Iterator<Event> iterator() {

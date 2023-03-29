@@ -1,5 +1,6 @@
 package seedu.internship.model.event;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -65,6 +66,21 @@ public class TimeParser implements Comparable<TimeParser> {
         return isValid;
     }
 
+    public boolean isBetween(TimeParser start, TimeParser end) {
+        return this.ldt.isBefore(end.ldt) && this.ldt.isAfter(start.ldt);
+    }
+
+    public boolean isEqualTime(TimeParser time) {
+        return this.ldt.equals(time.ldt);
+    }
+
+    /**
+     * @return LocalDateTime of the TimeParser.
+     */
+    public LocalDateTime getLocalDateTime() {
+        return ldt;
+    }
+
     /**
      * @return Formatted Date Time String
      */
@@ -101,6 +117,10 @@ public class TimeParser implements Comparable<TimeParser> {
         } else {
             return "th";
         }
+    }
+
+    public LocalDate getLd() {
+        return this.ld;
     }
 
     @Override
