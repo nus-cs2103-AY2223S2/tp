@@ -494,7 +494,7 @@ Examples:
 * `edit 2 n/Tony Hoare p/97482842 t/T03 l/B09`
 
 
-### Add note for event: `touch note`
+### Add note for event: `add-note`
 
 Add notes for events that are both normal and recurring, or for students in the classes this TA is in charge of. Mainly serves to help TAs take down notes and todos from meeting and student queries from classes.
 
@@ -502,15 +502,13 @@ Note that there can be an unlimited amount of notes to be created for each event
 
 Each addition increases node index by one.
 
-Format: `touch note [type] [name or index] [content]`
+Format: `add-note -content hello world -type tutorial -name 2`
 
 Examples:
 
-
-
-* `touch note recur weeklyTutorials "rmb to bring along apple pencil\n"`
-* `touch note recur 2 "grade student labs timely\n"`
-* `touch note student Eldon "solve this student's query via email\n"`
+* `add-note -content rmb to bring along apple pencil\n -type tutorial -name 2`
+* `add-note -content grade student labs timely\n -type lab -name 2`
+* `add-note -content solve this student's query via email\n -type recur -name 2`
 
 
 ### Delete note for event: `delete note`
@@ -522,10 +520,9 @@ Format: `delete note [type] [name or index] [note-index]`
 Examples:
 
 
-
-* `delete note recur weeklyTutorials 3`
-* `delete note recur 2 0`
-* `delete note student Eldon 0`
+* `rm-note -type tutorial -name 2 -index 3`
+* `rm-note -type lab -name 2 -index 1`
+* `rm-note -type recur -name 2 -index 0`
 
 
 ### Edit note for event: `edit note`
@@ -538,28 +535,16 @@ Format:
 
 
 
-* `edit note [type] [name or index] [note-index] [newcontent]`
+* `edit-note [type] [name or index] [note-index] [newcontent]`
 
 Examples:
 
 
-
-* `edit note recur weeklyTutorials 0 "no new tasks lol\n"`
-* `edit note recur 2 0 "bring my lab cheat-sheet\n"`
-* `edit note student Eldon 1 ""`
-
-
-### List all notes: `ls note`
-
-List all notes for events that are both normal and recurring, or for students in the classes this TA is in charge of.
-
-Format: `ls note [type] [name or index]`
-
-Examples:
+* `edit-note -content rmb to bring along apple pencil\n -type tutorial -name 2 -index 3`
+* `edit-note -content grade student labs timely\n -type lab -name 2 -index 1`
+* `edit-note -content solve this student's query via email\n -type recur -name 2 -index 0`
 
 
-
-* `ls note recur weeklyTutorials`
 
 Sort student: `sort student`
 
