@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.mark;
 
 import static java.util.Objects.requireNonNull;
 
@@ -10,6 +10,9 @@ import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
+
+import seedu.address.logic.commands.CommandResult;
+
 
 /**
  * Marks a video identified using its name, within a lecture, within a module, as watched
@@ -69,6 +72,6 @@ public class MarkAsWatchedCommand extends MarkCommand {
         Video newVideo = new Video(targetVideoName, true, targetVideo.getTags());
         model.setVideo(lecture, targetVideo, newVideo);
 
-        return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS, targetVideoName, COMMAND_WORD));
+        return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS, targetVideoName, COMMAND_WORD, "", ""));
     }
 }

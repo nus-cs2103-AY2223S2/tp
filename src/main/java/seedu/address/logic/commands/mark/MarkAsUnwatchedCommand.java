@@ -1,8 +1,9 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.mark;
 
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
@@ -24,7 +25,7 @@ public class MarkAsUnwatchedCommand extends MarkCommand {
 
     /**
      * Creates a Mark As Unwatched Command that marks a video with {@code targetVideoname}
-     * from lecture with {@code lectureName} in module of {@code moduelCode} as watched.
+     * from lecture with {@code lectureName} in module of {@code moduleCode} as unwatched.
      *
      * @param targetVideoName
      * @param moduleCode
@@ -69,6 +70,6 @@ public class MarkAsUnwatchedCommand extends MarkCommand {
         Video newVideo = new Video(targetVideoName, false, targetVideo.getTags());
         model.setVideo(lecture, targetVideo, newVideo);
 
-        return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS, targetVideoName, COMMAND_WORD));
+        return new CommandResult(String.format(MESSAGE_MARK_VIDEO_SUCCESS, targetVideoName, COMMAND_WORD, "", ""));
     }
 }

@@ -1,7 +1,10 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.mark;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.Command;
 
 /**
  * Marks a video of a lecture in a module as watched or unwatched
@@ -22,10 +25,11 @@ public abstract class MarkCommand extends Command {
             + "Module is identified by the module code\n"
             + "Lecture is identified by the lecture name.\n"
             + "Parameters: video name, module code, lecture name\n"
-            + "Example: " + COMMAND_WORDS + MESSAGE_EXAMPLE;
+            + "Example: " + COMMAND_WORDS + MESSAGE_EXAMPLE + "\n"
+            + Messages.MESSAGE_CAN_DO_MULTIPLE;
 
     public static final String MESSAGE_VIDEO_MARK_NOT_CHANGED = "Video %1$s already %2$s" + "ed! No change...";
 
-    public static final String MESSAGE_MARK_VIDEO_SUCCESS = "Successfully %2$s" + "ed Video: %1$s";
+    public static final String MESSAGE_MARK_VIDEO_SUCCESS = "Successfully %2$s" + "ed %3$sVideo%4$s: %1$s";
 
 }

@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.Optional;
 
-import seedu.address.logic.commands.MarkAsWatchedCommand;
-import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.mark.MarkAsWatchedCommand;
+import seedu.address.logic.commands.mark.MarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
