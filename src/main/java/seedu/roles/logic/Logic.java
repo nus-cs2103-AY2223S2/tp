@@ -7,7 +7,7 @@ import seedu.roles.commons.core.GuiSettings;
 import seedu.roles.logic.commands.CommandResult;
 import seedu.roles.logic.commands.exceptions.CommandException;
 import seedu.roles.logic.commands.exceptions.exceptions.ParseException;
-import seedu.roles.model.ReadOnlyAddressBook;
+import seedu.roles.model.ReadOnlyRoleBook;
 import seedu.roles.model.job.Role;
 
 /**
@@ -26,9 +26,9 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.roles.model.Model#getAddressBook()
+     * @see seedu.roles.model.Model#getRoleBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyRoleBook getRoleBook();
 
     /** Returns an unmodifiable view of the filtered list of roles */
     ObservableList<Role> getFilteredRoleList();
@@ -36,7 +36,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getRoleBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

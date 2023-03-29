@@ -8,7 +8,7 @@ import static seedu.roles.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.roles.testutil.TypicalRoles.CARL;
 import static seedu.roles.testutil.TypicalRoles.ELLE;
 import static seedu.roles.testutil.TypicalRoles.FIONA;
-import static seedu.roles.testutil.TypicalRoles.getTypicalAddressBook;
+import static seedu.roles.testutil.TypicalRoles.getTypicalRoleBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import seedu.roles.model.job.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code NameCommand}.
  */
 public class NameCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalRoleBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalRoleBook(), new UserPrefs());
 
     @Test
     public void equals() {

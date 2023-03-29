@@ -31,9 +31,9 @@ import seedu.roles.testutil.EditRoleDescriptorBuilder;
 import seedu.roles.testutil.RoleBuilder;
 import seedu.roles.testutil.RoleUtil;
 
-public class AddressBookParserTest {
+public class RoleBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final RoleBookParser parser = new RoleBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {

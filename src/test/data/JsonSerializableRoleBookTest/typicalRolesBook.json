@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Role values as in TypicalRoles#getTypicalAddressBook()",
+  "_comment": "RoleBook save file which contains the same Role values as in TypicalRoles#getTypicalRoleBook()",
   "roles" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",

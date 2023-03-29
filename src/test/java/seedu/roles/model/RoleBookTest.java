@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.roles.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.roles.testutil.Assert.assertThrows;
 import static seedu.roles.testutil.TypicalRoles.ALICE;
-import static seedu.roles.testutil.TypicalRoles.getTypicalAddressBook;
+import static seedu.roles.testutil.TypicalRoles.getTypicalRoleBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,25 +21,25 @@ import seedu.roles.model.job.Role;
 import seedu.roles.model.job.exceptions.DuplicateRoleException;
 import seedu.roles.testutil.RoleBuilder;
 
-public class AddressBookTest {
+public class RoleBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final RoleBook roleBook = new RoleBook();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getRoleList());
+        assertEquals(Collections.emptyList(), roleBook.getRoleList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> roleBook.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyRoleBook_replacesData() {
+        RoleBook newData = getTypicalRoleBook();
+        roleBook.resetData(newData);
+        assertEquals(newData, roleBook);
     }
 
     @Test
@@ -47,46 +47,46 @@ public class AddressBookTest {
         // Two roles with the same identity fields
         Role editedAlice = new RoleBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         List<Role> newRoles = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newRoles);
+        RoleBookStub newData = new RoleBookStub(newRoles);
 
-        assertThrows(DuplicateRoleException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateRoleException.class, () -> roleBook.resetData(newData));
     }
 
     @Test
     public void hasRole_nullRole_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasRole(null));
+        assertThrows(NullPointerException.class, () -> roleBook.hasRole(null));
     }
 
     @Test
-    public void hasRole_roleNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasRole(ALICE));
+    public void hasRole_roleNotInRoleBook_returnsFalse() {
+        assertFalse(roleBook.hasRole(ALICE));
     }
 
     @Test
-    public void hasRole_roleInAddressBook_returnsTrue() {
-        addressBook.addRole(ALICE);
-        assertTrue(addressBook.hasRole(ALICE));
+    public void hasRole_roleInRoleBook_returnsTrue() {
+        roleBook.addRole(ALICE);
+        assertTrue(roleBook.hasRole(ALICE));
     }
 
     @Test
-    public void hasRole_roleWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addRole(ALICE);
+    public void hasRole_roleWithSameIdentityFieldsInRoleBook_returnsTrue() {
+        roleBook.addRole(ALICE);
         Role editedAlice = new RoleBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(addressBook.hasRole(editedAlice));
+        assertTrue(roleBook.hasRole(editedAlice));
     }
 
     @Test
     public void getRoleList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getRoleList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> roleBook.getRoleList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose roles list can violate interface constraints.
+     * A stub ReadOnlyRoleBook whose roles list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class RoleBookStub implements ReadOnlyRoleBook {
         private final ObservableList<Role> roles = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Role> roles) {
+        RoleBookStub(Collection<Role> roles) {
             this.roles.setAll(roles);
         }
 

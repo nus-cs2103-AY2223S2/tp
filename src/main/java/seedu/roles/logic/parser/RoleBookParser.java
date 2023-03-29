@@ -25,7 +25,7 @@ import seedu.roles.logic.commands.exceptions.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class RoleBookParser {
 
     /**
      * Used for initial separation of command word and args.

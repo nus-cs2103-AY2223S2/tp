@@ -2,8 +2,8 @@ package seedu.roles.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.roles.model.AddressBook;
 import seedu.roles.model.Model;
+import seedu.roles.model.RoleBook;
 
 /**
  * Clears the address book.
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult<String> execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setRoleBook(new RoleBook());
         return new CommandResult<>(MESSAGE_SUCCESS);
     }
 }

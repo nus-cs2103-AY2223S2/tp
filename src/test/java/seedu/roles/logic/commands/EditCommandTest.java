@@ -12,16 +12,16 @@ import static seedu.roles.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.roles.logic.commands.CommandTestUtil.showRoleAtIndex;
 import static seedu.roles.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.roles.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.roles.testutil.TypicalRoles.getTypicalAddressBook;
+import static seedu.roles.testutil.TypicalRoles.getTypicalRoleBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.roles.commons.core.Messages;
 import seedu.roles.commons.core.index.Index;
 import seedu.roles.logic.commands.EditCommand.EditRoleDescriptor;
-import seedu.roles.model.AddressBook;
 import seedu.roles.model.Model;
 import seedu.roles.model.ModelManager;
+import seedu.roles.model.RoleBook;
 import seedu.roles.model.UserPrefs;
 import seedu.roles.model.job.Role;
 import seedu.roles.testutil.EditRoleDescriptorBuilder;
@@ -32,7 +32,7 @@ import seedu.roles.testutil.RoleBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalRoleBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +42,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedRole);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new RoleBook(model.getRoleBook()), new UserPrefs());
         expectedModel.setRole(model.getFilteredRoleList().get(0), editedRole);
         System.out.println(expectedModel.getFilteredRoleList().get(0));
         System.out.println(editedRole);
@@ -65,7 +65,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedRole);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new RoleBook(model.getRoleBook()), new UserPrefs());
         expectedModel.setRole(lastRole, editedRole);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -78,7 +78,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedRole);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new RoleBook(model.getRoleBook()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -94,7 +94,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedRole);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new RoleBook(model.getRoleBook()), new UserPrefs());
         expectedModel.setRole(model.getFilteredRoleList().get(0), editedRole);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -114,7 +114,7 @@ public class EditCommandTest {
         showRoleAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit role in filtered list into a duplicate in address book
-        Role roleInList = model.getAddressBook().getRoleList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Role roleInList = model.getRoleBook().getRoleList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditRoleDescriptorBuilder(roleInList).build());
 
@@ -139,7 +139,7 @@ public class EditCommandTest {
         showRoleAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getRoleList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getRoleBook().getRoleList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditRoleDescriptorBuilder().withName(VALID_NAME_BOB).build());

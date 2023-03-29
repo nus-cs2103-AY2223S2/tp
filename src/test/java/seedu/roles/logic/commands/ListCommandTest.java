@@ -3,7 +3,7 @@ package seedu.roles.logic.commands;
 import static seedu.roles.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.roles.logic.commands.CommandTestUtil.showRoleAtIndex;
 import static seedu.roles.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.roles.testutil.TypicalRoles.getTypicalAddressBook;
+import static seedu.roles.testutil.TypicalRoles.getTypicalRoleBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalRoleBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getRoleBook(), new UserPrefs());
     }
 
     @Test

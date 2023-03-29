@@ -29,10 +29,10 @@ import seedu.roles.logic.commands.exceptions.CommandException;
 import seedu.roles.logic.commands.exceptions.exceptions.ParseException;
 import seedu.roles.model.Model;
 import seedu.roles.model.ModelManager;
-import seedu.roles.model.ReadOnlyAddressBook;
+import seedu.roles.model.ReadOnlyRoleBook;
 import seedu.roles.model.UserPrefs;
 import seedu.roles.model.job.Role;
-import seedu.roles.storage.JsonAddressBookStorage;
+import seedu.roles.storage.JsonRoleBookStorage;
 import seedu.roles.storage.JsonUserPrefsStorage;
 import seedu.roles.storage.StorageManager;
 import seedu.roles.testutil.RoleBuilder;
@@ -48,10 +48,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonRoleBookStorage roleBookStorage =
+                new JsonRoleBookStorage(temporaryFolder.resolve("TechTrack.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(roleBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -76,11 +76,11 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonRoleBookStorage roleBookStorage =
+                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionRoleBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(roleBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -135,7 +135,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getRoleBook(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -155,13 +155,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
+    private static class JsonAddressBookIoExceptionThrowingStub extends JsonRoleBookStorage {
         private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveRoleBook(ReadOnlyRoleBook addressBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
