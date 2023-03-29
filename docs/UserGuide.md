@@ -94,15 +94,22 @@ Shows a list of all patients with their details in the system.
 
 Format: `list`
 
-### Editing a patient’s condition in the system: `edit`
+### Editing a patient’s details in the system: `edit`
 
-Edit an existing patient’s condition.
+Edit an existing patient’s status or ward or discharge date-time.
 
 Format: `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]​`
 
+- Edits the patient's details at the specified index as of the currently displayed list.
+- The status of a patient is either `GRAY` or `GREEN` or `YELLOW` or `RED`.
+- The ward allocated to a patient is represented as an alphanumeric string. E.g `A01`.
+- The discharge date-time is of the `dd/MM/yyyy HHmm` format. E.g `12/03/2023 1200` is interpreted as 12th March 2023 1200hrs.
+
 Examples:
 
-- `edit 1 s/GREEN` Edits the status of the first currently displayed patient with to be `GREEN`.
+- `edit 1 s/GREEN` Edits the status of the first currently displayed patient to be `GREEN`.
+- `edit 5 w/A01` Edits the ward of the fifth currently displayed patient to be `A01`. 
+- `edit 4 d/27/07/2023 1600` Edits the discharge date-time of the fourth currently displayed patient to be `27/07/2023 1600` which is read as 27th July 2023 1600hrs.
 
 ### Sorting all patients in the system: `sort`
 
@@ -147,9 +154,12 @@ Examples:
 
 ### Adding a ward to the system: `addward`
 
-Adds the patient (NRIC, name and condition).
+Adds the ward (name and capacity).
 
 Format: `addward name/NAME [c/CAPACITY]​`
+
+- The ward name is represented as an alphanumeric string. E.g `A01`.
+- The capacity is a positive integer. E.g `50`.
 
 <!-- EXAMPLE OF TIP -->
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -158,7 +168,7 @@ The default capacity is set to 10.
 
 Examples:
 
-- `addward name/S1234567A c/25`
+- `addward name/A01 c/25` Adds the ward with name `A01` and capacity `25` to the system.
 
 ### Exiting the program : `exit`
 
