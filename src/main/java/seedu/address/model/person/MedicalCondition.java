@@ -7,7 +7,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * To record the patient MedicalCondition
  */
 public class MedicalCondition {
-    public static final String MESSAGE_CONSTRAINTS = "Patient's medical condition should not be empty";
+    public static final String MESSAGE_CONSTRAINTS = "Patient's medical condition should "
+            + "not be empty or contains number";
     private String value;
     /**
      * @param value represents the medical condition of the patient

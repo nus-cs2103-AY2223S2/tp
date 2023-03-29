@@ -194,13 +194,19 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
         public void setMedicalCond(MedicalCondition medicalCondition) {
-            this.medicalCondition = medicalCondition;
+            if (medicalCondition.getValue().equals("")) {
+            } else {
+                this.medicalCondition = medicalCondition;
+            }
         }
         public Optional<MedicalCondition> getMedicalCond() {
             return Optional.ofNullable(medicalCondition);
         }
         public void setNric(Nric nric) {
-            this.nric = nric;
+            if (nric.number.equals("")) {
+            } else {
+                this.nric = nric;
+            }
         }
         public Optional<Nric> getNric() {
             return Optional.ofNullable(nric);

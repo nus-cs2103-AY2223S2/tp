@@ -230,7 +230,9 @@ public class ParserUtil {
      */
     public static MedicalCondition parseMedicalCond(String medicalCondition) throws ParseException {
         requireNonNull(medicalCondition);
-        String trimmed = medicalCondition.trim();
+        if (!MedicalCondition.isValidCondition(medicalCondition)) {
+            throw new ParseException(MedicalCondition.MESSAGE_CONSTRAINTS);
+        }
         return new MedicalCondition(medicalCondition);
     }
 
@@ -269,7 +271,9 @@ public class ParserUtil {
      */
     public static Nric parseNric(String number) throws ParseException {
         requireNonNull(number);
-        String trimmed = number.trim();
+        if (!Nric.isValidNumber(number)) {
+            throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
+        }
         return new Nric(number);
     }
 }
