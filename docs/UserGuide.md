@@ -8,11 +8,11 @@ title: User Guide
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `TrAcker.jar` from [here](https://github.com/AY2223S2-CS2103-F11-1/tp).
+2. Download the latest `TrAcker.jar` from [here](https://github.com/AY2223S2-CS2103-F11-1/tp).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your TrAcker.
+3. Copy the file to the folder you want to use as the _home folder_ for your TrAcker.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TrAcker.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TrAcker.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -154,6 +154,43 @@ Examples:
 
 * `delete Tutorial/1`
 * `delete Lab/1-5`
+
+--------------------------------------------------------------------
+*Student-Event CRUD Features*
+
+### Add student to event: `addStudent`
+
+Add a student to an event.
+
+- The index input refers to the index of the student in the student list
+- The index input is 1-based.
+- Valid index must be provided.
+- The specified event must exist.
+- Event type input must be valid
+
+Format: `addStudent [INDEX] [EVENT_TYPE}/[EVENT_NAME]`
+
+Examples:
+
+* `addStudent 1 Tutorial/tut1`
+* `addStudent 4 Lab/mock_lab_session`
+
+### Delete student from event: `deleteStudent`
+
+Deletes a student from an event.
+
+- The index input refers to the index of the student in the specified event's student list
+- The index input is 1-based.
+- Valid index must be provided.
+- The specified event must exist.
+- Event type input must be valid
+
+Format: `deleteStudent [INDEX] [EVENT_TYPE}/[EVENT_NAME]`
+
+Examples:
+
+* `deleteStudent 1 Tutorial/tut1`
+* `deleteStudent 4 Lab/mock_lab_session`
 
 --------------------------------------------------------------------
 *Note Features*

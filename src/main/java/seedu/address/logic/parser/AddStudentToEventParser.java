@@ -42,6 +42,7 @@ public class AddStudentToEventParser implements Parser<AddStudentToEventCommand>
         Optional<String> labName = argMultimap.getValue(PREFIX_LAB);
         Optional<String> consultationName = argMultimap.getValue(PREFIX_CONSULTATION);
         String eventName = tutorialName.orElse(labName.orElse(consultationName.orElse("")));
+
         //todo: remove magic literals
         String eventType = "tutorial";
         if (!labName.isEmpty()) {
