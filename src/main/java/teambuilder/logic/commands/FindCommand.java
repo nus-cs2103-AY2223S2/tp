@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import teambuilder.commons.core.Messages;
 import teambuilder.model.Model;
-import teambuilder.model.person.NameContainsKeywordsPredicate;
+import teambuilder.model.person.PersonContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -21,9 +21,9 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " computer science\n"
             + "Example: " + COMMAND_WORD + " java";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final PersonContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(PersonContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

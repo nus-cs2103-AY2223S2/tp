@@ -24,7 +24,7 @@ import teambuilder.logic.commands.HelpCommand;
 import teambuilder.logic.commands.ListCommand;
 import teambuilder.logic.commands.SortCommand;
 import teambuilder.logic.parser.exceptions.ParseException;
-import teambuilder.model.person.NameContainsKeywordsPredicate;
+import teambuilder.model.person.PersonContainsKeywordsPredicate;
 import teambuilder.model.person.Person;
 import teambuilder.testutil.EditPersonDescriptorBuilder;
 import teambuilder.testutil.PersonBuilder;
@@ -75,7 +75,7 @@ public class TeamBuilderParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser
                 .parseCommand(FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
