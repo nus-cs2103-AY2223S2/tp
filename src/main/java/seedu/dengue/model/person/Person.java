@@ -32,7 +32,6 @@ public class Person {
     @CsvCustomBindByName(column = "Date", converter = DateConverter.class)
     private Date date;
     @CsvCustomBindByName(column = "Age", converter = AgeConverter.class)
-
     private Age age;
     @CsvCustomBindByName(column = "Variants", converter = VariantsConverter.class)
     private Set<Variant> variants = new HashSet<>();
