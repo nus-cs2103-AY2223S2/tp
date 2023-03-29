@@ -13,11 +13,11 @@ import seedu.address.model.Model;
 public class SetReviewLimitCommand extends Command {
     public static final String COMMAND_WORD = "setLimit";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Limit the number of cards tested per review session.\n"
-            + "Parameter: Integer (must be positive) or 'all'.\n"
+            + "Parameter: Integer (must be positive) or 'none'.\n"
             + "Example: " + COMMAND_WORD + " 30";
 
     public static final String MESSAGE_SUCCESS_SET_LIMIT = "You have limited the number of cards per review to %1$s!";
-    public static final String MESSAGE_SUCCESS_NO_LIMIT = "You have set the number of cards per review to 'all' "
+    public static final String MESSAGE_SUCCESS_NO_LIMIT = "You have set the limit of cards per review to 'none' "
             + "- so each review will go through all cards in the deck once!";
     private final int numCardsPerReview;
 

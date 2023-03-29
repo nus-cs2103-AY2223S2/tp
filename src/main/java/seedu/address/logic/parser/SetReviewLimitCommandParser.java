@@ -22,7 +22,7 @@ public class SetReviewLimitCommandParser implements Parser<SetReviewLimitCommand
 
         int reviewLimit;
         try {
-            reviewLimit = ParserUtil.parseNumCardsPerReview(argMultimap.getPreamble());
+            reviewLimit = ParserUtil.parseReviewLimit(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SetReviewLimitCommand.MESSAGE_USAGE), pe);

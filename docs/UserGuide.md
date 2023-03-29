@@ -136,35 +136,22 @@ Format: `selectDeck INDEX`
 Examples:
 * `selectDeck 2`
 
-### Reviewing a masterDeck: `review`
-
-Begins reviewing the **selected** Deck. 
-Changes current mode to Review Mode.
-
-Format: `review INDEX`
-
-Examples:
-* `review 2`
-
-## Deck Mode
-
-Deck mode refers to when a deck is selected and the user wishes to manage the list of cards within this selected deck.
+##Main - After selecting a Deck
+With a deck selected, you can see all the cards in the deck on the right panel! 
+Now you can `addCard`, `deleteCard`, `editCard` or `findCards` in the deck.
+You will not be able to make any deck-related changes (e.g. `addDeck`, `deleteDeck`) until you unselect the current deck.
 
 ### Unselecting a Deck : `unselectDeck`
 
-Unselects the currently selected deck and return to Main mode.
+Unselects the currently selected deck.
 
 Format: `unselectDeck`
 
-Examples:
-* `unselectDeck`
+### Adding a Card: `addCard`
 
+Adds a card to the **selected** deck.
 
-### Adding a Powercard: `add`
-
-Adds a Powercard to the **selected** Deck.
-
-Format: `add q\QUESTION a\ANSWER t\TAG`
+Format: `addCard q\QUESTION a\ANSWER [t\TAG]`
 
 <!-- <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Tagging is optional and should be of value Easy, Medium, or Hard.
@@ -174,63 +161,56 @@ Examples:
 * `add q\What is chemical symbol for Oxygen? a\O`
 * `add q\What is gravity? a\A force of attraction between objects due to their mass t\Easy`
 
-### Listing all Powercards : `list`
+### Deleting a Card : `deleteCard`
 
-Shows a list of all Powercards in the **selected** Deck.
+Deletes an existing card from the **selected** Deck. 
 
-Format: `list`
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Note that this is irreversible!
+</div>
 
-### Editing a Powercard : `edit`
+Format: `deleteCard INDEX`
 
-Edits an existing Powercard in the **selected** Deck. 
+* Deletes the card at the specified `INDEX`. The card's index can be found in the displayed card list.
 
-Format: `edit INDEX [q\QUESTION] [a\ANSWER] [t\TAG]`
+Example:
+- `deleteCard 2`
 
-* Edits the card at the specified `INDEX`. The index refers to the index number shown in the displayed card list. The index **must be a positive integer** 1, 2, 3, …​
+### Editing a Card : `editCard`
+
+Edits an existing card in the **selected** Deck.
+
+Format: `editCard INDEX [q\QUESTION] [a\ANSWER] [t\TAG]`
+
+* Edits the card at the specified `INDEX`. The card's index can be found in the displayed card list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit 1 q\What is chemical symbol for Carbon? a\C` Edits the question and answer of the 1st Powercard to be `What is chemical symbol for Oxygen?` and `C` respectively.
+*  `editCard 1 q\What is chemical symbol for Carbon? a\C` Edits the question and answer of the 1st card to be `What is chemical symbol for Carbon?` and `C` respectively.
 
-### Deleting a Powercard : `delete`
+### Finding Cards by Keywords in Question : `findCards`
 
-Deletes an existing Powercard in the **selected** Deck.
+Show only cards in the **selected** Deck with questions containing any of the given keyword(s).
+Note that the find function does not support partial words.
 
-Format: `delete INDEX`
+Format: `findCards KEYWORD...`
+- You can include multiple KEYWORDS - as long as a card's question contains at least one keyword, the card will be found
+- At least one KEYWORD must be given.
 
-* Deletes the card at the specified `INDEX`. The index refers to the index number shown in the displayed card list. The index **must be a positive integer** 1, 2, 3, …​
+### Showing all Cards : `showCards`
 
-### Reviewing a masterDeck: `review`
+Show all the cards in the **selected** Deck.
 
-Begins reviewing the **selected** Deck.
-Changes current mode to Review Mode.
-
-Format: `review INDEX`
-
-Examples:
-* `review 2`
-
-### Setting the number of cards per review: `setNumCardsPerReview`
-
-Sets the number of cards per review to a non-zero positive integer. After setting, only the entered number of cards will appear in future reviews.
-Setting it to none sets back to view all cards in future reviews.
-
-Format: `setNumCardsPerReview LIMIT_NUM` or `setNumCardsPerReview none`
-
-Examples:
-* `setNumCardsPerReview 30`
-* `setNumCardsPerReview none`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
+Format: `showCards`
 
 ### Clearing the data : `clear`
 
-Clears existing decks and cards. 
+Clears existing decks and cards.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Note that this is irreversible!
+</div>
 
 Format: `clear`
 
@@ -238,56 +218,94 @@ Format: `clear`
 
 ## Review Mode
 
-Review mode is started when `review INDEX` has been entered on the main mode.
+Once ready, you can enter the Review Mode to test yourself on the cards of a deck. You can also specify the difficulties of the cards of the deck you want to test - e.g. you just want test medium and hard cards only.
+
+In the review mode, you will see:
+- On the left panel - updated statistics of the current review (current deck, current card number, number of cards tagged each difficulty) and a navigation guide of the keys.
+- On the right panel - the card that is currently under review, which you can flip to reveal the answer and then tag with a given difficulty.
+
+To review a card, you can attempt the question on the card (in your mind or on a paper if you prefer!) before flipping it. 
+
+Flipping a card reveals the answer - based on how close your guess was to the answer or how confident you were when attempting, you can tag the card with a difficulty of easy, medium or hard.
+
+Your goal would be to eventually have all cards in a deck be tagged as easy!
+
+### Setting the Limit of Cards per Review: `setLimit`
+
+Sets an upper limit of the number of cards per review. 
+The review deck will be truncated to the card limit in future reviews.
+
+You can set the limit back to 'none' to view all cards in the deck for future reviews.
+
+Format: `setLimit LIMIT_NUM` or `setLimit none`
+- LIMIT_NUM is a non-zero positive integer
+
+Examples:
+* `setLimit 30`
+* `setLimit none`
+
+### Start a Review: `review`
+From the Main Mode, run this command to enter the Review Mode!
+
+Format: `review INDEX [-e] [-m] [-h]`
+
+* Reviews the cards from the deck with the specified INDEX. The deck's index can be found in the displayed deck list.
+  - `-e` include this flag to test cards tagged as "easy"
+  - `-m` include this flag to test cards tagged as "medium"
+  - `-h` include this flag to test cards tagged as "hard"
+  - Omit any flags to test all cards in the deck
+
+Examples:
+* `review 5 -e -h`
+* `review 2`
 
 ### Ending the Review: `endReview`
 
-Ends the review.
-Changes current mode to Deck mode.
+Ends the review and returns to the main mode. You can use this when you reach the end of the review deck or at any point during the review.
 
 Format: `endReview`
 
+### Flipping the Card: `p`
+
+Flips the card to reveal the answer.
+
+Format: `p`
+
+### Tagging the Card as Easy: `l`
+
+Tags the current card as easy. This replaces any previous tags.
+
+Format: `l`
+
+### Tagging the Card as Medium: `;`
+
+Tags the current card as medium. This replaces any previous tags.
+
+Format: `;`
+
+### Tagging the Card as Hard: `'`
+
+Tags the current card as hard. This replaces any previous tags.
+
+Format: `'`
+
 ### Next Card: `]`
 
-Displays the next Powercard.
+Displays the next card.
 
 Format: `]`
 
 ### Previous Card: `[`
 
-Displays the previous Powercard.
+Displays the previous card.
 
 Format: `[`
 
-### Flipping the Powercard: `\ `
+### Exiting the program : `exit`
 
-Flips the Powercard to check the answer.
+At any point, run this command to exit the programme.
 
-Format: `\ `
-
-### Marking the Powercard as correct: `'`
-
-Marks the current Powercard as correct.
-
-Format: `'`
-
-### Marking the Powercard as wrong: `;`
-
-Marks the current PowerCard as wrong.
-
-Format: `;`
-
-### Tagging a Powercard: `tag`
-
-Tags the current PowerCard as either Easy, Medium, or Hard.
-
-Format: `tag ENUM`
-
-Examples:
-* `tag Easy`
-* `tag hard`
-
-
+Format: `exit`
 --------------------------------------------------------------------------------------------------------------------
 
 ### Saving the data
@@ -325,44 +343,50 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
-### Main mode
+### Main Mode - before selecting a Deck
 
-| Action      | Format, Examples                                                        |
-|-------------|-------------------------------------------------------------------------|
-| Add deck    | `addDeck DECK_NAME` <br /> e.g., `addDeck Science`                      |
-| Edit deck   | `editDeck d\DECK_NAME` <br /> e.g., `editDeck d\Physics`                |
-| Select Deck | `selectDeck INDEX` <br /> e.g., `selectDeck 2`                          |
-| Delete Deck | `deleteDeck INDEX`                                                      |
-| Review      | `review`                                                                |
-| Set limit   | `setNumCardsPerReview LIMIT_NUM` <br /> e.g., `setNumCardsPerReview 30` |
-| Clear       | `clear`                                                                 |
-| Help        | `help`                                                                  |
-| Exit        | `exit`                                                                  |
+| Action         | Format, Examples                                             |
+|----------------|--------------------------------------------------------------|
+| Select Deck    | `selectDeck INDEX` <br /> e.g., `selectDeck 2`               |
+| Add Deck       | `addDeck DECK_NAME` <br /> e.g., `addDeck Science`           |
+| Edit Deck      | `editDeck INDEX DECK_NAME` <br /> e.g., `editDeck 3 Physics` |
+| Delete Deck    | `deleteDeck INDEX`                                           |
+| Find Decks     | `findDecks KEYWORDS...`                                      |
+| Show All Decks | `showDecks`                                                  |
+| Start Review   | `review INDEX`                                               |
+| Set Limit      | `setLimit LIMIT_NUM` <br /> e.g., `setLimit 30`              |
+| Clear          | `clear`                                                      |
+| Help           | `help`                                                       |
+| Exit           | `exit`                                                       |
 
-### Deck mode
+### Main Mode - after selecting a Deck
 
-| Action        | Format, Examples                                                                                                                         |
-|---------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| Select Deck   | `selectDeck INDEX` <br /> e.g., `selectDeck 2`                                                                                           |
-| Unselect Deck | `unselect`                                                                                                                               |
-| Add Card      | `add q\QUESTION a\ANSWER [t\TAG]` <br /> e.g., `add q\What is gravity? a\A force of attraction between objects due to their mass t\Easy` |
-| Edit Card     | `edit INDEX [q\QUESTION] [a\ANSWER] [t\TAG]` <br /> e.g., `edit 1 q\What is chemical symbol for Caarbon? a\C t\Hard`                     |
-| Delete Card   | `delete INDEX`                                                                                                                           |
-| Review        | `review`                                                                                                                                 |
-| Set limit     | `setNumCardsPerReview LIMIT_NUM` <br /> e.g., `setNumCardsPerReview 30`                                                                  |
-| Exit          | `exit`                                                                                                                                   |
+| Action         | Format, Examples                                                                                                                                 |
+|----------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| Unselect Deck  | `unselectDeck`                                                                                                                                   |
+| Add Card       | `addCard q\QUESTION a\ANSWER [t\TAG]` <br /> e.g., `addCard q\What is gravity? a\A force of attraction between objects due to their mass t\Easy` |
+| Edit Card      | `editCard INDEX [q\QUESTION] [a\ANSWER] [t\TAG]` <br /> e.g., `editCard 1 q\What is chemical symbol for Caarbon? a\C t\Hard`                     |
+| Delete Card    | `deleteCard INDEX`                                                                                                                               |
+| Find Cards     | `findCards KEYWORDS...`                                                                                                                          |
+| Show All Cards | `showCards`                                                                                                                                      |
+| Start Review   | `review INDEX`                                                                                                                                   |
+| Set Limit      | `setLimit LIMIT_NUM` <br /> e.g., `setLimit 30`                                                                                                  |
+| Clear          | `clear`                                                                                                                                          |
+| Help           | `help`                                                                                                                                           |
+| Exit           | `exit`                                                                                                                                           |
 
 ### Review mode
 
 | Action        | Format, Examples |
 |---------------|------------------|
 | End Review    | `endReview`      |
+| Flip          | `p`              |
 | Previous Card | `[`              |
 | Next Card     | `]`              |
-| Flip          | `\`              |
-| Correct       | `'`              |
-| Wrong         | `;`              |
-| Tag           | `tag`            |
+| Tag Easy      | `l`              |
+| Tag Medium    | `;`              |
+| Tag Hard      | `'`              |
+| Help          | `help`           |
 | Exit          | `exit`           |
