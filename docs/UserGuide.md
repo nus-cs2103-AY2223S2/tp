@@ -61,13 +61,13 @@ To make the most of this user guide, we recommend reading through it in order, s
 
 Throughout this user guide, you may come across different formatting styles and symbols. These are used to make the guide more readable and easier to understand. Here are some of the formatting styles and symbols you may encounter:
 
-| <p>**Symbol/**<p>**Format** | **Meaning** |
-| --- | --- |
-| :exclamation: | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.|
-| UPPER_CASE | Words in UPPER CASE are the parameters that you need to supply to the system.<p>E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add.<p> For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`.|
-| [brackets] | Items in square brackets are optional.<p>E.g. update -n NAME [-ph PHONE] can be used as<p>`update -n Alice` or `update -n Alice -ph 12345678`|
-| `command` | The grey highlighting indicates that the word is a command to be entered by the user.|
-|[2. About](#2-about)| Blue texts shown are clickable links. These links will take you to specific sections of this User Guide or external website.|
+| </p>**Symbol/**</p>**Format** | **Meaning**                                                                                                                                                                                                                                                                                                      |
+|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :exclamation:                 | This symbol is used to indicate important warning information that you should be mindful of when using CareFlow.                                                                                                                                                                                                 |
+| UPPER_CASE                    | Words in UPPER CASE are the parameters that you need to supply to the system.</p>E.g. in `add -n NAME`, `NAME` is a parameter which you specify the name of the patient that you wish to add.</p> For instance, a possible value for the NAME parameter is John Doe, and the command would be `add -n John Doe`. |
+| [brackets]                    | Items in square brackets are optional.</p>E.g. update -n NAME [-ph PHONE] can be used as</p>`update -n Alice` or `update -n Alice -ph 12345678`                                                                                                                                                                  |
+| `command`                     | The grey highlighting indicates that the word is a command to be entered by the user.                                                                                                                                                                                                                            |
+| [2. About](#2-about)          | Blue texts shown are clickable links. These links will take you to specific sections of this User Guide or external website.                                                                                                                                                                                     |
 
 Table 1. Symbols and formats used in this User Guide.
 
@@ -146,18 +146,18 @@ Table 1. Symbols and formats used in this User Guide.
    * Step 1: Click on the `spotlight search` icon in the top right corner of your navigation bar, you'll see a search bar popping out.
      <p align="center">
        <img src="images/UGscreenshots/spotlight_search.png" style="zoom:10%">
-     <p>
+     </p>
      <br>
    * Step 2: Type `terminal.app` into the search bar, and simply hit `Enter`
        <p align="center">
              <img src="images/UGscreenshots/terminal.png" style="zoom:20%">
-       <p>
+       </p>
        <br>
   
    * Step 3: You're now looking at the `command terminal`, good job!
        <p align="center">
      <img src="images/UGscreenshots/command_terminal.jpg" style="zoom:25%">
-     <p>
+     </p>
      <br>
        </details>  
   
@@ -200,6 +200,8 @@ Table 1. Symbols and formats used in this User Guide.
 
    * `exit` : Exits the app.
         </details>
+   
+    
 [Back to top](#top)
 
 <br>
@@ -213,8 +215,8 @@ Table 1. Symbols and formats used in this User Guide.
 * Shows all valid command formats and their functionalities.
   <p align="center">
     <img src="images/UIscreenshots/helpMessage.png" style="zoom:80%">
-  <p>
-    &nbsp;
+  </p>
+  <br>
 * **Format:** `g help`
 
 [Back to top](#top)
@@ -231,6 +233,8 @@ Table 1. Symbols and formats used in this User Guide.
 
 <br>
 
+___
+
 ## Patient Operations
 ### Add a Patient record:  `p add`
 * You can use this command to add a new patient to the patient record, if it is the first time that this patient visit your clinic.
@@ -243,18 +247,18 @@ Table 1. Symbols and formats used in this User Guide.
   * Type the command into the command box and hit `Enter`
     <p align="center">
       <img src="images/UIscreenshots/patientSS/patientAdd.png" style="zoom:100%">
-    <p>
+    </p>
     <br>
   * A message response will be printed on the screen, informing you that your command has been successfully executed!
     <p align="center">
       <img src="images/UIscreenshots/patientSS/patientAddresult.png" style="zoom:100%">
-    <p>
+    </p>
     <br>    
 
   * John Doe is now added to the patient record. Click on John Doe and you will see his information being displayed at the right side.
     <p align="center">
       <img src="images/UIscreenshots/patientSS/../johnDoe_added.png" style="zoom:60%">
-    <p>
+    </p>
     <br>    
 
 
@@ -273,20 +277,21 @@ Table 1. Symbols and formats used in this User Guide.
     * Type the command into the command box and hit `Enter`
         <p align="center">
               <img src="images/UIscreenshots/patientSS/pdeleteic.png" style="zoom:80%">
-        <p>
+        </p>
         <br>
     
     * Patient to be deleted:
-    <p align="center">
+        <p align="center">
       <img src="images/UIscreenshots/patientSS/pIC.png" style="zoom:25%">
-    <p>
-    <br>
+        </p>
+        <br>
     
     * A message response will be printed on the screen, informing you that your command has been successfully executed!
-      <p align="center">
-          <img src="images/UIscreenshots/patientSS/pdeleteICres.png" style="zoom:80%">
-        <p>
+        <p align="center">
+        <img src="images/UIscreenshots/patientSS/pdeleteICres.png" style="zoom:80%">
+        </p>
         <br>
+      
     * You can scroll through the list of patient, and John Doe should not be present.
 
 [Back to top](#top)
@@ -306,15 +311,15 @@ Table 1. Symbols and formats used in this User Guide.
   * Then, scroll through the displayed list of patient record, and identify the index of the patient you wish to delete. Suppose we want to delete the 8th patient in the list, John Doe.
     <p align="center">
           <img src="images/UIscreenshots/patientSS/8p.png" style="zoom:80%">
-    <p>
+    </p>
     <p align="center">
           <img src="images/UIscreenshots/patientSS/pdelete.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
   * A message response will be printed on the screen, informing you that your command has been successfully executed!
       <p align="center">
            <img src="images/UIscreenshots/patientSS/pdeleteres.png" style="zoom:60%">
-      <p>
+      </p>
         <br>    
 
 [Back to top](#top)
@@ -334,12 +339,12 @@ Table 1. Symbols and formats used in this User Guide.
   * Suppose we wish to update the phone number, email address, emergency contact number of John to be 91234567, johndoe@example.com and 98765432 respectively. The command would be:`p update John Doe -ph 91234567 -em johndoe@example.com -ec 98765432`
     <p align="center">
           <img src="images/UIscreenshots/patientSS/pupdate.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
   * A message response will be printed on the screen, informing you that your command has been successfully executed!
     <p align="center">
           <img src="images/UIscreenshots/patientSS/pupdateres.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
   * Suppose we wish to update the name and drug allergy of Bety to be Betsy Crowers and Aspirin respectively. The command would be:`p update Bety -n Betsy Crower -da Aspirin`
 
@@ -359,7 +364,7 @@ Table 1. Symbols and formats used in this User Guide.
   * `p find Doe` returns David Doe and John Doe
     <p align="center">
           <img src="images/UIscreenshots/patientSS/patientFindresult.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
   * You can click on either record to see detailed information.
 
@@ -380,7 +385,7 @@ Table 1. Symbols and formats used in this User Guide.
   * You can enter `p view -i 1` to see the information of the first patient in the list.
     <p align="center">
           <img src="images/UIscreenshots/patientSS/pview.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
 
 [Back to top](#top)
@@ -400,7 +405,7 @@ Table 1. Symbols and formats used in this User Guide.
   * All patient records will be permanantly removed from the system
     <p align="center">
           <img src="images/UIscreenshots/patientSS/pclear.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
 
 [Back to top](#top)
@@ -419,7 +424,7 @@ Table 1. Symbols and formats used in this User Guide.
 * **Example:**
     <p align="center">
           <img src="images/UIscreenshots/patientSS/patientList.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
 
 [Back to top](#top)
@@ -427,7 +432,7 @@ Table 1. Symbols and formats used in this User Guide.
 <br>
 
 
-
+___
 
 ## Drug Operations
 
@@ -442,12 +447,12 @@ Table 1. Symbols and formats used in this User Guide.
   * Suppose you wish to add Panadol to you list of drugs, including all relevant pieces of information such as the active ingredient, the direction, side effect and storage count. Your command could look something like:`d add -tn Panadol -ai Paracetamol -dir Adults and children above 12 years old, 1-2 capsules every 4-6 hours -pur treat fever, headache, toothache, rheumatic and muscle pains -se dizziness, fatigue -sc 500`
     <p align="center">
           <img src="images/UIscreenshots/drugSS/dadd.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
   * A message response will be printed on the screen, informing you that your command has been successfully executed!
     <p align="center">
           <img src="images/UIscreenshots/drugSS/daddres.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
 
 [Back to top](#top)
@@ -466,17 +471,17 @@ Table 1. Symbols and formats used in this User Guide.
   * Suppose for some reason, you wish to delete Panadol, your command should look something like:`d delete -tn Panadol`
     <p align="center">
           <img src="images/UIscreenshots/drugSS/ddeletetn.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
   * Drug to be Deleted:
     <p align="center">
         <img src="images/UIscreenshots/drugSS/dpanadol.png" style="zoom:25%">
-    <p>
+    </p>
     <br>
   * A message response will be printed on the screen, informing you that your command has been successfully executed!
     <p align="center">
           <img src="images/UIscreenshots/drugSS/ddeletetnres.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
 
 [Back to top](#top)
@@ -495,17 +500,17 @@ Table 1. Symbols and formats used in this User Guide.
   * Suppose you wish to remove the 4th drug in the list you're currently looking at, your command should look something like:`d delete -i 4`
     <p align="center">
           <img src="images/UIscreenshots/drugSS/ddeleteindex.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
   * Drug to be Deleted:
     <p align="center">
           <img src="images/UIscreenshots/drugSS/d4.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
   * A message response will be printed on the screen, informing you that your command has been successfully executed!
     <p align="center">
           <img src="images/UIscreenshots/drugSS/ddeletetnres.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
 
 [Back to top](#top)
@@ -528,18 +533,18 @@ Table 1. Symbols and formats used in this User Guide.
           <img src="images/UIscreenshots/drugSS/drugPrevCount.png" style="zoom:25%">
     
     (The storage is currently 55 boxes.) 
-    <p>
+    </p>
     <br>
   * Enter your command and hit `Enter`. A message response will be printed on the screen, informing you that your command has been successfully executed!
     <p align="center">
           <img src="images/UIscreenshots/drugSS/dUpdate.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
     * ![](images/UIscreenshots/drugSS/dUpdate.png)
   * The storage of Panadol is now 45
   <p align="center">
           <img src="images/UIscreenshots/drugSS/drugCurrentCount.png" style="zoom:25%">
-    <p>
+    </p>
     <br>
 
 [Back to top](#top)
@@ -559,12 +564,12 @@ Table 1. Symbols and formats used in this User Guide.
   * If you want to check the information of Panadol, your command should look something like: `d find Panadol`
     <p align="center">
           <img src="images/UIscreenshots/drugSS/dfind.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
   * You should see Panadol being shown on the drug list as well as the display window on the right
     <p align="center">
           <img src="images/UIscreenshots/drugSS/dFindPanadol.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
 
 [Back to top](#top)
@@ -583,7 +588,7 @@ Table 1. Symbols and formats used in this User Guide.
   * Enter the command `d clear` and all drug information will be permanantly removed.
     <p align="center">
           <img src="images/UIscreenshots/drugSS/dclearres.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
 
 [Back to top](#top)
@@ -602,7 +607,7 @@ Table 1. Symbols and formats used in this User Guide.
   * Enter `d list` and all drug records will be shown on the screen.
     <p align="center">
           <img src="images/UIscreenshots/drugSS/dlist.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
 
 [Back to top](#top)
@@ -623,7 +628,7 @@ Table 1. Symbols and formats used in this User Guide.
   * Type in the command and hit `Enter`, detailed information of Panadol will be shown on the window at the right side.
     <p align="center">
           <img src="images/UIscreenshots/drugSS/dview.png" style="zoom:80%">
-    <p>
+    </p>
     <br>
 
 [Back to top](#top)
@@ -686,31 +691,31 @@ The following are the general commands that are available in Careflow for you to
 
 The following commands are patient-related commands that are available in Careflow for you to use! You will need to use the prefix `p` to use the commands.
 
-| Action | Format, Example | Expected Outcome |
-| -------|--------|------------------|
-| **Add patient**  | `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]` <p> e.g., `p add -n John Doe -ph 98765432 -em johnd@example.com -ad John Street, Block 123, #01-01 -dob 21-01-2000 -g male -ic T3871918C` | Adds a patient record with the particulars that you have entered.|
-| **Delete patient by index**   | `p delete -i PATIENT_INDEX` <p> e.g., `p delete -i 3`| Removes patient record at the index you have selected.|
-| **Delete patient by NRIC**    | `p delete -ic PATIENT_NRIC` <p> e.g., `p delete -ic T0021248C`| Removes patient record associated with the provided IC number.|
-| **Update patient by name**    | `p update PATIENT_NAME [-n NAME] [-ph PHONE] [-em EMAIL] [-ad ADDRESS] [-dob DATE_OF_BIRTH] [-g GENDER] [-ic IC] [-da DRUG_ALLERGY] [-ec NEW_EMERGENCY_CONTACT_NUMBER]` <p> e.g., `p update John -ph 12345678 -em 23456789` | Edit patient details located at the i-th position in the patient list with your given arguments.|
-| **View patient by index**     | `p view -i PATIENT_INDEX` <p> e.g. `p view -i 1` | Shows the patient record located at the i-th position in the patient list.|
-| **Find patient by name**      | `p find PATIENT_NAME` <p> e.g., `p find John` | Shows patient(s) record that match the patient name you have provided.|
-| **Clear all patient**         | `p clear` | Removes all patient records stored in CareFlow.|
-| **List patient**              | `p list` | Lists all the patients that have been recorded in CareFlow.| 
+| Action | Format, Example                                                                                                                                                                                                                                                                                   | Expected Outcome |
+| -------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
+| **Add patient**  | `p add -n PATIENT_NAME -ph PHONE_NUMBER -em EMAIL -ad ADDRESS -dob DATE_OF_BIRTH -g GENDER -ic NRIC [-da DRUG_ALLERGY] [-ec EMERGENCY_CONTACT_NUMBER]` </p> e.g., `p add -n John Doe -ph 98765432 -em johnd@example.com -ad John Street, Block 123, #01-01 -dob 21-01-2000 -g male -ic T3871918C` | Adds a patient record with the particulars that you have entered.|
+| **Delete patient by index**   | `p delete -i PATIENT_INDEX` </p> e.g., `p delete -i 3`                                                                                                                                                                                                                                            | Removes patient record at the index you have selected.|
+| **Delete patient by NRIC**    | `p delete -ic PATIENT_NRIC` </p> e.g., `p delete -ic T0021248C`                                                                                                                                                                                                                                   | Removes patient record associated with the provided IC number.|
+| **Update patient by name**    | `p update PATIENT_NAME [-n NAME] [-ph PHONE] [-em EMAIL] [-ad ADDRESS] [-dob DATE_OF_BIRTH] [-g GENDER] [-ic IC] [-da DRUG_ALLERGY] [-ec NEW_EMERGENCY_CONTACT_NUMBER]` </p> e.g., `p update John -ph 12345678 -em 23456789`                                                                      | Edit patient details located at the i-th position in the patient list with your given arguments.|
+| **View patient by index**     | `p view -i PATIENT_INDEX` </p> e.g. `p view -i 1`                                                                                                                                                                                                                                                 | Shows the patient record located at the i-th position in the patient list.|
+| **Find patient by name**      | `p find PATIENT_NAME` </p> e.g., `p find John`                                                                                                                                                                                                                                                    | Shows patient(s) record that match the patient name you have provided.|
+| **Clear all patient**         | `p clear`                                                                                                                                                                                                                                                                                         | Removes all patient records stored in CareFlow.|
+| **List patient**              | `p list`                                                                                                                                                                                                                                                                                          | Lists all the patients that have been recorded in CareFlow.| 
 
 ## 6.3 Drug Commands
 
 The following commands are drug-related commands that are available in Careflow for you to use! You will need to use the prefix `d` to use the commands.
 
-| Action | Format | Expected Outcome |
-| -------|--------|------------------|
+| Action | Format                                                                                                                                                                                                                                         | Expected Outcome |
+| -------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
 | **Add a drug**                | `d add -tn TRADE_NAME -ai ACTIVE_INGREDIENT -dir DIRECTIONS -pur PURPOSE -se SIDE_EFFECTS -sc STORAGE_COUNT` <br> e.g., `d add -tn Panadol -ai paracetamol, sodium -dir Adults, 1-2 capsules -pur treat fever, headache -se dizziness -sc 500` | Adds a drug record with the particulars that you have entered. |
-| **Delete drug by index**      | `d delete -i INDEX`<br> e.g.,`d delete -i 7` | Removes drug record at the index you have selected.|
-| **Delete drug by trade name** | `d delete -tn TRADE_NAME`<br> e.g., `d delete -tn Panadol Flu Max` | Removes drug record associated with the provided trade name.|
-| **Update drug storage count** | `d update TRADE_NAME -by +-VALUE`<br> e.g.,`d update -tn Panadol Flu Max -by +90` | Edit drug's storage count with the provided trade name.|
-| **View drug by index**        | `d view -i DRUG_INDEX` <p> e.g. `d view -i 1`| Shows the drug record located at the i-th position in the drug list.|
-| **Find drug by trade name**   | `d find TRADE_NAME` <br> e.g., `d find Panadol`| Shows drug(s) record that match the drugs' trade name you have provided.|
-| **List drug**                 | `d list` | Lists all the drugs that have been recorded in CareFlow. |
-| **Clear all drugs**           | `d clear` | Removes all drug records stored in CareFlow |
+| **Delete drug by index**      | `d delete -i INDEX`<br> e.g.,`d delete -i 7`                                                                                                                                                                                                   | Removes drug record at the index you have selected.|
+| **Delete drug by trade name** | `d delete -tn TRADE_NAME`<br> e.g., `d delete -tn Panadol Flu Max`                                                                                                                                                                             | Removes drug record associated with the provided trade name.|
+| **Update drug storage count** | `d update TRADE_NAME -by +-VALUE`<br> e.g.,`d update -tn Panadol Flu Max -by +90`                                                                                                                                                              | Edit drug's storage count with the provided trade name.|
+| **View drug by index**        | `d view -i DRUG_INDEX` </p> e.g. `d view -i 1`                                                                                                                                                                                                 | Shows the drug record located at the i-th position in the drug list.|
+| **Find drug by trade name**   | `d find TRADE_NAME` <br> e.g., `d find Panadol`                                                                                                                                                                                                | Shows drug(s) record that match the drugs' trade name you have provided.|
+| **List drug**                 | `d list`                                                                                                                                                                                                                                       | Lists all the drugs that have been recorded in CareFlow. |
+| **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                      | Removes all drug records stored in CareFlow |
 
 [Back to top](#top)
 
