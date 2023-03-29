@@ -35,6 +35,10 @@ public class CustomerListPanel extends UiPart<Region> {
 
         customerListView.getSelectionModel().selectedItemProperty().addListener(e -> {
             Customer customer = customerListView.getSelectionModel().getSelectedItem();
+            if (customer == null) {
+                return;
+            }
+
             handler.customerInfoOnClick(customer);
         });
     }

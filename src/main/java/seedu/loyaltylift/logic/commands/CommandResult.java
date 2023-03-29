@@ -20,14 +20,19 @@ public class CommandResult {
     /** The application should select & view a specific customer */
     private final Integer customerIndex;
 
+    /** The application should select & view a specific order */
+    private final Integer orderIndex;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Integer customerIndex) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         Integer customerIndex, Integer orderIndex) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.customerIndex = customerIndex;
+        this.orderIndex = orderIndex;
     }
 
     /**
@@ -35,7 +40,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, null);
+        this(feedbackToUser, false, false, null, null);
     }
 
     public String getFeedbackToUser() {
@@ -50,6 +55,14 @@ public class CommandResult {
         return customerIndex;
     }
 
+    /**
+     * The index of the order in the current displayed listview to display.
+     * @return The index of the order in the current listview, 0-indexed.
+     */
+    public Integer getOrderIndex() {
+        return orderIndex;
+    }
+
     public boolean isShowHelp() {
         return showHelp;
     }
@@ -60,6 +73,10 @@ public class CommandResult {
 
     public boolean isShowCustomerSelection() {
         return customerIndex != null;
+    }
+
+    public boolean isShowOrderSelection() {
+        return orderIndex != null;
     }
 
     @Override
@@ -77,12 +94,13 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
-                && Objects.equals(customerIndex, otherCommandResult.customerIndex);
+                && Objects.equals(customerIndex, otherCommandResult.customerIndex)
+                && Objects.equals(orderIndex, otherCommandResult.orderIndex);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, customerIndex, orderIndex);
     }
 
 }

@@ -32,7 +32,7 @@ public class ViewCustomerCommandTest {
         ViewCustomerCommand viewCustomerCommand = new ViewCustomerCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(ViewCustomerCommand.MESSAGE_VIEW_CUSTOMER_SUCCESS, customerToView);
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, 0);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, 0, null);
 
         assertCommandSuccess(viewCustomerCommand, model, expectedCommandResult, model);
     }
