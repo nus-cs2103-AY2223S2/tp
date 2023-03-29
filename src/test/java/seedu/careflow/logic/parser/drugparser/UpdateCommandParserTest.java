@@ -19,38 +19,38 @@ class UpdateCommandParserTest {
         int val = 10;
         boolean add = true;
 
-        assertParseSuccess(updateCommandParser, " -tn Panadol -val +10",
+        assertParseSuccess(updateCommandParser, " Panadol -by +10",
                 new UpdateCommand(tradeName, val, add));
     }
 
     @Test
     public void parse_nonNumericalValue_failure() {
-        assertParseFailure(updateCommandParser, " -tn Panadol -val +a",
+        assertParseFailure(updateCommandParser, " Panadol -by +a",
                 UpdateCommandParser.INVALID_VALUE_MESSAGE);
     }
 
     @Test
     public void parse_invalidTradeName_failure() {
-        assertParseFailure(updateCommandParser, " -tn $$$ -val +10",
+        assertParseFailure(updateCommandParser, " $$$ -by +10",
                 "Trade names should only contain alphanumeric characters and spaces, "
                         + "it should not be blank and less than 50 characters");
     }
 
     @Test
     public void parse_missingSymbol_failure() {
-        assertParseFailure(updateCommandParser, " -tn Panadol -val 50",
+        assertParseFailure(updateCommandParser, " Panadol -by 50",
                 UpdateCommandParser.INVALID_UNKNOWN_SYMBOL_MESSAGE);
     }
 
     @Test
     public void parse_missingValue_failure() {
-        assertParseFailure(updateCommandParser, "-tn Panadol",
+        assertParseFailure(updateCommandParser, " Panadol",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_missingTradeName_failure() {
-        assertParseFailure(updateCommandParser, "-val +10",
+        assertParseFailure(updateCommandParser, "-by +10",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
     }
 }
