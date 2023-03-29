@@ -1,6 +1,5 @@
 package seedu.address.model.statstics;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.Model;
@@ -9,12 +8,20 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.StatusPredicate;
 
+/**
+ *
+ */
 public class StatusStatsInformation extends StatsInformation {
     private final Model model;
     private final InternshipStatus status;
     private final String description;
     private int numberOfInternshipApplication;
 
+    /**
+     *
+     * @param model
+     * @param status
+     */
     public StatusStatsInformation(Model model, InternshipStatus status) {
         this.model = model;
         this.status = status;
@@ -27,6 +34,12 @@ public class StatusStatsInformation extends StatsInformation {
         return description;
     }
 
+    /**
+     *
+     *
+     * @param status
+     * @return
+     */
     public int getNumberOfApplicationWithStatus(InternshipStatus status) {
         ReadOnlyAddressBook addressBook = model.getAddressBook();
         ObservableList<InternshipApplication> internshipApplications = addressBook.getInternshipList();

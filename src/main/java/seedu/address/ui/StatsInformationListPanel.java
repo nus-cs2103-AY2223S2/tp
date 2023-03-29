@@ -3,7 +3,6 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -43,17 +42,20 @@ public class StatsInformationListPanel extends UiPart<Region> {
         return container;
     }
 
+    /**
+     *
+     */
     public void updateDisplay() {
         ObservableList<StatsInformation> l = statsManager.getStatsInformations();
-        ObservableList<StatsInformation> temp_list = FXCollections.observableArrayList();
+        ObservableList<StatsInformation> tempList = FXCollections.observableArrayList();
         int len = l.size();
         for (int i = 0; i < len; i++) {
             StatsInformation s = l.get(0);
             l.remove(0);
-            temp_list.add(s);
+            tempList.add(s);
         }
         for (int i = 0; i < len; i++) {
-            l.add(temp_list.get(i));
+            l.add(tempList.get(i));
         }
     }
 

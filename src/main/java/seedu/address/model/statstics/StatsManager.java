@@ -11,11 +11,20 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.model.Model;
 import seedu.address.model.person.InternshipStatus;
 
+/**
+ *
+ *
+ */
 public class StatsManager {
     private final Model model;
     private final ObservableList<StatsInformation> statsInformations;
     private final FilteredList<StatsInformation> filteredStatsInformations;
 
+    /**
+     *
+     *
+     * @param model
+     */
     public StatsManager(Model model) {
         requireNonNull(model);
         this.model = model;
@@ -24,6 +33,9 @@ public class StatsManager {
         this.initStatsInformation();
     }
 
+    /**
+     *
+     */
     private void initStatsInformation() {
         List<InternshipStatus> l = Arrays.asList(InternshipStatus.values());
         StatsInformation total = new TotalStatsInformation(model);
@@ -33,20 +45,34 @@ public class StatsManager {
         }
     }
 
+    /**
+     *
+     */
     public void updateAllStatsInformation() {
         for (StatsInformation s: statsInformations) {
             s.updateStatsInformation();
         }
     }
 
+    /**
+     *
+     */
     public void updateFilteredStatsInformationList() {
         filteredStatsInformations.setPredicate(p -> true);
     }
 
+    /**
+     *
+     * @return
+     */
     public ObservableList<StatsInformation> getStatsInformations() {
         return statsInformations;
     }
 
+    /**
+     *
+     * @return
+     */
     public FilteredList<StatsInformation> getFilteredStatsInformations() {
         return filteredStatsInformations;
     }

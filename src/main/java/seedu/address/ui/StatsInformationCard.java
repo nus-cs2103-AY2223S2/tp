@@ -42,6 +42,9 @@ public class StatsInformationCard extends UiPart<Region> {
         stats.setText(s.toString());
     }
 
+    /**
+     *
+     */
     public void updateStatsInformation() {
         statsInformation.updateStatsInformation();
         Number updatedStatsInformation = statsInformation.getStatsInformation();
