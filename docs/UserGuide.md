@@ -6,12 +6,13 @@ toc: true
 ***RIZZ***ipe is a **command-based recipe database** that was designed with **versatile tagging** and **searching**
 features in mind so you can always find the recipe you need! Make use of ***RIZZ***ipe's many features to achieve your
 **culinary rizz**.
----
 
 * Table of Contents
 {:toc}
 
 ---
+<div style="page-break-after: always;"></div>
+
 ## Quick Start
 Let's get you _rizzed_ up in the fastest way possible!
 
@@ -51,6 +52,8 @@ commands, refer to the [Features](#features) Section.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a recipe: `add`
 
@@ -225,18 +228,19 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous recipe home folder.
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                                                                                                                       |
 |------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e {ESTIMATED AMOUNT}] [-cn {COMMON NAME}] [-r {REMARKS}]... [-s {SUBSTITUTION}]...]... [s/RECIPE_STEPS]...` <br/> e.g., `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt` |                                                                                                                                                             |            |                                      |
-| **List**   | `list`                                                                                                                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                             |            |                                      |
+| **Add**    | `add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e {ESTIMATED AMOUNT}] [-cn {COMMON NAME}] [-r {REMARKS}]... [-s {SUBSTITUTION}]...]... [s/RECIPE_STEPS]...` <br/> e.g., `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt` |
+| **List**   | `list`                                                                                                                                                                                                                                                                                                                                                                                 |
 | **Find**   | `find [PROPERTY] KEYWORD [ADDITIONAL KEYWORDS]...    ` for properties: `name`, `tag` <br/> e.g., `find cheese rice`, `find name popcorn`, `find tag western`                                                                                                                                                                                                                           |
 | **Delete** | `delete INDEX`<br/> e.g., `delete 2`                                                                                                                                                                                                                                                                                                                                                   |
 | **Sub**    | `sub INGREDIENT_NAME`<br/> e.g. `sub salt`                                                                                                                                                                                                                                                                                                                                             |
-| **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                                                                |                                                                                                                                                                          |            |                                      |
+| **Clear**  | `clear`                                                                                                                                                                                                                                                                                                                                                                                |
 | **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                                                 |
-| **Exit**   | `exit`                                                                                                                                                                                                                                                                                                                                                                                 |   
+| **Exit**   | `exit`                                                                                                                                                                                                                                                                                                                                                                                 |
 
 
