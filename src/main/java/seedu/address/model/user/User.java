@@ -99,16 +99,28 @@ public class User extends Person {
         this.events.deletePersonFromAllEvents(target);
     }
 
-    public void tagPersonToEvent(Index index, Person p) {
-        this.events.tagPersonToEvent(index, p);
-    }
-
-    public void untagPersonFromEvent(Index index, Person p) {
-        this.events.untagPersonFromEvent(index, p);
-    }
-
     public boolean isPersonTaggedToEvent(Index index, Person p) {
         return this.events.isPersonTaggedToEvent(index, p);
+    }
+
+    public void editPersonForAllEvents(Person personToEdit, Person editedPerson) {
+        this.events.editPersonForAllEvents(personToEdit, editedPerson);
+    }
+
+    public Event getEvent(Index index) {
+        return this.events.getEvent(index);
+    }
+
+    public void setEvent(Event oldEvent, Event newEvent) {
+        this.events.setEvent(oldEvent, newEvent);
+    }
+
+    public void tagPersonToEvent(Index eventIndex, Person taggingPerson) {
+        this.events.tagPersonToEvent(eventIndex, taggingPerson);
+    }
+
+    public void untagPersonToEvent(Index eventIndex, Person taggingPerson) {
+        this.events.untagPersonToEvent(eventIndex, taggingPerson);
     }
 }
 

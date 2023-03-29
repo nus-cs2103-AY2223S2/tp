@@ -93,6 +93,7 @@ public interface Model {
      */
     boolean hasPersonWithName(String name);
 
+    /** Checks if {@code p} is a part of the taggedPerson set of event at {@code index}. */
     boolean isPersonTaggedToEvent(Index index, Person p);
 
     /** Returns an unmodifiable view of the filtered person list */
@@ -137,11 +138,20 @@ public interface Model {
     /** Gets list of all events */
     ObservableList<Event> getEvents();
 
-    /** Tags Person to an Event */
-    void tagPersonToEvent(Index index, Person p);
+    /** Gets the event at {@code index}. */
+    Event getEvent(Index index);
 
-    /** Untags person from an Event */
-    void untagPersonFromEvent(Index index, Person p);
+    /** Sets the {@code oldEvent} to {@code newEvent}. */
+    void setEvent(Event oldEvent, Event newEvent);
+
+    /** Tags {@code taggingPerson} to {@code Event}. */
+    void tagPersonToEvent(Index eventIndex, Person taggingPerson);
+
+    /** Untags {@code taggingPerson} from {@code Event}. */
+    void untagPersonToEvent(Index eventIndex, Person taggingPerson);
+
+    /** Edits person for all events that contain {@code personToEdit} to {@code editedPerson}. */
+    void editPersonForAllEvents(Person personToEdit, Person editedPerson);
 
     /** Checks if {@code index} is a valid tab index. */
     boolean isValidTabIndex(Index index);
