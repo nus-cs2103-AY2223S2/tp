@@ -9,6 +9,9 @@ import javafx.scene.layout.Region;
 import seedu.fitbook.commons.core.LogsCenter;
 import seedu.fitbook.model.client.Client;
 
+/**
+ * Custom {@code ListCell} that displays the graphics of a {@code Client} using a {@code SummaryCard}.
+ */
 public class SummaryPanel extends UiPart<Region> {
     private static final String FXML = "SummaryPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(SummaryPanel.class);

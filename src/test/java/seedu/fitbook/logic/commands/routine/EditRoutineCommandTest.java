@@ -8,7 +8,7 @@ import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_EXERCISE_INDEX;
 import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ROUTINE_NAME_CARDIO;
 import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_ROUTINE_NAME_STRENGTH;
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccessForRoutine;
 import static seedu.fitbook.logic.commands.CommandTestUtil.showRoutineAtIndex;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_ROUTINE;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -60,7 +60,7 @@ public class EditRoutineCommandTest {
         editedRoutine.withExercises(DEFAULT_EXERCISE_PLANK, DEFAULT_EXERCISE_RUN);
         expectedFitBookExerciseRoutineModel.setRoutine(model.getFilteredRoutineList().get(0), editedRoutine);
 
-        assertCommandSuccess(editRoutineCommandRoutine, editRoutineCommandExercise,
+        assertCommandSuccessForRoutine(editRoutineCommandRoutine, editRoutineCommandExercise,
                 model, expectedMessage, expectedFitBookExerciseRoutineModel);
     }
 
@@ -75,7 +75,7 @@ public class EditRoutineCommandTest {
         FitBookModel expectedFitBookModel = new FitBookModelManager(new FitBook(model.getFitBook()),
                 new FitBookExerciseRoutine(model.getFitBookExerciseRoutine()), new UserPrefs());
 
-        assertCommandSuccess(editRoutineCommand, model, expectedMessage, expectedFitBookModel);
+        assertCommandSuccessForRoutine(editRoutineCommand, model, expectedMessage, expectedFitBookModel);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class EditRoutineCommandTest {
         editedRoutine.withExercises("Plank", "4x5 1km Run");
         expectedFitBookModel.setRoutine(model.getFilteredRoutineList().get(0), editedRoutine);
 
-        assertCommandSuccess(editRoutineCommandRoutine, editRoutineCommandExercise, model,
+        assertCommandSuccessForRoutine(editRoutineCommandRoutine, editRoutineCommandExercise, model,
                 expectedMessage, expectedFitBookModel);
     }
 

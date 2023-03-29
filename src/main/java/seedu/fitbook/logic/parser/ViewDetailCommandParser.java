@@ -6,6 +6,9 @@ import seedu.fitbook.commons.core.index.Index;
 import seedu.fitbook.logic.commands.ViewDetailCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new ViewDetailCommand object
+ */
 public class ViewDetailCommandParser implements Parser<ViewDetailCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand

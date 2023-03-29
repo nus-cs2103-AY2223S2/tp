@@ -4,7 +4,7 @@ title: User Guide
 ---
 <img src="images/FitBookBanner.png" width="1200" />
 
-<h2><div markdown="span" style="color:#f9963f">About FitBook</div></h2>
+<h2><div style="color:#f9963f">About FitBook</div></h2>
 
 FitBook is a **desktop app for managing clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Fitbook can get your client management tasks done faster than traditional GUI apps.
 
@@ -14,7 +14,8 @@ This User Guide provides brief documentation on how you can install the applicat
 
 --------------------------------------------------------------------------------------------------------------------
 
-<h2><span style="color:#f9963f">Quick start</span></h2>
+## Quick start
+
 
 1. Ensure you have **Java** `11` or above installed in your Computer.
 
@@ -50,7 +51,7 @@ This User Guide provides brief documentation on how you can install the applicat
 
 --------------------------------------------------------------------------------------------------------------------
 
-<h2><span style="color:#f9963f">Features</span></h2>
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -77,19 +78,21 @@ This User Guide provides brief documentation on how you can install the applicat
 * Client list can be found in the Client panel. Routine list can be found in the Routine Panel of the `Routine` tab.
 </div>
 
-<h3><span style="color:#faac69">Viewing help : `help`</span></h3>
+### Viewing help : `help`
 
-<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Shows a message explaning how to access the help page.
 
 ![help message](images/helpImage.png)
 
 Format: `help`
-</div>
 
-<h3><span style="color:#faac69">Adding a client: `add`</span></h3>
+### Adding a client: `add`
+
+{% include information.html content="
 
 Adds a client to the FitBook.
+
+" %}
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER
 [cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
@@ -108,9 +111,13 @@ Examples:
 Using `add n/Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 w/50 g/M r/Cardio` in the command input box will look like this:
 <img src="images/AddClientUG.png"/>
 
-<h3><span style="color:#faac69">Listing all clients : `listClients`</span></h3>
+### Listing all clients : `listClients`
+
+{% include information.html content="
 
 Displays a list of all clients in the FitBook under the Client panel.
+
+" %}
 
 Format: `listClients`
 
@@ -119,9 +126,14 @@ Format: `listClients`
 * Initiate the command with 'listClients'
 * All clients in FitBook has been listed once again!
 
-<h3><span style="color:#faac69">Editing a client : `edit`</span></h2>
+### Editing a client : `edit`
+
+{% include information.html content="
 
 Edits an existing client in the FitBook.
+
+" %}
+
 
 Format: `edit CLIENT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER
 [cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
@@ -144,12 +156,18 @@ Examples:
 Using `edit 1 p/91234567 e/johndoe@example.com` in the command input box will look like this:
 <img src="images/EditClientUG.png"/>
 
-<h3><span style="color:#faac69">Locating clients by fields: `find`</span></h3>
+### Locating clients by fields: `find`
+
+{% include information.html content="
 
 Finds Clients in FitBook whose details contain any of the given keywords.
 
-Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [w/WEIGHT] [g/GENDER] [cal/CALORIE] [t/TAG]
-[app/APPOINTMENT]`
+" %}
+
+
+
+Format: `find n/NAME p/PHONE e/EMAIL a/ADDRESS w/WEIGHT g/GENDER cal/CALORIE t/TAG
+app/APPOINTMENT gl/GOAL…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** The search is case-insensitive. e.g `hans` will match `Hans` </div>
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** Details containing the keyword will also be matched, even if both do not match exactly. e.g. `Han` will match `Hans`, `John` will match `John Li` and `John Tan`, `19` will match `1900` and `0190` </div>
@@ -165,6 +183,7 @@ Available Prefixes:
 * `gl` filters by Goal
 * `cal` filters by Calorie
 * `app` filters by Appointment
+* `gl` filters by Goal
 
 Examples:
 * `find n/Alex` returns every client with 'Alex' in their name.
@@ -172,9 +191,14 @@ Examples:
 * `find n/Alex p/91234567` returns every client with 'Alex' in their name OR with phone numbers that match or contain
 '91234567'
 
-<h3><span style="color:#faac69">Deleting a client : `delete`</span></h3>
+### Deleting a client : `delete`
+
+{% include information.html content="
 
 Deletes the specified client from the FitBook.
+
+" %}
+
 
 Format: `delete INDEX`
 
@@ -186,21 +210,47 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the FitBook.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-<h3><span style="color:#faac69">Clearing all entries : `clear`</span></h3>
+### Clearing all entries : `clear`
+{% include information.html content="
 
 Clears all entries from the FitBook.
 
+" %}
+
+
 Format: `clear`
 
-<h3><span style="color:#faac69">Export Client details : `export`</span></h3>
+### Exporting Client details : `export`
+
+{% include information.html content="
 
 Exports the client details locally into a csv file.
 
+" %}
+
+
 Format: `export`
 
-<h3><span style="color:#faac69">Adding a routine: `addRoutine`</span></h3>
+* The exported client data includes: <br>
+    * Name of Client
+    * Phone number of Client
+    * Email of Client
+    * Address of Client
+    * Weight of Client
+    * Gender of Client
+* Example generated CSV file when opened using Microsoft Excel:
+
+    ![CSV Sample File](images/CSV%20Sample.PNG)
+
+
+### Adding a routine: `addRoutine`
+
+{% include information.html content="
 
 Adds a routine to the FitBook.
+
+" %}
+
 
 Format: `addRoutine r/ROUTINE_NAME [ex/EXERCISE]…​`
 
@@ -210,9 +260,14 @@ Examples:
 * `addRoutine r/Cardio`
 * `addRoutine r/HIIT ex/3x10sets of Jumping ropes`
 
-<h3><span style="color:#faac69">Editing a routine : `editRoutine`</span></h3>
+### Editing a routine : `editRoutine`
+
+{% include information.html content="
 
 Edits an existing routine in the FitBook.
+
+" %}
+
 
 Format: `editRoutine ROUTINE_INDEX r/ROUTINE_NAME` or `editRoutine INDEX exno/EXERCISE_INDEX ex/EXERCISE`
 
@@ -224,18 +279,28 @@ Examples:
 *  `editRoutine 1 r/Cardio` Edits the routine name of the 1st routine to be `Cardio` respectively.
 *  `editRoutine 2 exno/1 ex/3x10sets dumbbells` Edits the exercise of the 2nd routine to be `3x10sets dumbbells`.
 
-<h3><span style="color:#faac69">Listing all Routines in FitBook : `listRoutines`</span></h3>
+### Listing all Routines in FitBook : `listRoutines`
+
+{% include information.html content="
 
 List all Routines in FitBook under Exercise tab.
+
+" %}
+
 
 Format: `listRoutines`
 
 * Initiate the command with 'listRoutines'
 * All Routines in FitBook has been listed once again!
 
-<h3><span style="color:#faac69">Locating Routines by name: `findRoutine`</span></h3>
+### Locating Routines by name: `findRoutine`
+
+{% include information.html content="
 
 Finds Routines in FitBook whose Routine name contains any of the given keywords.
+
+" %}
+
 
 Format: `findRoutine KEYWORD`
 
@@ -245,15 +310,25 @@ Format: `findRoutine KEYWORD`
 Examples:
 * `findRoutine Cardio`
 
-<h3><span style="color:#faac69">Clearing all Routine entries : `clearRoutines`</span></h3>
+### Clearing all Routine entries : `clearRoutines`
+
+{% include information.html content="
 
 Clears all Routine entries in FitBook under the `Exercise` Tab.
 
+" %}
+
+
 Format: `clearRoutines`
 
-<h3><span style="color:#faac69">Deleting a routine : `deleteRoutine`</span></h3>
+### Deleting a routine : `deleteRoutine`
+
+{% include information.html content="
 
 Deletes the specified Routine from the FitBook.
+
+" %}
+
 
 Format: `deleteRoutine ROUTINE_INDEX`
 
@@ -265,9 +340,14 @@ Examples:
 * `listRoutines` followed by `deleteRoutine 2` deletes the 2nd Routine in FitBook.
 * `findRoutine Cardio` followed by `deleteRoutine 1` deletes the 1st Routine in the results of the `findRoutine` command.
 
-<h3><span style="color:#faac69">Adding an Exercise : `addExercise`</span></h3>
+### Adding an Exercise : `addExercise`
+
+{% include information.html content="
 
 Adds an exercise to a current Routine in FitBook.
+
+" %}
+
 
 Format: `addExercise ROUTINE_INDEX ex/EXERCISE_NAME`
 
@@ -278,9 +358,14 @@ Format: `addExercise ROUTINE_INDEX ex/EXERCISE_NAME`
 Examples:
 * `listRoutines` followed by `addExercise 1 ex/push ups` adds the exercise `push ups` to the first Routine in the exercise list in FitBook.
 
-<h3><span style="color:#faac69">Deleting an Exercise : `deleteExercise`</span></h3>
+### Deleting an Exercise : `deleteExercise`
+
+{% include information.html content="
 
 Deletes an exercise from a Routine in FitBook.
+
+" %}
+
 
 Format: `deleteExercise ROUTINE_INDEX EXERCISE_INDEX`
 
@@ -293,23 +378,80 @@ Examples:
 * `listRoutines` followed by `deleteExercise 1 2` deletes the exercise specified at index `2` from the Routine specified at index `1` in the Routine list in FitBook.
 * `findRoutine Cardio` followed `deleteExercise 1 1` deletes the exercise specified at index `1` from the Routine specified at index `1` in the results of the `findRoutineCardio` command.
 
-<h3><span style="color:#faac69">Export Routine details : `exportRoutines`</span></h3>
+### Exporting Routine details : `exportRoutines`
+
+{% include information.html content="
 
 Exports the routine details locally into a csv file.
 
+" %}
+
+
 Format: `exportRoutines`
 
-<h3><span style="color:#faac69">Exiting the program : `exit`</span></h3>
+* The exported client data includes: <br>
+    * Name of Routine
+    * Exercises in the Routine
+
+* Example generated CSV file when opened using Microsoft Excel:
+
+  ![CSV Sample File](images/CSVRoutineSample.png)
+
+### Adding new weight to a client: `addWeight`
+
+{% include information.html content="
+
+Adds a new weight to the weight history of the client in the FitBook.
+
+" %}
+
+
+Format: `addWeight INDEX w/WEIGHT d/DATE`
+
+* Adds weight to the weight history of the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The new `DATE` must be specified in `dd-MM-yyyy HH:mm` format.
+
+Examples:
+* `addWeight 1 w/70 d/10-10-2023 18:00` adds weight 70kg to the weight history of the first client in the FitBook and dates the weight at 10 October 2023, 6pm.
+* `find n/Alex` followed by `addWeight 1 w/70 d/10-10-2023 18:00` adds weight 70kg, dated 10 October 2023, 6pm to the weight history of the 1st client in the results of the `find` command.
+
+### Plotting weight history graph for a client: `graph`
+
+{% include information.html content="
+
+Plots the weight history of the client in the FitBook.
+
+" %}
+
+
+Format: `graph INDEX`
+
+* Plots the weight history of the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The weight history graph will be shown only for weights dated within one month of the current date and time.
+
+Examples:
+* `graph 1` plots the weight history of the first client in the FitBook.
+* `find n/Alex` followed by `graph 1` plots the weight history of the 1st client in the results of the `find` command.
+
+### Exiting the program : `exit`
+
+{% include information.html content="
 
 Exits the program.
 
+" %}
+
 Format: `exit`
 
-<h3><span style="color:#faac69">Saving the data</span></h3>
+### Saving the data
 
 FitBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-<h3><span style="color:#faac69">Editing the data file</span></h3>
+### Editing the data file
 
 FitBook data are saved as a JSON file `[JAR file location]/data/fitbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -317,121 +459,13 @@ FitBook data are saved as a JSON file `[JAR file location]/data/fitbook.json`. A
 If your changes to the data file makes its format invalid, FitBook will discard all data and start with an empty data file at the next run.
 </div>
 
-<h3><span style="color:#faac69">Archiving data files `[coming in v2.0]`</span></h3>
 
-_Details coming soon ..._
-///PLACE HOLDER OUR ACTUAL FEATURE LIST////
-1.	Adding new client
-Add a new customer profile: addClient
-Format: addClient c/CLIENT_NAME p/PHONE_NUMBER add/ADDRESS [appt/APPOINTMENT_TIME] [w/WEIGHT] [cal/TARGET_CALORIES_INTAKE][g/ GOAL] [r/Routines] [g/gender]
-
-Example:
-•	addClient c/Lisa p/95230245 cal/2000 w/50 r/1,2,3
-
-2.	Removing a client: removeClient
-Removes a client profile.
-Format: removeClient c/CLIENT_NAME
-
-Examples:
-•	removeClient c/Lisa
-
-3.	Editing client information
-Edits client details (e.g. phone number)
-Format: editClient c/CLIENT_NAME [p/PHONE_NUMBER] [add/ADDRESS] [appt/APPOINTMENT_TIME]
-[w/WEIGHT] [cal/TARGET_CALORIES_INTAKE][g/ GOAL] [r/Routines] [g/gender]
-`
-Examples:
-•	editClient c/Lisa p/95230245
-
-4.	Finding client by name
-Locates client
-Format: findClient c/CLIENT_NAME
-
-Examples:
-•	findClient c/Lisa
-
-5.	Listing all clients: listClients
-Lists all clients added. “Change tab to clients”.
-Format: listClients
-
-6.	Listing all the routines: listRoutines
-Lists all routines added. “Change tab to lists”.
-Format: listRoutines
-
-7.	Exiting the app
-Exits the program.
-Format: logout
-
-8.	Creating an exercise routine: createRoutine
-Creates an empty exercise routine to the list of exercise routines.
-Format: createRoutine n/EXERCISE_ROUTINE_NAME
-
-Examples:
-•	createRoutine n/Slimming Exercise
-•	createRoutine n/Cardio Exercise
-
-9.	Saving exercise routines: saveExercise
-Saves an exercise routine to the FitBook.
-Format: saveExercise e/EXERCISE_NUMBER r/ROUTINE_NUMBER n/ROUTINE [t/DURATION_OR_REPS][s/SETS]
-
-Examples:
-•	saveExercise e/3 r/2 n/Dumbbell curls t/20 s/3
-•	saveExercise e/2 r/3 n/Lateral Raises t/10 s/4
-•	saveExercise e/1 r/1 n/Treadmill Sprint t/10 minutes
-
-10.	Showing the list of exercise routines: listRoutines
-Shows the list of exercise routines in the fitbook.
-Format: listRoutines [f/SEARCH]
-
-Examples:
-•	listRoutines
-•	listRoutines f/Cardio
-
-11.	Tagging the exercise routine to each client: tagExercise
-Tags an exercise routine to each client in the fitbook.
-Format: tagExercise p/PERSON_INDEX_IN_THE_LIST e/EXERCISE_INDEX_IN_THE_EXERCISE_LIST
-
-Examples:
-•	tagExercise p/2 e/3
-
-12.	  Filtering clients by exercises: filterExercise
-Filters and shows the clients by their routine.
-Format: filterExercise e/EXERCISE_NAME
-
-Examples:
-•	filterExercise e/Cardio
-•	filterExercise e/Strength
-
-Filtering the clients by gender: filterGender
-Filters and shows the clients by gender.
-Format: filterGender g/GENDER
-
-13.	Marking the exercise of a client’s routine as done: markExercise
-Marks the exercise of a client’s routine as done.
-markExercise p/PERSON_INDEX_IN_THE_LIST r/ROUTINE_NUMBER e/EXERCISE_NUMBER
-
-Example:
-•	markExercise p/2 r/1 e/3
-
-14.	Unmarking the exercise of a client’s routine as not done: unmarkExercise
-Unmarks the exercise of a client’s routine as not done.
-unmarkExercise p/PERSON_INDEX_IN_THE_LIST r/ROUTINE_NUMBER e/EXERCISE_NUMBER
-
-Example:
-•	unmarkExercise p/2 r/1 e/3
-
-15.	Unmarking all the exercise of a client’s routine as not done:
-unmarkAllExercise
-Unmarks all the exercise of a client’s routine as not done.
-unmarkAllExercise p/PERSON_INDEX_IN_THE_LIST r/ROUTINE_NUMBER
-
-Example:
-•	unmarkAllExercise p/1 r/3
+### Archiving data files `[coming in v2.0]`
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-<h2><span style="color:#f9963f">FAQ</span></h2>
+## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FitBook home folder.
@@ -443,26 +477,28 @@ Example:
 **A**: The exercise routine is probably not inside the list of routines or the routine name is wrong. The routine name is case-sensitive.
 --------------------------------------------------------------------------------------------------------------------
 
-<h2><span style="color:#f9963f">Command summary</span></h2>
+## Command summary
 
-| Action                           | Format, Examples                                                                                                                                                                                                                                                                                 |
-|----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER [cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE_NAME]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague w/55 g/M`          |
-| **Clear all entries in FitBook** | `clear`                                                                                                                                                                                                                                                                                          |
-| **Delete**                       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                              |
-| **Edit**                         | `edit CLIENT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER [cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE_NAME]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                              |
-| **Find**                         | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [w/WEIGHT] [g/GENDER] [cal/CALORIE] [t/TAG] [app/APPOINTMENT]`<br> e.g., `find James Jake p/91234567 e/jamesjake@example.com`                                                                                                                     |
-| **List**                         | `listClients`                                                                                                                                                                                                                                                                                    |
-| **Help**                         | `help`                                                                                                                                                                                                                                                                                           |
-| **Export Client Details**        | `export`                                                                                                                                                                                                                                                                                         |
-| **Add Exercise**                 | `addExercise ROUTINE INDEX ex/EXERCISE` <br> e.g, `addExercise 1 ex/4 x 3 sprints`                                                                                                                                                                                                               |
-| **Add Routine**                  | `addRoutine r/ROUTINE_NAME [ex/EXERCISE]…​` <br> e/g, `addRoutine r/Cardio ex/3x5 1km Jog ex/3x10 Jumping Jacks `                                                                                                                                                                                |
-| **Edit Routine** (routine name)  | `editRoutine ROUTINE_INDEX r/ROUTINE_NAME` <br> e/g, `editRoutine 1 r/Cardio`                                                                                                                                                                                                                    |
-| **Edit Routine** (exercise)      | `editRoutine INDEX exno/EXERCISE_INDEX ex/EXERCISE` <br> e/g, `editRoutine 1 exno/1 ex/3x10sets of Dumbbell curls`                                                                                                                                                                               |
-| **Delete Exercise**              | `deleteExercise ROUTINE INDEX EXERCISE INDEX` <br> e.g, `deleteExercise 1 2`                                                                                                                                                                                                                     |
-| **Delete Routine**               | `deleteRoutine ROUTINE INDEX ` <br> e.g, `deleteRoutine 1`                                                                                                                                                                                                                                       |
-| **List Routine**                 | `listRoutines`                                                                                                                                                                                                                                                                                   |
-| **Clear Routine**                | `clearRoutines`                                                                                                                                                                                                                                                                                  |
-| **Find Routine**                 | `findRoutine ROUTINE NAME` <br> e.g, `findRoutine Cardio`                                                                                                                                                                                                                                        |
-| **Export Routine Details**       | `exportRoutine`                                                                                                                                                                                                                                                                                  |
+| Action                           | Format, Examples                                                                                                                                                                                                                                                                        |
+|----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER [cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE_NAME]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague w/55 g/M` |
+| **Clear all entries in FitBook** | `clear`                                                                                                                                                                                                                                                                                 |
+| **Delete**                       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                     |
+| **Edit**                         | `edit CLIENT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER [cal/RECOMMENDED_CALORIES_INTAKE] [gl/GOAL] [r/ROUTINE_NAME]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                    |
+| **Find**                         | `find n/NAME p/PHONE e/EMAIL a/ADDRESS w/WEIGHT g/GENDER cal/CALORIE t/TAG app/APPOINTMENT gl/GOAL`<br> e.g., `find n/James Jake e/jamesjake@example.com`                                                                                                                               |
+| **List**                         | `listClients`                                                                                                                                                                                                                                                                           |
+| **Help**                         | `help`                                                                                                                                                                                                                                                                                  |
+| **Export Client Details**        | `export`                                                                                                                                                                                                                                                                                |
+| **Add Exercise**                 | `addExercise ROUTINE INDEX ex/EXERCISE` <br> e.g, `addExercise 1 ex/4 x 3 sprints`                                                                                                                                                                                                      |
+| **Add Routine**                  | `addRoutine r/ROUTINE_NAME [ex/EXERCISE]…​` <br> e/g, `addRoutine r/Cardio ex/3x5 1km Jog ex/3x10 Jumping Jacks `                                                                                                                                                                       |
+| **Edit Routine** (routine name)  | `editRoutine ROUTINE_INDEX r/ROUTINE_NAME` <br> e/g, `editRoutine 1 r/Cardio`                                                                                                                                                                                                           |
+| **Edit Routine** (exercise)      | `editRoutine INDEX exno/EXERCISE_INDEX ex/EXERCISE` <br> e/g, `editRoutine 1 exno/1 ex/3x10sets of Dumbbell curls`                                                                                                                                                                      |
+| **Delete Exercise**              | `deleteExercise ROUTINE INDEX EXERCISE INDEX` <br> e.g, `deleteExercise 1 2`                                                                                                                                                                                                            |
+| **Delete Routine**               | `deleteRoutine ROUTINE INDEX ` <br> e.g, `deleteRoutine 1`                                                                                                                                                                                                                              |
+| **List Routine**                 | `listRoutines`                                                                                                                                                                                                                                                                          |
+| **Clear Routine**                | `clearRoutines`                                                                                                                                                                                                                                                                         |
+| **Find Routine**                 | `findRoutine ROUTINE NAME` <br> e.g, `findRoutine Cardio`                                                                                                                                                                                                                               |
+| **Export Routine Details**       | `exportRoutine`                                                                                                                                                                                                                                                                         |
+| **Add weight**                   | `addWeight INDEX w/WEIGHT d/DATE`<br> e.g., `addWeight 1 w/70 d/10-10-2023 18:00`                                                                                                                                                                                                       |
+| **Graph**                        | `graph INDEX`<br> e.g., `graph 1`                                                                                                                                                                                                                                                       |
 

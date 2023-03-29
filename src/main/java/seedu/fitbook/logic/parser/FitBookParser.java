@@ -27,7 +27,6 @@ import seedu.fitbook.logic.commands.GraphCommand;
 import seedu.fitbook.logic.commands.HelpCommand;
 import seedu.fitbook.logic.commands.ListClientsCommand;
 import seedu.fitbook.logic.commands.ListRoutinesCommand;
-import seedu.fitbook.logic.commands.ViewDetailCommand;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 
 /**

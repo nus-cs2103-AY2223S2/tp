@@ -9,6 +9,9 @@ import javafx.scene.layout.Region;
 import seedu.fitbook.commons.core.LogsCenter;
 import seedu.fitbook.model.client.Client;
 
+/**
+ * Panel containing the client's summary.
+ */
 public class SummaryListPanel extends UiPart<Region> {
     private static final String FXML = "SummaryListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ClientListPanel.class);
