@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Vimificattion User Guide
+title: User Guide
 ---
 
 <!---
