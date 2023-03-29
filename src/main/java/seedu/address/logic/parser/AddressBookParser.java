@@ -89,11 +89,11 @@ public class AddressBookParser {
         } else if (TagCommand.commandWords.contains(commandWord)) {
             return new TagCommandParser().parse(arguments);
         } else if (ExportCommand.commandWords.contains(commandWord)) {
-            return new ExportCommand();
+            return new ExportCommandParser().parse(arguments);
         } else if (ShortcutCommand.commandWords.contains(commandWord)) {
             return new ShortcutCommandParser().parse(arguments);
         } else if (ImportCommand.commandWords.contains(commandWord)) {
-            return new ImportCommand();
+            return new ImportCommandParser().parse(arguments);
         } else if (MassOpCommand.commandWords.contains(commandWord)) {
             return new MassOpCommandParser().parse(arguments);
         } else {

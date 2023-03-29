@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javafx.collections.ObservableList;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -23,7 +25,7 @@ class CsvSerializableAddressBook {
     /**
      * Constructs a {@code CsvSerializableAddressBook} with the given persons.
      */
-    public CsvSerializableAddressBook(List<List<String>> listOfTokens) {
+    public CsvSerializableAddressBook(List<List<String>> listOfTokens) throws DataConversionException {
         for (List<String> tokens: listOfTokens) {
             persons.add(new CsvAdaptedPerson(tokens));
         }
@@ -36,6 +38,15 @@ class CsvSerializableAddressBook {
      */
     public CsvSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(CsvAdaptedPerson::new).collect(Collectors.toList()));
+    }
+
+    /**
+     * Converts a given {@code ObservableList} into this class for Csv use.
+     *
+     * @param source future changes to this will not affect the created {@code CsvSerializableAddressBook}.
+     */
+    public CsvSerializableAddressBook(ObservableList<Person> source) {
+        persons.addAll(source.stream().map(CsvAdaptedPerson::new).collect(Collectors.toList()));
     }
 
     /**

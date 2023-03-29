@@ -18,6 +18,7 @@ import seedu.address.model.exceptions.ModifyFrozenStateException;
 import seedu.address.model.history.History;
 import seedu.address.model.person.ParticularPersonsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -131,6 +132,22 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public String addPersonsFromAddressBook(ReadOnlyAddressBook newAddressBook) {
+        String feedback = "Success!";
+
+        for (Person person: newAddressBook.getPersonList()) {
+            try {
+                addressBook.addPerson(person);
+            } catch (DuplicatePersonException e) {
+                feedback = "Warning: Some contacts already exist! Those contacts will be ignored.";
+            }
+        }
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        return feedback;
     }
 
     @Override

@@ -11,7 +11,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import seedu.address.commons.util.FileUtil;
 import seedu.address.model.Model;
-import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.CsvAddressBookStorage;
 
 /**
@@ -29,6 +28,12 @@ public class ExportCommand extends Command {
 
     public static final String[] FILE_EXTENSIONS = new String[]{"csv"};
 
+    private boolean isAllEnabled;
+
+    public ExportCommand(boolean isAllEnabled) {
+        this.isAllEnabled = isAllEnabled;
+    }
+
     @Override
     public CommandResult execute(Model model) {
         JFrame parentComponent = new JFrame();
@@ -43,8 +48,12 @@ public class ExportCommand extends Command {
 
         File fileToSave = FileUtil.getSelectedFileWithExtension(fileChooser);
         try {
-            AddressBookStorage addressBookStorage = new CsvAddressBookStorage(fileToSave.toPath());
-            addressBookStorage.saveAddressBook(model.getAddressBook());
+            CsvAddressBookStorage addressBookStorage = new CsvAddressBookStorage(fileToSave.toPath());
+            if (isAllEnabled) {
+                addressBookStorage.saveAddressBook(model.getAddressBook());
+            } else {
+                addressBookStorage.saveAddressBook(model.getFilteredPersonList());
+            }
             JOptionPane.showMessageDialog(null, "Exported to " + fileToSave);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
