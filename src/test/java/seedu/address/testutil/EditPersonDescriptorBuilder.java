@@ -5,14 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.BusinessSize;
-import seedu.address.model.person.Company;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Priority;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -42,6 +35,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setBusinessSize(person.getBusinessSize());
         descriptor.setCompany(person.getCompany());
         descriptor.setPriority(person.getPriority());
+        descriptor.setTransactionCount(person.getTransactionCount());
         descriptor.setTags(person.getTags());
     }
 
@@ -98,6 +92,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withPriority(String priority) {
         descriptor.setPriority(new Priority(priority));
+        return this;
+    }
+
+    /**
+     * Sets the {@code TransactionCount} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withTransactionCount(String transactionCount) {
+        descriptor.setTransactionCount(new TransactionCount(transactionCount));
         return this;
     }
 

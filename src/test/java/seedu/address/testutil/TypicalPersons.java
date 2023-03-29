@@ -14,6 +14,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRANSACTION_COUNT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRANSACTION_COUNT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -32,54 +34,55 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withBusinessSize("2").withCompany("software engineering is not cs")
-            .withPriority("HIGH")
+            .withPriority("HIGH").withTransactionCount("0")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withBusinessSize("23").withCompany("software engineering is not cs")
-            .withPriority("HIGH")
+            .withPriority("HIGH").withTransactionCount("0")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withBusinessSize("234").withCompany("software engineering is not cs")
-            .withPriority("HIGH").build();
+            .withPriority("HIGH").withTransactionCount("0").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
             .withBusinessSize("2345").withCompany("software engineering is not cs")
-            .withPriority("HIGH").withTags("friends").build();
+            .withPriority("HIGH").withTransactionCount("0").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
             .withBusinessSize("23456").withCompany("software engineering is not cs")
-            .withPriority("HIGH").build();
+            .withPriority("HIGH").withTransactionCount("0").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
             .withBusinessSize("234567").withCompany("software engineering is not cs")
-            .withPriority("HIGH").build();
+            .withPriority("HIGH").withTransactionCount("0").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
             .withBusinessSize("2345678").withCompany("software engineering is not cs")
-            .withPriority("HIGH").build();
+            .withPriority("HIGH").withTransactionCount("0").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india")
             .withBusinessSize("10").withCompany("menialtask8")
-            .withPriority("HIGH").build();
+            .withPriority("HIGH").withTransactionCount("0").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave")
             .withBusinessSize("10").withCompany("menialtask9")
-            .withPriority("HIGH").build();
+            .withPriority("HIGH").withTransactionCount("0").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
             .withBusinessSize(VALID_BUSINESS_SIZE_AMY).withCompany(VALID_COMPANY_AMY).withPriority(VALID_PRIORITY_AMY)
+            .withTransactionCount(VALID_TRANSACTION_COUNT_AMY)
             .withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
             .withBusinessSize(VALID_BUSINESS_SIZE_BOB).withCompany(VALID_COMPANY_BOB)
-            .withPriority(VALID_PRIORITY_BOB)
+            .withPriority(VALID_PRIORITY_BOB).withTransactionCount(VALID_TRANSACTION_COUNT_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 

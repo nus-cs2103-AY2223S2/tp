@@ -11,6 +11,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
+import seedu.address.model.person.TransactionCount;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -29,6 +30,7 @@ public class PersonBuilder {
     public static final String DEFAULT_COMPANY = "software engineering is not cs";
 
     public static final String DEFAULT_PRIORITY = "HIGH";
+    public static final String DEFAULT_TRANSACTION_COUNT = "0";
 
     private Name name;
     private Phone phone;
@@ -39,6 +41,8 @@ public class PersonBuilder {
     private Company company;
 
     private Priority priority;
+
+    private TransactionCount transactionCount;
     private Set<Tag> tags;
 
     /**
@@ -52,6 +56,7 @@ public class PersonBuilder {
         businessSize = new BusinessSize(DEFAULT_BUSINESSSIZE);
         company = new Company(DEFAULT_COMPANY);
         priority = new Priority(DEFAULT_PRIORITY);
+        transactionCount = new TransactionCount(DEFAULT_TRANSACTION_COUNT);
         tags = new HashSet<>();
     }
 
@@ -66,6 +71,7 @@ public class PersonBuilder {
         businessSize = personToCopy.getBusinessSize();
         company = personToCopy.getCompany();
         priority = personToCopy.getPriority();
+        transactionCount = personToCopy.getTransactionCount();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -125,6 +131,15 @@ public class PersonBuilder {
         return this;
     }
 
+
+    /**
+     * Sets the {@code TransactionCount} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTransactionCount(String transactionCount) {
+        this.transactionCount = new TransactionCount(transactionCount);
+        return this;
+    }
+
     /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
@@ -134,7 +149,8 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, businessSize, company, priority, tags);
+        return new Person(name, phone, email, address, businessSize, company,
+                priority, transactionCount, tags);
     }
 
 }
