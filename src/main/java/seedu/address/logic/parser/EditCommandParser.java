@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UNWATCH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WATCH;
 
@@ -26,6 +27,7 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.VideoName;
+import seedu.address.model.video.VideoTimestamp;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -43,7 +45,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_NAME, PREFIX_MODULE, PREFIX_LECTURE,
-                        PREFIX_TAG, PREFIX_UNWATCH, PREFIX_WATCH);
+                        PREFIX_TAG, PREFIX_UNWATCH, PREFIX_WATCH, PREFIX_TIMESTAMP);
 
         if (isEditModule(argMultimap)) {
             return parseEditModuleCommand(argMultimap);
@@ -141,6 +143,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         String videoNameStr = argMultimap.getPreamble();
 
         String updatedNameStr = argMultimap.getValue(PREFIX_NAME).orElse(null);
+        String updatedTimestampStr = argMultimap.getValue(PREFIX_TIMESTAMP).orElse(null);
         String updatedTagsStr = argMultimap.getValue(PREFIX_TAG).orElse(null);
         boolean hasWatchFlag = argMultimap.getValue(PREFIX_WATCH).isPresent();
         boolean hasUnwatchFlag = argMultimap.getValue(PREFIX_UNWATCH).isPresent();
@@ -154,11 +157,13 @@ public class EditCommandParser implements Parser<EditCommand> {
         VideoName videoName = ParserUtil.parseVideoName(videoNameStr);
 
         VideoName updatedName = updatedNameStr == null ? null : ParserUtil.parseVideoName(updatedNameStr);
+        VideoTimestamp updatedTimestamp = updatedTimestampStr == null ? null : ParserUtil.parseVideoTimestamp(updatedTimestampStr);
         Set<Tag> updatedTags = updatedTagsStr == null ? null : ParserUtil.parseMultiTags(updatedTagsStr);
         Boolean hasWatchedUpdated = (!hasWatchFlag && !hasUnwatchFlag) ? null : hasWatchFlag;
 
         EditVideoDescriptor descriptor = new EditVideoDescriptor();
         descriptor.setName(updatedName);
+        descriptor.setTimestamp(updatedTimestamp);
         descriptor.setTags(updatedTags);
         descriptor.setWatched(hasWatchedUpdated);
 

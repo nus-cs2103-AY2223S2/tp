@@ -189,7 +189,8 @@ public class TagCommand extends Command {
         newTags.addAll(this.tags);
         newTags.addAll(currentTags);
 
-        Video taggedVideo = new Video(taggingVideo.getName(), taggingVideo.hasWatched(), newTags);
+        Video taggedVideo = new Video(taggingVideo.getName(), taggingVideo.hasWatched(),
+                taggingVideo.getTimestamp(), newTags);
         model.setVideo(targetLecture, taggingVideo, taggedVideo);
         return new CommandResult(String.format(MESSAGE_SUCCESS, videoName));
     }

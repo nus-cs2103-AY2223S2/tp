@@ -220,7 +220,8 @@ public class UntagCommand extends Command {
         newTags = newTags.stream().filter(tag -> !deletingTags.contains(tag))
                 .collect(Collectors.toSet());
 
-        Video taggedVideo = new Video(untaggingVideo.getName(), untaggingVideo.hasWatched(), newTags);
+        Video taggedVideo = new Video(untaggingVideo.getName(), untaggingVideo.hasWatched(),
+                untaggingVideo.getTimestamp(), newTags);
         model.setVideo(targetLecture, untaggingVideo, taggedVideo);
         return new CommandResult(String.format(MESSAGE_SUCCESS, videoName));
     }

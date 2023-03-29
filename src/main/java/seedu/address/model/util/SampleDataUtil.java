@@ -15,6 +15,7 @@ import seedu.address.model.module.ModuleName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
+import seedu.address.model.video.VideoTimestamp;
 
 /**
  * Contains utility methods for populating {@code Tracker} with sample data.
@@ -70,20 +71,20 @@ public class SampleDataUtil {
 
     public static Video[] getSampleVideos1() {
         return new Video[] {
-            new Video(new VideoName("Vid 1"), true, getTagSet("Algo")),
-            new Video(new VideoName("Vid 2"), true, getTagSet("Analysis")),
+            new Video(new VideoName("Vid 1"), true, new VideoTimestamp(), getTagSet("Algo")),
+            new Video(new VideoName("Vid 2"), true, new VideoTimestamp(), getTagSet("Analysis")),
         };
     }
 
     public static Video[] getSampleVideos2() {
         return new Video[] {
-            new Video(new VideoName("Vid"), true, new HashSet<>()),
+            new Video(new VideoName("Vid"), true, new VideoTimestamp(), new HashSet<>()),
         };
     }
 
     public static Video[] getSampleVideos3() {
         return new Video[] {
-            new Video(new VideoName("Vid"), false, new HashSet<>()),
+            new Video(new VideoName("Vid"), false, new VideoTimestamp("00:24:20"), new HashSet<>()),
         };
     }
 
