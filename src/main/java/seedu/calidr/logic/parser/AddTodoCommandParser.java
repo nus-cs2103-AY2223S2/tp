@@ -34,8 +34,8 @@ public class AddTodoCommandParser implements Parser<AddTodoCommand> {
      */
     public AddTodoCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_BY, PREFIX_PRIORITY,
-                        PREFIX_DESCRIPTION, PREFIX_LOCATION, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_LOCATION,
+                        PREFIX_BY, PREFIX_PRIORITY, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_BY)
                 || !argMultimap.getPreamble().isEmpty()) {
