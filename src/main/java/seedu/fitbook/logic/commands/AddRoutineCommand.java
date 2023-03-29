@@ -45,7 +45,8 @@ public class AddRoutineCommand extends Command {
         }
 
         model.addRoutine(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), null, false, false, false, true);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
+                null, false, false, false, true, false);
     }
 
     @Override

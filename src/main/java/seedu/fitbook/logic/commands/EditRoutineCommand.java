@@ -80,7 +80,7 @@ public class EditRoutineCommand extends Command {
         model.setRoutine(routineToEdit, editedRoutine);
         model.updateFilteredRoutineList(PREDICATE_SHOW_ALL_ROUTINES);
         return new CommandResult(String.format(MESSAGE_EDIT_ROUTINE_SUCCESS, editedRoutine),
-                null, false, false, false, true);
+                null, false, false, false, true, false);
     }
 
     /**

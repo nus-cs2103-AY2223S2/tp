@@ -8,8 +8,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.fitbook.commons.core.LogsCenter;
 import seedu.fitbook.model.client.Client;
-import seedu.fitbook.model.routines.Routine;
 
+/**
+ * Panel containing the routine's summary.
+ */
 public class ExerciseListPanel extends UiPart<Region> {
     private static final String FXML = "ExerciseListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(SummaryPanel.class);
@@ -42,5 +44,4 @@ public class ExerciseListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

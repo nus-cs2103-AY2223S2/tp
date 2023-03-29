@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.collections.ObservableList;
-
 /**
  * Represents a Client's list of weights in FitBook.
  * Guarantees: immutable

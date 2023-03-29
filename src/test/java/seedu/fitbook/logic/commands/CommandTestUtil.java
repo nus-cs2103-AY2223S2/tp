@@ -206,7 +206,7 @@ public class CommandTestUtil {
                                             FitBookModel actualFitBookModel, String expectedMessage,
                                             FitBookModel expectedFitBookModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage,
-                null, false, false, false, true);
+                null, false, false, false, true, false);
         assertCommandSuccess(command, commandTwo, actualFitBookModel, expectedCommandResult, expectedFitBookModel);
     }
 
@@ -217,7 +217,7 @@ public class CommandTestUtil {
     public static void assertCommandSuccessForRoutine(Command command, FitBookModel actualFitBookModel,
                                                       String expectedMessage, FitBookModel expectedFitBookModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage,
-                null, false, false, false, true);
+                null, false, false, false, true, false);
 
         assertCommandSuccess(command, actualFitBookModel, expectedCommandResult, expectedFitBookModel);
     }

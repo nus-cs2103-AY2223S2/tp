@@ -51,7 +51,7 @@ public class AddExerciseCommand extends Command {
         model.addExercise(routine, exerciseToAdd);
         updateClientExercise(routine, model);
         return new CommandResult(String.format(MESSAGE_ADD_EXERCISE_SUCCESS, exerciseToAdd, routine),
-                null, false, false, false, true);
+                null, false, false, false, true, false);
     }
 
     /**

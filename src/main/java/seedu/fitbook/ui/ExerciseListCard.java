@@ -15,6 +15,9 @@ import seedu.fitbook.commons.core.LogsCenter;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.routines.Routine;
 
+/**
+ * A UI component that displays information of a {@code Routine}.
+ */
 public class ExerciseListCard extends UiPart<Region> {
     private static final String FXML = "ExerciseListCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(AppParameters.class);

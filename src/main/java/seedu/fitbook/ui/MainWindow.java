@@ -1,13 +1,19 @@
 package seedu.fitbook.ui;
 
-import java.util.Date;
-import java.util.function.Consumer;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
@@ -25,8 +31,6 @@ import seedu.fitbook.logic.commands.CommandResult;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.client.Client;
-import seedu.fitbook.model.client.Weight;
-import seedu.fitbook.model.client.WeightHistory;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -57,7 +61,6 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
     private SchedulePanel schedulePanel;
-    private GraphPanel graphPanel;
     private ExercisePanel exercisePanel;
     private ExerciseListPanel exerciseListPanel;
     private SummaryPanel summaryPanel;
@@ -103,6 +106,12 @@ public class MainWindow extends UiPart<Stage> {
     private Label scheduleListListPanelTitle;
     @FXML
     private Label exerciseListListPanelTitle;
+    private CategoryAxis xAxis;
+    private NumberAxis yAxis;
+    private LineChart<String, Number> lineChart;
+    private XYChart.Series<String, Number> series;
+    private Scene scene;
+    private Pane pane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -249,20 +258,51 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @FXML
-    private void handleStatistics() {
-        setMainTitleText(STATISTIC);
-        setSubTitle(STATISTIC);
-        rightPanelPlaceholder.setManaged(false);
-        leftPanelPlaceholder.setManaged(false);
+    private void handleStatistics(Client client) {
+        xAxis = new CategoryAxis();
+        yAxis = new NumberAxis();
+        lineChart = new LineChart<String, Number>(xAxis, yAxis);
+        series = new XYChart.Series<String, Number>();
 
-        summaryListPanel = new SummaryListPanel(logic.getFilteredClientList());
-        leftPanelPlaceholder.getChildren().add(summaryListPanel.getRoot());
+        //xAxis.setLabel("Day");
+        //yAxis.setLabel("Weights");
+        System.out.println("initialiseGraph");
+        updateSeries(client);
+        System.out.println("Series");
 
-        graphPanel = new GraphPanel(logic.getFilteredClientList());
-        rightPanelPlaceholder.getChildren().add(graphPanel.getRoot());
 
-        rightPanelPlaceholder.setManaged(true);
-        leftPanelPlaceholder.setManaged(true);
+        pane = new Pane();
+        pane.setPadding(new Insets(15, 15, 15, 15));
+        pane.getChildren().add(lineChart);
+        scene = new Scene(pane);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void updateSeries(Client client) {
+        series.getData().clear();
+        List<String> graphXAxis = new ArrayList<>();
+        List<Integer> graphYAxis = new ArrayList<>();
+
+        for (int i = 0; i < client.getWeightHistory().getListSize(); i++) {
+            int weightValue = Integer.parseInt(client.getWeightHistory().getWeightValue(i));
+            graphYAxis.add(weightValue);
+        }
+
+
+        for (int i = 0; i < client.getWeightHistory().getListSize(); i++) {
+            String dateValue = client.getWeightHistory().getDateValue(i).toString();
+            graphXAxis.add(dateValue);
+        }
+
+        // add data to the series
+        for (int i = 0; i < graphXAxis.size(); i++) {
+            series.getData().add(new XYChart.Data(graphXAxis.get(i), graphYAxis.get(i)));
+            System.out.println(graphYAxis.get(i));
+        }
+        series.setName("Weight History");
+        lineChart.getData().add(series);
     }
 
     @FXML
@@ -361,6 +401,9 @@ public class MainWindow extends UiPart<Stage> {
             }
             if (commandResult.isShowRoutine()) {
                 handleExercise();
+            }
+            if (commandResult.isShowGraph()) {
+                handleStatistics(commandResult.getClientToView());
             }
             return commandResult;
         } catch (CommandException | ParseException e) {
