@@ -40,23 +40,12 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <VBox  fx:id ="teamList" minWidth="170" prefWidth="170" styleClass="pane-with-border">
-                    <padding>
-                      <Insets bottom="10" left="10" right="10" top="10" />
-                    </padding>
-                    <StackPane fx:id="teamListPanelPlaceHolder" prefWidth="82.0" VBox.vgrow="ALWAYS"/>
-                  </VBox>
-      
-                  <VBox fx:id="personList" minWidth="170" prefWidth="170" styleClass="pane-with-border">
-                    <padding>
-                      <Insets bottom="10" left="10" right="10" top="10" />
-                    </padding>
-                    <StackPane fx:id="personListPanelPlaceholder" prefWidth="82.0" VBox.vgrow="ALWAYS" />
-                  </VBox>
-               </children>
-            </HBox>
+            <VBox fx:id="teamList" minWidth="170" prefWidth="170" styleClass="pane-with-border">
+              <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+              </padding>
+              <StackPane fx:id="teamListPanelPlaceHolder" prefWidth="82.0" VBox.vgrow="ALWAYS" />
+            </VBox>
       </VBox>
     </Scene>
   </scene>

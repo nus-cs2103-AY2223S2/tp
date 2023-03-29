@@ -32,7 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
-    private TeamListPanel teamListPanel;
+//    private TeamListPanel teamListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -45,8 +45,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane personListPanelPlaceholder;
 
-    @FXML
-    private StackPane teamListPanelPlaceholder;
+//    @FXML
+//    private StackPane teamListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -114,8 +114,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        teamListPanel = new TeamListPanel(logic.getFilteredTeamList());
-        teamListPanelPlaceholder.getChildren().add(teamListPanel.getRoot());
+//        teamListPanel = new TeamListPanel(logic.getFilteredTeamList());
+//        teamListPanelPlaceholder.getChildren().add(teamListPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -174,9 +174,9 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
-    public TeamListPanel getTeamListPanel() {
-        return teamListPanel;
-    }
+//    public TeamListPanel getTeamListPanel() {
+//        return teamListPanel;
+//    }
 
     /**
      * Executes the command and returns the result.
