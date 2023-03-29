@@ -72,6 +72,9 @@ public class SummaryListCard extends UiPart<Region> {
         // state check
         SummaryListCard card = (SummaryListCard) other;
         return id.getText().equals(card.id.getText())
-                && client.equals(card.client);
+                && client.equals(card.client)
+                && cardPane.equals(card.client)
+                && tags.equals(card.tags)
+                && name.equals(card.name);
     }
 }

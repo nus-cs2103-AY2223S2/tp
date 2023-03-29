@@ -264,12 +264,9 @@ public class MainWindow extends UiPart<Stage> {
         lineChart = new LineChart<String, Number>(xAxis, yAxis);
         series = new XYChart.Series<String, Number>();
 
-        //xAxis.setLabel("Day");
-        //yAxis.setLabel("Weights");
-        System.out.println("initialiseGraph");
+        xAxis.setLabel("Day");
+        yAxis.setLabel("Weights");
         updateSeries(client);
-        System.out.println("Series");
-
 
         pane = new Pane();
         pane.setPadding(new Insets(15, 15, 15, 15));
