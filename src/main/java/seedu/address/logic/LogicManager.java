@@ -12,6 +12,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.injector.Injector;
 import seedu.address.logic.injector.NavigationInjector;
+import seedu.address.logic.parser.ArchiveParser;
 import seedu.address.logic.parser.TrackerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Level;
@@ -33,6 +34,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final TrackerParser trackerParser;
+    private final ArchiveParser archiveParser;
     private final Injector navigationInjector;
 
     /**
@@ -43,6 +45,7 @@ public class LogicManager implements Logic {
         this.storage = storage;
         this.navigationInjector = new NavigationInjector();
         trackerParser = new TrackerParser();
+        archiveParser = new ArchiveParser(storage);
     }
 
     @Override
@@ -50,12 +53,17 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
+        Command command;
 
-        commandText = navigationInjector.inject(commandText, model);
+        if (archiveParser.isArchiveCommand(commandText)) {
+            logger.info("----------------[ARCHIVE COMMAND][" + commandText + "]");
+            command = archiveParser.parseCommand(commandText);
+        } else {
+            commandText = navigationInjector.inject(commandText, model);
+            logger.info("----------------[POST INJECTION USER COMMAND][" + commandText + "]");
+            command = trackerParser.parseCommand(commandText);
+        }
 
-        logger.info("----------------[POST INJECTION USER COMMAND][" + commandText + "]");
-
-        Command command = trackerParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
