@@ -29,7 +29,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    //@@author Guo-KeCheng
     private static final String DARK_THEME = "/css/DarkTheme.css";
+    //@@author Guo-KeCheng
     private static final String LIGHT_THEME = "/css/LightTheme.css";
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -133,7 +135,7 @@ public class MainWindow extends UiPart<Stage> {
                 event.consume();
             }
         });
-
+        //@@author Guo-KeCheng
         EventHandler<KeyEvent> keyEventHandler = event -> {
             if (event.getCode() == KeyCode.F2) {
                 // Perform action for F1
@@ -260,6 +262,9 @@ public class MainWindow extends UiPart<Stage> {
         }
 
     }
+
+    //@@author Guo-KeCheng
+
     /**
      * Loads the light themed css.
      */
@@ -268,6 +273,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.getScene().getStylesheets().clear();
         primaryStage.getScene().getStylesheets().add(LIGHT_THEME);
     }
+
+    //@@author Guo-KeCheng
 
     /**
      * Loads the dark themed css.
