@@ -700,7 +700,8 @@ If this is not ideal, we recommend to avoid deleting any customers.
 
 ### Miscellaneous
 
-|              Action | Format, Examples                                                                                                                                                             |
-|--------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|           **Clear** | `clear`                                                                                                                                                                      |
-|            **Help** | `help`                                                                                                                                                                       |
+|    Action | Format, Examples |
+|----------:|------------------|
+| **Clear** | `clear`          |
+|  **Exit** | `exit`           |
+|  **Help** | `help`           |
