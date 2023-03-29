@@ -13,9 +13,9 @@ MyLib is a desktop application originally built to serve as a single platform fo
 
 With MyLib, you have the ability to easily organise all your reading materials in a **single platform**, in a **highly personalized** way via a custom set of tags or labels that you can define on your own.
 
-MyLib is a **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib's features are meant to be accessed through typed commands rather than mouse clicks.
+MyLib is **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib's features are meant to be accessed through typed commands rather than mouse clicks.
 
-If you are a fast typer who is seeking a one-stop platform to organise and track your books, comics, blogs, articles and basically anything you can read (online or physical), then MyLib is what you need! Even if you are not a fast typer, the commands are simple enough such that typing them out will not be much slower than using a GUI, if at all!
+If you are a fast typer who is seeking a one-stop platform to organise and track your readings (online or physical), then MyLib is what you need! Even if you are not a fast typer, the commands are simple enough such that typing them out will not be much slower than using a GUI, if at all!
 
 
 --------------------------------------------------------------------------------------------------------------------
