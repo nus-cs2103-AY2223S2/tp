@@ -42,7 +42,12 @@ public class UploadFileCommand extends Command {
 
         Person personToUpload = lastShownList.get(targetIndex.getZeroBased());
         FilesManager filesManager = new FilesManager(personToUpload);
-        filesManager.addFile();
+        try {
+            filesManager.addFile();
+        } catch (RuntimeException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_FILE_INDEX);
+        }
+
         return new CommandResult(String.format(MESSAGE_UPLOAD_SUCCESS, personToUpload));
     }
 
