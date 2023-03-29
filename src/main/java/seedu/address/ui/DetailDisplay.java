@@ -130,6 +130,10 @@ public class DetailDisplay extends UiPart<Region> {
                 hideGenerateButton();
                 hideViewDisplay();
                 filesManager.addFile();
+                if (filesManager.isHasError()) {
+                    medicalCondition.setText(filesManager.getErrorMessage());
+                    return;
+                }
                 medicalCondition.setText("click the person gain to see updated file list");
             }
         });
