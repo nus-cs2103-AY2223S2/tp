@@ -5,18 +5,22 @@ import javafx.collections.ObservableList;
 import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.model.LogicTaskList;
+import vimification.model.oldcode.Deadline;
 import vimification.model.task.Task;
 
-public class SearchByKeywordCommand extends SearchCommand {
-    public static final String COMMAND_WORD = "s -t";
+import java.time.LocalDateTime;
+
+public class SearchByDateBetween extends SearchCommand {
+    public static final String COMMAND_WORD = "s -d -between";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": search for tasks that has title matching with input keyword.\n"
-            + "Parameters: KEYWORD\n"
-            + "Conditions: Keyword cannot be empty.\n"
-            + "Example: " + COMMAND_WORD + " quiz";
-    public SearchByKeywordCommand(String keyword) {
-        super(task -> task.containsKeyword(keyword));
+            + ": search for tasks that have deadline between (inclusive) the input dates.\n"
+            + "Parameters: DATETIME (start date time) + DATETIME (end date time)\n"
+            + "Conditions: Date time must be valid in the format of YYYY-MM-DD.\n"
+            + "Example: " + COMMAND_WORD + " 2023-01-01" + " 2024-01-01";
+
+    public SearchByDateBetween(LocalDateTime startDate, LocalDateTime endDate) {
+        super(task -> task.isDateAfter(startDate) && task.isDateBefore(endDate));
     }
 
     @Override
@@ -26,4 +30,6 @@ public class SearchByKeywordCommand extends SearchCommand {
         setViewTaskList(viewTaskList);
         return new CommandResult(SUCCESS_MESSAGE_FORMAT);
     }
+
 }
+

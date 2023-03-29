@@ -1,9 +1,9 @@
 package vimification.internal.parser;
 
 import vimification.commons.core.Index;
-import vimification.internal.command.logic.DeleteCommand;
+import vimification.internal.command.logic.DeleteTaskCommand;
 
-public class DeleteCommandParser implements LogicCommandParser<DeleteCommand> {
+public class DeleteCommandParser implements LogicCommandParser<DeleteTaskCommand> {
 
     private static final ApplicativeParser<Index> INDEX_PARSER =
             ApplicativeParser.nonWhitespaces().flatMap(indexStr -> {
@@ -16,12 +16,12 @@ public class DeleteCommandParser implements LogicCommandParser<DeleteCommand> {
                 }
             });
 
-    private static final ApplicativeParser<DeleteCommand> COMMAND_PARSER = INDEX_PARSER
+    private static final ApplicativeParser<DeleteTaskCommand> COMMAND_PARSER = INDEX_PARSER
             .dropNext(ApplicativeParser.skipWhitespaces())
             .dropNext(ApplicativeParser.eof())
-            .map(DeleteCommand::new);
+            .map(DeleteTaskCommand::new);
 
-    private static final ApplicativeParser<ApplicativeParser<DeleteCommand>> INTERNAL_PARSER =
+    private static final ApplicativeParser<ApplicativeParser<DeleteTaskCommand>> INTERNAL_PARSER =
             ApplicativeParser
                     .skipWhitespaces()
                     .takeNext(ApplicativeParser.string("d"))
@@ -37,7 +37,7 @@ public class DeleteCommandParser implements LogicCommandParser<DeleteCommand> {
     }
 
     @Override
-    public ApplicativeParser<ApplicativeParser<DeleteCommand>> getInternalParser() {
+    public ApplicativeParser<ApplicativeParser<DeleteTaskCommand>> getInternalParser() {
         return INTERNAL_PARSER;
     }
 }

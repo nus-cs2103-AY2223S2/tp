@@ -1,24 +1,30 @@
-package vimification.model.task;
+package vimification.model.oldcode;
+
+import vimification.model.task.Priority;
+import vimification.model.task.Status;
+import vimification.model.task.Task;
 
 import java.time.LocalDateTime;
 import static vimification.commons.util.CollectionUtil.requireAllNonNull;
 
-public class Event extends Task {
+public class Event {
 
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
 
-    public Event(String description, boolean isDone,
-            LocalDateTime startDateTime,
-            LocalDateTime endDateTime) {
-        super(description, isDone);
+    public Event(String description, Status status, Priority priority,
+                 LocalDateTime startDateTime,
+                 LocalDateTime endDateTime) {
+        //super(description, status, priority);
         requireAllNonNull(startDateTime, endDateTime);
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
     }
 
     public Event(String description, LocalDateTime startDateTime, LocalDateTime endDateTime) {
-        this(description, false, startDateTime, endDateTime);
+        //super(description);
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
     }
 
     public LocalDateTime getStartDateTime() {
@@ -37,9 +43,11 @@ public class Event extends Task {
         this.endDateTime = endDateTime;
     }
 
+    /**
+
     @Override
     public Event clone() {
-        return new Event(getDescription(), isDone(), startDateTime, endDateTime);
+        return new Event(getDescription(), getStatus(), getPriority(), startDateTime, endDateTime);
     }
 
     @Override
@@ -56,6 +64,12 @@ public class Event extends Task {
                 && otherEvent.endDateTime.equals(endDateTime);
     }
 
+
+    @Override
+    public boolean isDeadline() {
+        return false;
+    }
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {

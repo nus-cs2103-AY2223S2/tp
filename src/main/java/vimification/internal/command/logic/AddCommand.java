@@ -10,18 +10,24 @@ import vimification.model.task.Task;
 /**
  * Creates a new task and adds it to the task planner.
  */
-public class CreateCommand extends UndoableLogicCommand {
-    public static final String COMMAND_WORD = "create";
-    public static final String SUCCESS_MESSAGE_FORMAT = "New task created: %1$s";
+public class AddCommand extends UndoableLogicCommand {
+    public static final String COMMAND_WORD = "i";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": adds a task to the displayed task list.\n"
+            + "Parameters: DESCRIPTION (description of the task to be added)\n"
+            + "Conditions: Description cannot be empty.\n"
+            + "Example: " + COMMAND_WORD + " quiz";
+
+    public static final String SUCCESS_MESSAGE_FORMAT = "Task %1$s created";
     public static final String UNDO_MESSAGE =
-            "The command has been undoed. The new task has been deleted.";
+            "The command has been undone. The new task has been deleted.";
 
     private final Task newTask;
 
     /**
-     * Creates an CreateCommand to add the specified {@code Task}
+     * Creates an AddCommand to add the specified {@code Task}
      */
-    public CreateCommand(Task task) {
+    public AddCommand(Task task) {
         requireNonNull(task);
         newTask = task;
     }
@@ -44,7 +50,7 @@ public class CreateCommand extends UndoableLogicCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CreateCommand // instanceof handles nulls
-                        && newTask.equals(((CreateCommand) other).newTask));
+                || (other instanceof AddCommand // instanceof handles nulls
+                        && newTask.equals(((AddCommand) other).newTask));
     }
 }

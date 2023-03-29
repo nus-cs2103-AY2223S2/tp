@@ -1,35 +1,35 @@
 package vimification.internal.command.logic;
 
-import static java.util.Objects.requireNonNull;
-
 import vimification.commons.core.Index;
 import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.model.LogicTaskList;
-import vimification.model.task.Priority;
 
-public class SetPriorityCommand extends UndoableLogicCommand {
-    public static final String COMMAND_WORD = "set_priority";
+import java.time.LocalDateTime;
+
+import static java.util.Objects.requireNonNull;
+
+public class DeleteDeadlineCommand extends UndoableLogicCommand{
+    public static final String COMMAND_WORD = "d -d";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": deletes the deadline of the task.\n"
+            + "Parameters: INDEX (index number of the target task in the displayed task list)\n"
+            + "Conditions: Index must be positive integer and cannot exceed total number of tasks.\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String SUCCESS_MESSAGE_FORMAT =
-            "The priority of Task %1$s has been updated.";
+            "deadline of task %1$s deleted.";
     public static final String UNDO_MESSAGE =
-            "The command has been undoed. The deleted task has been added back.";
+            "The command has been undone. The deadline of the task has been changed back.";
 
-    // targetIndex is ZERO-BASED
     private final Index targetIndex;
-    private final Priority newPriority;
-    private Priority oldPriority;
 
+    private LocalDateTime oldDeadline;
 
-    public SetPriorityCommand(Index targetIndex, Priority newPriority) {
+    public DeleteDeadlineCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
-        this.newPriority = newPriority;
-        this.oldPriority = null;
-    }
-
-    public SetPriorityCommand(Index targetIndex, int newLevel) {
-        this(targetIndex, Priority.fromInt(newLevel));
+        this.oldDeadline = null;
     }
 
     @Override
@@ -37,8 +37,8 @@ public class SetPriorityCommand extends UndoableLogicCommand {
             throws IndexOutOfBoundsException, CommandException {
         requireNonNull(taskList);
         int zero_based_index = targetIndex.getZeroBased();
-        oldPriority = taskList.getPriority(zero_based_index);
-        taskList.setPriority(zero_based_index, newPriority);
+        oldDeadline = taskList.getDeadline(zero_based_index);
+        taskList.deleteDeadline(zero_based_index);
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
     }
 
@@ -47,7 +47,9 @@ public class SetPriorityCommand extends UndoableLogicCommand {
             throws IndexOutOfBoundsException, CommandException {
         requireNonNull(taskList);
         int zero_based_index = targetIndex.getZeroBased();
-        taskList.setPriority(zero_based_index, oldPriority);
+        taskList.setDeadline(zero_based_index, oldDeadline);
         return new CommandResult(UNDO_MESSAGE);
     }
+
 }
+

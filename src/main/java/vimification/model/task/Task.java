@@ -1,48 +1,51 @@
 package vimification.model.task;
 
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
 import static java.util.Objects.requireNonNull;
 import static vimification.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Set;
-import java.util.HashSet;
+public class Task {
 
-public abstract class Task {
-
-    private String description;
-    private boolean isDone;
-    private Set<String> tags;
+    private String title;
+    private LocalDateTime deadline;
+    private Status status;
     private Priority priority;
+    private Set<String> tags;    
 
     /**
      * Every field must be present and not null.
      */
-    Task(String description, boolean isDone, Priority priority) {
-        requireAllNonNull(description, priority);
-        this.description = description;
-        this.isDone = isDone;
-        this.tags = new HashSet<>();
+    public Task(String title, LocalDateTime deadline, Status status, Priority priority) {  //used when converting from storage
+        requireAllNonNull(title, priority);
+        this.title = title;
+        this.deadline = deadline;
+        this.status = status;
         this.priority = priority;
+        this.tags = new HashSet<>();
+    }
+    
+    public Task(String title) {     //used when creating new tasks
+        this(title, null, Status.NOT_DONE, Priority.UNKNOWN);
     }
 
-    Task(String description, boolean isDone) {
-        this(description, isDone, Priority.UNKNOWN);
+    Task(String title, LocalDateTime deadline) {
+        this(title, deadline, Status.NOT_DONE, Priority.UNKNOWN);
     }
 
-    public String getDescription() {
-        return description;
+    public String getTitle() {
+        return title;
     }
 
+    public void setTitle(String title) {
+        requireNonNull(title);
+        this.title = title;
+    }
+    
     public Priority getPriority() {
         return priority;
-    }
-
-    public boolean isDone() {
-        return isDone;
-    }
-
-    public void setDescription(String description) {
-        requireNonNull(description);
-        this.description = description;
     }
 
     public void setPriority(Priority priority) {
@@ -54,18 +57,36 @@ public abstract class Task {
         this.priority = Priority.fromInt(level);
     }
 
-    public void mark() {
-        isDone = true;
+    public Status getStatus() {
+        return status;
     }
 
-    public void unmark() {
-        isDone = false;
+    public void setStatus(Status status) {
+        requireNonNull(status);
+        this.status = status;
+    }
+
+    public void setStatus(int level) {
+        this.status = Status.fromInt(level);
+    }
+    
+    public LocalDateTime getDeadline() {
+        return deadline;
+    }
+    
+    public void setDeadline(LocalDateTime deadline) {
+        requireNonNull(deadline);
+        this.deadline = deadline;
+    }
+
+    public void deleteDeadline() {
+        this.deadline = null;
     }
 
     public boolean containsKeyword(String keyword) {
-        return description.contains(keyword);
+        return title.contains(keyword);
     }
-
+    
     public void addTag(String newTag) {
         requireNonNull(newTag);
         newTag = newTag.toLowerCase();
@@ -81,21 +102,41 @@ public abstract class Task {
         }
     }
 
-    public boolean checkPriority(Priority priority) {
+    /**
+    public boolean containsLabel(String label) {
+        return labels.contains(label);
+    }
+    */
+
+    public boolean isSamePriority(Priority priority) {
         return this.priority.equals(priority);
     }
 
-    public boolean checkPriority(int level) {
-        return checkPriority(Priority.fromInt(level));
+    public boolean isSamePriority(int level) {
+        return isSamePriority(Priority.fromInt(level));
     }
 
-    public abstract Task clone();
+    public boolean isDateBefore(LocalDateTime date) {
+        return deadline != null && (deadline.isBefore(date) || deadline.isEqual(date));
+    }
+
+    public boolean isDateAfter(LocalDateTime date) {
+        return deadline != null && (deadline.isAfter(date) || deadline.isEqual(date));
+    }
+
+
+    public Task clone() {
+        return new Task(getTitle(), getDeadline(), getStatus(), getPriority());
+    }
 
     public boolean isSameTask(Task otherTask) {
         if (otherTask == this) {
             return true;
         }
-        return otherTask.description.equals(description);
+        boolean isSame =  otherTask.title.equals(title) && otherTask.deadline.equals(deadline)
+                && otherTask.status.equals(status) && otherTask.priority.equals(priority);
+                //&& otherTask.labels.equals(labels);
+        return isSame;
     }
 
     /**
@@ -111,16 +152,18 @@ public abstract class Task {
             return false;
         }
         Task otherTask = (Task) other;
-        return otherTask.description.equals(description) && otherTask.isDone == isDone;
+        return otherTask.title.equals(title) && otherTask.status.equals(status);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("description: ")
-                .append(description)
+        builder.append("title: ")
+                .append(title)
                 .append("; status: ")
-                .append(isDone ? "done" : "not done");
+                .append(status.toString())
+                .append("; priority: ")
+                .append(priority.toString());
         return builder.toString();
     }
 }
