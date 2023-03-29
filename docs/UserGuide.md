@@ -76,9 +76,15 @@ List of commands:
     - [Selecting a session to start attendance-taking: ](#selecting-a-session-to-start-attendance-taking--select) `select`
 - [Students under Session Commands: ](#students-under-session-page-commands)
     - [Marking attendance of a selected students: ](#marking-attendance-of-a-selected-students--mark) `mark`
-    - [Unmarkikng attendance of a selected students: ](#unmarkikng-attendance-of-a-selected-students--unmark) `unmark`
+    - [Unmarking attendance of a selected students: ](#unmarking-attendance-of-a-selected-students--unmark) `unmark`
     - [View the overall attendance of the session: ](#view-the-overall-attendance-of-the-session--attendance) `attendance`
-- [Task Page Commands: ](#task-page-commands)
+- [Task Page Commands: ](#task-page-commands) 
+    - [Adding a task: ](#adding-a-task--add-task) `add task`
+    - [Deleting a task: ](#deleting-a-task--delete-task) `delete task`
+    - [Editing a task: ](#editing-a-task--edit-task) `edit task`
+    - [Selecting a task to assign grades: ](#selecting-a-task-to-assign-grades--select) `select`
+- [Students under Task Commands: ](#students-under-task-page-commands)
+    - [Assigning a grade: ](#assigning-a-grade--assign) `assign`
 - [Students by Task Commands: ](#students-by-task-commands)
 - [General Commands: ](#general-commands)
     - [Displaying the home page (Course Page): ](#displaying-the-home-page--course-page---home) `home`
@@ -110,7 +116,7 @@ add course <COURSE>
 ```
 
 - Adding a course with the same module code is not allowed.
-    - For example, if a course with module code 'CS2103T' already exists in CLIpboard, entering `add course CS2103T` will display an error message.
+    - For example, if a course with module code `CS2103T` already exists in CLIpboard, entering `add course CS2103T` will display an error message.
 
 Examples:
 - `add course CS2103T` will add a new course with module code `CS2103T`
@@ -129,7 +135,7 @@ delete course <INDEX>
 
 
 Examples:
-- `delete course 1` will delete 1st course listed in the course list panel of CLIpboard.
+- `delete course 1` will delete the 1st course listed in the course list.
 
 
 
@@ -183,7 +189,7 @@ add group <GROUP>
 
 Examples:
 - `add group T15` will add a new group with group name `T15`
-- `add group T16` will add a new group with group name `T16`
+- `add group L08` will add a new group with group name `L08`
 
 
 
@@ -316,7 +322,7 @@ edit <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUMBER>]
 
 Examples:
 - `edit 1 n/John Doe` will replace the name of the first student listed in the student list to 'John Doe'.
-- `edit 4 p/99887766 e/john@gmail.com` will replace the phone number and email of the fourth student listed in the student list to '99887766' and 'john@gmail.com' respectively.
+- `edit 4 p/99887766 e/john@gmail.com` will replace the phone number and email of the fourth student listed in the student list to `99887766` and `john@gmail.com` respectively.
 
 
 
@@ -340,8 +346,10 @@ Finds students whose names contain any of the given keywords.
 
 Format:
 ```
-find <KEYWORDS> [<MORE_KEYWORDS>]
+find <KEYWORD> [<MORE_KEYWORDS>]
 ```
+
+- Keywords are separated by spaces.
 
 Examples:
 - `find John` returns John.
@@ -458,7 +466,7 @@ delete session <INDEX>
 
 
 Examples:
-- `delete session 1` will delete 1st session listed in the session list panel of CLIpboard.
+- `delete session 1` will delete the 1st session listed in the session list panel of CLIpboard.
 
 
 
@@ -471,11 +479,8 @@ Format:
 edit session <INDEX> <NEW SESSION NAME>
 ```
 
-- Edits session at index specified in `<SESSION>`.
-
-
 Examples:
-- `edit session 1 Tutorial1` will rename the first session listed to 'Tutorial1'.
+- `edit session 1 Tutorial1` will rename the first session listed to `Tutorial1`.
 
 
 
@@ -523,8 +528,8 @@ unmark <INDEX>, <INDEX>, ...
 ```
 
 Examples:
-- `mark 1` will mark the 1st student as absent.
-- `mark 2,3,4` will mark the 2nd, 3rd and 4th students as absent.
+- `unmark 1` will mark the 1st student as absent.
+- `unmark 2,3,4` will mark the 2nd, 3rd and 4th students as absent.
 
 
 ### View the overall attendance of the session: `attendance`
@@ -541,10 +546,84 @@ attendance
 --------------------------------------------------------------------------------------------------------------
 
 ## Task Page Commands
-[TBC]
+### Adding a task: `add task`
 
-## Students by Task Commands
-[TBC]
+Adds a new task into the task page.
+
+Format:
+```
+add task <TASK NAME>
+```
+
+- Adding a task with the same task name is not allowed.
+    - For example, if a task with name `CA1` already exists in CLIpboard,
+      entering `add task CA1` will display an error message.
+
+Examples:
+- `add task CA1`
+- `add task Pitch and Demo`
+
+
+
+### Deleting a task: `delete task`
+
+Deletes a task from the current list of tasks.
+
+Format:
+```
+delete task <INDEX>
+```
+
+
+Examples:
+- `delete task 1` will delete the 1st task listed.
+
+
+
+### Editing a task: `edit task`
+
+Edits an existing task in the task list.
+
+Format:
+```
+edit task <INDEX> <NEW TASK NAME>
+```
+
+
+Examples:
+- `edit session 1 Tutorial1` will rename the first session listed to `Tutorial1`.
+
+
+
+### Selecting a task to assign grades: `select`
+
+Selects an existing task to assign students their grades for that task, by displaying the Student Page on the right panel.
+
+Format:
+```
+select <INDEX>
+```
+- Selects task at specified index and displays list of students with the task.
+
+Examples:
+- `select 1` will return a list of students who was assigned the first task on the list.
+
+
+## Students under Task Commands
+
+### Assigning a grade to student: `assign`
+Assigns a grade to a student.
+
+Format:
+```
+assign <INDEX> <GRADE>
+```
+- Assigns a grade to the student specified at `<INDEX>` as seen from the Student Page on the right.
+- Grade must be a number between `0 and 100`, inclusive of `0 and 100`.
+
+Examples:
+- `assign 1 80` will assign the first student on the Student Page the grade of 80.
+
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -553,7 +632,7 @@ Commands that can be used on any page.
 
 ### Displaying the home page (Course Page): `home`
 
-Goes back to the Course Page which is the home page of CLIpboard.
+Goes back to the home page, which is the Course Page of CLIpboard.
 
 Format:
 ```
@@ -603,7 +682,6 @@ Scrolls through past commands in command box.
 - Press `ENTER` to execute the command.
 
 
-
 ### Clearing all entries: `clear`
 
 Clears all entries in the student roster.
@@ -622,3 +700,5 @@ Format:
 ```
 exit
 ```
+
+
