@@ -43,15 +43,15 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setModule(model.getFilteredModuleList().get(0), editedModule);
+        expectedModel.setModule(model.getDisplayedModuleList().get(0), editedModule);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastModule = Index.fromOneBased(model.getFilteredModuleList().size());
-        Module lastModule = model.getFilteredModuleList().get(indexLastModule.getZeroBased());
+        Index indexLastModule = Index.fromOneBased(model.getDisplayedModuleList().size());
+        Module lastModule = model.getDisplayedModuleList().get(indexLastModule.getZeroBased());
 
         ModuleBuilder moduleInList = new ModuleBuilder(lastModule);
         Module editedModule = moduleInList.withName(VALID_NAME_BOB).withResource(VALID_RESOURCE_BOB)
@@ -72,7 +72,7 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_MODULE, new EditModuleDescriptor());
-        Module editedModule = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
+        Module editedModule = model.getDisplayedModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
 
@@ -85,7 +85,7 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
 
-        Module moduleInFilteredList = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
+        Module moduleInFilteredList = model.getDisplayedModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         Module editedModule = new ModuleBuilder(moduleInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_MODULE,
                 new EditModuleDescriptorBuilder().withName(VALID_NAME_BOB).build());
@@ -93,14 +93,14 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setModule(model.getFilteredModuleList().get(0), editedModule);
+        expectedModel.setModule(model.getDisplayedModuleList().get(0), editedModule);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateModuleUnfilteredList_failure() {
-        Module firstModule = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
+        Module firstModule = model.getDisplayedModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(firstModule).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_MODULE, descriptor);
 
@@ -121,7 +121,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_invalidModuleIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredModuleList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getDisplayedModuleList().size() + 1);
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 

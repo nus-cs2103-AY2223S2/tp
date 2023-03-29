@@ -63,8 +63,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Module> getFilteredModuleList() {
-        return model.getFilteredModuleList();
+    public ObservableList<Module> getDisplayedModuleList() {
+        return model.getDisplayedModuleList();
     }
 
     @Override
@@ -87,9 +87,9 @@ public class LogicManager implements Logic {
         String deadlinesToday = "Deadlines Today: \n";
         String timeSlotsToday = "Time Slots Today: \n";
 
-        for (int i = 0; i < model.getFilteredModuleList().size(); i++) {
-            boolean isDeadlineNull = model.getFilteredModuleList().get(i).getDeadline().value == null;
-            boolean isSlotNull = model.getFilteredModuleList().get(i).getTimeSlot().value == null;
+        for (int i = 0; i < model.getDisplayedModuleList().size(); i++) {
+            boolean isDeadlineNull = model.getDisplayedModuleList().get(i).getDeadline().value == null;
+            boolean isSlotNull = model.getDisplayedModuleList().get(i).getTimeSlot().day == null;
 
             // Handle deadlines
             if (!isDeadlineNull) {
@@ -107,7 +107,7 @@ public class LogicManager implements Logic {
 
     private String getDeadlinesToday(int index) {
         LocalDate today = LocalDate.now();
-        Module module = model.getFilteredModuleList().get(index);
+        Module module = model.getDisplayedModuleList().get(index);
         String fullLine = "";
 
         boolean isDeadlineToday = module.getDeadline().value.toLocalDate().isEqual(today);
@@ -130,9 +130,9 @@ public class LogicManager implements Logic {
     private String getSlotsToday(int index) {
         LocalDate today = LocalDate.now();
         String fullLine = "";
-        Module module = model.getFilteredModuleList().get(index);
+        Module module = model.getDisplayedModuleList().get(index);
 
-        boolean isSlotToday = module.getTimeSlot().value.toLocalDate().isEqual(today);
+        boolean isSlotToday = module.getTimeSlot().getLocalDateTime().toLocalDate().isEqual(today);
 
         if(isSlotToday) {
             String moduleName = module.getName().fullName;
@@ -140,7 +140,7 @@ public class LogicManager implements Logic {
             moduleType = moduleType.replace("[", "").replace("]", "");
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
-            LocalDateTime date = module.getTimeSlot().value;
+            LocalDateTime date = module.getTimeSlot().getLocalDateTime();
             String formattedDate = formatter.format(date);
 
             fullLine = moduleName + " " + moduleType + " Starting at: " + formattedDate + "\n";

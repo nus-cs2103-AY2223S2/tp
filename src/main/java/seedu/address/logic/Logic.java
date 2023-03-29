@@ -31,7 +31,7 @@ public interface Logic {
     ReadOnlyAddressBook getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of modules */
-    ObservableList<Module> getFilteredModuleList();
+    ObservableList<Module> getDisplayedModuleList();
 
     /**
      * Returns the user prefs' address book file path.

@@ -59,12 +59,12 @@ public class ModuleCard extends UiPart<Region> {
         name.setText(module.getName().fullName);
         resource.setText("Resource: " + module.getResource().value);
         address.setText("Venue: " + module.getAddress().value);
-        timeSlot.setText("Time: " + module.getTimeSlot().displayFormat());
+        timeSlot.setText("Time: " + module.getTimeSlot().toString());
         remark.setText("Remark: " + module.getRemark().value);
         module.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        deadline.setText("Deadline: " + module.getDeadline().displayFormat());
+        deadline.setText("Deadline: " + module.getDeadline().toString());
         teacher.setText("Teacher: " + module.getTeacher().value);
     }
 

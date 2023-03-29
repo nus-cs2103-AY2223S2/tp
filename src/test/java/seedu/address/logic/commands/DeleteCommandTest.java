@@ -28,7 +28,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Module moduleToDelete = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
+        Module moduleToDelete = model.getDisplayedModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_MODULE);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete);
@@ -41,7 +41,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredModuleList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getDisplayedModuleList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
@@ -51,7 +51,7 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
 
-        Module moduleToDelete = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
+        Module moduleToDelete = model.getDisplayedModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_MODULE);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete);
@@ -104,6 +104,6 @@ public class DeleteCommandTest {
     private void showNoModule(Model model) {
         model.updateFilteredModuleList(p -> false);
 
-        assertTrue(model.getFilteredModuleList().isEmpty());
+        assertTrue(model.getDisplayedModuleList().isEmpty());
     }
 }
