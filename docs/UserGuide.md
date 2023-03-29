@@ -332,9 +332,9 @@ However, if the need arises (as specified below), the algorithm allows the effor
 The algorithm allocates tasks as such:
 1. Allocate all events to the day(s) it is supposed to be happening.
 
-2. Allocate all deadlines to the first free day before it is due (exclusive of due date). Otherwise, allocate task to a day before deadline with the least amount of work allocated (in terms of effort).
+2. Allocate all deadlines to the first free day before it is due (exclusive of due date). Otherwise, allocate task to any day before deadline with the least amount of work allocated (in terms of effort).
 
-3. Allocates each SimpleTask to the most busy free day (greedy approach). If such a day is not available, allocate the task to a day with the least amount of work allocated (in terms of effort).
+3. Allocates each SimpleTask to the most busy day without exceeding desired workload. If such a day is not available, allocate the task to a day with the least amount of work allocated (in terms of effort).
 
 <details>
 
@@ -347,9 +347,11 @@ If no tasks are shown, it means that there are no tasks planned for that day.
 An error message that prompts users to re-generate a plan will be shown if the entered date is out of range (either too far in the future, or a date before the start date of generated plan).
 
 </details>
-
+<br>
 
 :warning: Valid `D/SHORTDATE` are 30-days from the day plan was generated. Re-scheduling plans multiple times would not make an invalid date become valid.
+:warning: Select an effort estimate that you can realistically complete in a day. Having abnormally high desired effort levels in comparison to effort per task (eg. desired workload of 10000 and each task has effort 1) may result in undesired behaviour where all tasks are allocated to the same day.
+
 
 Examples:
 - Assuming today is 2023-03-26, `schedule D/2023-04-01 E/5` will plan a 30-day schedule starting from today (March 26, 2023) according to a desired effort level of 5, and display tasks planned for April 1.
@@ -431,16 +433,19 @@ _Details coming soon ..._
 **A**: A valid LongDate must be in the format of `YYYY-MM-DD HHMM` such as `2023-07-13 1800` (13 July 2023, 6PM). A valid LongDate must have a valid time. A minimum of 4 characters must be supplied and only a maximum of 4 character will be parsed
   e.g. `2023-07-13 180` is invalid and `2023-07-13 18000000000` is understood as `2023-07-13 1800`
 
-### Q3 What is an effort level?
+### Q4 What is a valid ShortDate?
+**A**: A valid ShortDate must be in the format of `YYYY-MM-DD` such as `2023-07-15` (15 July 2023).
+
+### Q4 What is an effort level?
 **A**: [_More details to come_]
 
-### Q4 What is a valid Description?
+### Q5 What is a valid Description?
 **A**: A valid Description is a text input that has at least one character.
 
-### Q5 Why does two different tags have the same tag color??
+### Q6 Why does two different tags have the same tag color??
 **A**: There are currently 20 available color codes for tags. By the birthday paradox, the chances of collisions do rise as more tags exists. More colors will be added in future iterations.
 
-### Q6 What is the difference between a `LongDate` and a `ShortDate`?
+### Q7 What is the difference between a `LongDate` and a `ShortDate`?
 **A**: A `ShortDate` omits the `HHMM` component of a `LongDate`. 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -465,5 +470,3 @@ _Details coming soon ..._
 ## 6. Glossary
 1. Overload: When the sum of effort for all tasks allocated to a particular day exceeds the user-preferred daily effort level.
 2. Free day: Allocating a task to this day will not result in overloading.
-3. ShortDate: YYYY-MM-DD
-4. LongDate: YYYY-MM-DD HHMM

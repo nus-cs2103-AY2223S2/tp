@@ -599,7 +599,7 @@ After getting a list of _Events_ from all tasks within _TaskBook_, a scheduling 
 * Event C is allocated to 1 Jun 2023 and 2 Jun 2023 even though this means that the workload allocated to those days (28 units of effort) are greater than the workload user planned (20 units of effort).
 * No event is scheduled to occur on 3 Jun 2023. It is left empty
 </details>
-
+<br>
 
 Step 2: Allocate all deadlines to the first free day before it is due (exclusive of due date), as we assume that it is better to complete a time-sensitive task as soon as possible. If it is not possible to find a free day, the algorithm will allocate task to a day before deadline with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
 <details>
@@ -621,7 +621,7 @@ After getting a list of _Deadlines_ from all tasks within _TaskBook_, a scheduli
 * Deadline E is allocated to 31 May 2023 because there are no free dates (30 May and 31 May) before 1 Jun 2023. Among the two possible dates, 31 May has a lower current workload. Thus, it is allocated to 31 May.
 * Deadline F is allocated to 30 May 2023 as adding task to any dates before the deadline will result in exceeding the desired workload, and it is the date with the lowest workload among all possible dates.
 </details>
-
+<br>
 
 Step 3: Allocate all SimpleTasks in descending order of effort required. As we assume that SimpleTasks are not time-sensitive, the algorithm allocates each task to the most busy free day (greedy approach). If such a day is not available, the algorithm will allocate the task to a day with the least amount of work allocated (in terms of effort). If multiple of such days exist, the algorithm chooses the first of such days.
 
@@ -644,7 +644,7 @@ After getting a list of _Simple Tasks_ from all tasks within _TaskBook_, a sched
 * Task H is the second to be allocated since it has the next highest effort required. It will be allocated to 4 Jun 2023 because it is the only free day, such that adding task H does not result in exceeding the desired workload.
 * Task G is then allocated to 3 Jun. Among the 2 days that Task G can be added to without exceeding desired workload (3 Jun and 4 Jun), 3 Jun has a higher workload. Thus, task G will be allocated to 3 Jun.
 </details>
-
+<br>
 
 Given below is an example usage scenario for viewing a generated plan and how the schedule command behaves at each step:
 
