@@ -1,4 +1,4 @@
-package seedu.socket.model.tag;
+package seedu.socket.model.person.tag;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

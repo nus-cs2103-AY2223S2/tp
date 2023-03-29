@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.socket.testutil.PersonBuilder;
 
-public class TagContainsKeywordsPredicateTest {
+public class FindCommandTagPredicateTest {
 
     @Test
     public void testEquals() {
