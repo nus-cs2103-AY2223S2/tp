@@ -41,7 +41,7 @@ public class MassOpCommandParserTest {
         assertParseSuccess(parser, "tag friends \n n/l \n \t p/95 a/[0-9]  \t", expectedMassOpCommand);
     }
 
-    @Test
+    // @Test
     // public void parse_multiArgs_returnsFilterCommand() {
     // no leading and trailing whitespaces
     //        MassOpCommand expectedMassOpCommand =
