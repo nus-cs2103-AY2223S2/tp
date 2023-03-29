@@ -171,7 +171,7 @@ Format: `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS] [
 * When editing tags, the existing corresponding tags for that application will be removed. i.e. the adding of tags is not cumulative.
 
 <div markdown="span" class="alert alert-info">:information_source:
-**Note:** This means that if an application has an existing `highSalary` tag. Executing command `edit 1 t/creditBearing` would remove the original
+**Note:** This means that if an application has an existing `highSalary` tag. Executing command `edit-app 1 t/creditBearing` would remove the original
 `highSalary` tag, replacing it with the `creditBearing` tag.
 </div>
 
@@ -321,36 +321,49 @@ At the bottom is a button you can click to access the URL to this guide.
 
 Undo the previous command that you have typed in.
 
+This command works for all the commands made in the period that you opened sprINT for.
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can use this command if you have accidentally deleted an application entry or the entire internship book, and you wish to retrieve them back.
+You can use this command if you have accidentally deleted an application entry or cleared the entire internship book, 
+and you wish to retrieve them back.
 </div>
 
 Format: `undo`
 
-#### 4.4.3 Clearing all applications : `clear`
+#### 4.4.3 Redoing a command : `redo`
+
+Redo the previous command that you have undo-ed.
+
+<div markdown="span" class="alert alert-warning">exclamation: **Caution:** 
+If you executed another command immediately after undo, you will no longer be able to redo the undo-ed command.
+</div>
+
+Format: `redo`
+
+#### 4.4.4 Clearing all applications : `clear`
 
 Clears all entries from the internship book.
 
 Format: `clear`
 
-<div markdown="span" class="alert alert-warning">:exclamation:
-**Caution:** The `clear` command must be used with extreme caution, as it might potentially lead to highly undesirable outcomes.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** 
+The `clear` command must be used with extreme caution, as it might potentially lead to highly undesirable outcomes.
 If you accidentally issued the `clear` command, use the `undo` command to revert to the previous state.
 </div>
 
-#### 4.4.4 Exiting the program : `exit`
+#### 4.4.5 Exiting the program : `exit`
 
 Exits the program.
 Alternatively, you can exit the program by clicking the top-right X button to close the window. sprINT updates
-your data [periodically](#445-saving-the-data), so you don't have to worry about unsaved or possible loss of data when exiting the program.
+your data [periodically](#446-saving-the-data), so you don't have to worry about unsaved or possible loss of data when exiting the program.
 
 Format: `exit`
 
-#### 4.4.5 Saving the data
+#### 4.4.6 Saving the data
 
 Data in the internship book are automatically saved in your local storage after any command that modifies the data. There is no need to save manually.
 
-#### 4.4.6 Editing the data file
+#### 4.4.7 Editing the data file
 
 Data in the internship book are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update their data directly by editing that data file.
 
@@ -373,6 +386,7 @@ If your changes to the data file makes its format invalid, the internship book w
 
 ## **6. Command Summary**
 
+<<<<<<< HEAD
 | Action                       | Format, Examples                                                                                                                                                 |
 |------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add** <br/> Application    | `add-app r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [t/TAG(s)]​` <br> e.g. `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered t/creditBearing` |
@@ -388,6 +402,24 @@ If your changes to the data file makes its format invalid, the internship book w
 | **Undo**                     | `undo`                                                                                                                                                           |
 | **Clear**                    | `clear`                                                                                                                                                          |
 | **Exit**                     | `exit`                                                                                                                                                           |
+=======
+| Action                      | Format, Examples                                                                                                                                                 |
+|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add** <br/> Application   | `add-app r/ROLE c/COMPANY_NAME e/EMAIL s/STATUS [t/TAG(s)]​` <br> e.g. `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered t/creditBearing` |
+| **Edit**<br/> Application   | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/goggleHR@example.com`               |
+| **Delete**<br/> Application | `delete-app INDEX` <br/> e.g. `delete-app 1`                                                                                                                     |
+| **Add** <br/> Task          | `add-task d/DESCRIPTION by/DEADLINE` <br> e.g. `add-task d/Technical Interview by/01-05-2023`                                                                    |
+| **Edit** <br/> Task         | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                            |
+| **Delete** <br/> Task       | `delete-task INDEX` <br/> e.g. `delete-task 1`                                                                                                                   |
+| **List**                    | `list`                                                                                                                                                           |
+| **Find**                    | `find [search term]` <br/> e.g. `find Mata` <br/> `find [r/search term] [c/search term] [s/search term]` <br/> e.g. `find r/SWE Intern c/Mata s/Offered`         |
+| **Sort**                    | `sort ORDER` <br/> e.g. `sort alphabetical` or `sort deadline`                                                                                                   |
+| **Help**                    | `help`                                                                                                                                                           |
+| **Undo**                    | `undo`                                                                                                                                                           |
+| **Redo**                    | `redo`                                                                                                                                                           |
+| **Clear**                   | `clear`                                                                                                                                                          |
+| **Exit**                    | `exit`                                                                                                                                                           |                                                                                                                                                                  |
+>>>>>>> master
 
 
 <div style="page-break-after: always;"></div>
