@@ -19,4 +19,5 @@ Bookmark *--> Author
 Bookmark *--> Progress
 Bookmark *--> Genre
 Bookmark *--> URL
+Bookmark *--> Rating
 @enduml

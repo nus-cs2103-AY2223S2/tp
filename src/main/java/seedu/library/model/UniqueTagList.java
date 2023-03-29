@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.exceptions.BookmarkNotFoundException;
 import seedu.library.model.bookmark.exceptions.DuplicateBookmarkException;
 import seedu.library.model.tag.Tag;
@@ -91,6 +92,7 @@ public class UniqueTagList implements Iterable<Tag> {
             throw new BookmarkNotFoundException();
         }
     }
+
 
     public void setTags(UniqueTagList replacement) {
         requireNonNull(replacement);

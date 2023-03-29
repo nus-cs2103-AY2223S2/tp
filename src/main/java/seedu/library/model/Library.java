@@ -92,6 +92,13 @@ public class Library implements ReadOnlyLibrary {
     public void removeBookmark(Bookmark key) {
         bookmarks.remove(key);
     }
+    /**
+     * View {@code key} from this {@code Library}.
+     * {@code key} must exist in the library.
+     */
+    public void viewBookmark(Bookmark key) {
+        bookmarks.view(key);
+    }
 
     //// library-level operations
     public void sortBookmarks(String order) {

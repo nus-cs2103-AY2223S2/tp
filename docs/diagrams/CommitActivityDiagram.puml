@@ -1,19 +1,19 @@
 @startuml
+!include style.puml
+skinparam activity {
+BackgroundColor #FFFFD0
+}
 start
 :User executes command;
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
-:check command validity;
 
-if () then ([yes])
-    : Get current Observable bookmarklist;
-    : Get url of bookmark at target index;
-    : Open the url in default browser;
-else ([No])
-    : prompt correct syntax;
+if () then ([command commits Library])
+    :Purge redundant states;
+    :Save Library to
+    libraryStateList;
+else ([else])
 endif
 stop
-
-
 @enduml

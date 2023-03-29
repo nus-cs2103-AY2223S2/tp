@@ -121,6 +121,9 @@ public class ModelManager implements Model {
 
         library.setBookmark(target, editedBookmark);
     }
+    public void viewBookmark(Bookmark target) {
+        library.viewBookmark(target);
+    }
 
     //=========== tagList ================================================================================
 

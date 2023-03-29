@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.library.model.bookmark.exceptions.BookmarkNotFoundException;
 import seedu.library.model.bookmark.exceptions.DuplicateBookmarkException;
+import seedu.library.model.tag.Tag;
 
 /**
  * A list of bookmarks that enforces uniqueness between its elements and does not allow nulls.
@@ -77,6 +78,16 @@ public class UniqueBookmarkList implements Iterable<Bookmark> {
     public void remove(Bookmark toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
+            throw new BookmarkNotFoundException();
+        }
+    }
+    /**
+     * Views the equivalent bookmark from the list.
+     * The bookmark must exist in the list.
+     */
+    public void view(Bookmark toView) {
+        requireNonNull(toView);
+        if (!contains(toView)) {
             throw new BookmarkNotFoundException();
         }
     }
