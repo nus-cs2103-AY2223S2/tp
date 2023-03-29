@@ -576,6 +576,7 @@ This shortcut allows you to quickly select the next item on the list in the curr
 in the currently selected panel. 
 This could be the either the Projects tab or Clients tab in the Entity panel or the Overdue tab or Due soon tab in the Statistics panel.
 
+If the last item is selected, then the next item will be the first item in the list.
 If there was no item originally selected, then the first item in the list will be selected.
 
 ### (CTRL+K) Select previous
@@ -584,6 +585,7 @@ This shortcut allows you to quickly select the previous item on the list in the 
 in the currently selected panel.
 This could be the either the Projects tab or Clients tab in the Entity panel or the Overdue tab or Due soon tab in the Statistics panel.
 
+If the first item is selected, then the previous item will be the last item in the list.
 If there was no item originally selected, then the last item in the list will be selected.
 
 ### (CTRL+F) Search
