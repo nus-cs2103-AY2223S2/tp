@@ -63,14 +63,14 @@ public class PersonStatsListPanel extends UiPart<Region> {
     }
 
     private ObservableList<PersonStats> createPersonStatsList(
-            ObservableList<Person> personList, 
+            ObservableList<Person> personList,
             ObservableList<Task> taskList
     ) {
         List<PersonStats> personStatsList = new ArrayList<>();
 
         for (Person person : personList) {
             List<Task> personTasks = taskList.stream()
-                    .filter(task -> task.getPersonAssignedName() != null 
+                    .filter(task -> task.getPersonAssignedName() != null
                             && task.getPersonAssignedName().equals(person.getName().toString()))
                     .collect(Collectors.toList());
 

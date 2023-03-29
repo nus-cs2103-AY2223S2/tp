@@ -46,7 +46,7 @@ public class PersonStatsCard extends UiPart<Region> {
         name.setText(personStats.getPerson().getName().fullName);
         tasksAssigned.setText("No. of tasks assigned: " + Integer.toString(personStats.getTasksAssigned()));
         tasksCompleted.setText("No. of tasks completed: " + Integer.toString(personStats.getTasksCompleted()));
-        averageScore.setText("Average score: " + 
+        averageScore.setText("Average score: " +
                 (Double.isNaN(personStats.getAverageScore()) ? "-" : personStats.getAverageScore()));
     }
 
