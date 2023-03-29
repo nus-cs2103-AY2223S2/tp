@@ -69,6 +69,7 @@ MedInfo is a **desktop app for managing patients, optimized for use via a Comman
 Shows a message explaining how to access the help page.
 
 <!-- INSERT SCREENSHOT PREVIEW HERE -->
+
 ![help message](images/helpMessage.png)
 
 Format: `help`
@@ -108,7 +109,7 @@ Format: `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]​`
 Examples:
 
 - `edit 1 s/GREEN` Edits the status of the first currently displayed patient to be `GREEN`.
-- `edit 5 w/A01` Edits the ward of the fifth currently displayed patient to be `A01`. 
+- `edit 5 w/A01` Edits the ward of the fifth currently displayed patient to be `A01`.
 - `edit 4 d/27/07/2023 1600` Edits the discharge date-time of the fourth currently displayed patient to be `27/07/2023 1600` which is read as 27th July 2023 1600hrs.
 
 ### Sorting all patients in the system: `sort`
@@ -170,6 +171,21 @@ Examples:
 
 - `addward name/A01 c/25` Adds the ward with name `A01` and capacity `25` to the system.
 
+### Editing a ward's details in the system: `editward`
+
+Edit an existing ward's name or capacity.
+
+Format: `editward INDEX [w/WARD] [c/CAPACITY]​`
+
+- Edits the ward's details at the specified index as of the currently displayed list.
+- The given capacity has to be an integer.
+- The given capacity has to be greater or equal to the ward's current occupancy
+
+Examples:
+
+- `editward 1 w/A02` Edits the name of the first currently displayed ward to be `A02`.
+- `editward 5 c/35` Edits the capacity of the fifth currently displayed ward to be `35`.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -210,12 +226,13 @@ If your changes to the data file make its format invalid, MedInfo will discard a
 ## Command summary
 
 | Action          | Format, Examples                                                                           |
-|-----------------|--------------------------------------------------------------------------------------------|
+| --------------- | ------------------------------------------------------------------------------------------ |
 | **Add**         | `add nric/NRIC name/NAME [s/STATUS]​` <br> e.g., `add nric/S1234567A name/John Doe s/GREEN |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 1`                                                        |
 | **Edit**        | `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]​`<br> e.g.,`edit 1 s/GREEN`                  |
 | **Find**        | `find name/NAME` or `find nric/NRIC` or `find s/STATUS`<br> e.g., `find name/John`         |
 | **Add Ward**    | `addward name/NAME [c/CAPACITY]` <br> e.g., `addward name/S1234567A c/25`                  |
+| **Edit Ward**   | `editward INDEX [w/WARD] [c/CAPACITY]` <br> e.g., `editward 1 w/A02 c/35`                  |
 | **List**        | `list`                                                                                     |
 | **Help**        | `help`                                                                                     |
 | **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`                                              |
