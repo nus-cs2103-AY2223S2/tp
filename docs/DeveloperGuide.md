@@ -262,6 +262,10 @@ The `newcontact` feature is facilitated by the `Contact` class. The feature is i
     * Pros: Easy to code.
     * Cons: Might be hard to keep track or do comparisons with.
 
+<img src="images/NewContactActivityDiagram.png" width="400" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.1</b> Activity diagram of 'New Contact'
+</div>
 
 ### Mark feature
 
