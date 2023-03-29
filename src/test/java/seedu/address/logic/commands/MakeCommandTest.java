@@ -11,8 +11,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.experimental.model.Model;
 import seedu.address.experimental.model.ReadOnlyReroll;
@@ -22,6 +23,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.testutil.EntityBuilder;
+
 
 public class MakeCommandTest {
 

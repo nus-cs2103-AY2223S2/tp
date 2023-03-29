@@ -4,6 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEntities.getTypicalReroll;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.experimental.model.Model;
 import seedu.address.experimental.model.ModelManager;
 import seedu.address.experimental.model.Reroll;
