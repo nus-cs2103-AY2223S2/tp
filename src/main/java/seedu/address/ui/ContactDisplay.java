@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -10,8 +11,13 @@ import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.doctor.DoctorContainsKeywordsPredicate;
+import seedu.address.model.person.doctor.DoctorFilter;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.patient.PatientContainsKeywordsPredicate;
+import seedu.address.model.person.patient.PatientFilter;
 
 /**
  * The Contact Display displaying the list of doctors,
@@ -75,19 +81,49 @@ public class ContactDisplay extends UiPart<Region> {
     }
 
     /**
+     * Updates the contact display based on user command.
+     *
+     * @param commandResult a command result.
+     */
+    public void setFeedbackToUser(CommandResult commandResult) {
+        // If command does not need GUI Interaction, function call ends.
+        if (!commandResult.hasGuiInteraction()) {
+            logger.info("Command did not result in GUI Interaction");
+            return;
+        }
+
+        if (commandResult.hasSelectedDoctor()) {
+            Optional<Doctor> selectedDoctor = commandResult.getSelectedDoctor();
+            PatientFilter patientContainsDoctor =
+                    new PatientFilter(selectedDoctor);
+            Predicate<Patient> patientsOfDoctorPredicate =
+                    new PatientContainsKeywordsPredicate(patientContainsDoctor);
+            logic.updateFilteredPatientList(patientsOfDoctorPredicate);
+
+            enlargedDoctorInfoCard.updateSelectedDoctorOptional(selectedDoctor);
+        }
+
+        if (commandResult.hasSelectedPatient()) {
+            Optional<Patient> selectedPatient = commandResult.getSelectedPatient();
+            DoctorFilter doctorContainsPatient =
+                    new DoctorFilter(selectedPatient);
+            Predicate<Doctor> doctorsOfPatientPredicate =
+                    new DoctorContainsKeywordsPredicate(doctorContainsPatient);
+            logic.updateFilteredDoctorList(doctorsOfPatientPredicate);
+
+            enlargedPatientInfoCard.updateSelectedPatientOptional(selectedPatient);
+        }
+
+        updateEnlargedInfoCard();
+    }
+
+    /**
      * Updates the enlarged info card placeholder to show the
      * appropriate enlarged information.
      *
      * This information is either that of a doctor or a patient.
-     *
-     * @param hasGuiInteraction true if command entered is a GUI interaction.
      */
-    public void setFeedbackToUser(boolean hasGuiInteraction) {
-        // If command does not need GUI Interaction, function call ends.
-        if (!hasGuiInteraction) {
-            logger.info("Command did not result in GUI Interaction");
-            return;
-        }
+    public void updateEnlargedInfoCard() {
         // If app reaches here, then command should be select-doc or select-ptn
         enlargedPersonInfoCardPlaceholder.getChildren().clear();
         if (infoCardDisplayController.shouldDisplayDoctorInfoCard()) {
@@ -109,7 +145,7 @@ public class ContactDisplay extends UiPart<Region> {
     public void showSelectedDoctor(Doctor doctor) {
         enlargedDoctorInfoCard.updateSelectedDoctorOptional(Optional.ofNullable(doctor));
         infoCardDisplayController.displayDoctor();
-        setFeedbackToUser(true);
+        updateEnlargedInfoCard();
     }
 
     /**
@@ -121,7 +157,7 @@ public class ContactDisplay extends UiPart<Region> {
     public void showSelectedPatient(Patient patient) {
         enlargedPatientInfoCard.updateSelectedPatientOptional(Optional.ofNullable(patient));
         infoCardDisplayController.displayPatient();
-        setFeedbackToUser(true);
+        updateEnlargedInfoCard();
     }
 
     /**
