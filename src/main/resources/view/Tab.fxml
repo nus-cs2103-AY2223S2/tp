@@ -8,10 +8,9 @@
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <TabPane>
     <tabs>
-      <Tab text="Tasks" fx:id="ongoingTab">
         <VBox fx:id="ongoingTaskListComponent"></VBox>
       </Tab>
-      <Tab text="Completed" fx:id="completedTab">
+      <Tab text="Completed">
         <VBox fx:id="completedTaskListComponent"></VBox>
       </Tab>
     </tabs>
