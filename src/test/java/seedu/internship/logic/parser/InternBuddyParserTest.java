@@ -27,6 +27,7 @@ import seedu.internship.logic.commands.ExitCommand;
 import seedu.internship.logic.commands.FindCommand;
 import seedu.internship.logic.commands.HelpCommand;
 import seedu.internship.logic.commands.ListCommand;
+import seedu.internship.logic.commands.CopyCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.InternshipContainsKeywordsPredicate;
@@ -56,6 +57,13 @@ public class InternBuddyParserTest {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_INTERNSHIP.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_INTERNSHIP), command);
+    }
+
+    @Test
+    public void parseCommand_copy() throws Exception {
+        CopyCommand command = (CopyCommand) parser.parseCommand(
+                CopyCommand.COMMAND_WORD + " " + INDEX_FIRST_INTERNSHIP.getOneBased());
+        assertEquals(new CopyCommand(INDEX_FIRST_INTERNSHIP), command);
     }
 
     @Test
