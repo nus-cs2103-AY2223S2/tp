@@ -1,22 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane styleClass="pane-with-rounded-corner-accented, pa"
-           xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-    <VBox spacing="5">
-        <Label fx:id="description" text="\$description" wrapText="true" styleClass="label-h5" />
-        <HBox spacing="5">
+<VBox fx:id="eventContainer" spacing="20" styleClass="pane-with-rounded-corner-accented, pv"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <HBox styleClass="ph">
+        <VBox spacing="5" HBox.hgrow="ALWAYS">
+            <Label fx:id="description" text="\$description" wrapText="true" styleClass="label-h5" />
+            <HBox spacing="5">
+                <Label fx:id="startDateTime" text="\$startDateTime" styleClass="label-p" />
+                <Label text="-" styleClass="label-p" />
+                <Label fx:id="endDateTime" text="\$endDateTime" styleClass="label-p" />
+            </HBox>
+        </VBox>
+        <VBox spacing="5" prefWidth="100" minWidth="100" alignment="TOP_RIGHT">
             <Label fx:id="indexTag" text="\$index" StackPane.alignment="TOP_RIGHT" styleClass="label-p, tag-muted" />
             <Label fx:id="recurrence" text="\$recurrence" styleClass="label-p, tag-muted" />
-        </HBox>
-        <HBox spacing="5">
-            <Label fx:id="startDateTime" text="\$startDateTime" styleClass="label-p" />
-            <Label text="-" styleClass="label-p" />
-            <Label fx:id="endDateTime" text="\$endDateTime" styleClass="label-p" />
-        </HBox>
+        </VBox>
+    </HBox>
+    <VBox fx:id="attendeesCard" spacing="5">
+        <Label text="Attendees" styleClass="label-p, ph" />
+        <ScrollPane vbarPolicy="NEVER" hbarPolicy="NEVER"
+                    minHeight="-Infinity" styleClass="pane-transparent, p0">
+            <HBox fx:id="attendees" spacing="5" styleClass="ph" />
+        </ScrollPane>
     </VBox>
-</StackPane>
+</VBox>

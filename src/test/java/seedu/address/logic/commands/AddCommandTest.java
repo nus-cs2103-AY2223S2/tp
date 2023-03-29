@@ -210,15 +210,27 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        public void tagPersonToEvent(Index index, Person p) {
+        @Override
+        public Event getEvent(Index index) {
+            return null;
+        }
+
+        @Override
+        public void setEvent(Event oldEvent, Event newEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void tagPersonToEvent(Index eventIndex, Person taggingPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void untagPersonToEvent(Index eventIndex, Person taggingPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
         public boolean isPersonTaggedToEvent(Index index, Person p) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        public void untagPersonFromEvent(Index index, Person p) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -241,6 +253,7 @@ public class AddCommandTest {
         public void setSelectedTab(Index index) {
             throw new AssertionError("This method should not be called.");
         }
+        
         @Override
         public ReadOnlyObjectProperty<Person> getSelectedPerson() {
             throw new AssertionError("This method should not be called.");
@@ -250,6 +263,10 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void editPersonForAllEvents(Person personToEdit, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
