@@ -53,7 +53,8 @@ public class VaxTypeCard extends UiPart<Region> {
 
 
     private void addAllReq(VBox box, List<Requirement> reqs) {
-        for (Requirement req : reqs) {
+        for (int i = 0; i < reqs.size(); i++) {
+            Requirement req = reqs.get(i);
             List<String> styleClasses = List.of();
             switch (req.getReqType()) {
             case ALL:
@@ -68,12 +69,14 @@ public class VaxTypeCard extends UiPart<Region> {
             default:
                 throw new AssertionError(String.format("Unrecognized requirement type"));
             }
-            box.getChildren().add(new TagFlowView(
+
+            TagFlowView tagView = new TagFlowView(
                     req.getReqSet()
                             .stream()
                             .map(GroupName::getName)
                             .collect(Collectors.toList()),
-                    styleClasses));
+                    styleClasses);
+            box.getChildren().add(new RequirementBox(i, tagView).getRoot());
         }
     }
 }

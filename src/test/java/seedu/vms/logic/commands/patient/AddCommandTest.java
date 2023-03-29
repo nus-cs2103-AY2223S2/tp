@@ -21,6 +21,7 @@ import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.Retriever;
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.commons.exceptions.UnexpectedChangeException;
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.parser.ParseResult;
 import seedu.vms.logic.parser.exceptions.ParseException;
@@ -121,7 +122,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deletePatient(int id) {
+        public void deletePatient(int id, boolean isForce) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -225,12 +226,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public ValueChange<VaxType> deleteVaccination(GroupName vaxName) throws IllegalValueException {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'deleteVaxType'");
-        }
-
-        @Override
         public void setVaxTypeManager(VaxTypeManager manager) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setVaxTypeManager'");
@@ -267,7 +262,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public List<String> validatePatientChange(ValueChange<IdData<Patient>> change) {
+        public List<IdData<Appointment>> validatePatientChange(ValueChange<IdData<Patient>> change) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'validatePatientChange'");
         }
@@ -279,7 +274,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public List<String> validateVaccinationChange(ValueChange<VaxType> change) {
+        public List<IdData<Appointment>> validateVaccinationChange(ValueChange<VaxType> change) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'validateVaccinationChange'");
         }
@@ -336,6 +331,13 @@ public class AddCommandTest {
         public ValueChange<VaxType> editVaccination(String name, VaxType newValue) throws IllegalValueException {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'editVaccination'");
+        }
+
+        @Override
+        public ValueChange<VaxType> deleteVaccination(GroupName vaxName, boolean isForce)
+                throws IllegalValueException, UnexpectedChangeException {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'deleteVaccination'");
         }
     }
 

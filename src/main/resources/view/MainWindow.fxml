@@ -47,7 +47,7 @@
                <children>
                    <VBox spacing="5.0" styleClass="pane-with-border" HBox.hgrow="NEVER">
                        <StackPane fx:id="patientListPanelPlaceholder" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="410.0" VBox.vgrow="NEVER" />
-                     <ScrollPane hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                     <ScrollPane hbarPolicy="NEVER" styleClass="detailed-scroll-pane" VBox.vgrow="ALWAYS">
                         <content>
                            <VBox fx:id="detailedPatientPanel" />
                         </content>
@@ -57,7 +57,7 @@
                    <VBox maxWidth="-Infinity" minWidth="-Infinity" spacing="5.0" styleClass="pane-with-border" HBox.hgrow="NEVER">
                        <children>
                            <StackPane fx:id="vaxTypeListPanelPlaceholder" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="410.0" VBox.vgrow="NEVER" />
-                        <ScrollPane hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                        <ScrollPane hbarPolicy="NEVER" styleClass="detailed-scroll-pane" VBox.vgrow="ALWAYS">
                            <content>
                               <VBox fx:id="detailedVaxTypePanel" />
                            </content>

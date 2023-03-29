@@ -6,6 +6,7 @@ import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.patient.AddCommand;
 import seedu.vms.logic.commands.patient.ClearCommand;
 import seedu.vms.logic.commands.patient.DeleteCommand;
+import seedu.vms.logic.commands.patient.DetailCommand;
 import seedu.vms.logic.commands.patient.EditCommand;
 import seedu.vms.logic.commands.patient.FindCommand;
 import seedu.vms.logic.commands.patient.ListCommand;
@@ -34,16 +35,16 @@ public class PatientParser extends FeatureParser {
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            return new ClearCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
-        case DetailPatientParser.COMMAND_WORD:
-            return new DetailPatientParser().parse(arguments);
+        case DetailCommand.COMMAND_WORD:
+            return new DetailCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

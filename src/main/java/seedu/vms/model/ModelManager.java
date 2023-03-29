@@ -3,6 +3,7 @@ package seedu.vms.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
@@ -14,9 +15,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
+import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.core.Retriever;
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.commons.exceptions.UnexpectedChangeException;
+import seedu.vms.commons.util.StringUtil;
 import seedu.vms.logic.parser.ParseResult;
 import seedu.vms.logic.parser.VmsParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
@@ -148,9 +152,24 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePatient(int id) {
-        IdData<Patient> oldValue = patientManager.remove(id);
+    public void deletePatient(int id, boolean isForce) throws UnexpectedChangeException {
+        // change formation
+        IdData<Patient> oldValue = patientManager.get(id);
         ValueChange<IdData<Patient>> change = new ValueChange<>(oldValue, null);
+
+        // validation
+        ArrayList<IdData<Appointment>> invalidAppointments = new ArrayList<>();
+        if (!isForce) {
+            invalidAppointments.addAll(validatePatientChange(change));
+        }
+        if (!invalidAppointments.isEmpty()) {
+            throw new UnexpectedChangeException(String.format(
+                    Messages.FORMAT_UNEXPECTED_APPOINTMENT_CHANGE,
+                    StringUtil.formatAppointmentListing(invalidAppointments)));
+        }
+
+        // deletion
+        patientManager.remove(id);
         handlePatientChange(change);
     }
 
@@ -219,11 +238,8 @@ public class ModelManager implements Model {
 
 
     @Override
-    public List<String> validatePatientChange(ValueChange<IdData<Patient>> change) {
-        // TODO: Implement this
-        // implementation should be in appointment manager instead of here
-        // as LogicManager is just a facade class.
-        return List.of();
+    public List<IdData<Appointment>> validatePatientChange(ValueChange<IdData<Patient>> change) {
+        return appointmentManager.validatePatientChange(change);
     }
 
 
@@ -235,11 +251,8 @@ public class ModelManager implements Model {
 
 
     @Override
-    public List<String> validateVaccinationChange(ValueChange<VaxType> change) {
-        // TODO: Implement this
-        // implementation should be in appointment manager instead of here
-        // as LogicManager is just a facade class.
-        return List.of();
+    public List<IdData<Appointment>> validateVaccinationChange(ValueChange<VaxType> change) {
+        return appointmentManager.validateVaccinationChange(change);
     }
 
 
@@ -277,11 +290,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ValueChange<VaxType> deleteVaccination(GroupName vaxName) throws IllegalValueException {
-        VaxType oldValue = vaxTypeManager.remove(vaxName.toString())
+    public ValueChange<VaxType> deleteVaccination(GroupName vaxName, boolean isForce)
+                throws IllegalValueException, UnexpectedChangeException {
+        // change formation
+        VaxType oldValue = vaxTypeManager.get(vaxName.toString())
                 .orElseThrow(() -> new IllegalValueException(String.format(
                         "Vaccination type does not exist: %s", vaxName.toString())));
         ValueChange<VaxType> change = new ValueChange<>(oldValue, null);
+
+        // validation
+        ArrayList<IdData<Appointment>> invalidAppointments = new ArrayList<>();
+        if (!isForce) {
+            invalidAppointments.addAll(validateVaccinationChange(change));
+        }
+        if (!invalidAppointments.isEmpty()) {
+            throw new UnexpectedChangeException(String.format(
+                    Messages.FORMAT_UNEXPECTED_APPOINTMENT_CHANGE,
+                    StringUtil.formatAppointmentListing(invalidAppointments)));
+        }
+
+        // deletion
+        vaxTypeManager.remove(vaxName.toString());
         handleVaccinationChange(change);
         return change;
     }
