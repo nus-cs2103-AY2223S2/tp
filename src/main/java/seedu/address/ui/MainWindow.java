@@ -2,8 +2,6 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javax.swing.text.View;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -21,7 +19,6 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
