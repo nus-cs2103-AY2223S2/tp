@@ -33,6 +33,6 @@ public class DetailVaxTypeCommand extends Command {
             throw new CommandException(ive.getMessage());
         }
         model.setDetailedVaxType(vaxType);
-        return new CommandMessage("Detailing vaccination");
+        return new CommandMessage(String.format("Detailing vaccination: %s", vaxType.getName()));
     }
 }
