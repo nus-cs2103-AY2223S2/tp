@@ -36,7 +36,6 @@ public class CalendarMonth {
     /**
      * Returns a mutable list of CalendarEvents.
      */
-
     public ObservableList<CalendarEvent> getCalendarEvents() {
         return calendarEvents;
     }

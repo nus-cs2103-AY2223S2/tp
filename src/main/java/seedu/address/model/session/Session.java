@@ -7,14 +7,15 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-//import java.util.stream.Collectors;
 
 //import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.AddressBook;
+import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Name;
 
 /**
@@ -30,13 +31,15 @@ public class Session implements Comparable<Session> {
     private final String endDateTime;
     private final SessionName name;
     private final int id;
-    private Location location;
+    private final Location location;
     private HashMap<String, Boolean> attendanceMap;
 
     /**
      * Every field must be present and not null.
-     * @param startDateTime
-     * @param endDateTime
+     * @param startDateTime start time
+     * @param endDateTime end time
+     * @param name name of session
+     * @param location place of event
      */
     public Session(String startDateTime, String endDateTime, SessionName name, Location location) {
         this.startDateTime = startDateTime;
@@ -88,13 +91,9 @@ public class Session implements Comparable<Session> {
         this.location = location;
         this.id = id;
 
-        attendanceMap = new HashMap<>();
-
         for (NameBooleanPair pair : nameBooleanPairs) {
             attendanceMap.put(pair.getName(), pair.isPresent());
         }
-
-        this.attendanceMap = attendanceMap;
 
         if (!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)) {
             throw new IllegalArgumentException("Date Time should be in the format dd-MM-yyyy HH:mm");
@@ -106,7 +105,7 @@ public class Session implements Comparable<Session> {
 
     /**
      * adds person to a session
-     * @param name
+     * @param name String name of person
      */
     public void addPersonToSession(String name) {
         attendanceMap.put(name, false);
@@ -114,7 +113,7 @@ public class Session implements Comparable<Session> {
 
     /**
      * removes person from a session
-     * @param name
+     * @param name String name of person
      */
     public void removePersonFromSession(String name) {
         attendanceMap.remove(name);
@@ -122,7 +121,7 @@ public class Session implements Comparable<Session> {
 
     /**
      * sets student as present
-     * @param name
+     * @param name String name of person
      */
     public void markStudentPresent(String name) {
         attendanceMap.put(name, true);
@@ -130,7 +129,7 @@ public class Session implements Comparable<Session> {
 
     /**
      * sets student as absent
-     * @param name
+     * @param name String name of person
      */
     public void markStudentAbsent(String name) {
         attendanceMap.put(name, false);
@@ -138,7 +137,7 @@ public class Session implements Comparable<Session> {
 
     /**
      * checks if session contains student
-     * @param name
+     * @param name String name of person
      */
     public boolean contains(String name) {
         return attendanceMap.containsKey(name);
@@ -300,8 +299,7 @@ public class Session implements Comparable<Session> {
             sb.setLength(sb.length() - 2);
         }
 
-        String toStringOutput = sb.toString();
-        return toStringOutput;
+        return sb.toString();
     }
 
     /**
@@ -451,7 +449,12 @@ public class Session implements Comparable<Session> {
                 this.id,
                 this.getMap());
     }
-    //    public List<CalendarEvent> getCalendarEvents() {
-    //        return Collections.singletonList(new CalendarEvent(this));
-    //    }
+
+    public HashMap<String, Boolean> getAttendanceMap() {
+        return attendanceMap;
+    }
+
+    public List<CalendarEvent> getCalendarEvents() {
+        return Collections.singletonList(new CalendarEvent(this));
+    }
 }
