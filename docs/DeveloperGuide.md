@@ -395,63 +395,29 @@ The `Model` component,
 
 Represents the name of the user or the contact in `EduMate`.
 
-<div markdown="span" class="alert alert-warning">
-
-:warning: **Warning**:
-There can only be letters of the alphabets in the name.
-
-</div>
-
 #### **Address**
 
 Represents the nearest MRT station to the user or contact's home.
-
-<div markdown="span" class="alert alert-warning">
-:warning: **Warning**:
-Must be a valid name of an MRT station in Singapore.
-
-</div>
 
 #### **Phone**
 
 Represents the contact number of the user or the contact.
 
-<div markdown="span" class="alert alert-warning">
-:warning: **Warning**:
-Phone numbers must be entire numeric and at least 3 digits long.
-
-</div>
-
 #### **Email**
+
+Represents the Email Address of the user or contact.
+
 #### **Telegram Handle**
 
 Represents the Telegram Handle of the user or contact.
 
-<div markdown="span" class="alert alert-warning">
-:warning: **Warning**:
-Telegram Handles must start with the `@` symbol followed by alphanumeric inputs.
-
-</div>
-
 #### **Group Tag Set**
 
-Represents a collection of groups that the user or contact belong to.
-
-<div markdown="span" class="alert alert-warning">
-:warning: **Warning**:
-Group Tag Set must contain unique group names.
-
-</div>
+Represents a collection of **unique** groups that the user or contact belong to.
 
 #### **Module Tag Set**
 
-Represents a collection of modules that the user or contact is enrolled into.
-
-<div markdown="span" class="alert alert-warning">
-:warning: **Warning**:
-Module Tag Set must contain unique module codes.
-
-</div>
+Represents a collection of **unique** modules that the user or contact is enrolled into.
 
 ### **Tag**
 #### **Group Tag**
