@@ -58,5 +58,13 @@ public class EditCommand extends Command {
 
         throw new CommandException(String.format("No such entity in %s!", toEditClassification));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EditCommand // instanceof handles nulls
+                && toEditClassification.equals(((EditCommand) other).toEditClassification)
+                && toEditName.equals(((EditCommand) other).toEditName));
+    }
 }
 

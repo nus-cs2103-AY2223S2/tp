@@ -54,6 +54,18 @@ public class ModelManager implements Model {
         this(new Reroll(), new UserPrefs());
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else if (other instanceof ModelManager) {
+            ModelManager modelManager = (ModelManager) other;
+            return (modelManager.reroll).equals(this.reroll) && (modelManager.userPrefs).equals(this.userPrefs);
+        } else {
+            return false;
+        }
+    }
+
     //=========== UserPrefs ==================================================================================
 
     @Override

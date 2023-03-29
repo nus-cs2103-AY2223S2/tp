@@ -19,4 +19,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_XP = new Prefix("x/");
     public static final Prefix PREFIX_CHALLENGE_RATING = new Prefix("r/");
     public static final Prefix PREFIX_LEGENDARY = new Prefix("l/");
+
 }
