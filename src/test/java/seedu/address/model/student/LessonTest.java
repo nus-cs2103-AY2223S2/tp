@@ -191,4 +191,15 @@ public class LessonTest {
         assertEquals(expectedString, lesson.toString());
     }
 
+    @Test
+    public void equals_dameEndTime_returnTrue() {
+        LocalDateTime startTime = LocalDateTime.of(2022, 3, 6, 10, 0);
+        LocalDateTime endTime = LocalDateTime.of(2022, 3, 6, 11, 0);
+        Lesson lesson1 = new Lesson("Math Lesson", startTime, endTime);
+        Lesson lesson2 = new Lesson("Math Lesson", startTime, endTime);
+
+        assertEquals(lesson1, lesson2);
+        assertEquals(lesson2, lesson1);
+    }
+
 }

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.exam;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
@@ -13,33 +13,35 @@ import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.student.Lesson;
+import seedu.address.model.student.Exam;
 import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
 
 /**
  * Update the information of an existing homework.
  */
-public class UpdateLessonCommand extends Command {
+public class UpdateExamCommand extends Command {
 
-    public static final String COMMAND_WORD = "update-lesson";
+    public static final String COMMAND_WORD = "update-exam";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Update the information of an existing lesson.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Update the information of an existing exam.\n"
         + "Parameters: "
         + PREFIX_NAME + "STUDENT_NAME "
-        + PREFIX_INDEX + "LESSON_INDEX "
-        + PREFIX_LESSON + "HOMEWORK_NAME "
+        + PREFIX_INDEX + "EXAM_INDEX "
+        + PREFIX_LESSON + "EXAM_NAME "
         + PREFIX_STARTTIME + "START TIME"
         + PREFIX_ENDTIME + "END TIME\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_NAME + "John Doe "
         + PREFIX_INDEX + "1 "
-        + PREFIX_LESSON + "Math Lesson ";
+        + PREFIX_LESSON + "Math Exam ";
 
     private final Index index;
-    private final Optional<String> lessonName;
+    private final Optional<String> examName;
     private final Optional<LocalDateTime> startTime;
     private final Optional<LocalDateTime> endTime;
     private final NamePredicate predicate;
@@ -50,19 +52,19 @@ public class UpdateLessonCommand extends Command {
      *
      * @param index of the homework in the filtered homework list to update
      * @param predicate of the student to update the homework
-     * @param lessonName of the lesson to be updated to
+     * @param examName of the lesson to be updated to
      * @param startTime of the lesson to be updated to
      * @param endTime of the lesson to be updated to
      */
-    public UpdateLessonCommand(List<String> names, Index index, NamePredicate predicate,
-                                 Optional<String> lessonName, Optional<LocalDateTime> startTime,
+    public UpdateExamCommand(List<String> names, Index index, NamePredicate predicate,
+                               Optional<String> examName, Optional<LocalDateTime> startTime,
                                Optional<LocalDateTime> endTime) {
         requireNonNull(predicate);
         requireNonNull(index);
 
         this.index = index;
         this.predicate = predicate;
-        this.lessonName = lessonName;
+        this.examName = examName;
         this.startTime = startTime;
         this.endTime = endTime;
         this.names = names;
@@ -95,28 +97,29 @@ public class UpdateLessonCommand extends Command {
         List<Student> studentList = model.getFilteredStudentList();
 
         Student student = studentList.get(0);
-        Lesson lessonToUpdate = student.getLesson(index);
+        Exam examToUpdate = student.getExam(index);
 
-        String newLessonName = this.lessonName.orElse(lessonToUpdate.getTitle());
-        LocalDateTime newStartTime = this.startTime.orElse(lessonToUpdate.getStartTime());
-        LocalDateTime newEndTime = this.endTime.orElse(lessonToUpdate.getEndTime());
-        Lesson newLesson = new Lesson(newLessonName, newStartTime, newEndTime);
-        student.setLesson(lessonToUpdate, newLesson);
+        String newExamName = this.examName.orElse(examToUpdate.getDescription());
+        LocalDateTime newStartTime = this.startTime.orElse(examToUpdate.getStartTime());
+        LocalDateTime newEndTime = this.endTime.orElse(examToUpdate.getEndTime());
+        Exam newExam = new Exam(newExamName, newStartTime, newEndTime);
+        student.setExam(examToUpdate, newExam);
 
         return new CommandResult(
             String.format(Messages.MESSAGE_LESSON_UPDATED_SUCCESS, index.getOneBased(),
                 student.getName().getFirstName(),
-                newLessonName, newStartTime, newEndTime));
+                newExamName, newStartTime, newEndTime));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof UpdateLessonCommand // instanceof handles nulls
-            && predicate.equals(((UpdateLessonCommand) other).predicate)
-            && index == ((UpdateLessonCommand) other).index
-            && lessonName.equals(((UpdateLessonCommand) other).lessonName)
-            && startTime.equals(((UpdateLessonCommand) other).startTime)
-            && endTime.equals((((UpdateLessonCommand) other).endTime)));
+            || (other instanceof UpdateExamCommand // instanceof handles nulls
+            && predicate.equals(((UpdateExamCommand) other).predicate)
+            && index == ((UpdateExamCommand) other).index
+            && examName.equals(((UpdateExamCommand) other).examName)
+            && startTime.equals(((UpdateExamCommand) other).startTime)
+            && endTime.equals((((UpdateExamCommand) other).endTime)));
     }
 }
+
