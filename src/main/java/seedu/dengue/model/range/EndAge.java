@@ -1,22 +1,24 @@
 package seedu.dengue.model.range;
 
+import java.util.Optional;
+
 import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Person;
 
 /**
  * Represents the end of the age in a given range
  */
-public class EndAge extends Age implements End<Age> {
+public class EndAge implements End<Age> {
 
-    public static final Age DEFAULT_ENDAGE = new Age("200");
+    private final Optional<Age> age;
 
     /**
      * Constructs an {@code Age}.
      *
      * @param age A valid age.
      */
-    public EndAge(String age) {
-        super(age);
+    public EndAge(Optional<Age> age) {
+        this.age = age;
     }
 
     /**
@@ -25,8 +27,11 @@ public class EndAge extends Age implements End<Age> {
      * @param p
      */
     public boolean isAfter(Person p) {
-        String a1 = value;
-        String a2 = p.getAge().value;
-        return a1.compareTo(a2) >= 0;
+        if (!age.isPresent()) {
+            return true;
+        }
+        int a1 = Integer.parseInt(age.get().value);
+        int a2 = Integer.parseInt(p.getAge().value);
+        return a1 >= a2;
     }
 }

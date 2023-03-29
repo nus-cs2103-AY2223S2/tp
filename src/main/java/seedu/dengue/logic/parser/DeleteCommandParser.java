@@ -5,6 +5,8 @@ import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_STARTDATE;
 
+import java.util.Optional;
+
 import seedu.dengue.commons.core.index.Index;
 import seedu.dengue.logic.commands.DeleteCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
@@ -48,13 +50,16 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                     }
                     return new DeleteCommand(new Date(date));
                 } else {
-                    String startDate = argMultimap.getValue(PREFIX_STARTDATE).get();
-                    String endDate = argMultimap.getValue(PREFIX_ENDDATE).get();
+                    Optional<String> startDate = argMultimap.getValue(PREFIX_STARTDATE);
+                    Optional<String> endDate = argMultimap.getValue(PREFIX_ENDDATE);
+                    /*
                     if (dateHasIndex(startDate) | dateHasIndex(endDate)) {
                         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                                 DeleteCommand.MESSAGE_USAGE));
                     }
-                    Range<Date> range = new Range<>(new StartDate(startDate), new EndDate(endDate));
+                    */
+                    Range<Date> range = new Range<Date>(new StartDate(ParserUtil.parseOptionalDate(startDate)),
+                            new EndDate(ParserUtil.parseOptionalDate(endDate)));
                     return new DeleteCommand(range);
                 }
 

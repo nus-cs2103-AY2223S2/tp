@@ -1,6 +1,7 @@
 package seedu.dengue.model.range;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Person;
@@ -8,15 +9,17 @@ import seedu.dengue.model.person.Person;
 /**
  * Represents the end of the date in a given range
  */
-public class EndDate extends Date implements End<Date> {
+public class EndDate implements End<Date> {
+
+    private final Optional<Date> date;
 
     /**
      * Constructs an {@code Date}.
      *
      * @param date A Date.
      */
-    public EndDate(String date) {
-        super(date);
+    public EndDate(Optional<Date> date) {
+        this.date = date;
     }
 
     /**
@@ -25,7 +28,10 @@ public class EndDate extends Date implements End<Date> {
      * @param p
      */
     public boolean isAfter(Person p) {
-        LocalDate d1 = LocalDate.parse(value);
+        if (!date.isPresent()) {
+            return true;
+        }
+        LocalDate d1 = LocalDate.parse(date.get().value);
         LocalDate d2 = LocalDate.parse(p.getDate().value);
         return d1.compareTo(d2) >= 0;
     }

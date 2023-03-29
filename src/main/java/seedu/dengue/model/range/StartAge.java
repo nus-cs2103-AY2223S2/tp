@@ -1,22 +1,24 @@
 package seedu.dengue.model.range;
 
+import java.util.Optional;
+
 import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Person;
 
 /**
  * Represents the start of the age in a given range
  */
-public class StartAge extends Age implements Start<Age> {
+public class StartAge implements Start<Age> {
 
-    public static final Age DEFAULT_STARTAGE = new Age("0");
+    private final Optional<Age> age;
 
     /**
      * Constructs an {@code Age}.
      *
      * @param age A valid age.
      */
-    public StartAge(String age) {
-        super(age);
+    public StartAge(Optional<Age> age) {
+        this.age = age;
     }
 
 
@@ -26,8 +28,11 @@ public class StartAge extends Age implements Start<Age> {
      * @param p
      */
     public boolean isBefore(Person p) {
-        String a1 = value;
-        String a2 = p.getAge().value;
-        return a1.compareTo(a2) <= 0;
+        if (!age.isPresent()) {
+            return true;
+        }
+        int a1 = Integer.parseInt(age.get().value);
+        int a2 = Integer.parseInt(p.getAge().value);
+        return a1 <= a2;
     }
 }
