@@ -132,6 +132,7 @@ public interface Model {
     boolean hasAppointment(Appointment appointment);
 
     void bookAppointment(Appointment appointment);
+    void deleteAppointment(Appointment appointment);
 
     /**
      * Returns true if a doctor with the same identity as {@code doctor} exists in the address book.
