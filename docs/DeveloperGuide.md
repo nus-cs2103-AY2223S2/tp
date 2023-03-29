@@ -653,11 +653,11 @@ feature would work in practice.
 
 **Main Success Scenario (MSS):**
 
-1. User requests to list persons.
+1. User requests to list all persons.
 
 2. OfficeConnect shows a list of persons.
 
-3. User requests to list tasks.
+3. User requests to list all tasks.
 
 4. OfficeConnect shows a list of tasks.
 
@@ -669,9 +669,23 @@ feature would work in practice.
 
 **Extensions**
 
+* 1a. User requests to find persons according to their name.
+  
+  Use case resumes at step 2.
+
+* 1b. User requests to list all persons and tasks at the same time.
+
+  * 1b1. OfficeConnect shows a list of tasks and persons.
+  
+    Use case resumes at step 5.
+
 * 2a. The list is empty.
 
   Use case ends.
+
+* 3a. User requests to find tasks according to their title.
+
+  User case resumes at step 4. 
 
 * 4a. The list is empty.
 
@@ -795,6 +809,10 @@ feature would work in practice.
    Use case ends.
 
 **Extensions**
+
+* 1a. User requests to find tasks according to their titles.
+  
+  Use case resumes at step 2.
 
 * 2a. The list is empty.
 
@@ -961,12 +979,79 @@ testers are expected to do more *exploratory* testing.
       Timestamp in the status bar is updated.
    3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 2. _{ more test cases …​ }_
 
-### 6.3 Saving data
+### 6.3 Assigning a task to a person
+
+1. Assigning a task to a person while all tasks and persons are being shown
+
+   1. Prerequisites: List all persons and tasks using the `listall` command. Multiple tasks and persons
+      in the list.
+   2. Test case: `assign pi/1 ti/1`<br>
+      Expected: Details of the assigned person and task shown in the status message. The task assigned will
+      be shown when after using `find NAME`, where `NAME` is the full name of the first person in the list. <br>
+      * Follow-up test case: `listall`, followed by `assign pi/1 ti/1`<br>
+        Expected: Error details shown in status message indicating that the first person has already been 
+        assigned to the first task.
+   3. Test case: `assign pi/1`<br>
+      Expected: No tasks or persons are assigned. Error details shown in status message.
+   4. Other incorrect assign commands to try: `assign`, `assign 1 1`, `assign pi/x ti/y` (where x or y is
+      larger than the number of persons or tasks contained in the list displayed)<br>
+      Expected: similar to previous.
+
+### 6.4 Marking a task as completed
+
+1. Marking a task that has not been assigned to any persons as completed
+
+   1. Prerequisites: List all tasks using the `listtask` command. At least one task in the list. First task
+      has not been assigned to any person, which can be verified by using `findtask TITLE` (where `TITLE` is
+      the title of the first task) which should display an empty list. First task is currently not marked as
+      completed (red cross appears below task).
+   2. Test case: `mark 1`<br>
+      Expected: Details of the task that is marked shown in the status message. A green tick will appear
+      under the task.
+   3. Test case: `mark 0`<br>
+      Expected: No tasks are marked. Error details shown in status message.
+   4. Other incorrect mark commands to try: `mark`, `mark x` (where x is larger than the list size).
+      Expected: Similar to previous.
+
+2. Marking a task that has been assigned to one or more persons as completed
+
+   1. Prerequisites: Find persons assigned to a task using the `findtask TITLE` (where `TITLE` is the title of 
+      a task). At least one person in the list. Task is not marked as completed (red cross appears below task).
+   2. Test case: `mark 1`<br>
+      Expected: Details of the task that is marked shown in the status message. A green tick will appear under the
+      task. The progress indicator of the persons assigned to this task will be updated.
+
+### 6.5 Unmarking a task as not completed
+
+1. Unmarking a task that has not been assigned to any persons as not completed yet
+
+   1. Prerequisites: List all tasks using the `listtask` command. At least one task in the list. First task
+      has not been assigned to any person, which can be verified by using `findtask TITLE` (where `TITLE` is
+      the title of the first task) which should display an empty list. First task is currently marked as
+      completed (green tick appears below task).
+   2. Test case: `ummark 1`<br>
+      Expected: Details of the task that is unmarked shown in the status message. A red cross will appear
+      under the task.
+   3. Test case: `unmark 0`<br>
+      Expected: No tasks are unmarked. Error details shown in status message.
+   4. Other incorrect unmark commands to try: `unmark`, `unmark x` (where x is larger than the list size).
+      Expected: Similar to previous.
+
+2. Unmarking a task that has been assigned to one or more persons as not completed yet
+
+   1. Prerequisites: Find persons assigned to a task using the `findtask TITLE` (where `TITLE` is the title of
+      a task). At least one person in the list. Task is marked as completed (red cross appears below task).
+   2. Test case: `unmark 1`<br>
+      Expected: Details of the task that is unmarked shown in the status message. A red cross will appear under the
+      task. The progress indicator of the persons assigned to this task will be updated.
+
+
+### 6.6 Saving data
 
 1. Dealing with missing/corrupted data files
 
