@@ -23,22 +23,13 @@
             <Insets top="10"/>
         </padding>
         <Label fx:id="recipeDesc" text="\$recipeDesc" wrapText="true" styleClass="details_desc_label" />
-        <HBox alignment="CENTER" prefWidth="400" spacing="20">
-            <VBox maxWidth="300" prefWidth="300">
-                <Label fx:id="stepsTitle" text="\$stepsTitle" wrapText="true" styleClass="details_steps_title" />
-                <VBox fx:id="steps" styleClass="details_label"/>
-            </VBox>
-            <padding>
-
-                <Insets left="10" right="10"/>
-            </padding>
-            <VBox maxWidth="150" prefWidth="150">
-                <Label fx:id="ingredientsTitle" text="\$ingredientsTitle"
-                       styleClass="details_steps_title"/>
-                <VBox fx:id="ingredients" styleClass="details_label" />
-            </VBox>
-
-        </HBox>
+        <VBox alignment="CENTER_LEFT" prefWidth="400">
+            <Label fx:id="ingredientsTitle" text="\$ingredientsTitle"
+                   styleClass="details_steps_title"/>
+            <VBox fx:id="ingredients" styleClass="details_label" />
+            <Label fx:id="stepsTitle" text="\$stepsTitle" wrapText="true" styleClass="details_steps_title" />
+            <VBox fx:id="steps" styleClass="details_label"/>
+        </VBox>
     </VBox>
 </ScrollPane>
 
