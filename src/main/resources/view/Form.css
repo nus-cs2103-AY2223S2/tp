@@ -7,22 +7,23 @@
     -fx-rsd: derive(-fx-bg, 40%);
 }
 
+
 .background {
     -fx-background-color: -fx-bg;
-    background-color: #383838; /* Used in the default.html file */
+    background-color: #383838;
 }
 
 .root-layout {
     -fx-background-color: -fx-bg;
-    -fx-background-inset: 5;
-    -fx-border-inset: 5;
+    -fx-background-inset: 0;
+    -fx-border-inset: 0;
 
 }
 
 .root-box {
     -fx-background-color: -fx-bg;
-    -fx-background-inset: 5;
-    -fx-border-inset: 5;
+    -fx-background-inset: 0;
+    -fx-border-inset: 0;
 }
 
 .root-layout .label {

@@ -197,13 +197,12 @@ public class AddRecipeForm extends UiPart<Region> {
         // Ensures users do not exit the view by clicking outside
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Add Recipe");
-        window.setMinWidth(500);
-        window.setMinHeight(500);
+        window.setResizable(false);
 
         //Individual elements
-        ScrollPane pane = new ScrollPane(getRoot());
+        VBox pane = new VBox(getRoot());
+        pane.setStyle("-fx-background-color: #3f3f46");
         Scene scene = new Scene(pane);
-        scene.setFill(Color.web("#3f3f46"));
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
                 window.close();

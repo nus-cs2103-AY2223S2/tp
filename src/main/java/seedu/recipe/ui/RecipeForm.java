@@ -177,13 +177,12 @@ public class RecipeForm extends UiPart<Region> {
         // Ensures users do not exit the view by clicking outside
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(recipe == null ? "Add Recipe" : "Edit Recipe");
+        window.setResizable(false);
 
         //Set dimensions, scene graph
-        window.setMinWidth(500);
-        window.setMinHeight(700);
-        window.setResizable(false);
-        ScrollPane pane = new ScrollPane(getRoot());
+        VBox pane = new VBox(getRoot());
         pane.setStyle("-fx-background-color: #3f3f46");
+
         Scene scene = new Scene(pane);
 
         //Event handler for Escape Key
