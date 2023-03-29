@@ -144,7 +144,11 @@ public class HelpWindow extends UiPart<Stage> {
                 UnTagEventCommand.MESSAGE_USAGE
         );
         commandsContainer.getChildren().addAll(helpTexts.stream()
-                .map(Label::new)
+                .map(text -> {
+                    Label label = new Label(text);
+                    label.setWrapText(true);
+                    return label;
+                })
                 .collect(Collectors.toList()));
     }
 }

@@ -3,6 +3,54 @@
     -fx-background-radius: 10;
 }
 
+.scroll-bar {
+    -fx-background-color: transparent;
+    -fx-padding: 0 2 0 0;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: derive(#1d1d1d, 70%);
+    -fx-background-insets: 3;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+}
+
+.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 1 8 1 8;
+}
+
+.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 8 1 8 1;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-padding: 0;
+}
+
+#commandsContainer {
+    -fx-background-color: derive(#1d1d1d, 40%);
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+}
+
+#commandsContainer .label {
+    -fx-text-fill: white;
+    -fx-font-size: 11pt;
+}
+
 #copyButton, #helpMessage {
     -fx-text-fill: white;
 }
@@ -32,12 +80,4 @@
 #helpMessageUrl {
     -fx-text-fill: lightblue;
     -fx-font-size: 11pt;
-}
-
-#commandsContainer .label {
-    -fx-text-fill: white;
-    -fx-font-size: 11pt;
-    -fx-background-color: derive(#1d1d1d, 40%);
-    -fx-background-radius: 10;
-    -fx-padding: 10;
 }
