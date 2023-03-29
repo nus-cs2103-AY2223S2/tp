@@ -31,6 +31,8 @@ public class FilesManager {
     private String path;
     private List<Path> files;
     private List<String> fileNames;
+    private String errorMessage = "";
+    private boolean hasError = false;
 
     /**
      * Instantiates a new Files manager.
@@ -67,8 +69,19 @@ public class FilesManager {
      * Add file.
      */
     public void addFile() {
-        store.uploadFile();
-        setAllFiles();
+        try {
+            store.uploadFile();
+            setAllFiles();
+            hasError = false;
+        } catch (RuntimeException e) {
+            Throwable cause = e.getCause();
+            if (cause instanceof IOException) {
+                errorMessage = cause.getMessage();
+                hasError = true;
+            } else {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -85,7 +98,7 @@ public class FilesManager {
         } else if (extension.equalsIgnoreCase("pdf")) {
             displayPdf(path1);
         } else {
-            logger.log(Level.SEVERE, "Invalid file type" );
+            logger.log(Level.SEVERE, "Invalid file type");
         }
     }
 
@@ -131,7 +144,13 @@ public class FilesManager {
         FileStorage.createDrc(path);
         create = new FileGenerator(person,
                 doctorName, description, days);
-        create.createMcForm(Integer.toString(nextMcNumber(path2)));
+        hasError = false;
+        try {
+            create.createMcForm(Integer.toString(nextMcNumber(path2)));
+        } catch (IOException e) {
+            errorMessage = "GF";
+            hasError = true;
+        }
         updateList();
     }
 
@@ -143,7 +162,7 @@ public class FilesManager {
     public void readNthFile(int number) {
         //Check if the files list is empty or the input number is invalid
         if (!isValidFileNumber(number)) {
-            logger.log(Level.WARNING, "Invalid file number or no files exist." );
+            logger.log(Level.WARNING, "Invalid file number or no files exist.");
             return;
         }
         Path nthFilePath = files.get(number - 1);
@@ -159,7 +178,7 @@ public class FilesManager {
     public void deleteNthFile(int number) {
         //Check if the files list is empty or the input number is invalid
         if (!isValidFileNumber(number)) {
-            logger.log(Level.WARNING, "Invalid file number or no files exist." );
+            logger.log(Level.WARNING, "Invalid file number or no files exist.");
             return;
         }
         Path nthFilePath = files.get(number - 1);
@@ -248,5 +267,13 @@ public class FilesManager {
     private void displayPdf(Path path1) {
         PdfReader pdfReader = new PdfReader(path1);
         pdfReader.displayPdf();
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public boolean isHasError() {
+        return hasError;
     }
 }

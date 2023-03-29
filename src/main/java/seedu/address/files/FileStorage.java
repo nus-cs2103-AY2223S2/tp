@@ -126,7 +126,7 @@ public class FileStorage {
      * proper GUI interaction. The SwingUtilities.invokeLater() method is used to
      * achieve this.
      */
-    public void uploadFile() {
+    public void uploadFile() throws RuntimeException {
         SwingUtilities.invokeLater(() -> {
             JFileChooser fileChooser = configFileChooser();
             int result = fileChooser.showOpenDialog(null);
@@ -136,7 +136,11 @@ public class FileStorage {
                 String userDirPath = "reports/" + this.username + "/";
                 File userDir = new File(userDirPath);
                 checkDir(userDir);
-                copySelectedFiles(selectedFiles, userDirPath, DEFAULT_FILE_SIZE);
+                try {
+                    copySelectedFiles(selectedFiles, userDirPath, DEFAULT_FILE_SIZE);
+                } catch (IOException e) {
+                    throw new RuntimeException(e.getMessage());
+                }
             }
         });
     }
@@ -167,7 +171,7 @@ public class FileStorage {
      * @param userDirPath path of the user's directory to copy files to
      * @param maxSize maximum file size allowed in bytes
      */
-    private void copySelectedFiles(File[] selectedFiles, String userDirPath, long maxSize) {
+    private void copySelectedFiles(File[] selectedFiles, String userDirPath, long maxSize) throws IOException {
 
         for (File selectedFile : selectedFiles) { // loop through each selected file
             String fileName = selectedFile.getName().toLowerCase();
@@ -176,21 +180,15 @@ public class FileStorage {
             if (isAllowedFileType(extension)) {
                 Path srcPath = selectedFile.toPath();
                 Path destPath = Paths.get(userDirPath + fileName);
-
-                try {
-                    BasicFileAttributes attr = Files.readAttributes(srcPath, BasicFileAttributes.class);
-                    long fileSize = attr.size();
-
-                    if (fileSize <= maxSize) {
-                        Files.copy(srcPath, destPath, StandardCopyOption.REPLACE_EXISTING);
-                    } else {
-                        logger.warning("File size exceeds 10 MB limit");
-                    }
-                } catch (IOException e) {
-                    logger.warning("Error copying file");
+                BasicFileAttributes attr = Files.readAttributes(srcPath, BasicFileAttributes.class);
+                long fileSize = attr.size();
+                if (fileSize <= maxSize) {
+                    Files.copy(srcPath, destPath, StandardCopyOption.REPLACE_EXISTING);
+                } else {
+                    throw new IOException("File Size exceed limit, Please upload a different file");
                 }
             } else {
-                logger.warning("Wrong file type");
+                throw new IOException("Wrong file type, only accept PDF and Image types");
             }
         }
     }

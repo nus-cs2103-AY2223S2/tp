@@ -16,17 +16,16 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
 import seedu.address.model.person.Person;
 
 
-
 /**
  * The type File generator.
  */
 public class FileGenerator {
 
-    private Person person;
-    private String doctorName;
-    private String description;
+    private final Person person;
+    private final String doctorName;
+    private final String description;
     private String formId;
-    private int days;
+    private final int days;
 
     /**
      * Instantiates a new File generator.
@@ -50,59 +49,54 @@ public class FileGenerator {
     /**
      * Create Mc form.
      */
-    public void createMcForm(String filename) {
-        try {
-            //Load the original PDF form
-            InputStream inputStream = getClass().getResourceAsStream("/MC.pdf");
-            PDDocument pdfDocument = PDDocument.load(inputStream);
-            //Get the PDF form fields
-            PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
-            PDAcroForm acroForm = docCatalog.getAcroForm();
+    public void createMcForm(String filename) throws IOException {
+        //Load the original PDF form
+        InputStream inputStream = getClass().getResourceAsStream("/MC.pdf");
+        PDDocument pdfDocument = PDDocument.load(inputStream);
+        //Get the PDF form fields
+        PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
+        PDAcroForm acroForm = docCatalog.getAcroForm();
 
 
-            formId = filename.replace(".pdf", "");
-            //Get all fields
-            List<PDField> fieldList = acroForm.getFields();
+        formId = filename.replace(".pdf", "");
+        //Get all fields
+        List<PDField> fieldList = acroForm.getFields();
 
-            for (PDField field: fieldList) {
-                if (field instanceof PDTextField) {
-                    String fileName = field.getFullyQualifiedName();
-                    LocalDate now = LocalDate.now();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-                    switch (fileName) {
-                    case "name":
-                        field.setValue(person.getName().fullName);
-                        break;
-                    case "DOB":
-                        field.setValue("222-2222");
-                        break;
-                    case "days":
-                        field.setValue(Integer.toString(days));
-                        break;
-                    case "today":
-                    case "startDate":
-                        field.setValue(now.format(formatter));
-                        break;
-                    case "endDate":
-                        LocalDate endDate = now.plusDays(days);
-                        field.setValue(endDate.format(formatter));
-                        break;
-                    case "Doctor Name":
-                        field.setValue(doctorName);
-                        break;
-                    default:
-                        field.setValue(formId);
-                        break;
-                    }
+        for (PDField field : fieldList) {
+            if (field instanceof PDTextField) {
+                String fileName = field.getFullyQualifiedName();
+                LocalDate now = LocalDate.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                switch (fileName) {
+                case "name":
+                    field.setValue(person.getName().fullName);
+                    break;
+                case "DOB":
+                    field.setValue("222-2222");
+                    break;
+                case "days":
+                    field.setValue(Integer.toString(days));
+                    break;
+                case "today":
+                case "startDate":
+                    field.setValue(now.format(formatter));
+                    break;
+                case "endDate":
+                    LocalDate endDate = now.plusDays(days);
+                    field.setValue(endDate.format(formatter));
+                    break;
+                case "Doctor Name":
+                    field.setValue(doctorName);
+                    break;
+                default:
+                    field.setValue(formId);
+                    break;
                 }
             }
-            //making file name unique using store MC number do file check before save.
-            pdfDocument.save(new File("reports/" + person.getName().fullName + "/" + filename + "-mc.pdf"));
-            pdfDocument.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        //making file name unique using store MC number do file check before save.
+        pdfDocument.save(new File("reports/" + person.getName().fullName + "/" + filename + "-mc.pdf"));
+        pdfDocument.close();
 
     }
 }
