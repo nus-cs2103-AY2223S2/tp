@@ -96,11 +96,11 @@ software editing, building, testing, and packaging in an easy-to-use application
 
 ## Main View
 
-The main view of Mycelium is composed of two panels. The left panel is what we will refer to as the **Entity Panel** and the right panel is what we will refer to as the **Statistics Panel**.
+The main view of Mycelium is composed of two panels. The left panel is what we will refer to as the **Entity panel** and the right panel is what we will refer to as the **Statistics panel**.
 
 ### Entity Panel
 
-The Entity Panel is where you will be able to view your projects and clients. It is split into two tabs, one that lists all existing projects and the other that lists all existing clients. 
+The Entity panel is where you will be able to view your projects and clients. It is split into two tabs, one that lists all existing projects and the other that lists all existing clients. 
 
 #### Projects Tab
 
@@ -126,7 +126,7 @@ The Clients tab lists all the clients you've created. Each client block contains
 
 ### Statistics Panel
 
-The Statistics Panel is where you will be able to view statistics about your projects. It is vertically split into 2 portions.
+The Statistics panel is where you will be able to view statistics about your projects. It is vertically split into 2 portions.
 
 The top portion is composed of two tabs, one that lists the projects that are due soon and the other lists projects that overdue.
 
@@ -561,20 +561,20 @@ This shortcut allows you to quickly clear the current line in the command box. T
 
 ### (CTRL+S) Switch Panels
 
-This shortcut allows you to quickly switch the focus between the Entity Panel and the Statistics Panel.
+This shortcut allows you to quickly switch the focus between the Entity panel and the Statistics panel.
 The panel in focus will be highlighted with a blue header.
 
 ### (CTRL+L) Switch Tabs
 
 This shortcut allows you to quickly switch between the tabs of panel that is currently in focus. 
-If the left Entity Panel is in focus, then the tabs will be the Projects tab and Clients tab. 
-If the right Statistics Panel is in focus, then the tabs will be the Overdue and Due soon tabs.
+If the left Entity panel is in focus, then the tabs will be the Projects tab and Clients tab. 
+If the right Statistics panel is in focus, then the tabs will be the Overdue and Due soon tabs.
 
 ### (CTRL+J) Select next
 
 This shortcut allows you to quickly select the next item on the list in the currently selected tab 
 in the currently selected panel. 
-This could be the either the Projects tab or Clients tab in the Entity Panel or the Overdue tab or Due soon tab in the Statistics Panel.
+This could be the either the Projects tab or Clients tab in the Entity panel or the Overdue tab or Due soon tab in the Statistics panel.
 
 If there was no item originally selected, then the first item in the list will be selected.
 
@@ -582,7 +582,7 @@ If there was no item originally selected, then the first item in the list will b
 
 This shortcut allows you to quickly select the previous item on the list in the currently selected tab
 in the currently selected panel.
-This could be the either the Projects tab or Clients tab in the Entity Panel or the Overdue tab or Due soon tab in the Statistics Panel.
+This could be the either the Projects tab or Clients tab in the Entity panel or the Overdue tab or Due soon tab in the Statistics panel.
 
 If there was no item originally selected, then the last item in the list will be selected.
 
