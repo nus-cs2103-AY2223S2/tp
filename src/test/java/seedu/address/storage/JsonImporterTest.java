@@ -18,11 +18,11 @@ class JsonImporterTest {
 
         try {
             successImporter.readData();
-        } catch (DataConversionException | JsonNotFoundException e){
+        } catch (DataConversionException | JsonNotFoundException e) {
             throw new AssertionError("readData should run successfully");
         }
     }
-    
+
     @Test
     void readData_validDataWithTagsGroups_success() {
         Path validDataTagGroup = TEST_DATA_FOLDER.resolve("validImportWithTagsGroups.json");
@@ -30,7 +30,7 @@ class JsonImporterTest {
 
         try {
             successImporterTagGroup.readData();
-        } catch (DataConversionException | JsonNotFoundException e){
+        } catch (DataConversionException | JsonNotFoundException e) {
             throw new AssertionError("readData should run successfully");
         }
     }
@@ -42,9 +42,9 @@ class JsonImporterTest {
 
         try {
             invalidImporter.readData();
-        } catch (DataConversionException e){
+        } catch (DataConversionException e) {
             throw new AssertionError("readData should not throw DataConversionException.");
-        } catch (JsonNotFoundException e){
+        } catch (JsonNotFoundException e) {
             return;
         }
         throw new AssertionError("readData did not throw an Exception");
@@ -57,9 +57,9 @@ class JsonImporterTest {
 
         try {
             emptyImporter.readData();
-        } catch (DataConversionException e){
+        } catch (DataConversionException e) {
             return;
-        } catch (JsonNotFoundException e){
+        } catch (JsonNotFoundException e) {
             throw new AssertionError("readData should not throw DataConversionException");
         }
         throw new AssertionError("readData should not run successfully");
@@ -72,9 +72,9 @@ class JsonImporterTest {
 
         try {
             invalidImporter.readData();
-        } catch (DataConversionException e){
+        } catch (DataConversionException e) {
             return;
-        } catch (JsonNotFoundException e){
+        } catch (JsonNotFoundException e) {
             throw new AssertionError("readData should not throw JsonNotFoundException");
         }
         throw new AssertionError("readData should not run successfully");

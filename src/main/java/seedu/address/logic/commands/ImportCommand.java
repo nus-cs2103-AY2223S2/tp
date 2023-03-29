@@ -6,7 +6,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.List;
-import java.util.TreeSet;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.DataConversionException;
@@ -18,13 +17,18 @@ import seedu.address.storage.Importer;
 import seedu.address.storage.JsonImporter;
 import seedu.address.storage.exceptions.JsonNotFoundException;
 
+/**
+ * Represents a {@code Command} that imports data of a single {@code Person} into the current Address Book.
+ */
 public class ImportCommand extends Command {
     public static final String COMMAND_WORD = "import";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Import the person data contained in an "
-            + "export file. If the person already exists, the personal information and events are updated. "
-            + "If not, a new person is added.\n"
-            + "File must be stored in same directory and must be named \"export.json\" to be read.\n"
+            + "export file. If the person already exists, the personal information and events are updated."
+            + "Groups and Tags are not modified."
+            + "If not, a new person is added with no Groups and Tags.\n"
+            + "File must be stored in folder with the path \"./data\" "
+            + "and must be named \"export.json\" to be read.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_IMPORT_PERSON_SUCCESS = "Import Person: %1$s";

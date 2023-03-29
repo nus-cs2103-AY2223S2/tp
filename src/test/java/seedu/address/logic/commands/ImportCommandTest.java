@@ -1,29 +1,27 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
+
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Importer;
-import seedu.address.storage.exceptions.JsonNotFoundException;
-import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.SampleEventUtil;
 import seedu.address.testutil.TypicalPersons;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-
-import java.util.Set;
-import java.util.TreeSet;
 
 class ImportCommandTest {
 
@@ -39,8 +37,8 @@ class ImportCommandTest {
         String expectedMessage = String.format(ImportCommand.MESSAGE_IMPORT_PERSON_SUCCESS, TypicalPersons.ALICE);
 
         ImporterStub validImporter = new ImporterStub(validImport);
-            ImportCommand successfulCommand = new ImportCommand(validImporter);
-            assertCommandSuccess(successfulCommand, model, expectedMessage, model);
+        ImportCommand successfulCommand = new ImportCommand(validImporter);
+        assertCommandSuccess(successfulCommand, model, expectedMessage, model);
     }
 
     @Test
@@ -118,7 +116,11 @@ class ImportCommandTest {
         Person personToImport = new PersonBuilder(TypicalPersons.ALICE).withName("Bob the Builder").build();
         validImport.addPerson(personToImport);
 
-        Person expectedPerson = new PersonBuilder(TypicalPersons.ALICE).withName("Bob the Builder").withTags().withGroups().build();
+        Person expectedPerson = new PersonBuilder(TypicalPersons.ALICE)
+                .withName("Bob the Builder")
+                .withTags()
+                .withGroups()
+                .build();
         String expectedMessage = String.format(ImportCommand.MESSAGE_IMPORT_PERSON_SUCCESS, expectedPerson);
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.addPerson(expectedPerson);
