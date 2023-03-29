@@ -70,7 +70,7 @@
                 <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
          <stylesheets>
-            <URL value="@DarkTheme.css" />
+            <URL value="@DarkGreenTheme.css" />
             <URL value="@Extensions.css" />
          </stylesheets>
         </Scene>

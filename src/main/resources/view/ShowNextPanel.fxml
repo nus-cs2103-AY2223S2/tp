@@ -5,6 +5,6 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox minHeight="105.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <Label fx:id="showNextLabel" styleClass="cell_big_label" stylesheets="@DarkTheme.css" text="Upcoming Events" textFill="WHITE" />
+   <Label fx:id="showNextLabel" styleClass="cell_big_label" stylesheets="@DarkGreenTheme.css" text="Upcoming Events" textFill="WHITE" />
     <ListView fx:id="showNextListView" VBox.vgrow="ALWAYS" />
 </VBox>
