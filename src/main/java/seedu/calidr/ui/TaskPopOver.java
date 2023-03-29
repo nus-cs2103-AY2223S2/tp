@@ -3,6 +3,7 @@ package seedu.calidr.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.calidr.commons.util.StringUtil;
 import seedu.calidr.model.task.Event;
@@ -40,6 +41,9 @@ public class TaskPopOver extends UiPart<Region> {
     private Label title;
 
     @FXML
+    private FlowPane tags;
+
+    @FXML
     private Label toDate;
 
     @FXML
@@ -54,10 +58,6 @@ public class TaskPopOver extends UiPart<Region> {
     public TaskPopOver(Task task) {
         super(FXML);
         title.setText(task.getTitle().value);
-
-        if (task.isDone()) {
-            doneTick.setText("✔");
-        }
 
         if (task.getDescription().isPresent()) {
             description.setText(task.getDescription().get().value);
@@ -79,14 +79,27 @@ public class TaskPopOver extends UiPart<Region> {
             toBy.setText("to");
             toDate.setText(eventDateTimes.to.format(EventDateTimes.PRINT_FORMAT));
         } else {
-            TodoDateTime todoDateTime = ((ToDo) task).getBy();
+            ToDo todo = (ToDo) task;
+            TodoDateTime todoDateTime = todo.getBy();
             fromDate.setVisible(false);
             fromDate.setManaged(false);
             toBy.setText("by");
             toDate.setText(todoDateTime.value.format(TodoDateTime.PRINT_FORMAT));
+
+            if (todo.isDone()) {
+                doneTick.setText("✔");
+            }
         }
 
         priority.setText(StringUtil.capitalize(task.getPriority().toString()) + " priority");
+
+        /*
+        task.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        */
+        // TODO stub
+        tags.getChildren().addAll(new Label("Stub 1"), new Label("Stub 2"));
 
         closeButton.setOnAction(e -> this.getRoot().getScene().getWindow().hide());
     }
