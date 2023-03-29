@@ -102,7 +102,7 @@ Format: `edit INDEX [s/STATUS] [w/WARD] [d/DISCHARGE]​`
 
 - Edits the patient's details at the specified index as of the currently displayed list.
 - The status of a patient is either `GRAY` or `GREEN` or `YELLOW` or `RED`.
-- The ward allocated to a patient is represented as an uppercase alphabet followed by 2 digits. E.g `A01`.
+- The ward allocated to a patient is represented as an alphanumeric string. E.g `A01`.
 - The discharge date-time is of the `dd/MM/yyyy HHmm` format. E.g `12/03/2023 1200` is interpreted as 12th March 2023 1200hrs.
 
 Examples:
@@ -148,7 +148,7 @@ Adds the ward (name and capacity).
 
 Format: `addward name/NAME [c/CAPACITY]​`
 
-- The ward name is represented as an uppercase alphabet followed by 2 digits. E.g `A01`.
+- The ward name is represented as an alphanumeric string. E.g `A01`.
 - The capacity is a positive integer. E.g `50`.
 
 <!-- EXAMPLE OF TIP -->
