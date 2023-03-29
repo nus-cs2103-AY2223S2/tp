@@ -11,7 +11,7 @@ import java.util.Stack;
  * A specialised Stack for the temporary memory storage for DengueHotspotTracker's undo command.
  * This stack has a fixed size of 10.
  */
-public class MemoryStack<T> implements StackWithStorage<T> {
+public class SpecialisedStackForMemory<T> implements StackWithStorage<T> {
 
     protected static final int MAX_SIZE = 10;
     private final Deque<T> memory;
@@ -21,16 +21,16 @@ public class MemoryStack<T> implements StackWithStorage<T> {
      * Creates a specialised stack that stores {@Code T} objects.
      * @param latest A {@link T} object.
      */
-    protected MemoryStack(T latest) {
+    protected SpecialisedStackForMemory(T latest) {
         this.storage = new Stack<>();
         this.memory = new ArrayDeque<T>(MAX_SIZE + 1);
         this.memory.push(latest);
     }
 
     /**
-     * Creates an empty {@code MemoryStack}.
+     * Creates an empty {@code SpecialisedStackForMemory}.
      */
-    public MemoryStack() {
+    public SpecialisedStackForMemory() {
         this.storage = new Stack<>();
         this.memory = new ArrayDeque<T>(MAX_SIZE + 1);
     }

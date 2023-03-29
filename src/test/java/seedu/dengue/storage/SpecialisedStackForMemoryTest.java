@@ -8,26 +8,27 @@ import java.util.Random;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.dengue.storage.temporary.MemoryStack;
+import seedu.dengue.storage.temporary.SpecialisedStackForMemory;
 
 
-public class MemoryStackTest {
+public class SpecialisedStackForMemoryTest {
     private static final int BOUND = 100;
-    private MemoryStack<Integer> memoryStack;
+    private SpecialisedStackForMemory<Integer> specialisedStack;
     private final Random random = new Random();
 
     @BeforeEach
     public void setUp() {
-        this.memoryStack = new MemoryStack<Integer>();
+        this.specialisedStack = new SpecialisedStackForMemory<Integer>();
     }
 
+    // Positive test cases for specialised stack.
     @Test
     public void push_randomIntegers_givesCorrectResults() {
 
         for (int i = 0; i < 20; i++) {
             int newInt = random.nextInt(BOUND);
-            memoryStack.push(newInt);
-            assertTrue(memoryStack.peek() == newInt);
+            specialisedStack.push(newInt);
+            assertTrue(specialisedStack.peek() == newInt);
         }
 
     }
@@ -35,11 +36,11 @@ public class MemoryStackTest {
     @Test
     public void removeOld_randomIntegers_givesCorrectResults() {
         int first = BOUND + 1;
-        memoryStack.push(first);
+        specialisedStack.push(first);
         for (int i = 0; i < 20; i++) {
-            memoryStack.push(random.nextInt(BOUND));
+            specialisedStack.push(random.nextInt(BOUND));
         }
-        assertTrue(first == memoryStack.removeOld());
+        assertTrue(first == specialisedStack.removeOld());
     }
 
     @Test
@@ -48,13 +49,13 @@ public class MemoryStackTest {
         for (int i = 0; i < 20; i++) {
             int newInt = random.nextInt(BOUND);
             integers.add(newInt);
-            memoryStack.push(newInt);
+            specialisedStack.push(newInt);
         }
         int size = integers.size();
         for (int i = size - 1; i >= 0; i--) {
-            assertTrue(memoryStack.temporaryPop() == integers.get(i));
+            assertTrue(specialisedStack.temporaryPop() == integers.get(i));
         }
-        assertTrue(memoryStack.getStorage().size() == size);
+        assertTrue(specialisedStack.getStorage().size() == size);
     }
 
     @Test
@@ -63,15 +64,15 @@ public class MemoryStackTest {
         for (int i = 0; i < 20; i++) {
             int newInt = random.nextInt(BOUND);
             integers.add(newInt);
-            memoryStack.push(newInt);
+            specialisedStack.push(newInt);
         }
         int size = integers.size();
         for (int i = size - 1; i >= 0; i--) {
-            memoryStack.temporaryPop();
+            specialisedStack.temporaryPop();
         }
         for (int x : integers) {
-            memoryStack.pushOneFromTemporaryPop();
-            assertTrue(memoryStack.peek() == x);
+            specialisedStack.pushOneFromTemporaryPop();
+            assertTrue(specialisedStack.peek() == x);
         }
     }
 }
