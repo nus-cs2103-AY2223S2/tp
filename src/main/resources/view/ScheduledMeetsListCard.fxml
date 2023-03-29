@@ -19,34 +19,33 @@
             <HBox alignment="CENTER_LEFT" spacing="5" styleClass="no-background">
                 <VBox prefHeight="26.0" prefWidth="150.0" styleClass="organised-meet-main-card" HBox.hgrow="ALWAYS">
                     <HBox prefHeight="26.0" prefWidth="150.0" styleClass="organised-meet-card-top">
-                  <FlowPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="147.0">
-                     <children>
-                              <Label fx:id="id" styleClass="organised-meet-card-top-label" text="\$id">
-                                  <minWidth>
-                                      <Region fx:constant="USE_PREF_SIZE" />
-                                  </minWidth>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
-                              </Label>
-                             <Label fx:id="time" styleClass="organised-meet-card-top-label" text="\$time" wrapText="true" />
-                     </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </FlowPane>
+                        <FlowPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="147.0">
+                            <HBox.margin>
+                                <Insets/>
+                            </HBox.margin>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                            </padding>
+                            <Label fx:id="id" styleClass="organised-meet-card-top-label" text="\$id">
+                                <minWidth>
+                                    <Region fx:constant="USE_PREF_SIZE"/>
+                                </minWidth>
+                                <padding>
+                                    <Insets left="5.0"/>
+                                </padding>
+                            </Label>
+                            <Label fx:id="time" styleClass="organised-meet-card-top-label" text="\$time"
+                                   wrapText="true"/>
+                        </FlowPane>
                     </HBox>
                <FlowPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="149.0" VBox.vgrow="NEVER">
                   <children>
-                          <Label fx:id="loc" maxWidth="147.0" minHeight="-Infinity" prefHeight="27.0" styleClass="organised-meet-card-bottom-label" text="\$location" wrapText="true">
+                          <Label fx:id="loc" maxWidth="175.0" minHeight="-Infinity" prefHeight="27.0" styleClass="organised-meet-card-bottom-label" text="\$location" wrapText="true">
                         <padding>
                            <Insets left="5.0" />
                         </padding>
                           </Label>
-                           <Label fx:id="participants" maxWidth="147.0" minHeight="-Infinity" prefHeight="27.0" styleClass="organised-meet-card-bottom-label" text="\$participants" wrapText="true">
+                           <Label fx:id="participants" minHeight="-Infinity" prefHeight="27.0" styleClass="organised-meet-card-bottom-label" text="\$participants" wrapText="true">
                         <padding>
                            <Insets left="5.0" />
                         </padding>
