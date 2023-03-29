@@ -1,10 +1,10 @@
 package vimification.internal.parser;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Stores mapping of flags to their respective arguments. Each flag may be associated with multiple
@@ -13,21 +13,22 @@ import java.util.HashSet;
  */
 public class ArgumentCounter {
 
-    private final Set<ArgumentFlag> allowedFlags;
-
     /**
      * Flags mapped to their respective arguments.
      **/
-    private final Map<ArgumentFlag, Integer> args;
+    private final Map<ArgumentFlag, Integer> counter;
 
     public ArgumentCounter(ArgumentFlag... allowedFlags) {
-        this.allowedFlags = Set.of(allowedFlags);
-        this.args = new HashMap<>();
+        this.counter = Arrays
+                .stream(allowedFlags)
+                .collect(Collectors.toMap(Function.identity(),
+                        ArgumentFlag::getMaxCount,
+                        Integer::sum, HashMap::new));
     }
 
     private void throwIfNotAllowed(ArgumentFlag flag) {
-        if (!allowedFlags.contains(flag)) {
-            throw new ParserException("Invalid flag for this command");
+        if (!counter.containsKey(flag)) {
+            throw new ParserException("Invalid flag " + flag);
         }
     }
 
@@ -42,30 +43,14 @@ public class ArgumentCounter {
      */
     public void add(ArgumentFlag flag) {
         throwIfNotAllowed(flag);
-        long count = args.merge(flag, 1, Integer::sum);
-        if (count > flag.getMaxCount()) {
-            throw new ParserException("Number of argument exceeded limit");
+        int count = counter.merge(flag, -1, Integer::sum);
+        if (count < 0) {
+            throw new ParserException("Number of arguments for flag " + flag + " exceeded limit");
         }
     }
 
-    public Set<String> get(ArgumentFlag flag) {
+    public int get(ArgumentFlag flag) {
         throwIfNotAllowed(flag);
-        // Set<String> result = args.get(flag);
-        // return result == null ? Set.of() : result;
-        return null;
+        return counter.get(flag);
     }
-
-    public Set<String> remove(ArgumentFlag flag) {
-        throwIfNotAllowed(flag);
-        // Set<String> result = args.remove(flag);
-        // return result == null ? Set.of() : result;
-        return null;
-    }
-
-    // public Optional<String> getFirst(ArgumentFlag flag) {
-    // throwIfNotAllowed(flag);
-    // return args.getOrDefault(flag, Set.of())
-    // .stream()
-    // .findFirst();
-    // }
 }

@@ -1,47 +1,16 @@
 package vimification.internal.parser;
 
-import java.time.LocalDateTime;
-
 import vimification.internal.command.logic.AddCommand;
-import vimification.model.task.Priority;
 import vimification.model.task.Task;
-
 
 public class AddCommandParser implements CommandParser<AddCommand> {
 
-    private static final ArgumentFlag LABEL_FLAG =
-            new ArgumentFlag("-l", "--label", Integer.MAX_VALUE);
-
-    private static final ArgumentFlag PRIORITY_FLAG = new ArgumentFlag("-p", "--priority");
-    private static final ArgumentFlag DEADLINE_FLAG = new ArgumentFlag("-d", "--deadline");
-
-    private static final ApplicativeParser<ArgumentFlag> LABEL_FLAG_PARSER =
-            CommandParserUtil.flag(LABEL_FLAG);
-
-    private static final ApplicativeParser<ArgumentFlag> PRIORITY_FLAG_PARSER =
-            CommandParserUtil.flag(PRIORITY_FLAG);
-
-    private static final ApplicativeParser<ArgumentFlag> DEADLINE_FLAG_PARSER =
-            CommandParserUtil.flag(DEADLINE_FLAG);
-
-    private static final ApplicativeParser<Priority> PRIORITY_PARSER =
-            CommandParserUtil.PRIORITY_PARSER;
-
-    private static final ApplicativeParser<String> LABEL_PARSER =
-            CommandParserUtil.STRING_PARSER;
-
-    private static final ApplicativeParser<LocalDateTime> DEADLINE_PARSER = ApplicativeParser
-            .nonWhitespaces1()
-            .map(ignore -> LocalDateTime.now());
-
-    private static final ApplicativeParser<Task> TASK_PARSER = CommandParserUtil.STRING_PARSER
-            .map(Task::new) // description
-            .flatMap(AddCommandParser::parseArguments);
-
-    private static final ApplicativeParser<AddCommand> COMMAND_PARSER = TASK_PARSER
-            .dropNext(ApplicativeParser.skipWhitespaces())
-            .dropNext(ApplicativeParser.eof())
-            .map(AddCommand::new);
+    private static final ApplicativeParser<AddCommand> COMMAND_PARSER =
+            CommandParserUtil.STRING_PARSER
+                    .map(Task::new)
+                    .flatMap(AddCommandParser::parseArguments)
+                    .dropNext(ApplicativeParser.skipWhitespaces())
+                    .dropNext(ApplicativeParser.eof());
 
     private static final ApplicativeParser<ApplicativeParser<AddCommand>> INTERNAL_PARSER =
             ApplicativeParser
@@ -53,26 +22,34 @@ public class AddCommandParser implements CommandParser<AddCommand> {
 
     private AddCommandParser() {}
 
-    private static ApplicativeParser<Task> parseArguments(Task task) {
-        ArgumentCounter counter = new ArgumentCounter(LABEL_FLAG, PRIORITY_FLAG, DEADLINE_FLAG);
+    private static ApplicativeParser<AddCommand> parseArguments(Task task) {
+        ArgumentCounter counter = new ArgumentCounter(
+                CommandParserUtil.LABEL_FLAG.withMaxCount(Integer.MAX_VALUE),
+                CommandParserUtil.PRIORITY_FLAG,
+                CommandParserUtil.DEADLINE_FLAG);
+
+        ApplicativeParser<Void> flagParser = ApplicativeParser.choice(
+                CommandParserUtil.LABEL_FLAG_PARSER
+                        .consume(counter::add)
+                        .takeNext(ApplicativeParser.skipWhitespaces1())
+                        .takeNext(CommandParserUtil.LABEL_PARSER)
+                        .consume(task::addLabel),
+                CommandParserUtil.PRIORITY_FLAG_PARSER
+                        .consume(counter::add)
+                        .takeNext(ApplicativeParser.skipWhitespaces1())
+                        .takeNext(CommandParserUtil.PRIORITY_PARSER)
+                        .consume(task::setPriority),
+                CommandParserUtil.DEADLINE_FLAG_PARSER
+                        .consume(counter::add)
+                        .takeNext(ApplicativeParser.skipWhitespaces1())
+                        .takeNext(CommandParserUtil.DEADLINE_PARSER)
+                        .consume(task::setDeadline));
+
         return ApplicativeParser
                 .skipWhitespaces1()
-                .takeNext(ApplicativeParser.choice(
-                        LABEL_FLAG_PARSER.consume(counter::add)
-                                .takeNext(ApplicativeParser.skipWhitespaces1())
-                                .takeNext(LABEL_PARSER)
-                                .consume(task::addLabel),
-                        PRIORITY_FLAG_PARSER.consume(counter::add)
-                                .takeNext(ApplicativeParser.skipWhitespaces1())
-                                .takeNext(PRIORITY_PARSER)
-                                .consume(task::setPriority),
-                        DEADLINE_FLAG_PARSER.consume(counter::add)
-                                .takeNext(ApplicativeParser.skipWhitespaces1())
-                                .takeNext(DEADLINE_PARSER)
-                                .consume(task::setDeadline))
-                        .sepBy1(ApplicativeParser.skipWhitespaces1()))
+                .takeNext(flagParser.sepBy1(ApplicativeParser.skipWhitespaces1()))
                 .optional()
-                .constMap(task);
+                .constMap(new AddCommand(task));
     }
 
     public static AddCommandParser getInstance() {
@@ -82,13 +59,5 @@ public class AddCommandParser implements CommandParser<AddCommand> {
     @Override
     public ApplicativeParser<ApplicativeParser<AddCommand>> getInternalParser() {
         return INTERNAL_PARSER;
-    }
-
-    public static void main(String[] args) {
-        String input = " -p 1 -l cry -l now";
-        var c = parseArguments(new Task("fd")).parsePartOf(input);
-
-        System.out.println(c);
-        // x.getSecond().parse(x.getFirst());
     }
 }

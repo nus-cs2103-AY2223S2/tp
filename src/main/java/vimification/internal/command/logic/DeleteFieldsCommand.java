@@ -7,6 +7,10 @@ import vimification.model.task.Task;
 
 public class DeleteFieldsCommand extends DeleteCommand {
 
+    public static final String SUCCESS_MESSAGE_FORMAT = "Field(s) of task %1$s deleted.";
+    public static final String UNDO_MESSAGE =
+            "The command has been undone. Field(s) of task has been restored.";
+
     private final Index targetIndex;
     private final DeleteFieldsRequest request;
     private Task oldTask = null;
@@ -21,20 +25,18 @@ public class DeleteFieldsCommand extends DeleteCommand {
         int index = targetIndex.getZeroBased();
         Task oldTask = taskList.get(index);
         Task newTask = oldTask.clone();
-        if (request.deadline) {
-            // delete the deadline
+        this.oldTask = oldTask;
+        if (request.shouldDeleteDeadline()) {
             newTask.deleteDeadline();
         }
-        // delete the label
-        request.labels.forEach(newTask::removeLabel);
+        request.getDeletedLabels().forEach(newTask::removeLabel);
         taskList.set(index, newTask);
-        this.oldTask = oldTask;
-        return null;
+        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, oldTask));
     }
 
     @Override
     public CommandResult undo(LogicTaskList taskList) {
         taskList.set(targetIndex.getZeroBased(), oldTask);
-        return null;
+        return new CommandResult(UNDO_MESSAGE);
     }
 }
