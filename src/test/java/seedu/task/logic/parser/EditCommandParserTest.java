@@ -2,18 +2,26 @@ package seedu.task.logic.parser;
 
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.task.logic.commands.CommandTestUtil.BLANK_DESCRIPTION_DESC;
+import static seedu.task.logic.commands.CommandTestUtil.DEADLINE_DESC_DEFAULT;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
+import static seedu.task.logic.commands.CommandTestUtil.FROM_DESC_DEFAULT;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.task.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.task.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.task.logic.commands.CommandTestUtil.TO_DESC_DEFAULT;
+import static seedu.task.logic.commands.CommandTestUtil.VALID_DEADLINE;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
+import static seedu.task.logic.commands.CommandTestUtil.VALID_FROM;
+import static seedu.task.logic.commands.CommandTestUtil.VALID_FROM_DATE;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.task.logic.commands.CommandTestUtil.VALID_TO;
+import static seedu.task.logic.commands.CommandTestUtil.VALID_TO_DATE;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.task.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.task.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -135,6 +143,24 @@ public class EditCommandParserTest {
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
         descriptor = new EditTaskDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // from dates
+        userInput = targetIndex.getOneBased() + FROM_DESC_DEFAULT;
+        descriptor = new EditTaskDescriptorBuilder().withFrom(VALID_FROM_DATE).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // to dates
+        userInput = targetIndex.getOneBased() + TO_DESC_DEFAULT;
+        descriptor = new EditTaskDescriptorBuilder().withTo(VALID_TO_DATE).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // deadline date
+        userInput = targetIndex.getOneBased() + DEADLINE_DESC_DEFAULT;
+        descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

@@ -3,6 +3,7 @@ package seedu.task.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.logic.commands.CommandTestUtil.DESC_AMY;
+import static seedu.task.logic.commands.CommandTestUtil.DESC_AMY_DEADLINE;
 import static seedu.task.logic.commands.CommandTestUtil.DESC_AMY_EVENT;
 import static seedu.task.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_DATE;
@@ -118,7 +119,7 @@ public class EditTaskDescriptorTest {
         assertFalse(DESC_AMY_EVENT.equals(editedAmy));
 
         // different deadline -> returns false
-        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY).withDeadline(VALID_DATE).build();
+        editedAmy = new EditTaskDescriptorBuilder(DESC_AMY_DEADLINE).withDeadline(VALID_DATE).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }
