@@ -154,7 +154,7 @@ public class DeleteCommand extends Command {
                 toDelete.size(), range.get().getStart(), range.get().getEnd()));
     }
 
-    private List<Person> getPersonsToDelete(List<Person> reference, Predicate predicate) {
+    private List<Person> getPersonsToDelete(List<Person> reference, Predicate<Person> predicate) {
         List<Person> toDelete = new ArrayList<>();
         for (Person person : reference) {
             if (predicate.test(person)) {
