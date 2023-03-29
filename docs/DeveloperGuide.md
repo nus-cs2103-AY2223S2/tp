@@ -571,6 +571,28 @@ what known conditions he/she has.
     * Cons: This will require more restructuring of the codebase, the location to display health conditions may not be
       as obvious as well compared to the current display of tags.
 
+## Adding Attending Doctor
+
+The proposed implementation of separate `Doctor` object to encapsulate the current attending doctor of a patient.
+
+The addition of this field will allow staff to quickly filter by attending doctor, or quickly glance at a patient to identify
+what doctor is in charge of him/her.
+
+#### Design considerations:
+
+**Aspect: Implementing a new object to represent conditions:**
+
+* **Alternative 1 (current choice):** Have the `doctor` field function similar to the `name` field.
+    * Pros: More flexibility, in terms of tagging patients to doctors
+    * Cons: Will have to ensure no ambiguous `doctor` names, e.g., if there are two `doctor`s  named `Ben`, we will
+       have to include their surname to differentiate.
+
+* **Alternative 2:** Have a separate encapsulation for `doctor` where we record doctors as persons as well, then link
+                     each patient to a `doctor`'s nric.
+    * Pros: Less ambiguity, we can navigate to the specific `doctor`.
+    * Cons: This will require more restructuring of the codebase, storing both doctors and patients, which makes the
+      database more messy.
+
 --------------------------------------------------------------------------------------------------------------------
 <sub>[return to table of contents](#table-of-contents-)</sub>
 

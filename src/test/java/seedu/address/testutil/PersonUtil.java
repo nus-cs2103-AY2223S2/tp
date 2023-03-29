@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
@@ -40,8 +41,9 @@ public class PersonUtil {
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_DRUG_ALLERGY + person.getDrugAllergy().value + " ");
         sb.append(PREFIX_GENDER + person.getGender().gender + " ");
+        sb.append(PREFIX_DOCTOR + person.getDoctor().doctor + " ");
         person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+                s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }
@@ -56,6 +58,8 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender.gender).append(" "));
+        descriptor.getDoctor().ifPresent(doctor -> sb.append(PREFIX_DOCTOR).append(doctor.doctor).append(" "));
         descriptor.getDrugAllergy().ifPresent(allergy -> sb.append(PREFIX_DRUG_ALLERGY)
                 .append(allergy.value).append(" "));
         if (descriptor.getTags().isPresent()) {
