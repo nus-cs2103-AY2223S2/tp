@@ -8,12 +8,16 @@ import java.util.stream.Collectors;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seedu.recipe.commons.core.LogsCenter;
@@ -47,6 +51,9 @@ public class AddRecipeForm extends UiPart<Region> {
     private VBox stepsBox;
 
     @FXML
+    private Region buttonCtrLeft;
+
+    @FXML
     private Button saveButton;
 
     @FXML
@@ -74,8 +81,8 @@ public class AddRecipeForm extends UiPart<Region> {
         ingredientsBox.getChildren().add(emptyIngredientField);
         TextArea emptyStepField = FieldsUtil.createDynamicTextArea("");
         stepsBox.getChildren().add(emptyStepField);
-        // assert test on save button
-        assert saveButton != null;
+
+        HBox.setHgrow(buttonCtrLeft, Priority.ALWAYS);
         saveButton.setOnAction(event -> saveRecipe());
         cancelButton.setOnAction(event -> closeForm());
     }
@@ -191,9 +198,12 @@ public class AddRecipeForm extends UiPart<Region> {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Add Recipe");
         window.setMinWidth(500);
-        window.setMinHeight(700);
-        VBox vbox = new VBox(getRoot());
-        Scene scene = new Scene(vbox);
+        window.setMinHeight(500);
+
+        //Individual elements
+        ScrollPane pane = new ScrollPane(getRoot());
+        Scene scene = new Scene(pane);
+        scene.setFill(Color.web("#3f3f46"));
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
                 window.close();

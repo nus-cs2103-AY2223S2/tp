@@ -7,6 +7,11 @@
     -fx-rsd: derive(-fx-bg, 40%);
 }
 
+.background {
+    -fx-background-color: -fx-bg;
+    background-color: #383838; /* Used in the default.html file */
+}
+
 .root-layout {
     -fx-background-color: -fx-bg;
     -fx-background-inset: 5;
