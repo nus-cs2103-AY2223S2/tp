@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.fish;
 
 import java.io.IOException;
 import java.nio.file.Path;

@@ -25,19 +25,24 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TankList;
 import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.tank.readings.FullReadingLevels;
+import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.util.SampleReadingsUtil;
 import seedu.address.model.util.SampleTankUtil;
 import seedu.address.model.util.SampleTaskUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonTankListStorage;
-import seedu.address.storage.JsonTaskListStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
-import seedu.address.storage.TankListStorage;
-import seedu.address.storage.TaskListStorage;
-import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.fish.AddressBookStorage;
+import seedu.address.storage.fish.JsonAddressBookStorage;
+import seedu.address.storage.tank.JsonTankListStorage;
+import seedu.address.storage.tank.TankListStorage;
+import seedu.address.storage.tank.readings.ammonialevels.FullReadingLevelsStorage;
+import seedu.address.storage.tank.readings.ammonialevels.JsonFullReadingLevelsStorage;
+import seedu.address.storage.task.JsonTaskListStorage;
+import seedu.address.storage.task.TaskListStorage;
+import seedu.address.storage.userprefs.JsonUserPrefsStorage;
+import seedu.address.storage.userprefs.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -69,8 +74,10 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         TaskListStorage taskListStorage = new JsonTaskListStorage(userPrefs.getTaskListFilePath());
         TankListStorage tankListStorage = new JsonTankListStorage(userPrefs.getTankListFilePath());
-
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage, tankListStorage);
+        FullReadingLevelsStorage ammoniaLevelsStorage = new JsonFullReadingLevelsStorage(userPrefs
+                .getFullAmmoniaLevelsPath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, taskListStorage, tankListStorage,
+                ammoniaLevelsStorage);
 
         initLogging(config);
 
@@ -135,7 +142,23 @@ public class MainApp extends Application {
             initialTankList = new TankList();
         }
 
-        return new ModelManager(initialData, userPrefs, initialTaskList, initialTankList);
+        Optional<ReadOnlyReadingLevels> fullReadingsOptional;
+        ReadOnlyReadingLevels initialFullReadings;
+        try {
+            fullReadingsOptional = storage.readFullReadingLevels();
+            if (fullReadingsOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample Readings");
+            }
+            initialFullReadings = fullReadingsOptional.orElseGet(SampleReadingsUtil::getSampleFullReadingLevels);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty Readings set");
+            initialFullReadings = new FullReadingLevels();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty Readings set");
+            initialFullReadings = new FullReadingLevels();
+        }
+
+        return new ModelManager(initialData, userPrefs, initialTaskList, initialTankList, initialFullReadings);
     }
 
     private void initLogging(Config config) {

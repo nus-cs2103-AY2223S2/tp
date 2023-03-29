@@ -10,6 +10,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tank.Tank;
+import seedu.address.model.task.Task;
 
 /**
  * Deletes a {@code Tank} identified using it's displayed index from the {@code TankList}.
@@ -24,6 +25,9 @@ public class TankDeleteCommand extends TankCommand {
             + "Example: " + COMMAND_WORD + " " + TANK_COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_TANK_SUCCESS = "Deleted Tank: %1$s";
+    public static final String MESSAGE_DELETE_TANK_FAILURE = "You can't delete this tank as "
+            + "there are fishes and tasks still present!\n"
+            + "Delete the fishes and tasks in this tank before deleting this tank.";
 
     private final Index targetIndex;
 
@@ -46,6 +50,20 @@ public class TankDeleteCommand extends TankCommand {
         }
 
         Tank tankToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        /* Throw exception if fishes are still present in tank */
+        if (tankToDelete.getFishList().size() > 0) {
+            throw new CommandException(MESSAGE_DELETE_TANK_FAILURE);
+        }
+
+        /* Throw exception if tasks are still present in tank */
+        List<Task> taskList = model.getFilteredTaskList();
+        for (Task task : taskList) {
+            if (task.isTankRelatedTask() && tankToDelete.isSameTank(task.getTank())) {
+                throw new CommandException(MESSAGE_DELETE_TANK_FAILURE);
+            }
+        }
+
         model.deleteTank(tankToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_TANK_SUCCESS, tankToDelete));
     }

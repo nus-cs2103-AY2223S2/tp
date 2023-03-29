@@ -1,14 +1,14 @@
 {
   "fishes": [ {
     "name": "Alice Pauline",
-    "lastFedDate": "06/06/2003",
+    "lastFedDateTime": "06/06/2003 00:00",
     "species": "Guppy",
     "feedingInterval": "1d1h",
     "tank": "tank 1",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
-    "lastFedDate": "06/06/2003",
+    "lastFedDateTime": "06/06/2003 00:00",
     "species": "Guppy",
     "feedingInterval": "1d1h",
     "tank": "tank 1"

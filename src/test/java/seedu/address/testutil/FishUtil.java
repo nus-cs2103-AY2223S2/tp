@@ -34,7 +34,7 @@ public class FishUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TANK + VALID_TANK_INDEX + " ");
         sb.append(PREFIX_NAME + fish.getName().fullName + " ");
-        sb.append(PREFIX_LAST_FED_DATE + fish.getLastFedDate().value + " ");
+        sb.append(PREFIX_LAST_FED_DATE + fish.getLastFedDateTime().value + " ");
         sb.append(PREFIX_SPECIES + fish.getSpecies().species + " ");
         sb.append(PREFIX_FEEDING_INTERVAL + fish.getFeedingInterval().value + " ");
         sb.append(PREFIX_TANK + "1" + " "); // As of implementing this, Tank does not know its index so need hard code

@@ -18,6 +18,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyTankList;
 import seedu.address.model.TankList;
+import seedu.address.storage.tank.JsonTankListStorage;
 
 /**
  * Test class for {@code JsonTankListStorage}

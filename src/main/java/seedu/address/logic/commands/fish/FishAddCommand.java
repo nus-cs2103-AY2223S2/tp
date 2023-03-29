@@ -32,7 +32,7 @@ public class FishAddCommand extends FishCommand {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " " + FISH_COMMAND_WORD + " "
             + PREFIX_NAME + "Johnny "
-            + PREFIX_LAST_FED_DATE + "01/01/2023 "
+            + PREFIX_LAST_FED_DATE + "01/01/2023 12:00 "
             + PREFIX_SPECIES + "Guppy "
             + PREFIX_FEEDING_INTERVAL + "0d5h "
             + PREFIX_TANK + "1 "
