@@ -6,17 +6,12 @@ import static seedu.internship.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.internship.logic.commands.CopyCommand;
 import seedu.internship.logic.commands.AddCommand;
 import seedu.internship.logic.commands.ClearCommand;
 import seedu.internship.logic.commands.Command;
-<<<<<<< HEAD
-import seedu.internship.logic.commands.DeleteCommand;
-=======
 import seedu.internship.logic.commands.CopyCommand;
 import seedu.internship.logic.commands.DeleteFieldCommand;
 import seedu.internship.logic.commands.DeleteIndexCommand;
->>>>>>> 773616d82cf11535884a730e9ce35ee2063dbe41
 import seedu.internship.logic.commands.EditCommand;
 import seedu.internship.logic.commands.ExitCommand;
 import seedu.internship.logic.commands.FindCommand;
