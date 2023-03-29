@@ -1,0 +1,8 @@
+{
+  "events": [ {
+    "name": "Hans Muster",
+    "date": "2023-01-01",
+    "startTime": "18:@@",
+    "endTime": "20:00"
+  } ]
+}

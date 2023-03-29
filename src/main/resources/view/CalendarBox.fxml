@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="calendarBoxPane" onMouseClicked="#handleListEvents" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle fx:id="calendarHighlight" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="60.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="60.0" />
+      <Text fx:id="calendarDate" strokeType="OUTSIDE" strokeWidth="0.0" translateY="-20.0" />
+      <VBox fx:id="calendarEvents" alignment="CENTER" maxHeight="35.0" maxWidth="50.0" translateY="7.5" />
+   </children>
+</StackPane>

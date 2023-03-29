@@ -1,0 +1,13 @@
+{
+  "events": [ {
+    "name": "Valid Event",
+    "date": "2023-01-01",
+    "startTime": "18:00",
+    "endTime": "20:00"
+  }, {
+    "name": "Event With Invalid Date Field",
+    "date": "2023-01-01@",
+    "startTime": "18:00",
+    "endTime": "20:00"
+  } ]
+}

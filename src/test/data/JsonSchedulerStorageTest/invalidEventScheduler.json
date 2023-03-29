@@ -1,0 +1,8 @@
+{
+  "events": [ {
+    "name": "Event with invalid name field: Ha!ns Mu@ster",
+    "date": "2023-01-01",
+    "startTime": "19:00",
+    "endTime": "20:00"
+  } ]
+}

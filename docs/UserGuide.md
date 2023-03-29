@@ -1,3 +1,8 @@
+---
+layout: page
+title: User Guide
+---
+
 # User Guide
 
 EZ-Schedule is a **desktop application for managing and scheduling of events, optimized for use via a Command Line
