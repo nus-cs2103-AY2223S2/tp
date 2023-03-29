@@ -1,0 +1,11 @@
+@startuml
+start
+:User executes command;
+
+if () then ([else])
+    :Mark event;
+else ([is marked])
+endif
+:Display details;
+stop
+@enduml
