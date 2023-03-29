@@ -271,6 +271,24 @@ Example: sort f/applicants
 ```
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
+### Saving the data
+
+GoodMatch data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
+### Editing the data file
+
+GoodMatch data are saved as a JSON file `[JAR file location]/data/listingbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, GoodMatch will discard all data and start with an empty data file at the next run.
+
+</div>
+
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
 ### Filtering job listings [coming soon!]
 
 Sort job listings by the field specified by the user and display the sorted list of job listings.
