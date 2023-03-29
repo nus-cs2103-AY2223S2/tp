@@ -152,7 +152,7 @@ edit course <INDEX> <NEW COURSE NAME>
 
 
 Examples:
-- `edit course 1 CS2106` will rename the first course listed in the course list to 'CS2106'.
+- `edit course 1 CS2106` will rename the first course listed in the course list to `CS2106`.
 
 
 
@@ -184,7 +184,7 @@ add group <GROUP>
 ```
 
 - Adding a group with the same group name is not allowed.
-    - For example, if a group with group name 'T15' already exists in CLIpboard, 
+    - For example, if a group with group name `T15` already exists in CLIpboard, 
   entering `add group T15` will display an error message.
 
 Examples:
@@ -221,7 +221,7 @@ edit group <INDEX> <NEW GROUP NAME>
 
 
 Examples:
-- `edit group 1 T16` will rename the first group listed in the group list to 'T16'.
+- `edit group 1 T16` will rename the first group listed in the group list to `T16`.
 
 
 
@@ -321,7 +321,7 @@ edit <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUMBER>]
 - Fields not entered will not replace the original fields.
 
 Examples:
-- `edit 1 n/John Doe` will replace the name of the first student listed in the student list to 'John Doe'.
+- `edit 1 n/John Doe` will replace the name of the first student listed in the student list to `John Doe`.
 - `edit 4 p/99887766 e/john@gmail.com` will replace the phone number and email of the fourth student listed in the student list to `99887766` and `john@gmail.com` respectively.
 
 
@@ -446,7 +446,7 @@ add session <SESSION>
 ```
 
 - Adding a session with the same session name is not allowed.
-    - For example, if a session with name 'Tutorial1' already exists in CLIpboard,
+    - For example, if a session with name `Tutorial1` already exists in CLIpboard,
       entering `add session Tutorial1` will display an error message.
 
 Examples:
