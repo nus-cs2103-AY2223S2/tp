@@ -337,7 +337,7 @@ Displays events that start within a specified number of days.
 Assume the current date and time is 22-03-2023 11:00.
 
 - `remind 2`
-  -  This command will display events that start within 2 days. These are events that start on:
+  - This command will display events that start within 2 days. These are events that start on:
     * 22-03-2023 after 11:00
     * 23-03-2023 the whole day
     * 24-03-2023 the whole day
