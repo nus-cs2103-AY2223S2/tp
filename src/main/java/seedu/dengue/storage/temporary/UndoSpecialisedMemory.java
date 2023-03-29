@@ -27,7 +27,6 @@ public class UndoSpecialisedMemory extends SpecialisedStackForMemory<ReadOnlyDen
      * @param latest The newest iteration of {@link ReadOnlyDengueHotspotTracker}.
      */
     public void saveNewLatest(ReadOnlyDengueHotspotTracker latest) {
-
         push(latest.generateDeepCopy());
         clearRedoStorage();
         if (isFull()) {
