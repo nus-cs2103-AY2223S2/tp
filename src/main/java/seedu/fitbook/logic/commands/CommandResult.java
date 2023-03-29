@@ -15,6 +15,7 @@ public class CommandResult {
 
     /** Help information should be shown to the user. */
     private final boolean showHelp;
+    private final boolean showRoutine;
 
     /** The application should exit. */
     private final boolean exit;
@@ -24,12 +25,14 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, Client clientToView, boolean showHelp, boolean exit, boolean view) {
+    public CommandResult(String feedbackToUser, Client clientToView,
+                         boolean showHelp, boolean exit, boolean view, boolean showRoutine) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.view = view;
         this.clientToView = clientToView;
+        this.showRoutine = showRoutine;
     }
 
     /**
@@ -37,13 +40,16 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, null, false, false, false);
+        this(feedbackToUser, null, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
+    public boolean isShowRoutine() {
+        return showRoutine;
+    }
 
     public boolean isShowHelp() {
         return showHelp;
@@ -76,7 +82,9 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
-                && view == otherCommandResult.view;
+                && view == otherCommandResult.view
+                && showRoutine == otherCommandResult.showRoutine
+                && clientToView == otherCommandResult.clientToView;
     }
 
     @Override

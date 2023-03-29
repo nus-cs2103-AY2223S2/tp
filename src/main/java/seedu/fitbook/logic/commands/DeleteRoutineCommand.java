@@ -43,7 +43,8 @@ public class DeleteRoutineCommand extends Command {
         Routine routineToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteRoutine(routineToDelete);
         updateClientRoutine(routineToDelete, model);
-        return new CommandResult(String.format(MESSAGE_DELETE_ROUTINE_SUCCESS, routineToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_ROUTINE_SUCCESS, routineToDelete),
+                null, false, false, false, true);
     }
 
     /**

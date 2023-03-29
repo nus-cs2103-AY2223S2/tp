@@ -222,8 +222,6 @@ public class MainWindow extends UiPart<Stage> {
     }
     @FXML
     private void handleExercise() {
-        resultDisplay.setFeedbackToUser(": Start to handle exercise.");
-
         setMainTitleText(EXERCISE);
         setSubTitle(EXERCISE);
         rightPanelPlaceholder.setManaged(false);
@@ -236,8 +234,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void handleStatistics() {
-        resultDisplay.setFeedbackToUser(": Start to handle exercise.");
-
         setMainTitleText(STATISTIC);
         setSubTitle(STATISTIC);
         rightPanelPlaceholder.setManaged(false);
@@ -250,8 +246,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void handleSummary() {
-        resultDisplay.setFeedbackToUser(": Start to handle summary.");
-
         setMainTitleText(SUMMARY);
         setSubTitle(SUMMARY);
         rightPanelPlaceholder.setManaged(false);
@@ -288,8 +282,6 @@ public class MainWindow extends UiPart<Stage> {
     }
     @FXML
     private void handleSchedule() {
-        resultDisplay.setFeedbackToUser(": Start to handle schedule.");
-
         setMainTitleText(TITLE);
         setSubTitle(SCHEDULE);
 
@@ -346,7 +338,9 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isView()) {
                 handleSummaryCommand(commandResult.getClientToView());
             }
-
+            if (commandResult.isShowRoutine()) {
+                handleExercise();
+            }
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

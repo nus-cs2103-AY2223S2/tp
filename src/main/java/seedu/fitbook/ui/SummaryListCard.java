@@ -12,6 +12,9 @@ import seedu.fitbook.AppParameters;
 import seedu.fitbook.commons.core.LogsCenter;
 import seedu.fitbook.model.client.Client;
 
+/**
+ * A UI component that displays information of a {@code Client}.
+ */
 public class SummaryListCard extends UiPart<Region> {
     private static final String FXML = "SummaryListCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
