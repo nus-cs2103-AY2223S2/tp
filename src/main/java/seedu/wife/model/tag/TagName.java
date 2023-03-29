@@ -61,13 +61,6 @@ public class TagName {
         return isNameNotLengthy(tagName) && isNamePresent(tagName) && isValidString(tagName);
     }
 
-    /**
-     * Returns formatted tag name with the first character of each word in tag name capitalized."
-     */
-    public static String formatName(String tagName) {
-        return capitalizeString(tagName.toLowerCase());
-    }
-
     @Override
     public String toString() {
         return this.tagName;
