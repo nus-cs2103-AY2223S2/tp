@@ -85,7 +85,7 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
 
-        Module moduleInFilteredList = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
+        Module moduleInFilteredList = model.getDisplayedModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         Module editedModule = new ModuleBuilder(moduleInFilteredList).withName(VALID_NAME_CS3219).build();
 
         EditCommand editCommand = new EditCommand(INDEX_FIRST_MODULE,
@@ -122,7 +122,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_invalidModuleIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredModuleList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getDisplayedModuleList().size() + 1);
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_NAME_CS3219).build();
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);

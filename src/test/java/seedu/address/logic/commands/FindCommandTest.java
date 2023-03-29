@@ -71,9 +71,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredModuleList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        
-        assertEquals(Arrays.asList(CS2101_OP, CS1231S_TUT, CS1101S_LEC), model.getFilteredModuleList());
-
+        assertEquals(Arrays.asList(CS2101_OP, CS1231S_TUT, CS1101S_LEC), model.getDisplayedModuleList());
     }
 
     /**

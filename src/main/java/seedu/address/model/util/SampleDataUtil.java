@@ -48,7 +48,7 @@ public class SampleDataUtil {
                 getTagSet("Lecture"), new Remark("Currently none."),
                 new Deadline("230323 15:00"), new Teacher("Currently none.")),
             new Module(new Name("MA2001"), new Resource("britannica.com/science/linear-algebra"),
-                new TimeSlot("Sunday 13:00 15:00"),  new Address("Online Learning :)"),
+                new TimeSlot("Sunday 13:00 15:00"), new Address("Online Learning :)"),
                 getTagSet("Lecture"), new Remark("Very interesting module."),
                 new Deadline(EMPTY_INPUT), new Teacher("Currently none."))
         };
