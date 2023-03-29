@@ -18,13 +18,15 @@ public class ClashCommand extends Command {
 
     public static final String COMMAND_WORD = "clash";
 
-    public static final String MESSAGE_CLASH_INTERNSHIP_SUCCESS = "Displaying all clashing events";
+    public static final String MESSAGE_CLASH_INTERNSHIP_SUCCESS = "Displaying all clashing events. "
+            + "There are %1$s days with clashing events.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         EventCatalogue eventCatalogue = (EventCatalogue) model.getEventCatalogue();
         HashMap<LocalDate, List<Event>> hash = eventCatalogue.findClashEvents();
-        return new CommandResult(String.format(MESSAGE_CLASH_INTERNSHIP_SUCCESS), ResultType.CLASH, hash);
+        return new CommandResult(String.format(MESSAGE_CLASH_INTERNSHIP_SUCCESS, hash.keySet().size()),
+                ResultType.CLASH, hash);
     }
 }
