@@ -19,6 +19,7 @@ import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.core.Retriever;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.commons.exceptions.LimitExceededException;
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.exceptions.CommandException;
@@ -132,7 +133,11 @@ public class AddCommand extends Command {
 
         Appointment toAdd = new Appointment(patientId, startTime, endTime, toTake.getGroupName());
 
-        model.addAppointment(toAdd);
+        try {
+            model.addAppointment(toAdd);
+        } catch (LimitExceededException limitEx) {
+            throw new CommandException(String.format("Appointment: %s", limitEx.getMessage()));
+        }
         return new CommandMessage(String.format(MESSAGE_SUCCESS, toAdd));
     }
 }

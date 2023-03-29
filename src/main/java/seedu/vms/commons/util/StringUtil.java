@@ -150,11 +150,17 @@ public class StringUtil {
     public static String formatAppointmentListing(Collection<IdData<Appointment>> appointments) {
         StringBuilder builder = new StringBuilder();
 
+        int count = 0;
         for (IdData<Appointment> appointment : appointments) {
-            builder.append(String.format("\n- #%04d", appointment.getId() + 1));
+            if (count % 25 == 0) {
+                builder.append("\n");
+            }
+            builder.append(String.format(" #%04d,", appointment.getId() + 1));
+            count++;
         }
 
-        return builder.toString();
+        String message = builder.toString().stripTrailing();
+        return message.substring(0, message.length() - 1);
     }
 
 }

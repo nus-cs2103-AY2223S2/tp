@@ -15,7 +15,12 @@ import seedu.vms.model.vaccination.VaxType;
 public class DetailVaxTypeParser implements CommandParser {
     public static final String COMMAND_WORD = "detail";
 
-    private static final String FIELD_NAME_VAX_NAME = "Vaccination name";
+    public static final String MESSAGE_USAGE = VaccinationParser.FEATURE_NAME + " " + COMMAND_WORD
+            + ": Details the specified vaccination\n"
+            + "Syntax: "
+            + "vaccination detail VACCINATION\n"
+            + "Example: "
+            + "vaccination detail INDEX::1";
 
 
     @Override
@@ -24,7 +29,7 @@ public class DetailVaxTypeParser implements CommandParser {
         try {
             retriever = ParserUtil.parseVaxRetriever(argsMap.getPreamble());
         } catch (ParseException parseEx) {
-            throw new ParseException(String.format("%s: %s", FIELD_NAME_VAX_NAME, parseEx.getMessage()));
+            throw new ParseException(String.format("VACCINATION: %s\n%s", parseEx.getMessage(), MESSAGE_USAGE));
         }
         return new DetailVaxTypeCommand(retriever);
     }

@@ -9,6 +9,7 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 
+import seedu.vms.commons.exceptions.LimitExceededException;
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.exceptions.CommandException;
@@ -58,8 +59,11 @@ public class AddCommand extends Command {
     @Override
     public CommandMessage execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        model.addPatient(toAdd);
+        try {
+            model.addPatient(toAdd);
+        } catch (LimitExceededException limitEx) {
+            throw new CommandException(String.format("Patient: %s", limitEx.toString()));
+        }
         return new CommandMessage(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
