@@ -28,7 +28,8 @@ public class SessionName {
     public SessionName(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        sessionName = name;
+        String lowerCaseName = name.toLowerCase();
+        sessionName = lowerCaseName.substring(0, 1).toUpperCase() + lowerCaseName.substring(1);
     }
 
     /**

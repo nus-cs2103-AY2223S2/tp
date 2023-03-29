@@ -42,7 +42,7 @@ class JsonAdaptedPerson {
     }
 
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
+        name = source.getName().formattedName;
         phone = source.getPhone().value;
         address = source.getAddress().value;
         payRate = source.getPayRate().value;

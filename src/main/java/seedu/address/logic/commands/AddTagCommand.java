@@ -78,7 +78,7 @@ public class AddTagCommand extends Command {
             if (personToModify.getTags().contains(tag)) {
                 throw new CommandException(String.format(
                         STUDENT_ALREADY_ADDED_FAILURE,
-                        personToModify.getName().fullName,
+                        personToModify.getName().formattedName,
                         tag));
             }
             modifiedTag.add(tag);

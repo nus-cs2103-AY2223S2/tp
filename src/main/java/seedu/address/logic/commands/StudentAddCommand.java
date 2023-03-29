@@ -64,7 +64,7 @@ public class StudentAddCommand extends Command {
         Session sessionToBeAddedTo = model.getSessionFromName(sessionName);
 
         if (sessionToBeAddedTo.contains(studentToAdd
-                .getName().fullName)) {
+                .getName().formattedName)) {
             throw new CommandException(
                     String.format(
                             STUDENT_ALREADY_ADDED_FAILURE,

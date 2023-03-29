@@ -63,7 +63,7 @@ public class StudentRemoveCommand extends Command {
         Session session = model.getSessionFromName(sessionName);
 
         if (!session.contains(studentToRemove
-                .getName().fullName)) {
+                .getName().formattedName)) {
             throw new CommandException(STUDENT_NOT_FOUND_FAILURE);
         }
 
