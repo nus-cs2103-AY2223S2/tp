@@ -1,6 +1,7 @@
 package seedu.dengue.logic.analyst;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -25,12 +26,12 @@ public class VariantAnalyst extends Analyst {
         this.total = persons.size();
         this.bins = new EnumMap<>(DengueVariant.class);
 
+        Arrays.stream(DengueVariant.values())
+                .forEach(variantName -> bins.put(variantName, new DataBin(variantName.toString())));
+
         persons.forEach(person -> person.getVariants()
                 .forEach(variant -> {
                     DengueVariant variantName = variant.variantName;
-                    if (!bins.containsKey(variantName)) {
-                        bins.put(variantName, new DataBin(variant.toString()));
-                    }
                     bins.get(variantName).addPerson(person);
                 }));
     }

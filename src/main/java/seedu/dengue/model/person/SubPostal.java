@@ -15,8 +15,8 @@ public class SubPostal {
     public final String value;
 
     /**
-     * Constructs a {@code Postal}.
-     * @param postal A valid postal code.
+     * Constructs a {@code SubPostal}.
+     * @param subPostal A valid subpostal code.
      */
     public SubPostal(String subPostal) {
         requireNonNull(subPostal);

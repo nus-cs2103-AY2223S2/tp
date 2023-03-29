@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.dengue.model.person.exceptions.DuplicatePersonException;
 import seedu.dengue.model.person.exceptions.PersonNotFoundException;
 
+
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
  * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and
@@ -90,11 +91,13 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void setPersons(List<Person> persons) {
         requireAllNonNull(persons);
+
         if (!personsAreUnique(persons)) {
             throw new DuplicatePersonException();
         }
 
-        internalList.setAll(persons);
+        this.internalList.setAll(List.copyOf(persons));
+
     }
 
     /**

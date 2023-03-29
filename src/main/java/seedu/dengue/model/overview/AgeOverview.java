@@ -14,7 +14,7 @@ import seedu.dengue.model.person.Person;
  */
 public class AgeOverview extends Overview {
     private static final String AGE_TITLE = "Overview by Age";
-    private static final int MAX_AGE_LENGTH = 9; // "321 - 123"
+    private static final int MAX_AGE_LENGTH = 9; // Length of the longest bin name, "190 - 199"
 
     private AgeAnalyst analyst;
 

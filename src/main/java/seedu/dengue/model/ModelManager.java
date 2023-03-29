@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.dengue.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,9 +12,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.dengue.commons.core.GuiSettings;
 import seedu.dengue.commons.core.LogsCenter;
+import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.overview.Overview;
 import seedu.dengue.model.overview.PostalOverview;
 import seedu.dengue.model.person.Person;
+import seedu.dengue.storage.temporary.UndoMemory;
 
 /**
  * Represents the in-memory model of the Dengue Hotspot Tracker data.
@@ -22,6 +25,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final DengueHotspotTracker dengueHotspotTracker;
+    private UndoMemory memory;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private Overview overview;
@@ -35,10 +39,12 @@ public class ModelManager implements Model {
         logger.fine("Initializing with Dengue Hotspot Tracker: " + dengueHotspotTracker
                 + " and user prefs " + userPrefs);
 
-        this.dengueHotspotTracker = new DengueHotspotTracker(dengueHotspotTracker);
+        this.dengueHotspotTracker = new DengueHotspotTracker(dengueHotspotTracker)
+                .generateDeepCopy();
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.dengueHotspotTracker.getPersonList());
         this.overview = new PostalOverview();
+        this.memory = new UndoMemory(this.dengueHotspotTracker);
     }
 
     public ModelManager() {
@@ -82,6 +88,33 @@ public class ModelManager implements Model {
 
     //=========== DengueHotspotTracker ================================================================================
 
+    // Access Temporary Memory for Undo Redo
+
+    @Override
+    public void updateFromMemoryStack() {
+
+        setDengueHotspotTracker(memory.loadCurrent());
+    }
+
+    @Override
+    public void undo() throws CommandException {
+
+        try {
+            memory.undo();
+            updateFromMemoryStack();
+        } catch (NullPointerException err) {
+            throw new CommandException("Cannot undo any further!");
+        }
+
+
+    }
+    @Override
+    public void redo() throws CommandException {
+        memory.redo();
+        updateFromMemoryStack();
+    }
+
+
     @Override
     public void setDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker) {
         this.dengueHotspotTracker.resetData(dengueHotspotTracker);
@@ -101,20 +134,35 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         dengueHotspotTracker.removePerson(target);
+        memory.saveNewLatest(this.dengueHotspotTracker);
+        updateFromMemoryStack();
     }
 
     @Override
     public void addPerson(Person person) {
         dengueHotspotTracker.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        memory.saveNewLatest(this.dengueHotspotTracker);
+        updateFromMemoryStack();
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         dengueHotspotTracker.setPerson(target, editedPerson);
+        memory.saveNewLatest(this.dengueHotspotTracker);
+        updateFromMemoryStack();
     }
+
+    @Override
+    public void setPersons(List<Person> persons) {
+        requireAllNonNull(persons);
+        dengueHotspotTracker.setPersons(persons);
+        memory.saveNewLatest(this.dengueHotspotTracker);
+        updateFromMemoryStack();
+
+    }
+
 
     //=========== Filtered Person List Accessors =============================================================
 

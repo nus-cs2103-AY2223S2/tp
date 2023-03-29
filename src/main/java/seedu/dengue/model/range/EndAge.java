@@ -27,11 +27,6 @@ public class EndAge implements End<Age> {
      * @param p
      */
     public boolean isAfter(Person p) {
-        if (!age.isPresent()) {
-            return true;
-        }
-        int a1 = Integer.parseInt(age.get().value);
-        int a2 = Integer.parseInt(p.getAge().value);
-        return a1 >= a2;
+        return AGE_COMPARATOR.compare(this, p.getAge()) >= 0;
     }
 }

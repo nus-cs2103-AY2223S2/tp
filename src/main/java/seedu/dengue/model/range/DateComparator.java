@@ -1,6 +1,9 @@
-package seedu.dengue.model.person;
+package seedu.dengue.model.range;
 
 import java.time.LocalDate;
+
+import seedu.dengue.model.person.Date;
+
 /**
  * Comparator for the class {@Date}
  */

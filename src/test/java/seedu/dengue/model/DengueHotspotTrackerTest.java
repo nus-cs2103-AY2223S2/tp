@@ -102,6 +102,15 @@ public class DengueHotspotTrackerTest {
         public ObservableList<Person> getPersonList() {
             return persons;
         }
+
+        /**
+         * Returns itself
+         * @return itself.
+         */
+        @Override
+        public ReadOnlyDengueHotspotTracker generateDeepCopy() {
+            return this;
+        }
     }
 
 }

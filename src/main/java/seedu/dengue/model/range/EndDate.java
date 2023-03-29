@@ -1,8 +1,5 @@
 package seedu.dengue.model.range;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Person;
 
@@ -28,11 +25,6 @@ public class EndDate implements End<Date> {
      * @param p
      */
     public boolean isAfter(Person p) {
-        if (!date.isPresent()) {
-            return true;
-        }
-        LocalDate d1 = LocalDate.parse(date.get().value);
-        LocalDate d2 = LocalDate.parse(p.getDate().value);
-        return d1.compareTo(d2) >= 0;
+        return DATE_COMPARATOR.compare(this, p.getDate()) >= 0;
     }
 }
