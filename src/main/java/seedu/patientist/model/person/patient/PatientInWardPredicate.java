@@ -1,20 +1,24 @@
 package seedu.patientist.model.person.patient;
 
-import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.patientist.model.Model;
 import seedu.patientist.model.person.Person;
-import seedu.patientist.model.tag.Tag;
+import seedu.patientist.model.ward.Ward;
 
 /**
- * THIS HAS BEEN DEPRECATED
  * Checks the tag of all personnel to see if they belong to a particular ward
  */
 public class PatientInWardPredicate implements Predicate<Person> {
-    private final List<String> keywords;
+    private final Model model;
+    private final String keyword;
 
-    public PatientInWardPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    /**
+     * Constructor for PatientInWardPredicate.
+     */
+    public PatientInWardPredicate(Model model, String keyword) {
+        this.model = model;
+        this.keyword = keyword;
     }
 
     @Override
@@ -22,14 +26,19 @@ public class PatientInWardPredicate implements Predicate<Person> {
         if (!(person instanceof Patient)) {
             return false;
         }
-        return keywords.stream()
-                .anyMatch(keyword -> person.getTags().contains(new Tag(keyword)));
+        Ward ward = model.getWard(keyword);
+
+        if (ward == null) {
+            return false;
+        }
+
+        return ward.containsPatient((Patient) person);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PatientInWardPredicate // instanceof handles nulls
-                && keywords.equals(((PatientInWardPredicate) other).keywords));
+                    && keyword.equals(((PatientInWardPredicate) other).keyword));
     }
 }
