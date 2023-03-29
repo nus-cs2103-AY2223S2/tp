@@ -13,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TaskBookModel;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Comment;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 
@@ -99,7 +100,8 @@ public class AssignTaskCommand extends Command {
         assignedTask.assignPerson(personToAssign, personAssignedName, personAssignedRole);
         boolean status = taskToAssign.isDone();
         assignedTask.setStatus(status);
-
+        Comment comment = taskToAssign.getTaskComment();
+        assignedTask.setTaskComment(comment);
         return assignedTask;
     }
 

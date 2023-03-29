@@ -12,8 +12,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TaskBookModel;
+import seedu.address.model.task.Comment;
 import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
 
 
 /**
@@ -63,9 +65,29 @@ public class MarkCommand extends Command {
         if (!taskToMark.isAssigned()) {
             throw new CommandException(MESSAGE_TASK_NOT_ASSIGNED);
         }
+        Task markedTask = createMarkedTask(taskToMark, score);
 
-        taskBookModel.markTask(taskToMark, score);
+        taskBookModel.markTask(taskToMark, markedTask, targetIndex);
         taskBookModel.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark, score.toString()));
+    }
+
+    private static Task createMarkedTask(Task taskToMark, Score score) {
+        assert taskToMark != null;
+        TaskDescription taskDesc = taskToMark.getDescription();
+        String taskDate = taskToMark.getDate().toString();
+        String taskType = taskToMark.getTaskType();
+        Task markedTask = new Task(taskDesc, taskDate, taskType);
+        String personAssignedName = taskToMark.getPersonAssignedName();
+        String personAssignedRole = taskToMark.getPersonAssignedRole();
+        Index personToAssign = taskToMark.getPersonAssignedIndex();
+        markedTask.assignPerson(personToAssign, personAssignedName, personAssignedRole);
+        boolean status = true;
+        markedTask.setStatus(status);
+        markedTask.setScore(score);
+        Comment comment = taskToMark.getTaskComment();
+        markedTask.setTaskComment(comment);
+        return markedTask;
     }
 }

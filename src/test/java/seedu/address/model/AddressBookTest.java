@@ -102,7 +102,7 @@ public class AddressBookTest {
 
         @Override
         public ObservableList<Task> getTaskList() {
-            return null;
+            return tasks;
         }
     }
 

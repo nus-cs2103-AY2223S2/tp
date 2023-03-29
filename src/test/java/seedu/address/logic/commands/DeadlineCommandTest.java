@@ -25,9 +25,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskBook;
 import seedu.address.model.TaskBookModel;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.Comment;
 import seedu.address.model.task.DeadlineTask;
-import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.DeadlineTaskBuilder;
 
@@ -239,19 +237,19 @@ public class DeadlineCommandTest {
         }
 
         @Override
-        public void markTask(Task task, Score score) {
+        public void markTask(Task task, Task markedTask, Index taskIndex) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'markTask'");
         }
 
         @Override
-        public void unmarkTask(Task task) {
+        public void unmarkTask(Task taskToUnmark, Task unmarkedTask, Index taskIndex) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'unmarkTask'");
         }
 
         @Override
-        public void commentOnTask(Comment comment, Task task) {
+        public void commentOnTask(Task taskToComment, Task commentedTask, Index taskIndex) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'commentOnTask'");
         }

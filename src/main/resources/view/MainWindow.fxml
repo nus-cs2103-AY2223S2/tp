@@ -35,6 +35,7 @@
                   <items>
                      <MenuItem fx:id="Tasks" onAction="#tasksClicked" text="Tasks" />
                      <MenuItem fx:id="Persons" onAction="#personsClicked" text="Persons" />
+                     <MenuItem fx:id="Review" onAction="#reviewClicked" text="Review" />
                   </items>
                </Menu>
         </MenuBar>

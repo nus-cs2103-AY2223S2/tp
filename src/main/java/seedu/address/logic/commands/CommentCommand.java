@@ -13,7 +13,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TaskBookModel;
 import seedu.address.model.task.Comment;
+import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
 
 /**
  * Adds a CommentTask to the address book.
@@ -58,7 +60,8 @@ public class CommentCommand extends Command {
         Task taskToComment = lastShownList.get(toReceiveComment.getZeroBased());
         String taskString = taskToComment.toString();
 
-        taskBookModel.commentOnTask(toAddComment, taskToComment);
+        Task commentedTask = createCommentedTask(taskToComment, toAddComment);
+        taskBookModel.commentOnTask(taskToComment, commentedTask, toReceiveComment);
         taskBookModel.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_COMMENT_SUCCESS, toAddComment, taskString));
     }
@@ -69,5 +72,23 @@ public class CommentCommand extends Command {
                 || (other instanceof CommentCommand // instanceof handles nulls
                 && toAddComment.equals(((CommentCommand) other).toAddComment)
                 && toReceiveComment.equals(((CommentCommand) other).toReceiveComment));
+    }
+
+    private static Task createCommentedTask(Task taskToComment, Comment comment) {
+        assert taskToComment != null;
+        TaskDescription taskDesc = taskToComment.getDescription();
+        String taskDate = taskToComment.getDate().toString();
+        String taskType = taskToComment.getTaskType();
+        Task commentedTask = new Task(taskDesc, taskDate, taskType);
+        String personAssignedName = taskToComment.getPersonAssignedName();
+        String personAssignedRole = taskToComment.getPersonAssignedRole();
+        Index personToAssign = taskToComment.getPersonAssignedIndex();
+        commentedTask.assignPerson(personToAssign, personAssignedName, personAssignedRole);
+        boolean status = taskToComment.isDone();
+        commentedTask.setStatus(status);
+        commentedTask.setTaskComment(comment);
+        Score score = taskToComment.getScore();
+        commentedTask.setScore(score);
+        return commentedTask;
     }
 }

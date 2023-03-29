@@ -6,8 +6,6 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.task.Comment;
-import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
@@ -89,25 +87,26 @@ public class TaskBook implements ReadOnlyTaskBook {
 
     /**
      * Marks the given task {@code task} as done.
-     * @param task
-     * @param score
+     * @param taskToMark
+     * @param markedTask
+     * @param taskIndex
      */
-    public void markTask(Task task, Score score) {
-        task.mark(score);
+    public void markTask(Task taskToMark, Task markedTask, Index taskIndex) {
+        tasks.markTask(taskToMark, markedTask, taskIndex);
     }
 
     /**
      * Unmarks the given task {@code task} as not done.
      */
-    public void unmarkTask(Task task) {
-        task.unmark();
+    public void unmarkTask(Task taskToUnmark, Task unmarkedTask, Index taskIndex) {
+        tasks.unmarkTask(taskToUnmark, unmarkedTask, taskIndex);
     }
 
     /**
      * Adds given comment to the specified task.
      */
-    public void commentOnTask(Comment comment, Task toReceiveComment) {
-        toReceiveComment.setTaskComment(comment);
+    public void commentOnTask(Task taskToComment, Task commentedTask, Index taskIndex) {
+        tasks.commentOnTask(taskToComment, commentedTask, taskIndex);
     }
 
     /**
@@ -130,6 +129,7 @@ public class TaskBook implements ReadOnlyTaskBook {
     public void assignTask(Task taskToAssign, Task assignedTask, Index taskIndex) {
         tasks.assignTask(taskToAssign, assignedTask, taskIndex);
     }
+
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
