@@ -421,6 +421,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setAppointmentFilters(Collection<Predicate<Appointment>> filters) {
+        filteredAppointmentMap.filter(filters);
+    }
+
+    @Override
     public AppointmentManager getAppointmentManager() {
         return appointmentManager;
     }

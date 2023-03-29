@@ -3,9 +3,7 @@ package seedu.vms.logic.commands.appointment;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -45,6 +43,7 @@ public class FindCommand extends Command {
     private final Optional<StartTimePredicate> startTimePredicate;
     private final Optional<EndTimePredicate> endTimePredicate;
     private final Optional<VaccineContainsKeywordsPredicate> vaccinePredicate;
+    private final Optional<Boolean> isCompletedPredicate;
 
     /**
      * Existing FindCommand that was previously used to search using name only
@@ -56,6 +55,7 @@ public class FindCommand extends Command {
         this.startTimePredicate = Optional.empty();
         this.endTimePredicate = Optional.empty();
         this.vaccinePredicate = Optional.empty();
+        this.isCompletedPredicate = Optional.empty();
     }
 
     /**
@@ -72,13 +72,15 @@ public class FindCommand extends Command {
         }
 
         if (findAppointmentDescriptor.getAppointmentTime().isPresent()) {
-            this.startTimePredicate = Optional.of(new StartTimePredicate(findAppointmentDescriptor.getAppointmentTime().get()));
+            this.startTimePredicate = Optional
+                    .of(new StartTimePredicate(findAppointmentDescriptor.getAppointmentTime().get()));
         } else {
             this.startTimePredicate = Optional.empty();
         }
 
         if (findAppointmentDescriptor.getAppointmentEndTime().isPresent()) {
-            this.endTimePredicate = Optional.of(new EndTimePredicate(findAppointmentDescriptor.getAppointmentEndTime().get()));
+            this.endTimePredicate = Optional
+                    .of(new EndTimePredicate(findAppointmentDescriptor.getAppointmentEndTime().get()));
         } else {
             this.endTimePredicate = Optional.empty();
         }
@@ -88,6 +90,12 @@ public class FindCommand extends Command {
                     .of(new VaccineContainsKeywordsPredicate(findAppointmentDescriptor.getVaccination().get()));
         } else {
             this.vaccinePredicate = Optional.empty();
+        }
+
+        if (findAppointmentDescriptor.getStatus().isPresent()) {
+            this.isCompletedPredicate = Optional.of(findAppointmentDescriptor.getStatus().get());
+        } else {
+            this.isCompletedPredicate = Optional.empty();
         }
     }
 
@@ -120,7 +128,7 @@ public class FindCommand extends Command {
         private Index patientId;
         private LocalDateTime startTime;
         private LocalDateTime endTime;
-        private GroupName vaccine;
+        private Set<GroupName> vaccines;
         private boolean isCompleted;
 
         public FindAppointmentDescriptor() {}
@@ -132,7 +140,7 @@ public class FindCommand extends Command {
             this.patientId = toCopy.patientId;
             this.startTime = toCopy.startTime;
             this.endTime = toCopy.endTime;
-            this.vaccine = toCopy.vaccine;
+            this.vaccines = toCopy.vaccines;
             this.isCompleted = toCopy.isCompleted;
         }
 
@@ -140,27 +148,42 @@ public class FindCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(patientId, startTime, endTime, vaccine, isCompleted);
+            return CollectionUtil.isAnyNonNull(patientId, startTime, endTime, vaccines, isCompleted);
         }
 
         public Optional<Index> getPatient() {
             return Optional.ofNullable(patientId);
+        }
+        public void setPatient(Index patientId) {
+            this.patientId = patientId;
         }
 
         public Optional<LocalDateTime> getAppointmentTime() {
             return Optional.ofNullable(startTime);
         }
 
+        public void setAppointmentTime(LocalDateTime startTime) {
+            this.startTime = startTime;
+        }
         public Optional<LocalDateTime> getAppointmentEndTime() {
             return Optional.ofNullable(endTime);
         }
+        public void setAppointmentEndTime(LocalDateTime endTime) {
+            this.endTime = endTime;
+        }
 
-        public Optional<GroupName> getVaccination() {
-            return Optional.ofNullable(vaccine);
+        public Optional<Set<GroupName>> getVaccination() {
+            return (vaccines != null) ? Optional.of(Collections.unmodifiableSet(vaccines)) : Optional.empty();
+        }
+        public void setVaccination(Set<GroupName> vaccines) {
+            this.vaccines = vaccines;
         }
 
         public Optional<Boolean> getStatus() {
             return Optional.of(isCompleted);
+        }
+        public void setStatus(boolean isCompleted) {
+            this.isCompleted = isCompleted;
         }
 
         @Override

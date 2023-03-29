@@ -44,6 +44,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_PATIENT = new Prefix("p");
     public static final Prefix PREFIX_STARTTIME = new Prefix("s");
     public static final Prefix PREFIX_ENDTIME = new Prefix("e");
+    public static final Prefix PREFIX_COMPLETED = new Prefix("c");
 
     /*
      * ========================================================================

@@ -6,6 +6,7 @@ import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.appointment.AddCommand;
 import seedu.vms.logic.commands.appointment.DeleteCommand;
 import seedu.vms.logic.commands.appointment.EditCommand;
+import seedu.vms.logic.commands.appointment.FindCommand;
 import seedu.vms.logic.commands.appointment.ListCommand;
 import seedu.vms.logic.commands.appointment.MarkCommand;
 import seedu.vms.logic.commands.appointment.UnmarkCommand;
@@ -33,6 +34,9 @@ public class AppointmentParser extends FeatureParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
