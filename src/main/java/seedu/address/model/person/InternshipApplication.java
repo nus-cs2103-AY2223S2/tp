@@ -124,12 +124,18 @@ public class InternshipApplication {
     public Set<Qualification> getQualifications() {
         return Collections.unmodifiableSet(qualifications);
     }
-    public Location getLocation() { return location; }
-    public Salary getSalary() { return salary; }
+    public Location getLocation() {
+        return location;
+    }
+    public Salary getSalary() {
+        return salary;
+    }
     public Set<Note> getNotes() {
         return Collections.unmodifiableSet(notes);
     }
-    public Rating getRating() { return rating; }
+    public Rating getRating() {
+        return rating;
+    }
     public Set<Reflection> getReflections() {
         return Collections.unmodifiableSet(reflections);
     }
