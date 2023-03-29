@@ -14,7 +14,7 @@ import seedu.address.logic.parser.Prefix;
 
 //@@author EvitanRelta-reused
 // Reused from https://github.com/AY2223S1-CS2103T-T12-2/tp
-// with minor modifications.
+// with major refactoring and bugfixing.
 /**
  * Suggests a command based on the user input.
  */
@@ -76,22 +76,30 @@ public class CommandSuggestor {
      * @throws CommandException If the user input is invalid.
      */
     public String suggestCommand(String userInput) throws CommandException {
-        assert userInput != null && !userInput.isEmpty();
+        assert userInput != null;
 
-        String[] userInputArray = userInput.split(" ", 2);
-        String commandWord = userInputArray[0];
-        String commandBody = userInputArray.length > 1 ? userInputArray[1] : "";
+        if (userInput.isBlank()) {
+            return userInput;
+        }
+
+        String strippedLeadingInput = userInput.stripLeading();
+        String inputLeadingSpaces = userInput.substring(
+                0, userInput.length() - strippedLeadingInput.length());
+
+        String[] splitArr = strippedLeadingInput.split(" ", 2);
+        String commandWord = splitArr[0];
+        String commandBody = splitArr.length > 1 ? splitArr[1] : "";
 
         CommandException noSuchCommandException = new CommandException(
             String.format("No command starting with \"%s\" found.", commandWord));
 
-        boolean isCommandComplete = userInput.contains(" ");
+        boolean isCommandComplete = strippedLeadingInput.contains(" ");
         if (!isCommandComplete) {
             String suggestedCommand = commandList.stream()
                     .filter(command -> command.startsWith(commandWord))
                     .findFirst()
                     .orElseThrow(() -> noSuchCommandException);
-            return suggestedCommand + suggestArguments(suggestedCommand, commandBody);
+            return inputLeadingSpaces + suggestedCommand + suggestArguments(suggestedCommand, commandBody);
         }
 
         boolean isInvalidCommand = !commandList.contains(commandWord);
