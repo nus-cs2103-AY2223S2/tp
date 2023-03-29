@@ -69,7 +69,7 @@ public class EditCommand extends Command {
      */
     public EditCommand(Index index, EditPatientDescriptor editPatientDescriptor) {
         // TODO: this should be removed
-        this(index, editPatientDescriptor, false);
+        this(index, editPatientDescriptor, true);
     }
 
     /**
