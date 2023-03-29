@@ -65,7 +65,7 @@ Parameters:
 `n/`: Name or description of event  
 `d/`: Date of the event in `YYYY-MM-DD` format  
 `s/`: Start time of the event in `HH:mm` format  
-`e/:` End time of the event in `HH:mm` format
+`e/`: End time of the event in `HH:mm` format
 
 > Note:  
 > Name/Description is alphanumeric only.  
@@ -76,8 +76,13 @@ Example: `add n/booked tennis court /2023-02-01 /2023-02-02`
 [[Back to top](#index)]
 
 
+<h3 id="recur">Repeat Existing Event</h3>
 
-<h3 id="delete">Deleting a event: `delete` (coming soon)</h3>
+[[Back to top](#index)]
+
+
+
+<h3 id="delete">Delete Event</h3>
 
 Deletes an event in the Scheduler.
 
@@ -88,8 +93,7 @@ Example: `delete booked tennis court `
 [[Back to top](#index)]
 
 
-
-### Listing all events: `list` (coming soon)
+<h3 id="list">Listing All Events</h3>
 
 Displays all events currently saved in the Scheduler.
 
@@ -99,7 +103,8 @@ Example: `list`
 
 [[Back to top](#index)]
 
-### Retrieving next event: `next` (coming soon)
+
+<h3 id="next">Retrieve next event</h3>
 
 Searches the Scheduler and returns the next upcoming event start time.
 
@@ -111,7 +116,7 @@ Example: `next event`<br><br>
 
 
 
-### Locating all events by keyword: `find` (coming soon)
+<h3 id="find">Locate events by keyword</h3>
 
 Finds the Scheduler for the task, returns all events containing the relevant keyword.
 
@@ -123,7 +128,7 @@ Example: `find booked tennis court`<br><br>
 
 
 
-### Viewing help: `help`
+<h3 id="help">View Help</h3>
 
 Provide a link to access this website.
 
@@ -134,7 +139,7 @@ Example: `help`<br><br>
 [[Back to top](#index)]
 
 
-### Exits the application `exit` (coming soon)
+<h3 id="exit">Exit Application</h3>
 
 Exits the application.
 
@@ -145,15 +150,15 @@ Example: `exit`<br><br>
 [[Back to top](#index)]
 
 
-## GUI
+<h1 id="limitations">Limitations</h1>
 
-# Limitations
 * Currently, we only support same-day events.
   Events which are stretched across multiple days are not supported.
 
 [[Back to top](#index)]
 
-# FAQ
+
+<h1 id="faq">FAQ</h1>
 
 **Q:** On a scale of 1 to 10, how awesome is this product?
 
