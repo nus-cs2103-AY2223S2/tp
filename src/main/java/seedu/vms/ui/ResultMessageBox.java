@@ -39,14 +39,14 @@ public class ResultMessageBox extends UiPart<Region> {
 
 
     private void setMessage(String message) {
-        // listener block adapted from https://stackoverflow.com/a/25643696
+        // listener block adapted from https://stackoverflow.com/a/25643696 and modified
         messageArea.textProperty().addListener((ob, oldText, newText) -> {
             Platform.runLater(() -> {
                 Text text = new Text(newText);
                 text.setFont(messageArea.getFont());
-                double height = text.getLayoutBounds().getHeight()
+                double height = text.getLayoutBounds().getHeight() * 1.07
                         + messageArea.getPadding().getTop() + messageArea.getPadding().getBottom()
-                        + 18D;
+                        + 14D;
                 messageArea.setPrefHeight(height);
             });
         });
