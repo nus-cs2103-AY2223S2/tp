@@ -16,6 +16,9 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML
     private TextArea resultDisplay;
 
+    /**
+     * Displays result in set area of the UI
+     */
     public ResultDisplay() {
         super(FXML);
         resultDisplay.setWrapText(true);
