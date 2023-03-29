@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
@@ -229,8 +230,14 @@ public class ParserUtil {
      */
     public static String parseFilePath(Optional<String> filePathOpt) throws ParseException {
         String filePath = filePathOpt.isEmpty() ? "" : filePathOpt.get();
-        Path path = Paths.get(filePath);
-        if (Files.isWritable(path) && Files.isDirectory(path)) {
+        filePath = filePath.trim();
+        Path path;
+        try {
+            path = Paths.get(filePath);
+        } catch (InvalidPathException e) {
+            throw new ParseException(Messages.MESSAGE_INVALID_DIRECTORY);
+        }
+        if (Files.isDirectory(path)) {
             return path.toString();
         } else {
             throw new ParseException(Messages.MESSAGE_INVALID_DIRECTORY);
