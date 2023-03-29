@@ -146,7 +146,7 @@ Each entity uses different methods, which they inherit from `ClientModel` and
 Moreover, each entity is also stored in a `UniqueList`, which ensures that the
 list do not contain duplicates. `UniqueList` from each entity is then stored in
 `AddressBook`, which contains the overarching methods for handling each type of
-list. 
+list.
 
 ### Storage component
 
@@ -173,36 +173,36 @@ Classes used by multiple components are in the `mycelium.mycelium.commons` packa
 
 ### Statistics Dashboard
 
-Statistics Dashboard displays statistics regarding Projects. There are three 
+Statistics Dashboard displays statistics regarding Projects. There are three
 main statistics: projects that are due within one week, projects that are overdue
-and a pie chart showing progress overview. The goal of this feature is to provide users 
+and a pie chart showing progress overview. The goal of this feature is to provide users
 with useful information related to productivity to make adjustments accordingly.
 
-For projects that are due within one week, only top three projects that match the 
-condition will be displayed to ensure that users can focus on the most urgent projects. 
+For projects that are due within one week, only top three projects that match the
+condition will be displayed to ensure that users can focus on the most urgent projects.
 
-For overdue list, all overdue projects will be displayed to make sure that users can 
-keep track of all the deadlines they have missed. 
+For overdue list, all overdue projects will be displayed to make sure that users can
+keep track of all the deadlines they have missed.
 
-For progress overview pie chart, there will be at most three segments. The three segments 
+For progress overview pie chart, there will be at most three segments. The three segments
 will correspond to three project statuses, which are `not_started`, `done` and `in_progress`.
 The size of each segment is proportional to the number of projects with its corresponding segment
-label. 
+label.
 
 #### Updating the UI
 
-For due project lists, overdue project lists and pie chart, `FilteredList` retrieved by 
-using `Logic#getFilteredProjectList` cannot be used because it will affect the UI. Besides, 
-all the statistics need filtering out, making it not possible to use `FilteredList#setPredicate`. 
-Thus, for the dashboard to update accordingly as changes are made to project list, a `ListChangeListener` 
-will be attached to the original list of projects. Whenever there is a change in the project list (e.g. 
+For due project lists, overdue project lists and pie chart, `FilteredList` retrieved by
+using `Logic#getFilteredProjectList` cannot be used because it will affect the UI. Besides,
+all the statistics need filtering out, making it not possible to use `FilteredList#setPredicate`.
+Thus, for the dashboard to update accordingly as changes are made to project list, a `ListChangeListener`
+will be attached to the original list of projects. Whenever there is a change in the project list (e.g.
 a new project is added), all the statistics will be updated as well.
 Moreover, when there are no projects available, there will be messages displayed.
 
 
-This diagram above shows us that the MainWindow is responsible for instantiating the StatisticsBox. 
+This diagram above shows us that the MainWindow is responsible for instantiating the StatisticsBox.
 The fillInnerParts() method is part of the UI's initialization routine. The `ObservableList<Project>#addListener()`
-will be called to listen for changes in project list. The remaining methods are not important in this discussion. 
+will be called to listen for changes in project list. The remaining methods are not important in this discussion.
 ![StatisticsBoxActivityDiagram](images/StatisticsBoxActivityDiagram.png)
 {TODO update diagram}
 
@@ -244,11 +244,11 @@ There are currently 10 registered event handlers, namely:
 * `PrevItemKey` Select previous (CTRL+K)
 * `FindKey` Search (CTRL+F)
 
-Each of these event handler perform an action associated with a keyboard event. 
-The action performed by each event handler can be found and modified in their respectively 
+Each of these event handler perform an action associated with a keyboard event.
+The action performed by each event handler can be found and modified in their respectively
 named files found in the `java/mycelium/mycelium/logic/uievent` folder.
 
-To find out more about the supported keyboard events and its associated actions 
+To find out more about the supported keyboard events and its associated actions
 in Mycelium, please refer to the [User Guide](UserGuide.md#hotkeys).
 
 #### UiEvent Handling
@@ -263,16 +263,16 @@ above-mentioned registered event handlers to decide which event handler to invok
 
 ![GenericKey sequence diagram](images/GenericKey.png)
 
-The above sequence diagram shows what happens once there is a match with a 
-generic event handler. An instance of the respective `Key` will be created, 
-and executed. The event is then consumed to prevent the event from propagating 
+The above sequence diagram shows what happens once there is a match with a
+generic event handler. An instance of the respective `Key` will be created,
+and executed. The event is then consumed to prevent the event from propagating
 any further to the inner UI elements.
 
 ![GenericKeyExecute sequence diagram](images/GenericKeyExecute.png)
 
-The above sequence diagram shows how the user interface can be modified during 
+The above sequence diagram shows how the user interface can be modified during
 the execution of the `Key` instance. The `Key` calls the respective method of
-the `MainWindow` which in turns calls the respective UI component to perform 
+the `MainWindow` which in turns calls the respective UI component to perform
 the action associated with the event.
 
 We will use the `SwitchTabKey` event handler as a concrete example. The following
@@ -281,14 +281,14 @@ sequence diagrams show what happens when the `SwitchTabKey` event handler is inv
 ![SwitchTabKey sequence diagram](images/SwitchTabKey.png)
 ![SwitchTabKeyExecute sequence diagram](images/SwitchTabKeyExecute.png)
 
-Note that not all event handlers are built the same. An example of a more 
-complicated event handler will be `FindKey` which we will elaborate more 
+Note that not all event handlers are built the same. An example of a more
+complicated event handler will be `FindKey` which we will elaborate more
 in the next section.
 
 ### Command Box
 
 The command box in Mycelium can be in one of 2 `Mode` of operation, namely, `CommandMode` and `SearchMode`,
-and supports switching between these 2 modes. 
+and supports switching between these 2 modes.
 A `Mode` is modular component that is attached to the command box which
 dictates the behaviour of the command box on input change and on submit.
 
@@ -299,11 +299,11 @@ The following is class diagram of the command box.
 #### Changing Modes
 
 The user can toggle between `SearchMode` and `CommandMode` with a keyboard event
-invoking the `FindKey` event handler. Please refer to the 
+invoking the `FindKey` event handler. Please refer to the
 [UiEvent Handling](#uievent-handling) section for more information of how Mycelium
 handles keyboard event.
 
-The following sequence diagrams show what happens when `FindKey` event handler 
+The following sequence diagrams show what happens when `FindKey` event handler
 is invoked.
 
 ![FindKey sequence diagram](images/ToggleMode.png)
@@ -316,9 +316,9 @@ of the command box by calling `CommandBox#setMode(Mode)`.
 ![CommandBoxSetMode sequence diagram](images/CommandBoxSetMode.png)
 
 When `Mode#setMode(Mode)` is called, the command box will call `Mode#teardownMode()`
-on its outgoing `Mode` to perform the necessary clean up which includes 
+on its outgoing `Mode` to perform the necessary clean up which includes
 reverting the input to its prior state. The command box then calls `Mode#setupMode(String)`
-on the incoming `Mode` which will perform the necessary setup for the incoming `Mode`. 
+on the incoming `Mode` which will perform the necessary setup for the incoming `Mode`.
 This includes caching the current input of the command box so that it can return the input
 to its original state when incoming `Mode` is torn down in the future.
 
@@ -329,7 +329,7 @@ command box.
 
 ![CommandBoxSubmit sequence diagram](images/CommandBoxSubmit.png)
 
-When the user submits, the command box will call `Mode#onInputSubmit(String)` 
+When the user submits, the command box will call `Mode#onInputSubmit(String)`
 on its current `Mode` with the text input. An `Optional<Mode>` instance will be
 returned which indicate the next `Mode` to change to if there is a `Mode`. Otherwise,
 it will remain in keep its current `Mode`. This is utilised to switch back the command
