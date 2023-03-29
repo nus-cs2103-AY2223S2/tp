@@ -1,7 +1,7 @@
 package seedu.careflow.logic.commands.drugcommands;
 
-import static seedu.careflow.logic.commands.drugcommands.DrugCommandTestUtil.assertCommandSuccess;
-import static seedu.careflow.logic.commands.drugcommands.DrugCommandTestUtil.showDrugAtIndex;
+import static seedu.careflow.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.careflow.logic.commands.CommandTestUtil.showDrugAtIndex;
 import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
 import static seedu.careflow.testutil.TypicalIndexes.INDEX_FIRST;
 
@@ -28,7 +28,7 @@ class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        DrugCommandTestUtil.assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test

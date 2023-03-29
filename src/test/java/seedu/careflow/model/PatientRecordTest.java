@@ -3,8 +3,8 @@ package seedu.careflow.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.careflow.testutil.Assert.assertThrows;
 import static seedu.careflow.testutil.TypicalPatients.ALICE;
 import static seedu.careflow.testutil.TypicalPatients.getTypicalPatientRecord;
@@ -56,44 +56,27 @@ public class PatientRecordTest {
     }
 
     @Test
-    public void hasSamePatientName_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> patientRecord.hasSamePatientName(null));
+    public void hasPatient_nullPatient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> patientRecord.hasPatient(null));
     }
 
     @Test
-    public void hasSamePatientName_patientNotInPatientRecord_returnsFalse() {
-        assertFalse(patientRecord.hasSamePatientName(ALICE));
+    public void hasPatient_patientNotInPatientRecord_returnsFalse() {
+        assertFalse(patientRecord.hasPatient(ALICE));
     }
 
     @Test
-    public void hasSamePatientName_patientInPatientRecord_returnsTrue() {
+    public void hasPatient_patientInPatientRecord_returnsTrue() {
         patientRecord.addPatient(ALICE);
-        assertTrue(patientRecord.hasSamePatientName(ALICE));
+        assertTrue(patientRecord.hasPatient(ALICE));
     }
 
     @Test
-    public void hasSamePatientName_patientWithSameIdentityFieldsInPatientRecord_returnsTrue() {
+    public void hasPatient_patientWithSameIdentityFieldsInPatientRecord_returnsTrue() {
         patientRecord.addPatient(ALICE);
         Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB)
                 .build();
-        assertTrue(patientRecord.hasSamePatientName(editedAlice));
-    }
-
-    @Test
-    public void hasSamePatientIc_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> patientRecord.hasSamePatientIc(null));
-    }
-
-    @Test
-    public void hasSamePatientIc_icNotInPatientRecord_returnsFalse() {
-        assertFalse(patientRecord.hasSamePatientIc(ALICE));
-    }
-
-    @Test
-    public void hasSamePatientIc_icInPatientRecord_returnsTrue() {
-        patientRecord.addPatient(ALICE);
-        Patient patient = new PatientBuilder().withIc(ALICE.getIc().value).build();
-        assertTrue(patientRecord.hasSamePatientIc(patient));
+        assertTrue(patientRecord.hasPatient(editedAlice));
     }
 
     @Test

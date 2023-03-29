@@ -2,17 +2,17 @@ package seedu.careflow.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.DESC_AMY;
-import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.DESC_BOB;
-import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_BIRTHDATE_BOB;
-import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_DRUG_ALLERGY_BOB;
-import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_EMERGENCY_CONTACT_BOB;
-import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_GENDER_BOB;
-import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_IC_BOB;
-import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_NAME_BOB;
-import static seedu.careflow.logic.commands.patientcommands.PatientCommandTestUtil.VALID_PHONE_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.DESC_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_DOB_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_DRUG_ALLERGY_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_EMERGENCY_CONTACT_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_IC_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -56,7 +56,7 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different date of birth -> returns false
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withDob(VALID_BIRTHDATE_BOB).build();
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withDob(VALID_DOB_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different gender -> returns false

@@ -90,17 +90,10 @@ public class CareFlow {
     }
 
     /**
-     * Returns true if a patient with the same name as {@code patient} exists in the patient record.
+     * Returns true if a patient with the same identity as {@code patient} exists in the patient record.
      */
-    public boolean hasSamePatientName(Patient patient) {
-        return patientRecord.hasSamePatientName(patient);
-    }
-
-    /**
-     * Returns true if a patient with the same NRIC as {@code patient} exists in the patient record.
-     */
-    public boolean hasSamePatientIc(Patient patient) {
-        return patientRecord.hasSamePatientIc(patient);
+    public boolean hasPatient(Patient patient) {
+        return patientRecord.hasPatient(patient);
     }
 
     /**

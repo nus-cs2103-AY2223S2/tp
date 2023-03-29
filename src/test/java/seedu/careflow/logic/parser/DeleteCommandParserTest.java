@@ -3,7 +3,6 @@ package seedu.careflow.logic.parser;
 import static seedu.careflow.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.careflow.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.careflow.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.careflow.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.careflow.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
@@ -23,17 +22,12 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
-    public void parse_validIndex_returnsDeleteCommand() {
-        assertParseSuccess(parser, "p delete -i 1", new DeleteCommand(INDEX_FIRST));
+    public void parse_validArgs_returnsDeleteCommand() {
+        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST));
     }
 
     @Test
-    public void parse_negativeIndex_throwParseException() {
-        assertParseFailure(parser, "p delete -i -1", MESSAGE_INVALID_INDEX);
-    }
-
-    @Test
-    public void parse_invalidIndex_throwsParseException() {
+    public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }
