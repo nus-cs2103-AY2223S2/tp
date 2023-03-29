@@ -258,9 +258,9 @@ Existing task list data is saved as a JSON file `[JAR file location]/data/taskli
 If your changes to the data file makes its format invalid, Vimification will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Archiving data files (future feature)
 
-_Details coming soon ..._
+_Details coming soon in v2.0 ..._
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
