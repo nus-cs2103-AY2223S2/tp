@@ -1,6 +1,5 @@
 package seedu.dengue.model.range;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 import seedu.dengue.logic.comparators.AgeComparator;
