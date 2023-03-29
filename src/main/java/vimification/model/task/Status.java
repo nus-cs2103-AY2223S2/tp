@@ -1,46 +1,26 @@
 package vimification.model.task;
 
-import static java.util.Objects.requireNonNull;
+public enum Status {
+    NOT_DONE, IN_PROGRESS, COMPLETED, OVER_DUE;
 
-
-public class Status {
-
-
-    public Boolean done;
-    public String value;
-
-
-    public Status(Boolean status) {
-        requireNonNull(status);
-        done = status;
-        value = Integer.toString((done) ? 1 : 0);
-    }
-
-    public Status(String status) {
-        requireNonNull(status);
-        done = status.equals("1");
-        value = status;
-    }
-
-    public void setDone() {
-        done = true;
-        value = Integer.toString(1);
-    }
-
-    public void setNotDone() {
-        done = false;
-        value = Integer.toString(0);
+    public static Status fromInt(int level) {
+        switch (level) {
+            case 0:
+                return NOT_DONE;
+            case 1:
+                return IN_PROGRESS;
+            case 2:
+                return COMPLETED;
+            case 3:
+                return OVER_DUE;
+            default:
+                return NOT_DONE;
+        }
     }
 
     @Override
     public String toString() {
-        return value;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Status // instanceof handles nulls
-                        && done == ((Status) other).done); // state check
+        return name().toLowerCase().replace('_', ' ');
     }
 }
+
