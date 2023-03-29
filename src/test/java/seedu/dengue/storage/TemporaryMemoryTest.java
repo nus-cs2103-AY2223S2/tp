@@ -65,7 +65,6 @@ public class TemporaryMemoryTest {
         }
         assertEquals(this.memory.loadCurrent(), inputs.get(numFiles - numUndos - 1));
     }
-
     @Test
     public void undoAndPushNew_randomFiles_temporaryStorageEmpty()
             throws CommandException {
