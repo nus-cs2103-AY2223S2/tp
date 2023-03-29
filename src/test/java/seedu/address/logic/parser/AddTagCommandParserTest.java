@@ -11,23 +11,23 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.GroupAddCommand;
+import seedu.address.logic.commands.AddTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains integration tests (interaction with the Model)
- * and unit tests for GroupAddCommandParser.
+ * and unit tests for AddTagCommandParser.
  */
-public class GroupAddCommandParserTest {
+public class AddTagCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    GroupAddCommand.MESSAGE_USAGE);
+                    AddTagCommand.MESSAGE_USAGE);
     private static final String TAG_FIELD_NOT_PRESENT =
-            String.format(GroupAddCommandParser.MESSAGE_TAG_DOES_NOT_EXIST_PARSE_FAILURE,
-                    GroupAddCommand.MESSAGE_USAGE);
-    private GroupAddCommandParser parser = new GroupAddCommandParser();
+            String.format(RemoveTagCommandParser.MESSAGE_TAG_DOES_NOT_EXIST_PARSE_FAILURE,
+                    AddTagCommand.MESSAGE_USAGE);
+    private AddTagCommandParser parser = new AddTagCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -66,7 +66,7 @@ public class GroupAddCommandParserTest {
         // One group
         Set<Tag> expectedTagList = new HashSet<>();
         expectedTagList.add(new Tag("Hall"));
-        GroupAddCommand expectedCommand = new GroupAddCommand(targetIndex, expectedTagList);
+        AddTagCommand expectedCommand = new AddTagCommand(targetIndex, expectedTagList);
         assertParseSuccess(parser, input, expectedCommand);
     }
 }

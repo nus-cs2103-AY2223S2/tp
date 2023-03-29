@@ -2,10 +2,10 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.AddTagCommand.ADD_TAG_PERSON_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.logic.commands.GroupAddCommand.GROUP_ADD_PERSON_SUCCESS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TAGS;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -49,7 +49,7 @@ public class GroupAddCommandTest {
     public void execute_invalidIndex_failure() throws ParseException, CommandException {
         Index index = ParserUtil.parseIndex("100");
         Set<Tag> tagSet = new HashSet<>(tagList);
-        assertThrows(CommandException.class, () -> new GroupAddCommand(index, tagSet).execute(model));
+        assertThrows(CommandException.class, () -> new AddTagCommand(index, tagSet).execute(model));
     }
 
     /**
@@ -63,7 +63,7 @@ public class GroupAddCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        GroupAddCommand command = new GroupAddCommand(outOfBoundIndex, tagSet);
+        AddTagCommand command = new AddTagCommand(outOfBoundIndex, tagSet);
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -71,33 +71,22 @@ public class GroupAddCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        GroupAddCommand command = new GroupAddCommand(outOfBoundIndex, tagSet);
+        AddTagCommand command = new AddTagCommand(outOfBoundIndex, tagSet);
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-    @Test
-    public void addToModifiedGroup_groupNotFound_failure() {
-        GroupAddCommand groupAddCommand = new GroupAddCommand(INDEX_FIRST_PERSON, tagSet);
-
-        model.updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
-        String results = model.getAddressBook()
-                .getTagList().toString();
-        assertCommandFailure(groupAddCommand, model,
-                String.format(GroupAddCommand.GROUP_NOT_FOUND_FAILURE,
-                        "[friends]", results));
-    }
 
     @Test
     public void addToModifiedGroup_studentAlreadyAdded_failure() throws CommandException {
-        GroupAddCommand groupAddCommand = new GroupAddCommand(INDEX_FIRST_PERSON, tagSet);
+        AddTagCommand groupAddCommand = new AddTagCommand(INDEX_FIRST_PERSON, tagSet);
         model.updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
 
         model.setAddressBook(new AddressBookBuilder()
                 .withPerson(ALICE).withTag(new Tag("friends"))
                 .build());
         assertCommandFailure(groupAddCommand, model,
-                String.format(GroupAddCommand.STUDENT_ALREADY_ADDED_FAILURE,
+                String.format(AddTagCommand.STUDENT_ALREADY_ADDED_FAILURE,
                         "[friends]"));
     }
 
@@ -106,10 +95,10 @@ public class GroupAddCommandTest {
         List<Tag> tagListTest = Arrays.asList(new Tag("private"));
         Set<Tag> tagSetTest = new HashSet<>(tagListTest);
 
-        GroupAddCommand groupAddCommand = new GroupAddCommand(INDEX_FIRST_PERSON, tagSetTest);
+        AddTagCommand groupAddCommand = new AddTagCommand(INDEX_FIRST_PERSON, tagSetTest);
 
         Set<Tag> groupsToAdd = new HashSet<>(tagListTest);
-        CommandResult commandResult = new CommandResult(String.format(GROUP_ADD_PERSON_SUCCESS,
+        CommandResult commandResult = new CommandResult(String.format(ADD_TAG_PERSON_SUCCESS,
                 ALICE.getName(), groupsToAdd));
 
         //expectedModel
@@ -136,12 +125,12 @@ public class GroupAddCommandTest {
 
     @Test
     public void equals() {
-        final GroupAddCommand standardCommand = new GroupAddCommand(INDEX_FIRST_PERSON, tagSet);
+        final AddTagCommand standardCommand = new AddTagCommand(INDEX_FIRST_PERSON, tagSet);
 
         final Set<Tag> diffTagSet = new HashSet<>(Arrays.asList(new Tag("Poo")));
 
         // same values -> returns true
-        GroupAddCommand commandWithSameValues = new GroupAddCommand(INDEX_FIRST_PERSON, tagSet);
+        AddTagCommand commandWithSameValues = new AddTagCommand(INDEX_FIRST_PERSON, tagSet);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -154,9 +143,9 @@ public class GroupAddCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new GroupAddCommand(INDEX_SECOND_PERSON, tagSet)));
+        assertFalse(standardCommand.equals(new AddTagCommand(INDEX_SECOND_PERSON, tagSet)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new GroupAddCommand(INDEX_FIRST_PERSON, diffTagSet)));
+        assertFalse(standardCommand.equals(new AddTagCommand(INDEX_FIRST_PERSON, diffTagSet)));
     }
 }

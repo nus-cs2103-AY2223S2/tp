@@ -41,6 +41,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_PAY_RATE + "PAY RATE] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_PAY_RATE + "90";
@@ -98,9 +99,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         PayRate updatedPayRate = editPersonDescriptor.getPayRate().orElse(personToEdit.getPayRate());
-        Set<Tag> uneditedTags = personToEdit.getTags();
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedAddress, updatedPayRate, uneditedTags);
+        return new Person(updatedName, updatedPhone, updatedAddress, updatedPayRate, updatedTags);
     }
 
     @Override
