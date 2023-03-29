@@ -85,6 +85,10 @@ public class CommandTestUtil {
             assertEquals(expectedModel, actualModel);
         } catch (CommandException | ParseException | FileNotFoundException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new AssertionError("File should be selected.", e);
         }
     }
 
