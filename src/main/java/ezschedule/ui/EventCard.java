@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import ezschedule.model.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -15,23 +17,26 @@ import javafx.scene.layout.StackPane;
 public class EventCard extends UiPart<Region> {
 
     private static final String FXML = "EventListCard.fxml";
+    private static final Image CHECK_MARK_IMAGE = new Image("/images/check-mark.png");
 
     public final Event event;
 
     @FXML
     private StackPane cardPane;
     @FXML
-    private Label name;
-    @FXML
-    private Label completed;
-    @FXML
     private Label id;
+    @FXML
+    private Label name;
     @FXML
     private Label date;
     @FXML
     private Label startTime;
     @FXML
     private Label endTime;
+    @FXML
+    private Label completed;
+    @FXML
+    private ImageView checkMark;
 
     /**
      * Creates a {@code EventCode} with the given {@code Event} and index to display.
@@ -42,11 +47,11 @@ public class EventCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         name.setText(event.getName().fullName);
-        completed.setText(event.getCompletedStatus());
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMM, yyyy");
         date.setText(dateTimeFormatter.format(event.getDate().date));
         startTime.setText(event.getStartTime().toString());
         endTime.setText(event.getEndTime().toString());
+        setCompleted(event.isCompleted());
     }
 
     @Override
@@ -65,5 +70,13 @@ public class EventCard extends UiPart<Region> {
         EventCard card = (EventCard) other;
         return id.getText().equals(card.id.getText())
                 && event.equals(card.event);
+    }
+
+    private void setCompleted(boolean isCompleted) {
+        if (isCompleted) {
+            completed.setText("Completed");
+            completed.setStyle("-fx-background-color: #3e7b91; -fx-background-radius: 10;");
+            checkMark.setImage(CHECK_MARK_IMAGE);
+        }
     }
 }

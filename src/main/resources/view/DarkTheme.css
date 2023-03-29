@@ -339,13 +339,9 @@
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
-#resultDisplay {
-    -fx-background-radius: 25;
-    -fx-border-radius: 25;
-}
-
 #resultDisplay .content {
-    -fx-background-color: transparent, #30534d, transparent, #30534d;
+    -fx-background-color: #30534d;
+    -fx-wrap-text: true;
 }
 
 #tags {

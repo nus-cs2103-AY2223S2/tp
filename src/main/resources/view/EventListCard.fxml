@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -43,7 +44,16 @@
                   </Label>
                      <Label fx:id="endTime" styleClass="cell_big_label" text="\$endTime" />
                   <Region HBox.hgrow="ALWAYS" />
-                     <Label fx:id="completed" styleClass="cell_big_label" text="\$completed" />
+                     <Label fx:id="completed" styleClass="cell_big_label">
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </Label>
+                  <ImageView fx:id="checkMark" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="5.0" right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
                </children>
                <padding>
                   <Insets left="30.0" />
