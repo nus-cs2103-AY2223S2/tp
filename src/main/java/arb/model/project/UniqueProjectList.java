@@ -169,6 +169,66 @@ public class UniqueProjectList implements Iterable<Project> {
     }
 
     /**
+     * Returns number of Overdue projects.
+     */
+    public int noOverdueProjects() {
+        int overdueProjects = 0;
+        int projectSize = this.internalList.size();
+        ObservableList<Project> projectList = this.internalList;
+        for (int i = 0; i < projectSize; i++) {
+            if (projectList.get(i).isOverdue()) {
+                overdueProjects++;
+            }
+        }
+        return overdueProjects;
+    }
+
+    /**
+     * Returns number of Done projects.
+     */
+    public int noDoneProjects() {
+        int doneProjects = 0;
+        ObservableList<Project> projectList = this.internalList;
+        int projectSize = this.internalList.size();
+        for (int i = 0; i < projectSize; i++) {
+            if (projectList.get(i).getStatus().getStatus()) {
+                doneProjects++;
+            }
+        }
+        return doneProjects;
+    }
+
+    /**
+     * Returns number of Not Done projects.
+     */
+    public int noNotDoneProjects() {
+        int projectSize = this.internalList.size();
+        ObservableList<Project> projectList = this.internalList;
+        int notDoneProjects = 0;
+        for (int i = 0; i < projectSize; i++) {
+            if (!projectList.get(i).getStatus().getStatus()) {
+                notDoneProjects++;
+            }
+        }
+        return notDoneProjects;
+    }
+
+    /**
+     * Returns contents of list of project.
+     */
+    public String getProjectsContent() {
+        int projectSize = this.internalList.size();
+        ObservableList<Project> projectList = this.internalList;
+        int overdueProjects = noOverdueProjects();
+        int doneProjects = noDoneProjects();
+        int notDoneProjects = noNotDoneProjects();
+        return "Total number of Projects: " + projectSize + "\n"
+                + "Total number of Projects OVERDUE: " + overdueProjects + "\n"
+                + "Total number of Projects DONE: " + doneProjects + "\n"
+                + "Total number of Projects NOT DONE: " + notDoneProjects + "\n";
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Project> asUnmodifiableObservableList() {

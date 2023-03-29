@@ -118,6 +118,7 @@ public class Project {
         this.status.setFalse();
     }
 
+
     /**
      * Links {@code client} to this project.
      */

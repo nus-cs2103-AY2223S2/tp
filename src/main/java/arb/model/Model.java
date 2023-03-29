@@ -214,4 +214,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the tag mapping list */
     ObservableList<TagMapping> getTagMappingList();
+
+    /**
+     * Returns contents of list of project.
+     */
+    String getProjectsContent();
 }
