@@ -3,15 +3,15 @@ layout: page
 title: User Guide
 toc: true
 ---
-* Table of Contents
-{:toc}
-
---------------------------------------------------------------------------------------------------------------------
 ***RIZZ***ipe is a **command-based recipe database** that was designed with **versatile tagging** and **searching**
 features in mind so you can always find the recipe you need! Make use of ***RIZZ***ipe's many features to achieve your
 **culinary rizz**.
+---
 
---------------------------------------------------------------------------------------------------------------------
+* Table of Contents
+{:toc}
+
+---
 ## Quick Start
 Let's get you _rizzed_ up in the fastest way possible!
 
@@ -26,7 +26,9 @@ some sample recipes for you already.
 6. Type commands within the command line interface (CLI) and press enter to execute it. For a list of executable 
 commands, refer to the [Features](#features) Section.
 
+<div style="page-break-after: always;"></div>
 
+---
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -48,8 +50,6 @@ commands, refer to the [Features](#features) Section.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-
-
 </div>
 
 ### Adding a recipe: `add`
@@ -59,6 +59,12 @@ and want to classify it by ingredients? Simply run the `add` command, and follow
 
 Format:
 `add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]...  [i/-n INGREDIENT_NAME [-a INGREDIENT_AMOUNT] [-e ESTIMATED AMOUNT] [-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...]... [s/RECIPE_STEPS]...`
+
+**Example(s) of usage**:
+* `add n/Honey Chicken Rice`
+* `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt`
+* `add n/Peanut Butter Sandwich t/breakfast s/Prepare bread and spread s/Using a knife, spread 2-3 scoops of peanut
+  butter s/Serve`
 
 > :bulb: Tip: A recipe can have any number of steps, tags and ingredients (including 0)!
 >
@@ -70,18 +76,11 @@ Format:
 >
 > If you have multiple inputs for tags, steps or ingredients, treat each input as a separate field (i.e s/Step1 s/step2).
 >
-> Each field does not have to be input in order (/p can come before /d etc.).
->
-> Likewise, ingredient fields do not have to be input in order (-a can come before -n etc.).
+> Similar to parameters, ingredient fields do not have to be input in order (-a can come before -n etc.).
 >
 > However, for steps, please input the steps in the order that they are intended to be performed.
 
-**Example(s) of usage**:
-* `add n/Honey Chicken Rice`
-* `add n/Chicken Noodles d/20 minutes p/1-2 people i/-n chicken thigh -a 300g i/-n noodles i/-n soy sauce -a 2 tablespoons -s salt`
-* `add n/Peanut Butter Sandwich t/breakfast s/Prepare bread and spread s/Using a knife, spread 2-3 scoops of peanut
-  butter s/Serve`
-
+<div style="page-break-after: always;"></div>
 
 ### Listing all recipes: `list`
 
@@ -114,6 +113,11 @@ Format:
 
 i.e. `find name KEYWORD [KEYWORDS]...`, `find tag KEYWORD [KEYWORDS]...`
 
+Example of usage:
+* `find cheese` returns all recipes with the keyword `cheese` in their recipe name
+* `find name prawn tofu` returns all recipes with the keyword `prawn` and/or `tofu` in their names
+* `find tag western` returns all recipes with the tag `western`
+
 > Adding a property behind `find` is optional, and if no property is specified, `find` defaults to filtering by `name`.
 >
 > All keyword queries are case-insensitive. e.g. `chicken` will match `Chicken`
@@ -126,12 +130,6 @@ i.e. `find name KEYWORD [KEYWORDS]...`, `find tag KEYWORD [KEYWORDS]...`
 >
 > Only full words will be matched. e.g. chick will **not** match chicken
 
-Example of usage:
-* `find cheese` returns all recipes with the keyword `cheese` in their recipe name
-* `find name prawn tofu` returns all recipes with the keyword `prawn` and/or `tofu` in their names
-* `find tag western` returns all recipes with the tag `western`
-
-
 ### Deleting a recipe: `delete`
 
 No longer like a certain recipe? Simply delete it from the database by its index!
@@ -139,14 +137,13 @@ No longer like a certain recipe? Simply delete it from the database by its index
 Format:
 `delete INDEX`
 
-> Deletes the dish at the specified `INDEX` of the latest list that was displayed.
->
-> The index **must be a positive integer** 1, 2, 3, …
-
 Example of usage:
 * `list` followed by `delete 2` deletes the 2nd item stored in the recipe book.
 *  `find chicken` followed by `delete 1` will delete the 1st recipe in the displayed results of the find command.
 
+> Deletes the dish at the specified `INDEX` of the latest list that was displayed.
+>
+> The index **must be a positive integer** 1, 2, 3, …
 
 ### Searching for substitutions for an ingredient: `sub`
 
@@ -156,6 +153,9 @@ dish with an alternative ingredient!
 
 Format:
 `sub INGREDIENT_NAME`
+
+Example of usage:
+* `sub chicken` returns a list of suggested substitutions for the ingredient `chicken`
 
 > `sub` searches across your stored recipes and within a preloaded suggested substitutions list to provide you with the most accurate and extensive list of substitutions!
 >
@@ -169,9 +169,6 @@ Format:
 >
 > The returned list of ingredients returned will not contain any duplicates.
 
-Example of usage:
-* `sub chicken` returns a list of suggested substitutions for the ingredient `chicken`
-
 ### Clearing the recipe book: `clear`
 
 Want to change things up and start a new recipe book afresh? Simply run the `clear` command to wipe the memory
@@ -179,7 +176,6 @@ and start afresh!
 
 Format:
 `clear`
-
 
 ### Asking for assistance: `help`
 
@@ -199,6 +195,9 @@ Exits the program and closes the window.
 Format:
 `exit`
 
+---
+
+<div style="page-break-after: always;"></div>
 
 ## Managing the Data
 
