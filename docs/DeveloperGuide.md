@@ -138,18 +138,16 @@ Here's a (partial) class diagram of the `Logic` component:
 </p>
 
 How the `Logic` component works:
-
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. When `Logic` is called upon to execute a command, it uses the `TrackrParser` class to parse the user command.
+1. This results in a `Command` object, which is actually an object of one of its subclasses, for example `AddItemCommand`, which is actually also an object of one of its subclasses, for example `AddOrderCommand`. This specific command will then be executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add an order).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete_order 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete_order 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">
-  :information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteOrderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -160,8 +158,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `TrackrParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddOrderCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddOrderCommand`) which the `TrackrParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddOrderCommandParser`, `DeleteOrderCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 
@@ -215,16 +213,28 @@ Here is how `Task` works:
 This is the class representation for the `Menu` class.
 
 <p align ="center">
-   <img src="images/MenuClassDiagram.svg" width="450" />
+   <img src="images/UpdatedMenuClassDiagram.svg" width="550" />
  </p>
 
 Here is how `Menu` works:
 
 * Each `Menu` contains non-negative and non-zero number of `MenuItem`.
-* Each `MenuItem` contains their description, price and cost (e.g., `ItemName` for menu's item name).
+* Each `MenuItem` contains their description, price, cost and profit (e.g., `ItemName` for menu's item name).
 * The `MenuItem`'s `ItemName` attribute inherit off the corresponding `common` classes (e.g., `ItemName` inherit off `Name`).
+* The value of `ItemProfit` is obtained by taking the value of `ItemPrice` subtracted by the value of `ItemCost`.
 * The `MenuItem` object have its `List` called `Menu` and `UniqueList`.
 * The `MenuItem` is an attribute of `Order`
+
+**Aspect: Choice to provide a menu package:**
+
+* **Option 1 (our choice):** Separating it into a separate `menu` package.
+    * Advantage 1: Reduce the fuss of keying in the same name of the menu item repetitively.
+    * Advantage 2: Less repeated code
+    * Disadvantage: More time required to implement.
+
+* **Option 2:** Add item name as an attribute in the `Order` class.
+    * Advantage: Convenient to implement.
+    * Disadvantage: Higher chance of conflicts with another developer working on `Order` class.
 
 This is the class representation for the `Order` class.
 
@@ -235,14 +245,14 @@ This is the class representation for the `Order` class.
 Here is how `Order` works:
 
 * Each `OrderList` contains non-negative and non-zero number of `Order`.
-* Each `Order` contains a menu item, customer, quantity, status and deadline (e.g., `OrderStatus` for order's status).
+* Each `Order` contains a menu item(from a locally stored menu), customer, quantity, status and deadline (e.g., `OrderStatus` for order's status).
 * The menu item and customer each contains attributes as mentioned in their respective section above on how `Menu` and `Customer` works.
 * The `Order`'s `OrderDeadlne` and `OrderStatus` attribute inherit off the corresponding `common` classes (e.g., `OrderDeadline` inherit off `Deadline`).
 * The `Order` object have its `List` called `OrderList` and `UniqueList`.
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/storage/Storage.java)
 
 <p align="center">
   <img src="images/StorageClassDiagram.svg" width="750" />
@@ -256,7 +266,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `trackr.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -265,6 +275,76 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes the details on how the common commands are implemented.
 
 The commands would be in the format `<action>XYZCommand`, where `XYZ` represents suppliers, customers, orders, menu items and tasks while `action` represents the action of the command.
+
+### AddXYZCommand
+
+The `add` command creates and add object `XYZ` into `XYZList` and `FilteredXYZList`.It also saves into the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
+
+The keywords that can be provided are the attributes as seen in the corresponding `XYZ`'s class diagram.
+For example, `n/` would be followed by a task name for `AddTaskCommand` and order name for `AddSupplierCommand`.
+
+The parser for the `add` command would extract out the arguments corresponding to each particular field.
+
+The following activity diagram summarizes what happens when the user executes the `add` command.
+
+ <p align="center">
+     <img src="images/AddCommandActivityDiagram.svg">
+ </p>
+
+#### Why is it implemented this way
+
+The `AddXYZCommand` is an improved version of the original AB3 `AddCommand` by implementing into a abstract class -`AddItemCommand`.
+This reduces repeated lines of code and improves ease of implementation for future commands that require adding an item to a list.
+
+### DeleteXYZCommand
+
+The `delete` command removes an `XYZ` from internal `FilteredXYZList`.
+
+The command only accepts 1 argument without any prefixes. The argument corresponds to the index of `XYZ` in the `FilteredXYZList` that the user wishes to delete using a one-based index.
+
+The parser for `delete` command extracts the index found in the arguments. If the argument is valid, then zero-based index is used to remove `XYZ` from the `XYZList`.
+
+The following activity diagram summarizes what happens when the user executes the `delete` command.
+
+ <p align="center">
+     <img src="images/DeleteCommandActivityDiagram.svg">
+ </p>
+
+#### Why is it implemented this way
+
+The `DeleteXYZCommand` is an improved version of the original AB3 `DeleteCommand` by implementing into a abstract class -`DeleteItemCommand`.
+This reduces repeated lines of code and improves ease of implementation for future commands that require removing an item from a list.
+
+### Edit feature
+
+The `edit` command edits item `XYZ` from the internal `XYZList`.
+
+This command requires user to key in the index of the item they wish to edit.
+
+Edit supplier, edit order and edit task features are implemented using the same edit mechanism as described in this section.
+
+The `EditXYZCommandParser#parse()` is used to parse the given command.
+
+If the given command is valid, an `EditXYZCommand` will be returned and `EditXYZCommand#execute()` will then be called.
+
+`EditXYZCommand#execute()` will first retrieve that latest filtered XYZ list from the model and check if the index given is valid.
+
+If the given index is valid, item at given index will be retrieved. A copy of the item retrieved will be made and edited accordingly.
+
+If changes to the original item is made and edited item is not the same as another existing item in the list,
+the edited item is saved to the filtered list and `EditXYZCommand#execute()` will return the `CommandResult`
+
+Lastly, Changes made are saved to local data and success message will be shown.
+
+ <p align="center">
+    <img src="images/EditCommandActivityDiagram.svg" width="900" />
+</p>
+
+#### Why is it implemented this way
+
+The `EditXYZCommand` is an improved version of the original AB3 `EditCommand` by implementing into a abstract class -`EditItemCommand`.
+This reduces repeated lines of code and improves ease of implementation for future commands that require editing an item in a list.
+
 
 ### FindXYZCommand
 
@@ -283,34 +363,25 @@ The following activity diagram summarizes what happens when the user executes th
     <img src="images/FindCommandActivityDiagram.svg">
 </p>
 
-### AddXYZCommand
+#### Why is it implemented this way
 
-The `add` command creates and add object `XYZ` into `XYZList` and `FilteredXYZList`.It also saves into the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
+The `FindXYZCommand` is an improved version of the original AB3 `FindCommand` by implementing into a abstract class -`FindItemCommand`.
+This reduces repeated lines of code and improves ease of implementation for future commands that require finding an item in a list.
+The abstract class `ItemDescriptor` stores the details of an item. It provides easier implementation for `XYZContainsKeywordPredicate` classes.
 
-The keywords that can be provided are the attributes as seen in the corresponding `XYZ`'s class diagram.
-For example, `n/` would be followed by a task name for `AddTaskCommand` and order name for `AddSupplierCommand`.
+### ListXYZCommand
 
-The parser for the `add` command would extract out the arguments corresponding to each particular field.
+The `list` command lists all the `XYZ` objects in the internal `FilteredXYZList`.
 
-The following activity diagram summarizes what happens when the user executes the `add` command.
+The command retrieves all the `XYZ` objects from the `XYZList` and places them in the `FilteredXYZList`.
 
- <p align="center">
-     <img src="images/AddCommandActivityDiagram.svg">
- </p>
+The `FilteredXYZList` is then updated to have all `XYZ` objects, it will then to shown to the user.
 
-### DeleteXYZCommand
+The following activity diagram summarizes what happens when the user executes the `list` command.
 
-The `delete` command removes an `XYZ` from internal `FilteredXYZList`.
-
-The command only accepts 1 argument without any prefixes. The argument corresponds to the index of `XYZ` in the `FilteredXYZList` that the user wishes to delete using a one-based index.
-
-The parser for `delete` command extracts the index found in the arguments. If the argument is valid, then zero-based index is used to remove `XYZ` from the `XYZList`.
-
-The following activity diagram summarizes what happens when the user executes the `delete` command.
-
- <p align="center">
-     <img src="images/DeleteCommandActivityDiagram.svg">
- </p>
+<p align="center">
+    <img src="images/ListCommandActivityDiagram.svg">
+</p>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -375,7 +446,7 @@ Step 6. The user executes `clear`, which calls `Model#commitTrackr()`. Since the
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<img src="images/CommitActivityDiagram.svg" width="250" />
 
 #### Design considerations:
 
