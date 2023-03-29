@@ -1,5 +1,7 @@
 package seedu.dengue.storage;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -25,7 +27,7 @@ public class MemoryStackTest {
         for (int i = 0; i < 20; i++) {
             int newInt = random.nextInt(BOUND);
             memoryStack.push(newInt);
-            assert(memoryStack.peek() == newInt);
+            assertTrue(memoryStack.peek() == newInt);
         }
 
     }
@@ -37,7 +39,7 @@ public class MemoryStackTest {
         for (int i = 0; i < 20; i++) {
             memoryStack.push(random.nextInt(BOUND));
         }
-        assert(first == memoryStack.removeOld());
+        assertTrue(first == memoryStack.removeOld());
     }
 
     @Test
@@ -50,9 +52,9 @@ public class MemoryStackTest {
         }
         int size = integers.size();
         for (int i = size - 1; i >= 0; i--) {
-            assert(memoryStack.temporaryPop() == integers.get(i));
+            assertTrue(memoryStack.temporaryPop() == integers.get(i));
         }
-        assert(memoryStack.getStorage().size() == size);
+        assertTrue(memoryStack.getStorage().size() == size);
     }
 
     @Test
@@ -69,7 +71,7 @@ public class MemoryStackTest {
         }
         for (int x : integers) {
             memoryStack.pushOneFromTemporaryPop();
-            assert(memoryStack.peek() == x);
+            assertTrue(memoryStack.peek() == x);
         }
     }
 }
