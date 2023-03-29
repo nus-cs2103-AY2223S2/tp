@@ -4,13 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.logging.Logger;
 
-import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.category.Category;
 import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.category.UniqueCategoryList;
@@ -215,6 +212,10 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
 
     public void clearCategory() {
         categories.clear();
+    }
+
+    public void clearRecurringExpense() {
+        recurringGenerators.clear();
     }
 
     /**

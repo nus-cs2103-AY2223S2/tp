@@ -3,14 +3,17 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.time.LocalDate;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.RecurringExpenseManager;
 import seedu.address.model.expense.RecurringExpenseType;
 import seedu.address.model.util.StorageUtility;
 
-import java.time.LocalDate;
-
+/**
+ * Jackson-friendly version of {@link RecurringExpenseManager}.
+ */
 public class JsonAdaptedRecurringExpenseManager {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Recurring Expense Manager's field is missing!";
 
@@ -22,6 +25,16 @@ public class JsonAdaptedRecurringExpenseManager {
     private final String endDate;
     private final String recurringExpenseType;
 
+    /**
+     * Constructs a {@code JsonAdaptedRecurringExpenseManager} with the given category details.
+     * @param expenseName Name of the expense.
+     * @param expenseAmount Amount of the expense.
+     * @param expenseCategory Category of the expense.
+     * @param nextExpenseDate The next date at which the expense will be charged.
+     * @param startDate The starting date at which the recurring expense was first added.
+     * @param endDate The ending date at which the recurring expense will end.
+     * @param recurringExpenseType Frequency-interval of which the expense will be added.
+     */
     @JsonCreator
     public JsonAdaptedRecurringExpenseManager(@JsonProperty("expenseName") String expenseName,
                                @JsonProperty("expenseAmount") String expenseAmount,
@@ -39,6 +52,10 @@ public class JsonAdaptedRecurringExpenseManager {
         this.recurringExpenseType = recurringExpenseType;
     }
 
+    /**
+     * Converts a given {@code RecurringExpenseManager} into this class for Jackson use.
+     * @param source future changes to this will not affect the created {@code JsonAdaptedRecurringExpenseManager}
+     */
     public JsonAdaptedRecurringExpenseManager(RecurringExpenseManager source) {
         this.expenseName = source.getExpenseName();
         this.expenseAmount = Double.toString(source.getExpenseAmount());

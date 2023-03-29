@@ -1,45 +1,48 @@
 package seedu.address.model.expense;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 /**
  * Represents a List of Recurring Expenses in the Expense Tracker.
  */
 public class RecurringExpenseList {
 
-    Logger logger = Logger.getLogger("test");
     private final ObservableList<RecurringExpenseManager> recurringExpenseList = FXCollections.observableArrayList();
 
     private final ObservableList<RecurringExpenseManager> internalUnmodifiableList = FXCollections
             .unmodifiableObservableList(recurringExpenseList);
 
-    /*
-    public RecurringExpenseList() {
-        recurringExpenseList = new ArrayList<>();
-    }
-    */
-
+    /**
+     * Adds a recurring expense to the internal list of recurring expenses.
+     * @param recurringExpense Recurring expense to add.
+     */
     public void addRecurringExpense(RecurringExpenseManager recurringExpense) {
         recurringExpenseList.add(recurringExpense);
 
     }
 
+    /**
+     * Removes a recurring expense from the internal list of recurring expenses.
+     * @param recurringExpense Recurring expense to remove.
+     */
     public void removeRecurringExpense(RecurringExpenseManager recurringExpense) {
         recurringExpenseList.remove(recurringExpense);
     }
+
 
     public ObservableList<RecurringExpenseManager> getRecurringExpenseList() {
         return recurringExpenseList;
     }
 
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}
+     * @return The unmodifiable list.
+     */
     public ObservableList<RecurringExpenseManager> asUnmodifiableList() {
         return this.internalUnmodifiableList;
     }
@@ -66,6 +69,11 @@ public class RecurringExpenseList {
         return recurringExpenseList.size();
     }
 
+    /**
+     * Returns true if the list contains an equivalent recurring expense as the given argument.
+     * @param recurringExpense Recurring expense to be compared to
+     * @return Boolean depicting if the recurring expense is present in the list.
+     */
     public boolean contains(RecurringExpenseManager recurringExpense) {
         return recurringExpenseList.contains(recurringExpense);
     }
@@ -78,6 +86,9 @@ public class RecurringExpenseList {
         return totalAmount;
     }
 
+    /**
+     * Delete all recurring expense.
+     */
     public void clear() {
         recurringExpenseList.clear();
     }
