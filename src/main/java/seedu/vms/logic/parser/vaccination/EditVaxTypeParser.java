@@ -3,6 +3,7 @@ package seedu.vms.logic.parser.vaccination;
 import seedu.vms.commons.core.Retriever;
 import seedu.vms.logic.commands.vaccination.EditVaxTypeCommand;
 import seedu.vms.logic.parser.ArgumentMultimap;
+import seedu.vms.logic.parser.CliSyntax;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.vaccination.VaxType;
@@ -20,6 +21,9 @@ public class EditVaxTypeParser extends VaxTypeBuilderParser {
     public EditVaxTypeCommand parse(ArgumentMultimap argsMap) throws ParseException {
         Retriever<String, VaxType> retriever = ParserUtil.parseVaxRetriever(argsMap.getPreamble());
         VaxTypeBuilder builder = parseBuilder(argsMap);
-        return new EditVaxTypeCommand(retriever, builder);
+        boolean isSet = argsMap.getValue(CliSyntax.PREFIX_SET)
+                .map(input -> ParserUtil.parseBoolean(input))
+                .orElse(false);
+        return new EditVaxTypeCommand(retriever, builder, isSet);
     }
 }
