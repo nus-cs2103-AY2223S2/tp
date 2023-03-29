@@ -18,7 +18,7 @@ public class BusinessSize {
      * @param businessSize A valid address.
      */
     public BusinessSize(String businessSize) {
-        this.value = String.valueOf(businessSize);
+        this.value = String.valueOf(businessSize.strip());
     }
 
     public int getNumericValue() {
