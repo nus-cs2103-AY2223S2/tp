@@ -2,6 +2,7 @@ package seedu.dengue.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_RANGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_STARTDATE;
@@ -66,12 +67,14 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 String date = argMultimap.getValue(PREFIX_DATE).get();
                 return new DeleteCommand(new Date(date));
             } else {
-                Optional<Date> startDate = ParserUtil.parseOptionalDate(
-                        argMultimap.getValue(PREFIX_STARTDATE));
-                Optional<Date> endDate = ParserUtil.parseOptionalDate(
-                        argMultimap.getValue(PREFIX_ENDDATE));
-                // TODO: add range validation
-                Range<Date> range = new Range<>(new StartDate(startDate), new EndDate(endDate));
+                StartDate startDate = new StartDate(ParserUtil.parseOptionalDate(argMultimap
+                        .getValue(PREFIX_STARTDATE)));
+                EndDate endDate = new EndDate(ParserUtil.parseOptionalDate(argMultimap
+                        .getValue(PREFIX_ENDDATE)));
+                if (!startDate.isBefore(endDate)) {
+                    throw new ParseException(MESSAGE_INVALID_RANGE);
+                }
+                Range<Date> range = new Range<>(startDate, endDate);
                 return new DeleteCommand(range);
             }
         } catch (ParseException pe) {

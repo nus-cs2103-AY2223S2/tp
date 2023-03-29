@@ -10,7 +10,7 @@ import seedu.dengue.model.person.Person;
  */
 public class StartAge implements Start<Age> {
 
-    private final Optional<Age> age;
+    public final Optional<Age> age;
 
     /**
      * Constructs an {@code Age}.
@@ -23,9 +23,9 @@ public class StartAge implements Start<Age> {
 
 
     /**
-     * Checks for whether the end value of the age range is before the age of the person.
+     * Checks for whether the start value of the age range is before the age of the person.
      *
-     * @param p
+     * @param p A Person.
      */
     public boolean isBefore(Person p) {
         if (!age.isPresent()) {
@@ -33,6 +33,20 @@ public class StartAge implements Start<Age> {
         }
         int a1 = Integer.parseInt(age.get().value);
         int a2 = Integer.parseInt(p.getAge().value);
+        return a1 <= a2;
+    }
+
+    /**
+     * Checks for whether the start value of the age range is before the given end age.
+     *
+     * @param end An EndAge.
+     */
+    public boolean isBefore(EndAge end) {
+        if (!age.isPresent()) {
+            return true;
+        }
+        int a1 = Integer.parseInt(age.get().value);
+        int a2 = Integer.parseInt(end.age.get().value);
         return a1 <= a2;
     }
 }

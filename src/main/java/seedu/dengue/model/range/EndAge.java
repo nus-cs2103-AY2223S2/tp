@@ -12,7 +12,7 @@ import seedu.dengue.model.person.Person;
 public class EndAge implements End<Age> {
 
     private static final AgeComparator AGE_COMPARATOR = new AgeComparator();
-    private final Optional<Age> age;
+    public final Optional<Age> age;
 
     /**
      * Constructs an {@code Age}.
@@ -26,12 +26,26 @@ public class EndAge implements End<Age> {
     /**
      * Checks for whether the end value of the age range is after the age of the person.
      *
-     * @param p
+     * @param p A Person.
      */
     public boolean isAfter(Person p) {
         if (!age.isPresent()) {
             return true;
         }
         return AGE_COMPARATOR.compare(age.get(), p.getAge()) >= 0;
+    }
+
+    /**
+     * Checks for whether the start value of the age range is before the given end age.
+     *
+     * @param start A StartAge.
+     */
+    public boolean isAfter(StartAge start) {
+        if (!age.isPresent()) {
+            return true;
+        }
+        int a1 = Integer.parseInt(age.get().value);
+        int a2 = Integer.parseInt(start.age.get().value);
+        return a1 >= a2;
     }
 }

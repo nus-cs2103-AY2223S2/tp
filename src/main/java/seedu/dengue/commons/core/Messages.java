@@ -9,6 +9,7 @@ public class Messages {
             + "Valid commands: add, list, edit, find, delete, clear, overview, help, exit";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format!\n%1$s";
     public static final String MESSAGE_INVALID_POSTAL = "Invalid postal code!";
+    public static final String MESSAGE_INVALID_RANGE = "Invalid range!";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is too big!";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
 
