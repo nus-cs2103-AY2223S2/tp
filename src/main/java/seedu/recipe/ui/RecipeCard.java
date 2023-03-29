@@ -45,7 +45,7 @@ public class RecipeCard extends UiPart<Region> {
         this.recipe = recipe;
         id.setText(displayedIndex + ". ");
         if (recipe.isStarred()) {
-            title.setText(recipe.getTitle().title + "★" + " [Price: $" + recipe.getCost() + "]");
+            title.setText(recipe.getTitle().title + " ★" + " [Price: $" + recipe.getCost() + "]");
         } else {
             title.setText(recipe.getTitle().title + " [Price: $" + recipe.getCost() + "]");
         }
