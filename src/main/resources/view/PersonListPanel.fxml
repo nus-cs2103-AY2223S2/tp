@@ -5,12 +5,12 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <TableView fx:id="table">
+   <TableView id="tableView" fx:id="table">
       <columns>
          <TableColumn fx:id="index" editable="false" style="-fx-alignment: CENTER;" minWidth="80.0" maxWidth="80.0" prefWidth="80.0" text="Id" />
          <TableColumn fx:id="name" editable="false" text="Name" />
          <TableColumn fx:id="photo" editable="false" style="-fx-alignment: CENTER;" text="Photo" />
-         <TableColumn fx:id="telegram" text="Telegram/Phone" />
+         <TableColumn fx:id="telegram" style="-fx-alignment: CENTER;" text="Telegram/Phone" />
          <TableColumn fx:id="email" text="NUS Email" />
          <TableColumn fx:id="address" text="Address" />
          <TableColumn editable="false" text="Statistics">
