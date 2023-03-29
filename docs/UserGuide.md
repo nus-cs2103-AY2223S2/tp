@@ -137,7 +137,7 @@ Important information to note which might negatively impact your experience in u
 
 Shows a message explaining how you can access our user guide.
 
-Format: `help` or Press `F1`
+Format: `help`, `h` or Press `F1`
 
 ![help](images/UG/help.png)
 
@@ -145,7 +145,7 @@ Format: `help` or Press `F1`
 
 Shows a list of all pets stored in your PetPal.
 
-Format: `list`
+Format: `list` or `l`
 
 ![list](images/UG/list.png)
 
@@ -286,14 +286,18 @@ and address to `21 Beach Rd`
 * `edit 3 t/Dog`. Updates the third pet entry's tag to `Dog`, take note that if the third entry has an existing tag,
 the edit will override the existing tag
 
-#### Changing the cost : `changecost`
+#### Changing the cost : `changecost` or `cc`
 
 Changes the parameters for cost calculation for each dog
+Cost is updated every 10 seconds and is calculated based on `FLAT_RATE + (TIMESTAMP * RATE)`.
 
 Format: `changecost INDEX [RATE] [FLAT_RATE]`
 
 ![update](images/UG/changecost.png)
 Example given `changecost 1 0.1 0.5`
+Additional example:
+* `cc 2 1.0 1.5`
+
 
 ### Deletion
 
@@ -318,12 +322,24 @@ Examples:
 
 #### Archiving a pet: `archive`
 
-Archives the specified pet into the `archive.json` file in the `data` folder
-This command can be undone
+Archives the specified pet into the `archive.json` file in the `data` folder.
+Note that:
+* The specified pet will be removed from your PetPal.
+* The index is based on the **currently displayed** PetPal list, which might change depending on prior commands used
+  (e.g. `find`)
+
+<div markdown="block" class="alert alert-block alert-danger">
+
+* :heavy_exclamation_mark: **Caution:**
+The current iteration of PetPal **DOES NOT** support `undo` on the `archive` command, undoing an archive command currently
+will cause issues with re-archiving the same Pet
+</div>
 
 Format: `archive INDEX`
 
 ![archive](images/UG/archive.png)
+Example:
+* `delete 3` deletes the third pet in the currently displayed list in PetPal
 
 Clears all entries from PetPal.json.
 Format: `clear`
@@ -412,8 +428,17 @@ If you wish to transfer only 1 of the files over, repeat the same steps, and rep
 
 </div>
 
-**Q**: How do I view the entire pet list after a `find` command?<br>
+**Q**: How do I view the entire pet list after a `find` command?
+
 **A**: Run `list` to view the entire unfiltered list.
+
+
+**Q**: When I run the `archive` command, nothing happens
+
+**A**: If you have previously run `undo` on an `archive` command on that specific Pet, just delete that pet entry from the PetPal
+
+**Recommended** to double-check that the pet entry exists on the `data/archive.json` file **before** deleting the pet entry from PetPal
+
 
 If you have additional questions that is not present in the User Guide, feel free to contact us via our email `contact@petpal.com`
 or raise an issue in our [github](https://github.com/AY2223S2-CS2103T-T14-2/tp/issues)
@@ -440,20 +465,19 @@ or raise an issue in our [github](https://github.com/AY2223S2-CS2103T-T14-2/tp/i
 
 ## Command summary
 
-======
-| Action          | Format, Examples                                                                                                                                                                                                                                                        | Shortcut       |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
-| **Help**        | `help`                                                                                                                                                                                                                                                                  | **PRESS** `F1` |
-| **List**        | `list`                                                                                                                                                                                                                                                                  |                |
-| **Add**         | `add o/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ts/TIME_STAMP [d/DEADLINE] [t/TAG...]`<br> e.g `Example: add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua` |                |
-| **Edit**        | `clear`                                                                                                                                                                                                                                                                 |                |
-| **Delete**      | `delete INDEX`<br>e.g. `delete 2`                                                                                                                                                                                                                                       |                |
-| **Remind**      | `remind`                                                                                                                                                                                                                                                                |                |
-| **Find**        | `find n/PET_NAME`<br>e.g `find Milo`                                                                                                                                                                                                                                    |                |
-| **Undo**        | `undo`                                                                                                                                                                                                                                                                  |                |
-| **Change Cost** | `changecost INDEX RATE FLAT_COST`<br>e.g. `changecost 1 0.1 0.5`                                                                                                                                                                                                        ||
+| Action          | Format, Examples                                                                                                                                                                                                                                                        | Shortcut              |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|
+| **Help**        | `help`                                                                                                                                                                                                                                                                  | `h` or **PRESS** `F1` |
+| **List**        | `list`                                                                                                                                                                                                                                                                  | `l`                   |
+| **Add**         | `add o/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ts/TIME_STAMP [d/DEADLINE] [t/TAG...]`<br> e.g `Example: add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 2023-03-27 21:09:09 t/Dog t/Chihuahua` |                       |
+| **Edit**        | `clear`                                                                                                                                                                                                                                                                 |                       |
+| **Delete**      | `delete INDEX`<br>e.g. `delete 2`                                                                                                                                                                                                                                       |                       |
+| **Remind**      | `remind`                                                                                                                                                                                                                                                                |                       |
+| **Find**        | `find n/PET_NAME`<br>e.g `find Milo`                                                                                                                                                                                                                                    |                       |
+| **Undo**        | `undo`                                                                                                                                                                                                                                                                  |                       |
+| **Change Cost** | `changecost INDEX RATE FLAT_COST`<br>e.g. `changecost 1 0.1 0.5`                                                                                                                                                                                                        | `cc`                  |
 | **Archive**     | `archive INDEX`<br>e.g. `archive 1`                                                                                                                                                                                                                                     ||                                                                                                                                                                                                                                     
 | **Clear**       | `clear`                                                                                                                                                                                                                                                                 ||
-| **Exit**        | `exit`                                                                                                                                                                                                                                                                  |                |
+| **Exit**        | `exit`                                                                                                                                                                                                                                                                  |                       |
 
 [Return to Table of Contents](#table-of-contents)

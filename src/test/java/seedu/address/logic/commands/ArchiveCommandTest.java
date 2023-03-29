@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPetAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PET;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PET;
+import static seedu.address.testutil.TypicalPets.getTypicalArchive;
 import static seedu.address.testutil.TypicalPets.getTypicalPetPal;
 
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,7 @@ import seedu.address.model.pet.Pet;
  * {@code ArchiveCommand}.
  */
 public class ArchiveCommandTest {
-    private Model model = new ModelManager(getTypicalPetPal(), getTypicalPetPal(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPetPal(), getTypicalArchive(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -56,8 +57,8 @@ public class ArchiveCommandTest {
 
         String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_PET_SUCCESS, petToArchive);
         Model expectedModel = new ModelManager(model.getPetPal(), model.getPetPalArchive(), new UserPrefs());
+
         expectedModel.archivePet(petToArchive);
-        showNoPet(expectedModel);
 
         assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
     }
