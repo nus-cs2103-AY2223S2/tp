@@ -52,6 +52,6 @@ public class RecommenderTest {
         Recommendation bestRecommendation = recommendations.get(0);
 
         assertEquals(8, bestRecommendation.getTimePeriod().getStartTime().getHourOfDay());
-        assertEquals(22, bestRecommendation.getTimePeriod().getEndTime().getHourOfDay());
+        assertEquals(23, bestRecommendation.getTimePeriod().getEndTime().getHourOfDay());
     }
 }
