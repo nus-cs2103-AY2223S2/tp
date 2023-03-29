@@ -20,6 +20,12 @@ public class UnitTest {
     }
 
     @Test
+    public void isUnitNotLengthy() {
+        assertFalse(Unit.isUnitNotLengthy("abcdefghijklm"));
+        assertTrue(Unit.isUnitNotLengthy("abcd"));
+    }
+
+    @Test
     public void isValid() {
         // null Unit number
         assertThrows(NullPointerException.class, () -> Unit.isValid(null));
