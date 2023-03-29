@@ -6,10 +6,10 @@ import static seedu.internship.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.internship.logic.commands.CopyCommand;
 import seedu.internship.logic.commands.AddCommand;
 import seedu.internship.logic.commands.ClearCommand;
 import seedu.internship.logic.commands.Command;
+import seedu.internship.logic.commands.CopyCommand;
 import seedu.internship.logic.commands.DeleteCommand;
 import seedu.internship.logic.commands.EditCommand;
 import seedu.internship.logic.commands.ExitCommand;
