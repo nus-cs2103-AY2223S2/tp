@@ -11,6 +11,22 @@ toc: true
 features in mind so you can always find the recipe you need! Make use of ***RIZZ***ipe's many features to achieve your
 **culinary rizz**.
 
+--------------------------------------------------------------------------------------------------------------------
+## Quick Start
+Let's get you _rizzed_ up in the fastest way possible!
+
+1. Ensure you have Java `11` or above installed in you computer.
+2. Download the latest `recipebook.jar` [here](https://github.com/AY2223S2-CS2103T-T13-2/tp/releases)
+3. Copy the file to the folder you want to use as the _home folder_ for ***RIZZ***ipe.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar
+   recipebook.jar` command to run the application.
+5. A GUI similar to the below should appear in a few seconds. Note that our experienced _Rizzers_ have crafted
+some sample recipes for you already.
+![UI QuickStart](images/UiQuickStart.png) 
+6. Type commands within the command line interface (CLI) and press enter to execute it. For a list of executable 
+commands, refer to the [Features](#features) Section.
+
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -48,7 +64,7 @@ Format:
 >
 > :bulb: Tip: It is only compulsory to include the **recipe name** when you first add the recipe into recipe book!
 >
-> :bulb: Tip: When adding an ingredient, it is only compulsory to include the **ingredient name**. However, you can also add in additional details such as amount (**RECCOMENDED**) and substitutions etc.!
+> :bulb: Tip: When adding an ingredient, it is only compulsory to include the **ingredient name**. However, you can also add in additional details such as amount (**RECOMMENDED**) and substitutions etc.!
 >
 > Although optional, we do however suggest adding in the other fields if possible for your own future reference.
 >
