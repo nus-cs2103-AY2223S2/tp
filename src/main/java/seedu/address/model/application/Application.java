@@ -8,28 +8,32 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+
 
 /**
  * Represents an Application in the internship book.
  * Guarantees: details are present and not null, field values are validated, immutable.
- * Comment to let merge operation detect file. To be deleted subsequently.
  */
 public class Application {
     private final Role role;
     private final CompanyName companyName;
     private final CompanyEmail companyEmail;
     private final Status status;
+    private final Task task;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Application(Role role, CompanyName companyName, CompanyEmail companyEmail, Status status, Set<Tag> tags) {
+    public Application(Role role, CompanyName companyName, CompanyEmail companyEmail,
+                       Status status, Task task, Set<Tag> tags) {
         requireAllNonNull(role, companyName, companyEmail, status, tags);
         this.role = role;
         this.companyName = companyName;
         this.companyEmail = companyEmail;
         this.status = status;
+        this.task = task;
         this.tags.addAll(tags);
     }
 
@@ -47,6 +51,14 @@ public class Application {
 
     public Status getStatus() {
         return this.status;
+    }
+
+    public Task getTask() {
+        return this.task;
+    }
+
+    public boolean hasTask() {
+        return getTask() != null;
     }
 
     /**
@@ -76,7 +88,8 @@ public class Application {
         return otherApplication.getRole().equals(getRole())
                 && otherApplication.getCompanyName().equals(getCompanyName())
                 && otherApplication.getCompanyEmail().equals(getCompanyEmail())
-                && otherApplication.getTags().equals(getTags());
+                && otherApplication.getTags().equals(getTags())
+                && otherApplication.hasTask() == hasTask();
     }
 
     @Override

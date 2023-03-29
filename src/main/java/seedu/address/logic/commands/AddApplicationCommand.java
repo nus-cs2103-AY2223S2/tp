@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_TAG;
 
+import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.application.Application;
@@ -16,7 +17,7 @@ import seedu.address.model.application.Application;
  */
 public class AddApplicationCommand extends ApplicationCommand {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add-app";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an application to the internship book. "
             + "Parameters: "
@@ -28,7 +29,7 @@ public class AddApplicationCommand extends ApplicationCommand {
             + PREFIX_ROLE + "SWE Intern "
             + PREFIX_COMPANY_NAME + "Goggle "
             + PREFIX_COMPANY_EMAIL + "gogglehiring@goggletalents.com "
-            + PREFIX_STATUS + "interested"
+            + PREFIX_STATUS + "interested "
             + PREFIX_TAG + "highSalary "
             + PREFIX_TAG + "bestWelfare";
 
@@ -39,7 +40,7 @@ public class AddApplicationCommand extends ApplicationCommand {
     private final Application toAdd;
 
     /**
-     * Creates an AddApplicationCommand to add the specified {@code Application}
+     * Creates an AddApplicationCommand to add the specified {@code Application}.
      */
     public AddApplicationCommand(Application application) {
         requireNonNull(application);
@@ -47,14 +48,15 @@ public class AddApplicationCommand extends ApplicationCommand {
     }
 
     @Override
-    public CommandResult execute(ApplicationModel model) throws CommandException {
+    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
-
         if (model.hasApplication(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICATION);
         }
 
         model.addApplication(toAdd);
+        model.commitInternshipBookChange();
+        commandHistory.setLastCommandAsModify();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

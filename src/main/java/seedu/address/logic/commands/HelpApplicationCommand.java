@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import seedu.address.logic.CommandHistory;
 import seedu.address.model.ApplicationModel;
 
 /**
@@ -15,7 +16,7 @@ public class HelpApplicationCommand extends ApplicationCommand {
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
     @Override
-    public CommandResult execute(ApplicationModel model) {
+    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) {
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
 }

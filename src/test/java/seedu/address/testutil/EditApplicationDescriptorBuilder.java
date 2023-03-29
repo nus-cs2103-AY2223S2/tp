@@ -7,6 +7,9 @@ import seedu.address.model.application.CompanyEmail;
 import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.Role;
 import seedu.address.model.application.Status;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Task;
 
 /**
  * A utility class to help with building EditApplicationDescriptor objects.
@@ -32,6 +35,7 @@ public class EditApplicationDescriptorBuilder {
         descriptor.setCompanyName(application.getCompanyName());
         descriptor.setCompanyEmail(application.getCompanyEmail());
         descriptor.setStatus(application.getStatus());
+        descriptor.setTask(application.getTask());
     }
 
     /**
@@ -63,6 +67,14 @@ public class EditApplicationDescriptorBuilder {
      */
     public EditApplicationDescriptorBuilder withStatus(String status) {
         descriptor.setStatus(new Status(status));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Task} of the {@code EditApplicationDescriptor} that we are building.
+     */
+    public EditApplicationDescriptorBuilder withTask(String deadline, String description) {
+        descriptor.setTask(new Task(new Deadline(deadline), new Description(description)));
         return this;
     }
 

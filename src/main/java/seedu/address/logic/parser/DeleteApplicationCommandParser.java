@@ -7,13 +7,13 @@ import seedu.address.logic.commands.DeleteApplicationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteApplicationCommand object
+ * Parses input arguments and creates a new DeleteApplicationCommand object.
  */
 public class DeleteApplicationCommandParser implements ApplicationParser<DeleteApplicationCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteApplicationCommand
      * and returns a DeleteApplicationCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public DeleteApplicationCommand parse(String args) throws ParseException {
         try {

@@ -80,4 +80,6 @@ deactivate AddApplicationCommand
 
 [<--ApplicationLogicManager
 deactivate ApplicationLogicManager
+
 @enduml
+

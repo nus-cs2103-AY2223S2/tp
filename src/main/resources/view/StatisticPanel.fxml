@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.chart.PieChart?>
+
+<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+      minHeight="105" style="-fx-background-color: #d9d9d9;-fx-background-radius:20px;" spacing="50">
+    <VBox fx:id="statsText" spacing="5">
+        <padding>
+            <Insets bottom="5" left="20" right="5" top="10" />
+        </padding>
+        <Label fx:id="totalNum" text="\$totalNum" styleClass="cell_big_label" />
+        <HBox alignment="CENTER_LEFT" spacing="5">
+            <Label fx:id="interestedLabel" alignment="CENTER" text="Interested" style="-fx-background-color: #91d7ff"/>
+            <Label fx:id="interestedNum" styleClass="cell_small_label" text="\$interestedNum" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="5">
+            <Label fx:id="appliedLabel" alignment="CENTER" text="Applied" style="-fx-background-color: #ffbd59" />
+            <Label fx:id="appliedNum" styleClass="cell_small_label" text="\$appliedNum" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="5">
+            <Label fx:id="offeredLabel" alignment="CENTER" text="Offered" style="-fx-background-color: #5bb288" />
+            <Label fx:id="offeredNum" styleClass="cell_small_label" text="\$offeredNum" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="5">
+            <Label fx:id="rejectedLabel" alignment="CENTER" text="Rejected" style="-fx-background-color: #ff8787" />
+            <Label fx:id="rejectedNum" styleClass="cell_small_label" text="\$rejectedNum" />
+        </HBox>
+    </VBox>
+    <PieChart fx:id="pieChart"/>
+</VBox>
+
+

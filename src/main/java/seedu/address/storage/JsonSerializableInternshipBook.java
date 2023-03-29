@@ -19,16 +19,15 @@ import seedu.address.model.application.Application;
 @JsonRootName(value = "internshipbook")
 class JsonSerializableInternshipBook {
 
-    public static final String MESSAGE_DUPLICATE_APPLICATION = "Applications list contains duplicate application(s).";
-
-    private final List<JsonAdaptedApplication> applications = new ArrayList<>();
+    private final List<JsonAdaptedApplication> jsonAdaptedApplications = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableInternshipBook} with the given applications.
      */
     @JsonCreator
-    public JsonSerializableInternshipBook(@JsonProperty("applications") List<JsonAdaptedApplication> applications) {
-        this.applications.addAll(applications);
+    public JsonSerializableInternshipBook(@JsonProperty("jsonAdaptedApplications") List<JsonAdaptedApplication>
+                                                      jsonAdaptedApplications) {
+        this.jsonAdaptedApplications.addAll(jsonAdaptedApplications);
     }
 
     /**
@@ -37,7 +36,7 @@ class JsonSerializableInternshipBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableInternshipBook}.
      */
     public JsonSerializableInternshipBook(ReadOnlyInternshipBook source) {
-        applications.addAll(source.getApplicationList().stream().map(JsonAdaptedApplication::new)
+        jsonAdaptedApplications.addAll(source.getApplicationList().stream().map(JsonAdaptedApplication::new)
                 .collect(Collectors.toList()));
     }
 
@@ -48,13 +47,12 @@ class JsonSerializableInternshipBook {
      */
     public InternshipBook toModelType() throws IllegalValueException {
         InternshipBook internshipBook = new InternshipBook();
-        for (JsonAdaptedApplication jsonAdaptedApplication : applications) {
+        List<Application> applications = new ArrayList<>();
+        for (JsonAdaptedApplication jsonAdaptedApplication : jsonAdaptedApplications) {
             Application application = jsonAdaptedApplication.toModelType();
-            if (internshipBook.hasApplication(application)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_APPLICATION);
-            }
-            internshipBook.addApplication(application);
+            applications.add(application);
         }
+        internshipBook.setApplications(applications);
         return internshipBook;
     }
 

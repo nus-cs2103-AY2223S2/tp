@@ -11,7 +11,7 @@ import seedu.address.model.ReadOnlyInternshipBook;
 import seedu.address.model.application.Application;
 
 /**
- * API of the Logic component
+ * API of the Logic component.
  */
 public interface ApplicationLogic {
     /**
@@ -30,8 +30,11 @@ public interface ApplicationLogic {
      */
     ReadOnlyInternshipBook getInternshipBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of applications */
     ObservableList<Application> getFilteredApplicationList();
+
+    /** Returns an unmodifiable view of the sorted list of applications */
+    ObservableList<Application> getSortedApplicationList();
 
     /**
      * Returns the user prefs' internship book file path.

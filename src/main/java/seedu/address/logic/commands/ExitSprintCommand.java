@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import seedu.address.logic.CommandHistory;
 import seedu.address.model.ApplicationModel;
 
 /**
@@ -11,7 +12,7 @@ public class ExitSprintCommand extends ApplicationCommand {
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting sprINT as requested ...";
 
     @Override
-    public CommandResult execute(ApplicationModel model) {
+    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) {
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
     }
 

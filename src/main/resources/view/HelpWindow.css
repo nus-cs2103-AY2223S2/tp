@@ -1,12 +1,17 @@
-#copyButton, #helpMessage {
+#copyButton, #header {
     -fx-text-fill: white;
+}
+
+#helpTable {
+    -fx-font-size: 13;
 }
 
 #copyButton {
     -fx-background-color: dimgray;
+    -fx-font-size: 14;
 }
 
-#copyButton:hover {
+#copyButton:hover, #helpTable {
     -fx-background-color: gray;
 }
 
@@ -14,6 +19,10 @@
     -fx-background-color: darkgray;
 }
 
-#helpMessageContainer {
+#HelpMessageContainer {
     -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+#header {
+    -fx-font-size: 18;
 }

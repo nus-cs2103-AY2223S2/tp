@@ -99,7 +99,8 @@ Examples:
 
 ### Listing all internship applications : `list`
 
-Shows a list of all internship applications.
+Shows a list of all internship applications, in the order of when they are added. Application
+entries that are added more recently will be shown on top.
 
 Format: `list`
 
@@ -123,19 +124,22 @@ Examples:
 *  `edit 1 r/Cloud Engineer e/goggleHR@example.com` Edits the role and email address of the 1st application to be `Cloud Engineer` and `goggleHR@gmail.com` respectively.
 *  `edit 2 s/Rejected t/` Edits the status of the 2nd application to be `Rejected` and clears all existing tags.
 
-### Finding internship applications by company name: `find`
+### Finding internship applications by keywords: `find`
 
-Finds internship applications with company names that contain any of the given keywords.
+Finds internship applications with information containing any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find keyword(s)` or `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`
 
 * The search is case-insensitive. e.g. `goggle` will match `Goggle`.
-* Only the company name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`.
+* In `find keyword(s)`, when none of the prefixes is specified, the keyword(s) will be searched globally in all prefixes.
+* In `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`, `r/`, `c/` and `s/` are prefixes that stand for `role`, `company name` and `status` respectively.
+* When at least one prefix is provided, the keyword(s) is searched according to the information under that particular prefix.
+* Only full words will be matched e.g. `Han` will not match `Hans` but `Goggle` will match with `Goggle LLC`.
 
 Examples:
 * `find Goggle` returns internship applications for `Goggle` and `Goggle LLC`.
 * `find Goggle Mata` returns internship applications for `Goggle LLC`, `Mata Platforms`.<br>
+* `find r/SWE Intern c/Mata s/Offered` returns internship application(s) for the role of `SWE Intern` at `Mata` that is of the status `Offered`.<br>
 
 ### Deleting an application : `delete` 
 
@@ -190,12 +194,12 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                          |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS​` <br> e.g., `add r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered`                                    |
-| **Clear**  | `clear`                                                                                                                                                                   |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                       |
-| **Edit**   | `edit INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS]​`<br> e.g., `edit 1 r/Research Intern e/example@bstar.com.sg` |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Mata`                                                                                                                      |
-| **List**   | `list`                                                                                                                                                                    |
-| **Help**   | `help`                                                                                                                                                                    |
+| Action     | Format, Examples                                                                                                                            |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS​` <br> e.g., `add r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered`      |
+| **Clear**  | `clear`                                                                                                                                     |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                         |
+| **Edit**   | `edit INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY EMAIL] [s/STATUS]​`<br> e.g., `edit 1 r/Research Intern e/example@bstar.com.sg`            |
+| **Find**   | `find [search term]` e.g. `find Mata` <br/>`find [r/search term] [c/search term] [s/search term]` e.g. `find r/SWE Intern c/Mata s/Offered` |
+| **List**   | `list`                                                                                                                                      |
+| **Help**   | `help`                                                                                                                                      |

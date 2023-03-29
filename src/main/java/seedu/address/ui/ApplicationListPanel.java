@@ -30,7 +30,7 @@ public class ApplicationListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Application} using a {@code ApplicationCard}.
      */
     class ApplicationListViewCell extends ListCell<Application> {
         @Override

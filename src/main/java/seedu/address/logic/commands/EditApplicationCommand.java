@@ -17,6 +17,8 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.CommandHistory;
+import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.application.Application;
@@ -25,13 +27,16 @@ import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.Role;
 import seedu.address.model.application.Status;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Task;
 
 /**
  * Edits the details of an existing application in the internship book.
  */
 public class EditApplicationCommand extends ApplicationCommand {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edit-app";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the application identified "
             + "by the index number used in the displayed application list. "
@@ -56,8 +61,9 @@ public class EditApplicationCommand extends ApplicationCommand {
     private final EditApplicationDescriptor editApplicationDescriptor;
 
     /**
-     * @param index of the application in the filtered application list to edit
-     * @param editApplicationDescriptor details to edit the application with
+     * Creates an EditApplicationCommand to edit the specified {@code Application}.
+     * @param index of the application in the displayed application list to edit.
+     * @param editApplicationDescriptor details to edit the application with.
      */
     public EditApplicationCommand(Index index, EditApplicationDescriptor editApplicationDescriptor) {
         requireNonNull(index);
@@ -68,9 +74,9 @@ public class EditApplicationCommand extends ApplicationCommand {
     }
 
     @Override
-    public CommandResult execute(ApplicationModel model) throws CommandException {
+    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
-        List<Application> lastShownList = model.getFilteredApplicationList();
+        List<Application> lastShownList = model.getSortedApplicationList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
@@ -85,6 +91,8 @@ public class EditApplicationCommand extends ApplicationCommand {
 
         model.setApplication(applicationToEdit, editedApplication);
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        model.commitInternshipBookChange();
+        commandHistory.setLastCommandAsModify();
         return new CommandResult(String.format(MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication));
     }
 
@@ -92,7 +100,7 @@ public class EditApplicationCommand extends ApplicationCommand {
      * Creates and returns a {@code Application} with the details of {@code appToEdit}
      * edited with {@code editApplicationDescriptor}.
      */
-    private static Application createEditedApplication(Application appToEdit,
+    protected static Application createEditedApplication(Application appToEdit,
                                                        EditApplicationDescriptor editApplicationDescriptor) {
         assert appToEdit != null;
 
@@ -101,9 +109,35 @@ public class EditApplicationCommand extends ApplicationCommand {
         CompanyEmail updatedCompanyEmail = editApplicationDescriptor.getCompanyEmail()
                 .orElse(appToEdit.getCompanyEmail());
         Status updatedStatus = editApplicationDescriptor.getStatus().orElse(appToEdit.getStatus());
+        Task updatedTask = editApplicationDescriptor.getTask().orElse(appToEdit.getTask());
         Set<Tag> updatedTags = editApplicationDescriptor.getTags().orElse(appToEdit.getTags());
 
-        return new Application(updatedRole, updatedCompanyName, updatedCompanyEmail, updatedStatus, updatedTags);
+        return new Application(updatedRole, updatedCompanyName, updatedCompanyEmail,
+                updatedStatus, updatedTask, updatedTags);
+    }
+
+    /**
+     * Creates and returns a {@code Application} with the details of {@code appToEdit}
+     * edited with {@code editTaskDescriptor}.
+     */
+    protected static Application createEditedApplication(Application appToEdit,
+                                                         EditTaskDescriptor editTaskDescriptor) {
+        assert appToEdit != null;
+        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(appToEdit.getTask().getDeadline());
+        Description updatedDescription = editTaskDescriptor.getDescription()
+                .orElse(appToEdit.getTask().getDescription());
+        Task updatedTask = new Task(updatedDeadline, updatedDescription);
+
+        return new Application(appToEdit.getRole(), appToEdit.getCompanyName(), appToEdit.getCompanyEmail(),
+                appToEdit.getStatus(), updatedTask, appToEdit.getTags());
+    }
+
+    /**
+     * Creates and returns an {@code Application} with no task.
+     */
+    protected static Application createEditedApplicationWithoutTask(Application appToEdit) {
+        return new Application(appToEdit.getRole(), appToEdit.getCompanyName(), appToEdit.getCompanyEmail(),
+                appToEdit.getStatus(), null, appToEdit.getTags());
     }
 
     @Override
@@ -135,6 +169,8 @@ public class EditApplicationCommand extends ApplicationCommand {
         private Status status;
         private Set<Tag> tags;
 
+        private Task task;
+
         public EditApplicationDescriptor() {}
 
         /**
@@ -146,6 +182,7 @@ public class EditApplicationCommand extends ApplicationCommand {
             setCompanyName(toCopy.companyName);
             setCompanyEmail(toCopy.companyEmail);
             setStatus(toCopy.status);
+            setTask(toCopy.task);
             setTags(toCopy.tags);
         }
 
@@ -153,7 +190,7 @@ public class EditApplicationCommand extends ApplicationCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(role, companyName, companyEmail, status, tags);
+            return CollectionUtil.isAnyNonNull(role, companyName, companyEmail, status, task, tags);
         }
 
         public void setRole(Role role) {
@@ -186,6 +223,14 @@ public class EditApplicationCommand extends ApplicationCommand {
 
         public Optional<Status> getStatus() {
             return Optional.ofNullable(status);
+        }
+
+        public void setTask(Task task) {
+            this.task = task;
+        }
+
+        public Optional<Task> getTask() {
+            return Optional.ofNullable(task);
         }
 
         /**
@@ -223,7 +268,8 @@ public class EditApplicationCommand extends ApplicationCommand {
             return getRole().equals(e.getRole())
                     && getCompanyName().equals(e.getCompanyName())
                     && getCompanyEmail().equals(e.getCompanyEmail())
-                    && getStatus().equals(e.getStatus());
+                    && getStatus().equals(e.getStatus())
+                    && getTask().equals(e.getTask());
         }
     }
 }
