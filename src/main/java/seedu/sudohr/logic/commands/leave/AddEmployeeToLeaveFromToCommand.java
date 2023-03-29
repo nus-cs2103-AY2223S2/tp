@@ -40,7 +40,7 @@ public class AddEmployeeToLeaveFromToCommand extends Command {
             + PREFIX_END_DATE + "2023-02-06 ";
 
     // maybe rename to duplicate leave? not sure if the right naming is used here
-    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee has already leave on one of the days"
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "The employee %1$s has already taken leave on %2$s"
             + "in SudoHR";
     public static final String MESSAGE_ADD_LEAVE_SUCCESS = "Employee %1$s leave is added on %2$s";
 
@@ -77,8 +77,9 @@ public class AddEmployeeToLeaveFromToCommand extends Command {
             leaveToAdd = model.getInternalLeaveIfExist(leaveToAdd);
 
             if (leaveToAdd.hasEmployee(employeeToAdd)) {
-                throw new CommandException(MESSAGE_DUPLICATE_EMPLOYEE);
+                throw new CommandException(String.format(MESSAGE_DUPLICATE_EMPLOYEE, employeeToAdd, leaveToAdd));
             }
+            
             leavesToAdd.add(leaveToAdd);
         }
 

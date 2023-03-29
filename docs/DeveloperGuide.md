@@ -363,44 +363,87 @@ The attributes of a leave are:
 * `date`: The date of the leave, which is also the unique identifier for a leave
 * `employees`: The employees who applied for this leave, the list must not contain duplicate employees. It is implemented by reusing the `UniqueEmployeeList` datatype.
 
-#### Adding an employee's leave on a specific day
+#### Adding an employee's leave
+The `aetd` command adds an employee's leave on a specific day:
 
-##### AddEmployeeToLeave Command
-The AddEmployeeToLeave Command makes use of the following classes:
+Activity Diagram:
+Need to update diagrams
+![AddEmployeeToLeaveCommand Activity Diagram](.//images/commands/leave/AddEmployeeToLeave.png)
 
-* `AddEmployeeToLeaveCommand` - Adds the leave of an `Employee` to `SudoHr` on a specific day
-* `AddEmployeeToLeaveCommandParser` - Parses the argument provided by the user
-* `LeaveContainsEmployeePredicate` - Tests that an `Employee` has a `Leave` on the specific date
+Sequence Diagram:
 
-`LeaveContainsEmployeePredicate` iterates through all employees and check if they are in the `Leave` object on a specific day.
+![AddEmployeeToLeaveCommand Sequence Diagram](.//images/commands/leave/AddEmployeeToLeave.png)
 
-Given below is an example of a usage scenario and what each class does at each step.
+##### Flow
 
-Step 1: The user types and enters the command `addEmployeeToLeave eid/1 g/2022-03-04` where 1 is the employee id and 2022-03-04 is the leave date.
+1. The user types and enters the command `aetl eid/1 d/2022-03-04` where 1 is the employee id and 2022-03-04 is the leave date.
+2. The parser would initialise a new `Id` and `LeaveDate` object constructed from the input of argument `eid/` and `d/` respectively
+3. The command is executed. It first tries to find the `Employee` with ID 1 and the `Leave` that represents the date on which the leave is taken. If the `Leave` does not exist, a new one is created and added to `SudoHR`. If the `Employee` does not exist, an error message will be displayed.
+4. If the employee already exists in `Leave`, an error message will be displayed.
+5. Assuming if Step 4 completes without exception, the employee would be added to the `Leave`. 
+6. The list of employees displayed will be filtered according to the `LeaveContainsEmployeePredicate`.The list of employees will only display all employees having leave on the same day as the employee.
 
-Step 2: The command will be parsed by the `SudoHr#parseCommand()` which returns a `AddEmployeeToLeaveCommandParser`.
+##### Feature considerations
+We decided to throw an exception when the employee has already taken leave on the same day as the input date, since the user may have accidently provided a wrong date and hence the exception would be more suitable as it would be more noticeable than the success message.
 
-Step 3: AddEmployeeToLeaveCommandParser will parse the employee id and date using the parse(args) method, which trims the keywords entered by the user.
+#### Deleting an employee's leave
+The `defl` command delete an employee's leave on a specific day:
 
-Step 4: AddEmployeeToLeaveCommandParser then creates a AddEmployeeToLeaveCommand by the date and eid to its constructor.
+Activity Diagram:
+Need to update diagrams
+![RemoveEmployeeFromLeaveCommand Activity Diagram](.//images/commands/leave/AddEmployeeToLeave.png)
 
-Step 5: The AddEmployeeToLeaveCommand will then be executed using `execute(model)` method.
+Sequence Diagram:
 
-Step 6: The command then execute the model's `getEmployee(eid)` command to get the employee with the corresponding eid
+![RemoveEmployeeFromLeaveCommand Sequence Diagram](.//images/commands/leave/AddEmployeeToLeave.png)
 
-Step 7. The command execute the model's `addEmployeetoLeave(eid,date)` command to add the employee to the leave on the specific day.
+##### Flow
 
-Step 8: The `updateFilteredEmployeeList(predicate)` method will be called and the list of employees will be filtered according to the `LeaveContainsEmployeePredicate`. This list will include all employees having a leave on that day.
+1. The user types and enters the command `defl eid/1 d/2022-03-04` where 1 is the employee id and 2022-03-04 is the leave date.
+2. The parser would initialise a new `Id` and `LeaveDate` object constructed from the input of argument `eid/` and `d/` respectively
+3. The command is executed. It first tries to find the `Employee` with ID 1 and the `Leave` that represents the date on which the leave is taken. If the `Employee` does not exist, an error message will be displayed.
+4. If the employee does not exists in `Leave` (The employee has yet take leave on the input date), an error will be thrown too.
+5. Assuming if Step 4 completes without exception, the employee would be added to the `Leave`. 
+6. The list of employees displayed will be filtered according to the `LeaveContainsEmployeePredicate`.The list of employees will only display all employees having leave on the input date.
 
-Step 9: A `CommandResult` will be returned.
+#### Adding an employee's leave in a range
+The `aelr` command adds an employee's leave on all the days between the range of a start date to an end date inclusive:
 
-Step 10: The list of employees taking leave on the specific day will then be displayed to the user.
+Activity Diagram:
+Need to update diagrams
+![AddEmployeeLeaveFromTo Activity Diagram](.//images/commands/leave/AddEmployeeToLeave.png)
 
+Sequence Diagram:
 
-Given below is an example of how `AddEmployeeToLeaveCommand` works
+![AddEmployeeLeaveFromTo Sequence Diagram](.//images/commands/leave/AddEmployeeToLeave.png)
 
-![AddEmployeeToLeaveCommand Sequence Diagram](./images/commands/department/ListDepartmentSequenceDiagram.png)
+##### Flow
 
+1. The user types and enters the command `aelr eid/1 s/2022-03-04 e/2022-03-06` where 1 is the employee id, 2022-03-04 is the start date and 2022-03-06 is the end date.
+2. The parser checks that the end date `e/` is after the start date represented by `s/`.The end date `e/` also must be less than 7 days away from the start date `s/`. If both conditions are not satisfied, an error message will be shown. 
+3. The parser would initialise a `Id` constructed from the input of argument `eid/` and a list of `LeaveDate` objects representing every single day in the range between `s/` and `e/` with the end and start dates inclusive. 
+4. The command is executed. The command first tries to find the `Employee` with ID 100, if that is not the case, and error message will be shown.
+5. The command then checks if the employee has taken leave on any of the days in the range between the start date `s/` and end date `e/` inclusive. If this is the case, an error message would be thrown. 
+6. The command tries to find the `Employee` with ID 100. If the `Employee` does not exist, an error message will be displayed.
+7. Assuming step 6 completes with no exception, the command adds the `Employee` into the `Leave` that represent the date on which the leave is taken within the range provided.
+8. SudoHr will show all the days on which the employee has successfully been tracked to have taken leave.
+
+##### Feature considerations
+We intentionally decide to limit the range of days to be added to be 1 week. This is because we wanted to prevent excessively large ranges that are illogical such as taking leaves throughout multiple years. Hence we decided that 1 week would be the most appropriate number as it is the typical length of leave taken when people go on vacation. 
+
+We also decided to not add leaves on all of the days in the range if the employee has taken leave on any of the days. We decided to do this as 
+it is very likely an incorrect range has been given and hence we decided to err on the side of caution and prevent all the other additions too. In the case that the user would actually like to extend the leave for an employee, the addition would only require two additional commands so this would be of minimal inconvenience to the user as compared to deleting the leaves of the user one by one.
+
+#### Listing all employees taking leave on a specific day
+
+The `leol` command lists employees taking leave on a specific date.
+
+![ListEmployeeOnLeave](./images/commands/department/ListDepartmentSequenceDiagram.png)
+
+1. The user types and enters the command `leol 2022-04-02` where 2022-04-02 is the date input provided.
+2. The parser would initialise a `LeaveDate` representing the date on which the leave is taken
+3. The command is executed. It tries to look for employees that have taken leaves on the specified date and initializes a new `LeaveContainsEmployeePredicate` that will filter out employees that have not taken leaves on the specified date.
+4. The command uses the `LeaveContainsEmployeePredicate` to filter the employees and display the employees that have taken leave on the specified day.
 
 #### Cascading employee updates to department and event
 
