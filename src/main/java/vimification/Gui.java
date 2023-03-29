@@ -1,9 +1,7 @@
 package vimification;
 
-
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
@@ -11,14 +9,17 @@ import javafx.stage.Stage;
 import vimification.commons.core.Config;
 import vimification.commons.core.LogsCenter;
 import vimification.commons.exceptions.DataConversionException;
-import vimification.commons.util.ConfigUtil;
+import vimification.commons.util.JsonUtil;
 import vimification.commons.util.StringUtil;
 import vimification.internal.Logic;
 import vimification.internal.LogicManager;
+import vimification.model.CommandStack;
 import vimification.model.LogicTaskList;
+import vimification.model.MacroMap;
 import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 import vimification.storage.JsonLogicTaskListStorage;
+import vimification.storage.JsonMacroMapStorage;
 import vimification.storage.JsonUserPrefsStorage;
 import vimification.storage.LogicTaskListStorage;
 import vimification.storage.Storage;
@@ -31,7 +32,8 @@ import vimification.taskui.UiManager;
  * This class sets up the necessary code for the GUI to access the back-end.
  */
 public class Gui extends Application {
-    private static final Logger logger = LogsCenter.getLogger(Gui.class);
+
+    private static final Logger LOGGER = LogsCenter.getLogger(Gui.class);
 
     protected Ui ui;
     protected Logic logic;
@@ -40,23 +42,27 @@ public class Gui extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info(
-                "=============================[ Initializing TaskPlanner ]===========================");
+        LOGGER.info("========== [ Initializing Vimification ] ==========");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
-        UserPrefs userPrefs = initPrefs(userPrefsStorage);
+        UserPrefs userPrefs = initUserPrefs(userPrefsStorage);
 
-        LogicTaskListStorage vimificationStorage =
-                new JsonLogicTaskListStorage(userPrefs.getTaskListFilePath());
-        storage = new StorageManager(vimificationStorage, userPrefsStorage);
+        LogicTaskListStorage logicTaskListStorage =
+                new JsonLogicTaskListStorage(userPrefs.getLogicTaskListFilePath());
+        JsonMacroMapStorage macroMapStorage =
+                new JsonMacroMapStorage(userPrefs.getMacroMapFilePath()); // TODO: change this
 
+        storage = new StorageManager(logicTaskListStorage, userPrefsStorage);
         initLogging(config);
-
-        logic = new LogicManager(initLogicTaskList(storage, userPrefs), storage);
+        logic = new LogicManager(
+                initLogicTaskList(storage),
+                initMacroMap(),
+                initCommandStack(),
+                storage);
         ui = new UiManager(logic);
     }
 
@@ -72,22 +78,15 @@ public class Gui extends Application {
      * is not found, or an empty address book will be used instead if errors occur when reading
      * {@code storage}'s address book.
      */
-    private LogicTaskList initLogicTaskList(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<LogicTaskList> addressBookOptional;
+    private LogicTaskList initLogicTaskList(Storage storage) {
         LogicTaskList initialData;
         try {
-            addressBookOptional = storage.readLogicTaskList();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
-            }
-            initialData = addressBookOptional.orElseGet(LogicTaskList::new);
+            initialData = storage.readLogicTaskList();
         } catch (DataConversionException e) {
-            logger.warning(
-                    "Data file not in the correct format. Will be starting with an empty AddressBook");
+            LOGGER.warning("Data file not in the correct format.");
             initialData = new LogicTaskList();
         } catch (IOException e) {
-            logger.warning(
-                    "Problem while reading from the file. Will be starting with an empty AddressBook");
+            LOGGER.warning("Problem while reading from the file.");
             initialData = new LogicTaskList();
         }
         return initialData;
@@ -98,33 +97,29 @@ public class Gui extends Application {
     }
 
     protected Config initConfig(Path configFilePath) {
-        Config initializedConfig;
         Path configFilePathUsed;
-
-        configFilePathUsed = Config.DEFAULT_CONFIG_FILE;
-
         if (configFilePath != null) {
-            logger.info("Custom Config file specified " + configFilePath);
+            LOGGER.info("Custom config file specified: " + configFilePath);
             configFilePathUsed = configFilePath;
+        } else {
+            configFilePathUsed = Config.DEFAULT_CONFIG_FILE;
         }
 
-        logger.info("Using config file : " + configFilePathUsed);
-
+        LOGGER.info("Using config file: " + configFilePathUsed);
+        Config initializedConfig;
         try {
-            Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
-            initializedConfig = configOptional.orElse(new Config());
-        } catch (DataConversionException e) {
-            logger.warning(
-                    "Config file at " + configFilePathUsed + " is not in the correct format. "
-                            + "Using default config properties");
+            initializedConfig = JsonUtil.readJsonFile(configFilePathUsed, Config.class);
+        } catch (IOException e) {
+            LOGGER.warning("Config file at " + configFilePathUsed
+                    + " is not in the correct format."
+                    + " Using default config.");
             initializedConfig = new Config();
         }
 
-        // Update config file in case it was missing to begin with or there are new/unused fields
         try {
-            ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);
+            JsonUtil.saveJsonFile(initializedConfig, configFilePathUsed);
         } catch (IOException e) {
-            logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
+            LOGGER.warning("Failed to save file: " + StringUtil.getDetails(e));
         }
         return initializedConfig;
     }
@@ -134,21 +129,16 @@ public class Gui extends Application {
      * Returns a {@code UserPrefs} using the file at {@code storage}'s user prefs file path, or a
      * new {@code UserPrefs} with default configuration if errors occur when reading from the file.
      */
-    protected UserPrefs initPrefs(UserPrefsStorage storage) {
+    protected UserPrefs initUserPrefs(UserPrefsStorage storage) {
         Path prefsFilePath = storage.getUserPrefsFilePath();
-        logger.info("Using prefs file : " + prefsFilePath);
-
+        LOGGER.info("Using pref file: " + prefsFilePath);
         UserPrefs initializedPrefs;
         try {
-            Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
-            initializedPrefs = prefsOptional.orElse(new UserPrefs());
-        } catch (DataConversionException e) {
-            logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                    + "Using default user prefs");
-            initializedPrefs = new UserPrefs();
+            initializedPrefs = storage.readUserPrefs();
         } catch (IOException e) {
-            logger.warning(
-                    "Problem while reading from the file. Will be starting with an empty AddressBook");
+            LOGGER.warning("UserPrefs file at " + prefsFilePath
+                    + " is not in the correct format."
+                    + " Using default user prefs");
             initializedPrefs = new UserPrefs();
         }
 
@@ -156,9 +146,16 @@ public class Gui extends Application {
         try {
             storage.saveUserPrefs(initializedPrefs);
         } catch (IOException e) {
-            logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
+            LOGGER.warning("Failed to save file: " + StringUtil.getDetails(e));
         }
-
         return initializedPrefs;
+    }
+
+    private MacroMap initMacroMap() {
+        return new MacroMap();
+    }
+
+    private CommandStack initCommandStack() {
+        return new CommandStack();
     }
 }

@@ -81,7 +81,7 @@ public class MainScreen extends UiPart<VBox> {
     }
 
     public void initializeTaskListPanel() {
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanel = new TaskListPanel(logic.getViewTaskList());
         taskListPanel.setMainScreen(this);
         loadLeftComponent(taskListPanel);
     }
