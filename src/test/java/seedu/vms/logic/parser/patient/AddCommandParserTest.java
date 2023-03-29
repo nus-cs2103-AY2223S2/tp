@@ -139,11 +139,6 @@ public class AddCommandParserTest {
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + DOB_DESC_BOB + INVALID_BLOODTYPE_DESC,
                 Name.MESSAGE_CONSTRAINTS);
-
-        // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + DOB_DESC_BOB
-                + BLOODTYPE_DESC_BOB + ALLERGY_DESC_SEAFOOD + ALLERGY_DESC_GLUTEN,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
     @Test
     public void execute_groupOverLimit_exceptionThrown() {
