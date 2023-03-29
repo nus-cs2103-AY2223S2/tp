@@ -2,7 +2,6 @@
 layout: page
 title: User Guide
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -17,19 +16,18 @@ title: User Guide
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-
-
+   
 --------------------------------------------------------------------------------------------------------------------
-
 User Guide
 
 TrAcker is a **desktop app for CS2040 Teaching Assistants to centralise the CS2040 tasks involving them.
-It is optimised for use via a Command Line Interface (CLI)** while still having benefits of a Graphical User Interface (GUI). 
+It is optimised for use via a Command Line Interface (CLI)** while still having benefits of a Graphical User Interface (GUI).
 If you can type fast, TrAcker will aid the task management for CS2040 TAs. Commands are similar to vim / terminal commands since
 CS2040 TAs are familiar with it
 
 **Features**
-
+--------------------------------------------------------------------
+--------------------------------------------------------------------
 *Event CRUD Features*
 
 ### Adding a tutorial: `add tutorial`
@@ -47,7 +45,6 @@ Adds a tutorial to the TA’s schedule. Tutorial is assumed to be 1 hour long (a
 
 Format: `touch Tutorial/[name] -date [dd/MM/yyyy HH:mm] -attachment [FULL_FILE_PATH_TO_PDF]`
 
-
 ```
 date format: dd/MM/yyyy HH:mm
 ```
@@ -57,7 +54,6 @@ Examples:
 * `touch Tutorial/makeUpTutorial`
 * `touch Tutorial/examReview -date 01/01/2023 16:00`
 * `touch Tutorial/examReview -date 01/01/2023 16:00 -attachment /Users/JohnDoe/Desktop/Introduction.pdf`
-
 
 ### Adding a lab: `add lab`
 
@@ -74,7 +70,6 @@ Adds a lab to the TA’s schedule. Lab is assumed to be 1 hour long (adhering to
 
 Format: `vim Lab/[name] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]`
 
-
 ```
 date format: dd/MM/yyyy HH:mm
 ```
@@ -84,8 +79,6 @@ Examples:
 * `vim Lab/pancakeSort`
 * `vim Lab/KosarajuAlgorithm -date 01/01/2023 16:00`
 * `vim Lab/StronglyConnected -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/StronglyConnectedComponents.pdf`
-
-
 
 ### Adding a consultation: `add consultation`
 
@@ -162,11 +155,82 @@ Examples:
 * `delete Tutorial/1`
 * `delete Lab/1-5`
 
+--------------------------------------------------------------------
+*Note Features*
+
+### Add note for event: `add-note`
+
+Add notes for events that are both normal and recurring, or for students in the classes this TA is in charge of. Mainly serves to help TAs take down notes and todos from meeting and student queries from classes.
+
+Note that there can be an unlimited amount of notes to be created for each event or student.
+
+Each addition increases node index by one.
+
+Format: `add-note -content hello world -type tutorial -name 2`
+
+Examples:
+
+* `add-note -content rmb to bring along apple pencil\n -type tutorial -name 2`
+* `add-note -content grade student labs timely\n -type lab -name 2`
+* `add-note -content solve this student's query via email\n -type recur -name 2`
+
+
+### Delete note for event: `delete note`
+
+Delete notes for events that are both normal and recurring, or for students in the classes this TA is in charge of.
+
+Format: `delete note [type] [name or index] [note-index]`
+
+Examples:
+
+* `rm-note -type tutorial -name 2 -index 3`
+* `rm-note -type lab -name 2 -index 1`
+* `rm-note -type recur -name 2 -index 0`
+
+
+### Edit note for event: `edit note`
+
+Update notes with the new note for events that are both normal and recurring, or for students in the classes this TA is in charge of.
+
+Note that when a particular note index does not exist, it does nothing.
+
+Format:
 
 
 
+* `edit-note [type] [name or index] [note-index] [newcontent]`
+
+Examples:
 
 
+* `edit-note -content rmb to bring along apple pencil\n -type tutorial -name 2 -index 3`
+* `edit-note -content grade student labs timely\n -type lab -name 2 -index 1`
+* `edit-note -content solve this student's query via email\n -type recur -name 2 -index 0`
+
+-----------------------------------------------------------------
+Old UG commands (to remove)
+-----------------------------------------------------------------
+
+Sort student: `sort student`
+
+Sort students by attributes such as their attendance rate for labs or tutorials (later by their exam grades)
+
+Format: `sort student [type] [sorting order]`
+
+This method is designed for ease of grading students based on their attendance to tutorials and labs.
+
+Examples:
+* `sort students labs reverse`
+* `sort students tutorials nonreverse`
+
+
+Find specific non-recurring event: `find event`
+
+Find a specific task on a particular date and (optional) time
+
+Format: `/ event [date] [startTime] [endTime]`
+
+Examples:
 
 
 
@@ -260,7 +324,7 @@ Sorts the students in recurring events available in the order specified by the T
 The sorted list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
 
 Format: `sort-student [group] [metric] [sorting order]`
-For the [group], it can be only lab, tutorial, consultation, or all. 
+For the [group], it can be only lab, tutorial, consultation, or all.
 For the [metric], it can be only name, address, email, performance or remark.
 
 Examples:
@@ -380,85 +444,11 @@ Examples:
 * `edit 2 n/Tony Hoare p/97482842 t/T03 l/B09`
 
 
-### Add note for event: `add-note`
-
-Add notes for events that are both normal and recurring, or for students in the classes this TA is in charge of. Mainly serves to help TAs take down notes and todos from meeting and student queries from classes.
-
-Note that there can be an unlimited amount of notes to be created for each event or student.
-
-Each addition increases node index by one.
-
-Format: `add-note -content hello world -type tutorial -name 2`
-
-Examples:
-
-* `add-note -content rmb to bring along apple pencil\n -type tutorial -name 2`
-* `add-note -content grade student labs timely\n -type lab -name 2`
-* `add-note -content solve this student's query via email\n -type recur -name 2`
-
-
-### Delete note for event: `delete note`
-
-Delete notes for events that are both normal and recurring, or for students in the classes this TA is in charge of.
-
-Format: `delete note [type] [name or index] [note-index]`
-
-Examples:
-
-
-* `rm-note -type tutorial -name 2 -index 3`
-* `rm-note -type lab -name 2 -index 1`
-* `rm-note -type recur -name 2 -index 0`
-
-
-### Edit note for event: `edit note`
-
-Update notes with the new note for events that are both normal and recurring, or for students in the classes this TA is in charge of.
-
-Note that when a particular note index does not exist, it does nothing.
-
-Format:
 
 
 
-* `edit-note [type] [name or index] [note-index] [newcontent]`
-
-Examples:
 
 
-* `edit-note -content rmb to bring along apple pencil\n -type tutorial -name 2 -index 3`
-* `edit-note -content grade student labs timely\n -type lab -name 2 -index 1`
-* `edit-note -content solve this student's query via email\n -type recur -name 2 -index 0`
-
-
-
-Sort student: `sort student`
-
-Sort students by attributes such as their attendance rate for labs or tutorials (later by their exam grades)
-
-Format: `sort student [type] [sorting order]`
-
-This method is designed for ease of grading students based on their attendance to tutorials and labs.
-
-Examples:
-
-
-
-* `sort students labs reverse`
-* `sort students tutorials nonreverse`
-
-
-Find specific non-recurring event: `find event`
-
-Find a specific task on a particular date and (optional) time
-
-Format: `/ event [date] [startTime] [endTime]`
-
-Examples:
-
------------------------------------------------------------------
-Old UG commands (to remove)
------------------------------------------------------------------
 
 * `/ event 2023-04-01`
 * `/ event 2023-03-12 8:00 10:00`
