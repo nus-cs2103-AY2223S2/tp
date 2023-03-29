@@ -2,7 +2,8 @@
 layout: page
 title: Developer Guide
 ---
-## About TeachMeSenpai
+## **About TeachMeSenpai**
+
 TeachMeSenpai **is a student managing application** specially customised for **teaching assistants** who have a lot of 
 students to keep track of. TeachMeSenpai is optimised for fast-typists with a **Command Line Interface (CLI)** with the benefits of a 
 **Graphical User Interface (GUI)**. 
@@ -39,7 +40,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W12-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -52,7 +53,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -85,13 +86,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W12-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -102,7 +103,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -130,7 +131,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -151,7 +152,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W12-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -464,7 +465,7 @@ Additionally, the command line only provides a restricted view and input option 
 
 [↑ Back to top](#table-of-contents)
 
-#### \[Proposed\] Sort feature
+### \[Proposed\] Sort feature
 
 #### Proposed Implementation
 
@@ -502,7 +503,7 @@ _{more aspects to be added}_
 
 [↑ Back to top](#table-of-contents)
 
-#### Show feature
+### Show feature
 
 #### Implementation Details
 The implementation of `show` is similar to the `list` command in the AB3 codebase. The `show` feature was implemented to support the `remark` feature. <br>
@@ -528,9 +529,9 @@ will not be visible. Hence, `show` allows users to view the full remark in the `
 
 [↑ Back to top](#table-of-contents)
 
-#### \[Proposed\] Undo/redo feature
+### \[Proposed\] Undo/redo feature
 
-##### Proposed Implementation
+#### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -593,7 +594,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-##### Design considerations:
+#### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
@@ -636,38 +637,42 @@ _{more aspects and alternatives to be added}_
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+**Priorities:**
 
-| Priority | As a …​  | I want to …​                                                                                                   | So that I can…​                                                             |
-|----------|----------|----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| `* * *`  | tutor    | open the app                                                                                                   | begin using the app                                                         |
-| `* * *`  | tutor    | close the app                                                                                                  | leave the app                                                               |
-| `* * *`  | tutor    | add a student's name                                                                                           | track a student's progress by their name                                    |
-| `* * *`  | tutor    | include student's education level when adding the student (eg. P6)                                             | keep track of a student's education level                                   |
-| `* * *`  | tutor    | include student's phone number when adding the student (eg. 94206942)                                          | keep track of a student's phone number                                      |
-| `* * *`  | tutor    | include student's email when adding the student (eg. iloveanimegirls@gmail.com)                                | keep track of a student's email                                             |
-| `* * *`  | tutor    | include student's address when adding the student (eg. Block 69 S642069)                                       | keep track of a student's address and go to the place easily                |
-| `* * *`  | tutor    | include the subjects I'm teaching a student to their entry (eg. Mathematics, English)                          | keep track of what subjects I'm teaching the student                        |
-| `* * *`  | tutor    | include optional student-specific notes when adding the student (eg. Good in Japanese)                         | store information for a particular student such as notes and remarks        |
-| `* * *`  | tutor    | include tags on a student about their noteworthy qualities (eg. active)                                        | keep track of a student's qualities.                                        |
-| `* * *`  | tutor    | delete a student entry from my list (by index)                                                                 | remove all details related to a certain student                             |
-| `* * *`  | tutor    | have my changes saved automatically                                                                            | be sure that I won't lose my changes if I crash/close the app               |
-| `* * *`  | tutor    | view my list of students                                                                                       | keep track of who I'm currently teaching                                    |
-| `* * *`  | tutor    | View the address of a student                                                                                  | know where to go if I need to provide tuition at their house                |
-| `* * *`  | tutor    | have my data persist between use sessions                                                                      | continue my session where I left off                                        |
-| `* * *`  | tutor    | find my students by searching their names                                                                      | quickly view that student's details                                         |
-| `* *`    | tutor    | filter my students by education level (eg. all P6 students)                                                    | view my students of the same education level                                |
-| `* * *`  | tutor    | edit a student's name                                                                                          | correct a student's name                                                    |
-| `* * *`  | tutor    | edit the subjects I'm teaching a particular student                                                            | update or correct a student's records                                       |
-| `* * *`  | tutor    | edit a student's education level                                                                               | update or correct a student's records                                       |
-| `* *`    | tutor    | filter my students by subjects                                                                                 | view all the student's I'm teaching a particular subject to                 |
-| `* *`    | tutor    | filter my students by address (eg. Ang Mo Kio)                                                                 | view all the students who live in a particular area                         |
-| `* *`    | tutor    | filter my students by email (eg. @gmail)                                                                       | view all the students with similar emails                                   |
-| `* *`    | tutor    | filter my students by tags (eg. active)                                                                        | view all my students with the same qualities                                |
-| `* *`    | tutor    | sort my students by their names                                                                                | view my students in a systematic manner                                     |
-| `* *`    | tutor    | sort my students by their education level                                                                      | view my students according to their education level                         | 
-| `* * *`  | new user | receieve an appropriate and user-friendly error message when I enter the wrong inputs/parameters for a command | find out the correct input/parameter format and use the feature as intended |
-| `* * *`  | new user | be able to ask for help                                                                                        | learn how to use the app                                                    |
+- **`HIGH`** _(must have)_
+- `MED` _(nice to have)_
+- _`Low`_ _(unlikely to have)_
+
+| Priority   | As a …​   | I want to …​                                                                                                    | So that I can…​                                                              |
+|:----------:|----------|----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| **`HIGH`** | tutor    | open the app                                                                                                   | begin using the app                                                         |
+| **`HIGH`** | tutor    | close the app                                                                                                  | leave the app                                                               |
+| **`HIGH`** | tutor    | add a student's name                                                                                           | track a student's progress by their name                                    |
+| **`HIGH`** | tutor    | include student's education level when adding the student (eg. P6)                                             | keep track of a student's education level                                   |
+| **`HIGH`** | tutor    | include student's phone number when adding the student (eg. 94206942)                                          | keep track of a student's phone number                                      |
+| **`HIGH`** | tutor    | include student's email when adding the student (eg. iloveanimegirls@gmail.com)                                | keep track of a student's email                                             |
+| **`HIGH`** | tutor    | include student's address when adding the student (eg. Block 69 S642069)                                       | keep track of a student's address and go to the place easily                |
+| **`HIGH`** | tutor    | include the subjects I'm teaching a student to their entry (eg. Mathematics, English)                          | keep track of what subjects I'm teaching the student                        |
+| **`HIGH`** | tutor    | include optional student-specific notes when adding the student (eg. Good in Japanese)                         | store information for a particular student such as notes and remarks        |
+| **`HIGH`** | tutor    | include tags on a student about their noteworthy qualities (eg. active)                                        | keep track of a student's qualities.                                        |
+| **`HIGH`** | tutor    | delete a student entry from my list (by index)                                                                 | remove all details related to a certain student                             |
+| **`HIGH`** | tutor    | have my changes saved automatically                                                                            | be sure that I won't lose my changes if I crash/close the app               |
+| **`HIGH`** | tutor    | view my list of students                                                                                       | keep track of who I'm currently teaching                                    |
+| **`HIGH`** | tutor    | View the address of a student                                                                                  | know where to go if I need to provide tuition at their house                |
+| **`HIGH`** | tutor    | have my data persist between use sessions                                                                      | continue my session where I left off                                        |
+| **`HIGH`** | tutor    | find my students by searching their names                                                                      | quickly view that student's details                                         |
+| **`HIGH`** | tutor    | edit a student's name                                                                                          | correct a student's name                                                    |
+| **`HIGH`** | tutor    | edit the subjects I'm teaching a particular student                                                            | update or correct a student's records                                       |
+| **`HIGH`** | tutor    | edit a student's education level                                                                               | update or correct a student's records                                       |
+| **`HIGH`** | tutor    | receieve an appropriate and user-friendly error message when I enter the wrong inputs/parameters for a command | find out the correct input/parameter format and use the feature as intended |
+| **`HIGH`** | tutor    | be able to ask for help                                                                                        | learn how to use the app                                                    |
+|   `MED`    | tutor    | filter my students by education level (eg. all P6 students)                                                    | view my students of the same education level                                |
+|   `MED`    | tutor    | filter my students by subjects                                                                                 | view all the student's I'm teaching a particular subject to                 |
+|   `MED`    | tutor    | filter my students by address (eg. Ang Mo Kio)                                                                 | view all the students who live in a particular area                         |
+|   `MED`    | tutor    | filter my students by email (eg. @gmail)                                                                       | view all the students with similar emails                                   |
+|   `MED`    | tutor    | filter my students by tags (eg. active)                                                                        | view all my students with the same qualities                                |
+|   `MED`    | tutor    | sort my students by their names                                                                                | view my students in a systematic manner                                     |
+|   `MED`    | tutor    | sort my students by their education level                                                                      | view my students according to their education level                         |
 
 [↑ Back to top](#table-of-contents)
 
@@ -675,85 +680,119 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 For all use cases below, the **System** is the `TeachMeSenpai` app and the **Actor** is the `user`, unless specified otherwise.
 
-**Use case UC1: Add a student**
+#### Use case UC1: Add a student
+{:.no_toc}
 
 **MSS**
 
 1.  User request to add a new student's name and particulars.
-
 2.  System adds new student and their particulars as a new entry in the list
-
+    
     Use case ends
 
 **Extensions**
 
 * 1a. The given name/particulars is invalid
-
     * 1a1. System shows an error message
 
       Use case resumes from step 1.
 
 * 1b. The compulsory name field is missing
-
     * 1a1. System shows an error message
 
       Use case resumes from step 1.
 
 * 1c. A student entry with the same name exists in the list
-
     * 1c1. System shows an error message
 
       Use case resumes from step 1.
 
 * 1d. Some optional particulars are missing
-
     * 1d1. System adds new student, leaving their particulars blank
 
       Use case ends
-  
-**Use case UC2: Delete a student**
+
+
+#### Use case UC2: Find a student
+{:.no_toc}
+
+**MSS**
+
+1. User requests to find a specific set of students based on a set of criteria
+2. System shows a list of students that match the criteria 
+   
+   Use case ends
+
+**Extensions**
+
+* 1a. The field to search in specified by the user is empty
+  * 1a1. System shows an error message
+
+    Use case resumes from step 1.
+
+* 1b. The field to search in is not specified by the user
+  * 1b1. System defaults to searching the keyword in the name field
+  * 1b2. System shows a list of students whose names match the keyword
+
+    Use case ends
+
+* 1c. The field and keyword are not specified by the user
+  * 1c1. System shows an error message
+
+    Use case resumes from step 1
+
+#### Use case UC3: Delete a student
+{:.no_toc}
 
 **MSS**
 
 1.  User requests to list students
-
 2.  System shows a list of students
-
 3.  User requests to delete a specific student in the list by their index from the list
-
 4.  System deletes the student
 
     Use case ends
 
 **Extensions**
 
-* 2a. The list is empty
+* 1a. User requests to find a specific set of students based on a set of criteria
+  * 1a1. System shows a list of students which matches the criteria input by the user
+  * 1a2. User requests to delete a specific student in the list by their index from the list
+  * 1a3. System deletes the student
+    
+    Use case ends
 
+* 2a. The list is empty
+  
   Use case ends
 
 * 3a. The given index is invalid
+  * 3a1. System shows an error message
+    
+    Use case resumes at step 2
 
-    * 3a1. System shows an error message
-
-      Use case resumes at step 2
-
-**Use case UC3: List student(s)**
+#### Use case UC4: List student(s)
+{:.no_toc}
 
 **MSS**
-1. User requests to list all the students.
-2. System shows the list of all students.
 
-Use case ends.
+1.  User requests to list all the students.
+2.  System shows the list of all students.
+    
+    Use case ends.
 
 **Extensions**
+
 * 1a. Additional parameters are added behind `list`.
   * 1a1. System shows an error message.
+    
+    Use case ends.
 
-  Use case ends.
-
-**Use case UC4: Update remarks**
+#### Use case UC5: Update remarks
+{:.no_toc}
 
 **MSS**
+
 1. User requests to list students
 2. System shows a list of students
 3. User requests to edit a student's remarks of a specific student in the list by their index from the list
@@ -761,21 +800,57 @@ Use case ends.
 5. User enters remarks
 6. User can exit writing the remarks at any time
 7. System saves the remarks
-
-Use case ends
+   
+   Use case ends
 
 **Extensions**
 
 * 2a. The list is empty
-
-Use case ends
+  
+  Use case ends
 
 * 3a. The given index is invalid
-    * 3a1. System shows an error message
+  * 3a1. System shows an error message
+    
+    Use case resumes at step 2
 
-  Use case resumes at step 2
+#### Use case UC6: Edit particulars
+{:.no_toc}
 
-*{More to be added}*
+**MSS**
+
+1. User requests to edit a student's particulars based on the list displayed
+2. System replaces the specified fields with the new details
+   
+   Use case ends
+
+**Extensions**
+
+* 1a. The field to edit is not specified
+  * 1a1. System shows an error message
+    
+    Use case resumes from step 1
+
+* 1b. The index is given is invalid
+  * 1b1. System shows an error message
+    
+    Use case resumes from step 1
+
+* 1c. The field is specified but the details are empty
+  * 1c1. System deletes the information in the specified field
+    
+    Use case ends
+
+#### Use case UC7: Exiting the application
+{:.no_toc}
+
+**MSS**
+
+1. User requests to exit the application
+2. System saves all data into a local file
+3. System exits from the application
+   
+   Use case ends
 
 [↑ Back to top](#table-of-contents)
 
