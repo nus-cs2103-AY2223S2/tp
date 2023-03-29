@@ -19,4 +19,5 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_TAG = "The tag you are trying to create has been created before.";
     public static final String MESSAGE_EMPTY_ARGUMENT = "You missed out the argument for the command, please refer"
             + " to help for more info. \n %s";
+    public static final String MESSAGE_MAXIMUM_TAG_FOOD = "You have reached the maximum tag limit for %s.";
 }
