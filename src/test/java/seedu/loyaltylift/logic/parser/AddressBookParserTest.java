@@ -8,6 +8,7 @@ import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_FILTER;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_POINTS;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_SORT;
+import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
@@ -108,11 +109,19 @@ public class AddressBookParserTest {
         ListCustomerCommand parsedCommand;
 
         parsedCommand = (ListCustomerCommand) parser.parseCommand(ListCustomerCommand.COMMAND_WORD);
-        assertEquals(new ListCustomerCommand(Customer.SORT_NAME), parsedCommand);
+        assertEquals(new ListCustomerCommand(Customer.SORT_NAME, PREDICATE_SHOW_ALL_CUSTOMERS), parsedCommand);
 
         parsedCommand = (ListCustomerCommand) parser.parseCommand(
                 ListCustomerCommand.COMMAND_WORD + " " + PREFIX_SORT + "points");
-        assertEquals(new ListCustomerCommand(Customer.SORT_POINTS), parsedCommand);
+        assertEquals(new ListCustomerCommand(Customer.SORT_POINTS, PREDICATE_SHOW_ALL_CUSTOMERS), parsedCommand);
+
+        parsedCommand = (ListCustomerCommand) parser.parseCommand(
+                ListCustomerCommand.COMMAND_WORD + " " + PREFIX_FILTER + "marked");
+        assertEquals(new ListCustomerCommand(Customer.SORT_NAME, Customer.FILTER_SHOW_MARKED), parsedCommand);
+
+        parsedCommand = (ListCustomerCommand) parser.parseCommand(ListCustomerCommand.COMMAND_WORD + " "
+                + PREFIX_SORT + "points" + " " + PREFIX_FILTER + "marked");
+        assertEquals(new ListCustomerCommand(Customer.SORT_POINTS, Customer.FILTER_SHOW_MARKED), parsedCommand);
     }
 
     @Test

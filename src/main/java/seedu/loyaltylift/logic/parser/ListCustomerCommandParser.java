@@ -1,8 +1,11 @@
 package seedu.loyaltylift.logic.parser;
 
+import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_FILTER;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_SORT;
+import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.Comparator;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import seedu.loyaltylift.logic.commands.ListCustomerCommand;
@@ -20,14 +23,19 @@ public class ListCustomerCommandParser implements Parser<ListCustomerCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListCustomerCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SORT);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SORT, PREFIX_FILTER);
 
         Comparator<Customer> comparator = Customer.SORT_NAME;
         if (arePrefixesPresent(argMultimap, PREFIX_SORT)) {
             comparator = ParserUtil.parseCustomerSortOption(argMultimap.getValue(PREFIX_SORT).orElse(""));
         }
 
-        return new ListCustomerCommand(comparator);
+        Predicate<Customer> predicate = PREDICATE_SHOW_ALL_CUSTOMERS;
+        if (arePrefixesPresent(argMultimap, PREFIX_FILTER)) {
+            predicate = ParserUtil.parseCustomerFilterOption(argMultimap.getValue(PREFIX_FILTER).orElse(""));
+        }
+
+        return new ListCustomerCommand(comparator, predicate);
     }
 
     /**

@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.commons.util.StringUtil;
@@ -228,6 +229,21 @@ public class ParserUtil {
             return Customer.SORT_POINTS;
         default:
             throw new ParseException(ListCustomerCommand.MESSAGE_INVALID_SORT);
+        }
+    }
+
+    /**
+     * Parses a {@code String filterOption} into a {@code Predicate<Customer>}.
+     * @throws ParseException if the given {@code attribute} is invalid.
+     */
+    public static Predicate<Customer> parseCustomerFilterOption(String filterOption) throws ParseException {
+        requireNonNull(filterOption);
+        String trimmedAttribute = filterOption.trim();
+        switch (trimmedAttribute) {
+        case "marked":
+            return Customer.FILTER_SHOW_MARKED;
+        default:
+            throw new ParseException(ListCustomerCommand.MESSAGE_INVALID_FILTER);
         }
     }
 

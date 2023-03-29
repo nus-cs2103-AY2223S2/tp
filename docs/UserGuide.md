@@ -80,7 +80,7 @@ Adds a customer to the current list.
 Format: `addc [ct/{ind/ent}] n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Customers are 'Individiuals' by default!
+Customers are 'Individuals' by default!
 ind - Individuals
 ent - Enterprise
 </div>
@@ -94,14 +94,16 @@ Examples:
 
 Shows a list of all customers.
 
-Format: `listc [s/{name|points}]`
+Format: `listc [s/{name|points}] [f/marked]`
 
 * Lists all customer with the specified sorting option.
 * Be default, customers are sorted by name
+* If `f/marked` is provided, then shows only bookmarked customers.
 
 Examples:
 * `listc` lists all customers sorted by name
 * `listc s/points` lists all customers sorted by points
+* `listc f/marked` lists all bookmarked customers. 
 
 ### View a customer : `viewc`
 
