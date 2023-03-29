@@ -1,10 +1,10 @@
 Prefix:
 ------------------------------------------------------------------------------------------------
-n/NAME 
-p/PHONE 
-a/ADDRESS 
-e/EMAIL 
-t/TELEGRAM 
+n/NAME
+p/PHONE
+a/ADDRESS
+e/EMAIL
+t/TELEGRAM
 g/[GROUP...] : Accepts multiple keywords
 m/[MODULE…] : Accepts multiple keywords
 =========================================================
@@ -15,7 +15,7 @@ exit : Exits the application
 ------------------------------------------------------------------------------------------------
 help : Displays help window
 ------------------------------------------------------------------------------------------------
-add n/NAME : Adds a contact, name is compulsory	
+add n/NAME : Adds a contact, name is compulsory
 add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]… [m/MODULE]…
 ------------------------------------------------------------------------------------------------
 edit INDEX [z/FIELD]... : Edits the fields for the contact at index
