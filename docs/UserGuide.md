@@ -37,7 +37,6 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
         - [Revert the most recent delete command : `revert`](#revert-a-recent-deleted-internship-application--revert)
         - [Revert all delete and clear commands : `revert_all`](#revert-all-recently-deleted-or-cleared-internship-applications--revertall)
     - [Exit InternEase : `exit`](#exiting-the-program--exit)
-
 - [Side Features](#side-features-planning-to-apply-internships)
     - [Task (todo and notes)](#display-lists-of-tasks-todos-and-notes--list_task)
         - [List current available tasks : `list_task`](#display-lists-of-tasks-todos-and-notes--list_task)
@@ -54,8 +53,7 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
         - [Add a note : `add_note`](#add-a-note-add_note)
         - [Delete a note : `delete_note`](#delete-a-note--delete_note)
         - [Clear all notes : `clear_note`](#clear-all-notes---clear_note)
-
-- [FAQ](#faq)
+- [FAQ](#faq)        
 - [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
