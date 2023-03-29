@@ -34,7 +34,7 @@ Use the interactive [table of contents](#table-of-contents) to navigate through 
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `goodmatch.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-3/tp/releases/tag/v1.2).
 3. Copy the file to the folder you want to use as the *home folder* for your GoodMatch.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar goodmatch.jar` command to run the application.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar goodmatch.jar` command to run the application.
 
 
 A GUI similar to the one below should appear in a few seconds.
@@ -51,16 +51,18 @@ Some example commands you can try:
 
 ## **Features**
 
+<div markdown="block" class="alert alert-info">
 
-ℹ️ **Notes about the command format:**
+**:information_source: Notes about the command format:**<br>
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.e.g. in `add t/TITLE`, `TITLE` is a parameter which can be used as `add t/Chicken Rice Uncle`.
-- Items in square brackets are optional.e.g `t/TITLE [a/APPLICANT]...` can be used as `t/Chicken Rice Uncle a/John Tan` or as `t/Chicken Rice Uncle`.
-- Items with `…` after them can be used multiple times including zero times.e.g. `[a/APPLICANT]…` can be used as  `` (i.e. 0 times), `a/applicant1`, `a/applicant2 a/application3` etc.
-- Parameters can be in any order.e.g. if the command specifies `t/TITLE d/DESCRIPTION`, `d/DESCRIPTION t/TITLE` is also acceptable.
-- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.e.g. if you specify `t/Chicken Rice Uncle t/Chicken Rice Auntie`, only `t/Chicken Rice Uncle` will be taken.
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.e.g. in `add t/TITLE`, `TITLE` is a parameter which can be used as `add t/Chicken Rice Uncle`.
+- Items in square brackets are optional.e.g `t/TITLE [a/APPLICANT]...` can be used as `t/Chicken Rice Uncle a/John Tan` or as `t/Chicken Rice Uncle`.
+- Items with `…` after them can be used multiple times including zero times.e.g. `[a/APPLICANT]…` can be used as `` (i.e. 0 times), `a/applicant1`, `a/applicant2 a/application3` etc.
+- Parameters can be in any order.e.g. if the command specifies `t/TITLE d/DESCRIPTION`, `d/DESCRIPTION t/TITLE` is also acceptable.
+- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.e.g. if you specify `t/Chicken Rice Uncle t/Chicken Rice Auntie`, only `t/Chicken Rice Uncle` will be taken.
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+</div>
 
 ### Viewing help: `help`
 
