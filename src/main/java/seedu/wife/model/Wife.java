@@ -2,6 +2,7 @@ package seedu.wife.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -149,6 +150,14 @@ public class Wife implements ReadOnlyWife {
      */
     public void viewFood(Food key) {
         foods.view(key);
+    }
+
+    /**
+     * Sort {@code Food} in {@code WIFE}.
+     * Sorts by expiry date by default.
+     */
+    public void sortFood(Comparator<Food> cmp) {
+        foods.sort(cmp);
     }
 
     //// util methods
