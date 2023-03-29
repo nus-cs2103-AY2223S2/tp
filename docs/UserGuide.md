@@ -312,7 +312,7 @@ Edits an existing student in the student roster.
 
 Format:
 ```
-edit <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUMBER>]
+edit student <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUMBER>]
 ```
 
 - Edits student at index specified in `<INDEX>`.
@@ -321,8 +321,8 @@ edit <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUMBER>]
 - Fields not entered will not replace the original fields.
 
 Examples:
-- `edit 1 n/John Doe` will replace the name of the first student listed in the student list to `John Doe`.
-- `edit 4 p/99887766 e/john@gmail.com` will replace the phone number and email of the fourth student listed in the student list to `99887766` and `john@gmail.com` respectively.
+- `edit student 1 n/John Doe` will replace the name of the first student listed in the student list to `John Doe`.
+- `edit student 4 p/99887766 e/john@gmail.com` will replace the phone number and email of the fourth student listed in the student list to `99887766` and `john@gmail.com` respectively.
 
 
 
@@ -591,7 +591,7 @@ edit task <INDEX> <NEW TASK NAME>
 
 
 Examples:
-- `edit session 1 Tutorial1` will rename the first session listed to `Tutorial1`.
+- `edit task 1 CA5` will rename the first task listed to `CA5`.
 
 
 
