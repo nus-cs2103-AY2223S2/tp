@@ -249,6 +249,8 @@ public interface Model {
      */
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 
+    void setAppointmentFilters(Collection<Predicate<Appointment>> filters);
+
     /** Returns an unmodifiable view of the filtered appointment map. */
     ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap();
 
