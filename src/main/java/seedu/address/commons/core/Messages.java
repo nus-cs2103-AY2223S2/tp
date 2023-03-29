@@ -31,4 +31,6 @@ public class Messages {
             + String.format(MESSAGE_VIDEO_DOES_NOT_EXIST, "%2$s", "%3$s", "%4$s");
 
     public static final String MESSAGE_EMPTY_TAGS = "No tag is provided";
+
+    public static final String MESSAGE_CONFLICTING_ARGS = "The arguments %1$s and %2$s cannot both be specified";
 }

@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UNWATCH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WATCH;
 
 import seedu.address.logic.commands.add.AddVideoCommand;
@@ -63,7 +64,7 @@ public class VideoUtil {
      *
      * @param moduleCode The code of the module containing the lecture.
      * @param lectureName The name of the lecture containing the video to be edited.
-     * @param videoName The name of  the video to be edited.
+     * @param videoName The name of the video to be edited.
      * @param descriptor The details on how to edit the video.
      * @return An edit command string for editing the video with name {@code videoName} which belongs to the lecture
      *         with name {@code lectureName} contained in the moduel with code {@code moduleCode} using details in
@@ -72,7 +73,23 @@ public class VideoUtil {
     public static String getEditCommand(ModuleCode moduleCode, LectureName lectureName, VideoName videoName,
             EditVideoDescriptor descriptor) {
 
-        return EditVideoCommand.COMMAND_WORD + " " + videoName.toString() + " "
+        return EditVideoCommand.COMMAND_WORD + " "
+                + getEditVideoDetails(moduleCode, lectureName, videoName, descriptor);
+    }
+
+    /**
+     * Returns the part of the command string which excludes the edit command word.
+     *
+     * @param moduleCode The code of the module containing the lecture.
+     * @param lectureName The name of the lecture containing the video to be edited.
+     * @param videoName The name of the video to be edited.
+     * @param descriptor The details on how to edit the video.
+     * @return The part of the command string which excludes the edit command word.
+     */
+    public static String getEditVideoDetails(ModuleCode moduleCode, LectureName lectureName, VideoName videoName,
+            EditVideoDescriptor descriptor) {
+
+        return videoName.toString() + " "
                 + PREFIX_MODULE + " " + moduleCode.toString() + " "
                 + PREFIX_LECTURE + " " + lectureName.toString() + " "
                 + getEditLectureDescriptorDetails(descriptor);
@@ -87,6 +104,10 @@ public class VideoUtil {
     public static String getEditLectureDescriptorDetails(EditVideoDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(" " + name.name).append(" "));
+        descriptor.hasWatched().ifPresent(hasWatched -> sb.append(hasWatched ? PREFIX_WATCH : PREFIX_UNWATCH)
+                .append(" "));
+        descriptor.getTags().ifPresent(tags -> sb.append(PREFIX_TAG).append(" " + TagUtil.getTagsStr(tags))
+                .append(" "));
         return sb.toString();
     }
 

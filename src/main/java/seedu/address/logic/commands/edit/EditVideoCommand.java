@@ -6,6 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_VIDEO_DOES_NOT_EXIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -87,11 +89,10 @@ public class EditVideoCommand extends EditCommand {
         requireNonNull(videoToEdit);
 
         VideoName updatedName = editVideoDescriptor.getName().orElse(videoToEdit.getName());
+        boolean hasWatchedUpdated = editVideoDescriptor.hasWatched().orElse(videoToEdit.hasWatched());
+        Set<Tag> updatedTags = editVideoDescriptor.getTags().orElse(videoToEdit.getTags());
 
-        boolean hasWatched = videoToEdit.hasWatched();
-        Set<Tag> tags = videoToEdit.getTags();
-
-        return new Video(updatedName, hasWatched, tags);
+        return new Video(updatedName, hasWatchedUpdated, updatedTags);
     }
 
     @Override
@@ -118,6 +119,8 @@ public class EditVideoCommand extends EditCommand {
      */
     public static class EditVideoDescriptor {
         private VideoName name;
+        private Boolean hasWatched;
+        private Set<Tag> tags;
 
         public EditVideoDescriptor() {}
 
@@ -128,6 +131,8 @@ public class EditVideoCommand extends EditCommand {
          */
         public EditVideoDescriptor(EditVideoDescriptor toCopy) {
             setName(toCopy.name);
+            setWatched(toCopy.hasWatched);
+            setTags(toCopy.tags);
         }
 
         /**
@@ -136,7 +141,7 @@ public class EditVideoCommand extends EditCommand {
          * @return True if at least one field is edited. Otherwise, false.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name);
+            return CollectionUtil.isAnyNonNull(name, hasWatched, tags);
         }
 
         public Optional<VideoName> getName() {
@@ -145,6 +150,36 @@ public class EditVideoCommand extends EditCommand {
 
         public void setName(VideoName name) {
             this.name = name;
+        }
+
+        public Optional<Boolean> hasWatched() {
+            return Optional.ofNullable(hasWatched);
+        }
+
+        public void setWatched(Boolean hasWatched) {
+            this.hasWatched = hasWatched;
+        }
+
+        /**
+         * If {@code tags} is non-null, returns an {@code Optional} containing an immutable tag set, which throws
+         * {@code UnsupportedOperationException} if modification is attempted.<p>
+         *
+         * Else, returns an {@code Optional#empty()}.
+         *
+         * @return An {@code Optional} containing an immutable tag set if {@code tags} is non-null. Otherwise,
+         *         {@code Optional#empty()}.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return tags == null ? Optional.empty() : Optional.of(Collections.unmodifiableSet(tags));
+        }
+
+        /**
+         * Replace the elements in this object's {@code tags} with the elements in {@code newTags}.
+         *
+         * @param newTags The new tags.
+         */
+        public void setTags(Set<Tag> newTags) {
+            this.tags = newTags == null ? null : new HashSet<>(newTags);
         }
 
         @Override
@@ -159,7 +194,9 @@ public class EditVideoCommand extends EditCommand {
 
             EditVideoDescriptor descriptor = (EditVideoDescriptor) other;
 
-            return getName().equals(descriptor.getName());
+            return getName().equals(descriptor.getName())
+                    && hasWatched().equals(descriptor.hasWatched())
+                    && getTags().equals(descriptor.getTags());
         }
     }
 }

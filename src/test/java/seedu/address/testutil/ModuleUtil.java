@@ -53,8 +53,18 @@ public class ModuleUtil {
      *         {@code descriptor}.
      */
     public static String getEditCommand(ModuleCode moduleCode, EditModuleDescriptor descriptor) {
-        return EditModuleCommand.COMMAND_WORD + " " + moduleCode.toString() + " "
-                + getEditModuleDescriptorDetails(descriptor);
+        return EditModuleCommand.COMMAND_WORD + " " + getEditModuleDetails(moduleCode, descriptor);
+    }
+
+    /**
+     * Returns the part of the command string which excludes the edit command word.
+     *
+     * @param moduleCode The code of the module to be edited.
+     * @param descriptor The details on how to edit the module.
+     * @return The part of the command string which excludes the edit command word.
+     */
+    public static String getEditModuleDetails(ModuleCode moduleCode, EditModuleDescriptor descriptor) {
+        return moduleCode.toString() + " " + getEditModuleDescriptorDetails(descriptor);
     }
 
     /**
@@ -67,6 +77,8 @@ public class ModuleUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getCode().ifPresent(code -> sb.append(PREFIX_CODE).append(" " + code.code).append(" "));
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(" " + name.name).append(" "));
+        descriptor.getTags().ifPresent(tags -> sb.append(PREFIX_TAG).append(" " + TagUtil.getTagsStr(tags))
+                .append(" "));
         return sb.toString();
     }
 
