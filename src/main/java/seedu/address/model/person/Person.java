@@ -314,4 +314,7 @@ public class Person {
         return builder.toString();
     }
 
+    public void setMedicalCondition(MedicalCondition medicalCondition) {
+        this.medicalCondition = medicalCondition;
+    }
 }

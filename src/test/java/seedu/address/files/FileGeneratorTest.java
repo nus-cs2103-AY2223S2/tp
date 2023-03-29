@@ -83,7 +83,7 @@ class FileGeneratorTest {
                         assertEquals(person.getName().fullName, field.getValueAsString());
                         break;
                     case "DOB":
-                        assertEquals("222-2222", field.getValueAsString());
+                        assertEquals("Hidden", field.getValueAsString());
                         break;
                     case "days":
                         assertEquals(Integer.toString(days), field.getValueAsString());

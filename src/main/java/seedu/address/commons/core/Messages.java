@@ -11,4 +11,5 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_INVALID_FILE_INDEX = "The File index provided is invalid";
     public static final String MESSAGE_INVALID_DAY_INDEX = "The number of days provided is invalid";
+    public static final String MESSAGE_BAD_FILE_TYPE = "Wrong File Type";
 }

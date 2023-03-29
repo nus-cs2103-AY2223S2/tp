@@ -130,6 +130,7 @@ public class DetailDisplay extends UiPart<Region> {
                 hideGenerateButton();
                 hideViewDisplay();
                 filesManager.addFile();
+                //add here
                 if (filesManager.isHasError()) {
                     medicalCondition.setText(filesManager.getErrorMessage());
                     return;

@@ -129,10 +129,6 @@ public class AddMcInfo extends UiPart<Stage> {
                 throw new DurationException("Duration should be 1-60 days");
             }
             filesManager.generateMc(doctorName, medical, duration);
-            if (filesManager.isHasError()) {
-                medicalCondition.setText(filesManager.getErrorMessage());
-                return;
-            }
             closeAddAppointmentWindow();
             mcStage.close();
         } catch (NumberFormatException e) {
