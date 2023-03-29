@@ -17,12 +17,14 @@ public class Phone {
 
     /**
      * Constructs a {@code Phone}.
-     *
+     * Skips the check if Phone field is empty
      * @param phone A valid phone number.
      */
     public Phone(String phone) {
         requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+        if (!phone.equals("")) {
+            checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+        }
         value = phone;
     }
 
