@@ -2,6 +2,7 @@ package seedu.internship.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ClashCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         EventCatalogue eventCatalogue = (EventCatalogue) model.getEventCatalogue();
-        HashMap<Event, List<Event>> hash = eventCatalogue.findClashEvents();
+        HashMap<LocalDate, List<Event>> hash = eventCatalogue.findClashEvents();
         return new CommandResult(String.format(MESSAGE_CLASH_INTERNSHIP_SUCCESS), ResultType.CLASH, hash);
     }
 }
