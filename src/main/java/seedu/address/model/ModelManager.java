@@ -160,6 +160,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteStudentFromEvent(Index toDel, String eventName, String eventType) {
+        addressBook.deleteStudentFromEvent(toDel, eventName, eventType);
+    }
+
+    @Override
     public boolean hasLab(Lab lab) {
         requireNonNull(lab);
         return addressBook.hasLab(lab);

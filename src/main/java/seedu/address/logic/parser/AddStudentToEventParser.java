@@ -14,7 +14,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments, checks for validity of student added to event,
+ * Parses input arguments while checking for validity of the user input,
  * and creates a new AddStudentToEventCommand object.
  */
 public class AddStudentToEventParser implements Parser<AddStudentToEventCommand> {
