@@ -476,6 +476,8 @@ Examples:
 
 ## Session Page Commands
 
+![image](./images/UiSessionPage.png)
+
 ### Adding a session: `add session`
 
 Adds a session to the list of session in the session page.
@@ -548,6 +550,7 @@ Examples:
 --------------------------------------------------------------------------------------------------------------
 
 ## Attendance Page Commands
+![images](./images/UiAttendancePage.png)
 
 ### Marking selected students as present: `mark`
 
@@ -587,7 +590,7 @@ Examples:
 
 ### View the overall attendance of the session: `attendance`
 
-Displays the overall attendance of the session you are at. (Pictured below.)
+Displays the overall attendance of the session you are at in the command box. (Pictured below.)
 
 ![image](images/UiAttendance.png)
 
@@ -601,6 +604,8 @@ attendance
 --------------------------------------------------------------------------------------------------------------
 
 ## Task Page Commands
+![image](./images/UiTaskPage.png)
+
 ### Adding a task: `add task`
 
 Adds a new task into the task page.
@@ -674,6 +679,7 @@ Examples:
 
 
 ## Grades Page Commands
+![images](./images/UiGradesPage.png)
 
 ### Assigning a grade to student: `assign`
 Assigns a grade to a student.
