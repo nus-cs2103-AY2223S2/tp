@@ -26,13 +26,13 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the event identified "
         + "by the index number used in the displayed event list. "
-        + "Existing values will be overwritten by the input values.\n"
-        + "Parameters: INDEX (must be a positive integer) "
+        + "\nExisting values will be overwritten by the input values."
+        + "\nParameters: INDEX (must be a positive integer) "
         + CliSyntax.PREFIX_NAME + "NAME "
         + CliSyntax.PREFIX_DATE + "DATE "
         + CliSyntax.PREFIX_START + "START TIME "
         + CliSyntax.PREFIX_END + "END TIME "
-        + "Example: " + COMMAND_WORD + " 1 "
+        + "\nExample: " + COMMAND_WORD + " 1 "
         + CliSyntax.PREFIX_NAME + "TENNIS "
         + CliSyntax.PREFIX_DATE + "2023-20-12 "
         + CliSyntax.PREFIX_START + "18:00 "
@@ -134,8 +134,7 @@ public class EditCommand extends Command {
         private Time startTime;
         private Time endTime;
 
-        public EditEventDescriptor() {
-        }
+        public EditEventDescriptor() {}
 
         /**
          * Copy constructor.

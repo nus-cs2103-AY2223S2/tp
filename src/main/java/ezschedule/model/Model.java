@@ -49,19 +49,24 @@ public interface Model {
     void setSchedulerFilePath(Path schedulerFilePath);
 
     /**
-     * Replaces scheduler data with the data in {@code scheduler}.
-     */
-    void setScheduler(ReadOnlyScheduler scheduler);
-
-    /**
      * Returns the Scheduler
      */
     ReadOnlyScheduler getScheduler();
 
     /**
+     * Replaces scheduler data with the data in {@code scheduler}.
+     */
+    void setScheduler(ReadOnlyScheduler scheduler);
+
+    /**
      * Returns true if an event with the same identity as {@code event} exists in the Scheduler.
      */
     boolean hasEvent(Event event);
+
+    /**
+     * Returns true if another event exists at the given time in the Scheduler.
+     */
+    boolean hasEventAtTime(Event event);
 
     /**
      * Deletes the given event.
@@ -89,9 +94,20 @@ public interface Model {
     
     void undoRecent(ArrayList<Command> commandList, ArrayList<Event> eventList);
     /**
+     * Returns an unmodifiable view of the event list
+     */
+    ObservableList<Event> getEventList();
+
+
+    /**
      * Returns an unmodifiable view of the filtered event list
      */
     ObservableList<Event> getFilteredEventList();
+
+    /**
+     * Returns an unmodifiable view of the upcoming event list
+     */
+    ObservableList<Event> getUpcomingEventList();
 
     /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.
@@ -99,4 +115,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
+    /**
+     * Updates the filter of the upcoming event list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateUpcomingEventList(Predicate<Event> predicate);
 }

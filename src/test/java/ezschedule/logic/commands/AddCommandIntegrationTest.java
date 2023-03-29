@@ -25,7 +25,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newEvent_success() {
         Event validEvent = new EventBuilder().build();
 
         Model expectedModel = new ModelManager(model.getScheduler(), new UserPrefs());
@@ -36,7 +36,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateEvent_throwsCommandException() {
         Event eventInList = model.getScheduler().getEventList().get(0);
         CommandTestUtil.assertCommandFailure(new AddCommand(eventInList), model, AddCommand.MESSAGE_DUPLICATE_EVENT);
     }

@@ -212,6 +212,7 @@
  * Author: Pedro Duque Vieira
  * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
  */
+ /*
 .button {
     -fx-padding: 5 22 5 22;
     -fx-border-color: #e2e2e2;
@@ -227,6 +228,7 @@
 .button:hover {
     -fx-background-color: #3a3a3a;
 }
+*/
 
 .button:pressed, .button:default:hover:pressed {
   -fx-background-color: white;

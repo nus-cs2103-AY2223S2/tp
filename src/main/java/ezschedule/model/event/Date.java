@@ -1,5 +1,8 @@
 package ezschedule.model.event;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+import static java.time.temporal.ChronoUnit.MONTHS;
+import static java.time.temporal.ChronoUnit.YEARS;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
@@ -14,7 +17,7 @@ import ezschedule.commons.util.AppUtil;
 public class Date implements Comparable<Date> {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Date should only contain numeric characters, follows the format yyyy-MM-dd, and it should not be blank";
+            "Date should only contain numeric characters, follows the format yyyy-MM-dd, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
 
@@ -39,6 +42,47 @@ public class Date implements Comparable<Date> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public long getDaysBetween(LocalDate comparingDate) {
+        return DAYS.between(date, comparingDate);
+    }
+
+    public long getMonthsBetween(LocalDate comparingDate) {
+        return MONTHS.between(date, comparingDate);
+    }
+
+    public long getYearsBetween(LocalDate comparingDate) {
+        return YEARS.between(date, comparingDate);
+    }
+
+    public boolean isPastDate() {
+        return date.isBefore(LocalDate.now());
+    }
+
+    public boolean isFutureDate() {
+        return date.isAfter(LocalDate.now());
+    }
+
+    /**
+     * Returns the year value of date.
+     */
+    public int getYear() {
+        return date.getYear();
+    }
+
+    /**
+     * Returns the month value of date.
+     */
+    public int getMonth() {
+        return date.getMonthValue();
+    }
+
+    /**
+     * Returns the day value of date.
+     */
+    public int getDay() {
+        return date.getDayOfMonth();
+    }
+
     @Override
     public int compareTo(Date otherDate) {
         return date.compareTo(otherDate.date);
@@ -52,8 +96,8 @@ public class Date implements Comparable<Date> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof Date // instanceof handles nulls
-            && date.equals(((Date) other).date)); // state check
+                || (other instanceof Date // instanceof handles nulls
+                && date.equals(((Date) other).date)); // state check
     }
 
     @Override

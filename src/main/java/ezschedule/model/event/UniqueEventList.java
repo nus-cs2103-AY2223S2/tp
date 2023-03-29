@@ -9,6 +9,7 @@ import ezschedule.commons.util.CollectionUtil;
 import ezschedule.model.event.exceptions.DuplicateEventException;
 import ezschedule.model.event.exceptions.EventNotFoundException;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 /**
@@ -38,7 +39,31 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
-     * Adds a event to the list.
+     * Returns true if the list contains an event at the given date and time.
+     */
+    public boolean existsAtTime(Event toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isEventOverlap);
+    }
+
+    /**
+     * Attach {@code listener}, which is called whenever internalList is changed.
+     *
+     * @param listener A ListChangeListener to be called.
+     */
+    public void addListChangeListener(ListChangeListener<Event> listener) {
+        internalList.addListener(listener);
+    }
+
+    /**
+     * Sorts all events in chronological order.
+     */
+    public void sortByChronologicalOrder() {
+        FXCollections.sort(internalList);
+    }
+
+    /**
+     * Adds an event to the list.
      * The event must not already exist in the list.
      */
     public void add(Event toAdd) {
@@ -65,7 +90,6 @@ public class UniqueEventList implements Iterable<Event> {
         if (!target.isSameEvent(editedEvent) && contains(editedEvent)) {
             throw new DuplicateEventException();
         }
-
         internalList.set(index, editedEvent);
     }
 
@@ -94,7 +118,6 @@ public class UniqueEventList implements Iterable<Event> {
         if (!eventsAreUnique(events)) {
             throw new DuplicateEventException();
         }
-
         internalList.setAll(events);
     }
 

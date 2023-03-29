@@ -9,9 +9,9 @@ import javafx.scene.layout.Region;
 /**
  * A UI component that displays information of a {@code Event}.
  */
-public class EventCard extends UiPart<Region> {
+public class ShowNextCard extends UiPart<Region> {
 
-    private static final String FXML = "EventListCard.fxml";
+    private static final String FXML = "ShowNextCard.fxml";
 
     public final Event event;
 
@@ -33,7 +33,7 @@ public class EventCard extends UiPart<Region> {
     /**
      * Creates a {@code EventCode} with the given {@code Event} and index to display.
      */
-    public EventCard(Event event, int displayedIndex) {
+    public ShowNextCard(Event event, int displayedIndex) {
         super(FXML);
         this.event = event;
 
@@ -53,12 +53,12 @@ public class EventCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EventCard)) {
+        if (!(other instanceof ShowNextCard)) {
             return false;
         }
 
         // state check
-        EventCard card = (EventCard) other;
+        ShowNextCard card = (ShowNextCard) other;
         return id.getText().equals(card.id.getText())
                 && event.equals(card.event);
     }

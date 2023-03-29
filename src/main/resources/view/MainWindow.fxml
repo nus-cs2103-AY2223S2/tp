@@ -7,11 +7,12 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="EZ-Schedule" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="650.0" minWidth="800.0" onCloseRequest="#handleExit" title="EZ-Schedule" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/scheduler.png" />
     </icons>
@@ -34,7 +35,7 @@
 
                 <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
                     <padding>
-                        <Insets bottom="5" left="10" right="10" top="5" />
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                     </padding>
                 </StackPane>
 
@@ -43,13 +44,32 @@
                         <Insets bottom="5" left="10" right="10" top="5" />
                     </padding>
                 </StackPane>
-
-                <VBox fx:id="eventList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                    <padding>
-                        <Insets bottom="10" left="10" right="10" top="10" />
-                    </padding>
-                    <StackPane fx:id="eventListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                </VBox>
+            <BorderPane VBox.vgrow="ALWAYS">
+               <right>
+                  <VBox BorderPane.alignment="CENTER">
+                     <children>
+                        <StackPane fx:id="showNextPlaceholder" styleClass="pane-with-border">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </StackPane>
+                        <StackPane fx:id="calendarPlaceholder" styleClass="pane-with-border">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </StackPane>
+                     </children>
+                  </VBox>
+               </right>
+               <center>
+                      <VBox fx:id="eventList" styleClass="pane-with-border" BorderPane.alignment="CENTER">
+                          <padding>
+                              <Insets bottom="10" left="10" right="10" top="10" />
+                          </padding>
+                          <StackPane fx:id="eventListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                      </VBox>
+               </center>
+            </BorderPane>
 
                 <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
             </VBox>

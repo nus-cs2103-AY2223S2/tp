@@ -11,14 +11,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import ezschedule.logic.commands.FindCommand.FindEventDescriptor;
 import ezschedule.model.Model;
 import ezschedule.model.ModelManager;
 import ezschedule.model.UserPrefs;
 import ezschedule.model.event.EventContainsKeywordsPredicate;
+import ezschedule.model.event.Name;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -29,19 +30,19 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        EventContainsKeywordsPredicate firstPredicate =
-                new EventContainsKeywordsPredicate(Collections.singletonList("first"));
-        EventContainsKeywordsPredicate secondPredicate =
-                new EventContainsKeywordsPredicate(Collections.singletonList("second"));
+        FindEventDescriptor firstFindEventDescriptor = new FindEventDescriptor();
+        firstFindEventDescriptor.setName(new Name("first"));
+        FindCommand findFirstCommand = new FindCommand(firstFindEventDescriptor);
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindEventDescriptor secondFindEventDescriptor = new FindEventDescriptor();
+        secondFindEventDescriptor.setName(new Name("second"));
+        FindCommand findSecondCommand = new FindCommand(secondFindEventDescriptor);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindCommand findFirstCommandCopy = new FindCommand(firstFindEventDescriptor);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -55,20 +56,12 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noEventFound() {
-        String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 0);
-        EventContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredEventList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredEventList());
-    }
-
-    @Test
     public void execute_multipleKeywords_multipleEventsFound() {
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 3);
+        FindEventDescriptor findEventDescriptor = new FindEventDescriptor();
+        findEventDescriptor.setName(new Name("Art Boat Carnival"));
+        FindCommand command = new FindCommand(findEventDescriptor);
         EventContainsKeywordsPredicate predicate = preparePredicate("Art Boat Carnival");
-        FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ART, BOAT, CARNIVAL), model.getFilteredEventList());
