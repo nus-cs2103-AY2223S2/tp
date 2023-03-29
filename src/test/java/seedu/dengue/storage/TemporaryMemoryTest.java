@@ -44,13 +44,15 @@ public class TemporaryMemoryTest {
             this.memory.saveNewLatest(this.inputs.get(i));
         }
         assertFalse(this.memory.isFull());
-        for (i = i; i < inputs.size(); i++) {
+        while (i < inputs.size()) {
             this.memory.saveNewLatest(this.inputs.get(i++));
             assertEquals(this.memory.getRedoHistory().size(), this.memory.MAX_SIZE);
+            i++;
         }
     }
     // Saves multiple files into the stack, then perform undo a number of times
     // less than the number of saves.
+
     @Test
     public void saveMultipleThenUndoFewerTimes_randomNumberOfRandomFiles_loadsCorrectFile()
             throws CommandException {
@@ -65,6 +67,7 @@ public class TemporaryMemoryTest {
         }
         assertEquals(this.memory.loadCurrent(), inputs.get(numFiles - numUndos - 1));
     }
+
     @Test
     public void undoAndPushNew_randomFiles_temporaryStorageEmpty()
             throws CommandException {

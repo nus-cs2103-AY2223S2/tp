@@ -54,6 +54,7 @@ public class SpecialisedStackForMemory<T> implements StackWithStorage<T> {
     public void pushOneFromTemporaryPop() throws EmptyStackException {
         this.redoHistory.push(this.undoHistory.pop());
     }
+
     @Override
     public void pushAllFromTemporaryPop() {
         while (!this.undoHistory.isEmpty()) {
