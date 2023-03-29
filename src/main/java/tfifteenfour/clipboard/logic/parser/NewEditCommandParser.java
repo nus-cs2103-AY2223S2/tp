@@ -34,18 +34,26 @@ public class NewEditCommandParser implements Parser<EditCommand> {
                     + "Available edit commands are: edit course, edit group, edit session, edit student");
         }
 
-        index = parseIndex(args);
+
         switch (editCommandType) {
         case MODULE:
             Course newCourse = parseCourseInfo(args);
+            index = parseIndex(args);
             return new EditCourseCommand(index, newCourse);
         case GROUP:
             Group newGroup = parseGroupInfo(args);
+            index = parseIndex(args);
             return new EditGroupCommand(index, newGroup);
         case SESSION:
             Session newSession = parseSessionInfo(args);
+            index = parseIndex(args);
             return new EditSessionCommand(index, newSession);
         case STUDENT:
+            /*  Note: Parsing of student info is done in EditStudentCommand::execute to catch error when user is not
+                on STUDENT_PAGE, therefore we need to catch runtime error separately here
+             */
+
+            index = parseStudentIndex(args);
             return new EditStudentCommand(index, args);
         default:
             throw new ParseException("Invalid type for edit command");
@@ -54,14 +62,8 @@ public class NewEditCommandParser implements Parser<EditCommand> {
 
     private Index parseIndex(String args) throws ParseException {
         String[] tokens = ArgumentTokenizer.tokenizeString(args);
-        try {
-            Index index = ParserUtil.parseIndex(tokens[2]);
-            return index;
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ParseException("Invalid format! \n"
-                    + "Available types are: course, group, session, student, task\n"
-                    + "Usage: edit <TYPES> <INDEX> [PARAMETERS]");
-        }
+        Index index = ParserUtil.parseIndex(tokens[2]);
+        return index;
     }
 
     private Course parseCourseInfo(String args) throws ParseException {
@@ -92,6 +94,14 @@ public class NewEditCommandParser implements Parser<EditCommand> {
 
         Session session = ParserUtil.parseSession(tokens[3]);
         return session;
+    }
+
+    private Index parseStudentIndex(String args) throws ParseException {
+        String[] tokens = ArgumentTokenizer.tokenizeString(args);
+        if (tokens.length < 4) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStudentCommand.MESSAGE_USAGE));
+        }
+        return parseIndex(args);
     }
 
 
