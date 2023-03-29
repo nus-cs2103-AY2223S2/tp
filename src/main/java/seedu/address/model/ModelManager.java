@@ -23,7 +23,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
-import seedu.address.model.jobs.sorters.SortbyTime;
+import seedu.address.model.jobs.sorters.SortbyTimeAndEarn;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
@@ -31,7 +31,7 @@ import seedu.address.model.reminder.Reminder;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
-    public static final SortbyTime SORTER_BY_DATE = new SortbyTime();
+    public static final SortbyTimeAndEarn SORTER_BY_DATE = new SortbyTimeAndEarn();
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
@@ -244,7 +244,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter) {
-        sortedDeliveryJobs = new ArrayList<DeliveryJob>(deliveryJobSystem.getDeliveryJobList());
+        sortedDeliveryJobs = new ArrayList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
         Collections.sort(sortedDeliveryJobs, sorter);
     }
 
@@ -288,7 +288,11 @@ public class ModelManager implements Model {
                     jobListGroupedByDate.put(jobDate, jobsInCurrentSlot);
                 } else {
                     DeliveryList newDateJobList = createEmptyDayJobList();
-                    newDateJobList.get(slotIndex).add(toAdd);
+                    if (slotIndex > 4) {
+                        newDateJobList.get(5).add(toAdd);
+                    } else {
+                        newDateJobList.get(slotIndex).add(toAdd);
+                    }
                     jobListGroupedByDate.put(jobDate, newDateJobList);
                 }
             }
@@ -359,7 +363,9 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<DeliveryJob> getUnscheduledDeliveryJobList() {
-        FilteredList<DeliveryJob> unscheduledJobList = new FilteredList<>(this.deliveryJobSystem.getDeliveryJobList());
+        updateSortedDeliveryJobList(SORTER_BY_DATE);
+        FilteredList<DeliveryJob> unscheduledJobList =
+                new FilteredList<>(FXCollections.observableArrayList(sortedDeliveryJobs));
         unscheduledJobList.setPredicate(job -> (!job.isValidScheduled()));
         return FXCollections.observableArrayList(unscheduledJobList);
     }

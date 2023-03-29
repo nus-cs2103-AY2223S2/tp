@@ -79,66 +79,66 @@ public class EditDeliveryJobCommand extends Command {
      * edited with {@code editjobDescriptor}.
      */
     private static DeliveryJob createEditedDeliveryJob(DeliveryJob deliveryJobToEdit,
-            EditDeliveryJobDescriptor editjobDescriptor) {
+                                                       EditDeliveryJobDescriptor editjobDescriptor) {
         assert deliveryJobToEdit != null;
         DeliveryJob.Builder toEdit = new DeliveryJob.Builder();
 
-        toEdit.jobId(deliveryJobToEdit.getJobId());
+        toEdit.setJobId(deliveryJobToEdit.getJobId());
 
         editjobDescriptor.getRecipient().ifPresentOrElse(val -> {
-            toEdit.recipient(val);
+            toEdit.setRecipient(val);
         }, () -> {
-            toEdit.recipient(deliveryJobToEdit.getRecipientId());
+            toEdit.setRecipient(deliveryJobToEdit.getRecipientId());
         });
 
         editjobDescriptor.getSender().ifPresentOrElse(val -> {
-            toEdit.sender(val);
+            toEdit.setSender(val);
         }, () -> {
-            toEdit.sender(deliveryJobToEdit.getSenderId());
+            toEdit.setSender(deliveryJobToEdit.getSenderId());
         });
 
         editjobDescriptor.getDeliveryDate().ifPresentOrElse(val -> {
-            toEdit.deliveryDate(val.date);
+            toEdit.setDeliveryDate(val.date);
         }, () -> {
             deliveryJobToEdit.getDeliveryDate().ifPresent(val -> {
                 editjobDescriptor.ifClearDeliveryDate(()-> {
-                    toEdit.deliveryDate(DeliveryDate.placeholder().date);
+                    toEdit.setDeliveryDate(DeliveryDate.placeholder().date);
                 }, () -> {
-                    toEdit.deliveryDate(val.date);
+                    toEdit.setDeliveryDate(val.date);
                 });
             });
         });
 
         editjobDescriptor.getDeliverySlot().ifPresentOrElse(val -> {
-            toEdit.deliverySlot(val.value);
+            toEdit.setDeliverySlot(val.value);
         }, () -> {
             deliveryJobToEdit.getDeliverySlot().ifPresent(val -> {
                 editjobDescriptor.ifClearDeliverySlot(()-> {
                     toEdit.clearDeliverySlot();
                 }, () -> {
-                    toEdit.deliverySlot(val.value);
+                    toEdit.setDeliverySlot(val.value);
                 });
             });
         });
 
         editjobDescriptor.getEarning().ifPresentOrElse(val -> {
-            toEdit.earning(val.value);
+            toEdit.setEarning(val.value);
         }, () -> {
             deliveryJobToEdit.getEarning().ifPresent(val -> {
-                toEdit.earning(val.value);
+                toEdit.setEarning(val.value);
             });
         });
 
         editjobDescriptor.getDelivered().ifPresentOrElse(val -> {
-            toEdit.isDelivered(val);
+            toEdit.setDeliveredStatus(val);
         }, () -> {
-            toEdit.isDelivered(deliveryJobToEdit.getDeliveredStatus());
+            toEdit.setDeliveredStatus(deliveryJobToEdit.getDeliveredStatus());
         });
 
         editjobDescriptor.getDescription().ifPresentOrElse(val -> {
-            toEdit.description(val);
+            toEdit.setDescription(val);
         }, () -> {
-            toEdit.description(deliveryJobToEdit.getDescription());
+            toEdit.setDescription(deliveryJobToEdit.getDescription());
         });
 
         return toEdit.build();

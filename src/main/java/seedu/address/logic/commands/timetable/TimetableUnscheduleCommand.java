@@ -11,7 +11,7 @@ import seedu.address.model.Model;
  * Finds and lists unscheduled jobs - those with invalid slot/date
  */
 public class TimetableUnscheduleCommand extends Command {
-    public static final String COMMAND_WORD = "timetable_unschedule";
+    public static final String COMMAND_WORD = "timetable_unscheduled";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists unscheduled jobs with invalid slot/date";

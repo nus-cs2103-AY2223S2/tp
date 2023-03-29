@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Delivery's earning in the delivery jobs book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEarning(String)}
  */
-public class Earning {
+public class Earning implements Comparable<Earning> {
 
     public static final String MESSAGE_CONSTRAINTS = "Earning should only contain double, and it should not be blank";
 
@@ -36,6 +36,10 @@ public class Earning {
             dollar = format[0];
             cent = "00";
         }
+    }
+
+    public double getEarning() {
+        return Double.parseDouble(value);
     }
 
     public static Earning placeholder() {
@@ -75,4 +79,13 @@ public class Earning {
         return Double.parseDouble(value);
     }
 
+    @Override
+    public int compareTo(Earning other) {
+        if (this.getEarning() - other.getEarning() < 0) {
+            return 1;
+        } else if (this.getEarning() - other.getEarning() > 0) {
+            return -1;
+        }
+        return 0;
+    }
 }
