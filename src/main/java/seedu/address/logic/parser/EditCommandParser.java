@@ -20,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Nric;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -67,7 +68,12 @@ public class EditCommandParser implements Parser<EditCommand> {
                     ParserUtil.parseMedicalCond(argMultimap.getValue(PREFIX_MEDICAL).get()));
         }
         if (argMultimap.getValue(PREFIX_NRIC).isPresent()) {
-            editPersonDescriptor.setNric(ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get()));
+            Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
+            if (nric.getNumber().equals("")) {
+                throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
+            } else {
+                editPersonDescriptor.setNric(ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get()));
+            }
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
