@@ -23,7 +23,7 @@ public class Participants {
     public Participants(List<Person> participants) {
 
         this.participants = new ArrayList<>();
-        //to remove the use
+        //to remove the user
         for (Person person : participants) {
             if (person.getContactIndex().getContactIndex() != 0) {
                 this.participants.add(person);

@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import org.joda.time.IllegalFieldValueException;
 import seedu.address.logic.commands.OrganiseCommand;
 import seedu.address.model.meetup.Participants;
 import seedu.address.model.location.Location;
@@ -79,6 +80,8 @@ public class OrganiseCommandParser implements Parser<OrganiseCommand> {
             endHour = new LocalTime(Integer.parseInt(time.get(1)), 0);
         } catch (NumberFormatException nfe) {
             throw new ParseException(MESSAGE_WRONG_TIME_FORMAT);
+        } catch (IllegalFieldValueException e) {
+            throw new ParseException(MESSAGE_WRONG_TIME_FORMAT);
         }
 
         //for location
@@ -89,7 +92,7 @@ public class OrganiseCommandParser implements Parser<OrganiseCommand> {
             throw new ParseException(MESSAGE_NO_LOCATION_GIVEN);
         }
 
-        Location location = new Location(argumentMultimap.getValue(Prefix.LOCATION).get(), 1.3, 103.7); //todo, ask about this
+        Location location = new Location(argumentMultimap.getValue(Prefix.LOCATION).get(), 1.3, 103.7); //using a dummy location
 
         return new OrganiseCommand(day, startHour, endHour, location, participants);
 

@@ -53,7 +53,6 @@ public class JsonAdaptedTimePeriod {
      */
     public TimePeriod toModelType() throws IllegalValueException {
         if (TimeUtil.isValidStartHour(startHour)) {
-            System.out.println(startHour);
             throw new IllegalValueException(
                     String.format(ParserUtil.MESSAGE_INVALID_START_HOUR, LocalTime.class.getSimpleName()));
         }

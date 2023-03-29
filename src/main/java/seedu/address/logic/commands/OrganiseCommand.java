@@ -12,7 +12,6 @@ import seedu.address.model.location.Location;
 import seedu.address.model.meetup.exceptions.DuplicateMeetUpException;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.User;
 import seedu.address.model.recommendation.Recommendation;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.TimeBlock;
@@ -68,9 +67,6 @@ public class OrganiseCommand extends Command {
             Participants participants = model.getParticipants();
 
             for (Person person : participants.getParticipants()) {
-                if (person.getContactIndex().getContactIndex() == 0) {
-                    continue;
-                }
                 if (!model.hasPerson(person)) { //meet -> delete someone -> organise
                     throw new CommandException(String.format(MESSAGE_NO_SUCH_PERSON, person.getName()));
                 }
@@ -89,9 +85,6 @@ public class OrganiseCommand extends Command {
         List<Person> people = new ArrayList<>();
         assert participants != null;
         for (ContactIndex contactIndex : participants.getContactIndices()) {
-            if (contactIndex.getContactIndex() == 0) {
-                continue;
-            }
             Optional<Person> person = model.getPersonByIndex(contactIndex);
             if (person.isEmpty()) {
                 throw new CommandException(String.format(MESSAGE_NO_SUCH_PERSON_ID, contactIndex.toString()));

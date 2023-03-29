@@ -61,21 +61,16 @@ public class EduMateStorageManager implements EduMateStorage {
      */
     public Optional<ReadOnlyEduMate> readEduMate(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
-        System.out.println("REACH 1");
 
         Optional<JsonSerializableEduMate> jsonEduMate = JsonUtil.readJsonFile(
                 filePath, JsonSerializableEduMate.class);
-        System.out.println("REACH 2");
         if (!jsonEduMate.isPresent()) {
-            System.out.println("ERROR 3");
             return Optional.empty();
         }
 
         try {
-            System.out.println("REACH 4");
             return Optional.of(jsonEduMate.get().toModelType());
         } catch (IllegalValueException ive) {
-            System.out.println("REACH 5");
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }
