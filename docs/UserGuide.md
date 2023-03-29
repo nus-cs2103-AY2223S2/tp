@@ -62,7 +62,7 @@ CookHub is a **desktop app for managing recipes, optimized for use via a Command
 * Items in double dollar signs, means that exactly one of them is required
     - `find r/Corndogs` is valid
     - `find` is not valid
-    - `find r/Corndogs i/Flour` is not valid
+    - `find r/Corndogs i/Egg, 1, piece, 0.20` is not valid
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   - e.g. `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 i/large egg, 4, unit, 0.80 s/Mix batter s/Fry` is valid because the `i/` and `s/` flag can be used multiple times. Since `i/` and `s/` are not surrounded by square brackets, they have to appear at least one time
@@ -105,9 +105,9 @@ Format: `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`
 
 Examples:
 
-- `add t/Orange juice d/Yummy i/Orange s/Juice the orange` is valid
-- `add t/Orange juice d/Yummy i/Orange` is not valid because `s/` is compulsory
-- `add t/Orange juice d/Yummy i/Orange i/Sugar s/Juice the orange` is valid because we can have multiple `i/` flags
+- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange` is valid
+- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50` is not valid because `s/` is compulsory
+- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 i/Sugar s/Juice the orange` is valid because we can have multiple `i/` flags
 
 ---
 ### Edit a recipe: `edit {recipe number}`
@@ -122,7 +122,7 @@ Format: `edit {recipe number} $[t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP]
 Example:
 - `edit 1 t/Corndogs` is valid
 - `edit 1` is not valid as at least one flag is required
-- `edit 1 t/Corndogs i/200g flour` is valid as multiple flags are accepted
+- `edit 1 t/Corndogs i/flour, 200, g, 0.05` is valid as multiple flags are accepted
 
 ---
 ### Delete a recipe : `delete {recipe number}`
@@ -159,6 +159,7 @@ Expected outcome: You should see that CookHub has zero recipes in it
 ### Find recipe : `find`
 Finds the recipes in CookHub according to what you are looking for
 
+
 Format: `find $$[r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]$$`
 - the flag `r/` searches through the entire recipe and its components
 - the flag `t/` searches only through the recipe's title
@@ -166,9 +167,11 @@ Format: `find $$[r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]$$`
 - the flag `i/` seaches only through the recipe's ingredients
 - the flag `tag/` searches only through the recipe's tags
 
+:mag: Constraint: `find i/INGREDIENT` should only be used to find the name of  the ingredients, and not its quantity/unit of measurement/price per unit. e.g. `find i/lemons` is OK, but `find i/30g` should not be used.
+
 Examples:
 - `find r/eggs` is valid
-- `find r/eggs i/fry the egg` is not valid because at most one flag is allowed
+- `find r/eggs s/fry the egg` is not valid because at most one flag is allowed
 - `find` is not valid as at least one flag is required
 
 ---
@@ -242,20 +245,22 @@ Format meanings:
 - Words in [Square brackets] are optional parameters (Note:ls can stack filters)
 - Words that are followed by * are parameters that can be used multiple times
 
-| Action | Format | Examples  |
-|--------|--------|----------|
-Delete Recipe | delete {recipe number} | delete 1 |
-Sort Recipes by price | sort {order} | sort asc |
-Filter Recipes by price | filter {comparator} {price} | fp < 4.20|
+| Action                   | Format | Examples  |
+|--------------------------|--------|-----------|
+| Delete Recipe            | delete {recipe number} | delete 1  |
+| Sort Recipes by price    | sort {order} | sort asc  |
+|  Filter Recipes by price | filter {comparator} {price} | fp < 4.20 |
 
 <hr style="border:2px solid gray">
 
 ## Glossary
-| Word	| Definition |
-|--------|----------|
-**Command Line Interface (CLI)** |	A program that mainly uses typed commands to interact with the app.
-**Graphical User Interface (GUI)** |	What the user sees when interacting with the app.
-Alphanumeric | A combination of both letters and numbers without space.
-Terminal| A text-based interface for the computer.
+| Word	| Definition                                                           |
+|-------|----------------------------------------------------------------------|
+
+**Command Line Interface (CLI)** | 	A program that mainly uses typed commands to interact with the app. 
+**Graphical User Interface (GUI)** | 	What the user sees when interacting with the app.                   
+Alphanumeric | A combination of both letters and numbers without space.             
+Terminal| A text-based interface for the computer.                             
 
 [Back to top](#top)
+
