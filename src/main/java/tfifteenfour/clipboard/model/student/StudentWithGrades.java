@@ -14,7 +14,7 @@ public class StudentWithGrades extends Student {
      * @param student The student object to be wrapped.
      * @param grade The grade of the student.
      */
-    public StudentWithGrades(Student student, int grade) {
+    public StudentWithGrades(Student student, Integer grade) {
         super(student.getName(), student.getPhone(), student.getEmail(), student.getStudentId(), student.getRemark());
         this.grade = grade;
     }
@@ -25,7 +25,7 @@ public class StudentWithGrades extends Student {
      *
      * @return The grade of the student.
      */
-    public int getGrade() {
+    public Integer getGrade() {
         return grade;
     }
 

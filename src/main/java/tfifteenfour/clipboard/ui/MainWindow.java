@@ -30,10 +30,13 @@ import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkAbsentCommand
 import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkPresentCommand;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.SessionCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
+import tfifteenfour.clipboard.logic.commands.taskcommand.AssignCommand;
+import tfifteenfour.clipboard.logic.commands.taskcommand.TaskCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.model.task.Task;
 import tfifteenfour.clipboard.ui.pagetab.ActiveCourseTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveGroupTab;
 import tfifteenfour.clipboard.ui.pagetab.ActiveSessionTab;
@@ -242,8 +245,10 @@ public class MainWindow extends UiPart<Stage> {
         closeGroupTab();
         closeStudentTab();
         closeSessionTab();
+        closeTaskTab();
         closeNavigationBar();
         logic.getCurrentSelection().getSelectedGroup().unMarkAllSessions();
+        logic.getCurrentSelection().getSelectedGroup().unMarkAllTasks();
         logic.getCurrentSelection().navigateBackToCoursePage();
     }
 
@@ -309,9 +314,19 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
     }
 
+    private void showTaskPane(Group group) {
+        TaskListPanel taskListPanel = new TaskListPanel(group.getUnmodifiableTaskList());
+        leftPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+    }
+
     private void showAttendancePane(Session session) {
         AttendanceListPanel attendanceListPanel = new AttendanceListPanel(session.getUnmodifiableStudentList());
         rightPanelPlaceholder.getChildren().add(attendanceListPanel.getRoot());
+    }
+
+    private void showGradePane(Task task) {
+        GradeListPanel gradeListPanel = new GradeListPanel(task.getUnmodifiableStudentList());
+        rightPanelPlaceholder.getChildren().add(gradeListPanel.getRoot());
     }
 
     private void showModuleTab() {
@@ -359,6 +374,7 @@ public class MainWindow extends UiPart<Stage> {
         sessionTabPlaceholder.getChildren().add(new InactiveSessionTab().getRoot());
     }
 
+
     private void closeTaskTab() {
         taskTabPlaceholder.getChildren().clear();
         taskTabPlaceholder.getChildren().add(new InactiveTaskTab().getRoot());
@@ -392,6 +408,12 @@ public class MainWindow extends UiPart<Stage> {
             showSessionPane(logic.getCurrentSelection().getSelectedGroup());
             showAttendancePane(logic.getCurrentSelection().getSelectedSession());
             refreshNavigationBar();
+
+        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.TASK_STUDENT_PAGE)) {
+            logic.getCurrentSelection().getSelectedTask().selectTask();
+            showTaskPane(logic.getCurrentSelection().getSelectedGroup());
+            showGradePane(logic.getCurrentSelection().getSelectedTask());
+            refreshNavigationBar();
         }
     }
 
@@ -411,18 +433,31 @@ public class MainWindow extends UiPart<Stage> {
             closeViewPane();
             closeStudentTab();
             closeSessionTab();
+            closeTaskTab();
             refreshNavigationBar();
         } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.SESSION_PAGE)) {
             logic.getCurrentSelection().getSelectedGroup().unMarkAllSessions();
             showSessionPane(logic.getCurrentSelection().getSelectedGroup());
             rightPanelPlaceholder.getChildren().clear();
             refreshNavigationBar();
+        } else if (logic.getCurrentSelection().getCurrentPage().equals(PageType.TASK_PAGE)) {
+            logic.getCurrentSelection().getSelectedGroup().unMarkAllTasks();
+            showTaskPane(logic.getCurrentSelection().getSelectedGroup());
+            rightPanelPlaceholder.getChildren().clear();
+            refreshNavigationBar();
         }
+
     }
 
     private void handleSessionCommand() {
         showSessionPane(logic.getCurrentSelection().getSelectedGroup());
         showSessionTab();
+        refreshNavigationBar();
+    }
+
+    private void handleTaskCommand() {
+        showTaskPane(logic.getCurrentSelection().getSelectedGroup());
+        showTaskTab();
         refreshNavigationBar();
     }
 
@@ -447,9 +482,15 @@ public class MainWindow extends UiPart<Stage> {
         } else if (commandResult.getCommand() instanceof SessionCommand) {
             handleSessionCommand();
 
+        } else if (commandResult.getCommand() instanceof TaskCommand) {
+            handleTaskCommand();
+
         } else if (commandResult.getCommand() instanceof MarkAbsentCommand
                 || commandResult.getCommand() instanceof MarkPresentCommand) {
             showAttendancePane(logic.getCurrentSelection().getSelectedSession());
+
+        } else if (commandResult.getCommand()instanceof AssignCommand) {
+            showGradePane(logic.getCurrentSelection().getSelectedTask());
         }
 
         //} else if (commandResult.getCommand() instanceof UndoCommand) {
@@ -482,14 +523,14 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             handleSpecialCommandConsiderations(commandResult);
-            showClippySuccess();
+            //showClippySuccess();
 
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
 
-            showClippyFailure();
+            //showClippyFailure();
             throw e;
         }
     }

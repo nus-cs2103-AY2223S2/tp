@@ -2,10 +2,7 @@ package tfifteenfour.clipboard.model.course;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-
 import javafx.collections.ObservableList;
-import tfifteenfour.clipboard.model.student.Assignment;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.student.UniqueStudentList;
 import tfifteenfour.clipboard.model.task.Task;
@@ -195,6 +192,16 @@ public class Group {
             session.unselectSession();
         }
     }
+
+    /**
+     * Unselects all tasks in a group. For GUI purpose.
+     */
+    public void unMarkAllTasks() {
+        for (Task task: this.getUnmodifiableTaskList()) {
+            task.unselectTask();
+        }
+    }
+
     @Override
     public String toString() {
         return this.groupName;

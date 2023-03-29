@@ -4,17 +4,18 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.MainApp;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
-import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.model.student.StudentWithGrades;
 
 /**
- * An UI component that displays information of a {@code Session}.
+ * An UI component that displays the attendance information of a {@code Student}.
  */
-public class SessionListCard extends UiPart<Region> {
+public class GradeListCard extends UiPart<Region> {
 
-    private static final String FXML = "ListCard.fxml";
+    private static final String FXML = "GradeListCard.fxml";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
@@ -25,21 +26,31 @@ public class SessionListCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Session session;
+    public final StudentWithGrades student;
 
+    @FXML
+    private HBox cardPane;
+    @FXML
+    private Label name;
     @FXML
     private Label id;
     @FXML
-    private Label code;
+    private Label studentId;
+    @FXML
+    private Label grade;
 
     /**
-     * Creates a {@code SessionListCard} with the given {@code Session} and index to display.
+     * Creates an AttendanceListCard with the given StudentWithAttendance and index to display.
      */
-    public SessionListCard(Session session, int displayedIndex) {
+    public GradeListCard(StudentWithGrades student, int displayedIndex) {
         super(FXML);
-        this.session = session;
+        this.student = student;
         id.setText(displayedIndex + ". ");
-        code.setText(session.getSessionName());
+        name.setText(student.getName().fullName);
+        studentId.setText(student.getStudentId().value);
+        if (student.getGrade() != null) {
+            grade.setText(Integer.toString(student.getGrade()));
+        }
     }
 
     @Override
@@ -50,13 +61,13 @@ public class SessionListCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof SessionListCard)) {
+        if (!(other instanceof GradeListCard)) {
             return false;
         }
 
         // state check
-        SessionListCard card = (SessionListCard) other;
+        GradeListCard card = (GradeListCard) other;
         return id.getText().equals(card.id.getText())
-                && session.equals(card.session);
+                && student.equals(card.student);
     }
 }

@@ -166,7 +166,9 @@ public class CurrentSelection {
      */
     public void navigateBackToCoursePage() {
         navigateBackFromSessionStudentPage();
+        navigateBackFromTaskStudentPage();
         navigateBackFromSessionPage();
+        navigateBackFromTaskPage();
         navigateBackFromStudentPage();
         navigateBackFromGroupPage();
     }
