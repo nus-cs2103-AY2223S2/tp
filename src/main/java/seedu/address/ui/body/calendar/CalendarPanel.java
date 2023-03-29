@@ -50,9 +50,8 @@ public class CalendarPanel extends UiPart<Region> {
         Map<LocalDate, List<IndexedEvent>> dateEventsMap = new HashMap<>();
         for (IndexedEvent event : getIndexedEvents(events)) {
             LocalDate date = event.getDateKey();
-            List<IndexedEvent> dateEvents = dateEventsMap.getOrDefault(date, new LinkedList<>());
-            dateEvents.add(event);
-            dateEventsMap.putIfAbsent(date, dateEvents);
+            dateEventsMap.putIfAbsent(date, new LinkedList<>());
+            dateEventsMap.get(date).add(event);
         }
         dateEventsMap.keySet().stream().sorted().forEach(date -> {
             List<IndexedEvent> dateEvents = dateEventsMap.get(date);
