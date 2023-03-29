@@ -11,7 +11,7 @@ import seedu.dengue.model.person.Person;
  */
 public class StartDate implements Start<Date> {
 
-    private final Optional<Date> date;
+    public final Optional<Date> date;
 
     /**
      * Constructs an {@code Date}.
@@ -23,7 +23,7 @@ public class StartDate implements Start<Date> {
     }
 
     /**
-     * Checks for whether the end value of the age range is before the date of the person.
+     * Checks for whether the start value of the date range is before the date of the person.
      *
      * @param p
      */
@@ -33,6 +33,20 @@ public class StartDate implements Start<Date> {
         }
         LocalDate d1 = LocalDate.parse(date.get().value);
         LocalDate d2 = LocalDate.parse(p.getDate().value);
+        return d1.compareTo(d2) <= 0;
+    }
+
+    /**
+     * Checks for whether the start value of the date range is before the given end date.
+     *
+     * @param end
+     */
+    public boolean isBefore(EndDate end) {
+        if (!date.isPresent()) {
+            return true;
+        }
+        LocalDate d1 = LocalDate.parse(date.get().value);
+        LocalDate d2 = LocalDate.parse(end.date.get().value);
         return d1.compareTo(d2) <= 0;
     }
 }

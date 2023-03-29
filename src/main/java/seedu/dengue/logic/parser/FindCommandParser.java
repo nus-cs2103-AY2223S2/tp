@@ -1,6 +1,7 @@
 package seedu.dengue.logic.parser;
 
 import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_RANGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_ENDAGE;
@@ -57,10 +58,6 @@ public class FindCommandParser implements Parser<FindCommand> {
         Optional<Age> age = ParserUtil.parseOptionalAge(argMultimap.getValue(PREFIX_AGE));
         Optional<Date> date = ParserUtil.parseOptionalDate(argMultimap.getValue(PREFIX_DATE));
         Set<Variant> variantList = ParserUtil.parseVariants(argMultimap.getAllValues(PREFIX_VARIANT));
-        Optional<Date> startDate = ParserUtil.parseOptionalDate(argMultimap.getValue(PREFIX_STARTDATE));
-        Optional<Date> endDate = ParserUtil.parseOptionalDate(argMultimap.getValue(PREFIX_ENDDATE));
-        Optional<Age> startAge = ParserUtil.parseOptionalAge(argMultimap.getValue(PREFIX_AGE));
-        Optional<Age> endAge = ParserUtil.parseOptionalAge(argMultimap.getValue(PREFIX_AGE));
         Range<Date> dateRange = getDateRange(argMultimap);
         Range<Age> ageRange = getAgeRange(argMultimap);
 
@@ -75,6 +72,9 @@ public class FindCommandParser implements Parser<FindCommand> {
                 .getValue(PREFIX_STARTDATE)));
         EndDate endDate = new EndDate(ParserUtil.parseOptionalDate(argumentMultimap
                 .getValue(PREFIX_ENDDATE)));
+        if (!startDate.isBefore(endDate)) {
+            throw new ParseException(MESSAGE_INVALID_RANGE);
+        }
         return new Range<Date>(startDate, endDate);
     }
 
@@ -83,6 +83,9 @@ public class FindCommandParser implements Parser<FindCommand> {
                 .getValue(PREFIX_STARTAGE)));
         EndAge endAge = new EndAge(ParserUtil.parseOptionalAge(argumentMultimap
                 .getValue(PREFIX_ENDAGE)));
+        if (!startAge.isBefore(endAge)) {
+            throw new ParseException(MESSAGE_INVALID_RANGE);
+        }
         return new Range<Age>(startAge, endAge);
     }
     /**
