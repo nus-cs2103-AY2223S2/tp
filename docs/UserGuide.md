@@ -28,7 +28,31 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+### Glossary
 
+In the user guide, you may come across some terms you do not understand. The following table provides clarification
+of the terms commonly used in PetCode.
+
+|       Term       | Description                                                                                                                                                                                                                                                                                                                                                  |
+|:----------------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Alphanumeric** | Digits and letters only. For example, `AB3`, `PetCode`, `coco123`, and `2103` are alphanumeric. `#01-04`, `email@domain.com`, and `white    spaces` are not.                                                                                                                                                                                                 |
+|  **Attribute**   | Words that follow prefixes to describe properties, states, characteristics, and traits. Examples are price, weight, name, and order status.                                                                                                                                                                                                                  |
+|   **Command**    | A command is a specific instruction you can give to PetCode to perform an action. You can view the list of commands available [here](#command-summary).                                                                                                                                                                                                      |
+|   **Contact**    | A contact is an information entry in PetCode. There are three types of contacts you can add - `Buyer`, `Supplier` and `Deliverer`. You can add a contact with the [`add` command](#adding-a-contact-or-item-add).                                                                                                                                            |
+|     **CLI**      | Command-Line Interface (CLI) receives commands from a user in the form of lines of text. It refers to the input textbox in this context.                                                                                                                                                                                                                     |
+|     **GUI**      | GUI stands for Graphical User Interface. It refers to the display window of the PetCode application.                                                                                                                                                                                                                                                         |
+|    **Index**     | The index of the contact or item in the display list for contacts/items.                                                                                                                                                                                                                                                                                     |
+|   **Integer**    | Whole number                                                                                                                                                                                                                                                                                                                                                 |
+|  **Parameter**   | A parameter refers to the information you need to give to your command such that it can execute an action based on that information. <br/> For example, the [`list` command](#listing-contacts-or-items--list) requires a KEY parameter to know what kind of list to display. `list buyer` displays your list of buyers, where the KEY parameter is `buyer`. |
+|    **Prefix**    | A prefix indicates the kind of information you are keying in. You can view the list of prefixes available [here](#list-of-prefixes).                                                                                                                                                                                                                         |
+|  **Whitespace**  | An empty character, or a placeholder character ` `.                                                                                                                                                                                                                                                                                                          |
+|   **Student**    | A `Student` whom the user (who is a tutor) teaches                                                                                                                                                                                                                                                                                                           |
+|   **Homework**   | A `Homework` assignment whom the user (who is a tutor) has assigned to a `Student`                                                                                                                                                                                                                                                                           |
+|    **Lesson**    | A `Lesson` that the user has scheduled with a `Student`                                                                                                                                                                                                                                                                                                      |
+|     **Exam**     | An `Exam` that a Student is scheduled to sit for                                                                                                                                                                                                                                                                                                             |
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
@@ -257,6 +281,8 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
+
+
 ## FAQ
 
 **Q**: How can I transfer my data to another computer in TutorPro? <br>
@@ -264,7 +290,49 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Appendix
+## Summary
+
+### List of Commands
+| Action                       | Command Format                                                                                                                                                       | Example                                                                                                                |
+|------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
+| Create new student profile   | `new-student [name/STUDENT_NAME] [address/STUDENT_ADDRESS] [phone/PHONE] [email/EMAIL] [school/SCHOOL] [level/GRADE_LEVEL]`                                          | `new-student name/John Doe address/21 Prince George’s Park email/jdoe@gmail.com phone/12345678 school/ACJC level/sec8` |
+| Update student information   | `update-info [name/STUDENT_NAME] [f/FIELD] [v/VALUE]`                                                                                                                | `update-info name/John f/address v/Block 123 #12-34`                                                                   |
+| Assign homework to a student | `new-homework [name/STUDENT_NAME] [homework/HOMEWORK_NAME] [deadline/DEADLINE]`                                                                                      | `assign-homework name/John homework/listening comprehension ex1 deadline/02-12-2023-2359`                              |
+| View student's homework      | `view-homework [name/STUDENT_NAME] [status/STATUS]`                                                                                                                  | `view-homework name/John status/pending`                                                                               |
+| Delete student's homework    | `delete-homework [name/STUDENT_NAME] [index/HOMEWORK_INDEX]`                                                                                                         | `delete-homework name/John index/1`                                                                                    |
+| Mark homework as done        | `mark-homework [name/STUDENT_NAME] [index/HOMEWORK_INDEX]`                                                                                                           | `mark-homework name/John index/1`                                                                                      |
+| Unmark homework as undone    | `unmark-homework [name/STUDENT_NAME] [index/HOMEWORK_INDEX]`                                                                                                         | `unmark-homework name/John index/1`                                                                                    |
+| Update student's homework    | `update-homework [name/STUDENT_NAME] [index/HOMEWORK_INDEX] [homework/HOMEWORK_NAME] [deadline/DEADLINE]`                                                            | `update-homework name/John index/1 homework/Math Assignment 1`                                                         |
+| Create new lesson plan       | `new-lesson [name/STUDENT_NAME] [lesson/LESSON_TITLE] [start/START_TIME] [end/END_TIME]`                                                                             | `new-lesson name/John Doe lesson/The Water Cycle start/25-03-23-1300 end/25-03-23-1500`                                |
+| View lessons history         | `view-lesson [name/STUDENT_NAME]`                                                                                                                                    | `view-lesson name/John`                                                                                                |
+| Add an exam                  | `new-exam [name/STUDENT_NAME_1] [name/STUDENT_NAME_2].. [exam/EXAM_NAME] [start/START_TIME] [end/END_TIME] (optional)[weightage/WEIGHTAGE] (optional)[grade/GRADE]`  | `new-exam name/John Doe exam/Math MYE start/2023-05-21 12:00 end/2023-05-21 14:00`                                     |
+| Remove an exam               | `delete-exam [name/STUDENT_NAME_1] [name/STUDENT_NAME_2].. [index/INDEX_OF_EXAM]`                                                                                    | `delete-exam name/John Doe index/1`                                                                                    |
+| Update an exam               | `update-exam [name/STUDENT_NAME] [index/INDEX_OF_EXAM] (optional)[exam/NEW_EXAM_NAME] (optional)[start/START_TIME] (optional)[end/END_TIME] (optional)[grade/GRADE]` | `update-exam name/John Doe index/1 exam/Math MYE`                                                                      |
+| View exams                   | `view-exam [name/STUDENT_NAME] (optional)[date/DATE] (optional)[exam/EXAM_NAME] (optional)[done/DONE_STATUS]`                                                        | `view-exam name/John Doe date/2023-05-01 exam/MYE done/`                                                               |
+| Calculate grade              | `calculate-grade [name/STUDENT_NAME] [subject/SUBJECT]`                                                                                                              | `calculate-grade name/John Doe subject/Math`                                                                           |
+
+### List of Prefixes
+| Prefix      | Meaning     | Usage                                               | Example                           |
+|-------------|-------------|-----------------------------------------------------|-----------------------------------|
+| `name/`     | Name        | Student name                                        | `name/John Doe`                   |
+| `phone/`    | Phone       | Phone number of a Student                           | `phone/12345678`                  |
+| `email/`    | Email       | Email address of a Student                          | `email/johndoe@gmail.com`         |
+| `address/`  | Address     | Home address of a Student                           | `address/21 Prince George's Park` |
+| `level/`    | Grade Level | Grade level of a Student                            | `level/sec8`                      |
+| `school/`   | School      | School name of a Student                            | `school/ACJC`                     |
+| `tag/`      | Tag         | Tag on a Student                                    | `tag/favorite`                    |
+| `homework/` | Homework    | name of Homework assigned to a Student              | `homework/Math Assignment`        |
+| `deadline/` | Deadline    | Due date                                            | `deadline/02-12-2023 2359`        |
+| `exam/`     | Exam        | Exam name                                           | `exam/Math MYE`                   |
+| `status/`   | Status      | Indicates whether a homework is completed           | `status/pending`                  |
+| `index/`    | Index       | Index of a homework assignment/lesson/exam          | `index/1`                         |
+| `lesson/`   | Lesson      | Lesson title                                        | `lesson/The Water Cycle`          |
+| `start/`    | Start Time  | Start time of a lesson/exam                         | `start/2025-03-23 1300`           |
+| `end/`      | End Time    | End time of a lesson/exam                           | `end/2025-03-23 1500`             |
+| `date/`     | Date        | Date of a lesson/exam                               | `date/2023-03-29`                 |
+| `subject/`  | Subject     | Subject of a lesson                                 | `subject/Mathematics`             |
+| `done/`     | Done        | indicates if a lesson/exam is past the current time | `done/done`                       |
+
 ### Supported date-time formats:
 * `MMM dd yyyy HHmm`
 * `MMM dd yyyy HH:mm`
