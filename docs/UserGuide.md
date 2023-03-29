@@ -118,7 +118,7 @@ Shows a user guide message on how to use the internship tracker
 
 Format: help
 
-### Display a list of internship applications:`list`
+### Display a list of internship applications :`list`
 
 Displays a list of applied internships
 
@@ -168,6 +168,7 @@ Format: `edit_status INDEX s/STATUS`
 Examples:
 * `edit_status 2 s/PENDING` Changes the status of the 2nd application in the applications list to `PENDING` (Internship application submitted, outcome has not been released).
 
+
 ### Delete an application of internship : `delete`
 
 Deletes the specified internship application from the list of internships applied
@@ -181,13 +182,13 @@ Format: `delete INDEX`
 Examples:
 * `delete 2` Deletes the 2nd internship application in the list of applications.
 
-### Clear internship application entries with keyword: `clear_by`
+### Clear internship application entries with keyword : `clear_by`
 
 Clear all relevant internship application entries from the internship tracker with specific keyword
 
 Format: `clear_by n/COMPANY_NAME` OR `clear_by j/JOB_TITLE` OR `clear_by s/STATUS`
 
-* Clears all internship applications with the specified keyword - COMPANY_NAME, JOB_TITLE or STATUS.
+* Clears all internship applications with the specified keyword - `COMPANY_NAME`, `JOB_TITLE` or `STATUS`.
 * Three types of clear_by features are provided, but can only execute independently.
 
 Examples:
@@ -196,6 +197,7 @@ Examples:
 * `clear_by s/REJECTED` Clears all rejected application (with STATUS as REJECTED).
 
 ### Search for an application : `find`
+
 Searches the list of internships applied by keyword (status, role, company)
 
 Format: `find KEYWORD`
@@ -206,38 +208,45 @@ The keyword refers to the status, role or company that the user intends to look 
 Examples:
 `find Google` searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as Google
 
-### Clear all internship application entries : `clear`
 
-Clears all internship application entries from the internship tracker
+### Clearing all internship application entries : `clear`
+
+Clears all internship application entries from the internship tracker.
 
 Format: `clear`
 
-### Revert recent deleted an internship application : `revert`
+### Revert a recent deleted internship application : `revert`
 
-Reverts recent delete command and restores the relevant data to the end of the current internship applications list
+Reverts recent delete command and restores the relevant data to the end of the current internship applications list.
 
 Format: `revert`
 
 Examples:
 1. Assume the most recent delete command was `delete 2` which has data `n/Tech j/Job`, the data was removed from the applications list.
 2. Command `revert` restores the entries at the back the application list, which has effect similar to `add  n/Tech j/Job`.
-**This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
+** This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
 
-### Revert recent deleted or cleared internship applications : `revert_all`
+### Revert all recently deleted or cleared internship applications : `revert_all`
 
-Reverts all recent deleted command or cleared command and restores the affected data back to the end of the current internship applications list
+Reverts all recent delete command or clear command and restores the affected data back to the end of the current internship applications list.
 
 Format: `revert_all`
 
-**This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
+** This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
 
-### Side features: Planning to apply internships 
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### Side features: Planning to apply internships
 
 ### Display lists of tasks (todos and notes) : `list_task`
 
 Displays the todo list and the note list together
 
-Format: `list`
+Format: `list_task`
 
 Examples:
 
@@ -252,12 +261,12 @@ Searches the recorded lists of todos and notes by keyword (company name in todos
 Format: `find_task KEYWORD`
 
 Searches for the todos or notes with the specified `KEYWORD`.
-The keyword refers to the company name in todos ot the note content in notes that the user intends to look for.
+The keyword refers to the company name in todos or the note content in notes that the user intends to look for.
 
 Examples:
 `find_task test` searches for all todos with `COMPANY_NAME` or all notes with `NOTE_CONTENT` as test.
 
-### Display a list of todo internship applications :`list_todo`
+### Display a list of todo internship applications : `list_todo`
 
 Displays a list of todo applications (todo internship application)
 
@@ -268,17 +277,17 @@ Examples:
 * `list_todo` shows all the todo applications that the user has recorded.
 * If there are no todo applications for at the moment, `No todo at the moment` will be shown.
 
-### Add a todo application: `add_todo`
+### Add a todo application : `add_todo`
 
 Adds a todo internship application to the todo list
 
-Format: ` add_todo n/COMPANY_NAME j/JOB_TITLE by/DEADLINE`
+Format: `add_todo n/COMPANY_NAME j/JOB_TITLE by/DEADLINE`
 - `DEADLINE` should be in the format yyyy-mm-dd.
 - `DEADLINE` should not be earlier than the date when the todo application is created.
 
 Examples:
-* `add n/Facebook j/Product Manager by/2023-06-07` adds a todo application for the Product Manager role at Facebook. The internship should be applied by 7 June 2023.
-* `add n/LinkedIn j/Software Engineer by/2023-10-04` adds a todo application for the Software Engineer role at LinkedIn.The internship should be applied by 4 October 2023.
+* `add_todo n/Facebook j/Product Manager by/2023-06-07` adds a todo application for the Product Manager role at Facebook. The internship should be applied by 7 June 2023.
+* `add_todo n/LinkedIn j/Software Engineer by/2023-10-04` adds a todo application for the Software Engineer role at LinkedIn.The internship should be applied by 4 October 2023.
 
 ### Edit todo application deadline : `edit_deadline`
 
@@ -307,7 +316,7 @@ Format: `edit_content INDEX c/NOTE_CONTENT`
 - `NOTE_CONTENT` can take 1 to 55 characters.
 
 Examples:
-* `edit_content 2 c/Venue changed` Changes the status of the 2nd todo application in the todo list to `Venue changed`.
+* `edit_content 2 c/Venue changed` Changes the note content of the 2nd todo application in the todo list to `Venue changed`.
 
 ### Delete a todo application : `delete_todo`
 
@@ -330,7 +339,7 @@ Clears all todo application entries from the todo applications list
 Format: `clear_todo`
 **Note that this action is irreversible**
 
-### Display list of short note :`list_note`
+### Display list of short note : `list_note`
 
 Displays a list of saved notes
 
@@ -370,12 +379,6 @@ Clears all notes from the note.
 
 Format: `clear_note`
 **Note that this action is irreversible**
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
