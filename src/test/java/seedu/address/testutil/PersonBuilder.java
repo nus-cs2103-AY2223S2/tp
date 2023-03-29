@@ -95,7 +95,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code date} of the {@code Person} that we are building.
      */
     public PersonBuilder withDate(String date) {
         this.date = new DateOfBirth(date);
@@ -166,6 +166,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a person with the given attributes
+     */
     public Person build() {
         return new Person(nric, name, date, phone, email, address,
                         drugAllergy, gender, doctor, tags, medicines);

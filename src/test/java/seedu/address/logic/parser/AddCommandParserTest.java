@@ -54,6 +54,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
@@ -212,6 +213,12 @@ public class AddCommandParserTest {
                 + DATE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + DRUG_ALLERGY_DESC_BOB + GENDER_DESC_BOB + DOCTOR_DESC_BOB + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+
+        // invalid name
+        assertParseFailure(parser, NRIC_DESC_BOB + NAME_DESC_BOB
+                + INVALID_DATE_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + DRUG_ALLERGY_DESC_BOB + GENDER_DESC_BOB + DOCTOR_DESC_BOB + TAG_DESC_HUSBAND
+                + TAG_DESC_FRIEND, DateOfBirth.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NRIC_DESC_BOB + NAME_DESC_BOB

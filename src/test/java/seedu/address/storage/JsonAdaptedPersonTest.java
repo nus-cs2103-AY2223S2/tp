@@ -12,7 +12,16 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.DateOfBirth;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.DrugAllergy;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Phone;
+
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NRIC = "V1234567@";
@@ -73,7 +82,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NRIC, INVALID_NAME,  VALID_DATE, VALID_PHONE, VALID_EMAIL,
+                new JsonAdaptedPerson(VALID_NRIC, INVALID_NAME, VALID_DATE, VALID_PHONE, VALID_EMAIL,
                         VALID_ADDRESS, VALID_DRUG_ALLERGY, VALID_GENDER,
                         VALID_DOCTOR, VALID_TAGS, VALID_MEDICINES);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
@@ -93,7 +102,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidDateOfBirth_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NRIC, VALID_NAME,  INVALID_DATE, VALID_PHONE, VALID_EMAIL,
+                new JsonAdaptedPerson(VALID_NRIC, VALID_NAME, INVALID_DATE, VALID_PHONE, VALID_EMAIL,
                         VALID_ADDRESS, VALID_DRUG_ALLERGY, VALID_GENDER,
                         VALID_DOCTOR, VALID_TAGS, VALID_MEDICINES);
         String expectedMessage = DateOfBirth.MESSAGE_CONSTRAINTS;
@@ -103,7 +112,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullDateOfBirth_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NRIC, VALID_NAME,  null, VALID_PHONE, VALID_EMAIL,
+                new JsonAdaptedPerson(VALID_NRIC, VALID_NAME, null, VALID_PHONE, VALID_EMAIL,
                         VALID_ADDRESS, VALID_DRUG_ALLERGY, VALID_GENDER,
                         VALID_DOCTOR, VALID_TAGS, VALID_MEDICINES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, DateOfBirth.class.getSimpleName());
