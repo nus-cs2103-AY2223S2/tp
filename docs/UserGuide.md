@@ -696,6 +696,9 @@ _Details coming soon ..._
 
 ## Additional Resources
 ### How To Check Java Version
+![mac_check_java](images/user-guide/mac_check_java.png)
+
+
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
 ### How to Open CoDoc for Mac
 
