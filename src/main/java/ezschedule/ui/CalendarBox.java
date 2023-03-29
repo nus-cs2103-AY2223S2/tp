@@ -69,9 +69,9 @@ public class CalendarBox extends UiPart<Region> {
     private void setToday(boolean isToday) {
         if (isToday) {
             now.setText("now");
-            now.setStyle("-fx-text-fill: white; " +
-                    "-fx-background-color: #4c837a; " +
-                    "-fx-background-radius: 5;");
+            now.setStyle("-fx-text-fill: white; "
+                    + "-fx-background-color: #4c837a; "
+                    + "-fx-background-radius: 5;");
         }
     }
 
@@ -115,10 +115,10 @@ public class CalendarBox extends UiPart<Region> {
     }
 
     private void setEventLabelStyle(Label label) {
-        label.setStyle("-fx-text-fill: white; " +
-                "-fx-background-color: #4c837a; " +
-                "-fx-background-radius: 5; " +
-                "-fx-font-size: 11; " +
-                "-fx-padding: 0 10 0 10;");
+        label.setStyle("-fx-text-fill: white; "
+                + "-fx-background-color: #4c837a; "
+                + "-fx-background-radius: 5; "
+                + "-fx-font-size: 11; "
+                + "-fx-padding: 0 10 0 10;");
     }
 }
