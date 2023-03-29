@@ -25,7 +25,7 @@ to how various features were implemented. The Design section makes use of variou
 [PlantUML](https://plantuml.com/)
 
 ### Objectives
-### 
+###
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -40,8 +40,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the
-[diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. 
-Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) 
+[diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder.
+Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html)
 to learn how to create and edit diagrams.
 </div>
 
@@ -55,7 +55,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T14-2/tp/tree/master/src/main/java/seedu/address/Main.java) 
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T14-2/tp/tree/master/src/main/java/seedu/address/Main.java)
 and [`MainApp`](https://github.com/AY2223S2-CS2103T-T14-2/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -178,13 +178,13 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Current Implementation
 
-The remind mechanism is facilitated by the `Deadline`, `RemindCommand`,  classes. 
+The `remind` mechanism is facilitated by the `Deadline`, `RemindCommand`,  classes.
 The `Deadline` class has a `deadline` field which is of type `LocalDateTime`. Additionally, it also has a description of type `String`.
 
 'RemindCommand' extends from the abstract class `Command`. It overrides the `Command#execute()` method to filter the pet list to show only pets with `Deadline` that are within 3 days from today's date.
 
 Given below is an example usage scenario and how the set file mechanism behaves at each step.
-Given below is an example usage scenario and how the remind mechanism behaves at each step.
+Given below is an example usage scenario and how the `remind` mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time.
 
@@ -230,7 +230,7 @@ entering the `Add` command.
 Step 1. The user launches the application for the first time.
 
 Step 2. The user decides to add a pet to the pet list. The user executes
-`add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog - 
+`add o/Alice n/Doggo p/98765432 e/example@gmail.com a/311, Clementi Ave 2, #02-25 ts/2023-03-27 21:09:09 d/Feed dog -
 2023-03-27 21:09:09 t/Dog t/Chihuahua` command to add a pet named `Doggo` with reminder to feed the dog and  deadline of
 `2023-03-27 21:09:09` to the pet list. The `add` command calls the `AddCommand#execute()` method.
 
@@ -254,7 +254,7 @@ the `Pet` must exist in the pet list.
 ```text
 Step 1. The user launches the application for the first time
 Step 2. The user decides to archive a pet in the pet list. The user executes `archive 1`
-Step 3. The user can view the archived pets in data/archive.json file 
+Step 3. The user can view the archived pets in data/archive.json file
 ```
 ##### Extensions:
 ```text
