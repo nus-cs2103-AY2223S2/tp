@@ -87,6 +87,7 @@ public class EditDoctorCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_DOCTOR);
         }
 
+        changeAssignmentInPatients(doctorToEdit, editedDoctor);
         model.setDoctor(doctorToEdit, editedDoctor);
         model.updateFilteredDoctorList(PREDICATE_SHOW_ALL_DOCTORS);
         return new CommandResult(String.format(MESSAGE_EDIT_DOCTOR_SUCCESS, editedDoctor));
@@ -109,6 +110,23 @@ public class EditDoctorCommand extends Command {
 
         return new Doctor(updatedName, updatedPhone, updatedEmail, updatedSpecialty, updatedYoe, updatedTags,
                 updatedPatients);
+    }
+
+    /**
+     * Assigns all patients of {@code doctorToEdit} to {@code editedPatient}.
+     *
+     * @param doctorToEdit a doctor to edit
+     * @param editedDoctor a new edited doctor
+     */
+    private static void changeAssignmentInPatients(Doctor doctorToEdit,
+                                                   Doctor editedDoctor) {
+        assert doctorToEdit != null;
+        assert editedDoctor != null;
+
+        for (Patient patient : doctorToEdit.getPatients()) {
+            patient.removeDoctorIfAssigned(doctorToEdit);
+            patient.assignDoctor(editedDoctor);
+        }
     }
 
     @Override
