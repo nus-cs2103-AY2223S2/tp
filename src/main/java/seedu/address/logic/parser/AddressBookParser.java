@@ -98,7 +98,7 @@ public class AddressBookParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommand();
-        
+
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommand();
 

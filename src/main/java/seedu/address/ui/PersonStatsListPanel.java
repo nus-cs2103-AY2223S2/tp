@@ -64,12 +64,12 @@ public class PersonStatsListPanel extends UiPart<Region> {
 
     private ObservableList<PersonStats> createPersonStatsList(ObservableList<Person> personList, ObservableList<Task> taskList) {
         List<PersonStats> personStatsList = new ArrayList<>();
-    
+
         for (Person person : personList) {
             List<Task> personTasks = taskList.stream()
                     .filter(task -> task.getPersonAssignedName() != null && task.getPersonAssignedName().equals(person.getName().toString()))
                     .collect(Collectors.toList());
-    
+
             int tasksAssigned = personTasks.size();
             int tasksCompleted = (int) personTasks.stream()
                     .filter(Task::isDone)
@@ -79,10 +79,10 @@ public class PersonStatsListPanel extends UiPart<Region> {
                     .mapToDouble(task -> task.getScore().getValue())
                     .average()
                     .orElse(Double.NaN);
-    
+
             personStatsList.add(new PersonStats(person, tasksAssigned, tasksCompleted, averageScore));
         }
-    
+
         return FXCollections.observableArrayList(personStatsList);
     }
 
