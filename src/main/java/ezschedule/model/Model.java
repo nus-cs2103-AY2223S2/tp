@@ -92,7 +92,7 @@ public interface Model {
     
     ArrayList<Event> recentEvent();
     
-    void undoRecent(ArrayList<Command> commandList, ArrayList<Event> eventList);
+    void clearRecent();
     /**
      * Returns an unmodifiable view of the event list
      */

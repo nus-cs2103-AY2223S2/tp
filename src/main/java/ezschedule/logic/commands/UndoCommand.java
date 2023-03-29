@@ -6,6 +6,8 @@ import ezschedule.logic.commands.exceptions.CommandException;
 import ezschedule.model.Model;
 import ezschedule.model.event.Event;
 
+import java.util.ArrayList;
+
 /**
  * Deletes an event identified using it's displayed index from the scheduler.
  */
@@ -26,17 +28,28 @@ public class UndoCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Command prevCommand = model.recentCommand().get(0);
-        Event preEvent = model.recentEvent().get(0);
-        System.out.println(model.recentEvent());
         switch (prevCommand.commandWord()) {
         case "add":
+            Event preEvent = model.recentEvent().get(0);
             model.deleteEvent(preEvent);
+            break;
         case "edit":
+            Event toEditEvent = model.recentEvent().get(0);
             Event editedEvent = model.recentEvent().get(1);
-            model.setEvent(editedEvent,preEvent);
+            model.setEvent(editedEvent,toEditEvent);
+            break;
         case "delete":
-            model.addEvent(preEvent);
+            Event deletedEvent = model.recentEvent().get(0);
+            model.addEvent(deletedEvent);
+            break;
+        case "recur":
+            ArrayList<Event> recurEventList = model.recentEvent();
+            for(Event event: recurEventList) {
+                model.deleteEvent(event);
+            }
+        default:
+            break;
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS,preEvent));
+        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, "Empty string for Undo action now"));
     }
 }

@@ -48,8 +48,6 @@ public class AddCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        ArrayList<Command> commandList = new ArrayList<Command>();
-        ArrayList<Event> eventList = new ArrayList<Event>();
         requireNonNull(model);
 
         if (model.hasEvent(toAdd)) {
@@ -58,10 +56,10 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_EVENT_EXIST_AT_TIME);
         }
         model.addEvent(toAdd);
-    
-        commandList.add(this);
-        eventList.add(toAdd);
-        model.undoRecent(commandList, eventList);
+        
+        model.clearRecent();
+        model.recentCommand().add(this);
+        model.recentEvent().add(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

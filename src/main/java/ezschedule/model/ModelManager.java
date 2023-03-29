@@ -7,7 +7,6 @@ import static java.util.Objects.requireNonNull;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
-import java.util.HashMap;
 
 import ezschedule.commons.core.GuiSettings;
 import ezschedule.commons.core.LogsCenter;
@@ -148,9 +147,9 @@ public class ModelManager implements Model {
     }
     
     @Override
-    public void undoRecent(ArrayList<Command> commandList, ArrayList<Event> eventList) {
-        this.recentCommand = commandList;
-        this.recentEvent = eventList;
+    public void clearRecent() {
+        this.recentCommand.clear();
+        this.recentEvent.clear();
     }
     
     @Override

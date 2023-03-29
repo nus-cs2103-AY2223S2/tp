@@ -79,11 +79,7 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Event> lastShownList = model.getFilteredEventList();
-        ArrayList<Command> commandList = new ArrayList<Command>();
-        ArrayList<Event> eventList = new ArrayList<Event>();
         
-        
-
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
@@ -97,11 +93,11 @@ public class EditCommand extends Command {
 
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
-    
-        commandList.add(this);
-        eventList.add(editedEvent);
-        eventList.add(eventToEdit);
-        model.undoRecent(commandList, eventList);
+        
+        model.clearRecent();
+        model.recentCommand().add(this);
+        model.recentEvent().add(editedEvent);
+        model.recentEvent().add(eventToEdit);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 

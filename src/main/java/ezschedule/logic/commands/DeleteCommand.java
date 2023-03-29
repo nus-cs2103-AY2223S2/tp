@@ -38,8 +38,6 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Event> lastShownList = model.getFilteredEventList();
-        ArrayList<Command> commandList = new ArrayList<Command>();
-        ArrayList<Event> eventList = new ArrayList<Event>();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
@@ -48,9 +46,9 @@ public class DeleteCommand extends Command {
         Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteEvent(eventToDelete);
     
-        commandList.add(this);
-        eventList.add(eventToDelete);
-        model.undoRecent(commandList, eventList);
+        model.clearRecent();
+        model.recentCommand().add(this);
+        model.recentEvent().add(eventToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete));
     }
 
