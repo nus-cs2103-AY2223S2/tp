@@ -58,10 +58,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPatients(List<Patient> patients) {
         List<Patient> patientsCopy = new ArrayList<>();
-        for (Patient patient:patients) {
+        for (Patient patient : patients) {
             Patient toCopy = new Patient(patient.getNric(), patient.getName(), patient.getStatus(),
                     patient.getWardName(),
-                patient.getDischarge());
+                    patient.getDischarge());
             patientsCopy.add(toCopy);
         }
         this.patients.setPatients(patientsCopy);
@@ -110,7 +110,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The patient must not already exist in the address book.
      */
     public void addPatient(Patient p) {
-        if (!wards.contains(p.getWardNameString())) { //If wardlist does not contain patient's ward, don't add it in.
+        if (!wards.contains(p.getWardNameString())) { // If wardlist does not contain patient's ward, don't add it in.
             throw new WardNotFoundException();
         }
         patients.add(p);
@@ -174,6 +174,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setWard(Ward target, Ward editedWard) {
         requireNonNull(editedWard);
         wards.setWard(target, editedWard);
+
+        for (Patient patient : patients) {
+            if (patient.getWardName().equals(target.getName())) {
+                Patient editedPatient = new Patient(patient.getNric(), patient.getName(), patient.getStatus(),
+                        editedWard.getName(),
+                        patient.getDischarge());
+                patients.setPatient(patient, editedPatient);
+            }
+        }
     }
 
     /**
@@ -183,7 +192,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeWard(Ward ward) {
         wards.remove(ward);
     }
-
 
     //// util methods
 

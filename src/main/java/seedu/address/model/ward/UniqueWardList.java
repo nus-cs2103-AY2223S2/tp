@@ -124,9 +124,7 @@ public class UniqueWardList implements Iterable<Ward> {
 
         ObservableList<Patient> patients = target.getPatientList();
         for (Patient patient : patients) {
-            System.out.println(patient);
             editedWard.addPatient(patient);
-            patient.setWard(editedWard.getName());
         }
 
         internalList.set(index, editedWard);
