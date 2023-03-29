@@ -113,23 +113,21 @@ ConnectUS works on any mainstream OS as long as <u>Java <code>11</code></u> inst
 
 If you have yet to install ConnectUS, simply follow these steps to set it up:
 
-1. Ensure you have Java `11`(found [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)) installed in your computer.
+**Step 1:** Ensure you have Java `11`(found [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)) installed in your computer.
 
-2. Download the latest <code><u>ConnectUS.jar</u></code> from our [releases page on <u>GitHub</u>](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases). <br> 
+**Step 2:** Download the latest <code><u>ConnectUS.jar</u></code> from our [releases page on <u>GitHub</u>](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases). <br> 
+![Latest](images/ConnectUSLatest.png)
 
-<div style="page-break-after: avoid"></div>
-
-   ![Latest](images/ConnectUSLatest.png)
-
-
-3. Copy the file to the folder you want to use as the _home folder_ for your ConnectUS app. <br> 
-
-<div style="page-break-after: avoid"></div>
-
-   ![Home Folder](images/ConnectUSHomeFolder.png)
+<div style="page-break-after: always"></div>
 
 
-4. Double-click the `ConnectUS.jar` file to start the app.<br>
+**Step 3:** Copy the file to the folder you want to use as the _home folder_ for your ConnectUS app. <br>
+![Home Folder](images/ConnectUSHomeFolder.png)
+
+<div style="page-break-after: always"></div>
+
+
+**Step 4:** Double-click the `ConnectUS.jar` file to start the app.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br> <div style="page-break-after: avoid"></div>
    ![Ui](images/Ui.png)
 
