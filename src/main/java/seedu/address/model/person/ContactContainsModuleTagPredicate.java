@@ -1,11 +1,14 @@
 package seedu.address.model.person;
 
-import seedu.address.model.tag.ModuleTag;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import seedu.address.model.tag.ModuleTag;
+
+/**
+ * ContactContainsModuleTagPredicate is a predicate that filters the model based on the module tags
+ */
 public class ContactContainsModuleTagPredicate implements Predicate<Person> {
     private final Set<ModuleTag> tagSet;
 
