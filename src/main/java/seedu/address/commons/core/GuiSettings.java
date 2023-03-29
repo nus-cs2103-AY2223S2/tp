@@ -22,10 +22,15 @@ public class GuiSettings implements Serializable {
      * Constructs a {@code GuiSettings} with the default height, width and position.
      */
     public GuiSettings() {
-        //windowWidth = DEFAULT_WIDTH;
-        //windowHeight = DEFAULT_HEIGHT;
-        windowWidth =  Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 100;
-        windowHeight =  Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 100;
+        String osName = System.getProperty("os.name").toLowerCase();
+
+        if (osName.indexOf("win") >= 0 || osName.indexOf("mac") >= 0) {
+            windowWidth = Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 100;
+            windowHeight = Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 100;
+        } else {
+            windowWidth = DEFAULT_WIDTH;
+            windowHeight = DEFAULT_HEIGHT;
+        }
         windowCoordinates = null; // null represent no coordinates
     }
 
