@@ -92,8 +92,16 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFromMemoryStack() {
-
         setDengueHotspotTracker(memory.loadCurrent());
+    }
+
+    /**
+     * Saves changes.
+     * @param tracker The {@code ReadOnlyDengueHotspotTracker} to save.
+     */
+    public void saveChanges(ReadOnlyDengueHotspotTracker tracker) {
+        memory.saveNewLatest(tracker);
+        updateFromMemoryStack();
     }
 
     @Override
@@ -131,32 +139,28 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         dengueHotspotTracker.removePerson(target);
-        memory.saveNewLatest(this.dengueHotspotTracker);
-        updateFromMemoryStack();
+        saveChanges(this.dengueHotspotTracker);
     }
 
     @Override
     public void addPerson(Person person) {
         dengueHotspotTracker.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        memory.saveNewLatest(this.dengueHotspotTracker);
-        updateFromMemoryStack();
+        saveChanges(this.dengueHotspotTracker);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         dengueHotspotTracker.setPerson(target, editedPerson);
-        memory.saveNewLatest(this.dengueHotspotTracker);
-        updateFromMemoryStack();
+        saveChanges(this.dengueHotspotTracker);
     }
 
     @Override
     public void setPersons(List<Person> persons) {
         requireAllNonNull(persons);
         dengueHotspotTracker.setPersons(persons);
-        memory.saveNewLatest(this.dengueHotspotTracker);
-        updateFromMemoryStack();
+        saveChanges(this.dengueHotspotTracker);
 
     }
 

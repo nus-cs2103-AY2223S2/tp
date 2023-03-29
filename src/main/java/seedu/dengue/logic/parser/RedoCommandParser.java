@@ -8,7 +8,7 @@ import seedu.dengue.logic.parser.exceptions.ParseException;
 /**
  * A parser for the arguments of the redo command.
  */
-public class RedoCommandParser implements Parser<RedoCommand> {
+public class RedoCommandParser extends UndoRedoCommandParser implements Parser<RedoCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the RedoCommand
      * and returns a RedoCommand object for execution.
@@ -21,8 +21,9 @@ public class RedoCommandParser implements Parser<RedoCommand> {
         }
         try {
             int numberofRedos = Integer.parseInt(trimmedArgs);
+            requirePositive(numberofRedos);
             return new RedoCommand(numberofRedos);
-        } catch (Exception err) {
+        } catch (NumberFormatException err) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, RedoCommand.MESSAGE_USAGE));
         }

@@ -8,7 +8,7 @@ import seedu.dengue.logic.parser.exceptions.ParseException;
 /**
  * A parser for the arguments of the undo command.
  */
-public class UndoCommandParser implements Parser<UndoCommand> {
+public class UndoCommandParser extends UndoRedoCommandParser implements Parser<UndoCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the UndoCommand
      * and returns a UndoCommand object for execution.
@@ -21,8 +21,9 @@ public class UndoCommandParser implements Parser<UndoCommand> {
         }
         try {
             int numberofUndos = Integer.parseInt(trimmedArgs);
+            requirePositive(numberofUndos);
             return new UndoCommand(numberofUndos);
-        } catch (Exception err) {
+        } catch (NumberFormatException err) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UndoCommand.MESSAGE_USAGE));
         }

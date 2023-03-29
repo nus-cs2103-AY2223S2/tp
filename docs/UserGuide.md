@@ -31,13 +31,19 @@ open the help window.<br>
 
    * `list` : Lists all cases.
 
-   * `add n/John Tan p/543299 d/2023-02-13 a/20` : Adds a case named `John Tan` to the Dengue Hotspot Tracker.
+   * `add n/John Tan p/543299 d/2023 February 13 a/20` : Adds a case named `John Tan` to the Dengue Hotspot Tracker.
 
    * `delete 3` : Deletes the 3rd case shown in the current list.
 
    * `clear` : Deletes all cases.
 
    * `exit` : Exits the app.
+   
+   * `undo 5` : Undo 5 previous actions.
+   
+   * `redo 5` : Redo 5 previous actions. 
+
+
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -154,6 +160,15 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd case in the Dengue Hotspot Tracker.
 * `find Betsy` followed by `delete 1` deletes the 1st case in the results of the `find` command.
 * `find s666` followed by `delete 4` deletes the 4th case in the results of the `find` command.
+
+### Undo/Redo an action : `undo` or `redo`
+
+Undo an action that resulted in the change of the Dengue Hotspot Tracker data.
+
+Format: `undo [NUMBER]` or `redo [NUMBER]` for `undo` and `redo` respectively.
+
+* Undo/redo an action multiple times, specified by the number `NUMBER`. If not specified, `NUMBER` is assumed to be 1.
+* `NUMBER` must be strictly positive.
 
 ### Clearing all entries : `clear`
 
