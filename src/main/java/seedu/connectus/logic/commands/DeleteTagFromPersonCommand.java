@@ -9,6 +9,7 @@ import static seedu.connectus.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.connectus.commons.core.Messages;
@@ -16,8 +17,6 @@ import seedu.connectus.commons.core.index.Index;
 import seedu.connectus.logic.commands.exceptions.CommandException;
 import seedu.connectus.model.Model;
 import seedu.connectus.model.person.Person;
-import seedu.connectus.model.tag.Module;
-import seedu.connectus.model.tag.Remark;
 
 /**
  * Deletes a tag from a person using their displayed indexes from ConnectUS.
@@ -39,13 +38,20 @@ public class DeleteTagFromPersonCommand extends Command {
     private final Index personIndex;
     private final Index remarkIndex;
     private final Index moduleIndex;
+    private final Index ccaIndex;
+    private final Index ccaPositionIndex;
 
     /**
-     * @param personIndex            of the person in the filtered person list to edit
-     * @param remarkIndex         of the remark in the remark list to delete
+     * @param personIndex      of the person in the filtered person list to edit
+     * @param remarkIndex      of the remark in the remark list to delete
      * @param moduleIndex      of the module in the module list to delete
+     * @param ccaIndex         of the CCA in the CCA list to delete
+     * @param ccaPositionIndex of the CCA Position in the CCA Position list to delete
      */
-    public DeleteTagFromPersonCommand(Index personIndex, Index remarkIndex, Index moduleIndex) {
+    public DeleteTagFromPersonCommand(Index personIndex, Index remarkIndex, Index moduleIndex, Index ccaIndex,
+                                      Index ccaPositionIndex) {
+        this.ccaIndex = ccaIndex;
+        this.ccaPositionIndex = ccaPositionIndex;
         requireNonNull(personIndex);
         this.personIndex = personIndex;
         this.remarkIndex = remarkIndex;
@@ -63,8 +69,10 @@ public class DeleteTagFromPersonCommand extends Command {
 
         var personToEdit = lastShownList.get(personIndex.getZeroBased());
 
-        Set<Remark> editedRemarks = personToEdit.getRemarks();
-        Set<Module> editedModules = personToEdit.getModules();
+        var editedRemarks = personToEdit.getRemarks();
+        var editedModules = personToEdit.getModules();
+        var editedCcas = personToEdit.getCcas();
+        var editedCcaPositions = personToEdit.getCcaPositions();
 
         if (remarkIndex != null) {
             var originalRemarks = convertSetToList(personToEdit.getRemarks());
@@ -82,8 +90,23 @@ public class DeleteTagFromPersonCommand extends Command {
             editedModules = createEditedTagList(originalModules, moduleIndex);
         }
 
+        if (ccaIndex != null) {
+            var originalCcas = convertSetToList(personToEdit.getCcas());
+            if (!isIndexValid(ccaIndex, originalCcas)) {
+                throw new CommandException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX, "CCA"));
+            }
+            editedCcas = createEditedTagList(originalCcas, ccaIndex);
+        }
 
-        var editedPerson = new Person(personToEdit, editedRemarks, editedModules);
+        if (ccaPositionIndex != null) {
+            var originalCcaPositions = convertSetToList(personToEdit.getCcaPositions());
+            if (!isIndexValid(ccaPositionIndex, originalCcaPositions)) {
+                throw new CommandException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX, "CCA position"));
+            }
+            editedCcaPositions = createEditedTagList(originalCcaPositions, ccaPositionIndex);
+        }
+
+        var editedPerson = new Person(personToEdit, editedRemarks, editedModules, editedCcas, editedCcaPositions);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -109,8 +132,10 @@ public class DeleteTagFromPersonCommand extends Command {
 
         // state check
         var e = (DeleteTagFromPersonCommand) other;
-        return personIndex.equals(e.personIndex)
-            && remarkIndex.equals(e.remarkIndex)
-            && moduleIndex.equals(e.moduleIndex);
+        return Objects.equals(personIndex, e.personIndex)
+            && Objects.equals(remarkIndex, e.remarkIndex)
+            && Objects.equals(moduleIndex, e.moduleIndex)
+            && Objects.equals(ccaIndex, e.ccaIndex)
+            && Objects.equals(ccaPositionIndex, e.ccaPositionIndex);
     }
 }
