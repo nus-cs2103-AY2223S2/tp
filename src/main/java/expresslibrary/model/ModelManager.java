@@ -117,6 +117,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Person getPerson(Person person) {
+        return expressLibrary.getPerson(person);
+    }
+
+    @Override
     public boolean hasBook(Book book) {
         requireNonNull(book);
         return expressLibrary.hasBook(book);

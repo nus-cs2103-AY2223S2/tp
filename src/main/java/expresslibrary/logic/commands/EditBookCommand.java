@@ -21,7 +21,7 @@ import expresslibrary.model.book.Author;
 import expresslibrary.model.book.Book;
 import expresslibrary.model.book.Isbn;
 import expresslibrary.model.book.Title;
-//import expresslibrary.model.person.Person;
+import expresslibrary.model.person.Person;
 
 /**
  * Edits the details of an existing book in the express library.
@@ -52,7 +52,7 @@ public class EditBookCommand extends Command {
     private final EditBookDescriptor editBookDescriptor;
 
     /**
-     * @param index                of the book in the filtered book list to edit
+     * @param index              of the book in the filtered book list to edit
      * @param editBookDescriptor details to edit the book with
      */
     public EditBookCommand(Index index, EditBookDescriptor editBookDescriptor) {
@@ -66,14 +66,26 @@ public class EditBookCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Book> lastShownList = model.getFilteredBookList();
+        List<Book> lastShownBookList = model.getFilteredBookList();
+        List<Person> lastShownPersonList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownBookList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
         }
 
-        Book bookToEdit = lastShownList.get(index.getZeroBased());
+        Book bookToEdit = lastShownBookList.get(index.getZeroBased());
         Book editedBook = createEditedBook(bookToEdit, editBookDescriptor);
+
+        Person borrower = editedBook.getBorrower();
+        if (borrower != null) {
+            if (!lastShownPersonList.contains(borrower)) {
+                throw new CommandException(Messages.MESSAGE_BORROWER_NOT_FOUND);
+            }
+            Person origPerson = model.getPerson(borrower);
+            borrower.returnBook(bookToEdit);
+            borrower.borrowBook(editedBook);
+            model.setPerson(origPerson, borrower);
+        }
 
         if (!bookToEdit.isSameBook(editedBook) && model.hasBook(editedBook)) {
             throw new CommandException(MESSAGE_DUPLICATE_BOOK);
@@ -94,10 +106,16 @@ public class EditBookCommand extends Command {
         Title updatedTitle = editBookDescriptor.getTitle().orElse(bookToEdit.getTitle());
         Author updatedAuthor = editBookDescriptor.getAuthor().orElse(bookToEdit.getAuthor());
         Isbn updatedIsbn = editBookDescriptor.getIsbn().orElse(bookToEdit.getIsbn());
+        Person updatedBorrower = editBookDescriptor.getBorrower().orElse(bookToEdit.getBorrower());
         LocalDate updatedBorrowDate = editBookDescriptor.getBorrowDate().orElse(bookToEdit.getBorrowDate());
         LocalDate updatedDueDate = editBookDescriptor.getDueDate().orElse(bookToEdit.getDueDate());
 
-        return new Book(updatedTitle, updatedAuthor, updatedIsbn, updatedBorrowDate, updatedDueDate);
+        Book editedBook = new Book(updatedTitle, updatedAuthor, updatedIsbn);
+        if (updatedBorrower != null) {
+            editedBook.loanBookTo(updatedBorrower, updatedBorrowDate, updatedDueDate);
+        }
+
+        return editedBook;
     }
 
     @Override
@@ -127,6 +145,7 @@ public class EditBookCommand extends Command {
         private Title title;
         private Author author;
         private Isbn isbn;
+        private Person borrower;
         private LocalDate borrowDate;
         private LocalDate dueDate;
 
@@ -141,6 +160,7 @@ public class EditBookCommand extends Command {
             setTitle(toCopy.title);
             setAuthor(toCopy.author);
             setIsbn(toCopy.isbn);
+            setBorrower(toCopy.borrower);
             setBorrowDate(toCopy.borrowDate);
             setDueDate(toCopy.dueDate);
         }
@@ -175,6 +195,15 @@ public class EditBookCommand extends Command {
         public Optional<Isbn> getIsbn() {
             return Optional.ofNullable(isbn);
         }
+
+        public void setBorrower(Person borrower) {
+            this.borrower = borrower;
+        }
+
+        public Optional<Person> getBorrower() {
+            return Optional.ofNullable(borrower);
+        }
+
         public void setBorrowDate(LocalDate borrowDate) {
             this.borrowDate = borrowDate;
         }
@@ -209,6 +238,7 @@ public class EditBookCommand extends Command {
             return getTitle().equals(e.getTitle())
                     && getAuthor().equals(e.getAuthor())
                     && getIsbn().equals(e.getIsbn())
+                    && getBorrower().equals(e.getBorrower())
                     && getBorrowDate().equals(e.getBorrowDate())
                     && getDueDate().equals(e.getDueDate());
         }

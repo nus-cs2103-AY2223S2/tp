@@ -81,6 +81,12 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
+     * Returns {@code person} from this {@code ExpressLibrary}.
+     * {@code person} must exist in the express library.
+     */
+    Person getPerson(Person person);
+
+    /**
      * Returns true if a book with the same identity as {@code book} exists in
      * the express library.
      */
