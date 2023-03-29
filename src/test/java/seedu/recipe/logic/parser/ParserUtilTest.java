@@ -23,7 +23,7 @@ public class ParserUtilTest {
     private static final String VALID_DESCRIPTION = "A yummy recipe for your stomach";
     private static final Ingredient VALID_INGREDIENT1 = new Ingredient("salt", 2.5,
             "tablespoon", 0.1);
-    private static final String VALID_INGREDIENT1_STRING = "salt 2.5 tablespoon 0.1";
+    private static final String VALID_INGREDIENT1_STRING = "salt, 2.5, tablespoon, 0.1";
     private static final String VALID_STEP1 = "step 1";
     private static final String VALID_STEP2 = "step 2";
     private static final String VALID_TITLE = "Gelato";

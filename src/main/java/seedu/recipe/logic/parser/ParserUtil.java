@@ -111,7 +111,7 @@ public class ParserUtil {
     public static Ingredient parseIngredientHelper(String ingredient) throws ParseException {
         requireNonNull(ingredient);
         String trimmedIngredient = ingredient.trim();
-        String[] ingredientFields = trimmedIngredient.split("\\s+");
+        String[] ingredientFields = trimmedIngredient.split(",");
         if (ingredientFields.length != 4) {
             throw new ParseException(Ingredient.INGREDIENT_WRONG_ARGUMENTS_MESSAGE_CONSTRAINTS);
         }
@@ -121,14 +121,14 @@ public class ParserUtil {
         String unitOfMeasurement;
         Double pricePerUnit;
 
-        if (!Ingredient.isValidIngredientName(ingredientFields[0])) {
+        if (!Ingredient.isValidIngredientName(ingredientFields[0].trim())) {
             throw new ParseException(Ingredient.INGREDIENT_NAME_MESSAGE_CONSTRAINTS);
         } else {
-            name = ingredientFields[0];
+            name = ingredientFields[0].trim();
         }
 
         try {
-            quantity = Double.valueOf(ingredientFields[1]);
+            quantity = Double.valueOf(ingredientFields[1].trim());
             if (!Ingredient.isValidIngredientQuantity(quantity)) {
                 throw new ParseException(Ingredient.INGREDIENT_QUANTITY_MESSAGE_CONSTRAINTS);
             }
@@ -137,14 +137,14 @@ public class ParserUtil {
         }
 
 
-        if (!Ingredient.isValidIngredientUom(ingredientFields[2])) {
+        if (!Ingredient.isValidIngredientUom(ingredientFields[2].trim())) {
             throw new ParseException(Ingredient.INGREDIENT_UOM_MESSAGE_CONSTRAINTS);
         } else {
-            unitOfMeasurement = ingredientFields[2];
+            unitOfMeasurement = ingredientFields[2].trim();
         }
 
         try {
-            pricePerUnit = Double.valueOf(ingredientFields[3]);
+            pricePerUnit = Double.valueOf(ingredientFields[3].trim());
             if (!Ingredient.isValidIngredientPpu(pricePerUnit)) {
                 throw new ParseException(Ingredient.INGREDIENT_PPU_MESSAGE_CONSTRAINTS);
             }

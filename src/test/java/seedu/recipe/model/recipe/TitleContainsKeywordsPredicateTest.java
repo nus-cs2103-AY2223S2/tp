@@ -72,6 +72,6 @@ public class TitleContainsKeywordsPredicateTest {
         // Keywords match ingredient but does not match name
         predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Cheese"));
         assertFalse(predicate.test(new RecipeBuilder().withTitle("Corndog")
-                .withIngredients("Cheese 1 slice 1").build()));
+                .withIngredients("Cheese, 1, slice, 1").build()));
     }
 }
