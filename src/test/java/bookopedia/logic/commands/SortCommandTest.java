@@ -27,7 +27,7 @@ class SortCommandTest {
     private final List<Person> sortedList = Arrays.asList(DANIEL, ELLE, FIONA, BENSON, CARL, ALICE, GEORGE);
 
     @Test
-    public void executeSort() {
+    public void execute_sortAllDeliveryStatusTypes_success() {
         SortCommand sortCommand = new SortCommand();
         String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS);
 
