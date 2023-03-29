@@ -32,5 +32,5 @@ public class Messages {
 
     public static final String MESSAGE_EMPTY_TAGS = "No tag is provided";
 
-    public static final String MESSAGE_2_CONFLICTING_ARGS = "The arguments %1$s and %2$s cannot both be specified";
+    public static final String MESSAGE_CONFLICTING_ARGS = "The arguments %1$s and %2$s cannot both be specified";
 }

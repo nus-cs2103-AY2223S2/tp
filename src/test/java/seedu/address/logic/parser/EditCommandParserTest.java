@@ -486,7 +486,7 @@ public class EditCommandParserTest {
         String input = VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1 + EDIT_VIDEO_NAME_DESC_V2
                 + VIDEO_TIMESTAMP_DESC_1 + TAG_DESC_MULTI + " " + PREFIX_WATCH + " " + PREFIX_UNWATCH;
         assertParseFailure(parser, input,
-                String.format(Messages.MESSAGE_2_CONFLICTING_ARGS, PREFIX_WATCH, PREFIX_UNWATCH));
+                String.format(Messages.MESSAGE_CONFLICTING_ARGS, PREFIX_WATCH, PREFIX_UNWATCH));
     }
 
 }
