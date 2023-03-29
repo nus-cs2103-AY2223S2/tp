@@ -243,7 +243,7 @@ For the following fields, they are considered a `SuperField`.
 A `SuperField`
 can contain many inputs in that single field. When using edit, the command checks
 for if that input is already in that `SuperField`, if it is, it will remove it.
-If not, then it will add the input into the `SuperField`
+If not, then it will add the input into the `SuperField`.
   * e.g. `edit mt/CS2103T` removes CS2103T from the Modules field
 of a person if it already exists and adds it if it does not.
   
@@ -271,7 +271,7 @@ Examples:
 
 Want to narrow down your displayed contacts to a certain few?
 
-Use this command to find contacts whose names contain any of the given keywords!
+Use this command to find contacts using keywords and fields you specify!
 
 **Syntax:**
 
@@ -427,10 +427,54 @@ Use this command to exit the application!
 
 --------------------------------------------------------------------------------------------------------------------
 ## Calendar Features
+<hr style="border:2px solid gray">
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Development of calendar commands is still a work in progress. Stay tune!**<br>
-</div>
+### Tagging Contacts to an Event: `tagpersonevent`
+
+Want to remember who was a part of a certain event? 
+
+Tag their contacts
+to the event using this command!
+
+**Syntax:**
+
+`tagpersonevent et/{EVENT INDEX} pt/{NAME}`
+
+_Here are some important requirements for you to take note:_
+* The EVENT INDEX is the index of the event you want to tag the person to.
+* NAME is the name of the person you want to tag to the event.
+  * NAME is **case_sensitive**.
+  * NAME must be the name of a contact already registered in NeoBook
+
+_For more advanced users_
+* Be careful when directly editing the tagged contacts in `userdata.json`.
+It may cause the person to become unlinked from the event completely.
+
+[Back To Contents](#table-of-contents)
+
+<hr style="border:2px solid gray">
+
+
+### Tagging Contacts to an Event: `untagpersonevent`
+
+Want to remove somebody who was a part of a certain event?
+
+Untag their contacts from the event using this command!
+
+**Syntax:**
+
+`tagpersonevent et/{EVENT INDEX} pt/{NAME}`
+
+_Here are some important requirements for you to take note:_
+* The EVENT INDEX is the index of the event you want to tag the person to.
+* NAME is the name of the person you want to tag to the event.
+    * NAME is **case_sensitive**.
+    * NAME must be the name of a contact already registered in NeoBook and
+tagged to that event.
+
+_For more advanced users_
+* Be careful when directly editing the tagged contacts in `userdata.json`.
+  It may cause the person to become unlinked from the event completely.
 
 [Back To Contents](#table-of-contents)
 
