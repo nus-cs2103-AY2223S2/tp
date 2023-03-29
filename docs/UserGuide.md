@@ -110,7 +110,7 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
 
 2. Refer to the [Features](#features) below for details of each command.
 
-<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ---
 
@@ -120,7 +120,7 @@ Vimification is designed to mimic Vim as closely as possible. Navigate Vimificat
 
 Moreover, the usual arrow keys (&uarr;, &darr;, &larr;, &rarr;) can be used as well.
 
-<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ## Using the commands
 
@@ -128,7 +128,7 @@ Moreover, the usual arrow keys (&uarr;, &darr;, &larr;, &rarr;) can be used as w
 Example:
 <img class="ui-img" src="images/ug-images/showCommand/commandExample.png" alt="Example of Show Command Image" title="How to bring up the command input">
 
-<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ## Information on commands' parameters
 
@@ -158,7 +158,7 @@ For commands that do not take in parameters (such as `help`, `list`, `exit` and 
 
 </div>
 
-<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ---
 
@@ -262,7 +262,7 @@ If your changes to the data file makes its format invalid, Vimification will dis
 
 _Details coming soon ..._
 
-<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ---
 
@@ -271,13 +271,13 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Vimification home folder.
 
-<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 ---
 
 ## Flag summary
 
-<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p><br>
+<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
 <!-- TODO: Complete this command summary box -->
 ## Command summary
