@@ -65,9 +65,7 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 
    * `clear` : Deletes all Bookmarks.
 
-
    * `goto 1` : Opens the url of 1st Bookmark shown in current list.
-
    
    * `exit` : Exits the app.
 
@@ -179,14 +177,15 @@ Examples:
 *  `edit 1 n/Hobbit a/J. R. R. Tolkien` Edits the title and author of the 1st bookmark to be `Hobbit` and `J. R. R. Tolkien` respectively.
 *  `edit 2 n/The Odyssey t/` Edits the name of the 2nd person to be `The Odyssey` and clears all existing tags.
 
-### Locating bookmarks by title: `find`
-
+### Locating bookmarks by specific fields: `find`
 
 Find bookmarks whose specified fields contain the given keywords.
 
+`find` helps you to find bookmarks whose specified fields contain the given keywords. You can use this when you
+want to filter out certain bookmarks from your large list of bookmarks. `find` allows you to search for bookmarks 
+using the title, author, genre and/or tags of a bookmark.
 
 Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
-
 
 * At least one of the optional fields must be provided.
 * The search for name and author is case-insensitive. e.g. `rankers` will match `Rankers`
@@ -197,8 +196,9 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 * Only full words will be matched e.g. `Ranker` will not match `Ranker's`
 
 Examples:
-* `find n/ Chainsaw Man` returns `chainsaw man` and `Chainsaw Man`
-* `find n/ ranker's g/ Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`<br>
+* `find n/Chainsaw Man` returns `chainsaw man` and `Chainsaw Man`
+* `find n/ranker's g/Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`
+*  `find a/Yoo Heonhwa` returns every bookmark whose author of the book is Yoo Heonhwa<br>
 
 
 ### Deleting a person : `delete`
@@ -213,7 +213,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd bookmark in the library.
-* `find n/ Chainsaw Man` followed by `delete 1` deletes the 1st bookmark in the results of the `find` command.
+* `find n/Chainsaw Man` followed by `delete 1` deletes the 1st bookmark in the results of the `find` command.
 
 ### Going to a url : `goto`
 
@@ -227,7 +227,7 @@ Format: `goto INDEX`
 
 Examples:
 * `list` followed by `goto 2` opens up the url of  2nd bookmark in the library.
-* `find n/ Chainsaw Man` followed by `goto 1` opens url of the 1st bookmark in the results of the `find` command.
+* `find n/Chainsaw Man` followed by `goto 1` opens url of the 1st bookmark in the results of the `find` command.
 
 
 ### Clearing all entries : `clear`
@@ -268,7 +268,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MyLib home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -284,4 +284,8 @@ Action | Format, Examples
 **GoTo** | `goto INDEX`<br> e.g., `goto 3`
 **List** | `list`
 **Help** | `help`
+**List Tags** | `tags`
+**Adding a tag** | `addtag [t/TAG]…` <br> e.g., `addtag t/Novel`
+**Deleting a tag** | `dtag TAGNAME` <br> e.g., `dtag MaleProtagonist`
+**List Genres** | `genre`
 
