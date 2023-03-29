@@ -11,7 +11,7 @@ import seedu.calidr.model.task.predicates.TitleContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new SearchTaskCommand object
  */
-public class SearchTaskCommandParser implements Parser<SearchTaskCommand>{
+public class SearchTaskCommandParser implements Parser<SearchTaskCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the SearchTaskCommand
