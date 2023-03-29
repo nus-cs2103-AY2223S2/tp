@@ -15,9 +15,9 @@ This User Guide will provide you with an in-depth documentation for you to easil
 
 So what are you waiting for? Get ready to **Connect** with others and let **US** handle the rest!
 
-<div style="page-break-after: always"></div>
-
 ---
+
+<div style="page-break-after: always"></div>
 
 # Table of Contents
 
@@ -69,9 +69,9 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
 - [8. Prefix Summary](#8-prefix-summary)
 - [9. Glossary](#9-glossary)
 
-<div style="page-break-after: always"></div>
-
 ---
+
+<div style="page-break-after: always"></div>
 
 # 1. Using this guide
 
@@ -105,6 +105,8 @@ Some special notations are used throughout this guide:
 
 ---
 
+<div style="page-break-after: always"></div>
+
 # 2. Installation
 
 ConnectUS works on any mainstream OS as long as <u>Java `11`</u> installed.
@@ -130,6 +132,8 @@ Congratulations! You have successfully set up ConnectUS.
 [↑ Back to table of contents](#table-of-contents)
 
 ---
+
+<div style="page-break-after: always"></div>
 
 # 3. Quick Start Guide
 
@@ -266,6 +270,8 @@ There are many other features in ConnectUS. Do refer to the [Features](#4-featur
 [↑ Back to table of contents](#table-of-contents)
 
 ---
+
+<div style="page-break-after: always"></div>
 
 # 4. Features
 
@@ -576,6 +582,10 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 [↑ Back to table of contents](#table-of-contents)
 
+---
+
+<div style="page-break-after: always"></div>
+
 # 5. Information Fields & Prefixes
 
 ConnectUS uses prefixes to distinguish between the different types of information fields you supply. The exhaustive list of information fields supported and their respective prefixes are as follows:
@@ -732,6 +742,8 @@ We are aware that you can assign any kinds of tags to a contact (e.g. using the 
 
 ---
 
+<div style="page-break-after: always"></div>
+
 # 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -746,8 +758,9 @@ We are aware that you can assign any kinds of tags to a contact (e.g. using the 
 
 [↑ Back to top](#table-of-contents)
 
+---
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
 
 # 7. Command Summary
 
@@ -768,6 +781,10 @@ We are aware that you can assign any kinds of tags to a contact (e.g. using the 
 
 [↑ Back to top](#table-of-contents)
 
+---
+
+<div style="page-break-after: always"></div>
+
 # 8. Prefix Summary
 
 | Information Field    | Prefix    | Example                        |
@@ -786,6 +803,10 @@ We are aware that you can assign any kinds of tags to a contact (e.g. using the 
 | **WhatsApp**         | `wa/`     | `wa/91234567`                  |
 
 [↑ Back to top](#table-of-contents)
+
+---
+
+<div style="page-break-after: always"></div>
 
 # 9. Glossary
 
@@ -852,6 +873,5 @@ We are aware that you can assign any kinds of tags to a contact (e.g. using the 
 ### U
 > **UTown Residence:**
 > Also known as UTR. On-campus accommodation for students at the National University of Singapore.
-
 
 [↑ Back to top](#table-of-contents)
