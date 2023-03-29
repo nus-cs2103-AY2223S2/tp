@@ -48,7 +48,9 @@ public class ResultDialog {
         result.setTitle("Notification");
         result.setHeaderText(null);
         result.setX(primaryStage.getX() + 0.35 * primaryStage.getWidth());
-        result.setY(0.83 * primaryStage.getHeight());
+        result.setY(0.78 * primaryStage.getHeight());
+        result.setWidth(600);
+        result.setHeight(140);
         result.setGraphic(warningImgPath);
         result.setContentText(resultMessage);
 

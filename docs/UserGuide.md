@@ -74,11 +74,24 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
 
 </div>
 
+### Main features: Tracking applied internships
 
 ### Viewing help: `help`
 Shows a user guide message on how to use the internship tracker.
 
 Format: help
+
+### Displaying list of internship applications:`list`
+
+Displays a list of applied internships
+
+Format: `list`
+
+Examples:
+
+* `list` shows all the internships that the user has applied for with 1 indexing.
+* If there are no internships applied for at the moment,
+  "No applications at the moment" will be shown.
 
 ### Adding an application: `add`
 
@@ -118,21 +131,9 @@ Format: `edit_status INDEX s/STATUS`
 Examples:
 * `edit_status 2 s/PENDING` Changes the status of the 2nd application in the applications list to `PENDING` (Internship application submitted, outcome has not been released).
 
-### Displaying list of internship applications:`list`
-
-Displays a list of applied internships
-
-Format: `list`
-
-Examples:
-
-* `list` shows all the internships that the user has applied for with 1 indexing.
-* If there are no internships applied for at the moment,
-  "No applications at the moment" will be shown.
-
 ### Deleting an application of internship : `delete`
 
-Deletes the specified application from the list of internships applied
+Deletes the specified internship application from the list of internships applied
 
 Format: `delete INDEX`
 
@@ -143,13 +144,13 @@ Format: `delete INDEX`
 Examples:
 * `delete 2` Deletes the 2nd internship application in the list of applications.
 
-### Clearing entries with keyword: `clear_by`
+### Clearing internship application entries with keyword: `clear_by`
 
-Clear all relevant entries from the internship tracker with specific keyword
+Clear all relevant internship application entries from the internship tracker with specific keyword
 
 Format: `clear_by n/COMPANY_NAME` OR `clear_by j/JOB_TITLE` OR `clear_by s/STATUS`
 
-* Clears all application with the specified keyword - COMPANY_NAME, JOB_TITLE or STATUS.
+* Clears all internship applications with the specified keyword - COMPANY_NAME, JOB_TITLE or STATUS.
 * Three types of clear_by features are provided, but can only execute independently.
 
 Examples:
@@ -168,9 +169,172 @@ The keyword refers to the status, role or company that the user intends to look 
 Examples:
 `find Google` searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as Google
 
-### Clearing all entries : `clear`
+### Clearing all internship application entries : `clear`
 
-Clears all entries from the internship tracker.
+Clears all internship application entries from the internship tracker.
+
+Format: `clear`
+
+### Revert recent deleted an internship application : `revert`
+
+Reverts recent delete command and restores the relevant data to the end of the current internship applications list.
+
+Format: `revert`
+
+Examples:
+1. Assume the most recent delete command was `delete 2` which has data `n/Tech j/Job`, the data was removed from the applications list.
+2. Command `revert` restores the entries at the back the application list, which has effect similar to `add  n/Tech j/Job`.
+** This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
+
+### Revert recent deleted or cleared internship applications : `revert_all`
+
+Reverts all recent deleted command or cleared command and restores the affected data back to the end of the current internship applications list.
+
+Format: `revert_all`
+
+** This command is only able to restore current session's data, all the deleted / cleared data will be permanently deleted if command `exit` is executed.**
+
+### Side features: Planning to apply internships 
+
+### Displaying list of tasks (todos and notes):`list_task`
+
+Displays the todo list and the note list together.
+
+Format: `list`
+
+Examples:
+
+* `list_task` shows all the todos and notes that the user has written for together in one window.
+* If there are no todo and note at the moment, `No task (todo and note) at the moment` will be shown.
+* If there is either no todo or note, it will show `No todo at the moment` or `No note at the moment` respectively. The other list will be displayed normally.
+
+### Search for a task (todo and notes) : `find_task`
+
+Searches the recorded lists of todos and notes by keyword (status, role, company)
+
+Format: `find KEYWORD`
+
+Searches for the application with the specified `KEYWORD`.
+The keyword refers to the status, role or company that the user intends to look for.
+
+Examples:
+`find Google` searches for all application with `COMPANY_NAME` and/or `JOB_TITLE` as Google
+
+### Displaying list of internship applications:`list_todo`
+
+Displays a list of applied internships
+
+Format: `list`
+
+Examples:
+
+* `list` shows all the internships that the user has applied for with 1 indexing.
+* If there are no internships applied for at the moment,
+  "No applications at the moment" will be shown.
+
+### Adding an application: `add`
+
+Adds an application to the internship tracker.
+
+Format: ` add n/COMPANY_NAME j/JOB_TITLE`
+
+Examples:
+* `add n/Facebook j/Product Manager` adds an application for the Product Manager role at Facebook.
+* `add n/LinkedIn j/Software Engineer` adds an application for the Software Engineer role at LinkedIn.
+
+### Edit application status : `edit_status`
+
+Edits the application status.
+
+Format: `edit_status INDEX s/STATUS`
+- Edits the status of the specified `INDEX` to the specified `STATUS`.
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+- Available status: NA, PENDING, RECEIVED, REJECTED, NO
+    - NA: Internship application is not submitted.
+    - PENDING: Internship application submitted, outcome has not been released.
+    - RECEIVED: Offer received.
+    - REJECTED: Offer rejected.
+    - NO: Application rejected.
+
+Examples:
+* `edit_status 2 s/PENDING` Changes the status of the 2nd application in the applications list to `PENDING` (Internship application submitted, outcome has not been released).
+
+### Edit application status : `edit_status`
+
+Edits the application status.
+
+Format: `edit_status INDEX s/STATUS`
+- Edits the status of the specified `INDEX` to the specified `STATUS`.
+- The index refers to the index number shown in the displayed internship list.
+- The index must be a positive integer 1, 2, 3, …​
+- Available status: NA, PENDING, RECEIVED, REJECTED, NO
+    - NA: Internship application is not submitted.
+    - PENDING: Internship application submitted, outcome has not been released.
+    - RECEIVED: Offer received.
+    - REJECTED: Offer rejected.
+    - NO: Application rejected.
+
+Examples:
+* `edit_status 2 s/PENDING` Changes the status of the 2nd application in the applications list to `PENDING` (Internship application submitted, outcome has not been released).
+
+### Deleting an application of internship : `delete`
+
+Deletes the specified internship application from the list of internships applied
+
+Format: `delete INDEX`
+
+* Deletes the application of internship at the specified `INDEX`.
+* The index refers to the index number shown in the displayed internship list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `delete 2` Deletes the 2nd internship application in the list of applications.
+
+### Clearing all internship application entries : `clear`
+
+Clears all internship application entries from the internship tracker.
+
+Format: `clear`
+
+### Displaying list of internship applications:`list_note`
+
+Displays a list of applied internships
+
+Format: `list`
+
+Examples:
+
+* `list` shows all the internships that the user has applied for with 1 indexing.
+* If there are no internships applied for at the moment,
+  "No applications at the moment" will be shown.
+
+### Adding an application: `add`
+
+Adds an application to the internship tracker.
+
+Format: ` add n/COMPANY_NAME j/JOB_TITLE`
+
+Examples:
+* `add n/Facebook j/Product Manager` adds an application for the Product Manager role at Facebook.
+* `add n/LinkedIn j/Software Engineer` adds an application for the Software Engineer role at LinkedIn.
+
+### Deleting an application of internship : `delete`
+
+Deletes the specified internship application from the list of internships applied
+
+Format: `delete INDEX`
+
+* Deletes the application of internship at the specified `INDEX`.
+* The index refers to the index number shown in the displayed internship list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `delete 2` Deletes the 2nd internship application in the list of applications.
+
+### Clearing all internship application entries : `clear`
+
+Clears all internship application entries from the internship tracker.
 
 Format: `clear`
 
