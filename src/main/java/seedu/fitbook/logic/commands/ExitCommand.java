@@ -13,7 +13,7 @@ public class ExitCommand extends Command {
 
     @Override
     public CommandResult execute(FitBookModel model) {
-        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
+        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, null, false, true, false, false);
     }
 
 }

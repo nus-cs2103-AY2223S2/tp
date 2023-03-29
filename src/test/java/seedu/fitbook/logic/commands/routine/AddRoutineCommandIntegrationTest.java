@@ -35,7 +35,7 @@ public class AddRoutineCommandIntegrationTest {
                 new FitBookModelManager(model.getFitBook(), model.getFitBookExerciseRoutine(), new UserPrefs());
         expectedFitBookModel.addRoutine(validRoutine);
 
-        CommandTestUtil.assertCommandSuccess(new AddRoutineCommand(validRoutine), model,
+        CommandTestUtil.assertCommandSuccessForRoutine(new AddRoutineCommand(validRoutine), model,
                 String.format(AddRoutineCommand.MESSAGE_SUCCESS, validRoutine), expectedFitBookModel);
     }
 

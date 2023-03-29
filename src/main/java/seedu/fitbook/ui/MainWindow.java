@@ -2,6 +2,8 @@ package seedu.fitbook.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -20,6 +22,7 @@ import seedu.fitbook.logic.Logic;
 import seedu.fitbook.logic.commands.CommandResult;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
+import seedu.fitbook.model.client.Client;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -30,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     private static final String EXERCISE = "Exercise";
     private static final String SCHEDULE = "Schedule";
     private static final String STATISTIC = "Statistic";
+    private static final String SUMMARY = "Summary";
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -50,6 +54,8 @@ public class MainWindow extends UiPart<Stage> {
     private ClientListPanel clientListPanel;
     private SchedulePanel schedulePanel;
     private ExercisePanel exercisePanel;
+    private SummaryPanel summaryPanel;
+    private SummaryListPanel summaryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     @FXML
@@ -68,7 +74,11 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane clientListPanelPlaceholder;
     @FXML
-    private StackPane panelPlaceholder;
+    private StackPane rightPanelPlaceholder;
+
+    @FXML
+    private StackPane leftPanelPlaceholder;
+
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -148,10 +158,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         clientListPanel = new ClientListPanel(logic.getFilteredClientList());
-        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+        leftPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
         schedulePanel = new SchedulePanel(logic.getFilteredClientList());
-        panelPlaceholder.getChildren().add(schedulePanel.getRoot());
+        rightPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -212,45 +222,89 @@ public class MainWindow extends UiPart<Stage> {
     }
     @FXML
     private void handleExercise() {
-        resultDisplay.setFeedbackToUser(": Start to handle exercise.");
-
         setMainTitleText(EXERCISE);
         setSubTitle(EXERCISE);
-        panelPlaceholder.setManaged(false);
+        rightPanelPlaceholder.setManaged(false);
 
         exercisePanel = new ExercisePanel(logic.getFilteredRoutineList());
-        panelPlaceholder.getChildren().add(exercisePanel.getRoot());
+        rightPanelPlaceholder.getChildren().add(exercisePanel.getRoot());
 
-        panelPlaceholder.setManaged(true);
+        rightPanelPlaceholder.setManaged(true);
     }
 
     @FXML
     private void handleStatistics() {
-        resultDisplay.setFeedbackToUser(": Start to handle exercise.");
-
         setMainTitleText(STATISTIC);
         setSubTitle(STATISTIC);
-        panelPlaceholder.setManaged(false);
+        rightPanelPlaceholder.setManaged(false);
 
         exercisePanel = new ExercisePanel(logic.getFilteredRoutineList());
-        panelPlaceholder.getChildren().add(exercisePanel.getRoot());
+        rightPanelPlaceholder.getChildren().add(exercisePanel.getRoot());
 
-        panelPlaceholder.setManaged(true);
+        rightPanelPlaceholder.setManaged(true);
     }
 
     @FXML
-    private void handleSchedule() {
-        resultDisplay.setFeedbackToUser(": Start to handle schedule.");
+    private void handleSummary() {
+        setMainTitleText(SUMMARY);
+        setSubTitle(SUMMARY);
+        rightPanelPlaceholder.setManaged(false);
+        leftPanelPlaceholder.setManaged(false);
 
+        ObservableList<Client> list = FXCollections.observableArrayList();
+        summaryPanel = new SummaryPanel(list);
+        rightPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
+
+        summaryListPanel = new SummaryListPanel(logic.getFilteredClientList());
+        leftPanelPlaceholder.getChildren().add(summaryListPanel.getRoot());
+
+
+        rightPanelPlaceholder.setManaged(true);
+        leftPanelPlaceholder.setManaged(true);
+    }
+
+    @FXML
+    private void handleSummaryCommand(Client clientToView) {
+        setMainTitleText(SUMMARY);
+        setSubTitle(SUMMARY);
+        rightPanelPlaceholder.setManaged(false);
+        leftPanelPlaceholder.setManaged(false);
+
+        summaryListPanel = new SummaryListPanel(logic.getFilteredClientList());
+        leftPanelPlaceholder.getChildren().add(summaryListPanel.getRoot());
+
+        ObservableList<Client> list = FXCollections.observableArrayList(clientToView);
+        summaryPanel = new SummaryPanel(list);
+        rightPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
+
+        rightPanelPlaceholder.setManaged(true);
+        leftPanelPlaceholder.setManaged(true);
+    }
+    @FXML
+    private void handleSchedule() {
         setMainTitleText(TITLE);
         setSubTitle(SCHEDULE);
 
-        panelPlaceholder.setManaged(false);
+        rightPanelPlaceholder.setManaged(false);
+        leftPanelPlaceholder.setManaged(false);
+
+        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        leftPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
         schedulePanel = new SchedulePanel(logic.getFilteredClientList());
-        panelPlaceholder.getChildren().add(schedulePanel.getRoot());
+        rightPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
 
-        panelPlaceholder.setManaged(true);
+
+        rightPanelPlaceholder.setManaged(true);
+        leftPanelPlaceholder.setManaged(true);
+
+    }
+
+    private void handleCommand(CommandResult commandResult) {
+        if (commandResult.equals("view")) {
+            summaryPanel = new SummaryPanel(logic.getFilteredClientList());
+            rightPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
+        }
     }
 
     public ClientListPanel getClientListPanel() {
@@ -281,7 +335,12 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
+            if (commandResult.isView()) {
+                handleSummaryCommand(commandResult.getClientToView());
+            }
+            if (commandResult.isShowRoutine()) {
+                handleExercise();
+            }
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

@@ -114,7 +114,8 @@ public class Routine {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("[" + getRoutineName() + "]");
+        builder.append(getRoutineName());
+        //builder.append("[" + getRoutineName() + "]");
         return builder.toString();
     }
 

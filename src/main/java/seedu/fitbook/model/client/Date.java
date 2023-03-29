@@ -9,73 +9,63 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 /**
- * Represents a Client's appointment time in FitBook.
- * Guarantees: immutable; is valid as declared in {@link #isValidAppointment(String)} and {@link #isValidDate(String)}.
+ * Represents a Client's weight history date time in FitBook.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDateFormat(String)}
  */
-public class Appointment implements Comparable<Appointment> {
+public class Date implements Comparable<Date> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Appointment should be in dd-mm-yyyy HH:mm format.";
+            "Date should be in dd-mm-yyyy HH:mm format.";
     public static final String MESSAGE_DATE_CONSTRAINTS =
             "Appointment should have valid date.";
-    public static final String DATE_CONSTRAINTS =
-            "Appointment should only be after the current date and time.";
     public static final String VALIDATION_REGEX =
             "^(?:0[1-9]|[1-2][0-9]|3[0-1])-(?:0[1-9]|1[0-2])-(?:[0-9]{4}) (?:[01][0-9]|2[0-3]):(?:[0-5][0-9])$";
-    private static final DateTimeFormatter dateTimeFormatter =
+    public final DateTimeFormatter dateTimeFormatter =
             DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     public final DateTimeFormatter dateTimeFormatterForStr = DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm");
 
-    public final String appointmentTime;
+    public final String dateTime;
     public final LocalDateTime localDateTime;
 
     /**
-     * Constructs an {@code Appoinment}.
+     * Constructs a {@code Date}.
      *
-     * @param appointment A valid appointment time.
+     * @param date A valid date time.
      */
-    public Appointment(String appointment) {
-        requireNonNull(appointment);
+    public Date(String date) {
+        requireNonNull(date);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm");
-        checkArgument(isValidAppointment(appointment), MESSAGE_CONSTRAINTS);
-        checkArgument(isValidDate(appointment), MESSAGE_DATE_CONSTRAINTS);
-        appointmentTime = appointment;
-        this.localDateTime = LocalDateTime.parse(appointment, formatter);
+        checkArgument(isValidDateFormat(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDate(date), MESSAGE_DATE_CONSTRAINTS);
+        dateTime = date;
+        this.localDateTime = LocalDateTime.parse(date, formatter);
     }
 
     /**
      * Returns true if a given string is a valid date.
      */
-    public static boolean isValidDate(String appointment) {
-        assert appointment != null : "Appointment is null";
+    public static boolean isValidDate(String date) {
+        assert date != null : "Date is null";
         try {
             DateTimeFormatter formatter =
                     DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm").withResolverStyle(ResolverStyle.STRICT);
-            LocalDateTime.parse(appointment, formatter);
-            return appointment.matches(VALIDATION_REGEX);
+            LocalDateTime.parse(date, formatter);
+            return date.matches(VALIDATION_REGEX);
         } catch (DateTimeParseException e) {
             return false;
         }
     }
 
     /**
-     * Returns true if a given string is a valid appointment time.
+     * Returns true if a given string is a valid date time format.
      */
-    public static boolean isValidAppointment(String test) {
+    public static boolean isValidDateFormat(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns true if a given string is passed the current date and time.
-     */
-    public static boolean isDatePassed(String appointment) {
-        LocalDateTime temp = LocalDateTime.parse(appointment, dateTimeFormatter);
-        return temp.isBefore(LocalDateTime.now());
     }
 
     @Override
     public String toString() {
-        return "[" + localDateTime.format(dateTimeFormatter) + "]";
+        return localDateTime.format(dateTimeFormatter);
     }
 
     @Override
@@ -84,11 +74,11 @@ public class Appointment implements Comparable<Appointment> {
             return true;
         }
 
-        if (!(other instanceof Appointment)) {
+        if (!(other instanceof Date)) {
             return false;
         }
 
-        Appointment otherDateTime = (Appointment) other;
+        Date otherDateTime = (Date) other;
         return this.localDateTime.equals(otherDateTime.localDateTime);
     }
 
@@ -98,11 +88,11 @@ public class Appointment implements Comparable<Appointment> {
 
     @Override
     public int hashCode() {
-        return appointmentTime.hashCode();
+        return dateTime.hashCode();
     }
 
     @Override
-    public int compareTo(Appointment other) {
+    public int compareTo(Date other) {
         return this.localDateTime.compareTo(other.localDateTime);
     }
 }

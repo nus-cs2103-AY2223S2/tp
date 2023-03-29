@@ -16,7 +16,9 @@ public class HelpCommandTest {
 
     @Test
     public void execute_help_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+        CommandResult expectedCommandResult =
+                new CommandResult(SHOWING_HELP_MESSAGE,
+                        null, true, false, false, false);
         CommandTestUtil.assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedFitBookModel);
     }
 }

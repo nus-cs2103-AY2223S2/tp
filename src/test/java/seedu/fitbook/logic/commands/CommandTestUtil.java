@@ -186,6 +186,7 @@ public class CommandTestUtil {
         }
     }
 
+
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, FitBookModel, CommandResult, FitBookModel)}
      * that takes a string {@code expectedMessage}.
@@ -195,6 +196,30 @@ public class CommandTestUtil {
                                             FitBookModel expectedFitBookModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, commandTwo, actualFitBookModel, expectedCommandResult, expectedFitBookModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, FitBookModel, CommandResult, FitBookModel)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertCommandSuccessForRoutine(Command command, Command commandTwo,
+                                            FitBookModel actualFitBookModel, String expectedMessage,
+                                            FitBookModel expectedFitBookModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                null, false, false, false, true);
+        assertCommandSuccess(command, commandTwo, actualFitBookModel, expectedCommandResult, expectedFitBookModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, FitBookModel, CommandResult, FitBookModel)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertCommandSuccessForRoutine(Command command, FitBookModel actualFitBookModel,
+                                                      String expectedMessage, FitBookModel expectedFitBookModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                null, false, false, false, true);
+
+        assertCommandSuccess(command, actualFitBookModel, expectedCommandResult, expectedFitBookModel);
     }
 
     /**

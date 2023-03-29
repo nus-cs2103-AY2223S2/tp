@@ -1,6 +1,6 @@
 package seedu.fitbook.logic.commands.routine;
 
-import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccessForRoutine;
 import static seedu.fitbook.logic.commands.CommandTestUtil.showRoutineAtIndex;
 import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_ROUTINE;
 import static seedu.fitbook.testutil.client.TypicalClients.getTypicalFitBook;
@@ -32,14 +32,14 @@ public class ListRoutinesCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        CommandTestUtil.assertCommandSuccess(new ListRoutinesCommand(), model, ListRoutinesCommand.MESSAGE_SUCCESS,
-                expectedFitBookModel);
+        CommandTestUtil.assertCommandSuccessForRoutine(new ListRoutinesCommand(), model,
+                ListRoutinesCommand.MESSAGE_SUCCESS, expectedFitBookModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showRoutineAtIndex(model, INDEX_FIRST_ROUTINE);
-        assertCommandSuccess(new ListRoutinesCommand(), model, ListRoutinesCommand.MESSAGE_SUCCESS,
+        assertCommandSuccessForRoutine(new ListRoutinesCommand(), model, ListRoutinesCommand.MESSAGE_SUCCESS,
                 expectedFitBookModel);
     }
 }

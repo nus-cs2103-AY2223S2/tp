@@ -19,7 +19,7 @@ public class ListRoutinesCommand extends Command {
     public CommandResult execute(FitBookModel model) {
         requireNonNull(model);
         model.updateFilteredRoutineList(PREDICATE_SHOW_ALL_ROUTINES);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult((MESSAGE_SUCCESS), null, false, false, false, true);
     }
 }
 

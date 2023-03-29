@@ -19,8 +19,8 @@ public class ClearRoutinesCommandTest {
         FitBookModel model = new FitBookModelManager();
         FitBookModel expectedFitBookModel = new FitBookModelManager();
 
-        CommandTestUtil.assertCommandSuccess(new ClearRoutinesCommand(), model, ClearRoutinesCommand.MESSAGE_SUCCESS,
-                expectedFitBookModel);
+        CommandTestUtil.assertCommandSuccessForRoutine(new ClearRoutinesCommand(), model,
+                ClearRoutinesCommand.MESSAGE_SUCCESS, expectedFitBookModel);
     }
 
     @Test
@@ -31,8 +31,8 @@ public class ClearRoutinesCommandTest {
                 getTypicalFitBookExerciseRoutine(), new UserPrefs());
         expectedFitBookModel.setFitBookExerciseRoutine(new FitBookExerciseRoutine());
 
-        CommandTestUtil.assertCommandSuccess(new ClearRoutinesCommand(), model, ClearRoutinesCommand.MESSAGE_SUCCESS,
-                expectedFitBookModel);
+        CommandTestUtil.assertCommandSuccessForRoutine(new ClearRoutinesCommand(), model,
+                ClearRoutinesCommand.MESSAGE_SUCCESS, expectedFitBookModel);
     }
 
 }
