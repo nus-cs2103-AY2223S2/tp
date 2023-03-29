@@ -59,8 +59,8 @@ public class CommandTestUtil {
     public static final String STATUS_DESC_SHOPEE = " " + PREFIX_STATUS + VALID_STATUS_SHOPEE;
     public static final String REMARK_DESC_GOOGLE = " " + PREFIX_REMARK + VALID_REMARK_GOOGLE;
     public static final String REMARK_DESC_SHOPEE = " " + PREFIX_REMARK + VALID_REMARK_SHOPEE;
-    public static final String DATE_DESC_FRIEND = " " + PREFIX_KEYDATE + VALID_DATENAME_OA;
-    public static final String DATE_DESC_HUSBAND = " " + PREFIX_KEYDATE + VALID_DATENAME_INTERVIEW;
+    public static final String KEYDATE_DESC_OA = " " + PREFIX_KEYDATE + VALID_DATENAME_OA + "@" + VALID_DATE_LATEFEB;
+    public static final String KEYDATE_DESC_INTERVIEW = " " + PREFIX_KEYDATE + VALID_DATENAME_INTERVIEW + "@" + VALID_DATE_EARLYMAR;
 
     public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION + "James&"; // '&' not allowed in positions
     public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "911a"; // 'a' not allowed in companies
