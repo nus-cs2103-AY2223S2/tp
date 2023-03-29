@@ -15,22 +15,28 @@ import static java.util.Objects.requireNonNull;
 public class ClassStatisticsCommand extends Command {
 
     public static final String COMMAND_WORD = "class_stats";
+    public static final String EXAMPLE_USAGE = "Examples: \n"
+                    + "- " + COMMAND_WORD + " " + PREFIX_STAT_TYPE + "attendance\n"
+                    + "- " + COMMAND_WORD + " " + PREFIX_STAT_TYPE + "grades " + PREFIX_ASSIGNMENT_NAME + "Homework 1\n";
 
-    public static final String MESSAGE_SUCCESS = "Displayed statistics for the %1$s of the active class";
+    public static final String MESSAGE_SUCCESS = "Displayed statistics for the %1$s of the active class %2$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays statistics for the active class.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays statistics for the active class.\n\n"
             + "Parameters: " + PREFIX_STAT_TYPE + "FIELD [" + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT_NAME]\n"
             + "where FIELD is either '"
             + ClassStatisticField.ATTENDANCE.toString().toLowerCase() + "' or '"
-            + ClassStatisticField.GRADES.toString().toLowerCase() +"'. \n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_STAT_TYPE + "grades" + PREFIX_ASSIGNMENT_NAME + "Homework 1";
+            + ClassStatisticField.GRADES.toString().toLowerCase() +"'. \n\n"
+            + EXAMPLE_USAGE;
     public static final String MESSAGE_UNKNOWN_FIELD = "The FIELD parameter passed in is not recognised. \n"
-            + "Please enter only either 'attendance' or 'grades' for this parameter.";
+            + "Please enter only either 'attendance' or 'grades' for this parameter.\n"
+            + EXAMPLE_USAGE;
     public static final String MESSAGE_MISSING_ASSIGNMENT_NAME = "For grade statistics, the parameter ASSIGNMENT_NAME"
             + " is compulsory. \n"
-            + "Please include the ASSIGNMENT_NAME of the assignment you wish to analyse.";
+            + "Please include the ASSIGNMENT_NAME of the assignment you wish to analyse.\n"
+            + EXAMPLE_USAGE;
     public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "The assignment name you have entered does not exist.\n"
-            + "Please check that the assignment with the speecified name exists for this active class list.";
+            + "Please check that the assignment with the speecified name exists for this active class list.\n"
+            + EXAMPLE_USAGE;
     private ClassStatisticField field;
     private String assignmentName;
 
@@ -61,13 +67,16 @@ public class ClassStatisticsCommand extends Command {
 
         if (this.field == ClassStatisticField.ATTENDANCE) {
             // display histogram of attendance over all 12 weeks
+            return new CommandResult(String.format(MESSAGE_SUCCESS, this.field.toString().toLowerCase(), ""));
         } else if (this.field == ClassStatisticField.GRADES) {
             // display bell curve
+            return new CommandResult(String.format(
+                    MESSAGE_SUCCESS,
+                    this.field.toString().toLowerCase(),
+                    "(" + this.assignmentName + ")"));
         } else {
             throw new CommandException(MESSAGE_UNKNOWN_FIELD);
         }
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.field.toString()));
     }
 
     @Override

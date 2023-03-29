@@ -9,6 +9,7 @@ import taa.logic.commands.AddAssignmentCommand;
 import taa.logic.commands.AddStudentCommand;
 import taa.logic.commands.ClearCommand;
 import taa.logic.commands.Command;
+import taa.logic.commands.ClassStatisticsCommand;
 import taa.logic.commands.CreateClassCommand;
 import taa.logic.commands.DeleteAssignmentCommand;
 import taa.logic.commands.DeleteStudentCommand;
@@ -117,6 +118,9 @@ public class TaaParser {
 
         case AddAlarmCommand.COMMAND_WORD:
             return new AddAlarmCommandParser().parse(arguments);
+
+        case ClassStatisticsCommand.COMMAND_WORD:
+            return new ClassStatisticsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

@@ -33,8 +33,8 @@ public class ClassStatisticsCommandParser implements Parser<ClassStatisticsComma
         }
 
         String rawField = argMultimap.getValue(PREFIX_STAT_TYPE).get().toUpperCase();
-        if (rawField != ClassStatisticField.GRADES.toString()
-                && rawField != ClassStatisticField.ATTENDANCE.toString()) {
+        if (!rawField.equals(ClassStatisticField.GRADES.toString())
+                && !rawField.equals(ClassStatisticField.ATTENDANCE.toString())) {
             throw new ParseException(String.format(
                     Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     ClassStatisticsCommand.MESSAGE_UNKNOWN_FIELD));
