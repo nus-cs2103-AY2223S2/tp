@@ -24,7 +24,7 @@ public class ModelManager implements Model {
     private final HMHero HMHero;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private Comparator<Person> personComparator = (p1, p2) -> 0;
+    private Comparator<Person> personComparator = Comparator.comparing(p -> p.getName().toString().toLowerCase());
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -105,6 +105,7 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         HMHero.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        sortFilteredPersonList(personComparator);
     }
 
     @Override

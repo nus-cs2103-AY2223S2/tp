@@ -8,6 +8,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Status;
 
+import java.util.Comparator;
+
 /**
  * Lists all applicants in HMHero to the user.
  */
@@ -26,7 +28,7 @@ public class ListCommand extends Command {
      * @param model model of all applicants
      */
     public String getSuccessMessage(Model model) {
-        model.sortFilteredPersonList((p1, p2) -> 0); //revert back to original ordering
+        model.sortFilteredPersonList(Comparator.comparing(p -> p.getName().toString().toLowerCase()));
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return String.format(MESSAGE_SUCCESS_FORMAT, getNumApplicants(model), getNumApplied(model),
                 getNumShortlisted(model), getNumAccepted(model), getNumRejected(model));

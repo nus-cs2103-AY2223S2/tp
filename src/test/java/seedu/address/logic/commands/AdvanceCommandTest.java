@@ -118,7 +118,7 @@ public class AdvanceCommandTest {
         AdvanceCommand advanceCommand = new AdvanceCommand(namePhonePredicate, Optional.empty());
 
         String expectedMessage = String.format(AdvanceCommand.MESSAGE_ADVANCE_PERSON_SUCCESS,
-                personToAdvance.getName());
+                personToAdvance.getName(), personToAdvance.getStatus(), advancedPerson.getStatus());
 
         expectedModel.setPerson(personToAdvance, advancedPerson);
         expectedModel.updateFilteredPersonList(namePhonePredicate);
@@ -141,7 +141,7 @@ public class AdvanceCommandTest {
         AdvanceCommand advanceCommand = new AdvanceCommand(namePhonePredicate, Optional.of(dateTime));
 
         String expectedMessage = String.format(AdvanceCommand.MESSAGE_ADVANCE_PERSON_SUCCESS,
-                personToAdvance.getName());
+                personToAdvance.getName(), personToAdvance.getStatus(), advancedPerson.getStatus());
 
         expectedModel.setPerson(personToAdvance, advancedPerson);
         expectedModel.updateFilteredPersonList(namePhonePredicate);

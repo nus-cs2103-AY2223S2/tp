@@ -182,6 +182,7 @@ will reside in.
 
 ![ui.png](images%2Fui.png)
 
+
 <div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong> <br>
 Ensure that the file is added to an empty folder as additional data and configuration files will be created when HMHero
 is launched for the first time in your computer!

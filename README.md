@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/AY2223S2-CS2103T-W14-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-W14-4/tp/)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/ui.png)
 
 * This is a product for **Hiring Managers**.<br>
   Example usages:
