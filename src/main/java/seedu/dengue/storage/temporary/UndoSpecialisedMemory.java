@@ -11,13 +11,13 @@ import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
  * When this app is not in use, the memory is reset.
  * Only the past 10 iterations of the file will be stored, and older iterations are deleted.
  */
-public class UndoMemory extends MemoryStack {
+public class UndoSpecialisedMemory extends SpecialisedStackForMemory<ReadOnlyDengueHotspotTracker> {
 
-    public UndoMemory(ReadOnlyDengueHotspotTracker latest) {
+    public UndoSpecialisedMemory(ReadOnlyDengueHotspotTracker latest) {
         super(latest.generateDeepCopy());
     }
 
-    public UndoMemory() {
+    public UndoSpecialisedMemory() {
         super();
     }
 

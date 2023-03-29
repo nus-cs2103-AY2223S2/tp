@@ -6,6 +6,7 @@ import static seedu.dengue.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 /**
@@ -30,7 +31,8 @@ public class StringUtil {
 
         String preppedWord = word.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+        checkArgument(preppedWord.split("\\s+")
+                .length == 1, "Word parameter should be a single word");
 
         String preppedSentence = sentence;
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
@@ -52,15 +54,30 @@ public class StringUtil {
         String preppedString = substring.trim();
 
         checkArgument(!preppedString.isEmpty(), "String parameter cannot be empty");
-        checkArgument(preppedString.split("\\s+").length == 1, "String parameter should be a single character");
+        checkArgument(preppedString
+                .split("\\s+").length == 1, "String parameter should be a single character");
 
         String[] wordsInPreppedSentence = sentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence).anyMatch(w -> pattern.matcher(w).find());
     }
 
-    public static boolean startsWithSubstringIgnoreCaseatIndex(String sentence, String substring, int index) {
-        return containsSubstringIgnoreCase(sentence.substring(index), String.format("^%s", substring));
+    /**
+     * Returns true if the {@code sentence} contains the {@code substring} substring can be more than one word.
+     * Ignores case, and a full word match is not required.
+     * @param sentence cannot be null
+     * @param substring cannot be null
+     */
+    public static boolean containsSubstringWithLengthMoreThanOneIgnoreCase(String sentence, String substring) {
+        Pattern pattern = Pattern.compile(substring, Pattern.CASE_INSENSITIVE);
+        requireNonNull(sentence);
+        requireNonNull(substring);
+        String preppedString = substring.trim();
+
+        checkArgument(!preppedString.isEmpty(), "String parameter cannot be empty");
+        Predicate<String> asPredicate = pattern.asPredicate();
+
+        return asPredicate.test(sentence);
     }
 
     /**

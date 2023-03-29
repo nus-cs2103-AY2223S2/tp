@@ -5,6 +5,9 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
 import seedu.dengue.commons.core.LogsCenter;
 import seedu.dengue.commons.exceptions.DataConversionException;
 import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
@@ -75,7 +78,13 @@ public class StorageManager implements Storage {
     public void saveDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker, Path filePath)
             throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        dengueHotspotStorage.saveDengueHotspotTracker(dengueHotspotTracker, filePath);
+        try {
+            dengueHotspotStorage.saveDengueHotspotTracker(dengueHotspotTracker, filePath);
+        } catch (CsvRequiredFieldEmptyException e) {
+            throw new RuntimeException(e);
+        } catch (CsvDataTypeMismatchException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

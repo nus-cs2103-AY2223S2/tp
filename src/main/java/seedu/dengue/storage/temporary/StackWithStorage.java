@@ -2,6 +2,9 @@ package seedu.dengue.storage.temporary;
 
 /**
  * An interface for a temporary memory stack for the undo function.
+ * This data structure is a specialised stack which supports pop and push.
+ * This specialised stack also supports the removal of items too deep in the stack.
+ * This stack also temporarily stores popped items.
  */
 public interface StackWithStorage<T> {
 

@@ -22,8 +22,8 @@ import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
 import seedu.dengue.model.ReadOnlyUserPrefs;
 import seedu.dengue.model.UserPrefs;
 import seedu.dengue.model.util.SampleDataUtil;
+import seedu.dengue.storage.CsvDengueHotspotStorage;
 import seedu.dengue.storage.DengueHotspotStorage;
-import seedu.dengue.storage.JsonDengueHotspotStorage;
 import seedu.dengue.storage.JsonUserPrefsStorage;
 import seedu.dengue.storage.Storage;
 import seedu.dengue.storage.StorageManager;
@@ -56,7 +56,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        DengueHotspotStorage dengueHotspotStorage = new JsonDengueHotspotStorage(userPrefs
+        DengueHotspotStorage dengueHotspotStorage = new CsvDengueHotspotStorage(userPrefs
                 .getDengueHotspotTrackerFilePath());
         storage = new StorageManager(dengueHotspotStorage, userPrefsStorage);
 

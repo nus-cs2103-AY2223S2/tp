@@ -14,7 +14,7 @@ import seedu.dengue.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path dengueHotspotTrackerFilePath = Paths.get("data" , "denguehotspottracker.json");
+    private Path dengueHotspotTrackerFilePath = Paths.get("data" , "denguehotspottracker.csv");
 
     /**
      * Creates a {@code UserPrefs} with default values.

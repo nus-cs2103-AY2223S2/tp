@@ -1,5 +1,7 @@
 package seedu.dengue.model.range;
 
+import java.util.Optional;
+
 import seedu.dengue.logic.comparators.AgeComparator;
 import seedu.dengue.model.person.Age;
 import seedu.dengue.model.person.Person;
@@ -7,15 +9,18 @@ import seedu.dengue.model.person.Person;
 /**
  * Represents the end of the age in a given range
  */
-public class EndAge extends Age implements End<Age> {
+public class EndAge implements End<Age> {
+
+    private static final AgeComparator AGE_COMPARATOR = new AgeComparator();
+    private final Optional<Age> age;
 
     /**
      * Constructs an {@code Age}.
      *
      * @param age A valid age.
      */
-    public EndAge(String age) {
-        super(age);
+    public EndAge(Optional<Age> age) {
+        this.age = age;
     }
 
     /**
@@ -24,6 +29,9 @@ public class EndAge extends Age implements End<Age> {
      * @param p
      */
     public boolean isAfter(Person p) {
-        return new AgeComparator().compare(this, p.getAge()) >= 0;
+        if (!age.isPresent()) {
+            return true;
+        }
+        return AGE_COMPARATOR.compare(age.get(), p.getAge()) >= 0;
     }
 }

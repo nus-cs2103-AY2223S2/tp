@@ -6,14 +6,14 @@ import java.util.Comparator;
 import seedu.dengue.model.person.Date;
 
 /**
- * Comparator for the class {@Date}
+ * Comparator for the class {@code Date}
  */
 public class DateComparator implements Comparator<Date> {
     /**
-     * Compares two {@Date} objects.
+     * Compares two {@code Date} objects.
      * @param d1 the first object to be compared.
      * @param d2 the second object to be compared.
-     * @return An integer, which is positive if d2 > d1, zero if d1 == d2 and negative if d1 < d2.
+     * @return An integer which is positive if d2 is after d1, zero if d1 is equal to d2 and negative otherwise.
      */
     public int compare(Date d1, Date d2) {
         LocalDate first = LocalDate.parse(d1.value);

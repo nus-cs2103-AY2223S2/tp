@@ -27,7 +27,7 @@ import seedu.dengue.model.ModelManager;
 import seedu.dengue.model.ReadOnlyDengueHotspotTracker;
 import seedu.dengue.model.UserPrefs;
 import seedu.dengue.model.person.Person;
-import seedu.dengue.storage.JsonDengueHotspotStorage;
+import seedu.dengue.storage.CsvDengueHotspotStorage;
 import seedu.dengue.storage.JsonUserPrefsStorage;
 import seedu.dengue.storage.StorageManager;
 import seedu.dengue.testutil.PersonBuilder;
@@ -43,8 +43,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonDengueHotspotStorage dengueHotspotTrackerStorage =
-                new JsonDengueHotspotStorage(temporaryFolder.resolve("dengueHotspotTracker.json"));
+        CsvDengueHotspotStorage dengueHotspotTrackerStorage =
+                new CsvDengueHotspotStorage(temporaryFolder.resolve("dengueHotspotTracker.csv"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(dengueHotspotTrackerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -71,9 +71,9 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonDengueHotspotTrackerIoExceptionThrowingStub
-        JsonDengueHotspotStorage dengueHotspotTrackerStorage =
+        CsvDengueHotspotStorage dengueHotspotTrackerStorage =
                 new JsonDengueHotspotIoExceptionThrowingStub(temporaryFolder
-                        .resolve("ioExceptionDengueHotspotTracker.json"));
+                        .resolve("ioExceptionDengueHotspotTracker.csv"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(dengueHotspotTrackerStorage, userPrefsStorage);
@@ -150,7 +150,7 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonDengueHotspotIoExceptionThrowingStub extends JsonDengueHotspotStorage {
+    private static class JsonDengueHotspotIoExceptionThrowingStub extends CsvDengueHotspotStorage {
         private JsonDengueHotspotIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }

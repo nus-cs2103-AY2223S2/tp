@@ -5,15 +5,16 @@ import java.util.Comparator;
 import seedu.dengue.model.person.Age;
 
 /**
- * A Comparator that compares between the ages of two persons.
+ * Comparator for the class {@code Age}
  */
 public class AgeComparator implements Comparator<Age> {
 
     /**
-     * Compares two ages.
+     * Compares two {@code Age} objects.
      * @param a1 the first object to be compared.
      * @param a2 the second object to be compared.
-     * @return A negative integer if a1 < a2, positive integer if a1 > a2, else 0.
+     * @return A negative integer, zero, or a positive integer if the first argument is
+     *         less than, equal to, or greater than the second.
      */
     @Override
     public int compare(Age a1, Age a2) {

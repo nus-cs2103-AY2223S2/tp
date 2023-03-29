@@ -23,7 +23,8 @@ public class PersonContainsPostalPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         if (subPostal.isPresent()) {
             Predicate<String> containsPostal =
-                    keyword -> StringUtil.containsSubstringIgnoreCase(person.getPostal().value, keyword);
+                    keyword -> StringUtil.containsSubstringIgnoreCase(person.getPostal().value,
+                            keyword);
             return containsPostal.test(subPostal.get().value);
         } else {
             return true;

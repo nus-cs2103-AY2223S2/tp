@@ -7,5 +7,5 @@
       "y" : 100
     }
   },
-  "dengueHotspotTrackerFilePath" : "denguehotspottracker.json"
+  "dengueHotspotTrackerFilePath" : "denguehotspottracker.csv"
 }
