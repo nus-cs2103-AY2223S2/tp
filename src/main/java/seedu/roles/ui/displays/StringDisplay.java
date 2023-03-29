@@ -1,5 +1,7 @@
 package seedu.roles.ui.displays;
 
+import static java.util.Objects.requireNonNull;
+
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 
@@ -16,6 +18,7 @@ public final class StringDisplay {
      * @return The TextArea Node to be displayed in the UI.
      */
     public static Node of(String message) {
+        requireNonNull(message);
         final TextArea output = new TextArea(message);
         output.getStyleClass().add("string-display");
         output.setEditable(false);

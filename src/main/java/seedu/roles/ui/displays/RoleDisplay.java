@@ -1,5 +1,7 @@
 package seedu.roles.ui.displays;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.util.Comparator;
 
@@ -29,6 +31,7 @@ public final class RoleDisplay {
      * @return A VBox Node to be displayed in the UI.
      */
     public static Node of(Role roleToDisplay) {
+        requireNonNull(roleToDisplay);
         // Header
         Label role = new Label(roleToDisplay.getName().fullName + " @ ");
         role.getStyleClass().add("role-display-headers");
