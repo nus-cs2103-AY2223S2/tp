@@ -1,7 +1,5 @@
 package seedu.address.ui.task.note;
 
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -12,11 +10,14 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Note;
 import seedu.address.ui.UiPart;
 
+import java.util.logging.Logger;
+
 /**
  * Panel containing the list of notes.
  */
 public class NoteListPanel extends UiPart<Region> {
     private static final String FXML = "task/NoteListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(NoteListPanel.class);
 
     @FXML
     private ListView<Note> noteListView;
@@ -31,8 +32,14 @@ public class NoteListPanel extends UiPart<Region> {
         super(FXML);
         noteListView.setItems(noteList);
         noteListView.setCellFactory(listView -> new NoteListViewCell());
+        logger.info("Note List updated.");
     }
 
+    /**
+     * Getter for the vertical box with id container.
+     *
+     * @return VBox with id container
+     */
     public VBox getContainer() {
         return container;
     }

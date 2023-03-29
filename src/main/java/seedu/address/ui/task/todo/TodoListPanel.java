@@ -17,6 +17,7 @@ import seedu.address.ui.UiPart;
  */
 public class TodoListPanel extends UiPart<Region> {
     private static final String FXML = "task/TodoListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(TodoListPanel.class);
 
     @FXML
     private ListView<InternshipTodo> todoListView;
@@ -31,8 +32,14 @@ public class TodoListPanel extends UiPart<Region> {
         super(FXML);
         todoListView.setItems(todoList);
         todoListView.setCellFactory(listView -> new TodoListViewCell());
+        logger.info("Todo List updated.");
     }
 
+    /**
+     * Getter for the vertical box with id container.
+     *
+     * @return VBox with id container
+     */
     public VBox getContainer() {
         return container;
     }
