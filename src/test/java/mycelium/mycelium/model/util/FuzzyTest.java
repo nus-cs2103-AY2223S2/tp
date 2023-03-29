@@ -33,7 +33,7 @@ class FuzzyTest {
             new TestCase("foo", "foobar", 1 / (double) (3 + 1)), // trailing fluff
             new TestCase("foo", "barfoobar", 1 / (double) (6 + 1)), // leading and trailing fluff
             new TestCase("foo", "fooooo", 1 / (double) (3 + 1)), // repeated characters
-            new TestCase("foo", "fxoxxo", 1 / (double) (2 + 4 + 1)), // interleaved characters
+            new TestCase("foo", "fxoxxo", 1 / (double) (3 + 6 + 1)), // interleaved characters
         };
         for (TestCase test : testCases) {
             double actual = Fuzzy.delta(test.query, test.target);
