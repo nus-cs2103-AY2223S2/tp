@@ -42,7 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private CardListPanel cardListPanel;
     private UiPart<Region> leftPanel;
     private UiPart<Region> rightTitle;
     private ResultDisplay resultDisplay;
@@ -139,8 +139,8 @@ public class MainWindow extends UiPart<Stage> {
         rightTitle = new DeckNamePanel(logic.getDeckNameList());
         rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredCardList(), false);
-        rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        cardListPanel = new CardListPanel(logic.getFilteredCardList(), false);
+        rightPanelPlaceholder.getChildren().add(cardListPanel.getRoot());
 
         leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
@@ -222,9 +222,9 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getReviewCardList(), true);
+        cardListPanel = new CardListPanel(logic.getReviewCardList(), true);
         rightPanelPlaceholder.getChildren().clear();
-        rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        rightPanelPlaceholder.getChildren().add(cardListPanel.getRoot());
 
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(REVIEW_TITLE);
@@ -244,9 +244,9 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredCardList(), false);
+        cardListPanel = new CardListPanel(logic.getFilteredCardList(), false);
         rightPanelPlaceholder.getChildren().clear();
-        rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        rightPanelPlaceholder.getChildren().add(cardListPanel.getRoot());
 
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(MAIN_TITLE);
