@@ -8,6 +8,7 @@ import static seedu.dengue.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import seedu.dengue.commons.core.Messages;
@@ -133,14 +134,9 @@ public class DeleteCommand extends Command {
     private CommandResult executeDate(Model model, List<Person> lastShownList) {
         assert date.isPresent();
         List<Person> referenceCopy = new ArrayList<>(lastShownList);
-        List<Person> toDelete = new ArrayList<>();
 
         PersonContainsDatePredicate predicate = new PersonContainsDatePredicate(date);
-        for (Person person : referenceCopy) {
-            if (predicate.test(person)) {
-                toDelete.add(person);
-            }
-        }
+        List<Person> toDelete = getPersonsToDelete(referenceCopy, predicate);
 
         deleteAll(model, toDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_DATE_SUCCESS, toDelete.size(), date.get()));
@@ -149,18 +145,23 @@ public class DeleteCommand extends Command {
     private CommandResult executeRange(Model model, List<Person> lastShownList) {
         assert range.isPresent();
         List<Person> referenceCopy = new ArrayList<>(lastShownList);
-        List<Person> toDelete = new ArrayList<>();
 
         RangeContainsPersonPredicate predicate = new RangeContainsPersonPredicate(range.get());
-        for (Person person : referenceCopy) {
-            if (predicate.test(person)) {
-                toDelete.add(person);
-            }
-        }
+        List<Person> toDelete = getPersonsToDelete(referenceCopy, predicate);
 
         deleteAll(model, toDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_RANGE_SUCCESS,
                 toDelete.size(), range.get().getStart(), range.get().getEnd()));
+    }
+
+    private List<Person> getPersonsToDelete(List<Person> reference, Predicate predicate) {
+        List<Person> toDelete = new ArrayList<>();
+        for (Person person : reference) {
+            if (predicate.test(person)) {
+                toDelete.add(person);
+            }
+        }
+        return toDelete;
     }
 
     private static void deleteAll(Model model, List<Person> toDelete) {
