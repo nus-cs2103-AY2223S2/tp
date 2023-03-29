@@ -20,6 +20,7 @@ public class VimificationParser {
                     .<LogicCommand>cast()
                     .or(DeleteCommandParser.getInstance())
                     .or(InsertCommandParser.getInstance())
+                    .or(EditCommandParser.getInstance())
                     .updateInternalParser(parser -> parser.throwIfFail("Unknown command"));
 
     private MacroMap macroMap;

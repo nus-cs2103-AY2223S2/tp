@@ -1,8 +1,10 @@
 package vimification.internal.parser;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Stores mapping of flags to their respective arguments. Each flag may be associated with multiple
@@ -11,21 +13,22 @@ import java.util.Set;
  */
 public class ArgumentCounter {
 
-    private final Set<ArgumentFlag> allowedFlags;
-
     /**
      * Flags mapped to their respective arguments.
      **/
     private final Map<ArgumentFlag, Integer> counter;
 
     public ArgumentCounter(ArgumentFlag... allowedFlags) {
-        this.allowedFlags = Set.of(allowedFlags);
-        this.counter = new HashMap<>();
+        this.counter = Arrays
+                .stream(allowedFlags)
+                .collect(Collectors.toMap(Function.identity(),
+                        ArgumentFlag::getMaxCount,
+                        Integer::sum, HashMap::new));
     }
 
     private void throwIfNotAllowed(ArgumentFlag flag) {
-        if (!allowedFlags.contains(flag)) {
-            throw new ParserException("Invalid flag for this command");
+        if (!counter.containsKey(flag)) {
+            throw new ParserException("Invalid flag " + flag);
         }
     }
 
@@ -40,14 +43,14 @@ public class ArgumentCounter {
      */
     public void add(ArgumentFlag flag) {
         throwIfNotAllowed(flag);
-        long count = counter.merge(flag, 1, Integer::sum);
-        if (count > flag.getMaxCount()) {
-            throw new ParserException("Number of argument exceeded limit");
+        int count = counter.merge(flag, -1, Integer::sum);
+        if (count < 0) {
+            throw new ParserException("Number of arguments for flag " + flag + " exceeded limit");
         }
     }
 
     public int get(ArgumentFlag flag) {
         throwIfNotAllowed(flag);
-        return counter.getOrDefault(flag, 0);
+        return counter.get(flag);
     }
 }

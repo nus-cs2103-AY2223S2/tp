@@ -10,12 +10,21 @@ import vimification.model.task.Status;
 
 public class EditRequest {
 
+    private String editedTitle = null;
     private LocalDateTime editedDeadline = null;
     private Set<Pair<String, String>> editedLabels = new HashSet<>();
     private Priority editedPriority = null;
     private Status editedStatus = null;
 
     public EditRequest() {}
+
+    public String getEditedTitle() {
+        return editedTitle;
+    }
+
+    public void setEditedTitle(String editedTitle) {
+        this.editedTitle = editedTitle;
+    }
 
     public LocalDateTime getEditedDeadline() {
         return editedDeadline;
