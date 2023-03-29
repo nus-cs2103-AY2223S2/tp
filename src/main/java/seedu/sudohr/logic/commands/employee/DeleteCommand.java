@@ -46,6 +46,8 @@ public class DeleteCommand extends Command {
         model.deleteEmployee(employeeToDelete);
         model.cascadeDeleteEmployeeToDepartments(employeeToDelete);
         model.cascadeDeleteUserInLeaves(employeeToDelete);
+        model.updateFilteredDepartmentList(Model.PREDICATE_SHOW_ALL_DEPARTMENTS);
+        model.updateFilteredLeaveList(Model.PREDICATE_SHOW_ALL_NON_EMPTY_LEAVES);
 
         return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete));
     }

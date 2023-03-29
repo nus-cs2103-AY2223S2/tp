@@ -372,6 +372,7 @@ public class AddEmployeeToLeaveCommandTest {
         public boolean checkEmployeeExists(Id id) {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**

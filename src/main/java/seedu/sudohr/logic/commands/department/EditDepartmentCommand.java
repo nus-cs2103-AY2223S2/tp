@@ -65,7 +65,7 @@ public class EditDepartmentCommand extends Command {
         }
 
         model.setDepartment(departmentToEdit, editedDepartment);
-        // MISSING STEP: Update Department view?
+        model.updateFilteredDepartmentList(Model.PREDICATE_SHOW_ALL_DEPARTMENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_DEPARTMENT_SUCCESS, editedDepartment));
     }
 

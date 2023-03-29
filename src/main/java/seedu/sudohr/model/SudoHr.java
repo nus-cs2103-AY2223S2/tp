@@ -258,6 +258,7 @@ public class SudoHr implements ReadOnlySudoHr {
     public void addEmployeeToDepartment(Employee p, Department d) {
         requireAllNonNull(p, d);
         d.addEmployee(p);
+        refreshDepartments();
     }
 
     /**
@@ -269,6 +270,19 @@ public class SudoHr implements ReadOnlySudoHr {
     public void removeEmployeeFromDepartment(Employee p, Department d) {
         requireAllNonNull(p, d);
         d.removeEmployee(p);
+        refreshDepartments();
+    }
+
+    /**
+     * Refreshes the department list.
+     */
+    public void refreshDepartments() {
+        UniqueDepartmentList currList = new UniqueDepartmentList();
+        for (Department d : departments) {
+            currList.add(d);
+        }
+        departments.setDepartments(new UniqueDepartmentList());
+        departments.setDepartments(currList);
     }
 
     /**
@@ -388,6 +402,7 @@ public class SudoHr implements ReadOnlySudoHr {
     public void addEmployeeToLeave(Leave leave, Employee employee) {
         requireAllNonNull(leave, employee);
         leave.addEmployee(employee);
+        refreshLeaves();
     }
 
     /**
@@ -396,6 +411,19 @@ public class SudoHr implements ReadOnlySudoHr {
     public void deleteEmployeeFromLeave(Leave leave, Employee employee) {
         requireAllNonNull(leave, employee);
         leave.deleteEmployee(employee);
+        refreshLeaves();
+    }
+
+    /**
+     * Refreshes the leave list
+     */
+    public void refreshLeaves() {
+        UniqueLeaveList currList = new UniqueLeaveList();
+        for (Leave l : leaves) {
+            currList.addLeave(l);
+        }
+        leaves.setLeaves(new UniqueLeaveList());
+        leaves.setLeaves(currList);
     }
 
     /**
