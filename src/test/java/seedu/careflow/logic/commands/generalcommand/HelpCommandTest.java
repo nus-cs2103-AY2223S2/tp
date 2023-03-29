@@ -1,6 +1,6 @@
 package seedu.careflow.logic.commands.generalcommand;
 
-import static seedu.careflow.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.careflow.logic.commands.drugcommands.DrugCommandTestUtil.assertCommandSuccess;
 import static seedu.careflow.logic.commands.generalcommand.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;

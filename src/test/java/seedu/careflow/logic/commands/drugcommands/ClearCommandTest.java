@@ -1,6 +1,6 @@
 package seedu.careflow.logic.commands.drugcommands;
 
-import static seedu.careflow.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.careflow.logic.commands.drugcommands.DrugCommandTestUtil.assertCommandSuccess;
 import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
 
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ class ClearCommandTest {
         CareFlowModel model = new CareFlowModelManager();
         CareFlowModel expectedModel = new CareFlowModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        DrugCommandTestUtil.assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
