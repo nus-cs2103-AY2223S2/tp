@@ -266,9 +266,11 @@ Examples:
 
 Syntax: `sort_task [c/CRITERIA]`
 
-* Sorts all the tasks in the current displayed list according to a criteria.
+* Sorts all the tasks according to a criteria.
 * Criteria available are: `Time_added`, `Deadline`, `Status`, `Name` and `Status_and_deadline`.
+* Criteria is case-insensitive (i.e. `time_added`, `TIME_ADDED` `Time_Added` are all valid).
 * The default criteria (when no criteria is specified) is `Status_and_deadline`.
+
 * Sorting by `Time_added` puts the tasks added first at the top and tasks added later below.
 * Sorting by `Deadline` puts the tasks with the earlier deadlines on the top of tasks with further deadlines.
 * Sorting by `Status` puts the tasks with "Not Done" status on top and tasks with "Done" status below.
@@ -328,10 +330,11 @@ If your changes to the data file makes its format invalid, Trackr will discard a
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add_supplier / add_s` <br> e.g., `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat` <br> <br> `add_order / add_o` <br> e.g., `add_o n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes` <br> <br> `add_task / add_t` <br> e.g., `add_t d/Buy a card d/2023-12-23 s/Completed`
-**Edit** | `edit_supplier / edit_s` <br> e.g., `edit_s 3 t/Supplies Flour e/mark@example.com` <br> <br> `edit_order / edit_o` <br> e.g., `edit_o 3 q/20 r/` <br> <br> `edit_task / edit_t` <br> e.g., `edit_t 1 s/`
-**Delete** | `delete_supplier / delete_s` <br> e.g., `delete_s 2` <br> <br> `delete_order / delete_o` <br> e.g., `delete_o 1` <br> <br> `delete_task / delete_t` <br> e.g., `delete_t 4`
-**Find** | `find_supplier / find_s` <br> e.g., `find_s n/PHOON t/eggs` <br> <br> `find_order / find_o` <br> e.g., `find_order r/No almonds r/No frosting` <br> <br> `find_task / find_t` <br> e.g., `find_t s/N`
+**Add** | `add_supplier` / `add_s` <br> e.g., `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat` <br> <br> `add_order / add_o` <br> e.g., `add_o n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes` <br> <br> `add_task / add_t` <br> e.g., `add_t d/Buy a card d/2023-12-23 s/Completed`
+**Edit** | `edit_supplier` / `edit_s` <br> e.g., `edit_s 3 t/Supplies Flour e/mark@example.com` <br> <br> `edit_order / edit_o` <br> e.g., `edit_o 3 q/20 r/` <br> <br> `edit_task / edit_t` <br> e.g., `edit_t 1 s/`
+**Delete** | `delete_supplier` / `delete_s` <br> e.g., `delete_s 2` <br> <br> `delete_order / delete_o` <br> e.g., `delete_o 1` <br> <br> `delete_task / delete_t` <br> e.g., `delete_t 4`
+**Find** | `find_supplier` / `find_s` <br> e.g., `find_s n/PHOON t/eggs` <br> <br> `find_order / find_o` <br> e.g., `find_order r/No almonds r/No frosting` <br> <br> `find_task / find_t` <br> e.g., `find_t s/N`
+**Sort Task** | `sort_task` / `sort_t` <br> e.g., `sort_t c/Deadline`
 **Tab** | `tab` <br> e.g., `tab Home`
 **Help** | `help`
 **Exit** | `exit`
