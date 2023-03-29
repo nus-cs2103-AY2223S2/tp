@@ -14,7 +14,6 @@ import teambuilder.model.team.exceptions.DuplicateTeamException;
 import teambuilder.model.team.exceptions.TeamNotFoundException;
 
 /**
- * A list of teams that enforces uniqueness between its elements and does not allow nulls.
  * The type Unique team list.
  */
 public class UniqueTeamList implements Iterable<Team> {
@@ -110,7 +109,6 @@ public class UniqueTeamList implements Iterable<Team> {
         }
 
     }
-
 
     public void setTeams(UniqueTeamList replacement) {
         requireNonNull(replacement);

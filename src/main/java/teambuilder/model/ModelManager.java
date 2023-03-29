@@ -30,7 +30,6 @@ public class ModelManager implements Model {
     private final FilteredList<Team> filteredTeams;
     private final SortedList<Team> sortedTeams;
 
-
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */

@@ -38,7 +38,6 @@ public class SampleDataUtil {
             new Person(new Name("Roy Balakrishnan"), Phone.of("92624417"), Email.of("royb@example.com"),
                 Address.of("Blk 45 Aljunied Street 85, #11-31"), Major.of("Computer Science"),
                 getTagSet("colleagues"), getTagSet())
-
         };
     }
 

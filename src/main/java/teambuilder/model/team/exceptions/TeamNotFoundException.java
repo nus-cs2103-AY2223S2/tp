@@ -5,4 +5,3 @@ package teambuilder.model.team.exceptions;
  */
 public class TeamNotFoundException extends RuntimeException {
 }
-

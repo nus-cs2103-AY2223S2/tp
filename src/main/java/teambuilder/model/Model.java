@@ -107,8 +107,6 @@ public interface Model extends Originator {
      */
     void removeFromAllTeams(Person person);
 
-
-
     ObservableList<Team> getSortedTeamList();
 
     /** Returns an unmodifiable view of the filtered person list */

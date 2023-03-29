@@ -183,7 +183,6 @@ public class UndoCommandTest {
             throw new AssertionError("Unimplemented method 'deleteTeam'");
         }
 
-
         @Override
         public void addTeam(Team team) {
             throw new AssertionError("Unimplemented method 'addTeam'");
@@ -227,15 +226,17 @@ public class UndoCommandTest {
 
         @Override
         public void updateSortPerson(Comparator<Person> comparator) {
-            throw new UnsupportedOperationException("Unimplemented method 'updateSort'");
+            throw new UnsupportedOperationException("Unimplemented method 'updateSortPerson'");
+        }
+
+        @Override
+        public void updateSortTeam(Comparator<Team> comparator) {
+            throw new UnsupportedOperationException("Unimplemented method 'updateSortTeam'");
         }
 
         @Override
         public ObservableList<Team> getTeamList() {
             throw new AssertionError("Unimplemented method 'getTeamList'");
-        }
-
-        public void updateSortTeam(Comparator<Team> comparator) {
         }
     }
 

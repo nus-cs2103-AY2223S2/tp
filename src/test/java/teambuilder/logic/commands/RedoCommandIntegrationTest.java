@@ -195,7 +195,6 @@ public class RedoCommandIntegrationTest {
             throw new UnsupportedOperationException("Unimplemented method 'getSortedPersonList'");
         }
 
-
         @Override
         public void setTeam(Team team, Team editedTeam) {
             throw new UnsupportedOperationException("Unimplemented method 'setTeam'");
