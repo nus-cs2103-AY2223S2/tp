@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Nric {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Person's age should be in this format SXXXXXXXA";
+            "Person's Nric should be in this format SXXXXXXXA";
     public final String number;
 
     /**
@@ -29,7 +29,7 @@ public class Nric {
     public static boolean isValidNumber(String number) {
         if (number.equals("")) {
             return true;
-        } else if (!(number.indexOf(0) == 'S' || number.indexOf(0) == 'T')) {
+        } else if (!(number.indexOf(0) == 'S' || number.indexOf(0) == 'T' || number.indexOf(0) == 'G')) {
             if (number.length() == 9) {
                 return true;
             } else {
