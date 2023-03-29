@@ -41,11 +41,21 @@
             <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
           </padding>
         </HBox>
-        <ScrollPane maxHeight="500.0">
-          <Label fx:id="commandSummary">
-                  <padding>
-                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                  </padding></Label>
+        <ScrollPane maxHeight="500.0" fitToWidth="true">
+          <HBox alignment="CENTER" fx:id="commandSummary">
+            <VBox fx:id="commandListPlaceHolder" alignment="CENTER">
+              <padding>
+                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+              </padding>
+              <Label fx:id="commandList" />
+            </VBox>
+            <VBox fx:id="descriptionListPlaceHolder" alignment="CENTER">
+              <padding>
+                <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+              </padding>
+              <Label fx:id="descriptionList" />
+            </VBox>
+          </HBox>
                <VBox.margin>
                   <Insets />
                </VBox.margin>
