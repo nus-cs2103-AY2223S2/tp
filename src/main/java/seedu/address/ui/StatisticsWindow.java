@@ -14,7 +14,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryJob;
-import seedu.address.model.stats.*;
+import seedu.address.model.stats.StatisticItemList;
+import seedu.address.model.stats.TotalCompleted;
+import seedu.address.model.stats.TotalEarnings;
+import seedu.address.model.stats.TotalJobs;
+import seedu.address.model.stats.TotalPending;
 import seedu.address.ui.jobs.DeliveryJobListPanel;
 import seedu.address.ui.main.ResultDisplay;
 
