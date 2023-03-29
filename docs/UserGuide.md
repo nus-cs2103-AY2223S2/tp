@@ -92,7 +92,7 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
 3. Run `java -jar vimification.jar`.
 
 4. The application should launch, and a GUI similar to the below should appear in a few seconds. <br>
-   <img class="ui-img" src="images/Ui.png" alt="Ui Image" width="1203" height="599" title="Overall User Interface">
+   <img class="ui-img" src="images/Ui.png" alt="Ui Image" title="Overall User Interface">
 
 ### Trying out the commands
 
@@ -187,7 +187,7 @@ Format: `:a <title> [-l <label>]... [-p <priority>]`
 
 Example after the command, `:a Enhance CS2103T tp user guide`:
 
-<img style="float:centre" class="ui-img" src="images/ug-images/AddTaskCommandDemo.png" alt="Add Task Command Demo Image" width="1203" height="599" title="Add Task Command Demo">
+<img style="float:centre" class="ui-img" src="images/ug-images/AddTaskCommandDemo.png" alt="Add Task Command Demo Image" title="Add Task Command Demo">
 
 ### Adding task with deadline
 
