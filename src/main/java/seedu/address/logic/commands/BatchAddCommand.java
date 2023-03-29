@@ -50,7 +50,7 @@ public class BatchAddCommand extends Command {
     public List<AddCommand> getInfo() throws CommandException {
         Path file = this.filePath;
         String line = "";
-        String splitBy = ",";
+        String splitBy = ",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)";
         List<AddCommand> addCommandList = new ArrayList<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file.toString()));
