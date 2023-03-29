@@ -29,7 +29,7 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
 
 
 <h1 id="quick-start">Quick Start</h1>
-===
+=====================================
 
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `Ez-Schedule.jar` from [here](https://github.com/AY2223S2-CS2103-W17-3/tp/releases).
@@ -37,9 +37,10 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
 4. Open a command terminal, `cd` into the folder you put the jar file in
 5. Use the `java -jar Ez-Schedule.jar` command to run the application.
 
-# Features
+<h1 id="features">Features</h1>
+-------------------------------
 
-## Command Summary
+## <h2 id="command-summary">Command Summary</h2>
 
 | Action |                    Command Format                    |
 |:-------|:----------------------------------------------------:|
@@ -52,7 +53,7 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
 | Exit   |                        `exit`                        |
 [[Back to top](#index)]
 
-### Adding a event: `add`
+### <h3 id="add">Adding a event: `add`</h3> ###
 
 Adds an event into the Scheduler.
 
@@ -74,7 +75,7 @@ Example: `add n/booked tennis court /2023-02-01 /2023-02-02`
 
 
 
-### Deleting a event: `delete` (coming soon)
+<h3 id="delete">Deleting a event: `delete` (coming soon)</h3>
 
 Deletes an event in the Scheduler.
 
