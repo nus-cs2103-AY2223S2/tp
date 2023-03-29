@@ -95,15 +95,14 @@ public class CommandSuggestor {
         if (suggestedCommand.equals("") && !commandWord.equals("")) {
             throw new CommandException("Invalid command");
         }
-        ArrayList<Prefix> argPrefixes = commandArgPrefixes.get(suggestedCommand);
 
         if (userInputArray.length > 1) {
             if (userInput.charAt(userInput.length() - 1) == ' ') {
                 userInput = userInput.substring(0, userInput.length() - 1);
             }
-            return userInput + suggestArguments(argPrefixes, userInputArray[1]);
+            return userInput + suggestArguments(suggestedCommand, userInputArray[1]);
         } else {
-            return suggestedCommand + suggestArguments(argPrefixes, "");
+            return suggestedCommand + suggestArguments(suggestedCommand, "");
         }
     }
 
@@ -138,23 +137,26 @@ public class CommandSuggestor {
     }
 
     /**
-     * Suggests prompts for arguments based on the user input.
+     * Suggests prompts for arguments for {@code command} based on the user input.
      *
-     * @param argPrefixes Argument prefixes for specified command.
-     * @param userInput Current user input.
+     * @param commmandBody The command body of the current user input.
+     * @param command The command to suggest arguments for.
      * @return Suggested arguments.
      * @throws CommandException If the user input is invalid.
      */
-    private String suggestArguments(ArrayList<Prefix> argPrefixes, String userInput)
+    private String suggestArguments(String command, String commmandBody)
             throws CommandException {
+        ArrayList<Prefix> argPrefixes = commandArgPrefixes.get(command);
+        assert argPrefixes != null;
+
         ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(" " + userInput, argPrefixes.toArray(new Prefix[] {}));
+                ArgumentTokenizer.tokenize(" " + commmandBody, argPrefixes.toArray(new Prefix[] {}));
         String argumentSuggestion = "";
-        String[] userInputArray = userInput.trim().split(" ");
+        String[] userInputArray = commmandBody.trim().split(" ");
         Prefix currPrefix = null;
         boolean isIndexRequired = argPrefixes.contains(PREFIX_INDEX);
         boolean hasKeyword = argPrefixes.contains(PREFIX_KEYWORD);
-        boolean hasPrefix = (!userInput.isEmpty() && (!isIndexRequired || userInputArray.length > 1));
+        boolean hasPrefix = (!commmandBody.isEmpty() && (!isIndexRequired || userInputArray.length > 1));
 
         // Check if user input for index is valid (only if required)
         if (isIndexRequired) {
@@ -169,7 +171,7 @@ public class CommandSuggestor {
 
         if (hasKeyword) {
             // Check if user input contains keyword
-            if (userInput.equals("")) {
+            if (commmandBody.equals("")) {
                 argumentSuggestion += " " + argPrefixes.get(0).getPlaceholderText();
             }
             argumentMultimap.put(PREFIX_KEYWORD, "");
@@ -180,7 +182,7 @@ public class CommandSuggestor {
 
             if (argPrefixes.contains(currPrefix)) {
                 argumentSuggestion += "/ ";
-            } else if (!userInput.contains("/")) {
+            } else if (!commmandBody.contains("/")) {
                 throw new CommandException("Invalid prefix");
             }
         }
