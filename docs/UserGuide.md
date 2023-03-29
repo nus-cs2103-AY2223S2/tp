@@ -94,11 +94,12 @@ Examples:
 
 Shows a list of all customers.
 
-Format: `listc [s/{name|points}] [f/marked]`
+Format: `listc [s/{name|points}] [f/{marked|ind|ent}]`
 
 * Lists all customer with the specified sorting option.
 * Be default, customers are sorted by name
 * If `f/marked` is provided, then shows only bookmarked customers.
+* If `f/ind` or `f/ent` is provided, then shows only individual or enterprise customers respectively.
 
 Examples:
 * `listc` lists all customers sorted by name
