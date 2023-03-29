@@ -14,12 +14,13 @@ public class Deadline {
     public static final String MESSAGE_CONSTRAINTS =
             "Deadlines should be a valid calendar date of the format DD-MM-YYYY.";
     public static final String DEADLINE_HAS_PASSED =
-            "Warning: sprINT detected a deadline that has already passed. Please update task details accordingly.\n";
+            "Warning: sprINT detected a deadline that has already passed. Please check and "
+                    + "update task details accordingly.\n";
     private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
     public final LocalDate deadline;
-    public boolean isOutdated;
+    private boolean isOutdated;
 
     /**
      * Constructs a {@code Deadline}.
@@ -52,6 +53,14 @@ public class Deadline {
     public static boolean isValidDeadline(String test) {
         LocalDate testDate = LocalDate.parse(test, INPUT_FORMAT);
         return testDate.compareTo(LocalDate.now()) >= 0;
+    }
+
+    /**
+     * Checks if deadline of task has passed.
+     * @return true if deadline is before today's date, false otherwise.
+     */
+    public boolean isOutdated() {
+        return isOutdated;
     }
 
     /**

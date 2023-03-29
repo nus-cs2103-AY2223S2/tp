@@ -28,7 +28,7 @@ public class Task {
     }
 
     public boolean hasValidDeadline() {
-        return !deadline.isOutdated;
+        return !deadline.isOutdated();
     }
 
     public Description getDescription() {
