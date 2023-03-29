@@ -18,7 +18,7 @@ public class ListEmployeesInDepartmentCommand extends Command {
     public static final String COMMAND_WORD = "leid";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lists all employees in the specified department.\n"
+            + ": Lists all employees in the given department.\n"
             + "Parameters: "
             + PREFIX_DEPARTMENT_NAME + "DEPARTMENT_NAME \n"
             + "Example: " + COMMAND_WORD + " "

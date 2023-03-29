@@ -120,7 +120,7 @@ There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 | eid/   | EMPLOYEE_ID                |
 | s/     | START_DATE                 |
 | e/     | END_DATE                   |
- 
+
 
 ### 6.2.5. Placeholders
 
@@ -214,7 +214,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### 7.1.5. Deleting an employee : `delete`
+### 7.1.5. Deleting an employee : `del`
 
 Deletes the specified employee from SudoHR.
 
@@ -444,25 +444,25 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 
 ## 7.6. Command summary
 
-| Action                                 | Format                                                           |
-|----------------------------------------|------------------------------------------------------------------|
-| **Add an employee**                    | `add id/ID n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`     |
-| **List all employees**                 | `list`                                                           |
-| **Edit an employee**                   | `edit eid/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`  |
-| **Find employee by name**              | `find KEYWORD [MORE_KEYWORDS]`                                   |
-| **Delete an employee**                 | `delete eid/ID`                                                  |
-| **Add a department**                   | `adep n/DEPARTMENT_NAME`                                         |
-| **List all departments**               | `ldep`                                                           |
-| **Edit a department**                  | `edep OLD_DEPARTMENT_NAME n/NEW_DEPARTMENT_NAME`                 |
-| **Find department by name**            | `fdep KEYWORD [MORE_KEYWORDS]`                                   |
-| **Delete a department**                | `ddep n/DEPARTMENT_NAME`                                         |
-| **Add employee to department**         | `aetd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                         |
-| **Remove employee from department**    | `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                         |
-| **List an employee's department**      | `led eid/EMPLOYEE_ID`                                            |
-| **List all employees in a department** | `leid n/DEPARTMENT_NAME`                                         |
-| **Adding a leave**                     | `aetl eid/ID d/DATE`                                             |
-| **Adding all leaves in range**         | `aelr eid/ID s/START_DATE e/END_DATE`                            |
-| **Deleting a leave**                   | `defl eid/ID d/DATE`                                             |
+| Action                                 | Format                                                        |
+|----------------------------------------|---------------------------------------------------------------|
+| **Add an employee**                    | `add id/ID n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`  |
+| **List all employees**                 | `list`                                                        |
+| **Edit an employee**                   | `edit eid/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` |
+| **Find employee by name**              | `find KEYWORD [MORE_KEYWORDS]`                                |
+| **Delete an employee**                 | `del eid/ID`                                                  |
+| **Add a department**                   | `adep n/DEPARTMENT_NAME`                                      |
+| **List all departments**               | `ldep`                                                        |
+| **Edit a department**                  | `edep OLD_DEPARTMENT_NAME n/NEW_DEPARTMENT_NAME`              |
+| **Find department by name**            | `fdep KEYWORD [MORE_KEYWORDS]`                                |
+| **Delete a department**                | `ddep n/DEPARTMENT_NAME`                                      |
+| **Add employee to department**         | `aetd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                      |
+| **Remove employee from department**    | `refd eid/EMPLOYEE_ID n/DEPARTMENT_NAME`                      |
+| **List an employee's department**      | `led eid/EMPLOYEE_ID`                                         |
+| **List all employees in a department** | `leid n/DEPARTMENT_NAME`                                      |
+| **Adding a leave**                     | `aetl eid/ID d/DATE`                                          |
+| **Adding all leaves in range**         | `aelr eid/ID s/START_DATE e/END_DATE`                         |
+| **Deleting a leave**                   | `defl eid/ID d/DATE`                                          |
 | **Listing all employees on leave for a given date** | `leol d/DATE`                                       |
 | **Listing all days where employees are on leave**   | `llve`                                                |
 

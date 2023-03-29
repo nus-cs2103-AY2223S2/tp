@@ -33,14 +33,14 @@ public class AddEmployeeToLeaveFromToCommand extends Command {
             + "Parameters: "
             + PREFIX_EMPLOYEE + "ID "
             + PREFIX_START_DATE + "START_DATE "
-            + PREFIX_END_DATE + "END_DATE "
+            + PREFIX_END_DATE + "END_DATE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_EMPLOYEE + "1 "
             + PREFIX_START_DATE + "2023-02-04 "
             + PREFIX_END_DATE + "2023-02-06 ";
 
     // maybe rename to duplicate leave? not sure if the right naming is used here
-    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee has already leave on one of the days"
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee has already leave on one of the days "
             + "in SudoHR";
     public static final String MESSAGE_ADD_LEAVE_SUCCESS = "Employee %1$s leave is added on %2$s";
 
