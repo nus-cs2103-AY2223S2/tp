@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.timetable.util.TypicalTime.EIGHT_AM;
-import static seedu.address.model.timetable.util.TypicalTime.TEN_PM;
+import static seedu.address.model.timetable.util.TypicalTime.ELEVEN_PM;
 import static seedu.address.model.timetable.util.TypicalTime.TWELVE_PM;
 import static seedu.address.model.timetable.util.TypicalTimetable.FULL_CONFLICT_TIMETABLE_A;
 import static seedu.address.model.timetable.util.TypicalTimetable.FULL_CONFLICT_TIMETABLE_B;
@@ -42,7 +42,7 @@ class TimingRecommenderTest {
     }
 
     @Test
-    public void intialise_modelOnly_success() {
+    public void initialise_modelOnly_success() {
         assertDoesNotThrow(() -> new TimingRecommender(model));
     }
 
@@ -81,12 +81,12 @@ class TimingRecommenderTest {
         TimingRecommender timingRecommender = new TimingRecommender(model);
         timingRecommender.addTimetable(TIMETABLE_A);
         timingRecommender.addTimetable(TIMETABLE_B);
-        // expected longest interval is 12noon - 10pm on Monday
+        // expected longest interval is 12noon - 11pm on Monday
         Optional<TimePeriod> longestInterval = timingRecommender.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
-        assertEquals(Hours.hours(10), longestInterval.get().getHoursBetween());
+        assertEquals(Hours.hours(11), longestInterval.get().getHoursBetween());
         assertEquals(TWELVE_PM, longestInterval.get().getStartTime());
-        assertEquals(TEN_PM, longestInterval.get().getEndTime());
+        assertEquals(ELEVEN_PM, longestInterval.get().getEndTime());
         assertEquals(Day.MONDAY, longestInterval.get().getSchoolDay());
     }
 
@@ -99,9 +99,9 @@ class TimingRecommenderTest {
         // expected longest interval is 12noon - 10pm on Monday
         Optional<TimePeriod> longestInterval = timingRecommender.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
-        assertEquals(Hours.hours(10), longestInterval.get().getHoursBetween());
+        assertEquals(Hours.hours(11), longestInterval.get().getHoursBetween());
         assertEquals(TWELVE_PM, longestInterval.get().getStartTime());
-        assertEquals(TEN_PM, longestInterval.get().getEndTime());
+        assertEquals(ELEVEN_PM, longestInterval.get().getEndTime());
         assertEquals(Day.MONDAY, longestInterval.get().getSchoolDay());
     }
 
@@ -111,12 +111,12 @@ class TimingRecommenderTest {
         timingRecommender.addTimetable(TIMETABLE_C);
         timingRecommender.addTimetable(TIMETABLE_D);
         timingRecommender.addTimetable(TIMETABLE_E);
-        // expected longest interval is 12noon - 10pm on Monday
+        // expected longest interval is 12noon - 11pm on Monday
         Optional<TimePeriod> longestInterval = timingRecommender.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
-        assertEquals(Hours.hours(10), longestInterval.get().getHoursBetween());
+        assertEquals(Hours.hours(11), longestInterval.get().getHoursBetween());
         assertEquals(TWELVE_PM, longestInterval.get().getStartTime());
-        assertEquals(TEN_PM, longestInterval.get().getEndTime());
+        assertEquals(ELEVEN_PM, longestInterval.get().getEndTime());
         assertEquals(Day.MONDAY, longestInterval.get().getSchoolDay());
     }
 
@@ -126,12 +126,12 @@ class TimingRecommenderTest {
         timingRecommender.addTimetable(TIMETABLE_A);
         timingRecommender.addTimetable(TIMETABLE_D);
         timingRecommender.addTimetable(TIMETABLE_E);
-        // expected longest interval is 12noon - 10pm on Monday
+        // expected longest interval is 12noon - 11pm on Monday
         Optional<TimePeriod> longestInterval = timingRecommender.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
-        assertEquals(Hours.hours(10), longestInterval.get().getHoursBetween());
+        assertEquals(Hours.hours(11), longestInterval.get().getHoursBetween());
         assertEquals(TWELVE_PM, longestInterval.get().getStartTime());
-        assertEquals(TEN_PM, longestInterval.get().getEndTime());
+        assertEquals(ELEVEN_PM, longestInterval.get().getEndTime());
         assertEquals(Day.MONDAY, longestInterval.get().getSchoolDay());
     }
 
@@ -140,12 +140,12 @@ class TimingRecommenderTest {
         TimingRecommender timingRecommender = new TimingRecommender(model);
         timingRecommender.addTimetable(FULL_CONFLICT_TIMETABLE_A);
         timingRecommender.addTimetable(FULL_CONFLICT_TIMETABLE_B);
-        // expected longest interval 8am - 10pm
+        // expected longest interval 8am - 11pm
         Optional<TimePeriod> longestInterval = timingRecommender.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
-        assertEquals(Hours.hours(14), longestInterval.get().getHoursBetween());
+        assertEquals(Hours.hours(15), longestInterval.get().getHoursBetween());
         assertEquals(EIGHT_AM, longestInterval.get().getStartTime());
-        assertEquals(TEN_PM, longestInterval.get().getEndTime());
+        assertEquals(ELEVEN_PM, longestInterval.get().getEndTime());
         assertEquals(Day.MONDAY, longestInterval.get().getSchoolDay());
 
     }
@@ -156,12 +156,12 @@ class TimingRecommenderTest {
         timingRecommender.addTimetable(TIMETABLE_A);
         timingRecommender.addTimetable(FULL_CONFLICT_TIMETABLE_A);
         timingRecommender.addTimetable(FULL_CONFLICT_TIMETABLE_B);
-        // expected longest interval 8am - 10pm
+        // expected longest interval 8am - 11pm
         Optional<TimePeriod> longestInterval = timingRecommender.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
-        assertEquals(Hours.hours(14), longestInterval.get().getHoursBetween());
+        assertEquals(Hours.hours(15), longestInterval.get().getHoursBetween());
         assertEquals(EIGHT_AM, longestInterval.get().getStartTime());
-        assertEquals(TEN_PM, longestInterval.get().getEndTime());
+        assertEquals(ELEVEN_PM, longestInterval.get().getEndTime());
         assertEquals(Day.WEDNESDAY, longestInterval.get().getSchoolDay());
 
     }
