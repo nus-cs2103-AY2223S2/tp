@@ -59,9 +59,9 @@ public class TypicalPatients {
 
     // Manually added
     public static final Patient HOON = new PatientBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
+            .withEmail("stefan@example.com").withAddress("little india").withIc("P1292372A").build();
     public static final Patient IDA = new PatientBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+            .withEmail("hans@example.com").withAddress("chicago ave").withIc("P1234214A").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Patient AMY = new PatientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
