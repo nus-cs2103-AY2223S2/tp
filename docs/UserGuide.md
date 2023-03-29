@@ -84,8 +84,6 @@ Format:
 >
 > However, for steps, please input the steps in the order that they are intended to be performed.
 
-<div style="page-break-after: always;"></div>
-
 ### Listing all recipes: `list`
 
 Ever forget how many recipes you have in your storage? Want to view 'em all? Or
@@ -102,6 +100,7 @@ Format:
 >
 > In order to zoom in on a particular recipe in the list, user can double-click on the corresponding recipe
 
+<div style="page-break-after: always;"></div>
 
 ### Finding a recipe by name: `find`
 
