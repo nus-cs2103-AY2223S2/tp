@@ -46,7 +46,7 @@ public class DeleteTodoCommand extends Command {
         List<InternshipTodo> lastShownList = model.getFilteredTodoList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
         }
 
         InternshipTodo todoToDelete = lastShownList.get(targetIndex.getZeroBased());

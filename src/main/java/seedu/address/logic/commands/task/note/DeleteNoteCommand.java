@@ -46,7 +46,7 @@ public class DeleteNoteCommand extends Command {
         List<Note> lastShownList = model.getFilteredNoteList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_NOTE_DISPLAYED_INDEX);
         }
 
         Note noteToDelete = lastShownList.get(targetIndex.getZeroBased());
