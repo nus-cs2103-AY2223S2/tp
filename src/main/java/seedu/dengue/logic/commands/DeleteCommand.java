@@ -8,6 +8,7 @@ import static seedu.dengue.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import seedu.dengue.commons.core.Messages;
 import seedu.dengue.commons.core.index.Index;
@@ -109,16 +110,22 @@ public class DeleteCommand extends Command {
     private CommandResult executeIndexes(Model model, List<Person> lastShownList) throws CommandException {
         assert targetIndexes.isPresent();
         List<Index> indexes = targetIndexes.get();
-        List<Person> referenceCopy = new ArrayList<>(lastShownList);
+
         for (Index idx : indexes) {
-            if (idx.getZeroBased() >= referenceCopy.size()) {
+            if (idx.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
         }
+
+        List<Person> referenceCopy = new ArrayList<>(lastShownList);
+        List<Person> toDelete = new ArrayList<>();
+
         for (Index idx : indexes) {
             Person personToDelete = referenceCopy.get(idx.getZeroBased());
-            model.deletePerson(personToDelete);
+            toDelete.add(personToDelete);
         }
+
+        deleteAll(model, toDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_INDEX_SUCCESS, indexes.size()));
     }
 
@@ -126,30 +133,47 @@ public class DeleteCommand extends Command {
     private CommandResult executeDate(Model model, List<Person> lastShownList) {
         assert date.isPresent();
         List<Person> referenceCopy = new ArrayList<>(lastShownList);
-        int numDeleted = 0;
+        List<Person> toDelete = new ArrayList<>();
+
         PersonContainsDatePredicate predicate = new PersonContainsDatePredicate(date);
         for (Person person : referenceCopy) {
             if (predicate.test(person)) {
-                model.deletePerson(person);
-                numDeleted++;
+                toDelete.add(person);
             }
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_DATE_SUCCESS, numDeleted, date.get()));
+
+        deleteAll(model, toDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_DATE_SUCCESS, toDelete.size(), date.get()));
     }
 
     private CommandResult executeRange(Model model, List<Person> lastShownList) {
         assert range.isPresent();
         List<Person> referenceCopy = new ArrayList<>(lastShownList);
-        int numDeleted = 0;
+        List<Person> toDelete = new ArrayList<>();
+
         RangeContainsPersonPredicate predicate = new RangeContainsPersonPredicate(range.get());
         for (Person person : referenceCopy) {
             if (predicate.test(person)) {
-                model.deletePerson(person);
-                numDeleted++;
+                toDelete.add(person);
             }
         }
+
+        deleteAll(model, toDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_RANGE_SUCCESS,
-                numDeleted, range.get().getStart(), range.get().getEnd()));
+                toDelete.size(), range.get().getStart(), range.get().getEnd()));
+    }
+
+    private static void deleteAll(Model model, List<Person> toDelete) {
+        List<Person> fullList = model
+                .getDengueHotspotTracker()
+                .getPersonList();
+
+        List<Person> remainingPersons = fullList
+                .stream()
+                .filter(p -> !toDelete.contains(p))
+                .collect(Collectors.toList());
+
+        model.setPersons(remainingPersons);
     }
 
     @Override
