@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
+import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.exceptions.LimitExceededException;
@@ -19,7 +20,6 @@ public class VaxTypeManager {
 
     private static final String ERROR_FORMAT_DUPLICATE_VACCINATION = "Vaccination %s already exist";
     private static final String ERROR_FORMAT_NONEXISTENT_VACCINATION = "Vaccination %s does not exist";
-    private static final String ERROR_FORMAT_LIMIT_EXCEEDED = "Limit of %d exceeded";
 
     private final int limit;
 
@@ -56,8 +56,7 @@ public class VaxTypeManager {
      */
     public void resetData(VaxTypeManager manager) {
         if (manager.size() > limit) {
-            throw new LimitExceededException(String.format(ERROR_FORMAT_LIMIT_EXCEEDED,
-                    limit));
+            throw new LimitExceededException(String.format(Messages.FORMAT_LIMIT_EX, limit));
         }
         typeMap.clear();
         typeMap.putAll(manager.typeMap);
@@ -79,8 +78,7 @@ public class VaxTypeManager {
                     vaxType.getName()));
         }
         if (typeMap.size() >= limit) {
-            throw new LimitExceededException(String.format(ERROR_FORMAT_LIMIT_EXCEEDED,
-                    limit));
+            throw new LimitExceededException(String.format(Messages.FORMAT_LIMIT_EX, limit));
         }
         typeMap.put(vaxType.getName(), vaxType);
         return vaxType;

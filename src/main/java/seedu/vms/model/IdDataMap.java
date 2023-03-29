@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
+import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.LimitExceededException;
 
@@ -70,7 +71,7 @@ public class IdDataMap<T> {
     public IdData<T> add(IdData<T> data) throws LimitExceededException {
         Objects.requireNonNull(data);
         if (!isValidId(data.getId())) {
-            throw new LimitExceededException();
+            throw new LimitExceededException(String.format(Messages.FORMAT_LIMIT_EX, limit));
         }
         internalMap.put(data.getId(), data);
         nextId = Math.max(nextId, data.getId());
@@ -169,7 +170,7 @@ public class IdDataMap<T> {
 
     private int getNextId() throws LimitExceededException {
         if (internalMap.size() >= limit) {
-            throw new LimitExceededException();
+            throw new LimitExceededException(String.format(Messages.FORMAT_LIMIT_EX, limit));
         }
         while (contains(nextId)) {
             nextId++;
