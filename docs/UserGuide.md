@@ -149,7 +149,7 @@ Examples:
 
 Adds a meeting to the address book.
 
-Format: `meetingAdd PERSON_INDEX /md DESC /ms START DATE&TIME /md END DATE&TIME`
+Format: `meetingAdd PERSON_INDEX md/ DESC ms/ START DATE&TIME me/ END DATE&TIME`
 
 Required Information:
 * `PERSON_INDEX`: Index of a person in address book
@@ -158,7 +158,7 @@ Required Information:
 * `END DATE&TIME`: End date and time (Format: dd-mm-yyyy HH:MM)
 
 Example:
-* `meetingAdd 3 Meeting with Charlotte 30-03-2020 12:30 30-03-2020 13:30` adds a meeting on 30th March 2020 from 12.30pm to 13.30pm, with Charlotte Oliveiro (index 3),
+* `meetingAdd 3 md/Meeting with Charlotte ms/30-03-2020 12:30 me/30-03-2020 13:30` adds a meeting on 30th March 2020 from 12.30pm to 13.30pm, with Charlotte Oliveiro (index 3),
 with the description "Meeting with Charlotte".
 
 ![result for 'meetingAdd 3 Meeting with Charlotte 30-03-2020 12:30 30-03-2020 13:30`](images/meetingAddCharlotte.PNG)
@@ -193,8 +193,8 @@ Required Information:
 
 Examples:
 *  `meetingUpdate 1 1 md/ Policy discussion` Edits the meeting description of the 1st meeting belonging to the 1st person to `Policy discussion`
-*  `meetingUpdate 2 3 md/ Plan review ms/ 30-03-2020 20:10 me/ 22:10` Updates the description, start and end of the 3rd meeting belonging to the 2nd person
-to `Plan review`, `30-03-2020 20:10` and `22:10` respectively
+*  `meetingUpdate 2 3 md/ Plan review ms/ 30-03-2020 20:10 me/ 30-03-2020 22:10` Updates the description, start and end of the 3rd meeting belonging to the 2nd person
+to `Plan review`, `30-03-2020 20:10` and `30-03-2020 22:10` respectively
 
 Notes:
 * Edits the meetings of person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3,
