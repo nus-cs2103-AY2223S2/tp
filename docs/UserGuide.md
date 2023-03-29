@@ -17,7 +17,7 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 ## How to use the User Guide
 
-* For a quick and easy way to **get started** with PowerCards, you can visit the [Quick Start](##quick-start) section.
+* For a quick and easy way to **get started** with PowerCards, you can visit the [Quick Start](##Quick Start) section.
 * To **understand the terms** we use in PowerCards, you can visit the [Glossary](##glossary) section.
 * To learn about the **features** that PowerCards provides and how to use them, you can visit the [Features](##features) section.
 * Having **issues**? Check out the [FAQ](##faq) section and see if you can find your solutions there!
@@ -26,21 +26,21 @@ This user guide will help you use PowerCards with ease and integrate it into you
 **:bulb: Tip:**<br>
 * There's a lot of information in this guide, so it's a good idea to skim through the contents first. This will give you a better understanding on how PowerCards works. Then, you can dive into the sections that interest you the most. We hope this approach will make it easier for you to digest the content.
 
-## Components of the User Interface of PowerCards
-
-### Locations of the components
+## Components of PowerCards
 
 ### Locations of the components
 ![UiComponent](images/UiComponent.png)
 
 ## Use of the components
 
-| Component                              | Use                                                                                                                                                               |
-|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Command Box**                        | This is where you enter your **commands**.                                                                                                                             |
-| **Result Display**                     | This is where the **results** of your commands will be shown.                                                                                            |
-| **Left Panel**                         | This is where all the **guest information** of a guest will be shown.                                                                                             |
-| **Right Panel**                         | This shows the location of your **save file**.                                                                     
+| Component          | Use                                                                                                          |
+|--------------------|--------------------------------------------------------------------------------------------------------------|
+| **Left Panel**     | This shows either a **list of decks** or the **current review statistics** depending on the mode you are in. |
+| **Right Panel**    | This shows either a **list of cards** or the **current card in review** depending on the mode you are in.    |
+| **Command Box**    | This is where you enter your **commands**.                                                                   |
+| **Result Display** | This is where the **results** of your commands will be shown.                                                |
+
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer. If you don't have it, you can download and install it by clicking here (for [Windows]([url](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#:~:text=the%20JDK%20Silently-,Downloading%20the%20JDK%20Installer,patch_windows%2Dx64_bin.exe%20.)) users) or here (for [Mac]([url](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html)) users).
 
@@ -56,9 +56,7 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 6. Refer to the [Features](#features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
-
-## 
+-------------------------------------------------------------------------------------------------------------------- 
 
 # Features
 
