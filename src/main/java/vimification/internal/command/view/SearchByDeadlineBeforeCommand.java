@@ -10,7 +10,7 @@ import vimification.model.task.Task;
 
 import java.time.LocalDateTime;
 
-public class SearchByDateBefore extends SearchCommand {
+public class SearchByDeadlineBeforeCommand extends SearchCommand {
     public static final String COMMAND_WORD = "s --before";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -19,7 +19,7 @@ public class SearchByDateBefore extends SearchCommand {
             + "Conditions: Date time must be valid in the format of YYYY-MM-DD.\n"
             + "Example: " + COMMAND_WORD + " 2023-01-01";
 
-    public SearchByDateBefore(LocalDateTime date) {
+    public SearchByDeadlineBeforeCommand(LocalDateTime date) {
         super(task -> task.isDateBefore(date));
     }
 

@@ -94,13 +94,6 @@ public class LogicManager implements Logic {
         return result;
     }
 
-    private void updateViewTaskList(Command command) {
-        // ObservableList<Task> newViewTaskList = command.getViewTaskList();
-        // if (newViewTaskList != null) {
-        // viewTaskList.setAll(newViewTaskList);
-        // }
-    }
-
     // @Override
     // public ReadOnlyTaskPlanner getTaskList() {
     // return model.getTaskList();

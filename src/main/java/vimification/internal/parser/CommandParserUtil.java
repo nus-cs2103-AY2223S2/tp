@@ -10,12 +10,14 @@ import vimification.model.task.Status;
 
 public class CommandParserUtil {
 
+    public static final ApplicativeParser<String> WORD_PARSER = ApplicativeParser.nonWhitespaces1();
+
     public static final ApplicativeParser<String> STRING_PARSER = ApplicativeParser
             .choice(ApplicativeParser.string("\""), ApplicativeParser.string("'"))
             .flatMap(quote -> ApplicativeParser
                     .until(quote)
                     .dropNext(ApplicativeParser.string(quote)))
-            .or(ApplicativeParser.nonWhitespaces1());
+            .or(WORD_PARSER);
 
     public static final ApplicativeParser<Integer> INT_PARSER =
             ApplicativeParser.nonWhitespaces1().flatMap(str -> {
@@ -26,11 +28,19 @@ public class CommandParserUtil {
                 }
             });
 
+    public static final ApplicativeParser<LocalDateTime> DATE_TIME_PARSER = ApplicativeParser
+            .nonWhitespaces1()
+            .map(ignore -> LocalDateTime.now());
+
     public static final ArgumentFlag TITLE_FLAG = new ArgumentFlag("-t", "--title");
     public static final ArgumentFlag LABEL_FLAG = new ArgumentFlag("-l", "--label");
     public static final ArgumentFlag STATUS_FLAG = new ArgumentFlag("-s", "--status");
     public static final ArgumentFlag PRIORITY_FLAG = new ArgumentFlag("-p", "--priority");
     public static final ArgumentFlag DEADLINE_FLAG = new ArgumentFlag("-d", "--deadline");
+    public static final ArgumentFlag KEYWORD_FLAG = new ArgumentFlag("-w", "--keyword");
+    public static final ArgumentFlag BEFORE_FLAG = new ArgumentFlag(null, "--before");
+    public static final ArgumentFlag AFTER_FLAG = new ArgumentFlag(null, "--after");
+    public static final ArgumentFlag BETWEEN_FLAG = new ArgumentFlag(null, "--between");
 
     public static final ApplicativeParser<ArgumentFlag> TITLE_FLAG_PARSER = parseFlag(TITLE_FLAG);
     public static final ApplicativeParser<ArgumentFlag> LABEL_FLAG_PARSER = parseFlag(LABEL_FLAG);
@@ -39,16 +49,19 @@ public class CommandParserUtil {
             parseFlag(PRIORITY_FLAG);
     public static final ApplicativeParser<ArgumentFlag> DEADLINE_FLAG_PARSER =
             parseFlag(DEADLINE_FLAG);
+    public static final ApplicativeParser<ArgumentFlag> KEYWORD_FLAG_PARSER =
+            parseFlag(KEYWORD_FLAG);
+    public static final ApplicativeParser<ArgumentFlag> BEFORE_FLAG_PARSER = parseFlag(BEFORE_FLAG);
+    public static final ApplicativeParser<ArgumentFlag> AFTER_FLAG_PARSER = parseFlag(AFTER_FLAG);
+    public static final ApplicativeParser<ArgumentFlag> BETWEEN_FLAG_PARSER =
+            parseFlag(BETWEEN_FLAG);
 
     public static final ApplicativeParser<String> TITLE_PARSER = STRING_PARSER;
     public static final ApplicativeParser<String> LABEL_PARSER = STRING_PARSER;
-    public static final ApplicativeParser<Status> STATUS_PARSER =
-            INT_PARSER.map(Status::fromInt);
+    public static final ApplicativeParser<Status> STATUS_PARSER = INT_PARSER.map(Status::fromInt);
     public static final ApplicativeParser<Priority> PRIORITY_PARSER =
             INT_PARSER.map(Priority::fromInt);
-    public static final ApplicativeParser<LocalDateTime> DEADLINE_PARSER = ApplicativeParser
-            .nonWhitespaces1()
-            .map(ignore -> LocalDateTime.now());
+    public static final ApplicativeParser<LocalDateTime> DEADLINE_PARSER = DATE_TIME_PARSER;
 
     public static final ApplicativeParser<Index> ONE_BASED_INDEX_PARSER =
             INT_PARSER.filter(i -> i >= 1).map(Index::fromOneBased);

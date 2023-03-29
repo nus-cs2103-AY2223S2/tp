@@ -1,12 +1,5 @@
 package vimification.internal.command.view;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import vimification.internal.command.CommandException;
-import vimification.internal.command.CommandResult;
-import vimification.model.LogicTaskList;
-import vimification.model.task.Task;
-
 public class SearchByKeywordCommand extends SearchCommand {
     public static final String COMMAND_WORD = "s -t";
 
