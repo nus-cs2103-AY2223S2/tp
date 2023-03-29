@@ -1,10 +1,7 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.ReadOnlyPatientList;
@@ -31,7 +28,7 @@ public class AppointmentCard extends UiPart<Region> {
     private Label description;
 
     @FXML
-    private FlowPane tags;
+    private Label doctor;
 
     /**
      * Creates an {@code AppointmentCard} with the given {@code Appointment} and index to display.
@@ -49,12 +46,10 @@ public class AppointmentCard extends UiPart<Region> {
                 .findFirst().orElseThrow();
         */
         // temporary workaround for buggy id
-        patientName.setText(appointment.getPatientName().fullName);
-        timeSlot.setText(appointment.getTimeslot().timeslotString);
-        description.setText(appointment.getDescription().description);
-        appointment.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        patientName.setText(appointment.getPatientName().toString());
+        timeSlot.setText(appointment.getTimeslot().toString());
+        description.setText(appointment.getDescription().toString());
+        doctor.setText("Doctor: " + appointment.getDoctor().toString());
     }
 
     @Override

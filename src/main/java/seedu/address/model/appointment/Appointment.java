@@ -3,15 +3,10 @@ package seedu.address.model.appointment;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.chrono.ChronoLocalDateTime;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.model.id.AppointmentId;
 import seedu.address.model.patient.Name;
-import seedu.address.model.tag.Tag;
-
 /**
  * Represents an Appointment in the address book.
  * Guarantees: details except description are present and not null, field values are validated, immutable.
@@ -21,20 +16,19 @@ public class Appointment {
     private final Name patientName;
     private final Timeslot timeslot;
     private final Description description;
-
-    private final Set<Tag> tags = new HashSet<>();
+    private final Doctor doctor;
 
     /**
      * Every field must be present and not null.
      */
     public Appointment(AppointmentId id, Name patientName, Timeslot timeslot, Description description,
-                       Set<Tag> tags) {
-        requireAllNonNull(timeslot, description, patientName, tags);
+                       Doctor doctor) {
+        requireAllNonNull(timeslot, description, patientName, doctor);
         this.id = id;
         this.patientName = patientName;
         this.timeslot = timeslot;
         this.description = description;
-        this.tags.addAll(tags);
+        this.doctor = doctor;
     }
 
     public AppointmentId getAppointmentId() {
@@ -63,12 +57,8 @@ public class Appointment {
         return description;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Doctor getDoctor() {
+        return doctor;
     }
 
     /**
@@ -111,13 +101,13 @@ public class Appointment {
         return otherAppointment.getPatientName().equals(getPatientName())
                 && otherAppointment.getTimeslot().equals(getTimeslot())
                 && otherAppointment.getDescription().equals(getDescription())
-                && otherAppointment.getTags().equals(getTags());
+                && otherAppointment.getDoctor().equals(getDoctor());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(patientName, timeslot, description, tags);
+        return Objects.hash(patientName, timeslot, description, doctor);
     }
 
     @Override
@@ -127,13 +117,10 @@ public class Appointment {
                 .append("; Patient Name: ")
                 .append(getPatientName())
                 .append("; Description: ")
-                .append(getDescription());
+                .append(getDescription())
+                .append("; Doctor: ")
+                .append(getDoctor());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
         return builder.toString();
     }
 }

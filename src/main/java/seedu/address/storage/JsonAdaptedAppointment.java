@@ -1,21 +1,15 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Description;
+import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.Timeslot;
 import seedu.address.model.id.AppointmentId;
 import seedu.address.model.patient.Name;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Appointment}.
@@ -28,7 +22,7 @@ class JsonAdaptedAppointment {
     private final String patientName;
     private final String timeslot;
     private final String description;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String doctor;
 
     /**
      * Constructs a {@code JsonAdaptedAppointment} with the given patient details.
@@ -38,14 +32,12 @@ class JsonAdaptedAppointment {
                                   @JsonProperty("timeslot") String timeslot,
                                   @JsonProperty("description") String description,
                                   @JsonProperty("name") String patientName,
-                                  @JsonProperty("tags") List<JsonAdaptedTag> tagged) {
+                                  @JsonProperty("doctor") String doctor) {
         this.appointmentId = appointmentId;
         this.timeslot = timeslot;
         this.description = description;
         this.patientName = patientName;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+        this.doctor = doctor;
     }
 
     /**
@@ -56,9 +48,7 @@ class JsonAdaptedAppointment {
         timeslot = source.getTimeslot().timeslotString;
         description = source.getDescription().description;
         patientName = source.getPatientName().fullName;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        doctor = source.getDoctor().doctor;
     }
 
     /**
@@ -67,11 +57,6 @@ class JsonAdaptedAppointment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
      */
     public Appointment toModelType() throws IllegalValueException {
-        final List<Tag> appointmentTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            appointmentTags.add(tag.toModelType());
-        }
-
         if (patientName == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -99,10 +84,17 @@ class JsonAdaptedAppointment {
         }
         final Description modelDescription = new Description(description);
 
-        final Set<Tag> modelTags = new HashSet<>(appointmentTags);
+        if (doctor == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Doctor.class.getSimpleName()));
+        }
+        if (!Doctor.isValidDoctor(doctor)) {
+            throw new IllegalValueException(Doctor.MESSAGE_CONSTRAINTS);
+        }
+        final Doctor modelDoctor = new Doctor(doctor);
 
         final AppointmentId modelId = new AppointmentId(appointmentId);
-        return new Appointment(modelId, modelPatientName, modelTimeslot, modelDescription, modelTags);
+        return new Appointment(modelId, modelPatientName, modelTimeslot, modelDescription, modelDoctor);
     }
 
 }

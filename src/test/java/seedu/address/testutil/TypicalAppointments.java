@@ -13,10 +13,10 @@ import seedu.address.model.appointment.Appointment;
 public class TypicalAppointments {
     public static final Appointment FIRST_APPOINTMENT = new AppointmentBuilder().withAppointmentId("001")
             .withPatientName("Alex Yeoh").withTimeslot("19032023 08:00,19032023 09:00")
-            .withDescription("First appointment").withTags("first").build();
+            .withDescription("First appointment").withDoctor("Xiao Lu").build();
     public static final Appointment IMPORTANT_APPOINTMENT = new AppointmentBuilder().withAppointmentId("002")
             .withPatientName("Bernice Yu").withTimeslot("26032023 11:00,26032023 13:00")
-            .withDescription("This is important!").withTags("important").build();
+            .withDescription("This is important!").withDoctor("Sidharth Rajesh").build();
 
     // TODO: Manually added appointments
     // TODO: Manually added - Appointment's details found in {@code CommandTestUtil}

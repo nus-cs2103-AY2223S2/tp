@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Description;
+import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.Timeslot;
 import seedu.address.model.id.AppointmentId;
 import seedu.address.model.id.PatientId;
@@ -128,6 +129,21 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String description} into an {@code Doctor}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code doctor} is invalid.
+     */
+    public static Doctor parseDoctor(String doctor) throws ParseException {
+        requireNonNull(doctor);
+        String trimmedDoctor = doctor.trim();
+        if (!Doctor.isValidDoctor(trimmedDoctor)) {
+            throw new ParseException(Doctor.MESSAGE_CONSTRAINTS);
+        }
+        return new Doctor(trimmedDoctor);
     }
 
     /**
