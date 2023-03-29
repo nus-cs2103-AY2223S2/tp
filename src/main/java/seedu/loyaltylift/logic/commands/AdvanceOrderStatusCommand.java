@@ -76,7 +76,7 @@ public class AdvanceOrderStatusCommand extends Command {
         Customer customer = orderToAdvance.getCustomer();
         Address address = orderToAdvance.getAddress();
         Quantity quantity = orderToAdvance.getQuantity();
-        Status status= orderToAdvance.getStatus();
+        Status status = orderToAdvance.getStatus();
         CreatedDate createdDate = orderToAdvance.getCreatedDate();
         Note note = orderToAdvance.getNote();
 

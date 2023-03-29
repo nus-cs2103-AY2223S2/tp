@@ -75,7 +75,7 @@ public class CancelOrderCommand extends Command {
         Customer customer = orderToCancel.getCustomer();
         Address address = orderToCancel.getAddress();
         Quantity quantity = orderToCancel.getQuantity();
-        Status status= orderToCancel.getStatus();
+        Status status = orderToCancel.getStatus();
         CreatedDate createdDate = orderToCancel.getCreatedDate();
         Note note = orderToCancel.getNote();
 

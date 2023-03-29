@@ -75,7 +75,7 @@ public class RevertOrderStatusCommand extends Command {
         Customer customer = orderToRevert.getCustomer();
         Address address = orderToRevert.getAddress();
         Quantity quantity = orderToRevert.getQuantity();
-        Status status= orderToRevert.getStatus();
+        Status status = orderToRevert.getStatus();
         CreatedDate createdDate = orderToRevert.getCreatedDate();
         Note note = orderToRevert.getNote();
 
