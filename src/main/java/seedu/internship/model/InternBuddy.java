@@ -6,8 +6,9 @@ import java.util.List;
 import javax.swing.SwingUtilities;
 
 import javafx.collections.ObservableList;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.Toolkit;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.UniqueInternshipList;
 
@@ -116,10 +117,9 @@ public class InternBuddy implements ReadOnlyInternBuddy {
         String content = key.toString();
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                final Clipboard clipboard = Clipboard.getSystemClipboard();
-                final ClipboardContent clipboardContent = new ClipboardContent();
-                clipboardContent.putString(content);
-                clipboard.setContent(clipboardContent);
+                StringSelection selection = new StringSelection(content);
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                clipboard.setContents(selection, null);
             }
         });
     }

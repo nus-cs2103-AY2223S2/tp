@@ -45,6 +45,9 @@ public class CopyCommand extends Command {
         Internship internshipToCopy = lastShownList.get(targetIndex.getZeroBased());
 
         //Functionality of the copy internship command
+        model.copyInternship(internshipToCopy);
+
+        //update right panel
         model.updateSelectedInternship(internshipToCopy);
         return new CommandResult(String.format(MESSAGE_COPY_INTERNSHIP_SUCCESS, internshipToCopy));
     }
