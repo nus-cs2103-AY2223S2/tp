@@ -97,7 +97,7 @@ public class FindCommand extends Command {
                 .collect(Collectors.toList());
         model.setAppointmentFilters(filters);
         return new CommandMessage(
-                String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredAppointmentMap().size()));
+                String.format(Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW, model.getFilteredAppointmentMap().size()));
     }
 
     @Override
