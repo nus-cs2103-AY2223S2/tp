@@ -1,4 +1,4 @@
-package seedu.recipe.logic.commands.ui;
+package seedu.recipe.ui;
 
 import java.util.Map;
 import java.util.logging.Logger;
@@ -16,9 +16,9 @@ import seedu.recipe.commons.core.LogsCenter;
 import seedu.recipe.logic.Logic;
 import seedu.recipe.logic.commands.CommandResult;
 import seedu.recipe.logic.commands.exceptions.CommandException;
-import seedu.recipe.logic.commands.ui.events.DeleteRecipeEvent;
+import seedu.recipe.ui.events.DeleteRecipeEvent;
 import seedu.recipe.logic.parser.exceptions.ParseException;
-import seedu.recipe.logic.commands.ui.events.EditRecipeEvent;
+import seedu.recipe.ui.events.EditRecipeEvent;
 
 /**
  * Represents the main window of the application. This class is responsible for

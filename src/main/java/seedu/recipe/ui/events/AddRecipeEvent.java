@@ -1,4 +1,4 @@
-package seedu.recipe.logic.commands.ui.events;
+package seedu.recipe.ui.events;
 
 import javafx.event.Event;
 import javafx.event.EventType;

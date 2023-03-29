@@ -1,4 +1,4 @@
-package seedu.recipe.logic.commands.ui;
+package seedu.recipe.ui;
 
 import javafx.stage.Stage;
 

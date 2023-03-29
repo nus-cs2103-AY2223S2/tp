@@ -1,4 +1,4 @@
-package seedu.recipe.logic.commands.ui;
+package seedu.recipe.ui;
 
 import static seedu.recipe.model.util.IngredientUtil.ingredientKeyValuePairToString;
 
@@ -11,7 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.recipe.logic.commands.ui.events.DeleteRecipeEvent;
+import seedu.recipe.ui.events.DeleteRecipeEvent;
 import seedu.recipe.model.recipe.Recipe;
 
 

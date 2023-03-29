@@ -12,7 +12,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import javafx.fxml.FXML;
 import seedu.recipe.MainApp;
-import seedu.recipe.logic.commands.ui.UiPart;
 
 public class UiPartTest {
 

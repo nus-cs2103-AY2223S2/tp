@@ -1,4 +1,4 @@
-package seedu.recipe.logic.commands.ui;
+package seedu.recipe.ui;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
