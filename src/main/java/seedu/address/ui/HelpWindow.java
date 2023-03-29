@@ -48,8 +48,7 @@ public class HelpWindow extends UiPart<Stage> {
         myHyperlink.setText(HELP_MESSAGE);
 
         myHyperlink.setOnAction(e -> {
-            if(Desktop.isDesktopSupported())
-            {
+            if (Desktop.isDesktopSupported()) {
                 try {
                     Desktop.getDesktop().browse(new URI(USERGUIDE_URL));
                 } catch (IOException | URISyntaxException e1) {
