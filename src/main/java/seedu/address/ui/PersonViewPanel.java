@@ -67,7 +67,7 @@ public class PersonViewPanel extends UiPart<Region> {
         email.setText(person.getEmail().toString());
         nric.setText(person.getNric().toString());
         address.setText(person.getAddress().toString());
-
+        //todo setPersonalInfo () -> new personinfocard
         //PersonInfoCard personInfoCard = new PersonInfoCard(person);
 
         /*if (person.getMedications().size() > 0) {
