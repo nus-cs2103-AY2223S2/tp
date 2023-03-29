@@ -6,7 +6,7 @@ import static seedu.event.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import seedu.event.model.Model;
 
 /**
- * Lists all events in the address book to the user.
+ * Lists all events in the event book to the user.
  */
 public class ListCommand extends Command {
 

@@ -59,7 +59,7 @@ public class EventBook implements ReadOnlyEventBook {
     //// event-level operations
 
     /**
-     * Returns true if an event with the same identity as {@code event} exists in the address book.
+     * Returns true if an event with the same identity as {@code event} exists in the event book.
      */
     public boolean hasEvent(Event event) {
         requireNonNull(event);
@@ -67,8 +67,8 @@ public class EventBook implements ReadOnlyEventBook {
     }
 
     /**
-     * Adds an event to the address book.
-     * The event must not already exist in the address book.
+     * Adds an event to the event book.
+     * The event must not already exist in the event book.
      */
     public void addEvent(Event p) {
         events.add(p);
@@ -76,8 +76,8 @@ public class EventBook implements ReadOnlyEventBook {
 
     /**
      * Replaces the given event {@code target} in the list with {@code editedEvent}.
-     * {@code target} must exist in the address book.
-     * The event identity of {@code editedEvent} must not be the same as another existing event in the address book.
+     * {@code target} must exist in the event book.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the event book.
      */
     public void setEvent(Event target, Event editedEvent) {
         requireNonNull(editedEvent);
@@ -87,7 +87,7 @@ public class EventBook implements ReadOnlyEventBook {
 
     /**
      * Removes {@code key} from this {@code EventBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the event book.
      */
     public void removeEvent(Event key) {
         events.remove(key);
@@ -95,7 +95,7 @@ public class EventBook implements ReadOnlyEventBook {
 
     /**
      * Marks {@code target} from this {@code EventBook}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the event book.
      */
     public void markEvent(Event target) {
         events.mark(target);
@@ -103,7 +103,7 @@ public class EventBook implements ReadOnlyEventBook {
 
     /**
      * Unmarks {@code target} from this {@code EventBook}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the event book.
      */
     public void unmarkEvent(Event target) {
         events.unmark(target);

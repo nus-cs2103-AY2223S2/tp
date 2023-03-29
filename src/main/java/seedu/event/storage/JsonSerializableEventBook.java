@@ -41,7 +41,7 @@ class JsonSerializableEventBook {
     }
 
     /**
-     * Converts this address book into the model's {@code EventBook} object.
+     * Converts this event book into the model's {@code EventBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
