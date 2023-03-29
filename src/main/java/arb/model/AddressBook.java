@@ -260,6 +260,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         projects.markProjectAsNotDone(project);
     }
 
+
+    public String getProjectsContent() {
+        return projects.getProjectsContent();
+    }
+
     //// util methods
 
     @Override

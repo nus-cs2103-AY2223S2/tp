@@ -197,6 +197,12 @@ public class ModelManager implements Model {
         addressBook.markProjectAsNotDone(project);
     }
 
+    @Override
+    public String getProjectsContent() {
+        return addressBook.getProjectsContent();
+    }
+
+
     //=========== Filtered Client List Accessors ============================================================
 
     /**

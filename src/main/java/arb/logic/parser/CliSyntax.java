@@ -14,6 +14,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_PRICE = new Prefix("price/", "pr/");
     public static final Prefix PREFIX_CLIENT = new Prefix("client/", "c/");
     public static final Prefix PREFIX_OPTION = new Prefix("option/", "o/");
+    public static final Prefix PREFIX_STATUS = new Prefix("status/", "st/");
     public static final Prefix PREFIX_START = new Prefix("start/", "s/");
     public static final Prefix PREFIX_END = new Prefix("end/", "e/");
 }

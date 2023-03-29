@@ -20,6 +20,7 @@ import arb.model.client.Name;
 import arb.model.client.Phone;
 import arb.model.project.Deadline;
 import arb.model.project.Price;
+import arb.model.project.Status;
 import arb.model.project.Title;
 import arb.model.tag.Tag;
 
@@ -31,6 +32,7 @@ public class ParserUtilTest {
 
     private static final String INVALID_TITLE = "Sk! P@inting";
     private static final String INVALID_DEADLINE = "ocean";
+    private static final String INVALID_STATUS = "accomplished";
     private static final String INVALID_PRICE = "and";
     private static final String INVALID_SORTING_OPTION = "sky";
 
@@ -42,6 +44,7 @@ public class ParserUtilTest {
 
     private static final String VALID_TITLE = "Sky Painting";
     private static final String VALID_DEADLINE = "3pm today";
+    private static final String VALID_STATUS = "not done";
     private static final String VALID_PRICE = "3";
     private static final String VALID_SORTING_OPTION = "deadline";
 
@@ -226,7 +229,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseDeadline_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseDeadline((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDeadline(null));
     }
 
     @Test
@@ -250,6 +253,34 @@ public class ParserUtilTest {
         String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
         Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
+    }
+
+    @Test
+    public void parseStatus_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStatus(null));
+    }
+
+    @Test
+    public void parseStatus_emptyString_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStatus(""));
+    }
+
+    @Test
+    public void parseStatus_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStatus(INVALID_STATUS));
+    }
+
+    @Test
+    public void parseStatus_validValueWithoutWhitespace_returnsStatus() throws Exception {
+        Status expectedStatus = new Status(false); // produced by VALID_STATUS
+        assertEquals(expectedStatus, ParserUtil.parseStatus(VALID_STATUS));
+    }
+
+    @Test
+    public void parseStatus_validValueWithWhitespace_returnsStatus() throws Exception {
+        String statusWithWhitespace = WHITESPACE + VALID_STATUS + WHITESPACE;
+        Status expectedStatus = new Status(false);
+        assertEquals(expectedStatus, ParserUtil.parseStatus(statusWithWhitespace));
     }
 
     @Test

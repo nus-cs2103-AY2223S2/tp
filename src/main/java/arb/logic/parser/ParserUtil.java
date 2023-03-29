@@ -15,6 +15,7 @@ import arb.model.client.Name;
 import arb.model.client.Phone;
 import arb.model.project.Deadline;
 import arb.model.project.Price;
+import arb.model.project.Status;
 import arb.model.project.Title;
 import arb.model.tag.Tag;
 
@@ -153,8 +154,30 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String status} into a {@code Status}.
+     * Leading and trailing whitespace will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static Status parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String augmentedStatus = status.trim().toUpperCase();
+        if (augmentedStatus.isEmpty()) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
+
+        if (Status.STATUS_DONE.contains(augmentedStatus)) {
+            return new Status(true);
+        } else if (Status.STATUS_NOT_DONE.contains(augmentedStatus)) {
+            return new Status(false);
+        } else {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Price}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Leading and trailing whitespace will be trimmed.
      *
      * @throws ParseException if the given {@code price} is invalid.
      */

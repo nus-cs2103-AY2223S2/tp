@@ -9,13 +9,13 @@ import arb.model.project.Project;
 import arb.model.tag.Tag;
 
 /**
- * Tests that a {@code Project}'s contains any of the tags given.
+ * Tests that a {@code Project} contains any of the tags given.
  */
 public class ProjectContainsTagsPredicate implements Predicate<Project> {
     private final Set<Tag> tags;
 
     public ProjectContainsTagsPredicate(List<String> keywords) {
-        this.tags = keywords.stream().map(s -> new Tag(s.toLowerCase())).collect(Collectors.toSet());
+        tags = keywords.stream().map(s -> new Tag(s.toLowerCase())).collect(Collectors.toSet());
     }
 
     @Override
