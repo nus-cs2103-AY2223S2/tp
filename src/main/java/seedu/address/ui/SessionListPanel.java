@@ -139,10 +139,13 @@ public class SessionListPanel extends UiPart<Region> {
 
         attendanceChart.setData(SessionPieChart.generateAttendancePieChart(selectedSession.getAttendanceMap()));
         attendanceChart.setLabelsVisible(false);
-
-        for (Label detail : details) {
-            detail.setWrapText(true);
-            detail.setMinWidth(0);
+        try {
+            for (Label detail : details) {
+                detail.setWrapText(true);
+                detail.setMinWidth(0);
+            }
+        } catch (NullPointerException e) {
+            logger.info(selectedSession.getName() + " session is empty!");
         }
     }
 
