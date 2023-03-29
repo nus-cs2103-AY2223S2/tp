@@ -215,7 +215,14 @@ class JsonAdaptedPerson {
                     MedicalCondition.class.getSimpleName()));
         }
         if (!MedicalCondition.isValidCondition(medicalCondition)) {
-            throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(MedicalCondition.MESSAGE_CONSTRAINTS);
+        }
+        if (nric == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Nric.class.getSimpleName()));
+        }
+        if (!Nric.isValidNumber(nric)) {
+            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
         }
         Optional<LocalDateTime> optionalTime = Optional.ofNullable(time);
         Optional<String> optionalAge = Optional.ofNullable(age);
