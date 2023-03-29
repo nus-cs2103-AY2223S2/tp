@@ -196,7 +196,9 @@ Classes used by multiple components are in the `seedu.vms.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Adding a Patient
+### Patient
+
+#### Adding a Patient
 
 The **Adding a Patient** mechanism is facilitated by `VMS`. The Patient created is stored inside `PatientManager` object.
 
@@ -226,7 +228,7 @@ Given below is an sequence diagram that illustrates the **Adding a Patient** mec
 
 <img src="images/patient/AddPatientSequenceDiagram.png" width="550" />
 
-### Listing Patients
+#### Listing Patients
 
 The **Listing Patients** mechanism is facilitated by `VMS`. It will list all the Patients that are stored in the `PatientManager`.
 
@@ -247,7 +249,7 @@ Given below is an sequence diagram that illustrates the **Listing Patients** mec
 
 <img src="images/patient/ListPatientsSequenceDiagram.png" width="550" />
 
-### Finding a Patient
+#### Finding a Patient
 
 The **Finding a Patient** mechanism is facilitated by `VMS`. It will find specific list of Patient objects from `PatientManager` inside `VMS` object with the keywords provided.
 
@@ -286,7 +288,7 @@ Given below is an sequence diagram that illustrates the **Finding a Patient** me
 
 `FindCommandParser#parse` will call `String#trim` to trim the search request. If there is no additional flags, it will fall back to the default of using the search term to find Names.
 
-### Editing a Patient
+#### Editing a Patient
 
 The **Editing a Patient** mechanism is facilitated by `VMS`. It will read and modify a target Patient object from `PatientManger` inside `VMS` object.
 
@@ -319,7 +321,7 @@ Given below is an example usage scenario and how **Editing a Patient** mechanism
 
 <img src="images/patient/EditPatientSequenceDiagram.png" width="550" />
 
-### Deleting a Patient
+#### Deleting a Patient
 
 The **Deleting a Patients** mechanism is facilitated by `VMS`. It will delete specific Patient objects from `PatientManager` inside `VMS` object with using the index provided.
 
@@ -332,7 +334,7 @@ Given below is an example usage scenario when a user enter `patient delete 5` as
 <img src="images/patient/DeletePatientActivityDiagram.png" width="550" />
 <img src="images/patient/DeletePatientSequenceDiagram.png" width="550" />
 
-### Clearing Patients
+#### Clearing Patients
 
 The **Clearing Patients** mechanism is facilitated by `VMS`. It will set the patient manager with a new empty patient manager, effectively clearing all the Patients
 
@@ -353,7 +355,97 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 
 <img src="images/patient/ClearPatientSequenceDiagram.png" width="550" />
 
-### \[Proposed\] Undo/redo feature
+### Appointment
+
+#### Adding a Appointment
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/appointment/AddAppointmentActivityDiagram.png" width="550" />
+<img src="images/appointment/AddAppointmentSequenceDiagram.png" width="550" />
+-->
+
+#### Listing a Appointment
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/appointment/ListAppointmentActivityDiagram.png" width="550" />
+<img src="images/appointment/ListAppointmentSequenceDiagram.png" width="550" />
+-->
+
+#### Finding a Appointment
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/appointment/FindAppointmentActivityDiagram.png" width="550" />
+<img src="images/appointment/FindAppointmentSequenceDiagram.png" width="550" />
+-->
+
+### Vaccination
+
+#### Adding a VaxType
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/vaccination/AddVaxTypeActivityDiagram.png" width="550" />
+<img src="images/vaccination/AddVaxTypeSequenceDiagram.png" width="550" />
+-->
+
+#### Listing a VaxType
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/vaccination/ListVaxTypeActivityDiagram.png" width="550" />
+<img src="images/vaccination/ListVaxTypeSequenceDiagram.png" width="550" />
+-->
+
+#### Finding a VaxType
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/vaccination/FindVaxTypeActivityDiagram.png" width="550" />
+<img src="images/vaccination/FindVaxTypeSequenceDiagram.png" width="550" />
+-->
+
+### Keyword
+
+#### Adding a Keyword
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/keyword/AddKeywordActivityDiagram.png" width="550" />
+<img src="images/keyword/AddKeywordSequenceDiagram.png" width="550" />
+-->
+
+#### Listing a Keyword
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/keyword/ListKeywordActivityDiagram.png" width="550" />
+<img src="images/keyword/ListKeywordSequenceDiagram.png" width="550" />
+-->
+
+#### Finding a Keyword
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/keyword/FindKeywordActivityDiagram.png" width="550" />
+<img src="images/keyword/FindKeywordSequenceDiagram.png" width="550" />
+-->
+
+
+
+<!-- Below is given from AB3, commented out for ur own ref, our product does not have these features. -->
+<!-- ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
@@ -435,7 +527,7 @@ _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+_{Explain here how the data archiving feature will be implemented}_ -->
 
 
 --------------------------------------------------------------------------------------------------------------------
