@@ -10,11 +10,11 @@
 <ScrollPane minWidth="400.0" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
 <VBox style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
    <children>
+      <Label id="name" fx:id="name" styleClass="cell_big_label" />
          <VBox style="-fx-border-color: black; -fx-background-color: white;">
             <children>
-            <Label id="name" fx:id="name" styleClass="cell_big_label" />
       
-            <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Personal Details" textAlignment="CENTER" />
+                              <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Personal Details" textAlignment="CENTER" />
                <HBox>
                   <children>
                      <Label fx:id="email111" prefWidth="106.0" styleClass="cell_small_label" text="NRIC" />
