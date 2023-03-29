@@ -16,7 +16,7 @@ import seedu.event.model.event.Event;
 import seedu.event.model.event.Rate;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the event book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyEventBook eventBook, ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(eventBook, contactList, userPrefs);
 
-        logger.fine("Initializing with address book: " + eventBook
+        logger.fine("Initializing with event book: " + eventBook
                 + " with contact list: " + contactList
                 + " and user prefs " + userPrefs);
 

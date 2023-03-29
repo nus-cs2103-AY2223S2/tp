@@ -20,7 +20,7 @@ title: Developer Guide
 - [Implementation](#implementation)
   <details>
   <summary>Features</summary>
-      
+
    - [New Contact feature](#new-contact-feature)
    - [Mark feature](#mark-feature)
    - [Unmark feature](#unmark-feature)
@@ -262,6 +262,10 @@ The `newcontact` feature is facilitated by the `Contact` class. The feature is i
     * Pros: Easy to code.
     * Cons: Might be hard to keep track or do comparisons with.
 
+<img src="images/NewContactActivityDiagram.png" width="400" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.1</b> Activity diagram of 'New Contact'
+</div>
 
 ### Mark feature
 
@@ -314,17 +318,25 @@ The `unmark` feature is implemented with the following considerations:
   * Pros: Results in less coupling and in turn lower possibility of unintended change cascades.
   * Cons: May have performance issues in terms of memory usage and runtime.
 
+Below shows the activity diagram of the `unmark` command:
+
+<img src="images/UnmarkActivityDiagram.png" width="200" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.3</b> Activity diagram of 'Unmark'
+</div>
+
 ### Reminder feature
+The `remind` feature allows for users to view upcoming events.
 
 #### Implementation
 
-The reminder feature is facilitated by `StartTimeWithinDaysPredicate`, that tests if ane event is within the given days.
+The `reminder` feature is implemented with the following considerations:
+* It is facilitated by `StartTimeWithinDaysPredicate`, that tests if an event's start date is within the inputted days of the current time.
+* The current time is determined by a `Clock` that is created by `LogicManager`.
+* The `RemindCommandParser` checks if the command argument has the correct format. The command argument represents days and should be a positive integer.
 
-The current time is determined by a `Clock` that is created by `LogicManager`. The `LogicManager` creates an `EventBookParser` with `Clock` as an attribute. When parsing a remind command, the `EventBookParser` creates a `RemindCommandParser` with the `Clock` as an attribute.
-
-The `RemindCommandParser` checks if the command argument has the correct format. The command argument represents days and should be a positive integer. `RemindCommandParser` creates a `RemindCommand` with a `StartTimeWithinDaysPredicate`, that uses the `Clock` to get the current time. The `StartTimeWithinDaysPredicate` tests if a given event's start date is within the inputted days of the current time.
-
-The `RemindCommand` is then executed by `LogicManager`. After testing all events with the `StartTimeWithinDaysPredicate`, filtered events are displayed.
+The following object diagram shows objects involved in the execution of a <b>remind</b> command.
+![RemindObjectDiagram](images/RemindObjectDiagram.png)
 
 #### Design considerations:
 
@@ -363,6 +375,11 @@ The linkcontact feature will take in a contact number as a parameter. This param
 * **Alternative 2:** Add the `contact` as just a normal string attribute to `Event` class.
     * Pros: Even easier to implement.
     * Cons: Hard to implement filtering of events by contact in the future.
+
+<img src="images/LinkContactActivityDiagram.png" width="430" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.5</b> Activity diagram of 'linkcontact'
+</div>
 
 ### Revenue feature
 
@@ -606,7 +623,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC7 - Display Rate**
+<!-- **Use case: UC7 - Display Rate**
 
 **MSS**
 
@@ -626,9 +643,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. User enters an invalid index.
    * 2b1. System displays that the index is invalid and to try again.
 
-      Use case resumes at step 2.
+      Use case resumes at step 2. -->
 
-**Use case: UC8 - Add Contact**
+**Use case: UC7 - Add Contact**
 
 **MSS**
 
@@ -649,7 +666,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC9 - Add Date to Event**
+**Use case: UC8 - Add Date to Event**
 
 **MSS**
 
@@ -681,7 +698,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC10 - Edit Event**
+**Use case: UC9 - Edit Event**
 
 **MSS**
 
