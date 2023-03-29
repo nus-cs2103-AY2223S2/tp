@@ -38,7 +38,7 @@ public class PdfConverter {
     private float x = 90;
     private float y = 702;
     private final float margin = 5;
-    private float yInitTable = 702;
+    private float yInitTable = -1;
     private final float leftMarginPosition = 90;
     private final float rightMarginPosition = 522;
 
@@ -130,7 +130,7 @@ public class PdfConverter {
             return;
         }
         List<String> headers = Arrays.asList("Date", "Test", "Score");
-        List<String> maxContentWidthString = Arrays.asList("8888-88-88", "WWWWWWWWWWWWWWWWWW", "88.8");
+        List<String> maxContentWidthString = Arrays.asList("8888-88-88", "WWWWWWWWWWWWWWWWWW", "Score");
         this.yInitTable = (this.y + textHeight(this.fontBold, this.fontTableHeaderSize, 0) / 2 + this.margin);
         createTableRow(headers, maxContentWidthString, this.fontBold, this.fontTableHeaderSize);
 
@@ -155,8 +155,8 @@ public class PdfConverter {
             float wrapCur;
             if (i != 0 && i != headers.size() - 1) {
                 wrapCur = this.horizontalWrap - (this.x - this.xInit) - 4 * this.margin
-                        - textLength(maxContentWidthString.get(i + 1), font,
-                        fontSize);
+                        - textLength(maxContentWidthString.get(i + 1), fontBold,
+                        fontTableHeaderSize);
             } else {
                 wrapCur = this.horizontalWrap - (this.x - this.xInit) - 2 * this.margin;
             }
@@ -217,6 +217,7 @@ public class PdfConverter {
         }
         createVerticalLines(yFinal, maxContentWidthString);
         createHorizontalLine(yFinal);
+        this.yInitTable = -1;
     }
 
     private void createTableContentForScore(ScoreList scores, List<String> maxContentWidthString, PDFont font,
@@ -245,6 +246,7 @@ public class PdfConverter {
         }
         createVerticalLines(yFinal, maxContentWidthString);
         createHorizontalLine(yFinal);
+        this.yInitTable = -1;
     }
     private void setUpContentStream(PDFont font, int fontSize, float x, float y) throws IOException {
         this.contentStream.beginText();
@@ -261,7 +263,7 @@ public class PdfConverter {
     }
 
     private int getNumberOfCharsPossible(String curString, PDFont font, int fontSize, float wrap) throws IOException {
-        float len = 0;
+        float len = textLength("-", font, fontSize);
         int count = 0;
         for (int i = 0; i < curString.length(); i++) {
             float lenCur = textLength(String.valueOf(curString.charAt(i)), font, fontSize);
@@ -279,7 +281,7 @@ public class PdfConverter {
         contentStream.drawLine(this.rightMarginPosition, this.yInitTable, this.rightMarginPosition, yFinal);
         float xPos = this.leftMarginPosition;
         for (int i = 0; i < maxContentWidthString.size() - 1; i++) {
-            float cur = textLength(maxContentWidthString.get(i), PDType1Font.HELVETICA_BOLD, 16) + 2
+            float cur = textLength(maxContentWidthString.get(i), this.fontBold, this.fontTableHeaderSize) + 2
                     * this.margin;
             xPos += cur;
             contentStream.drawLine(xPos, yInitTable, xPos, yFinal);
@@ -289,13 +291,18 @@ public class PdfConverter {
     private PDPageContentStream handleNextPage(float yFinal, List<String> maxContentWidthString, float margin,
                                                PDFont font, int fontSize)
             throws IOException {
-        if (this.yInitTable - 90 >= textHeight(font, fontSize, 0) + 2 * margin) {
-            createVerticalLines(yFinal, maxContentWidthString);
+        if (this.yInitTable != -1 && this.yInitTable - 90 >= textHeight(font, fontSize, 0) + 2 * margin) {
+            float yTemp = yFinal + textHeight(font, fontSize, this.margin / 2) + this.margin;
+            createVerticalLines(yTemp, maxContentWidthString);
+            createHorizontalLine(yTemp);
         }
         contentStream.close();
         this.page = new PDPage();
         this.document.addPage(this.page);
         this.contentStream = new PDPageContentStream(document, page);
+        if (this.yInitTable != -1 && this.yInitTable - 90 >= textHeight(font, fontSize, 0) + 2 * margin) {
+            createHorizontalLine(this.yInit + textHeight(font, fontSize, 0) + this.margin);
+        }
         return contentStream;
     }
 
@@ -313,8 +320,8 @@ public class PdfConverter {
                 lengthUsed += 1;
             } else {
                 int limit = getNumberOfCharsPossible(curString, font, fontSize, wrap);
-                curString = curString.substring(0, limit - 1) + "-";
-                textSplit[i] = textSplit[i].substring(limit - 1);
+                curString = curString.substring(0, limit) + "-";
+                textSplit[i] = textSplit[i].substring(limit);
                 i--;
             }
             float yPrev = this.y;
@@ -326,7 +333,11 @@ public class PdfConverter {
                 lengthUsed = textLength(curString, font, fontSize);
             }
             if (this.y <= 90) {
-                contentStream = handleNextPage(yPrev - this.margin, maxContentWidthString, margin, font,
+                float yTemp = yPrev - this.margin;
+                if (count != 0) {
+                    yTemp = this.y - 2 * this.margin;
+                }
+                contentStream = handleNextPage(yTemp, maxContentWidthString, margin, font,
                         fontSize);
                 this.x = xPosition;
                 this.y = yInit;

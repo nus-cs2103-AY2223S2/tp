@@ -32,7 +32,6 @@ public class ExportProgressCommandParser implements Parser<ExportProgressCommand
                     ExportProgressCommand.MESSAGE_USAGE));
         }
 
-        String fileName = ".pdf";
         String filePath = ParserUtil.parseFilePath(argMultimap.getValue(PREFIX_FILEPATH));
 
         return new ExportProgressCommand(index, filePath);
