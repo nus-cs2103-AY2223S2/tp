@@ -4,7 +4,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEntities.getTypicalReroll;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.address.experimental.model.Model;
 import seedu.address.experimental.model.ModelManager;
 import seedu.address.experimental.model.Reroll;
@@ -17,7 +16,7 @@ public class ClearCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(true), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -26,7 +25,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalReroll(), new UserPrefs());
         expectedModel.setReroll(new Reroll());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(true), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }
