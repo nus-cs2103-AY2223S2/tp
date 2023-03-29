@@ -129,10 +129,18 @@ public class DetailDisplay extends UiPart<Region> {
                 hideUploadButton();
                 hideGenerateButton();
                 hideViewDisplay();
+
+                filesManager.addFile();
+                //add here
+                if (filesManager.isHasError()) {
+                    medicalCondition.setText(filesManager.getErrorMessage());
+                    return;
+
                 try {
                     filesManager.addFile();
                 } catch (RuntimeException e) {
                     medicalCondition.setText("uploaded file is not qualified");
+
                 }
                 medicalCondition.setText("click the person gain to see updated file list");
             }
