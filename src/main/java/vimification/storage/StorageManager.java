@@ -2,13 +2,9 @@ package vimification.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
-import java.util.logging.Logger;
 
-import vimification.commons.core.LogsCenter;
 import vimification.commons.exceptions.DataConversionException;
 import vimification.model.LogicTaskList;
-import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 
 /**
@@ -16,22 +12,21 @@ import vimification.model.UserPrefs;
  */
 public class StorageManager implements Storage {
 
-    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-
-    private LogicTaskListStorage taskPlannerStorage;
+    private LogicTaskListStorage logicTaskListStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code TaskPlannerStorage} and
      * {@code UserPrefStorage}.
      */
-    public StorageManager(LogicTaskListStorage taskPlannerStorage,
+    public StorageManager(
+            LogicTaskListStorage logicTaskListStorage,
             UserPrefsStorage userPrefsStorage) {
-        this.taskPlannerStorage = taskPlannerStorage;
+        this.logicTaskListStorage = logicTaskListStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
-    // ================ UserPrefs methods ==============================
+    // UserPrefs methods
 
     @Override
     public Path getUserPrefsFilePath() {
@@ -39,46 +34,31 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException {
+    public UserPrefs readUserPrefs() throws IOException {
         return userPrefsStorage.readUserPrefs();
     }
 
     @Override
-    public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
+    public void saveUserPrefs(UserPrefs userPrefs) throws IOException {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
 
-    // ================ TaskPlanner methods ==============================
+    // LogicTaskList methods
 
     @Override
     public Path getLogicTaskListFilePath() {
-        return taskPlannerStorage.getLogicTaskListFilePath();
+        return logicTaskListStorage.getLogicTaskListFilePath();
     }
 
     @Override
-    public Optional<LogicTaskList> readLogicTaskList()
-            throws DataConversionException, IOException {
-        return readLogicTaskList(taskPlannerStorage.getLogicTaskListFilePath());
+    public LogicTaskList readLogicTaskList() throws DataConversionException, IOException {
+        return logicTaskListStorage.readLogicTaskList();
     }
 
     @Override
-    public Optional<LogicTaskList> readLogicTaskList(Path filePath)
-            throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
-        return taskPlannerStorage.readLogicTaskList(filePath);
-    }
-
-    @Override
-
-    public void saveLogicTaskList(LogicTaskList taskPlanner) throws IOException {
-        saveLogicTaskList(taskPlanner, taskPlannerStorage.getLogicTaskListFilePath());
-    }
-
-    @Override
-    public void saveLogicTaskList(LogicTaskList taskPlanner, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
-        taskPlannerStorage.saveLogicTaskList(taskPlanner, filePath);
+    public void saveLogicTaskList(LogicTaskList logicTaskList) throws IOException {
+        logicTaskListStorage.saveLogicTaskList(logicTaskList);
     }
 
 }

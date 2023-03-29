@@ -3,11 +3,8 @@ package vimification.commons.util;
 import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -20,17 +17,13 @@ import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
-import vimification.commons.core.LogsCenter;
-import vimification.commons.exceptions.DataConversionException;
-
 /**
  * Converts a Java object instance to JSON and vice versa
  */
 public class JsonUtil {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
-
-    private static ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules()
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
+            .findAndRegisterModules()
             .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
             .setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE)
@@ -39,14 +32,13 @@ public class JsonUtil {
                     .addSerializer(Level.class, new ToStringSerializer())
                     .addDeserializer(Level.class, new LevelDeserializer(Level.class)));
 
-    static <T> void serializeObjectToJsonFile(Path jsonFile, T objectToSerialize)
-            throws IOException {
-        FileUtil.writeToFile(jsonFile, toJsonString(objectToSerialize));
+    static <T> void serializeObjectToJsonFile(Path filePath, T object) throws IOException {
+        FileUtil.writeToFile(filePath, toJsonString(object));
     }
 
-    static <T> T deserializeObjectFromJsonFile(Path jsonFile, Class<T> classOfObjectToDeserialize)
+    static <T> T deserializeObjectFromJsonFile(Path filePath, Class<T> classOfObject)
             throws IOException {
-        return fromJsonString(FileUtil.readFromFile(jsonFile), classOfObjectToDeserialize);
+        return fromJsonString(FileUtil.readFromFile(filePath), classOfObject);
     }
 
     /**
@@ -54,42 +46,27 @@ public class JsonUtil {
      * not found. If any values are missing from the file, default values will be used, as long as
      * the file is a valid json file.
      *
-     * @param filePath cannot be null.
-     * @param classOfObjectToDeserialize Json file has to correspond to the structure in the class
-     *        given here.
-     * @throws DataConversionException if the file format is not as expected.
+     * @param filePath cannot be null
+     * @param classOfObject Json file has to correspond to the structure in the class given here
+     * @throws IOException if the file cannot be read
      */
-    public static <T> Optional<T> readJsonFile(
-            Path filePath, Class<T> classOfObjectToDeserialize) throws DataConversionException {
+    public static <T> T readJsonFile(Path filePath, Class<T> classOfObject) throws IOException {
         requireNonNull(filePath);
-        if (!Files.exists(filePath)) {
-            logger.info("Json file " + filePath + " not found");
-            return Optional.empty();
-        }
-        T jsonFile = null;
-        try {
-            jsonFile = deserializeObjectFromJsonFile(filePath, classOfObjectToDeserialize);
-            logger.info("Object read from json file: " + jsonFile);
-        } catch (IOException e) {
-            logger.warning("Error reading from jsonFile file " + filePath + ": " + e);
-            throw new DataConversionException(e);
-        }
-        return Optional.ofNullable(jsonFile);
+        return deserializeObjectFromJsonFile(filePath, classOfObject);
     }
 
     /**
      * Saves the Json object to the specified file. Overwrites existing file if it exists, creates a
      * new file if it doesn't.
      *
-     * @param jsonFile cannot be null
+     * @param object cannot be null
      * @param filePath cannot be null
      * @throws IOException if there was an error during writing to the file
      */
-    public static <T> void saveJsonFile(T jsonFile, Path filePath) throws IOException {
+    public static <T> void saveJsonFile(T object, Path filePath) throws IOException {
+        requireNonNull(object);
         requireNonNull(filePath);
-        requireNonNull(jsonFile);
-
-        serializeObjectToJsonFile(filePath, jsonFile);
+        serializeObjectToJsonFile(filePath, object);
     }
 
 
@@ -100,18 +77,18 @@ public class JsonUtil {
      * @return The instance of T with the specified values in the JSON string
      */
     public static <T> T fromJsonString(String json, Class<T> instanceClass) throws IOException {
-        return objectMapper.readValue(json, instanceClass);
+        return OBJECT_MAPPER.readValue(json, instanceClass);
     }
 
     /**
-     * Converts a given instance of a class into its JSON data string representation
+     * Converts a given instance of a class into its JSON data string representation.
      *
-     * @param instance The T object to be converted into the JSON string
      * @param <T> The generic type to create an instance of
+     * @param instance The T object to be converted into the JSON string
      * @return JSON data representation of the given class instance, in string
      */
     public static <T> String toJsonString(T instance) throws JsonProcessingException {
-        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(instance);
+        return OBJECT_MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(instance);
     }
 
     /**
@@ -125,17 +102,7 @@ public class JsonUtil {
 
         @Override
         protected Level _deserialize(String value, DeserializationContext ctxt) {
-            return getLoggingLevel(value);
-        }
-
-        /**
-         * Gets the logging level that matches loggingLevelString
-         * <p>
-         * Returns null if there are no matches
-         *
-         */
-        private Level getLoggingLevel(String loggingLevelString) {
-            return Level.parse(loggingLevelString);
+            return Level.parse(value);
         }
 
         @Override
