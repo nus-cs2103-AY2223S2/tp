@@ -9,13 +9,13 @@
 
 /* Style the labels */
 .cell_big_label {
-    -fx-font-size: 16px;
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-text-fill: #333333;
 }
 
 .cell_small_label {
-    -fx-font-size: 14px;
+    -fx-font-size: 12px;
 }
 
 /* Style the status label */
@@ -27,7 +27,8 @@
     -fx-padding: 5px;
     -fx-spacing: 5px;
     -fx-border-width: 1px;
-    -fx-border-radius: 5px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
 }
 
 

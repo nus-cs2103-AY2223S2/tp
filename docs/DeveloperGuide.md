@@ -37,6 +37,12 @@ by [se-education.org](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
+### 1.4 Setting up, getting started
+
+Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## 2. Design
 
 <div markdown="span" class="alert alert-primary">
@@ -63,11 +69,10 @@ It is responsible for, </br> At app launch: Initializes the components in the co
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of persons of the App in memory.
-* [**`OfficeConnectModel`**](#model-component): Holds the data of tasks of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#22-ui-component): The UI of the App.
+* [**`Logic`**](#23-logic-component): The command executor.
+* [**`Model`**](#24-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#26-storage-component): Reads data from, and writes data to, the hard disk.
 
 #### 2.1.2 How the architecture components interact with each other
 
@@ -404,8 +409,6 @@ information, the user can choose to view the comprehensive User Guide instead.
     * Pros: More comprehensive, able to give user the complete detailing of each command.
     * Cons: Troublesome, requires user to go online to view the User Guide. User may also be overwhelmed by length of guide.
 
-<br>
-
 **Aspect: Viewing of various command instructions**
 
 * **Alternative 1 (Current choice):** Display all executable commands in a hierarchical tree, with description of method selected in a separate area.
@@ -422,6 +425,7 @@ information, the user can choose to view the comprehensive User Guide instead.
 
 Syntax: `unassign pi/PERSON_INDEX ti/TASK_INDEX`  
 Purpose: Allows users to unassign a task from a person in OfficeConnect.
+
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -943,6 +947,8 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
+
+3. _{ more test cases …​ }_
 
 
 ### 6.2 Deleting a person
