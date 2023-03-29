@@ -238,10 +238,10 @@ Format: `export`
     * Address of Client
     * Weight of Client
     * Gender of Client
-* Example generated CSV file when opened using Microsoft Excel: 
+* Example generated CSV file when opened using Microsoft Excel:
 
-    [!CSV Sample File](images/CSV%20Sample.PNG) 
-  
+    [!CSV Sample File](images/CSV%20Sample.PNG)
+
 
 ### Adding a routine: `addRoutine`
 
@@ -392,7 +392,7 @@ Format: `exportRoutines`
 * The exported client data includes: <br>
     * Name of Routine
     * Exercises in the Routine
-  
+
 * Example generated CSV file when opened using Microsoft Excel:
 
   [!CSV Sample File](images/CSVRoutineSample.png)
@@ -417,7 +417,7 @@ Examples:
 * `addWeight 1 w/70 d/10-10-2023 18:00` adds weight 70kg to the weight history of the first client in the FitBook and dates the weight at 10 October 2023, 6pm.
 * `find n/Alex` followed by `addWeight 1 w/70 d/10-10-2023 18:00` adds weight 70kg, dated 10 October 2023, 6pm to the weight history of the 1st client in the results of the `find` command.
 
-### Plotting weight history graph for a client: `graph` 
+### Plotting weight history graph for a client: `graph`
 
 {% include information.html content="
 
@@ -437,7 +437,7 @@ Examples:
 * `graph 1` plots the weight history of the first client in the FitBook.
 * `find n/Alex` followed by `graph 1` plots the weight history of the 1st client in the results of the `find` command.
 
-### Exiting the program : `exit` 
+### Exiting the program : `exit`
 
 {% include information.html content="
 
