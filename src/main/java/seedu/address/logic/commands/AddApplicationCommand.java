@@ -25,8 +25,8 @@ public class AddApplicationCommand extends ApplicationCommand {
             + PREFIX_STATUS + "STATUS \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ROLE + "SWE Intern "
-            + PREFIX_COMPANY_NAME + "Goggle "
-            + PREFIX_COMPANY_EMAIL + "gogglehiring@goggletalents.com "
+            + PREFIX_COMPANY_NAME + "Google "
+            + PREFIX_COMPANY_EMAIL + "googlehiring@googletalents.com "
             + PREFIX_STATUS + "interested";
 
 
