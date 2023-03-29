@@ -91,6 +91,14 @@ public class UserData implements ReadOnlyUserData {
         this.user.getValue().editPersonForAllEvents(personToEdit, editedPerson);
     }
 
+    public void tagPersonToEvent(Index event, Person taggingPerson) {
+        this.user.getValue().tagPersonToEvent(event, taggingPerson);
+    }
+
+    public void untagPersonToEvent(Index event, Person taggingPerson) {
+        this.user.getValue().untagPersonToEvent(event, taggingPerson);
+    }
+
     //// util methods
 
     @Override

@@ -144,6 +144,12 @@ public interface Model {
     /** Sets the {@code oldEvent} to {@code newEvent}. */
     void setEvent(Event oldEvent, Event newEvent);
 
+    /** Tags {@code taggingPerson} to {@code Event}. */
+    void tagPersonToEvent(Index eventIndex, Person taggingPerson);
+
+    /** Untags {@code taggingPerson} from {@code Event}. */
+    void untagPersonToEvent(Index eventIndex, Person taggingPerson);
+
     /** Edits person for all events that contain {@code personToEdit} to {@code editedPerson}. */
     void editPersonForAllEvents(Person personToEdit, Person editedPerson);
 

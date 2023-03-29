@@ -114,5 +114,13 @@ public class User extends Person {
     public void setEvent(Event oldEvent, Event newEvent) {
         this.events.setEvent(oldEvent, newEvent);
     }
+
+    public void tagPersonToEvent(Index eventIndex, Person taggingPerson) {
+        this.events.tagPersonToEvent(eventIndex, taggingPerson);
+    }
+
+    public void untagPersonToEvent(Index eventIndex, Person taggingPerson) {
+        this.events.untagPersonToEvent(eventIndex, taggingPerson);
+    }
 }
 

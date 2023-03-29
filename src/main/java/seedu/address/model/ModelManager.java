@@ -193,6 +193,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void tagPersonToEvent(Index eventIndex, Person taggingPerson) {
+        this.userData.tagPersonToEvent(eventIndex, taggingPerson);
+    }
+
+    @Override
+    public void untagPersonToEvent(Index eventIndex, Person taggingPerson) {
+        this.userData.untagPersonToEvent(eventIndex, taggingPerson);
+    }
+
+    @Override
     public void editPersonForAllEvents(Person personToEdit, Person editedPerson) {
         this.userData.editPersonForAllEvents(personToEdit, editedPerson);
     }

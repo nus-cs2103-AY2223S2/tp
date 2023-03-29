@@ -131,6 +131,24 @@ public abstract class Event {
     }
 
     /**
+     * Returns a copy of this Event object.
+     */
+    public Event copy() {
+        Description description = this.getDescription();
+        DateTime startDateTime = this.getStartDateTime();
+        DateTime endDateTime = this.getEndDateTime();
+        Recurrence recurrence = this.getRecurrence();
+
+        Set<Person> people = this.getTaggedPeople();
+
+        if (recurrence.isRecurring()) {
+            return new RecurringEvent(description, startDateTime, endDateTime, recurrence, people);
+        } else {
+            return new OneTimeEvent(description, startDateTime, endDateTime, people);
+        }
+    }
+
+    /**
      * Returns true if both Events have same Description, and data fields.
      * This defines a Stronger notion of equality between two Events.
      */
