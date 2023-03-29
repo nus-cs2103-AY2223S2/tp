@@ -74,7 +74,7 @@ List of commands:
     - [Deleting a session: ](#deleting-a-session--delete-session) `delete session`
     - [Editing a session: ](#editing-a-session--edit-session) `edit session`
     - [Selecting a session to start attendance-taking: ](#selecting-a-session-to-start-attendance-taking--select) `select`
-- [Students under Session Commands: ](#students-under-session-page-commands)
+- [Attendance Page Commands: ](#attendance-page-commands)
     - [Marking attendance of a selected students: ](#marking-attendance-of-a-selected-students--mark) `mark`
     - [Unmarking attendance of a selected students: ](#unmarking-attendance-of-a-selected-students--unmark) `unmark`
     - [View the overall attendance of the session: ](#view-the-overall-attendance-of-the-session--attendance) `attendance`
@@ -83,7 +83,7 @@ List of commands:
     - [Deleting a task: ](#deleting-a-task--delete-task) `delete task`
     - [Editing a task: ](#editing-a-task--edit-task) `edit task`
     - [Selecting a task to assign grades: ](#selecting-a-task-to-assign-grades--select) `select`
-- [Students under Task Commands: ](#students-under-task-page-commands)
+- [Grades Page Commands: ](#grades-page-commands)
     - [Assigning a grade: ](#assigning-a-grade--assign) `assign`
 - [Students by Task Commands: ](#students-by-task-commands)
 - [General Commands: ](#general-commands)
@@ -122,6 +122,8 @@ Examples:
 - `add course CS2103T` will add a new course with module code `CS2103T`
 - `add course CS2105` will add a new course with module code `CS2105`
 
+[Back to list of commands](#commands)
+
 
 
 ### Deleting a course: `delete course`
@@ -136,6 +138,8 @@ delete course <INDEX>
 
 Examples:
 - `delete course 1` will delete the first course listed in the course list.
+
+[Back to list of commands](#commands)
 
 
 
@@ -154,6 +158,8 @@ edit course <INDEX> <NEW COURSE NAME>
 Examples:
 - `edit course 1 CS2106` will rename the first course listed in the course list to `CS2106`.
 
+[Back to list of commands](#commands)
+
 
 
 ### Selecting a course: `select`
@@ -168,6 +174,8 @@ select <INDEX>
 
 Examples:
 - `select 1` will display a list of groups from the first course.
+
+[Back to list of commands](#commands)
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -191,6 +199,8 @@ Examples:
 - `add group T15` will add a new group with group name `T15`
 - `add group L08` will add a new group with group name `L08`
 
+[Back to list of commands](#commands)
+
 
 
 ### Deleting a group: `delete group`
@@ -205,6 +215,8 @@ delete group <INDEX>
 
 Examples:
 - `delete group 1` will delete first group listed in the group list panel of CLIpboard.
+
+[Back to list of commands](#commands)
 
 
 
@@ -223,6 +235,8 @@ edit group <INDEX> <NEW GROUP NAME>
 Examples:
 - `edit group 1 T16` will rename the first group listed in the group list to `T16`.
 
+[Back to list of commands](#commands)
+
 
 
 ### Selecting a group: `select`
@@ -238,6 +252,7 @@ select <INDEX>
 Examples:
 - `select 1` will return a list of students from the first group.
 
+[Back to list of commands](#commands)
 
 
 ### Displaying sessions of a group: `session`
@@ -253,6 +268,7 @@ session <INDEX>
 Examples:
 - `session 1` will return a list of sessions from the first group.
 
+[Back to list of commands](#commands)
 
 
 ### Displaying tasks of a group: `task`
@@ -267,6 +283,8 @@ task <INDEX>
 
 Examples:
 - `task 1` will return a list of tasks for the first group.
+
+[Back to list of commands](#commands)
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -290,6 +308,8 @@ Examples:
 - `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X`
 - `add student n/Roy Balakrishnan p/92624417 e/royb@example.com sid/A7356561X`
 
+[Back to list of commands](#commands)
+
 
 
 ### Deleting a student: `delete student`
@@ -303,6 +323,8 @@ delete student <INDEX>
 
 Examples:
 - `delete student 1` will delete the first student listed in the student list panel of CLIpboard.
+
+[Back to list of commands](#commands)
 
 
 
@@ -324,6 +346,8 @@ Examples:
 - `edit student 1 n/John Doe` will replace the name of the first student listed in the student list to `John Doe`.
 - `edit student 4 p/99887766 e/john@gmail.com` will replace the phone number and email of the fourth student listed in the student list to `99887766` and `john@gmail.com` respectively.
 
+[Back to list of commands](#commands)
+
 
 
 ### Copying a student's email: `copy`
@@ -337,6 +361,8 @@ copy <INDEX>
 
 Examples:
 - `copy 1` will copy the email of the first student in the list to your clipboard.
+
+[Back to list of commands](#commands)
 
 
 
@@ -355,6 +381,8 @@ Examples:
 - `find John` returns John.
 - `find Alex Yu` returns `Alex Yeoh`, `Bernice Yu` 
 
+[Back to list of commands](#commands)
+
 
 
 ### Displays a student's information: `select`
@@ -368,6 +396,8 @@ select <INDEX>
 
 Examples:
 - `select 2` will select the 2nd student in the student list and display his / her particulars on the view panel.
+
+[Back to list of commands](#commands)
 
 
 
@@ -393,6 +423,8 @@ Examples:
 - `remark 1 r/Loves watching Sci-Fi movies` will add a remark of 'Loves watching Sci-Fi movies' to the first student listed in the student list.
 - `remark 2` will delete the remark from the second student listed in the student list.
 
+[Back to list of commands](#commands)
+
 
 
 ### Uploading a student's photo: `upload`
@@ -413,6 +445,8 @@ Only images of file type .png is accepted
 Examples:
 - `upload /Users/AlexYeoh/Desktop/A0123456X.png`
 
+[Back to list of commands](#commands)
+
 
 
 ### Sorting list of students: `sort`
@@ -429,6 +463,8 @@ sort <CATEGORY>
 Examples:
 - `sort name` will sort list of students alphabetically according to name.
 - `sort id` will sort list of students alphanumerically according to student ID.
+
+[Back to list of commands](#commands)
 
 
 
@@ -453,6 +489,8 @@ Examples:
 - `add session Tutorial1`
 - `add session Tutorial2`
 
+[Back to list of commands](#commands)
+
 
 
 ### Deleting a session: `delete session`
@@ -468,6 +506,8 @@ delete session <INDEX>
 Examples:
 - `delete session 1` will delete the first session listed in the session list panel of CLIpboard.
 
+[Back to list of commands](#commands)
+
 
 
 ### Editing a session: `edit session`
@@ -481,6 +521,8 @@ edit session <INDEX> <NEW SESSION NAME>
 
 Examples:
 - `edit session 1 Tutorial1` will rename the first session listed to `Tutorial1`.
+
+[Back to list of commands](#commands)
 
 
 
@@ -497,9 +539,11 @@ select <INDEX>
 Examples:
 - `select 1` will return a list of students from the first session.
 
+[Back to list of commands](#commands)
+
 --------------------------------------------------------------------------------------------------------------
 
-## Students under Session Page Commands
+## Attendance Page Commands
 
 ### Marking selected students as present: `mark`
 
@@ -514,6 +558,8 @@ mark <INDEX>, <INDEX>, ...
 Examples:
 - `mark 1` will mark the first student as present.
 - `mark 2,3,4` will mark the 2nd, 3rd and 4th students as present.
+
+[Back to list of commands](#commands)
 
 
 
@@ -531,6 +577,9 @@ Examples:
 - `unmark 1` will mark the first student as absent.
 - `unmark 2,3,4` will mark the 2nd, 3rd and 4th students as absent.
 
+[Back to list of commands](#commands)
+
+
 
 ### View the overall attendance of the session: `attendance`
 
@@ -542,6 +591,8 @@ Format:
 ```
 attendance
 ```
+
+[Back to list of commands](#commands)
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -563,6 +614,8 @@ Examples:
 - `add task CA1`
 - `add task Pitch and Demo`
 
+[Back to list of commands](#commands)
+
 
 
 ### Deleting a task: `delete task`
@@ -577,6 +630,8 @@ delete task <INDEX>
 
 Examples:
 - `delete task 1` will delete the first task listed.
+
+[Back to list of commands](#commands)
 
 
 
@@ -593,6 +648,8 @@ edit task <INDEX> <NEW TASK NAME>
 Examples:
 - `edit task 1 CA5` will rename the first task listed to `CA5`.
 
+[Back to list of commands](#commands)
+
 
 
 ### Selecting a task to assign grades: `select`
@@ -608,8 +665,11 @@ select <INDEX>
 Examples:
 - `select 1` will return a list of students who was assigned the first task on the list.
 
+[Back to list of commands](#commands)
 
-## Students under Task Commands
+
+
+## Grades Page Commands
 
 ### Assigning a grade to student: `assign`
 Assigns a grade to a student.
@@ -623,6 +683,8 @@ assign <INDEX> <GRADE>
 
 Examples:
 - `assign 1 80` will assign the first student on the Student Page the grade of 80.
+
+[Back to list of commands](#commands)
 
 
 --------------------------------------------------------------------------------------------------------------
@@ -639,6 +701,9 @@ Format:
 home
 ```
 
+[Back to list of commands](#commands)
+
+
 
 ### Displaying the previous page you were at: `back`
 
@@ -648,6 +713,8 @@ Format:
 ```
 back
 ```
+
+[Back to list of commands](#commands)
 
 
 
@@ -660,6 +727,8 @@ Format:
 undo
 ```
 
+[Back to list of commands](#commands)
+
 
 
 ### Opening help window: `help`
@@ -671,6 +740,8 @@ Format:
 help
 ```
 
+[Back to list of commands](#commands)
+
 
 
 ### Scrolling through command history: `UP` or `DOWN` arrow key
@@ -680,6 +751,9 @@ Scrolls through past commands in command box.
 - Similar to Linux command-line interface, use the up or down arrow keys to scroll through previously typed commands in the command box.
 - You may use the `LEFT` or `RIGHT` arrow keys to edit the command first.
 - Press `ENTER` to execute the command.
+
+[Back to list of commands](#commands)
+
 
 
 ### Clearing all entries: `clear`
@@ -691,6 +765,9 @@ Format:
 clear
 ```
 
+[Back to list of commands](#commands)
+
+
 
 ### Exiting the program: `exit`
 
@@ -701,4 +778,5 @@ Format:
 exit
 ```
 
+[Back to list of commands](#commands)
 
