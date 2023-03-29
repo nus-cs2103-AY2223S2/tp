@@ -269,6 +269,8 @@ java -jar [JAR file location]/docedex.jar
 5. Double-click on the script to launch Docedex
 6. Docedex should launch
 
+If you have any further issues, please raise an issue on our [GitHub page](https://github.com/AY2223S2-CS2103T-F12-1/tp/issues). We will attend to you as soon as we can.
+
 ### Loading Data from another computer
 
 **Q**: How can I load data from another computer into Docedex installed on another computer?<br>
