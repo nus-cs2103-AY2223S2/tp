@@ -75,6 +75,13 @@ public class TimeParser implements Comparable<TimeParser> {
     }
 
     /**
+     * @return LocalDateTime of the TimeParser.
+     */
+    public LocalDateTime getLocalDateTime() {
+        return ldt;
+    }
+
+    /**
      * @return Formatted Date Time String
      */
     @Override
@@ -110,6 +117,10 @@ public class TimeParser implements Comparable<TimeParser> {
         } else {
             return "th";
         }
+    }
+
+    public LocalDate getLd() {
+        return this.ld;
     }
 
     @Override
