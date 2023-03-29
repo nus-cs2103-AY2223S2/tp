@@ -46,7 +46,7 @@ public class EditEventCommandParser {
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_DESCRIPTION, PREFIX_START_DATE_TIME, PREFIX_END_DATE_TIME, PREFIX_RECURRENCE);
 
-        Optional<Index> index;
+        Index index;
         EventDescriptor editEventDescriptor = new EventDescriptor();
 
         try {
@@ -82,8 +82,8 @@ public class EditEventCommandParser {
         return editEventDescriptor;
     }
 
-    public Optional<Index> parseIndex(String index) throws ParseException {
-        return Optional.of(ParserUtil.parseIndex(index));
+    public Index parseIndex(String index) throws ParseException {
+        return ParserUtil.parseIndex(index);
     }
     protected String getMessageUsage() {
         return EditEventCommand.MESSAGE_USAGE;

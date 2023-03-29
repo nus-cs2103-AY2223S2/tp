@@ -14,7 +14,7 @@ import seedu.address.model.event.fields.Recurrence;
  */
 public class EventDescriptor {
 
-    private Optional<Index> index;
+    private Index index;
     private Description description;
     private DateTime startDateTime;
     private DateTime endDateTime;
@@ -42,11 +42,11 @@ public class EventDescriptor {
                 .isAnyNonNull(description, startDateTime, endDateTime, recurrence);
     }
 
-    public void setIndex(Optional<Index> index) {
+    public void setIndex(Index index) {
         this.index = index;
     }
 
-    public Optional<Index> getIndex() {
+    public Index getIndex() {
         return this.index;
     }
 

@@ -59,7 +59,7 @@ public class EditEventCommand extends Command {
     public EditEventCommand(EventDescriptor editEventDescriptor) {
         requireNonNull(editEventDescriptor);
 
-        this.index = editEventDescriptor.getIndex().get();
+        this.index = editEventDescriptor.getIndex();
         this.editEventDescriptor = new EventDescriptor(editEventDescriptor);
     }
 
