@@ -1,7 +1,8 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.util.ComparatorUtil;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import seedu.address.commons.util.ComparatorUtil;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 

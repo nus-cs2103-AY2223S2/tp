@@ -53,7 +53,8 @@ public class ModuleUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        descriptor.getTimeSlot().ifPresent(timeSlot -> sb.append(PREFIX_TIMESLOT).append(timeSlot.value).append(" "));
+        descriptor.getTimeSlot().ifPresent(timeSlot -> sb.append(PREFIX_TIMESLOT)
+                .append(timeSlot.toString()).append(" "));
         descriptor.getRemark().ifPresent(type -> sb.append(PREFIX_REMARK).append(type.value).append(" "));
         descriptor.getDeadline().ifPresent(type -> sb.append(PREFIX_DEADLINE).append(type.value).append(" "));
         descriptor.getTeacher().ifPresent(type -> sb.append(PREFIX_TEACHER).append(type.value).append(" "));

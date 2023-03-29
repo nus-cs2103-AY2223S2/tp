@@ -149,17 +149,27 @@ public class Module {
         return builder.toString();
     }
 
+    /**
+     * Compares TimeSlot of two modules
+     * @param otherModule Module to be compared to
+     * @return 1 if this module has no TimeSlot else -1 if other module has no TimeSlot else result of comparison
+     */
     public int compareTimeSlot(Module otherModule) {
-        if (this.timeSlot.day == null) {
+        if (this.timeSlot.getDay() == null) {
             //if this module has no timeslot, this module should be moved to the end of the sorted list.
             return 1;
-        } else if (otherModule.timeSlot.day == null) {
+        } else if (otherModule.timeSlot.getDay() == null) {
             //if other module has no timeslot, other module should be moved to the end of the sorted list.
             return -1;
         }
         return this.timeSlot.compareTo(otherModule.timeSlot);
     }
 
+    /**
+     * Compares Deadline of two modules
+     * @param otherModule Module to be compared to
+     * @return 1 if this module has no Deadline else -1 if other module has no Deadline else result of comparison
+     */
     public int compareDeadline(Module otherModule) {
         if (this.deadline.value == null) {
             //if this module has no deadline, this module should be moved to the end of the sorted list.
