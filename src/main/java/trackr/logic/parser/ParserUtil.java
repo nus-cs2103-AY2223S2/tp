@@ -36,6 +36,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_TAB = "No such tab.";
+    public static final String MESSAGE_INVALID_CRITERIA = "Criteria given must be one of the types: "
+            + "`Time_added`, `Deadline`, `Status`, `Name`, `Status_and_Deadline` or blank";
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -150,7 +152,7 @@ public class ParserUtil {
         try {
             return CriteriaEnum.valueOf(trimmedCriteria);
         } catch (IllegalArgumentException e) {
-            throw new ParseException(CriteriaEnum.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_CRITERIA);
         }
     }
 

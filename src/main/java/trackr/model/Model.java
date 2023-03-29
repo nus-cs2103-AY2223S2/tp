@@ -98,14 +98,9 @@ public interface Model {
     ObservableList<Task> getFilteredTaskList();
 
     /**
-     * Returns an unmodifiable view of the sorted task list
+     * Sort the filtered task list
      */
-    ObservableList<Task> getSortedTaskList();
-
-    /**
-     * Returns an unmodifiable view of the sorted task list
-     */
-    void updateSortedTaskList(Comparator<Task> comparator);
+    void sortFilteredTaskList(Comparator<Task> comparator);
 
     // ================================================= Order =================================================
 

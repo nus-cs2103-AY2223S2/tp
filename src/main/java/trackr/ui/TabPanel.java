@@ -119,10 +119,4 @@ public class TabPanel extends UiPart<Region> {
     public OrderListPanel getOrderListPanel() {
         return orderListPanel;
     }
-
-    public void showSortedTasks() {
-        homeView.showSortedTasks();
-        sortedTaskListPanel = new TaskListPanel(logic.getSortedTaskList());
-        taskListPanelPlaceholder.getChildren().add(sortedTaskListPanel.getRoot());
-    }
 }

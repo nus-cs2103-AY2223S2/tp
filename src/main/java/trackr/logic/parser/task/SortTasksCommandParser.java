@@ -1,15 +1,16 @@
 package trackr.logic.parser.task;
 
+import static java.util.Objects.requireNonNull;
+import static trackr.logic.parser.CliSyntax.PREFIX_CRITERIA;
+
 import trackr.logic.commands.task.SortTasksCommand;
 import trackr.logic.parser.ArgumentMultimap;
 import trackr.logic.parser.ArgumentTokenizer;
+import trackr.logic.parser.CriteriaEnum;
 import trackr.logic.parser.Parser;
 import trackr.logic.parser.ParserUtil;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.task.SortTasksComparator;
-
-import static java.util.Objects.requireNonNull;
-import static trackr.logic.parser.CliSyntax.PREFIX_CRITERIA;
 
 /**
  * Parses input arguments and creates a new SortTasksCommand object
@@ -31,6 +32,9 @@ public class SortTasksCommandParser implements Parser<SortTasksCommand> {
         if (argMultimap.getValue(PREFIX_CRITERIA).isPresent()) {
             comparator.setCriteria(
                     ParserUtil.parseSortingCriteria(argMultimap.getValue(PREFIX_CRITERIA)));
+        } else {
+            //sort by both status and deadline by default
+            comparator.setCriteria(CriteriaEnum.STATUS_AND_DEADLINE);
         }
 
         return new SortTasksCommand(comparator);

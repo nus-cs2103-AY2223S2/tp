@@ -18,7 +18,7 @@ public class Task extends Item {
     private final TaskName taskName;
     private final TaskDeadline taskDeadline;
     private final TaskStatus taskStatus;
-    private final LocalDateTime dateAdded;
+    private final LocalDateTime timeAdded;
 
     /**
      * Every field must be present and not null.
@@ -29,7 +29,19 @@ public class Task extends Item {
         this.taskName = taskName;
         this.taskDeadline = taskDeadline;
         this.taskStatus = taskStatus;
-        dateAdded = LocalDateTime.now();
+        timeAdded = LocalDateTime.now();
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Task(TaskName taskName, TaskDeadline taskDeadline, TaskStatus taskStatus, LocalDateTime timeAdded) {
+        super(ModelEnum.TASK);
+        requireAllNonNull(taskName, taskDeadline, taskStatus);
+        this.taskName = taskName;
+        this.taskDeadline = taskDeadline;
+        this.taskStatus = taskStatus;
+        this.timeAdded = timeAdded;
     }
 
     public TaskName getTaskName() {
@@ -44,6 +56,10 @@ public class Task extends Item {
         return taskStatus;
     }
 
+    public LocalDateTime getTimeAdded() {
+        return timeAdded;
+    }
+
     /**
      * Compares 2 tasks using their dates added.
      * @param otherTask The task to compare with.
@@ -51,16 +67,16 @@ public class Task extends Item {
      *         Returns 1 if this task was added later than the other task
      *         Returns 0 if both tasks were added at the same time.
      */
-    public int compareDateAdded(Task otherTask) {
-        return dateAdded.compareTo(otherTask.dateAdded);
+    public int compareTimeAdded(Task otherTask) {
+        return timeAdded.compareTo(otherTask.timeAdded);
     }
 
     /**
-     * Compares 2 tasks using their deadlines.
+     * Compares 2 tasks using their names (ignoring case).
      * @param otherTask The task to compare with.
-     * @return -1 if this task has an earlier deadline than the other task.
-     *         Returns 1 if this task has a later deadline than the other task
-     *         Returns 0 if both tasks have the same deadlines.
+     * @return 1 if this name is lexicographically larger (ignoring case) than the other name,
+     *        -1 if this name is lexicographically smaller (ignoring case) than the other name,
+     *         0 if both names are lexicographically (ignoring case) equal.
      */
     public int compareName(Task otherTask) {
         return taskName.compare(otherTask.getTaskName());

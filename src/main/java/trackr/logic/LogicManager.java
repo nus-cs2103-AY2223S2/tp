@@ -78,11 +78,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Task> getSortedTaskList() {
-        return model.getSortedTaskList();
-    }
-
-    @Override
     public ReadOnlyOrderList getOrderList() {
         return model.getOrderList();
     }
