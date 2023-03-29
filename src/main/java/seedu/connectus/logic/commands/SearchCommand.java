@@ -45,6 +45,8 @@ public class SearchCommand extends Command {
             + PREFIX_MODULE + "CS"
             + PREFIX_EMAIL + "johndoe@example.com";
 
+    public static final String MESSAGE_NO_KEYWORDS = "At least one keyword must be provided.";
+
     private final FieldsContainKeywordsPredicate predicate;
 
     public SearchCommand(FieldsContainKeywordsPredicate predicate) {

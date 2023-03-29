@@ -69,16 +69,28 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         }
         Set<String> remarks = new HashSet<>();
         remarks.addAll(argMultimap.getAllValues(PREFIX_REMARK));
-        predicate.setRemarks(remarks);
+        if (remarks.size() > 0) {
+            predicate.setRemarks(remarks);
+        }
         Set<String> modules = new HashSet<>();
         modules.addAll(argMultimap.getAllValues(PREFIX_MODULE));
-        predicate.setModules(modules);
+        if (remarks.size() > 0) {
+            predicate.setModules(modules);
+        }
         Set<String> ccas = new HashSet<>();
         ccas.addAll(argMultimap.getAllValues(PREFIX_CCA));
-        predicate.setCcas(ccas);
+        if (remarks.size() > 0) {
+            predicate.setCcas(ccas);
+        }
         Set<String> ccaPositions = new HashSet<>();
         ccaPositions.addAll(argMultimap.getAllValues(PREFIX_CCA_POSITION));
-        predicate.setCcaPositions(ccaPositions);
+        if (remarks.size() > 0) {
+            predicate.setCcaPositions(ccaPositions);
+        }
+
+        if (!predicate.isFieldKeywordPresent()) {
+            throw new ParseException(SearchCommand.MESSAGE_NO_KEYWORDS);
+        }
 
         return new SearchCommand(predicate);
     }

@@ -52,11 +52,11 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
     }
 
     /**
-     * Returns true if at least one field is edited.
+     * Returns true if at least one field has keyword given.
      */
     public boolean isFieldKeywordPresent() {
         return CollectionUtil.isAnyNonNull(name, phone, email, address, instagram, telegram, whatsapp, remarks,
-                birthday, modules, ccas, ccaPositions);
+                birthday, modules, ccas, ccaPositions, keywords);
     }
 
     public void setKeywords(List<String> keywords) {
@@ -235,6 +235,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
                 && getInstagram().equals(e.getInstagram());
     }
 
+    //todo ig, tele..., exeption on empty target
     @Override
     public boolean test(Person person) {
         if (getName().isPresent()) {
