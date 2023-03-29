@@ -183,18 +183,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Event getEvent(Index index) {
+        return this.userData.getEvent(index);
+    }
+
+    @Override
+    public void setEvent(Event oldEvent, Event newEvent) {
+        this.userData.setEvent(oldEvent, newEvent);
+    }
+
+    @Override
     public void editPersonForAllEvents(Person personToEdit, Person editedPerson) {
         this.userData.editPersonForAllEvents(personToEdit, editedPerson);
-    }
-
-    @Override
-    public void tagPersonToEvent(Index index, Person p) {
-        this.userData.tagPersonToEvent(index, p);
-    }
-
-    @Override
-    public void untagPersonFromEvent(Index index, Person p) {
-        this.userData.untagPersonFromEvent(index, p);
     }
 
     @Override

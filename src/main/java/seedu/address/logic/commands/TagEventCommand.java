@@ -6,11 +6,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TO_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_TO_TAG;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.OneTimeEvent;
+import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.event.fields.DateTime;
+import seedu.address.model.event.fields.Description;
+import seedu.address.model.event.fields.Recurrence;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Name;
 
@@ -65,9 +71,29 @@ public class TagEventCommand extends Command {
             return new CommandResult(String.format(MESSAGE_SUCCESS_2, this.personName, eventIndex.getOneBased()));
         }
 
-        model.tagPersonToEvent(eventIndex, taggingPerson);
-
+        Event eventToReplace = model.getEvent(eventIndex);
+        Event newEvent = this.makeNewEvent(eventToReplace, taggingPerson);
+        model.setEvent(eventToReplace, newEvent);
         return new CommandResult(String.format(MESSAGE_SUCCESS, this.personName, eventIndex.getOneBased()));
+    }
+
+    private Event makeNewEvent(Event eventToReplace, Person taggingPerson) {
+        assert eventToReplace != null;
+
+        Description description = eventToReplace.getDescription();
+        DateTime startDateTime = eventToReplace.getStartDateTime();
+        DateTime endDateTime = eventToReplace.getEndDateTime();
+        Recurrence recurrence = eventToReplace.getRecurrence();
+
+        Set<Person> people = eventToReplace.getTaggedPeople();
+
+        people.add(taggingPerson);
+
+        if (recurrence.isRecurring()) {
+            return new RecurringEvent(description, startDateTime, endDateTime, recurrence, people);
+        } else {
+            return new OneTimeEvent(description, startDateTime, endDateTime, people);
+        }
     }
 
     @Override

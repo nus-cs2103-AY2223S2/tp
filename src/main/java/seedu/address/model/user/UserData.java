@@ -71,16 +71,16 @@ public class UserData implements ReadOnlyUserData {
         return this.user.getValue().hasEvent(e);
     }
 
+    public Event getEvent(Index index) {
+        return this.user.getValue().getEvent(index);
+    }
+
+    public void setEvent(Event oldEvent, Event newEvent) {
+        this.user.getValue().setEvent(oldEvent, newEvent);
+    }
+
     public void deletePersonFromAllEvents(Person target) {
         this.user.getValue().deletePersonFromAllEvents(target);
-    }
-
-    public void tagPersonToEvent(Index index, Person p) {
-        this.user.getValue().tagPersonToEvent(index, p);
-    }
-
-    public void untagPersonFromEvent(Index index, Person p) {
-        this.user.getValue().untagPersonFromEvent(index, p);
     }
 
     public boolean isPersonTaggedToEvent(Index index, Person p) {
