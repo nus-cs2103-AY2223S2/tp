@@ -36,9 +36,6 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label commandList;
 
-    @FXML
-    private Label descriptionList;
-
     /**
      * Creates a new HelpWindow.
      *
@@ -51,19 +48,10 @@ public class HelpWindow extends UiPart<Stage> {
                         requireNonNull(
                                 HelpWindow.class
                                         .getClassLoader()
-                                        .getResourceAsStream("data/commandlist.txt")));
+                                        .getResourceAsStream("data/commandsummary.txt")));
         commandListString = new BufferedReader(commandListFile).lines().collect(Collectors.joining("\n"));
-        InputStreamReader descriptionListFile =
-                new InputStreamReader(
-                        requireNonNull(
-                                HelpWindow.class
-                                        .getClassLoader()
-                                        .getResourceAsStream("data/descriptionlist.txt")));
-        descriptionListString = new BufferedReader(
-                descriptionListFile).lines().collect(Collectors.joining("\n"));
         helpMessage.setText(HELP_MESSAGE);
         commandList.setText(commandListString);
-        descriptionList.setText(descriptionListString);
     }
 
     /**
