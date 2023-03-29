@@ -87,19 +87,31 @@ Examples:
 
 ### Mark delivery : `mark`
 
-Marks a delivery with a status.
+Marks a delivery with a status. Marking a delivery as failed will increase its number of delivery attempts. **Deliveries with 3 delivery attempts will automatically marked as return.** 
+
+Constraints:
+* Deliveries with **done** or **return** status _**cannot have their statuses changed**_.
 
 Format: `mark INDEX s/STATUS`
 
 * Edits the delivery at the specified `INDEX`. The index refers to the index number shown in the displayed delivery list. The index **must be a positive integer** 1, 2, 3, …​
 * `STATUS` must be of the following
+  * `pending` for pending delivery
   * `otw` for in progress delivery
-  * `fail` for failed delivery
+  * `failed` for failed delivery
   * `done` for done delivery
+  * `return` for return delivery (i.e used when recipient rejects delivery)
+
+![delivery statuses example](images/delivery_statuses.png)
+1. `RETURN` Delivery
+2. `PENDING` Delivery
+3. `OTW` Delivery
+4. `FAILED` Delivery
+5. `DONE` Delivery
 
 Examples:
 * `mark 1 s/otw` Marks the 1st delivery as in progress.
-* `mark 1 s/fail` Marks the 1st delivery as failed.
+* `mark 1 s/failed` Marks the 1st delivery as failed.
 * `mark 1 s/done` Marks the 1st delivery as done.
 
 ### Mark parcel: `mark_pc`
@@ -150,7 +162,7 @@ Format: `list`
 
 Sorts all deliveries by their delivery status in ascending order.
 
-Ordering: `PENDING` < `OTW` < `DONE` < `FAILED`
+Ordering: `PENDING` < `OTW` < `DONE` < `FAILED` < `RETURN`
 
 Format: `sort`
 
