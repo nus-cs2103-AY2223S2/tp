@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -83,18 +84,24 @@ class JsonSerializableAddressBook {
             }
             addressBook.addDoctor(doctor);
 
-            // Add Patients of the doctor into single patient list in AddressBook
-            if (doctor.hasPatients()) {
-                doctor.getPatients().forEach((Patient patient) -> {
-                    // Assign doctor to patient
-                    // This is done here as doctorsAssigned is not stored
-                    // within each patient json object
-                    patient.assignDoctor(doctor);
+            for (Patient patient : doctor.getPatients()) {
+                if (!addressBook.hasPatient(patient)) {
+                    addressBook.addPatient(patient);
+                }
+            }
+        }
 
-                    if (!addressBook.hasPatient(patient)) {
-                        addressBook.addPatient(patient);
-                    }
-                });
+        // Assign patients to doctors
+        ObservableList<Patient> addressBookPatientList = addressBook.getPatientList();
+        ObservableList<Doctor> addressBookDoctorList = addressBook.getDoctorList();
+        for (Patient patient : addressBookPatientList) {
+            for (Doctor doctor : addressBookDoctorList) {
+                // Assign doctor to patient
+                // This is done here as doctorsAssigned is not stored
+                // within each patient json object
+                if (doctor.hasPatient(patient)) {
+                    patient.assignDoctor(doctor);
+                }
             }
         }
 
