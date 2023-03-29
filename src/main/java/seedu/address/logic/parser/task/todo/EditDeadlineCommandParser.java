@@ -24,6 +24,7 @@ public class EditDeadlineCommandParser implements Parser<EditDeadlineCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditDeadlineCommand
      * and returns an EditDeadlineCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditDeadlineCommand parse(String args) throws ParseException {

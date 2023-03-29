@@ -16,7 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
 import seedu.address.storage.Storage;
@@ -50,11 +50,11 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            if (commandResult.getType() == TodoType.NONE) {
+            if (commandResult.getType() == TaskType.NONE) {
                 storage.saveAddressBook(model.getAddressBook());
-            } else if (commandResult.getType() == TodoType.TODO) {
+            } else if (commandResult.getType() == TaskType.TODO) {
                 storage.saveTodoList(model.getTodoList());
-            } else if (commandResult.getType() == TodoType.NOTE) {
+            } else if (commandResult.getType() == TaskType.NOTE) {
                 storage.saveNoteList(model.getNoteList());
             }
 

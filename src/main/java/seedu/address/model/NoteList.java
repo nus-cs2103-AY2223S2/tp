@@ -9,8 +9,8 @@ import seedu.address.model.task.Note;
 import seedu.address.model.task.UniqueNoteList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the note-list level
+ * Duplicates are not allowed (by .isSameNote comparison)
  */
 public class NoteList implements ReadOnlyNote {
 
@@ -21,7 +21,7 @@ public class NoteList implements ReadOnlyNote {
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
      * NoteList that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+     * among constructors.
      */
     {
         notes = new UniqueNoteList();
@@ -30,7 +30,7 @@ public class NoteList implements ReadOnlyNote {
     public NoteList() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a NoteList using the Notes in the {@code toBeCopied}
      */
     public NoteList(ReadOnlyNote toBeCopied) {
         this();
@@ -38,15 +38,15 @@ public class NoteList implements ReadOnlyNote {
     }
 
     /**
-     * Replaces the contents of the Note list with {@code notes}.
-     * {@code persons} must not contain duplicate notes.
+     * Replaces the contents of the note list with {@code notes}.
+     * {@code notes} must not contain duplicate notes.
      */
     public void setNote(List<Note> notes) {
         this.notes.setNotes(notes);
     }
 
     /**
-     * Replaces the given Note {@code target} with {@code editedNote}.
+     * Replaces the given note {@code target} with {@code editedNote}.
      * {@code target} must exist in the tracker.
      * The identity of {@code editedNote} must not be the same as another existing Note in the tracker.
      */
@@ -57,7 +57,7 @@ public class NoteList implements ReadOnlyNote {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code NoteList} with {@code newData}.
      */
     public void resetData(ReadOnlyNote newData) {
         requireNonNull(newData);
@@ -65,7 +65,6 @@ public class NoteList implements ReadOnlyNote {
         setNote(newData.getNoteList());
     }
 
-    /// application-level operations
     /**
      * Returns true if a note with the same identity
      * as {@code note} exists in the tracker.
@@ -76,34 +75,32 @@ public class NoteList implements ReadOnlyNote {
     }
 
     /**
-     * Adds a Note to the tracker.
-     * The Note must not already exist in the tracker.
+     * Adds a note to the tracker.
+     * The note must not already exist in the tracker.
      */
     public void addNote(Note note) {
         notes.addNote(note);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code NoteList}.
+     * {@code key} must exist in the note list.
      */
     public void removeNote(Note key) {
         notes.remove(key);
     }
 
     /**
-     * Clear Note list.
+     * Clear note list.
      */
     public void clearNote(ReadOnlyNote newData) {
         setNote(newData.getNoteList());
     }
 
     //// util methods
-
     @Override
     public String toString() {
         return notes.asUnmodifiableObservableList().size() + " notes";
-        // Note: refine later
     }
 
     @Override
