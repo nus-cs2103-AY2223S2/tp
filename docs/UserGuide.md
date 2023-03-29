@@ -289,6 +289,12 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MyLib home folder.
 
+**Q**: Do I need an internet connection to run MyLib?
+**A**: No, MyLib can boot up and run all functionalities without an internet connection.
+
+**Q**: Can I use MyLib on my mobile device?
+**A**: Unfortunately, MyLib is only designed to run on your desktop/laptop such that you can use the command line interface.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
