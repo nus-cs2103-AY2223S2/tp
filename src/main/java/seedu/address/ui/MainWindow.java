@@ -430,6 +430,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleDeliveryJobSystemCreateAction() {
+        if (addDeliveryJobWindow != null) {
+            addDeliveryJobWindow.getRoot().close();
+        }
         addDeliveryJobWindow = new AddDeliveryJobWindow(new Stage(), logic);
         addDeliveryJobWindow.show();
         addDeliveryJobWindow.fillInnerParts();

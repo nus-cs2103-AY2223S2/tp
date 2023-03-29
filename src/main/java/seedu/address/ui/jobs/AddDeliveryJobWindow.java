@@ -372,6 +372,12 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
             }
         }
 
+        if (inputEarning.getText().isEmpty()) {
+            inputEarning.getStyleClass().add("error-input");
+            outputError("Earning cannot be empty.");
+            flag = false;
+        }
+
         // any has value
         if (inputDeliveryDate.getValue() != null || inputDeliverySlot.getValue() != null) {
             boolean dateFilled = false;
