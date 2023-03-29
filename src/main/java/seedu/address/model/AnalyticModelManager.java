@@ -80,15 +80,20 @@ public class AnalyticModelManager implements AnalyticModel {
     @Override
     public DoubleProperty getMonthlySpent() {
         double total = 0;
+        int currentYear = currentDate.getYear();
         int currentMonth = currentDate.getMonthValue();
+        LocalDate startOfMonth = LocalDate.of(currentYear, currentMonth, 1);
+        LocalDate endOfMonth = startOfMonth.with(TemporalAdjusters.lastDayOfMonth());
         for (Expense expense: allExpenses) {
-            if (expense.getDate().getMonthValue() == currentMonth) {
+            LocalDate expenseDate = expense.getDate();
+            if (expenseDate.isAfter(startOfMonth) && expenseDate.isBefore(endOfMonth)) {
                 total += expense.getAmount();
             }
         }
         monthlySpent.set(total);
         return monthlySpent;
     }
+
 
     /**
      * Calculates remaining budget for the current month
@@ -114,7 +119,7 @@ public class AnalyticModelManager implements AnalyticModel {
         LocalDate weekEnd = currentDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
         for (Expense expense: allExpenses) {
             LocalDate expenseDate = expense.getDate();
-            if (!expenseDate.isBefore(weekStart) && !expenseDate.isAfter(weekEnd)) {
+            if (expenseDate.isAfter(weekStart) && expenseDate.isBefore(weekEnd)) {
                 total += expense.getAmount();
             }
         }

@@ -33,7 +33,10 @@
     "categoryName" : "test",
     "summary" : "test"
   }, {
-    "categoryName" : "hewwo",
+    "categoryName" : "1",
+    "summary" : ""
+  }, {
+    "categoryName" : "2",
     "summary" : ""
   } ],
   "expenses" : [ {
@@ -69,19 +72,19 @@
       "summary" : ""
     }
   }, {
-    "name" : "apple",
-    "amount" : "3.4",
+    "name" : "test1",
+    "amount" : "2.0",
     "date" : "2023-03-28",
     "category" : {
-      "categoryName" : "food",
+      "categoryName" : "1",
       "summary" : ""
     }
   }, {
-    "name" : "coffee",
-    "amount" : "5.0",
+    "name" : "test2",
+    "amount" : "2.0",
     "date" : "2023-03-28",
     "category" : {
-      "categoryName" : "food",
+      "categoryName" : "2",
       "summary" : ""
     }
   } ]

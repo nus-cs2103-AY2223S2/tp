@@ -14,6 +14,14 @@ public class ExpenseInCategoryPredicate implements Predicate<Expense> {
         this.category = category;
     }
 
+    /**
+     * Get Category that this {@code ExpenseInCategoryPredicate}
+     * @return
+     */
+    public Category getCategory() {
+        return this.category;
+    }
+
     @Override
     public boolean test(Expense expense) {
         return expense.getCategory().isSameCategory(this.category);
