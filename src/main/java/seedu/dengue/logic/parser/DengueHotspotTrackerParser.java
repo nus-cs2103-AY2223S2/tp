@@ -17,6 +17,7 @@ import seedu.dengue.logic.commands.HelpCommand;
 import seedu.dengue.logic.commands.ListCommand;
 import seedu.dengue.logic.commands.OverviewCommand;
 import seedu.dengue.logic.commands.RedoCommand;
+import seedu.dengue.logic.commands.SortCommand;
 import seedu.dengue.logic.commands.UndoCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 
@@ -80,6 +81,8 @@ public class DengueHotspotTrackerParser {
         case RedoCommand.COMMAND_WORD:
             return new RedoCommandParser().parse(arguments);
 
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

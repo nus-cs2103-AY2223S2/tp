@@ -118,4 +118,10 @@ public interface Model {
      * @throws CommandException if cannot redo further.
      */
     void redo() throws CommandException;
+
+    /**
+     * Sorts the list.
+     * @throws CommandException if sort type not specified.
+     */
+    void sort(String type) throws CommandException;
 }

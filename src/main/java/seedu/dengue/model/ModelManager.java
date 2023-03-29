@@ -194,6 +194,13 @@ public class ModelManager implements Model {
         this.overview = newOverview;
     }
 
+    //=========== Sort Stuff =============================================================
+
+    public void sort(String type) {
+    }
+
+    //=========== Misc Stuff =============================================================
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
