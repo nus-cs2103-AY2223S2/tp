@@ -35,7 +35,7 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
     - [3.1.3 Contact List](#313-contact-list)
   - [3.2 Key Definitions](#32-key-definitions)
     - [3.2.1 Command](#321-command)
-    - [3.2.2](#322-parameter)
+    - [3.2.2 Parameter](#322-parameter)
   - [3.3 Command Format](#33-command-format)
   - [3.4 How to Use the CLI](#34-how-to-use-the-cli)
 - [4. Features](#4-features)
@@ -86,18 +86,19 @@ Some special notations are used throughout this guide:
 
 - [Links in blue](#11-notation) will help you navigate through this document, or take you to places on the Internet.
 - **Bolded words** are phrases that you should pay attention to.
+- <u>Underlined words</u> can be found in the [Glossary](#9-glossary).
 
 ## 1.2 Navigation
 
-- If this is your **first time** using ConnectUS, head over to our [installation](#2-installation) guide for instructions on setting up ConnectUS, and our [quick start guide](#3-quick-start-guide) to begin using ConnectUS.
+- If this is your **first time** using ConnectUS, head over to our [Installation](#2-installation) guide for instructions on setting up ConnectUS, and our [Quick Start Guide](#3-quick-start-guide) to begin using ConnectUS.
 
-- If you need a **refresher on command syntax**, head over to the [command summary](#7-command-summary) for a reference table of commands, or the [prefix summary](#8-prefix-summary) for a reference table of prefixes.
+- If you need a **refresher on command syntax**, head over to [Command Summary](#7-command-summary) for a reference table of commands, or [Prefix Summary](#8-prefix-summary) for a reference table of prefixes.
 
 - For detailed instructions about the features we offer and how to use each command, please refer to [Features](#4-features).
 
 - For detailed information about the different information fields that you can assign to a contact, please refer to [Information Fields & Prefixes](#5-information-fields--prefixes).
 
-- Refer to the [glossary](#9-glossary) for definitions of terms used in ConnectUS.
+- Refer to the [Glossary](#9-glossary) for definitions of terms used in ConnectUS.
 
 [↑ Back to top of section](#1-using-this-guide)
 
@@ -107,11 +108,13 @@ Some special notations are used throughout this guide:
 
 # 2. Installation
 
+ConnectUS works on any mainstream OS as long as <u>Java `11`</u> installed.
+
 If you have yet to install ConnectUS, simply follow these steps to set it up:
 
 1. Ensure you have Java `11`(found [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)) installed in your computer.
 
-2. Download the latest `ConnectUS.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases). <br>
+2. Download the latest <u>`ConnectUS.jar`</u> from our [releases page on <u>GitHub</u>](https://github.com/AY2223S2-CS2103T-W15-1/tp/releases). <br>
    ![Latest](images/ConnectUSLatest.png)
 
 3. Copy the file to the folder you want to use as the _home folder_ for your ConnectUS app.<br>
@@ -219,7 +222,7 @@ To use ConnectUS, type the [command](#321-command) along with its [parameters](#
 
 ## 3.4 How to Use the CLI
 
-To use the [Command Line Interface (CLI)](), you can type a [command](#321-command) in the [Command Box](#311-command-box) and press Enter to execute it.e.g. typing **`help`** and pressing Enter will open the help window.<br>
+To use the Command Line Interface(CLI), you can type a [command](#321-command) in the [Command Box](#311-command-box) and press Enter to execute it.e.g. typing **`help`** and pressing Enter will open the help window.<br>
    ![Command Box](images/ConnectUSCommandBox.png) <br>
 
 To familiarise yourself with ConnectUS, let's try out the `add` command! The `add` command allows you to add a new contact into the [Contact List](#313-contact-list).
@@ -252,7 +255,7 @@ Suppose you have a friend whom you call Lineup Larry. His phone number is 912345
 The command you would enter into the command box would be:<br>
 `add n/Lineup Larry p/91234567 a/UTown Residences tg/lineuplarry mod/CS2103T mod/CS2101 cca/Art Club`
 
-If you have a new contact added in the Contact List as follows:<br>
+Go ahead and hit enter once you've entered the command. If you have a new contact added in the Contact List as follows:<br>
 ![NewContactTutorial](images/NewContactTutorial.png)
 
 Congratulations! You have successfully added your first contact!
@@ -720,9 +723,54 @@ There are four kinds of tags in ConnectUS.
 
 # 9. Glossary
 
->#A
-> test<br>
-> test
+### A
+> **Alphanumeric:**
+> Alphabet letters and numbers only.
+> 
+
+### C
+> **CCA:**
+> Co-curricular activities that students participate in.
+> 
+> **Command Line Interface (CLI):**
+> A text-based user interface used to run programs.
+> 
+> **Command:**
+> 
+> **ConnectUS.jar:**
+> `.jar` is short for Java ARchive. A file format that contains the executable Java application for ConnectUS.
+
+### G
+> **GitHub:**
+> A web-based version control and collaboration platform for software developers.
+> 
+> **Graphical User Interface (GUI):**
+> A form of user interface that allows users to interact with programs through graphical icons and audio indicators.
+> 
+
+### J
+>**Java `11`**: A feature release of the Java SE platform, used to run ConnectUS. The download link for this release can be found <a href="https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html">here</a>.
+> 
+> **JavaFX:**
+> A Java library used for creating and delivering desktop applications.
+> 
+> **JSON:**
+> Short for JavaScript Object Notation. A standard text-based format for representing structured data based on JavaScript object syntax. *Basically, it stores your data.*
+> 
+> 
+
+### N
+> **NUS:**
+> Short for the National University of Singapore. 
+> 
+
+### S
+> **School of Computing:**
+> Also known as SoC. A computing school in the National University of Singapore.
+
+### U
+> **UTown Residence:**
+> Also known as UTR. On-campus accommodation for students at the National University of Singapore.
 
 
 [↑ Back to top](#table-of-contents)
