@@ -15,7 +15,7 @@ public class PersonStats {
 
     /**
      * Constructs a {@code PersonStats}.
-     * 
+     *
      * @param person Person in the address book.
      * @param tasksAssigned Number of tasks assigned.
      * @param tasksCompleted Number of tasks completed.
