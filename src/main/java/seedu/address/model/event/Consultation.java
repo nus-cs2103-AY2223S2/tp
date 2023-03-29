@@ -1,6 +1,6 @@
 package seedu.address.model.event;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,12 +21,12 @@ public class Consultation extends Event {
         super(name, students);
     }
 
-    public Consultation(String name, LocalDate eventDate, List<Person> students) {
+    public Consultation(String name, LocalDateTime eventDate, List<Person> students) {
         super(name, eventDate, students);
     }
 
     //Unique constructor for consultation compared to lab and tutorial as file attachments not needed
-    public Consultation(String name, List<Person> students, List<Note> notes, LocalDate eventDate) {
+    public Consultation(String name, List<Person> students, List<Note> notes, LocalDateTime eventDate) {
         super(name, students, notes, eventDate);
     }
 
@@ -90,9 +90,9 @@ public class Consultation extends Event {
     /**
      * Gets the date of the event
      *
-     * @return localdate
+     * @return LocalDateTime
      */
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return super.getDate();
     }
 
@@ -101,7 +101,7 @@ public class Consultation extends Event {
      *
      * @param date
      */
-    public void changeDate(LocalDate date) {
+    public void changeDate(LocalDateTime date) {
         super.changeDate(date);
     }
 
@@ -114,6 +114,7 @@ public class Consultation extends Event {
     public void addNote(Note note) {
         super.addNote(note);
     }
+
 
     public int countNotes() {
         return super.countNotes();

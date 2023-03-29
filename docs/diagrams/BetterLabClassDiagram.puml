@@ -15,7 +15,7 @@ UniqueLabList -right-> Lab
 Lab -up-|> Event
 
 Lab *--> "1" Name
-Lab *--> "1" LocalDate
+Lab *--> "1" LocalDateTime
 Lab *--> "*" Note
 Lab *--> "*" Person
 

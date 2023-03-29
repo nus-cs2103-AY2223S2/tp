@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_EVEN
 import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_SUCCESS;
 import static seedu.address.logic.commands.AddStudentToEventCommand.TUTORIAL_STRING;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccessDiffModel;
 import static seedu.address.testutil.TypicalEvents.SAMPLE_CONSULTATION;
 import static seedu.address.testutil.TypicalEvents.SAMPLE_LAB;
 import static seedu.address.testutil.TypicalEvents.SAMPLE_TUTORIAL;
@@ -49,17 +49,17 @@ class AddStudentToEventCommandTest {
         supposedlySameModel.addStudentToTutorial(first, SAMPLE_TUTORIAL.getName());
 
         modifiedModel.addStudentToTutorial(first, SAMPLE_TUTORIAL.getName());
-        assertCommandSuccess(new AddStudentToEventCommand(
+        assertCommandSuccessDiffModel(new AddStudentToEventCommand(
                 first, SAMPLE_TUTORIAL.getName(), TUTORIAL_STRING),
                 model, new CommandResult(MESSAGE_SUCCESS), modifiedModel);
 
         modifiedModel.addStudentToLab(first, SAMPLE_LAB.getName());
-        assertCommandSuccess(new AddStudentToEventCommand(
+        assertCommandSuccessDiffModel(new AddStudentToEventCommand(
                         first, SAMPLE_LAB.getName(), LAB_STRING),
                 model, new CommandResult(MESSAGE_SUCCESS), modifiedModel);
 
         modifiedModel.addStudentToConsultation(first, SAMPLE_CONSULTATION.getName());
-        assertCommandSuccess(new AddStudentToEventCommand(
+        assertCommandSuccessDiffModel(new AddStudentToEventCommand(
                         first, SAMPLE_CONSULTATION.getName(), CONSULTATION_STRING),
                 model, new CommandResult(MESSAGE_SUCCESS), modifiedModel);
 

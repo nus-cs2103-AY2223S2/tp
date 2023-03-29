@@ -5,7 +5,7 @@ import static seedu.address.logic.commands.AddConsultationCommand.MESSAGE_DUPLIC
 import static seedu.address.logic.commands.AddLabCommand.MESSAGE_DUPLICATE_LAB;
 import static seedu.address.logic.commands.AddTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -80,11 +80,11 @@ public class AddRecurCommand extends Command {
                 model.addConsultation((Consultation) newEvent);
             }
             newEvent = newEvent.copy();
-            LocalDate currDate = newEvent.getDate();
-            LocalDate newDate = currDate.plus(1, ChronoUnit.WEEKS);
+            LocalDateTime currDate = newEvent.getDate();
+            LocalDateTime newDate = currDate.plus(1, ChronoUnit.WEEKS);
             newEvent.changeDate(newDate);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, false, true);
     }
 
     @Override

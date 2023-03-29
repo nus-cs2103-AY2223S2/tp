@@ -9,6 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Address {
 
+    public static final String NULL_ADDRESS = "NO_ADDRESS";
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
     /*
@@ -18,6 +19,10 @@ public class Address {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
+
+    public Address() {
+        value = NULL_ADDRESS;
+    }
 
     /**
      * Constructs an {@code Address}.

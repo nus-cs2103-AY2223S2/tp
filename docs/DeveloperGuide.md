@@ -478,6 +478,12 @@ The following activity diagram summarizes what happens when a TA executes a note
 
 <img src="images/TrAcker-activity-diagrams/NoteActivityDiagram.png" width="550" />
 
+#### Usage Example
+
+Notes can be added, edited, or deleted from events through `add-note`, `edit-note`, and `rm-note` commands.
+Notes are only associated with events. Whenever an event is deleted, its linked notes are erased as well. And when a new event 
+is created, empty note list will be created and up to 20 notes can be added to a single event (not counting deleted ones).
+
 #### Design considerations:
 
 **Aspect: How CRUD notes executes:**

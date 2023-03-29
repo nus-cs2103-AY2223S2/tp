@@ -6,6 +6,7 @@ import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
 
+
 /**
  * Unmodifiable view of an address book
  */

@@ -1,7 +1,7 @@
 package seedu.address.model.event;
 
 import java.io.File;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,15 +22,15 @@ public class Lab extends Event {
         super(name, students);
     }
 
-    public Lab(String name, LocalDate eventDate, List<Person> students) {
+    public Lab(String name, LocalDateTime eventDate, List<Person> students) {
         super(name, eventDate, students);
     }
 
-    public Lab(String name, LocalDate eventDate, List<Person> students, List<File> attachments) {
+    public Lab(String name, LocalDateTime eventDate, List<Person> students, List<File> attachments) {
         super(name, eventDate, students, attachments);
     }
 
-    public Lab(String name, LocalDate eventDate, List<Person> students, List<File> attachments,
+    public Lab(String name, LocalDateTime eventDate, List<Person> students, List<File> attachments,
                     List<Note> notes) {
         super(name, eventDate, students, attachments, notes);
     }
@@ -95,9 +95,9 @@ public class Lab extends Event {
     /**
      * Gets the date of the event
      *
-     * @return localdate
+     * @return LocalDateTime
      */
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return super.getDate();
     }
 
@@ -106,7 +106,7 @@ public class Lab extends Event {
      *
      * @param date
      */
-    public void changeDate(LocalDate date) {
+    public void changeDate(LocalDateTime date) {
         super.changeDate(date);
     }
 
@@ -115,7 +115,7 @@ public class Lab extends Event {
     }
 
     public int countAttachments() {
-        return super.countNotes();
+        return super.countAttachments();
     }
 
     public void addAttachment(File file) {

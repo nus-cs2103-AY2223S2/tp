@@ -3,18 +3,28 @@ package seedu.address.ui;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.Note;
 
 /**
  * Informs the user on the number of undone tasks
@@ -29,7 +39,13 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private HBox studentProfiles;
     @FXML
+    private VBox noteBox;
+    @FXML
+    private BorderPane borderPane;
+    @FXML
     private HBox details;
+    @FXML
+    private HBox noteDetails;
     @FXML
     private Label name;
     @FXML
@@ -37,17 +53,25 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label date;
     @FXML
-    private Label notes;
-    @FXML
     private Label attachments;
-    @FXML
-    private Label progressBar;
     @FXML
     private Label attendance;
     @FXML
+    private Text noteText;
+    @FXML
+    private Label progressBarCount;
+    @FXML
     private ImageView attachmentLogo;
     @FXML
+    private ImageView noteLogo;
+    @FXML
+    private ScrollPane scrollPane;
+    @FXML
     private FlowPane tags;
+    @FXML
+    private ProgressBar progressBar;
+    @FXML
+    private Line line;
 
     /**
      * Adds an event with a unique index
@@ -57,40 +81,64 @@ public class EventCard extends UiPart<Region> {
     public EventCard(Event event, int displayedIndex) {
         super(FXML);
         this.event = event;
-
+        noteDetails.setVisible(false);
+        line.setVisible(false);
+        noteText.setVisible(false);
+        noteDetails.managedProperty().bind(noteDetails.visibleProperty());
         id.setText(displayedIndex + ". ");
         name.setText(event.getName());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         date.setText(event.getDate().format(formatter));
-        //notes.setText("" + event.countNotes());
-
         GuiSettings guiSettings = new GuiSettings();
         int size = guiSettings.getEventIconSize();
 
         //Set attachment icon
-        if (event.getAttachments().size() > 0) {
-            Image attachmentIcon = new Image(Objects.requireNonNull(this.getClass()
-                    .getResourceAsStream(guiSettings.getAttachmentIcon())));
-            attachmentLogo.setImage(attachmentIcon);
-            attachmentLogo.setFitWidth(size);
-            attachmentLogo.setFitHeight(size);
+        if (event.countAttachments() > 0) {
+            setImageIcon(attachmentLogo, guiSettings.getAttachmentIcon(), size);
         } else {
-            Image attachmentIcon = new Image(Objects.requireNonNull(this.getClass()
-                    .getResourceAsStream(guiSettings.getNoAttachmentIcon())));
-            attachmentLogo.setImage(attachmentIcon);
-            attachmentLogo.setFitWidth(size);
-            attachmentLogo.setFitHeight(size);
+            setImageIcon(attachmentLogo, guiSettings.getNoAttachmentIcon(), size);
+        }
+
+        List<String> noteStrs;
+        int startIndex = 1;
+        if (event.countNotes() > 0) {
+            setImageIcon(noteLogo, guiSettings.getNoteIcon(), size);
+            noteStrs = event.getNotes().stream().map(Note::toString).collect(Collectors.toList());
+        } else {
+            setImageIcon(noteLogo, guiSettings.getNoNoteIcon(), size);
+            noteStrs = new ArrayList<>();
+            noteStrs.add(new Note().toString());
+        }
+        for (int i = 1; i <= noteStrs.size(); i++) {
+            String text = noteStrs.get(i - 1);
+            String stripContent = text;
+            if (text.split("\n").length > 1) {
+                stripContent = text.split("\n")[1];
+            }
+            Label label = new Label(i + ". " + stripContent);
+            noteBox.getChildren().add(label);
         }
 
         //set list of student profiles at top right
-        for (String studentProfile: event.getStudentProfiles()) {
-            ImageView profile = new ImageView();
-            Image newImage = new Image(Objects.requireNonNull(this.getClass()
-                    .getResourceAsStream(studentProfile)));
-            profile.setImage(newImage);
-            profile.setFitWidth(size);
-            profile.setFitHeight(size);
-            studentProfiles.getChildren().addAll(profile);
+        for (int i = 0; i < event.countStudents(); i++) {
+            //Ensures only 5 student profile icons are displayed
+            if (i == 4) {
+                break;
+            }
+            String studentProfile = event.getStudentProfiles().get(i);
+            ImageView newImageView = setImageIcon(studentProfile, size);
+            studentProfiles.getChildren().addAll(newImageView);
+        }
+
+        //Ensures plus icon is rendered if more than 5 students are present
+        if (event.countStudents() > 5) {
+            ImageView newImageView = setImageIcon(guiSettings.getMorePhoto(), size);
+            studentProfiles.getChildren().addAll(newImageView);
+        }
+
+        //Update progress bar with a maximum of 20 students
+        if (event.countStudents() > 0) {
+            progressBar.setProgress((double) event.countStudents() / 20);
         }
 
         //bind a click to open the attachment (only works for single attachment for now
@@ -106,6 +154,34 @@ public class EventCard extends UiPart<Region> {
                 click.consume();
             });
         }
+
+        if (event.countNotes() > 0) {
+            cardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
+                noteText.setVisible(!noteDetails.isVisible());
+                line.setVisible(!noteDetails.isVisible());
+                noteDetails.setVisible(!noteDetails.isVisible());
+                noteDetails.managedProperty().bind(noteDetails.visibleProperty());
+                click.consume();
+            });
+        }
+    }
+
+    private void setImageIcon(ImageView imageView, String filePath, int size) {
+        Image newImage = new Image(Objects.requireNonNull(this.getClass()
+                .getResourceAsStream(filePath)));
+        imageView.setImage(newImage);
+        imageView.setFitWidth(size);
+        imageView.setFitHeight(size);
+    }
+
+    private ImageView setImageIcon(String filePath, int size) {
+        ImageView imageView = new ImageView();
+        Image newImage = new Image(Objects.requireNonNull(this.getClass()
+                .getResourceAsStream(filePath)));
+        imageView.setImage(newImage);
+        imageView.setFitWidth(size);
+        imageView.setFitHeight(size);
+        return imageView;
     }
 
     //Add more comparison in equals

@@ -41,7 +41,7 @@ public class AddTutorialCommand extends Command {
         }
 
         model.addTutorial(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, false, true);
     }
 
     @Override

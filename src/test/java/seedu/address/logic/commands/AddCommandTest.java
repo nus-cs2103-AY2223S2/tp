@@ -2,8 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -63,26 +62,23 @@ public class AddCommandTest {
         AddCommand addBobCommand = new AddCommand(bob);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertEquals(addAliceCommand, addAliceCommand);
 
         // same values -> returns true
         AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-
-        // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertEquals(addAliceCommand, addAliceCommandCopy);
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertNotEquals(null, addAliceCommand);
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different person but same email and same phone number -> returns true
+        assertEquals(addAliceCommand, addBobCommand);
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
-    private class ModelStub implements Model {
+    private static class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -264,12 +260,50 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasNote(Note note) {
-            return false;
+        public void updateSortAllPersonList(String metric, boolean increasingOrder) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addNote(Note note) {
+        public void addNoteToTutorial(Note note, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addNoteToLab(Note note, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addNoteToConsultation(Note note, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeNoteFromConsultation(Index index, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeNoteFromLab(Index index, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeNoteFromTutorial(Index index, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editNoteFromTutorial(Index index, Note note, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void editNoteFromLab(Index index, Note note, String nameOfEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void editNoteFromConsultation(Index index, Note note, String nameOfEvent) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -277,7 +311,7 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private static class ModelStubWithPerson extends ModelStub {
         private final Person person;
 
         ModelStubWithPerson(Person person) {
@@ -295,7 +329,7 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    private static class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
         final ArrayList<Tutorial> tutorialsAdded = new ArrayList<>();
         final ArrayList<Lab> labsAdded = new ArrayList<>();
