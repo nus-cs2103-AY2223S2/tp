@@ -20,10 +20,11 @@ InternBuddy runs using Java 11, and is available on the Windows, macOS and Linux
 5. Copy an internship to clipboard
 6. Find internships
 7. Get upcoming events and deadlines
-8. Delete an internship
-9. Clear all internships
-10. Get help
-11. Exit
+8. Delete internships by index
+9. Delete internships by fields
+10. Clear all internships
+11. Get help
+12. Exit
 
 In InternBuddy, internship data is auto-saved whenever changes are made.
 
