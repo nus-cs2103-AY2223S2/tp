@@ -18,10 +18,6 @@
     </icons>
     <scene>
         <Scene>
-            <stylesheets>
-                <URL value="@DarkTheme.css" />
-                <URL value="@Extensions.css" />
-            </stylesheets>
 
             <VBox>
                 <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
@@ -58,7 +54,7 @@
                <center>
                       <VBox styleClass="pane-with-border" BorderPane.alignment="CENTER">
          
-                               <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                               <StackPane fx:id="resultDisplayPlaceholder" VBox.vgrow="ALWAYS">
                              <padding>
                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                              </padding>
@@ -73,6 +69,10 @@
 
                 <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
+         <stylesheets>
+            <URL value="@DarkTheme.css" />
+            <URL value="@Extensions.css" />
+         </stylesheets>
         </Scene>
     </scene>
 </fx:root>

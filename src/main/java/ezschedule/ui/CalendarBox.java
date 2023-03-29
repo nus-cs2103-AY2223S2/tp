@@ -1,5 +1,6 @@
 package ezschedule.ui;
 
+import java.awt.*;
 import java.util.List;
 
 import ezschedule.model.event.Event;
@@ -72,7 +73,7 @@ public class CalendarBox extends UiPart<Region> {
 
     private void setEvents() {
         if (events != null) {
-            calendarEvents.setStyle("-fx-background-color:GRAY");
+            // calendarEvents.setStyle("-fx-background-color:GRAY");
             int firstEvent = 0;
             String eventName = getEventName(events.get(firstEvent));
             Text event = new Text(eventName);
