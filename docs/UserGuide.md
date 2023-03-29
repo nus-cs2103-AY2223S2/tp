@@ -77,7 +77,7 @@ You can click on any of the links below to navigate to the respective sections f
   e.g. `{p/PHONE_NUMBER e/EMAIL}` can be used as `p/91234567` or `e/john@example.com` but cannot be left blank.
 
 * Items with `…​` after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (omitted), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -90,7 +90,7 @@ You can click on any of the links below to navigate to the respective sections f
 
 </div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
@@ -159,13 +159,13 @@ Examples:
 * `edit_s 3 t/Supplies Flour e/mark@example.com` replaced the 3rd supplier's tags to `Supplies Flour` and edited its email to `mark@example.com`
 
 
-### Editing an order : `edit_order` or `edit_o`
+### Editing an order: `edit_order` or `edit_o`
 
 Edits an order that is present in the order list.
 
 Syntax: ` edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_PHONE_NUMBER] [e/CUSTOMER_EMAIL] [d/DEADLINE] [q/QUANTITY] [f/FOOD_NAME] [s/STATUS] [r/REMARKS]…​`
 
-* Edits the order at the specific INDEX. The index refers to the number shown in the orders list displayed. The index must be a positive integer 1, 2, 3, …
+* Edits the order at the specific `INDEX`. The index refers to the number shown in the orders list displayed. The index must be a positive integer 1, 2, 3, …
 * User is required to key in at least one of the optional fields.
 * Existing values will be replaced with the input values.
 * When editing remarks, the existing remarks of the order will be removed and replaced with the given remarks (editing of tags is not accumulative).
@@ -175,13 +175,13 @@ Examples:
 *  `edit_order 1 p/91234567 d/2023-05-05` edits the phone number of the 1st order to 91234567 and changes the deadline to be 2023-05-05
 *  `edit_o 3 q/20 r/` edits the quantity of food for the 3rd order to 20 and clears all remarks
 
-### Editing a task : `edit_task` or `edit_t`
+### Editing a task: `edit_task` or `edit_t`
 
 Edits a task present in the task list.
 
 Syntax: `edit_task INDEX [n/TASK_DESCRIPTION] [d/DEADLINE] [s/STATUS]`
 
-* Edits the task at the specific INDEX. The index refers to the number shown in the tasks list displayed. The index must be a positive integer 1, 2, 3, …
+* Edits the task at the specific `INDEX`. The index refers to the number shown in the tasks list displayed. The index must be a positive integer 1, 2, 3, …
 * User is required to key in at least one of the optional fields.
 * Existing values will be replaced with the input values.
 * When editing status, the existing status of the order will be removed and replaced with the given status.
@@ -190,7 +190,7 @@ Examples:
 * `edit_task 1 n/Get creamer` edits the 1st task description to be get creamer
 * `edit_t 3 d/2023-12-31 s/N` edits the 3rd task deadline to 2023-12-31 and sets the status as not done
 
-### Finding a supplier : `find_supplier` or `find_s`
+### Finding a supplier: `find_supplier` or `find_s`
 
 Find suppliers whose information matches with any of the given parameters.
 
@@ -208,7 +208,7 @@ Examples:
 * `find_task n/PHOON HUAT` returns supplier `Phoon Huat` and `John Phoon`
 * `find_s n/PHOON t/eggs t/flour` returns supplier `Phoon Huat` that supplies both `eggs` and `flour`
 
-### Finding a task : `find_task` or `find_t`
+### Finding a task: `find_task` or `find_t`
 
 Find tasks with information that matches with any of the given parameters.
 
@@ -277,7 +277,7 @@ Syntax: `tab t/TAB`
 Examples:
 * `tab t/HOME` switches the tab to the `Home` tab
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
