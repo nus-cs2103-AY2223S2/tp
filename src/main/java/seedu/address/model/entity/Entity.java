@@ -53,18 +53,6 @@ public abstract class Entity {
     }
 
     /**
-     * Returns true if both persons have the same name. This defines a weaker notion of equality between two persons.
-     */
-    public boolean isSamePerson(Entity otherEntity) {
-        if (otherEntity == this) {
-            return true;
-        }
-
-        return otherEntity != null
-            && otherEntity.getName().equals(getName());
-    }
-
-    /**
      * Returns true if both persons have the same identity and data fields. This defines a stronger notion of equality
      * between two persons.
      */
@@ -107,20 +95,5 @@ public abstract class Entity {
         return builder.toString();
     }
 
-    /**
-     * Checks if two entities are the same.
-     * @param other the entity to check against
-     * @return if the two entities are equal
-     */
-    public boolean isSameEntity(Entity other) {
-        if (other == this) {
-            return true;
-        }
-        boolean isBothCharacter = (other instanceof Character) && (this instanceof Character);
-        boolean isBothItem = (other instanceof Item) && (this instanceof Item);
-        boolean isBothMob = (other instanceof Mob) && (this instanceof Mob);
-        boolean hasSameName = other.getName().equals(this.getName());
-
-        return (isBothCharacter || isBothItem || isBothMob) && hasSameName;
-    }
+    public abstract boolean isSameEntity(Entity otherEntity);
 }
