@@ -30,6 +30,7 @@ public class InternshipBuilder {
         reviews = new HashSet<>();
         status = InternshipStatus.PENDING;
     }
+
     /**
      * Initializes the InternshipApplicationBuilder with the data of {@code internshipToCopy}.
      */
