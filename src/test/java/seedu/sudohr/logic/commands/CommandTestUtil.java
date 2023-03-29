@@ -108,7 +108,7 @@ public class CommandTestUtil {
     public static final String DATE_DESC_START_LEAVE_DATE = " " + PREFIX_START_DATE + "2022-03-02";
     public static final String DATE_DESC_END_LEAVE_DATE = " " + PREFIX_END_DATE + "2022-03-05";
     public static final String INVALID_DESC_END_LEAVE_DATE_BEFORE_START = " " + PREFIX_END_DATE + "2022-03-01";
-    public static final String INVALID_DESC_END_LEAVE_DATE_MORE_THAN_SEVEN = " " + PREFIX_END_DATE + "2022-03-08";
+    public static final String INVALID_DESC_END_LEAVE_DATE_MORE_THAN_SEVEN = " " + PREFIX_END_DATE + "2022-03-09";
     public static final String INVALID_START_DATE_DESC = " " + PREFIX_START_DATE + "12/23/24";
     public static final String INVALID_END_DATE_DESC = " " + PREFIX_END_DATE + "12/23/24";
 
