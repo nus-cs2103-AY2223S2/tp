@@ -55,7 +55,7 @@
                <Insets bottom="5.0" top="5.0" />
             </VBox.margin>
          </VBox>
-         <VBox layoutX="15.0" layoutY="141.0" style="-fx-border-color: black;">
+         <VBox fx:id="prescriptionBox" layoutX="15.0" layoutY="141.0" style="-fx-border-color: black;">
             <children>
                <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Prescription" textAlignment="CENTER" />
                <HBox>

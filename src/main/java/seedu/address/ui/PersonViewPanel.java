@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Patient;
@@ -40,6 +41,9 @@ public class PersonViewPanel extends UiPart<Region> {
 
     @FXML
     private Label medication;
+
+    @FXML
+    private VBox prescriptionBox;
 
     /**
      * Generates a Person View Panel.
@@ -83,7 +87,11 @@ public class PersonViewPanel extends UiPart<Region> {
     private void setMedicationDetails() {
         if (person.isPatient()) {
             Patient patient = (Patient) person;
+            prescriptionBox.setVisible(true);
             medication.setText(patient.getMedication().toString());
+        }
+        if (person.isDoctor()) {
+            prescriptionBox.setVisible(false);
         }
     }
 
