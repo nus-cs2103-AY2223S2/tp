@@ -197,7 +197,7 @@ public class CommandRecommendationEngine {
                 .stream()
                 .filter(command -> command.getPrefix().startsWith(prefix))
                 .findFirst()
-                .orElse(null);
+                .orElse(null); 
     }
 
     /**
