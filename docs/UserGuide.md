@@ -69,7 +69,7 @@ MedInfo is a **desktop app for managing patients, optimized for use via a Comman
 Shows a message explaining how to access the help page.
 
 <!-- INSERT SCREENSHOT PREVIEW HERE -->
-<!-- ![help message](images/helpMessage.png) -->
+![help message](images/helpMessage.png)
 
 Format: `help`
 
