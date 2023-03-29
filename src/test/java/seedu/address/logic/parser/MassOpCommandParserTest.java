@@ -41,23 +41,24 @@ public class MassOpCommandParserTest {
         assertParseSuccess(parser, "tag friends \n n/l \n \t p/95 a/[0-9]  \t", expectedMassOpCommand);
     }
 
-//    @Test
-//    public void parse_multiArgs_returnsFilterCommand() {
-//        // no leading and trailing whitespaces
-//        MassOpCommand expectedMassOpCommand =
-//                new MassOpCommand(new FieldsMatchRegexPredicate(
-//                        Arrays.asList(".*l.*", ".*Ge.*"),
-//                        Arrays.asList(".*95.*", ".*94.*"),
-//                        Collections.singletonList(".*@.*"),
-//                        Collections.singletonList(".*[0-9].*"),
-//                        new ArrayList<>(),
-//                        Arrays.asList(".*fri.*", ".*col.*")
-//                ), new Tag("friends"), true);
-//        assertParseSuccess(parser,
-//                "delete friends e/@ n/l p/95 t/fri a/[0-9] p/94 n/Ge t/col", expectedMassOpCommand);
-//
-//        // multiple whitespaces between keywords
-//        assertParseSuccess(parser,
-//                "delete friends \n e/@ n/l \n\n p/95\n \t t/fri a/[0-9] n/Ge p/94 \n t/col \t",
-//                expectedMassOpCommand);
+    @Test
+    // public void parse_multiArgs_returnsFilterCommand() {
+    // no leading and trailing whitespaces
+    //        MassOpCommand expectedMassOpCommand =
+    //                new MassOpCommand(new FieldsMatchRegexPredicate(
+    //                        Arrays.asList(".*l.*", ".*Ge.*"),
+    //                        Arrays.asList(".*95.*", ".*94.*"),
+    //                        Collections.singletonList(".*@.*"),
+    //                        Collections.singletonList(".*[0-9].*"),
+    //                        new ArrayList<>(),
+    //                        Arrays.asList(".*fri.*", ".*col.*")
+    //                ), new Tag("friends"), true);
+    //        assertParseSuccess(parser,
+    //                "delete friends e/@ n/l p/95 t/fri a/[0-9] p/94 n/Ge t/col", expectedMassOpCommand);
+    //
+    //        // multiple whitespaces between keywords
+    //        assertParseSuccess(parser,
+    //                "delete friends \n e/@ n/l \n\n p/95\n \t t/fri a/[0-9] n/Ge p/94 \n t/col \t",
+    //                expectedMassOpCommand);
+    //  }
 }
