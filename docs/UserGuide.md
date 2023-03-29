@@ -17,11 +17,11 @@ This user guide will help you use PowerCards with ease and integrate it into you
 
 ## How to use the User Guide
 
-* For a quick and easy way to **get started** with PowerCards, you can visit the [Quick Start](##quick-start) section.
-* To **understand the terms** we use in PowerCards, you can visit the [Glossary](##glossary) section.
-* To learn about the **features** that PowerCards provides and how to use them, you can visit the [Features](##features) section.
-* Having **issues**? Check out the [FAQ](##faq) section and see if you can find your solutions there!
-* Have a **question** for us or require our **assistance**? Feel free to [contact us](##contact-us), and we will do our best to assist you!
+* For a quick and easy way to **get started** with PowerCards, you can visit the [Quick Start](#quick-start) section.
+* To **understand the terms** we use in PowerCards, you can visit the [Glossary](#glossary) section.
+* To learn about the **features** that PowerCards provides and how to use them, you can visit the [Features](#features) section.
+* Having **issues**? Check out the [FAQ](#faq) section and see if you can find your solutions there!
+* Have a **question** for us or require our **assistance**? Feel free to [contact us](#contact-us), and we will do our best to assist you!
 
 **:bulb: Tip:**<br>
 * There's a lot of information in this guide, so it's a good idea to skim through the contents first. This will give you a better understanding on how PowerCards works. Then, you can dive into the sections that interest you the most. We hope this approach will make it easier for you to digest the content.
