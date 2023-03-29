@@ -28,7 +28,7 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
 * [FAQ](#faq)
 
 
-<div id="quick-start">Quick Start</div>
+<h1 id="quick-start">Quick Start</h1>
 ===
 
 1. Ensure you have Java `11` or above installed in your Computer.
