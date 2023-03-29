@@ -99,6 +99,10 @@ List of commands:
 --------------------------------------------------------------------------------------------------------------
 ## Navigation Guide
 
+Welcome to CLIpboard! Moving between pages is easy with our navigation tools.
+Simply use a combination of `select`, `back`, `session`, and `task` commands.
+If you need more information on how to use these commands, just refer to our handy navigation guide located below.
+
 ![image](./images/navigation.png)
 
 --------------------------------------------------------------------------------------------------------------
