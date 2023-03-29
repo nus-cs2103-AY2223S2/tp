@@ -1,16 +1,16 @@
 package seedu.recipe.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+import java.util.Set;
+
 import seedu.recipe.commons.core.Messages;
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.model.Model;
 import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Recipe;
-
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Given a list of recipe indexes, displays all the ingredients used within these recipes.

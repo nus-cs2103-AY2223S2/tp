@@ -1,13 +1,12 @@
 package seedu.recipe.logic.parser;
 
-import seedu.recipe.commons.core.index.Index;
-import seedu.recipe.logic.commands.DeleteCommand;
-import seedu.recipe.logic.commands.GroceriesCommand;
-import seedu.recipe.logic.parser.exceptions.ParseException;
+import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.List;
 
-import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.recipe.commons.core.index.Index;
+import seedu.recipe.logic.commands.GroceriesCommand;
+import seedu.recipe.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object

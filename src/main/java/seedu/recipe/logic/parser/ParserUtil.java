@@ -48,7 +48,7 @@ public class ParserUtil {
         final String[] indices = oneBasedIndices.split(",");
         final List<Index> indicesList = new ArrayList<>();
         for (String s: indices) {
-           indicesList.add(parseIndex(s));
+            indicesList.add(parseIndex(s));
         }
         return indicesList;
     }
