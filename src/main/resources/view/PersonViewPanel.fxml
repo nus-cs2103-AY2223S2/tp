@@ -10,7 +10,7 @@
 <VBox minWidth="380.0" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
 <VBox minWidth="340.0" prefWidth="340.0" HBox.hgrow="ALWAYS">
    <children>
-         <VBox minWidth="340.0" prefWidth="370.0" style="-fx-border-color: black; -fx-border-radius: 10;">
+         <VBox minWidth="340.0" prefWidth="370.0" style="-fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10; -fx-background-radius: 10;">
             <children>
             <Label id="name" fx:id="name" styleClass="cell_big_label" />
                <HBox>
@@ -48,8 +48,11 @@
             <padding>
                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </padding>
+            <VBox.margin>
+               <Insets bottom="5.0" />
+            </VBox.margin>
          </VBox>
-         <VBox minWidth="340.0" prefWidth="370.0" style="-fx-border-color: black; -fx-border-radius: 10;">
+         <VBox minWidth="340.0" prefWidth="370.0" style="-fx-border-color: white; -fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10;">
             <children>
                <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Appointments" textAlignment="CENTER">
                   <padding>
@@ -61,13 +64,13 @@
                   </VBox.margin></ListView>
             </children>
             <VBox.margin>
-               <Insets bottom="5.0" top="10.0" />
+               <Insets bottom="5.0" top="5.0" />
             </VBox.margin>
             <padding>
                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
             </padding>
          </VBox>
-         <VBox fx:id="prescriptionBox" layoutX="15.0" layoutY="141.0" minWidth="340.0" prefWidth="370.0" style="-fx-border-color: black; -fx-border-radius: 10;">
+         <VBox fx:id="prescriptionBox" layoutX="15.0" layoutY="141.0" minWidth="340.0" prefWidth="370.0" style="-fx-border-color: white; -fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10;">
             <children>
                <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Prescription" textAlignment="CENTER" />
                <ScrollPane>
@@ -86,6 +89,9 @@
             <padding>
                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
             </padding>
+            <VBox.margin>
+               <Insets bottom="5.0" top="5.0" />
+            </VBox.margin>
          </VBox>
 
    </children>
