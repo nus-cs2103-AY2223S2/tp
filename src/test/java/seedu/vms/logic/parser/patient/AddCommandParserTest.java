@@ -16,7 +16,6 @@ import static seedu.vms.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.vms.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.vms.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.vms.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_ALLERGY_GLUTEN;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_ALLERGY_SEAFOOD;
