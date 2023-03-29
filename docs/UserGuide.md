@@ -71,7 +71,7 @@ CookHub is a **desktop app for managing recipes, optimized for use via a Command
   - e.g. `add t/Corndogs d/Delicious i/Flour s/Mix batter` and `add t/Corndogs d/Awful d/Delicious i/Flour s/Mix batter` are the same as `d/` is only expected once
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-    - `list`, `exit`
+    - `list`, `exit`, `help`
 
 </div>
 
