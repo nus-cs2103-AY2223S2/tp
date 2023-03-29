@@ -129,10 +129,10 @@ public class DetailDisplay extends UiPart<Region> {
                 hideUploadButton();
                 hideGenerateButton();
                 hideViewDisplay();
-                filesManager.addFile();
-                if (filesManager.isHasError()) {
-                    medicalCondition.setText(filesManager.getErrorMessage());
-                    return;
+                try {
+                    filesManager.addFile();
+                } catch (RuntimeException e) {
+                    medicalCondition.setText("uploaded file is not qualified");
                 }
                 medicalCondition.setText("click the person gain to see updated file list");
             }
@@ -148,8 +148,16 @@ public class DetailDisplay extends UiPart<Region> {
                 hideUploadButton();
                 hideGenerateButton();
                 hideViewDisplay();
-                AddMcInfo mcInfo = new AddMcInfo(new Stage(), filesManager);
-                mcInfo.showAddAppointmentWindow();
+                AddMcInfo addMcInfo = new AddMcInfo(new Stage(), new FilesManager(person));
+                if (addMcInfo.getCounter() > 1) {
+                    medicalCondition.setText("Can not open multiple window for generate MC at the same time");
+                    return;
+                }
+                if (!addMcInfo.isShowing()) {
+                    addMcInfo.showAddAppointmentWindow();
+                } else {
+                    addMcInfo.requestFocus();
+                }
                 medicalCondition.setText("click the person again to see updated file list");
             }
         });
