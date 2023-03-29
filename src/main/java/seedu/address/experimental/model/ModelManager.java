@@ -14,7 +14,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.entity.Character;
-import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
@@ -115,20 +114,6 @@ public class ModelManager implements Model {
     @Override
     public void setReroll(ReadOnlyReroll reroll) {
         this.reroll.resetData(reroll);
-    }
-
-    @Override
-    public Predicate<Entity> getClassificationPredicate(Classification classification) {
-        requireNonNull(classification);
-        if (classification.isMob()) {
-            return PREDICATE_IS_MOB;
-        } else if (classification.isCharacter()) {
-            return PREDICATE_IS_CHARACTER;
-        } else if (classification.isItem()) {
-            return PREDICATE_IS_ITEM;
-        }
-        return PREDICATE_SHOW_ALL_ENTITIES;
-
     }
 
     @Override
