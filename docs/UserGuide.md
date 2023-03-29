@@ -1,3 +1,4 @@
+### Wingman User Guide
 Wingman is a resource management tool designed for airline managers that allows for efficient management of crew,
 flights, locations, pilots, and planes via a Command Line Interface (CLI) while still providing the benefits of a 
 Graphical User Interface (GUI). The functionalities include adding, deleting, checking, or associating these 
@@ -31,8 +32,6 @@ For the description of commands, `{resource}_index` (e.g. `plane_index`) acts a 
 plane's index would be inputted. The index of any resource can be found as the number next to it in the list. Please 
 refer to the image below for clarity.
 
-<img src = "images/UG-index-reference.png" width="2032" alt="Wingman home page">
-
 ## Getting Started
 
 You can get started with Wingman in just 3 simple steps:
@@ -45,7 +44,7 @@ You should now be in the Wingman application.
 A GUI similar to the below should appear in a few seconds. 
 Note how the app contains some sample data.
 
-<img src="images/WingmanUI.jpg" width="2032">
+<img src = "images/UG-index-reference.png" width="2032" alt="Wingman home page">
 
 If that is not the case, head over to our [FAQ](#faq) section to troubleshoot
 
