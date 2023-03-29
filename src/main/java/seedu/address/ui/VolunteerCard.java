@@ -56,6 +56,8 @@ public class VolunteerCard extends UiPart<Region> {
     @FXML
     private HBox availableDatesBox;
     @FXML
+    private HBox regionBox;
+    @FXML
     private FlowPane availableDates;
 
     /**
@@ -91,6 +93,9 @@ public class VolunteerCard extends UiPart<Region> {
         }
         if (volunteer.getMedicalTags().isEmpty()) {
             medicalTagsBox.getChildren().removeAll(medicalTagsBox.getChildren());
+        }
+        if (volunteer.getRegion().toString().isEmpty()) {
+            regionBox.getChildren().removeAll(region);
         }
         if (volunteer.getAvailableDates().isEmpty()) {
             availableDatesBox.getChildren().removeAll(availableDatesBox.getChildren());

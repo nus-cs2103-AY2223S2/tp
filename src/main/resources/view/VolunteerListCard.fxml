@@ -33,7 +33,7 @@
                 </HBox>
             </HBox>
 
-            <HBox spacing="5">
+            <HBox spacing="5" fx:id="regionBox">
                 <Label>
                     <graphic>
                         <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
