@@ -20,7 +20,7 @@ import seedu.sudohr.model.leave.LeaveDate;
  */
 
 public class ListEmployeeInLeaveCommand extends Command {
-    public static final String COMMAND_WORD = "listLeaveEmployee";
+    public static final String COMMAND_WORD = "leol";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists the employees part of the leave identified by the index number "

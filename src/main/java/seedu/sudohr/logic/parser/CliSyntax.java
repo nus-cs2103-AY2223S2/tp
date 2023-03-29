@@ -20,7 +20,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_DEPARTMENT_NAME = new Prefix("n/");
 
     /* Prefix definitions for leave*/
-    public static final Prefix PREFIX_DATE = new Prefix("g/");
+    public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_START_DATE = new Prefix("s/");
     public static final Prefix PREFIX_END_DATE = new Prefix("e/");
 }

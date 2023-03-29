@@ -342,7 +342,7 @@ Examples:
 
 ### Adding all leaves in range : `aelr`
 
-Add a person's leave for a maximum range of 1 week from a start date till an end date for SudoHr to track.
+Adds an employee's leave from the start date to an end date inclusive for SudoHr to track. The end date can at most be 6 days away from the start date
 
 Format: `aelr eid/ID s/START_DATE e/END_DATE`
 
@@ -351,7 +351,7 @@ The start date must be before the end date.
 </div>
 
 <div markdown="span" class="alert alert-warning">**NOTE:**
-The end date cannot be more than 6 days away from the start date.
+The employee must not have taken leave in any of the days within the range provided.
 </div>
 
 Examples:
@@ -379,6 +379,13 @@ No employee information will be shown if no employees take leave on the specific
 Examples:
 * `leol d/2023-03-05`
 * `leol d/2023-03-08`
+
+### Listing all leave dates: `llve`
+
+Lists all days where there are employees are on leave.
+
+Format: `llve`
+
 
 ### Listing all leaves for a person: `andre`
 
@@ -449,6 +456,7 @@ If your changes to the data file makes its format invalid, SudoHR will discard a
 | **Adding all leaves in range**         | `aelr eid/ID s/START_DATE e/END_DATE`                            |
 | **Deleting a leave**                   | `defl eid/ID d/DATE`                                             |
 | **Listing all employees on leave for a given date** | `leol d/DATE`                                       |
+| **Listing all days where employees are on leave**   | `llve`                                                |
 
 [//]: # (Andre, Jer En, Kwang Joo, please add accordingly)
 

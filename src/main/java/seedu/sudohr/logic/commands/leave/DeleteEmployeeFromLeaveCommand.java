@@ -1,6 +1,8 @@
 package seedu.sudohr.logic.commands.leave;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 
 import java.util.List;
 
@@ -19,13 +21,19 @@ import seedu.sudohr.model.leave.LeaveDate;
  * Deletes a employee from a specific leave in sudohr book.
  */
 public class DeleteEmployeeFromLeaveCommand extends Command {
-    public static final String COMMAND_WORD = "deleteEmployeeLeave";
+    public static final String COMMAND_WORD = "defl";
 
     public static final String MESSAGE_SUCCESS = "employee %1$s is deleted from %2$s";
 
     public static final String MESSAGE_INVALID_DATE = "The employee has not taken a leave";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a employee from leave in SudoHR. ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a employee from leave in SudoHR. \n"
+            + "Parameters: "
+            + PREFIX_EMPLOYEE + "ID "
+            + PREFIX_DATE + "DATE\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_EMPLOYEE + "1 "
+            + PREFIX_DATE + "2022-03-04 ";;
 
     private final LeaveDate dateToDelete;
     private final Id employeeId;
