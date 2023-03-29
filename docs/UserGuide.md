@@ -106,7 +106,7 @@ The UI is split into 4 main parts
 5. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
 
-    * `listcontact` : Lists all contacts.
+    * `list` : Lists all events.
 
     * `newcontact n/John Doe p/98765432` : Adds a contact named `John Doe` to the contact list.
 
@@ -300,7 +300,7 @@ Assume the current date and time is 22-03-2023 11:00.
     * 24-03-2023 the whole day
   - Note that 24-03-2023 is within 2 days of 22-03-2023, so events on 24-03-2023 that start more than 48 hours from the current date and time are displayed.
 
-### Saving data: `revenue` <a id = "saving-data"></a>
+### Saving data: <a id = "saving-data"></a>
 
 Paidlancers data are saved in the hard disk automatically on command issue. There is no need to save manually.
 
