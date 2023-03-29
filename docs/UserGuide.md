@@ -87,8 +87,8 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-## Features related to Customers
-### Adding a person: `add`
+## 1. Features related to Customers
+### 1.1. Adding a person: `add`
 
 Adds a person to the address book.
 
@@ -102,13 +102,13 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### 1.2. Listing all persons : `list`
 
 Shows a list of all persons in the address book in Customer Window.
 
 Format: `list`
 
-### Editing a person : `edit`
+### 1.3. Editing a person : `edit`
 
 Edits an existing person in the address book.
 
@@ -125,7 +125,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### 1.4. Locating persons by name: `find`
 
 Finds and lists persons whose names contain any of the given keywords.
 
@@ -143,7 +143,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### 1.5. Deleting a person : `delete`
 
 Deletes the specified person from the address book.
 
@@ -157,8 +157,8 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-## Features related to Delivery Jobs
-### Adding a job: `add_job`
+## 2. Features related to Delivery Jobs
+### 2.1. Adding a job: `add_job`
 
 Adds a delivery job to the delivery job system.
 
@@ -176,21 +176,21 @@ Examples:
 * `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3`
 * `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
 
-### Listing all jobs : `list_job`
+### 2.2. Listing all jobs : `list_job`
 
 Shows a list of all jobs in the delivery job system in Main Window.
 
 Format: `list_job`
 
 
-## Features related to Reminders
-### Listing all reminders : `list_reminder`
+## 3. Features related to Reminders
+### 3.1. Listing all reminders : `list_reminder`
 
 Shows a list of all reminders in Duke Driver.
 
 Format: `list_reminder`
 
-### Adding a reminder : `add_reminder`
+### 3.2. Adding a reminder : `add_reminder`
 
 Adds a reminder into the address book.
 
@@ -203,7 +203,7 @@ Format: `add_reminder d/DESCRIPTION time/YYYY-MM-DD HH:mm`
 Examples:
 * `add_reminder` followed by `d/Submit homework time/2023-12-12 12:00` adds a reminder that will remind the user to submit their homework. The reminder will occur at 12pm, 12 December 2023.
 
-### Deleting a reminder : `delete_reminder`
+### 3.3. Deleting a reminder : `delete_reminder`
 
 Deletes a reminder in Duke Driver.
 
@@ -217,14 +217,14 @@ Examples:
 * `list_reminder` followed by `delete_reminder 2` deletes the 2nd reminder in the address book.
 
 
-## Features related to Timetable
-### Showing timetable : `timetable`
+## 4. Features related to Timetable
+### 4.1. Showing timetable : `timetable`
 
 Shows timetable of jobs, with the week shown being current week (LocalDate.now()).
 
 Format: `timetable`
 
-### Showing timetable of week containing specific date: `timetable_date`
+### 4.2. Showing timetable of week containing specific date: `timetable_date`
 
 Shows timetable of specific week containing a specific date
 
@@ -236,12 +236,12 @@ Format: `timetable_date date/YYYY-mm-DD`
 Examples:
 * `timetable_date date/2023-03-16` shows timetable of jobs in week from 13th - 19th March 2023.
 
-## Showing list of completed jobs
+### 4.3. Showing list of completed jobs
 Shows list of completed jobs, sorted in increasing date and decreasing earning order.
 
 Format: `timetable_completed`
 
-## Showing list of unscheduled jobs
+### 4.4. Showing list of unscheduled jobs
 Shows list of unscheduled jobs (i.e. jobs with invalid delivery dates and/or slots).
 Jobs are sorted in increasing date and decreasing earning order.
 
@@ -296,7 +296,12 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Add Job** | `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` <br> e.g., `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
 **List reminder** | `list_reminder`
 **Add reminder** | `add_reminder d/DESCRIPTION time/YYY-MM-DD HH:mm` <br> e.g.,`add_reminder d/Submit homework time/2023-12-12 12:00`
 **Delete reminder** | `delete_reminder INDEX` <br> e.g., `delete_reminder 3`
+**Show Timetable** | `timetable`
+**Show Timetable of Specific Week** | `timetable_date date/YYYY-mm-DD` <br> e.g., `timetable_date date/2023-03-30`
+**Show List of Completed Jobs** | `timetable_completed`
+**Show List of Unscheduled Jobs** | `timetable_unscheduled`
 **Help** | `help`
