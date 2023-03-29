@@ -19,7 +19,7 @@ import seedu.calidr.model.person.Name;
 import seedu.calidr.model.person.Person;
 import seedu.calidr.model.person.Phone;
 import seedu.calidr.model.person.Remark;
-import seedu.calidr.model.tag.Tag;
+import seedu.calidr.model.task.params.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object

@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.calidr.model.tag.Tag;
+import seedu.calidr.model.task.params.Tag;
 
 /**
  * Represents a Person in the address book.

@@ -18,7 +18,7 @@ import seedu.calidr.commons.core.index.Index;
 import seedu.calidr.logic.commands.EditCommand;
 import seedu.calidr.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.calidr.logic.parser.exceptions.ParseException;
-import seedu.calidr.model.tag.Tag;
+import seedu.calidr.model.task.params.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
