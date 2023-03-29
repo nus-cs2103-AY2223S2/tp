@@ -48,7 +48,7 @@ public class DeletePatientCommand extends Command {
         for (String wardName : wardNames) {
             Ward ward = model.getWard(wardName);
             if (ward.containsPatient(patientToMatch)) {
-                ward.deletePatientById(idNumber, patientToMatch);
+                ward.deletePatientById(patientToMatch);
                 return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_ID_SUCCESS, idNumber));
             }
         }

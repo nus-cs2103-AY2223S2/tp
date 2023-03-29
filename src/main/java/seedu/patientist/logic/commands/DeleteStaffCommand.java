@@ -48,7 +48,7 @@ public class DeleteStaffCommand extends Command {
         for (String wardName : wardNames) {
             Ward ward = model.getWard(wardName);
             if (ward.containsStaff(staffToMatch)) {
-                ward.deleteStaffById(idNumber, staffToMatch);
+                ward.deleteStaffById(staffToMatch);
                 return new CommandResult(String.format(MESSAGE_DELETE_STAFF_ID_SUCCESS, idNumber));
             }
         }
