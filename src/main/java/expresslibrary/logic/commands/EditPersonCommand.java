@@ -20,6 +20,7 @@ import expresslibrary.commons.core.index.Index;
 import expresslibrary.commons.util.CollectionUtil;
 import expresslibrary.logic.commands.exceptions.CommandException;
 import expresslibrary.model.Model;
+import expresslibrary.model.book.Book;
 import expresslibrary.model.person.Address;
 import expresslibrary.model.person.Email;
 import expresslibrary.model.person.Name;
@@ -70,14 +71,27 @@ public class EditPersonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownPersonList = model.getFilteredPersonList();
+        List<Book> lastShownBookList = model.getFilteredBookList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownPersonList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = lastShownPersonList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+
+        if (editedPerson.borrowedAtLeastOneBook()) {
+            Set<Book> books = editedPerson.getBooks();
+            for (Book book : books) {
+                if (!lastShownBookList.contains(book)) {
+                    throw new CommandException(Messages.MESSAGE_BOOK_BORROWED_NOT_FOUND);
+                }
+                Book origBook = model.getBook(book);
+                book.loanBookTo(editedPerson, book.getBorrowDate(), book.getDueDate());
+                model.setBook(origBook, book);
+            }
+        }
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -99,9 +113,10 @@ public class EditPersonCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Set<Book> updatedBooks = editPersonDescriptor.getBooks().orElse(personToEdit.getBooks());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, new HashSet<>(), updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBooks, updatedTags);
     }
 
     @Override
@@ -132,6 +147,7 @@ public class EditPersonCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Set<Book> books;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -146,6 +162,7 @@ public class EditPersonCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setBooks(toCopy.books);
             setTags(toCopy.tags);
         }
 
@@ -186,6 +203,24 @@ public class EditPersonCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        /**
+         * Sets {@code books} to this object's {@code books}.
+         * A defensive copy of {@code books} is used internally.
+         */
+        public void setBooks(Set<Book> books) {
+            this.books = (books != null) ? new HashSet<>(books) : null;
+        }
+
+        /**
+         * Returns an unmodifiable book set, which throws
+         * {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code books} is null.
+         */
+        public Optional<Set<Book>> getBooks() {
+            return (books != null) ? Optional.of(Collections.unmodifiableSet(books)) : Optional.empty();
         }
 
         /**

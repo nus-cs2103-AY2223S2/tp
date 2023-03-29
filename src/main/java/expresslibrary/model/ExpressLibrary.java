@@ -114,6 +114,14 @@ public class ExpressLibrary implements ReadOnlyExpressLibrary {
         persons.remove(key);
     }
 
+    /**
+     * Returns {@code person} from this {@code ExpressLibrary}.
+     * {@code person} must exist in the express library.
+     */
+    public Person getPerson(Person person) {
+        return persons.get(person);
+    }
+
     //// book-level operations
 
     /**
