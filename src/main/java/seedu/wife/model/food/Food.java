@@ -13,7 +13,7 @@ import seedu.wife.model.tag.Tag;
  * Represents Food stored in Well Informed Fridge Environment.
  * Guarantees: details are present and not null, field values are validated; immutable.
  */
-public class Food {
+public class Food implements Comparable<Food> {
     private Name foodName;
     private Unit unit;
     private Quantity quantity;
@@ -118,5 +118,10 @@ public class Food {
     @Override
     public String toString() {
         return String.format("%s (expires on: %s)", foodName, expiryDate);
+    }
+
+    @Override
+    public int compareTo(Food food) {
+        return this.expiryDate.compareTo(food.expiryDate);
     }
 }
