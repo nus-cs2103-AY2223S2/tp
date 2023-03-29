@@ -28,9 +28,9 @@ public class PatientManager extends StorageModel<Patient> implements ReadOnlyPat
     public void handleVaccinationChange(ValueChange<VaxType> change) {
         if (!change.getOldValue().equals(change.getNewValue())
                 && change.getOldValue().isPresent()) {
-            GroupName vaxGroupNameOld = change.getOldValue().get().getGroupName();
-            String vaxNameOld = change.getOldValue().get().getName();
             if (change.getNewValue().isPresent()) { // update
+                GroupName vaxGroupNameOld = change.getOldValue().get().getGroupName();
+                String vaxNameOld = change.getOldValue().get().getName();
                 String vaxNameNew = change.getNewValue().get().getName();
                 getMapView().entrySet().stream()
                         .filter(patient -> patient.getValue().getValue().getVaccine().contains(vaxGroupNameOld))
@@ -38,13 +38,6 @@ public class PatientManager extends StorageModel<Patient> implements ReadOnlyPat
                                 patient.getValue().getValue()
                                         .setVaccination(updateGroupName(patient.getValue().getValue().getVaccine(),
                                                 vaxNameOld, vaxNameNew))));
-            } else { // delete
-                getMapView().entrySet().stream()
-                        .filter(x -> x.getValue().getValue().getVaccine().contains(vaxGroupNameOld))
-                        .forEach(patient -> set(patient.getKey(),
-                                patient.getValue().getValue()
-                                        .setVaccination(removeGroupName(patient.getValue().getValue().getVaccine(),
-                                                vaxNameOld))));
             }
         }
     }
