@@ -98,7 +98,7 @@ The examples given in this guide are formatted with the following conventions:
 
 ### Add a Contact: `newcontact` <a id = "add-a-contact"></a>
 
-Adding a contact to contacts
+Adds a new contact.
 
 **Format**: `newcontact n/NAME p/NUMBER`
 
@@ -177,11 +177,11 @@ Unmarks a specified event in Paidlancers.
 
 ### Create new Event: `newevent` <a id = "create-new-event"></a>
 
-Creates a new event
+Adds a new event.
 
-**Format**: `newevent n/NAME r/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`
-
-- Both `START_TIME` and `END_TIME` must have the format `dd-MM-yyyy HH:mm`.
+**Format**: `newevent n/NAME r/RATE a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`
+- Creates a new event with specified `NAME`, `RATE`, `ADDRESS`, `START_TIME`, `END_TIME` and `TAG`s.
+    - Both `START_TIME` and `END_TIME` must have the format `dd-MM-yyyy HH:mm`.
 
 **Example**:
 - `newevent n/DJ at wedding r/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
@@ -190,11 +190,11 @@ Creates a new event
 
 ### List all Events: `list` <a id = "list-all-events"></a>
 
-Shows a list of all events in Paidlancers
+Shows a list of all events.
 
 **Format**: `list`
 
-- List down the events in the event book.
+- Lists down the events in the event book.
 
 
 ### Delete an Event: `delete` <a id = "delete-an-event"></a>
@@ -215,7 +215,7 @@ Deletes the specified event from the event book.
 
 ### Edit an Event: `edit` <a id = "edit-an-event"></a>
 
-Edits the specified event from the event book.
+Edits the specified event.
 
 **Format**: `edit INDEX [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`
 
@@ -241,10 +241,10 @@ Edits the specified event from the event book.
 
 ### View Total Revenue: `revenue` <a id = "view-total-revenue"></a>
 
-Calculates and displays the total revenue based on all the completed events.
+Displays the total revenue based on all the completed events.
 
 **Format**: `revenue`
-
+- Displays the total revenue based on all the completed events.
 
 ### View Upcoming Events: `remind` <a id = "view-upcoming-events"></a>
 
