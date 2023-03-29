@@ -70,6 +70,11 @@ public class ScoreListPanel extends UiPart<Region> {
     @FXML
     private TableColumn<ScoreSummary, Double> percentage;
 
+    private final Color green = Color.rgb(126, 190, 97);
+    private final Color yellow = Color.rgb(244, 181, 55);
+    private final Color red = Color.rgb(194, 47, 40);
+
+
     /**
      * Creates a {@code ScoreListPanel} with the given {@code ObservableList}.
      *
@@ -142,13 +147,13 @@ public class ScoreListPanel extends UiPart<Region> {
                         if (!empty) {
                             if (scoreValue >= 80) {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(126, 190, 97));
+                                setTextFill(green);
                             } else if (50 <= scoreValue) {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(244, 181, 55));
+                                setTextFill(yellow);
                             } else {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(194, 47, 40));
+                                setTextFill(red);
                             }
                         }
                     }
@@ -166,13 +171,13 @@ public class ScoreListPanel extends UiPart<Region> {
                         if (!empty) {
                             if (scoreValue >= 80) {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(126, 190, 97));
+                                setTextFill(green);
                             } else if (50 <= scoreValue) {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(244, 181, 55));
+                                setTextFill(yellow);
                             } else {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(194, 47, 40));
+                                setTextFill(red);
                             }
                         }
                     }
@@ -190,13 +195,13 @@ public class ScoreListPanel extends UiPart<Region> {
                         if (!empty) {
                             if (scoreValue >= 80) {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(126, 190, 97));
+                                setTextFill(green);
                             } else if (50 <= scoreValue) {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(244, 181, 55));
+                                setTextFill(yellow);
                             } else {
                                 setText(String.valueOf(scoreValue));
-                                setTextFill(Color.rgb(194, 47, 40));
+                                setTextFill(red);
                             }
                         }
                     }
@@ -214,10 +219,10 @@ public class ScoreListPanel extends UiPart<Region> {
                         if (!empty) {
                             if (percentage >= 0) {
                                 setText(String.valueOf(percentage));
-                                setTextFill(Color.rgb(126, 190, 97));
+                                setTextFill(green);
                             } else {
                                 setText(String.valueOf(percentage));
-                                setTextFill(Color.rgb(194, 47, 40));
+                                setTextFill(red);
                             }
                         }
                     }
@@ -294,11 +299,11 @@ public class ScoreListPanel extends UiPart<Region> {
                     + "-fx-border-color: #605BF1; -fx-border-width: 2; ");
 
             if (scoreValue >= 80) {
-                label.setTextFill(Color.rgb(126, 190, 97));
+                label.setTextFill(green);
             } else if (50 <= scoreValue && scoreValue < 80) {
-                label.setTextFill(Color.rgb(244, 181, 55));
+                label.setTextFill(yellow);
             } else {
-                label.setTextFill(Color.rgb(194, 47, 40));
+                label.setTextFill(red);
             }
 
             label.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);

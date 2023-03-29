@@ -70,6 +70,9 @@ class JsonAdaptedScore {
         if (!Date.isValidDate(date)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
+        if (!Date.isFutureDate(date)) {
+            throw new IllegalValueException(Date.MESSAGE_INVALID_DATE);
+        }
         final Date modelDate = new Date(date);
 
         return new Score(modelLabel, modelScoreValue, modelDate);

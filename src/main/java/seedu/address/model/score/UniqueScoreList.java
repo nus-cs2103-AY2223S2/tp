@@ -1,7 +1,6 @@
 package seedu.address.model.score;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.text.DecimalFormat;
 import java.util.Comparator;
@@ -51,26 +50,6 @@ public class UniqueScoreList implements Iterable<Score> {
     }
 
     /**
-     * Replaces the score {@code target} in the list with {@code editedScore}.
-     * {@code target} must exist in the list.
-     * The score identity of {@code editedScore} must not be the same as another existing score in the list.
-     */
-    public void setScore(Score target, Score editedScore) {
-        requireAllNonNull(target, editedScore);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new ScoreNotFoundException();
-        }
-
-        if (!target.equals(editedScore) && contains(editedScore)) {
-            throw new DuplicateScoreException();
-        }
-
-        internalList.set(index, editedScore);
-    }
-
-    /**
      * Removes the equivalent score from the list.
      * The score must exist in the list.
      */
@@ -79,27 +58,6 @@ public class UniqueScoreList implements Iterable<Score> {
         if (!internalList.remove(toRemove)) {
             throw new ScoreNotFoundException();
         }
-    }
-
-    /**
-     * Replaces the contents of this list with {@code scores}.
-     * {@code scores} must not contain duplicate scores.
-     */
-    public void setScores(UniqueScoreList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
-    /**
-     * Replaces the contents of this list with {@code scores}.
-     * {@code scores} must not contain duplicate scores.
-     */
-    public void setScores(List<Score> scores) throws DuplicateScoreException {
-        requireNonNull(scores);
-        if (!scoresAreUnique(scores)) {
-            throw new DuplicateScoreException();
-        }
-        internalList.setAll(scores);
     }
 
     /**
@@ -114,7 +72,8 @@ public class UniqueScoreList implements Iterable<Score> {
      * @return A view of list of sorted score.
      */
     public ObservableList<Score> getSortedScoreList() {
-        internalList.sort(Comparator.comparing(Score::getLocalDate).reversed());
+        internalList.sort(Comparator.comparing(Score::getLocalDate));
+        FXCollections.reverse(internalList);
         return internalList;
     }
 

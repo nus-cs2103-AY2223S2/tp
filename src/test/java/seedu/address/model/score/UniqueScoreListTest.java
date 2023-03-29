@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalScores.SCORE_1;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.score.exceptions.DuplicateScoreException;
@@ -59,16 +57,6 @@ public class UniqueScoreListTest {
         uniqueScoreList.remove(SCORE_1);
         UniqueScoreList expectedUniqueScoreList = new UniqueScoreList();
         assertTrue(uniqueScoreList.equals(expectedUniqueScoreList));
-    }
-
-    @Test
-    public void setScores_nullUniqueScoreList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueScoreList.setScores((UniqueScoreList) null));
-    }
-
-    @Test
-    public void setScores_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueScoreList.setScores((List<Score>) null));
     }
 
     @Test
