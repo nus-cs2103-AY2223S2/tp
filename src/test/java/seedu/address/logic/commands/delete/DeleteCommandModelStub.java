@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.delete;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -21,13 +22,27 @@ import seedu.address.testutil.TypicalVideos;
  * Stub of Model Manager for testing Delete Commands
  */
 public class DeleteCommandModelStub extends ModelStub {
-    private ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
-    private LectureName lectureName = TypicalLectures.getCs2040sWeek1().getName();
-    private VideoName videoName = TypicalVideos.ANALYSIS_VIDEO.getName();
+    private ArrayList<ModuleCode> moduleCodes = new ArrayList<>();
+    private ArrayList<LectureName> lectureNames = new ArrayList<>();
+    private ArrayList<VideoName> videoNames = new ArrayList<>();
+
+    /**
+     * Constructs Model Stub for testing Delete Commands
+     */
+    public DeleteCommandModelStub() {
+        moduleCodes.add(TypicalModules.getCs2040s().getCode());
+        moduleCodes.add(TypicalModules.getCs2107().getCode());
+
+        lectureNames.add(TypicalLectures.getCs2040sWeek1().getName());
+        lectureNames.add(TypicalLectures.getCs2040sWeek3().getName());
+
+        videoNames.add(TypicalVideos.ANALYSIS_VIDEO.getName());
+        videoNames.add(TypicalVideos.CONTENT_VIDEO.getName());
+    }
 
     @Override
     public boolean hasModule(ModuleCode moduleCode) {
-        return moduleCode.equals(this.moduleCode);
+        return this.moduleCodes.contains(moduleCode);
     }
 
     @Override
@@ -37,14 +52,12 @@ public class DeleteCommandModelStub extends ModelStub {
 
     @Override
     public void deleteModule(ReadOnlyModule module) {
-        if (module.getCode().equals(this.moduleCode)) {
-            this.moduleCode = null;
-        }
+        this.moduleCodes.remove(module.getCode());
     }
 
     @Override
     public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
-        return moduleCode.equals(this.moduleCode) && lectureName.equals(this.lectureName);
+        return this.moduleCodes.contains(moduleCode) && this.lectureNames.contains(lectureName);
     }
 
     @Override
@@ -54,16 +67,14 @@ public class DeleteCommandModelStub extends ModelStub {
 
     @Override
     public void deleteLecture(ReadOnlyModule module, ReadOnlyLecture target) {
-        if (module.getCode().equals(this.moduleCode) && target.getName().equals(this.lectureName)) {
-            this.lectureName = null;
-        }
+        this.lectureNames.remove(target.getName());
     }
 
     @Override
     public boolean hasVideo(ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
-        return moduleCode.equals(this.moduleCode)
-                && lectureName.equals(this.lectureName)
-                && videoName.equals(this.videoName);
+        return this.moduleCodes.contains(moduleCode)
+                && this.lectureNames.contains(lectureName)
+                && this.videoNames.contains(videoName);
     }
 
     @Override
@@ -73,22 +84,16 @@ public class DeleteCommandModelStub extends ModelStub {
 
     @Override
     public void deleteVideo(ReadOnlyLecture lecture, Video target) {
-        if (lecture.getName().equals(this.lectureName) && target.getName().equals(this.videoName)) {
-            this.videoName = null;
-        }
+        this.videoNames.remove(target.getName());
     }
 
     @Override
     public boolean equals(Object other) {
         if (other instanceof DeleteCommandModelStub) {
             DeleteCommandModelStub model = (DeleteCommandModelStub) other;
-            if (this.lectureName == null) {
-                if (this.moduleCode == null) {
-                    return model.moduleCode == null && model.lectureName == null;
-                }
-                return this.moduleCode.equals(model.moduleCode) && model.lectureName == null;
-            }
-            return this.moduleCode.equals(model.moduleCode) && this.lectureName.equals(model.lectureName);
+            return this.moduleCodes.equals(model.moduleCodes)
+                    && this.lectureNames.equals(model.lectureNames)
+                    && this.videoNames.equals(model.videoNames);
         } else {
             return false;
         }
