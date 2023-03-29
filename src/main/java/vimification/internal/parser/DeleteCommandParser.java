@@ -44,7 +44,6 @@ public class DeleteCommandParser implements CommandParser<DeleteCommand> {
         return ApplicativeParser
                 .skipWhitespaces1()
                 .takeNext(flagParser.sepBy1(ApplicativeParser.skipWhitespaces1()))
-                .optional() // flag is optional
                 .<DeleteCommand>constMap(new DeleteFieldsCommand(index, request))
                 .orElse(new DeleteTaskCommand(index));
     }

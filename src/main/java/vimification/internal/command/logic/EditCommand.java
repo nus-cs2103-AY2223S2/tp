@@ -40,6 +40,9 @@ public class EditCommand extends UndoableLogicCommand {
         Task oldTask = taskList.get(index);
         Task newTask = oldTask.clone();
         this.oldTask = oldTask;
+        if (request.getEditedTitle() != null) {
+            newTask.setTitle(request.getEditedTitle());
+        }
         if (request.getEditedDeadline() != null) {
             newTask.setDeadline(request.getEditedDeadline());
         }
