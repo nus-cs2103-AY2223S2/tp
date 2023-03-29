@@ -21,7 +21,7 @@ public class EditVaxTypeCommand extends Command {
 
     private final Retriever<String, VaxType> retriever;
     private final VaxTypeBuilder builder;
-    private final boolean isAppend;
+    private final boolean isSet;
 
 
     /**
@@ -30,10 +30,10 @@ public class EditVaxTypeCommand extends Command {
      * @param retriever - the retriever to retrieve the vaccination to edit.
      * @param builder - the builder to use to update the vaccination type.
      */
-    public EditVaxTypeCommand(Retriever<String, VaxType> retriever, VaxTypeBuilder builder, boolean isAppend) {
+    public EditVaxTypeCommand(Retriever<String, VaxType> retriever, VaxTypeBuilder builder, boolean isSet) {
         this.retriever = Objects.requireNonNull(retriever);
         this.builder = Objects.requireNonNull(builder);
-        this.isAppend = isAppend;
+        this.isSet = isSet;
     }
 
 
@@ -44,7 +44,7 @@ public class EditVaxTypeCommand extends Command {
 
         try {
             VaxType toUpdate = model.getVaccination(retriever);
-            VaxType newValue = builder.update(toUpdate, isAppend);
+            VaxType newValue = builder.update(toUpdate, isSet);
             ValueChange<VaxType> change = model.editVaccination(toUpdate.getName(), newValue);
             return new CommandMessage(String.format(MESSAGE_SUCCESS, change.toString()));
         } catch (IllegalValueException ive) {
