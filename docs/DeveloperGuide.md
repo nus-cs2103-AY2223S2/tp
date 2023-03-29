@@ -329,7 +329,7 @@ _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] View Command Feature
 The proposed ViewCommand feature allows the user to view more details about a specific role. We decided to hide
-less important details regarding a role, and only show certain important details like Name, Company, Salary, Deadline, 
+less important details regarding a role, and only show certain important details like Name, Company, Salary, Deadline,
 etc.
 
 The view command does not affect the address book in any way. In other words, it does not add/edit/delete
@@ -339,7 +339,7 @@ An example usage of the `View` command is given below:
 
 1. The user launches the application for the first time. The AddressBook will be initialized with the current address book.
    <img src="images/ViewCommand0.png" width="800" />
-2. The user can use the `view` command to show more details pertaining to a role. 
+2. The user can use the `view` command to show more details pertaining to a role.
    - The user executes `view 1` to view details regarding the first role.
      <img src="images/ViewCommand1.png" width="800" />
 
