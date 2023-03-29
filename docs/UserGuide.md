@@ -130,14 +130,12 @@ Shows a list of all users in the user records.
 
 Format: `listPerson`
 
-#### Locating persons by name: `findPerson` 
+#### Locating persons by name: `findPerson`
 
 Finds persons whose names contain any of the given keywords.
 
-[//]: # ()
 Format: `findPerson KEYWORD [MORE_KEYWORDS]`
 
-[//]: # ()
 * The search is case-insensitive. e.g `hans` will match `Hans`
 
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -154,9 +152,9 @@ Examples:
 
 * `findPerson John` returns `john` , `John Doe` and `johnston`.
 
-[//]: # (* `findPerson alex david` returns `Alex Yeoh`, `David Li`<br>)
+* `findPerson Alex Bernice` returns `Alex Yeoh`, `Bernice Yu`.<br>
 
-[//]: # (  ![result for 'find alex david']&#40;images/findAlexDavidResult.png&#41;)
+![result for 'findPerson Alex Bernice'](images/findAlexBernice.png)
 
 ### Book Commands
 
@@ -213,16 +211,18 @@ Find books whose titles contain any of the given keywords.
 Format: `findBook KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `DUNE` will match `dune`
-* The order of the keywords does not matter. e.g. `Great Gatsby` will match `Gatsby Great`
+* The order of the keywords does not matter. e.g. `Great Gatsby` will match `Gatsby Great`.
 * Only the title is searched.
 * Books matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Dune Great` will return `Dune`, `Great Gatsby`
+  e.g. `Dune Great` will return `Dune`, `Great Gatsby`.
 
 Examples:
-* `find The` returns `The Cat in the Hat` and `Call of the Wild`
-* `find dune Cat` returns `Dune`, `The Cat in the Hat`
+* `findBook The` returns `The Cat in the Hat` and `Call of the Wild`
+* `findBook dune Cat` returns `Dune`, `The Cat in the Hat`
 
-[//]: # (add image later)
+* `findBook 1984 kill` returns `1984`, `To Kill a Mockingbird`.<br>
+
+![result for 'findPerson 1984 kill'](images/find1984kill.png)
 
 ### Common Commands
 
