@@ -250,6 +250,7 @@ ___
         <img src="images/UIscreenshots/patientSS/patientAdd.png" style="zoom:100%">
       </p>
       <br>
+      
     * A message response will be printed on the screen, informing you that your command has been successfully executed!
       <p align="center">
         <img src="images/UIscreenshots/patientSS/patientAddresult.png" style="zoom:100%">
@@ -541,9 +542,9 @@ ___
             <img src="images/UIscreenshots/drugSS/dUpdate.png" style="zoom:80%">
       </p>
       <br>
-      * ![](images/UIscreenshots/drugSS/dUpdate.png)
+      
     * The storage of Panadol is now 45
-  <p align="center">
+    <p align="center">
           <img src="images/UIscreenshots/drugSS/drugCurrentCount.png" style="zoom:25%">
     </p>
     <br>
