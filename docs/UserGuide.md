@@ -79,13 +79,11 @@ This User Guide provides brief documentation on how you can install the applicat
 
 <h3><span style="color:#faac69">Viewing help : `help`</span></h3>
 
-<div style="background-color:#fddbbe; border-radius:5px; padding:10px 0;">
 Shows a message explaning how to access the help page.
 
 ![help message](images/helpImage.png)
 
 Format: `help`
-</div>
 
 <h3><span style="color:#faac69">Adding a client: `add`</span></h3>
 
@@ -119,7 +117,7 @@ Format: `listClients`
 * Initiate the command with 'listClients'
 * All clients in FitBook has been listed once again!
 
-<h3><span style="color:#faac69">Editing a client : `edit`</span></h2>
+<h3><span style="color:#faac69">Editing a client : `edit`</span></h3>
 
 Edits an existing client in the FitBook.
 
