@@ -45,6 +45,7 @@ public class AddTagCommand extends Command {
         }
 
         model.addTags(toAdd);
+        model.updateSelectedIndex(-1);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
