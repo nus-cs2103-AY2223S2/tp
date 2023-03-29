@@ -73,6 +73,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String Array nameKeywords} into a boolean indicating the presence of asterisk.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static boolean parseAsterisk(String[] nameKeywords) {
+        requireNonNull(nameKeywords);
+        if (nameKeywords[0].compareTo("*") != 0) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
