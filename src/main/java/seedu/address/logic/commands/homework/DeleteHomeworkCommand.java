@@ -20,9 +20,7 @@ import seedu.address.model.student.Student;
  * Deletes an assignment from a student.
  */
 public class DeleteHomeworkCommand extends Command {
-
     public static final String COMMAND_WORD = "delete-homework";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an assignment from a student.\n"
             + "Parameters: "
             + PREFIX_NAME + "STUDENT_NAME "
@@ -84,17 +82,28 @@ public class DeleteHomeworkCommand extends Command {
 
         StringBuilder sb = new StringBuilder();
         for (Student student : studentList) {
-            try {
-                sb.append(String.format(Messages.MESSAGE_HOMEWORK_DELETED_SUCCESS, targetIndex.getOneBased(),
-                        student.getHomework(targetIndex).toString(), student.getName().toString()));
-                sb.append("\n");
-                student.deleteHomework(targetIndex);
-            } catch (IndexOutOfBoundsException e) {
-                throw new CommandException(Messages.MESSAGE_INVALID_HOMEWORK_DISPLAYED_INDEX);
-            }
+            formatString(sb, student);
         }
 
         return new CommandResult(sb.toString());
+    }
+
+    /**
+     * Formats the string to be displayed.
+     *
+     * @param sb StringBuilder to be formatted.
+     * @param student Student to be formatted.
+     * @throws CommandException if the command's preconditions are not met
+     */
+    public void formatString(StringBuilder sb, Student student) throws CommandException {
+        try {
+            sb.append(String.format(Messages.MESSAGE_HOMEWORK_DELETED_SUCCESS, targetIndex.getOneBased(),
+                    student.getHomework(targetIndex).toString(), student.getName().toString()));
+            sb.append("\n");
+            student.deleteHomework(targetIndex);
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_HOMEWORK_DISPLAYED_INDEX);
+        }
     }
 
     @Override

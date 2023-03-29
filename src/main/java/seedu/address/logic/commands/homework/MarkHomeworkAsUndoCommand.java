@@ -21,9 +21,7 @@ import seedu.address.model.student.Student;
  * Marks a homework as undone for a student.
  */
 public class MarkHomeworkAsUndoCommand extends Command {
-
     public static final String COMMAND_WORD = "unmark-homework";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks a homework as undone for a student.\n"
             + "Parameters: "
             + PREFIX_NAME + "STUDENT_NAME "
@@ -79,33 +77,68 @@ public class MarkHomeworkAsUndoCommand extends Command {
             dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
             throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
         }
-        model.updateFilteredStudentList(predicate);
 
+        model.updateFilteredStudentList(predicate);
         List<Student> studentList = model.getFilteredStudentList();
 
+        String message = formatString(studentList);
+
+        return new CommandResult(message);
+    }
+
+    /**
+     * Formats the string to be returned by the command.
+     *
+     * @param studentList List of students to be formatted.
+     * @return String to be returned by the command.
+     * @throws CommandException if the command's preconditions are not met
+     */
+    public String formatString(List<Student> studentList) throws CommandException {
         if (studentList.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_NAME);
         }
 
         StringBuilder sb = new StringBuilder();
         for (Student student : studentList) {
-            try {
-                Homework homeworkToMarkAsUndone = student.getHomework(targetIndex);
-                if (!homeworkToMarkAsUndone.isCompleted()) {
-                    sb.append(String.format(Messages.MESSAGE_HOMEWORK_ALREADY_MARKED_AS_UNDONE,
-                            homeworkToMarkAsUndone.getDescription(), student.getName().toString()));
-                } else {
-                    sb.append(String.format(Messages.MESSAGE_HOMEWORK_MARKED_AS_UNDONE,
-                            homeworkToMarkAsUndone.getDescription(), student.getName().toString()));
-                    student.markHomeworkAsUndone(targetIndex);
-                }
-                sb.append("\n");
-            } catch (IndexOutOfBoundsException e) {
-                throw new CommandException(Messages.MESSAGE_INVALID_HOMEWORK_DISPLAYED_INDEX);
-            }
+            unmarkHomework(sb, student);
         }
 
-        return new CommandResult(sb.toString());
+        return sb.toString();
+    }
+
+    /**
+     * Marks the homework as undone for the specified student.
+     *
+     * @param sb StringBuilder to append the result message.
+     * @param student Student to be marked as undone.
+     * @throws CommandException if the command's preconditions are not met
+     */
+    public void unmarkHomework(StringBuilder sb, Student student) throws CommandException {
+        try {
+            Homework homeworkToMarkAsUndone = student.getHomework(targetIndex);
+            differentiateHomework(sb, homeworkToMarkAsUndone, student);
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_HOMEWORK_DISPLAYED_INDEX);
+        }
+    }
+
+    /**
+     * Differentiates between marking a homework as undone for a student who has not completed the homework
+     * and marking a homework as undone for a student who has completed the homework.
+     *
+     * @param sb StringBuilder to append the result message.
+     * @param homeworkToMarkAsUndone Homework to be marked as undone.
+     * @param student Student to be marked as undone.
+     */
+    public void differentiateHomework(StringBuilder sb, Homework homeworkToMarkAsUndone, Student student) {
+        if (!homeworkToMarkAsUndone.isCompleted()) {
+            sb.append(String.format(Messages.MESSAGE_HOMEWORK_ALREADY_MARKED_AS_UNDONE,
+                    homeworkToMarkAsUndone.getDescription(), student.getName().toString()));
+        } else {
+            sb.append(String.format(Messages.MESSAGE_HOMEWORK_MARKED_AS_UNDONE,
+                    homeworkToMarkAsUndone.getDescription(), student.getName().toString()));
+            student.markHomeworkAsUndone(targetIndex);
+        }
     }
 
     @Override

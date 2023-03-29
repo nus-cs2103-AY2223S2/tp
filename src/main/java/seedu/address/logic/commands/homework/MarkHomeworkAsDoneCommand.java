@@ -21,9 +21,7 @@ import seedu.address.model.student.Student;
  * Marks an assignment as done for a student.
  */
 public class MarkHomeworkAsDoneCommand extends Command {
-
     public static final String COMMAND_WORD = "mark-homework";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks an assignment as done for a student.\n"
             + "Parameters: "
             + PREFIX_NAME + "STUDENT_NAME "
@@ -84,29 +82,63 @@ public class MarkHomeworkAsDoneCommand extends Command {
 
         List<Student> studentList = model.getFilteredStudentList();
 
+        String message = formatString(studentList);
+
+        return new CommandResult(message);
+    }
+
+    /**
+     * Formats the string to be displayed to the user.
+     *
+     * @param studentList List of students to be displayed.
+     * @return String to be displayed to the user.
+     * @throws CommandException if the command's preconditions are not met
+     */
+    public String formatString(List<Student> studentList) throws CommandException {
         if (studentList.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_NAME);
         }
 
         StringBuilder sb = new StringBuilder();
         for (Student student : studentList) {
-            try {
-                Homework homeworkToMarkAsDone = student.getHomework(targetIndex);
-                if (homeworkToMarkAsDone.isCompleted()) {
-                    sb.append(String.format(Messages.MESSAGE_HOMEWORK_ALREADY_MARKED_AS_DONE,
-                            homeworkToMarkAsDone.getDescription(), student.getName().toString()));
-                } else {
-                    sb.append(String.format(Messages.MESSAGE_HOMEWORK_MARKED_AS_DONE,
-                            homeworkToMarkAsDone.getDescription(), student.getName().toString()));
-                    student.markHomeworkAsDone(targetIndex);
-                }
-                sb.append("\n");
-            } catch (IndexOutOfBoundsException e) {
-                throw new CommandException(Messages.MESSAGE_INVALID_HOMEWORK_DISPLAYED_INDEX);
-            }
+            markHomework(sb, student);
         }
+        return sb.toString();
+    }
 
-        return new CommandResult(sb.toString());
+    /**
+     * Marks the homework as done for the student.
+     *
+     * @param sb String builder to be displayed to the user.
+     * @param student Student to be marked as done.
+     * @throws CommandException if the command's preconditions are not met
+     */
+    public void markHomework(StringBuilder sb, Student student) throws CommandException {
+        try {
+            Homework homeworkToMarkAsDone = student.getHomework(targetIndex);
+            differentiateHomework(sb, homeworkToMarkAsDone, student);
+            sb.append("\n");
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_HOMEWORK_DISPLAYED_INDEX);
+        }
+    }
+
+    /**
+     * Differentiates between the homework being marked as done and the homework already being marked as done.
+     *
+     * @param sb String builder to be displayed to the user.
+     * @param homeworkToMarkAsDone Homework to be marked as done.
+     * @param student Student to be marked as done.
+     */
+    public void differentiateHomework(StringBuilder sb, Homework homeworkToMarkAsDone, Student student) {
+        if (homeworkToMarkAsDone.isCompleted()) {
+            sb.append(String.format(Messages.MESSAGE_HOMEWORK_ALREADY_MARKED_AS_DONE,
+                    homeworkToMarkAsDone.getDescription(), student.getName().toString()));
+        } else {
+            sb.append(String.format(Messages.MESSAGE_HOMEWORK_MARKED_AS_DONE,
+                    homeworkToMarkAsDone.getDescription(), student.getName().toString()));
+            student.markHomeworkAsDone(targetIndex);
+        }
     }
 
     @Override

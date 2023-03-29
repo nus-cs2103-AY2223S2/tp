@@ -5,9 +5,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNUllDeadline;
+import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNUllHomework;
+import static seedu.address.logic.parser.ParserUtil.checkUniqueNotNUllName;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -25,7 +27,6 @@ import seedu.address.model.student.NamePredicate;
  * Parses input arguments and creates a new CreateHomeworkCommand object
  */
 public class CreateHomeworkCommandParser implements Parser<CreateHomeworkCommand> {
-    private List<String> names = new ArrayList<>();
     /**
      * Parses the given {@code String} of arguments in the context of the CreateHomeworkCommand
      * and returns a CreateHomeworkCommand object for execution.
@@ -46,54 +47,18 @@ public class CreateHomeworkCommandParser implements Parser<CreateHomeworkCommand
                     CreateHomeworkCommand.MESSAGE_USAGE));
         }
 
-        // only one homework keyword is allowed
-        if (argMultimap.getAllValues(PREFIX_HOMEWORK).size() > 1) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one homework name is allowed."));
-        }
-        // it cannot be empty
-        if (argMultimap.getValue(PREFIX_HOMEWORK).get().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Homework name cannot be empty."));
-        }
-        String homeworkName = argMultimap.getValue(PREFIX_HOMEWORK).get();
+        checkUniqueNotNUllName(argMultimap);
+        checkUniqueNotNUllHomework(argMultimap);
+        checkUniqueNotNUllDeadline(argMultimap);
 
-        // only one deadline keyword is allowed
-        if (argMultimap.getAllValues(PREFIX_DEADLINE).size() > 1) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one deadline is allowed."));
-        }
-        // it cannot be empty
-        if (argMultimap.getValue(PREFIX_DEADLINE).get().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Deadline cannot be empty."));
-        }
+        List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
+        String homeworkName = argMultimap.getValue(PREFIX_HOMEWORK).get();
         LocalDateTime deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         if (deadline.isBefore(LocalDateTime.now())) {
             throw new ParseException(Messages.MESSAGE_DEADLINE_IN_PAST);
         }
 
-        List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
-
-        // for all the names, trim the name and only take the first word
-        for (int i = 0; i < nameKeywords.size(); i++) {
-            String name = nameKeywords.get(i);
-            name = name.trim();
-            nameKeywords.set(i, name);
-        }
-        names = nameKeywords;
-
-        if (nameKeywords.size() > 1) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Only one student name is allowed."));
-        }
-        // name cannot be an empty string
-        if (nameKeywords.get(0).isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Name cannot be empty."));
-        }
-
-        return new CreateHomeworkCommand(names, new NamePredicate(nameKeywords),
+        return new CreateHomeworkCommand(nameKeywords, new NamePredicate(nameKeywords),
                 homeworkName, deadline);
     }
 
