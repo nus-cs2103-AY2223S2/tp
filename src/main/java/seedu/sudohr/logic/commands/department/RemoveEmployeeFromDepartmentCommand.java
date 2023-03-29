@@ -65,7 +65,10 @@ public class RemoveEmployeeFromDepartmentCommand extends Command {
             throw new CommandException(MESSAGE_EMPLOYEE_NOT_FOUND_IN_DEPARTMENT);
         }
 
-        department.removeEmployee(employee);
+
+        model.removeEmployeeFromDepartment(employee, department);
+        model.updateFilteredDepartmentList(Model.PREDICATE_SHOW_ALL_DEPARTMENTS);
+        model.updateFilteredEmployeeList(Model.PREDICATE_SHOW_ALL_EMPLOYEES);
         return new CommandResult(String.format(MESSAGE_REMOVE_EMPLOYEE_FROM_DEPARTMENT_SUCCESS, employee, department));
     }
 
