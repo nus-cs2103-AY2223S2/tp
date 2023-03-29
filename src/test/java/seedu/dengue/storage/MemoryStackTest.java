@@ -71,7 +71,5 @@ public class MemoryStackTest {
             memoryStack.pushOneFromTemporaryPop();
             assert(memoryStack.peek() == x);
         }
-
-
     }
 }
