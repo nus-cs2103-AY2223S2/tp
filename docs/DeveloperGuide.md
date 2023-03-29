@@ -562,7 +562,7 @@ When the command box is in `CommandMode`, the user can enter commands to perform
 
 ![CommandHandling Sequence Diagram](images/CommandHandling.png)
 
-When the user enters a command, the command box calls `Mode#onInputSubmit(String)` on its current `CommandMode`. 
+When the user enters a command, the command box calls `Mode#onInputSubmit(String)` on its current `CommandMode`.
 The input from the command box is then propagated down to the `MainWindow`, the `Logic` and finally the `Parser` to be parsed.
 
 The `Parser` then returns a `Command` instance to `Logic` which then executes the `Command` instance. The execution returns a `CommandResult` which is then passed back to the `MainWindow`.
@@ -575,7 +575,7 @@ The `CommandMode` then clears the `CommandBox` input and is now ready for accept
 
 The `UiAction` class is an abstract class that represents an action to be performed by the `MainWindow`. Every `CommandResult` returned from a `Command` execution contains a `UiAction` that is to be executed by the `MainWindow`.
 
-This is used to perform actions such as switching the tab to Projects tab when a Project related command is executed or exiting the application when the `ExitCommand` is executed. 
+This is used to perform actions such as switching the tab to Projects tab when a Project related command is executed or exiting the application when the `ExitCommand` is executed.
 
 The following sequence diagram shows how the `UiAction` that switches the tab to Projects tab.
 
