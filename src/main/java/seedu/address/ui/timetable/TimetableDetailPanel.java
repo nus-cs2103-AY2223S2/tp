@@ -15,9 +15,9 @@ import seedu.address.logic.Logic;
 import seedu.address.ui.UiPart;
 
 /**
- * Controller for a timetable page
+ * Panel containing timetable detail
  */
-public class TimetableDetailPanel extends UiPart<Region> /*implements Initializable*/ {
+public class TimetableDetailPanel extends UiPart<Region> {
 
     private static final String FXML = "TimetablePanel.fxml";
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -38,7 +38,7 @@ public class TimetableDetailPanel extends UiPart<Region> /*implements Initializa
     private HBox jobListPanel;
 
     /**
-     * Creates a {@code TimeTableWindow} with the given {@code Stage} and {@code Logic}.
+     * Creates a {@code TimetableDetailPanel} with the given {@code Stage} and {@code Logic}.
      */
     public TimetableDetailPanel(LocalDate focusDate, Logic logic, Stage primaryStage) {
         super(FXML);
@@ -74,6 +74,7 @@ public class TimetableDetailPanel extends UiPart<Region> /*implements Initializa
 
         logic.updateSortedDeliveryJobListByDate();
         logic.setWeekDeliveryJobList(focusDate);
+        logger.info("Filled in timetable detail with focus date as " + focusDate.toString());
 
     }
 }

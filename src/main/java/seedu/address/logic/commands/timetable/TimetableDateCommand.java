@@ -31,7 +31,7 @@ public class TimetableDateCommand extends Command {
     private final LocalDate jobDate;
 
     /**
-     * Finds and shows timetable of jobs in week based on input date
+     * Updates and shows timetable of jobs in week based on input date
      * @param jobDate input date
      */
     public TimetableDateCommand(LocalDate jobDate) {

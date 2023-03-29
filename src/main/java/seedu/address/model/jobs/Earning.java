@@ -38,10 +38,16 @@ public class Earning implements Comparable<Earning> {
         }
     }
 
+    /**
+     * Returns earning in double data type
+     */
     public double getEarning() {
         return Double.parseDouble(value);
     }
 
+    /**
+     * Returns new earning as 0.0
+     */
     public static Earning placeholder() {
         return new Earning("0.00");
     }

@@ -10,7 +10,7 @@ import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.ui.UiPart;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code DayDeliveryJobCard}.
  */
 public class DayDeliveryJobCard extends UiPart<Region> {
 
@@ -42,7 +42,8 @@ public class DayDeliveryJobCard extends UiPart<Region> {
     private Label earning;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code DayDeliveryJobCard} with the given {@code Logic},
+     * {@code DeliveryJob} and index to display.
      */
     public DayDeliveryJobCard(Logic logic, DeliveryJob job, int displayedIndex) {
         super(FXML);

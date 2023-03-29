@@ -28,7 +28,7 @@ import seedu.address.model.jobs.sorters.DeliverySortOption;
 import seedu.address.ui.UiPart;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of jobs.
  */
 public class DeliveryJobListPanel extends UiPart<Region> {
     private static final String FXML = "DeliveryJobListPanel.fxml";
@@ -186,6 +186,9 @@ public class DeliveryJobListPanel extends UiPart<Region> {
         orderOption.setVisible(true);
     }
 
+    /**
+     * Sets handler to filter
+     */
     public void setFilterHandler(Consumer<DeliveryFilterOption> con) {
         filterOption.setVisible(true);
         filterDelivered.setToggleGroup(toggleGroup);

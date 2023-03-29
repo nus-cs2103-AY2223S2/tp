@@ -9,12 +9,11 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.ui.UiPart;
-import seedu.address.ui.jobs.DeliveryJobListPanel;
 import seedu.address.ui.main.ResultDisplay;
 import seedu.address.ui.main.StatusBarFooter;
 
 /**
- * Displays contact list.
+ * Controller for unschedule window.
  */
 public class UnscheduleWindow extends UiPart<Stage> {
 
@@ -25,7 +24,7 @@ public class UnscheduleWindow extends UiPart<Stage> {
     private Logic logic;
 
     private ResultDisplay resultDisplay;
-    private DeliveryJobListPanel jobListPanel;
+    private UnscheduledDeliveryJobListPanel jobListPanel;
 
     @FXML
     private Text numberOfJobs;
@@ -49,37 +48,37 @@ public class UnscheduleWindow extends UiPart<Stage> {
      * Show main window.
      */
     public void show() {
-        logger.fine("Showing address book page");
+        logger.fine("Showing unscheduled window page");
         getRoot().show();
         getRoot().centerOnScreen();
     }
 
     /**
-     * Returns true if the stats window is currently being shown.
+     * Returns true if the unscheduled window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the stats window.
+     * Hides the unscheduled window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the stats window.
+     * Focuses on the unscheduled window.
      */
     public void focus() {
         getRoot().requestFocus();
     }
 
     /**
-     * fillInnerParts.
+     * Fills Inner Parts and content of unscheduled window.
      */
     public void fillInnerParts() {
-        jobListPanel = new DeliveryJobListPanel(logic.getUnscheduledDeliveryJobList());
+        jobListPanel = new UnscheduledDeliveryJobListPanel(logic.getUnscheduledDeliveryJobList());
         int jobListLen = logic.getUnscheduledDeliveryJobList().size();
         numberOfJobs.setText(String.format("Total: %d job(s)", jobListLen));
 
@@ -88,6 +87,9 @@ public class UnscheduleWindow extends UiPart<Stage> {
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
 
+    /**
+     * Exits unscheduled window
+     */
     @FXML
     private void handleExit() {
         primaryStage.hide();

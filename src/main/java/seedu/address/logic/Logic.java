@@ -45,6 +45,8 @@ public interface Logic {
 
     CommandResult executeTimetableCommand(String commandText) throws CommandException, ParseException;
 
+    // ADDRESS BOOK SYSTEM ===================================
+
     /**
      * Returns the AddressBook.
      *
@@ -58,6 +60,13 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
+     * Returns the user prefs' address book file path.
+     */
+    Path getAddressBookFilePath();
+
+    // DELIVERY JOB SYSTEM ===================================
+
+    /**
      * Returns an unmodifiable view of the filtered list of delivery jobs
      */
     ObservableList<DeliveryJob> getFilteredDeliveryJobList();
@@ -68,12 +77,12 @@ public interface Logic {
     ObservableList<DeliveryJob> getSortedDeliveryJobList();
 
     /**
-     * Returns an unmodifiable view of the filtered list of persons
+     * Returns an unmodifiable view of the filtered list of reminders
      */
     ObservableList<Reminder> getReminderList();
 
     /**
-     * Returns a map of delivery job list in the week
+     * Returns delivery job list in the week sorted into day
      */
     Map<LocalDate, DeliveryList> getWeekDeliveryJobList();
 
@@ -83,37 +92,29 @@ public interface Logic {
      * @return job list in the specific day
      */
     DeliveryList getDayofWeekJob(int dayOfWeek);
+
     /**
-     * Returns an unmodifiable view of the list of unscheduled delivery jobs
+     * Returns an unmodifiable view of the list of unscheduled delivery jobs,
+     * sorted by time and earning
      */
     ObservableList<DeliveryJob> getUnscheduledDeliveryJobList();
 
     /**
-     * Returns an unmodifiable view of the list of completed delivery jobs
+     * Returns an unmodifiable view of the list of completed delivery jobs,
+     * sorted by time and earning
      */
     ObservableList<DeliveryJob> getCompletedDeliveryJobList();
 
-    double getTotalEarnings(ObservableList<DeliveryJob> list);
-
     /**
-     * Returns the user prefs' address book file path.
+     * Gets total earning of all jobs in job list
+     * @param list
      */
-    Path getAddressBookFilePath();
+    double getTotalEarnings(ObservableList<DeliveryJob> list);
 
     /**
      * Returns the user prefs' delivery job system file path.
      */
     Path getDeliveryJobSystemFilePath();
-
-    /**
-     * Returns the user prefs' GUI settings.
-     */
-    GuiSettings getGuiSettings();
-
-    /**
-     * Sets the user prefs' GUI settings.
-     */
-    void setGuiSettings(GuiSettings guiSettings);
 
     /**
      * Set focus date
@@ -150,9 +151,21 @@ public interface Logic {
      */
     LocalDate getFocusDate();
 
+    // MODEL ===================================
+
     /**
-     * Get model
+     * Gets model
      * @return model
      */
     Model getModel();
+
+    /**
+     * Returns the user prefs' GUI settings.
+     */
+    GuiSettings getGuiSettings();
+
+    /**
+     * Sets the user prefs' GUI settings.
+     */
+    void setGuiSettings(GuiSettings guiSettings);
 }

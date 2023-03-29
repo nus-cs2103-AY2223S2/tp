@@ -98,42 +98,72 @@ public class DeliveryJob {
                 .toUpperCase();
     }
 
+    /**
+     * Returns job ID
+     */
     public String getJobId() {
         return jobId;
     }
 
+    /**
+     * Returns recipient ID
+     */
     public String getRecipientId() {
         return recipient;
     }
 
+    /**
+     * Returns sender ID
+     */
     public String getSenderId() {
         return sender;
     }
 
+    /**
+     * Returns delivery date
+     */
     public Optional<DeliveryDate> getDeliveryDate() {
         return deliveryDate;
     }
 
+    /**
+     * Returns delivery slot
+     */
     public Optional<DeliverySlot> getDeliverySlot() {
         return deliverySlot;
     }
 
+    /**
+     * Returns delivery date in LocalDate
+     */
     public LocalDate getDate() {
         return deliveryDate.get().getDate();
     }
 
+    /**
+     * Returns delivery slot in Integer
+     */
     public int getSlot() {
         return deliverySlot.get().getSlot();
     }
 
+    /**
+     * Returns delivery earning
+     */
     public Optional<Earning> getEarning() {
         return earning;
     }
 
+    /**
+     * Returns delivered status
+     */
     public Boolean getDeliveredStatus() {
         return isDelivered;
     }
 
+    /**
+     * Returns delivery description in proper String format
+     */
     public String getDescription() {
         if (description == null) {
             return "";

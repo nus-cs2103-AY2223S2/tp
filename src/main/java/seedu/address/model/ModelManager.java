@@ -64,10 +64,10 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.deliveryJobSystem = new DeliveryJobSystem(deliveryJobSystem);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.filteredDeliveryJobs = new FilteredList<>(this.deliveryJobSystem.getDeliveryJobList());
+        this.filteredPersons = new FilteredList<Person>(this.addressBook.getPersonList());
+        this.filteredDeliveryJobs = new FilteredList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
         this.sortedDeliveryJobs = new ArrayList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
-        this.sortedDeliveryJobsList = new SortedList<>(filteredDeliveryJobs);
+        this.sortedDeliveryJobsList = new SortedList<DeliveryJob>(filteredDeliveryJobs);
         //updateSortedDeliveryJobListByDate();
         this.jobListGroupedByDate = new HashMap<LocalDate, DeliveryList>();
         this.weekJobListGroupedByDate = new HashMap<LocalDate, DeliveryList>();
@@ -228,6 +228,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<DeliveryJob> getDeliveryJobList() {
+        updateFilteredDeliveryJobList(PREDICATE_SHOW_ALL_DELIVERY_JOBS);
         return filteredDeliveryJobs;
     }
 

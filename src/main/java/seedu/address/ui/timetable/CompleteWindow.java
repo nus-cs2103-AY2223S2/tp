@@ -9,12 +9,11 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.ui.UiPart;
-import seedu.address.ui.jobs.DeliveryJobListPanel;
 import seedu.address.ui.main.ResultDisplay;
 import seedu.address.ui.main.StatusBarFooter;
 
 /**
- * Displays contact list.
+ * Displays list of completed jobs.
  */
 public class CompleteWindow extends UiPart<Stage> {
 
@@ -25,7 +24,7 @@ public class CompleteWindow extends UiPart<Stage> {
     private Logic logic;
 
     private ResultDisplay resultDisplay;
-    private DeliveryJobListPanel jobListPanel;
+    private UnscheduledDeliveryJobListPanel jobListPanel;
 
     @FXML
     private Text numberOfJobs;
@@ -35,7 +34,7 @@ public class CompleteWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     /**
-     * Creates a {@code AddressBookWindow} with the given {@code Stage} and {@code Logic}.
+     * Creates a {@code CompleteWindow} with the given {@code Stage} and {@code Logic}.
      */
     public CompleteWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -45,40 +44,40 @@ public class CompleteWindow extends UiPart<Stage> {
 
 
     /**
-     * Show main window.
+     * Show complete window.
      */
     public void show() {
-        logger.fine("Showing completed job window");
+        logger.fine("Showing window of completed jobs");
         getRoot().show();
         getRoot().centerOnScreen();
     }
 
     /**
-     * Returns true if the stats window is currently being shown.
+     * Returns true if the complete window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the stats window.
+     * Hides the Complete window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the stats window.
+     * Focuses on the Complete window.
      */
     public void focus() {
         getRoot().requestFocus();
     }
 
     /**
-     * fillInnerParts.
+     * Fills inner parts and content of complete window.
      */
     public void fillInnerParts() {
-        jobListPanel = new DeliveryJobListPanel(logic.getCompletedDeliveryJobList());
+        jobListPanel = new UnscheduledDeliveryJobListPanel(logic.getCompletedDeliveryJobList());
         int jobListLen = logic.getCompletedDeliveryJobList().size();
         numberOfJobs.setText(String.format("Total: %d job(s)", jobListLen));
 
@@ -87,6 +86,9 @@ public class CompleteWindow extends UiPart<Stage> {
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
 
+    /**
+     * Closes complete window.
+     */
     @FXML
     private void handleExit() {
         primaryStage.hide();

@@ -94,33 +94,59 @@ public class CommandResult {
         this(feedbackToUser, false, false, false, false, false);
     }
 
+    /**
+     * Returns feedback to user
+     */
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
+    /**
+     * Checks if help window is shown
+     */
     public boolean isShowHelp() {
         return showHelp;
     }
 
+    /**
+     * Checks if timetable window is shown
+     */
     public boolean isShowTimetable() {
         return showTimetable;
     }
 
+    /**
+     * Checks if unscheduled job window is shown
+     */
     public boolean isShowUnschedule() {
         return showUnschedule;
     }
+
+    /**
+     * Checks if compelted job window is shown
+     */
     public boolean isShowComplete() {
         return showComplete;
     }
 
+
+    /**
+     * Checks if stats window is shown
+     */
     public boolean isShowStatistics() {
         return showStatistics;
     }
 
+    /**
+     * Checks if reminder window is shown
+     */
     public boolean isShowReminderList() {
         return showReminderList;
     }
 
+    /**
+     * Checks if main window is exited
+     */
     public boolean isExit() {
         return exit;
     }

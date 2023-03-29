@@ -13,13 +13,18 @@ public class SortbyTimeAndEarn implements Comparator<DeliveryJob> {
 
     /**
      * Method sort by time (increasing)
+     * If time is the same, sort by earning (decreasing)
      * @param a the first job to be compared.
      * @param b the second job to be compared.
-     * @return difference between jobs' timing
+     * @return difference between jobs' timing/earning
      */
     public int compare(DeliveryJob a, DeliveryJob b) {
         try {
-            return (a.getDate()).compareTo(b.getDate());
+            if (compareByDate(a, b) != 0) {
+                return compareByDate(a, b);
+            } else {
+                return a.getEarning().get().compareTo(b.getEarning().get());
+            }
         } catch (NoSuchElementException e) {
             if (b.isScheduled()) {
                 return 1;
@@ -37,6 +42,17 @@ public class SortbyTimeAndEarn implements Comparator<DeliveryJob> {
                 return -1;
             }
             return 0;
+        }
+    }
+
+    /**
+     * Sorts by date
+     */
+    private int compareByDate(DeliveryJob a, DeliveryJob b) {
+        if (a.getDate().compareTo(b.getDate()) == 0) {
+            return a.getSlot() - b.getSlot();
+        } else {
+            return a.getDate().compareTo(b.getDate());
         }
     }
 }

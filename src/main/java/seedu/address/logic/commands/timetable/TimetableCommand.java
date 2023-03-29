@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.jobs.sorters.SortbyTimeAndEarn;
 
 /**
- * Format full timetable instructions for every command for display.
+ * Formats full timetable instructions for every command for display.
  */
 public class TimetableCommand extends Command {
     public static final String COMMAND_WORD = "timetable";

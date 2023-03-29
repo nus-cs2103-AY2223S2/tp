@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.jobs.DeliveryJob;
 
 /**
- * Lists all persons in the address book to the user.
+ * Sets delivered status for jobs in the delivery job system.
  */
 public class CompleteDeliveryJobCommand extends Command {
 

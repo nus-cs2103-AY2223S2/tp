@@ -26,7 +26,7 @@ import seedu.address.model.jobs.DeliverySlot;
 import seedu.address.model.jobs.Earning;
 
 /**
- * Edits the details of an existing job in the address book.
+ * Edits the details of an existing job in the job system.
  */
 public class EditDeliveryJobCommand extends Command {
 
