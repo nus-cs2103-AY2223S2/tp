@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 
 import javafx.scene.control.Alert;
 
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddWardCommand;
