@@ -3,11 +3,6 @@ layout: page
 title: User Guide
 ---
 
-<!---
-images with the path images/johndoe.png
-are placeholder images to be changed.
--->
-
 # Welcome to ConnectUS!
 
 ConnectUS is the ultimate **contact management system** for your everyday needs. If you're a School of Computing student, this app is for you. With ConnectUS, you can **connect with people** without the stress of remembering who you met where (on top of the stress of a growing assignment backlog — ~~_trust us, we know!_~~) holding you back from socialising.
@@ -19,6 +14,8 @@ We're focused on:
 This User Guide will provide you with an in-depth documentation for you to easily integrate ConnectUS into your daily life. It covers **step-by-step instructions** on setting up ConnectUS, core ConnectUS features and commands, and a glossary for definitions of terms used in ConnectUS.
 
 So what are you waiting for? Get ready to **Connect** with others and let **US** handle the rest!
+
+{% include page-break.html %}
 
 ---
 
