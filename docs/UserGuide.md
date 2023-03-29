@@ -109,15 +109,34 @@ Shows a list of all persons in MediConnect.
 
 Format: `list`
 
-### Prescribing patient’s medication : `prescribe medication to patient`
+### Prescribing patient’s medication : `prescribe`
 
-Prescribe a patient’s medication.
+Prescribes medication to a patient, and records its cost.
 
-Format: `prescribe m/MEDICATION to n/NAME`
+Format: `prescribe ic/NRIC m/MEDICATION c/COST`
 
 Examples:
-*  `prescribe m/paracetamol to n/John Tan` Prescribes paracetamol to John Tan
+*  `prescribe m/paracetamol ic/S1234567X c/10` Prescribes paracetamol the patient of IC S1234567X at a cost of $10
+*  `prescribe m/Cough Syrup ic/S1234567X c/0.1` Prescribes cough syrup to the patient of IC S1234567X at a cost of $0.10
 
+### Removing patient’s medication : `unprescribe`
+
+Removes a chosen medication from a patient.
+
+Format: `unprescribe ic/NRIC m/MEDICATION`
+
+Examples:
+*  `unprescribe ic/S1234567X m/paracetamol` Remove patient of IC S1234567X's paracetamol prescription
+*  `unprescribe m/Cough Syrup ic/S1234567X` Remove patient of IC S1234567X's cough syrup prescription
+
+### Bill : `bill`
+
+Calculates the cost of the prescription
+
+Format: `bill ic/NRIC`
+
+Examples:
+* `bill ic/S1234567X` Calculates the cost of patient's (of IC S1234567X) medication.
 
 ### Finding persons (patient or doctor) by name : `find`
 
@@ -166,6 +185,7 @@ Format: `clear`
 Example:
 * `clear` permanently deletes all data stored in the system.
 
+
 ### Exiting the program : `exit`
 
 _Details coming soon ..._
@@ -192,11 +212,13 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action        | Format, Examples |
-|---------------|------------------ |
-| **Add**       | `addPatient n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]…​` <br> e.g., `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S1234567L a/1 Ben Street` <br> `addDoctor n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]…​` <br> e.g., `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd` |
-| **Delete**    | `delete INDEX`<br> e.g., `delete 3` |
-| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` |
-| **List**      | `list` |
-| **Prescribe** | `prescribe medication to patient` |
-|  **Clear**    | `clear` |
+| Action          | Format, Examples                                                                                                                                                                                                                                                                                                                 |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**         | `addPatient n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]…​` <br> e.g., `addPatient n/Ben Smith p/98353535 e/ben@abc.com ic/S1234567L a/1 Ben Street` <br> `addDoctor n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]…​` <br> e.g., `addDoctor n/Sarah Tan p/99123456 e/sarah@abc.com ic/T7654321P a/Sarah Rd` |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                              |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                       |
+| **List**        | `list`                                                                                                                                                                                                                                                                                                                           |
+| **Prescribe**   | `prescribe ic/NRIC m/MEDICATION c/COST` <br> e.g.,     prescribe m/paracetamol ic/S1234567X c/10                                                                                                                                                                                                                                 |
+| **Unprescribe** | `unprescribe ic/NRIC m/MEDICATION` <br> e.g.,           unprescribe m/paracetamol ic/S1234567X                                                                                                                                                                                                                                   |
+| **Bill**        | `bill ic/NRIC` <br> e.g.,                               cost ic/S1234567X                                                                                                                                                                                                                                                        |
+| **Clear**       | `clear`                                                                                                                                                                                                                                                                                                                          |
