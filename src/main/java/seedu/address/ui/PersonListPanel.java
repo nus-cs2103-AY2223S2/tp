@@ -85,12 +85,11 @@ public class PersonListPanel extends UiPart<Region> {
             return new TableCell<Person, String>() {
                 @Override
                 protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-
                     if (item == null || empty) {
                         setText(null);
-                        setStyle("");
+                        setGraphic(null);
                     } else {
+                        super.updateItem(item, empty);
                         Text text = new Text(item);
                         text.setStyle("-fx-text-alignment:justify;");
                         text.wrappingWidthProperty().bind(getTableColumn().widthProperty());
@@ -138,6 +137,12 @@ public class PersonListPanel extends UiPart<Region> {
 
         //Disable sort by photo
         photo.setSortable(false);
+        name.setSortable(false);
+        email.setSortable(false);
+        performance.setSortable(false);
+        remark.setSortable(false);
+        telegram.setSortable(false);
+        index.setSortable(false);
 
         //Custom callbacks to modify basic data for photo
         photo.setCellFactory(new Callback<TableColumn<Person, String>, TableCell<Person, String>>() {
