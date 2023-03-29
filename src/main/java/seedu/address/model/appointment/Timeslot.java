@@ -44,6 +44,19 @@ public class Timeslot {
     }
 
     /**
+     * Constructs a {@code Timeslot}.
+     *
+     * @param startingDateTime The start time.
+     * @param endingDateTime   The end time.
+     */
+    public Timeslot(LocalDateTime startingDateTime, LocalDateTime endingDateTime) {
+        this.startingDateTime = startingDateTime;
+        this.endingDateTime = endingDateTime;
+        this.timeslotString =
+            startingDateTime.format(dateTimeFormatter) + "," + endingDateTime.format(dateTimeFormatter);
+    }
+
+    /**
      * Splits a valid timeslot string into its constituent LocalDateTime strings.
      *
      * @param timeslot A valid string for constructing a timeslot.

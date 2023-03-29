@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Finds and lists all patients whose name contains any of the argument keywords.
+ * Finds and lists all appointments whose timeslots contain the specified time.
  * Keyword matching is case insensitive.
  */
 public class FindAppointmentCommand extends Command {

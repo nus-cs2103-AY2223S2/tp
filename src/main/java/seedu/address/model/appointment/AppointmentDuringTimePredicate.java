@@ -2,6 +2,10 @@ package seedu.address.model.appointment;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FindAppointmentCommand;
@@ -28,6 +32,26 @@ public class AppointmentDuringTimePredicate implements Predicate<Appointment> {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
         }
         this.timeslot = new Timeslot(startTimeStr + "," + endTimeStr);
+    }
+
+    private AppointmentDuringTimePredicate(Timeslot timeslot) {
+        this.timeslot = timeslot;
+    }
+
+    /**
+     * Returns a predicate that filters out appointments that are not happening on the current day.
+     *
+     * @return Predicate with a timeslot covering the current day.
+     */
+    public static AppointmentDuringTimePredicate todayPredicate() {
+        // Adapted from
+        // https://stackoverflow.com/questions/6850874/
+        // how-to-create-a-java-date-object-of-midnight-today-and-midnight-tomorrow
+        LocalTime midnight = LocalTime.MIDNIGHT;
+        LocalDate today = LocalDate.now(ZoneId.of("Europe/Berlin"));
+        LocalDateTime todayMidnight = LocalDateTime.of(today, midnight);
+        LocalDateTime tomorrowMidnight = todayMidnight.plusDays(1);
+        return new AppointmentDuringTimePredicate(new Timeslot(todayMidnight, tomorrowMidnight));
     }
 
     @Override
