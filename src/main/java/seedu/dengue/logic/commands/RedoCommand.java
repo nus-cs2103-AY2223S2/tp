@@ -8,9 +8,9 @@ import seedu.dengue.model.Model;
 /**
  * A command that reverses an undo operation.
  */
-public class RedoCommand extends Command {
+public class RedoCommand extends UndoRedoCommand {
     public static final String COMMAND_WORD = "redo";
-    public static final String MESSAGE_SUCCESS = "Redo successful!";
+    public static final String MESSAGE_SUCCESS = "Redid %s operations successfully!";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " performs a redo operation, where an optional argument \n"
             + "can be provided to indicate the number of operations. \n"
@@ -29,9 +29,10 @@ public class RedoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        for (int i = 0; i < this.numberOfRedos; i++) {
-            model.redo();
-        }
-        return new CommandResult(MESSAGE_SUCCESS);
+        model.redo();
+        int counts = 1 + undoOrRedoAtMost(model, this.numberOfRedos - 1, false);
+        return new CommandResult(
+                String.format(MESSAGE_SUCCESS, counts));
     }
+
 }
