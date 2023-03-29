@@ -7,7 +7,7 @@ import seedu.event.model.EventBook;
 import seedu.event.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the event book.
  */
 public class ClearCommand extends Command {
 

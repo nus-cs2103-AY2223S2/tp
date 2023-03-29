@@ -12,7 +12,7 @@ import seedu.event.model.Model;
 import seedu.event.model.event.Event;
 
 /**
- * Marks an event identified using it's displayed index from the address book.
+ * Marks an event identified using it's displayed index from the event book.
  */
 public class MarkCommand extends Command {
 
