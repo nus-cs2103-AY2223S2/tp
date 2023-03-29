@@ -143,7 +143,7 @@ public interface Model {
      */
     void setCurrentSelectedEntity(Entity newSelection);
 
-    /*
+    /**
      * Get list of entities by classification
      */
     ObservableList<Entity> getListByClassification(String classification);
