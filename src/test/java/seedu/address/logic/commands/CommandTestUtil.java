@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
@@ -48,6 +49,9 @@ public class CommandTestUtil {
     public static final String VALID_GENDER_BOB = "male";
     public static final String VALID_TAG_DIABETIC = "Diabetic";
     public static final String VALID_TAG_OSTEOPOROTIC = "Osteoporotic";
+    public static final String VALID_DOCTOR_AMY = "Shannon";
+    public static final String VALID_DOCTOR_BOB = "Ben";
+
 
 
     public static final String NRIC_DESC_AMY = " " + PREFIX_NRIC + VALID_NRIC_AMY;
@@ -65,6 +69,8 @@ public class CommandTestUtil {
     public static final String MEDICINE_DESC_PANADOL = " " + PREFIX_MEDICINE + VALID_MEDICINE_PANADOL;
     public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
+    public static final String DOCTOR_DESC_AMY = " " + PREFIX_DOCTOR + VALID_DOCTOR_AMY;
+    public static final String DOCTOR_DESC_BOB = " " + PREFIX_DOCTOR + VALID_DOCTOR_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_DIABETIC;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_OSTEOPOROTIC;
 
@@ -78,6 +84,7 @@ public class CommandTestUtil {
         + PREFIX_DRUG_ALLERGY; // empty string not allowed for drug allergies
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "M"; // missing full spelling
     public static final String INVALID_GENDER_DESC_2 = " " + PREFIX_GENDER + "Male Female"; // missing full spelling
+    public static final String INVALID_DOCTOR_DESC = " " + PREFIX_DOCTOR + "Alex&"; // '&' not allowed in doctor names
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_MEDICINE_DESC = " " + PREFIX_MEDICINE + "$$"; // '$' not allowed in medicine
     public static final String NULL_EMAIL = " " + PREFIX_EMAIL + "null";
@@ -92,12 +99,12 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            .withDrugAllergy(VALID_DRUG_ALLERGY_AMY).withGender(VALID_GENDER_AMY)
+            .withDrugAllergy(VALID_DRUG_ALLERGY_AMY).withGender(VALID_GENDER_AMY).withDoctor(VALID_DOCTOR_AMY)
             .withTags(VALID_TAG_DIABETIC).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withDrugAllergy(VALID_DRUG_ALLERGY_BOB)
-            .withGender(VALID_GENDER_BOB).withTags(VALID_TAG_DIABETIC, VALID_TAG_OSTEOPOROTIC).build();
+            .withDrugAllergy(VALID_DRUG_ALLERGY_BOB).withGender(VALID_GENDER_BOB).withDoctor(VALID_DOCTOR_BOB)
+                .withTags(VALID_TAG_DIABETIC, VALID_TAG_OSTEOPOROTIC).build();
 
     }
 
