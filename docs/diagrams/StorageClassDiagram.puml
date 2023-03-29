@@ -19,6 +19,7 @@ Class "<<interface>>\nTaskBookStorage" as TaskBookStorage
 Class JsonTaskBookStorage
 Class JsonSerializableTaskBook
 Class JsonAdaptedTask
+Class JsonAdaptedSubtask
 Class JsonAdaptedTag
 }
 
@@ -50,6 +51,7 @@ JsonTaskBookStorage .up.|> TaskBookStorage
 JsonTaskBookStorage ..> JsonSerializableTaskBook
 JsonSerializableTaskBook --> "*" JsonAdaptedTask
 JsonAdaptedTask --> "*" JsonAdaptedTag
+JsonAdaptedTask --> "*" JsonAdaptedSubtask
 
 TaskBookStorage -[hidden]up|> PlannerStorage
 
