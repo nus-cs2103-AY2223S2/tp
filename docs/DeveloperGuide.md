@@ -893,14 +893,26 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 ## **Unit Tests**
 
-{to be filled}
+Our organisation primarily utilizes `JUnit5`for conducting unit tests. `JUnit5` is a popular testing framework in the Java programming language that enables developers to write and run unit tests for their code.
+
+Each individual unit of the program is tested to ensure each piece works correctly and stubs are commonly used to test the units in isolation.
 
 ### **Testing Models**
-{to be filled}
+
+Models used:
+* Waterfall model
+* Agile model
+* Breadth-first iterative model
+
+We used a mixture of models to suit our needs for different features. We applied the waterfall model to features that required individual work and the agile model for the others that required teamwork. We also had considerations for the time-limit imposed on this project so we applied the breadth-first iterative model to ensure basic functionalities.
+
 ### **Testing Commands**
-{to be filled}
+
+Equivalence partitions and stubs were mainly used to test commands.
+
 ### **Testing Parsers**
-{to be filled}
+
+Positive and negative test cases were mainly used to test parsers.
 
 ---
 
