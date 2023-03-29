@@ -11,7 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.library.model.bookmark.exceptions.BookmarkNotFoundException;
 import seedu.library.model.bookmark.exceptions.DuplicateBookmarkException;
-import seedu.library.model.tag.Tag;
 
 /**
  * A list of bookmarks that enforces uniqueness between its elements and does not allow nulls.
