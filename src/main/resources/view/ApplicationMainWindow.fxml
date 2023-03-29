@@ -7,19 +7,14 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.control.Label?>
-
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="sprINT" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/sprint.png" />
   </icons>
   <scene>
     <Scene>
@@ -38,29 +33,21 @@
           </Menu>
         </MenuBar>
 
-        <GridPane maxHeight="Infinity" maxWidth="Infinity"
-                  styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <VBox fx:id="applicationList" prefHeight="300.0" prefWidth="800" alignment="CENTER"
-                styleClass="pane-with-border" GridPane.rowSpan="2" VBox.vgrow="ALWAYS" GridPane.columnIndex="1">
-            <padding>
-              <Insets bottom="10" left="10" right="10" top="10" />
-            </padding>
-            <StackPane fx:id="applicationListPanelPlaceholder" alignment="CENTER" VBox.vgrow="ALWAYS" />
-          </VBox>
+        <HBox fillHeight="true" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <VBox fx:id="applicationList" alignment="CENTER" prefHeight="300.0" prefWidth="800" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+              <padding>
+                <Insets bottom="10" left="25" right="25" top="10" />
+              </padding>
+              <StackPane fx:id="applicationListPanelPlaceholder" alignment="CENTER" VBox.vgrow="ALWAYS" />
+            </VBox>
 
-          <VBox fx:id="statisticPanel" prefHeight="300.0" prefWidth="500" alignment="CENTER"
-                styleClass="pane-with-border" GridPane.columnIndex="2" GridPane.rowSpan="2" VBox.vgrow="ALWAYS">
+          <VBox fx:id="statisticPanel" alignment="CENTER" maxHeight="1.7976931348623157E308" prefWidth="500" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
             <padding>
-              <Insets bottom="10" left="10" right="10" top="10" />
+              <Insets bottom="10" left="0" right="25" top="15" />
             </padding>
             <StackPane fx:id="statisticsPanelPlaceholder" alignment="CENTER" VBox.vgrow="ALWAYS" />
           </VBox>
-
-          <rowConstraints>
-            <RowConstraints maxHeight="Infinity" minHeight="200.0" prefHeight="350.0" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="150" minHeight="150" prefHeight="150" vgrow="ALWAYS" />
-          </rowConstraints>
-        </GridPane>
+        </HBox>
 
         <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
