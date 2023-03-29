@@ -26,9 +26,9 @@
                 </Label>
                 <Label fx:id="patientName" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="timeSlot" styleClass="cell_small_label" text="\$phone" />
-            <Label fx:id="description" styleClass="cell_small_label" text="\$address" />
-            <Label fx:id="doctor" styleClass="cell_small_label" text="\$address" />
+            <Label fx:id="timeSlot" styleClass="cell_small_label" text="\$timeslot" />
+            <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+            <Label fx:id="doctor" styleClass="cell_small_label" text="\$doctor" />
         </VBox>
     </GridPane>
 </HBox>
