@@ -37,7 +37,7 @@ public class UnmarkCommandTest {
         taskBookModel.addTask(validDeadlineTask);
         Task taskToUnmark = taskBookModel.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
         Score score = new Score(4);
-        taskToUnmark.mark(score);
+        taskToUnmark.setScore(score);
         CommandResult commandResult = new UnmarkCommand(INDEX_FIRST_PERSON).execute(model, taskBookModel);
 
         assertEquals(String.format(UnmarkCommand.MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark),

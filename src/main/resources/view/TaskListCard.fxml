@@ -21,7 +21,7 @@
       <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </padding>
-         <StackPane prefHeight="15.0" prefWidth="200.0" />
+         <StackPane prefHeight="15.0" prefWidth="771.0" />
       <HBox alignment="CENTER_LEFT" spacing="10.0">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
@@ -33,7 +33,7 @@
                <font>
                   <Font size="16.0" />
                </font></Label>
-            <Label fx:id="id1" layoutX="10.0" layoutY="16.0" prefWidth="20.0" styleClass="cell_big_label" />
+            <Label fx:id="id1" layoutX="10.0" layoutY="16.0" prefHeight="17.0" prefWidth="79.0" styleClass="cell_big_label" />
             <Label style="-fx-font-size: 15px;" text="Assigned to: " />
          <Label fx:id="personAssigned" style="-fx-font-size: 20px;" styleClass="cell_small_label" text="\$personAssigned" />
          <Label fx:id="personRole" contentDisplay="CENTER" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" style="-fx-background-color: #3e7b91; -fx-background-radius: 5px; -fx-alignment: center; -fx-label-padding: 5px;" styleClass="cell_small_label" text="\$personRole" textFill="WHITE">
@@ -45,29 +45,18 @@
                 <Insets bottom="10.0" />
             </VBox.margin>
       </HBox>
-         <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" spacing="10.0">
-            <children>
-               <Label fx:id="id2" styleClass="cell_big_label">
-                  <minWidth>
-                     <Region fx:constant="USE_PREF_SIZE" />
-                  </minWidth>
-               </Label>
-               <Label style="-fx-font-size: 15px;" />
-            <Label fx:id="taskDeadline" style="-fx-font-size: 15px;" styleClass="cell_small_label" text="\$taskDeadline" />
-            </children>
-         </HBox>
-         <HBox spacing="10.0">
+         <HBox prefWidth="784.0" spacing="10.0">
             <children>
                <Label fx:id="id21" styleClass="cell_big_label">
                   <minWidth>
                      <Region fx:constant="USE_PREF_SIZE" />
                   </minWidth>
                </Label>
-               <Label text="      Comment:    " />
-               <Label fx:id="taskComment" style="-fx-font-size: 15px;" styleClass="cell_small_label" text="\$taskComment"/>
+               <Label text="     Comment:    " />
+               <Label fx:id="taskComment" style="-fx-font-size: 15px;" styleClass="cell_small_label" text="\$taskComment" />
             </children>
          </HBox>
-         <HBox prefHeight="100.0" prefWidth="200.0" spacing="3.0">
+         <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="790.0" spacing="3.0">
             <children>
                <Label fx:id="id22" styleClass="cell_big_label" text="       ">
                   <minWidth>
@@ -79,6 +68,8 @@
                <Circle fx:id="circle3" fill="WHITE" layoutX="43.0" layoutY="21.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="circle4" fill="WHITE" layoutX="66.0" layoutY="21.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
                <Circle fx:id="circle5" fill="WHITE" layoutX="88.0" layoutY="21.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+               <Label fx:id="id11" prefHeight="17.0" prefWidth="324.0" styleClass="cell_big_label" />
+            <Label fx:id="taskDeadline" style="-fx-font-size: 15px;" styleClass="cell_small_label" text="\$taskDeadline" />
             </children>
           </HBox>
     </VBox>

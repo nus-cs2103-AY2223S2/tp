@@ -12,8 +12,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.task.Comment;
-import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
 
 /**
@@ -116,20 +114,24 @@ public class TaskBookModelManager implements TaskBookModel {
     }
 
     @Override
-    public void commentOnTask(Comment comment, Task task) {
-        taskBook.commentOnTask(comment, task);
+    public void commentOnTask(Task taskToComment, Task commentedTask, Index taskIndex) {
+        taskBook.commentOnTask(taskToComment, commentedTask, taskIndex);
     }
 
     @Override
-    public void markTask(Task task, Score score) {
+    public void markTask(Task task, Task markedTask, Index taskIndex) {
         requireNonNull(task);
-        taskBook.markTask(task, score);
+        requireNonNull(markedTask);
+        requireNonNull(taskIndex);
+        taskBook.markTask(task, markedTask, taskIndex);
     }
 
     @Override
-    public void unmarkTask(Task task) {
-        requireNonNull(task);
-        taskBook.unmarkTask(task);
+    public void unmarkTask(Task taskToUnmark, Task unmarkedTask, Index taskIndex) {
+        requireNonNull(taskToUnmark);
+        requireNonNull(unmarkedTask);
+        requireNonNull(taskIndex);
+        taskBook.unmarkTask(taskToUnmark, unmarkedTask, taskIndex);
     }
 
     @Override

@@ -11,7 +11,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TaskBookModel;
+import seedu.address.model.task.Comment;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
 
 
 /**
@@ -44,10 +46,28 @@ public class UnmarkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        // TODO: throw exception if task is not done?
         Task taskToUnmark = lastShownList.get(targetIndex.getZeroBased());
-        taskBookModel.unmarkTask(taskToUnmark);
+        Task unmarkedTask = createUnmarkedTask(taskToUnmark);
+        taskBookModel.unmarkTask(taskToUnmark, unmarkedTask, targetIndex);
         taskBookModel.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark));
+    }
+
+    private static Task createUnmarkedTask(Task taskToUnmark) {
+        assert taskToUnmark != null;
+        TaskDescription taskDesc = taskToUnmark.getDescription();
+        String taskDate = taskToUnmark.getDate().toString();
+        String taskType = taskToUnmark.getTaskType();
+        Task unmarkedTask = new Task(taskDesc, taskDate, taskType);
+        String personAssignedName = taskToUnmark.getPersonAssignedName();
+        String personAssignedRole = taskToUnmark.getPersonAssignedRole();
+        Index personToAssign = taskToUnmark.getPersonAssignedIndex();
+        unmarkedTask.assignPerson(personToAssign, personAssignedName, personAssignedRole);
+        boolean status = false;
+        unmarkedTask.setStatus(status);
+        unmarkedTask.setScore(null);
+        Comment comment = taskToUnmark.getTaskComment();
+        unmarkedTask.setTaskComment(comment);
+        return unmarkedTask;
     }
 }

@@ -9,7 +9,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Comment;
-import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
@@ -130,8 +129,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param task
      * @param score
      */
-    public void markTask(Task task, Score score) {
-        task.mark(score);
+    public void markTask(Task task, Task markedTask, Index taskIndex) {
+        tasks.markTask(task, markedTask, taskIndex);
     }
 
     /**
@@ -167,17 +166,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    // /**
-    //  * Assigns a task to a person.
-    //  * @param taskIndex
-    //  * @param personIndex
-    //  */
-    // public void assignTask(Index taskIndex, Index personIndex) {
-    //     String personName = persons.getPerson(personIndex).getName().toString();
-    //     System.out.println(personName);
-    //     tasks.assignTask(taskIndex, personIndex, personName);
-    // }
-
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * @param taskToAssign
+     * @param assignedTask
+     * @param taskIndex
+     */
     public void assignTask(Task taskToAssign, Task assignedTask, Index taskIndex) {
         tasks.assignTask(taskToAssign, assignedTask, taskIndex);
     }

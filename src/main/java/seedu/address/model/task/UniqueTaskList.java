@@ -160,4 +160,34 @@ public class UniqueTaskList implements Iterable<Task> {
     public void assignTask(Task taskToAssign, Task assignedTask, Index taskIndex) {
         internalList.set(taskIndex.getZeroBased(), assignedTask);
     }
+
+    /**
+     * Replace the task with the marked task
+     * @param taskToMark
+     * @param markedTask
+     * @param taskIndex
+     */
+    public void markTask(Task taskToMark, Task markedTask, Index taskIndex) {
+        internalList.set(taskIndex.getZeroBased(), markedTask);
+    }
+
+    /**
+     * Replace the task with the unmarked task
+     * @param taskToUnmark
+     * @param unmarkedTask
+     * @param taskIndex
+     */
+    public void unmarkTask(Task taskToUnmark, Task unmarkedTask, Index taskIndex) {
+        internalList.set(taskIndex.getZeroBased(), unmarkedTask);
+    }
+
+    /**
+     * Replace the task with the commented task
+     * @param taskToComment
+     * @param commentedTask
+     * @param taskIndex
+     */
+    public void commentOnTask(Task taskToComment, Task commentedTask, Index taskIndex) {
+        internalList.set(taskIndex.getZeroBased(), commentedTask);
+    }
 }

@@ -6,8 +6,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.task.Comment;
-import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
 
 
@@ -83,19 +81,20 @@ public interface TaskBookModel {
      * Marks the given task {@code task} as done.
      * {@code task} must exist in the address book.
      */
-    void markTask(Task task, Score score);
+    void markTask(Task task, Task markedTask, Index taskIndex);
 
     /**
      * Unmarks the given task {@code task} as not done.
      * {@code task} must exist in the address book.
      */
-    void unmarkTask(Task task);
+    void unmarkTask(Task taskToUnmark, Task unmarkedTask, Index taskIndex);
 
     /**
      * Adds the given comment to the specified task.
      *  @param comment Comment by user
-     * @param task specified task to receive comment*/
-    void commentOnTask(Comment comment, Task task);
+     * @param task specified task to receive comment
+     */
+    void commentOnTask(Task taskToComment, Task commentedTask, Index taskIndex);
 
 
     /**

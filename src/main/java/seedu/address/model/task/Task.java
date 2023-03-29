@@ -152,9 +152,6 @@ public class Task {
         this.personAssignedRole = personRole;
     }
 
-
-
-
     /**
      * Supplies the index of the person assigned to the current task when requested.
      *
@@ -187,7 +184,7 @@ public class Task {
      * @param score Score to be assigned to the current task
      * @return String message to be displayed to user
      */
-    public String mark(Score score) {
+    public String mark(Task taskToMark, Task markedTask, Score score) {
         this.isDone = true;
         this.setScore(score);
         return "This task has been marked as completed:\n" + this + "\n";
