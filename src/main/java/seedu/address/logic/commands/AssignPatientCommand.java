@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 
 import java.util.List;
 import java.util.Set;
@@ -23,8 +25,8 @@ public class AssignPatientCommand extends Command {
             + ": Assigns patient identified by the patient index number used in the displayed patients list "
             + "with the doctor identified by the doctor index number used in the displayed doctor list.\n"
             + "Parameters: "
-            + "PATIENT_INDEX (must be a positive integer) "
-            + "DOCTOR_INDEX (must be a positive integer) ";
+            + PREFIX_PATIENT + "PATIENT_INDEX (must be a positive integer) "
+            + PREFIX_DOCTOR + "DOCTOR_INDEX (must be a positive integer) ";
     public static final String MESSAGE_ASSIGN_PATIENT_SUCCESS = "Assigned Patient %1s to Doctor %2s.";
     public static final String MESSAGE_PATIENT_ALREADY_ASSIGNED = "Patient %1s is already assigned to Doctor %2s.";
     private final Index patientIndex;
