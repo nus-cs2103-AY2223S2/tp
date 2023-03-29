@@ -64,6 +64,7 @@ public class TankDeleteCommand extends TankCommand {
             }
         }
 
+        model.deleteIndividualReadingLevels(tankToDelete.getReadingLevels());
         model.deleteTank(tankToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_TANK_SUCCESS, tankToDelete));
     }

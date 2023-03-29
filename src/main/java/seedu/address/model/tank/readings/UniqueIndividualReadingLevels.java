@@ -96,18 +96,19 @@ public class UniqueIndividualReadingLevels {
 
     /**
      * Removes the most recent readings from the list.
-     * The reading must exist in the list.
+     * List must not be empty.
      */
-    public void removeLastReadings() {
+    public Reading[] removeLastReadings() {
         //For now, all readings come and go as a trio
-        boolean listsAreEmpty = internalListAmmonia.size() == 0;
-        if (listsAreEmpty) {
-            return;
-        }
         int lastIndex = internalListAmmonia.size() - 1;
-        internalListAmmonia.remove(lastIndex);
-        internalListTemp.remove(lastIndex);
-        internalListPH.remove(lastIndex);
+        Reading a = internalListAmmonia.remove(lastIndex);
+        Reading t = internalListTemp.remove(lastIndex);
+        Reading p = internalListPH.remove(lastIndex);
+        Reading[] ret = new Reading[3];
+        ret[0] = a;
+        ret[1] = p;
+        ret[2] = t;
+        return ret;
     }
 
     public void setReadings(UniqueIndividualReadingLevels replacement) {
