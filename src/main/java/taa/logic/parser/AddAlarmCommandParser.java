@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import taa.commons.core.Messages;
 import taa.logic.commands.AddAlarmCommand;
 import taa.logic.parser.exceptions.ParseException;
-import taa.model.Alarm;
+import taa.model.alarm.Alarm;
 
 /**
  * Defines the parser for the add alarm command.

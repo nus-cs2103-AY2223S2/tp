@@ -4,28 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import taa.commons.core.Messages;
-import taa.logic.commands.AddAlarmCommand;
-import taa.logic.commands.AddAssignmentCommand;
-import taa.logic.commands.AddStudentCommand;
-import taa.logic.commands.ClearCommand;
-import taa.logic.commands.Command;
-import taa.logic.commands.CreateClassCommand;
-import taa.logic.commands.DeleteAssignmentCommand;
-import taa.logic.commands.DeleteStudentCommand;
-import taa.logic.commands.EditStudentCommand;
-import taa.logic.commands.ExitCommand;
-import taa.logic.commands.FindCommand;
-import taa.logic.commands.GradeCommand;
-import taa.logic.commands.HelpCommand;
-import taa.logic.commands.ImportCommand;
-import taa.logic.commands.InsertParticipationCommand;
-import taa.logic.commands.ListAssignmentCommand;
-import taa.logic.commands.ListByClassCommand;
-import taa.logic.commands.ListCommand;
-import taa.logic.commands.MarkAttendanceCommand;
-import taa.logic.commands.RemarkCommand;
-import taa.logic.commands.UngradeCommand;
-import taa.logic.commands.UnmarkAttendanceCommand;
+import taa.logic.commands.*;
 import taa.logic.parser.exceptions.ParseException;
 
 /**
@@ -117,6 +96,9 @@ public class TaaParser {
 
         case AddAlarmCommand.COMMAND_WORD:
             return new AddAlarmCommandParser().parse(arguments);
+
+        case ListAlarms.COMMAND_WORD:
+            return new ListAlarms();
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

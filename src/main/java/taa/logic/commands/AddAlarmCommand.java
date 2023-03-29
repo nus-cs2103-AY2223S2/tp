@@ -3,7 +3,7 @@ package taa.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import taa.logic.commands.exceptions.CommandException;
-import taa.model.Alarm;
+import taa.model.alarm.Alarm;
 import taa.model.Model;
 
 /**
@@ -11,6 +11,7 @@ import taa.model.Model;
  */
 public class AddAlarmCommand extends Command {
 
+    public static final String MESSAGE_ALARM_ACKNOWLEDGEMENT = "Adding a new alarm ...";
     public static final String COMMAND_WORD = "add_alarm";
     private final Alarm alarm;
 
@@ -24,7 +25,6 @@ public class AddAlarmCommand extends Command {
         requireNonNull(model);
 
         model.addAlarm(alarm);
-        return new CommandResult("Alarm has been successfully set to +"
-                + Integer.toString(alarm.getTime()) + " minutes later.");
+        return new CommandResult(MESSAGE_ALARM_ACKNOWLEDGEMENT,false, false,true);
     }
 }

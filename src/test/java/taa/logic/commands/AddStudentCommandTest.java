@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import taa.commons.core.GuiSettings;
 import taa.logic.commands.exceptions.CommandException;
-import taa.model.Alarm;
+import taa.model.alarm.Alarm;
 import taa.model.ClassList;
 import taa.model.Model;
 import taa.model.ReadOnlyAddressBook;
