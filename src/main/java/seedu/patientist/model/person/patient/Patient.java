@@ -1,7 +1,12 @@
 package seedu.patientist.model.person.patient;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
+import seedu.patientist.commons.core.index.Index;
+import seedu.patientist.logic.commands.exceptions.CommandException;
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
 import seedu.patientist.model.person.IdNumber;
@@ -18,38 +23,51 @@ import seedu.patientist.model.tag.Tag;
  */
 public class Patient extends Person {
     public static final RoleTag PATIENT_TAG = new RoleTag("Patient");
-    private PatientStatusDetails details;
+    private List<PatientStatusDetails> details = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
     public Patient(Email email, Name name, Phone phone, IdNumber id, Address address, Set<Tag> tags) {
         super(name, phone, email, id, address, tags);
-        this.details = new PatientStatusDetails();
     }
 
     /**
      * Every field must be present and not null.
      */
     public Patient(IdNumber id, Name name, Phone phone, Email email,
-                   Address address, PatientStatusDetails details, Set<Tag> tags) {
+                   Address address, List<PatientStatusDetails> details, Set<Tag> tags) {
         super(name, phone, email, id, address, tags);
-        this.details = details;
+        this.details.addAll(details);
     }
 
     /**
-     * Updates the <code>details</code> field with the new <code>PatientStatusDetails</code>.
+     * Adds the new <code>PatientStatusDetails</code> into the <code>details</code> field.
      */
-    public void setPatientStatusDetails(PatientStatusDetails details) {
-        this.details = details;
+    public void addPatientStatusDetails(PatientStatusDetails details) {
+        this.details.add(details);
+    }
+
+    /**
+     * Deletes the <code>PatientStatusDetails</code> specified by the index into the <code>details</code> field.
+     */
+    public void deletePatientStatusDetails(Index index) throws CommandException {
+        if (!checkStatusDetailsIndexInRange(index)) {
+            throw new CommandException("Status index not in range.");
+        }
+        this.details.remove(index.getZeroBased());
     }
 
     /**
      * Returns the <code>PatientStatusDetails</code> of this patient
      * @return <code>details</code>, the object representing the details of a patient's treatment
      */
-    public PatientStatusDetails getPatientStatusDetails() {
-        return this.details;
+    public List<PatientStatusDetails> getPatientStatusDetails() {
+        return Collections.unmodifiableList(this.details);
+    }
+
+    private boolean checkStatusDetailsIndexInRange(Index index) {
+        return (index.getZeroBased() < details.size() && index.getZeroBased() >= 0);
     }
 
     @Override

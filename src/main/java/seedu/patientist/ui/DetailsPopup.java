@@ -1,6 +1,7 @@
 package seedu.patientist.ui;
 
 import java.util.Comparator;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -8,9 +9,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.patientist.commons.core.LogsCenter;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.patient.PatientStatusDetails;
 
 
 /**
@@ -44,7 +47,7 @@ public class DetailsPopup extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label status;
+    private VBox status;
     @FXML
     private FlowPane tags;
 
@@ -61,7 +64,6 @@ public class DetailsPopup extends UiPart<Region> {
             address.setText("");
             email.setText("");
             idNumber.setText("");
-            status.setText("");
             return;
         }
         name.setText(person.getName().fullName);
@@ -72,7 +74,11 @@ public class DetailsPopup extends UiPart<Region> {
         idNumber.setText(s);
         if (personToView instanceof Patient) {
             Patient patientToView = (Patient) personToView;
-            status.setText(patientToView.getPatientStatusDetails().getDetails());
+            List<PatientStatusDetails> details = patientToView.getPatientStatusDetails();
+            for (int i = 1; i < details.size() + 1; i++) {
+                status.getChildren().add(new Label(String.format("%d. ", i) + details.get(i - 1).getDetails()));
+            }
+
         }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

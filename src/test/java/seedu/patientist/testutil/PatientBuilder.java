@@ -1,7 +1,8 @@
 package seedu.patientist.testutil;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
@@ -18,17 +19,17 @@ import seedu.patientist.model.util.SampleDataUtil;
  */
 public class PatientBuilder extends PersonBuilder {
 
-    public static final String DEFAULT_STATUS = "Doing good";
-    public static final HashSet<Tag> DEFAULT_TAGS = new HashSet<>(Arrays.asList(new Tag("Patient")));
+    public static final List<PatientStatusDetails> DEFAULT_STATUS = List.of(new PatientStatusDetails("Doing good"));
+    public static final HashSet<Tag> DEFAULT_TAGS = new HashSet<>(List.of(new Tag("Patient")));
 
-    private PatientStatusDetails status;
+    private List<PatientStatusDetails> status;
 
     /**
      * Creates a Patient from default details, with defaults specified here and in PersonBuilder
      */
     public PatientBuilder() {
         super();
-        this.status = new PatientStatusDetails(DEFAULT_STATUS);
+        this.status = DEFAULT_STATUS;
         this.tags = DEFAULT_TAGS;
     }
 
@@ -38,10 +39,10 @@ public class PatientBuilder extends PersonBuilder {
     public PatientBuilder(Patient patientToCopy) {
         name = patientToCopy.getName();
         idNumber = patientToCopy.getIdNumber();
-        status = patientToCopy.getPatientStatusDetails();
         phone = patientToCopy.getPhone();
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
+        status = new ArrayList<>(patientToCopy.getPatientStatusDetails());
         tags = new HashSet<>(patientToCopy.getTags());
     }
     /**
@@ -92,8 +93,8 @@ public class PatientBuilder extends PersonBuilder {
     /**
      * Sets the {@code Status} of the {@code Patient} that we are building.
      */
-    public PatientBuilder withStatus(String status) {
-        this.status = new PatientStatusDetails(status);
+    public PatientBuilder withStatus(String ... details) {
+        this.status = SampleDataUtil.getDetailsList(details);
         return this;
     }
 

@@ -1,7 +1,5 @@
 package seedu.patientist.storage;
 
-import static seedu.patientist.model.person.patient.Patient.PATIENT_TAG;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -34,7 +32,7 @@ class JsonAdaptedPatient {
     private final String phone;
     private final String email;
     private final String address;
-    private final String status;
+    private final List<JsonAdaptedStatus> details = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -43,14 +41,17 @@ class JsonAdaptedPatient {
     @JsonCreator
     public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("id") String id,
                               @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-                              @JsonProperty("address") String address, @JsonProperty("status") String status,
+                              @JsonProperty("address") String address,
+                              @JsonProperty("status") List<JsonAdaptedStatus> details,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.id = id;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.status = status;
+        if (details != null) {
+            this.details.addAll(details);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -66,7 +67,9 @@ class JsonAdaptedPatient {
         email = patient.getEmail().value;
         id = patient.getIdNumber().toString();
         address = patient.getAddress().value;
-        status = patient.getPatientStatusDetails().getDetails();
+        details.addAll(((Patient) source).getPatientStatusDetails().stream()
+                .map(JsonAdaptedStatus::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -81,6 +84,10 @@ class JsonAdaptedPatient {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+        final List<PatientStatusDetails> personDetails = new ArrayList<>();
+        for (JsonAdaptedStatus detail : details) {
+            personDetails.add(detail.toModelType());
         }
 
         if (name == null) {
@@ -125,11 +132,10 @@ class JsonAdaptedPatient {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        if (modelTags.contains(PATIENT_TAG) && status != null) {
-            final PatientStatusDetails modelDetails = new PatientStatusDetails(status);
-            return new Patient(modelId, modelName, modelPhone, modelEmail, modelAddress, modelDetails, modelTags);
-        }
-        return new Patient(modelEmail, modelName, modelPhone, modelId, modelAddress, modelTags);
+        final List<PatientStatusDetails> modelDetails = new ArrayList<>(personDetails);
+
+        return new Patient(modelId, modelName, modelPhone, modelEmail, modelAddress, modelDetails, modelTags);
+
     }
 
 }
