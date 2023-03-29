@@ -523,14 +523,14 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             handleSpecialCommandConsiderations(commandResult);
-            //showClippySuccess();
+            showClippySuccess();
 
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
 
-            //showClippyFailure();
+            showClippyFailure();
             throw e;
         }
     }
