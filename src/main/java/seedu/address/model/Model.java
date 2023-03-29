@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
@@ -81,6 +82,8 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    void exportProgress(Person target, String completePath) throws IOException;
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

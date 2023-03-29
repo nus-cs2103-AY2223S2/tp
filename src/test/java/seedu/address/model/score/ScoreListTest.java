@@ -3,6 +3,8 @@ package seedu.address.model.score;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalScores.SCORE_1;
 
 import java.util.List;
@@ -73,5 +75,35 @@ public class ScoreListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> scoreList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void add_score_increasesSize() {
+        int sizeBefore = scoreList.size();
+        scoreList.add(SCORE_1);
+        int sizeAfter = scoreList.size();
+        assertTrue(sizeBefore + 1 == sizeAfter);
+    }
+
+    @Test
+    public void remove_score_decreasesSize() {
+        scoreList.add(SCORE_1);
+        int sizeBefore = scoreList.size();
+        scoreList.remove(SCORE_1);
+        int sizeAfter = scoreList.size();
+        assertTrue(sizeBefore - 1 == sizeAfter);
+    }
+
+    @Test
+    public void get_score_returnsScore() {
+        scoreList.add(SCORE_1);
+        assertTrue(scoreList.get(INDEX_FIRST_PERSON.getZeroBased())
+                .equals(scoreList.getInternalList().get(INDEX_FIRST_PERSON.getZeroBased())));
+    }
+
+    @Test
+    public void get_invalidScoreIndex_throwsIndexOutofBoundsException() {
+        scoreList.add(SCORE_1);
+        assertThrows(IndexOutOfBoundsException.class, () -> scoreList.get(INDEX_SECOND_PERSON.getZeroBased()));
     }
 }
