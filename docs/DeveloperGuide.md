@@ -3,6 +3,10 @@ layout: page
 title: Developer Guide
 ---
 
+This is a guide for developers looking to contribute to the codebase. There are explanations as to how the project is setup and how each command works.
+
+You can click on the respective links below to read up on the relevant sections.
+
 **Table of Contents**
 
 <!-- TOC -->
@@ -16,10 +20,14 @@ title: Developer Guide
     * [Storage component](#storage-component)
     * [Common classes](#common-classes)
   * [**Implementation**](#implementation)
+    * [AddXYZCommand](#addxyzcommand)
+    * [DeleteXYZCommand](#deletexyzcommand)
+    * [Edit feature](#edit-feature)
     * [FindXYZCommand](#findxyzcommand)
+    * [ListXYZCommand](#listxyzcommand)
     * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
       * [Proposed Implementation](#proposed-implementation)
-      * [Design considerations:](#design-considerations-)
+      * [Design considerations:](#design-considerations)
     * [\[Proposed\] Data archiving](#proposed-data-archiving)
   * [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
   * [**Appendix: Requirements**](#appendix-requirements)
