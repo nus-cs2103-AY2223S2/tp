@@ -16,9 +16,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
-import seedu.address.model.tank.readings.FullReadingLevels;
-import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
-import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
+import seedu.address.model.tank.readings.*;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskFeedingReminder;
 
@@ -375,6 +373,11 @@ public class ModelManager implements Model {
     }
 
     //=========== FullReadingLevels  =============================================================
+    @Override
+    public void addReadingsToIndividualReadingLevels(AmmoniaLevel a, PH pH, Temperature temp, Tank t) {
+        this.fullReadingLevels.addReadingsToIndividualReadingLevels(a, pH, temp, t);
+    }
+
     @Override
     public void setFullReadingLevels(ReadOnlyReadingLevels readingLevels) {
         this.fullReadingLevels.resetData(readingLevels);

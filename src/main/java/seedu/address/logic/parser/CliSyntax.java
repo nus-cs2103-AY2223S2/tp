@@ -20,4 +20,7 @@ public class CliSyntax {
 
     /* Tank reading prefixes */
     public static final Prefix PREFIX_AMMONIA_LEVEL = new Prefix("al/");
+    public static final Prefix PREFIX_PH = new Prefix("ph/");
+    public static final Prefix PREFIX_TEMPERATURE = new Prefix("tp/");
+
 }

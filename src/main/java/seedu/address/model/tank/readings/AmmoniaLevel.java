@@ -63,4 +63,9 @@ public class AmmoniaLevel extends Reading {
     public int hashcode() {
         return (dateString + value).hashCode();
     }
+
+    @Override
+    public String toString() {
+        return String.format("[%f, %s] [Ammonia]", value, dateString);
+    }
 }

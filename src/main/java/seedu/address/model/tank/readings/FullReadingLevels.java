@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.tank.Tank;
 
 /**
  * Wraps all data at the Ammonia list within tank level
@@ -93,6 +94,17 @@ public class FullReadingLevels implements ReadOnlyReadingLevels {
         fullReadingLevels.remove(key);
     }
 
+    /**
+     * Adds a set of readings to tank t
+     * @param a Ammonia Level readings
+     * @param pH pH readings
+     * @param temp Temperature readings
+     * @param t target Tank
+     */
+    public void addReadingsToIndividualReadingLevels(AmmoniaLevel a, PH pH, Temperature temp, Tank t) {
+        UniqueIndividualReadingLevels target = fullReadingLevels.getIndividualReadings(t);
+        target.add(a, pH, temp);
+    }
     //// util methods
 
     @Override

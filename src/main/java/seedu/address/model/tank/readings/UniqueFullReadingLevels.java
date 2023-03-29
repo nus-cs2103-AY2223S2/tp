@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.readings.exceptions.DuplicateReadingException;
 import seedu.address.model.tank.readings.exceptions.ReadingNotFoundException;
 
@@ -40,6 +41,16 @@ public class UniqueFullReadingLevels implements Iterable<UniqueIndividualReading
             throw new DuplicateReadingException();
         }
         internalList.add(toAdd);
+    }
+
+    public UniqueIndividualReadingLevels getIndividualReadings(Tank t) {
+        UniqueIndividualReadingLevels ret;
+        for (UniqueIndividualReadingLevels r : internalList) {
+            if (r.getTank().equals(t)) {
+                return r;
+            }
+        }
+        throw new ReadingNotFoundException();
     }
 
     /**

@@ -76,4 +76,15 @@ public class DateUtil {
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern(VALID_NAME_FORMAT);
         return date.format(outputFormat);
     }
+
+    /**
+     * Returns the current date
+     * @return current date
+     */
+    public static String getCurrentDate() {
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+        String formattedDate = today.format(formatter);
+        return formattedDate;
+    }
 }
