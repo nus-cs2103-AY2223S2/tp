@@ -105,15 +105,12 @@ public class ModelManager implements Model {
         } catch (NullPointerException err) {
             throw new CommandException("Cannot undo any further!");
         }
-
-
     }
     @Override
     public void redo() throws CommandException {
         memory.redo();
         updateFromMemoryStack();
     }
-
 
     @Override
     public void setDengueHotspotTracker(ReadOnlyDengueHotspotTracker dengueHotspotTracker) {
