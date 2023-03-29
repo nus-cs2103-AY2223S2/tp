@@ -188,7 +188,7 @@ Deletes a job listing from the listing book.
 
 - `delete 1`
 
-**Expected Output:"**
+**Expected Output:**
 
 A confirmation message will show, along with the details of the listing. An example message is shown below:
 ```ignorelang
