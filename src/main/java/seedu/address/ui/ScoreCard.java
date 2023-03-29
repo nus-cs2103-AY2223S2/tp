@@ -28,11 +28,7 @@ public class ScoreCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label title;
-    @FXML
-    private Label scoreValue;
-    @FXML
-    private Label date;
+    private Label scoreInfo;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Task} and index to display.
@@ -41,9 +37,8 @@ public class ScoreCard extends UiPart<Region> {
         super(FXML);
         this.score = score;
         id.setText(displayedIndex + ". ");
-        title.setText(score.scoreLabel + ": ");
-        scoreValue.setText(score.scoreValue.toString() + " ");
-        date.setText(score.scoreDate.toString());
+        scoreInfo.setText("Exam: " + score.scoreLabel + "\n" + "Score: " + score.scoreValue.toString()
+                + "\n" + "Date: " + score.scoreDate.toString());
     }
 
     @Override

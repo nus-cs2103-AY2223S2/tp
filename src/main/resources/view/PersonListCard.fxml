@@ -23,10 +23,9 @@
       <padding>
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT">
+      <HBox spacing="5" alignment="TOP_LEFT">
         <Label fx:id="id" styleClass="cell_big_label" style="-fx-padding: 0 0 4 0">
           <minWidth>
-            <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>

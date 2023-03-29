@@ -240,7 +240,7 @@ public class ScoreListPanel extends UiPart<Region> {
      */
     private void newChart(Person person) {
         name.setText("Score history for " + person.getName().fullName);
-        nameChart.setText("Recent 5 scores for " + person.getName().fullName);
+        nameChart.setText("Recent scores for " + person.getName().fullName + "( at most 5)");
         scoreChart.setVisible(true);
         scoreChart.setLegendVisible(false);
         XYChart.Series<String, Double> series = new XYChart.Series<>();
@@ -299,7 +299,7 @@ public class ScoreListPanel extends UiPart<Region> {
             final Label label = new Label(examLabel + ": " + "\n" + scoreValue);
             label.getStyleClass().addAll("chart-line-symbol", "chart-series-line");
             label.setStyle("-fx-font-size: 12; -fx-font-weight: bold; -fx-background-color: white; "
-                    + "-fx-border-color: #FF94B4; -fx-border-width: 2;");
+                    + "-fx-border-color: #FF94B4; -fx-border-width: 2; -fx-alignment: center");
 
             if (scoreValue >= 80) {
                 label.setTextFill(Color.rgb(126, 190, 97));
@@ -309,7 +309,12 @@ public class ScoreListPanel extends UiPart<Region> {
                 label.setTextFill(Color.rgb(194, 47, 40));
             }
 
+            if (examLabel.length() >= 12) {
+                label.setText(examLabel.substring(0, 11) + "..." + "\n" + scoreValue);
+            }
+
             label.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
+
             return label;
         }
     }
