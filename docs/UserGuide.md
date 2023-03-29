@@ -166,6 +166,8 @@ Format: `addTask INDEX t/TASK_NAME`
 * Adds the given task to the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* A task with the same name as a task already in the task list cannot be added into the task list.
+* The name of a task is case-insensitive. e.g. `do homework` is the same as `Do Homework`
 
 Examples:
 
