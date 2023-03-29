@@ -98,7 +98,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     };
 
-    private Consumer<DeliveryJob> eidtDeliveryJobHandler = (job) -> {
+    private Consumer<DeliveryJob> editDeliveryJobHandler = (job) -> {
         if (addDeliveryJobWindow != null) {
             addDeliveryJobWindow.getRoot().close();
         }
@@ -118,7 +118,7 @@ public class MainWindow extends UiPart<Stage> {
             detailPane.fillInnerParts(logic.getAddressBook());
             deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
             detailPane.setCompleteHandler(completeDeliveryJobHandler);
-            detailPane.setEditHandler(eidtDeliveryJobHandler);
+            detailPane.setEditHandler(editDeliveryJobHandler);
             return;
         }
 
@@ -320,7 +320,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Opends timetable window
      */
-    private void openTimetable() {
+    public void openTimetable() {
         if (!timetableWindow.isShowing()) {
             logger.info("Opened timetable window of current week.");
             timetableWindow.show();
@@ -331,7 +331,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opends unscheduled jobs window
+     * Opens unscheduled jobs window
      */
     @FXML
     private void handleUnscheduledTimetable() {
@@ -351,7 +351,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opends completed jobs window
+     * Opens completed jobs window
      */
     @FXML
     private void handleCompletedTimetable() {
@@ -374,7 +374,7 @@ public class MainWindow extends UiPart<Stage> {
      * Opens Reminder List window.
      */
     @FXML
-    private void handleReminderList() {
+    public void handleReminderList() {
         if (!reminderListWindow.isShowing()) {
             reminderListWindow.show();
             reminderListWindow.fillInnerParts();

@@ -3,19 +3,31 @@ package seedu.address.ui.notification;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.util.Duration;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.jobs.CompleteDeliveryJobCommand;
+import seedu.address.logic.commands.reminder.ListReminderCommand;
+import seedu.address.logic.parser.DukeDriverParser;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
 import seedu.address.model.jobs.sorters.SortbyTimeAndEarn;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.ui.MainWindow;
+import seedu.address.ui.ReminderListWindow;
 
 /**
  * Provides basic functionality for using the Notification function
@@ -24,6 +36,8 @@ public class NotificationManager {
     //initialisation
     private Logic logic;
     private Model model;
+    private Runnable reminderWindow;
+    private Runnable timetableWindow;
 
     //notification settings
     private Duration duration = Duration.INDEFINITE;
@@ -40,9 +54,11 @@ public class NotificationManager {
      * Constructor to create a Notification from data stored in Logic. Used for notifying reminders
      * @param logic
      */
-    public NotificationManager(Logic logic) {
+    public NotificationManager(Logic logic, List<Runnable> runnableList ) {
         this.logic = logic;
         this.model = logic.getModel();
+        this.reminderWindow = runnableList.get(0);
+        this.timetableWindow = runnableList.get(1);
     }
 
     /**
@@ -65,21 +81,21 @@ public class NotificationManager {
     public void checkReminderList() {
         List<Reminder> reminderList = this.logic.getReminderList();
         LocalDateTime now = LocalDateTime.now();
+        int activeReminderCount = 0;
         for (int i = 0; i < reminderList.size(); i++) {
             Reminder r = reminderList.get(i);
             if (now.isAfter(r.getReminderDateTime())) {
-                if (!r.getHasShown()) {
-                    String des = (i + 1) + ". " + r.getDescription();
-                    String remind = "Remind at: " + r.reminderDateTimeToString();
-                    this.model.setHasShown(i, true);
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            show(des, remind, Pos.TOP_RIGHT);
-                        }
-                    });
-                }
+                activeReminderCount++;
             }
+        }
+        if (activeReminderCount > 0) {
+            int finalActiveReminderCount = activeReminderCount;
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    showReminderNotification(finalActiveReminderCount);
+                }
+            });
         }
     }
 
@@ -121,9 +137,8 @@ public class NotificationManager {
             jobList = null;
         }
         if (jobList != null) {
-            for (DeliveryJob d: jobList) {
-                String des = d.toString();
-                show("Current Job(s)!", des, Pos.TOP_LEFT);
+            if (jobList.size() > 0) {
+                showScheduleNotification(jobList.size(), "now");
             }
         }
     }
@@ -142,7 +157,7 @@ public class NotificationManager {
             case 10:
                 jobList = deliveryList.get(1);
                 break;
-            case 11:
+            case 12:
                 jobList = deliveryList.get(2);
                 break;
             case 13:
@@ -159,9 +174,8 @@ public class NotificationManager {
                 jobList = deliveryList.get(0);
             }
             if (jobList != null) {
-                for (DeliveryJob d : jobList) {
-                    String des = d.toString();
-                    show("Upcoming Job(s)!", des, Pos.TOP_LEFT);
+                if (jobList.size() > 0) {
+                    showScheduleNotification(jobList.size(), "next");
                 }
             }
         }
@@ -180,5 +194,74 @@ public class NotificationManager {
                 .hideAfter(duration)
                 .position(pos);
         notificationBuilder.showConfirm();
+    }
+
+    public void showReminderNotification(int i) {
+        Notifications notif = Notifications.create()
+                .title("You have " + i + " reminder(s)!")
+                .text("Click here to view them")
+                .hideAfter(duration)
+                .position(Pos.TOP_RIGHT)
+                .onAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        reminderWindow.run();
+                    }
+                });
+        Calendar now = Calendar.getInstance();
+        int t = 60 - now.get(Calendar.SECOND);
+        notif.hideAfter(Duration.seconds(t));
+        notif.showConfirm();
+    }
+
+    public void showScheduleNotification(int i, String when) {
+        Calendar now = Calendar.getInstance();
+        Notifications notif = Notifications.create();
+        switch (when) {
+        case "now":
+            notif.title("You have " + i + " job(s) in this scheduled slot. (" + now.getTime() + ")");
+            notif.hideAfter(Duration.minutes(60 - now.get(Calendar.MINUTE)));
+            break;
+        case "next":
+            notif.title("You have " + i + " upcoming job(s) from " + nextSlotTime());
+            double d;
+            if (now.get(Calendar.MINUTE) >= 40) {
+                 d = 40 + (60 - now.get(Calendar.MINUTE));
+            } else {
+                d = 40 - now.get(Calendar.MINUTE);
+            }
+            notif.hideAfter(Duration.minutes(d));
+            break;
+        }
+        notif.text("Click here to view more")
+            .hideAfter(duration)
+            .position(Pos.TOP_LEFT);
+        notif.onAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                timetableWindow.run();
+            }
+        });
+        notif.showConfirm();
+    }
+
+    public String nextSlotTime() {
+        Calendar now = Calendar.getInstance();
+        int hour = now.get(Calendar.HOUR_OF_DAY);
+        if (hour < 10) {
+            return "10:00 - 11:00";
+        }
+        switch (hour) {
+        case 10:
+            return "11:00 - 12:00";
+        case 12:
+            return "13:00 - 14:00";
+        case 13:
+            return "14:00 - 15:00";
+        case 14:
+            return "15:00 - 16:00";
+        default:
+            return "";
+        }
     }
 }
