@@ -695,7 +695,7 @@ The following commands are patient-related commands that are available in Carefl
 | **View patient by index**     | `p view -i PATIENT_INDEX` <p> e.g. `p view -i 1` | Shows the patient record located at the i-th position in the patient list.|
 | **Find patient by name**      | `p find PATIENT_NAME` <p> e.g., `p find John` | Shows patient(s) record that match the patient name you have provided.|
 | **Clear all patient**         | `p clear` | Removes all patient records stored in CareFlow.|
-| **List patient**              | `p list` | Lists all the patients that have been recorded in CareFlow.| 
+| **List patient**              | `p list` | Lists all the patients that have been recorded in CareFlow.|
 
 ## 6.3 Drug Commands
 
