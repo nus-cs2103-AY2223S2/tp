@@ -15,8 +15,8 @@ import seedu.internship.logic.commands.ExitCommand;
 import seedu.internship.logic.commands.FindCommand;
 import seedu.internship.logic.commands.HelpCommand;
 import seedu.internship.logic.commands.ListCommand;
-import seedu.internship.logic.commands.UpcomingCommand;
 import seedu.internship.logic.commands.CopyCommand;
+import seedu.internship.logic.commands.UpcomingCommand;
 import seedu.internship.logic.commands.ViewCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
 
