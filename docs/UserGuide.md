@@ -222,7 +222,7 @@ To use ConnectUS, type the [command](#321-command) along with its [parameters](#
 
 ## 3.4 How to Use the CLI
 
-To use the Command Line Interface(CLI), you can type a [command](#321-command) in the [Command Box](#311-command-box) and press Enter to execute it.e.g. typing **`help`** and pressing Enter will open the help window.<br>
+To use the Command Line Interface(CLI), you can type a [command](#321-command) in the [Command Box](#311-command-box) and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.<br>
    ![Command Box](images/ConnectUSCommandBox.png) <br>
 
 To familiarise yourself with ConnectUS, let's try out the `add` command! The `add` command allows you to add a new contact into the [Contact List](#313-contact-list).
@@ -243,7 +243,7 @@ Other parameters that end with `…​` like in `[mod/MODULE]…​` indicates t
 
 **Let's test this out!**
 
-Suppose you have a friend whom you call Lineup Larry. His phone number is 91234567, and he stays on campus in UTown Residences. His Telegram username is lineuplarry, takes the modules CS2103T and CS2101, and is in the Art Club.
+Suppose you have a friend whose nickname is Lineup Larry. His phone number is 91234567, and he stays on campus in UTown Residences. His Telegram username is lineuplarry, takes the modules CS2103T and CS2101, and is in the Art Club.
 
 >`NAME`: Lineup Larry<br>
 >`PHONE`: 91234567<br>
@@ -579,7 +579,7 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 # 5. Information Fields & Prefixes
 
-Here is a list of prefixes that ConnectUS uses when taking parameters.
+ConnectUS uses prefixes to distinguish between the different types of information fields you supply. The exhaustive list of information fields supported and their respective prefixes are as follows:
 
 - [5.1 Name: `n/`](#51-name-n)
 - [5.2 Phone: `p/`](#52-phone-p)
@@ -596,6 +596,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
   - [5.9.4 Remark Tags: `r/`](#594-remark-tags-r)
 
 ## 5.1 Name: `n/`
+>Name refers to a contact's name.
 * Name is a *compulsory* field, i.e. a contact cannot exist if it does not have a name.
 * The prefix for a name is `n/`.
 * Names should only contain <u>alphanumeric</u> characters and spaces.
@@ -603,6 +604,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
 ## 5.2 Phone: `p/`
+>Phone refers to a contact's phone number.
 * Phone is an *optional* field, i.e. a contact can exist even if it does not have a phone number.
 * The prefix for a phone is `p/`.
 * Phone numbers should only contain <u>numeric</u> characters.
@@ -611,6 +613,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
 ## 5.3 Email: `e/`
+>Email refers to a contact's email address.
 * Email is an *optional* field, i.e. a contact can exist even if it does not have an email.
 * The prefix for an email is `e/`.
 * Emails should be of the format local-part@domain and adhere to the following constraints:
@@ -624,6 +627,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
 ## 5.4 Address: `a/`
+>Address refers to a contact's home address.
 * Address is an *optional* field, i.e. a contact can exist even if it does not have an address.
 * The prefix for an address is `a/`.
 * Addresses can take any values, including <u>special characters</u>.
@@ -631,6 +635,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
 ## 5.5 Instagram: `ig/`
+>Instagram refers to a contact's Instagram username.
 * Instagram is an *optional* field, i.e. a contact can exist even if it does not have an Instagram.
 * The prefix for an Instagram username is `ig/`.
 * Instagram usernames should be of the format `john.123.doe` and adhere to the following constraints:
@@ -641,6 +646,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
 ## 5.6 Telegram: `tg/`
+>Telegram refers to a contact's Telegram username.
 * Telegram is an *optional* field, i.e. a contact can exist even if it does not have a Telegram.
 * The prefix for a Telegram username is `tg/`.
 * Telegram usernames should be of the format `johndoe` and adhere to the following constraints:
@@ -650,6 +656,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
 ## 5.7 WhatsApp: `wa/`
+>WhatsApp refers to a contact's WhatsApp phone number.
 * WhatsApp is an *optional* field, i.e. a contact can exist even if it does not have a WhatsApp.
 * The prefix for adding a WhatsApp is `wa/`.
 * A WhatsApp's user identifier is a phone number, which should adhere to the following constraints:
@@ -659,6 +666,7 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
 ## 5.8 Birthday: `b/`
+>Birthday refers to a contact's birthday date.
 * Birthday is an *optional* field, i.e. a contact can exist even if it does not have a birthday.
 * The prefix for a birthday is `b/`.
 * Birthdays should be of the format DD/MM/YYYY:
@@ -669,12 +677,15 @@ Here is a list of prefixes that ConnectUS uses when taking parameters.
 
 ## 5.9 Tags
 
+Tags are used to assign additional information to a contact. 
+
 There are four kinds of tags in ConnectUS. They are Module Tags, Major Tags, CCA Tags, and Remark Tags.
 
 ![TagTypes](images/TagTypes.png)
 
 
 ### 5.9.1 Module Tags: `mod/`
+>Module tags refer to modules that you can assign to a contact to keep track of what modules that contact takes.
 * <u>Module</u> is an *optional* field, i.e. a contact can exist even if it does not have a module.
 * The prefix for a module is `mod/`.
 * Module names should be <u>alphanumeric</u>, and can contain spaces.
@@ -683,6 +694,7 @@ There are four kinds of tags in ConnectUS. They are Module Tags, Major Tags, CCA
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
 ### 5.9.2 CCA Tags: `cca/`
+>CCA tags refer to CCAs that you can assign to a contact to record keep track of CCAs that contact is in.
 * <u>CCA</u> is an *optional* field, i.e. a contact can exist even if it does not have a CCA.
 * The prefix for a CCA is `cca/`.
 * CCA names should be <u>alphanumeric</u>, and can contain spaces.
@@ -691,6 +703,7 @@ There are four kinds of tags in ConnectUS. They are Module Tags, Major Tags, CCA
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
 ### 5.9.3 CCA Position Tags: `ccapos/`
+>CCA Position tags refer to CCA Positions that you can assign to a contact to keep track of the positions that the contact holds in their various CCAs.
 * CCA Position is an *optional* field, i.e. a contact can exist even if it does not have a CCA position.
 * The prefix for a module is `ccapos/`.
 * CCA Position names should be <u>alphanumeric</u>, and can contain spaces.
@@ -699,6 +712,7 @@ There are four kinds of tags in ConnectUS. They are Module Tags, Major Tags, CCA
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
 ### 5.9.4 Remark Tags: `r/`
+>Remark tags refer to any additional remarks you would like to assign to a contact to keep track of any information you deem relevant and important.
 * Remark is an *optional* field, i.e. a contact can exist even if it does not have a remark.
 * The prefix for a remark is `r/`.
 * Remark names should be <u>alphanumeric</u>, and can contain spaces.
