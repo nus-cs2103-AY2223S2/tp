@@ -777,6 +777,8 @@ There are four kinds of tags in ConnectUS. They are Module Tags, Major Tags, CCA
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
+<div style="page-break-after: always"></div>
+
 ### 5.9.2 CCA Tags: `cca/`
 >CCA tags refer to CCAs that you can assign to a contact to record keep track of CCAs that contact is in.
 * <u>CCA</u> is an *optional* field, i.e. a contact can exist even if it does not have a CCA.
@@ -795,6 +797,8 @@ There are four kinds of tags in ConnectUS. They are Module Tags, Major Tags, CCA
 * A contact can have any number of CCA Positions assigned to it.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
+
+<div style="page-break-after: always"></div>
 
 ### 5.9.4 Remark Tags: `r/`
 >Remark tags refer to any additional remarks you would like to assign to a contact to keep track of any information you deem relevant and important.
