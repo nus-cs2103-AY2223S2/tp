@@ -152,7 +152,7 @@ public class Fish {
                 .append(getLastFedDate())
                 .append("; Species: ")
                 .append(getSpecies())
-                .append("; FeedingInterval: ")
+                .append("; Feeding Interval: ")
                 .append(getFeedingInterval())
                 .append("; Tank: ")
                 .append(getTank());
