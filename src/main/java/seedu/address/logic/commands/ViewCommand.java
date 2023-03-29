@@ -10,8 +10,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.patient.Patient;
 
-import javax.swing.text.View;
-
 /**
  * Displays a patient with full detail, identified using it's displayed index from the address book.
  */
@@ -24,7 +22,7 @@ public class ViewCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SHOW_ENTITY_SUCCESS = "Showing Entity: %1$s";
+    public static final String MESSAGE_SHOW_ENTITY_SUCCESS = "Showing Patient: %1$s";
 
     private final Index targetIndex;
 
