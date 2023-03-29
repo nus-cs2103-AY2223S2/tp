@@ -7,7 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.logic.commands.AddInterviewDateCommand;
 import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.ClearByCommand;
@@ -24,6 +23,9 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.commands.RevertAllCommand;
 import seedu.address.logic.commands.RevertCommand;
+import seedu.address.logic.commands.contact.AddContactCommand;
+import seedu.address.logic.commands.contact.DeleteContactCommand;
+import seedu.address.logic.commands.contact.EditContactCommand;
 import seedu.address.logic.commands.task.FindTaskCommand;
 import seedu.address.logic.commands.task.ListTaskCommand;
 import seedu.address.logic.commands.task.note.AddNoteCommand;
@@ -36,6 +38,7 @@ import seedu.address.logic.commands.task.todo.DeleteTodoCommand;
 import seedu.address.logic.commands.task.todo.EditDeadlineCommand;
 import seedu.address.logic.commands.task.todo.EditNoteContentCommand;
 import seedu.address.logic.commands.task.todo.ListTodoCommand;
+import seedu.address.logic.parser.contact.ContactParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.task.TaskParser;
 
@@ -49,12 +52,14 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private final TaskParser taskParser;
+    private final ContactParser contactParser;
 
     /**
      * Creates a TaskParser instance for every InternEase parser object.
      */
     public AddressBookParser() {
         taskParser = new TaskParser();
+        contactParser = new ContactParser();
     }
 
     /**
@@ -105,7 +110,9 @@ public class AddressBookParser {
             return new EditStatusCommandParser().parse(arguments);
 
         case AddContactCommand.COMMAND_WORD:
-            return new AddContactCommandParser().parse(arguments);
+        case EditContactCommand.COMMAND_WORD:
+        case DeleteContactCommand.COMMAND_WORD:
+            return contactParser.parseContactCommand(commandWord, arguments);
 
         case ClearByCommand.COMMAND_WORD:
             return new ClearByCommandParser().parse(arguments);

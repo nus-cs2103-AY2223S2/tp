@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.contact.Contact;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
@@ -19,6 +20,7 @@ public class InternshipBuilder {
     private CompanyName companyName;
     private JobTitle jobTitle;
     private Set<Review> reviews;
+    private Contact contact;
     private InternshipStatus status;
 
     /**
@@ -29,8 +31,8 @@ public class InternshipBuilder {
         jobTitle = new JobTitle(DEFAULT_JOB_TITLE);
         reviews = new HashSet<>();
         status = InternshipStatus.NA;
-
     }
+
     /**
      * Initializes the InternshipApplicationBuilder with the data of {@code internshipToCopy}.
      */
@@ -38,6 +40,7 @@ public class InternshipBuilder {
         companyName = internshipToCopy.getCompanyName();
         jobTitle = internshipToCopy.getJobTitle();
         reviews = new HashSet<>(internshipToCopy.getReviews());
+        contact = internshipToCopy.getContact();
         status = internshipToCopy.getStatus();
     }
 
@@ -58,6 +61,14 @@ public class InternshipBuilder {
     }
 
     /**
+     * Sets the {@code Contact} of the {@code InternshipApplication} that we are building.
+     */
+    public InternshipBuilder withContact(Contact contact) {
+        this.contact = contact;
+        return this;
+    }
+
+    /**
      * Sets the {@code Status} of the {@code InternshipApplication} that we are building.
      */
     public InternshipBuilder withStatus(InternshipStatus status) {
@@ -66,6 +77,6 @@ public class InternshipBuilder {
     }
 
     public InternshipApplication build() {
-        return new InternshipApplication(companyName, jobTitle);
+        return new InternshipApplication(companyName, jobTitle, reviews, contact, status);
     }
 }
