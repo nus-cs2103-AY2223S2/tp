@@ -3,181 +3,235 @@ layout: page
 title: User Guide
 ---
 
-Docédex is a **desktop application for managing doctors and patients within hospitals**, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you type fast, Docédex can get your patient management tasks done faster than traditional GUI apps.<br>
+### Welcome to Docedex, your solution to doctor and patient management
 
+Docedex is a **desktop application** is built for **administrative assistants** to manage patients within clinics.
+
+Docedex is **optimized for** use via a **Command Line Interface (CLI)** while still having the benefits of a **Graphical User Interface (GUI).** If you type fast, Docédex can get your patient management tasks done faster than traditional GUI apps.
+
+Unlike your traditional contact management application, keep track of patients' **health information**, their **doctors** and much more.
+
+With Docedex, taking control of patient management is just a few keystrokes away!
+
+
+![NewUi](images/NewUi.png)
+
+For **new users** visit our [quick start](#quick-start) to get you started .
+
+
+## Table of Contents
 * Table of Contents
 {:toc}
-
+* 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
 1. Make sure that you have **Java 11 or above** installed on your computer.
+   - [How do I check my version of Java?](#checking-java-version)
 
-2. Download the latest jar file (`docedex.jar`) from our [Github Releases](https://github.com/AY2223S2-CS2103T-F12-1/tp).
+2. Download the latest jar file (`docedex.jar`) from our [Github Releases](https://github.com/AY2223S2-CS2103T-F12-1/tp/releases/).
+   ![DownloadDocedex](images/DownloadDocedex.png)
 
-3. Place the jar file into a new folder. This folder will be used as the home folder for the Docedex application.
+3. Move the jar file to a Docedex's new folder
+   - Create a new folder called Docedex where you would like to house the application (e.g., Desktop, Documents, etc.). 
+   - Move the downloaded jar file to this folder as shown below.
+     - For Mac Users:
+     ![DownloadDocedexMac](images/DownloadDocedexMac.png)
+     - For Windows Users:
 
-4. Open a command terminal within the home folder.
+4. Launch Docedex
+   - For Mac Users:
+     - Right-click `docedex.jar` > Open With > JavaLauncher.app
+     ![LaunchDocedexMac](images/LaunchDocedexMac.png)
+     - First time users may be prompted with a warning that the file was downloaded from the Internet. Simply click Open in the prompt to continue.
+   - For Windows Users:
+     - Double-click `docedex.jar` to launch the application.
+   - If this still does not work follow the instructions listed [here.](#launching-docedex)
+   
+   - You should notice the GUI of the application pop up.<br>
+   ![NewUi](images/NewUi.png)
 
-5. Enter `java -jar docedex.jar` in the command terminal
-   1. You should notice the GUI of the application pop up.<br>
-   ![Ui](images/Ui.png)
+6. Test out some commands in [Docedex Tutorial](#docedex-tutorial)
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`list-doc`** and pressing Enter will display all doctors stored in Docedex.<br>
-   1. Some example commands you can try:
-
-      * `help` : Opens up the help menu.
-
-      * `add-doc n/John Doe p/98765432` : Adds a doctor contact named `John Doe` to Docedex.
-
-      * `del-doc 3` : Deletes the doctor with the associated ID of 3.
-
-      * `find-doc Gabriel` : Finds all doctors contacts that have the keyword 'Gabriel'
-
-      * `exit` : Exits the app.
-
-7. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) section for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Notes about the command format
+| Notes                                                                                                       | Explanation                                                        | Examples                                                                                          |
+|-------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| Words in `UPPER_CASE`                                                                                       | These are parameters that are supplied by the user                 | `add-doc n/NAME...` can be used as `add-doc n/John Doe...`                                        |
+| Items in square brackets                                                                                    | These are optional fields (can be left empty by user)              | `add-doc n/NAME ... [t/TAG]` can be used as `add-doc n/John Doe t/friend` or `add-doc n/John Doe` |
+| Items with `…`​ after them                                                                                  | These are fields that can be used multiple times including 0 times | `add-doc ... [t/TAG]…​` can be used as `add-doc ... t/friend t/surgeon` or `add-doc ...`          |
+| Parameters can be in any order.                                                                             | N/A                                                                | `add-doc n/NAME p/PHONE_NUMBER ...` is equivalent to `add-doc p/PHONE_NUMBER n/NAME`              |
+| If a parameter is **expected only once** and entered multiple times, only the latest occurence is accepted. | N/A                                                                | `add-doc n/John Doe n/Shawn Koh ...` is equivalent to `add-doc n/Shawn Koh ...`                   |
+| Extraneous parameters for commands that do not take in parameters will be ignored.                          | N/A                                                                | `help 123`, `list 123` is equivalent to `help` or `list`                                          |
+
 ## Features
 
-<div markdown="block" class="alert alert-info">
+### Viewing help
 
-**:information_source: Notes about the command format:**<br>
+- Command format: `help`
+- What it does: Shows a message explaining how to access the help page.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list-doc`, `exit`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
-
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+![help message](images/HelpWindow.png)
+[Scroll back to Table of Contents](#table-of-contents)
 
 
-### Adding a doctor: `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALITY y/YEARS_OF_EXPERIENCE [t/TAGS]…`
+### Adding a doctor: 
 
-Adds a doctor to the address book.
+- Command format: `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALITY y/YEARS_OF_EXPERIENCE [t/TAGS]…`
+- What it does: Adds a doctor to the address book.
 
-Format: `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALITY y/YEARS_OF_EXPERIENCE [t/TAGS]…`
+![add-doc](images/AddDoc.png)
 
+- Examples:
+  - `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
+  - `add-doc n/Gabriel Tan p/98765432 e/gabt@example.com s/Neurosurgery y/5`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A doctor can have any number of tags (including 0)
-</div>
+[Scroll back to Table of Contents](#table-of-contents)
 
-Examples:
+### Adding a patient:
+- Command format: `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS [r/REMARK] [t/TAGS]…`
+- What it does: Adds a patient to the address book.
 
-* `add-doc n/Gabriel Tan p/98765432 e/gtan@health.org s/Cardiology y/5`
+![add-ptn](images/AddPtn.png)
 
-### Adding a patient: `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]…`
+- Examples:
+  - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient r/Dust allergy t/brother`
+  - `add-ptn n/Patrick Bateman p/85167604 e/psigma@gmail.com h/1.88 w/80.5 d/Rhinitis st/Outpatient`
 
-Adds a patient to the address book.
+[Scroll back to Table of Contents](#table-of-contents)
 
-Format: `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]…`
+### Editing a doctor : 
+- Command format: `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`
+- What it does: Edits the doctor at the specified `INDEX`. The index refers to the index number shown in the displayed doctor list. The index **must be a positive integer** 1, 2, 3, …​
+- Note to users:
+  - Users can edit specific doctors in the clinic by providing at least one of the optional fields. Existing values will be updated to the input values and all other values will remain the same. 
+  - At least one of the optional fields must be provided. 
+  - Existing values will be updated to the input values. 
+  - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without
 
+![EditDoc](images/EditDoc.png)
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A patient can have any number of tags (including 0)
-</div>
+- Examples:
+  - `edit-doc 1 p/91234567` Edits the phone number of the 1st doctor to be `91234567`.
+  - `edit-doc 2 n/Gabriel Tan p/12345678 t/` Edits the name and phone number of the 2nd doctor to be `Gabriel Tan` and `91234567` respectively. Adding t/ also clears all existing tags.
 
-Examples:
+[Scroll back to Table of Contents](#table-of-contents)
 
-* `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends`
+### Editing a patient : 
+- Command format: `edit-ptn INDEX [n/NAME] [p/PHONE_NUMBER]`
+- What it does: Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+- Note to users:
+    - Users can edit specific patients in the clinic by providing at least one of the optional fields. Existing values will be updated to the input values and all other values will remain the same.
+    - At least one of the optional fields must be provided.
+    - Existing values will be updated to the input values.
+    - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without
+      specifying any tags after it.
 
-### Editing a doctor : `edit-doc`
+![EditPtn](images/EditPtn.png)
 
-Users can edit specific doctors in the clinic by providing at least one of the optional fields. Existing values will be updated to the input values and all other values will remain the same.
+- Examples:
+    - `edit-ptn 1 n/Daenerys Targaryen` Edits the name of the 1st patient to be `Daenerys Targaryen`.
+    - `edit-ptn 2 n/Daenerys Targaryen st/Inpatient t/` Edits the name and status of the 2nd patient to be `Daenerys Targaryen` and `Inpatient` respectively. Adding t/ also clears all existing tags.
 
-Format: `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`
+[Scroll back to Table of Contents](#table-of-contents)
 
-* Edits the doctor at the specified `INDEX`. The index refers to the index number shown in the displayed doctor list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+### Deleting a doctor : 
+- Command format: `del-doc INDEX`
+- What it does: Deletes the specified doctor from the address book.
+- Note to user:
+  - The index refers to the index number shown in the displayed doctor list. 
+  - The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-*  `edit 1 p/91234567` Edits the phone number of the 1st doctor to be `91234567`.
-*  `edit-doc 2 n/Gabriel Tan p/12345678 t/` Edits the name and phone number of the 2nd doctor to be `Gabriel Tan` and `91234567` respectively. Adding t/ also clears all existing tags.
-
-### Deleting a doctor : `del-doc`
-
-Deletes the specified doctor from the address book.
-
-Format: `del-doc INDEX`
-
-* Deletes the doctor at the specified `INDEX`.
-* The index refers to the index number shown in the displayed doctor list.
-* The index **must be a positive integer** 1, 2, 3, …​
+![DelDoc](images/DelDoc.png)
 
 Examples:
 * `list-doc` followed by `del-doc 2` deletes the 2nd doctor in the address book.
 * `find-doc Gabriel` followed by `del-doc 1` deletes the 1st doctor in the results of the `find-doc` command.
-* 
+
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Deleting a patient : `del-ptn`
 
-Deletes the specified patient from the address book.
+- Command format: `del-ptn INDEX`
+- What it does: Deletes the specified patient from the address book.
+- Note to user:
+  - The index refers to the index number shown in the displayed patient list. 
+  - The index **must be a positive integer** 1, 2, 3, …​
 
-Format: `del-ptn INDEX`
-
-* Deletes the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+![DelPtn](images/DelPtn.png)
 
 Examples:
 * `list-ptn` followed by `del-ptn 2` deletes the 2nd patient in the address book.
 * `find-ptn Gabriel` followed by `del-ptn 1` deletes the 1st patient in the results of the `find-ptn` command.
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 ### Finding a doctor
+- Command format: `find-doc KEYWORD`
+- What it does: Users can search up doctors that contain a specific text (KEYWORD) using this command.
+- Note to users:
+  - KEYWORD can contain multiple words.
+    >   e.g. The command `find-doc Hans Bo` will use `Hans Bo` as the KEYWORD. 
+  - The search is case-insensitive.
+    > e.g. `hans` will match `Hans`. 
+  - All doctor entries that contain KEYWORD in their fields will be listed.
+- Examples:
+  - `find-doc Gabriel`
 
-Command: `find-doc KEYWORD`
+[Scroll back to Table of Contents](#table-of-contents)
 
-Users can search up doctors that contain a specific text (KEYWORD) using this command.
+### Finding a patient
 
-* KEYWORD can contain multiple words.
-    > e.g. The command `find-doc Hans Bo` will use `Hans Bo` as the KEYWORD.
-* The search is case-insensitive.
-    > e.g. `hans` will match `Hans`.
-* All doctor entries that contain KEYWORD in their fields will be listed.
+Command format: `find-ptn KEYWORD`
+- Command format: `find-ptn KEYWORD`
+- What it does: Users can search up patients that contain a specific text (KEYWORD) using this command.
+- Note to users:
+    - KEYWORD can contain multiple words.
+      >   e.g. The command `find-ptn Hans Bo` will use `Hans Bo` as the KEYWORD.
+    - The search is case-insensitive.
+      > e.g. `hans` will match `Hans`.
+    - All doctor entries that contain KEYWORD in their fields will be listed.
+- Examples:
+  - `find-ptn Gabriel`
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Listing all doctors
+- Command format: `list-doc`
+- What it does: This command will list all doctors saved in Docedex together with their information.
 
-Command: `list-doc`
+[Scroll back to Table of Contents](#table-of-contents)
 
-This command will list all doctors saved in Docedex together with their information.
+### Listing all patients
+- Command format: `list-ptn`
+- What it does: This command will list all patients saved in Docedex together with their information.
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Exiting the program
+- Command format: `exit`
+- What it does: This command is equivalent to closing the application (exits the program).
 
-Command: `exit`
+[Scroll back to Table of Contents](#table-of-contents)
 
-Exit the program.
+### Clearing all data
+- Command format: `clear`
+- What it does: This command will clear all data in Docedex.
+- 🚨 **Warning** 🚨:
+  - This command will clear all data in Docedex. This includes all doctors and patients.
+  - This command **cannot be undone**.
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Saving the data
 
 Docedex data is saved automatically after any command that changes data. There is no need to save manually.
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ### Editing the data file
 
@@ -185,12 +239,50 @@ Docedex data is saved as a JSON file at this specified path: `[JAR file location
 
 DO NOT modify data directly, as it might result in the malfunction of the application. In the worst case scenario, all your data may be reset. Only modify data directly if you know what you are doing and accept the risks of such actions.
 
+[Scroll back to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
+### Launching Docedex
+**Q**: How can I launch docedex if the clicking on the JAR file does not work?<br>
+**A**: There are two possible methods to launch Docedex.
+
+Method 1: For users familiar with the command prompt
+1. Open the command prompt
+2. Navigate to the directory where the JAR file is located using `cd [JAR file location]`
+3. Type `java -jar docedex.jar` and press enter
+4. Docedex should launch
+
+Method 2: For users that wish to create a script to launch Docedex (**Recommended**)
+1. Create a new text file
+2. Copy and paste the following into the text file:
+```
+java -jar [JAR file location]/docedex.jar
+```
+3. Save the text file as `docedex.bat` (Windows) or `docedex.sh` (MacOS/Linux)
+4. Change the admin settings of the script to allow it to run as a program:
+   i. Windows: Right-click on the script and select `Properties`. Under `General`, check the box that says `Allow this file to run as a program`.
+   ii. MacOS/Linux: Open the terminal and navigate to the directory where the script is located. Type `chmod +x [script name]` and press enter. (`chmod +x` changes permissions of the script to allow it to be executed.)
+5. Double-click on the script to launch Docedex
+6. Docedex should launch
+
+If you have any further issues, please raise an issue on our [GitHub page](https://github.com/AY2223S2-CS2103T-F12-1/tp/issues). We will attend to you as soon as we can.
+
+### Checking Java version
+**Q**: How can I check my Java version?<br>
+**A**: Open a command prompt and type `java -version`. If you do not have Java installed, you can download it [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+
+For Mac Users you may wish to follow the instructions listed [here](https://nus-cs2103-ay2223s2.github.io/website/admin/programmingLanguages.html)
+
+### Loading Data from another computer
+
 **Q**: How can I load data from another computer into Docedex installed on another computer?<br>
 **A**: Delete the `docedex.json` file (stored at `[JAR file location]/data/docedex.json`) from the computer that you wish to use Docedex on. Then, copy over the `docedex.json` file from the computer which you no longer wish to use Docedex on. After which, boot up Docedex to check whether your doctor information is properly loaded into the new computer.
+
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -202,7 +294,11 @@ DO NOT modify data directly, as it might result in the malfunction of the applic
 | **Delete Doctor**  | `del-doc INDEX`<br> E.g. `del-doc 3`                                                                                                                                                                                                          |
 | **Delete Patient** | `del-ptn INDEX`<br> E.g. `del-ptn 3`                                                                                                                                                                                                          |
 | **Edit Doctor**    | `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`<br> E.g. `edit-doc 3 n/Gabriel Tan p/12345678`                                                                                                                                                     |
+| **Edit Patient**   | `edit-ptn INDEX [n/NAME] [p/PHONE_NUMBER]`<br> E.g. `edit-ptn 3 n/Gabriel Tan p/12345678`                                                                                                                                                     |
 | **Find Doctor**    | `find-doc KEYWORD`<br> E.g. `find-doc Gabriel`                                                                                                                                                                                                |
+| **Find Patient**   | `find-ptn KEYWORD`<br> E.g. `find-ptn Gabriel`                                                                                                                                                                                                |
 | **List Doctors**   | `list-doc`                                                                                                                                                                                                                                    |
+| **List Patients**  | `list-ptn`                                                                                                                                                                                                                                    |
 | **Help**           | `help`                                                                                                                                                                                                                                        |
+| **Clear**          | `clear`                                                                                                                                                                                                                                       |
 | **Exit**           | `exit`                                                                                                                                                                                                                                        |
