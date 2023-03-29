@@ -3,16 +3,20 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.BorderPane?>
 <HBox id="cardPane" fx:id="cardPane" spacing="20" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane style="-fx-background-radius: 16; -fx-background-color: C4C4C4;" HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -37,19 +41,30 @@
                 <children>
                 </children>
             </HBox>
-         <HBox fx:id="details" alignment="CENTER_LEFT" spacing="5">
+         <HBox fx:id="details" alignment="CENTER_LEFT" spacing="5" style="-fx-padding: 0 0 10 0;">
              <ProgressBar fx:id="progressBar" prefHeight="15.0" prefWidth="91.0" progress="0" style="-fx-accent: #643FDB;" />
              <Label fx:id="progressBarCount" styleClass="cell_big_label" />
              <Label fx:id="date" styleClass="cell_big_label" />
              <ImageView fx:id="attachmentLogo" />
              <ImageView fx:id="noteLogo" />
          </HBox>
+         <TableView prefHeight="200.0" prefWidth="200.0">
+           <columns>
+             <TableColumn prefWidth="75.0" text="C1" />
+             <TableColumn prefWidth="75.0" text="C2" />
+           </columns>
+         </TableView>
+         <Text fx:id="noteText" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes">
+            <font>
+               <Font name="Waseem Regular" size="13.0" />
+            </font>
+         </Text>
+         <Line fx:id="line" endX="400.0" stroke="#726f6f" strokeWidth="3.0" />
             <HBox fx:id="noteDetails" alignment="CENTER_LEFT" spacing="5">
-                <VBox fx:id="noteBox"></VBox>
+                <VBox fx:id="noteBox" />
             </HBox>
         <BorderPane fx:id="borderPane" />
         </VBox>
-      <HBox prefHeight="81.0" prefWidth="150.0" />
         <rowConstraints>
             <RowConstraints />
         </rowConstraints>

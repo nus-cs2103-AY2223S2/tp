@@ -19,9 +19,9 @@ public class DeleteNoteCommand extends Command {
             + "cannot be recognized!";
     public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Deleted note: %1$s";
 
-    public static final String TUTORIAL_STRING = "tutorial";
-    public static final String LAB_STRING = "lab";
-    public static final String CONSULTATION_STRING = "consultation";
+    public static final String TUTORIAL_STRING = "Tutorial";
+    public static final String LAB_STRING = "Lab";
+    public static final String CONSULTATION_STRING = "Consultation";
 
     private final Index targetIndex;
     private final String eventName;
