@@ -9,5 +9,5 @@
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   * It comes with a **reasonable level of user and developer documentation**.
 * It is now called `Clock-Work`. Clock-Work is a **desktop application for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-* For the detailed documentation of this project, see the **[Github](https://ay2223s2-cs2103t-w13-3.github.io/tp/)**.
+* For the detailed documentation of this project, see **[Clock-Work product website](https://ay2223s2-cs2103t-w13-3.github.io/tp/)**.
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
