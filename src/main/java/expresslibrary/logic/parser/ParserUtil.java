@@ -9,9 +9,13 @@ import java.util.Set;
 import expresslibrary.commons.core.index.Index;
 import expresslibrary.commons.util.StringUtil;
 import expresslibrary.logic.parser.exceptions.ParseException;
+import expresslibrary.model.book.Author;
+import expresslibrary.model.book.Isbn;
+import expresslibrary.model.book.Title;
 import expresslibrary.model.person.Address;
 import expresslibrary.model.person.Email;
 import expresslibrary.model.person.Name;
+//import expresslibrary.model.person.Person;
 import expresslibrary.model.person.Phone;
 import expresslibrary.model.tag.Tag;
 
@@ -124,5 +128,50 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String author} into an {@code Author}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code author} is invalid.
+     */
+    public static Author parseAuthor(String author) throws ParseException {
+        requireNonNull(author);
+        String trimmedAuthor = author.trim();
+        if (!Author.isValidAuthor(trimmedAuthor)) {
+            throw new ParseException(Author.MESSAGE_CONSTRAINTS);
+        }
+        return new Author(trimmedAuthor);
+    }
+
+    /**
+     * Parses a {@code String isbn} into an {@code Isbn}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code isbn} is invalid.
+     */
+    public static Isbn parseIsbn(String isbn) throws ParseException {
+        requireNonNull(isbn);
+        String trimmedIsbn = isbn.trim();
+        if (!Isbn.isValidIsbn(trimmedIsbn)) {
+            throw new ParseException(Isbn.MESSAGE_CONSTRAINTS);
+        }
+        return new Isbn(trimmedIsbn);
+    }
+
+    /**
+     * Parses a {@code String isbn} into an {@code Title}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code title} is invalid.
+     */
+    public static Title parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+        }
+        return new Title(trimmedTitle);
     }
 }

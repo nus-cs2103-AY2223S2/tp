@@ -16,4 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_TITLE = new Prefix("t/");
     public static final Prefix PREFIX_AUTHOR = new Prefix("a/");
     public static final Prefix PREFIX_ISBN = new Prefix("i/");
+    public static final Prefix PREFIX_DUE_DATE = new Prefix("dd/");
+    public static final Prefix PREFIX_BORROW_DATE = new Prefix("bd/");
 }
