@@ -6,8 +6,8 @@ package seedu.address.ui;
  */
 public class EnlargedInfoCardDisplayController {
 
-    private boolean shouldDisplayDoctorInfoCard;
-    private boolean shouldDisplayPatientInfoCard;
+    private boolean shouldDisplayDoctorInfoCard = true;
+    private boolean shouldDisplayPatientInfoCard = false;
     private ContactDisplay parent;
 
     /**
@@ -15,7 +15,6 @@ public class EnlargedInfoCardDisplayController {
      * with the given parent {@code ContactDisplay}.
      */
     public EnlargedInfoCardDisplayController(ContactDisplay parent) {
-        // Show Doctor by default
         this.parent = parent;
     }
 

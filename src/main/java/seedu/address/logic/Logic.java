@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.nio.file.Path;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -41,6 +42,20 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of patients */
     ObservableList<Patient> getFilteredPatientList();
+
+    /**
+     * Updates the filter of the filtered doctor list in {@code Model}
+     * to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredDoctorList(Predicate<Doctor> predicate);
+
+    /**
+     * Updates the filter of the filtered patient list in {@code Model}
+     * to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPatientList(Predicate<Patient> predicate);
 
     /** Returns an Optional containing a doctor if the filtered list of doctors is not empty */
     Optional<Doctor> getDoctorIfPresent();
