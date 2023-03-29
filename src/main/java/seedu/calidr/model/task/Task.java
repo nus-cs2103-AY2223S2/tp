@@ -2,7 +2,9 @@ package seedu.calidr.model.task;
 
 import java.util.Optional;
 
+import net.fortuna.ical4j.filter.FilterExpression;
 import seedu.calidr.model.task.params.Description;
+import seedu.calidr.model.task.params.Location;
 import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
 
@@ -13,6 +15,7 @@ public abstract class Task {
 
     private final Title title;
     private Description description;
+    private Location location;
     private boolean isDone;
     private Priority priority;
 
@@ -39,8 +42,16 @@ public abstract class Task {
         return Optional.ofNullable(this.description);
     }
 
+    public Optional<Location> getLocation() {
+        return Optional.ofNullable(this.location);
+    }
+
     public void setDescription(Description description) {
         this.description = description;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public void mark() {
@@ -90,6 +101,10 @@ public abstract class Task {
 
         if (getDescription().isPresent()) {
             sb.append(": ").append(getDescription().get());
+        }
+
+        if (getLocation().isPresent()) {
+            sb.append(" @ ").append(getLocation().get());
         }
 
         return sb.toString();

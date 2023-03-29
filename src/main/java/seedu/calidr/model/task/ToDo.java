@@ -45,6 +45,10 @@ public class ToDo extends Task {
             sb.append(": \n").append(getDescription().get());
         }
 
+        if (getLocation().isPresent()) {
+            sb.append("\n@ ").append(getLocation().get());
+        }
+
         return sb.toString();
     }
 
