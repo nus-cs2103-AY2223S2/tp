@@ -21,6 +21,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListArchivedCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.commands.RevertAllCommand;
 import seedu.address.logic.commands.RevertCommand;
 import seedu.address.logic.commands.task.FindTaskCommand;
@@ -96,6 +97,9 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case RemindCommand.COMMAND_WORD:
+            return new RemindCommand();
 
         case EditStatusCommand.COMMAND_WORD:
             return new EditStatusCommandParser().parse(arguments);

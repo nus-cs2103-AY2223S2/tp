@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an internship's review in the address book.
+ * Represents an internship's review in the tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidReview(String)}
  */
 public class Review {
@@ -31,7 +31,7 @@ public class Review {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid review.
      */
     public static boolean isValidReview(String test) {
         return test.matches(VALIDATION_REGEX);

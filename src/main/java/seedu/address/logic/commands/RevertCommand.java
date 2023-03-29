@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.InternshipApplication;
 
 /**
- * Reverts deleted or cleared internship applications stored in cache in current session.
+ * Reverts a most recently deleted or cleared internship application stored in the cache list for current session only.
  */
 public class RevertCommand extends Command {
 
@@ -24,6 +24,7 @@ public class RevertCommand extends Command {
         requireNonNull(model);
 
         List<InternshipApplication> cacheList = model.getCachedInternshipList();
+
         if (cacheList.size() > 0) {
             InternshipApplication application = model.getAndRemoveCachedApplication();
             return hasApplication(model, application);

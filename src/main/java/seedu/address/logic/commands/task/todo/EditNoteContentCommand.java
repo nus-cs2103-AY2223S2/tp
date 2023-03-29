@@ -14,13 +14,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.JobTitle;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.ApplicationDeadline;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.NoteContent;
 
 /**
- * Edits the note content of a todo identified using it's displayed index from the list of todos.
+ * Edits the note content of a todo identified by its displayed index from the list of todos.
  */
 public class EditNoteContentCommand extends Command {
 
@@ -35,15 +35,15 @@ public class EditNoteContentCommand extends Command {
 
     public static final String MESSAGE_UPDATE_STATUS_SUCCESS = "NoteList Content updated: %1$s";
 
-    private static final TodoType type = TodoType.TODO;
+    private static final TaskType type = TaskType.TODO;
 
     private final Index targetIndex;
 
     private final NoteContent toUpdate;
 
     /**
-     * @param targetIndex of the to update content
-     * @param content to update
+     * Creates a EditNoteContentCommand to update the note content of the todo task specified at index
+     * {@code targetIndex} to {@code content}.
      */
     public EditNoteContentCommand(Index targetIndex, NoteContent content) {
         requireNonNull(targetIndex);
@@ -73,10 +73,9 @@ public class EditNoteContentCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code InternshipApplication} with the content of {@code content}
+     * Creates and returns a {@code InternshipTodo} with the content of {@code content}
      */
-    private static InternshipTodo createdUpdatedTodo(
-            InternshipTodo todo, NoteContent content) {
+    private static InternshipTodo createdUpdatedTodo(InternshipTodo todo, NoteContent content) {
         assert todo != null;
 
         CompanyName companyName = todo.getInternshipTitle();

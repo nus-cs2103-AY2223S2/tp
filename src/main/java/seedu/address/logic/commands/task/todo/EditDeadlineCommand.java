@@ -14,13 +14,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.JobTitle;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.ApplicationDeadline;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.NoteContent;
 
 /**
- * Edits the deadline of a todo identified using it's displayed index from the list of todos.
+ * Edits the deadline of a todo identified by its displayed index from the list of todos.
  */
 public class EditDeadlineCommand extends Command {
 
@@ -35,15 +35,15 @@ public class EditDeadlineCommand extends Command {
 
     public static final String MESSAGE_UPDATE_STATUS_SUCCESS = "Deadline updated: %1$s";
 
-    private static final TodoType type = TodoType.TODO;
+    private static final TaskType type = TaskType.TODO;
 
     private final Index targetIndex;
 
     private final ApplicationDeadline toUpdate;
 
     /**
-     * @param targetIndex of the to update deadline
-     * @param deadline to update
+     * Creates a EditDeadlineCommand to update the deadline of the todo task specified at index {@code targetIndex} to
+     * {@code deadline}.
      */
     public EditDeadlineCommand(Index targetIndex, ApplicationDeadline deadline) {
         requireNonNull(targetIndex);
@@ -73,7 +73,7 @@ public class EditDeadlineCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code InternshipApplication} with the deadline of {@code deadline}
+     * Creates and returns a {@code InternshipTodo} with the deadline of {@code deadline}
      */
     private static InternshipTodo createdUpdatedTodo(
             InternshipTodo todo, ApplicationDeadline deadline) {

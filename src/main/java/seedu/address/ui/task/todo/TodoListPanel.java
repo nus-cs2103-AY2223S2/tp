@@ -32,14 +32,20 @@ public class TodoListPanel extends UiPart<Region> {
         super(FXML);
         todoListView.setItems(todoList);
         todoListView.setCellFactory(listView -> new TodoListViewCell());
+        logger.info("Todo List updated.");
     }
 
+    /**
+     * Getter for the vertical box with id container.
+     *
+     * @return VBox with id container
+     */
     public VBox getContainer() {
         return container;
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code ApplicationTodo} using a {@code TodoCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code InternshipTodo} using a {@code TodoCard}.
      */
     class TodoListViewCell extends ListCell<InternshipTodo> {
         @Override

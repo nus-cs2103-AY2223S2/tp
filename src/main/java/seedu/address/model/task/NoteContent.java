@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a QuickNote's content in the planner.
+ * Represents a Note content in the planner.
  * Guarantees: immutable; is valid as declared in {@link #isValidContent(String)}
  */
 public class NoteContent {
@@ -13,7 +13,7 @@ public class NoteContent {
             + "It should not be blank.";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the content must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "^.+$";
@@ -32,7 +32,7 @@ public class NoteContent {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid name and is within 1 to 55 characters long.
      */
     public static boolean isValidContent(String test) {
         return test.length() <= 55 && test.matches(VALIDATION_REGEX);
