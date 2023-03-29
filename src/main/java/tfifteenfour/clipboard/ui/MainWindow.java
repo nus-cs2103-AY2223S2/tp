@@ -41,6 +41,7 @@ import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.course.Course;
 import tfifteenfour.clipboard.model.course.Group;
 import tfifteenfour.clipboard.model.course.Session;
+import tfifteenfour.clipboard.model.student.SessionWithAttendance;
 import tfifteenfour.clipboard.model.student.Student;
 import tfifteenfour.clipboard.model.task.Task;
 import tfifteenfour.clipboard.ui.pagetab.ActiveCourseTab;
@@ -289,7 +290,8 @@ public class MainWindow extends UiPart<Stage> {
         ObservableList<Student> viewedStudent =
                 logic.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
                         .filtered(student -> student.isSameStudent(logic.getCurrentSelection().getSelectedStudent()));
-        rightPanelPlaceholder.getChildren().add(new StudentViewCard(viewedStudent.get(0)).getRoot());
+        ObservableList<SessionWithAttendance> sessionList = logic.getCurrentSelection().getSelectedStudent().getObservableSessionList();
+        rightPanelPlaceholder.getChildren().add(new StudentViewCardWithAttendance(viewedStudent.get(0), sessionList).getRoot());
     }
 
     /**
@@ -508,8 +510,8 @@ public class MainWindow extends UiPart<Stage> {
         ObservableList<Student> viewedStudent =
                 logic.getCurrentSelection().getSelectedGroup().getUnmodifiableFilteredStudentList()
                         .filtered(student -> student.isSameStudent(logic.getCurrentSelection().getSelectedStudent()));
-        //ObservableList<SessionWithAttendance> sessionList = ; to be implemented
-        rightPanelPlaceholder.getChildren().add(new StudentViewCardWithAttendance(viewedStudent.get(0), sessionList).getRoot);
+        ObservableList<SessionWithAttendance> sessionList = logic.getCurrentSelection().getSelectedStudent().getObservableSessionList();
+        rightPanelPlaceholder.getChildren().add(new StudentViewCardWithAttendance(viewedStudent.get(0), sessionList).getRoot());
     }
 
     private void handleSpecialCommandConsiderations(CommandResult commandResult) {

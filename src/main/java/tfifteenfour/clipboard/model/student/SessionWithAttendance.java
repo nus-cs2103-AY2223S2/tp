@@ -17,4 +17,9 @@ public class SessionWithAttendance extends Session {
         super(session.getSessionName());
         this.attendance = attendance;
     }
+
+    public int getSessionAttendance() {
+        return attendance;
+    }
+
 }

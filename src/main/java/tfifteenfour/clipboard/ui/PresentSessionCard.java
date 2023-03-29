@@ -6,6 +6,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.MainApp;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
+import tfifteenfour.clipboard.model.student.SessionWithAttendance;
 
 import java.util.logging.Logger;
 
@@ -29,12 +30,15 @@ public class PresentSessionCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label studentId;
 
     public PresentSessionCard(SessionWithAttendance session, int displayedIndex) {
         super(FXML);
         this.session = session;
         id.setText(displayedIndex + ". ");
         name.setText(session.getSessionName());
+        studentId.setText("");
     }
 
     @Override

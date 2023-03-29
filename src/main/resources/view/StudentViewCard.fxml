@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefWidth="330.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefWidth="330.0" style="-fx-background-color: white; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="viewPane" style="-fx-background-color: white; -fx-background-radius: 10;" stylesheets="@StudentViewCard.css" VBox.vgrow="ALWAYS">
          <children>
@@ -59,7 +59,6 @@
             <Insets left="15.0" right="15.0" top="10.0" />
          </padding>
       </VBox>
-      <HBox fx:id="attendanceListPlaceholder" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;" />
    </children>
    <padding>
       <Insets top="8.0" />

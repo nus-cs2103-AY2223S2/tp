@@ -5,10 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import tfifteenfour.clipboard.model.student.SessionWithAttendance;
 
 
 public class StudentAttendanceListPanel extends UiPart<Region> {
-    private static final String FXML = "ListPanel.fxml";
+    private static final String FXML = "StudentAttendanceListPanel.fxml";
 
     @FXML
     private ListView<SessionWithAttendance> listView;
@@ -28,7 +29,7 @@ public class StudentAttendanceListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                if (session.getAttendance() == 1) {
+                if (session.getSessionAttendance() == 1) {
                     setGraphic(new PresentSessionCard(session, getIndex() + 1).getRoot());
                 } else {
                     setGraphic(new AbsentSessionCard(session, getIndex() + 1).getRoot());

@@ -6,6 +6,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.MainApp;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
+import tfifteenfour.clipboard.model.student.SessionWithAttendance;
 
 import java.util.logging.Logger;
 
@@ -22,7 +23,7 @@ public class AbsentSessionCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final SessionWithAttendance student;
+    public final SessionWithAttendance session;
 
     @FXML
     private HBox cardPane;
@@ -30,12 +31,15 @@ public class AbsentSessionCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label studentId;
 
     public AbsentSessionCard(SessionWithAttendance session, int displayedIndex) {
         super(FXML);
         this.session = session;
         id.setText(displayedIndex + ". ");
         name.setText(session.getSessionName());
+        studentId.setText("");
     }
 
     @Override
@@ -46,12 +50,12 @@ public class AbsentSessionCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PresentSessionCard)) {
+        if (!(other instanceof AbsentSessionCard)) {
             return false;
         }
 
         // state check
-        PresentSessionCard card = (PresentSessionCard) other;
+        AbsentSessionCard card = (AbsentSessionCard) other;
         return id.getText().equals(card.id.getText())
                 && session.equals(card.session);
     }
