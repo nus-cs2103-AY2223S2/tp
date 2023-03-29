@@ -347,7 +347,21 @@ than the maximum index shown in the [List Panel](#exploring-the-graphical-user-i
 <br/>
 
 ### Copying an Internship to Clipboard : `copy`
-[TODO by Chuhao]
+Want to copy the content of a specific internship to somewhere else? You can do so using the `copy` command.
+
+Format: `copy INDEX`
+*Copy the details of information of the internship entry with index number `INDEX` as indicated 
+in the [List Panel](#exploring-the-graphical-user-interface).
+*The details will be copied onto the clipboard of your computer.
+
+Examples:
+* `view 1` Assuming that you have at least three internships displayed in the
+[List Panel](#exploring-the-graphical-user-interface), this will copy the details of the third internship onto the
+clipboard of your computer.
+* `view -1` Displays an error because `INDEX` must be a positive integer.
+* `view 8` Assuming that you have 7 internships displayed in the
+  [List Panel](#exploring-the-graphical-user-interface), this displays an error because `INDEX` cannot be greater
+  than the maximum index shown in the [List Panel](#exploring-the-graphical-user-interface), which is 7 in this case.
 
 ### Finding Internships : `find`
 Are you an experienced internship hunter with tons of internship entries? Our `find` command will help filter through all your internship entries and return the internship entries you're looking for.

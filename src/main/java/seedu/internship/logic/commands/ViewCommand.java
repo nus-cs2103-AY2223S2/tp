@@ -37,7 +37,7 @@ public class ViewCommand extends Command {
 
         //Checks for a valid index
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_OUT_OF_RANGE_INTERNSHIP_DISPLAYED_INDEX);
         }
 
         //Gets the internship to view
