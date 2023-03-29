@@ -71,6 +71,15 @@ Shows a popup explaining how to access the user guide, which is the help page.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
+---
+
+## Clearing the patientist: clear
+Clears the current session of patientist and restores it to empty state.
+
+**Format: `clear`**
+
+[Go back to [Table of Contents](#table-of-contents)]
+
 ___
 
 ## Adding a patient: addpat
@@ -102,19 +111,6 @@ The STAFF_NAME will be displayed in the list of personnel in charge of the ward.
 **Examples:**
 `addstf n/Dr. Mallory Wong id/A987654321H p/97365482 e/mwong@example.com a/390 Geylang Rd w/block B ward 2`\
 `addstf n/Nurse Joy id/A345678Z p/81623753, e/nurse.joy@example.com a/900 Still Rd w/block B ward 2`
-
-[Go back to [Table of Contents](#table-of-contents)]
-
----
-## Adding prescriptions/instructions for patient: addpresc
-Adds `PRESCRIPTION_OR_INSTRUCTION` in the prescriptions and instructions field for the `PATIENT` specified.
-The patient can be specified by `ID_NUMBER`, the patient’s ID number.
-(Consider changing this in future iterations to not having to key in prescription in CLI, instead a new editpresc command opens a text editor for the patient’s txt prescription file)
-
-**Format: `addpresc id/ID_NUMBER p/PRESCRIPTION_OR_INSTRUCTION`**
-
-**Examples:**
-`addpresc id/A0123456789B pr/paracetamol 500mg`
 
 [Go back to [Table of Contents](#table-of-contents)]
 
@@ -232,20 +228,6 @@ This removes `STAFF_NAME` from the list of persons in charge of `WARD_NAME`. The
 
 **Examples:**
 `delstf n/Dr. Mallory Wong w/block B ward 2` will remove Dr. Mallory Wong from the list of staff attending to block B ward 2.
-
-[Go back to [Table of Contents](#table-of-contents)]
-
----
-## Deleting an entry from a patient’s list of prescriptions: delpresc
-Deletes the list entry specified at `INDEX` on the patient’s list of prescriptions and instructions, for the patient
-specified by `ID_NUMBER`. The patient must currently exist and the value of `INDEX` must represent a valid entry
-on the list.
-
-**Format: `delpresc id/ID_NUMBER idx/INDEX`**
-
-**Example:**
-`delpresc id/A0123456789B idx/1` will delete the top item from the prescriptions and instructions list of patient with
-ID A0123456789B.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
