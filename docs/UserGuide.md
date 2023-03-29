@@ -399,33 +399,68 @@ Examples:
 
 
 
-### Deleting Internships : `delete`
-The `delete` command can delete multiple internships quickly, keeping your screen nice and tidy. There are 2 formats of the `delete` command.
+### Deleting Internships by Index : `delete-index`
+Need to keep your screen nice and tidy? `delete-index` can help you achieve this by deleting multiple internships using their indices.
 
-Format 1: `delete INDEX ...`
-* Deletes an internship at the index specified by the `list` or `find` command.
+Format: `delete-index INDEX [INDEX]...`
+
+* Deletes the internship whose index number is `INDEX` as specified by the `list` or `find` command in the [List Panel](#exploring-the-graphical-user-interface).
 * If multiple `INDEX` are provided, multiple internships can be deleted.
-* `INDEX` must be an integer greater than or equal to 1, as explained in [Figure 4](#descriptions-prefixes-and-constraints-for-parameters).
 * At least 1 `INDEX` must be provided.
+* `INDEX` does not need to be unique. If 2 or more of `INDEX` have the same value, only the first one will be taken. 
+
 
 Examples:
-* `delete 1` Assuming that you have at least one internship displayed in the
-[List Panel](#exploring-the-graphical-user-interface), this command deletes the first internship in the List Panel.
-* `delete 1 3` Assuming that you have at least three internship displayed in the
-[List Panel](#exploring-the-graphical-user-interface), this command deletes the first and third internships in the List Panel.
-* If you run `delete 1` after `find` and not `list`, it will delete the first entry as displayed by  `find`, not `list`. Likewise, if you run `delete 1` after `list`, it will delete the first entry as displayed by `list`.
+* If you run `delete-index 1` after `find`, it will delete the first entry as displayed by `find`. 
+* If you run `delete-index 1` after `list`, it will delete the first entry as displayed by `list`.
+* `delete-index 1 3` Deletes the first and third
+  internship in the [List Panel](#exploring-the-graphical-user-interface).
+* `delete-index 3 1 3 3 1` Deletes the first and third
+  internship in the [List Panel](#exploring-the-graphical-user-interface).
+* `delete-index` Displays an error because at least one `INDEX` must be specified.
 
 ![Delete Command](images/ug-delete-example.png)
    <p style="text-align: center;">Figure XX: Example of the delete command in action</p>
 
-Format 2: `delete [n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE]`
-* Deletes all internships in the current display list that matches all the parameters.
-* At least 1 parameter must be provided, and at most one of each parameter (`COMPANY_NAME`, `ROLE`, `STATUS`, `DATE`) can be provided.
+### Deleting Internships by Fields : `delete-field`
+Wish that you could delete internships using parameters instead of indices? You can
+certainly do so using `delete-field`.
+
+Format: `delete-field [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... [t/TAG]...`
+
+* You have to provide at least one of the optional parameters.
+* The `delete-field` command is case-insensitive. For example, `delete-field n/Google` deletes all internships with the company name 'google', 'Google' or 'gOOgle' and so on.
+
+* `delete-field` deletes entries with exact matches only. For example, `delete-field n/Google Ltd` will not delete an entry with company name `Google` because
+  `Google` does not exactly match with `Google Ltd`.
+
+There are 2 possible scenarios when using the `delete-field` command. 
+
+**Method 1: Use a single parameter type**
+
+e.g., `delete-field s/Applied`, `delete-field s/Applied s/New`,
+`delete-field n/Google n/Apple n/Meta`
+
+* The `delete-field` command deletes all internship entries that match with **any** of the values that you provide.
 
 Examples:
-* `delete` Displays an error because no parameters are provided
-* `delete n/Google` Deletes all internships with the company name 'google'. Note that case matching is insensitive, so internships with the company name 'Google' or 'gOOgle' will be deleted. However, matching must be exact.
-* `delete n/Google r/software engineer` Deletes all internship with the company name 'google' **AND** the role 'software engineer'. Internships that do not fulfil both conditions will not be deleted. For example, the internship with company name 'google' and role as 'data engineer' will not be deleted. 
+* `delete-field n/Google n/Meta` deletes all internship entries that have a status of **either**
+  `Applied` **or** `New`.
+
+
+**Method 2: Use 2 or more different parameter types**
+
+e.g., `delete-field n/Google n/Apple s/New`, `delete-field n/Google n/Apple s/Applied s/New`,
+`delete-field n/Google r/Engineer t/Python t/Java`
+
+* The `delete-field` command deletes all internship entries that matches with **at least one** value for
+  **every** parameter type that is specified.
+
+Examples:
+* `delete-field n/Google n/Apple s/new` Delete internship entries that have a status `New` and have
+  a company name of `Google` **or** `Apple`.
+* `delete-field n/Google n/Apple s/Applied s/New` Delete internship entries that have company names
+  of `Google` **or** `Apple` **and** roles of `Applied` **or** `New`.
 
 ### Clearing all Internships : `clear`
 The `clear` command deletes all entries permanently from InternBuddy.
