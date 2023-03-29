@@ -48,6 +48,9 @@ public class AddRecurringExpenseParser implements Parser<AddRecurringExpenseComm
         LocalDate endDate = null;
         if (arePrefixesPresent(argMultimap, PREFIX_END_DATE)) {
             endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
+            if (endDate.isBefore(startDate)) {
+                throw new ParseException("End date provided is earlier than start date.");
+            }
             RecurringExpenseManager toAdd = new RecurringExpenseManager(name, price.getPriceAsDouble(),
                     category, startDate, endDate, timespan);
             return new AddRecurringExpenseCommand(toAdd);
