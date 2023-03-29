@@ -18,3 +18,13 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+.table-row-cell:empty {
+    -fx-background: transparent;
+}
+
+.table-row-cell {
+    -fx-background: transparent;
+}
+
+
