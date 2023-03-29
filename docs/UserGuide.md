@@ -89,23 +89,12 @@ For **new users** visit our [quick start](#quick-start) to get you started .
   - `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`
   - `add-doc n/Gabriel Tan p/98765432 e/gabt@example.com s/Neurosurgery y/5`
 
-<<<<<<< Updated upstream
-### Adding a patient: `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]…`
-=======
 ### Adding a patient:
 - Command format: `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS [r/REMARK] [t/TAGS]…`
 - What it does: Adds a patient to the address book.
->>>>>>> Stashed changes
 
 ![add-ptn](images/AddPtn.png)
 
-<<<<<<< Updated upstream
-Format: `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]…`
-
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A patient can have any number of tags (including 0)
-</div>
 
 Examples:
 
@@ -135,8 +124,6 @@ Format: `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`
   - At least one of the optional fields must be provided. 
   - Existing values will be updated to the input values. 
   - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. You can remove all the person’s tags by typing `t/` without
->>>>>>> Stashed changes
-    specifying any tags after it.
 
 ![EditDoc](images/EditDoc.png)
 
