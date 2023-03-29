@@ -3,15 +3,18 @@ package seedu.calidr.logic.parser;
 import static seedu.calidr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_BY;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.calidr.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.calidr.logic.commands.AddTodoCommand;
 import seedu.calidr.logic.parser.exceptions.ParseException;
 import seedu.calidr.model.task.ToDo;
 import seedu.calidr.model.task.params.Description;
+import seedu.calidr.model.task.params.Location;
 import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
 import seedu.calidr.model.task.params.TodoDateTime;
@@ -28,7 +31,7 @@ public class AddTodoCommandParser implements Parser<AddTodoCommand> {
      */
     public AddTodoCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_BY, PREFIX_PRIORITY);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_LOCATION, PREFIX_BY, PREFIX_PRIORITY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_BY)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -38,18 +41,23 @@ public class AddTodoCommandParser implements Parser<AddTodoCommand> {
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         TodoDateTime byDateTime = ParserUtil.parseTodoDateTime(argMultimap.getValue(PREFIX_BY).get());
 
-        Description description = null;
+        ToDo todo = new ToDo(title, byDateTime);
+
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+            Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+            todo.setDescription(description);
+        }
+
+        if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
+            Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
+            todo.setLocation(location);
         }
 
         Priority priority = Priority.MEDIUM;
-        if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
-            priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
+        Optional<String> priorityValue = argMultimap.getValue(PREFIX_PRIORITY);
+        if (priorityValue.isPresent()) {
+            priority = ParserUtil.parsePriority(priorityValue.get());
         }
-
-        ToDo todo = new ToDo(title, byDateTime);
-        todo.setDescription(description);
         todo.setPriority(priority);
 
         return new AddTodoCommand(todo);

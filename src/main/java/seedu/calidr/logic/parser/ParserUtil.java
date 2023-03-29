@@ -25,6 +25,7 @@ import seedu.calidr.model.person.Remark;
 import seedu.calidr.model.tag.Tag;
 import seedu.calidr.model.task.params.Description;
 import seedu.calidr.model.task.params.EventDateTimes;
+import seedu.calidr.model.task.params.Location;
 import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
 import seedu.calidr.model.task.params.TodoDateTime;
@@ -187,6 +188,21 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String location} into a {@code Location}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code location} is invalid.
+     */
+    public static Location parseLocation(String location) throws ParseException {
+        requireNonNull(location);
+        String trimmedLocation = location.trim();
+        if (!Description.isValidDescription(trimmedLocation)) {
+            throw new ParseException(Location.MESSAGE_CONSTRAINTS);
+        }
+        return new Location(trimmedLocation);
     }
 
     /**
