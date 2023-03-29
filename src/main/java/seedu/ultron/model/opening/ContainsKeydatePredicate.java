@@ -19,7 +19,7 @@ public class ContainsKeydatePredicate implements Predicate<Opening> {
             LocalDate curr = LocalDate.parse(date.fullDate);
             if (curr.compareTo(today) >= 0) {
                 return true;
-            } 
+            }
         }
         return false;
     }
