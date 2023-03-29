@@ -30,6 +30,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String ADD_COMMAND_MESSAGE = "3) Add a person to the patient records:\n"
                                                         + "Format: add n/NAME i/NRIC p/PHONE_NUMBER a/ADDRESS"
                                                         + " d/DRUG ALLERGIES g/GENDER"
+                                                        + " ad/DOCTOR"
                                                         + " [e/EMAIL] [t/TAG] [m/MEDICINE]";
 
     public static final String EDIT_COMMAND_MESSAGE = "4) Edit an existing person in patient records:\n"
