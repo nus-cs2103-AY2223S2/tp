@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -30,7 +31,7 @@ public class QuickstartWindow extends UiPart<Stage> {
     }
 
     /**
-     * Creates a new QuickstartWindow.
+     * Creates a new QuickstartWindow, with the appropriate firstTime info.
      *
      * @param root Stage to use as the root of the QuickstartWindow.
      */
@@ -50,7 +51,7 @@ public class QuickstartWindow extends UiPart<Stage> {
                 return quickImageView;
             }
         });
-        if(this.checkFirstTime()) {
+        if (this.checkFirstTime()) {
             this.show();
             this.firstTimeFocus = true;
         } else {
@@ -58,10 +59,19 @@ public class QuickstartWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * returns firstTimeFocus, which focuses quickstartwindow upon knowing
+     * that a user is a first-time user (i.e., one that has never used this
+     * application before)
+     */
     public boolean getFirstTimeFocus() {
         return this.firstTimeFocus;
     }
 
+    /**
+     * checks if user is a first time user by presence of text file
+     * called firstTimeUser.txt.
+     */
     public static boolean checkFirstTime() {
         boolean returnBool = false;
         try {
