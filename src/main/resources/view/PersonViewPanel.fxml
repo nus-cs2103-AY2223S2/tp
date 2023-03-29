@@ -12,27 +12,18 @@
    <children>
          <VBox minWidth="340.0" prefWidth="370.0" style="-fx-border-color: black; -fx-border-radius: 10;">
             <children>
-            <Label id="name" fx:id="name" styleClass="cell_big_label">
-                  <padding>
-                     <Insets left="10.0" top="10.0" />
-                  </padding></Label>
+            <Label id="name" fx:id="name" styleClass="cell_big_label" />
                <HBox>
                   <children>
                      <Label fx:id="email111" prefWidth="106.0" styleClass="cell_small_label" text="NRIC" />
                   <Label fx:id="nric" styleClass="cell_small_label" />
                   </children>
-                  <padding>
-                     <Insets left="10.0" />
-                  </padding>
                </HBox>
                <HBox>
                   <children>
                      <Label fx:id="email11" prefWidth="106.0" styleClass="cell_small_label" text="Phone number" />
                   <Label fx:id="phone" styleClass="cell_small_label" />
                   </children>
-                  <padding>
-                     <Insets left="10.0" />
-                  </padding>
                </HBox>
                <HBox>
                   <children>
@@ -42,9 +33,6 @@
                            <Insets right="10.0" />
                         </padding></Label>
                   </children>
-                  <padding>
-                     <Insets left="10.0" />
-                  </padding>
                </HBox>
                <HBox>
                   <children>
@@ -54,24 +42,30 @@
                         </padding></Label>
                   <Label fx:id="address" styleClass="cell_small_label" />
                   </children>
-                  <padding>
-                     <Insets bottom="10.0" left="10.0" />
-                  </padding>
                </HBox>
                <HBox />
             </children>
+            <padding>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
          </VBox>
          <VBox minWidth="340.0" prefWidth="370.0" style="-fx-border-color: black; -fx-border-radius: 10;">
             <children>
-               <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Appointments" textAlignment="CENTER" />
+               <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Appointments" textAlignment="CENTER">
+                  <padding>
+                     <Insets bottom="5.0" />
+                  </padding></Label>
             <ListView id="appointments" fx:id="appointments" prefWidth="368.0">
                   <VBox.margin>
                      <Insets bottom="10.0" />
                   </VBox.margin></ListView>
             </children>
             <VBox.margin>
-               <Insets bottom="5.0" top="5.0" />
+               <Insets bottom="5.0" top="10.0" />
             </VBox.margin>
+            <padding>
+               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            </padding>
          </VBox>
          <VBox fx:id="prescriptionBox" layoutX="15.0" layoutY="141.0" minWidth="340.0" prefWidth="370.0" style="-fx-border-color: black; -fx-border-radius: 10;">
             <children>
@@ -85,10 +79,13 @@
                      </HBox>
                   </content>
                   <VBox.margin>
-                     <Insets bottom="10.0" />
+                     <Insets bottom="5.0" />
                   </VBox.margin>
                </ScrollPane>
             </children>
+            <padding>
+               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            </padding>
          </VBox>
 
    </children>
