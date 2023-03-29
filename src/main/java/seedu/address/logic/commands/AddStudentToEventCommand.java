@@ -13,7 +13,7 @@ public class AddStudentToEventCommand extends Command {
     public static final String COMMAND_WORD = "addStudent";
     public static final String MESSAGE_SUCCESS = "Student at specified index added to event";
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
-            + "cannot be recognized!";
+            + " cannot be recognized!";
     public static final String TUTORIAL_STRING = "tutorial";
     public static final String LAB_STRING = "lab";
     public static final String CONSULTATION_STRING = "consultation";
@@ -48,6 +48,6 @@ public class AddStudentToEventCommand extends Command {
         } else {
             throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS));
+        return new CommandResult(String.format(MESSAGE_SUCCESS), false, false, false, true);
     }
 }

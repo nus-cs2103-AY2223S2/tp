@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
 import java.io.File;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -19,7 +19,7 @@ class JsonAdaptedLab {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Lab's %s field is missing!";
 
     private final String name;
-    private final LocalDate eventDate;
+    private final LocalDateTime eventDate;
     private final List<Person> students;
     private final List<File> attachments;
     private final List<Note> notes;
@@ -28,7 +28,7 @@ class JsonAdaptedLab {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedLab(@JsonProperty("name") String name, @JsonProperty("eventDate") LocalDate eventDate,
+    public JsonAdaptedLab(@JsonProperty("name") String name, @JsonProperty("eventDate") LocalDateTime eventDate,
                                @JsonProperty("students") List<Person> students,
                                @JsonProperty("attachments") List<File> attachments,
                                @JsonProperty("notes") List<Note> notes) {

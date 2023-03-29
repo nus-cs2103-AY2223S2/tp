@@ -36,14 +36,14 @@ public class GreetingBar extends UiPart<Region> {
             size = personList.size();
         }
 
-        greetingText = "You have " + size + " students for this event";
+        greetingText = "You have " + size + " students currently";
         greetings.setText(greetingText);
 
         personList.addListener((ListChangeListener<Person>) change -> {
             while (change.next()) {
                 if (change.wasAdded() || change.wasRemoved()) {
                     size = change.getList().size();
-                    greetingText = "You have " + size + " students for this event";
+                    greetingText = "You have " + size + " students currently";
                     greetings.setText(greetingText);
                 }
             }

@@ -28,6 +28,21 @@ public class Person implements Comparable<Person> {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
+     * Initiates a null person object without null error.
+     */
+    public Person() {
+        name = new Name();
+        phone = new Phone();
+        email = new Email();
+        photo = new Photo();
+
+        // Data fields
+        address = new Address();
+        performance = new Performance();
+        remark = new Remark();
+    }
+
+    /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Photo photo, Address address,
@@ -108,6 +123,17 @@ public class Person implements Comparable<Person> {
         }
 
         Person otherPerson = (Person) other;
+
+        //Nus email must be unique to each student
+        if (otherPerson.getEmail().equals(getEmail())) {
+            return true;
+        }
+
+        //Telegram handle or phone number must be unique to each student
+        if (otherPerson.getPhone().equals(getPhone())) {
+            return true;
+        }
+
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())

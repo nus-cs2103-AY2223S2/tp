@@ -3,10 +3,13 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.io.File;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -21,6 +24,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Performance;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Photo;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,6 +34,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_RANGE = "Only one range is allowed.";
+    public static final List<LocalDateTime[]> MASTER_TIME = new ArrayList<>();
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -71,6 +76,15 @@ public class ParserUtil {
         if (!StringUtil.isNonZeroUnsignedInteger(startIndex)
                 && !StringUtil.isNonZeroUnsignedInteger(endIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+
+        if (!StringUtil.isNonZeroUnsignedInteger(startIndex)
+                || !StringUtil.isNonZeroUnsignedInteger(endIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+
+        if (Integer.parseInt(startIndex) > Integer.parseInt(endIndex)) {
+            throw new ParseException("Start index cannot be greater than end index");
         }
 
         Index startOneBased = Index.fromOneBased(Integer.parseInt(startIndex));
@@ -190,6 +204,15 @@ public class ParserUtil {
     public static String parseTutorialName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
+        if (name.toLowerCase().contains("lab")) {
+            throw new ParseException(Event.MESSAGE_CONSTRAINTS);
+        }
+        if (name.toLowerCase().contains("consultation")) {
+            throw new ParseException(Event.MESSAGE_CONSTRAINTS);
+        }
+        if (name.toLowerCase().equals("tutorial")) {
+            throw new ParseException(Event.MESSAGE_CONSTRAINTS);
+        }
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -205,6 +228,15 @@ public class ParserUtil {
     public static String parseLabName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
+        if (name.toLowerCase().contains("tutorial")) {
+            throw new ParseException(Event.MESSAGE_CONSTRAINTS);
+        }
+        if (name.toLowerCase().contains("consultation")) {
+            throw new ParseException(Event.MESSAGE_CONSTRAINTS);
+        }
+        if (name.toLowerCase().equals("lab")) {
+            throw new ParseException(Event.MESSAGE_CONSTRAINTS);
+        }
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -220,6 +252,15 @@ public class ParserUtil {
     public static String parseConsultationName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
+        if (name.toLowerCase().contains("lab")) {
+            throw new ParseException(Event.MESSAGE_CONSTRAINTS);
+        }
+        if (name.toLowerCase().contains("tutorial")) {
+            throw new ParseException(Event.MESSAGE_CONSTRAINTS);
+        }
+        if (name.toLowerCase().equals("consultation")) {
+            throw new ParseException(Event.MESSAGE_CONSTRAINTS);
+        }
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -261,15 +302,46 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
-    public static LocalDate parseEventDate(String date) throws ParseException {
+    public static LocalDateTime parseEventDate(String date) throws ParseException {
         //date can be null or empty as it is optional
         String trimmedDate = date.trim();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-        if (!trimmedDate.matches("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((19|20)\\d\\d)")) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        if (!trimmedDate.matches(
+                "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((19|20)\\d\\d)\\s([0-1]?[0-9]|2?[0-3]):([0-5]\\d)")) {
             throw new ParseException("Invalid date format!");
         }
-        return LocalDate.parse(trimmedDate, formatter);
+        LocalDateTime newDateStart = LocalDateTime.parse(trimmedDate, formatter);
+        LocalDateTime newDateEnd = LocalDateTime.parse(trimmedDate, formatter).plusHours(1);
+        for (int i = 0; i < MASTER_TIME.size(); i++) {
+            if (MASTER_TIME.size() == 0) {
+                break;
+            }
+            LocalDateTime[] currentRange = MASTER_TIME.get(i);
+            if (newDateStart.isAfter(currentRange[0]) && newDateStart.isBefore(currentRange[1])) {
+                throw new ParseException("You are already busy during that period!");
+            }
+            if (newDateStart.isEqual(currentRange[0]) || newDateStart.isEqual(currentRange[1])) {
+                throw new ParseException("You are already busy during that period!");
+            }
+            if (newDateEnd.isAfter(currentRange[0]) && newDateEnd.isBefore(currentRange[1])) {
+                throw new ParseException("You are already busy during that period!");
+            }
+            if (newDateEnd.isEqual(currentRange[0]) && newDateEnd.isEqual(currentRange[1])) {
+                throw new ParseException("You are already busy during that period!");
+            }
+        }
+        LocalDateTime[] newRange = new LocalDateTime[]{newDateStart, newDateEnd};
+        MASTER_TIME.add(newRange);
+        Collections.sort(MASTER_TIME, (range1, range2) -> {
+            if (range1[0].isBefore(range2[0])) {
+                return -1;
+            } else if (range1[0].isAfter(range2[0])) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+        return LocalDateTime.parse(trimmedDate, formatter);
     }
 
     /**
@@ -336,4 +408,17 @@ public class ParserUtil {
         }
         return new Performance(trimmedPerformance);
     }
+
+    /**
+     * Parses a {@code String remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code remark} is invalid.
+     */
+    public static Remark parseRemark(String remark) throws ParseException {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        return new Remark(trimmedRemark);
+    }
+
 }

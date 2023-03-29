@@ -5,10 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Note;
-import seedu.address.model.event.NoteList;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.event.UniqueConsultationList;
 import seedu.address.model.event.UniqueLabList;
@@ -27,7 +27,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueTutorialList tutorials;
     private final UniqueLabList labs;
     private final UniqueConsultationList consultations;
-    private final NoteList notes;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -41,7 +40,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         tutorials = new UniqueTutorialList();
         labs = new UniqueLabList();
         consultations = new UniqueConsultationList();
-        notes = new NoteList();
     }
 
     public AddressBook() {}
@@ -243,7 +241,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setLab(Lab target, Lab editedLab) {
         requireNonNull(editedLab);
-
         labs.setLab(target, editedLab);
     }
 
@@ -294,23 +291,129 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a note with the same identity as {@code note} exists in the address book.
+     * Adds note to address book tutorial note list
+     * @param note The note to add.
      */
-    public boolean hasNote(Note note) {
-        requireNonNull(note);
-        return notes.contains(note);
+    public void addNoteToTutorial(Note note, String nameOfEvent) {
+        if (!(tutorials.containsEventName(nameOfEvent))) {
+            return;
+        }
+        for (Tutorial tutorial : tutorials) {
+            if (tutorial.hasMatchByName(nameOfEvent)) {
+                tutorial.addNote(note);
+            }
+        }
     }
 
     /**
-     * Adds note to address book note list
+     * Adds note to address book lab note list
      * @param note The note to add.
      */
-    public void addNote(Note note) {
-        notes.add(note);
+    public void addNoteToLab(Note note, String nameOfEvent) {
+        if (!(labs.containsEventName(nameOfEvent))) {
+            return;
+        }
+        for (Lab lab : labs) {
+            if (lab.hasMatchByName(nameOfEvent)) {
+                lab.addNote(note);
+            }
+        }
+    }
+
+    /**
+     * Adds note to address book consultation note list
+     * @param note The note to add.
+     */
+    public void addNoteToConsultation(Note note, String nameOfEvent) {
+        if (!(consultations.containsEventName(nameOfEvent))) {
+            return;
+        }
+        for (Consultation consultation : consultations) {
+            if (consultation.hasMatchByName(nameOfEvent)) {
+                consultation.addNote(note);
+            }
+        }
+    }
+
+    /**
+     * Removes note from specific tutorial
+     * @param index Index of note to remove
+     * @param nameOfEvent Event name
+     */
+    public void removeNoteFromTutorial(Index index, String nameOfEvent) {
+        for (Tutorial tut : tutorials) {
+            if (tut.hasMatchByName(nameOfEvent)) {
+                tut.removeNote(tut.getNoteList().get(index.getZeroBased()));
+            }
+        }
+    }
+
+    /**
+     * Removes note from specific lab
+     * @param index Index of note to remove
+     * @param nameOfEvent Event name
+     */
+    public void removeNoteFromLab(Index index, String nameOfEvent) {
+        for (Lab lab : labs) {
+            if (lab.hasMatchByName(nameOfEvent)) {
+                lab.removeNote(lab.getNoteList().get(index.getZeroBased()));
+            }
+        }
+    }
+
+    /**
+     * Removes note from specific consult
+     * @param index Index of note to remove
+     * @param nameOfEvent Event name
+     */
+    public void removeNoteFromConsultation(Index index, String nameOfEvent) {
+        for (Consultation consultation : consultations) {
+            if (consultation.hasMatchByName(nameOfEvent)) {
+                consultation.removeNote(consultation.getNoteList().get(index.getZeroBased()));
+            }
+        }
+    }
+
+    /**
+     * Edits note from specific consult
+     * @param index Index of note to edit
+     * @param nameOfEvent Event name
+     */
+    public void editNoteFromConsultation(Index index, Note note, String nameOfEvent) {
+        for (Consultation consultation : consultations) {
+            if (consultation.hasMatchByName(nameOfEvent)) {
+                consultation.setNote(note, index);
+            }
+        }
+    }
+
+    /**
+     * Removes note from specific lab
+     * @param index Index of note to edit
+     * @param nameOfEvent Event name
+     */
+    public void editNoteFromLab(Index index, Note note, String nameOfEvent) {
+        for (Lab lab : labs) {
+            if (lab.hasMatchByName(nameOfEvent)) {
+                lab.setNote(note, index);
+            }
+        }
+    }
+
+    /**
+     * Removes note from specific tutorial
+     * @param index Index of note to edit
+     * @param nameOfEvent Event name
+     */
+    public void editNoteFromTutorial(Index index, Note note, String nameOfEvent) {
+        for (Tutorial tutorial : tutorials) {
+            if (tutorial.hasMatchByName(nameOfEvent)) {
+                tutorial.setNote(note, index);
+            }
+        }
     }
 
     //// util methods
-
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons "

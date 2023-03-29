@@ -23,7 +23,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
-    private final Index targetIndex;
+    final Index targetIndex;
 
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

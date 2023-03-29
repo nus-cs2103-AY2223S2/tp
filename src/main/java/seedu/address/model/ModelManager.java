@@ -4,14 +4,21 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.comparators.AddressComparator;
+import seedu.address.logic.comparators.EmailComparator;
+import seedu.address.logic.comparators.NameComparator;
+import seedu.address.logic.comparators.PerformanceComparator;
+import seedu.address.logic.comparators.RemarkComparator;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Note;
@@ -26,7 +33,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private FilteredList<Person> filteredPersons;
     private final FilteredList<Lab> filteredLabs;
     private final FilteredList<Tutorial> filteredTutorials;
     private final FilteredList<Consultation> filteredConsultations;
@@ -212,15 +219,58 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasNote(Note note) {
+    public void addNoteToTutorial(Note note, String nameOfEvent) {
         requireNonNull(note);
-        return addressBook.hasNote(note);
+        addressBook.addNoteToTutorial(note, nameOfEvent);
     }
 
     @Override
-    public void addNote(Note note) {
+    public void addNoteToLab(Note note, String nameOfEvent) {
         requireNonNull(note);
-        addressBook.addNote(note);
+        addressBook.addNoteToLab(note, nameOfEvent);
+    }
+
+    @Override
+    public void addNoteToConsultation(Note note, String nameOfEvent) {
+        requireNonNull(note);
+        addressBook.addNoteToConsultation(note, nameOfEvent);
+    }
+
+    @Override
+    public void removeNoteFromTutorial(Index index, String nameOfEvent) {
+        requireNonNull(index);
+        addressBook.removeNoteFromTutorial(index, nameOfEvent);
+    }
+
+    @Override
+    public void removeNoteFromLab(Index index, String nameOfEvent) {
+        requireNonNull(index);
+        addressBook.removeNoteFromLab(index, nameOfEvent);
+    }
+
+    @Override
+    public void removeNoteFromConsultation(Index index, String nameOfEvent) {
+        requireNonNull(index);
+        addressBook.removeNoteFromConsultation(index, nameOfEvent);
+    }
+
+    @Override
+    public void editNoteFromTutorial(Index index, Note note, String nameOfEvent) {
+        requireNonNull(index);
+        requireNonNull(note);
+        addressBook.editNoteFromTutorial(index, note, nameOfEvent);
+    }
+    @Override
+    public void editNoteFromLab(Index index, Note note, String nameOfEvent) {
+        requireNonNull(index);
+        requireNonNull(note);
+        addressBook.editNoteFromLab(index, note, nameOfEvent);
+    }
+    @Override
+    public void editNoteFromConsultation(Index index, Note note, String nameOfEvent) {
+        requireNonNull(index);
+        requireNonNull(note);
+        addressBook.editNoteFromConsultation(index, note, nameOfEvent);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -238,6 +288,36 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    /**
+     * Updates the filterPersons list with the sorted list
+     * @param metric the sorting metric used
+     * @param isIncreasing a boolean to indicate the sorting order
+     */
+    public void updateSortAllPersonList(String metric, boolean isIncreasing) {
+        requireNonNull(metric);
+        SortedList<Person> sortedData = new SortedList<>(filteredPersons);
+        Comparator<Person> comparator;
+        switch (metric) {
+        case "performance":
+            comparator = new PerformanceComparator(isIncreasing);
+            break;
+        case "email":
+            comparator = new EmailComparator(isIncreasing);
+            break;
+        case "name":
+            comparator = new NameComparator(isIncreasing);
+            break;
+        case "address":
+            comparator = new AddressComparator(isIncreasing);
+            break;
+        default:
+            comparator = new RemarkComparator(isIncreasing);
+        }
+        sortedData.setComparator(comparator);
+
+        filteredPersons = new FilteredList<>(sortedData);
     }
 
     //=========== Filtered Tutorial List Accessors =============================================================
