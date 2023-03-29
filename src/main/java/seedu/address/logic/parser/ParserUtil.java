@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -17,6 +18,7 @@ import seedu.address.model.role.Role;
 import seedu.address.model.task.Comment;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Score;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 
 /**
@@ -157,6 +159,22 @@ public class ParserUtil {
             throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
         return new Role(trimmedRole);
+    }
+
+    /**
+     * Parses a {@code String taskType} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskType} is invalid.
+     */
+    public static String parseTaskType(String taskType) throws ParseException {
+        requireNonNull(taskType);
+        String trimmedTaskType = taskType.trim();
+        System.out.println(trimmedTaskType.equals("T"));
+        if (!Task.isValidTaskType(trimmedTaskType)) {
+            throw new ParseException(EditTaskCommand.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedTaskType;
     }
 
     /**

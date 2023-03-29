@@ -82,6 +82,28 @@ Format: `comment t/{TASK_ID} c/{COMMENTS} `
 Example:
 * `comment t/1 c/task was done well and on time`
 
+### Editing a person: `edit`
+
+Edits the properties of an existing person in the persons list.
+
+Format: `edit INDEX [n/{NAME}] [p/{PHONE}] [e/{EMAIL}] [a/{ADDRESS}] [r/{ROLE}]`
+
+Example:
+
+* `edit 1 p/98761234 e/john@nus.com`
+
+### Editing a task: `edittask`
+
+Edits the properties of an existing task in the task list.
+
+Format: `edittask INDEX type/{TASK_TYPE} [task/{TASK_DESCRIPTION}] [{DATE}]`
+
+Note: 
+* To denote todo, deadline and event tasks, parameters for `TASK_TYPE` are `T`, `D` and `E` respectively.
+* When editing a task to change types, the {DATE} parameters are as follows:
+  * `deadline`: `by/{DD/MM/YYYY}`
+  * `event`: `from/{DD/MM/YYYY} to/{DD/MM/YYYY}`
+
 ### Assigning task to member: `assign`
 
 Assign a task to a person

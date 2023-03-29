@@ -64,6 +64,8 @@ public interface TaskBookModel {
     boolean hasTaskIndex(Index taskIndex);
 
 
+    void setTask(Task target, Task editedTask);
+
     /**
      * Deletes the given task.
      * Task must exist in the address book.
