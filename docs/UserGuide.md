@@ -163,12 +163,15 @@ Examples:
 
 ### Undo/Redo an action : `undo` or `redo`
 
-Undo an action that resulted in the change of the Dengue Hotspot Tracker data.
+Undo/redo an action that resulted in the change of the Dengue Hotspot Tracker data.
 
-Format: `undo [NUMBER]` or `redo [NUMBER]` for `undo` and `redo` respectively.
+Format: `undo [INTEGER]` or `redo [INTEGER]` for `undo` and `redo` respectively.
 
-* Undo/redo an action multiple times, specified by the number `NUMBER`. If not specified, `NUMBER` is assumed to be 1.
-* `NUMBER` must be strictly positive.
+* Undo/redo an action multiple times, specified by the number `INTEGER`. If not specified, `INTEGER` is assumed to be 1.
+* `INTEGER` must be a strictly positive integer.
+* The user cannot undo/redo actions from a previous session of starting the app.
+* The user cannot undo actions that are more than 10 iterations old.
+* The user cannot undo actions that do not change the data of the Dengue Hotspot Tracker, such as list and find.
 
 ### Clearing all entries : `clear`
 
