@@ -4,12 +4,13 @@ import vimification.commons.core.Index;
 import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.model.LogicTaskList;
+import vimification.model.task.Task;
 
 import java.time.LocalDateTime;
 
 import static java.util.Objects.requireNonNull;
 
-public class EditDeadlineCommand extends UndoableLogicCommand{
+public class EditDeadlineCommand extends UndoableLogicCommand {
     public static final String COMMAND_WORD = "e -d";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -26,23 +27,23 @@ public class EditDeadlineCommand extends UndoableLogicCommand{
             "The command has been undone. The deadline of the task has been changed back.";
 
     private final Index targetIndex;
-    private final LocalDateTime newDate;
-    private LocalDateTime oldDate;
+    private final LocalDateTime newDeadline;
+    private LocalDateTime oldDeadline;
 
 
-    public EditDeadlineCommand(Index targetIndex, LocalDateTime newDate) {
+    public EditDeadlineCommand(Index targetIndex, LocalDateTime newDeadline) {
         this.targetIndex = targetIndex;
-        this.newDate = newDate;
-        this.oldDate = null;
+        this.newDeadline = newDeadline;
+        this.oldDeadline = null;
     }
 
     @Override
     public CommandResult execute(LogicTaskList taskList)
             throws IndexOutOfBoundsException, CommandException {
         requireNonNull(taskList);
-        int zero_based_index = targetIndex.getZeroBased();
-        oldDate = taskList.getDeadline(zero_based_index);
-        taskList.setDeadline(zero_based_index, newDate);
+        Task editedTask = taskList.get(targetIndex.getZeroBased());
+        oldDeadline = editedTask.getDeadline();
+        editedTask.setDeadline(newDeadline);
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
     }
 
@@ -50,8 +51,7 @@ public class EditDeadlineCommand extends UndoableLogicCommand{
     public CommandResult undo(LogicTaskList taskList)
             throws IndexOutOfBoundsException, CommandException {
         requireNonNull(taskList);
-        int zero_based_index = targetIndex.getZeroBased();
-        taskList.setDeadline(zero_based_index, oldDate);
+        taskList.get(targetIndex.getZeroBased()).setDeadline(oldDeadline);
         return new CommandResult(UNDO_MESSAGE);
     }
 }

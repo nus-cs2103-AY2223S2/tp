@@ -1,15 +1,15 @@
 package vimification.internal.command.logic;
 
+import static java.util.Objects.requireNonNull;
+
 import vimification.commons.core.Index;
 import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Status;
+import vimification.model.task.Task;
 
-import static java.util.Objects.requireNonNull;
-
-
-public class EditStatusCommand extends UndoableLogicCommand{
+public class EditStatusCommand extends UndoableLogicCommand {
     public static final String COMMAND_WORD = "e -s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -37,21 +37,18 @@ public class EditStatusCommand extends UndoableLogicCommand{
     }
 
     @Override
-    public CommandResult execute(LogicTaskList taskList)
-            throws IndexOutOfBoundsException, CommandException {
+    public CommandResult execute(LogicTaskList taskList) throws CommandException {
         requireNonNull(taskList);
-        int zero_based_index = targetIndex.getZeroBased();
-        oldStatus = taskList.getStatus(zero_based_index);
-        taskList.setStatus(zero_based_index, newStatus);
+        Task editedTask = taskList.get(targetIndex.getZeroBased());
+        oldStatus = editedTask.getStatus();
+        editedTask.setStatus(newStatus);
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
     }
 
     @Override
-    public CommandResult undo(LogicTaskList taskList)
-            throws IndexOutOfBoundsException, CommandException {
+    public CommandResult undo(LogicTaskList taskList) throws CommandException {
         requireNonNull(taskList);
-        int zero_based_index = targetIndex.getZeroBased();
-        taskList.setStatus(zero_based_index, oldStatus);
+        taskList.get(targetIndex.getZeroBased()).setStatus(oldStatus);
         return new CommandResult(UNDO_MESSAGE);
     }
 }

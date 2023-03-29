@@ -27,12 +27,11 @@ public class AddCommand extends UndoableLogicCommand {
     /**
      * Creates an AddCommand to add the specified {@code Task}
      */
-    public AddCommand(Task task) {
-        requireNonNull(task);
-        newTask = task;
+    public AddCommand(Task newTask) {
+        requireNonNull(newTask);
+        this.newTask = newTask;
     }
 
-    // Pass a TaskList instead
     @Override
     public CommandResult execute(LogicTaskList taskList) throws CommandException {
         requireNonNull(taskList);

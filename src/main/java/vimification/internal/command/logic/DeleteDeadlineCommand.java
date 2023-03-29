@@ -4,12 +4,13 @@ import vimification.commons.core.Index;
 import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.model.LogicTaskList;
+import vimification.model.task.Task;
 
 import java.time.LocalDateTime;
 
 import static java.util.Objects.requireNonNull;
 
-public class DeleteDeadlineCommand extends UndoableLogicCommand{
+public class DeleteDeadlineCommand extends UndoableLogicCommand {
     public static final String COMMAND_WORD = "d -d";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -24,7 +25,6 @@ public class DeleteDeadlineCommand extends UndoableLogicCommand{
             "The command has been undone. The deadline of the task has been changed back.";
 
     private final Index targetIndex;
-
     private LocalDateTime oldDeadline;
 
     public DeleteDeadlineCommand(Index targetIndex) {
@@ -33,23 +33,19 @@ public class DeleteDeadlineCommand extends UndoableLogicCommand{
     }
 
     @Override
-    public CommandResult execute(LogicTaskList taskList)
-            throws IndexOutOfBoundsException, CommandException {
+    public CommandResult execute(LogicTaskList taskList) throws CommandException {
         requireNonNull(taskList);
-        int zero_based_index = targetIndex.getZeroBased();
-        oldDeadline = taskList.getDeadline(zero_based_index);
-        taskList.deleteDeadline(zero_based_index);
+        Task editedTask = taskList.get(targetIndex.getZeroBased());
+        oldDeadline = editedTask.getDeadline();
+        editedTask.deleteDeadline();
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
     }
 
     @Override
-    public CommandResult undo(LogicTaskList taskList)
-            throws IndexOutOfBoundsException, CommandException {
+    public CommandResult undo(LogicTaskList taskList) throws CommandException {
         requireNonNull(taskList);
-        int zero_based_index = targetIndex.getZeroBased();
-        taskList.setDeadline(zero_based_index, oldDeadline);
+        taskList.get(targetIndex.getZeroBased()).setDeadline(oldDeadline);
         return new CommandResult(UNDO_MESSAGE);
     }
 
 }
-

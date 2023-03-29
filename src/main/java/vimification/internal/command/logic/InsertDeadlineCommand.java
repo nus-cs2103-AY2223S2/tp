@@ -27,8 +27,7 @@ public class InsertDeadlineCommand extends UndoableLogicCommand {
             "The command has been undone. The deadline of the task has been changed back.";
 
     private final Index targetIndex;
-    private LocalDateTime newDeadline;
-
+    private final LocalDateTime newDeadline;
     private LocalDateTime oldDeadline;
 
     public InsertDeadlineCommand(Index targetIndex, LocalDateTime newDeadline) {
