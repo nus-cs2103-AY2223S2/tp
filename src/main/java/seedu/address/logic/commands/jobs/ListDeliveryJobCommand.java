@@ -21,6 +21,6 @@ public class ListDeliveryJobCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredDeliveryJobList(PREDICATE_SHOW_ALL_DELIVERY_JOBS);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, false, false,false, false, false, true, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, false, false, false, false, false, true, false);
     }
 }
