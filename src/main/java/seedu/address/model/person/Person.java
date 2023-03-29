@@ -84,6 +84,8 @@ public class Person implements Comparable<Person> {
         return transactionCount;
     }
 
+    public Integer getTransactionCountInt() { return transactionCount.getIntValue(); }
+
     public void changeMark() {
         mark = new Mark(mark.isMark ? "no" : "yes");
     }
@@ -91,6 +93,8 @@ public class Person implements Comparable<Person> {
     public Priority getPriority() {
         return priority;
     }
+
+    public Integer getPriorityInt() { return priority.getPriorityValue(); }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

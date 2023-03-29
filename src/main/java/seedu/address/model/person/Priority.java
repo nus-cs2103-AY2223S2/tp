@@ -37,7 +37,7 @@ public class Priority implements Comparable<Priority> {
      *
      * @return The integer value of the client's priority.
      */
-    public int getPriorityValue() {
+    public Integer getPriorityValue() {
         if (value.equals("HIGH")) {
             return 3;
         } else if (value.equals("MEDIUM")) {

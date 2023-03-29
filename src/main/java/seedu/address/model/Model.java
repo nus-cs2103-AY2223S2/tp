@@ -93,7 +93,7 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the person list, sorted by business size */
-    void sortPersonList(String type);
+    void sortPersonList(String type, boolean ascending);
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
