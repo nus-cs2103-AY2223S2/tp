@@ -32,7 +32,7 @@ MATHUTORING is a **centralised desktop application used for private Math tuition
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all students.
 
    * `exit` : Exits the app.
 
@@ -61,7 +61,7 @@ MATHUTORING is a **centralised desktop application used for private Math tuition
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `clear` and `switch`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -87,7 +87,7 @@ A student can have any number of tags (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`
-* `add n/Betsy Crowe t/friend c/83927482 e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe t/friend c/83927482 e/betsycrowe@example.com a/Newgate Prison p/1234567 t/primary`
 
 ### Viewing students contacts as a list : `list`
 
@@ -156,6 +156,23 @@ Format: `check INDEX`
 
 Examples:
 * `list` followed by `check 2` checks the 2nd student in the student list.
+
+### Filter the student list using students' tags: `filter`
+
+Filters the student list to only display students with any of the given tags.
+
+Format: `filter KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `Primary` will match `primary`
+* Only the tags are searched.
+* Only full words will be matched e.g. `primary` will not match `primary-1`
+* Students with tags matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `primary secondary` will return any students tagged with `primary` or `secondary`
+
+Examples:
+* `filter primary` returns students tagged with `primary`
+* `filter secondary primary polytechnic` returns students tagged with any of `secondary`, `primary` or `polytechnic` tags<br>
+
 
 ### Adding a task for a student: `addTask`
 
@@ -247,14 +264,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+MATHUTORING data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+MATHUTORING data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, MATHUTORING will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -266,7 +283,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MATHUTORING home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
