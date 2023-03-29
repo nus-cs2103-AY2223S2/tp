@@ -204,16 +204,16 @@ Classes used by multiple components are in the `seedu.task.commons` package.
 
 ### 3.1 Add Feature
 
-The add feature now supports three types of additions: simple tasks, events and deadlines. The AddCommandParser will handle the multiple prefixes in the input before the AddCommand adds a list of tasks into the taskbook.
+The add feature now supports three types of additions: simple tasks, events and deadlines. The `AddCommandParser` will handle the multiple prefixes in the input before the `AddCommand` adds a list of tasks into the taskbook.
 Also, our feature allows the user to input multiple tasks with the same descriptions and tags but with different names. This makes it easier for user to add repetitive tasks with similar details.
 
-You can find the specific implementation in the 'AddCommandParser' class and the 'AddCommand' class
+You can find the specific implementation in the `AddCommandParser` class and the `AddCommand` class
 
 Given below is a scenario of how the add command is used and behaves.
 
 Step 1. The user inputs an `add` Command with parameters `n/CS2109S n/CS2103T n/homework`.
 
-Step 2. The AddCommandParser recognises that the input command has two names and one description as the parameters. Since there is no deadline prefix 'D' and event prefixes 'f' and 't', the parser will create tasks that are simple tasks. The tasks will have the same description but different names
+Step 2. The `AddCommandParser` recognises that the input command has two names and one description as the parameters. Since there is no deadline prefix 'D' and event prefixes 'f' and 't', the parser will create tasks that are simple tasks. The tasks will have the same description but different names
 
 Step 3. All the tasks are added to a temporary task list and the list is stored in the add command.
 
@@ -298,7 +298,7 @@ The following diagram summarises the sequence of events happening during the exe
 Deletes a task based on index(es) of tasks from the list currently being shown to users.
 
 Previously in AB3, deletion of task must be done 1 index at a time, but this feature is extended to support deletion at multiple indices in Clock-Work to improve the efficiency of the program.
-Input index(es) is checked for validity (has a task at supposed index and is entered in ascending order) within _DeleteCommandParser_, and an error prompt will be displayed to users should the input be invalid.
+Input index(es) is checked for validity (has a task at supposed index and is entered in ascending order) within `DeleteCommandParser`, and an error prompt will be displayed to users should the input be invalid.
 
 Multiple deletions within a single command must be done in the following manner:
 1. Indices must be separated by whitespace, such as `delete 1 2 3`
@@ -311,11 +311,11 @@ Given below is an example usage scenario and how `delete` is executed.
 
 Step 1. The user inputs a `delete` command with parameter `1 2`. The parser recognises the command word and calls _DeleteCommandParser_.
 
-Step 2. The _DeleteCommandParser_ interprets the indices and saves it as an IndexList.
+Step 2. The `DeleteCommandParser` interprets the indices and saves it as an IndexList.
 
-Step 3. _DeleteCommandParser_ calls _DeleteCommand_.
+Step 3. `DeleteCommandParser` calls `DeleteCommand`.
 
-Step 4. _DeleteCommand_ is executed and all relevant tasks are removed from TaskBook.
+Step 4. `DeleteCommandParser` is executed and all relevant tasks are removed from TaskBook.
 
 Step 5. Results are shown immediately on UI.
 
