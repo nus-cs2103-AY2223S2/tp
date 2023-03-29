@@ -598,6 +598,21 @@ In **search mode**, the command box is highlighted light blue and the input is u
 
 If you have a project or client selected, pressing (ENTER) in **search mode** switches back to **command mode** and appends the name or email of the selected project or client to the command box respectively. This is useful if you want to quickly reference a project or client in your command.
 
+To demonstrate this, lets assume you want to delete a project. You can type in `dp -pn ` as shown below
+
+![step1](images/search-and-select/step1.png)
+
+Instead of typing the full project name, you can press (CTRL+F) to enter **search mode** and search for the project you want to delete
+and select the project as shown below.
+
+![step2](images/search-and-select/step2.png)
+
+You can then press (ENTER) to switch back to **command mode** and append the project name to the command box.
+
+![step3](images/search-and-select/step3.png)
+
+This way you can quickly reference a project or client in your command, without having to type out the full name or email.
+
 <div markdown="span" class="alert alert-danger">
 :warning: You cannot execute any commands while in **search mode**. Similary,
 no searching can be done while in **command mode**.
