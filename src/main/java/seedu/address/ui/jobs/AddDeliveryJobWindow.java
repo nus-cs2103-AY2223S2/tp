@@ -265,7 +265,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
                 job = new DeliveryJob(
                         inputSender.getText(),
                         inputRecipient.getText(),
-                        inputDeliveryDate.getValue().format(DeliveryDate.VALID_FORMAT),
+                        inputDeliveryDate.getValue().toString(),
                         Integer.toString(inputDeliverySlot.getSelectionModel().getSelectedIndex()),
                         inputEarning.getText(),
                         inputDescription.getText());
@@ -349,7 +349,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    boolean validateFields() {
+    private boolean validateFields() {
         boolean flag = true;
         if (inputSender.getText().isEmpty()) {
             inputSender.getStyleClass().add("error-input");
@@ -417,6 +417,9 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
                         flag = false;
                     }
                 }
+            } else {
+                inputDeliverySlot.setValue(null);
+                inputDeliveryDate.setValue(null);
             }
         }
 
