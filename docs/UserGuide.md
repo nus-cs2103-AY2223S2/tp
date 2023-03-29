@@ -146,7 +146,7 @@ Displays the rate tagged to an event.
 
 ### Mark Event as Done: `mark` <a id = "mark-event"></a>
 
-Marks a specified event in Paidlancers as done.
+Marks a specified event as done.
 
 **Format**: `mark INDEX`
 
@@ -162,7 +162,7 @@ Marks a specified event in Paidlancers as done.
 
 ### Unmark an Event: `unmark` <a id = "unmark-event"></a>
 
-Unmarks a specified event in Paidlancers.
+Unmarks a specified event.
 
 **Format**: `unmark INDEX`
 
@@ -190,16 +190,13 @@ Adds a new event.
 
 ### List all Events: `list` <a id = "list-all-events"></a>
 
-Shows a list of all events.
+Displays all events.
 
 **Format**: `list`
 
-- Lists down the events in the event book.
-
-
 ### Delete an Event: `delete` <a id = "delete-an-event"></a>
 
-Deletes the specified event from the event book.
+Deletes the specified event.
 
 **Format**: `delete INDEX`
 
@@ -244,7 +241,6 @@ Edits the specified event.
 Displays the total revenue based on all the completed events.
 
 **Format**: `revenue`
-- Displays the total revenue based on all the completed events.
 
 ### View Upcoming Events: `remind` <a id = "view-upcoming-events"></a>
 
@@ -262,7 +258,7 @@ Displays events that start within a specified number of days.
 Assume the current date and time is 22-03-2023 11:00.
 
 - `remind 2`
-  - Events that start within 2 days will be displayed. These are events that start on:
+  - This command will display events that start within 2 days. These are events that start on:
     * 22-03-2023 after 11:00
     * 23-03-2023 the whole day
     * 24-03-2023 the whole day
