@@ -151,6 +151,22 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Changes the theme of NeoBook to dark mode.
+     */
+    @FXML
+    public void handleDarkMode() {
+        toggleTheme(false, false);
+    }
+
+    /**
+     * Changes the theme of NeoBook to light mode.
+     */
+    @FXML
+    public void handleLightMode() {
+        toggleTheme(true, false);
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
@@ -210,6 +226,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isLightMode()) {
+                handleLightMode();
+            }
+
+            if (commandResult.isDarkMode()) {
+                handleDarkMode();
             }
 
             if (commandResult.isExit()) {
