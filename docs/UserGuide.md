@@ -266,7 +266,7 @@ Examples:
 
 Syntax: `sort_task [c/CRITERIA]`
 
-* Sorts all the tasks according to a criteria.
+* Sorts all the tasks in the current displayed list according to a criteria.
 * Criteria available are: `Time_added`, `Deadline`, `Status`, `Name` and `Status_and_deadline`.
 * The default criteria (when no criteria is specified) is `Status_and_deadline`.
 * Sorting by `Time_added` puts the tasks added first at the top and tasks added later below.
