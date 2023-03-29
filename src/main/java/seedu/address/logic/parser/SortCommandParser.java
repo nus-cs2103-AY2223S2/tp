@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.ParserUtil.parseSortOrder;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.SortCommand.Field;
 import seedu.address.logic.commands.SortCommand.Order;
@@ -71,7 +70,7 @@ public class SortCommandParser implements Parser<SortCommand> {
     private void checkArgsEmpty(String trimmedArgs) throws ParseException {
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
     }
 
