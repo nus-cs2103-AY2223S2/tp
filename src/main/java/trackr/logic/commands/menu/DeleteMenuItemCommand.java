@@ -1,4 +1,4 @@
-package trackr.logic.menu;
+package trackr.logic.commands.menu;
 
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.DeleteItemCommand;

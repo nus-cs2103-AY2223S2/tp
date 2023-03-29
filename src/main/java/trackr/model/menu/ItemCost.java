@@ -18,7 +18,7 @@ public class ItemCost {
      */
     public ItemCost(String value) {
         requireNonNull(value);
-        checkArgument(isValidCost(value), MESSAGE_CONSTRAINTS);
+//        checkArgument(isValidCost(value), MESSAGE_CONSTRAINTS);
         this.value = Float.parseFloat(value);
     }
 

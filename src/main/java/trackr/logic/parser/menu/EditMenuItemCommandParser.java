@@ -8,7 +8,7 @@ import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_PRICE;
 
 import trackr.commons.core.index.Index;
-import trackr.logic.menu.EditMenuItemCommand;
+import trackr.logic.commands.menu.EditMenuItemCommand;
 import trackr.logic.parser.ArgumentMultimap;
 import trackr.logic.parser.ArgumentTokenizer;
 import trackr.logic.parser.Parser;

@@ -3,6 +3,7 @@ package trackr.testutil;
 import trackr.model.menu.ItemCost;
 import trackr.model.menu.ItemName;
 import trackr.model.menu.ItemPrice;
+import trackr.model.menu.ItemProfit;
 import trackr.model.menu.MenuItem;
 
 /**
@@ -17,6 +18,7 @@ public class MenuItemBuilder {
     private ItemName itemName;
     private ItemCost itemCost;
     private ItemPrice itemPrice;
+    private ItemProfit itemProfit;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -25,6 +27,7 @@ public class MenuItemBuilder {
         itemName = new ItemName(DEFAULT_ITEM_NAME);
         itemCost = new ItemCost(DEFAULT_ITEM_COST);
         itemPrice = new ItemPrice(DEFAULT_ITEM_PRICE);
+        itemProfit = new ItemProfit(itemPrice, itemCost);
     }
 
     /**

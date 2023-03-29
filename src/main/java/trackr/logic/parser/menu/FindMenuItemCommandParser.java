@@ -4,7 +4,7 @@ import static trackr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import trackr.logic.menu.FindMenuItemCommand;
+import trackr.logic.commands.menu.FindMenuItemCommand;
 import trackr.logic.parser.Parser;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.menu.ItemNameContainsKeywordsPredicate;

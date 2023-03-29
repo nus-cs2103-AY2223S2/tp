@@ -1,4 +1,4 @@
-package trackr.logic.menu;
+package trackr.logic.commands.menu;
 
 import trackr.logic.commands.ClearItemCommand;
 import trackr.model.ModelEnum;

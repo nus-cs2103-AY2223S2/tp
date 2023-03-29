@@ -7,7 +7,7 @@ import static trackr.logic.parser.CliSyntax.PREFIX_PRICE;
 
 import java.util.stream.Stream;
 
-import trackr.logic.menu.AddMenuItemCommand;
+import trackr.logic.commands.menu.AddMenuItemCommand;
 import trackr.logic.parser.ArgumentMultimap;
 import trackr.logic.parser.ArgumentTokenizer;
 import trackr.logic.parser.Parser;

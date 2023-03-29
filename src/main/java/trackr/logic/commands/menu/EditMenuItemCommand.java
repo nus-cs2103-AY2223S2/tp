@@ -1,4 +1,4 @@
-package trackr.logic.menu;
+package trackr.logic.commands.menu;
 
 import static trackr.logic.parser.CliSyntax.PREFIX_COST;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
