@@ -38,8 +38,8 @@ public class UpdateClientCommand extends Command {
             + CliSyntax.PREFIX_CLIENT_NEW_EMAIL + "patrick_bateman@pandp.com"
             + CliSyntax.PREFIX_CLIENT_YEAR_OF_BIRTH + "2000";
 
-    public static final String MESSAGE_SUCCESS = "Client edited: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field must be provided.";
+    public static final String MESSAGE_SUCCESS = "Updated Client: %1$s";
+    public static final String MESSAGE_NOT_EDITED = "Client not updated.";
     // To be checked
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists.";
 

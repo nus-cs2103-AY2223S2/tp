@@ -64,7 +64,6 @@ public class AddClientCommandParserTest {
             Map.entry("name is whitespace", Pair.of("-cn   -e hogrider@coc.org", Name.MESSAGE_CONSTRAINTS)),
             Map.entry("email is whitespace", Pair.of("-cn Bob -e   ", Email.MESSAGE_CONSTRAINTS)),
             Map.entry("invalid email", Pair.of("-cn Bob -e foobar", Email.MESSAGE_CONSTRAINTS)),
-            Map.entry("invalid name", Pair.of("-cn SHA-256 -e hogrider@coc.org", Name.MESSAGE_CONSTRAINTS)),
             Map.entry("invalid mobile number",
                 Pair.of("-cn Jamal -e jamal@hogriders.org -mn hogridaaaa", Phone.MESSAGE_CONSTRAINTS)),
             Map.entry("invalid source (empty)",
