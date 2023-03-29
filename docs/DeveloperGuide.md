@@ -1320,7 +1320,13 @@ Expected Output in the Command Output Box: Error message for invalid command for
 
 ### **Filter persons by keywords**
 
-{to be filled}
+`find n/Albert`
+
+Expected Output in Person List: All contacts that have the word 'Albert' in their name.
+
+`find m/CS2103T`
+
+Expected Output in Person List: All contacts with CS2103T tag under `Module`.
 
 ### **Arrange persons by criteria**
 
