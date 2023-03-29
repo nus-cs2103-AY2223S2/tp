@@ -114,7 +114,7 @@ public class InternBuddy implements ReadOnlyInternBuddy {
      * {@code key} must exist in InternBuddy.
      */
     public void copyInternship(Internship key) {
-        String content = key.toString();
+        String content = "Company Name: " + key.toString();
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 StringSelection selection = new StringSelection(content);

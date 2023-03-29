@@ -18,7 +18,7 @@ public class CopyCommand extends Command {
     public static final String COMMAND_WORD = "copy";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Copies the internship information identified by the index"
+            + ": Copies the details of the internship identified by the index"
             + " number used in the displayed internship list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
@@ -47,8 +47,6 @@ public class CopyCommand extends Command {
         //Functionality of the copy internship command
         model.copyInternship(internshipToCopy);
 
-        //update right panel
-        model.updateSelectedInternship(internshipToCopy);
         return new CommandResult(String.format(MESSAGE_COPY_INTERNSHIP_SUCCESS, internshipToCopy));
     }
 
