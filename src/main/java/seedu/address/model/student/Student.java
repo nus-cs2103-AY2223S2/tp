@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.student.exceptions.ConflictingLessonsException;
 import seedu.address.model.student.exceptions.DuplicateEntryException;
 import seedu.address.model.tag.Tag;
 
@@ -264,12 +265,11 @@ public class Student {
      * @param lesson the lesson to be added
      */
     public void addLesson(Lesson lesson) {
-        for (Lesson l : this.lessonsList) {
-            if (l.equals(lesson)) {
-                return;
-            }
+        try {
+            this.lessonsList.add(lesson);
+        } catch (Exception e) {
+            throw new ConflictingLessonsException(e.getMessage());
         }
-        this.lessonsList.add(lesson);
     }
 
     /**

@@ -40,7 +40,7 @@ public class UniqueLessonsList implements Iterable<Lesson> {
      */
     public boolean contains(Lesson toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameTimeLesson);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -49,7 +49,7 @@ public class UniqueLessonsList implements Iterable<Lesson> {
      *
      * @param toAdd the lesson to be added
      */
-    public void add(Lesson toAdd) {
+    public void add(Lesson toAdd) throws DuplicateLessonException, ConflictingLessonsException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateLessonException();
