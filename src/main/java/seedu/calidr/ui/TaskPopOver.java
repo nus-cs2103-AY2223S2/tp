@@ -35,7 +35,7 @@ public class TaskPopOver extends UiPart<Region> {
     private Label priority;
 
     @FXML
-    private Label task_location;
+    private Label taskLocation;
 
     @FXML
     private Label title;
@@ -67,10 +67,10 @@ public class TaskPopOver extends UiPart<Region> {
         }
 
         if (task.getLocation().isPresent()) {
-            task_location.setText("@ " + task.getLocation().get().value);
+            taskLocation.setText("@ " + task.getLocation().get().value);
         } else {
-            task_location.setManaged(false);
-            task_location.setVisible(false);
+            taskLocation.setManaged(false);
+            taskLocation.setVisible(false);
         }
 
         if (task instanceof Event) {

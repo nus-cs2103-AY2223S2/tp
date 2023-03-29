@@ -37,6 +37,7 @@ public class AddTodoCommandParser implements Parser<AddTodoCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_LOCATION,
                         PREFIX_BY, PREFIX_PRIORITY, PREFIX_TAG);
 
+
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_BY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTodoCommand.MESSAGE_USAGE));
