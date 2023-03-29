@@ -26,6 +26,11 @@ public class ClassStatisticsCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_STAT_TYPE + "grades" + PREFIX_ASSIGNMENT_NAME + "Homework 1";
     public static final String MESSAGE_UNKNOWN_FIELD = "The FIELD parameter passed in is not recognised. \n"
             + "Please enter only either 'attendance' or 'grades' for this parameter.";
+    public static final String MESSAGE_MISSING_ASSIGNMENT_NAME = "For grade statistics, the parameter ASSIGNMENT_NAME"
+            + " is compulsory. \n"
+            + "Please include the ASSIGNMENT_NAME of the assignment you wish to analyse.";
+    public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "The assignment name you have entered does not exist.\n"
+            + "Please check that the assignment with the speecified name exists for this active class list.";
     private ClassStatisticField field;
     private String assignmentName;
 
@@ -49,6 +54,10 @@ public class ClassStatisticsCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         requireNonNull(this.field);
+        if (this.field == ClassStatisticField.GRADES
+                && model.hasAssignment(this.assignmentName)) {
+            throw new CommandException(MESSAGE_ASSIGNMENT_NOT_FOUND);
+        }
 
         if (this.field == ClassStatisticField.ATTENDANCE) {
             // display histogram of attendance over all 12 weeks

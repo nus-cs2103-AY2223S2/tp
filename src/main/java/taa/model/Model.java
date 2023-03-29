@@ -113,6 +113,10 @@ public interface Model {
      */
     void addStudentToTaggedClasses(Student student);
 
+    /**
+     * Checks if a given assignment already exists.
+     */
+    boolean hasAssignment(String assignmentName) throws CommandException;
     void addAssignment(String assignmentName, int totalMarks) throws CommandException;
 
     void deleteAssignment(String assignmentName) throws CommandException;

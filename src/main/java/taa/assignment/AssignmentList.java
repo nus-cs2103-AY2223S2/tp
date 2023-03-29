@@ -87,4 +87,11 @@ public class AssignmentList {
         }
         return sb.toString();
     }
+
+    /**
+     * Returns true if an assignment with the provided name exists.
+     */
+    public boolean contains(String name) {
+        return this.assignmentMap.containsKey(name);
+    }
 }
