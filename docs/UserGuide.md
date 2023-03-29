@@ -237,8 +237,8 @@ Format: `findevent KEYWORD [MORE_KEYWORDS]`
   e.g. `Wedding Dinner` will return `Wedding Ceremony`, `Birthday Dinner`
 
 Examples:
-* `find Dinner` returns `Wedding Dinner` and `Dinner and Dance`
-* `find birthday party` returns `Birthday Lunch`, `Graduation Party`
+* `findevent Dinner` returns `Wedding Dinner` and `Dinner and Dance`
+* `findevent birthday party` returns `Birthday Lunch`, `Graduation Party`
 
 #### Deleting an event : `delevent`
 
