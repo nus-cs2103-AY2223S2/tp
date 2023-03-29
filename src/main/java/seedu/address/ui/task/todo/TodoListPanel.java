@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.ui.UiPart;
@@ -21,6 +22,9 @@ public class TodoListPanel extends UiPart<Region> {
     @FXML
     private ListView<InternshipTodo> todoListView;
 
+    @FXML
+    private VBox container;
+
     /**
      * Creates a {@code TodoListPanel} with the given {@code ObservableList}.
      */
@@ -28,10 +32,20 @@ public class TodoListPanel extends UiPart<Region> {
         super(FXML);
         todoListView.setItems(todoList);
         todoListView.setCellFactory(listView -> new TodoListViewCell());
+        logger.info("Todo List updated.");
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code ApplicationTodo} using a {@code TodoCard}.
+     * Getter for the vertical box with id container.
+     *
+     * @return VBox with id container
+     */
+    public VBox getContainer() {
+        return container;
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code InternshipTodo} using a {@code TodoCard}.
      */
     class TodoListViewCell extends ListCell<InternshipTodo> {
         @Override

@@ -10,18 +10,18 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.tag.TodoType;
+import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.Note;
 
 /**
- * Deletes a note identified using it's displayed index from the note list.
+ * Deletes a note identified by its displayed index from the note list.
  */
 public class DeleteNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_note";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the specified note from the list of todo.\n"
+            + ": Deletes the specified note from the list of notes.\n"
             + "Deletes note at the specified INDEX.\n"
             + "The index refers to the index number shown in the displayed note list.\n"
             + "Parameters: INDEX (must be a positive integer 1, 2, 3, ...)\n"
@@ -29,12 +29,12 @@ public class DeleteNoteCommand extends Command {
 
     public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Deleted note: %1$s";
 
-    private static final TodoType type = TodoType.NOTE;
+    private static final TaskType type = TaskType.NOTE;
 
     private final Index targetIndex;
 
     /**
-     * Creates an DeleteCommand to delete the specified {@code targetIndex} note
+     * Creates a DeleteNoteCommand to delete the specified note at {@code targetIndex}.
      */
     public DeleteNoteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -46,7 +46,7 @@ public class DeleteNoteCommand extends Command {
         List<Note> lastShownList = model.getFilteredNoteList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_NOTE_DISPLAYED_INDEX);
         }
 
         Note noteToDelete = lastShownList.get(targetIndex.getZeroBased());

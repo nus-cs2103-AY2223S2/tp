@@ -13,9 +13,9 @@ import seedu.address.model.person.InterviewDate;
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class PersonCard extends UiPart<Region> {
+public class ApplicationCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "ApplicationListCard.fxml";
 
     /**
      * NoteList: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -55,10 +55,38 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(InternshipApplication application, int displayedIndex) {
+    public ApplicationCard(InternshipApplication application, int displayedIndex) {
         super(FXML);
         this.application = application;
         id.setText(displayedIndex + ". ");
+        companyName.setText(application.getCompanyName().fullName);
+        jobTitle.setText(application.getJobTitle().fullName);
+        application.getReviews().stream()
+                .forEach(review -> reviews.getChildren().add(new Label(review.value)));
+        internshipStatus.setText(application.getStatus().name());
+        Contact companyContact = application.getContact();
+        if (companyContact != null) {
+            email.setText(companyContact.getEmail().value);
+            phone.setText(companyContact.getPhone().value);
+            email.setVisible(true);
+            phone.setVisible(true);
+            email.setManaged(true);
+            phone.setManaged(true);
+        }
+        InterviewDate interviewDateStr = application.getInterviewDate();
+        if (interviewDateStr != null) {
+            interviewDate.setText(interviewDateStr.toString());
+            interviewDate.setVisible(true);
+            interviewDate.setManaged(true);
+        }
+    }
+
+    /**
+     * Creates a {@code ApplicationCard} with the given {@code InternshipApplication}.
+     */
+    public ApplicationCard(InternshipApplication application) {
+        super(FXML);
+        this.application = application;
         companyName.setText(application.getCompanyName().fullName);
         jobTitle.setText(application.getJobTitle().fullName);
         application.getReviews().stream()
@@ -89,12 +117,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof ApplicationCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        ApplicationCard card = (ApplicationCard) other;
         return id.getText().equals(card.id.getText())
                 && application.equals(card.application);
     }
