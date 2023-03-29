@@ -25,6 +25,8 @@ public class VideoCard extends UiPart<Region> {
     @FXML
     private Label videoName;
     @FXML
+    private Label videoTimestamp;
+    @FXML
     private Label watchedStatus;
     @FXML
     private FlowPane tags;
@@ -39,6 +41,7 @@ public class VideoCard extends UiPart<Region> {
         videoName.setText(video.getName().toString());
 
         watchedStatus.setText(video.hasWatched() ? "Watched" : "Not Watched");
+        videoTimestamp.setText(video.getTimestamp().toString());
         video.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
