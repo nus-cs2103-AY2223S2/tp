@@ -31,9 +31,9 @@ This user guide will help you use PowerCards with ease and integrate it into you
 ### Locations of the components
 ![UiComponent](images/UiComponent.png)
 
-## Use of the components
+## Description of the components
 
-| Component          | Use                                                                                                          |
+| Component          | Description                                                                                                          |
 |--------------------|--------------------------------------------------------------------------------------------------------------|
 | **Left Panel**     | This shows either a **list of decks** or the **current review statistics** depending on the mode you are in. |
 | **Right Panel**    | This shows either a **list of cards** or the **current card in review** depending on the mode you are in.    |
@@ -76,6 +76,21 @@ This user guide will help you use PowerCards with ease and integrate it into you
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+### Components in Main Mode
+![UiComponent](images/MainModeComponent.png)
+
+## Description of the components
+
+| Component         | Description                                                                                                |
+|-------------------|------------------------------------------------------------------------------------------------------------|
+| **Selected Deck** | This highlights the **Deck** currently selected and displays the cards in the deck on the **Right Panel**. |
+| **Deck**          | A **Deck** contains a list of **cards**.                                                                   |
+| **Card**          |                                                                                                            |
+| **Question**      |                                                                                                            |
+| **Answer**        |                                                                                                            |
+| **Tag**           |                                                                                                            |
+
 
 ## Main Mode
 
