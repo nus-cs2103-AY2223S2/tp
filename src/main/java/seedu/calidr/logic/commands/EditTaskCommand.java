@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import net.fortuna.ical4j.filter.FilterExpression;
 import seedu.calidr.commons.core.Messages;
 import seedu.calidr.commons.core.index.Index;
 import seedu.calidr.commons.util.CollectionUtil;

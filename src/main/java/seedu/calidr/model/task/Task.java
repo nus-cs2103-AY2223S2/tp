@@ -2,7 +2,6 @@ package seedu.calidr.model.task;
 
 import java.util.Optional;
 
-import net.fortuna.ical4j.filter.FilterExpression;
 import seedu.calidr.model.task.params.Description;
 import seedu.calidr.model.task.params.Location;
 import seedu.calidr.model.task.params.Priority;
