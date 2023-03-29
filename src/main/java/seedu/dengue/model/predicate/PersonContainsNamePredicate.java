@@ -23,7 +23,8 @@ public class PersonContainsNamePredicate implements Predicate<Person> {
     public boolean test(Person person) {
         if (name.isPresent()) {
             Predicate<String> containsName =
-                    keyword -> StringUtil.containsSubstringIgnoreCase(person.getName().fullName, keyword);
+                    keyword -> StringUtil.containsSubstringWithLengthMoreThanOneIgnoreCase(
+                            person.getName().fullName, keyword);
             return containsName.test(name.get().fullName);
         } else {
             return true;

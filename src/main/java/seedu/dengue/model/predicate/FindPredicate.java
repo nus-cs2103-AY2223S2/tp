@@ -9,6 +9,7 @@ import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.SubPostal;
+import seedu.dengue.model.range.Range;
 import seedu.dengue.model.variant.Variant;
 
 /**
@@ -20,6 +21,8 @@ public class FindPredicate implements Predicate<Person> {
     private final Optional<Age> age;
     private final Optional<Date> date;
     private final Set<Variant> variants;
+    private final Range<Date> dateRange;
+    private final Range<Age> ageRange;
 
     /**
      * A class that represents the predicate which is used to filter through the persons list to test for whether
@@ -30,14 +33,18 @@ public class FindPredicate implements Predicate<Person> {
      * @param age
      * @param date
      * @param variants
+     * @param dateRange
+     * @param ageRange
      */
     public FindPredicate(Optional<Name> name, Optional<SubPostal> subPostal, Optional<Age> age, Optional<Date> date,
-                         Set<Variant> variants) {
+                         Set<Variant> variants, Range<Date> dateRange, Range<Age> ageRange) {
         this.name = name;
         this.subPostal = subPostal;
         this.age = age;
         this.date = date;
         this.variants = variants;
+        this.dateRange = dateRange;
+        this.ageRange = ageRange;
     }
 
     @Override
@@ -47,6 +54,9 @@ public class FindPredicate implements Predicate<Person> {
         boolean containsAge = new PersonContainsAgePredicate(age).test(person);
         boolean containsDate = new PersonContainsDatePredicate(date).test(person);
         boolean containsVariants = new PersonContainsVariantsPredicate(variants).test(person);
-        return containsName && containsPostal && containsAge && containsDate && containsVariants;
+        boolean containsDateRange = new RangeContainsPersonPredicate(dateRange).test(person);
+        boolean containsAgeRange = new RangeContainsPersonPredicate(ageRange).test(person);
+        return containsName && containsPostal && containsAge && containsDate && containsVariants
+                && containsAgeRange && containsDateRange;
     }
 }
