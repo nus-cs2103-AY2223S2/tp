@@ -10,6 +10,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EASY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_TIMESTAMP_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_TIMESTAMP_2;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +30,13 @@ public class EditVideoDescriptorTest {
     @Test
     public void isAnyFieldEdited_nameIsEdited_returnsTrue() {
         EditVideoDescriptor descriptor = new EditVideoDescriptorBuilder().withName(VALID_VIDEO_NAME_V1).build();
+        assertTrue(descriptor.isAnyFieldEdited());
+    }
+
+    @Test
+    public void isAnyFieldEdited_timestampIsEdited_returnsTrue() {
+        EditVideoDescriptor descriptor = new EditVideoDescriptorBuilder()
+                .withTimestamp(VALID_VIDEO_TIMESTAMP_1).build();
         assertTrue(descriptor.isAnyFieldEdited());
     }
 
@@ -81,6 +90,16 @@ public class EditVideoDescriptorTest {
         // different name -> returns false
         EditVideoDescriptor editedV1 = new EditVideoDescriptorBuilder(EDIT_VIDEO_DESC_V1)
                 .withName(VALID_VIDEO_NAME_V2).build();
+        assertFalse(EDIT_VIDEO_DESC_V1.equals(editedV1));
+
+        // different timestamp -> returns false
+        editedV1 = new EditVideoDescriptorBuilder(EDIT_VIDEO_DESC_V1)
+                .withTimestamp(VALID_VIDEO_TIMESTAMP_2).build();
+        assertFalse(EDIT_VIDEO_DESC_V1.equals(editedV1));
+
+        // different watched -> returns false
+        editedV1 = new EditVideoDescriptorBuilder(EDIT_VIDEO_DESC_V1)
+                .withWatched(!EDIT_VIDEO_DESC_V1.hasWatched().get()).build();
         assertFalse(EDIT_VIDEO_DESC_V1.equals(editedV1));
 
         // different tags -> returns false

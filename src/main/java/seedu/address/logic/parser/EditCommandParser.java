@@ -157,7 +157,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         VideoName videoName = ParserUtil.parseVideoName(videoNameStr);
 
         VideoName updatedName = updatedNameStr == null ? null : ParserUtil.parseVideoName(updatedNameStr);
-        VideoTimestamp updatedTimestamp = updatedTimestampStr == null ? null : ParserUtil.parseVideoTimestamp(updatedTimestampStr);
+        VideoTimestamp updatedTimestamp = updatedTimestampStr == null
+                ? null : ParserUtil.parseVideoTimestamp(updatedTimestampStr);
         Set<Tag> updatedTags = updatedTagsStr == null ? null : ParserUtil.parseMultiTags(updatedTagsStr);
         Boolean hasWatchedUpdated = (!hasWatchFlag && !hasUnwatchFlag) ? null : hasWatchFlag;
 

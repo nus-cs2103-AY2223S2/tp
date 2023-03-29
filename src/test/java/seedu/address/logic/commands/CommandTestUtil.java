@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -38,6 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_LECTURE_NAME_L2 = "lecture2";
     public static final String VALID_VIDEO_NAME_V1 = "video1";
     public static final String VALID_VIDEO_NAME_V2 = "video2";
+    public static final String VALID_VIDEO_TIMESTAMP_1 = "01:02:03";
+    public static final String VALID_VIDEO_TIMESTAMP_2 = "02:42:24";
     public static final String VALID_TAG_HARD = "Hard";
     public static final String VALID_TAG_EASY = "Easy";
     public static final String VALID_TAG_MATH = "Math";
@@ -47,6 +50,8 @@ public class CommandTestUtil {
     public static final String INVALID_MODULE_NAME = "modu!e";
     public static final String INVALID_LECTURE_NAME = "l337ure!";
     public static final String INVALID_VIDEO_NAME = "v*deo";
+    public static final String INVALID_FORMAT_VIDEO_TIMESTAMP = "00:00:00:00";
+    public static final String INVALID_RANGE_VIDEO_TIMESTAMP = "01:02:60";
     public static final String INVALID_TAG = "Very Hard";
 
     public static final String VALID_BY_TAG_PREFIX = "" + PREFIX_BY_TAG;
@@ -58,6 +63,8 @@ public class CommandTestUtil {
     public static final String MODULE_NAME_DESC_2040 = " " + PREFIX_NAME + " " + VALID_MODULE_NAME_2040;
     public static final String LECTURE_NAME_DESC_L1 = " " + PREFIX_LECTURE + " " + VALID_LECTURE_NAME_L1;
     public static final String LECTURE_NAME_DESC_L2 = " " + PREFIX_LECTURE + " " + VALID_LECTURE_NAME_L2;
+    public static final String VIDEO_TIMESTAMP_DESC_1 = " " + PREFIX_TIMESTAMP + " " + VALID_VIDEO_TIMESTAMP_1;
+    public static final String VIDEO_TIMESTAMP_DESC_2 = " " + PREFIX_TIMESTAMP + " " + VALID_VIDEO_TIMESTAMP_2;
     public static final String TAG_DESC_EASY = " " + PREFIX_TAG + " " + VALID_TAG_EASY;
     public static final String TAG_DESC_HARD = " " + PREFIX_TAG + " " + VALID_TAG_HARD;
     public static final String TAG_DESC_MATH = " " + PREFIX_TAG + " " + VALID_TAG_MATH;
@@ -67,6 +74,10 @@ public class CommandTestUtil {
     public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE + " " + INVALID_MODULE_CODE;
     public static final String INVALID_MODULE_NAME_DESC = " " + PREFIX_NAME + " " + INVALID_MODULE_NAME;
     public static final String INVALID_LECTURE_NAME_DESC = " " + PREFIX_LECTURE + " " + INVALID_LECTURE_NAME;
+    public static final String INVALID_FORMAT_VIDEO_TIMESTAMP_DESC = " " + PREFIX_TIMESTAMP + " "
+            + INVALID_FORMAT_VIDEO_TIMESTAMP;
+    public static final String INVALID_RANGE_VIDEO_TIMESTAMP_DESC = " " + PREFIX_TIMESTAMP + " "
+            + INVALID_RANGE_VIDEO_TIMESTAMP;
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + " " + INVALID_TAG;
 
     public static final String EDIT_MODULE_CODE_DESC_2103 = " " + PREFIX_CODE + " " + VALID_MODULE_CODE_2103;
@@ -95,9 +106,11 @@ public class CommandTestUtil {
             .withName(VALID_LECTURE_NAME_L2).withTags(VALID_TAG_HARD, VALID_TAG_MATH).build();
 
     public static final EditVideoDescriptor EDIT_VIDEO_DESC_V1 = new EditVideoDescriptorBuilder()
-            .withName(VALID_VIDEO_NAME_V1).withTags(VALID_TAG_CONTENT).withWatched(false).build();
+            .withName(VALID_VIDEO_NAME_V1).withWatched(false).withTimestamp(VALID_VIDEO_TIMESTAMP_1)
+            .withTags(VALID_TAG_CONTENT).build();
     public static final EditVideoDescriptor EDIT_VIDEO_DESC_V2 = new EditVideoDescriptorBuilder()
-            .withName(VALID_VIDEO_NAME_V2).withTags(VALID_TAG_HARD, VALID_TAG_MATH).withWatched(true).build();
+            .withName(VALID_VIDEO_NAME_V2).withWatched(true).withTimestamp(VALID_VIDEO_TIMESTAMP_2)
+            .withTags(VALID_TAG_HARD, VALID_TAG_MATH).build();
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
