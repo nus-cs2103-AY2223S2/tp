@@ -53,7 +53,7 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -87,6 +87,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+## Features related to Customers
 ### Adding a person: `add`
 
 Adds a person to the address book.
@@ -126,7 +127,7 @@ Examples:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds and lists persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -156,9 +157,36 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+## Features related to Delivery Jobs
+### Adding a job: `add_job`
+
+Adds a delivery job to the delivery job system.
+
+Format: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]`
+
+* Adds the job to delivery job system.
+* `SENDER_ID` and `RECEIPIENT_ID` **must be valid IDs** (i.e. must exist in address book).
+* Delivery date **must be in format YYYY-mm-DD**.
+* Delivery slot **must be a positive integer** and valid slots should be within the range from 1 to 5. 
+* Slot 1: 10AM - 11AM, Slot 2: 11AM - 12PM, Slot 3: 1PM - 2PM, Slot 4: 2PM - 3PM, Slot 5: 3PM - 4PM.
+* Delivery slots outside valid range will be classified as "Extra hours (4PM++)".
+* Earning **must be a double**.
+
+Examples:
+* `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3`
+* `add_job si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
+
+### Listing all jobs : `list_job`
+
+Shows a list of all jobs in the delivery job system in Main Window.
+
+Format: `list_job`
+
+
+## Features related to Reminders
 ### Listing all reminders : `list_reminder`
 
-Shows a list of all reminders in the address book.
+Shows a list of all reminders in Duke Driver.
 
 Format: `list_reminder`
 
@@ -177,7 +205,7 @@ Examples:
 
 ### Deleting a reminder : `delete_reminder`
 
-Deletes a reminder into the address book.
+Deletes a reminder in Duke Driver.
 
 Format: `delete_reminder INDEX`
 
@@ -188,24 +216,39 @@ Format: `delete_reminder INDEX`
 Examples:
 * `list_reminder` followed by `delete_reminder 2` deletes the 2nd reminder in the address book.
 
+
+## Features related to Timetable
 ### Showing timetable : `timetable`
 
-Shows timetable of jobs, with the week shown being current week.
+Shows timetable of jobs, with the week shown being current week (LocalDate.now()).
 
 Format: `timetable`
 
-### Showing timetable of specific date: `timetable_date`
+### Showing timetable of week containing specific date: `timetable_date`
 
 Shows timetable of specific week containing a specific date
 
 Format: `timetable_date date/YYYY-mm-DD`
 
-* Shows timetable of the week containing the given date
+* Shows timetable of the week containing the given date.
+* This is the one and only command that Timetable Window can parse/proceed/understand.
 
 Examples:
-* `timetable` followed by `2023-03-16` shows timetable of jobs in week from 13th - 19th March 2023.
+* `timetable_date date/2023-03-16` shows timetable of jobs in week from 13th - 19th March 2023.
+
+## Showing list of completed jobs
+Shows list of completed jobs, sorted in increasing date and decreasing earning order.
+
+Format: `timetable_completed`
+
+## Showing list of unscheduled jobs
+Shows list of unscheduled jobs (i.e. jobs with invalid delivery dates and/or slots).
+Jobs are sorted in increasing date and decreasing earning order.
+
+Format: `timetable_unscheduled`
 
 
+## Other features
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -220,11 +263,11 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Duke Driver data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Duke Driver data are saved as a JSON file `[JAR file location]/data/addressbook.json` and `[JAR file location]/data/deliveryjobsystem.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
