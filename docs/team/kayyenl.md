@@ -13,11 +13,11 @@ OfficeConnect offers a solution to these problems by providing better visibility
 
 Given below are my contributions to the project.
 
-* **New Feature**: Modified help window, more extensive
+* **New Feature**: **Advanced help window, more extensive for users.**
 ![image](https://user-images.githubusercontent.com/99934242/221522239-2a64f9dd-ce8d-4fd5-834d-1a2fb513cf32.png)
   * What it does: allows the user view help for each individual command that can be entered into OfficeConnect.
-  * Justification: This feature improves the user experience as he/she uses the app, as this extensive help window removes the need to go online and scour through all the documentation pages (which are not written for the user's use, anyway.)
-  * Highlights: This enhancement gives the user a bird's eye view of the ways a command can be used in a digestable (TreeView, hierarchical like manner) that is intuitive and not stressful on the fingers of a slow typer.
+  * Justification: This feature improves the user experience when he/she requires help. It removes the need to go online to search through extensive versions of User Guides to inform them of what commands they should input.
+  * Highlights: This enhancement gives the user a bird's eye view of the ways a command can be used in a digestable (tree-view, hierarchical like arrangements of commands) that is easy to refer to.
 
 * **New Feature**: To be added.
 
