@@ -3,12 +3,12 @@ package seedu.internship.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import javax.swing.SwingUtilities;
-
-import javafx.collections.ObservableList;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
+import javax.swing.SwingUtilities;
+
+import javafx.collections.ObservableList;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.UniqueInternshipList;
 
