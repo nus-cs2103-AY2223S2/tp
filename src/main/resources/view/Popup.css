@@ -1,0 +1,17 @@
+* { /* ROOT COLOR VARIABLES */
+    -fx-bg: #18181b;
+    -fx-ctr: #f4f4f5;
+    -fx-gry: #71717a;
+    -fx-rd: #f70d1a;
+    -fx-rsd: derive(-fx-bg, 40%);
+}
+
+.root-layout {
+    -fx-background-color: -fx-bg;
+}
+
+.cell_big_label {
+    -fx-font-family: "IBM Plex Sans Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: -fx-ctr;
+}

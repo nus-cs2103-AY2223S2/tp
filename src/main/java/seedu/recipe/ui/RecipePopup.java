@@ -107,9 +107,6 @@ public class RecipePopup extends UiPart<Region> {
         // Ensures users do not exit the view by clicking outside
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Recipe Details");
-        window.setMinWidth(500);
-        window.setMinHeight(300);
-        window.setMaxHeight(700);
         VBox vbox = new VBox(getRoot());
         Scene scene = new Scene(vbox);
         scene.setOnKeyPressed(event -> {
