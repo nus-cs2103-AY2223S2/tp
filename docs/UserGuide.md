@@ -128,7 +128,7 @@ The susceptibility level of an elderly to injury or sickness.
 #### Available Dates
 * The start of the available dates must be before the end of the available dates.
 
-<div markdown="block" class="alert alert-danger">:exclamation: **Warning**
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning:**
 
 Out of concerns of time, we do not implement the scheme to check and merge overlapping available date ranges, 
 such as `2022-01-03,2022-01-20` and `2022-01-10,2022-01-23`. Therefore, to ensure maximum efficiency for the software,
