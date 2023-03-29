@@ -29,7 +29,7 @@ public class AddPatientCommand extends Command {
             + PREFIX_WEIGHT + "WEIGHT "
             + PREFIX_DIAGNOSIS + "DIAGNOSIS "
             + PREFIX_STATUS + "STATUS "
-            + PREFIX_REMARK + "REMARK "
+            + "[" + PREFIX_REMARK + "REMARK] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
