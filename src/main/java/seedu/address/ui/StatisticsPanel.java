@@ -159,4 +159,5 @@ public class StatisticsPanel extends UiPart<Region> {
                 && totalSpending.getText().equals(statistics.totalSpending.getText())
                 && budgetPercentage.getText().equals(statistics.budgetPercentage.getText());
     }
+
 }

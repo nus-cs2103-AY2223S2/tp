@@ -186,6 +186,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setExpense(int index, Expense newExpense) {
+        expenseTracker.setExpense(index, newExpense);
+    }
+
+    @Override
     public void updateFilteredExpensesList(Predicate<Expense> predicate) {
         requireNonNull(predicate);
         filteredExpenses.setPredicate(predicate);
@@ -216,5 +221,10 @@ public class ModelManager implements Model {
     public boolean hasExpense(Expense expense) {
         requireNonNull(expense);
         return expenseTracker.hasExpense(expense);
+    }
+
+    @Override
+    public void setBudget(Budget budget) {
+        expenseTracker.setBudget(budget);
     }
 }

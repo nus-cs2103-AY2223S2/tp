@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.model.category.Category;
 import seedu.address.model.category.MiscellaneousCategory;
@@ -21,6 +23,8 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     private static final MiscellaneousCategory MISCELLANEOUS_CATEGORY = new MiscellaneousCategory();
     private final UniqueCategoryList categories;
     private final ExpenseList expenses;
+    private final ObjectProperty<Budget> simpleBudget;
+
 
 
     /*
@@ -36,6 +40,7 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     {
         categories = new UniqueCategoryList();
         expenses = new ExpenseList();
+        simpleBudget = new SimpleObjectProperty<>(new Budget(0));
     }
 
     public ExpenseTracker() {
@@ -66,6 +71,10 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         this.expenses.setExpenseList(expenses);
     }
 
+    public void setBudget(Budget budget) {
+        this.simpleBudget.set(budget);
+    }
+
     /**
      * Resets the existing data of this {@code ExpenseTracker} with {@code newData}.
      */
@@ -73,6 +82,7 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         requireNonNull(newData);
         setExpenses(newData.getExpenseList());
         setCategories(newData.getCategoryList());
+        setBudget(newData.getBudget());
     }
 
     //// category-level operations
@@ -149,6 +159,16 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     }
 
     @Override
+    public Budget getBudget() {
+        return this.simpleBudget.get();
+    }
+
+    @Override
+    public ObjectProperty<Budget> getBudgetForStats() {
+        return this.simpleBudget;
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ExpenseTracker // instanceof handles nulls
@@ -163,6 +183,10 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
 
     public void removeExpense(Expense expense) {
         expenses.remove(expense);
+    }
+
+    public void setExpense(int index, Expense expense) {
+        expenses.set(index, expense);
     }
 
     /**

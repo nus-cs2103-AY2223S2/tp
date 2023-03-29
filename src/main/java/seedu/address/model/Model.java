@@ -76,6 +76,13 @@ public interface Model {
     void clearExpense();
 
     /**
+     * Replaces the Expense in the expense list at the given index.
+     * @param index
+     * @param expense
+     */
+    void setExpense(int index, Expense expense);
+
+    /**
      * Replaces the given expense {@code target} with {@code editedExpense}.
      * {@code target} must exist in the expense list
      */
@@ -141,4 +148,10 @@ public interface Model {
      * @return the category instance if it exists, and null if it does not
      */
     Category getCategoryInstance(Category category);
+
+    /**
+     * Sets budget for FastTrack.
+     * @param budget
+     */
+    void setBudget(Budget budget);
 }

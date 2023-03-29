@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.Budget;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyExpenseTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -96,6 +97,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setExpense(int index, Expense newExpense) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasExpense(Expense expense) {
         // Check if the expense is in the list
         return expenses.contains(expense);
@@ -151,6 +157,11 @@ public class ModelStub implements Model {
     public Category getCategoryInstance(Category categoryName) {
         // get the category instance
         return null;
+    }
+
+    @Override
+    public void setBudget(Budget budget) {
+        throw new AssertionError("This method should not be called.");
     }
 
 }

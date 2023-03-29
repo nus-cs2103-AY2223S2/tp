@@ -25,6 +25,7 @@ class JsonSerializableExpenseTracker {
 
     private final List<JsonAdaptedCategory> categories = new ArrayList<>();
     private final List<JsonAdaptedExpense> expenses = new ArrayList<>();
+    private final JsonAdaptedBudget budget;
 
     /**
      * Constructs a {@code JsonSerializableExpenseTracker} with the given expenses
@@ -34,9 +35,11 @@ class JsonSerializableExpenseTracker {
      */
     @JsonCreator
     public JsonSerializableExpenseTracker(@JsonProperty("categories") List<JsonAdaptedCategory> listOfCategories,
-            @JsonProperty("expenses") List<JsonAdaptedExpense> listOfExpenses) {
+            @JsonProperty("expenses") List<JsonAdaptedExpense> listOfExpenses,
+            @JsonProperty("budget") JsonAdaptedBudget budget) {
         this.categories.addAll(listOfCategories);
         this.expenses.addAll(listOfExpenses);
+        this.budget = budget;
     }
 
     /**
@@ -50,6 +53,7 @@ class JsonSerializableExpenseTracker {
                 .stream().map(JsonAdaptedCategory::new).collect(Collectors.toList()));
         this.expenses.addAll(source.getExpenseList()
                 .stream().map(JsonAdaptedExpense::new).collect(Collectors.toList()));
+        this.budget = new JsonAdaptedBudget(source.getBudget());
     }
 
     /**
@@ -74,6 +78,8 @@ class JsonSerializableExpenseTracker {
             }
             expenseTracker.addExpense(expense);
         }
+
+        expenseTracker.setBudget(budget.toModelType());
 
         return expenseTracker;
     }

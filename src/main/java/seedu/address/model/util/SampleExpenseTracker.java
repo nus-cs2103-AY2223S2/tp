@@ -2,6 +2,7 @@ package seedu.address.model.util;
 
 import java.time.LocalDate;
 
+import seedu.address.model.Budget;
 import seedu.address.model.ExpenseTracker;
 import seedu.address.model.ReadOnlyExpenseTracker;
 import seedu.address.model.category.Category;
@@ -49,6 +50,8 @@ public class SampleExpenseTracker {
             }
             sampleExpenseTracker.addExpense(sampleExpense);
         }
+
+        sampleExpenseTracker.setBudget(new Budget(0));
         return sampleExpenseTracker;
     }
 }
