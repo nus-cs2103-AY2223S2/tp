@@ -238,7 +238,7 @@ Given below is an example usage scenario when a user enter `patient list` as a c
 
 1. The user enters the command in the `UI component`
 2. It will be passed to the `Logic component`
-3. `PatientParser` will invoke `ListCommand` directly without intemediary parser commands as `ListCommand` does not accept any argument.
+3. `PatientParser` will invoke `ListCommandParser`, which will create `ListCommand` directly as they do not use any args.
 4. When `ListCommand#execute` is called, `model#updateFilteredPatientList` will be called to update the list with the `PREDICATE_SHOW_ALL_PATIENTS` to display all Patients.
 
 The activity diagram below illustrates the workflow of patient `ListCommand` that is described above.
@@ -257,11 +257,11 @@ The user can choose to add flags when searching, to search for the specific attr
 
 ##### Execution Sequence
 
-Given below is an example usage scenario when a user enter `patient find --n John Doee --p 98765431 --d 2001-03-19 --b B+ --a catfur --v covax` as a command.
+Given below is an example usage scenario when a user enter `patient find --n John Deer --p 98765431 --d 2001-03-19 --b B+ --a catfur --v covax` as a command.
 
 1. The user enters the command in the `UI component`
 2. It will be passed to the `Logic component`
-3. When `FindCommandParser` receives the information from `PatientParser`, it will invoke the following methods to help with the parsing. It will throw a `ParseExeception` if there are no args present.
+3. When `FindCommandParser` receives the information from `PatientParser`, it will invoke the following methods to help with the parsing. It will throw a `ParseException` if there are no args present.
     1. `ParserUtil#parseName` will be called to create a Name object using "John Doe".
     2. `ParserUtil#parsePhone` will be called to create a Phone object using "98765432".
     3. `ParserUtil#parseDob` will be called to create a Dob object using "2001-03-19".
@@ -269,7 +269,7 @@ Given below is an example usage scenario when a user enter `patient find --n Joh
     5. `ParserUtil#parseGroups` will be called to create GroupName[] object named allergies using ["catfur", "pollen"].
     6. `ParserUtil#parseGroups` will be called to create GroupName[] object named vaccines using ["covax"].
 4. After successfully parsing the args, the following will happen
-    1. `FindCommandParser` will create an FindPatientDescriptor using the new Name, PhoNameContainsKeywordsPredicatene, Dob, BloodType, Allergies `<GroupName>`, Vaccines `<GroupName>`.
+    1. `FindCommandParser` will create an FindPatientDescriptor using the new Name, Phone, Dob, BloodType, Allergies `<GroupName>`, Vaccines `<GroupName>`.
     1a. If none of the flags are present, it will take the entire arg as a `setNameSearch`.
     2. Then it will create an `FindCommand` with the new FindPatientDescriptor object.
 5. When `FindCommand#execute` is called, the following will happen.
@@ -294,11 +294,11 @@ The **Editing a Patient** mechanism is facilitated by `VMS`. It will read and mo
 
 ##### Execution Sequence
 
-Given below is an example usage scenario when a user enter `patient edit 5 --n John Doee --p 98765431 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax` as a command.
+Given below is an example usage scenario when a user enter `patient edit 5 --n John Deer --p 98765431 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax` as a command.
 
 1. The user enters the command in the `UI component`
 2. It will be passed to the `Logic component`
-3. When `EditCommandParser` receives the information from `PatientParser`, it will invoke the following methods to help with the parsing. It will short circuit and throw a `ParseExeception` if 1. is not fulfilled.
+3. When `EditCommandParser` receives the information from `PatientParser`, it will invoke the following methods to help with the parsing. It will short circuit and throw a `ParseException` if 1. is not fulfilled.
     1. `ParserUtil#parseIndex` will be called to create a Index object using "5".
     2. `ParserUtil#parseName` will be called to create a Name object using "John Doe".
     3. `ParserUtil#parsePhone` will be called to create a Phone object using "98765432".
@@ -308,8 +308,8 @@ Given below is an example usage scenario when a user enter `patient edit 5 --n J
     7. `ParserUtil#parseGroups` will be called to create GroupName[] object named vaccines using ["covax"].
 4. After successfully parsing the args, `EditCommandParser` will create an editPatientDescriptor using the new Name, Phone, Dob, BloodType, Allergies `<GroupName>`, Vaccines `<GroupName>`. Then it will create an `EditCommand` with the new editPatientDescriptor object with the index.
 5. When `EditCommand#execute` is called, the following will happen.
-    1. It will ensure that the Index given is within the list, else it will throw a CommandExeception
-    2. It will edit the patient by creating a new patient with the new values from the Parser as Patients are Immuttable
+    1. It will ensure that the Index given is within the list, else it will throw a CommandException
+    2. It will edit the patient by creating a new patient with the new values from the Parser as Patients are Immutable
     3. Then `model#setPatient` will be called to add the new Patient into the model.
     4. `EditCommand` will then return `CommandMessage` to indicate it's success.
 
@@ -344,7 +344,7 @@ Given below is an example usage scenario when a user enter `patient clear` as a 
 
 1. The user enters the command in the `UI component`
 2. It will be passed to the `Logic component`
-3. `PatientParser` will invoke `ClearCommand` directly without intemediary parser commands as `ClearCommand` does not accept any argument.
+3. `PatientParser` will invoke `ClearCommand` which will create `ClearCommand` as they do not use any args.
 4. When `ClearCommand#execute` is called, `model#setPatientManager` will be called to update the list a new PatientManger() with no patients.
 
 The activity diagram below illustrates the workflow of patient `ClearCommand` that is described above.
@@ -502,7 +502,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitVms()`. Since the `currentStatePointer` is not pointing at the end of the `patientManagerStateList`, all patient manager states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitVms()`. Since the `currentStatePointer` is not pointing at the end of the `patientManagerStateList`, all patient manager states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behaviour that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -903,6 +903,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. _{explain how to simulate a missing/corrupted file, and the expected behaviour}_
 
 1. _{ more test cases …​ }_
