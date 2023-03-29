@@ -1,6 +1,7 @@
 package seedu.address.commons.core;
 
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -21,8 +22,10 @@ public class GuiSettings implements Serializable {
      * Constructs a {@code GuiSettings} with the default height, width and position.
      */
     public GuiSettings() {
-        windowWidth = DEFAULT_WIDTH;
-        windowHeight = DEFAULT_HEIGHT;
+        //windowWidth = DEFAULT_WIDTH;
+        //windowHeight = DEFAULT_HEIGHT;
+        windowWidth =  Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 100;
+        windowHeight =  Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 100;
         windowCoordinates = null; // null represent no coordinates
     }
 
