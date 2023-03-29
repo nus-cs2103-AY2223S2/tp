@@ -24,6 +24,8 @@ public class PopupAddInternship extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "PopupAddInternship.fxml";
 
+    private static final String ILLEGAL_REGEX = ".*[a-z]/.*";
+
     @FXML
     private TextField companyName;
     @FXML
@@ -151,11 +153,64 @@ public class PopupAddInternship extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
+
+    /**
+     * Validate user input.
+     */
+    private boolean isValid() {
+        if (companyName.getText().matches(ILLEGAL_REGEX)
+            || jobTitle.getText().matches(ILLEGAL_REGEX)
+            || place.getText().matches(ILLEGAL_REGEX)
+            || salary.getText().matches(ILLEGAL_REGEX)
+            || rating.getText().matches(ILLEGAL_REGEX)) {
+            return false;
+        }
+
+        for (int i = 1; i < qualificationVBox.getChildren().size(); i += 1) {
+            TextField q = (TextField) qualificationVBox.getChildren().get(i);
+            if (q.getText().matches(ILLEGAL_REGEX)) {
+                return false;
+            }
+        }
+
+        for (int i = 1; i < programmingLanguageVBox.getChildren().size(); i += 1) {
+            TextField pl = (TextField) programmingLanguageVBox.getChildren().get(i);
+            if (pl.getText().matches(ILLEGAL_REGEX)) {
+                return false;
+            }
+        }
+
+        for (int i = 1; i < reviewVBox.getChildren().size(); i += 1) {
+            TextField r = (TextField) reviewVBox.getChildren().get(i);
+            if (r.getText().matches(ILLEGAL_REGEX)) {
+                return false;
+            }
+        }
+
+        for (int i = 1; i < noteVBox.getChildren().size(); i += 1) {
+            TextField n = (TextField) noteVBox.getChildren().get(i);
+            if (n.getText().matches(ILLEGAL_REGEX)) {
+                return false;
+            }
+        }
+
+        for (int i = 1; i < reflectionVBox.getChildren().size(); i += 1) {
+            TextField rf = (TextField) reflectionVBox.getChildren().get(i);
+            if (rf.getText().matches(ILLEGAL_REGEX)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * Handles the add internship button clicked event.
      */
     @FXML
     private void handleAddInternship() {
+        if (!isValid()) {
+            return;
+        }
 
         String commandText = AddCommand.COMMAND_WORD
                 + " " + CliSyntax.PREFIX_COMPANY_NAME.getPrefix()
