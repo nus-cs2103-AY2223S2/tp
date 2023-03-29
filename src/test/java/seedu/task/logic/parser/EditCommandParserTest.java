@@ -15,12 +15,10 @@ import static seedu.task.logic.commands.CommandTestUtil.TO_DESC_DEFAULT;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_DEADLINE;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.task.logic.commands.CommandTestUtil.VALID_FROM;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_FROM_DATE;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.task.logic.commands.CommandTestUtil.VALID_TO;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_TO_DATE;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.task.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -189,15 +187,8 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        /* TODO: for future subclass?
-        // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
-                + PHONE_DESC_BOB;
-        descriptor = new EditTaskDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTask(VALID_ADDRESS_BOB).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-        */
+
+
     }
     @Test
     public void parse_resetTags_success() {

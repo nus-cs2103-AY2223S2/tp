@@ -11,6 +11,7 @@ import static seedu.task.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.task.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.task.testutil.TypicalDailyPlans.getTypicalPlanner;
+import static seedu.task.testutil.TypicalEvents.getTypicalEventBook;
 import static seedu.task.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.task.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.task.testutil.TypicalTasks.getTypicalTaskBook;
@@ -35,6 +36,7 @@ import seedu.task.testutil.SimpleTaskBuilder;
 public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs(), getTypicalPlanner());
+    private Model eventModel = new ModelManager(getTypicalEventBook(), new UserPrefs(), getTypicalPlanner());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
@@ -144,6 +146,14 @@ public class EditCommandTest {
                 new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidStartEndEventTime() {
+        showTaskAtIndex(eventModel, INDEX_FIRST_TASK);
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK,
+            new EditTaskDescriptorBuilder().withFrom("2023-01-03 1800").build());
+        assertCommandFailure(editCommand, eventModel, Messages.MESSAGE_INVALID_EVENT_DATES);
     }
 
     @Test

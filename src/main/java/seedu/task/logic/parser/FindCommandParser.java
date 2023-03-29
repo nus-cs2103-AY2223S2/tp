@@ -48,9 +48,13 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_ALLMATCH,
                     PREFIX_DEADLINE, PREFIX_FROM, PREFIX_TO);
 
-        if (areTooManyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION)) {
+        if (areTooManyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_TAG,
+                PREFIX_DEADLINE, PREFIX_FROM, PREFIX_TO)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
+
+
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             return parseForFindCommand(PREFIX_NAME, argMultimap);
         }
@@ -76,6 +80,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * Returns true if more than 1 prefix is present in the given {@code ArgumentMultimap}.
      */
     private static boolean areTooManyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        System.out.println(Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).count());
         return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).count() > 1;
     }
 
