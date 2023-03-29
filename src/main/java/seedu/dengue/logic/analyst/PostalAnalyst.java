@@ -1,6 +1,7 @@
 package seedu.dengue.logic.analyst;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -25,11 +26,11 @@ public class PostalAnalyst extends Analyst {
         this.total = persons.size();
         this.bins = new EnumMap<>(Location.class);
 
+        Arrays.stream(Location.values())
+                .forEach(location -> bins.put(location, new DataBin(location.toString())));
+
         persons.forEach(person -> {
             Location location = PostalLocationMapping.getLocation(person.getPostal());
-            if (!bins.containsKey(location)) {
-                bins.put(location, new DataBin(location.toString()));
-            }
             bins.get(location).addPerson(person);
         });
     }

@@ -19,6 +19,6 @@ public class RangeContainsPersonPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return range.getStart().isBefore(person) & range.getEnd().isAfter(person);
+        return range.getStart().isBefore(person) && range.getEnd().isAfter(person);
     }
 }

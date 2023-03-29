@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonDengueHotspotStorage dengueHotspotTrackerStorage = new JsonDengueHotspotStorage(getTempFilePath("ab"));
+        CsvDengueHotspotStorage dengueHotspotTrackerStorage = new CsvDengueHotspotStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(dengueHotspotTrackerStorage, userPrefsStorage);
     }
@@ -53,7 +53,7 @@ public class StorageManagerTest {
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonDengueHotspotTrackerStorage} class.
          * More extensive testing of UserPref saving/reading is done in
-         * {@link JsonDengueHotspotTrackerStorageTest} class.
+         * {@link CsvDengueHotspotTrackerStorageTest} class.
          */
         DengueHotspotTracker original = getTypicalDengueHotspotTracker();
         storageManager.saveDengueHotspotTracker(original);

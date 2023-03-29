@@ -220,17 +220,17 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    <div markdown="span" class="alert alert-primary">:bulb: **Intellij Tip:** When trying to step into a statement such as `storage.saveDengueHotspotTracker(model.getDengueHotspotTracker())` which contains multiple method calls, Intellij will let you choose (by clicking) which one you want to step into.
    </div>
 
-1.  As you step through the code inside the `Storage` component, you will eventually arrive at the `JsonDengueHotspotTracker#saveDengueHotspotTracker()` method which calls the `JsonSerializableDengueHotspotTracker` constructor, to create an object that can be _serialized_ (i.e., stored in storage medium) in JSON format. That constructor is given below (with added line breaks for easier readability):
+1.  As you step through the code inside the `Storage` component, you will eventually arrive at the `JsonDengueHotspotTracker#saveDengueHotspotTracker()` method which calls the `CsvSerializableDengueHotspotTracker` constructor, to create an object that can be _serialized_ (i.e., stored in storage medium) in JSON format. That constructor is given below (with added line breaks for easier readability):
 
-    **`JsonSerializableDengueHotspotTracker` constructor:**
+    **`CsvSerializableDengueHotspotTracker` constructor:**
     ``` java
     /**
      * Converts a given {@code ReadOnlyDengueHotspotTracker} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created
-     * {@code JsonSerializableDengueHotspotTracker}.
+     * {@code CsvSerializableDengueHotspotTracker}.
      */
-    public JsonSerializableDengueHotspotTracker(ReadOnlyDengueHotspotTracker source) {
+    public CsvSerializableDengueHotspotTracker(ReadOnlyDengueHotspotTracker source) {
         persons.addAll(
             source.getPersonList()
                   .stream()
@@ -239,7 +239,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
     }
     ```
 
-1. It appears that a `JsonAdaptedPerson` is created for each `Person` and then added to the `JsonSerializableDengueHotspotTracker`.
+1. It appears that a `JsonAdaptedPerson` is created for each `Person` and then added to the `CsvSerializableDengueHotspotTracker`.
    This is because regular Java objects need to go through an _adaptation_ for them to be suitable to be saved in JSON format.
 
 1. While you are stepping through the classes in the `Storage` component, here is the component's class diagram to help you understand how those classes fit into the structure of the component.<br>

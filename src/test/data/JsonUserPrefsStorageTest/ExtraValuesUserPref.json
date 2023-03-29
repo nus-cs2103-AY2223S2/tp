@@ -9,5 +9,5 @@
       "z" : 99
     }
   },
-  "dengueHotspotTrackerFilePath" : "denguehotspottracker.json"
+  "dengueHotspotTrackerFilePath" : "denguehotspottracker.csv"
 }

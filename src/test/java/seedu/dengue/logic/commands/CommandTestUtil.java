@@ -25,6 +25,11 @@ import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.SubPostal;
 import seedu.dengue.model.predicate.FindPredicate;
+import seedu.dengue.model.range.EndAge;
+import seedu.dengue.model.range.EndDate;
+import seedu.dengue.model.range.Range;
+import seedu.dengue.model.range.StartAge;
+import seedu.dengue.model.range.StartDate;
 import seedu.dengue.model.variant.Variant;
 import seedu.dengue.testutil.EditPersonDescriptorBuilder;
 
@@ -171,8 +176,11 @@ public class CommandTestUtil {
         Optional<Age> emptyAge = Optional.empty();
         Optional<Date> emptyDate = Optional.empty();
         Set<Variant> emptyVariants = new HashSet<>();
+        Range<Date> emptyDateRange = new Range<Date>(new StartDate(emptyDate), new EndDate(emptyDate));
+        Range<Age> emptyAgeRange = new Range<Age>(new StartAge(emptyAge), new EndAge(emptyAge));
         model.updateFilteredPersonList(
-                new FindPredicate(testName, emptySubPostal, emptyAge, emptyDate, emptyVariants));
+                new FindPredicate(testName, emptySubPostal, emptyAge, emptyDate, emptyVariants,
+                        emptyDateRange, emptyAgeRange));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

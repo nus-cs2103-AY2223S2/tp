@@ -66,8 +66,10 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                 String date = argMultimap.getValue(PREFIX_DATE).get();
                 return new DeleteCommand(new Date(date));
             } else {
-                String startDate = argMultimap.getValue(PREFIX_STARTDATE).get();
-                String endDate = argMultimap.getValue(PREFIX_ENDDATE).get();
+                Optional<Date> startDate = ParserUtil.parseOptionalDate(
+                        argMultimap.getValue(PREFIX_STARTDATE));
+                Optional<Date> endDate = ParserUtil.parseOptionalDate(
+                        argMultimap.getValue(PREFIX_ENDDATE));
                 // TODO: add range validation
                 Range<Date> range = new Range<>(new StartDate(startDate), new EndDate(endDate));
                 return new DeleteCommand(range);
