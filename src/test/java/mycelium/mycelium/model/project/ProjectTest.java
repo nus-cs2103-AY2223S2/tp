@@ -1,6 +1,9 @@
 package mycelium.mycelium.model.project;
 
+import static mycelium.mycelium.testutil.Assert.assertThrows;
 import static mycelium.mycelium.testutil.TypicalEntities.BARD;
+import static mycelium.mycelium.testutil.TypicalEntities.BING;
+import static mycelium.mycelium.testutil.TypicalEntities.BOSE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -178,5 +181,28 @@ public class ProjectTest {
     public void toString_works() {
         Project project = new Project(NonEmptyString.of("Bing"), new Email("jamal@hogriders.org"));
         assertEquals("Bing from client jamal@hogriders.org", project.toString());
+    }
+
+    @Test
+    public void compareToWithDeadline_caseTwoProjectsWithDifferentDeadlines() {
+        Project project = new ProjectBuilder(BARD).withDeadline(LocalDate.now()).build();
+        Project projectAfter = new ProjectBuilder(BARD).withDeadline(LocalDate.now().plusDays(2)).build();
+
+        assertTrue(project.compareToWithDeadline(projectAfter) < 0);
+    }
+
+    @Test
+    public void compareToWithDeadline_caseTwoProjectsWithSameDeadlines() {
+        LocalDate currentDate = LocalDate.now();
+        Project project = new ProjectBuilder(BARD).withDeadline(currentDate).build();
+        Project projectWithSameDeadline = new ProjectBuilder(BING).withDeadline(currentDate).build();
+        assertTrue(project.compareToWithDeadline(projectWithSameDeadline) < 0);
+    }
+
+    @Test
+    public void compareToWithDeadline_caseTwoProjectsWithNoDeadlines() {
+        Project project = new ProjectBuilder(BOSE).build();
+        Project otherProject = new ProjectBuilder(BARD).build();
+        assertThrows(AssertionError.class, () -> project.compareToWithDeadline(otherProject));
     }
 }
