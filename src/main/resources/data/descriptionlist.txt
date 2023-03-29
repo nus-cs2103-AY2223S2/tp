@@ -1,0 +1,63 @@
+
+
+
+
+
+
+Accepts multiple keywords
+Accepts multiple keywords
+
+
+Exits the application
+
+Displays help window
+
+Adds a contact, name is compulsory
+
+
+
+Edits the fields for the contact at index
+Edits your user profile
+
+Views your profile
+Views the contact at index
+Views the contact with name
+
+Deletes contact at index
+
+Tags the contact with the module tag
+Tags your user profile with module tag
+
+Tags the contact with the module tag
+Tags your user profile with module tag
+
+Generates a sample list of contacts
+
+Accepts only one Prefix,
+accepts multiple keywords
+
+Sorts the contacts by their indices
+Sorts the contacts by their z attribute
+in ascending order
+Sorts the contacts by their z attribute
+in descending order
+Sorts the contacts by their z attribute
+based on the default order
+Sorts the contacts by their z1 attribute,
+and breaks ties using their z2 attribute
+Sorts the contacts by multiple attributes
+
+Saves your data into a file at FILENAME.json
+
+Loads your data from a file at FILENAME.json
+
+Suggests locations to meet with contacts at
+the indexes
+Suggests locations to eat with contacts at
+the indexes
+Suggests locations to study with contacts at
+the indexes
+
+
+Loads previous command into textfield
+Loads next command into textfield

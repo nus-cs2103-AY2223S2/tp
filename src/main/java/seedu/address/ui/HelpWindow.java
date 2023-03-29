@@ -1,6 +1,11 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,15 +22,22 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-w14-2.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
-
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+    private String commandListString = "";
+    private String descriptionListString = "";
 
     @FXML
     private Button copyButton;
 
     @FXML
     private Label helpMessage;
+
+    @FXML
+    private Label commandList;
+
+    @FXML
+    private Label descriptionList;
 
     /**
      * Creates a new HelpWindow.
@@ -34,7 +46,24 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
+        InputStreamReader commandListFile =
+                new InputStreamReader(
+                        requireNonNull(
+                                HelpWindow.class
+                                        .getClassLoader()
+                                        .getResourceAsStream("data/commandlist.txt")));
+        commandListString = new BufferedReader(commandListFile).lines().collect(Collectors.joining("\n"));
+        InputStreamReader descriptionListFile =
+                new InputStreamReader(
+                        requireNonNull(
+                                HelpWindow.class
+                                        .getClassLoader()
+                                        .getResourceAsStream("data/descriptionlist.txt")));
+        descriptionListString = new BufferedReader(
+                descriptionListFile).lines().collect(Collectors.joining("\n"));
         helpMessage.setText(HELP_MESSAGE);
+        commandList.setText(commandListString);
+        descriptionList.setText(descriptionListString);
     }
 
     /**
@@ -46,21 +75,21 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Shows the help window.
-     * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
+     *
+     * @throws IllegalStateException <ul>
+     *                               <li>
+     *                               if this method is called on a thread other than the JavaFX Application Thread.
+     *                               </li>
+     *                               <li>
+     *                               if this method is called during animation or layout processing.
+     *                               </li>
+     *                               <li>
+     *                               if this method is called on the primary stage.
+     *                               </li>
+     *                               <li>
+     *                               if {@code dialogStage} is already showing.
+     *                               </li>
+     *                               </ul>
      */
     public void show() {
         logger.fine("Showing help page about the application.");
