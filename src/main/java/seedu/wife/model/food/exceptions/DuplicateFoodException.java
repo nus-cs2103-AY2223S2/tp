@@ -6,6 +6,6 @@ package seedu.wife.model.food.exceptions;
  */
 public class DuplicateFoodException extends RuntimeException {
     public DuplicateFoodException() {
-        super("Operation would result in duplicate persons, choose to update the quantity instead?");
+        super("Operation would result in duplicate food, choose to update the quantity instead?");
     }
 }
