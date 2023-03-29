@@ -3,22 +3,52 @@ layout: page
 title: User Guide
 ---
 
-PowerCards (PCs) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PCs can get your contact management tasks done faster than traditional GUI apps.
+# Introduction
+
+Welcome to PowerCards, a **lightweight flashcard application** that helps students streamline their learning process, enabling faster mastery of course materials through the use of flashcards _(which we will simply refer as **cards** from now on)_.
+As a university student, you can capitalise on our **powerful card management system** and **minimalist interface** to create multiple decks of cards quickly to manage your course content and spend more time on learning instead.
+
+This user guide will help you use PowerCards with ease and integrate it into your learning workflow in no time. It explains the key features of PowerCards and provides guidance on how to use them effectively to meet your specific learning needs.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Quick start
+## How to use the User Guide
 
-1. Ensure you have Java `11` or above installed in your Computer.
+* For a quick and easy way to **get started** with PowerCards, you can visit the [Quick Start](#quick-start) section.
+* To **understand the terms** we use in PowerCards, you can visit the [Glossary](#glossary) section.
+* To learn about the **features** that PowerCards provides and how to use them, you can visit the [Features](#features) section.
+* Having **issues**? Check out the [FAQ](#faq) section and see if you can find your solutions there!
+* Have a **question** for us or require our **assistance**? Feel free to [contact us](#contact-us), and we will do our best to assist you!
 
-2. Download the latest `powercards.jar` from [here]().
+**:bulb: Tip:**<br>
+* There's a lot of information in this guide, so it's a good idea to skim through the contents first. This will give you a better understanding on how PowerCards works. Then, you can dive into the sections that interest you the most. We hope this approach will make it easier for you to digest the content.
+
+## Components of PowerCards
+
+### Locations of the components
+![UiComponent](images/UiComponent.png)
+
+## Description of the components
+
+| Component          | Description                                                                                                          |
+|--------------------|--------------------------------------------------------------------------------------------------------------|
+| **Left Panel**     | This shows either a **list of decks** or the **current review statistics** depending on the mode you are in. |
+| **Right Panel**    | This shows either a **list of cards** or the **current card in review** depending on the mode you are in.    |
+| **Command Box**    | This is where you enter your **commands**.                                                                   |
+| **Result Display** | This is where the **results** of your commands will be shown.                                                |
+
+## Quick Start
+
+1. Ensure you have Java `11` or above installed in your Computer. If you don't have it, you can download and install it by clicking here (for [Windows]([url](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#:~:text=the%20JDK%20Silently-,Downloading%20the%20JDK%20Installer,patch_windows%2Dx64_bin.exe%20.)) users) or here (for [Mac]([url](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html)) users).
+
+2. Download the latest `powercards.jar` from [here](https://github.com/AY2223S2-CS2103T-W11-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your PCs.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar powercards.jar` command to run the application.<br>
+4. Open a command terminal, enter the folder you put the jar file in using the `cd` command, and use the `java -jar powercards.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -26,7 +56,7 @@ PowerCards (PCs) is a **desktop app for managing contacts, optimized for use via
 
 6. Refer to the [Features](#features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------- 
 
 # Features
 
@@ -38,7 +68,7 @@ PowerCards (PCs) is a **desktop app for managing contacts, optimized for use via
   e.g. in `add q\QUESTION`, `QUESTION` is a parameter which can be used as `add q\What is chemical symbol for Oxygen?`.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `d\science d\chemsitry`, only `d\chemsitry` will be taken.
+  e.g. if you specify `d\science d\chemistry`, only `d\chemistry` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -51,6 +81,20 @@ PowerCards (PCs) is a **desktop app for managing contacts, optimized for use via
 
 Main mode will be started by default when the program is launched. 
 Main mode refers to when no deck is selected and the user wishes to manage their list of decks.
+
+### Components in Main Mode
+![UiComponent](images/MainModeComponent.png)
+
+### Description of the components
+
+| Component         | Description                                                                                                |
+|-------------------|------------------------------------------------------------------------------------------------------------|
+| **Selected Deck** | This highlights the **Deck** currently selected and displays the cards in the deck on the **Right Panel**. |
+| **Deck**          | A **Deck** contains a list of **cards**.                                                                   |
+| **Card**          |                                                                                                            |
+| **Question**      |                                                                                                            |
+| **Answer**        |                                                                                                            |
+| **Tag**           |                                                                                                            |
 
 ### Viewing help : `help`
 
@@ -269,6 +313,15 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PCs home folder.
+
+**Q**: Will my data be automatically saved?<br>
+**A**: **Yes**, PowerCards automatically saves your data after every command entered.
+
+**Q**: Where is my data saved?<br>
+**A**: Go to where you have downloaded your `powercards.jar` file, there a `/data` folder will be created and the data will be saved under `powercards.json`.
+
+**Q**: Can I rename my saved data file?<br>
+**A**: **No**, PowerCards currently only supports the use of `powercards.json` as the name of the saved data file.
 
 --------------------------------------------------------------------------------------------------------------------
 
