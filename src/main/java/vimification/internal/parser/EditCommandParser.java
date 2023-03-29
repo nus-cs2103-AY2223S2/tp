@@ -10,7 +10,7 @@ public class EditCommandParser implements CommandParser<EditCommand> {
             CommandParserUtil.ONE_BASED_INDEX_PARSER
                     .flatMap(EditCommandParser::parseArguments)
                     .dropNext(ApplicativeParser.skipWhitespaces())
-                    .dropNext(ApplicativeParser.eof());;
+                    .dropNext(ApplicativeParser.eof());
 
     private static final ApplicativeParser<ApplicativeParser<EditCommand>> INTERNAL_PARSER =
             ApplicativeParser
@@ -62,7 +62,8 @@ public class EditCommandParser implements CommandParser<EditCommand> {
 
         return ApplicativeParser
                 .skipWhitespaces1()
-                .takeNext(flagParser) // must have at least 1 flag
+                // must have at least 1 flag
+                .takeNext(flagParser.sepBy1(ApplicativeParser.skipWhitespaces1()))
                 .constMap(new EditCommand(index, request));
     }
 

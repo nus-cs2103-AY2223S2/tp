@@ -3,7 +3,7 @@ package vimification.internal.parser;
 import java.util.logging.Logger;
 
 import vimification.commons.core.LogsCenter;
-import vimification.internal.command.logic.LogicCommand;
+import vimification.internal.command.Command;
 import vimification.model.MacroMap;
 
 public class VimificationParser {
@@ -15,13 +15,14 @@ public class VimificationParser {
             .optional()
             .takeNext(ApplicativeParser.untilEof().map(String::strip));
 
-    private static final CommandParser<LogicCommand> LOGIC_COMMAND_PARSER =
+    private static final CommandParser<Command> COMMAND_PARSER =
             AddCommandParser.getInstance()
-                    .<LogicCommand>cast()
+                    .<Command>cast()
                     .or(DeleteCommandParser.getInstance())
                     .or(InsertCommandParser.getInstance())
                     .or(EditCommandParser.getInstance())
                     .or(UndoCommandParser.getInstance())
+                    .or(SearchCommandParser.getInstance())
                     .updateInternalParser(parser -> parser.throwIfFail("Unknown command"));
 
     private MacroMap macroMap;
@@ -46,9 +47,9 @@ public class VimificationParser {
      * @param userInput
      * @return
      */
-    public LogicCommand parse(String input) {
+    public Command parse(String input) {
         LOGGER.info(input);
         String preprocessedInput = macroPreprocessor.parse(input);
-        return LOGIC_COMMAND_PARSER.parse(preprocessedInput);
+        return COMMAND_PARSER.parse(preprocessedInput);
     }
 }

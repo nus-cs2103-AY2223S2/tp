@@ -25,7 +25,7 @@ public class LogsCenter {
     /**
      * Must come before LOGGER, otherwise, it will case error.
      */
-    private static Level currentLogLevel = Level.INFO;
+    private static Level currentLogLevel = Level.OFF;
     private static FileHandler fileHandler;
     private static ConsoleHandler consoleHandler;
 

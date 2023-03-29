@@ -39,7 +39,7 @@ public class InsertCommandParser implements CommandParser<InsertCommand> {
                         .consume(request::setInsertedDeadline));
         return ApplicativeParser
                 .skipWhitespaces1()
-                .takeNext(flagParser) // flag is compulsory. At least 1 flag is expected
+                .takeNext(flagParser.sepBy1(ApplicativeParser.skipWhitespaces1()))
                 .constMap(new InsertCommand(index, request));
     }
 

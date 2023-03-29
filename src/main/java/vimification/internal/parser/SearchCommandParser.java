@@ -14,14 +14,13 @@ public class SearchCommandParser implements CommandParser<SearchCommand> {
     private static final ApplicativeParser<ApplicativeParser<SearchCommand>> INTERNAL_PARSER =
             ApplicativeParser
                     .string("s") // search
-                    .takeNext(ApplicativeParser.skipWhitespaces1())
                     .map(SearchCommandParser::parseArguments);
 
     private static final SearchCommandParser INSTANCE = new SearchCommandParser();
 
     private SearchCommandParser() {}
 
-    private static ApplicativeParser<SearchCommand> parseArguments(Void ignore) {
+    private static ApplicativeParser<SearchCommand> parseArguments(Object ignore) {
         ArgumentCounter counter = new ArgumentCounter(
                 CommandParserUtil.KEYWORD_FLAG,
                 CommandParserUtil.STATUS_FLAG,
@@ -62,8 +61,9 @@ public class SearchCommandParser implements CommandParser<SearchCommand> {
                         .takeNext(CommandParserUtil.DATE_TIME_PARSER)
                         .map(SearchByDeadlineAfterCommand::new));
 
-        return flagParser
-                .sepBy1(ApplicativeParser.skipWhitespaces1())
+        return ApplicativeParser
+                .skipWhitespaces1()
+                .takeNext(flagParser.sepBy1(ApplicativeParser.skipWhitespaces1()))
                 .map(ComposedSearchCommand::new);
     }
 

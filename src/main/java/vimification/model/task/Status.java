@@ -5,16 +5,16 @@ public enum Status {
 
     public static Status fromInt(int level) {
         switch (level) {
-            case 0:
-                return NOT_DONE;
-            case 1:
-                return IN_PROGRESS;
-            case 2:
-                return COMPLETED;
-            case 3:
-                return OVER_DUE;
-            default:
-                return NOT_DONE;
+        case 0:
+            return NOT_DONE;
+        case 1:
+            return IN_PROGRESS;
+        case 2:
+            return COMPLETED;
+        case 3:
+            return OVER_DUE;
+        default:
+            return NOT_DONE;
         }
     }
 
