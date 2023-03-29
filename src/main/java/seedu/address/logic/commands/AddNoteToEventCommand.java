@@ -14,6 +14,8 @@ public class AddNoteToEventCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Note specified has been successfully added";
     public static final String MESSAGE_USAGE = "add-note -content add-your-note-here -name name-of-event "
             + "-type type-of-event";
+    public static final String MESSAGE_EXAMPLE = "add-note note -content this is a new note -name dijkstraReview "
+            + "-type Tutorial";
 
     // JThh: below fields are temporarily not used due to code refactoring.
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"

@@ -3,8 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -48,12 +47,6 @@
              <ImageView fx:id="attachmentLogo" />
              <ImageView fx:id="noteLogo" />
          </HBox>
-         <TableView prefHeight="200.0" prefWidth="200.0">
-           <columns>
-             <TableColumn prefWidth="75.0" text="C1" />
-             <TableColumn prefWidth="75.0" text="C2" />
-           </columns>
-         </TableView>
          <Text fx:id="noteText" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes">
             <font>
                <Font name="Waseem Regular" size="13.0" />

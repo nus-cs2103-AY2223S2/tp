@@ -100,6 +100,7 @@ public class EventCard extends UiPart<Region> {
         }
 
         List<String> noteStrs;
+        int startIndex = 1;
         if (event.countNotes() > 0) {
             setImageIcon(noteLogo, guiSettings.getNoteIcon(), size);
             noteStrs = event.getNotes().stream().map(Note::toString).collect(Collectors.toList());
@@ -108,8 +109,13 @@ public class EventCard extends UiPart<Region> {
             noteStrs = new ArrayList<>();
             noteStrs.add(new Note().toString());
         }
-        for (String text : noteStrs) {
-            Label label = new Label(text);
+        for (int i = 1; i <= noteStrs.size(); i++) {
+            String text = noteStrs.get(i - 1);
+            String stripContent = text;
+            if (text.split("\n").length > 1) {
+                stripContent = text.split("\n")[1];
+            }
+            Label label = new Label(i + ". " + stripContent);
             noteBox.getChildren().add(label);
         }
 
