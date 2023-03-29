@@ -3,14 +3,30 @@ layout: page
 title: User Guide
 ---
 
-PowerCards (PCs) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PCs can get your contact management tasks done faster than traditional GUI apps.
+# Introduction
+
+Welcome to PowerCards, a **lightweight flashcards application** that aims to help students streamline their learning process, enabling for faster mastery of course materials.
+As a university student, you can capitalise on PowerCards' **powerful flashcards management system** and **minimalist interface** to create multiple decks of flashcards quickly to manage your course content and spend more time on learning instead.
+
+This user guide will help you use PowerCards with ease and integrate it into your learning workflow in no time. It explains the key features of PowerCards and provides guidance on how to use them effectively to meet your specific learning needs.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Quick start
+## How to use the User Guide
+
+* For a quick and easy way to **get started** with PowerCards, you can visit the [Quick Start](##quick-start) section.
+* To **understand the terms** we use in PowerCards, you can visit the [Glossary](##glossary) section.
+* To learn about the **features** that PowerCards provides and how to use them, you can visit the [Features](##features) section.
+* Having **issues**? Check out the [FAQ](##faq) section and see if you can find your solutions there!
+* Have a **question** for us or require our **assistance**? Feel free to [contact us](##contact-us), and we will do our best to assist you!
+
+**:bulb: Tip:**<br>
+* There's a lot of information in this guide, so it's a good idea to skim through the contents first. This will help you understand how PowerCards works. Then, you can dive into the sections that interest you the most. 
+* To avoid overwhelming you with too much information at once, we've separated some details (like field constraints) into their own sections. We hope this approach will make it easier for you to digest the content.
+## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
