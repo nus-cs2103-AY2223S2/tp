@@ -63,6 +63,15 @@ public class Person {
         }
     }
 
+    /**
+     * Copies the data of a person into a new Person.
+     */
+    public Person copy() {
+        return new Person(getName(), getPhone(), getEmail(),
+                getAddress(), getTelegramHandle(), getContactIndex(),
+                getImmutableGroupTags(), getImmutableModuleTags());
+    }
+
     public Name getName() {
         return name;
     }
@@ -154,6 +163,18 @@ public class Person {
     }
 
     /**
+     * Adds group tags to the {@code GroupTagSet}.
+     * @param groupTags Tags to be added to the person.
+     */
+    public void addGroupTags(Set<GroupTag> groupTags) {
+        this.getGroupTags().addAll(groupTags);
+    }
+
+    public void removeGroupTags(Set<GroupTag> groupTags) {
+        this.getGroupTags().removeAll(groupTags);
+    }
+
+    /**
      * Adds module tags to the {@code ModuleTagSet}.
      * Lessons within the {@code moduleTags} must not clash with each other.
      * They must also not clash with the timetable.
@@ -216,11 +237,22 @@ public class Person {
                 .filter(this.moduleTags::canRemove)
                 .collect(Collectors.toList());
 
+        List<ModuleTag> completelyRemovableModuleTags = moduleTags.stream()
+                .filter(ModuleTag::isBasicTag)
+                .collect(Collectors.toList());
+
+        logger.info(String.format("Removing Module Tags: %s, %s",
+                removableModuleTags, completelyRemovableModuleTags));
+
         removableModuleTags.forEach(this.moduleTags::remove);
         removableModuleTags.stream()
                 .map(ModuleTag::getImmutableLessons)
                 .flatMap(Set::stream)
                 .forEach(timetable::removeCommitment);
+
+        completelyRemovableModuleTags.stream()
+                .map(ModuleTag::getModuleCode)
+                .forEach(this.moduleTags::remove);
     }
 
     public Timetable getTimetable() {

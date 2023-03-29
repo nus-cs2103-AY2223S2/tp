@@ -56,6 +56,13 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
     }
 
     /**
+     * Gets module code of the module tag.
+     */
+    public String getModuleCode() {
+        return tagName;
+    }
+
+    /**
      * Combines the lesson set of two module tags.
      */
     public ModuleTag mergeWith(ModuleTag otherModuleTag) {

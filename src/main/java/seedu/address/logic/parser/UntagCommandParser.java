@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ContactIndex;
+import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 
 /**
@@ -23,7 +24,7 @@ public class UntagCommandParser implements Parser<UntagCommand> {
      */
     public UntagCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argumentMultiMap = ArgumentTokenizer.tokenize(args, Prefix.MODULE_TAG);
+        ArgumentMultimap argumentMultiMap = ArgumentTokenizer.tokenize(args, Prefix.MODULE_TAG, Prefix.GROUP_TAG);
 
         ContactIndex contactIndex;
 
@@ -36,11 +37,21 @@ public class UntagCommandParser implements Parser<UntagCommand> {
         Optional<Set<ModuleTag>> modulesToRemove =
                 ParserUtil.parseModuleTagsForCommands(argumentMultiMap.getAllValues(Prefix.MODULE_TAG));
 
-        if (modulesToRemove.isEmpty()) {
+        Optional<Set<GroupTag>> groupsToRemove =
+                ParserUtil.parseGroupTagsForCommands(argumentMultiMap.getAllValues(Prefix.GROUP_TAG));
+        if (modulesToRemove.isEmpty() && groupsToRemove.isEmpty()) {
             throw new ParseException(UntagCommand.MESSAGE_NO_TAGS);
         }
 
-        return new UntagCommand(contactIndex, modulesToRemove.get());
+        if (modulesToRemove.isPresent() && groupsToRemove.isPresent()) {
+            throw new ParseException(UntagCommand.MESSAGE_BOTH_TAGS_INPUTTED);
+        }
+
+        if (groupsToRemove.isPresent()) {
+            return new UntagCommand(contactIndex, groupsToRemove.get(), TagType.GROUP);
+        }
+
+        return new UntagCommand(contactIndex, modulesToRemove.get(), TagType.MODULE);
     }
 
 }

@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +15,6 @@ import org.joda.time.LocalTime;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.location.Location;
@@ -30,7 +28,7 @@ import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.TimeBlock;
-import seedu.address.model.timetable.Timetable;
+import seedu.address.model.time.util.TimeUtil;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -38,6 +36,12 @@ import seedu.address.model.timetable.Timetable;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    public static final String MESSAGE_INVALID_HOUR = "HOUR is not valid.";
+
+    public static final String MESSAGE_INVALID_START_HOUR = "Start hours start at 8am and ends at 10pm!";
+
+    public static final String MESSAGE_INVALID_END_HOUR = "End hours can only range from 9am to 11pm!";
 
     private static final Logger logger = LogsCenter.getLogger(ParserUtil.class);
 
@@ -177,9 +181,9 @@ public class ParserUtil {
      */
     public static ArrayList<String> parseMoreModules(String tags) throws ParseException {
         String trimmedArgs = tags.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
-        }
+        //if (trimmedArgs.isEmpty()) {
+        //    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
+        //}
         // I can just set them as null and exceptions will be throw in TagCommand.
         return new ArrayList<String>(Arrays.asList(trimmedArgs.split("\\s+")));
     }
@@ -207,8 +211,8 @@ public class ParserUtil {
 
         String moduleCode = args.get(0);
         Day day = parseDay(args.get(1));
-        LocalTime startTime = parseLocalTime(args.get(2));
-        LocalTime endTime = parseLocalTime(args.get(3));
+        LocalTime startTime = parseLocalTime(args.get(2), true);
+        LocalTime endTime = parseLocalTime(args.get(3), false);
         TimeBlock timeBlock = new TimeBlock(startTime, endTime, day);
 
         Lesson lesson = new Lesson(moduleCode, Location.NUS, timeBlock);
@@ -242,15 +246,39 @@ public class ParserUtil {
     /**
      * Parses a local time and checks whether it is valid.
      */
-    public static LocalTime parseLocalTime(String localTimeAsStr) throws ParseException {
+    public static LocalTime parseLocalTime(String localTimeAsStr, boolean isStartHour) throws ParseException {
         try {
             int hour = Integer.parseInt(localTimeAsStr);
-            if (!Arrays.asList(Timetable.START_TIMINGS).contains(hour)) {
-                throw new ParseException("Invalid time");
+            if (!TimeUtil.isValidHour(hour)) {
+                throw new ParseException(MESSAGE_INVALID_HOUR);
             }
-            return new LocalTime(hour, 0);
+            return isStartHour
+                ? parseStartHour(hour)
+                : parseEndHour(hour);
         } catch (NumberFormatException nfe) {
             throw new ParseException("Invalid time");
+        }
+    }
+
+    /**
+     * Parses a start time.
+     */
+    public static LocalTime parseStartHour(int hour) throws ParseException {
+        if (TimeUtil.isValidStartHour(hour)) {
+            return new LocalTime(hour, 0);
+        } else {
+            throw new ParseException(MESSAGE_INVALID_START_HOUR);
+        }
+    }
+
+    /**
+     * Parses an end time.
+     */
+    public static LocalTime parseEndHour(int hour) throws ParseException {
+        if (TimeUtil.isValidEndHour(hour)) {
+            return new LocalTime(hour, 0);
+        } else {
+            throw new ParseException(MESSAGE_INVALID_END_HOUR);
         }
     }
 
