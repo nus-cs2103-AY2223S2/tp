@@ -60,18 +60,30 @@ public class EditCommand extends Command {
 
     private final Index index;
     private final EditPatientDescriptor editPatientDescriptor;
+    private final boolean isSet;
+
+
+    /**
+     * Constructs an {@code EditCommand} that clears and replaces list like
+     * attributes.
+     */
+    public EditCommand(Index index, EditPatientDescriptor editPatientDescriptor) {
+        // TODO: this should be removed
+        this(index, editPatientDescriptor, false);
+    }
 
     /**
      * @param index                 of the patient in the filtered patient list to
      *                              edit
      * @param editPatientDescriptor details to edit the patient with
      */
-    public EditCommand(Index index, EditPatientDescriptor editPatientDescriptor) {
+    public EditCommand(Index index, EditPatientDescriptor editPatientDescriptor, boolean isSet) {
         requireNonNull(index);
         requireNonNull(editPatientDescriptor);
 
         this.index = index;
         this.editPatientDescriptor = new EditPatientDescriptor(editPatientDescriptor);
+        this.isSet = isSet;
     }
 
     @Override
@@ -96,15 +108,32 @@ public class EditCommand extends Command {
      * {@code patientToEdit}
      * edited with {@code editPatientDescriptor}.
      */
-    private static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
+    private Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
         assert patientToEdit != null;
 
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
         Dob updatedDob = editPatientDescriptor.getDob().orElse(patientToEdit.getDob());
         BloodType updatedBloodType = editPatientDescriptor.getBloodType().orElse(patientToEdit.getBloodType());
-        Set<GroupName> updatedAllergies = editPatientDescriptor.getAllergies().orElse(patientToEdit.getAllergy());
-        Set<GroupName> updatedVaccines = editPatientDescriptor.getVaccines().orElse(patientToEdit.getVaccine());
+
+        Set<GroupName> updatedAllergies = patientToEdit.getAllergy();
+        Set<GroupName> updatedVaccines = patientToEdit.getVaccine();
+
+        if (isSet) {
+            editPatientDescriptor.getAllergies().ifPresent(allergies -> {
+                updatedAllergies.clear();
+                updatedAllergies.addAll(allergies);
+            });
+            editPatientDescriptor.getVaccines().ifPresent(vaccines -> {
+                updatedVaccines.clear();
+                updatedVaccines.addAll(vaccines);
+            });
+        } else {
+            editPatientDescriptor.getAllergies()
+                    .ifPresent(allergies -> updatedAllergies.addAll(allergies));
+            editPatientDescriptor.getVaccines()
+                    .ifPresent(vaccines -> updatedVaccines.addAll(vaccines));
+        }
 
         return new Patient(updatedName, updatedPhone, updatedDob, updatedBloodType, updatedAllergies, updatedVaccines);
     }
