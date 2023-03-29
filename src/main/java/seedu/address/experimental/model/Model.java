@@ -1,10 +1,12 @@
 package seedu.address.experimental.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Template;
 
@@ -18,16 +20,15 @@ public interface Model {
      */
     Predicate<Entity> PREDICATE_SHOW_ALL_ENTITIES = unused -> true;
 
+    /**
+     * Returns the user prefs.
+     */
+    ReadOnlyUserPrefs getUserPrefs();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
-
-    /**
-     * Returns the user prefs.
-     */
-    ReadOnlyUserPrefs getUserPrefs();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -50,19 +51,24 @@ public interface Model {
     void setRerollFilePath(Path rerollFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
-     */
-    void setReroll(ReadOnlyReroll reroll);
-
-    /**
      * Returns the AddressBook
      */
     ReadOnlyReroll getReroll();
 
     /**
+     * Replaces address book data with the data in {@code addressBook}.
+     */
+    void setReroll(ReadOnlyReroll reroll);
+
+    Predicate<Entity> getClassificationPredicate(Classification classification);
+
+    /**
      * Returns true if a entity with the same identity as {@code entity} exists in the address book.
      */
     boolean hasEntity(Entity entity);
+
+
+    void deleteEntities(List<Entity> entities);
 
     /**
      * Deletes the given entity. The entity must exist in the address book.
@@ -83,6 +89,8 @@ public interface Model {
 
     // ============== Filtered entity list =================
 
+    List<Entity> getSnapshotEntities(Predicate<? super Entity> predicate);
+
     /**
      * Returns an unmodifiable view of the filtered entity list
      */
@@ -95,12 +103,15 @@ public interface Model {
      */
     void updateFilteredEntityList(Predicate<Entity> predicate);
 
+    Predicate<? super Entity> getCurrentPredicate();
+
     /**
      * Adds the predicate of the filtered entity list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void addFilteredEntityList(Predicate<Entity> predicate);
+    void addPredicate(Predicate<Entity> predicate);
+
     /**
      * Resets filtered entity list back to all entities Can be used before tag/name find function
      */
@@ -124,14 +135,14 @@ public interface Model {
     // =============== Edit mode ===================
 
     /**
-     * Sets the current selected entity
-     */
-    void setCurrentSelectedEntity(Entity newSelection);
-
-    /**
      * Returns the current selected entity
      */
     Entity getCurrentSelectedEntity();
+
+    /**
+     * Sets the current selected entity
+     */
+    void setCurrentSelectedEntity(Entity newSelection);
 
     /**
      * Get list of entities by classification
