@@ -25,6 +25,7 @@ import javafx.scene.text.Text;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Note;
+import seedu.address.model.person.Person;
 
 /**
  * Informs the user on the number of undone tasks
@@ -40,6 +41,8 @@ public class EventCard extends UiPart<Region> {
     private HBox studentProfiles;
     @FXML
     private VBox noteBox;
+    @FXML
+    private VBox studentBox;
     @FXML
     private BorderPane borderPane;
     @FXML
@@ -100,7 +103,6 @@ public class EventCard extends UiPart<Region> {
         }
 
         List<String> noteStrs;
-        int startIndex = 1;
         if (event.countNotes() > 0) {
             setImageIcon(noteLogo, guiSettings.getNoteIcon(), size);
             noteStrs = event.getNotes().stream().map(Note::toString).collect(Collectors.toList());
@@ -141,6 +143,13 @@ public class EventCard extends UiPart<Region> {
             progressBar.setProgress((double) event.countStudents() / 20);
         }
 
+        displayStudentNames();
+        handleAttachmentClick();
+        handleNoteClick();
+
+    }
+
+    private void handleAttachmentClick() {
         //bind a click to open the attachment (only works for single attachment for now
         //Only prints error message for now
         if (event.getAttachments().size() > 0 && event.getAttachments().get(0).exists()) {
@@ -154,7 +163,20 @@ public class EventCard extends UiPart<Region> {
                 click.consume();
             });
         }
+    }
 
+    private void displayStudentNames() {
+        if (event.countStudents() > 0) {
+            for (int i = 0; i < event.countStudents(); i++) {
+                Person student = event.getStudents().get(i);
+                Label label = new Label(i + ". " + student.getName() + ". Overall performance: "
+                        + student.getPerformance() + "/100");
+                studentBox.getChildren().add(label);
+            }
+        }
+    }
+
+    private void handleNoteClick() {
         if (event.countNotes() > 0) {
             cardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
                 noteText.setVisible(!noteDetails.isVisible());
@@ -165,6 +187,7 @@ public class EventCard extends UiPart<Region> {
             });
         }
     }
+
 
     private void setImageIcon(ImageView imageView, String filePath, int size) {
         Image newImage = new Image(Objects.requireNonNull(this.getClass()

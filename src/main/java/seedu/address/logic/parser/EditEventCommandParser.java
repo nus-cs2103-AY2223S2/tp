@@ -65,9 +65,16 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
             isLab = false;
             isConsultation = true;
         }
-        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            editEventDescriptor.setDate(ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get()));
+        if (argMultimap.getValue(PREFIX_DATE).isPresent() && argMultimap.getValue(PREFIX_LAB).isPresent()) {
+            editEventDescriptor.setDate(ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get(), 2));
+        } else if (argMultimap.getValue(PREFIX_DATE).isPresent()
+                && argMultimap.getValue(PREFIX_TUTORIAL).isPresent()) {
+            editEventDescriptor.setDate(ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get(), 1));
+        } else if (argMultimap.getValue(PREFIX_DATE).isPresent()
+                && argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
+            editEventDescriptor.setDate(ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get(), 1));
         }
+
         if (argMultimap.getValue(PREFIX_FILE).isPresent()) {
             editEventDescriptor.setAttachments(ParserUtil.parseEventFile(argMultimap.getValue(PREFIX_FILE).get()));
         }

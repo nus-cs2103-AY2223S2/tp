@@ -302,7 +302,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
-    public static LocalDateTime parseEventDate(String date) throws ParseException {
+    public static LocalDateTime parseEventDate(String date, int hours) throws ParseException {
         //date can be null or empty as it is optional
         String trimmedDate = date.trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -311,9 +311,11 @@ public class ParserUtil {
             throw new ParseException("Invalid date format!");
         }
         LocalDateTime newDateStart = LocalDateTime.parse(trimmedDate, formatter);
-        LocalDateTime newDateEnd = LocalDateTime.parse(trimmedDate, formatter).plusHours(1);
+        LocalDateTime newDateEnd = LocalDateTime.parse(trimmedDate, formatter).plusHours(hours);
+        LocalDateTime[] newRange = new LocalDateTime[]{newDateStart, newDateEnd};
         for (int i = 0; i < MASTER_TIME.size(); i++) {
             if (MASTER_TIME.size() == 0) {
+                MASTER_TIME.add(newRange);
                 break;
             }
             LocalDateTime[] currentRange = MASTER_TIME.get(i);
@@ -330,7 +332,6 @@ public class ParserUtil {
                 throw new ParseException("You are already busy during that period!");
             }
         }
-        LocalDateTime[] newRange = new LocalDateTime[]{newDateStart, newDateEnd};
         MASTER_TIME.add(newRange);
         Collections.sort(MASTER_TIME, (range1, range2) -> {
             if (range1[0].isBefore(range2[0])) {
@@ -343,6 +344,50 @@ public class ParserUtil {
         });
         return LocalDateTime.parse(trimmedDate, formatter);
     }
+
+    /**
+     * Checks if a new event can be added by checking if the TA already has a scheduled event
+     * @param range LocalDateTime[]
+     * @return whether the TA is busy or not
+     */
+    public static boolean isBusy(LocalDateTime[] range) {
+        LocalDateTime start = range[0];
+        LocalDateTime end = range[1];
+        for (int i = 0; i < MASTER_TIME.size(); i++) {
+            if (MASTER_TIME.size() == 0) {
+                MASTER_TIME.add(range);
+                return false;
+            }
+            LocalDateTime[] currentRange = MASTER_TIME.get(i);
+            if (start.isAfter(currentRange[0]) && start.isBefore(currentRange[1])) {
+                return true;
+            }
+            if (start.isEqual(currentRange[0]) || start.isEqual(currentRange[1])) {
+                return true;
+            }
+            if (end.isAfter(currentRange[0]) && end.isBefore(currentRange[1])) {
+                return true;
+            }
+            if (end.isEqual(currentRange[0]) && end.isEqual(currentRange[1])) {
+                return true;
+            }
+        }
+        MASTER_TIME.add(range);
+        return false;
+    }
+
+
+    /**
+     * Parses localDateTime of an event and add it into MASTER_TIME
+     * to ensure even if the user does not input a date field, the timing is registered as busy
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static void parseDefaultEventDate(LocalDateTime time, int hours) throws ParseException {
+        LocalDateTime startTime = time;
+        LocalDateTime endTime = time.plusHours(hours);
+        MASTER_TIME.add(new LocalDateTime[]{startTime, endTime});
+    }
+
 
     /**
      * Parses a {@code String filePath}.

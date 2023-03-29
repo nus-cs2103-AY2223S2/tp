@@ -55,9 +55,14 @@ public class AddTutorialParser implements Parser<AddTutorialCommand> {
         String note;
         Tutorial tutorial = new Tutorial(name);
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            date = ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get());
+            date = ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get(), 1);
             tutorial.changeDate(date);
         }
+
+        if (ParserUtil.isBusy(new LocalDateTime[]{tutorial.getDate(), tutorial.getDate().plusHours(1)})) {
+            throw new ParseException("You are already busy during this period");
+        }
+
         if (argMultimap.getValue(PREFIX_FILE).isPresent()) {
             file = ParserUtil.parseEventFile(argMultimap.getValue(PREFIX_FILE).get());
             tutorial.addAttachment(file);
