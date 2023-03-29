@@ -182,7 +182,7 @@ Creates a new client contact.
 **Optional Arguments**
 
 - `-y year_of_birth`
-    - The client’s year of birth. A valid year of birth is between 1900 and 2023, inclusive.
+    - The client’s year of birth. Any combination of four digits is acceptable.
     - **Default**: *null*
 - `-src source`
     - The platform the client is sourced from, such as Fiverr. This can be any arbitrary non-empty string.
