@@ -120,6 +120,10 @@ Use this command to remove tanks from the system, if you happen to change your e
 
 Format: `tank delete <TANK_INDEX>`
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+You can't delete a tank that has fishes and tasks attached to it. Remove those first before deleting the tank.
+</div>
+
 ### Feeding a tank: `tank feed`
 
 Feed a tank for the present day (i.e. today), which updates `lastFedDate` of all fishes in that tank to the present day.
