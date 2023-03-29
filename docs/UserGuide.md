@@ -91,6 +91,7 @@ The UI is split into 4 main parts
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
+    * Run `java -version` to display current version of java installed.
     * Mac Users are encouraged to use to use the Azul build of OpenJDK11 version found
       [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
     * Choose the `JDK FX` version and not any other version.
@@ -106,7 +107,7 @@ The UI is split into 4 main parts
 5. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
 
-    * `listcontact` : Lists all contacts.
+    * `list` : Lists all events.
 
     * `newcontact n/John Doe p/98765432` : Adds a contact named `John Doe` to the contact list.
 
@@ -134,9 +135,18 @@ Adding a contact to contacts
 **Example**:
 - `newcontact n/Deborah Tan p/91234567`
   - This command will create a new contact named `Deborah Tan` with phone number `91234567`.
+  - Example expected output:
+  ```
+  New contact added: Deborah Tan; Phone: 91234567
+  ```
+<br/>
+
 - `newcontact n/Tan Jun Wei p/82828234`
   - This command will create a new contact named `Tan Jun Wei` with phone number `82828234`.
-
+  - Example expected output:
+  ````
+    New contact added: Tan Jun Wei; Phone: 82828234
+  ````
 ### Clear all Events: `clear` <a id = "clear-all-events"></a>
 
 Clears all events in Paidlancers.
@@ -160,7 +170,11 @@ Creates a new event
 
 **Example**:
 - `newevent n/DJ at wedding r/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
-  - This command will create a new event named `DJ at wedding` with rate `100` at address `311, Clementi Ave 2, #02-25` from `11-03-2023 11:00` to `11-03-2023 17:00` with tags `friends` and `dj`.
+  - This command will create a new event named `DJ at wedding` with rate `100` at address `311, Clementi Ave 2, #02-25` from `11-03-2023 11:00` to `11-03-2023 17:00` with tags `friends` and `dj` as shown below:
+  ````
+  New event added: DJ at wedding; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]; Tags: [dj][friends]
+  ````
+
 
 ### Delete an Event: `delete` <a id = "delete-an-event"></a>
 
@@ -176,6 +190,10 @@ Deletes the specified event from the event book.
 **Example**:
 - `delete 2`
   - This command will delete the 2nd event in the event list.
+  - Example expected output:
+  ````
+  Deleted Event: DJ at wedding; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]; Tags: [dj][friends]
+  ````
 
 ### Edit an Event: `edit` <a id = "edit-an-event"></a>
 
@@ -195,13 +213,24 @@ Edits the specified event from the event book.
   - To link the event to a new contact, consider using [`linkcontact`](#link-contact-to-event) instead.
 
 **Example**:
-- `edit 1 r/100`
+- `edit 2 r/100`
   - This command will edit the rate of the 1st event to be `100`.
+  - Example expected output:
+  ````
+  Edited Event: DJ at wedding; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]; Tags: [dj][friends]
+  ````
 - `edit 2 n/Wedding Dinner t/`
   - This command will edit the name of the 2nd event to be `Wedding Dinner` and remove all tags.
-- `edit 1 n/Wedding Lunch`
+  - Example expected output:
+  ````
+  Edited Event: Wedding Dinner; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]
+  ````
+- `edit 2 n/Wedding Lunch`
   - This command will edit the name of the 1st event to be `Wedding Lunch`.
-
+  - Example expected output:
+  ````
+  Edited Event: Wedding Lunch; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]
+  ````
 ### Exit application: `exit` <a id = "exit-application"></a>
 
 Closes Paidlancers.
@@ -243,7 +272,10 @@ Links client contact to an event.
 **Example**:
 - `linkcontact 2 91234567`
   - This command will link the contact with phone number `91234567` to the 2nd event in the event list.
-
+  - Example expected output:
+  ````
+  Successfully linked! Wedding Lunch; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]
+  ````
 ### List all Events: `list` <a id = "list-all-events"></a>
 
 Shows a list of all events in Paidlancers
@@ -266,7 +298,10 @@ Marks a specified event in Paidlancers as done.
 **Example**:
 - `mark 2`
   - This command will mark the 2nd event in the event list as done.
-
+  - Example expected output:
+  ````
+  Marked event: Wedding Lunch; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [X]; Contact: Gladious Lee; Phone: 92348274
+  ````
 ### Unmark an Event: `unmark` <a id = "unmark-event"></a>
 
 Unmarks a specified event in Paidlancers.
@@ -280,6 +315,10 @@ Unmarks a specified event in Paidlancers.
 **Example**:
 - `unmark 2`
   - This command will unmark the 2nd event in the event list.
+  - Example expected output:
+  ````
+  Unmarked event: Wedding Lunch; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]; Contact: Gladious Lee; Phone: 92348274
+  ````
 
 ### View Total Revenue: `revenue` <a id = "view-total-revenue"></a>
 
@@ -288,6 +327,10 @@ Calculates and displays the total revenue based on all the completed events.
 **Format**: `revenue`
 
 - Displays the total revenue.
+- Example expected output:
+  ````
+  The total revenue is: 200.00
+  ````
 
 ### View Upcoming Events: `remind` <a id = "view-upcoming-events"></a>
 
@@ -311,7 +354,7 @@ Assume the current date and time is 22-03-2023 11:00.
     * 24-03-2023 the whole day
   - Note that 24-03-2023 is within 2 days of 22-03-2023, so events on 24-03-2023 that start more than 48 hours from the current date and time are displayed.
 
-### Saving data: `revenue` <a id = "saving-data"></a>
+### Saving data: <a id = "saving-data"></a>
 
 Paidlancers data are saved in the hard disk automatically on command issue. There is no need to save manually.
 
