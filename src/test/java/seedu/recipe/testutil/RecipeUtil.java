@@ -38,7 +38,7 @@ public class RecipeUtil {
         sb.append(PREFIX_DESCRIPTION + recipe.getDesc().toString() + " ");
 
         recipe.getIngredients().stream().forEach(
-                s -> sb.append(PREFIX_INGREDIENT + s.ingredient + " ")
+                s -> sb.append(PREFIX_INGREDIENT + s.toString() + " ")
         );
         recipe.getSteps().stream().forEach(
                 s -> sb.append(PREFIX_STEP + s.step + " ")

@@ -26,7 +26,7 @@ public class IngredientsContainsKeywordsPredicate extends ContainsKeywordsPredic
     public boolean test(Recipe recipe) {
         Set<Ingredient> recipeIngredient = recipe.getIngredients();
         for (Ingredient i : recipeIngredient) {
-            if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(i.ingredient, keyword))) {
+            if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(i.name, keyword))) {
                 return true;
             }
         }

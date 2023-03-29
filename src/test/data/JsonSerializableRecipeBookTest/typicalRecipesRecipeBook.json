@@ -1,30 +1,27 @@
 {
-  "recipes" : [
-    {
-      "title": "Corndogs",
-      "desc": "Homemade corndogs",
-      "ingredients": [
-        "flour"
-      ],
-      "steps": [
-        "step 1"
-      ],
-      "tags": [
-        "easy"
-      ]
-    },
-    {
-      "title": "Soup",
-      "desc": "Instant soup",
-      "ingredients": [
-        "water"
-      ],
-      "steps": [
-        "step 2"
-      ],
-      "tags": [
-        "snack"
-      ]
-    }
-  ]
+  "recipes" : [ {
+    "title" : "Corndogs",
+    "desc" : "Homemade corndogs",
+    "ingredients" : [ {
+      "name" : "flour",
+      "quantity" : 2.5,
+      "unitOfMeasurement" : "cup",
+      "pricePerUnit" : 0.8
+    } ],
+    "steps" : [ "step 1" ],
+    "tags" : [ "easy" ],
+    "isStar" : false
+  }, {
+    "title" : "Soup",
+    "desc" : "Instant soup",
+    "ingredients" : [ {
+      "name" : "water",
+      "quantity" : 3.0,
+      "unitOfMeasurement" : "cup",
+      "pricePerUnit" : 0.0
+    } ],
+    "steps" : [ "step 2" ],
+    "tags" : [ "snack" ],
+    "isStar" : false
+  } ]
 }

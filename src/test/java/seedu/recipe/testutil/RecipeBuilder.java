@@ -2,12 +2,15 @@ package seedu.recipe.testutil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.recipe.logic.parser.ParserUtil;
+import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Description;
 import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Recipe;
@@ -23,7 +26,8 @@ public class RecipeBuilder {
     public static final String DEFAULT_TITLE = "A Recipe";
     public static final String DEFAULT_DESCRIPTION = "A Description";
     public static final List<Ingredient> DEFAULT_INGREDIENTS = Arrays.asList(
-            new Ingredient("eggs"), new Ingredient("flour"));
+            new Ingredient("eggs", 2.0, "unit", 0.9),
+            new Ingredient("flour", 3.5, "cup", 0.1));
     public static final List<Step> DEFAULT_STEPS = Arrays.asList(
             new Step("step 1"), new Step("step 2"));
     public static final List<Tag> DEFAULT_TAGS = Arrays.asList(
@@ -77,8 +81,13 @@ public class RecipeBuilder {
      * Sets the {@code Ingredients} of the {@code Recipe} that we are building.
      */
     public RecipeBuilder withIngredients(String... ingredients) {
-        Set<Ingredient> ingredientSet = Stream.of(ingredients).map(Ingredient::new).collect(Collectors.toSet());
-        this.ingredients = ingredientSet;
+        List<String> list = Arrays.asList(ingredients);
+        Collection<String> collectionOfIngredients = new ArrayList<>(list);
+        try {
+            this.ingredients = ParserUtil.parseIngredients(collectionOfIngredients);
+        } catch (ParseException e) {
+            return null;
+        }
         return this;
     }
 

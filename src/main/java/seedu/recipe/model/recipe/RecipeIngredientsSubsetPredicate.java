@@ -26,7 +26,7 @@ public class RecipeIngredientsSubsetPredicate extends ContainsKeywordsPredicate 
     public boolean test(Recipe recipe) {
         Set<Ingredient> recipeIngredients = recipe.getIngredients();
         for (Ingredient i : recipeIngredients) {
-            if (keywords.stream().noneMatch(keyword -> StringUtil.containsWordIgnoreCase(i.ingredient, keyword))) {
+            if (keywords.stream().noneMatch(keyword -> StringUtil.containsWordIgnoreCase(i.name, keyword))) {
                 return false;
             }
         }

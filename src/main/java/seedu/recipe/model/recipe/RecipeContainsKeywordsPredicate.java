@@ -34,7 +34,7 @@ public class RecipeContainsKeywordsPredicate extends ContainsKeywordsPredicate i
         Set<Ingredient> recipeIngredient = recipe.getIngredients();
         boolean doesIngredientExist = false;
         for (Ingredient i : recipeIngredient) {
-            if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(i.ingredient, keyword))) {
+            if (keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(i.name, keyword))) {
                 doesIngredientExist = true;
             }
         }

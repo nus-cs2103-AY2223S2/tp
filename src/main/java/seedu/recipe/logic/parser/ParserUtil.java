@@ -13,6 +13,7 @@ import seedu.recipe.commons.util.StringUtil;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Description;
 import seedu.recipe.model.recipe.Ingredient;
+import seedu.recipe.model.recipe.SatisfyPriceConditionPredicate;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.Title;
 import seedu.recipe.model.tag.Tag;
@@ -110,10 +111,47 @@ public class ParserUtil {
     public static Ingredient parseIngredientHelper(String ingredient) throws ParseException {
         requireNonNull(ingredient);
         String trimmedIngredient = ingredient.trim();
-        if (!Ingredient.isValidIngredient(trimmedIngredient)) {
-            throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
+        String[] ingredientFields = trimmedIngredient.split("\\s+");
+        if (ingredientFields.length != 4) {
+            throw new ParseException(Ingredient.INGREDIENT_WRONG_ARGUMENTS_MESSAGE_CONSTRAINTS);
         }
-        return new Ingredient(trimmedIngredient);
+
+        String name;
+        Double quantity;
+        String unitOfMeasurement;
+        Double pricePerUnit;
+
+        if (!Ingredient.isValidIngredientName(ingredientFields[0])) {
+            throw new ParseException(Ingredient.INGREDIENT_NAME_MESSAGE_CONSTRAINTS);
+        } else {
+            name = ingredientFields[0];
+        }
+
+        try {
+            quantity = Double.valueOf(ingredientFields[1]);
+            if (!Ingredient.isValidIngredientQuantity(quantity)) {
+                throw new ParseException(Ingredient.INGREDIENT_QUANTITY_MESSAGE_CONSTRAINTS);
+            }
+        } catch (NumberFormatException e) {
+            throw new ParseException("Quantity is not a double!");
+        }
+
+
+        if (!Ingredient.isValidIngredientUom(ingredientFields[2])) {
+            throw new ParseException(Ingredient.INGREDIENT_UOM_MESSAGE_CONSTRAINTS);
+        } else {
+            unitOfMeasurement = ingredientFields[2];
+        }
+
+        try {
+            pricePerUnit = Double.valueOf(ingredientFields[3]);
+            if (!Ingredient.isValidIngredientPpu(pricePerUnit)) {
+                throw new ParseException(Ingredient.INGREDIENT_PPU_MESSAGE_CONSTRAINTS);
+            }
+        } catch (NumberFormatException e) {
+            throw new ParseException("Price per unit is not a double!");
+        }
+        return new Ingredient(name, quantity, unitOfMeasurement, pricePerUnit);
     }
 
     /**
@@ -156,5 +194,38 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String filterPrice} into a {@code Pair<String, Double}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code String filterPrice} is invalid.
+     */
+    public static SatisfyPriceConditionPredicate parseFilterPrice(String filterPrice) throws ParseException {
+        requireNonNull(filterPrice);
+        String trimmedFp = filterPrice.trim();
+        String[] fpArr = trimmedFp.split("\\s+");
+        if (fpArr.length != 2) {
+            throw new ParseException("Incorrect number of arguments.");
+        }
+
+        String filter = fpArr[0];
+        Double price = 0d;
+
+        if (!filter.equals("<") && !filter.equals(">")) {
+            throw new ParseException("Filter symbol is not recognizable.");
+        }
+
+        try {
+            price = Double.valueOf(fpArr[1]);
+            if (price < 0) {
+                throw new ParseException("Price less than 0");
+            }
+        } catch (NumberFormatException e) {
+            throw new ParseException("Price is not a valid positive number!");
+        }
+
+        return new SatisfyPriceConditionPredicate(filter, price);
     }
 }

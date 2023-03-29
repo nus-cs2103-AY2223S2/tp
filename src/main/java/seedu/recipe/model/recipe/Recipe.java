@@ -93,6 +93,13 @@ public class Recipe {
         this.isStar = false;
     }
 
+    public Double getCost() {
+        Double cost = 0d;
+        for (Ingredient i : ingredients) {
+            cost += i.quantity * i.pricePerUnit;
+        }
+        return cost;
+    }
     /**
      * Returns true if both recipes have the same title.
      * This defines a weaker notion of equality between two recipes.

@@ -10,13 +10,12 @@ public class IngredientTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Ingredient(null));
+        assertThrows(NullPointerException.class, () -> new Ingredient(null, null, null, null));
     }
 
     @Test
     public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidIngredient = "";
-        assertThrows(IllegalArgumentException.class, () -> new Ingredient(invalidIngredient));
+        assertThrows(IllegalArgumentException.class, () -> new Ingredient("", 2.0, "kg", 40.0));
     }
 
     @Test
@@ -31,10 +30,7 @@ public class IngredientTest {
         assertFalse(Ingredient.isValidIngredient("tomato*")); // contains non-alphanumeric characters
 
         // valid name
-        assertTrue(Ingredient.isValidIngredient("tomato")); // alphabets only
-        assertTrue(Ingredient.isValidIngredient("12345")); // numbers only
-        assertTrue(Ingredient.isValidIngredient("tomato 2nd most ripe")); // alphanumeric characters
-        assertTrue(Ingredient.isValidIngredient("Capital Tomato")); // with capital letters
-        assertTrue(Ingredient.isValidIngredient("Tomatoes coated with butter")); // long names
+        assertTrue(Ingredient.isValidIngredient("tomato 1.0 unit 0.3"));
+        assertTrue(Ingredient.isValidIngredient("butter 1.5 stick 0.6"));
     }
 }

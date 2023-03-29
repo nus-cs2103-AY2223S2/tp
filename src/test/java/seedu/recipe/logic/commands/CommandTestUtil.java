@@ -33,8 +33,8 @@ public class CommandTestUtil {
 
     public static final String VALID_STEPS_CORNDOGS = "step 1";
     public static final String VALID_STEPS_SOUP = "step 2";
-    public static final String VALID_INGREDIENTS_CORNDOGS = "flour";
-    public static final String VALID_INGREDIENTS_SOUP = "water";
+    public static final String VALID_INGREDIENTS_CORNDOGS = "flour 2.5 cup 0.8";
+    public static final String VALID_INGREDIENTS_SOUP = "water 3 cup 0";
     public static final String VALID_TAGS_CORNDOGS = "easy";
     public static final String VALID_TAGS_SOUP = "snack";
 
@@ -44,8 +44,6 @@ public class CommandTestUtil {
     public static final String STEP_DESC_CORNDOGS = " " + PREFIX_STEP + VALID_STEPS_CORNDOGS;
     public static final String INGREDIENT_DESC_CORNDOGS = " " + PREFIX_INGREDIENT + VALID_INGREDIENTS_CORNDOGS;
     public static final String TAG_DESC_CORNDOGS = " " + PREFIX_TAG + VALID_TAGS_CORNDOGS;
-
-
     public static final String TITLE_DESC_SOUP = " " + PREFIX_TITLE + VALID_TITLE_SOUP;
     public static final String DESC_DESC_SOUP = " " + PREFIX_DESCRIPTION + VALID_DESC_SOUP;
     public static final String STEP_DESC_SOUP = " " + PREFIX_STEP + VALID_STEPS_SOUP;
