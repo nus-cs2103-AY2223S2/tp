@@ -167,4 +167,13 @@ public interface Model {
      * @param recurringExpenseManager the Recurring expense to add.
      */
     void addRecurringGenerator(RecurringExpenseManager recurringExpenseManager);
+
+    /** Returns an unmodifiable view of the recurring expense list */
+    ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators();
+
+    /**
+     * Deletes the target {@code RecurringExpense} from the recurring expense list.
+     * @param recurringExpenseManager the recurring expense to be deleted.
+     */
+    void deleteRecurringExpense(RecurringExpenseManager recurringExpenseManager);
 }

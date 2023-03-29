@@ -8,16 +8,16 @@
     "amount" : "0.0"
   },
   "recurringGenerators" : [ {
-    "expenseName" : "test",
-    "expenseAmount" : "10.0",
+    "expenseName" : "fw",
+    "expenseAmount" : "2.0",
     "expenseCategory" : {
       "categoryName" : "t",
       "summary" : ""
     },
-    "nextExpenseDate" : "2023-03-31",
-    "startDate" : "2023-03-10",
+    "nextExpenseDate" : "2023-04-01",
+    "startDate" : "2023-03-01",
     "endDate" : "null",
-    "recurringExpenseType" : "WEEKLY"
+    "recurringExpenseType" : "MONTHLY"
   }, {
     "expenseName" : "fw",
     "expenseAmount" : "2.0",
@@ -36,10 +36,10 @@
       "categoryName" : "t",
       "summary" : ""
     },
-    "nextExpenseDate" : "2023-03-29",
+    "nextExpenseDate" : "null",
     "startDate" : "2023-03-01",
-    "endDate" : "null",
-    "recurringExpenseType" : "WEEKLY"
+    "endDate" : "2023-03-10",
+    "recurringExpenseType" : "MONTHLY"
   }, {
     "expenseName" : "fw",
     "expenseAmount" : "2.0",
@@ -47,20 +47,9 @@
       "categoryName" : "t",
       "summary" : ""
     },
-    "nextExpenseDate" : "2023-03-30",
+    "nextExpenseDate" : "null",
     "startDate" : "2023-03-01",
-    "endDate" : "null",
-    "recurringExpenseType" : "DAILY"
-  }, {
-    "expenseName" : "fw",
-    "expenseAmount" : "2.0",
-    "expenseCategory" : {
-      "categoryName" : "t",
-      "summary" : ""
-    },
-    "nextExpenseDate" : "2023-03-29",
-    "startDate" : "2023-03-01",
-    "endDate" : "null",
-    "recurringExpenseType" : "WEEKLY"
+    "endDate" : "2023-02-20",
+    "recurringExpenseType" : "MONTHLY"
   } ]
 }

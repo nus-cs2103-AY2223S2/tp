@@ -134,6 +134,10 @@ public class RecurringExpenseManager {
         return expenseAmount;
     }
 
+    public void setNextExpenseDate(LocalDate nextExpenseDate) {
+        this.nextExpenseDate = nextExpenseDate;
+    }
+
     @Override
     public String toString() {
         return "Recurring Expense: " + expenseName + " Amount: " + expenseAmount + " Category: "
