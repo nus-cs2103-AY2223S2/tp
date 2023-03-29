@@ -137,8 +137,8 @@ public class Client {
      */
     public void changeRoutineIfRoutineNameMatch(Routine routineToEdit, Routine routineToChange) {
         if (routines.stream().anyMatch(routine -> routine.isSameRoutineName(routineToEdit))) {
-                routines.removeIf(routine -> routine.isSameRoutineName(routineToEdit));
-                routines.add(routineToChange);
+            routines.removeIf(routine -> routine.isSameRoutineName(routineToEdit));
+            routines.add(routineToChange);
         }
     }
 

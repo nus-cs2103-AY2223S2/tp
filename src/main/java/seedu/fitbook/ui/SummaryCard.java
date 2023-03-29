@@ -143,9 +143,9 @@ public class SummaryCard extends UiPart<Region> {
         if (!client.getRoutines().isEmpty()) {
             exerciseTitle.setText("Exercise\nRoutines: ");
             StringBuilder str = new StringBuilder();
-            int routine_counter = 1;
+            int routineCounter = 1;
             for (Routine routine : client.getRoutines()) {
-                str.append(routine_counter++ + ". " + routine.getRoutineName());
+                str.append(routineCounter++ + ". " + routine.getRoutineName());
                 str.append("\n");
                 str.append(routine.exerciseListToString() + "\n");
             }
