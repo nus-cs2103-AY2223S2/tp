@@ -12,8 +12,7 @@ public class DateComparator extends GeneralComparator<Date> {
      * Compares two {@code Date} objects.
      * @param d1 the first object to be compared.
      * @param d2 the second object to be compared.
-     * @return A negative integer, zero, or a positive integer if the first argument is
-     *         less than, equal to, or greater than the second.
+     * @return An integer which is positive if d2 is after d1, zero if d1 is equal to d2 and negative otherwise.
      */
     public int compare(Date d1, Date d2) {
         LocalDate first = LocalDate.parse(d1.value);
