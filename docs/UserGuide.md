@@ -64,6 +64,9 @@ MATHUTORING is a **centralised desktop application used for private Math tuition
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Command words are case-insensitive.<br>
+  e.g. if the command specifies such as `help`, `HELP`, `Help`..., it will be interpreted as `help`.
+
 </div>
 
 ### Viewing help : `help`
@@ -215,6 +218,7 @@ Format: `addScore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 
 **:information_source: Note about format of `DATE`:**<br>
 * The format of `DATE` must be `yyyy-MM-DD`. For example, `2022-02-20` represents 20 February 2022.
+* If the `DATE` entered by user is in the future will be not allowed.
 
 </div>
 
