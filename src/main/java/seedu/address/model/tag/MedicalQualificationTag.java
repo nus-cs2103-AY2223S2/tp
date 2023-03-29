@@ -9,7 +9,7 @@ import java.util.Objects;
 public class MedicalQualificationTag extends Tag {
     public static final String MESSAGE_CONSTRAINTS =
             "Medical qualification must be a skill, followed by a skill-level. "
-            + "format: [Skill] [Level]";
+            + "format: [Skill], [Level]";
     public static final String MESSAGE_CONSTRAINTS_SKILL =
             "Skill-level should only contain 3 types of values, "
             + "basic, intermediate, advanced";
