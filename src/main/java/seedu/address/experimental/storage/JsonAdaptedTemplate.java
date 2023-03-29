@@ -11,11 +11,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.entity.*;
-import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Template;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Character}
+ * Jackson-friendly version of {@link Template}
  */
 public class JsonAdaptedTemplate {
     private final String name;
@@ -54,7 +54,7 @@ public class JsonAdaptedTemplate {
     }
 
     /**
-     * Converts this Jackson-friendly adapted Character object into the model's {@code Character} object.
+     * Converts this Jackson-friendly adapted Character object into the model's {@code Template} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted character.
      */

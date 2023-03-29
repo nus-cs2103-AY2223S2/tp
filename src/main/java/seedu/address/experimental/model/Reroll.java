@@ -18,16 +18,18 @@ import seedu.address.model.entity.Template;
  */
 public class Reroll implements ReadOnlyReroll {
 
-    private final Predicate<Entity> isCharacter = entity -> entity instanceof Character;
+    private final Predicate<Entity> isCharacter = entity -> entity instanceof Character
+            && !(entity instanceof Template);
     private final Predicate<Entity> isMob = entity -> entity instanceof Mob;
     private final Predicate<Entity> isItem = entity -> entity instanceof Item;
+    private final Predicate<Entity> isTemplate = entity -> entity instanceof Template;
 
     // Abstracting the entity list gives more flexibility for further functionality of Reroll.
     private final RerollAllEntities entities;
     private final ReadOnlyEntities characters;
     private final ReadOnlyEntities items;
     private final ReadOnlyEntities mobs;
-    private final UniqueTemplateList templates;
+    private final ReadOnlyEntities templates;
 
     // Initializer
     {
@@ -35,7 +37,7 @@ public class Reroll implements ReadOnlyReroll {
         characters = new RerollCharacters(new FilteredList<>(entities.getEntityList(), isCharacter));
         items = new RerollItems(new FilteredList<>(entities.getEntityList(), isItem));
         mobs = new RerollMobs(new FilteredList<>(entities.getEntityList(), isMob));
-        templates = new UniqueTemplateList();
+        templates = new RerollTemplates(new FilteredList<>(entities.getEntityList(), isTemplate));
     }
 
     public Reroll() {}
@@ -55,17 +57,8 @@ public class Reroll implements ReadOnlyReroll {
      */
     public void resetData(ReadOnlyReroll newData) {
         requireNonNull(newData);
-
         // Initialize all entities
         entities.resetData(newData.getEntities());
-        this.resetTemplates(newData.getTemplates());
-    }
-
-    /*** Reset templates */
-    public void resetTemplates(List<Template> newTemplates) {
-        requireNonNull(newTemplates);
-
-        templates.setTemplates(newTemplates);
     }
 
     @Override
@@ -89,8 +82,8 @@ public class Reroll implements ReadOnlyReroll {
     }
 
     @Override
-    public ObservableList<Template> getTemplates() {
-        return templates.asUnmodifiableObservableList();
+    public ReadOnlyEntities getTemplates() {
+        return templates;
     }
 
     // Entity level operations ===============
@@ -131,6 +124,10 @@ public class Reroll implements ReadOnlyReroll {
 
     public ObservableList<Entity> getMobList() {
         return mobs.getEntityList();
+    }
+
+    public ObservableList<Entity> getTemplateList() {
+        return templates.getEntityList();
     }
 
     @Override

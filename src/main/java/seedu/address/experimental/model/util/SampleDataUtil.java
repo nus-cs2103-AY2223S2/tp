@@ -4,11 +4,8 @@ import java.util.HashSet;
 
 import seedu.address.experimental.model.ReadOnlyReroll;
 import seedu.address.experimental.model.Reroll;
+import seedu.address.model.entity.*;
 import seedu.address.model.entity.Character;
-import seedu.address.model.entity.Item;
-import seedu.address.model.entity.Mob;
-import seedu.address.model.entity.Name;
-import seedu.address.model.entity.Stats;
 import seedu.address.model.tag.Tag;
 
 /***
@@ -43,7 +40,10 @@ public class SampleDataUtil {
         for (Character character : sampleCharacter) {
             sampleRr.addEntity(character);
         }
-        sampleRr.resetTemplates(BasicTemplates.getBasicTemplates());
+        for (Template t : BasicTemplates.getBasicTemplates()) {
+            sampleRr.addEntity(t);
+        }
+
         return sampleRr;
     }
 }

@@ -12,7 +12,7 @@ import seedu.address.model.entity.Template;
  * Basic templates to be used
  */
 public class BasicTemplates {
-    private static List<Template> templates = new ArrayList<>();
+    private static final List<Template> templates = new ArrayList<>();
 
     public static List<Template> getBasicTemplates() {
         templates.clear();

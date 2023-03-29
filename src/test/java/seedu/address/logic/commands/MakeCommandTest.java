@@ -176,6 +176,11 @@ public class MakeCommandTest {
         }
 
         @Override
+        public void listTemplates() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setCurrentSelectedEntity(Entity newSelection) {
             throw new AssertionError("This method should not be called.");
         }
@@ -191,7 +196,7 @@ public class MakeCommandTest {
         }
 
         @Override
-        public ObservableList<Template> getTemplates() {
+        public ObservableList<Entity> getTemplates() {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -37,9 +37,10 @@ public class Template extends Character {
     /**
      * Returns true if other template has the same name.
      */
-    public boolean isSameTemplate(Template other) {
+    @Override
+    public boolean isSameEntity(Entity other) {
         return other == this
-                || other.getName() == this.getName();
+                || ((other instanceof Template) && other.getName() == this.getName());
     }
 
 }

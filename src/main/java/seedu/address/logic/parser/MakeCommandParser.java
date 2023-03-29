@@ -46,14 +46,13 @@ public class MakeCommandParser implements Parser<MakeCommand> {
         Name name = ParserUtil.parseName(split[2]);
         Classification classification = ParserUtil.parseClassification(split[1]);
 
-        Set<Tag> tagSet = new HashSet<Tag>();
         Entity newEntity = null;
         if (classification.isCharacter()) {
-            newEntity = new Character(name, tagSet);
+            newEntity = new Character(name);
         } else if (classification.isItem()) {
-            newEntity = new Item(name, tagSet);
+            newEntity = new Item(name);
         } else if (classification.isMob()) {
-            newEntity = new Mob(name, tagSet);
+            newEntity = new Mob(name);
         }
         requireNonNull(newEntity);
         return new MakeCommand(newEntity);

@@ -21,6 +21,18 @@ public class Character extends Entity {
     // Represents the amount of experience points (xp) needed for the next level-up
     private final int xp;
 
+    /**
+     * Every field should be present and non-null. Dummy values used for character specific fields.
+     *
+     * @param name name of the character
+     */
+    public Character(Name name) {
+        super(name);
+        this.stats = new Stats(1, 1, 1);
+        this.level = BASE_LEVEL;
+        this.xp = BASE_XP;
+        this.inventory = Inventory.emptyInventory();
+    }
 
     /**
      * Every field should be present and non-null. Dummy values used for character specific fields.
@@ -104,4 +116,5 @@ public class Character extends Entity {
                 || (otherEntity instanceof Character
                 && otherEntity.getName().equals(getName()));
     }
+
 }

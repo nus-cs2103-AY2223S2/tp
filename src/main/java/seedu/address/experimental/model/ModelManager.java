@@ -25,9 +25,11 @@ public class ModelManager implements Model {
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private static final Predicate<Entity> PREDICATE_IS_CHARACTER = entity -> entity instanceof Character;
+    private static final Predicate<Entity> PREDICATE_IS_CHARACTER = entity -> entity instanceof Character
+                && !(entity instanceof Template);
     private static final Predicate<Entity> PREDICATE_IS_MOB = entity -> entity instanceof Mob;
     private static final Predicate<Entity> PREDICATE_IS_ITEM = entity -> entity instanceof Item;
+    private static final Predicate<Entity> PREDICATE_IS_TEMPLATE = entity -> entity instanceof Template;
 
     private final Reroll reroll;
     private final UserPrefs userPrefs;
@@ -157,6 +159,9 @@ public class ModelManager implements Model {
         updateFilteredEntityList(PREDICATE_IS_MOB);
     }
 
+    @Override
+    public void listTemplates() { updateFilteredEntityList(PREDICATE_IS_TEMPLATE); }
+
     //=========== Filtered Entity List Accessors =============================================================
 
     @Override
@@ -210,7 +215,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Template> getTemplates() {
-        return reroll.getTemplates();
+    public ObservableList<Entity> getTemplates() {
+        return reroll.getTemplateList();
     }
 }
