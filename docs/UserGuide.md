@@ -234,18 +234,19 @@ Finds job listings whose titles contain any of the given keywords.
 A confirmation message will display. The message indicates the number of listings which match the given keyword(s).
 An example is shown below.
 ```ignorelang
-1 listings shown!
+1 listing(s) shown!
 ```
 If no listings match the keyword(s), the following message will show:
 ```ignorelang
-0 listings shown!
+0 listing(s) shown!
 ```
 
 **Possible Error**
 If no keyword is provided, an error message will display:
 ```ignorelang
 Invalid command format!
-find: Finds all listings whose titles contain any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
+find: Finds all listings whose titles contain any of the specified keywords (case-insensitive).
+      Displays them as a list with index numbers.
 Parameters: KEYWORD [MORE_KEYWORDS]...
 Example: find chicken rice
 ```
