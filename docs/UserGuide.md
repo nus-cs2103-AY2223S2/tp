@@ -182,7 +182,7 @@ Examples:
 * `view-lesson` Displays the lesson history for all the tutor’s students.
 * `view-lesson name/John` Displays the lesson history for the student named John. If two students have the same name, then ask which one to show.
 
-### 8. Add an Exam to be tracked: `add-exam`
+### Add an Exam to be tracked: `add-exam`
 
 Creates an Exam within TutorPro to be tracked for a given student.
 
@@ -201,7 +201,7 @@ Examples:
 * `new-exam name/John Doe exam/Math MYE start/2023-05-21 12:00 end/2023-05-21 14:00`
 * `new-exam name/John Doe name/Faye Doe exam/Science MYE start/2023-05-22 12:00 end/2023-05-22 14:00`
 
-### 9. Remove an exam: `delete-exam`
+### Remove an exam: `delete-exam`
 
 Format: `delete-exam [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2].. [index/INDEX_OF_EXAM]`
 
@@ -214,7 +214,7 @@ Examples:
 * `delete-exam name/John Doe index/1`
 * `delete-exam name/John Doe name/Faye Doe index/1`
 
-### 10. View exams tracked by TutorPro: `view-exam`
+### View exams tracked by TutorPro: `view-exam`
 
 Format: `view-exam (optional)[name/STUDENT_NAME] (optional)[date/DATE] (optional)[exam/NAME_OF_EXAM] (optional)
 [done/IS_DONE]`
@@ -229,7 +229,7 @@ Examples:
 * `view-exam name/John date/2023-05-01 exam/MYE done/` -list exams attributed to student 'John' on date '2023-05-01' 
 with description 'MYE' which are undone.
 
-### 11. Edit exam details: `update-exam`
+### Edit exam details: `update-exam`
 
 Format: `update-exam [name/STUDENT_NAME] [index/INDEX] (optional)[exam/NEW_EXAM_NAME] (optional)[start/START_TIME] 
 (optional)[end/END_TIME] (optional)[grade/GRADE]`
@@ -243,7 +243,7 @@ student.
 Examples:
 * `update-exam name/John index/1 grade/20/25`
 
-### 12. Calculate grade:  `calculate-grade`
+### Calculate grade:  `calculate-grade`
 
 Format: `calculate-grade [name/STUDENT_NAME] [subject/SUBJECT]`
 
@@ -254,7 +254,6 @@ description into the score calculation.
 
 Examples:
 * `calculate-grade name/John subject/Econs`
-
 
 --------------------------------------------------------------------------------------------------------------------
 

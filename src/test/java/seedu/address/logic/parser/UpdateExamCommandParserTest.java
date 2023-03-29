@@ -5,8 +5,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.UpdateExamCommand;
-
+import seedu.address.logic.commands.exam.UpdateExamCommand;
+import seedu.address.logic.parser.exam.UpdateExamCommandParser;
 
 class UpdateExamCommandParserTest {
     private static final String VALID_START_TIME = "2027-04-30T12:00";

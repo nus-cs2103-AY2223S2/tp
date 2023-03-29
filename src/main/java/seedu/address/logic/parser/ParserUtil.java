@@ -238,8 +238,7 @@ public class ParserUtil {
         LocalDate res;
         try {
             res = LocalDate.parse(date);
-        }
-        catch (DateTimeParseException e) {
+        } catch (DateTimeParseException e) {
             throw new ParseException("Invalid date format!", e);
         }
         return res;
