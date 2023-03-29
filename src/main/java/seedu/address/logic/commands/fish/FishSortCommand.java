@@ -29,7 +29,7 @@ public class FishSortCommand extends FishCommand {
             + PREFIX_SORT_BY + "ATTRIBUTE "
             + "[" + PREFIX_TANK + "TANK INDEX]...\n"
             + "Example: " + COMMAND_WORD + " " + FISH_COMMAND_WORD + " "
-            + PREFIX_SORT_BY + "lfd"
+            + PREFIX_SORT_BY + "lfd "
             + PREFIX_TANK + "1\n"
             + "Sorting Options: n/lfd/s/fi/tk";
 
