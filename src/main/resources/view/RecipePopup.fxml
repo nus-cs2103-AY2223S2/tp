@@ -32,7 +32,7 @@
       <Label fx:id="stepsTitle" styleClass="cell_small_label" text="Steps: " />
       <VBox fx:id="steps"/>
       <Label fx:id="tagsTitle" styleClass="cell_small_label" text="Tags: " />
-      <FlowPane fx:id="tags" />
+      <GridPane fx:id="tags" />
     </VBox>
   </GridPane>
 </HBox>

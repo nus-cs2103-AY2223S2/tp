@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -47,7 +47,7 @@ public class RecipePopup extends UiPart<Region> {
     private VBox steps;
 
     @FXML
-    private FlowPane tags;
+    private GridPane tags;
 
     /**
      * Generates and returns the UI instance for this Recipe card.
