@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -96,7 +95,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void exportProgress_nullFilePath_throwsFileNotFoundException(){
+    public void exportProgress_nullFilePath_throwsFileNotFoundException() {
         modelManager.addPerson(ALICE);
         assertThrows(FileNotFoundException.class, () -> modelManager.exportProgress(ALICE, ""));
     }

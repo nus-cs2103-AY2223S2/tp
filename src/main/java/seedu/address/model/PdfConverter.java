@@ -109,6 +109,10 @@ public class PdfConverter {
         return this.document;
     }
 
+    /**
+     * Creates table for task list.
+     * @param tasks Task list of the student
+     */
     public void createTaskTable(TaskList tasks) throws IOException {
         if (tasks.size() == 0) {
             wrapText("No task found", this.horizontalWrap, this.fontBold, this.fontTableHeaderSize, List.of());
@@ -124,6 +128,10 @@ public class PdfConverter {
         createTableContentForTask(tasks, maxContentWidthString, this.font, this.fontTableContentSize);
     }
 
+    /**
+     * Creates table for score list.
+     * @param scores Score list of the student
+     */
     public void createScoreTable(ScoreList scores) throws IOException {
         if (scores.size() == 0) {
             wrapText("No score history found", this.horizontalWrap, this.fontBold, this.fontTableHeaderSize, List.of());
@@ -139,9 +147,23 @@ public class PdfConverter {
         createTableContentForScore(scores, maxContentWidthString, this.font, this.fontTableContentSize);
     }
 
+    /**
+     * Creates a horizontal line for the table.
+     * @param y The y-coordinate of the horizontal line
+     * @throws IOException
+     */
     public void createHorizontalLine(float y) throws IOException {
         this.contentStream.drawLine(90, y, 522, y);
     }
+
+    /**
+     * Creates a row's contents.
+     * @param headers text contents in for the row
+     * @param maxContentWidthString list of strings with the maximum length for each column
+     * @param font font of the contents
+     * @param fontSize font size of the contents
+     * @throws IOException
+     */
     public void createTableRow(List<String> headers, List<String> maxContentWidthString, PDFont font, int fontSize)
             throws IOException {
         float yFinal = this.y;
@@ -176,6 +198,11 @@ public class PdfConverter {
         this.y = yFinal;
     }
 
+    /**
+     * Converts string status of a task to a more readable string for the pdf.
+     * @param input status from Task
+     * @return converted string
+     */
     public String convertStatusString(String input) {
         String statement = input;
         String converted = "";
@@ -196,6 +223,13 @@ public class PdfConverter {
         return converted;
     }
 
+    /**
+     * Create the table contents for task list.
+     * @param tasks task list of the student
+     * @param maxContentWidthString list of strings with the maximum length for each column
+     * @param font font of the text contents
+     * @param fontSize font size of the text contents
+     */
     public void createTableContentForTask(TaskList tasks, List<String> maxContentWidthString, PDFont font,
                                            int fontSize)
             throws IOException {
@@ -220,6 +254,13 @@ public class PdfConverter {
         this.yInitTable = -1;
     }
 
+    /**
+     * Creates the table contents for score list.
+     * @param scores score list of the student
+     * @param maxContentWidthString list of strings with the maximum length for each column
+     * @param font font of the text contents
+     * @param fontSize font size of the text contents
+     */
     public void createTableContentForScore(ScoreList scores, List<String> maxContentWidthString, PDFont font,
                                             int fontSize) throws IOException {
         float yFinal = this.y;
@@ -248,20 +289,51 @@ public class PdfConverter {
         createHorizontalLine(yFinal);
         this.yInitTable = -1;
     }
+
+    /**
+     * Set up the content stream for writing the text contents.
+     * @param font font of the text contents
+     * @param fontSize font size of the text contents
+     * @param x initial x-coordinate of the text
+     * @param y initial y-coordinate of the text
+     * @throws IOException
+     */
     public void setUpContentStream(PDFont font, int fontSize, float x, float y) throws IOException {
         this.contentStream.beginText();
         this.contentStream.setFont(font, fontSize);
         this.contentStream.moveTextPositionByAmount(x, y);
     }
 
+    /**
+     * Calculates the height of the string.
+     * @param font font of the te
+     * @param fontSize font size of the text
+     * @param margin margin of the text
+     * @return height of the text as a float
+     */
     public float textHeight(PDFont font, int fontSize, float margin) {
         return (font.getFontDescriptor().getCapHeight() / 1000 * fontSize) + 2 * margin;
     }
 
+    /**
+     * Calculates the length of the text.
+     * @param curString current string of the text
+     * @param font font of the text
+     * @param fontSize font size of the text
+     * @return length of the text
+     */
     public float textLength(String curString, PDFont font, int fontSize) throws IOException {
         return font.getStringWidth(curString) / 1000 * fontSize;
     }
 
+    /**
+     * Calculates the maximum number of characters possible inside the wrap values.
+     * @param curString current string of the text
+     * @param font font of the text
+     * @param fontSize font size of the text
+     * @param wrap length wrap of the text
+     * @return maximum number of characters possible for the wrap given
+     */
     public int getNumberOfCharsPossible(String curString, PDFont font, int fontSize, float wrap) throws IOException {
         float len = textLength("-", font, fontSize);
         int count = 0;
@@ -276,6 +348,11 @@ public class PdfConverter {
         return count;
     }
 
+    /**
+     * Creates vertical lines for the table.
+     * @param yFinal final y-coordinate of the table
+     * @param maxContentWidthString list of strings with the maximum length for each column
+     */
     public void createVerticalLines(float yFinal, List<String> maxContentWidthString) throws IOException {
         contentStream.drawLine(this.leftMarginPosition, this.yInitTable, this.leftMarginPosition, yFinal);
         contentStream.drawLine(this.rightMarginPosition, this.yInitTable, this.rightMarginPosition, yFinal);
@@ -288,6 +365,15 @@ public class PdfConverter {
         }
     }
 
+    /**
+     * Sets up a new page if the current page reaches the margin.
+     * @param yFinal final y-coordinate of the current page
+     * @param maxContentWidthString list of strings with the maximum length for each column
+     * @param margin margin of the text
+     * @param font font of the text
+     * @param fontSize font size of the text
+     * @return new content stream for the next page
+     */
     public PDPageContentStream handleNextPage(float yFinal, List<String> maxContentWidthString, float margin,
                                                PDFont font, int fontSize)
             throws IOException {
@@ -306,6 +392,14 @@ public class PdfConverter {
         return contentStream;
     }
 
+    /**
+     * Wraps the string given to fit in the specified wrap length.
+     * @param text text string
+     * @param wrap length wrap of the text
+     * @param font font of the text
+     * @param fontSize font size of the text
+     * @param maxContentWidthString list of strings with the maximum length for each column
+     */
     public void wrapText(String text, float wrap, PDFont font, int fontSize, List<String> maxContentWidthString)
             throws IOException {
         String[] textSplit = text.split(" ");

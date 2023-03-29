@@ -1,5 +1,11 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.awt.Color;
+import java.io.IOException;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -7,12 +13,8 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
-import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 public class PdfConverterTest {
+    private static String stringSample = "THIS_IS_A_SAMPLE_STRING:)";
     private final float horizontalWrap = 432;
     private final float xInit = 90;
     private final float yInit = 702;
@@ -48,8 +50,6 @@ public class PdfConverterTest {
     private PDPageContentStream contentStream;
     private final PdfConverter pdfConverter = new PdfConverter();
 
-    private String STRING_1 = "THIS_IS_A_SAMPLE_STRING:)";
-
     @Test
     public void elementsNotSetUp_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> this.document.close());
@@ -78,8 +78,9 @@ public class PdfConverterTest {
 
     @Test
     public void getNumberOfCharsPossible_validString_returnsValidWrappedStringLength() throws IOException {
-        int numberOfChars = pdfConverter.getNumberOfCharsPossible(STRING_1, font, fontTableContentSize, (float) 50.0);
-        String wrappedString = STRING_1.substring(0, numberOfChars);
+        int numberOfChars = pdfConverter.getNumberOfCharsPossible(stringSample, font, fontTableContentSize,
+                (float) 50.0);
+        String wrappedString = stringSample.substring(0, numberOfChars);
         float wrappedStringLength = pdfConverter.textLength(wrappedString + "-", font, fontTableContentSize);
 
         assertTrue(wrappedStringLength <= (float) 50.0);
@@ -88,11 +89,11 @@ public class PdfConverterTest {
     @Test
     public void textLength_validString_equalsTotalLengthOfEachCharacter() throws IOException {
         float totalLength = 0;
-        for(int i = 0; i < STRING_1.length(); i++) {
-            totalLength += font.getStringWidth(String.valueOf(STRING_1.charAt(i))) / 1000 * fontTableContentSize;
+        for (int i = 0; i < stringSample.length(); i++) {
+            totalLength += font.getStringWidth(String.valueOf(stringSample.charAt(i))) / 1000 * fontTableContentSize;
         }
 
-        float totalExpectedLength = pdfConverter.textLength(STRING_1, font, fontTableContentSize);
+        float totalExpectedLength = pdfConverter.textLength(stringSample, font, fontTableContentSize);
         assertTrue(Math.abs(totalLength - totalExpectedLength) < 0.01);
     }
 
