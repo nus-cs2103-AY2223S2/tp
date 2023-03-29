@@ -22,7 +22,7 @@ public abstract class Task {
     private Location location;
     private boolean isDone;
     private Priority priority;
-    private final Set<Tag> tags = new HashSet<>();
+    private Set<Tag> tags = new HashSet<>();
 
     /**
      * Creates a Task object with the given title and MEDIUM priority.
@@ -58,6 +58,9 @@ public abstract class Task {
 
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+    public void setTags(Set<Tag> tagList) {
+        this.tags = tagList;
     }
 
     public void mark() {
