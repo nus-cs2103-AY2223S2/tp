@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane styleClass="background" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox maxHeight="1.7976931348623157E308" prefHeight="500.0" prefWidth="248.0">
         <ListView fx:id="deliveryJobListView" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
@@ -23,9 +23,9 @@
       </VBox>
    </center>
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
+      <MenuBar fx:id="listOptionMenu" BorderPane.alignment="CENTER">
          <menus>
-            <Menu mnemonicParsing="false" text="Order By">
+            <Menu fx:id="orderOption" mnemonicParsing="false" text="Order By" visible="false">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#handleOrderByDelivered" text="Delivered Status" />
                 <MenuItem mnemonicParsing="false" onAction="#handleOrderByEarning" text="Earning" />
@@ -39,7 +39,7 @@
                   </Label>
                </graphic>
             </Menu>
-            <Menu mnemonicParsing="false" text="Filter By">
+            <Menu fx:id="filterOption" mnemonicParsing="false" text="Filter By" visible="false">
               <items>
                   <RadioMenuItem fx:id="filterAll" mnemonicParsing="false" selected="true" text="All">
                      <toggleGroup>
