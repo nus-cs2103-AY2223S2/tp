@@ -445,6 +445,7 @@ What you should see:<br>
 {Explanation}
 
 Examples:
+* `tag 1 m/CS1234`: Adds CS1234 to the first contact from EduMate.
 
 
 ### Remove a label from a contact `untag`
@@ -454,39 +455,19 @@ Removes a module tag from an existing contact.
 Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
 * `untag CONTACT_INDEX m/MODULE_TAG`
 * `untag m/MODULE_TAG`
+* `untag CONTACT_INDEX m/MODULE_TAG DAY START END`
+* `untag m/MOUDLE_TAG DAY START END`
+* `untag CONTACT_INDEX g/GROUP`
+* `untag g/GROUP`
 
-Example of usage: `untag 3 m/CS2103T`
-```
-Name: John Doe (User)
-Modules: [CS2101, MA2104, MA3252, CFG1002]
-```
+What you should see:<br>
+{GUI}<br>
+{Explanation}
 
-Expected outcome for CLI:
-```
-"Module(s) untagged to Person!
-Name: John Smith
-Modules: [CS2100, CS2101, CS2102]
-Module(s) in common: [CS2101]
-```
-Description of outcome:
+Examples:
+* `utag 1 m/CS1234`: Removes CS1234 to the first contact from EduMate.
 
-CS2103T is removed from John Doe's list of modules. Assuming the user also takes CS2101, which is represented as the modules in common.
 
-Example of usage: untag m/CS2103T
-```
-Name: John Doe (user)
-Modules: [CS2101, CS2103T, MA2104, MA3252, CFG1002]
-```
-
-Expected outcome for CLI:
-```
-"Module(s) untagged to Person!
-Name: John Doe
-Modules: [CS2101, MA2104, MA3252, CFG1002]
-```
-Description of outcome:
-
-CS2103T is added to John Doe's, the user, list of modules.
 
 ## Advanced Commands
 
