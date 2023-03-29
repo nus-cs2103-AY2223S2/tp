@@ -19,13 +19,19 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@../css/MainWindow.css" />
+        <URL value="@../css/LightTheme.css" />
       </stylesheets>
 
       <VBox fx:id="mainVbox">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem fx:id="baseMenuItem" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="View">
+            <items>
+              <MenuItem fx:id="lightMenuItem" mnemonicParsing="false" onAction="#setLightTheme" text="Light Mode" />
+              <MenuItem fx:id="darkMenuItem" mnemonicParsing="false" onAction="#setDarkTheme" text="Dark Mode" />
+            </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
