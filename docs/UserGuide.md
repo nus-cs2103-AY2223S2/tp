@@ -288,7 +288,75 @@ Format: `findtask TITLE`
 Examples:
 - `findtask CS2103 TP` displays everyone who are assigned to this task.
 
-### Archiving data files `[coming in v1.3]`
+
+## View Assigned People: `ap`
+
+Displays a list of all persons who have been assigned to a task.
+
+Format: `ap`
+
+Examples:
+- `ap` displays a list of all persons who have been assigned to a task.
+
+---
+
+## View Assigned Tasks: `at`
+
+Displays a list of all tasks that have been assigned to a person.
+
+Format: `at`
+
+Examples:
+- `at` displays a list of all tasks that have been assigned to a person.
+
+---
+
+## View Unassigned People: `up`
+
+Displays a list of all persons who have not been assigned to any task.
+
+Format: `up`
+
+Examples:
+- `up` displays a list of all persons who have not been assigned to any task.
+
+---
+
+## View Unassigned Tasks: `ut`
+
+Displays a list of all tasks that have not been assigned to any person.
+
+Format: `ut`
+
+Examples:
+- `ut` displays a list of all tasks that have not been assigned to any person.
+
+---
+
+## View Assigned: `la`
+
+Displays a list of all persons who have been assigned to a task and all tasks that have been assigned to a person.
+
+Format: `la`
+
+Examples:
+- `la` displays a list of all persons who have been assigned to a task and all tasks that have been assigned to a person.
+
+---
+
+## View Unassigned: `lu`
+
+Displays a list of all persons who have not been assigned to any task and all tasks that have not been assigned to any person.
+
+Format: `lu`
+
+Examples:
+- `lu` displays a list of all persons who have not been assigned to any task and all tasks that have not been assigned to any person.
+
+---
+
+
+### Archiving data files `[coming in v1.5]`
 
 _Details coming soon ..._
 
@@ -303,20 +371,27 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                                                                     |
-|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add Task**    | `addtask title/TITLE c/CONTENT st/STATUS` <br> e.g., `addtask title/Draft proposal c/Complete proposal by 1st March st/false`                                        |
-| **Assign**      | `assign ti/INDEX pi/INDEX`<br/>e.g. `assign ti/1 pi/2`                                                                                                               |
-| **Clear**       | `clear`                                                                                                                                                              |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                  |
-| **Delete Task** | `deletetask INDEX`<br/> e.g. `deletetask 2`                                                                                                                          |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**        | `find NAME`<br> e.g., `find James Jake`                                                                                                                              |
-| **Find Task**   | `findtask TITLE`<br> e.g., `findtask CS2103 TP`                                                                                                                      |
-| **Mark Task**   | `mark INDEX`<br/> e.g. `mark 3`                                                                                                                                      |
-| **Unmark Task** | `unmark INDEX` <br/> e.g. `unmark 2`                                                                                                                                 |
-| **Help**        | `help`                                                                                                                                                               |
-| **List**        | `list`                                                                                                                                                               |
-| **List All**    | `listall`                                                                                                                                                            |
-| **List Task**   | `listtask`                                                                                                                                                           |
+| Action                       | Format, Examples                                                                                                                                                              |
+|------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`          |
+| **Add Task**                 | `addtask title/TITLE c/CONTENT st/STATUS` <br> e.g., `addtask title/Draft proposal c/Complete proposal by 1st March st/false`                                                 |
+| **Clear**                    | `clear`                                                                                                                                                                       |
+| **Delete**                   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                           |
+| **Delete Task**              | `deletetask INDEX`<br/> e.g. `deletetask 2`                                                                                                                                   |
+| **Edit**                     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                |
+| **Find**                     | `find NAME`<br> e.g., `find James Jake`                                                                                                                                       |
+| **Find Task**                | `findtask TITLE`<br> e.g., `findtask CS2103 TP`                                                                                                                               |
+| **Mark Task**                | `mark INDEX`<br/> e.g. `mark 3`                                                                                                                                               |
+| **Unmark Task**              | `unmark INDEX` <br/> e.g. `unmark 2`                                                                                                                                          |
+| **Help**                     | `help`                                                                                                                                                                        |
+| **List**                     | `list`                                                                                                                                                                        |
+| **List All**                 | `listall`                                                                                                                                                                     |
+| **List Task**                | `listtask`                                                                                                                                                                    |
+| **Assign Task from Person**  | `assigntask ti/INDEX p/INDEX`<br> e.g., `assigntask ti/1 p/2`                                                                                                                 |
+| **Unassign Task from Person** | `ut ti/INDEX pi/INDEX`<br/> e.g. `ut ti/1 pi/2`                                                                                                                      |
+| **View Assigned People**     | `ap`                                                                                                                                                                    |
+| **View Assigned Tasks**      | `at`                                                                                                                                                                    |
+| **View Unassigned People**   | `up`                                                                                                                                                                    |
+| **View Unassigned Tasks**    | `ut`                                                                                                                                                                    |
+| **View Assigned**            | `la`                                                                                                                                                                         |
+| **View Unassigned**          | `lu`                                                                                                                                                                         |
