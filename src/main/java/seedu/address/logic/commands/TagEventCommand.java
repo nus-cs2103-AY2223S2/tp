@@ -20,10 +20,10 @@ import seedu.address.model.person.fields.Name;
 public class TagEventCommand extends Command {
     public static final String COMMAND_WORD = "tagpersonevent";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags a Person to an Event. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags a Person to an Event.\n"
                 + "Parameters: "
                 + PREFIX_EVENT_TO_TAG + "INDEX OF EVENT TO TAG "
-                + PREFIX_PERSON_TO_TAG + "NAME OF PERSON TO TAG "
+                + PREFIX_PERSON_TO_TAG + "NAME OF PERSON TO TAG\n"
                 + "Example: " + COMMAND_WORD + " "
                 + PREFIX_EVENT_TO_TAG + "1 "
                 + PREFIX_PERSON_TO_TAG + "John Doe";
