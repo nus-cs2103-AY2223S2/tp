@@ -122,6 +122,7 @@ The susceptibility level of an elderly to injury or sickness.
 * Medical qualification must be in the format `SKILL_NAME, LEVEL`.
   * The `LEVEL` must be one of the following value: `BASIC`, `INTERMEDIATE` or `HIGH`.
   * Example: `CPR, BASIC`, `AED, INTERMEDIATE`.
+  * The `SKILL_NAME` should not include any spaces.
 * Specified for volunteers only.
 
 #### Available Dates
@@ -134,10 +135,9 @@ such as `2022-01-03,2022-01-20` and `2022-01-10,2022-01-23`. Therefore, to ensur
 please ensure your input available date ranges are non-overlapping.
 </div>
 
-
 #### Tags
 A tag is a generic description for a group of people.
-* Only alphanumeric characters are allowed.
+* Only alphanumeric, non-space characters are allowed.
 
 #### Duplicate Entries
 * Person (Elderly and Volunteers)
