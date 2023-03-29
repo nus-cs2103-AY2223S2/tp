@@ -375,6 +375,7 @@ Add tags to a job listing for easy reference.
 
 | Action     | Format, Examples                                                                                                                     |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+
 | **add**    | `add t/TITLE d/DESCRIPTION [a/APPLICANTS]` <br> e.g., `add t/Chicken Rice Uncle d/Cooks tasty chicken rice a/Nicholas a/Tom a/Adele` |
 | **delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                  |
 | **edit**   | `edit [t/TITLE] d/DESCRIPTION [a/APPLICANTS]`<br> e.g.,`edit 2 t/Noodle Seller d/Makes tasty noodles`                                |
