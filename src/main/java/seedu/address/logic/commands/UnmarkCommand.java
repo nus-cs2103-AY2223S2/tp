@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
+import static seedu.address.model.TaskBookModel.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class UnmarkCommand extends Command {
         // TODO: throw exception if task is not done?
         Task taskToUnmark = lastShownList.get(targetIndex.getZeroBased());
         taskBookModel.unmarkTask(taskToUnmark);
+        taskBookModel.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark));
     }
 }

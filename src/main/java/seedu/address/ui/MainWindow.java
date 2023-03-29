@@ -151,6 +151,16 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    @FXML
+    public void tasksClicked() throws CommandException, ParseException {
+        CommandResult commandResult = executeCommand("view");
+    }
+
+    @FXML
+    public void personsClicked() throws CommandException, ParseException {
+        CommandResult commandResult = executeCommand("list");
+    }
+
     void show() {
         primaryStage.show();
     }
