@@ -106,11 +106,6 @@
 
 }
 
-/* Style the labels */
-.cell_big_label {
-    -fx-text-fill: #e6e6e6;
-}
-
 .cell_small_label {
     -fx-text-fill: #b3b3b3;
 }
@@ -156,7 +151,7 @@
 }
 
 .cell_big_label {
-    -fx-text-fill: #e6e6e6;
+    -fx-text-fill: #e6e6e6 !important;
 }
 
 .cell_small_label {
