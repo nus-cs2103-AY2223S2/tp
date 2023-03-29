@@ -344,8 +344,6 @@ Use `list` when you need to view a list of *all* the contacts in your ConnectUS.
 
 [↑ Back to feature list](#4-features)
 
-<div style="page-break-after: always"></div>
-
 ## 4.3 Clearing all entries: `clear`
 
 Format: `clear`
@@ -358,7 +356,9 @@ ConnectUS comes with a set of default contacts. If you want to remove all defaul
 Once the contact data in ConnectUS is cleared, it cannot be retrieved. Do proceed with caution!
 </div>
 
-**Example:**
+<div style="page-break-after: always"></div>
+
+**Clear Example:**
 
 **Input in Command Box:** `clear`
 
@@ -382,7 +382,7 @@ A contact can have any number of tags, <u>modules</u> and <u>CCAs</u>! (includin
 
 <div style="page-break-after: always"></div>
 
-**Example 1:**
+**Add Example 1:**
 
 **Input in Command Box:** `add n/James`
 
@@ -390,7 +390,7 @@ A contact can have any number of tags, <u>modules</u> and <u>CCAs</u>! (includin
 
 <div style="page-break-after: always"></div>
 
-**Example 2:**
+**Add Example 2:**
 
 **Input in Command Box:** `add n/James e/james@example.com ig/itsjameshere tg/itsjameshere mod/CS2103T mod/CS2101 cca/NUS Hackers r/Year 2 b/01/01/2000`
 
@@ -425,7 +425,7 @@ The `edit` command:
 * At least one of the optional fields must be provided (e.g. `n/NAME`, `tg/TELEGRAM`).
 * Existing values will be updated to the input values.
 
-**Example:**
+**Edit Example:**
 
 **Input in Command Box:** `edit 1 p/12345678 e/james@example.com` 
 
@@ -457,7 +457,7 @@ The `add-t` command:
 * At least one of the optional fields must be provided (e.g. `r/REMARK_NAME`, `mod/MODULE_NAME`).
 * A new tag will be created and assigned to the person specified at the `PERSON_INDEX`.
 
-**Example:**
+**Add Tag Example:**
 
 **Input in Command Box:** `add-t 1 r/friends mod/CS2103T`
 
@@ -487,7 +487,7 @@ The `delete-t` command:
 * At least one of the optional fields must be provided (i.e. `r/REMARK_INDEX`, `mod/MODULE_INDEX`, `cca/CCA_INDEX`, `CCA_POSITION_INDEX`).
 * The specified tag will be deleted from the contact specified at the `PERSON_INDEX`.
 
-**Example:**
+**Delete Tag Example:**
 
 **Input in Command Box:** `delete-t 1 mod/1`
 
@@ -513,7 +513,7 @@ The `delete` command:
 * The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
 
-**Example 1:**
+**Delete Example 1:**
 
 `list` followed by `delete 2` deletes the 2nd contact in the ConnectUS app.
 
@@ -521,7 +521,7 @@ The `delete` command:
 
 **After:**<br>![DeleteAfter1](images/DeleteAfter1.png)
 
-**Example 2:**
+**Delete Example 2:**
 
 `search Alex` followed by `delete 1` deletes the 1st contact in the results of the `search` command.
 
@@ -549,7 +549,7 @@ Examples:
 
 * The keywords are case-insensitive! This means that `search january`, `search JANUARY` and `search jAnUaRy` will all return the contacts whose information fields contain the keyword `january`.
 
-**Example:**
+**Search Example:**
 
 **Input in Command Box:** `search january`
 
@@ -575,7 +575,7 @@ You can directly open supported social media platforms (i.e. Instagram, Telegram
 You'll need to download the desktop applications for <a href="https://desktop.telegram.org/" class="alert-link">Telegram</a> and <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> respectively if you want to use these features!
 </div>
 
-**Example:**
+**Open Example:**
 
 **Input in Command Box:** `open 1 tg/`
 
@@ -595,7 +595,7 @@ Format: `chat PERSON_INDEX wa/ m/`
 You'll need to download the desktop application for <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> if you want to use this feature!
 </div>
 
-**Example:**
+**Chat Example:**
 
 **Input in Command Box:** `chat 1 [wa/] [tg/] m/hello world!`
 
