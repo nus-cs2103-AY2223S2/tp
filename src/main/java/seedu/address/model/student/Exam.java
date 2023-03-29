@@ -149,6 +149,20 @@ public class Exam {
     }
 
     /**
+     * Returns true if both exams have the same description, start time, end time, weightage, and grade.
+     * @param otherExam The other exam to compare with.
+     * @return True if both exams have the same description, start time, end time, weightage, and grade.
+     */
+    public boolean isSameTimeExam(Exam otherExam) {
+        if (otherExam == this) {
+            return true;
+        }
+
+        return otherExam != null
+            && otherExam.getStartTime().isBefore(getEndTime()) && otherExam.getEndTime().isAfter(getStartTime());
+    }
+
+    /**
      * Creates a new Exam with the given description, start time, end time, weightage, and status.
      *
      * @return The new Exam.

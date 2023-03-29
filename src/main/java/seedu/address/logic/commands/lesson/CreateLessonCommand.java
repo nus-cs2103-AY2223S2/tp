@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -89,6 +90,19 @@ public class CreateLessonCommand extends Command {
         model.updateFilteredStudentList(predicate);
 
         List<Student> studentList = model.getFilteredStudentList();
+
+        if (startTime.isBefore(LocalDateTime.now())) {
+            throw new CommandException("start time must be in the future.");
+        }
+
+        if (startTime.isAfter(endTime)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EXAM_TIME);
+        }
+
+        if (Duration.between(startTime, endTime).toMinutes() < 30 || Duration.between(startTime,
+            endTime).toHours() > 3) {
+            throw new CommandException(Messages.MESSAGE_INVALID_LESSON_DURATION);
+        }
 
         Lesson lesson = new Lesson(lessonName, startTime, endTime);
 

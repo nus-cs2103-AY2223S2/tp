@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exam.DeleteExamCommand;
+import seedu.address.logic.commands.lesson.CreateLessonCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -46,6 +47,10 @@ public class DeleteExamCommandParser implements Parser<DeleteExamCommand> {
         for (int i = 0; i < nameKeywords.size(); i++) {
             String name = nameKeywords.get(i);
             name = name.trim();
+            if (name.trim().isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    CreateLessonCommand.MESSAGE_USAGE));
+            }
             //            int spaceIndex = name.indexOf(" ");
             //            if (spaceIndex != -1) {
             //                name = name.substring(0, spaceIndex);

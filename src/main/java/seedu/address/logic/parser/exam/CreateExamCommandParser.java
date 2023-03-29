@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.exam.CreateExamCommand;
+import seedu.address.logic.commands.lesson.CreateLessonCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -44,6 +45,10 @@ public class CreateExamCommandParser implements Parser<CreateExamCommand> {
         }
 
         String examDescription = argMultimap.getValue(PREFIX_EXAM).get();
+        if (examDescription.trim().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                CreateExamCommand.MESSAGE_USAGE));
+        }
         LocalDateTime startTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_STARTTIME).get());
         LocalDateTime endTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_ENDTIME).get());
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
@@ -52,6 +57,10 @@ public class CreateExamCommandParser implements Parser<CreateExamCommand> {
         for (int i = 0; i < nameKeywords.size(); i++) {
             String name = nameKeywords.get(i);
             name = name.trim();
+            if (name.trim().isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    CreateLessonCommand.MESSAGE_USAGE));
+            }
             //            int spaceIndex = name.indexOf(" ");
             //            if (spaceIndex != -1) {
             //                name = name.substring(0, spaceIndex);
