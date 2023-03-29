@@ -48,7 +48,7 @@ public class DoctorListPanel extends UiPart<Region> {
             return generatedCell;
         });
         setSelectedDoctor(doctorList);
-        showSelectedDoctorInfo(enlargedDoctorInfoCard, logic);
+        showSelectedDoctorInfo(enlargedDoctorInfoCard);
     }
 
     /**
@@ -80,7 +80,7 @@ public class DoctorListPanel extends UiPart<Region> {
      * @param enlargedDoctorInfoCard the UI part displaying the information of {@code Doctor} selected
      */
     private void showSelectedDoctorInfo(
-            EnlargedDoctorInfoCard enlargedDoctorInfoCard, Logic logic) {
+            EnlargedDoctorInfoCard enlargedDoctorInfoCard) {
         ChangeListener<Doctor> changeListener = (observable, oldValue, newValue) -> {
             selectedDoctor = observable.getValue();
             enlargedDoctorInfoCard

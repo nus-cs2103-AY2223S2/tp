@@ -1,9 +1,12 @@
 package seedu.address.model.person.doctor;
 
+import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.person.patient.Patient;
 
 /**
  * Filter Class for passing to DoctorContainsKeywordsPredicate
@@ -17,6 +20,30 @@ public class DoctorFilter {
     private final String specialtyFilter;
     private final String yoeFilter;
     private final Set<String> tagsFilter;
+    private final Optional<Patient> patientFilter;
+
+    /**
+     * Constructs a {@code DoctorFilter}.
+     *
+     * @param name name in string (can be empty string).
+     * @param phone phone in string (can be empty string).
+     * @param email email in string (can be empty string).
+     * @param specialty specialty in string (can be empty string).
+     * @param yoe yoe in string (can be empty string).
+     * @param tags set of tags in string (can be empty list).
+     * @param patient optional containing patient object (OfNullable).
+     */
+    public DoctorFilter(String name, String phone, String email,
+                        String specialty, String yoe,
+                        Set<String> tags, Optional<Patient> patient) {
+        this.nameFilter = name;
+        this.phoneFilter = phone;
+        this.emailFilter = email;
+        this.specialtyFilter = specialty;
+        this.yoeFilter = yoe;
+        this.tagsFilter = tags;
+        this.patientFilter = patient;
+    }
 
     /**
      * Constructs a {@code DoctorFilter}.
@@ -28,17 +55,13 @@ public class DoctorFilter {
      * @param yoe yoe in string (can be empty string).
      * @param tags set of tags in string (can be empty list).
      */
-    public DoctorFilter(String name,
-                        String phone,
-                        String email,
-                        String specialty,
-                        String yoe, Set<String> tags) {
-        this.nameFilter = name;
-        this.phoneFilter = phone;
-        this.emailFilter = email;
-        this.specialtyFilter = specialty;
-        this.yoeFilter = yoe;
-        this.tagsFilter = tags;
+    public DoctorFilter(String name, String phone, String email,
+                        String specialty, String yoe, Set<String> tags) {
+        this(name, phone, email, specialty, yoe, tags, Optional.empty());
+    }
+
+    public DoctorFilter(Optional<Patient> patient) {
+        this("", "", "", "", "", new HashSet<>(), patient);
     }
 
     /**
@@ -65,6 +88,10 @@ public class DoctorFilter {
                     .collect(Collectors.toSet()));
         }
 
+        if (patientFilter.isPresent()) {
+            result = result && doctor.hasPatient(patientFilter.get());
+        }
+
         return result;
     }
 
@@ -77,6 +104,7 @@ public class DoctorFilter {
                 && this.emailFilter.equals(((DoctorFilter) other).emailFilter)
                 && this.specialtyFilter.equals(((DoctorFilter) other).specialtyFilter)
                 && this.yoeFilter.equals(((DoctorFilter) other).yoeFilter)
-                && this.tagsFilter.equals(((DoctorFilter) other).tagsFilter)); // state check
+                && this.tagsFilter.equals(((DoctorFilter) other).tagsFilter))
+                && this.patientFilter.equals(((DoctorFilter) other).patientFilter); // state check
     }
 }

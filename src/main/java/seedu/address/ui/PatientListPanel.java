@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.beans.value.ChangeListener;
@@ -12,6 +13,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Logic;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.doctor.DoctorContainsKeywordsPredicate;
+import seedu.address.model.person.doctor.DoctorFilter;
 import seedu.address.model.person.patient.Patient;
 
 /**
@@ -31,11 +36,11 @@ public class PatientListPanel extends UiPart<Region> {
      */
     public PatientListPanel(ObservableList<Patient> patientList,
                             EnlargedPatientInfoCard enlargedPatientInfoCard,
-                            EnlargedInfoCardDisplayController infoCardDisplayController) {
+                            EnlargedInfoCardDisplayController infoCardDisplayController, Logic logic) {
         super(FXML);
         patientListView.setItems(patientList);
         patientListView.setCellFactory(listView -> {
-            PatientListViewCell generatedCell = new PatientListViewCell();
+            PatientListViewCell generatedCell = new PatientListViewCell(logic);
             generatedCell.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 infoCardDisplayController.displayPatient();
             });
@@ -85,7 +90,8 @@ public class PatientListPanel extends UiPart<Region> {
             EnlargedPatientInfoCard enlargedPatientInfoCard) {
         ChangeListener<Patient> changeListener = (observable, oldValue, newValue) -> {
             selectedPatient = observable.getValue();
-            enlargedPatientInfoCard.updateSelectedPatientOptional(Optional.ofNullable(selectedPatient));
+            enlargedPatientInfoCard
+                    .updateSelectedPatientOptional(Optional.ofNullable(selectedPatient));
         };
         patientListView.getSelectionModel().selectedItemProperty().addListener(changeListener);
     }
@@ -113,9 +119,25 @@ public class PatientListPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Patient} using a {@code PatientCard}.
      */
     class PatientListViewCell extends ListCell<Patient> {
+
+        private Optional<Patient> patient;
+
+        public PatientListViewCell(Logic logic) {
+            super();
+            this.patient = Optional.empty();
+            this.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                DoctorFilter doctorContainsPatient =
+                        new DoctorFilter(this.patient);
+                Predicate<Doctor> doctorsOfPatientPredicate =
+                        new DoctorContainsKeywordsPredicate(doctorContainsPatient);
+                logic.updateFilteredDoctorList(doctorsOfPatientPredicate);
+            });
+        }
+
         @Override
         protected void updateItem(Patient patient, boolean empty) {
             super.updateItem(patient, empty);
+            this.patient = Optional.ofNullable(patient);
 
             if (empty || patient == null) {
                 setGraphic(null);
