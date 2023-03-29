@@ -71,6 +71,18 @@ public class Doctor extends Person {
     }
 
     /**
+     * Adds a patient if it does not exist in doctor's patient list.
+     *
+     * @param patient a patient.
+     */
+    public void assignPatient(Patient patient) {
+        assert patient != null;
+        if (!this.hasPatient(patient)) {
+            patients.add(patient);
+        }
+    }
+
+    /**
      * Removes a patient if it exists in doctor's patient list.
      *
      * @param patient a patient.
@@ -145,9 +157,9 @@ public class Doctor extends Person {
 
         Set<Patient> patients = getPatients();
         if (!patients.isEmpty()) {
-            builder.append("; Patients: ");
+            builder.append("; Patients: | ");
             patients.forEach((Patient patient) -> {
-                builder.append(patient.getName());
+                builder.append(patient.getName() + " | ");
             });
         }
         return builder.toString();

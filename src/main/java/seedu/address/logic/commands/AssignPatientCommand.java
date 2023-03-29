@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 
 import java.util.List;
 import java.util.Set;
@@ -23,8 +25,8 @@ public class AssignPatientCommand extends Command {
             + ": Assigns patient identified by the patient index number used in the displayed patients list "
             + "with the doctor identified by the doctor index number used in the displayed doctor list.\n"
             + "Parameters: "
-            + "PATIENT_INDEX (must be a positive integer) "
-            + "DOCTOR_INDEX (must be a positive integer) ";
+            + PREFIX_PATIENT + "PATIENT_INDEX (must be a positive integer) "
+            + PREFIX_DOCTOR + "DOCTOR_INDEX (must be a positive integer) ";
     public static final String MESSAGE_ASSIGN_PATIENT_SUCCESS = "Assigned Patient %1s to Doctor %2s.";
     public static final String MESSAGE_PATIENT_ALREADY_ASSIGNED = "Patient %1s is already assigned to Doctor %2s.";
     private final Index patientIndex;
@@ -57,8 +59,10 @@ public class AssignPatientCommand extends Command {
         Doctor doctorToAssign = lastShownDoctorList.get(doctorIndex.getZeroBased());
 
         Doctor doctorWithAssign = createDoctorWithAssign(doctorToAssign, patientToAssign);
+        Patient patientWithAssign = createPatientWithAssign(doctorToAssign, patientToAssign);
 
         model.setDoctor(doctorToAssign, doctorWithAssign);
+        model.setPatient(patientToAssign, patientWithAssign);
         return new CommandResult(String.format(MESSAGE_ASSIGN_PATIENT_SUCCESS,
                 patientToAssign.getName().fullName,
                 doctorToAssign.getName().fullName));
@@ -78,6 +82,7 @@ public class AssignPatientCommand extends Command {
 
         patientsSet.add(patientToAssign);
 
+
         return new Doctor(doctorToAssign.getName(),
                 doctorToAssign.getPhone(),
                 doctorToAssign.getEmail(),
@@ -85,6 +90,32 @@ public class AssignPatientCommand extends Command {
                 doctorToAssign.getYoe(),
                 doctorToAssign.getTags(),
                 patientsSet);
+    }
+
+    private static Patient createPatientWithAssign(Doctor doctorToAssign, Patient patientToAssign)
+            throws CommandException {
+        assert doctorToAssign != null;
+        assert patientToAssign != null;
+        Set<Doctor> doctorsSet = patientToAssign.getDoctors();
+
+        if (doctorsSet.contains(doctorToAssign)) {
+            throw new CommandException(String.format(MESSAGE_PATIENT_ALREADY_ASSIGNED,
+                    patientToAssign.getName().fullName,
+                    doctorToAssign.getName().fullName));
+        }
+
+        doctorsSet.add(doctorToAssign);
+
+        return new Patient(patientToAssign.getName(),
+                patientToAssign.getPhone(),
+                patientToAssign.getEmail(),
+                patientToAssign.getHeight(),
+                patientToAssign.getWeight(),
+                patientToAssign.getDiagnosis(),
+                patientToAssign.getStatus(),
+                patientToAssign.getRemark(),
+                patientToAssign.getTags(),
+                doctorsSet);
     }
 
     @Override

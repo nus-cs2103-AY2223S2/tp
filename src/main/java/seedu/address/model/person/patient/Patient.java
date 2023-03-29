@@ -171,9 +171,9 @@ public class Patient extends Person {
 
         Set<Doctor> doctors = getDoctors();
         if (!doctors.isEmpty()) {
-            builder.append("; Doctors: ");
+            builder.append("; Doctors: | ");
             doctors.forEach((Doctor doctor) -> {
-                builder.append(doctor.getName());
+                builder.append(doctor.getName() + " | ");
             });
         }
         return builder.toString();
