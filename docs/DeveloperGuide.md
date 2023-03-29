@@ -271,7 +271,7 @@ Given below is an example usage of how Salary Command is being used in the follo
 
 The following sequence diagram shows how the Deadline Command is being done:
 
-<img src="images/SalaryCommandSequenceDiagram.png" width="800" />
+<img src="images/DeadlineCommandSequenceDiagram.png" width="800" />
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
