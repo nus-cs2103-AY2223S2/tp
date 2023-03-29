@@ -304,11 +304,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns pay rate per hour of specified person {@code name} in the address book.
      * @param name
-     * @return Non-negative integer if a person with the same name as {@code name} exists in the address book, -1 otherwise.
+     * @return Non-negative integer if a person with the same name as {@code name}
+     *      exists in the address book, -1 otherwise.
      */
     public int getPayRateFromName(String name) {
         for (Person person: persons) {
-            if (name.equals(person.getName().toString())) {
+            String toCompareWith = person.getName().toString().toLowerCase();
+            if (name.toLowerCase().equals(toCompareWith)) {
                 return person.getPayRate().toInt();
             }
         }

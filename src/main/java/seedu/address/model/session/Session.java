@@ -318,7 +318,7 @@ public class Session implements Comparable<Session> {
         for (Map.Entry<String, Boolean> entry : attendanceMap.entrySet()) {
             if (entry.getValue()) {
                 float indivPay = addressBook.getPayRateFromName(entry.getKey());
-                totalPay += indivPay/60 * durationInMins;
+                totalPay += indivPay / 60 * durationInMins;
             }
         }
         return totalPay;
@@ -327,7 +327,8 @@ public class Session implements Comparable<Session> {
     /**
      * Returns a string representation of the attendance count for the session.
      *
-     * @return a string of the format "X/Y", where X is the number of attendees present and Y is the total number of attendees
+     * @return a string of the format "X/Y", where X is the number of attendees
+     *      present and Y is the total number of attendees
      */
     public String getAttendanceCount() {
         int totalCount = 0;
