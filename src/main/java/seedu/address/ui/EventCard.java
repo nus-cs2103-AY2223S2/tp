@@ -20,6 +20,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Note;
@@ -43,6 +45,8 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private HBox details;
     @FXML
+    private HBox noteDetails;
+    @FXML
     private Label name;
     @FXML
     private Label id;
@@ -53,17 +57,21 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label attendance;
     @FXML
+    private Text noteText;
+    @FXML
     private Label progressBarCount;
     @FXML
     private ImageView attachmentLogo;
     @FXML
     private ImageView noteLogo;
-
+    @FXML
     private ScrollPane scrollPane;
     @FXML
     private FlowPane tags;
     @FXML
     private ProgressBar progressBar;
+    @FXML
+    private Line line;
 
     /**
      * Adds an event with a unique index
@@ -73,7 +81,10 @@ public class EventCard extends UiPart<Region> {
     public EventCard(Event event, int displayedIndex) {
         super(FXML);
         this.event = event;
-
+        noteDetails.setVisible(false);
+        line.setVisible(false);
+        noteText.setVisible(false);
+        noteDetails.managedProperty().bind(noteDetails.visibleProperty());
         id.setText(displayedIndex + ". ");
         name.setText(event.getName());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -89,6 +100,7 @@ public class EventCard extends UiPart<Region> {
         }
 
         List<String> noteStrs;
+        int startIndex = 1;
         if (event.countNotes() > 0) {
             setImageIcon(noteLogo, guiSettings.getNoteIcon(), size);
             noteStrs = event.getNotes().stream().map(Note::toString).collect(Collectors.toList());
@@ -97,16 +109,15 @@ public class EventCard extends UiPart<Region> {
             noteStrs = new ArrayList<>();
             noteStrs.add(new Note().toString());
         }
-        for (String text : noteStrs) {
-            Label label = new Label(text);
+        for (int i = 1; i <= noteStrs.size(); i++) {
+            String text = noteStrs.get(i - 1);
+            String stripContent = text;
+            if (text.split("\n").length > 1) {
+                stripContent = text.split("\n")[1];
+            }
+            Label label = new Label(i + ". " + stripContent);
             noteBox.getChildren().add(label);
         }
-        scrollPane.setContent(noteBox);
-        borderPane.setCenter(scrollPane);
-        borderPane.setTop(noteLogo);
-        noteLogo.setOnMouseClicked(mouseEvent -> {
-            scrollPane.setVisible(!scrollPane.isVisible());
-        });
 
         //set list of student profiles at top right
         for (int i = 0; i < event.countStudents(); i++) {
@@ -146,12 +157,10 @@ public class EventCard extends UiPart<Region> {
 
         if (event.countNotes() > 0) {
             cardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
-                Desktop desktop = Desktop.getDesktop();
-                try {
-                    desktop.open(event.getAttachments().get(0));
-                } catch (IOException e) {
-                    System.out.println("file processing error!");
-                }
+                noteText.setVisible(!noteDetails.isVisible());
+                line.setVisible(!noteDetails.isVisible());
+                noteDetails.setVisible(!noteDetails.isVisible());
+                noteDetails.managedProperty().bind(noteDetails.visibleProperty());
                 click.consume();
             });
         }

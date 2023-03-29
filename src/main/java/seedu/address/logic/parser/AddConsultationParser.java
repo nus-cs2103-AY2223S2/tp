@@ -13,7 +13,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHOTO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -52,7 +51,7 @@ public class AddConsultationParser implements Parser<AddConsultationCommand> {
                     AddConsultationCommand.MESSAGE_USAGE));
         }
 
-        String name = ParserUtil.parseConsultationName(argMultimap.getValue(PREFIX_TUTORIAL).get());
+        String name = ParserUtil.parseConsultationName(argMultimap.getValue(PREFIX_CONSULTATION).get());
         LocalDateTime date;
         File file;
         String note;

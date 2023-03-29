@@ -62,31 +62,6 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
 
-        //Retrieve the image url from the person object, but it is too slow
-        /*
-        Image studentImage =
-                new Image(person.getPhoto().photoFilePath);
-        for (int i = 1; i < numberOfStudents; i++) {
-            //Set the retrieved image url height and width
-            ImageView profile = new ImageView();
-            profile.setImage(studentImage);
-            profile.setFitHeight(person.getPhoto().getHeight());
-            profile.setFitWidth(person.getPhoto().getWidth());
-
-            //Set the image circle crop dimensions
-            Circle circleCrop = new Circle();
-            circleCrop.setCenterX(person.getPhoto().getCircleX());
-            circleCrop.setCenterY(person.getPhoto().getCircleY());
-            circleCrop.setRadius(person.getPhoto().getCircleRadius());
-
-            //Crop the image into a circle
-            profile.setClip(circleCrop);
-
-            //Add the cropped circle image into the dummy list
-            studentProfiles.getChildren().addAll(profile);
-        }
-         */
-
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
