@@ -82,7 +82,7 @@ Clears the current session of patientist and restores it to empty state.
 
 ___
 
-## Adding a patient: addpat (Should still be right, delete this note if it is)
+## Adding a patient: addpat
 Adds a new patient to the system, and places them in the `WARD_NAME` assigned.
 Tags attached to a user are meant to be short notes that do not fit into any other category of patient details that can be added.
 
@@ -100,7 +100,7 @@ Tags attached to a user are meant to be short notes that do not fit into any oth
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
-## Adding a staff member: addstf (Should still be right, delete this note if it is)
+## Adding a staff member: addstf
 Assigns specified `STAFF_NAME` to the specified `WARD_NAME`.
 The STAFF_NAME will be displayed in the list of personnel in charge of the ward.
 
@@ -115,7 +115,7 @@ The STAFF_NAME will be displayed in the list of personnel in charge of the ward.
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
-## Adding a ward to the system: addward (Should still be right, delete this note if it is)
+## Adding a ward to the system: addward
 Creates an empty ward with the specified `WARD_NAME`.
 
 **Warning: `WARD_NAME` is case-sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
@@ -130,39 +130,37 @@ Creates an empty ward with the specified `WARD_NAME`.
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
-## Listing all patients: lspat (Is WARD_NAME still a valid argument?)
+## Listing all patients: lspat
 Lists all the patients’ names and corresponding patient ID, displaying any tags attached to them and showing the ward they are in.
 
 **Warning: `WARD_NAME` is case-sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
 
-**Format: `lspat [w/WARD_NAME]`**
+**Format: `lspat`**
 `WARD_NAME` can be specified to only list patients in the specified ward. This field is case-sensitive. This is an optional parameter.
 
 **Examples:**
 `lspat` will list all patients in each ward on the GUI. Every ward will be displayed in order, with all patients in each ward.\
-`lspat w/block B ward 2` will display the list of patients that are assigned to block B ward 2 in the GUI
 
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
-## Listing staff members: lsstf (Is WARD_NAME still a valid argument?)
+## Listing staff members: lsstf
 
 Lists staff members’ names and the name of the ward they are assigned to.
 
 **Warning: `WARD_NAME` is case-sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
 
-**Format: `lsstf [w/WARD_NAME]`**
+**Format: `lsstf`**
 `WARD_NAME` can be specified to only list staff in the specified ward. This is an optional parameter.
 
 **Examples:**
 `lsstf` will list all staff assigned to each ward on the GUI. The lists will be grouped according to ward, and each staff
 can appear more than once if they are assigned to more than 1 ward.\
-`lsstf w/block A ward 1` will list all staff assigned to block A ward 1 on the GUI.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
-## Finding a person: find (Should still be right, delete this note if it is)
+## Finding a person: find
 
 Finds all persons with names containing any of the specified keywords and displays them on the GUI.
 
@@ -173,50 +171,61 @@ Finds all persons with names containing any of the specified keywords and displa
 **Examples: `find Alice Tan`**
 
 ---
-## Finding a patient by ID number: findpat (TODO)
+## Finding a patient by ID number: findpat
 
-**Format:**
+Finds all patients with names containing any of the specified keywords or id matching the specified keyword and displays
+them on the GUI.
+
+**Format:** `findpat [n/NAME] [id/ID_NUMBER]`
+
+**Note:** Either NAME or ID_NUMBER must be present.
 
 **Examples:**
+`findpat n/Alex Bob Charles` Finds all patients with names containing Alex, Bob or Charles.\
+`findpat id/A12345B` Finds all patients with IDs matching A12345B.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
-## Adding patient status: addpatstatus (TODO)
+## Adding patient status: addpatstatus
 Adds an entry to the list of patient statuses. This list can be viewed by the [view](#viewing-the-details-of-a-specific-patient--view)
 command.
 
-**Format:**
+**Note:** If the person indicated by the INDEX must be a `Patient`.
 
-**Examples:**
+**Format: `addpatstatus INDEX s/STATUS [s/STATUS]...`**
+
+**Examples: `addpatstatus 1 s/Feeling alright s/Eating well`**
 
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
-## Deleting patient status: delpatstatus (TODO)
+## Deleting patient status: delpatstatus
 Deletes the specified entry in the list of patient statuses. This list can be viewed by the [view](#viewing-the-details-of-a-specific-patient--view)
 command.
 
-**Format:**
+**Note:** If the person indicated by the PATIENT_INDEX must be a `Patient`.
 
-**Examples:**
+**Format: `delpatstatus PATIENT_INDEX STATUS_INDEX`**
+
+**Examples:** `delpatstatus 1 1` will delete the first status of the patient at the top of the list.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
-## Viewing the details of a specific patient: view (Should still be right, delete this note if it is)
-Lists the full detail of a specific patient, including their statuses, name, patient ID and tags in the main window.
+## Viewing the details of a specific person: view
+Lists the full detail of a specific person, including their name, patient ID and tags in the main window.
 
 **Format: `view INDEX`**
 
 **Examples:**
-`view 1` will display all the information associated with the 1st patient shown on the GUI.
+`view 1` will display all the information associated with the 1st person shown on the GUI.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
 
-## Listing the names of all wards: lsward (Do we actually have this feature?)
+## Listing the names of all wards: lsward
 Lists all existing wards on the GUI. Only ward names will be displayed.
 
 **Format: `lsward`**
@@ -224,28 +233,27 @@ Lists all existing wards on the GUI. Only ward names will be displayed.
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
-## Listing all patients in a particular ward: lswardpat (outdated implementation)
-Lists all the patients found in the given `WARD_NAME`. 1 or more ward names may be provided.
+## Listing all patients in a particular ward: lswardpat
+Lists all the patients found in the given `WARD_NAME`.
 
-**Format: `lswardpat WARD_NAME [WARD_NAME]...`**
+**Format: `lswardpat WARD_NAME`**
 
-**Examples: `lswardpat BlockAWard1`**
+**Examples:** `lswardpat Block A Ward 1` will list all patients in Block A Ward 1.
 
 ---
-## Update a person's particulars: edit (Should still be right, delete this note if it is. I changed it to edit both staff and patients.)
-This overwrites the specified person’s particulars with new particulars. The person to be edited must exist, i.e. there must exist a
-person with the given `ID_NUMBER`. This command works on both patients and staff.
+## Update a person's particulars: edit
+This overwrites the specified person’s particulars with new particulars. This command works on both patients and staff.
 
-**Format: `edit id/ID_NUMBER [n/PATIENT_NAME] [w/WARD_NAME] [t/TAG] [p/PHONE_NUMBER] [kn/NOK_NAME] [kp/NOK_PHONE_NUMBER] [a/ADDRESS]`**
+**Format: `edit INDEX [n/PATIENT_NAME] [t/TAG] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL]`**
 
 **Examples:**
-`edit id/A0123456789B w/block B ward 2 p/81234567`\
-`edit id/A0123456789B kn/John Tan kp/91234567`
+`edit 1 p/81234567`\
+`edit 2 n/Bob Tan p/91234567`
 
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
-## Deleting a person from the system based on list on GUI: delete (Does this still exist? or is DeleteCommand a remnant of AB3?I added this section because there is no documentation but the class exists)
+## Deleting a person from the system based on list on GUI: delete
 This deletes the person specified by `INDEX`. This index is the number beside the person on the list of persons on screen.
 
 **Format: `delete INDEX`**
@@ -255,7 +263,7 @@ This deletes the person specified by `INDEX`. This index is the number beside th
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
-## Deleting a patient from the system: delpat (Should still be right, delete this note if it is)
+## Deleting a patient from the system: delpat
 This removes the patient from the system as specified by `ID_NUMBER`.
 The patient must currently exist for this command to be successfully executed.
 This will remove the patient from his or her assigned ward as well.
@@ -268,20 +276,20 @@ This will remove the patient from his or her assigned ward as well.
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
-## Deleting a staff member from a ward: delstf (Outdated implementation)
-This removes `STAFF_NAME` from the list of persons in charge of `WARD_NAME`. The staff must be currently assigned to the ward for this command to be successfully executed.
+## Deleting a staff member from a ward: delstf
+This removes the staff from the system as specified by `ID_NUMBER`.
+The staff must currently exist for this command to be successfully executed.
+This will remove the staff from his or her assigned ward as well.
 
-**Warning: `WARD_NAME` is case-sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
-
-**Format: `delstf n/STAFF_NAME w/WARD_NAME`**
+**Format: `delstf id/ID_NUMBER`**
 
 **Examples:**
-`delstf n/Dr. Mallory Wong w/block B ward 2` will remove Dr. Mallory Wong from the list of staff attending to block B ward 2.
+`delstf id/A12345B` will delete all records of staff with ID number A12345B from the system.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
 ---
-## Deleting a ward from the system: delward (Should still be right, delete this note if it is)
+## Deleting a ward from the system: delward
 This deletes the `WARD_NAME` specified from the system. The ward being deleted must be empty for this command to be successfully executed.
 
 **Warning: `WARD_NAME` is case-sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
@@ -317,13 +325,13 @@ Exits the program.
 | **Add patient**                  | `addpat n/PATIENT_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME [t/TAG]...` <br> e.g., `addpat n/John Doe id/A12345B w/Block B Ward 2 p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends` |
 | **Add staff**                    | `addstf n/STAFF_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME`<br> e.g., `addstf n/Dr. Mallory Wong id/A987654321H p/97365482 e/mwong@example.com a/390 Geylang Rd w/block B ward 2`                          |
 | **Add ward**                     | `addward n/WARD_NAME`<br> e.g.,`addward n/block B ward 2`                                                                                                                                                                  |
-| **List Patients**                | `lspat [w/WARD_NAME]`<br> e.g., `lspat block B ward 2`, `lspat`                                                                                                                                                            |
+| **List Patients**                | `lspat`                                                                                                                                                                                                                    |
 | **List patient's prescriptions** | `lspresc id/ID_NUMBER`<br> e.g., `lspresc id/A0123456789B`                                                                                                                                                                 |
-| **List staff members**           | `lsstf [w/WARD_NAME]`<br> e.g., `lsstf w/block A ward 1`, `lsstf`                                                                                                                                                          |
-| **List all ward names**          | `lsward`<br>                                                                                                                                                                                                               |
-| **Edit patient particulars**     | `editpat id/ID_NUMBER [n/PATIENT_NAME] [w/WARD_NAME] [t/TAG] [p/PHONE_NUMBER] [kn/NOK_NAME] [kp/NOK_PHONE_NUMBER] [a/ADDRESS]`<br> e.g., `editpat id/A0123456789B w/block B ward 2 p/81234567`                             |
+| **List staff members**           | `lsstf`                                                                                                                                                                                                                    |
+| **List all ward names**          | `lsward`                                                                                                                                                                                                                   |
+| **Edit patient particulars**     | `editpat id/ID_NUMBER [n/PATIENT_NAME] [e/EMAIL] [t/TAG] [p/PHONE_NUMBER] [a/ADDRESS]`<br> e.g., `editpat id/A0123456789B e/abc@example.com p/81234567`                                                                    |
 | **Deleting ward**                | `delward n/WARD_NAME`<br> e.g., `delward n/block B ward 2`                                                                                                                                                                 |
-| **Deleting staff member**        | `delstf n/STAFF_NAME w/WARD_NAME`<br> e.g., `delstf n/Dr. Mallory Wong w/block B ward 2`                                                                                                                                   |
+| **Deleting staff member**        | `delstf id/ID_NUMBER`<br> e.g., `delstf id/A012345B`                                                                                                                                                                       |
 | **Deleting patient from system** | `delpat id/ID_NUMBER`<br> e.g., `delpat id/A0123456789B`                                                                                                                                                                   |
 | **Exit**                         | `exit`<br>                                                                                                                                                                                                                 |
 | **Clear**                        | `clear`<br>                                                                                                                                                                                                                |
