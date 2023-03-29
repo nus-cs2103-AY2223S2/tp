@@ -29,8 +29,9 @@ MenuItem *--> "1" ItemName
 MenuItem *--> "1 " ItemPrice
 MenuItem *--> "1 " ItemCost
 MenuItem *--> "1 " ItemProfit
-ItemProfit *--> "1 " ItemPrice
-ItemProfit *--> "1 " ItemCost
+ItemProfit --> "1 " ItemPrice
+ItemProfit --> "1 " ItemCost
+
 
 
 MenuItem -u|> Item
