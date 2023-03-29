@@ -10,46 +10,70 @@
 <VBox minWidth="380.0" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
 <VBox minWidth="340.0" prefWidth="340.0" HBox.hgrow="ALWAYS">
    <children>
-         <VBox minWidth="340.0" prefWidth="340.0" style="-fx-border-color: black;">
+         <VBox minWidth="340.0" prefWidth="370.0" style="-fx-border-color: black; -fx-border-radius: 10;">
             <children>
-            <Label id="name" fx:id="name" styleClass="cell_big_label" />
+            <Label id="name" fx:id="name" styleClass="cell_big_label">
+                  <padding>
+                     <Insets left="10.0" top="10.0" />
+                  </padding></Label>
                <HBox>
                   <children>
                      <Label fx:id="email111" prefWidth="106.0" styleClass="cell_small_label" text="NRIC" />
                   <Label fx:id="nric" styleClass="cell_small_label" />
                   </children>
+                  <padding>
+                     <Insets left="10.0" />
+                  </padding>
                </HBox>
                <HBox>
                   <children>
                      <Label fx:id="email11" prefWidth="106.0" styleClass="cell_small_label" text="Phone number" />
                   <Label fx:id="phone" styleClass="cell_small_label" />
                   </children>
+                  <padding>
+                     <Insets left="10.0" />
+                  </padding>
                </HBox>
                <HBox>
                   <children>
-                     <Label fx:id="email1" prefWidth="106.0" styleClass="cell_small_label" text="Email" />
-                  <Label fx:id="email" prefHeight="17.0" prefWidth="261.0" styleClass="cell_small_label" />
+                     <Label fx:id="email1" maxHeight="Infinity" prefWidth="106.0" styleClass="cell_small_label" text="Email" />
+                  <Label fx:id="email" styleClass="cell_small_label">
+                        <padding>
+                           <Insets right="10.0" />
+                        </padding></Label>
                   </children>
+                  <padding>
+                     <Insets left="10.0" />
+                  </padding>
                </HBox>
                <HBox>
                   <children>
-                     <Label fx:id="email1111" prefWidth="106.0" styleClass="cell_small_label" text="Address" />
+                     <Label fx:id="email1111" maxHeight="Infinity" prefWidth="106.0" styleClass="cell_small_label" text="Address">
+                        <padding>
+                           <Insets right="10.0" />
+                        </padding></Label>
                   <Label fx:id="address" styleClass="cell_small_label" />
                   </children>
+                  <padding>
+                     <Insets bottom="10.0" left="10.0" />
+                  </padding>
                </HBox>
                <HBox />
             </children>
          </VBox>
-         <VBox minWidth="340.0" prefWidth="340.0" style="-fx-border-color: black;">
+         <VBox minWidth="340.0" prefWidth="370.0" style="-fx-border-color: black; -fx-border-radius: 10;">
             <children>
                <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Appointments" textAlignment="CENTER" />
-            <ListView id="appointments" fx:id="appointments" prefWidth="368.0" />
+            <ListView id="appointments" fx:id="appointments" prefWidth="368.0">
+                  <VBox.margin>
+                     <Insets bottom="10.0" />
+                  </VBox.margin></ListView>
             </children>
             <VBox.margin>
                <Insets bottom="5.0" top="5.0" />
             </VBox.margin>
          </VBox>
-         <VBox fx:id="prescriptionBox" layoutX="15.0" layoutY="141.0" minWidth="340.0" prefWidth="370.0" style="-fx-border-color: black;">
+         <VBox fx:id="prescriptionBox" layoutX="15.0" layoutY="141.0" minWidth="340.0" prefWidth="370.0" style="-fx-border-color: black; -fx-border-radius: 10;">
             <children>
                <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Prescription" textAlignment="CENTER" />
                <ScrollPane>
@@ -60,6 +84,9 @@
                         </children>
                      </HBox>
                   </content>
+                  <VBox.margin>
+                     <Insets bottom="10.0" />
+                  </VBox.margin>
                </ScrollPane>
             </children>
          </VBox>
