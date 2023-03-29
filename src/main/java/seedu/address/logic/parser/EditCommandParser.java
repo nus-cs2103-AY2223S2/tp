@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_2_CONFLICTING_ARGS;
+import static seedu.address.commons.core.Messages.MESSAGE_CONFLICTING_ARGS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
@@ -146,7 +146,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         boolean hasUnwatchFlag = argMultimap.getValue(PREFIX_UNWATCH).isPresent();
 
         if (hasWatchFlag && hasUnwatchFlag) {
-            throw new ParseException(String.format(MESSAGE_2_CONFLICTING_ARGS, PREFIX_WATCH, PREFIX_UNWATCH));
+            throw new ParseException(String.format(MESSAGE_CONFLICTING_ARGS, PREFIX_WATCH, PREFIX_UNWATCH));
         }
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
