@@ -50,7 +50,7 @@ reliably than traditional GUI based apps.
 3. Copy the file to the folder you'd like to use as the _home folder_ for your Patientist app.
 4. Double-click the .jar file to open the app. There will be some sample data to play around with.
 5. Type in commands and press ENTER to execute the command. `help` would be a good first command to use to get a sensing of how to use this app.
-6. Refer to the [Features](#features) or [Command Summary](#command-summary) sections to see the details for each command.
+6. Refer to the [Features](#features) or [Command Summary](#command-summary) sections to see summary of commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -60,14 +60,14 @@ reliably than traditional GUI based apps.
 ## Notes about formatting
 * Words in UPPER_CASE are user supplied parameters, e.g. `addpat n/NAME`: `NAME` is a parameter, and the command can be used as add `n/John Doe`
 * Items in square brackets are optional parameters, e.g. `addpat n/NAME [t/TAG]` can be used as `addpat n/John Doe t/urgent` or simply as `addpat n/John Doe`
-* Items with … after them can be specified 0 or more times, e.g. `[t/TAG]...` means it is valid to not include a tag, or you can chain 1 or more `t/TAG` expressions
+* Items with … after them can be specified 0 or more times, e.g. `[t/TAG]...` means it is valid to not include a tag, or you can include 1 or more `t/TAG` expressions
 * Extraneous parameters for commands that take in exactly 0 parameters will be ignored
 ---
 
 ## Viewing help: help
 Shows a popup explaining how to access the user guide, which is the help page.
 
-Format: `help`
+**Format: `help`**
 
 [Go back to [Table of Contents](#table-of-contents)]
 
@@ -79,13 +79,13 @@ Tags attached to a user are meant to be short notes that do not fit into any oth
 
 **Warning: `WARD_NAME` is case-sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`.
 
-### Format: `addpat n/PATIENT_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME [t/TAG]...`
+**Format: `addpat n/PATIENT_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME [t/TAG]...`**
 
 `ID_NUMBER` should be unique to each patient. This is not case-sensitive. A123456789B is identical to a123456789b.
 **This input will be capitalised automatically.**\
 `PATIENT_NAME` need not be unique.
 
-### Examples:
+**Examples:**
 `addpat n/John Doe id/A12345B w/Block B Ward 2 p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends`
 
 [Go back to [Table of Contents](#table-of-contents)]
@@ -97,9 +97,9 @@ The STAFF_NAME will be displayed in the list of personnel in charge of the ward.
 
 **Warning: `WARD_NAME` is case-sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
 
-### Format: `addstf n/STAFF_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME`
+**Format: `addstf n/STAFF_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME`**
 
-### Examples:
+**Examples:**
 `addstf n/Dr. Mallory Wong id/A987654321H p/97365482 e/mwong@example.com a/390 Geylang Rd w/block B ward 2`\
 `addstf n/Nurse Joy id/A345678Z p/81623753, e/nurse.joy@example.com a/900 Still Rd w/block B ward 2`
 
@@ -111,9 +111,9 @@ Adds `PRESCRIPTION_OR_INSTRUCTION` in the prescriptions and instructions field f
 The patient can be specified by `ID_NUMBER`, the patient’s ID number.
 (Consider changing this in future iterations to not having to key in prescription in CLI, instead a new editpresc command opens a text editor for the patient’s txt prescription file)
 
-### Format: `addpresc id/ID_NUMBER p/PRESCRIPTION_OR_INSTRUCTION`
+**Format: `addpresc id/ID_NUMBER p/PRESCRIPTION_OR_INSTRUCTION`**
 
-### Examples:
+**Examples:**
 `addpresc id/A0123456789B pr/paracetamol 500mg`
 
 [Go back to [Table of Contents](#table-of-contents)]
@@ -124,10 +124,10 @@ Creates an empty ward with the specified `WARD_NAME`.
 
 **Warning: `WARD_NAME` is case-sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
 
-### Format: `addward n/WARD_NAME`
+**Format: `addward n/WARD_NAME`**
 `WARD_NAME` must be unique and cannot be the same as any existing name. This field is case-sensitive.
 
-### Examples:
+**Examples:**
 `addward n/block B ward 2` will create a new empty ward called block B ward 2\
 `addward n/block C ward 1` will create a new empty ward called block C ward 1
 
@@ -139,10 +139,10 @@ Lists all the patients’ names and corresponding patient ID, displaying any tag
 
 **Warning: `WARD_NAME` is case-sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
 
-### Format: `lspat [w/WARD_NAME]`
+**Format: `lspat [w/WARD_NAME]`**
 `WARD_NAME` can be specified to only list patients in the specified ward. This field is case-sensitive. This is an optional parameter.
 
-### Examples:
+**Examples:**
 `lspat` will list all patients in each ward on the GUI. Every ward will be displayed in order, with all patients in each ward.\
 `lspat w/block B ward 2` will display the list of patients that are assigned to block B ward 2 in the GUI
 
@@ -155,10 +155,10 @@ Lists staff members’ names and the name of the ward they are assigned to.
 
 **Warning: `WARD_NAME` is case-sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
 
-### Format: `lsstf [w/WARD_NAME]`
+**Format: `lsstf [w/WARD_NAME]`**
 `WARD_NAME` can be specified to only list staff in the specified ward. This is an optional parameter.
 
-### Examples:
+**Examples:**
 `lsstf` will list all staff assigned to each ward on the GUI. The lists will be grouped according to ward, and each staff
 can appear more than once if they are assigned to more than 1 ward.\
 `lsstf w/block A ward 1` will list all staff assigned to block A ward 1 on the GUI.
@@ -169,9 +169,9 @@ can appear more than once if they are assigned to more than 1 ward.\
 ## Listing a patient’s prescriptions: lspresc
 Lists the prescriptions and instructions list for a patient in numbered list form for the patient specified by `ID_NUMBER`.
 
-### Format: `lspresc id/ID_NUMBER`
+**Format: `lspresc id/ID_NUMBER`**
 
-### Examples:
+**Examples:**
 `lspresc id/A0123456789B` will display the list of tasks and prescriptions of patient with ID A0123456789B on the GUI
 
 [Go back to [Table of Contents](#table-of-contents)]
@@ -180,7 +180,7 @@ Lists the prescriptions and instructions list for a patient in numbered list for
 ## Listing all wards: lsward
 Lists all existing wards on the GUI. Only ward names will be displayed.
 
-### Format: `lsward`
+**Format: `lsward`**
 
 [Go back to [Table of Contents](#table-of-contents)]
 
@@ -188,9 +188,9 @@ Lists all existing wards on the GUI. Only ward names will be displayed.
 ## Viewing the details of a specific patient: view
 Lists the full detail of a specific patient, including their prescriptions/instructions, name, patient ID and tags in the main window.
 
-### Format: `view INDEX`
+**Format: `view INDEX`**
 
-### Examples:
+**Examples:**
 `view 1` will display all the information associated with the 1st patient shown on the GUI.
 
 [Go back to [Table of Contents](#table-of-contents)]
@@ -201,9 +201,9 @@ This overwrites the specified patient’s particulars with new particulars. The 
 patient with the given `ID_NUMBER`. **All existing information about the patient will be deleted, and replaced with
 the new information.**
 
-### Format: `editpat id/ID_NUMBER [n/PATIENT_NAME] [w/WARD_NAME] [t/TAG] [p/PHONE_NUMBER] [kn/NOK_NAME] [kp/NOK_PHONE_NUMBER] [a/ADDRESS]`
+**Format: `editpat id/ID_NUMBER [n/PATIENT_NAME] [w/WARD_NAME] [t/TAG] [p/PHONE_NUMBER] [kn/NOK_NAME] [kp/NOK_PHONE_NUMBER] [a/ADDRESS]`**
 
-### Examples:
+**Examples:**
 `editpat id/A0123456789B w/block B ward 2 p/81234567`\
 `editpat id/A0123456789B kn/John Tan kp/91234567`
 
@@ -215,9 +215,9 @@ This removes the patient from the system as specified by `ID_NUMBER`.
 The patient must currently exist for this command to be successfully executed.
 This will remove the patient from his or her assigned ward as well.
 
-### Format: `delpat id/ID_NUMBER`
+**Format: `delpat id/ID_NUMBER`**
 
-### Examples:
+**Examples:**
 `delpat id/A0123456789B` will delete all records of patient with ID number A0123456789B from the system.
 
 [Go back to [Table of Contents](#table-of-contents)]
@@ -228,9 +228,9 @@ This removes `STAFF_NAME` from the list of persons in charge of `WARD_NAME`. The
 
 **Warning: `WARD_NAME` is case-sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
 
-### Format: `delstf n/STAFF_NAME w/WARD_NAME`
+**Format: `delstf n/STAFF_NAME w/WARD_NAME`**
 
-### Examples:
+**Examples:**
 `delstf n/Dr. Mallory Wong w/block B ward 2` will remove Dr. Mallory Wong from the list of staff attending to block B ward 2.
 
 [Go back to [Table of Contents](#table-of-contents)]
@@ -241,9 +241,9 @@ Deletes the list entry specified at `INDEX` on the patient’s list of prescript
 specified by `ID_NUMBER`. The patient must currently exist and the value of `INDEX` must represent a valid entry
 on the list.
 
-### Format: `delpresc id/ID_NUMBER idx/INDEX`
+**Format: `delpresc id/ID_NUMBER idx/INDEX`**
 
-### Example:
+**Example:**
 `delpresc id/A0123456789B idx/1` will delete the top item from the prescriptions and instructions list of patient with
 ID A0123456789B.
 
@@ -255,9 +255,9 @@ This deletes the `WARD_NAME` specified from the system. The ward being deleted m
 
 **Warning: `WARD_NAME` is case-sensitive.** `block B ward 2` will refer to a different ward from `Block b Ward 2`
 
-### Format: `delward n/WARD_NAME`
+**Format: `delward n/WARD_NAME`**
 
-### Examples:
+**Examples:**
 `delward n/block B ward 2` will remove block B ward 2 from the system. The ward must have been empty before deletion.
 
 [Go back to [Table of Contents](#table-of-contents)]
@@ -266,7 +266,7 @@ This deletes the `WARD_NAME` specified from the system. The ward being deleted m
 ## Exiting the program: exit
 Exits the program.
 
-### Format: `exit`
+**Format: `exit`**
 
 [Go back to [Table of Contents](#table-of-contents)]
 

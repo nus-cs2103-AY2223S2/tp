@@ -12,6 +12,19 @@ title: Developer Guide
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
+## **Preamble**
+This is the developer guide for Patientist, a hospital management system that focuses on CLI-based user interface.
+This guide will provide developers looking to extend the codebase with a diagram-oriented overview of the system's
+implementation, detailing high level architecture all the way down to fine-grained component implementation. Class
+diagrams are colour coded as
+* Green: UI
+* Blue: Logic
+* Red: Model
+* Yellow: Storage
+
+and object diagrams are in black and white.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
