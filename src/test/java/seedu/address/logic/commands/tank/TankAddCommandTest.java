@@ -247,7 +247,7 @@ public class TankAddCommandTest {
 
         @Override
         public void setFullReadingLevels(ReadOnlyReadingLevels ammoniaLevels) {
-            
+
         }
 
         @Override
@@ -271,7 +271,8 @@ public class TankAddCommandTest {
         }
 
         @Override
-        public void setIndividualReadingLevels(UniqueIndividualReadingLevels target, UniqueIndividualReadingLevels editedList) {
+        public void setIndividualReadingLevels(UniqueIndividualReadingLevels target,
+                                               UniqueIndividualReadingLevels editedList) {
 
         }
 

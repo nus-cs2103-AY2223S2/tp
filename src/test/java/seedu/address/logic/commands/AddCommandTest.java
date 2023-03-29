@@ -291,7 +291,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setIndividualReadingLevels(UniqueIndividualReadingLevels target, UniqueIndividualReadingLevels editedList) {
+        public void setIndividualReadingLevels(UniqueIndividualReadingLevels target,
+                                               UniqueIndividualReadingLevels editedList) {
 
         }
 
