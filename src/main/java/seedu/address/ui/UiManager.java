@@ -17,6 +17,7 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
+import seedu.address.ui.events.CreatePasswordSuccessfulEvent;
 import seedu.address.ui.events.ProceedCreatePasswordEvent;
 import seedu.address.ui.events.SkipCreatePasswordEvent;
 
@@ -77,13 +78,9 @@ public class UiManager implements Ui {
     public void showLoginWindow() {
         try {
             loginWindow = new LoginWindow(this.primaryStage, logic);
-            // Observer design pattern is used here to register events
-            this.primaryStage.addEventHandler(ProceedCreatePasswordEvent.PROCEED_CREATE_PASSWORD,
-                    this::onProceedCreatePassword);
-            this.primaryStage.addEventHandler(SkipCreatePasswordEvent.SKIP_CREATE_PASSWORD_EVENT,
-                    this::onSkipCreatePassword);
             loginWindow.show();
             loginWindow.fillWelcomeNewUserSection();
+            this.attachEventHandlers();
         } catch (Throwable e) {
             String error = e.getCause().getMessage();
             logger.severe(StringUtil.getDetails(e));
@@ -93,17 +90,21 @@ public class UiManager implements Ui {
 
     /**
      * Switches the next scene to enter password page
+     * @param event ProceedCreatePasswordEvent
      */
     private void onProceedCreatePassword(ProceedCreatePasswordEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/"));
-            Scene scene = new Scene(root);
+            loginWindow.fillCreateNewPasswordSection();
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error when switching scenes", e);
         }
     }
 
+    /**
+     * Switches the current stage to another stage that holds the MainWindow
+     * @param event SkipCreatePasswordEvent
+     */
     private void onSkipCreatePassword(SkipCreatePasswordEvent event) {
         try {
             // show the loading section first
@@ -119,6 +120,36 @@ public class UiManager implements Ui {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error when switching stage", e);
         }
+    }
+
+    /**
+     * Switches the current scene to show password created successfully scene
+     * @param event CreatePasswordSuccessfulEvent
+     */
+    private void onCreatePasswordSuccess(CreatePasswordSuccessfulEvent event) {
+        try {
+            loginWindow.fillLoadingSection();
+            loginWindow.fillPasswordSuccessLoadingSection();
+            PauseTransition delay = new PauseTransition(Duration.seconds(3));
+            delay.setOnFinished(currentEvent -> {
+                loginWindow.close();
+                this.showMainWindow();
+            });
+            delay.play();
+        } catch (Throwable e) {
+            logger.severe(StringUtil.getDetails(e));
+            showFatalErrorDialogAndShutdown("Fatal error when switching scenes", e);
+        }
+    }
+
+    private void attachEventHandlers() {
+        // Observer design pattern is used here to register events
+        this.primaryStage.addEventHandler(ProceedCreatePasswordEvent.PROCEED_CREATE_PASSWORD,
+                this::onProceedCreatePassword);
+        this.primaryStage.addEventHandler(SkipCreatePasswordEvent.SKIP_CREATE_PASSWORD_EVENT,
+                this::onSkipCreatePassword);
+        this.primaryStage.addEventHandler(CreatePasswordSuccessfulEvent.CREATE_PASSWORD_SUCCESSFUL_EVENT,
+                this::onCreatePasswordSuccess);
     }
 
     private Image getImage(String imagePath) {

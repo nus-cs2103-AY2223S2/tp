@@ -25,6 +25,7 @@ public class LoginWindow extends UiPart<Stage> {
     // Independent Ui parts
     private WelcomeSection welcomeSection;
     private LoadingSection loadingSection;
+    private CreatePasswordSection createPasswordSection;
 
     @FXML
     private VBox container;
@@ -76,12 +77,30 @@ public class LoginWindow extends UiPart<Stage> {
     }
 
     /**
+     * Fill the VBox with creating new password page
+     */
+    public void fillCreateNewPasswordSection() {
+        createPasswordSection = new CreatePasswordSection();
+        container.getChildren().clear();
+        //container.getChildren().removeAll(welcomeSection.getRoot());
+        container.getChildren().add(createPasswordSection.getRoot());
+    }
+
+    /**
      * Fill the Vbox with the loading page
      */
     public void fillLoadingSection() {
         loadingSection = new LoadingSection();
-        container.getChildren().removeAll(welcomeSection.getRoot());
+        container.getChildren().clear();
+        //container.getChildren().removeAll(welcomeSection.getRoot());
         container.getChildren().add(loadingSection.getRoot());
+    }
+
+    /**
+     * Replaces the current loading text with password success text
+     */
+    public void fillPasswordSuccessLoadingSection() {
+        loadingSection.setPasswordSuccessText();
     }
 
 

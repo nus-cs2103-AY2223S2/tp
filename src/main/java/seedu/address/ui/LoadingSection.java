@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 
 /**
@@ -10,7 +12,14 @@ import javafx.scene.layout.Region;
 public class LoadingSection extends UiPart<Region> {
     private static final String FXML = "LoadingSection.fxml";
 
+    @FXML
+    private Label loadingLabel;
+
     public LoadingSection() {
         super(FXML);
+    }
+
+    public void setPasswordSuccessText() {
+        loadingLabel.setText("Password Created Successfully! You are currently entering into MODCheck...");
     }
 }
