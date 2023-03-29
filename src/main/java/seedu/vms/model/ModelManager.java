@@ -220,7 +220,7 @@ public class ModelManager implements Model {
 
     @Override
     public List<String> validatePatientChange(ValueChange<IdData<Patient>> change) {
-        //TODO: Implement this
+        // TODO: Implement this
         // implementation should be in appointment manager instead of here
         // as LogicManager is just a facade class.
         return List.of();
@@ -236,7 +236,7 @@ public class ModelManager implements Model {
 
     @Override
     public List<String> validateVaccinationChange(ValueChange<VaxType> change) {
-        //TODO: Implement this
+        // TODO: Implement this
         // implementation should be in appointment manager instead of here
         // as LogicManager is just a facade class.
         return List.of();
@@ -248,6 +248,14 @@ public class ModelManager implements Model {
         appointmentManager.handleVaccinationChange(change);
         patientManager.handleVaccinationChange(change);
         updateVaccinationDetail(change);
+
+        IdData<Patient> oldPatient = detailedPatientProperty.get();
+        if (oldPatient == null) {
+            return;
+        }
+        IdData<Patient> newPatient = patientManager.getMapView().get(oldPatient.getId());
+        ValueChange<IdData<Patient>> patientChange = new ValueChange<>(oldPatient, newPatient);
+        updatePatientDetail(patientChange);
     }
 
     // =========== VaxTypeManager ==============================================================================

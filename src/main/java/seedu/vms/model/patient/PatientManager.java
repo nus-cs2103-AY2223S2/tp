@@ -42,18 +42,6 @@ public class PatientManager extends StorageModel<Patient> implements ReadOnlyPat
         }
     }
 
-    private static Set<GroupName> removeGroupName(Set<GroupName> groupNames, String remove) {
-        Set<GroupName> updatedGroupNames = new HashSet<>();
-
-        for (GroupName groupName : groupNames) {
-            if (!groupName.getName().equals(remove)) {
-                updatedGroupNames.add(groupName);
-            }
-        }
-
-        return updatedGroupNames;
-    }
-
     private static Set<GroupName> updateGroupName(Set<GroupName> groupNames, String oldName, String newName) {
         Set<GroupName> updatedGroupNames = new HashSet<>();
 
