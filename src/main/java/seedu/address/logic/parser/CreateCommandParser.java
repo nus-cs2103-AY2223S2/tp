@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class CreateCommandParser implements Parser<CreateCommand> {
 
     private static final Prefix PREFIX_DOC = new Prefix("doc/");
-    private static final Prefix PREFIX_DES = new Prefix("des/");
+    private static final Prefix PREFIX_DES = new Prefix("m/");
     private static final Prefix PREFIX_DAYS = new Prefix("d/");
 
     @Override

@@ -13,6 +13,7 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
 
+import seedu.address.model.person.MedicalCondition;
 import seedu.address.model.person.Person;
 
 
@@ -72,7 +73,7 @@ public class FileGenerator {
                     field.setValue(person.getName().fullName);
                     break;
                 case "DOB":
-                    field.setValue("222-2222");
+                    field.setValue("Hidden");
                     break;
                 case "days":
                     field.setValue(Integer.toString(days));
@@ -97,6 +98,10 @@ public class FileGenerator {
         //making file name unique using store MC number do file check before save.
         pdfDocument.save(new File("reports/" + person.getName().fullName + "/" + filename + "-mc.pdf"));
         pdfDocument.close();
+        setMedicalCondition();
+    }
 
+    private void setMedicalCondition() {
+        person.setMedicalCondition(new MedicalCondition(description));
     }
 }
