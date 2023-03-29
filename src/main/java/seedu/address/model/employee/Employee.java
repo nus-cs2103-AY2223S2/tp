@@ -3,7 +3,6 @@ package seedu.address.model.employee;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -18,7 +17,6 @@ import seedu.address.model.tag.Tag;
  */
 public class Employee {
     public static final String DEFAULT_PICTURE_PATH = "src/main/resources/employeepictures/default.png";
-    public static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
 
     // Identity fields
     private final Name name;
