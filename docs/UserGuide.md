@@ -69,6 +69,7 @@ Shows a message explaining how to access the help page.
 ![Help Message](./images/helpMessage.png)
 
 **Format:** `help`
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ### Viewing all job listings: `view`
 
@@ -81,6 +82,7 @@ Lists out all the jobs that are currently in the listing book.
 ```ignorelang
 Listed all listings
 ```
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ## Adding a job listing: `add`
 
@@ -111,6 +113,7 @@ Invalid Command Format!
 add: Adds a listing to the listing book. Parameters: t/TITLE d/DESCRIPTION [a/APPLICANT]...
 Example: add t/Cool job title d/Informative job description a/John a/Sam
 ```
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ### Editing a job listing: `edit`
 
@@ -154,7 +157,7 @@ Example: edit 1 t/Cool job title a/John a/Sam
 ```ignorelang
 The listing index provided is invalid
 ```
-
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ### Deleting a job listing: `delete`
 
@@ -188,7 +191,7 @@ Example: delete 1
 ```ignorelang
 The listing index provided is invalid
 ```
-
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ### Locating job listings by title: `find`
 
@@ -228,6 +231,7 @@ find: Finds all listings whose titles contain any of the specified keywords (cas
 Parameters: KEYWORD [MORE_KEYWORDS]...
 Example: find chicken rice
 ```
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ### Sorting job listings: `sort`
 
@@ -263,6 +267,7 @@ sort: Sorts the listing displayed according to the specified field.
 Parameters: f/FIELD_COMPARED(none, title, description, applicants)
 Example: sort f/applicants
 ```
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ### Filtering job listings [coming soon!]
 
@@ -279,16 +284,20 @@ Sort job listings by the field specified by the user and display the sorted list
 **Examples:**
 
 - `filter attribute/num_of_applicants by/>= 5`
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ### Tagging a job listing [coming soon]
 
 Add tags to a job listing for easy reference.
+###### _< Back to [Table of Contents](#table-of-contents) >_
 
 ---
 
 ## **FAQ**
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous GoodMatch home folder.
+###### _< Back to [Table of Contents](#table-of-contents) >_
+
 ---
 
 ## **Command summary**
@@ -300,3 +309,4 @@ Add tags to a job listing for easy reference.
 | **find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Chicken Noodle`                                                                       |
 | **view**   | `view`                                                                                                                               |
 | **help**   | `help`                                                                                                                               |
+###### _< Back to [Table of Contents](#table-of-contents) >_
