@@ -14,7 +14,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 /**
- * The UI component that is responsible for outputting the result of user requests.
+ * A UI component that is responsible for outputting the result of user requests.
  */
 public class ResultDialog {
 
@@ -23,7 +23,7 @@ public class ResultDialog {
     private static Stage primaryStage;
 
     /**
-     * Creates a {@code ResultDialog} with the given {@code String}.
+     * Creates a {@code ResultDialog} with the given {@code String} in the given {@code Stage}.
      */
     public static void displayResultDialog(String resultMsg, Stage stage) {
         resultMessage = resultMsg;
@@ -58,7 +58,7 @@ public class ResultDialog {
     }
 
     private static void displayDialog(Alert result) {
-        Timeline timer = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
+        Timeline timer = new Timeline(new KeyFrame(Duration.seconds(2.5), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 result.setResult(ButtonType.OK);

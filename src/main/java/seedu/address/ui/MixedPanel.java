@@ -27,7 +27,7 @@ public class MixedPanel extends UiPart<Region> {
     private ListView<Note> noteListView;
 
     /**
-     * Creates a {@code MixedPanel} with the given {@code ObservableList}.
+     * Creates a {@code MixedPanel} with the given two {@code ObservableList}.
      */
     public MixedPanel(ObservableList<InternshipTodo> todoList, ObservableList<Note> noteList) {
         super(FXML);

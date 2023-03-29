@@ -16,7 +16,6 @@ import seedu.address.ui.UiPart;
  */
 public class TodoListPanel extends UiPart<Region> {
     private static final String FXML = "task/TodoListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(TodoListPanel.class);
 
     @FXML
     private ListView<InternshipTodo> todoListView;
@@ -31,7 +30,7 @@ public class TodoListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code ApplicationTodo} using a {@code TodoCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code InternshipTodo} using a {@code TodoCard}.
      */
     class TodoListViewCell extends ListCell<InternshipTodo> {
         @Override

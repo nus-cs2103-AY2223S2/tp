@@ -76,6 +76,11 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
     }
 
+    /**
+     * Getter for primary stage.
+     *
+     * @return current primary stage
+     */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -86,6 +91,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -183,18 +189,38 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Getter for application list panel.
+     *
+     * @return application list panel
+     */
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
 
+    /**
+     * Getter for todo list panel.
+     *
+     * @return todo list panel
+     */
     public TodoListPanel getTodoListPanel() {
         return todoListPanel;
     }
 
+    /**
+     * Getter for note list panel.
+     *
+     * @return note list panel
+     */
     public NoteListPanel getNoteListPanel() {
         return noteListPanel;
     }
 
+    /**
+     * Getter for mix panel.
+     *
+     * @return person list panel
+     */
     public MixedPanel getMixedPanel() {
         return mixedPanel;
     }

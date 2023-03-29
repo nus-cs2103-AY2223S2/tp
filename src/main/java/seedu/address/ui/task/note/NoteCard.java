@@ -8,7 +8,7 @@ import seedu.address.model.task.Note;
 import seedu.address.ui.UiPart;
 
 /**
- * An UI component that displays information of a {@code NoteList}.
+ * A UI component that displays information of a {@code NoteList}.
  */
 public class NoteCard extends UiPart<Region> {
 

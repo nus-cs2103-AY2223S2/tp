@@ -43,7 +43,7 @@ public class TodoCard extends UiPart<Region> {
     private Label tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code TodoCard} with the given {@code InternshipTodo} and index to display.
      */
     public TodoCard(InternshipTodo todo, int displayedIndex) {
         super(FXML);

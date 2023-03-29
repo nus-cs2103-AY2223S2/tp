@@ -16,7 +16,6 @@ import seedu.address.ui.UiPart;
  */
 public class NoteListPanel extends UiPart<Region> {
     private static final String FXML = "task/NoteListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(NoteListPanel.class);
 
     @FXML
     private ListView<Note> noteListView;
