@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import vimification.commons.core.LogsCenter;
 import vimification.commons.exceptions.DataConversionException;
 import vimification.commons.exceptions.IllegalValueException;
-import vimification.commons.util.FileUtil;
 import vimification.commons.util.JsonUtil;
 import vimification.model.LogicTaskList;
 
@@ -46,7 +45,6 @@ public class JsonLogicTaskListStorage implements LogicTaskListStorage {
     @Override
     public void saveLogicTaskList(LogicTaskList taskList) throws IOException {
         requireNonNull(taskList);
-        FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonAdaptedLogicTaskList(taskList), filePath);
     }
 }

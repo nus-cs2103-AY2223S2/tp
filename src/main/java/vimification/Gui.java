@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 import vimification.commons.core.Config;
 import vimification.commons.core.LogsCenter;
 import vimification.commons.exceptions.DataConversionException;
-import vimification.commons.util.FileUtil;
 import vimification.commons.util.JsonUtil;
 import vimification.commons.util.StringUtil;
 import vimification.internal.Logic;
@@ -17,7 +16,6 @@ import vimification.internal.LogicManager;
 import vimification.model.CommandStack;
 import vimification.model.LogicTaskList;
 import vimification.model.MacroMap;
-import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 import vimification.storage.JsonLogicTaskListStorage;
 import vimification.storage.JsonMacroMapStorage;
@@ -118,7 +116,6 @@ public class Gui extends Application {
         }
 
         try {
-            FileUtil.createIfMissing(configFilePathUsed);
             JsonUtil.saveJsonFile(initializedConfig, configFilePathUsed);
         } catch (IOException e) {
             LOGGER.warning("Failed to save file: " + StringUtil.getDetails(e));

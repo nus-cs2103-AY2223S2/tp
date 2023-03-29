@@ -34,6 +34,7 @@ public class JsonUtil {
                     .addDeserializer(Level.class, new LevelDeserializer(Level.class)));
 
     static <T> void serializeObjectToJsonFile(Path filePath, T object) throws IOException {
+        FileUtil.createIfMissing(filePath);
         FileUtil.writeToFile(filePath, toJsonString(object));
     }
 
