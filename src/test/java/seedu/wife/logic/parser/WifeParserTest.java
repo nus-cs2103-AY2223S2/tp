@@ -18,6 +18,7 @@ import seedu.wife.logic.commands.foodcommands.DeleteCommand;
 import seedu.wife.logic.commands.foodcommands.EditCommand;
 import seedu.wife.logic.commands.foodcommands.FindCommand;
 import seedu.wife.logic.commands.foodcommands.ListCommand;
+import seedu.wife.logic.commands.foodcommands.SortByExpiryCommand;
 import seedu.wife.logic.commands.generalcommands.ClearCommand;
 import seedu.wife.logic.commands.generalcommands.ExitCommand;
 import seedu.wife.logic.commands.generalcommands.HelpCommand;
@@ -116,6 +117,18 @@ public class WifeParserTest {
             parser.parseCommand(
                 ListCommand.COMMAND_WORD + " 3"
             ) instanceof ListCommand
+        );
+    }
+
+    @Test
+    public void parseCommand_sortByExpiry() throws Exception {
+        assertTrue(
+            parser.parseCommand(SortByExpiryCommand.COMMAND_WORD) instanceof SortByExpiryCommand
+        );
+        assertTrue(
+            parser.parseCommand(
+                SortByExpiryCommand.COMMAND_WORD
+            ) instanceof SortByExpiryCommand
         );
     }
 
