@@ -71,6 +71,18 @@ public class Doctor extends Person {
     }
 
     /**
+     * Adds a patient if it does not exist in doctor's patient list.
+     *
+     * @param patient a patient.
+     */
+    public void assignPatient(Patient patient) {
+        assert patient != null;
+        if (!this.hasPatient(patient)) {
+            patients.add(patient);
+        }
+    }
+
+    /**
      * Removes a patient if it exists in doctor's patient list.
      *
      * @param patient a patient.
