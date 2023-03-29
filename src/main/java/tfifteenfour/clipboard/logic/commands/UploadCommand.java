@@ -3,6 +3,7 @@ package tfifteenfour.clipboard.logic.commands;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -61,6 +62,10 @@ public class UploadCommand extends Command {
         try {
             Path sourcePath = this.sourcePath;
             Path destPath = this.destPath;
+            File toCopy = new File(String.valueOf(sourcePath));
+            if (!toCopy.isFile()) {
+                throw new CommandException("Please upload a valid file.");
+            }
             Files.copy(sourcePath, destPath.resolve(sourcePath.getFileName()), REPLACE_EXISTING);
             return new CommandResult(this, generateSuccessMessage(sourcePath), willModifyState);
         } catch (IOException e) {
