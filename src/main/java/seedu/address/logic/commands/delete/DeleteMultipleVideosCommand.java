@@ -74,7 +74,7 @@ public class DeleteMultipleVideosCommand extends DeleteCommand {
                     targetVideoNames.size(),
                     this.moduleCode,
                     this.lectureName,
-                    MultipleEventsParser.convertArrayListToString(invalidVideoNames)));
+                    MultipleEventsParser.convertArrayListToString(targetVideoNames)));
         } else {
             throw new CommandException(String.format((
                         invalidVideoNames.size() == 1

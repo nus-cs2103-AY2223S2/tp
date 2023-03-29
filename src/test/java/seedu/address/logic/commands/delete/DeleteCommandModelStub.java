@@ -34,7 +34,7 @@ public class DeleteCommandModelStub extends ModelStub {
         moduleCodes.add(TypicalModules.getCs2107().getCode());
 
         lectureNames.add(TypicalLectures.getCs2040sWeek1().getName());
-        lectureNames.add(TypicalLectures.getCs2040sWeek3().getName());
+        lectureNames.add(TypicalLectures.getCs2040sWeek2().getName());
 
         videoNames.add(TypicalVideos.ANALYSIS_VIDEO.getName());
         videoNames.add(TypicalVideos.CONTENT_VIDEO.getName());
