@@ -37,7 +37,7 @@ public class AddClientCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
 
-    public static final String MESSAGE_DUPLICATE_CLIENT_NAME = "This client already exists in your client list";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in your client list";
 
     private final Client toAdd;
 
@@ -57,7 +57,7 @@ public class AddClientCommand extends Command {
 
         if (model.hasClient(toAdd)) {
             throw new CommandException(
-                MESSAGE_DUPLICATE_CLIENT_NAME,
+                MESSAGE_DUPLICATE_CLIENT,
                 new TabSwitchAction(TabSwitchAction.TabSwitch.CLIENT));
         }
 

@@ -40,7 +40,7 @@ public class AddProjectCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
 
-    public static final String MESSAGE_DUPLICATE_PROJECT_NAME = "This project name already exists in your project list";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "This project name already exists in your project list";
 
     private final Project toAdd;
 
@@ -60,7 +60,7 @@ public class AddProjectCommand extends Command {
 
         if (model.hasProject(toAdd)) {
             throw new CommandException(
-                MESSAGE_DUPLICATE_PROJECT_NAME,
+                MESSAGE_DUPLICATE_PROJECT,
                 new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
         }
 

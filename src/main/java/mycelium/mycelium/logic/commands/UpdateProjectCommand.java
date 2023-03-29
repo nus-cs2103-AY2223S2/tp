@@ -125,23 +125,21 @@ public class UpdateProjectCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        TabSwitchAction action = new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT);
         Optional<Project> target = model.getUniqueProject(p -> p.getName().equals(projectName));
         if (target.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT,
-                new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT, action);
         }
 
         Optional<Project> updatedProject = createUpdatedProject(target.get(), desc);
         if (updatedProject.isEmpty()) {
-            throw new CommandException(MESSAGE_NOT_UPDATED, new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
+            throw new CommandException(MESSAGE_NOT_UPDATED, action);
         }
         if (desc.name.isPresent() && model.hasProject(updatedProject.get())) {
-            throw new CommandException(MESSAGE_DUPLICATE_PROJECT,
-                new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
+            throw new CommandException(MESSAGE_DUPLICATE_PROJECT, action);
         }
         model.setProject(target.get(), updatedProject.get());
-        return new CommandResult(String.format(MESSAGE_UPDATE_PROJECT_SUCCESS, updatedProject.get()),
-            new TabSwitchAction(TabSwitchAction.TabSwitch.PROJECT));
+        return new CommandResult(String.format(MESSAGE_UPDATE_PROJECT_SUCCESS, updatedProject.get()), action);
     }
 
     /**

@@ -9,7 +9,7 @@ import java.util.Optional;
  * Basically a wrapper around String that enforces the invariant that the string is non-empty.
  */
 public class NonEmptyString {
-    public static final String MESSAGE_CONSTRAINTS = "String cannot be null or empty";
+    public static final String MESSAGE_CONSTRAINTS = "String cannot be empty or consist only of whitespace.";
 
     private final String value;
 

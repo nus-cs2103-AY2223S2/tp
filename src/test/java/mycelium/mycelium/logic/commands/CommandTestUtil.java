@@ -12,8 +12,10 @@ import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.CliSyntax;
 import mycelium.mycelium.model.AddressBook;
 import mycelium.mycelium.model.Model;
+import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.person.NameContainsKeywordsPredicate;
 import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.testutil.Assert;
 import mycelium.mycelium.testutil.EditPersonDescriptorBuilder;
 
@@ -105,10 +107,14 @@ public class CommandTestUtil {
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Client> expectedClientList = new ArrayList<>(actualModel.getFilteredClientList());
+        List<Project> expectedProjectList = new ArrayList<>(actualModel.getFilteredProjectList());
 
         Assert.assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedClientList, actualModel.getFilteredClientList());
+        assertEquals(expectedProjectList, actualModel.getFilteredProjectList());
     }
 
     /**

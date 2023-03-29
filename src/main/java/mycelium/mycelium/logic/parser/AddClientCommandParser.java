@@ -50,7 +50,7 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
             ParserUtil::parsePhone);
         Optional<NonEmptyString> source = ParserUtil.parseOptionalWith(
             argMultimap.getValue(PREFIX_SOURCE),
-            ParserUtil::parseNonEmptyString);
+            ParserUtil::parseSource);
         Optional<YearOfBirth> yearOfBirth = ParserUtil.parseOptionalWith(
             argMultimap.getValue(PREFIX_CLIENT_YEAR_OF_BIRTH),
             ParserUtil::parseYearOfBirth);
