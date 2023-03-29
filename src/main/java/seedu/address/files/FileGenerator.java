@@ -13,7 +13,6 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
 
-import seedu.address.model.person.MedicalCondition;
 import seedu.address.model.person.Person;
 
 
@@ -41,7 +40,6 @@ public class FileGenerator {
         this.doctorName = doctorName;
         this.description = description;
         this.days = days;
-        setMedicalCondition();
     }
 
     public String getFormId() {
@@ -74,7 +72,7 @@ public class FileGenerator {
                     field.setValue(person.getName().fullName);
                     break;
                 case "DOB":
-                    field.setValue("Hidden");
+                    field.setValue("222-2222");
                     break;
                 case "days":
                     field.setValue(Integer.toString(days));
@@ -100,9 +98,5 @@ public class FileGenerator {
         pdfDocument.save(new File("reports/" + person.getName().fullName + "/" + filename + "-mc.pdf"));
         pdfDocument.close();
 
-    }
-
-    private void setMedicalCondition() {
-        person.setMedicalCondition(new MedicalCondition(description));
     }
 }
