@@ -64,14 +64,14 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
    * `delete 3` : Deletes the 3rd Bookmark shown in the current list.
 
    * `clear` : Deletes all Bookmarks.
-   
+
 
    * `goto 1` : Opens the url of 1st Bookmark shown in current list.
 
    
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command. 
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 

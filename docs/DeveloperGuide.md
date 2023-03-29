@@ -75,7 +75,7 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/library/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/library/MainApp.java). It is responsible for:
-* Initializing the components in the correct sequence 
+* Initializing the components in the correct sequence
 * Connecting components with each other during app launch
 * Shutting down the components
 * Invoking cleanup methods where necessary when app shuts down
@@ -289,7 +289,7 @@ The `GoToCommand` will then open the site in the default browser of the user. Be
 * The `GoToCommandParser` will checks if the command is of the correct format and argument index is valid
 * Then the `GoToCommand` will execute these steps in order
   1. Get the current bookmarklist displayed
-  2. Get bookmark of specified index from the bookmarklist and get its `url` 
+  2. Get bookmark of specified index from the bookmarklist and get its `url`
   3. Open the url in the default browser.
 
 The following Activity diagram depicts what happens when the `GoToCommand` is executed.
@@ -304,10 +304,10 @@ The following sequence diagram shows the interaction between the objects when a 
 
 #### Aspect: What data type to use?:
 
-Currently, the url value is a `String` object that is parsed into Url object in `Bookmark` class and 
+Currently, the url value is a `String` object that is parsed into Url object in `Bookmark` class and
 is then created into a URI object when `GoToCommand` is executed
 
-The benefits of using `String` is that it is easy to saved and retrieve from Json Storage File. 
+The benefits of using `String` is that it is easy to saved and retrieve from Json Storage File.
 
 * **Alternative 1 (current choice):** url stored as string and URI object to open site only created in `GoToCommand`.
     * Pros: Easy to implement, easier storage
@@ -315,7 +315,7 @@ The benefits of using `String` is that it is easy to saved and retrieve from Jso
 
 * **Alternative 2:** url stored as a URI object in Bookmark
     * Pros: Will use be safer as errors are caught before object is created
-    * Cons: Difficulty in implementing as harder to parse for user input due to format of URI 
+    * Cons: Difficulty in implementing as harder to parse for user input due to format of URI
 
 ### Progress Field
 
@@ -326,7 +326,7 @@ things including the latest read volume of a series, or the chapter or page of a
 remember where he last left off when they revisit the book.
 
 Currently, `Progress` contains 3 public attributes: `volume`, `chapter` and `page`, all of which are implemented as
-separate `String` objects. While these attributes can be empty, at least one of them must not be empty. 
+separate `String` objects. While these attributes can be empty, at least one of them must not be empty.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** For a case where all 3 attributes are empty
 , this should be reflected by a `Bookmark` with `Progress = null`.
 </div>
@@ -348,23 +348,23 @@ saved. For example, if `page` has the value `~`, that exact value is saved into 
 
 **Aspect: What data should `Progress` contain?:**
 
-Currently, Progress stores information about the volume, chapter and page of the book being tracked. 
+Currently, Progress stores information about the volume, chapter and page of the book being tracked.
 
-This is believed to be sufficient for tracking basically any book since most, if not all books (online or physical) 
-organise themselves with the 3 attributes. 
+This is believed to be sufficient for tracking basically any book since most, if not all books (online or physical)
+organise themselves with the 3 attributes.
 
-Other possible attributes that were considered include: line number and word number. However, if we consider a user revisiting a book and wanting to continue where they last left off, 
+Other possible attributes that were considered include: line number and word number. However, if we consider a user revisiting a book and wanting to continue where they last left off,
 it is very unlikely that they will continue from the word or line that they stopped at.
 
 **Aspect: What data type to use?:**
 
 Currently, `volume`, `chapter` and `page` are all stored as separate `String` objects.
 
-This makes it easy to parse user input (which is a `String`) into a `Progress` object, and easy for a `Progress` 
+This makes it easy to parse user input (which is a `String`) into a `Progress` object, and easy for a `Progress`
 object to be converted into a set of `String` objects to be saved into a JSON file for storage.
 
 A considered alternative is to use 3 `Integer` objects instead. The benefit of this would be allowing integer
-arithmetic while requiring slightly less memory. However, there are no plans for allowing a user to update `Progress` 
+arithmetic while requiring slightly less memory. However, there are no plans for allowing a user to update `Progress`
 in a way that would require integer arithmetic and the difference in memory cost is negligible. Furthermore, like other
 `Bookmark` fields, `Progress` is designed to be immutable.
 
@@ -382,13 +382,13 @@ prefixes to differentiate them, but parsing becomes more complex.
 
 #### Implementation
 
-The `FindCommand` allows user to find an existing bookmark by searching for a specific `Title`, `Genre`, `Tag`, and/or 
+The `FindCommand` allows user to find an existing bookmark by searching for a specific `Title`, `Genre`, `Tag`, and/or
 `Author`.
 
-User can use the `find` command followed by optional prefixes of the field they want to search by and the word they 
-want to search for. The prefixes are `n/` for `Title`, `g/` for `Genre`, `t/` for `Tag`, and `a/` for `Author`. 
-An example of a user input would be: `find g/ Fantasy`. User inputs are parsed in `FindCommandParser` which will 
-split the input based on the prefixes. 
+User can use the `find` command followed by optional prefixes of the field they want to search by and the word they
+want to search for. The prefixes are `n/` for `Title`, `g/` for `Genre`, `t/` for `Tag`, and `a/` for `Author`.
+An example of a user input would be: `find g/ Fantasy`. User inputs are parsed in `FindCommandParser` which will
+split the input based on the prefixes.
 
 Some limitations of the user input includes:
 1. There must be at least 1 prefix provided
@@ -406,20 +406,20 @@ Currently, `find` allows user to search by `title`, `genre`, `tag` and `author`.
 
 The main reason is that it is intuitive to use these fields to identify one bookmark from another.
 
-A considered field to be included in `find` is the `progress` field. However, it seems counter-intuitive to search a 
+A considered field to be included in `find` is the `progress` field. However, it seems counter-intuitive to search a
 bookmark by the `progress` field as it is not common for people to remember how far they have read a book, so users are
 unlikely to search for a bookmark using `progress`.
 
 ### Tags Feature
 
 #### Implementation
-The `ListTagsCommand` lists all tags in the tag list. The `AddTagCommand` allows you to add tags to the tag list. 
+The `ListTagsCommand` lists all tags in the tag list. The `AddTagCommand` allows you to add tags to the tag list.
 The `DeleteTagCommand` allows you to delete tags from the tag list.
 
-For listing the tags, you can use the `tags` command. For adding a tag to the tag list, 
+For listing the tags, you can use the `tags` command. For adding a tag to the tag list,
 you can use the `addtag` command followed by the tag prefix, `t/`. An example of a user input
-would be `addtag t/MaleProtagonist`. For deleting a tag from the tag list, you can use the 
-`dtag` command followed by the name of the tag name. An example of user input would be 
+would be `addtag t/MaleProtagonist`. For deleting a tag from the tag list, you can use the
+`dtag` command followed by the name of the tag name. An example of user input would be
 `dtag MaleProtagnoist`.
 
 Some limitations of the user inputs include:
@@ -431,16 +431,16 @@ Some limitations of the user inputs include:
 **Aspect: How to store the tag list?:**
 The tag list is stored as a JSON file which will be saved to the user's local device.
 
-The main reason for this is due to the need for the user's tag list to be saved even after the user exist 
+The main reason for this is due to the need for the user's tag list to be saved even after the user exist
 the application. When the user starts the application in the future, the tag list must be how the user left it.
 
 ### Rating Field
 #### Implementation
-The `Rating` field of a bookmark allows user to rate books in the Library. This is stored as the attribute `Rating` 
-in the `Bookmark` class. 
+The `Rating` field of a bookmark allows user to rate books in the Library. This is stored as the attribute `Rating`
+in the `Bookmark` class.
 
-`Rating` is an optional field to be added to a bookmark. It was represented as an integer as that allows it to be 
-easily displayed as stars on the user interface and thus easy to understand for the user. When no `Rating` is provided, 
+`Rating` is an optional field to be added to a bookmark. It was represented as an integer as that allows it to be
+easily displayed as stars on the user interface and thus easy to understand for the user. When no `Rating` is provided,
 no star logos would be displayed.
 
 #### Design considerations:
@@ -449,7 +449,7 @@ no star logos would be displayed.
 The `Rating` field is represented by integer values from 1 to 5. This allows for a simple and intuitive way to rate
 books in the `Library`.
 
-- **Alternative 1(current choice):** Representing it as an integer from 1 to 5 inclusive. 
+- **Alternative 1(current choice):** Representing it as an integer from 1 to 5 inclusive.
   - Pros: Simple to keep track of and store, easily map rating to star icons in UI.
   - Cons: Might not be granular enough to represent all possible values.
 - **Alternative 2:** Representing it a decimal value from 0 to 5.
@@ -580,17 +580,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. MyLib shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3b. Less than one field to edit provided.
 
     * 3b1. MyLib shows an error message.
-    
+
       Use case resumes at step 2
 
 * 3c. New value is invalid for any field.
 
     * 3c1. MyLib shows an error message.
-    
+
       Use case resumes at step 2.
 
 **Use case: Add a bookmark**
@@ -609,19 +609,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MyLib shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 1b. Not all compulsory fields provided.
 
     * 1b1. MyLib shows an error message.
-    
+
       Use case resumes at step 2
 
 * 1c. Value is invalid for any field.
 
     * 1c1. MyLib shows an error message.
-    
+
       Use case resumes at step 2.
-      
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -673,7 +673,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a bookmark while all bookmarks are being shown
 
-   1. Prerequisites: List all bookmark using the `list` command. 
+   1. Prerequisites: List all bookmark using the `list` command.
 
    1. Test case: `delete 1`<br>
       Expected: First bookmark is deleted from the list. Details of the deleted bookmark shown in the status message. Timestamp in the status bar is updated.
