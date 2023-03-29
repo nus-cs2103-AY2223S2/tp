@@ -1,10 +1,10 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.exam;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 
@@ -15,14 +15,19 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.UpdateLessonCommand;
+import seedu.address.logic.commands.exam.UpdateExamCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NamePredicate;
 
 /**
  * An UpdateHomeworkCommandParser that parses input arguments and creates a new UpdateHomeworkCommand object
  */
-public class UpdateLessonCommandParser implements Parser<seedu.address.logic.commands.UpdateLessonCommand> {
+public class UpdateExamCommandParser implements Parser<UpdateExamCommand> {
     private List<String> names = new ArrayList<>();
     /**
      * Parses the given {@code String} of arguments in the context of the UpdateHomeworkCommand
@@ -30,19 +35,19 @@ public class UpdateLessonCommandParser implements Parser<seedu.address.logic.com
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public UpdateLessonCommand parse(String args) throws ParseException {
+    public UpdateExamCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INDEX, PREFIX_LESSON, PREFIX_STARTTIME,
+            ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INDEX, PREFIX_EXAM, PREFIX_STARTTIME,
                 PREFIX_ENDTIME);
 
-        if ((!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX, PREFIX_LESSON)
+        if ((!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX, PREFIX_EXAM)
             && !arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX, PREFIX_STARTTIME)
             && !arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX, PREFIX_ENDTIME))
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                UpdateLessonCommand.MESSAGE_USAGE));
+                UpdateExamCommand.MESSAGE_USAGE));
         }
 
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
@@ -65,9 +70,9 @@ public class UpdateLessonCommandParser implements Parser<seedu.address.logic.com
         }
 
         // if homework name is not present, set it to null, else parse it
-        Optional<String> lessonName = Optional.empty();
-        if (argMultimap.getValue(PREFIX_LESSON).isPresent()) {
-            lessonName = Optional.of(argMultimap.getValue(PREFIX_LESSON).get());
+        Optional<String> examName = Optional.empty();
+        if (argMultimap.getValue(PREFIX_EXAM).isPresent()) {
+            examName = Optional.of(argMultimap.getValue(PREFIX_EXAM).get());
         }
 
         // if deadline is not present, set it to null, else parse it
@@ -81,8 +86,8 @@ public class UpdateLessonCommandParser implements Parser<seedu.address.logic.com
             endTime = Optional.of(ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get()));
         }
 
-        return new UpdateLessonCommand(names, index, new NamePredicate(nameKeywords),
-            lessonName, startTime, endTime);
+        return new UpdateExamCommand(names, index, new NamePredicate(nameKeywords),
+            examName, startTime, endTime);
     }
 
     /**

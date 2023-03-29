@@ -1,11 +1,11 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.lesson;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.LocalDate;
@@ -13,41 +13,45 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.logic.commands.ViewExamCommand;
+import seedu.address.logic.commands.lesson.ViewLessonCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.Exam;
-import seedu.address.model.student.ExamDatePredicate;
-import seedu.address.model.student.ExamDonePredicate;
-import seedu.address.model.student.ExamPredicate;
+import seedu.address.model.student.Lesson;
+import seedu.address.model.student.LessonBelongsToDatePredicate;
+import seedu.address.model.student.LessonDonePredicate;
+import seedu.address.model.student.LessonSubjectPredicate;
 import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
 
 /**
  * Parses input arguments and creates a new ViewHomeworkCommand object
  */
-public class ViewExamCommandParser implements Parser<ViewExamCommand> {
+public class ViewLessonCommandParser implements Parser<ViewLessonCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ViewLessonCommand
      * and returns a ViewLessonCommand object for execution.
      * @param args the user input to be parsed into a ViewLessonCommand object.
-     * @return a ViewExamCommand object.
+     * @return a ViewLessonCommand object.
      */
-    public ViewExamCommand parse(String args) throws ParseException {
+    public ViewLessonCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_EXAM,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_SUBJECT,
             PREFIX_DONE);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                ViewExamCommand.MESSAGE_USAGE));
+                ViewLessonCommand.MESSAGE_USAGE));
         }
 
         Predicate<Student> namePredicate;
-        Predicate<Exam> examPredicate = exam -> true;
-        Predicate<Exam> donePredicate = exam -> true;
-        boolean defaultPredicateFlag;
+        Predicate<Lesson> subjectPredicate = lesson -> true;
+        Predicate<Lesson> donePredicate = lesson -> true;
         List<String> nameList = new ArrayList<>();
+        boolean defaultPredicateFlag;
 
         // If name is present, create a predicate to filter by name
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -71,25 +75,33 @@ public class ViewExamCommandParser implements Parser<ViewExamCommand> {
             defaultPredicateFlag = true;
         }
 
-        if (argMultimap.getValue(PREFIX_EXAM).isPresent()) {
-            String exam = argMultimap.getValue(PREFIX_EXAM).get();
-            examPredicate = new ExamPredicate(exam);
+        if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
+            String subject = argMultimap.getValue(PREFIX_SUBJECT).get();
+            subjectPredicate = new LessonSubjectPredicate(subject);
         }
 
         if (argMultimap.getValue(PREFIX_DONE).isPresent()) {
             String done = argMultimap.getValue(PREFIX_DONE).get();
-            donePredicate = new ExamDonePredicate(done);
+            donePredicate = new LessonDonePredicate(done);
         }
 
-        // If date is present, create a predicate to filter by date
+        // If date is present, create a predicate to filter by status
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             String date = argMultimap.getValue(PREFIX_DATE).get();
             LocalDate targetDate = ParserUtil.parseDate(date);
-            ExamDatePredicate datePredicate = new ExamDatePredicate(targetDate);
-            return new ViewExamCommand(nameList, namePredicate, datePredicate, examPredicate, donePredicate,
+            LessonBelongsToDatePredicate datePredicate = new LessonBelongsToDatePredicate(targetDate);
+            return new ViewLessonCommand(nameList, namePredicate, datePredicate, subjectPredicate, donePredicate,
                 defaultPredicateFlag);
         } else {
-            return new ViewExamCommand(nameList, namePredicate, examPredicate, donePredicate, defaultPredicateFlag);
+            return new ViewLessonCommand(nameList, namePredicate, subjectPredicate, donePredicate,
+                defaultPredicateFlag);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof ViewLessonCommandParser // instanceof handles nulls
+            && this.equals((ViewLessonCommandParser) other)); // state check
     }
 }

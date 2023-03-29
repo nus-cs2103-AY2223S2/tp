@@ -29,7 +29,7 @@ You can reach us at these emails :
 <img src="images/nbqian.png" width="200px">
 
 [[github](https://github.com/NBQian)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/nbqian.md)]
 
 * Role: coder
 * Responsibilities: code
