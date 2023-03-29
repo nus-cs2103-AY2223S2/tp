@@ -17,25 +17,46 @@ abstract class UndoRedoCommand extends Command {
      * @return The maximum number of undo or redo operations possible that is less than {@param numOfSteps}.
      */
     public int undoOrRedoAtMost(Model model, int numOfSteps, boolean isUndo) {
-        int counts;
         if (isUndo) {
-            for (counts = 0; counts < numOfSteps; counts++) {
-                try {
-                    model.undo();
-                } catch (CommandException err) {
-                    break;
-                }
-            }
-            return counts;
+            return undoAtMost(model, numOfSteps);
         } else {
-            for (counts = 0; counts < numOfSteps; counts++) {
-                try {
-                    model.redo();
-                } catch (CommandException err) {
-                    break;
-                }
-            }
-            return counts;
+            return redoAtMost(model, numOfSteps);
         }
+    }
+
+    /**
+     * Undo actions by the user for a maximum number of times possible.
+     * @param model See {@code undoOrRedoAtMost}.
+     * @param numOfSteps See {@code undoOrRedoAtMost}.
+     * @return See {@code undoOrRedoAtMost}.
+     */
+    public int undoAtMost(Model model, int numOfSteps) {
+        int counts;
+        for (counts = 0; counts < numOfSteps; counts++) {
+            try {
+                model.undo();
+            } catch (CommandException err) {
+                break;
+            }
+        }
+        return counts;
+    }
+
+    /**
+     * Redo actions by the user for a maximum number of times possible.
+     * @param model See {@code undoOrRedoAtMost}.
+     * @param numOfSteps See {@code undoOrRedoAtMost}.
+     * @return See {@code undoOrRedoAtMost}.
+     */
+    public int redoAtMost(Model model, int numOfSteps) {
+        int counts;
+        for (counts = 0; counts < numOfSteps; counts++) {
+            try {
+                model.redo();
+            } catch (CommandException err) {
+                break;
+            }
+        }
+        return counts;
     }
 }

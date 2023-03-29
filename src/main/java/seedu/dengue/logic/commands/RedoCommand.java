@@ -10,7 +10,7 @@ import seedu.dengue.model.Model;
  */
 public class RedoCommand extends UndoRedoCommand {
     public static final String COMMAND_WORD = "redo";
-    public static final String MESSAGE_SUCCESS = "Redid %s operations successfully";
+    public static final String MESSAGE_SUCCESS = "Redid %s operations successfully!";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " performs a redo operation, where an optional argument \n"
             + "can be provided to indicate the number of operations. \n"
