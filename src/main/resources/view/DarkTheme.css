@@ -459,6 +459,10 @@
     -fx-background-color: darkred;
 }
 
+#deliveryStatus.RETURN {
+    -fx-background-color: purple;
+}
+
 #deliveryStatusToView.OTW {
     -fx-background-color: orange;
 }
@@ -473,6 +477,10 @@
 
 #deliveryStatusToView.FAILED {
     -fx-background-color: darkred;
+}
+
+#deliveryStatusToView.RETURN {
+    -fx-background-color: purple;
 }
 
 #noOfDeliveryAttempts {

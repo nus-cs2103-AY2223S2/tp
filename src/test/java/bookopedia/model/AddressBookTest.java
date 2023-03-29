@@ -93,7 +93,7 @@ public class AddressBookTest {
     public void sortAddressBook() {
         addressBook.setPersons(getTypicalPersons());
         addressBook.sort();
-        assertEquals(addressBook.getPersonList(), Arrays.asList(DANIEL, ELLE, FIONA, GEORGE, BENSON, CARL, ALICE));
+        assertEquals(addressBook.getPersonList(), Arrays.asList(DANIEL, ELLE, FIONA, BENSON, CARL, ALICE, GEORGE));
     }
 
     /**

@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import bookopedia.commons.exceptions.IllegalValueException;
+import bookopedia.model.DeliveryStatus;
 import bookopedia.model.person.Address;
 import bookopedia.model.person.Email;
 import bookopedia.model.person.Name;
@@ -25,7 +26,9 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_DELIVERY_STATUS = "HUH";
-    private static final int INVALID_NO_OF_DELIVERY_ATTEMPTS = -1;
+    private static final int INVALID_NO_OF_DELIVERY_ATTEMPTS_NEGATIVE = -1;
+
+    private static final int INVALID_NO_OF_DELIVERY_ATTEMPTS_OVER = DeliveryStatus.NO_OF_ATTEMPTS_BEFORE_RETURN + 1;
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -43,7 +46,7 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedParcelIsBulky::new)
             .collect(Collectors.toList());
     private static final String VALID_DELIVERY_STATUS = "PENDING";
-    private static final int VALID_NO_OF_DELIVERY_ATTEMPTS = 1;
+    private static final int VALID_NO_OF_DELIVERY_ATTEMPTS = DeliveryStatus.NO_OF_ATTEMPTS_BEFORE_RETURN;
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -160,10 +163,26 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidNoOfDeliveryAttempts_throwsIllegalValueException() {
+    public void toModelType_invalidNoOfDeliveryAttemptsNegative_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_TAGS, VALID_FRAGILE, VALID_BULKY,
-                VALID_DELIVERY_STATUS, INVALID_NO_OF_DELIVERY_ATTEMPTS);
+                VALID_DELIVERY_STATUS, INVALID_NO_OF_DELIVERY_ATTEMPTS_NEGATIVE);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidNoOfDeliveryAttemptsOver_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_TAGS, VALID_FRAGILE, VALID_BULKY,
+                VALID_DELIVERY_STATUS, INVALID_NO_OF_DELIVERY_ATTEMPTS_OVER);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_deliveryAttemptsMismatchDeliveryStatusReturn_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_TAGS, VALID_FRAGILE, VALID_BULKY,
+                DeliveryStatus.FAILED.toString(), DeliveryStatus.NO_OF_ATTEMPTS_BEFORE_RETURN);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 }

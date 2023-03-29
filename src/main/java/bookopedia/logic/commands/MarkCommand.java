@@ -20,7 +20,9 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Mark delivery status for a person. "
             + "Parameters: INDEX (must be a positive integer) "
-            + CliSyntax.PREFIX_STATUS + "STATUS (pending/otw/done/failed)";
+            + CliSyntax.PREFIX_STATUS + "STATUS (pending/otw/done/failed/return)";
+
+    public static final String MESSAGE_RETURN_STATUS_CHANGED = "Cannot change status of a return delivery!";
 
     public static final String MESSAGE_SUCCESS = "Marked %1$s's delivery as: %2$s";
 
@@ -34,6 +36,8 @@ public class MarkCommand extends Command {
      */
     public MarkCommand(Index targetIndex, DeliveryStatus newStatus) {
         requireNonNull(targetIndex);
+        requireNonNull(newStatus);
+
         this.targetIndex = targetIndex;
         this.newStatus = newStatus;
     }
@@ -49,12 +53,22 @@ public class MarkCommand extends Command {
 
         Person personToMark = lastShownList.get(targetIndex.getZeroBased());
 
-        int noOfDeliveryAttempts = newStatus == DeliveryStatus.FAILED
-                ? personToMark.getNoOfDeliveryAttempts() + 1 : personToMark.getNoOfDeliveryAttempts();
+        if (personToMark.getDeliveryStatus() == DeliveryStatus.RETURN) {
+            throw new CommandException(MESSAGE_RETURN_STATUS_CHANGED);
+        }
+
+        int noOfDeliveryAttemptsToSet = personToMark.getNoOfDeliveryAttempts();
+        DeliveryStatus deliveryStatusToSet = newStatus;
+        if (newStatus == DeliveryStatus.FAILED) {
+            noOfDeliveryAttemptsToSet = noOfDeliveryAttemptsToSet + 1;
+            if (noOfDeliveryAttemptsToSet == DeliveryStatus.NO_OF_ATTEMPTS_BEFORE_RETURN) {
+                deliveryStatusToSet = DeliveryStatus.RETURN;
+            }
+        }
 
         Person updatedPersonToMark = new Person(personToMark.getName(), personToMark.getPhone(),
                 personToMark.getEmail(), personToMark.getAddress(), personToMark.getParcels(),
-                newStatus, noOfDeliveryAttempts);
+                deliveryStatusToSet, noOfDeliveryAttemptsToSet);
 
         model.setPerson(personToMark, updatedPersonToMark);
 

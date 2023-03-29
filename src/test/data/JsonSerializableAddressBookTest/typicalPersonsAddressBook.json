@@ -68,7 +68,7 @@
     "parcels" : [ ],
     "parcelsIsFragile" : [ ],
     "parcelsIsBulky" : [ ],
-    "deliveryStatus": "PENDING",
+    "deliveryStatus": "FAILED",
     "noOfDeliveryAttempts": 0
   } ]
 }

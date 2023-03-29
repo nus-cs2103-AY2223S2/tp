@@ -143,7 +143,14 @@ class JsonAdaptedPerson {
         final Set<Parcel> modelParcels = new HashSet<>(personParcels);
 
         if (noOfDeliveryAttempts < 0) {
-            throw new IllegalValueException("No. of delivery attempts cannot be negative!");
+            throw new IllegalValueException(DeliveryStatus.MESSAGE_CONSTRAINTS_NEGATIVE_ATTEMPTS);
+        } else if (noOfDeliveryAttempts > DeliveryStatus.NO_OF_ATTEMPTS_BEFORE_RETURN) {
+            throw new IllegalValueException(DeliveryStatus.MESSAGE_CONSTRAINTS_RETURN_ATTEMPTS);
+        }
+
+        if (noOfDeliveryAttempts == DeliveryStatus.NO_OF_ATTEMPTS_BEFORE_RETURN
+                && modelDeliveryStatus != DeliveryStatus.RETURN) {
+            throw new IllegalValueException(DeliveryStatus.MESSAGE_CONSTRAINTS_RETURN_MISMATCH);
         }
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelParcels,
