@@ -23,14 +23,16 @@ public class Client {
     private final Name name;
     private final Phone phone;
     private final Email email;
+
     // Data fields
     private final Address address;
-    private final Weight weight;
+    private Weight weight;
     private final Gender gender;
     private final Goal goal;
     private final Set<Appointment> appointments = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
     private final Calorie calorie;
+    private final WeightHistory weightHistory;
     private final Set<Routine> routines = new HashSet<>();
 
     /**
@@ -50,6 +52,29 @@ public class Client {
         this.gender = gender;
         this.routines.addAll(routines);
         this.goal = goal;
+        this.weightHistory = new WeightHistory(new Weight(weight.value));
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Client(Name name, Phone phone, Email email, Address address, Set<Appointment> appointments,
+                  Weight weight, Gender gender, Calorie calorie, Goal goal, Set<Tag> tags, Set<Routine> routines,
+                  List<Weight> weightHistory) {
+        requireAllNonNull(
+                name, phone, email, address, appointments, weight, gender, calorie, goal, tags, weightHistory);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.calorie = calorie;
+        this.appointments.addAll(appointments);
+        this.tags.addAll(tags);
+        this.weight = weight;
+        this.gender = gender;
+        this.routines.addAll(routines);
+        this.goal = goal;
+        this.weightHistory = new WeightHistory(weightHistory);
     }
 
     public Name getName() {
@@ -76,12 +101,23 @@ public class Client {
         return weight;
     }
 
+    public void setWeight(Weight newWeight) {
+        this.weight = newWeight;
+    }
+
     public Gender getGender() {
         return gender;
     }
 
     public Goal getGoal() {
         return goal;
+    }
+
+    public WeightHistory getWeightHistory() {
+        return weightHistory;
+    }
+    public List<Weight> getWeightList() {
+        return weightHistory.weights;
     }
 
     public boolean isAppointmentEmpty() {
@@ -211,6 +247,9 @@ public class Client {
                 && otherClient.getAppointments().equals(getAppointments())
                 && otherClient.getCalorie().equals(getCalorie())
                 && otherClient.getTags().equals(getTags())
+                && otherClient.getGoal().equals(getGoal())
+                && otherClient.getCalorie().equals(getCalorie())
+                && otherClient.getWeightHistory().equals(getWeightHistory())
                 && otherClient.getRoutines().equals(getRoutines())
                 && otherClient.getGoal().equals(getGoal());
     }

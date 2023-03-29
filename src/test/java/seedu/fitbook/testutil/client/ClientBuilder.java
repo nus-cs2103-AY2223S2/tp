@@ -7,12 +7,14 @@ import seedu.fitbook.model.client.Address;
 import seedu.fitbook.model.client.Appointment;
 import seedu.fitbook.model.client.Calorie;
 import seedu.fitbook.model.client.Client;
+import seedu.fitbook.model.client.Date;
 import seedu.fitbook.model.client.Email;
 import seedu.fitbook.model.client.Gender;
 import seedu.fitbook.model.client.Goal;
 import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.client.Weight;
+import seedu.fitbook.model.client.WeightHistory;
 import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.tag.Tag;
 import seedu.fitbook.model.util.SampleDataUtil;
@@ -30,6 +32,7 @@ public class ClientBuilder {
     public static final String DEFAULT_WEIGHT = "50.00";
     public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_GOAL = "lose weight";
+    public static final String DEFAULT_WEIGHT_DATE = "23-03-2023 18:00";
 
     private Name name;
     private Phone phone;
@@ -41,6 +44,8 @@ public class ClientBuilder {
     private Weight weight;
     private Gender gender;
     private Goal goal;
+    private WeightHistory weightHistory;
+    private Date weightDate;
     private Set<Routine> routines;
 
     /**
@@ -57,6 +62,8 @@ public class ClientBuilder {
         goal = new Goal(DEFAULT_GOAL);
         appointments = new HashSet<>();
         tags = new HashSet<>();
+        weightHistory = new WeightHistory(weight);
+        weightDate = new Date(DEFAULT_WEIGHT_DATE);
         routines = new HashSet<>();
     }
 
@@ -72,6 +79,7 @@ public class ClientBuilder {
         weight = clientToCopy.getWeight();
         gender = clientToCopy.getGender();
         goal = clientToCopy.getGoal();
+        weightHistory = clientToCopy.getWeightHistory();
         appointments = new HashSet<>(clientToCopy.getAppointments());
         tags = new HashSet<>(clientToCopy.getTags());
         routines = new HashSet<>(clientToCopy.getRoutines());
@@ -147,11 +155,28 @@ public class ClientBuilder {
         this.goal = new Goal(goal);
         return this;
     }
+
     /**
      * Sets the {@code Calorie} of the {@code Client} that we are building.
      */
     public ClientBuilder withCalorie(String calorie) {
         this.calorie = new Calorie(calorie);
+        return this;
+    }
+
+    /**
+     * Sets the {@code WeightHistory} of the {@code Client} that we are building.
+     */
+    public ClientBuilder withWeightHistory(String weight) {
+        this.weightHistory = new WeightHistory(new Weight(weight));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Date} of the input weight of the {@code Client} that we are building.
+     */
+    public ClientBuilder withWeightDate(String date) {
+        this.weightDate = new Date(date);
         return this;
     }
 
@@ -167,5 +192,4 @@ public class ClientBuilder {
     public Client build() {
         return new Client(name, phone, email, address, appointments, weight, gender, calorie, goal, tags, routines);
     }
-
 }

@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.fitbook.model.client.Client;
+
 /**
  * Represents the result of a command execution.
  */
@@ -16,14 +18,18 @@ public class CommandResult {
 
     /** The application should exit. */
     private final boolean exit;
+    private final boolean view;
+    private final Client clientToView;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, Client clientToView, boolean showHelp, boolean exit, boolean view) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.view = view;
+        this.clientToView = clientToView;
     }
 
     /**
@@ -31,12 +37,13 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, null, false, false, false);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
+
 
     public boolean isShowHelp() {
         return showHelp;
@@ -44,6 +51,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isView() {
+        return view;
+    }
+
+    public Client getClientToView() {
+        return clientToView;
     }
 
     @Override
@@ -60,12 +75,13 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && view == otherCommandResult.view;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, view);
     }
 
 }

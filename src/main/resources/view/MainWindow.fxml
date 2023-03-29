@@ -27,15 +27,21 @@
 
       <VBox id="mainContainer" maxWidth="1.7976931348623157E308">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+          <Menu mnemonicParsing="false" text="Help">
+            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" style="-fx-font-size: 10pt;" text="Help" />
+          </Menu>
           <Menu mnemonicParsing="false" text="FitBook">
             <MenuItem mnemonicParsing="false" onAction="#handleSchedule" style="-fx-font-size: 10pt;" text="Schedule" />
             <MenuItem mnemonicParsing="false" onAction="#handleExit" style="-fx-font-size: 10pt;" text="Exit" />
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" style="-fx-font-size: 10pt;" text="Help" />
-          </Menu>
           <Menu mnemonicParsing="false" text="Exercise">
             <MenuItem fx:id="exerciseMenuItem" mnemonicParsing="false" onAction="#handleExercise" style="-fx-font-size: 10pt;" text="Exercise" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Statistic">
+            <MenuItem fx:id="statisticMenuItem" mnemonicParsing="false" onAction="#handleStatistics" style="-fx-font-size: 10pt;" text="Statistic" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Summary">
+            <MenuItem fx:id="summaryMenuItem" mnemonicParsing="false" onAction="#handleSummary" style="-fx-font-size: 10pt;" text="Summary" />
           </Menu>
         </MenuBar>
 
@@ -71,7 +77,7 @@
                 <Insets bottom="5.0" />
               </padding>
             </Pane>
-            <StackPane fx:id="clientListPanelPlaceholder" style="-fx-background-radius: 10 10 0 0; -fx-effect: dropshadow(three-pass-box, derive(#F88017, -20%), 10, 0, 4, 4);" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+            <StackPane fx:id="leftPanelPlaceholder" style="-fx-background-radius: 10 10 0 0; -fx-effect: dropshadow(three-pass-box, derive(#F88017, -20%), 10, 0, 4, 4);" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
           </VBox>
             <VBox fx:id="scheduleList" minWidth="340" prefHeight="200" prefWidth="600" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
               <padding>
@@ -89,7 +95,7 @@
                   <Insets bottom="5.0" />
                 </padding>
               </Pane>
-              <StackPane fx:id="panelPlaceholder" style="-fx-background-radius: 10 10 0 0; -fx-effect: dropshadow(three-pass-box, derive(#F88017, -20%), 10, 0, 4, 4);" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+              <StackPane fx:id="rightPanelPlaceholder" style="-fx-background-radius: 10 10 0 0; -fx-effect: dropshadow(three-pass-box, derive(#F88017, -20%), 10, 0, 4, 4);" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
             </VBox>
           </children>
         </HBox>
