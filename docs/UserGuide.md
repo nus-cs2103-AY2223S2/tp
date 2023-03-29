@@ -635,6 +635,11 @@ If you want to end the application, simply type `exit`, or click on the `Exit` b
 **Q**: Can I edit my own profile?
 **A**: Yes you may! Refer to [Editing a Contact's Details](#edit-a-contacts-details-edit)
 
+**Q**: How is `EduMate` better than Microsoft Outlook or uWave?
+**A**: We have features that Microsoft Outlook or uWave don't have but we think should be integrated into these platforms, like the [meetup recommenders](#meet-commands)
+and several search functions like [sort](#arrange-contacts-based-on-criteria-sort) and [find](#filter-contacts-by-keywords-find). It is also open-source so student developers can 
+suggest new features and it is easily extensible!
+
 
 ## Summary
 
