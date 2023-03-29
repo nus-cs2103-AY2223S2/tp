@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.internship.logic.commands.AddCommand;
 import seedu.internship.logic.commands.ClearCommand;
+import seedu.internship.logic.commands.CopyCommand;
 import seedu.internship.logic.commands.DeleteFieldCommand;
 import seedu.internship.logic.commands.DeleteIndexCommand;
 import seedu.internship.logic.commands.EditCommand;
@@ -30,7 +31,6 @@ import seedu.internship.logic.commands.ExitCommand;
 import seedu.internship.logic.commands.FindCommand;
 import seedu.internship.logic.commands.HelpCommand;
 import seedu.internship.logic.commands.ListCommand;
-import seedu.internship.logic.commands.CopyCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.InternshipContainsKeywordsPredicate;
