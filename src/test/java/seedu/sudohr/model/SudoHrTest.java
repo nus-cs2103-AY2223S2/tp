@@ -47,6 +47,7 @@ import seedu.sudohr.model.leave.exceptions.DuplicateLeaveException;
 import seedu.sudohr.testutil.DepartmentBuilder;
 import seedu.sudohr.testutil.EmployeeBuilder;
 import seedu.sudohr.testutil.LeaveBuilder;
+import seedu.sudohr.testutil.TypicalDepartments;
 import seedu.sudohr.testutil.TypicalLeave;
 
 public class SudoHrTest {
@@ -606,6 +607,21 @@ public class SudoHrTest {
     }
 
     @Test
+    public void getCountForDepartment_deptWithNoEmployees_returnsTrue() {
+        sudoHr.setDepartments(TypicalDepartments.getTypicalDepartments());
+        assertEquals(sudoHr.getCountForDepartment(TypicalDepartments.EMPTY_DEPARTMENT), 0);
+    }
+
+    @Test
+    public void getCountForDepartment_deptWithEmployees_returnsTrue() {
+        sudoHr.setDepartments(TypicalDepartments.getTypicalDepartments());
+        assertEquals(sudoHr.getCountForDepartment(SALES), 4);
+        // now remove the leave
+        sudoHr.removeDepartment(TypicalDepartments.SALES);
+        assertEquals(sudoHr.getCountForDepartment(TypicalDepartments.SALES), 0);
+    }
+
+    @Test
     public void getDepartmentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> sudoHr.getDepartmentList().remove(0));
     }
@@ -650,6 +666,21 @@ public class SudoHrTest {
     @Test
     public void getLeaveList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> sudoHr.getLeavesList().remove(0));
+    }
+
+    @Test
+    public void getCountOnLeave_leaveWithNoEmployees_returnsTrue() {
+        sudoHr.setLeaves(TypicalLeave.getTypicalLeaves());
+        assertEquals(sudoHr.getCountOnLeave(TypicalLeave.LEAVE_TYPE_EMPTY), 0);
+    }
+
+    @Test
+    public void getCountOnLeave_leaveWithEmployees_returnsTrue() {
+        sudoHr.setLeaves(TypicalLeave.getTypicalLeaves());
+        assertEquals(sudoHr.getCountOnLeave(TypicalLeave.LEAVE_TYPE_1), 3);
+        // now remove the leave
+        sudoHr.deleteLeave(TypicalLeave.LEAVE_TYPE_1);
+        assertEquals(sudoHr.getCountOnLeave(TypicalLeave.LEAVE_TYPE_1), 0);
     }
 
     /**

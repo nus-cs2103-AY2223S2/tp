@@ -229,6 +229,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public int getCountOnLeave(Leave leave) {
+        requireNonNull(leave);
+        return sudoHr.getCountOnLeave(leave);
+    }
+
+    @Override
+    public int getCountOnLeave(LeaveDate date) {
+        requireNonNull(date);
+        Leave leave = getLeave(date);
+        return getCountOnLeave(leave);
+    }
+
+    @Override
     public void cascadeUpdateUserInLeaves(Employee employeeToEdit, Employee editedEmployee) {
         requireAllNonNull(employeeToEdit, editedEmployee);
         sudoHr.cascadeUpdateUserInLeaves(employeeToEdit, editedEmployee);
@@ -283,6 +296,19 @@ public class ModelManager implements Model {
     public boolean hasDepartment(Department department) {
         requireNonNull(department);
         return sudoHr.hasDepartment(department);
+    }
+
+    @Override
+    public int getCountForDepartment(Department department) {
+        requireNonNull(department);
+        return sudoHr.getCountForDepartment(department);
+    }
+
+    @Override
+    public int getCountForDepartment(DepartmentName departmentName) {
+        requireNonNull(departmentName);
+        Department dept = getDepartment(departmentName);
+        return getCountForDepartment(dept);
     }
 
     @Override

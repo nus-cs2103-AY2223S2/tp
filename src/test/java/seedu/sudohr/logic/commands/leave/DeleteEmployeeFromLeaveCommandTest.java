@@ -235,6 +235,16 @@ public class DeleteEmployeeFromLeaveCommandTest {
         }
 
         @Override
+        public int getCountForDepartment(Department department) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getCountForDepartment(DepartmentName departmentName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Department> getFilteredDepartmentList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -281,6 +291,16 @@ public class DeleteEmployeeFromLeaveCommandTest {
 
         @Override
         public void addEmployeeToLeave(Leave leaveToAdd, Employee employeeToAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getCountOnLeave(Leave leave) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getCountOnLeave(LeaveDate date) {
             throw new AssertionError("This method should not be called.");
         }
 
