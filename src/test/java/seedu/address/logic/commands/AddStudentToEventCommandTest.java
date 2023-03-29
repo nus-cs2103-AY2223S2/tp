@@ -11,12 +11,14 @@ import static seedu.address.testutil.TypicalEvents.SAMPLE_CONSULTATION;
 import static seedu.address.testutil.TypicalEvents.SAMPLE_LAB;
 import static seedu.address.testutil.TypicalEvents.SAMPLE_TUTORIAL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -28,6 +30,7 @@ class AddStudentToEventCommandTest {
     private static final String WRONG_TYPE = "tutoria";
     private Model model;
     private Index first = INDEX_FIRST_PERSON;
+    private Index second = INDEX_SECOND_PERSON;
 
     @BeforeEach
     public void setUp() {
@@ -39,7 +42,7 @@ class AddStudentToEventCommandTest {
     }
 
     @Test
-    void execute_addStudent_success() {
+    void execute_addStudent_success() throws ParseException {
         Model modifiedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         modifiedModel.addTutorial(new Tutorial(SAMPLE_TUTORIAL.getName()));
         modifiedModel.addLab(new Lab(SAMPLE_LAB.getName()));
@@ -50,17 +53,17 @@ class AddStudentToEventCommandTest {
 
         modifiedModel.addStudentToTutorial(first, SAMPLE_TUTORIAL.getName());
         assertCommandSuccessDiffModel(new AddStudentToEventCommand(
-                first, SAMPLE_TUTORIAL.getName(), TUTORIAL_STRING),
+                second, SAMPLE_TUTORIAL.getName(), TUTORIAL_STRING),
                 model, new CommandResult(MESSAGE_SUCCESS), modifiedModel);
 
         modifiedModel.addStudentToLab(first, SAMPLE_LAB.getName());
         assertCommandSuccessDiffModel(new AddStudentToEventCommand(
-                        first, SAMPLE_LAB.getName(), LAB_STRING),
+                        second, SAMPLE_LAB.getName(), LAB_STRING),
                 model, new CommandResult(MESSAGE_SUCCESS), modifiedModel);
 
         modifiedModel.addStudentToConsultation(first, SAMPLE_CONSULTATION.getName());
         assertCommandSuccessDiffModel(new AddStudentToEventCommand(
-                        first, SAMPLE_CONSULTATION.getName(), CONSULTATION_STRING),
+                        second, SAMPLE_CONSULTATION.getName(), CONSULTATION_STRING),
                 model, new CommandResult(MESSAGE_SUCCESS), modifiedModel);
 
     }

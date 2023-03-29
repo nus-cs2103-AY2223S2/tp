@@ -19,6 +19,7 @@ import seedu.address.logic.comparators.EmailComparator;
 import seedu.address.logic.comparators.NameComparator;
 import seedu.address.logic.comparators.PerformanceComparator;
 import seedu.address.logic.comparators.RemarkComparator;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Note;
@@ -154,7 +155,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addStudentToTutorial(Index toAdd, String tutName) {
+    public void addStudentToTutorial(Index toAdd, String tutName) throws ParseException {
         Person toAddPerson = this.getFilteredPersonList().get(toAdd.getZeroBased());
         addressBook.addStudentToTutorial(toAddPerson, tutName);
     }
@@ -184,7 +185,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addStudentToLab(Index toAdd, String labName) {
+    public void addStudentToLab(Index toAdd, String labName) throws ParseException {
         Person toAddPerson = this.getFilteredPersonList().get(toAdd.getZeroBased());
         addressBook.addStudentToLab(toAddPerson, labName);
     }
@@ -213,7 +214,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addStudentToConsultation(Index toAdd, String consultationName) {
+    public void addStudentToConsultation(Index toAdd, String consultationName) throws ParseException {
         Person toAddPerson = this.getFilteredPersonList().get(toAdd.getZeroBased());
         addressBook.addStudentToConsultation(toAddPerson, consultationName);
     }
