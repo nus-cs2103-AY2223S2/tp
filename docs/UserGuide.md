@@ -356,6 +356,8 @@ Once the contact data in ConnectUS is cleared, it cannot be retrieved. Do procee
 
 **Result:**<br>![ClearCommand](images/ClearCommand.png)
 
+[↑ Back to feature list](#4-features)
+
 <div style="page-break-after: always"></div>
 
 ## 4.4 Adding a contact: `add`
@@ -451,6 +453,8 @@ The `add-t` command:
 
 **After:**<br>![AddTagAfter](images/AddTagAfter.png)
 
+[↑ Back to feature list](#4-features)
+
 <div style="page-break-after: always"></div>
 
 ## 4.7 Deleting tags from a contact: `delete-t`
@@ -478,6 +482,8 @@ The `delete-t` command:
 **Before:**<br>![AddTagAfter](images/AddTagAfter.png)
 
 **After:**<br>![DeleteTagAfter](images/DeleteTagAfter.png)
+
+[↑ Back to feature list](#4-features)
 
 <div style="page-break-after: always"></div>
 
@@ -721,7 +727,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
   * `01/01/2000` would correspond to January 1st, 2000
   * `16/05/1990` would correspond to May 16th, 1990.
 
-[↑ Back to prefix list](#5-information-fields--prefixes
+[↑ Back to prefix list](#5-information-fields--prefixes)
 
 <div style="page-break-after: always"></div>
 
