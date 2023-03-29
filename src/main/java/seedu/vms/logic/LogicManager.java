@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
+import seedu.vms.commons.util.StringUtil;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.parser.ParseResult;
@@ -273,17 +274,8 @@ public class LogicManager implements Logic {
             sendLoadInfo("Appointments validated");
             return;
         }
-        sendLoadWarning(formAppointmentValidationWarnMsg(invalidAppointments));
-    }
-
-
-    private String formAppointmentValidationWarnMsg(List<IdData<Appointment>> invalidAppointments) {
-        StringBuilder builder = new StringBuilder();
-        for (IdData<Appointment> data : invalidAppointments) {
-            builder.append(String.format("\n- #%04d", data.getId() + 1));
-        }
-        return String.format("The following appointments are invalid and have been deleted:%s",
-                builder.toString());
+        sendLoadWarning(String.format("The following appointments are invalid and have been deleted:%s",
+                StringUtil.formatAppointmentListing(invalidAppointments)));
     }
 
 
