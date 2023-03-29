@@ -68,7 +68,7 @@ Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags. (including 0)
 </div>
 
 Examples:
@@ -254,7 +254,7 @@ Format: `help`
 
 ### Colour coded due dates
 
-Expresslibrary automatically changes the color of due dates to alert the librarian when a book’s due date is within 3 days of the current date or has passed.
+ExpressLibrary automatically changes the color of due dates to alert the librarian when a book’s due date is within 3 days of the current date or has passed.
 
 ![colourDates](images/colourDates.png)
 
