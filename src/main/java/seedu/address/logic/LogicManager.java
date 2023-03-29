@@ -48,9 +48,8 @@ public class LogicManager implements Logic {
 
         try {
             storage.savePetPal(model.getPetPal());
-            if (command instanceof ArchiveCommand) {
-                storage.savePetPalArchive(model.getPetPalArchive());
-            }
+            storage.savePetPalArchive(model.getPetPalArchive());
+
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

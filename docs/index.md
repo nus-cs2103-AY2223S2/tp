@@ -6,7 +6,7 @@ title: PetPal
 [![CI Status](https://github.com/AY2223S2-CS2103T-T14-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-T14-2/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103-T14-2/tp/branch/master/graph/badge.svg)](https://app.codecov.io/gh/AY2223S2-CS2103-T14-2/tp)
 
-![Logo](images/UI/logo.png)
+![Logo](images/UI/logo2-alt.png)
 
 PetPal is your **furry and dependable assistant** who **reminds you of deadlines** and **consolidates crucial information** like pet names, tags dietary needs all in an **aesthetically pleasing** GUI! You can now focus on spend quality time with your furry friends without having to worry about things accidentally slipping your mind.
 

@@ -87,9 +87,9 @@ public class StorageManager implements Storage {
         return readPetPalArchive(petPalStorage.getPetPalArchiveFilePath());
     }
     @Override
-    public Optional<ReadOnlyPetPal> readPetPalArchive(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyPetPal> readPetPalArchive(Path filePath) throws IOException, DataConversionException {
         logger.fine("Attempting to read archive data from file: " + filePath);
-        return Optional.empty();
+        return petPalStorage.readPetPalArchive(filePath);
     }
 
     @Override
