@@ -532,7 +532,7 @@ You won't ever need to worry about losing your contacts. ConnectUS automatically
 
 If you are an advanced user, you are welcome to update data directly by editing the data file.
 
-ConnectUS data is saved as a JSON file `[JAR file location]/data/ConnectUS.json`.
+ConnectUS data is saved as a <u>JSON</u> file `[JAR file location]/data/ConnectUS.json`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
 If your changes to the data file makes its format invalid, ConnectUS will discard all data and start with an empty data file at the next run. Do remember to keep a backup of your data before attempting any changes in this manner!
@@ -726,7 +726,6 @@ There are four kinds of tags in ConnectUS.
 ### A
 > **Alphanumeric:**
 > Alphabet letters and numbers only.
-> 
 
 ### C
 > **CCA:**
@@ -736,9 +735,14 @@ There are four kinds of tags in ConnectUS.
 > A text-based user interface used to run programs.
 > 
 > **Command:**
+> Commands are actions that you want to perform using ConnectUS. Most commands will require user inputs, otherwise known as parameters, for ConnectUS to perform the action.
 > 
 > **ConnectUS.jar:**
 > `.jar` is short for Java ARchive. A file format that contains the executable Java application for ConnectUS.
+
+### F
+> **Format:**
+> In this User Guide, the format of a command is the correct input usage of a command.
 
 ### G
 > **GitHub:**
@@ -746,7 +750,6 @@ There are four kinds of tags in ConnectUS.
 > 
 > **Graphical User Interface (GUI):**
 > A form of user interface that allows users to interact with programs through graphical icons and audio indicators.
-> 
 
 ### J
 >**Java `11`**: A feature release of the Java SE platform, used to run ConnectUS. The download link for this release can be found <a href="https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html">here</a>.
@@ -756,13 +759,15 @@ There are four kinds of tags in ConnectUS.
 > 
 > **JSON:**
 > Short for JavaScript Object Notation. A standard text-based format for representing structured data based on JavaScript object syntax. *Basically, it stores your data.*
-> 
-> 
 
 ### N
 > **NUS:**
 > Short for the National University of Singapore. 
 > 
+
+### P
+> **Parameter:**
+> Parameters are user inputs that ConnectUS requires to perform certain commands.
 
 ### S
 > **School of Computing:**
