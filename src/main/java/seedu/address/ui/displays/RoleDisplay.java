@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Comparator;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -31,7 +32,10 @@ public final class RoleDisplay {
         company.getStyleClass().add("role-display-headers");
 
         HBox title = new HBox(role, company);
+        title.setAlignment(Pos.CENTER);
 
+        Label detailsHeader = new Label("Details:");
+        detailsHeader.getStyleClass().add("role-display-headers");
         FlowPane tags = new FlowPane();
         roleToDisplay.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -72,10 +76,19 @@ public final class RoleDisplay {
         Label website = new Label("Email: " + roleToDisplay.getWebsite());
         website.getStyleClass().add("role-display-body");
 
-        VBox container = new VBox(title, tags, salary, deadlineContainer, experience, jobDesc, contactHeader, email,
-                phone, website);
-        container.setPadding(new Insets(5, 5, 5, 10));
-        container.setSpacing(10);
-        return container;
+        VBox detailsContainer = new VBox(detailsHeader, salary, deadlineContainer, experience, jobDesc);
+        detailsContainer.setPadding(new Insets(5, 5, 5, 10));
+        detailsContainer.setSpacing(10);
+        detailsContainer.getStyleClass().add("role-display-card");
+
+        VBox contactsContainer = new VBox(contactHeader, email, phone, website);
+        contactsContainer.setPadding(new Insets(5, 5, 5, 10));
+        contactsContainer.setSpacing(10);
+        contactsContainer.getStyleClass().add("role-display-card");
+
+        VBox allContainer = new VBox(title, new VBox(detailsContainer, contactsContainer));
+        allContainer.setSpacing(10);
+
+        return allContainer;
     }
 }
