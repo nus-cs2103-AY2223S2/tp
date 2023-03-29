@@ -36,10 +36,10 @@ public class AddCommand extends Command {
             + "[" + PREFIX_SOCMED_TELEGRAM + "TELEGRAM] "
             + "[" + PREFIX_SOCMED_WHATSAPP + "WHATSAPP] "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
+            + "[" + PREFIX_REMARK + "REMARK]... "
             + "[" + PREFIX_MODULE + "MODULE]... "
             + "[" + PREFIX_CCA + "CCA]... "
-            + "[" + PREFIX_CCA_POSITION + "CCA POSITION]... "
-            + "[" + PREFIX_REMARK + "REMARK]...\n"
+            + "[" + PREFIX_CCA_POSITION + "CCA POSITION]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -49,14 +49,10 @@ public class AddCommand extends Command {
             + PREFIX_SOCMED_INSTAGRAM + "john.doe "
             + PREFIX_SOCMED_WHATSAPP + "98765432 "
             + PREFIX_BIRTHDAY + "01/01/1990 "
-            + PREFIX_MODULE + "CS2103T "
-            + PREFIX_MODULE + "CS2101 "
-            + PREFIX_CCA + "NES "
-            + PREFIX_CCA + "ICS "
-            + PREFIX_CCA_POSITION + "Director "
-            + PREFIX_CCA_POSITION + "President "
-            + PREFIX_REMARK + "friends "
-            + PREFIX_REMARK + "owesMoney";
+            + PREFIX_REMARK + "friends " + PREFIX_REMARK + "owesMoney "
+            + PREFIX_MODULE + "CS2103T " + PREFIX_MODULE + "CS2101 "
+            + PREFIX_CCA + "NES " + PREFIX_CCA + "ICS "
+            + PREFIX_CCA_POSITION + "Director " + PREFIX_CCA_POSITION + "President";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the ConnectUS";
