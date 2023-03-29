@@ -3,6 +3,10 @@ layout: page
 title: User Guide
 ---
 
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
 <!---
 Outstanding TODOs:
 [ ] Add numbering to all the sections in both the TOC & section headings
