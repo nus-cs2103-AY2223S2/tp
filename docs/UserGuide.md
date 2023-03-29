@@ -80,11 +80,11 @@ Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/J
 
 
 ### Editing a Role: `edit`:
-Edit any parameters of a preexisting role. 
+Edit any parameters of a preexisting role.
 
 Format: `edit {index} {Prefix}/{Parameter}…​`
 
-Example: `edit 1 e/johndoe@example.com w/www.google.com c/91234567 jd/Working on HFT systems - C++ knowledge needed 
+Example: `edit 1 e/johndoe@example.com w/www.google.com c/91234567 jd/Working on HFT systems - C++ knowledge needed
 $/4000 d/2023-10-20 x/Javascript - 1 Year`
 
 ### Deleting a role `delete`:
