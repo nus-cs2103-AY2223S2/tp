@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -9,11 +10,15 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.LectureEditInfo;
+import seedu.address.logic.commands.CommandResult.ModuleEditInfo;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.injector.Injector;
 import seedu.address.logic.injector.NavigationInjector;
 import seedu.address.logic.parser.TrackerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.trackereventsystem.TrackerEventSystem;
 import seedu.address.model.Level;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTracker;
@@ -34,6 +39,7 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final TrackerParser trackerParser;
     private final Injector navigationInjector;
+    private final TrackerEventSystem trackerEventSystem;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -43,20 +49,21 @@ public class LogicManager implements Logic {
         this.storage = storage;
         this.navigationInjector = new NavigationInjector();
         trackerParser = new TrackerParser();
+        trackerEventSystem = new TrackerEventSystem();
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        CommandResult commandResult;
-
         commandText = navigationInjector.inject(commandText, model);
 
         logger.info("----------------[POST INJECTION USER COMMAND][" + commandText + "]");
 
         Command command = trackerParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        CommandResult commandResult = command.execute(model);
+
+        triggerTrackerEvents(commandResult);
 
         try {
             storage.saveTracker(model.getTracker());
@@ -106,4 +113,24 @@ public class LogicManager implements Logic {
     public Level getLastListLevel() {
         return model.getLastListLevel();
     }
+
+    private void triggerTrackerEvents(CommandResult commandResult) {
+        List<ModuleEditInfo> moduleEditInfoList = commandResult.getModuleEditInfoList();
+        for (ModuleEditInfo info : moduleEditInfoList) {
+            trackerEventSystem.triggerOnModuleEditedEvent(info.getOriginalModule(), info.getEditedModule());
+        }
+
+        List<LectureEditInfo> lectureEditInfoList = commandResult.getLectureEditInfoList();
+        for (LectureEditInfo info : lectureEditInfoList) {
+            trackerEventSystem.triggerOnLectureEditedEvent(info.getModuleCode(), info.getOriginaLecture(),
+                    info.getEditedLecture());
+        }
+
+        List<VideoEditInfo> videoEditInfoList = commandResult.getVideoEditInfoList();
+        for (VideoEditInfo info : videoEditInfoList) {
+            trackerEventSystem.triggerOnVideoEditedEvent(info.getModuleCode(), info.getLectureName(),
+                    info.getOriginalVideo(), info.getEditedVideo());
+        }
+    }
+
 }

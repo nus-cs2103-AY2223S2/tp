@@ -13,6 +13,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
@@ -83,7 +84,8 @@ public class EditVideoCommand extends EditCommand {
         }
 
         model.setVideo(lecture, videoToEdit, editedVideo);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, lectureName, moduleCode, editedVideo));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, lectureName, moduleCode, editedVideo),
+                new VideoEditInfo(moduleCode, lectureName, videoToEdit, editedVideo));
     }
 
     private Video createEditedVideo(Video videoToEdit) {
