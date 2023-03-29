@@ -58,6 +58,22 @@ public class TimetableDetailPanel extends UiPart<Region> {
         focusDate = logic.getFocusDate();
 
         //Get year and month of week
+        setMonthYearPanel();
+
+        dayOfWeekPanel.getChildren().add(new DayOfWeekPanel(logic, primaryStage).getRoot());
+        dayOfMonthPanel.getChildren().add(new DayOfMonthPanel(focusDate, logic, primaryStage).getRoot());
+        jobListPanel.getChildren().add(new WeekJobListPanel(logic, primaryStage).getRoot());
+
+        logic.updateSortedDeliveryJobListByDate();
+        logic.setWeekDeliveryJobList(focusDate);
+        logger.fine("Filled in timetable detail with focus date as " + focusDate.toString());
+
+    }
+
+    /**
+     * Sets up month year in timetable based on focus date
+     */
+    private void setMonthYearPanel() {
         Text year = new Text(String.valueOf(focusDate.getYear()));
         Text month = new Text(String.valueOf(focusDate.getMonth()));
         year.setFont(new Font(24));
@@ -70,14 +86,5 @@ public class TimetableDetailPanel extends UiPart<Region> {
         monthYearPanel.getChildren().addAll(year, month);
         monthYearPanel.setSpacing(20);
         monthYearPanel.setAlignment(Pos.CENTER);
-
-        dayOfWeekPanel.getChildren().add(new DayOfWeekPanel(logic, primaryStage).getRoot());
-        dayOfMonthPanel.getChildren().add(new DayOfMonthPanel(focusDate, logic, primaryStage).getRoot());
-        jobListPanel.getChildren().add(new WeekJobListPanel(logic, primaryStage).getRoot());
-
-        logic.updateSortedDeliveryJobListByDate();
-        logic.setWeekDeliveryJobList(focusDate);
-        logger.fine("Filled in timetable detail with focus date as " + focusDate.toString());
-
     }
 }

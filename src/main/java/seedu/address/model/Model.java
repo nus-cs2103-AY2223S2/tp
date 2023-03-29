@@ -213,7 +213,7 @@ public interface Model {
     Map<LocalDate, DeliveryList> getSortedDeliveryJobListByDate();
 
     /**
-     * Returns job lis in the week
+     * Returns job list in the week
      */
     Map<LocalDate, DeliveryList> getWeekDeliveryJobList();
 

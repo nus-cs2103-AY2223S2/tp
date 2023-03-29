@@ -66,6 +66,12 @@ public interface Logic {
      */
     Path getAddressBookFilePath();
 
+    // REMINDER ===================================
+    /**
+     * Returns an unmodifiable view of the filtered list of reminders
+     */
+    ObservableList<Reminder> getReminderList();
+
     // DELIVERY JOB SYSTEM ===================================
 
     /**
@@ -77,11 +83,6 @@ public interface Logic {
      * Returns an unmodifiable view of the sorted list of delivery jobs
      */
     ObservableList<DeliveryJob> getSortedDeliveryJobList();
-
-    /**
-     * Returns an unmodifiable view of the filtered list of reminders
-     */
-    ObservableList<Reminder> getReminderList();
 
     /**
      * Returns delivery job list in the week sorted into day

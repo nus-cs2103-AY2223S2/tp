@@ -266,37 +266,45 @@ public class ModelManager implements Model {
 
     @Override
     public void updateSortedDeliveryJobListByDate() {
-        //updateSortedDeliveryJobList(SORTER_BY_DATE);
-
         jobListGroupedByDate.clear();
         for (int i = 0; i < sortedDeliveryJobs.size(); i++) {
             if (sortedDeliveryJobs.get(i).isScheduled()
                     && (!sortedDeliveryJobs.get(i).getDeliveredStatus())) {
-                LocalDate jobDate = sortedDeliveryJobs.get(i).getDate();
-                int jobSlot = sortedDeliveryJobs.get(i).getSlot();
-                int slotIndex = (jobSlot) - 1;
-                DeliveryJob toAdd = sortedDeliveryJobs.get(i);
-                if (jobListGroupedByDate.containsKey(jobDate)) {
-                    DeliveryList jobsInCurrentSlot = jobListGroupedByDate.get(jobDate);
-                    if (jobsInCurrentSlot.size() == 0) {
-                        jobsInCurrentSlot = createEmptyDayJobList();
-                    }
-                    if (slotIndex > 4) {
-                        jobsInCurrentSlot.get(5).add(toAdd);
-                    } else {
-                        jobsInCurrentSlot.get(slotIndex).add(toAdd);
-                    }
-                    jobListGroupedByDate.put(jobDate, jobsInCurrentSlot);
-                } else {
-                    DeliveryList newDateJobList = createEmptyDayJobList();
-                    if (slotIndex > 4) {
-                        newDateJobList.get(5).add(toAdd);
-                    } else {
-                        newDateJobList.get(slotIndex).add(toAdd);
-                    }
-                    jobListGroupedByDate.put(jobDate, newDateJobList);
-                }
+                addJobToJobListBasedOnDay(jobListGroupedByDate, sortedDeliveryJobs.get(i));
             }
+        }
+    }
+
+    /**
+     * Adds job to job list grouped by date according to delivery date
+     * Given that job has delivery date and slot
+     * @param jobListGroupedByDate
+     * @param toAdd
+     */
+    private void addJobToJobListBasedOnDay(Map<LocalDate, DeliveryList> jobListGroupedByDate, DeliveryJob toAdd) {
+        LocalDate jobDate = toAdd.getDate();
+        int jobSlot = toAdd.getSlot();
+        int slotIndex = (jobSlot) - 1;
+
+        if (jobListGroupedByDate.containsKey(jobDate)) {
+            DeliveryList jobsInCurrentSlot = jobListGroupedByDate.get(jobDate);
+            if (jobsInCurrentSlot.size() == 0) {
+                jobsInCurrentSlot = createEmptyDayJobList();
+            }
+            if (slotIndex > 4) {
+                jobsInCurrentSlot.get(5).add(toAdd);
+            } else {
+                jobsInCurrentSlot.get(slotIndex).add(toAdd);
+            }
+            jobListGroupedByDate.put(jobDate, jobsInCurrentSlot);
+        } else {
+            DeliveryList newDateJobList = createEmptyDayJobList();
+            if (slotIndex > 4) {
+                newDateJobList.get(5).add(toAdd);
+            } else {
+                newDateJobList.get(slotIndex).add(toAdd);
+            }
+            jobListGroupedByDate.put(jobDate, newDateJobList);
         }
     }
 
