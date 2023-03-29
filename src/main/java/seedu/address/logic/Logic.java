@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.Map;
@@ -28,7 +29,7 @@ public interface Logic {
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException   If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException;
+    CommandResult execute(String commandText) throws CommandException, ParseException, FileNotFoundException;
 
     /**
      * Executes specific command object and returns the result.
@@ -38,9 +39,9 @@ public interface Logic {
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException   If an error occurs during parsing.
      */
-    CommandResult execute(Command command) throws CommandException, ParseException;
+    CommandResult execute(Command command) throws CommandException, ParseException, FileNotFoundException;
 
-    CommandResult executeTimetableCommand(String commandText) throws CommandException, ParseException;
+    CommandResult executeTimetableCommand(String commandText) throws CommandException, ParseException, FileNotFoundException;
 
     /**
      * Returns the AddressBook.

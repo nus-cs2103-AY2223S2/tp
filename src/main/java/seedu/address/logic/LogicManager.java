@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -49,7 +50,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, FileNotFoundException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         Command command = addressBookParser.parseCommand(commandText);
@@ -57,7 +58,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(Command command) throws CommandException, ParseException {
+    public CommandResult execute(Command command) throws CommandException, ParseException, FileNotFoundException {
         logger.info("----------------[USER COMMAND][" + command.getClass().getSimpleName() + "]");
         CommandResult commandResult = command.execute(model);
         try {
@@ -70,7 +71,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult executeTimetableCommand(String commandText) throws CommandException, ParseException {
+    public CommandResult executeTimetableCommand(String commandText) throws CommandException, ParseException, FileNotFoundException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;

@@ -53,7 +53,7 @@
                      <Menu mnemonicParsing="false" text="Delivery Job System">
                         <items>
                            <MenuItem fx:id="jobSystemCreateJob" mnemonicParsing="false" onAction="#handleDeliveryJobSystemCreateAction" text="Create Job" />
-                           <MenuItem fx:id="jobSystemInportJobs" mnemonicParsing="false" text="Import Jobs" />
+                           <MenuItem fx:id="jobSystemImportJobs" mnemonicParsing="false" onAction="#handleDeliveryJobSystemImportAction" text="Import Jobs" />
                         </items>
                      </Menu>
                   </menus>

@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
@@ -12,6 +14,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -86,6 +89,8 @@ public class MainWindow extends UiPart<Stage> {
             refreshDeliveryJobDetailPane();
         } catch (ParseException | CommandException e) {
             logger.warning(e.getMessage());
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
     };
 
@@ -117,7 +122,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             deliveryJobListPanel.selectPrevious();
             logic.execute(new DeleteDeliveryJobCommand(job.getJobId()));
-        } catch (ParseException | CommandException e) {
+        } catch (ParseException | CommandException | FileNotFoundException e) {
             logger.warning(e.getMessage());
         }
     };
@@ -143,6 +148,7 @@ public class MainWindow extends UiPart<Stage> {
         reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
         addressBookWindow = new AddressBookWindow(new Stage(), logic);
+
     }
 
     public Stage getPrimaryStage() {
@@ -254,6 +260,7 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+
     /**
      * Opens Timetable window.
      */
@@ -338,6 +345,13 @@ public class MainWindow extends UiPart<Stage> {
         addDeliveryJobWindow.fillInnerParts();
     }
 
+    @FXML
+    private void handleDeliveryJobSystemImportAction() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Files");
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -380,6 +394,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleTimetable();
             }
 
+            if (commandResult.isShowTimetable()) {
+                handleTimetable();
+            }
+
             if (commandResult.isShowUnschedule()) {
                 handleUnscheduledTimetable();
             }
@@ -401,6 +419,8 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 }

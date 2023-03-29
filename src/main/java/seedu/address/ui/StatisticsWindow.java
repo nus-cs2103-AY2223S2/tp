@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.FileNotFoundException;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -171,6 +172,8 @@ public class StatisticsWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 }

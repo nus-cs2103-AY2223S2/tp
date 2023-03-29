@@ -1,5 +1,6 @@
 package seedu.address.ui.jobs;
 
+import java.io.FileNotFoundException;
 import java.util.Optional;
 import java.util.function.UnaryOperator;
 import java.util.logging.Logger;
@@ -179,6 +180,8 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
                 getRoot().close();
             }
         } catch (ParseException | CommandException e) {
+            logger.warning("[Event] createDeliveryJob" + e.getMessage());
+        } catch (FileNotFoundException e) {
             logger.warning("[Event] createDeliveryJob" + e.getMessage());
         }
     }
