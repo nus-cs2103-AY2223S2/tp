@@ -88,7 +88,11 @@ Format: `help`
 
 ### Adding a client: `add`
 
+{% include information.html content="
+
 Adds a client to the FitBook.
+
+" %}
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER
 [cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
@@ -109,7 +113,11 @@ Using `add n/Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
 
 ### Listing all clients : `listClients`
 
+{% include information.html content="
+
 Displays a list of all clients in the FitBook under the Client panel.
+
+" %}
 
 Format: `listClients`
 
@@ -120,7 +128,12 @@ Format: `listClients`
 
 ### Editing a client : `edit`
 
+{% include information.html content="
+
 Edits an existing client in the FitBook.
+
+" %}
+
 
 Format: `edit CLIENT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS w/WEIGHT g/GENDER
 [cal/RECOMMENDED_CALORIES_INTAKE] [g/GOAL] [r/ROUTINE]…​ [app/APPOINTMENT_TIME]…​ [t/TAG]…​`
@@ -145,7 +158,13 @@ Using `edit 1 p/91234567 e/johndoe@example.com` in the command input box will lo
 
 ### Locating clients by fields: `find`
 
+{% include information.html content="
+
 Finds Clients in FitBook whose details contain any of the given keywords.
+
+" %}
+
+
 
 Format: `find n/NAME p/PHONE e/EMAIL a/ADDRESS w/WEIGHT g/GENDER cal/CALORIE t/TAG
 app/APPOINTMENT gl/GOAL…​`
@@ -174,21 +193,12 @@ Examples:
 
 ### Deleting a client : `delete`
 
-Deletes the specified client from the FitBook.
-
-Format: `delete INDEX`
-
-* Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd client in the FitBook.
-* `find n/Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
-
-### Deleting a client : `delete`
+{% include information.html content="
 
 Deletes the specified client from the FitBook.
+
+" %}
+
 
 Format: `delete INDEX`
 
@@ -201,20 +211,46 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 ### Clearing all entries : `clear`
+{% include information.html content="
 
 Clears all entries from the FitBook.
+
+" %}
+
 
 Format: `clear`
 
 ### Export Client details : `export`
 
+{% include information.html content="
+
 Exports the client details locally into a csv file.
+
+" %}
+
 
 Format: `export`
 
+* The exported client data includes: <br>
+    * Name of Client
+    * Phone number of Client
+    * Email of Client
+    * Address of Client
+    * Weight of Client
+    * Gender of Client
+* Example generated CSV file when opened using Microsoft Excel: 
+
+    [!CSV Sample File](images/CSV%20Sample.PNG) 
+  
+
 ### Adding a routine: `addRoutine`
 
+{% include information.html content="
+
 Adds a routine to the FitBook.
+
+" %}
+
 
 Format: `addRoutine r/ROUTINE_NAME [ex/EXERCISE]…​`
 
@@ -226,7 +262,12 @@ Examples:
 
 ### Editing a routine : `editRoutine`
 
+{% include information.html content="
+
 Edits an existing routine in the FitBook.
+
+" %}
+
 
 Format: `editRoutine ROUTINE_INDEX r/ROUTINE_NAME` or `editRoutine INDEX exno/EXERCISE_INDEX ex/EXERCISE`
 
@@ -240,7 +281,12 @@ Examples:
 
 ### Listing all Routines in FitBook : `listRoutines`
 
+{% include information.html content="
+
 List all Routines in FitBook under Exercise tab.
+
+" %}
+
 
 Format: `listRoutines`
 
@@ -249,7 +295,12 @@ Format: `listRoutines`
 
 ### Locating Routines by name: `findRoutine`
 
+{% include information.html content="
+
 Finds Routines in FitBook whose Routine name contains any of the given keywords.
+
+" %}
+
 
 Format: `findRoutine KEYWORD`
 
@@ -261,13 +312,23 @@ Examples:
 
 ### Clearing all Routine entries : `clearRoutines`
 
+{% include information.html content="
+
 Clears all Routine entries in FitBook under the `Exercise` Tab.
+
+" %}
+
 
 Format: `clearRoutines`
 
 ### Deleting a routine : `deleteRoutine`
 
+{% include information.html content="
+
 Deletes the specified Routine from the FitBook.
+
+" %}
+
 
 Format: `deleteRoutine ROUTINE_INDEX`
 
@@ -281,7 +342,12 @@ Examples:
 
 ### Adding an Exercise : `addExercise`
 
+{% include information.html content="
+
 Adds an exercise to a current Routine in FitBook.
+
+" %}
+
 
 Format: `addExercise ROUTINE_INDEX ex/EXERCISE_NAME`
 
@@ -294,7 +360,12 @@ Examples:
 
 ### Deleting an Exercise : `deleteExercise`
 
+{% include information.html content="
+
 Deletes an exercise from a Routine in FitBook.
+
+" %}
+
 
 Format: `deleteExercise ROUTINE_INDEX EXERCISE_INDEX`
 
@@ -309,13 +380,31 @@ Examples:
 
 ### Exporting Routine details : `exportRoutines`
 
+{% include information.html content="
+
 Exports the routine details locally into a csv file.
+
+" %}
+
 
 Format: `exportRoutines`
 
+* The exported client data includes: <br>
+    * Name of Routine
+    * Exercises in the Routine
+  
+* Example generated CSV file when opened using Microsoft Excel:
+
+  [!CSV Sample File](images/CSVRoutineSample.png)
+
 ### Adding new weight to a client: `addWeight`
 
+{% include information.html content="
+
 Adds a new weight to the weight history of the client in the FitBook.
+
+" %}
+
 
 Format: `addWeight INDEX w/WEIGHT d/DATE`
 
@@ -328,9 +417,14 @@ Examples:
 * `addWeight 1 w/70 d/10-10-2023 18:00` adds weight 70kg to the weight history of the first client in the FitBook and dates the weight at 10 October 2023, 6pm.
 * `find n/Alex` followed by `addWeight 1 w/70 d/10-10-2023 18:00` adds weight 70kg, dated 10 October 2023, 6pm to the weight history of the 1st client in the results of the `find` command.
 
-### Plotting weight history graph for a client: `graph`
+### Plotting weight history graph for a client: `graph` 
+
+{% include information.html content="
 
 Plots the weight history of the client in the FitBook.
+
+" %}
+
 
 Format: `graph INDEX`
 
@@ -343,9 +437,13 @@ Examples:
 * `graph 1` plots the weight history of the first client in the FitBook.
 * `find n/Alex` followed by `graph 1` plots the weight history of the 1st client in the results of the `find` command.
 
-### Exiting the program : `exit`
+### Exiting the program : `exit` 
+
+{% include information.html content="
 
 Exits the program.
+
+" %}
 
 Format: `exit`
 
@@ -361,13 +459,9 @@ FitBook data are saved as a JSON file `[JAR file location]/data/fitbook.json`. A
 If your changes to the data file makes its format invalid, FitBook will discard all data and start with an empty data file at the next run.
 </div>
 
-<<<<<<< HEAD
-<h3><span style="color:#faac69">Archiving data files `[coming in v2.0]`</span></h3>
 
-
-=======
 ### Archiving data files `[coming in v2.0]`
->>>>>>> master
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -407,3 +501,4 @@ If your changes to the data file makes its format invalid, FitBook will discard 
 | **Export Routine Details**       | `exportRoutine`                                                                                                                                                                                                                                                                         |
 | **Add weight**                   | `addWeight INDEX w/WEIGHT d/DATE`<br> e.g., `addWeight 1 w/70 d/10-10-2023 18:00`                                                                                                                                                                                                       |
 | **Graph**                        | `graph INDEX`<br> e.g., `graph 1`                                                                                                                                                                                                                                                       |
+
