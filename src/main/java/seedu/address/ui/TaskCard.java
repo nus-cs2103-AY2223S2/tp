@@ -48,6 +48,9 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label createDate;
 
+    @FXML
+    private Label deadline;
+
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -70,13 +73,7 @@ public class TaskCard extends UiPart<Region> {
             LocalDateTime startTime = LocalDateTime.ofInstant(Instant
                 .ofEpochMilli(task.getCreateDateTime().getTimestamp().get()), ZoneId.systemDefault());
 
-            int statusIndex = cardVbox.getChildren().indexOf(status);
-            Label deadline = new Label("deadline");
             deadline.setText("Deadline: " + endTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-
-            deadline.getStyleClass().add("cell_small_label");
-            cardVbox.getChildren().add(statusIndex + 1, deadline);
-
 
             long totalDiff = ChronoUnit.SECONDS.between(startTime, endTime);
             long currDiff = ChronoUnit.SECONDS.between(startTime, LocalDateTime.now());
@@ -95,6 +92,8 @@ public class TaskCard extends UiPart<Region> {
             } else if (timeLapse >= 1) {
                 timeProgress.setStyle("-fx-accent: red;"); // set the color to blue
             }
+        } else {
+            deadline.setText("Deadline: -");
         }
 
 

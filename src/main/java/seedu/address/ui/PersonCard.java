@@ -67,8 +67,16 @@ public class PersonCard extends UiPart<Region> {
             });
 
 
-        progressIndicator.setProgress(person.progress()); // set progress value between 0.0 and 1.0
 
+        double progress = person.progress(); // set progress value between 0.0 and 1.0
+        progressIndicator.setProgress(progress);
+        if (progress < 0.5) {
+            progressIndicator.setStyle("-fx-accent: #B81D13");
+        } else if (progress < 0.9) {
+            progressIndicator.setStyle("-fx-accent: #EFB700");
+        } else {
+            progressIndicator.setStyle("-fx-accent: #008450");
+        }
 
     }
 
