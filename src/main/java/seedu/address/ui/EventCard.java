@@ -58,7 +58,7 @@ public class EventCard extends UiPart<Region> {
     private ImageView attachmentLogo;
     @FXML
     private ImageView noteLogo;
-
+    @FXML
     private ScrollPane scrollPane;
     @FXML
     private FlowPane tags;

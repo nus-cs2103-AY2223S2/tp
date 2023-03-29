@@ -42,7 +42,11 @@
              <Label fx:id="progressBarCount" styleClass="cell_big_label" />
              <Label fx:id="date" styleClass="cell_big_label" />
              <ImageView fx:id="attachmentLogo" />
+             <ImageView fx:id="noteLogo" />
          </HBox>
+            <HBox fx:id="noteDetails" alignment="CENTER_LEFT" spacing="5">
+                <VBox fx:id="noteBox"></VBox>
+            </HBox>
         <BorderPane fx:id="borderPane" />
         </VBox>
       <HBox prefHeight="81.0" prefWidth="150.0" />

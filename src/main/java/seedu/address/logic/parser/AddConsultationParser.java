@@ -52,7 +52,7 @@ public class AddConsultationParser implements Parser<AddConsultationCommand> {
                     AddConsultationCommand.MESSAGE_USAGE));
         }
 
-        String name = ParserUtil.parseConsultationName(argMultimap.getValue(PREFIX_TUTORIAL).get());
+        String name = ParserUtil.parseConsultationName(argMultimap.getValue(PREFIX_CONSULTATION).get());
         LocalDateTime date;
         File file;
         String note;

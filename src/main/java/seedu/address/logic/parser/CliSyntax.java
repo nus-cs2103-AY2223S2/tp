@@ -28,7 +28,7 @@ public class CliSyntax {
     // Add note directly instead of depending on events
     public static final Prefix PREFIX_NOTE_EXTERNAL = new Prefix("Note/");
     public static final Prefix PREFIX_NOTE_CONTENT = new Prefix("-content ");
-    public static final Prefix PREFIX_NOTE_EVENT_TYPE = new Prefix("-name ");
-    public static final Prefix PREFIX_NOTE_EVENT_NAME = new Prefix("-type ");
+    public static final Prefix PREFIX_NOTE_EVENT_TYPE = new Prefix("-type ");
+    public static final Prefix PREFIX_NOTE_EVENT_NAME = new Prefix("-name ");
     public static final Prefix PREFIX_NOTE_INDEX = new Prefix("-index ");
 }

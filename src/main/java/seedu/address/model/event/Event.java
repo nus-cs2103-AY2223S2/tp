@@ -1,6 +1,7 @@
 package seedu.address.model.event;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +18,11 @@ import seedu.address.model.person.Photo;
  */
 public abstract class Event {
 
-    public static final String MESSAGE_CONSTRAINTS = "Repetition for recur must be a number between 0 and 10";
+    public static final String MESSAGE_CONSTRAINTS = "Repetition for recur must be a number between 0 and 10. "
+            + "Also, an event name cannot be just the name of the event alone. For example, tutorial cannot be "
+            + "just tutorial, or just Tutorial etc. "
+            + "Lastly, the event name cannot contain the other type of event. So, tutorial's name cannot have the"
+            + " word consultation or lab in it.";
     private String name;
     private LocalDateTime eventDate;
     private final List<Person> students;

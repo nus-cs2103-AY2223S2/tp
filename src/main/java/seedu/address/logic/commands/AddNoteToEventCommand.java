@@ -17,10 +17,10 @@ public class AddNoteToEventCommand extends Command {
 
     // JThh: below fields are temporarily not used due to code refactoring.
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
-            + "cannot be recognized!";
-    public static final String TUTORIAL_STRING = "tutorial";
-    public static final String LAB_STRING = "lab";
-    public static final String CONSULTATION_STRING = "consultation";
+            + " cannot be recognized!";
+    public static final String TUTORIAL_STRING = "Tutorial";
+    public static final String LAB_STRING = "Lab";
+    public static final String CONSULTATION_STRING = "Consultation";
     private final Note toAdd;
     private final String eventName;
     private final String eventType;

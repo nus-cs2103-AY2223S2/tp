@@ -18,7 +18,7 @@ public class EditNoteCommand extends Command {
     public static final String MESSAGE_EXAMPLE = "edit-note -index 1 -content this is my updated notes -name "
             + "tutorial 1 -type tutorial";
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
-            + "cannot be recognized!";
+            + " cannot be recognized!";
     public static final String MESSAGE_EDIT_NOTE_SUCCESS = "Edited note: %1$s";
 
     public static final String TUTORIAL_STRING = "tutorial";
