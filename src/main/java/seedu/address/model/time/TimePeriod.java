@@ -22,8 +22,8 @@ public abstract class TimePeriod {
      * Constructs a period in time.
      */
     public TimePeriod(LocalTime startTime, LocalTime endTime, Day schoolDay) {
-        if (startTime.isAfter(endTime)) {
-            throw new WrongTimeException("Start Time Cannot be after End Time!");
+        if (startTime.isAfter(endTime) || startTime.isEqual(endTime)) {
+            throw new WrongTimeException("Start Time must be STRICTLY BEFORE End Time!");
         }
         this.startTime = startTime;
         this.endTime = endTime;
