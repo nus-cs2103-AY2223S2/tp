@@ -109,7 +109,7 @@ public class PatientistParser {
 
         case DeletePatientStatusCommand.COMMAND_WORD:
             return new DeletePatientStatusCommandParser().parse(arguments);
-            
+
         case DeletePatientCommand.COMMAND_WORD:
             return new DeletePatientCommandParser().parse(arguments);
 

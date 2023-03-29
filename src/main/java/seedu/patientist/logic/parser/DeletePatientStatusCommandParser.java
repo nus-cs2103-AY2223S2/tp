@@ -3,8 +3,6 @@ package seedu.patientist.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.patientist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.stream.Stream;
-
 import seedu.patientist.commons.core.index.Index;
 import seedu.patientist.logic.commands.DeletePatientStatusCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
