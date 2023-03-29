@@ -232,7 +232,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd bookmark in the library.
-* `find Chainsaw Man` followed by `delete 1` deletes the 1st bookmark in the results of the `find` command.
+* `find n/Chainsaw Man` followed by `delete 1` deletes the 1st bookmark in the results of the `find` command.
 
 ### Going to a url : `goto`
 
@@ -246,7 +246,7 @@ Format: `goto INDEX`
 
 Examples:
 * `list` followed by `goto 2` opens up the url of  2nd bookmark in the library.
-* `find Chainsaw Man` followed by `goto 1` opens url of the 1st bookmark in the results of the `find` command.
+* `find n/Chainsaw Man` followed by `goto 1` opens url of the 1st bookmark in the results of the `find` command.
 
 
 ### Clearing all entries : `clear`
