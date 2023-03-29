@@ -4,7 +4,6 @@ import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 import static seedu.internship.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.logic.commands.DeleteIndexCommand;
