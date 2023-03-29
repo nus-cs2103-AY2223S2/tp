@@ -11,7 +11,7 @@ public class HelpLabCommand extends HelpCommand {
 
     public static final String HEADER_1 = "----- Labs Basic Inputs -----\n";
 
-    public static final String HEADER_2 = "\n----- Lab Inputs -----\n";
+    public static final String HEADER_2 = "\n----- Student Inputs -----\n";
 
     public static final String HEADER_3 = "\n----- Note Inputs -----\n";
 
