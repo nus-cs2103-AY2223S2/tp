@@ -15,7 +15,8 @@ public class HelpCommand extends Command {
     public static final String SHOWING_HELP_MESSAGE = "New here? "
             + "Type 'help' into the command for more instructions.";
 
-    public static final String HELP_CATEGORIES = "Help categories available: \n"
+    public static final String HELP_CATEGORIES = "------ 3 Help categories available,"
+            +" enter any of the commands below to choose your category -----\n"
             + "help student\n"
             + "help event\n"
             + "help organisation";
