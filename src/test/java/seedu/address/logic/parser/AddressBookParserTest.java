@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddTagCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DisplayGroupCommand;
@@ -24,8 +25,6 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.GroupAddCommand;
-import seedu.address.logic.commands.GroupCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
@@ -54,13 +53,6 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
-    }
-
-    @Test
-    public void parseCommand_group() throws Exception {
-        Tag tag = new Tag("Hall");
-        GroupCommand command = (GroupCommand) parser.parseCommand("group n/Hall");
-        assertEquals(new GroupCommand(tag), command);
     }
 
     @Test
@@ -97,8 +89,8 @@ public class AddressBookParserTest {
         String input = targetIndex.getOneBased() + " t/Hall";
         Set<Tag> expectedTagList = new HashSet<>();
         expectedTagList.add(new Tag("Hall"));
-        GroupAddCommand command = (GroupAddCommand) parser.parseCommand(GroupAddCommand.COMMAND_WORD + " " + input);
-        assertEquals(new GroupAddCommand(targetIndex, expectedTagList), command);
+        AddTagCommand command = (AddTagCommand) parser.parseCommand(AddTagCommand.COMMAND_WORD + " " + input);
+        assertEquals(new AddTagCommand(targetIndex, expectedTagList), command);
     }
 
     @Test
